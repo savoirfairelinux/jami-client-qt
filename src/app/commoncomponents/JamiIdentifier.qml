@@ -42,9 +42,10 @@ Item {
     Connections {
         target: CurrentAccount
         function onIdChanged(id) {
-            if (!usernameTextEdit.readOnly) {
-                usernameTextEdit.readOnly = true;
+            if (usernameTextEdit.editMode) {
+                usernameTextEdit.editMode = false;
             }
+
         }
     }
 
@@ -80,49 +81,34 @@ Item {
                     color: JamiTheme.tintedBlue
                 }
 
-                UsernameTextEdit {
+                IdentifierUsernameTextEdit {
                     id: usernameTextEdit
-                    visible: !readOnly
+                    visible: editMode
                     Layout.preferredHeight: 40
                     Layout.preferredWidth: 300
                     Layout.alignment: Qt.AlignVCenter
-                    textColor: JamiTheme.tintedBlue
-                    fontPixelSize: JamiTheme.jamiIdSmallFontSize
+                    Layout.fillWidth: true
+
                     editMode: false
-                    isPersistent: false
-                    readOnly: true
 
                     onAccepted: {
-                        usernameTextEdit.readOnly = true;
-                        if (dynamicText === '' /*|| outsideClic*/) {
-                            print(dynamicText)
-                            outsideClic = false;
-                            print("return");
+                        usernameTextEdit.editMode = false;
+                        if (dynamicText === '') {
                             return;
                         }
                         var dlg = viewCoordinator.presentDialog(appWindow, "settingsview/components/NameRegistrationDialog.qml", {
                                 "registeredName": dynamicText
                             });
                         dlg.accepted.connect(function () {
-                                usernameTextEdit.nameRegistrationState = UsernameTextEdit.NameRegistrationState.BLANK;
+                                usernameTextEdit.nameRegistrationState = IdentifierUsernameTextEdit.NameRegistrationState.BLANK;
                             });
-                    }
-
-                    onIsActiveChanged: {
-                        print("isActiveChanged: " + isActive);
-                        if (!isActive && !readOnly) {
-                            print("ds if");
-                            readOnly = true;
-                            justChanged = true;
-                            //dynamicText = ''
-                            outsideClic = true;
-                            print("outsideClic: " + outsideClic);
-                        }
+                        dynamicText = '';
                     }
                 }
                 Label{
                     id: usernameLabel
-                    visible: usernameTextEdit.readOnly
+
+                    visible: !usernameTextEdit.editMode
 
                     verticalAlignment: Text.AlignVCenter
 
@@ -185,22 +171,24 @@ Item {
                         }
                     }
                     hoverEnabled: enabled
+
+                    onHoveredChanged: {
+                        if (hovered) {
+                            usernameTextEdit.btnHovered = true;
+                        } else {
+                            usernameTextEdit.btnHovered = false;
+                        }
+                    }
+
                     source: usernameTextEdit.editMode ? JamiResources.check_black_24dp_svg : JamiResources.assignment_ind_black_24dp_svg
                     toolTipText: JamiStrings.chooseUsername
                     onClicked: {
-                        clic = true;
-                        outsideClic = false;
-                        if (!justChanged /*|| !usernameTextEdit.isActive*/ /*&& !outsideClic*/) {
-                            print("v1");
-                            justChanged = false;
+                        usernameTextEdit.forceActiveFocus();
+                        if (!usernameTextEdit.editMode) {
                             usernameTextEdit.startEditing();
-                            usernameTextEdit.readOnly = false;
-                            print("start editing");
+                            usernameTextEdit.editMode = true;
                         } else {
-                            print("v2");
                             usernameTextEdit.accepted();
-                            print("accepted");
-                            justChanged = false;
                         }
                     }
 
