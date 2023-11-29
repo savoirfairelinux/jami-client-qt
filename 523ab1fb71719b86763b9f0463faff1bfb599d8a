@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73b57f74_c26502a9",
+        "filename": "src/app/appsettingsmanager.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-11-29T19:35:24Z",
+      "side": 1,
+      "message": "For anyone who has updated and run, the value of the setting will still be \u0027$\u0027. I think this is a good time to change the key name. We can take the opportunity to homogenize the case: pttKey --\u003e PttKeys (keys for possible future support key combos?).",
+      "range": {
+        "startLine": 71,
+        "startChar": 6,
+        "endLine": 71,
+        "endChar": 12
+      },
+      "revId": "523ab1fb71719b86763b9f0463faff1bfb599d8a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
