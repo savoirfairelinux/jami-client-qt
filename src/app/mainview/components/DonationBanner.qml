@@ -50,8 +50,8 @@ Rectangle {
             Layout.row: 0
             Layout.column: 0
             Layout.rowSpan: 2
-            Layout.preferredHeight: 70
-            Layout.preferredWidth: 45
+            Layout.preferredHeight: 53
+            Layout.preferredWidth: 43
             Layout.leftMargin: 10
             Layout.topMargin: 10
             Layout.bottomMargin: 15
@@ -61,9 +61,15 @@ Rectangle {
             Image {
                 id: donationImage
                 height: parent.height
-                width: 50
+                width: parent.width
                 anchors.centerIn: parent
                 source: JamiResources.icon_donate_svg
+            }
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    Qt.openUrlExternally(JamiTheme.donationUrl);
+                }
             }
         }
 
@@ -90,6 +96,12 @@ Rectangle {
 
                 font.pointSize: JamiTheme.textFontSize
             }
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    Qt.openUrlExternally(JamiTheme.donationUrl);
+                }
+            }
         }
 
         Rectangle {
@@ -102,8 +114,26 @@ Rectangle {
 
             color: JamiTheme.transparentColor
 
-            Text {
-                id: notNowText
+            PushButton {
+                //Scaffold{}
+                id: notNowButton
+                anchors.top: parent.top
+                anchors.left: parent.left
+                height: 15
+                width: 75
+                preferredLeftMargin: 0
+                preferredRightMargin: 0
+                buttonText: JamiStrings.notNow
+                buttonTextColor: JamiTheme.donationButtonTextColor
+                buttonTextFontSize: JamiTheme.textFontSize + 4
+                normalColor: "transparent"
+                hoveredColor: "transparent"
+                pressedColor: "transparent"
+                onClicked: {
+                    // When the user clicks on "Not now", we set the donation date to 7 days from now (1 for the test)
+                    UtilsAdapter.setAppValue(Settings.Key.Donation2023VisibleDate, new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 16).replace("T", " "));
+                    donation.donationVisible = Qt.binding(() => JamiQmlUtils.isDonationBannerVisible());
+                }
                 MouseArea {
                     cursorShape: Qt.PointingHandCursor
                     anchors.fill: parent
@@ -113,11 +143,6 @@ Rectangle {
                         donation.donationVisible = Qt.binding(() => JamiQmlUtils.isDonationBannerVisible());
                     }
                 }
-                text: JamiStrings.notNow
-                color: JamiTheme.donationButtonTextColor
-                anchors.top: parent.top
-                anchors.left: parent.left
-                font.pointSize: JamiTheme.textFontSize
             }
         }
 
@@ -129,8 +154,24 @@ Rectangle {
             Layout.preferredWidth: (parent.width - 50) / 2
             color: JamiTheme.transparentColor
 
-            Text {
-                id: donateText
+            PushButton {
+                //Scaffold{}
+                id: donateButton
+                anchors.top: parent.top
+                anchors.left: parent.left
+                height: 15
+                width: 75
+                preferredLeftMargin: 0
+                preferredRightMargin: 0
+                buttonText: JamiStrings.donation
+                buttonTextColor: JamiTheme.donationButtonTextColor
+                buttonTextFontSize: JamiTheme.textFontSize + 4
+                normalColor: "transparent"
+                hoveredColor: "transparent"
+                pressedColor: "transparent"
+                onClicked: {
+                    Qt.openUrlExternally(JamiTheme.donationUrl);
+                }
                 MouseArea {
                     cursorShape: Qt.PointingHandCursor
                     anchors.fill: parent
@@ -138,11 +179,6 @@ Rectangle {
                         Qt.openUrlExternally(JamiTheme.donationUrl);
                     }
                 }
-                text: JamiStrings.donation
-                font.pointSize: JamiTheme.textFontSize
-                color: JamiTheme.donationButtonTextColor
-                anchors.top: parent.top
-                anchors.left: parent.left
             }
         }
     }
