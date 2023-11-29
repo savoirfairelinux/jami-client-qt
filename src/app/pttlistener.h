@@ -13,7 +13,7 @@ class PTTListener : public QObject
 public:
     Q_INVOKABLE Qt::Key getCurrentKey()
     {
-        int keyInt = settingsManager_->getValue(Settings::Key::pttKey).toInt();
+        int keyInt = settingsManager_->getValue(Settings::Key::PttKeys).toInt();
         Qt::Key key = static_cast<Qt::Key>(keyInt);
         return key;
     }
@@ -25,7 +25,7 @@ public:
 
     Q_INVOKABLE void setPttKey(Qt::Key key)
     {
-        settingsManager_->setValue(Settings::Key::pttKey, key);
+        settingsManager_->setValue(Settings::Key::PttKeys, key);
     }
     Q_INVOKABLE bool getPttState()
     {
