@@ -22,6 +22,30 @@
       },
       "revId": "523ab1fb71719b86763b9f0463faff1bfb599d8a",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6468e314_bf67302b",
+        "filename": "src/app/appsettingsmanager.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-11-29T19:49:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73b57f74_c26502a9",
+      "range": {
+        "startLine": 71,
+        "startChar": 6,
+        "endLine": 71,
+        "endChar": 12
+      },
+      "revId": "523ab1fb71719b86763b9f0463faff1bfb599d8a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
