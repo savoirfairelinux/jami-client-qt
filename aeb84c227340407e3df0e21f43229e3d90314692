@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "721bfdf9_0e198c82",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 557,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-11-29T10:06:42Z",
+      "side": 1,
+      "message": "1. Should only the first letter be uppercase for consistency with Jami convention?\n2. Should `Stats` be `statistics`?\n\nShould the string be:\n`Show statistics`\n\nhttps://transvision.mozfr.org/?recherche\u003dShow+statistics\u0026repo\u003dall_projects\u0026sourcelocale\u003den-US\u0026locale\u003dfr\u0026search_type\u003dstrings\n\nThank you",
+      "range": {
+        "startLine": 557,
+        "startChar": 45,
+        "endLine": 557,
+        "endChar": 55
+      },
+      "revId": "aeb84c227340407e3df0e21f43229e3d90314692",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a91a5ec_f70209d1",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 560,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-11-29T10:06:42Z",
+      "side": 1,
+      "message": "Should a popup/tooltip be added with text `Copy to clipboard` to be consistent with the constant name?\n\nor\n\n`Copy text to clipboard`\n\nhttps://transvision.mozfr.org/?recherche\u003dCopy+text+to+clipboard\u0026repo\u003dall_projects\u0026sourcelocale\u003den-US\u0026locale\u003dfr\u0026search_type\u003dstrings\n\nThank you",
+      "range": {
+        "startLine": 560,
+        "startChar": 43,
+        "endLine": 560,
+        "endChar": 47
+      },
+      "revId": "aeb84c227340407e3df0e21f43229e3d90314692",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68812a4e_4662cbf9",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-11-29T10:06:42Z",
+      "side": 1,
+      "message": "Should `Bug` be `bug` to be consistent with Jami convention?\n\n`Report bug`\n\nThank you",
+      "range": {
+        "startLine": 561,
+        "startChar": 42,
+        "endLine": 561,
+        "endChar": 52
+      },
+      "revId": "aeb84c227340407e3df0e21f43229e3d90314692",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "514f973d_6a68595d",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-11-29T10:06:42Z",
+      "side": 1,
+      "message": "1. Only first letter capital?\n2. Change `logs` to `log`?\n3. Change `Receive` to `Show`?\n\nShould the string value be:\n`Show log`\n\nThank you\n\nhttps://transvision.mozfr.org/?recherche\u003dShow+log\u0026repo\u003dall_projects\u0026sourcelocale\u003den-US\u0026locale\u003dfr\u0026search_type\u003dstrings\u0026case_sensitive\u003dcase_sensitive\u0026entire_string\u003dentire_string",
+      "range": {
+        "startLine": 565,
+        "startChar": 43,
+        "endLine": 565,
+        "endChar": 55
+      },
+      "revId": "aeb84c227340407e3df0e21f43229e3d90314692",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
