@@ -179,9 +179,7 @@ SidePanelBase {
         Item {
             anchors.fill: parent
 
-            onVisibleChanged: {
-                donation.donationVisible = Qt.binding(() => JamiQmlUtils.isDonationBannerVisible());
-            }
+            onVisibleChanged: JamiQmlUtils.updateIsDonationBannerVisible()
 
             RowLayout {
                 id: titleBar
@@ -325,20 +323,20 @@ SidePanelBase {
             }
 
             DonationBanner {
-                id: donation
+                id: donationBanner
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.leftMargin: 15
                 anchors.rightMargin: 15
                 anchors.top: sidePanelTabBar.bottom
                 anchors.topMargin: 10
-                visible: donation.donationVisible
+                visible: JamiQmlUtils.isDonationBannerVisible
             }
 
             ColumnLayout {
                 id: smartListLayout
 
                 width: parent.width
-                anchors.top: donation.donationVisible ? donation.bottom : searchStatusRect.bottom
+                anchors.top: donationBanner.visible ? donationBanner.bottom : searchStatusRect.bottom
                 anchors.topMargin: (sidePanelTabBar.visible || searchStatusRect.visible) ? 0 : 12
                 anchors.bottom: parent.bottom
 
@@ -392,7 +390,7 @@ SidePanelBase {
                 visible: inNewSwarm
 
                 width: parent.width
-                anchors.top: donation.donationVisible ? donation.bottom : sidePanelTabBar.bottom
+                anchors.top: donationBanner.visible ? donationBanner.bottom : sidePanelTabBar.bottom
                 anchors.topMargin: (sidePanelTabBar.visible || searchStatusRect.visible) ? 0 : 12
                 anchors.bottom: parent.bottom
 
