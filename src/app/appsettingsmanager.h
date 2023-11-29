@@ -68,7 +68,7 @@ extern const QString defaultDownloadPath;
     X(IsDonationVisible, true) \
     X(Donation2023EndDate, "2024-01-31 00:00") \
     X(EnablePtt, false) \
-    X(pttKey, 36)
+    X(pttKey, 32)
 /*
  * A class to expose settings keys in both c++ and QML.
  * Note: this is using a non-constructable class instead of a
