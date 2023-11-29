@@ -71,12 +71,26 @@ Item {
         return Math.min(Math.max(val, min), max);
     }
 
-    function isDonationBannerVisible() {
+    property bool isDonationBannerVisible: getIsDonationBannerVisible()
+    Connections {
+        target: UtilsAdapter
+        function onDonationCampaignSettingChanged() {
+            // Changing any of the donation campaign settings will trigger a recompute of the banner visibility.
+            updateIsDonationBannerVisible();
+        }
+    }
+
+    function updateIsDonationBannerVisible() {
+        isDonationBannerVisible = getIsDonationBannerVisible();
+    }
+
+    function getIsDonationBannerVisible() {
         // The banner is visible if the current date is after the date set in the settings and before the end date
         // And if the donation toggle is checked
-        var isDonationVisible = UtilsAdapter.getAppValue(Settings.Key.IsDonationVisible);
-        var endDonationDate = new Date(Date.parse(UtilsAdapter.getAppValue(Settings.Key.Donation2023EndDate)));
-        var donationVisibleDate = new Date(Date.parse(UtilsAdapter.getAppValue(Settings.Key.Donation2023VisibleDate)));
-        return new Date() < endDonationDate && new Date() > donationVisibleDate && isDonationVisible;
+        const isVisible = UtilsAdapter.getAppValue(Settings.Key.IsDonationVisible);
+        const endDate = Date.parse(UtilsAdapter.getAppValue(Settings.Key.Donation2023EndDate));
+        const startDate = Date.parse(UtilsAdapter.getAppValue(Settings.Key.Donation2023VisibleDate));
+        const now = new Date();
+        return isVisible && now < endDate && now >= startDate;
     }
 }

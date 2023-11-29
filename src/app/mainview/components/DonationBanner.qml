@@ -25,15 +25,24 @@ import "../../commoncomponents"
 import "../../settingsview/components"
 
 Rectangle {
-    id: donation
-
-    property bool donationVisible: JamiQmlUtils.isDonationBannerVisible()
+    id: root
 
     width: parent.width - 30
     height: donationTextRect.height + 45 > donationIcon.height + 20 ? donationTextRect.height + 45 : donationIcon.height + 20
     radius: 5
 
     color: JamiTheme.donationBackgroundColor
+
+    function bumpDonationReminderVisibility() {
+        // Calculate the time 7 days from now
+        var futureDate = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000);
+
+        // Format the date to 'yyyy-MM-dd hh:mm' format
+        var formattedDate = Qt.formatDateTime(futureDate, "yyyy-MM-dd hh:mm");
+
+        // Set the application value
+        UtilsAdapter.setAppValue(Settings.Key.Donation2023VisibleDate, formattedDate);
+    }
 
     GridLayout {
         id: donationLayout
@@ -102,16 +111,13 @@ Rectangle {
 
             color: JamiTheme.transparentColor
 
+            // When the user clicks on "Not now", we set the donation date to 7 days from now
             Text {
                 id: notNowText
                 MouseArea {
                     cursorShape: Qt.PointingHandCursor
                     anchors.fill: parent
-                    onClicked: {
-                        // When the user clicks on "Not now", we set the donation date to 7 days from now (1 for the test)
-                        UtilsAdapter.setAppValue(Settings.Key.Donation2023VisibleDate, new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 16).replace("T", " "));
-                        donation.donationVisible = Qt.binding(() => JamiQmlUtils.isDonationBannerVisible());
-                    }
+                    onClicked: bumpDonationReminderVisibility()
                 }
                 text: JamiStrings.notNow
                 color: JamiTheme.donationButtonTextColor
