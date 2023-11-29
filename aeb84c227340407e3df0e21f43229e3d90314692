@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f83596e2_f94a5772",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2023-11-29T10:13:37Z",
+      "side": 1,
+      "message": "A log contains a set of entries.\n\nShould the constant names be changed from `logsView` to `logView`, i.e. without the `s`?\n\nhttps://transvision.mozfr.org/?recherche\u003dShow+log\u0026repo\u003dall_projects\u0026sourcelocale\u003den-US\u0026locale\u003dfr\u0026search_type\u003dstrings\u0026case_sensitive\u003dcase_sensitive\u0026entire_string\u003dentire_string\n\nThank you",
+      "range": {
+        "startLine": 556,
+        "startChar": 20,
+        "endLine": 556,
+        "endChar": 24
+      },
+      "revId": "aeb84c227340407e3df0e21f43229e3d90314692",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "721bfdf9_0e198c82",
         "filename": "src/app/constant/JamiStrings.qml",
         "patchSetId": 4
