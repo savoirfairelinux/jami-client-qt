@@ -92,6 +92,11 @@ UtilsAdapter::setAppValue(const Settings::Key key, const QVariant& value)
         Q_EMIT chatviewPositionChanged();
     else if (key == Settings::Key::AppTheme)
         Q_EMIT appThemeChanged();
+    // Any donation campaign-related keys can trigger a donation campaign check
+    else if (key == Settings::Key::IsDonationVisible
+             || key == Settings::Key::Donation2023VisibleDate
+             || key == Settings::Key::Donation2023EndDate)
+        Q_EMIT donationCampaignSettingChanged();
 }
 
 QVariant
