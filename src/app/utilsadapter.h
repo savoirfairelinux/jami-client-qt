@@ -67,7 +67,6 @@ class UtilsAdapter final : public QmlAdapterBase
     Q_OBJECT
     QML_PROPERTY(QStringList, logList)
     QML_RO_PROPERTY(bool, isRTL)
-
 public:
     explicit UtilsAdapter(AppSettingsManager* settingsManager,
                           SystemTray* systemTray,
@@ -171,7 +170,7 @@ Q_SIGNALS:
     void appThemeChanged();
     void showExperimentalCallSwarm();
     void changeLanguage();
-    void donationCampaignSettingChanged();
+    void donationCampaignSettingsChanged();
 
 private:
     QClipboard* clipboard_;

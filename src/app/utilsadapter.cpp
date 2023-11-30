@@ -96,7 +96,7 @@ UtilsAdapter::setAppValue(const Settings::Key key, const QVariant& value)
     else if (key == Settings::Key::IsDonationVisible
              || key == Settings::Key::Donation2023VisibleDate
              || key == Settings::Key::Donation2023EndDate)
-        Q_EMIT donationCampaignSettingChanged();
+        Q_EMIT donationCampaignSettingsChanged();
 }
 
 QVariant
