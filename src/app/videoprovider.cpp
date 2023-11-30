@@ -227,7 +227,7 @@ VideoProvider::onFrameUpdated(const QString& id)
 
         it->second.frameMutex.lockForRead();
         it->second.subscribersMutex.lockForRead();
-        for (const auto& sink : qAsConst(it->second.subscribers)) {
+        for (const auto& sink : std::as_const(it->second.subscribers)) {
             sink->setVideoFrame(videoFrame);
         }
         it->second.subscribersMutex.unlock();
@@ -261,7 +261,7 @@ VideoProvider::onFrameUpdated(const QString& id)
 
         it->second.frameMutex.lockForRead();
         it->second.subscribersMutex.lockForRead();
-        for (const auto& sink : qAsConst(it->second.subscribers)) {
+        for (const auto& sink : std::as_const(it->second.subscribers)) {
             sink->setVideoFrame(videoFrame);
         }
         it->second.subscribersMutex.unlock();
