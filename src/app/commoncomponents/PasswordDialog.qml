@@ -17,6 +17,7 @@
  */
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Controls
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
@@ -76,6 +77,9 @@ BaseModalDialog {
     button1Role: DialogButtonBox.ApplyRole
     button1.enabled: purpose === PasswordDialog.SetPassword
 
+    button2.text: JamiStrings.cancel
+    button2Role: DialogButtonBox.RejectRole
+    button2.onClicked: close()
 
     popupContent: ColumnLayout {
         id: popupContentColumnLayout
@@ -167,6 +171,7 @@ BaseModalDialog {
 
             Layout.alignment: Qt.AlignHCenter
             Layout.preferredHeight: visible ? 48 : 0
+            Layout.bottomMargin: JamiTheme.preferredMarginSize
             Layout.fillWidth: true
 
             visible: purpose === PasswordDialog.ChangePassword || purpose === PasswordDialog.SetPassword
