@@ -45,7 +45,7 @@ public:
             if (pluginsId.size() == 0) {
                 return;
             }
-            for (const auto& pluginId : qAsConst(pluginsId)) {
+            for (const auto& pluginId : std::as_const(pluginsId)) {
                 parent_.pluginRepliesId.remove(pluginId);
             }
         });
