@@ -182,27 +182,29 @@ SidePanelBase {
             }
         }
 
-        Item {
-            anchors.fill: parent
+        topPadding: 10
 
+        ColumnLayout {
+            anchors.fill: parent
+            spacing: 10
+
+            // Short of having a timer, we use this to update the donation banner visibility.
             onVisibleChanged: JamiQmlUtils.updateIsDonationBannerVisible()
 
+            // Label/button to create a new swarm.
             RowLayout {
-                id: titleBar
+                id: createSwarmToggle
 
                 visible: swarmMemberSearchList.visible
 
+                width: parent.width
                 height: 40
-                anchors.top: parent.top
-                anchors.topMargin: 10
-                anchors.left: parent.left
-                anchors.leftMargin: 15
-                anchors.right: parent.right
-                anchors.rightMargin: 15
+
+                Layout.leftMargin: 15
+                Layout.rightMargin: 15
+                Layout.alignment: Qt.AlignTop
 
                 Label {
-                    id: title
-
                     height: parent.height
                     Layout.fillWidth: true
                     Layout.alignment: Qt.AlignVCenter
@@ -222,7 +224,7 @@ SidePanelBase {
                     imagePadding: 8
                     normalColor: JamiTheme.secondaryBackgroundColor
 
-                    preferredSize: titleBar.height
+                    preferredSize: createSwarmToggle.height
 
                     source: JamiResources.round_close_24dp_svg
                     toolTipText: JamiStrings.cancel
@@ -231,16 +233,16 @@ SidePanelBase {
                 }
             }
 
+            // Search conversations, start new conversations, etc.
             RowLayout {
                 id: startBar
 
+                width: parent.width
                 height: 40
-                anchors.top: titleBar.visible ? titleBar.bottom : parent.top
-                anchors.topMargin: 10
-                anchors.left: parent.left
-                anchors.leftMargin: 15
-                anchors.right: parent.right
-                anchors.rightMargin: 15
+
+                Layout.leftMargin: 15
+                Layout.rightMargin: 15
+                Layout.alignment: Qt.AlignTop
 
                 Shortcut {
                     sequence: "Ctrl+F"
@@ -253,7 +255,8 @@ SidePanelBase {
                 Searchbar {
                     id: contactSearchBar
 
-                    Layout.fillHeight: true
+                    height: parent.height
+                    onHeightChanged: print("startBar height changed to", height)
                     Layout.fillWidth: true
 
                     onSearchBarTextChanged: function (text) {
@@ -296,10 +299,14 @@ SidePanelBase {
                 id: sidePanelTabBar
 
                 visible: ConversationsAdapter.pendingRequestCount && !contactSearchBar.textContent && smartListLayout.visible
-                anchors.top: startBar.bottom
-                anchors.topMargin: visible ? 10 : 0
+
                 width: page.width
                 height: visible ? 42 : 0
+
+                Layout.fillWidth: true
+                Layout.bottomMargin: -10
+                Layout.alignment: Qt.AlignTop
+
                 contentHeight: visible ? 42 : 0
             }
 
@@ -308,10 +315,11 @@ SidePanelBase {
 
                 visible: searchStatusText.text !== "" && smartListLayout.visible
 
-                anchors.top: sidePanelTabBar.bottom
-                anchors.topMargin: visible ? 10 : 0
                 width: parent.width
                 height: visible ? 42 : 0
+
+                Layout.bottomMargin: -10
+                Layout.alignment: Qt.AlignTop
 
                 color: JamiTheme.backgroundColor
                 Text {
@@ -328,23 +336,80 @@ SidePanelBase {
                 }
             }
 
-            DonationBanner {
-                id: donationBanner
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.leftMargin: 15
-                anchors.rightMargin: 15
-                anchors.top: sidePanelTabBar.bottom
-                anchors.topMargin: 10
-                visible: JamiQmlUtils.isDonationBannerVisible
+            Control {
+                Layout.fillWidth: true
+                Layout.leftMargin: 15
+                Layout.rightMargin: 15
+
+                padding: 10
+                background: Rectangle {
+                    color: JamiTheme.donationBackgroundColor
+                    radius: 5
+                }
+                contentItem: RowLayout {
+                    Image {
+                        source: JamiResources.icon_donate_svg
+                    }
+
+                    ColumnLayout {
+                        Layout.fillWidth: true
+                        Layout.alignment: Qt.AlignTop
+
+                        Label {
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: implicitHeight
+                            Layout.alignment: Qt.AlignTop
+
+                            text: JamiStrings.donationText
+                            wrapMode: Text.WordWrap
+                            font.pointSize: JamiTheme.textFontSize
+                        }
+
+                        RowLayout {
+                            component BannerButton : Button {
+                                id: donateButton
+                                contentItem: Text {
+                                    text: JamiStrings.donate
+                                }
+                                background: null
+                            }
+
+                            // When the user clicks on "Not now", we set the donation date to 7 days from now
+                            BannerButton {
+                                text: JamiStrings.notNow
+                                onClicked: print("Not now")
+                            }
+
+                            BannerButton {
+                                text: JamiStrings.donation
+                                onClicked: Qt.openUrlExternally(JamiTheme.donationUrl)
+                            }
+                        }
+                    }
+                }
             }
+
+
+
+
+//            DonationBanner {
+//                id: donationBanner
+
+//                width: parent.width
+//                Layout.preferredHeight: height
+//                Layout.topMargin: 10
+//                Layout.leftMargin: 15
+//                Layout.rightMargin: 15
+//                Layout.alignment: Qt.AlignTop
+
+//                visible: JamiQmlUtils.isDonationBannerVisible
+//            }
 
             ColumnLayout {
                 id: smartListLayout
 
                 width: parent.width
-                anchors.top: donationBanner.visible ? donationBanner.bottom : searchStatusRect.bottom
-                anchors.topMargin: (sidePanelTabBar.visible || searchStatusRect.visible) ? 0 : 12
-                anchors.bottom: parent.bottom
+                Layout.fillHeight: true
 
                 spacing: 4
 
@@ -396,9 +461,7 @@ SidePanelBase {
                 visible: inNewSwarm
 
                 width: parent.width
-                anchors.top: donationBanner.visible ? donationBanner.bottom : sidePanelTabBar.bottom
-                anchors.topMargin: (sidePanelTabBar.visible || searchStatusRect.visible) ? 0 : 12
-                anchors.bottom: parent.bottom
+                Layout.fillHeight: true
 
                 spacing: 4
 
