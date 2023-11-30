@@ -36,7 +36,7 @@ BaseModalDialog {
 
     popupContent: Rectangle {
         color: JamiTheme.backgroundRectangleColor
-        width: userProfileDialogLayout.width + 20
+        width: idRectangle.width + 20
         height: userProfileDialogLayout.height + 10
         radius: 5
 
@@ -69,14 +69,12 @@ BaseModalDialog {
 
         ColumnLayout {
             id: userProfileDialogLayout
-
-            width: Math.min(root.width, 400)
             spacing: 10
 
             RowLayout {
                 Layout.margins: 10
+                Layout.preferredWidth: childrenRect.width
 
-                Layout.fillWidth: true
                 spacing: 10
 
                 Avatar {
@@ -153,8 +151,11 @@ BaseModalDialog {
 
 
             Rectangle {
-                Layout.preferredWidth: parent.width
+                id: idRectangle
+
                 Layout.alignment: Qt.AlignHCenter
+
+                Layout.preferredWidth: idLayout.width + 20
                 radius: 5
 
                 color: root.backgroundColor
@@ -162,12 +163,9 @@ BaseModalDialog {
                 Layout.preferredHeight: contactId.height + 20
                 Layout.leftMargin: 10
 
-
                 RowLayout {
                     id: idLayout
                     anchors.centerIn: parent
-                    anchors.fill: parent
-
                     spacing: 15
 
                     Text {
@@ -185,7 +183,7 @@ BaseModalDialog {
                     TextEdit {
                         id: contactId
                         Layout.alignment: Qt.AlignLeft
-                        Layout.preferredWidth: parent.width - identifierText.width - 35
+                        Layout.minimumWidth: 400 - identifierText.width - 2 * root.popupMargins - 35
 
                         font.pointSize: JamiTheme.textFontSize
                         font.kerning: true
@@ -199,7 +197,7 @@ BaseModalDialog {
                             id: textMetricsContacIdText
                             font: contactDisplayName.font
                             text: idText
-                            elideWidth: root.width - 200
+                            elideWidth: root.width - identifierText.width - 2 * root.popupMargins - 60
                             elide: Qt.ElideMiddle
                         }
 
