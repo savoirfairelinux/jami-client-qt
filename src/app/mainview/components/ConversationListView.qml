@@ -26,10 +26,8 @@ import "../../commoncomponents"
 JamiListView {
     id: root
 
-    // the following should be marked required (Qtver >= 5.15)
-    // along with `required model`
-    property string headerLabel
-    property bool headerVisible
+    required property string headerLabel
+    required property bool headerVisible
 
     delegate: SmartListItemDelegate {
     }

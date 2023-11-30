@@ -74,8 +74,9 @@ Item {
     property bool isDonationBannerVisible: getIsDonationBannerVisible()
     Connections {
         target: UtilsAdapter
-        function onDonationCampaignSettingChanged() {
-            // Changing any of the donation campaign settings will trigger a recompute of the banner visibility.
+        function onDonationCampaignSettingsChanged() {
+            // Changing any of the donation campaign settings will trigger a recompute
+            // of the banner visibility.
             updateIsDonationBannerVisible();
         }
     }
