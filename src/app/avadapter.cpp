@@ -204,16 +204,10 @@ AvAdapter::shareFile(const QString& filePath)
                               &lrc::api::AVModel::fileOpened,
                               this,
                               [this, callId, filePath, resource](bool hasAudio, bool hasVideo) {
-                                  // TODO: allow audio only sharing
-                                  if (hasVideo) { // only start sharing if video is available
-                                      lrcInstance_->avModel().pausePlayer(resource, false);
-                                      lrcInstance_->avModel().setAutoRestart(resource, true);
-                                      lrcInstance_->getCurrentCallModel()
-                                          ->addMedia(callId, filePath, lrc::api::CallModel::MediaRequestType::FILESHARING, false, hasAudio);
-                                  } else {
-                                      // Close media player because we are not going to start sharing
-                                      lrcInstance_->avModel().closeMediaPlayer(resource);
-                                  }
+                                    lrcInstance_->avModel().setAutoRestart(resource, true);
+                                    lrcInstance_->getCurrentCallModel()
+                                        ->addMedia(callId, filePath, lrc::api::CallModel::MediaRequestType::FILESHARING, false, hasAudio);
+                                    lrcInstance_->avModel().pausePlayer(resource, false);
                               });
 
         lrcInstance_->avModel().createMediaPlayer(resource);
