@@ -35,9 +35,9 @@ TabButton {
     property var textColorHovered: JamiTheme.textColorHovered
     property var underlineColor: textColor
     property var underlineColorHovered: textColorHovered
-    property var borderWidth: 2
-    property var bottomMargin: 1
-    property var underlineContentOnly: false
+    property real borderWidth: 2
+    property real bottomMargin: 1
+    property bool underlineContentOnly: false
     property var fontSize: JamiTheme.filterItemFontSize
 
     signal selected

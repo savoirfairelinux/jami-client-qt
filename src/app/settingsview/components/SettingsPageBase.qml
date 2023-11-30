@@ -27,7 +27,6 @@ JamiSplitView {
     id: root
     required property Item flickableContent
     property real contentFlickableWidth: Math.min(JamiTheme.maximumWidthSettingsView, settingsPage.width - 2 * JamiTheme.preferredSettingsMarginSize)
-    property real tableWidth: Math.min(JamiTheme.maximumWidthSettingsView * 2, settingsPage.width - 2 * JamiTheme.preferredSettingsMarginSize)
     property alias title: settingsPage.title
     property color backgroundColor: JamiTheme.secondaryBackgroundColor
     property alias pageContainer: settingsPage
