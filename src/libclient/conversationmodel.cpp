@@ -2895,65 +2895,47 @@ ConversationModelPimpl::slotActiveCallsChanged(const QString& accountId,
 void
 ConversationModelPimpl::slotContactAdded(const QString& contactUri)
 {
-    auto conv = storage::getConversationsWithPeer(db, contactUri);
-    bool addConversation = false;
-    bool removeConversation = false;
-    try {
-        auto& conversation = getConversationForPeerUri(contactUri).get();
-        // swarm conversation we update when receive conversation ready signal.
-        if (conversation.isSwarm()) {
-            MapStringString details = ConfigurationManager::instance()
-                                          .conversationInfos(linked.owner.id, conversation.uid);
-            bool needsSyncing = details["syncing"] == "true";
-            if (conversation.needsSyncing != needsSyncing) {
-                conversation.isRequest = false;
-                conversation.needsSyncing = needsSyncing;
-                Q_EMIT linked.dataChanged(indexOf(conversation.uid));
-                Q_EMIT linked.conversationUpdated(conversation.uid);
-                invalidateModel();
-                Q_EMIT linked.modelChanged();
-            }
-            return;
-        } else {
-            conversation.isRequest = false;
-        }
-        if (conv.empty()) {
-            conv.push_back(storage::beginConversationWithPeer(db, contactUri));
-        }
-        // remove temporary conversation that was added when receiving an incoming request
-        removeConversation = indexOf(contactUri) != -1 && indexOf(conv[0]) == -1;
 
-        // add a conversation if not exists
-        addConversation = indexOf(conv[0]) == -1;
-    } catch (std::out_of_range&) {
-        /*
-         if the conversation does not exists we save it to DB and add non-swarm
-         conversation to the conversion list. After receiving a conversation request or
-         conversation ready signal swarm conversation should be updated and removed from DB.
-         */
-        addConversation = true;
-        if (conv.empty()) {
-            conv.push_back(storage::beginConversationWithPeer(db,
+    QString convId;
+    try {
+        convId = linked.owner.contactModel->getContact(contactUri).conversationId;
+    } catch (std::out_of_range& e) {
+        return;
+    }
+
+    auto isSwarm = !convId.isEmpty();
+    auto conv = !isSwarm? storage::getConversationsWithPeer(db, contactUri) : VectorString {convId};
+    if (conv.isEmpty()) {
+        if (linked.owner.profileInfo.type == profile::Type::SIP) {
+            auto convId = storage::beginConversationWithPeer(db,
                                                               contactUri,
                                                               true,
                                                               linked.owner.contactModel->getAddedTs(
-                                                                  contactUri)));
+                                                                  contactUri));
+            addConversationWith(convId, contactUri, false);
+            Q_EMIT linked.conversationReady(convId, contactUri);
+            Q_EMIT linked.newConversation(convId);
         }
+        return;
     }
-    if (addConversation) {
-        addConversationWith(conv[0], contactUri, false);
-        Q_EMIT linked.conversationReady(conv[0], contactUri);
-        Q_EMIT linked.newConversation(conv[0]);
-    }
-    if (removeConversation) {
-        eraseConversation(indexOf(contactUri));
-        invalidateModel();
-        Q_EMIT linked.conversationRemoved(contactUri);
-        Q_EMIT linked.modelChanged();
-    } else if (!addConversation) {
-        invalidateModel();
-        Q_EMIT linked.modelChanged();
-        Q_EMIT linked.conversationReady(conv[0], contactUri);
+    convId = conv[0];
+    try {
+        auto& conversation = getConversationForUid(convId).get();
+        MapStringString details = ConfigurationManager::instance()
+                                          .conversationInfos(linked.owner.id, conversation.uid);
+        bool needsSyncing = details["syncing"] == "true";
+        if (conversation.needsSyncing != needsSyncing) {
+            conversation.isRequest = false;
+            conversation.needsSyncing = needsSyncing;
+            Q_EMIT linked.dataChanged(indexOf(conversation.uid));
+            Q_EMIT linked.conversationUpdated(conversation.uid);
+            invalidateModel();
+            Q_EMIT linked.modelChanged();
+        }
+    } catch (...) {
+        if (isSwarm) {
+            addSwarmConversation(convId);
+        }
     }
 }
 
