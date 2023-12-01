@@ -79,6 +79,9 @@ Loader {
             formattedTime: root.formattedTime
             formattedDay: root.formattedTime
             extraHeight: progressBar.visible ? 18 : 0
+            Component.onCompleted: bubble.timestampItem.visible = false
+
+
             innerContent.children: [
                 RowLayout {
                     id: transferItem
@@ -257,6 +260,7 @@ Loader {
             id: localMediaMsgItem
 
             isOutgoing: Author === CurrentAccount.uri
+            property var transferStats: MessagesAdapter.getTransferStats(Id, Status)
             showTime: root.showTime
             seq: root.seq
             author: Author
@@ -266,7 +270,20 @@ Loader {
             readers: Readers
             formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
             formattedDay: MessagesAdapter.getFormattedDay(Timestamp)
-            bubble.visible: false
+
+            Component.onCompleted: {
+                if (transferStats.totalSize !== undefined) {
+                    var totalSize = transferStats.totalSize !== 0 ? transferStats.totalSize : TotalSize
+                    var txt = UtilsAdapter.humanFileSize(totalSize)
+                }
+                bubble.timestampItem.timeLabel.text += " - " + txt
+
+                bubble.color = "transparent"
+                bubble.timestampItem.timeColor = JamiTheme.whiteColor
+                bubble.z = 1
+
+            }
+
             innerContent.children: [
                 Loader {
                     id: localMediaCompLoader
@@ -296,6 +313,7 @@ Loader {
                     }
                     Component {
                         id: animatedImageComp
+
                         AnimatedImage {
                             id: animatedImg
 
