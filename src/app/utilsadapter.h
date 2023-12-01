@@ -22,12 +22,14 @@
 
 #pragma once
 
-#include <QApplication>
-#include <QObject>
-
 #include "qmladapterbase.h"
 #include "appsettingsmanager.h"
 #include "qtutils.h"
+
+#include <api/member.h>
+
+#include <QApplication>
+#include <QObject>
 
 #if __has_include(<gio/gio.h>)
 #include <gio/gio.h>
