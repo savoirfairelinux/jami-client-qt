@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "029c8798_e72c480d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-12-01T19:28:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c62593b_74eec22c",
+      "range": {
+        "startLine": 7,
+        "startChar": 35,
+        "endLine": 7,
+        "endChar": 42
+      },
+      "revId": "54d38f786a9006d5da521fdcbd42c7319dacafec",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7d0ab801_a52d8d79",
@@ -47,6 +71,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e9e2050_e9b3a814",
+        "filename": "3rdparty/qrencode-win32",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-12-01T19:28:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d0ab801_a52d8d79",
+      "range": {
+        "startLine": 1,
+        "startChar": 18,
+        "endLine": 1,
+        "endChar": 58
+      },
+      "revId": "54d38f786a9006d5da521fdcbd42c7319dacafec",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5bdf2749_730d0dbe",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-12-01T18:51:40Z",
       "side": 1,
       "message": "remove from commmit",
+      "range": {
+        "startLine": 1,
+        "startChar": 18,
+        "endLine": 1,
+        "endChar": 58
+      },
+      "revId": "54d38f786a9006d5da521fdcbd42c7319dacafec",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f3a12e8_c813dcf2",
+        "filename": "daemon",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1001
+      },
+      "writtenOn": "2023-12-01T19:28:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5bdf2749_730d0dbe",
       "range": {
         "startLine": 1,
         "startChar": 18,
