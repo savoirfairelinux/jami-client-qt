@@ -102,4 +102,5 @@ ColumnLayout {
         Layout.preferredHeight: visible * implicitHeight
         font.pointSize: JamiTheme.smallFontSize
     }
+    Component.onCompleted: print("Timestamp: " + formattedTime)
 }
