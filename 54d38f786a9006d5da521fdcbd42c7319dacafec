@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "36730322_d2e24b46",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-12-01T19:30:52Z",
+      "side": 1,
+      "message": "withotu\u003d\u003e without",
+      "parentUuid": "029c8798_e72c480d",
+      "range": {
+        "startLine": 7,
+        "startChar": 35,
+        "endLine": 7,
+        "endChar": 42
+      },
+      "revId": "54d38f786a9006d5da521fdcbd42c7319dacafec",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7d0ab801_a52d8d79",
         "filename": "3rdparty/qrencode-win32",
         "patchSetId": 10
