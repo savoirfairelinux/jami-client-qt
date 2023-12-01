@@ -84,7 +84,7 @@ SettingsPageBase {
             ToggleSwitch {
                 id: enableDonation
                 Layout.fillWidth: true
-                visible: new Date() >= new Date(Date.parse("2023-11-01"))
+                visible: (new Date() >= new Date(Date.parse("2023-11-01")) && !APPSTORE)
 
                 checked: UtilsAdapter.getAppValue(Settings.Key.IsDonationVisible)
                 labelText: JamiStrings.enableDonation
