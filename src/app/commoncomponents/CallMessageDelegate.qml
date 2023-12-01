@@ -37,6 +37,7 @@ SBSMessageBase {
     }
 
     property bool isRemoteImage
+    isCallMessage: true
 
     isOutgoing: Author === CurrentAccount.uri
     author: Author
@@ -73,9 +74,10 @@ SBSMessageBase {
 
             Label {
                 id: callLabel
-                padding: 10
+
                 Layout.margins: 8
                 Layout.fillWidth: true
+                Layout.rightMargin: root.timeWidth + 16
 
                 text: {
                     if (root.isActive)

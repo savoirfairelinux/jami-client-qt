@@ -31,6 +31,8 @@ ColumnLayout {
     property string formattedTime
     property string formattedDay
     property real detailsOpacity: 0.6
+    property color timeColor: JamiTheme.chatviewSecondaryInformationColor
+    property alias timeLabel: formattedTimeLabel
 
     spacing: 0
 
@@ -97,8 +99,8 @@ ColumnLayout {
         Layout.topMargin: 30
         Layout.bottomMargin: 30
         Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
-        color: JamiTheme.chatviewSecondaryInformationColor
-        visible: showTime || showDay
+        color: root.timeColor
+        visible: showTime
         Layout.preferredHeight: visible * implicitHeight
         font.pointSize: JamiTheme.smallFontSize
     }
