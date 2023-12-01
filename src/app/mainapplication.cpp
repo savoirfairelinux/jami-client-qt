@@ -105,7 +105,8 @@ ScreenInfo::onPhysicalDotsPerInchChanged()
 }
 
 MainApplication::MainApplication(int& argc, char** argv)
-    : QApplication(argc, argv), isCleanupped(false)
+    : QApplication(argc, argv)
+    , isCleanupped(false)
 {
     const char* qtVersion = qVersion();
     qInfo() << "Using Qt runtime version:" << qtVersion;
@@ -194,6 +195,12 @@ MainApplication::init()
     engine_.get()->rootContext()->setContextProperty("WITH_WEBENGINE", QVariant(true));
 #else
     engine_.get()->rootContext()->setContextProperty("WITH_WEBENGINE", QVariant(false));
+#endif
+
+#ifdef APPSTORE
+    engine_.get()->rootContext()->setContextProperty("APPSTORE", QVariant(true));
+#else
+    engine_.get()->rootContext()->setContextProperty("APPSTORE", QVariant(false));
 #endif
 
     initQmlLayer();
