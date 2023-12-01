@@ -109,7 +109,7 @@ JamiListView {
         function isFirst() {
             if (!nItem) return true
             else {
-                if (item.showTime || item.isReply || nItem.isEmojiOnly ) {
+                if (item.showTime || item.isReply ) {
                     return true
                 } else if (nItem.author !== item.author) {
                     return true
@@ -121,7 +121,7 @@ JamiListView {
         function isLast() {
             if (!pItem) return true
             else {
-                if (pItem.showTime || pItem.isReply || pItem.isEmojiOnly) {
+                if (pItem.showTime || pItem.isReply) {
                     return true
                 } else if (pItem.author !== item.author) {
                     return true
