@@ -37,6 +37,7 @@ Rectangle {
 
     Rectangle {
         id: mask
+
         visible: type !== MsgSeq.single && !isReply
         z: -1
         radius: 5
