@@ -33,6 +33,8 @@ SBSMessageBase {
     property string colorUrl: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewLinkColorLight : JamiTheme.chatviewLinkColorDark
     property string colorText: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
 
+    bigMsg: textEditId.lineCount > 1
+
     Connections {
         target: bubble
         function onColorChanged(color) {
@@ -52,14 +54,14 @@ SBSMessageBase {
     formattedDay: MessagesAdapter.getFormattedDay(Timestamp)
     extraHeight: extraContent.active && !isRemoteImage ? msgRadius : -isRemoteImage
     textHovered: textHoverhandler.hovered
-    textContentWidth: textEditId.width
+    textContentWidth: textEditId.width + (bigMsg ? 0 : root.timeWidth + root.editedWidth)
     textContentHeight: textEditId.height
 
     innerContent.children: [
         TextEdit {
             id: textEditId
 
-            padding: isEmojiOnly ? 0 : JamiTheme.preferredMarginSize
+            padding: isEmojiOnly ? 0 : 10
             anchors.right: isOutgoing ? parent.right : undefined
             text: {
                 if (Body !== "" && ParsedBody.length === 0) {
@@ -80,8 +82,10 @@ SBSMessageBase {
                 else if (isEmojiOnly)
                     Math.min((2 / 3) * root.maxMsgWidth, implicitWidth, innerContent.width - senderMargin - (innerContent.width - senderMargin) % (JamiTheme.chatviewEmojiSize + 2));
                 else
-                    Math.min((2 / 3) * root.maxMsgWidth, implicitWidth, innerContent.width - senderMargin);
+                    Math.max(Math.min((2 / 3) * root.maxMsgWidth - ( bigMsg ? 0 : root.timeWidth + root.editedWidth), implicitWidth + 5, innerContent.width - senderMargin + 5), bigMsg ? root.timeWidth + root.editedWidth + 14: 0) ;
             }
+
+            anchors.rightMargin: bigMsg ? 0 : root.timeWidth + root.editedWidth
 
             wrapMode: Label.WrapAtWordBoundaryOrAnywhere
             selectByMouse: true
@@ -126,48 +130,7 @@ SBSMessageBase {
                 selectOnly: parent.readOnly
             }
         },
-        RowLayout {
-            id: editedRow
 
-            anchors.right: isOutgoing ? parent.right : undefined
-            visible: PreviousBodies.length !== 0
-
-            ResponsiveImage {
-                id: editedImage
-
-                Layout.leftMargin: JamiTheme.preferredMarginSize
-                Layout.bottomMargin: JamiTheme.preferredMarginSize
-                source: JamiResources.round_edit_24dp_svg
-                width: JamiTheme.editedFontSize
-                height: JamiTheme.editedFontSize
-                layer {
-                    enabled: true
-                    effect: ColorOverlay {
-                        color: editedLabel.color
-                    }
-                }
-            }
-
-            Text {
-                id: editedLabel
-
-                Layout.rightMargin: JamiTheme.preferredMarginSize
-                Layout.bottomMargin: JamiTheme.preferredMarginSize
-
-                text: JamiStrings.edited
-                color: root.colorText
-                font.pointSize: JamiTheme.editedFontSize
-
-                TapHandler {
-                    acceptedButtons: Qt.LeftButton
-                    onTapped: {
-                        viewCoordinator.presentDialog(appWindow, "commoncomponents/EditedPopup.qml", {
-                                "previousBodies": PreviousBodies
-                            });
-                    }
-                }
-            }
-        },
         Loader {
             id: extraContent
 

@@ -56,13 +56,6 @@ SBSMessageBase {
     visible: isActive || ConfId === "" || Duration > 0
 
     property var baseColor: isOutgoing? CurrentConversation.color : JamiTheme.messageInBgColor
-    bubble.color: {
-        if (ConfId === "" && Duration === 0) {
-            // If missed, we can add a darker pattern
-            return Qt.lighter(root.baseColor, 1.15)
-        }
-        return root.baseColor
-    }
 
     innerContent.children: [
         RowLayout {
@@ -73,9 +66,10 @@ SBSMessageBase {
 
             Label {
                 id: callLabel
-                padding: 10
+
                 Layout.margins: 8
                 Layout.fillWidth: true
+                Layout.rightMargin: root.timeWidth + 16
 
                 text: {
                     if (root.isActive)
