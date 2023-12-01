@@ -200,10 +200,17 @@ MainApplication::init()
     auto startMinimizedSetting = settingsManager_->getValue(Settings::Key::StartMinimized).toBool();
     // The presence of start URI should override the startMinimized setting for this instance.
     set_startMinimized(startMinimizedSetting && runOptions_[Option::StartUri].isNull());
+
 #ifdef WITH_WEBENGINE
     engine_.get()->rootContext()->setContextProperty("WITH_WEBENGINE", QVariant(true));
 #else
     engine_.get()->rootContext()->setContextProperty("WITH_WEBENGINE", QVariant(false));
+#endif
+
+#ifdef APPSTORE
+    engine_.get()->rootContext()->setContextProperty("APPSTORE", QVariant(true));
+#else
+    engine_.get()->rootContext()->setContextProperty("APPSTORE", QVariant(false));
 #endif
 
     initQmlLayer();

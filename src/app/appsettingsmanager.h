@@ -20,20 +20,21 @@
 
 #pragma once
 
-#include "utils.h"
-
 #include <QMetaEnum>
 #include <QObject>
 #include <QString>
 #include <QStandardPaths>
 #include <QWindow> // for QWindow::AutomaticVisibility
+#include <QSettings>
+#include <QDir>
 
 #include <QTranslator>
 
 extern const QString defaultDownloadPath;
 
 // clang-format off
-#define KEYS \
+// Common key-value pairs for both APPSTORE and non-APPSTORE builds
+#define COMMON_KEYS \
     X(MinimizeOnClose, false) \
     X(DownloadPath, defaultDownloadPath) \
     X(ScreenshotPath, {}) \
@@ -64,11 +65,19 @@ extern const QString defaultDownloadPath;
     X(ShowMardownOption, false) \
     X(ChatViewEnterIsNewLine, false) \
     X(ShowSendOption, false) \
-    X(Donation2023VisibleDate, "2023-11-27 05:00") \
-    X(IsDonationVisible, true) \
-    X(Donation2023EndDate, "2024-01-31 00:00") \
     X(EnablePtt, false) \
     X(PttKeys, 32)
+#ifdef APPSTORE
+#define KEYS COMMON_KEYS
+#else
+// Additional key-value pairs for non-APPSTORE builds including donation
+// related settings.
+#define KEYS COMMON_KEYS \
+    X(Donation2023VisibleDate, "2023-11-27 05:00") \
+    X(IsDonationVisible, true) \
+    X(Donation2023EndDate, "2024-01-31 00:00")
+#endif
+
 /*
  * A class to expose settings keys in both c++ and QML.
  * Note: this is using a non-constructable class instead of a
@@ -106,8 +115,9 @@ public:
         default: return {};
         }
     }
+
 private:
-     Settings() = delete;
+    Settings() = delete;
 };
 Q_DECLARE_METATYPE(Settings::Key)
 // clang-format on
