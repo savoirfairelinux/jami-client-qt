@@ -182,6 +182,8 @@ BaseModalDialog {
                 Rectangle {
                     Layout.fillWidth: true
 
+                    visible: !isSIP
+
                     radius: 5
                     color: root.backgroundColor
 
@@ -242,7 +244,7 @@ BaseModalDialog {
 
                 anchors.centerIn: parent
                 anchors.margins: 15
-                width: accountRectangle.width
+                width: parent.width
 
                 Image{
                     id: warningIcon
@@ -259,9 +261,6 @@ BaseModalDialog {
 
                     Layout.fillWidth: true
                     Layout.margins: 15
-
-                    visible: !isSIP
-
 
                     text: JamiStrings.deleteAccountInfos
 
