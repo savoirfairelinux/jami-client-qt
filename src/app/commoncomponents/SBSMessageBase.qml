@@ -49,7 +49,7 @@ Control {
     property int timestamp: Timestamp
     readonly property real senderMargin: 64
     readonly property real avatarSize: 20
-    readonly property real msgRadius: 20
+    readonly property real msgRadius: 10
     readonly property real hPadding: JamiTheme.sbsMessageBasePreferredPadding
     property bool textHovered: false
     property alias replyAnimation: selectAnimation
@@ -59,6 +59,8 @@ Control {
     property real textContentWidth
     property real textContentHeight
     property bool isReply: ReplyTo !== ""
+    property real timeWidth: timestampItem.width
+    property real editedWidth: editedRow.visible ? editedRow.width + 10 : 0
 
     property real maxMsgWidth: root.width - senderMargin - 2 * hPadding - avatarBlockWidth
 
@@ -86,11 +88,8 @@ Control {
         spacing: 0
 
         TimestampInfo {
-            id: timestampItem
-
+            id: dateItem
             showDay: root.showDay
-            showTime: root.showTime
-            formattedTime: root.formattedTime
             formattedDay: root.formattedDay
             Layout.alignment: Qt.AlignHCenter
             Layout.fillWidth: true
@@ -101,12 +100,10 @@ Control {
             id: usernameblock
             Layout.preferredHeight: (seq === MsgSeq.first || seq === MsgSeq.single) ? 10 : 0
             visible: !isReply
-            Layout.topMargin: (seq === MsgSeq.first || seq === MsgSeq.single) && !isOutgoing && !root.showTime ? 20 : 0
 
             Label {
                 id: username
                 text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author)
-                font.bold: true
                 visible: (seq === MsgSeq.first || seq === MsgSeq.single) && !isOutgoing
                 font.pointSize: JamiTheme.smallFontSize
                 color: JamiTheme.chatviewSecondaryInformationColor
@@ -212,7 +209,7 @@ Control {
         RowLayout {
             id: msgRowlayout
 
-            Layout.preferredHeight: innerContent.height + root.extraHeight + (emojiReactions.emojis === "" ? 0 : emojiReactions.height - 8)
+            Layout.preferredHeight: innerContent.height + root.extraHeight + (emojiReactions.emojis === "" ? 0 : emojiReactions.height - 8) + (IsEmojiOnly && (root.seq === MsgSeq.last || root.seq === MsgSeq.single) && emojiReactions.emojis === "" ? 15 : 0)
             Layout.topMargin: ((seq === MsgSeq.first || seq === MsgSeq.single) && !root.isReply) ? 6 : 0
 
             Item {
@@ -351,18 +348,77 @@ Control {
                     id: bubble
 
                     property bool isEdited: PreviousBodies.length !== 0
-                    visible: !IsEmojiOnly
                     z: -1
                     out: isOutgoing
                     type: seq
                     isReply: root.isReply
-                    color: root.getBaseColor()
+                    color: IsEmojiOnly ? "transparent" : root.getBaseColor()
                     radius: msgRadius
                     anchors.right: isOutgoing ? parent.right : undefined
                     anchors.top: parent.top
 
-                    width: Type === Interaction.Type.TEXT && !isEdited ? root.textContentWidth : innerContent.childrenRect.width
-                    height: innerContent.childrenRect.height + (visible ? root.extraHeight : 0)
+                    property bool bigMsg: (innerContent.childrenRect.width || root.textContentWidth) > ( 2 / 3 * root.maxMsgWidth - timestampItem.width - editedImage.width - editedLabel.width)
+                    property real timePosition: JamiTheme.emojiMargins + emojiReactions.width + 8
+                    property alias timestampItem: timestampItem
+
+                    width: (Type === Interaction.Type.TEXT ? root.textContentWidth : innerContent.childrenRect.width)
+                    height: innerContent.childrenRect.height + (visible ? root.extraHeight : 0) + (bigMsg ? 15 : 0)
+
+                    TimestampInfo {
+                        id: timestampItem
+
+                        showTime: IsEmojiOnly && !(root.seq === MsgSeq.last || root.seq === MsgSeq.single) ? false : true
+                        formattedTime: root.formattedTime
+
+                        timeColor: IsEmojiOnly ? (JamiTheme.darkTheme ? "white" : "dark") : (UtilsAdapter.luma(bubble.color) ? "white" : "dark")
+                        timeLabel.opacity: 0.5
+
+                        anchors.bottom: parent.bottom
+                        anchors.right: IsEmojiOnly ? (isOutgoing ? parent.right : undefined) : parent.right
+                        anchors.left: (IsEmojiOnly && !isOutgoing) ? parent.left : undefined
+                        anchors.leftMargin: (IsEmojiOnly && !isOutgoing && emojiReactions.visible) ? bubble.timePosition : 0
+                        anchors.rightMargin: IsEmojiOnly ? ((isOutgoing && emojiReactions.visible) ? bubble.timePosition : 0) : 10
+                        timeLabel.Layout.bottomMargin: {
+                            if (IsEmojiOnly)
+                                return -15;
+                            if (bubble.bigMsg)
+                                return 5;
+                            return 9;
+                        }
+                    }
+
+                    RowLayout {
+                        id: editedRow
+                        anchors.left: bubble.bigMsg ? bubble.left : timestampItem.left
+                        anchors.bottom: parent.bottom
+                        anchors.bottomMargin: bubble.bigMsg ? 6 : 10
+                        anchors.leftMargin: bubble.bigMsg ? 10 : - timestampItem.width - 10
+                        visible: bubble.isEdited
+                        z: 1
+                        ResponsiveImage {
+                            id: editedImage
+                            source: JamiResources.round_edit_24dp_svg
+                            width: 12
+                            height: 12
+                            color: editedLabel.color
+                            opacity: 0.5
+                        }
+                        Text {
+                            id: editedLabel
+                            text: JamiStrings.edited
+                            color: UtilsAdapter.luma(bubble.color) ? "white" : "dark"
+                            opacity: 0.5
+                            font.pixelSize: JamiTheme.timestampFont
+                            TapHandler {
+                                acceptedButtons: Qt.LeftButton
+                                onTapped: {
+                                    viewCoordinator.presentDialog(appWindow, "commoncomponents/EditedPopup.qml", {
+                                            "previousBodies": PreviousBodies
+                                        });
+                                }
+                            }
+                        }
+                    }
                 }
 
                 EmojiReactions {
@@ -376,7 +432,7 @@ Control {
                     borderColor: root.getBaseColor()
                     maxWidth: 2 / 3 * maxMsgWidth - JamiTheme.emojiMargins
 
-                    state: root.isOutgoing ? "anchorsRight" : (emojiReactions.width > bubble.width - JamiTheme.emojiMargins ? "anchorsLeft" : "anchorsRight")
+                    state: root.isOutgoing ? "anchorsRight" : (IsEmojiOnly ? "anchorsLeft" :(emojiReactions.width > bubble.width - JamiTheme.emojiMargins ? "anchorsLeft" : "anchorsRight"))
 
                     TapHandler {
                         onTapped: {
@@ -519,7 +575,7 @@ Control {
             orientation: ListView.Horizontal
             Layout.preferredHeight: {
                 if (showTime || seq === MsgSeq.last)
-                    return contentHeight + timestampItem.contentHeight;
+                    return contentHeight + dateItem.contentHeight;
                 else if (readsMultiple.visible)
                     return JamiTheme.avatarReadReceiptSize;
                 return 0;
