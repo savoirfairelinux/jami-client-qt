@@ -16,6 +16,52 @@
       "message": "this may all change",
       "revId": "40afea6b17106135ee8e739e6952c7e0aa25253e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c850fc2_163b6775",
+        "filename": "src/app/mainview/components/DonationBanner.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-12-01T19:00:40Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 118,
+        "startChar": 18,
+        "endLine": 118,
+        "endChar": 26
+      },
+      "revId": "40afea6b17106135ee8e739e6952c7e0aa25253e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd86f6b9_da4d4a02",
+        "filename": "src/app/mainview/components/DonationBanner.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-12-01T19:00:40Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 158,
+        "startChar": 18,
+        "endLine": 158,
+        "endChar": 26
+      },
+      "revId": "40afea6b17106135ee8e739e6952c7e0aa25253e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
