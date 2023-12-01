@@ -73,9 +73,10 @@ SBSMessageBase {
 
             Label {
                 id: callLabel
-                padding: 10
+
                 Layout.margins: 8
                 Layout.fillWidth: true
+                Layout.rightMargin: root.timeWidth + 16
 
                 text: {
                     if (root.isActive)
