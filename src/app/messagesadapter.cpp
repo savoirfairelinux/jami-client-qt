@@ -716,11 +716,18 @@ MessagesAdapter::getFormattedTime(const quint64 timestamp)
         auto curLocal = QLocale(curLang);
         auto curTime = QDateTime::fromSecsSinceEpoch(timestamp).time();
         QString timeLocale;
-        timeLocale = curLocal.toString(curTime, curLocal.ShortFormat);
-
+        timeLocale = curLocal.toString(curTime, curLocal.ShortFormat).toLower();
+                
         return timeLocale;
     }
     return QObject::tr("just now");
+}
+
+QString
+MessagesAdapter::getBubbleFormattedTime(QString timeLocale)
+{
+    QString time = timeLocale;
+    return time;
 }
 
 QString

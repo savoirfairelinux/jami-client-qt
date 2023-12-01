@@ -40,7 +40,7 @@ Control {
     property string transferId
     property string registeredNameText
     property string transferName
-    property string formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
+    property string formattedTime: MessagesAdapter.getBubbleFormattedTime(MessagesAdapter.getFormattedTime(Timestamp))
     property string formattedDay: MessagesAdapter.getFormattedDay(Timestamp)
     property string location
     property string id: Id
@@ -49,7 +49,7 @@ Control {
     property int timestamp: Timestamp
     readonly property real senderMargin: 64
     readonly property real avatarSize: 20
-    readonly property real msgRadius: 20
+    readonly property real msgRadius: 10
     readonly property real hPadding: JamiTheme.sbsMessageBasePreferredPadding
     property bool textHovered: false
     property alias replyAnimation: selectAnimation
@@ -59,6 +59,7 @@ Control {
     property real textContentWidth
     property real textContentHeight
     property bool isReply: ReplyTo !== ""
+    property real timeWidth: timestampItem.width
 
     property real maxMsgWidth: root.width - senderMargin - 2 * hPadding - avatarBlockWidth
 
@@ -84,18 +85,6 @@ Control {
         anchors.centerIn: parent
         width: parent.width - hPadding * 2
         spacing: 0
-
-        TimestampInfo {
-            id: timestampItem
-
-            showDay: root.showDay
-            showTime: root.showTime
-            formattedTime: root.formattedTime
-            formattedDay: root.formattedDay
-            Layout.alignment: Qt.AlignHCenter
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-        }
 
         Item {
             id: usernameblock
@@ -361,8 +350,26 @@ Control {
                     anchors.right: isOutgoing ? parent.right : undefined
                     anchors.top: parent.top
 
-                    width: Type === Interaction.Type.TEXT && !isEdited ? root.textContentWidth : innerContent.childrenRect.width
-                    height: innerContent.childrenRect.height + (visible ? root.extraHeight : 0)
+                    property bool bigMsg: (innerContent.childrenRect.width || root.textContentWidth) > ( 2 / 3 * root.maxMsgWidth - timestampItem.width)
+
+                    width: (Type === Interaction.Type.TEXT && !isEdited ? root.textContentWidth : innerContent.childrenRect.width)
+
+                    height: innerContent.childrenRect.height + (visible ? root.extraHeight : 0) + (bigMsg ? 8 : 0)
+
+                    TimestampInfo {
+                        id: timestampItem
+
+                        showDay: false
+                        showTime: true
+                        formattedTime: root.formattedTime
+                        formattedDay: root.formattedDay
+                        anchors.bottom: parent.bottom
+                        anchors.right: parent.right
+                        anchors.rightMargin: 8
+                        anchors.bottomMargin: -17
+                        anchors.verticalCenter: parent.verticalCenter
+                        timeFontSize: JamiTheme.tinyFontSize
+                   }
                 }
 
                 EmojiReactions {

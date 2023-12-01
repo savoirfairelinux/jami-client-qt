@@ -59,7 +59,7 @@ SBSMessageBase {
         TextEdit {
             id: textEditId
 
-            padding: isEmojiOnly ? 0 : JamiTheme.preferredMarginSize
+            padding: isEmojiOnly ? 0 : 10
             anchors.right: isOutgoing ? parent.right : undefined
             text: {
                 if (Body !== "" && ParsedBody.length === 0) {
@@ -80,7 +80,7 @@ SBSMessageBase {
                 else if (isEmojiOnly)
                     Math.min((2 / 3) * root.maxMsgWidth, implicitWidth, innerContent.width - senderMargin - (innerContent.width - senderMargin) % (JamiTheme.chatviewEmojiSize + 2));
                 else
-                    Math.min((2 / 3) * root.maxMsgWidth, implicitWidth, innerContent.width - senderMargin);
+                    Math.min((2 / 3) * root.maxMsgWidth, implicitWidth + root.timeWidth, innerContent.width - senderMargin + root.timeWidth);
             }
 
             wrapMode: Label.WrapAtWordBoundaryOrAnywhere
@@ -130,6 +130,7 @@ SBSMessageBase {
             id: editedRow
 
             anchors.right: isOutgoing ? parent.right : undefined
+            anchors.rightMargin: root.timeWidth
             visible: PreviousBodies.length !== 0
 
             ResponsiveImage {
