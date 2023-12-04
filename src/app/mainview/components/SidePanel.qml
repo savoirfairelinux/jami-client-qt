@@ -344,8 +344,8 @@ SidePanelBase {
                 id: smartListLayout
 
                 width: parent.width
-                anchors.top: donation.donationVisible ? donation.bottom : searchStatusRect.bottom
-                anchors.topMargin: (sidePanelTabBar.visible || searchStatusRect.visible) ? 0 : 12
+                anchors.top: donation.visible ? donation.bottom : searchStatusRect.bottom
+                anchors.topMargin: !donation.visible && (sidePanelTabBar.visible || searchStatusRect.visible) ? 0 : 12
                 anchors.bottom: parent.bottom
 
                 spacing: 4
