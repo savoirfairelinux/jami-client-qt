@@ -33,26 +33,15 @@ SelectableListProxyModel::bindSourceModel(QAbstractListModel* model)
     if (!model) {
         return;
     }
-    connect(sourceModel(),
-            &QAbstractListModel::dataChanged,
-            this,
-            &SelectableListProxyModel::onModelUpdated,
-            Qt::UniqueConnection);
-    connect(model,
-            &QAbstractListModel::rowsInserted,
-            this,
-            &SelectableListProxyModel::onModelUpdated,
-            Qt::UniqueConnection);
-    connect(model,
-            &QAbstractListModel::rowsRemoved,
-            this,
-            &SelectableListProxyModel::onModelTrimmed,
-            Qt::UniqueConnection);
-    connect(sourceModel(),
-            &QAbstractListModel::modelReset,
-            this,
-            &SelectableListProxyModel::deselect,
-            Qt::UniqueConnection);
+
+    auto connectModelSignal = [this, model](auto signal, auto slot) {
+        connect(model, signal, this, slot, Qt::UniqueConnection);
+    };
+
+    connectModelSignal(&QAbstractListModel::dataChanged, &SelectableListProxyModel::onModelUpdated);
+    connectModelSignal(&QAbstractListModel::rowsInserted, &SelectableListProxyModel::onModelUpdated);
+    connectModelSignal(&QAbstractListModel::rowsRemoved, &SelectableListProxyModel::onModelTrimmed);
+    connectModelSignal(&QAbstractListModel::modelReset, &SelectableListProxyModel::deselect);
 }
 
 void
@@ -120,11 +109,14 @@ SelectableListProxyModel::updateSelection(bool rowsRemoved)
 
     // if the source and filtered index is no longer valid
     // this would indicate that a mutation has occured,
-    // thus any arbritrary ux decision is okay here
+    // In this case, we need to update the selection to one
+    // row above the current one.
     if (!selectedSourceIndex_.isValid()) {
-        auto row = qMax(--currentFilteredRow_, 0);
+        auto row = qMax(currentFilteredRow_ - 1, 0);
         selectedSourceIndex_ = mapToSource(index(row, 0));
         filteredIndex = mapFromSource(selectedSourceIndex_);
+        // filteredIndex is not necessarily valid here, so we emit
+        // forcefully to ensure that the selection is updated
         currentFilteredRow_ = filteredIndex.row();
         Q_EMIT currentFilteredRowChanged();
         Q_EMIT validSelectionChanged();
@@ -139,9 +131,11 @@ SelectableListProxyModel::updateSelection(bool rowsRemoved)
     // want to force reselection of other ui components, as the
     // source index is still valid, in that case, or if the
     // row hasn't changed, don't notify
-    if (filteredIndex.isValid() && lastFilteredRow != currentFilteredRow_) {
-        Q_EMIT validSelectionChanged();
+    if (!filteredIndex.isValid() || lastFilteredRow == currentFilteredRow_) {
+        return;
     }
+
+    Q_EMIT validSelectionChanged();
 }
 
 void
