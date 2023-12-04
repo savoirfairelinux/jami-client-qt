@@ -59,6 +59,7 @@ void
 SelectableListProxyModel::setFilter(const QString& filterString)
 {
     setFilterFixedString(filterString);
+    qWarning() << Q_FUNC_INFO << filterString << rowCount();
     updateSelection();
 }
 
@@ -66,6 +67,7 @@ void
 SelectableListProxyModel::select(const QModelIndex& index)
 {
     selectedSourceIndex_ = mapToSource(index);
+    qWarning() << Q_FUNC_INFO << index << selectedSourceIndex_;
     updateSelection();
 }
 
@@ -127,6 +129,7 @@ SelectableListProxyModel::updateSelection(bool rowsRemoved)
         filteredIndex = mapFromSource(selectedSourceIndex_);
         currentFilteredRow_ = filteredIndex.row();
         Q_EMIT currentFilteredRowChanged();
+        qWarning() << "updating selection 1" << this << currentFilteredRow_ << lastFilteredRow;
         Q_EMIT validSelectionChanged();
         return;
     }
@@ -134,12 +137,15 @@ SelectableListProxyModel::updateSelection(bool rowsRemoved)
     // update the row for ListView observers
     set_currentFilteredRow(filteredIndex.row());
 
+    qWarning() << "updating selection 0" << this << currentFilteredRow_ << lastFilteredRow;
+
     // finally, if the filter index is invalid, then we have
     // probably just filtered out the selected item and don't
     // want to force reselection of other ui components, as the
     // source index is still valid, in that case, or if the
     // row hasn't changed, don't notify
     if (filteredIndex.isValid() && lastFilteredRow != currentFilteredRow_) {
+        qWarning() << "updating selection 2" << this << currentFilteredRow_ << lastFilteredRow;
         Q_EMIT validSelectionChanged();
     }
 }
@@ -147,12 +153,14 @@ SelectableListProxyModel::updateSelection(bool rowsRemoved)
 void
 SelectableListProxyModel::onModelUpdated()
 {
+    qWarning() << Q_FUNC_INFO << rowCount();
     updateSelection();
 }
 
 void
 SelectableListProxyModel::onModelTrimmed()
 {
+    qWarning() << Q_FUNC_INFO << rowCount();
     updateSelection(true);
 }
 
