@@ -1,0 +1,7 @@
+Code-Review+2: Liam Coursodon <liam.coursodon@savoirfairelinux.com>
+Verified+1: Jenkins CI <jenkins@ring-packaging.cx>
+Submitted-by: Sébastien Blin <sebastien.blin@savoirfairelinux.com>
+Submitted-at: Tue, 05 Dec 2023 09:48:25 -0500
+Reviewed-on: https://review.jami.net/c/jami-client-qt/+/26744
+Project: jami-client-qt
+Branch: refs/heads/master
