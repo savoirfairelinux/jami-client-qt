@@ -31,6 +31,10 @@ VideoView {
             rendererId = id;
         } else {
             const forceRestart = rendererId === id;
+            if (!forceRestart) {
+                // Stop previous device
+                VideoDevices.stopDevice(rendererId);
+            }
             rendererId = VideoDevices.startDevice(id, forceRestart);
         }
     }
