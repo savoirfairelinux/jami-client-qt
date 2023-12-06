@@ -33,6 +33,42 @@
       "message": "wanted for images? We can have white on white",
       "revId": "d7aed18179e1479507479152cc8e26ed3cfb3a6a",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05152067_4824cc7b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-12-06T21:28:44Z",
+      "side": 1,
+      "message": "I wanted to handle the new design for edited texts in another patch, but I can do it here if it\u0027s better.",
+      "parentUuid": "fda7ea68_e2806f1a",
+      "revId": "d7aed18179e1479507479152cc8e26ed3cfb3a6a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a096e856_4bc22b65",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-12-06T21:28:44Z",
+      "side": 1,
+      "message": "resolved with a linear gradient",
+      "parentUuid": "cae4eda8_33c4c7e3",
+      "revId": "d7aed18179e1479507479152cc8e26ed3cfb3a6a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
