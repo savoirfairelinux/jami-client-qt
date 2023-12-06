@@ -33,7 +33,7 @@ Rectangle {
     function setFilePathsToSend(filePaths) {
         for (var index = 0; index < filePaths.length; ++index) {
             var path = UtilsAdapter.getAbsPath(decodeURIComponent(filePaths[index]));
-            dataTransferSendContainer.filesToSendListModel.addToPending(path);
+            messageBar.dataTransferSendContainer.filesToSendListModel.addToPending(path);
         }
     }
 
@@ -67,7 +67,7 @@ Rectangle {
         target: MessagesAdapter
 
         function onNewFilePasted(filePath) {
-            dataTransferSendContainer.filesToSendListModel.addToPending(filePath);
+            messageBar.dataTransferSendContainer.filesToSendListModel.addToPending(filePath);
         }
 
         function onNewTextPasted() {
@@ -234,17 +234,6 @@ Rectangle {
                     }
                 }
             }
-        }
-
-        FilesToSendContainer {
-            id: dataTransferSendContainer
-
-            objectName: "dataTransferSendContainer"
-
-            Layout.alignment: Qt.AlignHCenter
-            Layout.fillWidth: true
-            Layout.rightMargin: 10
-            Layout.preferredHeight: filesToSendCount ? JamiTheme.filesToSendDelegateHeight : 0
         }
     }
 }
