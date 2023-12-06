@@ -79,8 +79,6 @@ Loader {
             formattedTime: root.formattedTime
             formattedDay: root.formattedTime
             extraHeight: progressBar.visible ? 18 : 0
-            Component.onCompleted: bubble.timestampItem.visible = false
-
 
             innerContent.children: [
                 RowLayout {
@@ -107,7 +105,7 @@ Loader {
                         property string iconSourceA
                         property string iconSourceB
 
-                        Layout.margins: 12
+                        Layout.margins: 9
 
                         sourceComponent: {
                             switch (Status) {
@@ -135,14 +133,22 @@ Loader {
                         }
                         Component {
                             id: terminatedComp
-                            ResponsiveImage {
-                                source: buttonsLoader.iconSourceA
-                                Layout.leftMargin: 12
-                                Layout.preferredWidth: 24
-                                Layout.preferredHeight: 24
-                                color: UtilsAdapter.luma(bubble.color)
-                                       ? JamiTheme.chatviewTextColorLight
-                                       : JamiTheme.chatviewTextColorDark
+
+                            Control {
+                                width: 50
+                                height: 50
+                                padding: 13
+
+                                background: Rectangle {
+                                    color: JamiTheme.blackColor
+                                    opacity: 0.15
+                                    radius: msgRadius
+                                }
+
+                                contentItem: ResponsiveImage {
+                                    source: buttonsLoader.iconSourceA
+                                    color: JamiTheme.fileIconColor
+                                }
                             }
                         }
                         Component {
@@ -182,7 +188,7 @@ Loader {
                     }
                     Column {
                         Layout.rightMargin: 24
-                        spacing: 6
+                        spacing: 4
                         TextEdit {
                             id: transferName
 
@@ -192,7 +198,6 @@ Loader {
                                       TransferName :
                                       Body
                             wrapMode: Label.WrapAtWordBoundaryOrAnywhere
-                            font.weight: Font.DemiBold
                             font.pointSize: 11
                             renderType: Text.NativeRendering
                             readOnly: true
@@ -220,7 +225,7 @@ Loader {
                             width: Math.min(implicitWidth, maxMsgWidth)
                             bottomPadding: 10
                             text: {
-                                var res = formattedTime + " - "
+                                var res = ""
                                 if (transferStats.totalSize !== undefined) {
                                     if (transferStats.progress !== 0 &&
                                             transferStats.progress !== transferStats.totalSize) {
@@ -229,7 +234,7 @@ Loader {
                                     var totalSize = transferStats.totalSize !== 0 ? transferStats.totalSize : TotalSize
                                     res += UtilsAdapter.humanFileSize(totalSize)
                                 }
-                                return res + " - " + MessagesAdapter.getStatusString(Status)
+                                return res
                             }
                             wrapMode: Label.WrapAtWordBoundaryOrAnywhere
                             font.pointSize: 10
