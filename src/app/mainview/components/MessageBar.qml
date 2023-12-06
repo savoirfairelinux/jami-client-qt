@@ -29,6 +29,7 @@ RowLayout {
     id: root
 
     property alias text: messageBarTextArea.text
+    property alias fileContainer: dataTransferSendContainer
     property var textAreaObj: messageBarTextArea
     property real marginSize: JamiTheme.messageBarMarginSize
     property bool sendButtonVisibility: true
@@ -51,12 +52,9 @@ RowLayout {
     signal showMapClicked
     signal emojiButtonClicked
 
-    height: {
-        if (showTypo || multiLine)
-            return messageBarTextArea.height + 25 + 3 * marginSize + 1
-        else
-            return textAreaObj.height + marginSize + 1
-    }
+    property real rectHeight: (showTypo || multiLine) ? messageBarTextArea.height + 25 + 4 * marginSize + 1 : textAreaObj.height + 1 * marginSize + 1
+
+    height: rectHeight + (dataTransferSendContainer.visible ?  dataTransferSendContainer.height + (!showTypo ? 25 : - 2 * marginSize) : 0 )
 
     Rectangle {
 
@@ -157,18 +155,19 @@ RowLayout {
             id: rowLayout
 
             columns: 2
-            rows: 2
+            rows: 3
             columnSpacing: 0
             rowSpacing: 0
 
             anchors.fill: parent
+
 
             MessageBarTextArea {
                 id: messageBarTextArea
 
                 objectName: "messageBarTextArea"
                 maxWidth: rectangle.width - messageBarRowLayout.width - 35
-                Layout.row: showTypo || multiLine ? 0 : 1
+                Layout.row: 0
                 Layout.column: 0
 
                 // forward activeFocus to the actual text area object
@@ -179,12 +178,11 @@ RowLayout {
 
                 placeholderText: JamiStrings.writeTo.arg(CurrentConversation.title)
 
-                Layout.alignment: showTypo ? Qt.AlignLeft | Qt.AlignBottom : Qt.AlignBottom
+                Layout.alignment: showTypo ? Qt.AlignLeft : Qt.AlignBottom
                 Layout.fillWidth: true
-                Layout.leftMargin: marginSize / 2
-                Layout.topMargin: marginSize / 2
-                Layout.bottomMargin: marginSize / 2
-                Layout.rightMargin: marginSize / 2
+                Layout.margins: marginSize / 2
+                Layout.topMargin: 0
+                Layout.bottomMargin: showTypo || dataTransferSendContainer.visible ? 0  : marginSize / 2
                 Layout.minimumHeight: JamiTheme.chatViewFooterPreferredHeight
                 Layout.preferredHeight: contentHeight
                 Layout.maximumHeight: JamiTheme.chatViewFooterTextAreaMaximumHeight - marginSize / 2
@@ -325,14 +323,30 @@ RowLayout {
                 }
             }
 
+            FilesToSendContainer {
+                        id: dataTransferSendContainer
+
+                        objectName: "dataTransferSendContainer"
+                        visible: filesToSendCount > 0
+
+                        Layout.alignment: Qt.AlignCenter
+                        Layout.fillWidth: true
+                        Layout.rightMargin: marginSize / 2
+                        Layout.leftMargin: marginSize / 2
+                        Layout.row: 1
+                        Layout.column: 0
+                        Layout.columnSpan: 2
+                        Layout.preferredHeight: filesToSendCount ? JamiTheme.layoutWidthFileTransfer /*+ marginSize*/ : 0
+                    }
+
             Row {
                 id: messageBarRowLayout
 
-                Layout.row: showTypo || multiLine ? 1 : 1
+                Layout.row: dataTransferSendContainer.visible ? 3 : (showTypo || multiLine ? 2 : 0)
                 Layout.column: showTypo || multiLine ? 0 : 1
                 Layout.alignment: showTypo || multiLine ? Qt.AlignRight : Qt.AlignBottom
                 Layout.columnSpan: showTypo || multiLine ? 2 : 1
-                Layout.topMargin: marginSize / 2
+                Layout.topMargin: dataTransferSendContainer.visible ? 0 : marginSize
                 Layout.rightMargin: 0
 
                 Row {
@@ -1147,6 +1161,7 @@ RowLayout {
                     pressedColor: hoveredColor
                     toolTipText: showPreview ? JamiStrings.continueEditing : JamiStrings.showPreview
 
+
                     onClicked: {
                         showPreview = !showPreview;
                         messageBarTextArea.showPreview = showPreview;
@@ -1204,6 +1219,7 @@ RowLayout {
             onClicked: {
                 root.showPreview = false;
                 sendMessageButtonClicked();
+                root.height = root.rectHeight;
             }
         }
     }

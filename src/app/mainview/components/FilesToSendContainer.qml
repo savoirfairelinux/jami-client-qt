@@ -59,7 +59,7 @@ Rectangle {
                 delegate: FilesToSendDelegate {
                     anchors.verticalCenter: filesToSendContainerRow.verticalCenter
 
-                    height: JamiTheme.filesToSendDelegateHeight
+                    height: JamiTheme.layoutWidthFileTransfer
 
                     onRemoveFileButtonClicked: function (index) {
                         filesToSendListModel.removeFromPending(index);

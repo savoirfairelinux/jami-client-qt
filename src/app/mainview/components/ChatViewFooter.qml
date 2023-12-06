@@ -33,7 +33,7 @@ Rectangle {
     function setFilePathsToSend(filePaths) {
         for (var index = 0; index < filePaths.length; ++index) {
             var path = UtilsAdapter.getAbsPath(decodeURIComponent(filePaths[index]));
-            dataTransferSendContainer.filesToSendListModel.addToPending(path);
+            messageBar.fileContainer.filesToSendListModel.addToPending(path);
         }
     }
 
@@ -67,7 +67,7 @@ Rectangle {
         target: MessagesAdapter
 
         function onNewFilePasted(filePath) {
-            dataTransferSendContainer.filesToSendListModel.addToPending(filePath);
+            messageBar.fileContainer.filesToSendListModel.addToPending(filePath);
         }
 
         function onNewTextPasted() {
@@ -168,7 +168,7 @@ Rectangle {
                 return -JamiTheme.emojiPickerHeight;
             }
 
-            sendButtonVisibility: text || dataTransferSendContainer.filesToSendCount
+            sendButtonVisibility: text || messageBar.fileContainer.filesToSendCount
 
             onEmojiButtonClicked: {
                 if (emojiPicker != null && emojiPicker.opened) {
@@ -206,13 +206,13 @@ Rectangle {
 
             onSendMessageButtonClicked: {
                 // Send file messages
-                var fileCounts = dataTransferSendContainer.filesToSendListModel.rowCount();
+                var fileCounts = messageBar.fileContainer.filesToSendListModel.rowCount();
                 for (var i = 0; i < fileCounts; i++) {
-                    var currentIndex = dataTransferSendContainer.filesToSendListModel.index(i, 0);
-                    var filePath = dataTransferSendContainer.filesToSendListModel.data(currentIndex, FilesToSend.FilePath);
+                    var currentIndex = messageBar.fileContainer.filesToSendListModel.index(i, 0);
+                    var filePath = messageBar.fileContainer.filesToSendListModel.data(currentIndex, FilesToSend.FilePath);
                     MessagesAdapter.sendFile(filePath);
                 }
-                dataTransferSendContainer.filesToSendListModel.flush();
+                messageBar.fileContainer.filesToSendListModel.flush();
                 // Send text message
                 if (messageBar.text) {
                     if (MessagesAdapter.editId !== "") {
@@ -234,17 +234,6 @@ Rectangle {
                     }
                 }
             }
-        }
-
-        FilesToSendContainer {
-            id: dataTransferSendContainer
-
-            objectName: "dataTransferSendContainer"
-
-            Layout.alignment: Qt.AlignHCenter
-            Layout.fillWidth: true
-            Layout.rightMargin: 10
-            Layout.preferredHeight: filesToSendCount ? JamiTheme.filesToSendDelegateHeight : 0
         }
     }
 }
