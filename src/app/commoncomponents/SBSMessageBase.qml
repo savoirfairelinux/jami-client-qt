@@ -64,6 +64,7 @@ Control {
 
     property real maxMsgWidth: root.width - senderMargin - 2 * hPadding - avatarBlockWidth
     property bool bigMsg
+    property bool imageTooSmall: false
 
     // If the ListView attached properties are not available,
     // then the root delegate is likely a Loader.
@@ -205,7 +206,7 @@ Control {
         RowLayout {
             id: msgRowlayout
 
-            Layout.preferredHeight: innerContent.height + root.extraHeight + (emojiReactions.emojis === "" ? 0 : emojiReactions.height - 8) + (IsEmojiOnly && (root.seq === MsgSeq.last || root.seq === MsgSeq.single) && emojiReactions.emojis === "" ? 15 : 0)
+            Layout.preferredHeight: innerContent.height + root.extraHeight + (emojiReactions.emojis === "" ? 0 : emojiReactions.height - 8) + ((IsEmojiOnly && (root.seq === MsgSeq.last || root.seq === MsgSeq.single) && emojiReactions.emojis === "") || root.imageTooSmall ? 15 : 0)
             Layout.topMargin: ((seq === MsgSeq.first || seq === MsgSeq.single) && !root.isReply) ? 3.5 : 0
             Layout.bottomMargin: root.bigMsg ? timestampItem.timeLabel.height : 0
 
@@ -353,16 +354,16 @@ Control {
                         showTime: IsEmojiOnly && !(root.seq === MsgSeq.last || root.seq === MsgSeq.single) ? false : true
                         formattedTime: root.formattedTime
 
-                        timeColor: IsEmojiOnly ? (JamiTheme.darkTheme ? "white" : "dark") : (UtilsAdapter.luma(bubble.color) ? "white" : "dark")
+                        timeColor: IsEmojiOnly || root.imageTooSmall? (JamiTheme.darkTheme ? "white" : "dark") : (UtilsAdapter.luma(bubble.color) ? "white" : "dark")
                         timeLabel.opacity: 0.5
 
                         anchors.bottom: parent.bottom
                         anchors.right: IsEmojiOnly ? (isOutgoing ? parent.right : undefined) : parent.right
-                        anchors.left: (IsEmojiOnly && !isOutgoing) ? parent.left : undefined
+                        anchors.left: ((IsEmojiOnly|| root.imageTooSmall) && !isOutgoing) ? parent.left : undefined
                         anchors.leftMargin: (IsEmojiOnly && !isOutgoing && emojiReactions.visible) ? bubble.timePosition : 0
-                        anchors.rightMargin: IsEmojiOnly ? ((isOutgoing && emojiReactions.visible) ? bubble.timePosition : 0) : 10
+                        anchors.rightMargin: IsEmojiOnly ? ((isOutgoing && emojiReactions.visible) ? bubble.timePosition : 0) : (root.imageTooSmall ? 0 : 10)
                         timeLabel.Layout.bottomMargin: {
-                            if (IsEmojiOnly)
+                            if (IsEmojiOnly || root.imageTooSmall)
                                 return -15;
                             if (root.bigMsg || bubble.isDeleted)
                                 return 5;
