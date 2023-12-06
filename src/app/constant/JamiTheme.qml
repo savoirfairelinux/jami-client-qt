@@ -296,6 +296,9 @@ Item {
 
     // Files To Send Container
     property color removeFileButtonColor: Qt.rgba(96, 95, 97, 0.5)
+    property color removeFileButtonHoverColor: "#DEDEDE"
+    property color fileIconColor: darkTheme ? "#A6A6A6" : "#656565"
+    property color fileBackgroundColor: darkTheme ? "#515151" : "#d9d9d9"
 
     // JamiScrollBar
     property color scrollBarHandleColor: "#cecece"
@@ -494,8 +497,8 @@ Item {
     property real filesToSendDelegateHeight: 100
     property real filesToSendDelegateRadius: 7
     property real filesToSendDelegateButtonSize: 16
-    property real filesToSendDelegateFontPointSize: calcSize(9 + fontSizeOffset)
-    property real layoutWidthFileTransfer: 80
+    property real filesToSendDelegateFontPointSize: calcSize(10 + fontSizeOffset)
+    property real layoutWidthFileTransfer: 56
 
     // SBSMessageBase
     property int sbsMessageBasePreferredPadding: 12
