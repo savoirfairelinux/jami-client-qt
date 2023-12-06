@@ -29,6 +29,7 @@ RowLayout {
     id: root
 
     property alias text: messageBarTextArea.text
+    property alias dataTransferSendContainer: dataTransferSendContainer
     property var textAreaObj: messageBarTextArea
     property real marginSize: JamiTheme.messageBarMarginSize
     property bool sendButtonVisibility: true
@@ -53,9 +54,9 @@ RowLayout {
 
     height: {
         if (showTypo || multiLine)
-            return messageBarTextArea.height + 25 + 3 * marginSize + 1
+            return messageBarTextArea.height + 25 + 5 * marginSize + 1 + dataTransferSendContainer.height;
         else
-            return textAreaObj.height + marginSize + 1
+            return textAreaObj.height + 3 * marginSize + 1 + dataTransferSendContainer.heigh;
     }
 
     Rectangle {
@@ -325,10 +326,28 @@ RowLayout {
                 }
             }
 
+            FilesToSendContainer {
+                        id: dataTransferSendContainer
+
+                        objectName: "dataTransferSendContainer"
+
+                        Layout.alignment: Qt.AlignCenter
+                        Layout.fillWidth: true
+                        Layout.margins: marginSize
+                        Layout.row: 1
+                        Layout.column: 0
+                        Layout.preferredHeight: filesToSendCount ? JamiTheme.filesToSendDelegateHeight : 0
+                        onHeightChanged: {
+                            root.y -= height;
+                            rectangle.height = rectangle.height + height;
+
+                        }
+                    }
+
             Row {
                 id: messageBarRowLayout
 
-                Layout.row: showTypo || multiLine ? 1 : 1
+                Layout.row: 2
                 Layout.column: showTypo || multiLine ? 0 : 1
                 Layout.alignment: showTypo || multiLine ? Qt.AlignRight : Qt.AlignBottom
                 Layout.columnSpan: showTypo || multiLine ? 2 : 1
