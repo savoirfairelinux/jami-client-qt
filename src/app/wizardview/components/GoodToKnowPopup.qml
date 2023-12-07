@@ -30,7 +30,8 @@ BaseModalDialog {
     onClosed: accepted()
 
     popupContent: Column {
-        spacing: 20
+        spacing: 5
+        width: 400 - 2 * root.popupMargins
 
         InfoBox {
             id: info

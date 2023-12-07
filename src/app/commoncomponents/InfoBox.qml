@@ -21,7 +21,7 @@ import QtQuick.Controls
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
 
-Rectangle {
+Control {
     id: root
 
     property string icoSource: ""
@@ -32,9 +32,7 @@ Rectangle {
     width: 190
     height: infos.implicitHeight
 
-    color: JamiTheme.transparentColor
-
-    ColumnLayout {
+    contentItem: ColumnLayout {
         id: infos
         anchors.fill: parent
 
@@ -79,6 +77,7 @@ Rectangle {
             color: JamiTheme.textColor
             wrapMode: Text.WordWrap
             text: description
+            lineHeight: 1.3
         }
     }
 }

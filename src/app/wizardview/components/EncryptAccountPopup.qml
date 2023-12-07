@@ -18,6 +18,7 @@
 import QtQuick
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
+import QtQuick.Controls
 import QtQuick.Layouts
 import "../../commoncomponents"
 
@@ -92,18 +93,19 @@ BaseModalDialog {
             }
         }
 
-        Rectangle {
-            radius: 5
-            color: JamiTheme.infoRectangleColor
-            Layout.fillWidth: true
-            Layout.minimumHeight: infoLayout.height + 35
+        Control {
+            Layout.preferredWidth: 400 - 2 * popupMargins
             Layout.topMargin: 20
+            padding: 14
 
-            RowLayout {
+            background: Rectangle {
+                radius: 5
+                color: JamiTheme.infoRectangleColor
+            }
+
+            contentItem: RowLayout {
                 id: infoLayout
                 anchors.centerIn: parent
-                width: parent.width - 35
-                anchors.margins: 14
                 spacing: 10
 
                 ResponsiveImage{
@@ -121,7 +123,8 @@ BaseModalDialog {
                     color: JamiTheme.textColor
                     wrapMode: Text.WordWrap
                     text: JamiStrings.encryptWarning
-                    font.pixelSize: JamiTheme.headerFontSize
+                    font.pixelSize: JamiTheme.menuFontSize
+                    lineHeight: 1.3
                 }
             }
         }
