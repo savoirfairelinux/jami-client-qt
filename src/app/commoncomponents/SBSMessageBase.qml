@@ -60,6 +60,7 @@ Control {
     property real textContentHeight
     property bool isReply: ReplyTo !== ""
     property real timeWidth: timestampItem.width
+    property real editedWidth: editedRow.visible ? editedRow.width + 10 : 0
 
     property real maxMsgWidth: root.width - senderMargin - 2 * hPadding - avatarBlockWidth
 
@@ -358,18 +359,19 @@ Control {
                     anchors.right: isOutgoing ? parent.right : undefined
                     anchors.top: parent.top
 
-                    property bool bigMsg: (innerContent.childrenRect.width || root.textContentWidth) > ( 2 / 3 * root.maxMsgWidth - timestampItem.width)
+                    property bool bigMsg: (innerContent.childrenRect.width || root.textContentWidth) > ( 2 / 3 * root.maxMsgWidth - timestampItem.width - editedImage.width - editedLabel.width)
                     property real timePosition: JamiTheme.emojiMargins + emojiReactions.width + 8
                     property alias timestampItem: timestampItem
 
-                    width: (Type === Interaction.Type.TEXT && !isEdited ? root.textContentWidth : innerContent.childrenRect.width)
+                    width: (Type === Interaction.Type.TEXT ? root.textContentWidth : innerContent.childrenRect.width)
 
-                    height: innerContent.childrenRect.height + (visible ? root.extraHeight : 0) + (bigMsg ? 8 : 0)
+                    height: innerContent.childrenRect.height + (visible ? root.extraHeight : 0) + (bigMsg ? 15 : 0)
 
                     TimestampInfo {
                         id: timestampItem
 
                         showTime: true
+                        showDay: false
                         formattedTime: root.formattedTime
 
                         timeColor: UtilsAdapter.luma(bubble.color) ? "white" : "dark"
@@ -381,7 +383,45 @@ Control {
                         anchors.leftMargin: (IsEmojiOnly && !isOutgoing && emojiReactions.visible) ? bubble.timePosition : 0
                         anchors.rightMargin: IsEmojiOnly ? ((isOutgoing && emojiReactions.visible) ? bubble.timePosition : 0) : 10
                         anchors.bottomMargin: IsEmojiOnly ? -45 : (bubble.bigMsg ? -23 : -20)
-                   }
+                    }
+
+                    RowLayout {
+                        id: editedRow
+
+                        anchors.left: bubble.bigMsg ? bubble.left : timestampItem.left
+                        anchors.verticalCenter: timestampItem.verticalCenter
+                        anchors.leftMargin: bubble.bigMsg ? 10 : - timestampItem.width - 10
+                        visible: bubble.isEdited
+                        z: 1
+
+                        ResponsiveImage {
+                            id: editedImage
+
+                            source: JamiResources.round_edit_24dp_svg
+                            width: 12
+                            height: 12
+                            color: editedLabel.color
+                            opacity: 0.5
+                        }
+
+                        Text {
+                            id: editedLabel
+
+                            text: JamiStrings.edited
+                            color: UtilsAdapter.luma(bubble.color) ? "white" : "dark"
+                            opacity: 0.5
+                            font.pixelSize: JamiTheme.timestampFont
+
+                            TapHandler {
+                                acceptedButtons: Qt.LeftButton
+                                onTapped: {
+                                    viewCoordinator.presentDialog(appWindow, "commoncomponents/EditedPopup.qml", {
+                                            "previousBodies": PreviousBodies
+                                        });
+                                }
+                            }
+                        }
+                    }
 
                 }
 
@@ -539,7 +579,7 @@ Control {
             orientation: ListView.Horizontal
             Layout.preferredHeight: {
                 if (showTime || seq === MsgSeq.last)
-                    return contentHeight + timestampItem.contentHeight;
+                    return contentHeight + dateItem.contentHeight;
                 else if (readsMultiple.visible)
                     return JamiTheme.avatarReadReceiptSize;
                 return 0;

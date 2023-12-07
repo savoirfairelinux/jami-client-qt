@@ -80,7 +80,7 @@ SBSMessageBase {
                 else if (isEmojiOnly)
                     Math.min((2 / 3) * root.maxMsgWidth, implicitWidth, innerContent.width - senderMargin - (innerContent.width - senderMargin) % (JamiTheme.chatviewEmojiSize + 2));
                 else
-                    Math.min((2 / 3) * root.maxMsgWidth, implicitWidth + root.timeWidth + 5, innerContent.width - senderMargin + root.timeWidth + 5);
+                    Math.min((2 / 3) * root.maxMsgWidth, implicitWidth + root.timeWidth + root.editedWidth + 5, innerContent.width - senderMargin + root.timeWidth + root.editedWidth + 5);
             }
 
             wrapMode: Label.WrapAtWordBoundaryOrAnywhere
@@ -125,51 +125,9 @@ SBSMessageBase {
                 lineEditObj: parent
                 selectOnly: parent.readOnly
             }
+
         },
 
-        RowLayout {
-            id: editedRow
-
-            anchors.right: isOutgoing ? parent.right : undefined
-            anchors.rightMargin: root.timeWidth
-            visible: PreviousBodies.length !== 0
-
-            ResponsiveImage {
-                id: editedImage
-
-                Layout.leftMargin: JamiTheme.preferredMarginSize
-                Layout.bottomMargin: JamiTheme.preferredMarginSize
-                source: JamiResources.round_edit_24dp_svg
-                width: JamiTheme.editedFontSize
-                height: JamiTheme.editedFontSize
-                layer {
-                    enabled: true
-                    effect: ColorOverlay {
-                        color: editedLabel.color
-                    }
-                }
-            }
-
-            Text {
-                id: editedLabel
-
-                Layout.rightMargin: JamiTheme.preferredMarginSize
-                Layout.bottomMargin: JamiTheme.preferredMarginSize
-
-                text: JamiStrings.edited
-                color: root.colorText
-                font.pointSize: JamiTheme.editedFontSize
-
-                TapHandler {
-                    acceptedButtons: Qt.LeftButton
-                    onTapped: {
-                        viewCoordinator.presentDialog(appWindow, "commoncomponents/EditedPopup.qml", {
-                                "previousBodies": PreviousBodies
-                            });
-                    }
-                }
-            }
-        },
         Loader {
             id: extraContent
 
