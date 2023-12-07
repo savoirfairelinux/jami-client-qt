@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3c48e8e_ce07feb9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-12-07T19:03:53Z",
+      "side": 1,
+      "message": "Can you squash the 2 commits into one, they are doing the same thing (resolve display issues with new UsernameTextEdit)",
+      "revId": "e422eb2c294592fe5aafaef132ef7d51f432f32d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
