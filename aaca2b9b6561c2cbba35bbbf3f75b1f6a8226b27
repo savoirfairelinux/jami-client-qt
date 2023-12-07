@@ -22,6 +22,52 @@
       },
       "revId": "aaca2b9b6561c2cbba35bbbf3f75b1f6a8226b27",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59bddc4b_861b3a16",
+        "filename": "src/app/wizardview/components/EncryptAccountPopup.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-12-07T19:14:44Z",
+      "side": 1,
+      "message": "The scrollbar in this popup overrides elements. We should fix this I guess",
+      "range": {
+        "startLine": 96,
+        "startChar": 8,
+        "endLine": 96,
+        "endChar": 15
+      },
+      "revId": "aaca2b9b6561c2cbba35bbbf3f75b1f6a8226b27",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e4e6bcb_48547c50",
+        "filename": "src/app/wizardview/components/EncryptAccountPopup.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-12-07T19:14:44Z",
+      "side": 1,
+      "message": "Other note, with the tab key, we can\u0027t navigate to the Encrypt Account popup",
+      "range": {
+        "startLine": 101,
+        "startChar": 12,
+        "endLine": 101,
+        "endChar": 22
+      },
+      "revId": "aaca2b9b6561c2cbba35bbbf3f75b1f6a8226b27",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
