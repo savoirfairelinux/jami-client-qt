@@ -289,9 +289,9 @@ Rectangle {
                     text: !enabled ? JamiStrings.creatingAccount : root.isRendezVous ? JamiStrings.chooseName : JamiStrings.joinJami
                     enabled: usernameEdit.nameRegistrationState === UsernameTextEdit.NameRegistrationState.FREE || usernameEdit.nameRegistrationState === UsernameTextEdit.NameRegistrationState.BLANK
 
-                    KeyNavigation.tab: customizeButton
+                    KeyNavigation.tab: encryptButton
                     KeyNavigation.up: usernameEdit
-                    KeyNavigation.down: customizeButton
+                    KeyNavigation.down: encryptButton
 
                     onClicked: {
                         WizardViewStepModel.accountCreationInfo = JamiQmlUtils.setUpAccountCreationInputPara({
@@ -340,6 +340,7 @@ Rectangle {
                         KeyNavigation.tab: customizeButton
                         KeyNavigation.up: chooseUsernameButton
                         KeyNavigation.down: backButton
+                        KeyNavigation.right: customizeButton
 
                         onClicked: {
                             var dlg = viewCoordinator.presentDialog(appWindow, "wizardview/components/EncryptAccountPopup.qml");
@@ -347,6 +348,8 @@ Rectangle {
                                 advancedButtons.chosenPassword = password;
                             });
                         }
+
+
                     }
 
                     MaterialButton {
@@ -369,6 +372,7 @@ Rectangle {
 
                         KeyNavigation.tab: backButton
                         KeyNavigation.up: chooseUsernameButton
+                        KeyNavigation.left: encryptButton
                         KeyNavigation.down: backButton
 
                         onClicked: {

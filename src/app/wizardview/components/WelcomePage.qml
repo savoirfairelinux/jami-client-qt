@@ -382,10 +382,14 @@ Rectangle {
         }
     }
 
-    BackButton {
+    JamiPushButton {
         id: backButton
 
         objectName: "welcomePageBackButton"
+
+        preferredSize: 36
+        imageContainerWidth: 20
+        source: JamiResources.ic_arrow_back_24dp_svg
 
         anchors.left: parent.left
         anchors.top: parent.top
