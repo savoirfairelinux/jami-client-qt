@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "389fb901_250cef0d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-12-07T19:10:32Z",
+      "side": 1,
+      "message": "If I checkout the patch, I do not see any textbar to send a mesage",
+      "revId": "54ed4e631434ea780c105ed409571fdb6dd835b9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
