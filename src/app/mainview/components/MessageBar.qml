@@ -857,8 +857,6 @@ RowLayout {
                                         return JamiTheme.chatViewFooterImgDisableColor;
                                     } else if (hovered) {
                                         return JamiTheme.chatViewFooterImgHoverColor;
-                                    } else if (modelData.imageColor !== null) {
-                                        return modelData.imageColor;
                                     } else if (modelData.isStyle) {
                                         return JamiTheme.chatViewFooterImgHoverColor;
                                     } else {
