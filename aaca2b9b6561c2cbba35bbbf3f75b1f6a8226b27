@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b26be9a_be2f0a73",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-12-08T19:21:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef626cf9_d5bab66b",
+      "range": {
+        "startLine": 9,
+        "startChar": 6,
+        "endLine": 9,
+        "endChar": 9
+      },
+      "revId": "aaca2b9b6561c2cbba35bbbf3f75b1f6a8226b27",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "59bddc4b_861b3a16",
@@ -60,6 +84,30 @@
       "writtenOn": "2023-12-07T19:14:44Z",
       "side": 1,
       "message": "Other note, with the tab key, we can\u0027t navigate to the Encrypt Account popup",
+      "range": {
+        "startLine": 101,
+        "startChar": 12,
+        "endLine": 101,
+        "endChar": 22
+      },
+      "revId": "aaca2b9b6561c2cbba35bbbf3f75b1f6a8226b27",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "471c4cdd_14db362e",
+        "filename": "src/app/wizardview/components/EncryptAccountPopup.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-12-08T19:21:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e4e6bcb_48547c50",
       "range": {
         "startLine": 101,
         "startChar": 12,
