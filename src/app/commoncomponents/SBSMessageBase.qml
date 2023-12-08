@@ -380,7 +380,7 @@ Control {
                         anchors.left: (IsEmojiOnly && !isOutgoing) ? parent.left : undefined
                         anchors.leftMargin: (IsEmojiOnly && !isOutgoing && emojiReactions.visible) ? bubble.timePosition : 0
                         anchors.rightMargin: IsEmojiOnly ? ((isOutgoing && emojiReactions.visible) ? bubble.timePosition : 0) : 10
-                        anchors.bottomMargin: IsEmojiOnly ? -45 : (bubble.bigMsg || root.isCallMessage ? -23 : -20)
+                        anchors.bottomMargin: IsEmojiOnly ? -45 : (bubble.bigMsg  ? -23 : (root.isCallMessage ? -26 : -20))
                     }
 
                     RowLayout {

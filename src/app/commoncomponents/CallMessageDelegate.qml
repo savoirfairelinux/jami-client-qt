@@ -72,10 +72,33 @@ SBSMessageBase {
             spacing: 10
             visible: root.visible
 
+            ResponsiveImage {
+                width: 13
+                height: 13
+                Layout.margins: 6
+                Layout.leftMargin: 10
+                Layout.rightMargin: 0
+                source: {
+                    switch(Body) {
+                        case "Missed outgoing call":
+                            return JamiResources.missed_outgoing_svg;
+                        case "Missed incoming call":
+                            return JamiResources.missed_incoming_svg;
+                        case "Incoming call":
+                            return JamiResources.incoming_call_svg;
+                        case "Outgoing call":
+                            return JamiResources.outgoing_call_svg;
+
+                    }
+                }
+                color: callLabel.color
+
+            }
+
             Label {
                 id: callLabel
 
-                Layout.margins: 8
+//                Layout.margins: 8
                 Layout.fillWidth: true
                 Layout.rightMargin: root.timeWidth + 16
 
@@ -86,13 +109,14 @@ SBSMessageBase {
                 }
                 horizontalAlignment: Qt.AlignHCenter
 
-                font.pointSize: JamiTheme.mediumFontSize
+                font.pointSize: JamiTheme.smallFontSize
                 font.hintingPreference: Font.PreferNoHinting
-                font.bold: true
                 renderType: Text.NativeRendering
                 textFormat: Text.MarkdownText
 
                 color: UtilsAdapter.luma(root.baseColor) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
+
+                Component.onCompleted: print(Body)
             }
 
             JoinCallButton {
