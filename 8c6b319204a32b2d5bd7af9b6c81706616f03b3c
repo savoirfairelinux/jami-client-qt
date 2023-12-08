@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8713f4e2_18ef686f",
+        "filename": "src/app/commoncomponents/CallMessageDelegate.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-12-08T20:47:14Z",
+      "side": 1,
+      "message": "use Type (Interaction.Type.CALL)",
+      "range": {
+        "startLine": 40,
+        "startChar": 4,
+        "endLine": 40,
+        "endChar": 17
+      },
+      "revId": "8c6b319204a32b2d5bd7af9b6c81706616f03b3c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58ae6211_3b106a17",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-12-08T20:47:14Z",
+      "side": 1,
+      "message": "what?",
+      "range": {
+        "startLine": 726,
+        "startChar": 17,
+        "endLine": 729,
+        "endChar": 16
+      },
+      "revId": "8c6b319204a32b2d5bd7af9b6c81706616f03b3c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
