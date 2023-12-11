@@ -30,6 +30,7 @@ SettingsPageBase {
     id: root
 
     Layout.fillWidth: true
+    Layout.minimumWidth: 700
 
     readonly property string baseProviderPrefix: 'image://avatarImage'
 
@@ -96,7 +97,13 @@ SettingsPageBase {
         Rectangle {
             id: connectionMonitoringTable
             height: listview.childrenRect.height + 60
-            width: tableWidth
+            width: {
+                if (tableWidth > 477) {
+                    return tableWidth;
+                } else {
+                    return 477;
+                }
+            }
             color: JamiTheme.transparentColor
 
             ConnectionMonitoringTable {
