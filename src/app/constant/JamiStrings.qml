@@ -344,7 +344,7 @@ Item {
     property string backendError: qsTr("This is the error from the backend: %0")
     property string disabledAccount: qsTr("The account is disabled")
     property string noNetworkConnectivity: qsTr("No network connectivity")
-    property string deletedMessage: qsTr("Deleted message")
+    property string deletedMessage: qsTr("deleted a message")
     property string backCall: qsTr("Back to Call")
 
     //MessagesResearch

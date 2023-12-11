@@ -59,14 +59,17 @@ SBSMessageBase {
         TextEdit {
             id: textEditId
 
-            padding: isEmojiOnly ? 0 : 10
+            padding: isEmojiOnly || (ParsedBody === "") ? 5 : 10
             anchors.right: isOutgoing ? parent.right : undefined
             text: {
                 if (Body !== "" && ParsedBody.length === 0) {
                     MessagesAdapter.parseMessage(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl, bubble.color);
                     return "";
                 }
-                return (ParsedBody !== "") ? ParsedBody : "<i>(" + JamiStrings.deletedMessage + ")</i>";
+                if (ParsedBody !== "")
+                    return ParsedBody;
+                bubble.isEdited = false;
+                return UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author) + " " + JamiStrings.deletedMessage ;
             }
             horizontalAlignment: Text.AlignLeft
 
@@ -85,7 +88,7 @@ SBSMessageBase {
 
             wrapMode: Label.WrapAtWordBoundaryOrAnywhere
             selectByMouse: true
-            font.pointSize: isEmojiOnly ? JamiTheme.chatviewEmojiSize : JamiTheme.mediumFontSize
+            font.pointSize: isEmojiOnly ? JamiTheme.chatviewEmojiSize : (ParsedBody === "" ? JamiTheme.smallFontSize : JamiTheme.mediumFontSize)
             font.hintingPreference: Font.PreferNoHinting
             renderType: Text.NativeRendering
             textFormat: Text.RichText
@@ -93,7 +96,8 @@ SBSMessageBase {
             onLinkHovered: root.hoveredLink = hoveredLink
             onLinkActivated: Qt.openUrlExternally(new URL(hoveredLink))
             readOnly: true
-            color: getBaseColor()
+            color: (ParsedBody !== "") ? getBaseColor() : (UtilsAdapter.luma(bubble.color) ? "white" : "dark")
+            opacity:(ParsedBody !== "") ? 1 :  0.5
 
             function getBaseColor() {
                 var baseColor;
