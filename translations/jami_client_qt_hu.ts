@@ -937,22 +937,22 @@ A névjegy bármikor módosítható a Fiókbeállításaiból.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="613"/>
         <source>Select image as avatar</source>
-        <translation type="unfinished"/>
+        <translation>Kép kijelölése névjegyképként</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="614"/>
         <source>Select image</source>
-        <translation type="unfinished"/>
+        <translation>Kép kijelölése</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="616"/>
         <source>Remove image</source>
-        <translation type="unfinished"/>
+        <translation>Kép eltávolítása</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="618"/>
         <source>Image Files (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)</source>
-        <translation type="unfinished"/>
+        <translation>Képfájlok (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="630"/>
@@ -1428,7 +1428,7 @@ Kíván most frissíteni?</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="60"/>
         <source>Add another account</source>
-        <translation type="unfinished"/>
+        <translation>Másik fiók hozzáadása</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="61"/>
@@ -4378,17 +4378,17 @@ csatlakozzon a beszélgetés összehangolásához.</translation>
 <context>
     <name>UtilsAdapter</name>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="334"/>
+        <location filename="../src/app/utilsadapter.cpp" line="339"/>
         <source>%1 Mbps</source>
         <translation>%1 megabit másodpercenként </translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="334"/>
+        <location filename="../src/app/utilsadapter.cpp" line="339"/>
         <source>Default</source>
         <translation>Alapértelmezett</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="539"/>
+        <location filename="../src/app/utilsadapter.cpp" line="544"/>
         <source>System</source>
         <translation>Rendszer</translation>
     </message>

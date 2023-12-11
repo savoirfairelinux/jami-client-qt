@@ -939,27 +939,27 @@ Profili mund të ndryshohet kurdo, që nga rregullimet e llogarisë.</translatio
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="613"/>
         <source>Select image as avatar</source>
-        <translation type="unfinished"/>
+        <translation>Përzgjidhni figurë si avatar</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="614"/>
         <source>Select image</source>
-        <translation type="unfinished"/>
+        <translation>Përzgjidhni figurë</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="616"/>
         <source>Remove image</source>
-        <translation type="unfinished"/>
+        <translation>Hiqe figurën</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="618"/>
         <source>Image Files (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)</source>
-        <translation type="unfinished"/>
+        <translation>Kartela Figurë (*.jpeg *.jpg *.png *.JPEG *.JPG *.PNG)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="630"/>
         <source>The Jami Extension Store currently has no extension available for the platform in use. Check again later!</source>
-        <translation type="unfinished"/>
+        <translation>Shitorja e Zgjerimeve Jami aktualisht nuk ka zgjerime gati për platformën në përdorim. Riprovoni më vonë!</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="747"/>
@@ -1004,7 +1004,7 @@ Profili mund të ndryshohet kurdo, që nga rregullimet e llogarisë.</translatio
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="777"/>
         <source>Select dedicated device for hosting future calls in this swarm. If not set, the host will be the device starting a call.</source>
-        <translation type="unfinished"/>
+        <translation>Përzgjidhni pajisje enkas për strehim thirrjesh të ardhshme në këtë zgjua. Nëse s’ujdiset, streha do të jetë pajisja që nis thirrjen.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="778"/>
@@ -1024,7 +1024,7 @@ Profili mund të ndryshohet kurdo, që nga rregullimet e llogarisë.</translatio
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="839"/>
         <source>Customize your profile</source>
-        <translation type="unfinished"/>
+        <translation>Përshtatni profilin tuaj</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="842"/>
@@ -1079,7 +1079,7 @@ Profili mund të ndryshohet kurdo, që nga rregullimet e llogarisë.</translatio
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="861"/>
         <source>Free and private sharing. &lt;a href=&quot;https://jami.net/whydonate/&quot;&gt;Donate&lt;/a&gt; to expand it.</source>
-        <translation type="unfinished"/>
+        <translation>Ndarje lirisht dhe privatisht me të tjerët. &lt;a href=&quot;https://jami.net/whydonate/&quot;&gt;Dhuroni&lt;/a&gt; që të zgjerohet.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="874"/>
@@ -1430,7 +1430,7 @@ Do të donit të përditësohet tani?</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="60"/>
         <source>Add another account</source>
-        <translation type="unfinished"/>
+        <translation>Shtoni llogari tjetër</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="61"/>
@@ -4380,17 +4380,17 @@ të lidhet, për njëkohësim të bisedës.</translation>
 <context>
     <name>UtilsAdapter</name>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="334"/>
+        <location filename="../src/app/utilsadapter.cpp" line="339"/>
         <source>%1 Mbps</source>
         <translation>%1 Mbit/s</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="334"/>
+        <location filename="../src/app/utilsadapter.cpp" line="339"/>
         <source>Default</source>
         <translation>Parazgjedhja</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="539"/>
+        <location filename="../src/app/utilsadapter.cpp" line="544"/>
         <source>System</source>
         <translation>Sistem</translation>
     </message>

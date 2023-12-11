@@ -4372,17 +4372,17 @@ connects to synchronize the conversation.</source>
 <context>
     <name>UtilsAdapter</name>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="334"/>
+        <location filename="../src/app/utilsadapter.cpp" line="339"/>
         <source>%1 Mbps</source>
         <translation>%1兆比特/秒</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="334"/>
+        <location filename="../src/app/utilsadapter.cpp" line="339"/>
         <source>Default</source>
         <translation>預設</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="539"/>
+        <location filename="../src/app/utilsadapter.cpp" line="544"/>
         <source>System</source>
         <translation>系統</translation>
     </message>

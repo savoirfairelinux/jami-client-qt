@@ -939,27 +939,27 @@ Profil, hesap ayarlarından her zaman değiştirilebilir.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="613"/>
         <source>Select image as avatar</source>
-        <translation type="unfinished"/>
+        <translation>Avatar için bir görsel seç</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="614"/>
         <source>Select image</source>
-        <translation type="unfinished"/>
+        <translation>Görsel seç</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="616"/>
         <source>Remove image</source>
-        <translation type="unfinished"/>
+        <translation>Görseli kaldır</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="618"/>
         <source>Image Files (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)</source>
-        <translation type="unfinished"/>
+        <translation>Görsel Dosyaları (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="630"/>
         <source>The Jami Extension Store currently has no extension available for the platform in use. Check again later!</source>
-        <translation type="unfinished"/>
+        <translation>Jami Uzantı Mağazası henüz bu platform için mevcut bir uzantıya sahip değil. Daha sonra tekrar kontrol et!</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="747"/>
@@ -1019,12 +1019,12 @@ Profil, hesap ayarlarından her zaman değiştirilebilir.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="838"/>
         <source>Encrypt your account with a password</source>
-        <translation type="unfinished"/>
+        <translation>Hesabını bir parolayla şifrele</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="839"/>
         <source>Customize your profile</source>
-        <translation type="unfinished"/>
+        <translation>Profilini özelleştir</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="842"/>
@@ -1079,7 +1079,7 @@ Profil, hesap ayarlarından her zaman değiştirilebilir.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="861"/>
         <source>Free and private sharing. &lt;a href=&quot;https://jami.net/whydonate/&quot;&gt;Donate&lt;/a&gt; to expand it.</source>
-        <translation type="unfinished"/>
+        <translation>Ücretsiz ve özel paylaşım. Geliştirilebilmesi için &lt;a href=&quot;https://jami.net/whydonate/&quot;&gt;bağış&lt;/a&gt; yap.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="874"/>
@@ -1430,7 +1430,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="60"/>
         <source>Add another account</source>
-        <translation type="unfinished"/>
+        <translation>Başka bir hesap ekle</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="61"/>
@@ -4380,17 +4380,17 @@ bağlanması bekleniyor.</translation>
 <context>
     <name>UtilsAdapter</name>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="334"/>
+        <location filename="../src/app/utilsadapter.cpp" line="339"/>
         <source>%1 Mbps</source>
         <translation>%1 Mb/sn</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="334"/>
+        <location filename="../src/app/utilsadapter.cpp" line="339"/>
         <source>Default</source>
         <translation>Varsayılan</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="539"/>
+        <location filename="../src/app/utilsadapter.cpp" line="544"/>
         <source>System</source>
         <translation>Sistem</translation>
     </message>

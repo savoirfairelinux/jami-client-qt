@@ -4,7 +4,7 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="220"/>
         <source>Missed call</source>
-        <translation>Calha perduda</translation>
+        <translation>Sonada perduda</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="221"/>
@@ -58,7 +58,7 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="137"/>
         <source>Private</source>
-        <translation>Primièr</translation>
+        <translation>Privat</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="139"/>
@@ -971,7 +971,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="753"/>
         <source>Strikethrough</source>
-        <translation>Travail</translation>
+        <translation>Raiat</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="759"/>
@@ -1452,7 +1452,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="206"/>
         <source>Screen sharing</source>
-        <translation>Partatge d&apos; ecran</translation>
+        <translation>Partatge d&apos;ecran</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="212"/>
@@ -2186,7 +2186,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="554"/>
         <source>Markdown</source>
-        <translation>Marca de la linha</translation>
+        <translation>Markdown</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="621"/>
@@ -2301,7 +2301,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="755"/>
         <source>Heading</source>
-        <translation>Titulacion</translation>
+        <translation>Títol</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="756"/>
@@ -3576,27 +3576,27 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="182"/>
         <source>Bold</source>
-        <translation>Bravament</translation>
+        <translation>Gras</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="186"/>
         <source>Italic</source>
-        <translation>L&apos;italic</translation>
+        <translation>Italic</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="190"/>
         <source>Strikethrough</source>
-        <translation>Travail</translation>
+        <translation>Raiat</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="194"/>
         <source>Heading</source>
-        <translation>Titulacion</translation>
+        <translation>Titol</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="198"/>
         <source>Link</source>
-        <translation>Link</translation>
+        <translation>Ligam</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="202"/>
@@ -4318,12 +4318,12 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="150"/>
         <source>Can I use my account on multiple devices?</source>
-        <translation>Pòdi utilizar mon compte sus mai d&apos;un dispositiu?</translation>
+        <translation>Pòdi utilizar mon compte sus mai d&apos;un dispositiu ?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="152"/>
         <source>Yes, you can link your account from the settings, or you can import your backup on another device.</source>
-        <translation>Si, podètz ligar lo vòstre compte dins las configuracions, o podètz importar la vòstra copia de seguretat sus un autre dispositiu.</translation>
+        <translation>Òc, podètz ligar lo vòstre compte dins las configuracions, o podètz importar la vòstra còpia de seguretat sus un autre dispositiu.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="124"/>
@@ -4333,7 +4333,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="108"/>
         <source>In a call, you can click on &quot;Add participants&quot; to add a contact to a call.</source>
-        <translation>Dins una crida, podètz clicar sus &quot;Aderir de participants&quot; per ajustar un contacte a una crida.</translation>
+        <translation>Dins una sonada, podètz clicar sus &quot;Apondre de participants&quot; per ajustar un contacte a la sonada.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="132"/>
@@ -4364,17 +4364,17 @@ connects to synchronize the conversation.</source>
 <context>
     <name>UtilsAdapter</name>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="334"/>
+        <location filename="../src/app/utilsadapter.cpp" line="339"/>
         <source>%1 Mbps</source>
         <translation>% 1 Mbps</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="334"/>
+        <location filename="../src/app/utilsadapter.cpp" line="339"/>
         <source>Default</source>
         <translation>Default</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="539"/>
+        <location filename="../src/app/utilsadapter.cpp" line="544"/>
         <source>System</source>
         <translation>Sistèma</translation>
     </message>
@@ -4389,17 +4389,17 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="1017"/>
         <source>Invalid ID</source>
-        <translation>Identificacion invalida</translation>
+        <translation>ID invalid</translation>
     </message>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="1020"/>
         <source>Username not found</source>
-        <translation>Nom d&apos; utilizaire pas trobat</translation>
+        <translation>Nom d&apos;utilizaire pas trobat</translation>
     </message>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="1023"/>
         <source>Couldn&apos;t lookup…</source>
-        <translation>Podèm pas cercar...</translation>
+        <translation>Recèrca impossibla...</translation>
     </message>
 </context>
 <context>
@@ -4407,7 +4407,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="443"/>
         <source>Bad URI scheme</source>
-        <translation>Plan de l&apos; URI malaisit</translation>
+        <translation>Marrit esquèma URI</translation>
     </message>
 </context>
 </TS>

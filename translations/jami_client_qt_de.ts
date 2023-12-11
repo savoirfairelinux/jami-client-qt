@@ -939,22 +939,22 @@ Das Profil kann jederzeit in den Kontoeinstellungen geändert werden.</translati
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="613"/>
         <source>Select image as avatar</source>
-        <translation type="unfinished"/>
+        <translation>Bild als Avatar auswählen</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="614"/>
         <source>Select image</source>
-        <translation type="unfinished"/>
+        <translation>Bild auswählen</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="616"/>
         <source>Remove image</source>
-        <translation type="unfinished"/>
+        <translation>Bild entfernen</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="618"/>
         <source>Image Files (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)</source>
-        <translation type="unfinished"/>
+        <translation>Bilddateien (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="630"/>
@@ -1430,7 +1430,7 @@ Möchten Sie jetzt updaten?</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="60"/>
         <source>Add another account</source>
-        <translation type="unfinished"/>
+        <translation>Anderes Konto hinzufügen</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="61"/>
@@ -1552,7 +1552,7 @@ Möchten Sie jetzt updaten?</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="256"/>
         <source>Share</source>
-        <translation>Freigeben</translation>
+        <translation>Teilen</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="257"/>
@@ -1777,7 +1777,7 @@ Möchten Sie jetzt updaten?</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="310"/>
         <source>Share location</source>
-        <translation>Standort teilen</translation>
+        <translation>Standort freigeben</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="311"/>
@@ -1806,7 +1806,7 @@ Der Standort anderer Teilnehmer kann weiterhin empfangen werden.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="317"/>
         <source>Location is shared in several conversations</source>
-        <translation>Der Standort wird in mehreren Unterhaltungen geteilt</translation>
+        <translation>Der Standort ist in mehreren Unterhaltungen freigegeben</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="318"/>
@@ -1816,7 +1816,7 @@ Der Standort anderer Teilnehmer kann weiterhin empfangen werden.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="319"/>
         <source>Location is shared in several conversations, click to choose how to turn off location sharing</source>
-        <translation>Der Standort wird in mehreren Unterhaltungen geteilt. Klicken Sie, um auszuwählen, wie die Standortfreigabe deaktiviert werden soll</translation>
+        <translation>Der Standort ist in mehreren Unterhaltungen freigegeben. Klicken Sie, um auszuwählen, wie die Standortfreigabe deaktiviert werden soll</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="320"/>
@@ -4380,17 +4380,17 @@ eine Verbindung herstellt, um die Unterhaltung zu synchronisieren.</translation>
 <context>
     <name>UtilsAdapter</name>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="334"/>
+        <location filename="../src/app/utilsadapter.cpp" line="339"/>
         <source>%1 Mbps</source>
         <translation>%1 MBit/s</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="334"/>
+        <location filename="../src/app/utilsadapter.cpp" line="339"/>
         <source>Default</source>
         <translation>Standard</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="539"/>
+        <location filename="../src/app/utilsadapter.cpp" line="544"/>
         <source>System</source>
         <translation>System</translation>
     </message>

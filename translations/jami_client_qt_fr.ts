@@ -940,27 +940,27 @@ Le profil peut être modifié à tout moment à partir des paramètres du compte
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="613"/>
         <source>Select image as avatar</source>
-        <translation type="unfinished"/>
+        <translation>Choisir une image comme avatar</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="614"/>
         <source>Select image</source>
-        <translation type="unfinished"/>
+        <translation>Choisir une image</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="616"/>
         <source>Remove image</source>
-        <translation type="unfinished"/>
+        <translation>Supprimer l&apos;image</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="618"/>
         <source>Image Files (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)</source>
-        <translation type="unfinished"/>
+        <translation>Fichiers image (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="630"/>
         <source>The Jami Extension Store currently has no extension available for the platform in use. Check again later!</source>
-        <translation type="unfinished"/>
+        <translation>Le Jami Extension Store n&apos;a actuellement aucune extension disponible pour la plateforme utilisée. Vérifiez à nouveau plus tard !</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="747"/>
@@ -1005,17 +1005,17 @@ Le profil peut être modifié à tout moment à partir des paramètres du compte
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="777"/>
         <source>Select dedicated device for hosting future calls in this swarm. If not set, the host will be the device starting a call.</source>
-        <translation type="unfinished"/>
+        <translation>Sélection du dispositif dédié à l&apos;hébergement des futurs appels dans ce Swarm. S&apos;il n&apos;est pas défini, l&apos;hôte sera le dispositif qui démarre un appel.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="778"/>
         <source>Select this device</source>
-        <translation type="unfinished"/>
+        <translation>Choisir cet appareil</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="779"/>
         <source>Select device</source>
-        <translation type="unfinished"/>
+        <translation>Choisir un appareil</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="838"/>
@@ -1025,7 +1025,7 @@ Le profil peut être modifié à tout moment à partir des paramètres du compte
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="839"/>
         <source>Customize your profile</source>
-        <translation type="unfinished"/>
+        <translation>Paramétrer votre profile</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="842"/>
@@ -1080,7 +1080,7 @@ Le profil peut être modifié à tout moment à partir des paramètres du compte
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="861"/>
         <source>Free and private sharing. &lt;a href=&quot;https://jami.net/whydonate/&quot;&gt;Donate&lt;/a&gt; to expand it.</source>
-        <translation type="unfinished"/>
+        <translation>Partage gratuit et privé. &lt;a href=&quot;https://jami.net/whydonate/&quot;&gt;Donnez&lt;/a&gt; pour l&apos;étendre.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="874"/>
@@ -1431,7 +1431,7 @@ Souhaitez-vous mettre à jour Jami maintenant.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="60"/>
         <source>Add another account</source>
-        <translation type="unfinished"/>
+        <translation>Ajout d&apos;un nouveau compte</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="61"/>
@@ -4381,17 +4381,17 @@ connects to synchronize the conversation.</source>
 <context>
     <name>UtilsAdapter</name>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="334"/>
+        <location filename="../src/app/utilsadapter.cpp" line="339"/>
         <source>%1 Mbps</source>
         <translation>%1 Mbits/s</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="334"/>
+        <location filename="../src/app/utilsadapter.cpp" line="339"/>
         <source>Default</source>
         <translation>Défaut</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="539"/>
+        <location filename="../src/app/utilsadapter.cpp" line="544"/>
         <source>System</source>
         <translation>Système</translation>
     </message>
