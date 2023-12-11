@@ -354,7 +354,6 @@ Item {
     property string search: qsTr("Search")
 
     // Chatview footer
-    property string scrollToEnd: qsTr("Scroll to end of conversation")
     property string typeIndicatorSingle: qsTr("{} is typing…")
     property string typeIndicatorPlural: qsTr("{} are typing…")
     property string typeIndicatorMax: qsTr("Several people are typing…")
