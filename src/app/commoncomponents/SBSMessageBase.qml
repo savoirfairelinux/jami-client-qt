@@ -331,6 +331,7 @@ Control {
                     id: bubble
 
                     property bool isEdited: PreviousBodies.length !== 0
+                    property bool isDeleted: false
                     z: -1
                     out: isOutgoing
                     type: seq
@@ -363,7 +364,7 @@ Control {
                         timeLabel.Layout.bottomMargin: {
                             if (IsEmojiOnly)
                                 return -15;
-                            if (root.bigMsg)
+                            if (root.bigMsg || bubble.isDeleted)
                                 return 5;
                             return 9;
                         }
@@ -373,7 +374,7 @@ Control {
                         id: editedRow
                         anchors.left: root.bigMsg ? bubble.left : timestampItem.left
                         anchors.bottom: parent.bottom
-                        anchors.bottomMargin: root.bigMsg ? 6 : 10
+                        anchors.bottomMargin: root.bigMsg || bubble.isDeleted ? 6 : 10
                         anchors.leftMargin: root.bigMsg ? 10 : - timestampItem.width - 10
                         visible: bubble.isEdited
                         z: 1

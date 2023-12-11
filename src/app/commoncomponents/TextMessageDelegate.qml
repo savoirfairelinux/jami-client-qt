@@ -61,14 +61,19 @@ SBSMessageBase {
         TextEdit {
             id: textEditId
 
-            padding: isEmojiOnly ? 0 : 10
+            padding: isEmojiOnly ? 5 : 10
+            topPadding: bubble.isDeleted ? 6 : 10
+            bottomPadding: bubble.isDeleted ? 6 : 10
             anchors.right: isOutgoing ? parent.right : undefined
             text: {
                 if (Body !== "" && ParsedBody.length === 0) {
                     MessagesAdapter.parseMessage(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl, bubble.color);
                     return "";
                 }
-                return (ParsedBody !== "") ? ParsedBody : "<i>(" + JamiStrings.deletedMessage + ")</i>";
+                if (ParsedBody !== "")
+                    return ParsedBody;
+                bubble.isDeleted = true;
+                return UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author) + " " + JamiStrings.deletedMessage ;
             }
             horizontalAlignment: Text.AlignLeft
 
@@ -82,14 +87,14 @@ SBSMessageBase {
                 else if (isEmojiOnly)
                     Math.min((2 / 3) * root.maxMsgWidth, implicitWidth, innerContent.width - senderMargin - (innerContent.width - senderMargin) % (JamiTheme.chatviewEmojiSize + 2));
                 else
-                    Math.max(Math.min((2 / 3) * root.maxMsgWidth - ( bigMsg ? 0 : root.timeWidth + root.editedWidth), implicitWidth + 5, innerContent.width - senderMargin + 5), bigMsg ? root.timeWidth + root.editedWidth + 14: 0) ;
+                    Math.max(Math.min((2 / 3) * root.maxMsgWidth - ( bigMsg ? 0 : root.timeWidth + root.editedWidth), implicitWidth + 5, innerContent.width - senderMargin + 5 ), bigMsg ? root.timeWidth + root.editedWidth + 14: 0) ;
             }
 
             anchors.rightMargin: bigMsg ? 0 : root.timeWidth + root.editedWidth
 
             wrapMode: Label.WrapAtWordBoundaryOrAnywhere
             selectByMouse: true
-            font.pointSize: isEmojiOnly ? JamiTheme.chatviewEmojiSize : JamiTheme.mediumFontSize
+            font.pointSize: isEmojiOnly ? JamiTheme.chatviewEmojiSize : (ParsedBody === "" ? JamiTheme.smallFontSize : JamiTheme.mediumFontSize)
             font.hintingPreference: Font.PreferNoHinting
             renderType: Text.NativeRendering
             textFormat: Text.RichText
@@ -97,7 +102,8 @@ SBSMessageBase {
             onLinkHovered: root.hoveredLink = hoveredLink
             onLinkActivated: Qt.openUrlExternally(new URL(hoveredLink))
             readOnly: true
-            color: getBaseColor()
+            color: (ParsedBody !== "") ? getBaseColor() : (UtilsAdapter.luma(bubble.color) ? "white" : "dark")
+            opacity:(ParsedBody !== "") ? 1 :  0.5
 
             function getBaseColor() {
                 var baseColor;
