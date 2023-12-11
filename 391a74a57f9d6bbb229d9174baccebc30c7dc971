@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99118fff_e987c0e4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-12-11T13:52:57Z",
+      "side": 1,
+      "message": "text is still moving, so 1373 is not resolved",
+      "range": {
+        "startLine": 9,
+        "startChar": 9,
+        "endLine": 9,
+        "endChar": 13
+      },
+      "revId": "391a74a57f9d6bbb229d9174baccebc30c7dc971",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
