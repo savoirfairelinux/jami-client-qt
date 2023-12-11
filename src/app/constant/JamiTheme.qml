@@ -254,6 +254,7 @@ Item {
     property color previewUrlColor: darkTheme ? "#eeeeee" : "#333"
     property color messageWebViewFooterButtonImageColor: darkTheme ? "#838383" : "#656565"
     property color chatviewSecondaryInformationColor: "#A7A7A7"
+    property color draftIconColor: "#707070"
 
     // ChatView Footer
     property color chatViewFooterListColor: darkTheme ? blackColor : "#E5E5E5"
