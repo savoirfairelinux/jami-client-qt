@@ -192,11 +192,29 @@ ItemDelegate {
             }
         }
 
+        BlinkingLocationIcon {
+            isSharing: true
+            visible: showSharePositionIndicator
+            arrowTimerVisibility: locationIconTimer.showIconArrow
+            color: JamiTheme.draftIconColor
+            containerWidth: 25
+        }
+
+        BlinkingLocationIcon {
+            isSharing: false
+            visible: showSharedPositionIndicator
+            arrowTimerVisibility: locationIconTimer.showIconArrow
+            color: JamiTheme.draftIconColor
+            containerWidth: 25
+        }
+
         // Draft indicator
         ResponsiveImage {
             visible: Draft && !root.highlighted
+            containerWidth: 20
+
             source: JamiResources.round_edit_24dp_svg
-            color: JamiTheme.primaryForegroundColor
+            color: JamiTheme.draftIconColor
         }
 
         // Show that a call is ongoing for groups indicator
@@ -204,20 +222,6 @@ ItemDelegate {
             visible: ActiveCallsCount && !root.highlighted
             source: JamiResources.videocam_24dp_svg
             color: JamiTheme.primaryForegroundColor
-        }
-
-        BlinkingLocationIcon {
-            isSharing: true
-            visible: showSharePositionIndicator
-            arrowTimerVisibility: locationIconTimer.showIconArrow
-            color: JamiTheme.sharePositionIndicatorColor
-        }
-
-        BlinkingLocationIcon {
-            isSharing: false
-            visible: showSharedPositionIndicator
-            arrowTimerVisibility: locationIconTimer.showIconArrow
-            color: JamiTheme.sharedPositionIndicatorColor
         }
 
         ColumnLayout {
@@ -228,6 +232,7 @@ ItemDelegate {
             Text {
                 id: callStatusText
 
+                visible : text
                 Layout.minimumHeight: 20
                 Layout.alignment: Qt.AlignRight
                 text: InCall ? UtilsAdapter.getCallStatusStr(CallState) : ""
@@ -239,16 +244,22 @@ ItemDelegate {
 
             // unread message count
             Item {
+
                 Layout.preferredWidth: childrenRect.width
                 Layout.preferredHeight: childrenRect.height
                 Layout.alignment: Qt.AlignTop | Qt.AlignRight
                 BadgeNotifier {
-                    size: 20
+                    size: 16
                     count: UnreadMessagesCount
                     animate: index === 0
+                    radius: 3
                 }
             }
         }
+
+
+
+
 
         Accessible.role: Accessible.Button
         Accessible.name: Title === undefined? "" : Title
