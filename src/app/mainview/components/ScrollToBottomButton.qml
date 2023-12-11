@@ -27,8 +27,10 @@ Control {
 
     signal clicked
 
-    height: jumpToLatestText.contentHeight + 15
-    width: jumpToLatestText.contentWidth + arrowDropDown.width + 50
+    height: 46
+    width: 46
+
+    padding: 11
 
     states: State {
         id: activeState
@@ -60,49 +62,18 @@ Control {
         }
     ]
 
-    contentItem: Item {
-        Item {
-            anchors.centerIn: parent
+    contentItem: ResponsiveImage {
+        id: arrowDropDown
 
-            height: jumpToLatestText.contentHeight
-            width: jumpToLatestText.contentWidth + arrowDropDown.width + 3
+        anchors.centerIn: parent
 
-            Text {
-                id: jumpToLatestText
-
-                anchors.right: parent.right
-                anchors.verticalCenter: parent.verticalCenter
-
-                font.weight: Font.Bold
-                font.pointSize: JamiTheme.textFontSize + 2
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-
-                text: JamiStrings.scrollToEnd
-                color: UtilsAdapter.luma(CurrentConversation.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
-            }
-
-            ResponsiveImage {
-                id: arrowDropDown
-
-                anchors.right: jumpToLatestText.left
-                anchors.rightMargin: 3
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.verticalCenterOffset: 0
-
-                containerWidth: jumpToLatestText.contentHeight
-                containerHeight: jumpToLatestText.contentHeight
-                rotation: -90
-
-                color: UtilsAdapter.luma(CurrentConversation.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
-                source: JamiResources.back_24dp_svg
-            }
-        }
+        color: UtilsAdapter.luma(CurrentConversation.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
+        source: JamiResources.expand_more_24dp_svg
     }
 
     background: Rectangle {
         radius: 5
-        color: CurrentConversation.color
+        color: JamiTheme.messageInBgColor
 
         MouseArea {
             anchors.fill: parent
