@@ -29,6 +29,7 @@ ListView {
     height: contentItem.childrenRect.height
     anchors.top: parent.top
     anchors.topMargin: 10
+    width: parent.width
 
     spacing: 5
     cacheBuffer: 10
@@ -51,7 +52,7 @@ ListView {
                     id: profile
                     height: 50
                     Layout.leftMargin: 5
-                    Layout.preferredWidth: 210
+                    Layout.preferredWidth: 200
                     color: JamiTheme.transparentColor
                     Text {
                         id: textImage
@@ -65,6 +66,7 @@ ListView {
                 Rectangle {
                     id: device
                     Layout.fillWidth: true
+                    Layout.minimumWidth: 50
                     height: 50
                     color: JamiTheme.transparentColor
                     Text {
@@ -106,6 +108,7 @@ ListView {
     }
 
     model: ConnectionInfoListModel
+
     Timer {
         interval: 1000
         running: root.visible
@@ -125,6 +128,7 @@ ListView {
         ListView {
             id: listView2
             height: 40 * Count
+            width: parent.width
 
             anchors.top: delegate.top
 
@@ -141,7 +145,7 @@ ListView {
                     id: profile
                     height: 50
                     Layout.leftMargin: 5
-                    Layout.preferredWidth: 210
+                    Layout.preferredWidth: 200
                     color: JamiTheme.transparentColor
                     Avatar {
                         id: avatar
@@ -174,6 +178,7 @@ ListView {
                             Text {
                                 id: usernameText
                                 color: JamiTheme.textColor
+                                anchors.fill: parent
                                 text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, PeerId)
                                 elide: Text.ElideRight
                             }
@@ -227,6 +232,7 @@ ListView {
                 Rectangle {
                     height: 40
                     Layout.fillWidth: true
+                    Layout.minimumWidth: 50
                     color: delegate.color
                     Text {
                         id: delegateDeviceText

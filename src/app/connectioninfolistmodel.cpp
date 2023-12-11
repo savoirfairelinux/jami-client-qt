@@ -44,7 +44,6 @@ ConnectionInfoListModel::data(const QModelIndex& index, int role) const
     }
     const auto peerId = peerIds_[index.row()];
     const auto peerData = peerData_[peerId];
-
     switch (role) {
     case ConnectionInfoList::ChannelsMap: {
         QVariantMap channelsMapMap;
