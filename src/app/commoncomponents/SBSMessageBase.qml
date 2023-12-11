@@ -337,6 +337,7 @@ Control {
                     id: bubble
 
                     property bool isEdited: PreviousBodies.length !== 0
+                    property bool isDeleted: false
                     z: -1
                     out: isOutgoing
                     type: seq
@@ -369,7 +370,7 @@ Control {
                         timeLabel.Layout.bottomMargin: {
                             if (IsEmojiOnly)
                                 return -15;
-                            if (root.bigMsg)
+                            if (root.bigMsg || bubble.isDeleted)
                                 return 5;
                             return 9;
                         }
