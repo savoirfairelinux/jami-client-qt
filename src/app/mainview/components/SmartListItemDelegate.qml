@@ -220,7 +220,8 @@ ItemDelegate {
         // Show that a call is ongoing for groups indicator
         ResponsiveImage {
             visible: ActiveCallsCount && !root.highlighted
-            source: JamiResources.videocam_24dp_svg
+            source: JamiResources.phone_in_talk_24dp_svg
+            containerWidth: 16
             color: JamiTheme.primaryForegroundColor
         }
 

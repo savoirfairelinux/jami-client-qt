@@ -25,15 +25,17 @@ import net.jami.Constants 1.1
 SBSMessageBase {
     id: root
 
-    component JoinCallButton: PushButton {
+    component JoinCallButton: MaterialButton {
         visible: root.isActive
         toolTipText: JamiStrings.joinCall
-        preferredSize: visible ? 40 : 0
-        imageColor: callLabel.color
-        normalColor: "transparent"
-        hoveredColor: Qt.rgba(255, 255, 255, 0.2)
-        border.width: 1
-        border.color: callLabel.color
+        color: JamiTheme.blackColor
+        background.opacity: hovered ? 0.2 : 0.1
+        hoveredColor: JamiTheme.blackColor
+        contentColorProvider: JamiTheme.textColor
+        textOpacity: hovered ? 1 : 0.5
+        buttontextHeightMargin: 16
+        textLeftPadding: 9
+        textRightPadding: 9
     }
 
     property bool isRemoteImage
@@ -42,6 +44,9 @@ SBSMessageBase {
     author: Author
     readers: Readers
     formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
+
+    bubble.border.color: CurrentConversation.color
+    bubble.border.width: root.isActive ? 1.5 : 0
 
     Connections {
         target: CurrentConversation
@@ -69,18 +74,18 @@ SBSMessageBase {
 
                 Layout.margins: 8
                 Layout.fillWidth: true
-                Layout.rightMargin: root.timeWidth + 16
+                Layout.rightMargin: root.isActive ? 0 : root.timeWidth + 16
+                Layout.leftMargin: root.isActive ? 10 : 8
 
                 text: {
                     if (root.isActive)
-                        return JamiStrings.joinCall;
+                        return JamiStrings.startedACall;
                     return Body;
                 }
                 horizontalAlignment: Qt.AlignHCenter
 
                 font.pointSize: JamiTheme.mediumFontSize
                 font.hintingPreference: Font.PreferNoHinting
-                font.bold: true
                 renderType: Text.NativeRendering
                 textFormat: Text.MarkdownText
 
@@ -89,17 +94,21 @@ SBSMessageBase {
 
             JoinCallButton {
                 id: joinCallInAudio
+                Layout.topMargin: 4
+                Layout.bottomMargin: 4
 
-                source: JamiResources.place_audiocall_24dp_svg
+                text: JamiStrings.joinInAudio
                 onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, ConfId, true)
             }
 
             JoinCallButton {
                 id: joinCallInVideo
+                text: JamiStrings.joinInVideo
+                Layout.topMargin: 4
+                Layout.bottomMargin: 4
 
-                source: JamiResources.videocam_24dp_svg
                 onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, ConfId)
-                Layout.rightMargin: parent.spacing
+                Layout.rightMargin: 4
             }
         }
     ]
@@ -110,5 +119,8 @@ SBSMessageBase {
             duration: 100
         }
     }
-    Component.onCompleted: opacity = 1
+    Component.onCompleted: {
+        bubble.timestampItem.visible = !root.isActive;
+        opacity = 1;
+    }
 }
