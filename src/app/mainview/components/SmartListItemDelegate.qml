@@ -237,6 +237,13 @@ ItemDelegate {
                 color: JamiTheme.textColor
             }
 
+            ResponsiveImage {
+                source: JamiResources.phone_in_talk_24dp_svg
+                visible: InCall
+
+                containerWidth: 20
+            }
+
             // unread message count
             Item {
                 Layout.preferredWidth: childrenRect.width
