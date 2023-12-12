@@ -109,6 +109,10 @@ ListView {
 
     model: ConnectionInfoListModel
 
+    Component.onCompleted: {
+        ContactAdapter.updateConnectionInfo();
+    }
+
     Timer {
         interval: 1000
         running: root.visible
