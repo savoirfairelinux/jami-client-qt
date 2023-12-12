@@ -46,6 +46,7 @@ AbstractButton {
     property real textRightPadding
     property real fontSize: JamiTheme.buttontextFontPixelSize
     property real textAlignment: Text.AlignHCenter
+    property real textOpacity: 1
     checkable: false
     checked: false
 
@@ -159,6 +160,7 @@ AbstractButton {
             horizontalAlignment: root.textAlignment
             color: contentColorProvider
             font.pixelSize: fontSize
+            opacity: root.textOpacity
         }
     }
 
