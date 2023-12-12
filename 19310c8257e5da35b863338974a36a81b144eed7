@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "311dfb7d_2802ffcb",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-12-12T13:38:26Z",
+      "side": 1,
+      "message": "2 small bugs on callmessagedelegate\n\n1. timestamp can move on a new line breaking the height of the message\n2. If the call is missed, the text color is slightly different and the luma can be different causing the text to be light and timestamp dark. You can search for Qt.lighter/Qt.darker in our code",
+      "range": {
+        "startLine": 373,
+        "startChar": 106,
+        "endLine": 373,
+        "endChar": 110
+      },
+      "revId": "19310c8257e5da35b863338974a36a81b144eed7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78952cd8_bf177281",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-12-12T13:38:26Z",
+      "side": 1,
+      "message": "seems to not be working",
+      "range": {
+        "startLine": 415,
+        "startChar": 52,
+        "endLine": 415,
+        "endChar": 65
+      },
+      "revId": "19310c8257e5da35b863338974a36a81b144eed7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
