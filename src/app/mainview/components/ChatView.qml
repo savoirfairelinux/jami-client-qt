@@ -187,7 +187,7 @@ Rectangle {
         NotificationArea {
             id: notificationArea
             Layout.fillWidth: true
-            Layout.preferredHeight: JamiTheme.chatViewHeaderPreferredHeight
+            Layout.preferredHeight: 40
             visible: CurrentConversation.activeCalls.length > 0 && !root.inCallView
         }
 
