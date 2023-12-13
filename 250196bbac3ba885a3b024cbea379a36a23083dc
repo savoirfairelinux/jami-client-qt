@@ -22,6 +22,30 @@
       },
       "revId": "250196bbac3ba885a3b024cbea379a36a23083dc",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5cacd20_f90b2323",
+        "filename": "src/app/mainview/components/ScrollToBottomButton.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-12-13T20:14:18Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "744bd06f_09895dd1",
+      "range": {
+        "startLine": 81,
+        "startChar": 34,
+        "endLine": 81,
+        "endChar": 45
+      },
+      "revId": "250196bbac3ba885a3b024cbea379a36a23083dc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
