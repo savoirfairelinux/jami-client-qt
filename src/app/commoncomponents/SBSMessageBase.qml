@@ -212,6 +212,7 @@ Control {
 
             Layout.preferredHeight: innerContent.height + root.extraHeight + (emojiReactions.emojis === "" ? 0 : emojiReactions.height - 8) + (IsEmojiOnly && (root.seq === MsgSeq.last || root.seq === MsgSeq.single) && emojiReactions.emojis === "" ? 15 : 0)
             Layout.topMargin: ((seq === MsgSeq.first || seq === MsgSeq.single) && !root.isReply) ? 6 : 0
+            Layout.bottomMargin: root.bigMsg ? timestampItem.timeLabel.height : 0
 
             Item {
                 id: avatarBlock
