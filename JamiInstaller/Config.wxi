@@ -4,6 +4,7 @@
     <?define ExeName="Jami" ?>
     <?define AppName="Jami" ?>
     <?define Manufacturer="Savoir-Faire Linux"?>
+    <?define UpgradeCode="7c45b52b-0390-4fe8-947a-3f13e82dd346"?>
 
     <?if $(var.Configuration) = Release ?>
     <?define ReleaseDir="..\x64\Release"?>
