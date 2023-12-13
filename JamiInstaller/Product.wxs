@@ -6,20 +6,21 @@
     Language="1033"
     Version="$(fun.AutoVersion(1.0))"
     Manufacturer="$(var.Manufacturer)"
-    UpgradeCode="7c45b52b-0390-4fe8-947a-3f13e82dd346">
+    UpgradeCode="$(var.UpgradeCode)">
     <Package InstallerVersion="301"
       Compressed="yes"
       InstallScope="perMachine" />
 
-    <MajorUpgrade Schedule="afterInstallInitialize"
-      AllowDowngrades="yes"/>
+    <MajorUpgrade Schedule="afterInstallValidate"
+      AllowSameVersionUpgrades="yes"
+      DowngradeErrorMessage="A newer version of $(var.Name) is already installed." />
     <MediaTemplate EmbedCab="yes"
       CompressionLevel="high"
       MaximumUncompressedMediaSize="4" />
 
     <!--Disables interaction of the package with the Restart Manager.-->
     <Property Id="MSIRESTARTMANAGERCONTROL"
-      Value="Disable" />
+      Value="DisableShutdown" />
 
     <!--Icon File should be in release folder(not wix project), otherwise cannot be read-->
     <Icon Id="icon.ico"
@@ -28,10 +29,6 @@
       Value="icon.ico" />
     <Property Id="ARPNOMODIFY"
       Value="1" />
-
-    <!-- It seems that QtWebEngineProcess.exe versioning requires us to force reinstall. -->
-    <Property Id="REINSTALLMODE"
-      Value="dms" />
 
     <Feature Id="ProductFeature"
       Title="Main"
@@ -47,32 +44,6 @@
       <ComponentRef Id="URLProtocolRegistryEntries" />
     </Feature>
 
-    <SetProperty After="FindRelatedProducts"
-      Id="FirstInstall"
-      Value="true">
-      NOT Installed AND NOT WIX_UPGRADE_DETECTED AND NOT WIX_DOWNGRADE_DETECTED
-    </SetProperty>
-    <SetProperty After="SetFirstInstall"
-      Id="Upgrading"
-      Value="true">
-      WIX_UPGRADE_DETECTED AND NOT (REMOVE="ALL")
-    </SetProperty>
-    <SetProperty After="RemoveExistingProducts"
-      Id="RemovingForUpgrade"
-      Sequence="execute"
-      Value="true"> (REMOVE="ALL") AND UPGRADINGPRODUCTCODE
-    </SetProperty>
-    <SetProperty After="SetUpgrading"
-      Id="Uninstalling"
-      Value="true">
-      Installed AND (REMOVE="ALL") AND NOT (WIX_UPGRADE_DETECTED OR UPGRADINGPRODUCTCODE)
-    </SetProperty>
-    <SetProperty After="SetUninstalling"
-      Id="Maintenance"
-      Value="true">
-      Installed AND NOT Upgrading AND NOT Uninstalling AND NOT UPGRADINGPRODUCTCODE
-    </SetProperty>
-
     <!--SetDirectory of APPLICATIONFOLDER -->
     <SetDirectory Id="APPLICATIONFOLDER"
       Value="[ProgramFiles64Folder][ApplicationFolderName]">APPLICATIONFOLDER=""</SetDirectory>
@@ -87,8 +58,6 @@
       Value="top-banner.bmp" />
     <WixVariable Id="WixUIDialogBmp"
       Value="main-banner.bmp" />
-    <WixVariable Id="WixUISupportPerUser"
-      Value="0" />
 
     <CustomAction Id="RemoveOldJamiFiles"
       Directory="APPLICATIONFOLDER"
@@ -154,7 +123,6 @@
           Type="integer"
           Value="1"
           KeyPath="yes" />
-        <Condition>FirstInstall</Condition>
       </Component>
     </DirectoryRef>
 
@@ -222,14 +190,89 @@
   </Fragment>
 
   <Fragment Id="UI">
+    <!-- Workaround Wix Bug (Part 1): https://github.com/wixtoolset/issues/issues/2165 -->
+    <CustomAction Id="Overwrite_WixSetDefaultPerMachineFolder"
+      Property="WixPerMachineFolder"
+      Value="[ProgramFiles64Folder][ApplicationFolderName]"
+      Execute="immediate" />
+    <CustomAction Id="Overwrite_WixSetDefaultPerUserFolder"
+      Property="WixPerUserFolder"
+      Value="[ProgramFiles64Folder][ApplicationFolderName]"
+      Execute="immediate" />
+
     <UI Id="CustomUI">
       <Property Id="WixAppFolder"
-        Value="WixPerMachineFolder" />
-
-      <!--APPLICATIONFOLDER required by WixUI_Advanced, ApplicationFolderName reset APPLICATIONFOLDER path-->
+        Value="WixPerUserFolder" />
+      <Property Id="ALLUSERS"
+        Value="2" />
+      <Property Id="Privileged"
+        Value="0" />
+      <Property Id="MSIINSTALLPERUSER"
+        Value="1" />
       <Property Id="ApplicationFolderName"
-        Value="$(var.Manufacturer)\$(var.AppName)" />
+        Value="$(var.Manufacturer)\$(var.Name)" />
+
       <UIRef Id="WixUI_Advanced" />
+
+      <!-- Workaround Wix Bug (Part 2): https://github.com/wixtoolset/issues/issues/2165 -->
+      <Publish Dialog='InstallScopeDlg'
+        Control='Next'
+        Property='MSIINSTALLPERUSER'
+        Value='1'
+        Order='3'>WixAppFolder = "WixPerUserFolder"</Publish>
+      <Publish Dialog='InstallScopeDlg'
+        Control='Next'
+        Event='DoAction'
+        Value='Overwrite_WixSetDefaultPerUserFolder'
+        Order='3'>WixAppFolder = "WixPerUserFolder"</Publish>
+
+      <Publish Dialog='InstallScopeDlg'
+        Control='Next'
+        Property='MSIINSTALLPERUSER'
+        Value='{}'
+        Order='2'>WixAppFolder = "WixPerMachineFolder"</Publish>
+      <Publish Dialog='InstallScopeDlg'
+        Control='Next'
+        Event='DoAction'
+        Value='Overwrite_WixSetDefaultPerMachineFolder'
+        Order='3'>WixAppFolder = "WixPerMachineFolder"</Publish>
+
+      <!-- Without this, non-default install scope upgrades will fail and
+				 leave duplicate entries -->
+      <Publish Dialog='InstallScopeDlg'
+        Control='Next'
+        Property='ALLUSERS'
+        Value='{}'
+        Order='1'>WixAppFolder = "WixPerMachineFolder"</Publish>
+      <Publish Dialog="InstallScopeDlg"
+        Control="Next"
+        Event="DoAction"
+        Value="FindRelatedProducts"
+        Order="4">1</Publish>
+
+      <!-- Skip FeaturesDlg entirely -->
+      <Publish Dialog="InstallScopeDlg"
+        Control="Next"
+        Event="NewDialog"
+        Value="VerifyReadyDlg"
+        Order="6">WixAppFolder = "WixPerUserFolder"</Publish>
+      <Publish Dialog="InstallDirDlg"
+        Control="Next"
+        Event="NewDialog"
+        Value="VerifyReadyDlg"
+        Order="4">WIXUI_DONTVALIDATEPATH OR WIXUI_INSTALLDIR_VALID="1"</Publish>
+      <Publish Dialog="VerifyReadyDlg"
+        Control="Back"
+        Event="NewDialog"
+        Value="InstallScopeDlg">NOT Installed AND WixAppFolder = "WixPerUserFolder"</Publish>
+      <Publish Dialog="VerifyReadyDlg"
+        Control="Back"
+        Event="NewDialog"
+        Value="InstallDirDlg">NOT Installed AND WixAppFolder = "WixPerMachineFolder"</Publish>
+      <Publish Dialog="VerifyReadyDlg"
+        Control="Back"
+        Event="NewDialog"
+        Value="MaintenanceTypeDlg">Installed</Publish>
 
       <!--Remove User Exit Dialog-->
       <Publish Dialog="AdvancedWelcomeEulaDlg"
@@ -298,10 +341,6 @@
       BinaryKey="WixCA"
       DllEntry="WixShellExec"
       Impersonate="yes"/>
-    <CustomAction Id="Overwrite_WixSetDefaultPerMachineFolder"
-      Property="WixPerMachineFolder"
-      Value="[ProgramFiles64Folder][ApplicationFolderName]"
-      Execute="immediate" />
     <!--License File-->
     <WixVariable Id="WixUILicenseRtf"
       Value="$(var.ReleaseDir)\License.rtf"/>
