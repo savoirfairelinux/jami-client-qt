@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "744bd06f_09895dd1",
+        "filename": "src/app/mainview/components/ScrollToBottomButton.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-12-13T19:24:30Z",
+      "side": 0,
+      "message": "you can remove this from JamiStrings. It\u0027s useless",
+      "range": {
+        "startLine": 81,
+        "startChar": 34,
+        "endLine": 81,
+        "endChar": 45
+      },
+      "revId": "250196bbac3ba885a3b024cbea379a36a23083dc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
