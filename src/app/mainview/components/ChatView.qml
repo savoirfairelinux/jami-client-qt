@@ -150,7 +150,11 @@ Rectangle {
                     notificationArea.id = CurrentConversation.activeCalls[0]["id"];
                     notificationArea.uri = CurrentConversation.activeCalls[0]["uri"];
                     notificationArea.device = CurrentConversation.activeCalls[0]["device"];
-                }
+                    ConversationsAdapter.startCallTimer(CurrentConversation.id);
+                    }
+                    else {
+                        ConversationsAdapter.stopCallTimer(CurrentConversation.id);
+                    }
                 notificationArea.visible = CurrentConversation.activeCalls.length > 0 && !root.inCallView;
             }
 
@@ -186,7 +190,7 @@ Rectangle {
         NotificationArea {
             id: notificationArea
             Layout.fillWidth: true
-            Layout.preferredHeight: JamiTheme.chatViewHeaderPreferredHeight
+            Layout.preferredHeight: 40
             visible: CurrentConversation.activeCalls.length > 0 && !root.inCallView
         }
 
