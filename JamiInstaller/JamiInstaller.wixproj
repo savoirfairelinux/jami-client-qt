@@ -35,7 +35,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Product.wxs" />
-    <Compile Include="StandardComponents.wxs" />
     <Compile Include="Components.wxs" />
   </ItemGroup>
   <ItemGroup>
