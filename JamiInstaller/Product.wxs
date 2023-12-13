@@ -39,26 +39,12 @@
       Absent="disallow">
       <ComponentGroupRef Id="MainExecutable"
         Primary="yes" />
-      <ComponentGroupRef Id="HeatGenerated" />
+      <ComponentGroupRef Id="AppHeatGenerated" />
+      <ComponentGroupRef Id="CrtHeatGenerated" />
       <ComponentRef Id="ApplicationShortcutDesktop" />
       <ComponentRef Id="ApplicationShortcutStartMenu" />
       <ComponentRef Id="RegistryEntries" />
       <ComponentRef Id="URLProtocolRegistryEntries" />
-    </Feature>
-
-    <!--Visual C++ Redist merge module-->
-    <DirectoryRef Id="TARGETDIR">
-      <Merge Id="VCRedist"
-        SourceFile="$(env.VCRedistMergeModule)"
-        DiskId="1"
-        Language="0" />
-    </DirectoryRef>
-    <Feature Id="VCRedist"
-      Title="Visual C++ Runtime"
-      AllowAdvertise="no"
-      Display="hidden"
-      Level="1">
-      <MergeRef Id="VCRedist"/>
     </Feature>
 
     <SetProperty After="FindRelatedProducts"
