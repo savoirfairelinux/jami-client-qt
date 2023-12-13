@@ -28,6 +28,7 @@
 
 #include <QApplication>
 #include <QJsonObject>
+#include <QTimer>
 
 using namespace lrc::api;
 
@@ -688,4 +689,25 @@ ConversationsAdapter::createSwarm(const QString& title,
                                          {{"title", title},
                                           {"description", description},
                                           {"avatar", avatar}});
+}
+
+void
+ConversationsAdapter::startCallTimer(const QString& convId){
+    if (timersMap_.find(convId) != timersMap_.end())
+        return;;
+    timersMap_[convId] = std::chrono::steady_clock::now();
+}
+
+int
+ConversationsAdapter::getElapsedTime(const QString& convId){
+    if (timersMap_.find(convId) == timersMap_.end())
+        return -1;
+    auto end = std::chrono::steady_clock::now();
+    auto elapsed = std::chrono::duration_cast<std::chrono::minutes>(end - timersMap_[convId]);
+    return elapsed.count();
+}
+
+void
+ConversationsAdapter::stopCallTimer(const QString& convId){
+    timersMap_.erase(convId);
 }
