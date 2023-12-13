@@ -48,6 +48,10 @@ SBSMessageBase {
     bubble.border.color: CurrentConversation.color
     bubble.border.width: root.isActive ? 1.5 : 0
 
+
+    signal callFrom(string author)
+
+
     Connections {
         target: CurrentConversation
         enabled: root.isActive
@@ -78,8 +82,12 @@ SBSMessageBase {
                 Layout.leftMargin: root.isActive ? 10 : 8
 
                 text: {
-                    if (root.isActive)
+                    if (root.isActive){
+                        CurrentConversation.callFrom = root.username;
+                        CurrentConversation.callFromId = root.author;
+                        print("callFrom: " + root.author);
                         return JamiStrings.startedACall;
+                    }
                     return Body;
                 }
                 horizontalAlignment: Qt.AlignHCenter

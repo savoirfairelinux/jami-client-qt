@@ -131,6 +131,7 @@ Rectangle {
         anchors.verticalCenter: root.verticalCenter
 
         ConversationAvatar {
+            Scaffold{}
             Layout.alignment: Qt.AlignHCenter
             Layout.preferredWidth: JamiTheme.avatarSizeInCall
             Layout.preferredHeight: JamiTheme.avatarSizeInCall

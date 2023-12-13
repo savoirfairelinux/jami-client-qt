@@ -783,6 +783,7 @@ Item {
     property string becomeHostOneCall: qsTr("Host only this call")
     property string hostThisCall: qsTr("Host this call")
     property string becomeDefaultHost: qsTr("Make me the default host for future calls")
+    property string minutesAgo: qsTr("minutes ago")
 
     // Invitation View
     property string invitationViewSentRequest: qsTr("%1 has sent you a request for a conversation.")

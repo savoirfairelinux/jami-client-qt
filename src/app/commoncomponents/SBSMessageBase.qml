@@ -53,6 +53,7 @@ Control {
     readonly property real hPadding: JamiTheme.sbsMessageBasePreferredPadding
     property bool textHovered: false
     property alias replyAnimation: selectAnimation
+    property alias username: username.text
     width: listView.width
 
     property real textContentWidth
