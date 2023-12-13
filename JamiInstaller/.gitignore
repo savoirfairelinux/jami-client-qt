@@ -1,3 +1,4 @@
 /obj
 /bin
-Components.wxs
+AppComponents.wxs
+CrtComponents.wxs
