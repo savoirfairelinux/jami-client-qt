@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" InitialTargets="EnsureWixToolsetInstalled" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0"
+  DefaultTargets="Build"
+  InitialTargets="EnsureWixToolsetInstalled"
+  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
@@ -16,7 +19,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
-    <DefineConstants>HarvestPath=..\x64\Release</DefineConstants>
+    <DefineConstants>AppHarvestPath=..\x64\Release;CrtHarvestPath=$(VC_CRT_Dir)</DefineConstants>
     <SuppressPdbOutput>True</SuppressPdbOutput>
     <CompilerAdditionalOptions>
     </CompilerAdditionalOptions>
@@ -26,7 +29,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Beta|x64' ">
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
-    <DefineConstants>HarvestPath=..\x64\Beta</DefineConstants>
+    <DefineConstants>AppHarvestPath=..\x64\Beta;CrtHarvestPath=$(VC_CRT_Dir)</DefineConstants>
     <SuppressPdbOutput>True</SuppressPdbOutput>
     <CompilerAdditionalOptions>
     </CompilerAdditionalOptions>
@@ -35,7 +38,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Product.wxs" />
-    <Compile Include="Components.wxs" />
+    <Compile Include="AppComponents.wxs" />
+    <Compile Include="CrtComponents.wxs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config.wxi" />
@@ -57,13 +61,36 @@
   <ItemGroup>
     <EmbeddedResource Include="Localization.wxl" />
   </ItemGroup>
-  <Import Project="$(WixTargetsPath)" Condition=" '$(WixTargetsPath)' != '' " />
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets" Condition=" '$(WixTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets') " />
-  <Target Name="EnsureWixToolsetInstalled" Condition=" '$(WixTargetsImported)' != 'true' ">
+  <Import Project="$(WixTargetsPath)"
+    Condition=" '$(WixTargetsPath)' != '' " />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets"
+    Condition=" '$(WixTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets') " />
+  <Target Name="EnsureWixToolsetInstalled"
+    Condition=" '$(WixTargetsImported)' != 'true' ">
     <Error Text="The WiX Toolset v3.11 (or newer) build tools must be installed to build this project. To download the WiX Toolset, see http://wixtoolset.org/releases/" />
   </Target>
   <Target Name="BeforeBuild">
-    <HeatDirectory Directory="..\x64\$(Configuration)" PreprocessorVariable="var.HarvestPath" OutputFile="Components.wxs" ComponentGroupName="HeatGenerated" DirectoryRefId="APPLICATIONFOLDER" AutogenerateGuids="true" ToolPath="$(WixToolPath)" SuppressFragments="true" SuppressRegistry="true" SuppressRootDirectory="true" Transforms="HarvestFilter.xslt" />
+    <HeatDirectory Directory="..\x64\$(Configuration)"
+      PreprocessorVariable="var.AppHarvestPath"
+      OutputFile="AppComponents.wxs"
+      ComponentGroupName="AppHeatGenerated"
+      DirectoryRefId="APPLICATIONFOLDER"
+      AutogenerateGuids="true"
+      ToolPath="$(WixToolPath)"
+      SuppressFragments="true"
+      SuppressRegistry="true"
+      SuppressRootDirectory="true"
+      Transforms="HarvestFilter.xslt" />
+    <HeatDirectory Directory="$(VC_CRT_Dir)"
+      PreprocessorVariable="var.CrtHarvestPath"
+      OutputFile="CrtComponents.wxs"
+      ComponentGroupName="CrtHeatGenerated"
+      DirectoryRefId="APPLICATIONFOLDER"
+      AutogenerateGuids="true"
+      ToolPath="$(WixToolPath)"
+      SuppressFragments="true"
+      SuppressRegistry="true"
+      SuppressRootDirectory="true" />
   </Target>
   <Target Name="AfterBuild">
   </Target>
