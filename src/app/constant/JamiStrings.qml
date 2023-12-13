@@ -346,6 +346,7 @@ Item {
     property string noNetworkConnectivity: qsTr("No network connectivity")
     property string deletedMessage: qsTr("deleted a message")
     property string backCall: qsTr("Back to Call")
+    property string zeroMinutes: qsTr("0 minutes ago")
 
     //MessagesResearch
     property string jumpTo: qsTr("Jump to")
@@ -774,6 +775,7 @@ Item {
     property string joinInAudio: qsTr("Join in audio")
     property string joinInVideo: qsTr("Join in video")
     property string startedACall: qsTr("Started a call")
+    property string startedCall: qsTr("started a call")
     property string wantToJoin: qsTr("A call is in progress. Do you want to join the call?")
     property string needsHost: qsTr("Current host for this swarm seems unreachable. Do you want to host the call?")
     property string selectHost: qsTr("Select dedicated device for hosting future calls in this swarm. If not set, the host will be the device starting a call.")
@@ -783,6 +785,7 @@ Item {
     property string becomeHostOneCall: qsTr("Host only this call")
     property string hostThisCall: qsTr("Host this call")
     property string becomeDefaultHost: qsTr("Make me the default host for future calls")
+    property string minutesAgo: qsTr("minutes ago")
 
     // Invitation View
     property string invitationViewSentRequest: qsTr("%1 has sent you a request for a conversation.")
