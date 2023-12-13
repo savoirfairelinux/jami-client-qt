@@ -3,13 +3,11 @@
     <?define Name="Jami" ?>
     <?define ExeName="Jami" ?>
     <?define AppName="Jami" ?>
+    <?define Manufacturer="Savoir-Faire Linux"?>
 
     <?if $(var.Configuration) = Release ?>
     <?define ReleaseDir="..\x64\Release"?>
     <?else?>
     <?define ReleaseDir="..\x64\Beta"?>
     <?endif ?>
-
-    <?define Manufacturer="Savoir-Faire Linux"?>
-    <?define UcrtDir="C:\Program Files (x86)\Windows Kits\10\Redist\ucrt\DLLs\x64"?>
 </Include>
