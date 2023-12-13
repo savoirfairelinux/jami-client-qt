@@ -19,7 +19,7 @@
     <Property Id="REINSTALLMODE" Value="dms" />
 
     <Feature Id="ProductFeature" Title="Main" Level="1" Absent="disallow">
-      <ComponentGroupRef Id="StandardComponents" Primary="yes" />
+      <ComponentGroupRef Id="MainExecutable" Primary="yes" />
       <ComponentGroupRef Id="HeatGenerated" />
       <ComponentRef Id="ApplicationShortcutDesktop" />
       <ComponentRef Id="ApplicationShortcutStartMenu" />
@@ -89,6 +89,18 @@
       </Directory>
       <Directory Id="WindowsFolder" Name="WINDOWS"/>
     </Directory>
+  </Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="MainExecutable"
+                    Directory="APPLICATIONFOLDER">
+      <Component Id="cmp9CFEE34E3A162AB05264E8B756EC1DEC"
+                 Guid="*">
+        <File Id="fileMain.exe"
+              KeyPath="yes"
+              Source="$(var.ReleaseDir)\$(var.ExeName).exe" />
+      </Component>
+    </ComponentGroup>
   </Fragment>
 
   <Fragment Id="Shortcuts">
