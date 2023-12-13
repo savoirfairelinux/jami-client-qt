@@ -78,8 +78,11 @@ SBSMessageBase {
                 Layout.leftMargin: root.isActive ? 10 : 8
 
                 text: {
-                    if (root.isActive)
+                    if (root.isActive){
+                        CurrentConversation.callFrom = root.username;
+                        ConversationsAdapter.startCallTimer(CurrentConversation.id);
                         return JamiStrings.startedACall;
+                    }
                     return Body;
                 }
                 horizontalAlignment: Qt.AlignHCenter

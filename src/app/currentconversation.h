@@ -23,6 +23,7 @@
 
 #include <QObject>
 #include <QString>
+#include <QTimer>
 
 // an adapter object to expose a conversation::Info struct
 // as a group of observable properties
@@ -55,6 +56,7 @@ class CurrentConversation final : public QObject
     QML_PROPERTY(QStringList, errors)
     QML_PROPERTY(QStringList, backendErrors)
     QML_PROPERTY(QString, lastSelfMessageId)
+    QML_PROPERTY(QString, callFrom)
     QML_RO_PROPERTY(bool, hasCall)
 
 public:
@@ -89,6 +91,8 @@ Q_SIGNALS:
 private:
     LRCInstance* lrcInstance_;
     CurrentConversationMembers* uris_;
+
+    int count_;
 
     void connectModel();
 };
