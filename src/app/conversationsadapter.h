@@ -65,6 +65,10 @@ public:
 
     Q_INVOKABLE QString dialogId(const QString& peerUri);
     Q_INVOKABLE void openDialogConversationWith(const QString& peerUri);
+    Q_INVOKABLE void startCallTimer(const QString& convId);
+    Q_INVOKABLE void stopCallTimer(const QString& convId);
+    Q_INVOKABLE int getElapsedTime(const QString& convId);
+
 Q_SIGNALS:
     void showConversation(const QString& accountId, const QString& convUid);
     void showSearchStatus(const QString& status);
@@ -72,6 +76,8 @@ Q_SIGNALS:
 
     void navigateToWelcomePageRequested();
     void conversationReady(const QString& convId);
+
+    void timerUpdated(const QString& convId);
 
 private Q_SLOTS:
     void onCurrentAccountIdChanged();
@@ -112,4 +118,6 @@ private:
     QScopedPointer<SelectableListProxyModel> searchModel_;
 
     std::atomic_bool selectFirst_ {false};
+    std::map<QString, std::chrono::steady_clock::time_point> timersMap_;
+
 };
