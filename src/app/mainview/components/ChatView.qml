@@ -151,7 +151,7 @@ Rectangle {
                     notificationArea.uri = CurrentConversation.activeCalls[0]["uri"];
                     notificationArea.device = CurrentConversation.activeCalls[0]["device"];
                 }
-                notificationArea.visible = CurrentConversation.activeCalls.length > 0 && !root.inCallView;
+                notificationArea.visible = true //CurrentConversation.activeCalls.length > 0 && !root.inCallView;
             }
 
             function onErrorsChanged() {
@@ -187,7 +187,7 @@ Rectangle {
             id: notificationArea
             Layout.fillWidth: true
             Layout.preferredHeight: JamiTheme.chatViewHeaderPreferredHeight
-            visible: CurrentConversation.activeCalls.length > 0 && !root.inCallView
+            //visible: CurrentConversation.activeCalls.length > 0 && !root.inCallView
         }
 
         JamiSplitView {

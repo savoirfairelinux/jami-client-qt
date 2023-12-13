@@ -23,26 +23,64 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import "../../commoncomponents"
 
-Rectangle {
+Control {
     id: root
-
-    opacity: visible
-    color: CurrentConversation.color
 
     property string id: ""
     property string uri: ""
     property string device: ""
 
-    property string textColor: UtilsAdapter.luma(root.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
-    RowLayout {
+    property string textColor: UtilsAdapter.luma(background.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
+
+    property string from: CurrentCall.getConferencesInfos()
+
+
+//    Connections {
+//        target: C
+////        enabled: root.isActive
+
+//        function onCallFrom(author) {
+//            root.from = author;
+//        }
+//    }
+
+    onFromChanged: print("from changed: " + root.from)
+
+    component JoinCallButton: MaterialButton {
+        toolTipText: JamiStrings.joinCall
+        color: JamiTheme.darkTheme ? JamiTheme.whiteColor : JamiTheme.blackColor
+        background.opacity: hovered ? 1 : 0.5
+        hoveredColor: JamiTheme.darkTheme ? JamiTheme.whiteColor : JamiTheme.blackColor
+        contentColorProvider: root.textColor
+        textOpacity: hovered ? 1 : 0.7
+        buttontextHeightMargin: 16
+        textLeftPadding: 9
+        textRightPadding: 9
+    }
+
+    contentItem: Rectangle {
         anchors.fill: parent
-        anchors.margins: JamiTheme.preferredMarginSize
-        spacing: 0
+        color: "transparent"
+        RowLayout {
+        //anchors.fill: parent
+        anchors.centerIn: parent
+        //anchors.margins: JamiTheme.preferredMarginSize
+        //spacing: 10
+
+        Avatar {
+            id: avatar
+            width: 22
+            height: 22
+            imageId: root.from
+            showPresenceIndicator: false
+            mode: Avatar.Mode.Contact
+        }
+
 
         Text {
             id: errorLabel
-            Layout.fillWidth: true
-            Layout.alignment: Qt.AlignVCenter
+            //Layout.fillWidth: true
+            Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
             Layout.margins: 0
             text: JamiStrings.wantToJoin
             color: root.textColor
@@ -50,58 +88,57 @@ Rectangle {
             elide: Text.ElideRight
         }
 
-        PushButton {
+        JoinCallButton {
             id: joinCallInAudio
-            Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-            Layout.rightMargin: JamiTheme.preferredMarginSize
+            Layout.topMargin: 4
+            Layout.bottomMargin: 4
 
-            source: JamiResources.place_audiocall_24dp_svg
-            toolTipText: JamiStrings.joinCall
+            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
 
-            imageColor: root.textColor
-            normalColor: "transparent"
-            hoveredColor: Qt.rgba(255, 255, 255, 0.2)
-            border.width: 1
-            border.color: root.textColor
-
+            text: JamiStrings.joinInAudio
             onClicked: MessagesAdapter.joinCall(uri, device, id, true)
         }
 
-        PushButton {
+        JoinCallButton {
             id: joinCallInVideo
-            Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-            Layout.rightMargin: JamiTheme.preferredMarginSize
-
-            source: JamiResources.videocam_24dp_svg
-            toolTipText: JamiStrings.joinCall
-
-            imageColor: root.textColor
-            normalColor: "transparent"
-            hoveredColor: Qt.rgba(255, 255, 255, 0.2)
-            border.width: 1
-            border.color: root.textColor
-            visible: CurrentAccount.videoEnabled_Video
+            text: JamiStrings.joinInVideo
+            Layout.topMargin: 4
+            Layout.bottomMargin: 4
+            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
 
             onClicked: MessagesAdapter.joinCall(uri, device, id)
+            Layout.rightMargin: 4
         }
 
-        PushButton {
+    }
+
+        JamiPushButton {
             id: btnClose
-            Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+            anchors.right: parent.right
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.rightMargin: 5
+            preferredSize: 24
 
             imageColor: root.textColor
             normalColor: JamiTheme.transparentColor
+            hoveredColor: JamiTheme.darkTheme ? JamiTheme.whiteColor : JamiTheme.blackColor
 
             source: JamiResources.round_close_24dp_svg
 
             onClicked: ConversationsAdapter.ignoreActiveCall(CurrentConversation.id, id, uri, device)
         }
+
     }
 
-    Behavior on opacity  {
-        NumberAnimation {
-            from: 0
-            duration: JamiTheme.shortFadeDuration
+    background: Rectangle {
+        opacity: parent.visible ? 0.7 : 0
+        color: JamiTheme.darkTheme ? JamiTheme.whiteColor : JamiTheme.blackColor
+
+        Behavior on opacity  {
+            NumberAnimation {
+                from: 0
+                duration: JamiTheme.shortFadeDuration
+            }
         }
     }
 }
