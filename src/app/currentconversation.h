@@ -55,6 +55,8 @@ class CurrentConversation final : public QObject
     QML_PROPERTY(QStringList, errors)
     QML_PROPERTY(QStringList, backendErrors)
     QML_PROPERTY(QString, lastSelfMessageId)
+    QML_PROPERTY(QString, callFrom)
+    QML_PROPERTY(qint64, callTimer)
     QML_RO_PROPERTY(bool, hasCall)
 
 public:
