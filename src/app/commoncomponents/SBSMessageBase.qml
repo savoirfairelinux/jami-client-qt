@@ -97,21 +97,16 @@ Control {
             Layout.fillHeight: true
         }
 
-        Item {
-            id: usernameblock
-            Layout.preferredHeight: (seq === MsgSeq.first || seq === MsgSeq.single) ? 10 : 0
-            visible: !isReply
 
-            Label {
-                id: username
-                text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author)
-                visible: (seq === MsgSeq.first || seq === MsgSeq.single) && !isOutgoing
-                font.pointSize: JamiTheme.smallFontSize
-                color: JamiTheme.chatviewSecondaryInformationColor
-                lineHeight: JamiTheme.usernameBlockLineHeight
-                leftPadding: JamiTheme.usernameBlockPadding
-                textFormat: TextEdit.PlainText
-            }
+        Label {
+            id: username
+            text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author)
+            visible: (seq === MsgSeq.first || seq === MsgSeq.single) && !isOutgoing && !isReply
+
+            font.pointSize: JamiTheme.smallFontSize
+            color: JamiTheme.chatviewSecondaryInformationColor
+            leftPadding: JamiTheme.usernameBlockPadding
+            textFormat: TextEdit.PlainText
         }
 
         Item {
@@ -211,7 +206,7 @@ Control {
             id: msgRowlayout
 
             Layout.preferredHeight: innerContent.height + root.extraHeight + (emojiReactions.emojis === "" ? 0 : emojiReactions.height - 8) + (IsEmojiOnly && (root.seq === MsgSeq.last || root.seq === MsgSeq.single) && emojiReactions.emojis === "" ? 15 : 0)
-            Layout.topMargin: ((seq === MsgSeq.first || seq === MsgSeq.single) && !root.isReply) ? 6 : 0
+            Layout.topMargin: ((seq === MsgSeq.first || seq === MsgSeq.single) && !root.isReply) ? 3.5 : 0
             Layout.bottomMargin: root.bigMsg ? timestampItem.timeLabel.height : 0
 
             Item {
@@ -236,8 +231,6 @@ Control {
 
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-
-
 
                 Column {
                     id: innerContent
