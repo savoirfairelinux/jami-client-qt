@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "638bbd92_204f6ebd",
+        "filename": "src/app/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-12-14T20:35:18Z",
+      "side": 1,
+      "message": "removing the access to previous bodies can be wrong\n\nThe use case is for people to check why a message is deleted (can be useful for moderation purpose or similar). The original message is still available in the repository anyway",
+      "range": {
+        "startLine": 75,
+        "startChar": 23,
+        "endLine": 75,
+        "endChar": 31
+      },
+      "revId": "be49711b71cb088aef42cb88c53774411d2ed922",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
