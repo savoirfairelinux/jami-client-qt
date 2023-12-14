@@ -50,7 +50,7 @@ Control {
         spacing: 16
         Image {
             // The image fades to the top, so align it to the bottom.
-            Layout.alignment: Qt.AlignBottom
+            Layout.alignment: Qt.AlignVCenter
             source: JamiResources.icon_donate_svg
         }
 
