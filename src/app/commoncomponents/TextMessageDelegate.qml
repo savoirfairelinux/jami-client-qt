@@ -33,7 +33,7 @@ SBSMessageBase {
     property string colorUrl: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewLinkColorLight : JamiTheme.chatviewLinkColorDark
     property string colorText: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
 
-    bigMsg: textEditId.lineCount > 1
+    bigMsg: (textEditId.lineCount > 1) || extraContent.active
 
     Connections {
         target: bubble
@@ -136,7 +136,7 @@ SBSMessageBase {
 
             anchors.right: isOutgoing ? parent.right : undefined
             property real minSize: 192
-            property real maxSize: 320
+            property real maxSize: 400
             active: LinkPreviewInfo.url !== undefined
             sourceComponent: ColumnLayout {
                 id: previewContent
@@ -194,7 +194,7 @@ SBSMessageBase {
                     Layout.preferredWidth: img.width - 2 * hPadding
                     Layout.leftMargin: hPadding
                     Layout.rightMargin: hPadding
-                    spacing: 6
+                    spacing: 4
                     Label {
                         width: parent.width
                         font.pointSize: 10
@@ -205,10 +205,11 @@ SBSMessageBase {
                         color: root.colorText
                         visible: LinkPreviewInfo.title.length > 0
                         text: LinkPreviewInfo.title
+                        lineHeight: 1.3
                     }
                     Label {
                         width: parent.width
-                        font.pointSize: 11
+                        font.pointSize: 10
                         font.hintingPreference: Font.PreferNoHinting
                         wrapMode: Label.WrapAtWordBoundaryOrAnywhere
                         renderType: Text.NativeRendering
@@ -217,6 +218,7 @@ SBSMessageBase {
                         font.underline: root.hoveredLink
                         text: LinkPreviewInfo.description
                         color: root.colorUrl
+                        lineHeight: 1.3
                     }
                     Label {
                         width: parent.width
@@ -227,6 +229,7 @@ SBSMessageBase {
                         textFormat: TextEdit.RichText
                         color: root.colorText
                         text: LinkPreviewInfo.domain
+                        lineHeight: 1.3
                     }
                 }
             }
