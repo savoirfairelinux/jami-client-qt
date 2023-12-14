@@ -1,15 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="43" height="52.655" viewBox="0 0 43 52.655">
-  <defs>
-    <clipPath id="clip-path">
-      <rect id="Rectangle_268" data-name="Rectangle 268" width="38" height="24" transform="translate(-0.407 0.083)" fill="#fff" stroke="#707070" stroke-width="1"/>
-    </clipPath>
-  </defs>
-  <g id="Icon_Donate" transform="translate(-22 -189.345)">
-    <rect id="Rectangle_267" data-name="Rectangle 267" width="43" height="10" rx="5" transform="translate(22 232)" fill="#9eb3c3"/>
-    <path id="Path_459" data-name="Path 459" d="M9.674,17.083,8.562,16.07C4.609,12.486,2,10.122,2,7.221A4.18,4.18,0,0,1,6.221,3,4.6,4.6,0,0,1,9.674,4.6,4.6,4.6,0,0,1,13.128,3a4.18,4.18,0,0,1,4.221,4.221c0,2.9-2.609,5.265-6.562,8.856Z" transform="translate(22.407 199.828)" fill="#ff0045" opacity="0.3"/>
-    <path id="Path_460" data-name="Path 460" d="M6.953,12.088l-.718-.654C3.684,9.122,2,7.6,2,5.724A2.7,2.7,0,0,1,4.724,3,2.966,2.966,0,0,1,6.953,4.035,2.966,2.966,0,0,1,9.182,3a2.7,2.7,0,0,1,2.724,2.724c0,1.872-1.684,3.4-4.235,5.716Z" transform="translate(45.571 186.345)" fill="#ff0045" opacity="0.16"/>
-    <g id="Mask_Group_38" data-name="Mask Group 38" transform="translate(24.407 213.918)" clip-path="url(#clip-path)">
-      <path id="Path_270" data-name="Path 270" d="M12.649,22.542l-1.544-1.406C5.621,16.163,2,12.883,2,8.857A5.8,5.8,0,0,1,7.857,3a6.377,6.377,0,0,1,4.792,2.226A6.377,6.377,0,0,1,17.442,3,5.8,5.8,0,0,1,23.3,8.857c0,4.025-3.621,7.306-9.105,12.289Z" transform="translate(5.992 5.54)" fill="#ff0045"/>
-    </g>
-  </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 28.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 43 52.7" style="enable-background:new 0 0 43 52.7;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#9EB3C3;}
+	.st1{opacity:0.3;fill:#FF0045;enable-background:new    ;}
+	.st2{opacity:0.16;fill:#FF0045;enable-background:new    ;}
+	.st3{fill:#FF0045;}
+</style>
+<g id="Icon_Donate" transform="translate(-22 -189.345)">
+	<path id="Rectangle_267" class="st0" d="M27,232h33c2.8,0,5,2.2,5,5l0,0c0,2.8-2.2,5-5,5H27c-2.8,0-5-2.2-5-5l0,0
+		C22,234.2,24.2,232,27,232z"/>
+	<path id="Path_459" class="st1" d="M32.1,216.9l-1.1-1c-4-3.6-6.6-5.9-6.6-8.8c0-2.3,1.8-4.2,4.1-4.2c0,0,0.1,0,0.1,0
+		c1.3,0,2.6,0.6,3.5,1.6c0.9-1,2.1-1.6,3.5-1.6c2.3,0,4.2,1.8,4.2,4.1c0,0,0,0.1,0,0.1c0,2.9-2.6,5.3-6.6,8.9L32.1,216.9z"/>
+	<path id="Path_460" class="st2" d="M52.5,198.4l-0.7-0.7c-2.6-2.3-4.2-3.8-4.2-5.7c0-1.5,1.2-2.7,2.7-2.7c0,0,0,0,0,0
+		c0.9,0,1.7,0.4,2.2,1c0.6-0.7,1.4-1,2.2-1c1.5,0,2.7,1.2,2.7,2.7c0,0,0,0,0,0c0,1.9-1.7,3.4-4.2,5.7L52.5,198.4z"/>
+	<path class="st3" d="M37.3,236.7h11.4c3.1-3,4.9-5.5,4.9-8.4c0,0,0-0.1,0-0.1c0-3.2-2.7-5.8-5.9-5.7c-1.8,0-3.6,0.8-4.8,2.2
+		c-1.2-1.4-2.9-2.2-4.8-2.2c0,0-0.1,0-0.1,0c-3.2,0-5.8,2.7-5.7,5.9C32.4,231.2,34.3,233.7,37.3,236.7z"/>
+</g>
 </svg>
