@@ -501,6 +501,8 @@ Rectangle {
                             verticalAlignment: Text.AlignVCenter
 
                             color: JamiTheme.textColor
+
+
                         }
 
                         Text {
@@ -522,6 +524,7 @@ Rectangle {
                         visible: LRCInstance.debugMode()
 
                         Text {
+                            id: identifierText
                             Layout.fillWidth: true
                             Layout.preferredHeight: 30
                             Layout.rightMargin: JamiTheme.preferredMarginSize
@@ -536,7 +539,7 @@ Rectangle {
                             color: JamiTheme.textColor
                         }
 
-                        Text {
+                        TextEdit {
                             Layout.alignment: Qt.AlignRight
                             Layout.rightMargin: JamiTheme.preferredMarginSize
 
@@ -544,8 +547,16 @@ Rectangle {
                             font.pixelSize: JamiTheme.settingsDescriptionPixelSize
                             font.weight: Font.Medium
 
-                            text: CurrentConversation.id
-                            elide: Text.ElideRight
+                            selectByMouse: true
+                            readOnly: true
+                            text: textMetricsIdentifier.elidedText
+
+                            TextMetrics {
+                                id: textMetricsIdentifier
+                                text: CurrentConversation.id
+                                elideWidth: aboutSwarm.width - identifierText.width - 2 * JamiTheme.preferredMarginSize
+                                elide: Qt.ElideRight
+                            }
                         }
                     }
                 }
