@@ -53,7 +53,7 @@ Popup {
         Rectangle {
             id: comboBox
 
-            height: JamiTheme.accountListItemHeight
+            height: JamiTheme.accountListItemHeight - 5
             Layout.fillWidth: true
             radius: 5
             color: JamiTheme.accountComboBoxBackgroundColor
@@ -83,13 +83,11 @@ Popup {
                 spacing: 10
 
                 Rectangle {
+                    id: accountInfoRect
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-                    Layout.rightMargin: 5
-                    Layout.leftMargin: 5
                     color: mouseArea.containsMouse ? JamiTheme.hoverColor : JamiTheme.accountComboBoxBackgroundColor
                     radius: 5
-                    Layout.topMargin: 5
 
                     MouseArea {
                         id: mouseArea
@@ -163,7 +161,8 @@ Popup {
 
                     Layout.preferredWidth: childrenRect.width
                     Layout.preferredHeight: parent.height
-                    Layout.rightMargin: 7
+                    Layout.rightMargin: 10
+                    Layout.topMargin: -7
 
                     JamiPushButton {
                         id: shareButton

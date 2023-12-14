@@ -79,7 +79,7 @@ Label {
     RowLayout {
         id: mainLayout
         anchors.fill: parent
-        anchors.leftMargin: 15
+        anchors.leftMargin: 5
         anchors.rightMargin: 15
         spacing: 10
 
@@ -103,7 +103,7 @@ Label {
 
             RowLayout {
                 anchors.fill: parent
-                anchors.leftMargin: 15
+                anchors.leftMargin: 10
                 anchors.rightMargin: 15
 
                 spacing: 10
@@ -124,15 +124,12 @@ Label {
                 ColumnLayout {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-                    Layout.topMargin: 15
-                    Layout.bottomMargin: 10
-                    spacing: 5
+                    spacing: 2
 
                     Text {
                         id: bestNameText
 
                         Layout.fillWidth: true
-                        Layout.fillHeight: true
                         Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
 
                         text: CurrentAccount.bestName
@@ -148,8 +145,7 @@ Label {
                         id: bestIdText
 
                         Layout.fillWidth: true
-                        Layout.fillHeight: true
-                        Layout.alignment: Qt.AlignLeft | Qt.AlignBottom
+                        Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
 
                         visible: text.length && text !== bestNameText.text
 
@@ -160,7 +156,6 @@ Label {
                         color: JamiTheme.faddedLastInteractionFontColor
                         elide: Text.ElideRight
                         horizontalAlignment: Text.AlignLeft
-                        verticalAlignment: Text.AlignBottom
                     }
                 }
             }
