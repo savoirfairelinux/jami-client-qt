@@ -22,6 +22,30 @@
       },
       "revId": "be49711b71cb088aef42cb88c53774411d2ed922",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59a9315b_d969224d",
+        "filename": "src/app/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-12-14T22:11:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "638bbd92_204f6ebd",
+      "range": {
+        "startLine": 75,
+        "startChar": 23,
+        "endLine": 75,
+        "endChar": 31
+      },
+      "revId": "be49711b71cb088aef42cb88c53774411d2ed922",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
