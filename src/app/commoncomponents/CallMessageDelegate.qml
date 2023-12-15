@@ -66,16 +66,36 @@ SBSMessageBase {
         RowLayout {
             id: msg
             anchors.right: isOutgoing ? parent.right : undefined
-            spacing: 10
+            spacing: root.isActive ? 10 : 0
             visible: root.visible
+
+            ResponsiveImage {
+                containerWidth: 13
+                Layout.leftMargin: 7
+                source:  {
+                    switch(Body){
+                        case "Missed incoming call":
+                            return JamiResources.missed_incoming_call_svg;
+                        case "Missed outgoing call":
+                            return JamiResources.missed_outgoing_call_svg;
+                        case "Incoming call":
+                            return JamiResources.incoming_call_svg;
+                        case "Outgoing call":
+                            return JamiResources.outgoing_call_svg;
+                        default:
+                            return "";
+                    }
+                }
+            }
 
             Label {
                 id: callLabel
 
-                Layout.margins: 8
+                Layout.topMargin: root.isActive ? 8 : 6
+                Layout.bottomMargin:root.isActive ? 8 : 6
                 Layout.fillWidth: true
                 Layout.rightMargin: root.isActive ? 0 : root.timeWidth + 16
-                Layout.leftMargin: root.isActive ? 10 : 8
+                Layout.leftMargin: root.isActive ? 10 : 3
 
                 text: {
                     if (root.isActive)
@@ -84,7 +104,7 @@ SBSMessageBase {
                 }
                 horizontalAlignment: Qt.AlignHCenter
 
-                font.pointSize: JamiTheme.mediumFontSize
+                font.pixelSize: JamiTheme.timestampFont
                 font.hintingPreference: Font.PreferNoHinting
                 renderType: Text.NativeRendering
                 textFormat: Text.MarkdownText
