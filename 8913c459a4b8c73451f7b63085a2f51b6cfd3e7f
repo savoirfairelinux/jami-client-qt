@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1bbb7a51_7d800ae7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-12-15T00:31:21Z",
+      "side": 1,
+      "message": "perhaps the default install method should be per-machine",
+      "revId": "8913c459a4b8c73451f7b63085a2f51b6cfd3e7f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
