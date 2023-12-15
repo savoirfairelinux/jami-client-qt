@@ -177,13 +177,15 @@ getCallInteractionStringNonSwarm(bool isSelf, const std::time_t& duration)
         }
     } else if (isSelf) {
         if (duration) {
-            return QObject::tr("Outgoing call") + " - " + getFormattedCallDuration(duration);
+            return QObject::tr("Outgoing call"); //+ " - " + QObject::tr("Lasted") + " " +
+                                                 //getFormattedCallDuration(duration);
         } else {
             return QObject::tr("Missed outgoing call");
         }
     } else {
         if (duration) {
-            return QObject::tr("Incoming call") + " - " + getFormattedCallDuration(duration);
+            return QObject::tr("Incoming call"); // + " - " + QObject::tr("Lasted") + " " +
+                                                 // getFormattedCallDuration(duration);
         } else {
             return QObject::tr("Missed incoming call");
         }

@@ -385,7 +385,7 @@ Control {
                                 return -15;
                             if (root.timeUnderBubble)
                                 return -20;
-                            if (root.bigMsg || bubble.isDeleted)
+                            if (root.bigMsg || bubble.isDeleted || (!root.isActive && Interaction.Type.CALL))
                                 return 5;
                             return 9;
                         }
