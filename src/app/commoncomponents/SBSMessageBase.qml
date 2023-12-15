@@ -64,6 +64,7 @@ Control {
     property real maxMsgWidth: root.width - senderMargin - 2 * hPadding - avatarBlockWidth
     property bool bigMsg
     property bool timeUnderBubble: false
+    property bool callMessage: false
 
     // If the ListView attached properties are not available,
     // then the root delegate is likely a Loader.
@@ -385,7 +386,7 @@ Control {
                                 return -15;
                             if (root.timeUnderBubble)
                                 return -20;
-                            if (root.bigMsg || bubble.isDeleted)
+                            if (root.bigMsg || bubble.isDeleted || root.callMessage)
                                 return 5;
                             return 9;
                         }
