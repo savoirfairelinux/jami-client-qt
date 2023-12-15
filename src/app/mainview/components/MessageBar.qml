@@ -29,6 +29,7 @@ RowLayout {
     id: root
 
     property alias text: messageBarTextArea.text
+    property alias fileContainer: dataTransferSendContainer
     property var textAreaObj: messageBarTextArea
     property real marginSize: JamiTheme.messageBarMarginSize
     property bool sendButtonVisibility: true
@@ -39,6 +40,7 @@ RowLayout {
     property bool showTypoSecond: false
     property bool showPreview: false
     property bool multiLine: messageBarTextArea.tooMuch
+    property bool fileToSend : dataTransferSendContainer.filesToSendCount > 0
 
     property int messageBarLayoutMaximumWidth: 486
 
@@ -53,9 +55,9 @@ RowLayout {
 
     height: {
         if (showTypo || multiLine)
-            return messageBarTextArea.height + 25 + 3 * marginSize + 1
+            return messageBarTextArea.height + 25 + 3 * marginSize + 1 + (fileContainer.visible ?  fileContainer.heigh : 0 );
         else
-            return textAreaObj.height + marginSize + 1
+            return textAreaObj.height + marginSize + 1 + (fileContainer.visible ?  fileContainer.heigh : 0 );
     }
 
     Rectangle {
@@ -157,7 +159,7 @@ RowLayout {
             id: rowLayout
 
             columns: 2
-            rows: 2
+            rows: 3
             columnSpacing: 0
             rowSpacing: 0
 
@@ -168,7 +170,7 @@ RowLayout {
 
                 objectName: "messageBarTextArea"
                 maxWidth: rectangle.width - messageBarRowLayout.width - 35
-                Layout.row: showTypo || multiLine ? 0 : 1
+                Layout.row: 0
                 Layout.column: 0
 
                 // forward activeFocus to the actual text area object
@@ -325,10 +327,35 @@ RowLayout {
                 }
             }
 
+            FilesToSendContainer {
+                id: dataTransferSendContainer
+                objectName: "dataTransferSendContainer"
+                visible: filesToSendCount > 0
+                Layout.alignment: Qt.AlignLeft
+                Layout.fillWidth: true
+                Layout.margins: marginSize
+                Layout.row: 1
+                Layout.columnSpan: 2
+                Layout.column: 0
+                Layout.preferredHeight: filesToSendCount > 0 ? JamiTheme.filesToSendDelegateHeight : 0
+//                onHeightChanged: {
+//                    root.y -= height;
+//                    root.height = root.height + height;
+//                }
+                onVisibleChanged: {
+                    if (showTypo || multiLine)
+                        root.height = messageBarTextArea.height + 25 + 3 * marginSize + 1 + (fileContainer.visible ?  fileContainer.heigh : 0 );
+                    else
+                        root.height = textAreaObj.height + marginSize + 1 + (fileContainer.visible ?  fileContainer.heigh : 0 );
+                    root.y -= height;
+                }
+            }
+
+
             Row {
                 id: messageBarRowLayout
 
-                Layout.row: showTypo || multiLine ? 1 : 1
+                Layout.row: showTypo || multiLine ? 2 : 0
                 Layout.column: showTypo || multiLine ? 0 : 1
                 Layout.alignment: showTypo || multiLine ? Qt.AlignRight : Qt.AlignBottom
                 Layout.columnSpan: showTypo || multiLine ? 2 : 1
