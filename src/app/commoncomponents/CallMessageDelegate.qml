@@ -38,7 +38,18 @@ SBSMessageBase {
         textRightPadding: 9
     }
 
+    Connections {
+        target: MessagesAdapter
+        function onNewInteraction() {
+            print(Body);
+            if (CurrentCall.isRecordingLocally)
+                print("recorded");
+        }
+    }
+
     property bool isRemoteImage
+    property bool isRecorded: false
+    callMessage: !isActive
 
     isOutgoing: Author === CurrentAccount.uri
     author: Author
@@ -57,25 +68,64 @@ SBSMessageBase {
         }
     }
 
+    Connections {
+        target: CurrentCall
+        enabled: root.isActive
+
+        function onIsRecordingLocallyChanged() {
+            if (CurrentCall.isRecordingLocally)
+                root.isRecorded = true;
+            print("recorded");
+        }
+    }
+
     property bool isActive: LRCInstance.indexOfActiveCall(ConfId, ActionUri, DeviceId) !== -1
     visible: isActive || ConfId === "" || Duration > 0
 
-    property var baseColor: isOutgoing? CurrentConversation.color : JamiTheme.messageInBgColor
+    property var baseColor: isOutgoing ? CurrentConversation.color : JamiTheme.messageInBgColor
 
     innerContent.children: [
         RowLayout {
             id: msg
             anchors.right: isOutgoing ? parent.right : undefined
-            spacing: 10
+            spacing: root.isActive ? 10 : 0
             visible: root.visible
+
+            ResponsiveImage {
+                containerWidth: 13
+                Layout.leftMargin: 7
+                Component.onCompleted: {
+                    switch (Body) {
+                    case "Missed incoming call":
+                        color = JamiTheme.redColor;
+                        source = JamiResources.missed_incoming_call_svg;
+                        break;
+                    case "Missed outgoing call":
+                        color = JamiTheme.redColor;
+                        source = JamiResources.missed_outgoing_call_svg;
+                        break;
+                    case "Incoming call":
+                        source = JamiResources.incoming_call_svg;
+                        break;
+                    case "Outgoing call":
+                        source = JamiResources.outgoing_call_svg;
+                        break;
+                    default:
+                        return "";
+                    }
+                }
+
+                color: callLabel.color
+            }
 
             Label {
                 id: callLabel
 
-                Layout.margins: 8
+                Layout.topMargin: root.isActive ? 8 : 6
+                Layout.bottomMargin: root.isActive ? 8 : 6
                 Layout.fillWidth: true
                 Layout.rightMargin: root.isActive ? 0 : root.timeWidth + 16
-                Layout.leftMargin: root.isActive ? 10 : 8
+                Layout.leftMargin: root.isActive ? 10 : 3
 
                 text: {
                     if (root.isActive)
@@ -84,7 +134,7 @@ SBSMessageBase {
                 }
                 horizontalAlignment: Qt.AlignHCenter
 
-                font.pointSize: JamiTheme.mediumFontSize
+                font.pixelSize: JamiTheme.timestampFont
                 font.hintingPreference: Font.PreferNoHinting
                 renderType: Text.NativeRendering
                 textFormat: Text.MarkdownText
@@ -114,7 +164,7 @@ SBSMessageBase {
     ]
 
     opacity: 0
-    Behavior on opacity  {
+    Behavior on opacity {
         NumberAnimation {
             duration: 100
         }
