@@ -72,7 +72,8 @@ SBSMessageBase {
             Label {
                 id: callLabel
 
-                Layout.margins: 8
+                Layout.topMargin: root.isActive ? 8 : 6
+                Layout.bottomMargin:root.isActive ? 8 : 6
                 Layout.fillWidth: true
                 Layout.rightMargin: root.isActive ? 0 : root.timeWidth + 16
                 Layout.leftMargin: root.isActive ? 10 : 8
@@ -84,7 +85,7 @@ SBSMessageBase {
                 }
                 horizontalAlignment: Qt.AlignHCenter
 
-                font.pointSize: JamiTheme.mediumFontSize
+                font.pixelSize: JamiTheme.timestampFont
                 font.hintingPreference: Font.PreferNoHinting
                 renderType: Text.NativeRendering
                 textFormat: Text.MarkdownText
