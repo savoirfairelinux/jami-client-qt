@@ -2895,7 +2895,6 @@ ConversationModelPimpl::slotActiveCallsChanged(const QString& accountId,
 void
 ConversationModelPimpl::slotContactAdded(const QString& contactUri)
 {
-
     QString convId;
     try {
         convId = linked.owner.contactModel->getContact(contactUri).conversationId;
@@ -2904,14 +2903,15 @@ ConversationModelPimpl::slotContactAdded(const QString& contactUri)
     }
 
     auto isSwarm = !convId.isEmpty();
-    auto conv = !isSwarm? storage::getConversationsWithPeer(db, contactUri) : VectorString {convId};
+    auto conv = !isSwarm ? storage::getConversationsWithPeer(db, contactUri)
+                         : VectorString {convId};
     if (conv.isEmpty()) {
         if (linked.owner.profileInfo.type == profile::Type::SIP) {
             auto convId = storage::beginConversationWithPeer(db,
-                                                              contactUri,
-                                                              true,
-                                                              linked.owner.contactModel->getAddedTs(
-                                                                  contactUri));
+                                                             contactUri,
+                                                             true,
+                                                             linked.owner.contactModel->getAddedTs(
+                                                                 contactUri));
             addConversationWith(convId, contactUri, false);
             Q_EMIT linked.conversationReady(convId, contactUri);
             Q_EMIT linked.newConversation(convId);
@@ -2922,7 +2922,7 @@ ConversationModelPimpl::slotContactAdded(const QString& contactUri)
     try {
         auto& conversation = getConversationForUid(convId).get();
         MapStringString details = ConfigurationManager::instance()
-                                          .conversationInfos(linked.owner.id, conversation.uid);
+                                      .conversationInfos(linked.owner.id, conversation.uid);
         bool needsSyncing = details["syncing"] == "true";
         if (conversation.needsSyncing != needsSyncing) {
             conversation.isRequest = false;
@@ -3510,7 +3510,10 @@ ConversationModelPimpl::addOrUpdateCallMessage(const QString& callId,
     // update the db
     auto msgId = storage::addOrUpdateMessage(db, conv_it->uid, msg, callId);
     // now set the formatted call message string in memory only
-    msg.body = storage::getCallInteractionString(msg.authorUri == linked.owner.profileInfo.uri, msg);
+    //    msg.body = storage::getCallInteractionString(msg.authorUri ==
+    //    linked.owner.profileInfo.uri, msg); if(callId.isRecordingLocaly) {
+    //        qDebug("recorded localy");
+    //    }
     bool newInteraction = false;
     {
         std::lock_guard<std::mutex> lk(interactionsLocks[conv_it->uid]);
