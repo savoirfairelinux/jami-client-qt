@@ -364,7 +364,7 @@ Control {
                         timeLabel.Layout.bottomMargin: {
                             if (IsEmojiOnly)
                                 return -15;
-                            if (root.bigMsg || bubble.isDeleted)
+                            if (root.bigMsg || bubble.isDeleted || root.isActive)
                                 return 5;
                             return 9;
                         }
