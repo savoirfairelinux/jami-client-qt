@@ -83,11 +83,10 @@ SBSMessageBase {
 
             width: {
                 if (extraContent.active)
-                    Math.max(extraContent.width, Math.min((2 / 3) * root.maxMsgWidth, implicitWidth - avatarBlockWidth, extraContent.minSize) - senderMargin);
+                    return Math.max(extraContent.width, Math.min((2 / 3) * root.maxMsgWidth, implicitWidth - avatarBlockWidth, extraContent.minSize) - senderMargin);
                 else if (isEmojiOnly)
-                    Math.min((2 / 3) * root.maxMsgWidth, implicitWidth, innerContent.width - senderMargin - (innerContent.width - senderMargin) % (JamiTheme.chatviewEmojiSize + 2));
-                else
-                    Math.max(Math.min((2 / 3) * root.maxMsgWidth - ( bigMsg ? 0 : root.timeWidth + root.editedWidth), implicitWidth + 5, innerContent.width - senderMargin + 5 ), bigMsg ? root.timeWidth + root.editedWidth + 14: 0) ;
+                    return Math.min((2 / 3) * root.maxMsgWidth, implicitWidth, innerContent.width - senderMargin - (innerContent.width - senderMargin) % (JamiTheme.chatviewEmojiSize + 2));
+                return Math.max(Math.min((2 / 3) * root.maxMsgWidth, implicitWidth + 5, innerContent.width - senderMargin + 5 ), root.timeWidth + root.editedWidth + 14);
             }
 
             anchors.rightMargin: bigMsg ? 0 : root.timeWidth + root.editedWidth
