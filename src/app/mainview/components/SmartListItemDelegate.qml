@@ -79,6 +79,10 @@ ItemDelegate {
         root.convId = UID
     }
 
+    Component.onDestruction: {
+        UtilsAdapter.clearInteractionsCache(root.accountId, root.convId)
+    }
+
     RowLayout {
         anchors.fill: parent
         anchors.leftMargin: 15

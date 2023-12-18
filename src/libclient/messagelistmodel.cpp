@@ -35,6 +35,7 @@ using namespace api;
 using constIterator = MessageListModel::constIterator;
 using iterator = MessageListModel::iterator;
 using reverseIterator = MessageListModel::reverseIterator;
+using constReverseIterator = MessageListModel::constReverseIterator;
 
 MessageListModel::MessageListModel(QObject* parent)
     : QAbstractListModel(parent)
@@ -738,17 +739,17 @@ MessageListModel::reactToMessage(const QString& msgId, interaction::Info& info)
     }
 }
 
-QString
-MessageListModel::lastMessageUid() const
+constReverseIterator
+MessageListModel::lastMessage() const
 {
     for (auto it = interactions_.rbegin(); it != interactions_.rend(); ++it) {
         auto lastType = it->second.type;
         if (lastType != interaction::Type::MERGE and lastType != interaction::Type::EDITED
             and !it->second.body.isEmpty()) {
-            return it->first;
+            return it;
         }
     }
-    return {};
+    return interactions_.rend();
 }
 
 QString

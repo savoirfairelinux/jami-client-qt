@@ -225,6 +225,8 @@ public:
     void eraseConversation(const QString& convId);
     void eraseConversation(int index);
 
+    void cacheLatestMessage(conversation::Info& conversation, bool clear = false);
+
     const ConversationModel& linked;
     Lrc& lrc;
     Database& db;
@@ -1541,11 +1543,7 @@ ConversationModel::clearInteractionFromConversation(const QString& convId,
             }
 
             if (conversation.lastMessageUid == interactionId) {
-                // Update lastMessageUid
-                auto newLastId = QString::number(0);
-                if (!conversation.interactions->empty())
-                    newLastId = conversation.interactions->rbegin()->first;
-                conversation.lastMessageUid = newLastId;
+                pimpl_->cacheLatestMessage(conversation, true);
                 lastInteractionUpdated = true;
             }
             if (conversation.lastSelfMessageId == interactionId) {
@@ -2427,9 +2425,10 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
             }
         }
 
-        conversation.lastMessageUid = conversation.interactions->lastMessageUid();
+        cacheLatestMessage(conversation);
         conversation.lastSelfMessageId = conversation.interactions->lastSelfMessageId(
             linked.owner.profileInfo.uri);
+
         if (conversation.lastMessageUid.isEmpty() && !conversation.allMessagesLoaded
             && messages.size() != 0) {
             if (conversation.interactions->size() > 0) {
@@ -2604,9 +2603,11 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
             invalidateModel();
             return;
         }
-        conversation.lastMessageUid = conversation.interactions->lastMessageUid();
+
+        cacheLatestMessage(conversation);
         conversation.lastSelfMessageId = conversation.interactions->lastSelfMessageId(
             linked.owner.profileInfo.uri);
+
         invalidateModel();
         if (!interaction::isOutgoing(msg)) {
             Q_EMIT behaviorController.newUnreadInteraction(linked.owner.id,
@@ -2895,7 +2896,6 @@ ConversationModelPimpl::slotActiveCallsChanged(const QString& accountId,
 void
 ConversationModelPimpl::slotContactAdded(const QString& contactUri)
 {
-
     QString convId;
     try {
         convId = linked.owner.contactModel->getContact(contactUri).conversationId;
@@ -2904,14 +2904,15 @@ ConversationModelPimpl::slotContactAdded(const QString& contactUri)
     }
 
     auto isSwarm = !convId.isEmpty();
-    auto conv = !isSwarm? storage::getConversationsWithPeer(db, contactUri) : VectorString {convId};
+    auto conv = !isSwarm ? storage::getConversationsWithPeer(db, contactUri)
+                         : VectorString {convId};
     if (conv.isEmpty()) {
         if (linked.owner.profileInfo.type == profile::Type::SIP) {
             auto convId = storage::beginConversationWithPeer(db,
-                                                              contactUri,
-                                                              true,
-                                                              linked.owner.contactModel->getAddedTs(
-                                                                  contactUri));
+                                                             contactUri,
+                                                             true,
+                                                             linked.owner.contactModel->getAddedTs(
+                                                                 contactUri));
             addConversationWith(convId, contactUri, false);
             Q_EMIT linked.conversationReady(convId, contactUri);
             Q_EMIT linked.newConversation(convId);
@@ -2922,7 +2923,7 @@ ConversationModelPimpl::slotContactAdded(const QString& contactUri)
     try {
         auto& conversation = getConversationForUid(convId).get();
         MapStringString details = ConfigurationManager::instance()
-                                          .conversationInfos(linked.owner.id, conversation.uid);
+                                      .conversationInfos(linked.owner.id, conversation.uid);
         bool needsSyncing = details["syncing"] == "true";
         if (conversation.needsSyncing != needsSyncing) {
             conversation.isRequest = false;
@@ -2994,7 +2995,7 @@ ConversationModelPimpl::addConversationRequest(const MapStringString& convReques
     auto msg = interaction::Info(messageMap, linked.owner.profileInfo.uri);
 
     insertSwarmInteraction(convId, msg, conversation, true);
-    conversation.lastMessageUid = convId;
+    cacheLatestMessage(conversation);
 
     // add the author to the contact model's contact list as a PENDING
     // if they aren't already a contact
@@ -3213,7 +3214,7 @@ ConversationModelPimpl::addSwarmConversation(const QString& convId)
         auto msg = interaction::Info(messageMap, linked.owner.profileInfo.uri);
 
         insertSwarmInteraction(convId, msg, conversation, true);
-        conversation.lastMessageUid = convId;
+        cacheLatestMessage(conversation);
         conversation.needsSyncing = true;
         Q_EMIT linked.conversationUpdated(conversation.uid);
         Q_EMIT linked.dataChanged(indexOf(conversation.uid));
@@ -4250,6 +4251,29 @@ ConversationModelPimpl::eraseConversation(int index)
     Q_EMIT linked.beginRemoveRows(index);
     conversations.erase(conversations.begin() + index);
     Q_EMIT linked.endRemoveRows();
+}
+
+void
+ConversationModelPimpl::cacheLatestMessage(conversation::Info& conversation, bool clear)
+{
+    auto interaction = conversation.interactions->lastMessage();
+    if (interaction == conversation.interactions->rend()) {
+        // No interactions, no cache
+        conversation.lastMessageUid = QString::number(0);
+        // Only clear the cache if the force flag is set. This is done
+        // when an interaction is deleted or the conversation is deleted.
+        if (clear) {
+            qWarning() << "Clearing cache for conversation" << conversation.uid;
+            conversation.lastMessageCache = {};
+        }
+        return;
+    }
+    // If the new last message is older than the cached message, don't update.
+    if (conversation.lastMessageCache.timestamp > interaction->second.timestamp) {
+        return;
+    }
+    conversation.lastMessageUid = interaction->first;
+    conversation.lastMessageCache = interaction->second;
 }
 
 void
