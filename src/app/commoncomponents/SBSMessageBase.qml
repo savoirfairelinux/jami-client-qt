@@ -54,7 +54,6 @@ Control {
     property bool textHovered: false
     property alias replyAnimation: selectAnimation
     width: listView.width
-    height: mainColumnLayout.implicitHeight
 
     property real textContentWidth
     property real textContentHeight
@@ -63,7 +62,8 @@ Control {
     property real editedWidth: editedRow.visible ? editedRow.width + 10 : 0
 
     property real maxMsgWidth: root.width - senderMargin - 2 * hPadding - avatarBlockWidth
-    property bool bigMsg
+
+    property bool bigMsg: false
 
     // If the ListView attached properties are not available,
     // then the root delegate is likely a Loader.

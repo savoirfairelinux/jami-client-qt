@@ -33,7 +33,7 @@ SBSMessageBase {
     property string colorUrl: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewLinkColorLight : JamiTheme.chatviewLinkColorDark
     property string colorText: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
 
-    bigMsg: (textEditId.lineCount > 1) || extraContent.active
+
 
     Connections {
         target: bubble
@@ -46,6 +46,7 @@ SBSMessageBase {
         }
     }
 
+
     isOutgoing: Author === CurrentAccount.uri
     author: Author
     readers: Readers
@@ -54,8 +55,10 @@ SBSMessageBase {
     formattedDay: MessagesAdapter.getFormattedDay(Timestamp)
     extraHeight: extraContent.active && !isRemoteImage ? msgRadius : -isRemoteImage
     textHovered: textHoverhandler.hovered
-    textContentWidth: textEditId.width + (bigMsg ? 0 : root.timeWidth + root.editedWidth)
+    textContentWidth: textEditId.width
     textContentHeight: textEditId.height
+
+    bigMsg: textContentWidth >= (2 / 3) * root.maxMsgWidth || extraContent.active
 
     innerContent.children: [
         TextEdit {
@@ -87,10 +90,8 @@ SBSMessageBase {
                 else if (isEmojiOnly)
                     Math.min((2 / 3) * root.maxMsgWidth, implicitWidth, innerContent.width - senderMargin - (innerContent.width - senderMargin) % (JamiTheme.chatviewEmojiSize + 2));
                 else
-                    Math.max(Math.min((2 / 3) * root.maxMsgWidth - ( bigMsg ? 0 : root.timeWidth + root.editedWidth), implicitWidth + 5, innerContent.width - senderMargin + 5 ), bigMsg ? root.timeWidth + root.editedWidth + 14: 0) ;
+                    Math.min((2 / 3) * root.maxMsgWidth, implicitWidth + 5 + root.timeWidth + root.editedWidth, innerContent.width - senderMargin + 5 + root.timeWidth + root.editedWidth);
             }
-
-            anchors.rightMargin: bigMsg ? 0 : root.timeWidth + root.editedWidth
 
             wrapMode: Label.WrapAtWordBoundaryOrAnywhere
             selectByMouse: true
