@@ -27,7 +27,7 @@ class PreviewEngine final : public NetworkManager
     Q_DISABLE_COPY(PreviewEngine)
 public:
     PreviewEngine(ConnectivityMonitor* cm, QObject* parent = nullptr);
-    ~PreviewEngine() = default;
+    ~PreviewEngine();
 
 Q_SIGNALS:
     void parseLink(const QString& messageId, const QString& link);
@@ -45,4 +45,6 @@ private:
     QString getImage(const QList<QString>& metaTags);
 
     static const QRegularExpression newlineRe;
+
+    QThread* thread_;
 };
