@@ -54,7 +54,6 @@ Control {
     property bool textHovered: false
     property alias replyAnimation: selectAnimation
     width: listView.width
-    height: mainColumnLayout.implicitHeight
 
     property real textContentWidth
     property real textContentHeight
