@@ -18,6 +18,7 @@
 #include "previewengine.h"
 
 #include <QRegularExpression>
+#include <QThread>
 
 const QRegularExpression PreviewEngine::newlineRe("\\r?\\n");
 
@@ -25,8 +26,19 @@ PreviewEngine::PreviewEngine(ConnectivityMonitor* cm, QObject* parent)
     : NetworkManager(cm, parent)
     , htmlParser_(new HtmlParser(this))
 {
+    // Run this object in a separate thread.
+    thread_ = new QThread();
+    moveToThread(thread_);
+    thread_->start();
+
     // Connect on a queued connection to avoid blocking caller thread.
     connect(this, &PreviewEngine::parseLink, this, &PreviewEngine::onParseLink, Qt::QueuedConnection);
+}
+
+PreviewEngine::~PreviewEngine()
+{
+    thread_->quit();
+    thread_->wait();
 }
 
 QString
