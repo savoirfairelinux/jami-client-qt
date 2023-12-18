@@ -108,22 +108,12 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
     case Role::UnreadMessagesCount:
         return QVariant(item.unreadMessages);
     case Role::LastInteractionTimeStamp: {
-        if (!item.interactions->empty()) {
-            auto ts = static_cast<qint32>(item.interactions->at(item.lastMessageUid).timestamp);
-            return QVariant(ts);
-        }
-        break;
+        return QVariant(static_cast<qint32>(item.lastMessageCache.timestamp));
     }
     case Role::LastInteraction: {
-        if (!item.interactions->empty()) {
-            auto interaction = item.interactions->at(item.lastMessageUid);
-            auto body_ = interaction.body;
-            if (interaction.type == interaction::Type::DATA_TRANSFER) {
-                body_ = interaction.commit.value("displayName");
-            }
-            return QVariant(body_);
-        }
-        break;
+        return QVariant(item.lastMessageCache.type == interaction::Type::DATA_TRANSFER
+                            ? item.lastMessageCache.commit.value("displayName")
+                            : item.lastMessageCache.body);
     }
     case Role::IsSwarm:
         return QVariant(item.isSwarm());

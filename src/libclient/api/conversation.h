@@ -83,6 +83,10 @@ struct Info
     unsigned int unreadMessages = 0;
     QVector<QPair<int, QString>> errors;
 
+    // In case we want to clear the interactions cache, we can keep a copy of the last
+    // message in memory allowing us to prevent display issues in the conversation list.
+    interaction::Info lastMessageCache;
+
     QSet<QString> typers;
 
     MapStringString infos {};

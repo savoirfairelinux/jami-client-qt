@@ -78,6 +78,7 @@ public:
     typedef QList<QPair<QString, interaction::Info>>::ConstIterator constIterator;
     typedef QList<QPair<QString, interaction::Info>>::Iterator iterator;
     typedef QList<QPair<QString, interaction::Info>>::reverse_iterator reverseIterator;
+    typedef QList<QPair<QString, interaction::Info>>::const_reverse_iterator constReverseIterator;
 
     explicit MessageListModel(QObject* parent = nullptr);
     ~MessageListModel() = default;
@@ -141,7 +142,7 @@ public:
     void editMessage(const QString& msgId, interaction::Info& info);
     void reactToMessage(const QString& msgId, interaction::Info& info);
     QVariantMap convertReactMessagetoQVariant(const QSet<QString>&);
-    QString lastMessageUid() const;
+    constReverseIterator lastMessage() const;
     QString lastSelfMessageId(const QString& id) const;
 
     QString findEmojiReaction(const QString& emoji,
