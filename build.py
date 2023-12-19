@@ -99,7 +99,7 @@ ZYPPER_DEPENDENCIES = [
     # daemon
     'speexdsp-devel', 'speex-devel', 'libdbus-c++-devel', 'jsoncpp-devel', 'yaml-cpp-devel',
     'yasm', 'libuuid-devel', 'libnettle-devel', 'libopus-devel', 'libexpat-devel',
-    'libgnutls-devel', 'msgpack-devel', 'libavcodec-devel', 'libavdevice-devel', 'pcre-devel',
+    'libgnutls-devel', 'msgpack-c-devel', 'msgpack-cxx-devel', 'libavcodec-devel', 'libavdevice-devel', 'pcre-devel',
     'alsa-devel', 'libpulse-devel', 'libudev-devel', 'libva-devel', 'libvdpau-devel',
     'libopenssl-devel', 'libavutil-devel',
 ]
@@ -108,8 +108,10 @@ ZYPPER_CLIENT_DEPENDENCIES = [
     # lrc
     'qt6-core-devel', 'qt6-dbus-devel', 'qt6-linguist-devel',
     # client-qt
-    'qt6-svg-devel', 'qt6-multimedia-devel', 'qt6-declarative-devel',
-    'qt6-quickcontrols2-devel',
+    'qt6-concurrent-devel', 'qt6-qt5compat-devel', 'qt6-qt5compat-imports',
+    'qt6-svg-devel', 'qt6-multimedia-devel', 'qt6-multimedia-imports',
+    'qt6-declarative-devel', 'qt6-qmlcompiler-private-devel',
+    'qt6-quickcontrols2-devel', 'qt6-shadertools-devel',
     'qrencode-devel', 'NetworkManager-devel'
 ]
 
@@ -244,8 +246,8 @@ def run_dependencies(args):
 
     elif args.distribution in DNF_BASED_DISTROS:
         if args.assume_yes:
-            for i, _ in enumerate(DNF_INSTALL_SCRIPT):
-                DNF_INSTALL_SCRIPT[i] += ASSUME_YES_FLAG
+            for i, _ in enumerate(RPM_INSTALL_SCRIPT):
+                RPM_INSTALL_SCRIPT[i] += ASSUME_YES_FLAG
         execute_script(
             RPM_INSTALL_SCRIPT,
             {"packages": ' '.join(map(shlex.quote, DNF_DEPENDENCIES))})
