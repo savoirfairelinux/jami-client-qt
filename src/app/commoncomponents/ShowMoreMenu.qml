@@ -40,7 +40,7 @@ BaseContextMenu {
     property bool closeWithoutAnimation: false
     property var emojiPicker
 
-    function xPositionProvider(width) {
+    function xPosition(width) {
         // Use the width at function scope to retrigger property evaluation.
         const listViewWidth = listView.width;
         const parentX = parent.x;
@@ -50,8 +50,28 @@ BaseContextMenu {
             return parentX + 21;
         }
     }
+    function xPositionProvider(width) {
+        // Use the width at function scope to retrigger property evaluation.
+        const listViewWidth = listView.width;
+        if (isOutgoing) {
+            const leftMargin = msgBubble.mapToItem(listView, 0, 0).x;
+            return width > leftMargin ? -leftMargin - 35 : -width - 35;
+        } else {
+            const rightMargin = listViewWidth - (msgBubble.x + msgBubble.width);
+            return width > rightMargin ? msgBubble.width - width + 35 : msgBubble.width + 35;
+        }
+    }
+    function yPositionProvider(height) {
+        const topOffset = msgBubble.mapToItem(listView, 0, 0).y;
+        if (topOffset < 0)
+            return -topOffset;
+        const bottomOffset = topOffset + height - listView.height;
+        if (bottomOffset > 0)
+            return -bottomOffset;
+        return 0;
+    }
 
-    x: xPositionProvider(width)
+    x: xPosition(width)
     y: parent.y
 
     signal addMoreEmoji
