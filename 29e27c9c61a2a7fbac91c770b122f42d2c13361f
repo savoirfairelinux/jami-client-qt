@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7ae215f_fb794438",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-12-19T14:29:14Z",
+      "side": 1,
+      "message": "typo, missing gitlab ticket",
+      "range": {
+        "startLine": 7,
+        "startChar": 30,
+        "endLine": 7,
+        "endChar": 36
+      },
+      "revId": "29e27c9c61a2a7fbac91c770b122f42d2c13361f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fb4e7de_9084e031",
+        "filename": "src/app/commoncomponents/ShowMoreMenu.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-12-19T14:29:14Z",
+      "side": 1,
+      "message": "to avoid any regression a unit-test would be useful",
+      "range": {
+        "startLine": 53,
+        "startChar": 13,
+        "endLine": 53,
+        "endChar": 30
+      },
+      "revId": "29e27c9c61a2a7fbac91c770b122f42d2c13361f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01f78d0a_d5cad06a",
+        "filename": "src/app/commoncomponents/ShowMoreMenu.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-12-19T14:29:14Z",
+      "side": 1,
+      "message": "not really useful",
+      "range": {
+        "startLine": 55,
+        "startChar": 14,
+        "endLine": 55,
+        "endChar": 27
+      },
+      "revId": "29e27c9c61a2a7fbac91c770b122f42d2c13361f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
