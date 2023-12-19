@@ -12,7 +12,7 @@ RUN apt-get update && \
         curl
 
 # nodejs
-RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -
 RUN apt install nodejs -y
 
 ADD extras/packaging/gnu-linux/scripts/prebuild-package-debian.sh /opt/prebuild-package-debian.sh
