@@ -40,7 +40,7 @@ BaseContextMenu {
     property bool closeWithoutAnimation: false
     property var emojiPicker
 
-    function xPositionProvider(width) {
+    function xPosition(width) {
         // Use the width at function scope to retrigger property evaluation.
         const listViewWidth = listView.width;
         const parentX = parent.x;
@@ -51,7 +51,28 @@ BaseContextMenu {
         }
     }
 
-    x: xPositionProvider(width)
+    function xPositionProvider(width) {
+        // Use the width at function scope to retrigger property evaluation.
+        const listViewWidth = listView.width;
+        if (isOutgoing) {
+            const leftMargin = msgBubble.mapToItem(listView, 0, 0).x;
+            return width > leftMargin ? -leftMargin : -width;
+        } else {
+            const rightMargin = listViewWidth - (msgBubble.x + msgBubble.width);
+            return width > rightMargin ? msgBubble.width - width : msgBubble.width;
+        }
+    }
+    function yPositionProvider(height) {
+        const topOffset = msgBubble.mapToItem(listView, 0, 0).y;
+        if (topOffset < 0)
+            return -topOffset;
+        const bottomOffset = topOffset + height - listView.height;
+        if (bottomOffset > 0)
+            return -bottomOffset;
+        return 0;
+    }
+
+    x: xPosition(width)
     y: parent.y
 
     signal addMoreEmoji
@@ -74,7 +95,7 @@ BaseContextMenu {
             });
         if (emojiPicker !== null) {
             root.opacity = 0;
-            emojiPicker.closed.connect(() => close());
+            //yemojiPicker.closed.connect(() => close());
             emojiPicker.x = xPositionProvider(JamiTheme.emojiPickerWidth);
             emojiPicker.y = yPositionProvider(JamiTheme.emojiPickerHeight);
             emojiPicker.open();
@@ -85,9 +106,10 @@ BaseContextMenu {
 
     // Close the picker when listView vertical properties change.
     property real listViewHeight: listView.height
-    onListViewHeightChanged: close()
+    //onListViewHeightChanged: close()
     property bool isScrolling: listView.verticalScrollBar.active
-    onIsScrollingChanged: close()
+
+    //onIsScrollingChanged: close()
 
     onOpened: root.closeWithoutAnimation = false
     onClosed: if (emojiPicker)
