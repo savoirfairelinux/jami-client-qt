@@ -40,7 +40,7 @@ BaseContextMenu {
     property bool closeWithoutAnimation: false
     property var emojiPicker
 
-    function xPositionProvider(width) {
+    function xPosition(width) {
         // Use the width at function scope to retrigger property evaluation.
         const listViewWidth = listView.width;
         const parentX = parent.x;
@@ -51,8 +51,29 @@ BaseContextMenu {
         }
     }
 
-    x: xPositionProvider(width)
+    x: xPosition(width)
     y: parent.y
+
+    function xPositionProvider(width) {
+        // Use the width at function scope to retrigger property evaluation.
+        const listViewWidth = listView.width;
+        if (isOutgoing) {
+            return -5 - width;
+        } else {
+            const rightMargin = listViewWidth - (msgBubble.x + width);
+            return width > rightMargin + 35 ? -5 - width : 35;
+        }
+    }
+    function yPositionProvider(height) {
+        const topOffset = msgBubble.mapToItem(listView, 0, 0).y;
+        const listViewHeight = listView.height;
+        const bottomMargin = listViewHeight - height - topOffset;
+        if (bottomMargin < 0 || (topOffset < 0 && topOffset + height > 0)) {
+            return 30 - height;
+        } else {
+            return 0;
+        }
+    }
 
     signal addMoreEmoji
     onAddMoreEmoji: {
@@ -74,7 +95,7 @@ BaseContextMenu {
             });
         if (emojiPicker !== null) {
             root.opacity = 0;
-            emojiPicker.closed.connect(() => close());
+            //yemojiPicker.closed.connect(() => close());
             emojiPicker.x = xPositionProvider(JamiTheme.emojiPickerWidth);
             emojiPicker.y = yPositionProvider(JamiTheme.emojiPickerHeight);
             emojiPicker.open();
@@ -85,9 +106,10 @@ BaseContextMenu {
 
     // Close the picker when listView vertical properties change.
     property real listViewHeight: listView.height
-    onListViewHeightChanged: close()
+    //onListViewHeightChanged: close()
     property bool isScrolling: listView.verticalScrollBar.active
-    onIsScrollingChanged: close()
+
+    //onIsScrollingChanged: close()
 
     onOpened: root.closeWithoutAnimation = false
     onClosed: if (emojiPicker)
