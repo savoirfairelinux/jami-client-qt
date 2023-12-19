@@ -28,46 +28,41 @@ BaseModalDialog {
     property var previousBodies: undefined
 
     popupContent: JamiListView {
-            width: 400 - 2 * root.popupMargins
+        id: editsList
 
-            height: Math.min(count * 50, 150)
+        width: 400 - 2 * root.popupMargins
+        height: Math.min(count * 50, 150)
 
-            model: root.previousBodies
+        model: root.previousBodies
 
-            delegate: Rectangle {
-                width: 400 - 2 * root.popupMargins
-                height: Math.max(JamiTheme.menuItemsPreferredHeight, rowBody.implicitHeight)
-                color: index % 2 === 0 ? JamiTheme.backgroundColor : JamiTheme.secondaryBackgroundColor
+        delegate: Rectangle {
+            width: editsList.width
+            height: Math.max(JamiTheme.menuItemsPreferredHeight, rowBody.implicitHeight)
+            color: index % 2 === 0 ? JamiTheme.backgroundColor : JamiTheme.secondaryBackgroundColor
 
-                RowLayout {
-                    id: rowBody
-                    spacing: JamiTheme.preferredMarginSize
-                    anchors.centerIn: parent
+            RowLayout {
+                id: rowBody
+                spacing: JamiTheme.preferredMarginSize
+                anchors.fill: parent
 
-                    Text {
-                        Layout.maximumWidth: root.width / 2
-                        Layout.leftMargin: JamiTheme.settingsMarginSize
-                        elide: Text.ElideRight
+                Text {
+                    Layout.maximumWidth: root.width / 2
+                    Layout.leftMargin: JamiTheme.settingsMarginSize
+                    elide: Text.ElideRight
 
-                        text: MessagesAdapter.getFormattedDay(modelData.timestamp.toString()) + " - " + MessagesAdapter.getFormattedTime(modelData.timestamp.toString())
-                        color: JamiTheme.textColor
-                        opacity: 0.5
-                    }
+                    text: MessagesAdapter.getFormattedDay(modelData.timestamp.toString()) + " - " + MessagesAdapter.getFormattedTime(modelData.timestamp.toString())
+                    color: JamiTheme.textColor
+                    opacity: 0.5
+                }
 
-                    Text {
-                        Layout.alignment: Qt.AlignLeft
+                Text {
+                    Layout.fillWidth: true
+                    elide: Text.ElideRight
 
-                        TextMetrics {
-                            id: metrics
-                            elide: Text.ElideRight
-                            elideWidth: 3 * rowBody.width / 4 - 2 * JamiTheme.preferredMarginSize
-                            text: modelData.body === "" ? JamiStrings.deletedMessage : modelData.body
-                        }
-
-                        text: metrics.elidedText
-                        color: JamiTheme.textColor
-                    }
+                    text: modelData.body === "" ? JamiStrings.deletedMessage : modelData.body
+                    color: JamiTheme.textColor
                 }
             }
         }
     }
+}
