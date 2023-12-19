@@ -63,7 +63,7 @@ Control {
 
     property real maxMsgWidth: root.width - senderMargin - 2 * hPadding - avatarBlockWidth
     property bool bigMsg
-    property bool imageTooSmall: false
+    property bool timeUnderBubble: false
 
     // If the ListView attached properties are not available,
     // then the root delegate is likely a Loader.
@@ -205,7 +205,16 @@ Control {
         RowLayout {
             id: msgRowlayout
 
-            Layout.preferredHeight: innerContent.height + root.extraHeight + (emojiReactions.emojis === "" ? 0 : emojiReactions.height - 8) + ((IsEmojiOnly && (root.seq === MsgSeq.last || root.seq === MsgSeq.single) && emojiReactions.emojis === "") || root.imageTooSmall ? 15 : 0)
+            Layout.preferredHeight: {
+                var h = innerContent.height + root.extraHeight;
+                if (emojiReactions.emojis !== "")
+                    h += emojiReactions.height - 8;
+                if ((IsEmojiOnly && (root.seq === MsgSeq.last || root.seq === MsgSeq.single) && emojiReactions.emojis === ""))
+                    h += 15;
+                if (root.timeUnderBubble)
+                    h += 25;
+                return h;
+            }
             Layout.topMargin: ((seq === MsgSeq.first || seq === MsgSeq.single) && !root.isReply) ? 3.5 : 0
             Layout.bottomMargin: root.bigMsg ? timestampItem.timeLabel.height : 0
 
@@ -343,9 +352,19 @@ Control {
 
                     property real timePosition: JamiTheme.emojiMargins + emojiReactions.width + 8
                     property alias timestampItem: timestampItem
+                    property bool bubbleHovered
+                    property string imgSource
 
                     width: (Type === Interaction.Type.TEXT ? root.textContentWidth : innerContent.childrenRect.width)
                     height: innerContent.childrenRect.height + (visible ? root.extraHeight : 0) + (root.bigMsg ? 15 : 0)
+
+                    HoverHandler {
+                        target: root
+                        enabled: Type === Interaction.Type.DATA_TRANSFER
+                        onHoveredChanged: {
+                            root.hoveredLink = enabled && hovered ? bubble.imgSource : ""
+                        }
+                    }
 
                     TimestampInfo {
                         id: timestampItem
@@ -353,17 +372,19 @@ Control {
                         showTime: IsEmojiOnly && !(root.seq === MsgSeq.last || root.seq === MsgSeq.single) ? false : true
                         formattedTime: root.formattedTime
 
-                        timeColor: IsEmojiOnly || root.imageTooSmall? (JamiTheme.darkTheme ? "white" : "dark") : (UtilsAdapter.luma(bubble.color) ? "white" : "dark")
+                        timeColor: IsEmojiOnly || root.timeUnderBubble? (JamiTheme.darkTheme ? "white" : "dark") : (UtilsAdapter.luma(bubble.color) ? "white" : "dark")
                         timeLabel.opacity: 0.5
 
                         anchors.bottom: parent.bottom
                         anchors.right: IsEmojiOnly ? (isOutgoing ? parent.right : undefined) : parent.right
-                        anchors.left: ((IsEmojiOnly|| root.imageTooSmall) && !isOutgoing) ? parent.left : undefined
+                        anchors.left: ((IsEmojiOnly|| root.timeUnderBubble) && !isOutgoing) ? parent.left : undefined
                         anchors.leftMargin: (IsEmojiOnly && !isOutgoing && emojiReactions.visible) ? bubble.timePosition : 0
-                        anchors.rightMargin: IsEmojiOnly ? ((isOutgoing && emojiReactions.visible) ? bubble.timePosition : 0) : (root.imageTooSmall ? 0 : 10)
+                        anchors.rightMargin: IsEmojiOnly ? ((isOutgoing && emojiReactions.visible) ? bubble.timePosition : 0) : (root.timeUnderBubble ? 0 : 10)
                         timeLabel.Layout.bottomMargin: {
-                            if (IsEmojiOnly || root.imageTooSmall)
+                            if (IsEmojiOnly)
                                 return -15;
+                            if (root.timeUnderBubble)
+                                return -20;
                             if (root.bigMsg || bubble.isDeleted)
                                 return 5;
                             return 9;
@@ -418,6 +439,7 @@ Control {
                             }
                         }
                         property bool bubbleHovered: containsMouse || textHovered
+                        cursorShape: enabled ? Qt.PointingHandCursor : Qt.ArrowCursor
                     }
                 }
 

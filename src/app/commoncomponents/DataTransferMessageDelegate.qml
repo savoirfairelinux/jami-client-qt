@@ -285,12 +285,15 @@ Loader {
                 }
                 bubble.timestampItem.timeLabel.text += " - " + txt
                 bubble.color = "transparent"
-                bubble.z = 1
+                if (mediaInfo.isImage)
+                    bubble.z = 1
+                else
+                    timeUnderBubble = true
             }
 
             onContentWidthChanged: {
                 if (bubble.timestampItem.timeLabel.width > contentWidth)
-                    imageTooSmall = true
+                    timeUnderBubble = true
                 else {
                     bubble.timestampItem.timeColor = JamiTheme.whiteColor
                     bubble.timestampItem.timeLabel.opacity = 1
@@ -369,13 +372,7 @@ Loader {
                                 localMediaMsgItem.contentWidth = width
                             }
 
-                            HoverHandler {
-                                target : parent
-                                onHoveredChanged: {
-                                    localMediaMsgItem.hoveredLink = hovered ? animatedImg.source : ""
-                                }
-                                cursorShape: Qt.PointingHandCursor
-                            }
+                            Component.onCompleted: localMediaMsgItem.bubble.imgSource = source
 
                             LinearGradient {
                                 id: gradient
@@ -409,6 +406,8 @@ Loader {
                             autoTransform: true
                             asynchronous: true
                             source: Body !== undefined ? UtilsAdapter.urlFromLocalPath(Body) : ''
+
+                            Component.onCompleted: localMediaMsgItem.bubble.imgSource = source
 
                             // The sourceSize represents the maximum source dimensions.
                             // This should not be a dynamic binding, as property changes
@@ -446,13 +445,6 @@ Loader {
                                     height: img.height
                                     radius: msgRadius
                                 }
-                            }
-                            HoverHandler {
-                                target : parent
-                                onHoveredChanged: {
-                                    localMediaMsgItem.hoveredLink = hovered ? img.source : ""
-                                }
-                                cursorShape: Qt.PointingHandCursor
                             }
 
                             LinearGradient {
