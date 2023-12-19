@@ -90,7 +90,7 @@ SBSMessageBase {
                     Math.max(Math.min((2 / 3) * root.maxMsgWidth - ( bigMsg ? 0 : root.timeWidth + root.editedWidth), implicitWidth + 5, innerContent.width - senderMargin + 5 ), bigMsg ? root.timeWidth + root.editedWidth + 14: 0) ;
             }
 
-            anchors.rightMargin: bigMsg ? 0 : root.timeWidth + root.editedWidth
+            anchors.rightMargin: bigMsg ? 0 : (isEmojiOnly ? -15 : root.timeWidth + root.editedWidth)
 
             wrapMode: Label.WrapAtWordBoundaryOrAnywhere
             selectByMouse: true
