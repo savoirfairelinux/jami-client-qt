@@ -60,6 +60,7 @@ RUN zypper --non-interactive install -y \
         ffmpeg-4-libavutil-devel \
         gtk3-devel\
         qrencode-devel \
+        python310 \
         python3-python-dateutil \
         python3-html5lib \
         libsndfile-devel \
@@ -100,6 +101,10 @@ RUN zypper --non-interactive install -y \
         gstreamer-plugins-base-devel \
         cmake \
         wget
+
+# openSUSE Leap 15.5 comes with Python 3.6 by default,
+# but we need at least 3.7 to compile Qt 6.6.1
+RUN rm /usr/bin/python3 && ln -s /usr/bin/python3.10 /usr/bin/python3
 
 RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 50
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 50
