@@ -92,9 +92,10 @@ if(WIN32)
   list(APPEND QWINDOWKIT_OPTIONS QWINDOWKIT_ENABLE_WINDOWS_SYSTEM_BORDERS OFF)
 endif()
 
-# qmsetup uses the wrong package dir on Fedora at least.
-check_redhat_based(IS_REDHAT_BASED)
-if(IS_REDHAT_BASED)
+# qmsetup uses the wrong package dir on some distributions
+# (including Fedora and openSUSE Leap at least)
+check_distro_needs_qmsetup_patch(DISTRO_NEEDS_QMSETUP_PATCH)
+if(DISTRO_NEEDS_QMSETUP_PATCH)
   list(APPEND QWINDOWKIT_PATCHES ${EXTRA_PATCHES_DIR}/0001-fix-fedora-fc-build.patch)
   set(qmsetup_cmake_path ${CMAKE_BINARY_DIR}/_install/lib64/cmake/qmsetup)
 endif()
@@ -131,7 +132,7 @@ set(TESTS_DIR ${PROJECT_SOURCE_DIR}/tests)
 # Here we let find_package(<PackageName>...) try to find Qt 6,
 # If it is found, find_package will succeed, and the CMake variable
 # QT_VERSION_MAJOR will be defined 6.
-set(QT6_MINVER_MINOR 5)
+set(QT6_MINVER_MINOR 6)
 if(QT6_VER AND QT6_PATH)
   find_package(QT NAMES Qt6 REQUIRED
     PATHS ${QT6_PATH} NO_DEFAULT_PATH)
@@ -140,10 +141,10 @@ else()
   find_package(QT NAMES Qt6 REQUIRED)
 endif()
 if (${QT_VERSION_MINOR} GREATER_EQUAL ${QT6_MINVER_MINOR})
-  # Qt version is 6.5 or higher
+  # Qt version is 6.6 or higher
   message(STATUS "Found a suitable Qt version ${QT_VERSION}")
 else()
-  message(FATAL_ERROR "Qt 6.5 or higher is required. Found ${QT_VERSION}")
+  message(FATAL_ERROR "Qt 6.6 or higher is required. Found ${QT_VERSION}")
 endif()
 
 # libjamiclient

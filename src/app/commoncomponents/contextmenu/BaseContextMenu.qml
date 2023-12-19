@@ -67,7 +67,7 @@ Menu {
                 }
                 if (menuItems[i].addMenuSeparatorAfter) {
                     menuSeparatorComponent = Qt.createComponent("GeneralMenuSeparator.qml", Component.PreferSynchronous, root);
-                    menuSeparatorComponentObj = menuSeparatorComponent.createObject(root, {
+                    menuSeparatorComponentObj = menuSeparatorComponent.createObject(null, {
                             "separatorColor": JamiTheme.menuSeparatorColor,
                             "separatorPreferredHeight": 0
                         });
