@@ -11,8 +11,12 @@ RUN apt-get update && \
         wget \
         curl
 
+# GCC 10
+ADD extras/packaging/gnu-linux/scripts/install-gcc-debian.sh /opt/install-gcc-debian.sh
+RUN /opt/install-gcc-debian.sh 10
+
 # nodejs
-RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -
 RUN apt install nodejs -y
 
 ADD extras/packaging/gnu-linux/scripts/prebuild-package-debian.sh /opt/prebuild-package-debian.sh
@@ -23,7 +27,7 @@ RUN /opt/prebuild-package-debian.sh qt-deps
 COPY extras/packaging/gnu-linux/rules/debian/control /tmp/builddeps/debian/control
 RUN /opt/prebuild-package-debian.sh jami-deps
 
-# Install CMake 3.19 for Qt 6
+# Install CMake 3.21 for Qt 6
 ADD extras/packaging/gnu-linux/scripts/install-cmake.sh /opt/install-cmake.sh
 RUN /opt/install-cmake.sh
 
