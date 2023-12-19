@@ -59,6 +59,7 @@ RUN zypper --non-interactive install -y \
         ffmpeg-4-libavutil-devel \
         gtk3-devel\
         qrencode-devel \
+        python310 \
         python3-python-dateutil \
         python3-html5lib \
         libsndfile-devel \
@@ -67,7 +68,7 @@ RUN zypper --non-interactive install -y \
         bison \
         flex \
         ffmpeg ffmpeg-devel \
-        nodejs12 \
+        nodejs18 \
         mozilla-nss-devel \
         python-xml \
         python3-six \
@@ -100,6 +101,7 @@ RUN zypper --non-interactive install -y \
         cmake \
         wget
 
+RUN rm /usr/bin/python3 && ln -s /usr/bin/python3.10 /usr/bin/python3
 RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 50
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 50
 
