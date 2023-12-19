@@ -10,6 +10,14 @@ RUN apt-get update && \
         python-is-python3 \
         wget
 
+# The default compiler on Ubuntu 23.10, GCC 13.2.0, can't build one of Qt 6.6.1's
+# dependencies, see:
+# https://github.com/qt/qtquick3d-assimp/commit/253f8bfa621a9fa6cd2c36291cdaa8c60c99322c
+# The linked commit above fixes the problem and is included in more recent versions of Qt.
+# For now, we use GCC 12 as a temporary workaround:
+ADD extras/packaging/gnu-linux/scripts/install-gcc-debian.sh /opt/install-gcc-debian.sh
+RUN /opt/install-gcc-debian.sh 12
+
 ADD extras/packaging/gnu-linux/scripts/prebuild-package-debian.sh /opt/prebuild-package-debian.sh
 
 COPY extras/packaging/gnu-linux/rules/debian-qt/control /tmp/builddeps/debian/control
