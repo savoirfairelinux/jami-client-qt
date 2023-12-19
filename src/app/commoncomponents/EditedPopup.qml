@@ -28,21 +28,22 @@ BaseModalDialog {
     property var previousBodies: undefined
 
     popupContent: JamiListView {
-            width: 400 - 2 * root.popupMargins
+            id: editsList
 
+            width: 400 - 2 * root.popupMargins
             height: Math.min(count * 50, 150)
 
             model: root.previousBodies
 
             delegate: Rectangle {
-                width: 400 - 2 * root.popupMargins
+                width: editsList.width
                 height: Math.max(JamiTheme.menuItemsPreferredHeight, rowBody.implicitHeight)
                 color: index % 2 === 0 ? JamiTheme.backgroundColor : JamiTheme.secondaryBackgroundColor
 
                 RowLayout {
                     id: rowBody
                     spacing: JamiTheme.preferredMarginSize
-                    anchors.centerIn: parent
+                    anchors.fill: parent
 
                     Text {
                         Layout.maximumWidth: root.width / 2
@@ -55,16 +56,10 @@ BaseModalDialog {
                     }
 
                     Text {
-                        Layout.alignment: Qt.AlignLeft
+                        Layout.fillWidth: true
+                        elide: Text.ElideRight
 
-                        TextMetrics {
-                            id: metrics
-                            elide: Text.ElideRight
-                            elideWidth: 3 * rowBody.width / 4 - 2 * JamiTheme.preferredMarginSize
-                            text: modelData.body === "" ? JamiStrings.deletedMessage : modelData.body
-                        }
-
-                        text: metrics.elidedText
+                        text: modelData.body === "" ? JamiStrings.deletedMessage : modelData.body
                         color: JamiTheme.textColor
                     }
                 }
