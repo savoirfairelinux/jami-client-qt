@@ -207,7 +207,7 @@ Only 64-bit MSVC build can be compiled.
 
   |                      | Qt Version |
   | -------------------- | ---------- |
-  | Minimum requirement: | 6.5.3      |
+  | Minimum requirement: | 6.6.1      |
 
 - Install [Python3](https://www.python.org/downloads/) for Windows
 
