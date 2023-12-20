@@ -47,12 +47,11 @@ enum class Type {
     COUNT__
 };
 Q_ENUM_NS(Type)
+
 static inline bool
-isDisplayedInChatview(const Type& type)
+isTypeDisplayable(const Type& type)
 {
-    return type != interaction::Type::MERGE && type != interaction::Type::EDITED
-           && type != interaction::Type::REACTION && type != interaction::Type::VOTE
-           && type != interaction::Type::UPDATE_PROFILE && type != interaction::Type::INVALID;
+    return type != interaction::Type::VOTE && type != interaction::Type::UPDATE_PROFILE;
 }
 
 static inline const QString
@@ -380,7 +379,7 @@ struct Info
     QString react_to;
     QVector<Body> previousBodies;
 
-    Info() {}
+    Info() = default;
 
     Info(QString authorUri,
          QString body,
@@ -398,6 +397,11 @@ struct Info
         this->status = status;
         this->isRead = isRead;
     }
+
+    Info(const Info& other) = default;
+    Info(Info&& other) = default;
+    Info& operator=(const Info& other) = delete;
+    Info& operator=(Info&& other) = default;
 
     void init(const MapStringString& message, const QString& accountURI)
     {
