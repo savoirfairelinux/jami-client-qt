@@ -27,7 +27,8 @@ AvatarRegistry::AvatarRegistry(LRCInstance* instance, QObject* parent)
     connect(lrcInstance_,
             &LRCInstance::currentAccountIdChanged,
             this,
-            &AvatarRegistry::connectAccount);
+            &AvatarRegistry::connectAccount,
+            Qt::DirectConnection);
 
     connect(&lrcInstance_->accountModel(),
             &AccountModel::profileUpdated,
