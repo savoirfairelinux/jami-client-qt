@@ -19,14 +19,12 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301 USA.
  */
 
-#include "messagelistmodel.h"
+#include "api/messagelistmodel.h"
 
-#include "authority/storagehelper.h"
 #include "api/accountmodel.h"
 #include "api/contactmodel.h"
 #include "api/conversationmodel.h"
 #include "api/interaction.h"
-#include "qtwrapper/conversions_wrap.hpp"
 
 #include <QAbstractListModel>
 #include <QFileInfo>
@@ -35,175 +33,27 @@ namespace lrc {
 
 using namespace api;
 
-using constIterator = MessageListModel::constIterator;
 using iterator = MessageListModel::iterator;
-using reverseIterator = MessageListModel::reverseIterator;
 
 MessageListModel::MessageListModel(const account::Info* account, QObject* parent)
     : QAbstractListModel(parent)
     , account_(account)
 {}
 
-QPair<iterator, bool>
-MessageListModel::emplace(const QString& msgId, interaction::Info message, bool beginning)
-{
-    iterator it;
-    for (it = interactions_.begin(); it != interactions_.end(); ++it) {
-        if (it->first == msgId) {
-            return qMakePair(it, false);
-        }
-    }
-    auto iter = beginning ? interactions_.begin() : interactions_.end();
-    auto iterator = insertMessage(iter, qMakePair(msgId, message));
-    return qMakePair(iterator, true);
-}
-
-iterator
-MessageListModel::find(const QString& msgId)
-{
-    iterator it;
-    for (it = interactions_.begin(); it != interactions_.end(); ++it) {
-        if (it->first == msgId) {
-            return it;
-        }
-    }
-    return interactions_.end();
-}
-
-iterator
-MessageListModel::findActiveCall(const MapStringString& commit)
-{
-    iterator it;
-    for (it = interactions_.begin(); it != interactions_.end(); ++it) {
-        const auto& itCommit = it->second.commit;
-        if (itCommit["confId"] == commit["confId"] && itCommit["uri"] == commit["uri"]
-            && itCommit["device"] == commit["device"]) {
-            return it;
-        }
-    }
-    return interactions_.end();
-}
-
-iterator
-MessageListModel::erase(const iterator& it)
-{
-    auto index = std::distance(begin(), it);
-    Q_EMIT beginRemoveRows(QModelIndex(), index, index);
-    auto erased = interactions_.erase(it);
-    Q_EMIT endRemoveRows();
-    return erased;
-}
-
-constIterator
-MessageListModel::find(const QString& msgId) const
-{
-    constIterator it;
-    for (it = interactions_.cbegin(); it != interactions_.cend(); ++it) {
-        if (it->first == msgId) {
-            return it;
-        }
-    }
-    return interactions_.cend();
-}
-
-QPair<iterator, bool>
-MessageListModel::insert(std::pair<QString, interaction::Info> message, bool beginning)
-{
-    return emplace(message.first, message.second, beginning);
-}
-
-int
-MessageListModel::erase(const QString& msgId)
-{
-    iterator it;
-    int index = 0;
-    for (it = interactions_.begin(); it != interactions_.end(); ++it) {
-        if (it->first == msgId) {
-            removeMessage(index, it);
-            return 1;
-        }
-        index++;
-    }
-    return 0;
-}
-
-interaction::Info&
-MessageListModel::operator[](const QString& messageId)
-{
-    for (auto it = interactions_.cbegin(); it != interactions_.cend(); ++it) {
-        if (it->first == messageId) {
-            return const_cast<interaction::Info&>(it->second);
-        }
-    }
-    // element not find, add it to the end
-    interaction::Info newMessage = {};
-    insertMessage(interactions_.end(), qMakePair(messageId, newMessage));
-    if (interactions_.last().first == messageId) {
-        return const_cast<interaction::Info&>(interactions_.last().second);
-    }
-    throw std::out_of_range("Cannot find message");
-}
-
-iterator
-MessageListModel::end()
-{
-    return interactions_.end();
-}
-
-constIterator
-MessageListModel::end() const
-{
-    return interactions_.end();
-}
-
-reverseIterator
-MessageListModel::rend()
-{
-    return interactions_.rend();
-}
-
-constIterator
-MessageListModel::cend() const
-{
-    return interactions_.cend();
-}
-
-iterator
-MessageListModel::begin()
-{
-    return interactions_.begin();
-}
-
-constIterator
-MessageListModel::begin() const
-{
-    return interactions_.begin();
-}
-
-reverseIterator
-MessageListModel::rbegin()
-{
-    return interactions_.rbegin();
-}
-
-int
-MessageListModel::size() const
-{
-    return interactions_.size();
-}
-
 void
 MessageListModel::clear()
 {
-    Q_EMIT beginResetModel();
+    std::lock_guard<std::recursive_mutex> lk(mutex_);
+    beginResetModel();
     interactions_.clear();
     replyTo_.clear();
-    Q_EMIT endResetModel();
+    endResetModel();
 }
 
 void
 MessageListModel::reloadHistory()
 {
+    std::lock_guard<std::recursive_mutex> lk(mutex_);
     Q_EMIT beginResetModel();
     for (auto& interaction : interactions_) {
         interaction.second.linkPreviewInfo.clear();
@@ -214,58 +64,14 @@ MessageListModel::reloadHistory()
 bool
 MessageListModel::empty() const
 {
+    std::lock_guard<std::recursive_mutex> lk(mutex_);
     return interactions_.empty();
-}
-
-interaction::Info
-MessageListModel::at(const QString& msgId) const
-{
-    for (auto it = interactions_.cbegin(); it != interactions_.cend(); ++it) {
-        if (it->first == msgId) {
-            return it->second;
-        }
-    }
-    return {};
-}
-
-QPair<QString, interaction::Info>
-MessageListModel::front() const
-{
-    return interactions_.front();
-}
-
-QPair<QString, interaction::Info>
-MessageListModel::last() const
-{
-    return interactions_.last();
-}
-
-QPair<QString, interaction::Info>
-MessageListModel::atIndex(int index) const
-{
-    return interactions_.at(index);
-}
-
-QPair<iterator, bool>
-MessageListModel::insert(int index, QPair<QString, interaction::Info> message)
-{
-    iterator itr;
-    for (itr = interactions_.begin(); itr != interactions_.end(); ++itr) {
-        if (itr->first == message.first) {
-            return qMakePair(itr, false);
-        }
-    }
-    if (index >= size()) {
-        auto iterator = insertMessage(interactions_.end(), message);
-        return qMakePair(iterator, true);
-    }
-    insertMessage(index, message);
-    return qMakePair(interactions_.end(), true);
 }
 
 int
 MessageListModel::indexOfMessage(const QString& msgId, bool reverse) const
 {
+    std::lock_guard<std::recursive_mutex> lk(mutex_);
     auto getIndex = [reverse, &msgId](const auto& start, const auto& end) -> int {
         auto it = std::find_if(start, end, [&msgId](const auto& it) { return it.first == msgId; });
         if (it == end) {
@@ -275,6 +81,19 @@ MessageListModel::indexOfMessage(const QString& msgId, bool reverse) const
     };
     return reverse ? getIndex(interactions_.rbegin(), interactions_.rend())
                    : getIndex(interactions_.begin(), interactions_.end());
+}
+
+iterator
+MessageListModel::find(const QString& msgId)
+{
+    // Note: this function assumes that the caller has locked the interactions mutex.
+    iterator it;
+    for (it = interactions_.begin(); it != interactions_.end(); ++it) {
+        if (it->first == msgId) {
+            return it;
+        }
+    }
+    return interactions_.end();
 }
 
 void
@@ -294,43 +113,26 @@ MessageListModel::updateReplies(item_t& message)
     }
 }
 
-void
-MessageListModel::insertMessage(int index, item_t& message)
+int
+MessageListModel::move(iterator it, const QString& newParentId)
 {
-    Q_EMIT beginInsertRows(QModelIndex(), index, index);
-    interactions_.insert(index, message);
-    Q_EMIT endInsertRows();
-    updateReplies(message);
-}
-
-iterator
-MessageListModel::insertMessage(iterator it, item_t& message)
-{
-    auto index = std::distance(begin(), it);
-    Q_EMIT beginInsertRows(QModelIndex(), index, index);
-    auto insertion = interactions_.insert(it, message);
-    Q_EMIT endInsertRows();
-    updateReplies(message);
-    return insertion;
-}
-
-void
-MessageListModel::removeMessage(int index, iterator it)
-{
-    Q_EMIT beginRemoveRows(QModelIndex(), index, index);
-    interactions_.erase(it);
-    Q_EMIT endRemoveRows();
-}
-
-bool
-MessageListModel::contains(const QString& msgId)
-{
-    return find(msgId) != interactions_.end();
+    // This function assumes:
+    // - the caller has already checked that the new parent exists
+    // - the caller has locked the interactions mutex
+    auto oldIndex = std::distance(interactions_.begin(), it);
+    auto newParentIndex = indexOfMessage(newParentId);
+    if (newParentIndex >= 0) {
+        beginMoveRows(QModelIndex(), oldIndex, oldIndex, QModelIndex(), newParentIndex);
+        interactions_.move(oldIndex, newParentIndex);
+        endMoveRows();
+    }
+    return newParentIndex;
 }
 
 int
 MessageListModel::rowCount(const QModelIndex&) const
 {
+    std::lock_guard<std::recursive_mutex> lk(mutex_);
     return interactions_.size();
 }
 
@@ -492,7 +294,7 @@ int
 MessageListModel::getIndexOfMessage(const QString& messageId) const
 {
     for (int i = 0; i < interactions_.size(); i++) {
-        if (atIndex(i).first == messageId) {
+        if (interactions_.at(i).first == messageId) {
             return i;
         }
     }
@@ -598,25 +400,6 @@ MessageListModel::getRead(const QString& peer)
     return "";
 }
 
-void
-MessageListModel::emitDataChanged(iterator it, VectorInt roles)
-{
-    auto index = std::distance(begin(), it);
-    QModelIndex modelIndex = QAbstractListModel::index(index, 0);
-    Q_EMIT dataChanged(modelIndex, modelIndex, roles);
-}
-
-void
-MessageListModel::emitDataChanged(const QString& msgId, VectorInt roles)
-{
-    int index = getIndexOfMessage(msgId);
-    if (index == -1) {
-        return;
-    }
-    QModelIndex modelIndex = QAbstractListModel::index(index, 0);
-    Q_EMIT dataChanged(modelIndex, modelIndex, roles);
-}
-
 QString
 MessageListModel::lastSelfMessageId(const QString& id) const
 {
@@ -628,5 +411,149 @@ MessageListModel::lastSelfMessageId(const QString& id) const
         }
     }
     return {};
+}
+
+bool
+MessageListModel::insert(const QString& id, const interaction::Info& interaction, int index)
+{
+    const std::lock_guard<std::recursive_mutex> lk(mutex_);
+    // If the index parameter is -1, then insert at the parent of the message.
+    if (index == -1) {
+        index = getIndexOfMessage(interaction.parentId);
+    }
+
+    // The index should be valid and don't add duplicate messages.
+    if (index < 0 || index > interactions_.size() || find(id) != interactions_.end()) {
+        return false;
+    }
+    beginInsertRows(QModelIndex(), index, index);
+    interactions_.emplace(interactions_.begin() + index, id, interaction);
+    endInsertRows();
+    return true;
+}
+
+bool
+MessageListModel::append(const QString& id, const interaction::Info& interaction)
+{
+    const std::lock_guard<std::recursive_mutex> lk(mutex_);
+    // Don't add duplicate messages.
+    if (find(id) != interactions_.end()) {
+        return false;
+    }
+    beginInsertRows(QModelIndex(), interactions_.size(), interactions_.size());
+    interactions_.emplace_back(id, interaction);
+    endInsertRows();
+}
+
+bool
+MessageListModel::update(const QString& id, const interaction::Info& interaction)
+{
+    // There are two cases: a) Parent ID changed, b) body changed (edit/delete).
+    const std::lock_guard<std::recursive_mutex> lk(mutex_);
+    auto it = find(id);
+    if (it == interactions_.end()) {
+        return false;
+    }
+    interaction::Info& current = it->second;
+    if (current.parentId != interaction.parentId) {
+        // Parent ID changed, in this case, move the interaction to the new parent.
+        return move(it, interaction.parentId) >= 0;
+    }
+    // Just update body and previousBodies and notify the view.
+    current.body = interaction.body;
+    current.previousBodies = interaction.previousBodies;
+    auto modelIndex = QAbstractListModel::index(getIndexOfMessage(id), 0);
+    Q_EMIT dataChanged(modelIndex, modelIndex, {Role::Body, Role::PreviousBodies});
+    return true;
+}
+
+bool
+MessageListModel::updateStatus(const QString& id,
+                               interaction::Status newStatus,
+                               const QString& newBody)
+{
+    const std::lock_guard<std::recursive_mutex> lk(mutex_);
+    auto it = find(id);
+    if (it == interactions_.end()) {
+        return false;
+    }
+    VectorInt roles;
+    it->second.status = newStatus;
+    roles.push_back(Role::Status);
+    if (!newBody.isEmpty()) {
+        it->second.body = newBody;
+        roles.push_back(Role::Body);
+    }
+    auto modelIndex = QAbstractListModel::index(getIndexOfMessage(id), 0);
+    Q_EMIT dataChanged(modelIndex, modelIndex, roles);
+    return true;
+}
+
+QPair<bool, bool>
+MessageListModel::addOrUpdate(const QString& id, const interaction::Info& interaction)
+{
+    if (find(id) == interactions_.end()) {
+        return {true, append(id, interaction)};
+    } else {
+        return {false, update(id, interaction)};
+    }
+}
+
+void
+MessageListModel::forEach(const InteractionCb& callback)
+{
+    const std::lock_guard<std::recursive_mutex> lk(mutex_);
+    for (auto& interaction : interactions_) {
+        callback(interaction.first, interaction.second);
+    }
+}
+
+bool
+MessageListModel::with(const QString& idHint, const InteractionCb& callback)
+{
+    const std::lock_guard<std::recursive_mutex> lk(mutex_);
+    if (interactions_.empty()) {
+        return false;
+    }
+    // If the ID is empty, then return the last interaction.
+    auto it = idHint.isEmpty() ? std::prev(interactions_.end()) : find(idHint);
+    if (it == interactions_.end()) {
+        return false;
+    }
+    callback(it->first, it->second);
+    return true;
+}
+
+bool
+MessageListModel::withLast(const InteractionCb& callback)
+{
+    return with(QString(), callback);
+}
+
+QPair<QString, time_t>
+MessageListModel::getDisplayedInfoForPeer(const QString& peerId)
+{
+    std::lock_guard<std::recursive_mutex> lk(mutex_);
+    auto it = lastDisplayedMessageUid_.find(peerId);
+    if (it == lastDisplayedMessageUid_.end())
+        return {};
+    return {it.value(), interactions_[getIndexOfMessage(it.value())].second.timestamp};
+}
+
+bool
+MessageListModel::isOutgoing(const QString& id)
+{
+    std::lock_guard<std::recursive_mutex> lk(mutex_);
+    auto it = find(id);
+    if (it == interactions_.end()) {
+        return false;
+    }
+    return interaction::isOutgoing(it->second);
+}
+
+std::recursive_mutex&
+MessageListModel::getMutex()
+{
+    return mutex_;
 }
 } // namespace lrc
