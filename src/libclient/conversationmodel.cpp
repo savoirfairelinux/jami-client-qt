@@ -51,7 +51,6 @@
 #include <algorithm>
 #include <mutex>
 #include <regex>
-#include <fstream>
 #include <sstream>
 
 namespace lrc {
@@ -172,11 +171,11 @@ public:
      * @param peerId, peer id
      * @param status, new status for this interaction
      */
-    void slotUpdateInteractionStatus(const QString& accountId,
-                                     const QString& conversationId,
-                                     const QString& peerId,
-                                     const QString& messageId,
-                                     int status);
+    void updateInteractionStatus(const QString& accountId,
+                                 const QString& conversationId,
+                                 const QString& peerId,
+                                 const QString& messageId,
+                                 int status);
 
     /**
      * place a call
@@ -1345,19 +1344,8 @@ ConversationModel::sendMessage(const QString& uid, const QString& body, const QS
                 storage::addDaemonMsgId(pimpl_->db, msgId, toQString(daemonMsgId));
             }
 
-            bool ret = false;
-
-            {
-                std::lock_guard<std::mutex> lk(pimpl_->interactionsLocks[newConv.uid]);
-                ret = newConv.interactions->insert(std::pair<QString, interaction::Info>(msgId, msg))
-                          .second;
-            }
-
-            if (!ret) {
-                qDebug()
-                    << "ConversationModel::sendMessage failed to send message because an existing "
-                       "key was already present in the database key ="
-                    << msgId;
+            if (!newConv.interactions->append(msgId, msg)) {
+                qWarning() << Q_FUNC_INFO << "Append failed: duplicate ID";
                 return;
             }
 
@@ -1558,37 +1546,20 @@ ConversationModel::clearUnreadInteractions(const QString& convId)
         return;
     }
     auto& conversation = conversationOpt->get();
-    bool emitUpdated = false;
-    QString lastDisplayed;
-    {
-        std::lock_guard<std::mutex> lk(pimpl_->interactionsLocks[convId]);
-        auto& interactions = conversation.interactions;
-        if (conversation.isSwarm()) {
-            emitUpdated = true;
-            if (!interactions->empty())
-                lastDisplayed = interactions->rbegin()->first;
-        } else {
-            std::for_each(interactions->begin(),
-                          interactions->end(),
-                          [&](decltype(*interactions->begin())& it) {
-                              if (!it.second.isRead) {
-                                  emitUpdated = true;
-                                  it.second.isRead = true;
-                                  if (owner.profileInfo.type != profile::Type::SIP)
-                                      lastDisplayed = storage::getDaemonIdByInteractionId(pimpl_->db,
-                                                                                          it.first);
-                                  storage::setInteractionRead(pimpl_->db, it.first);
-                              }
-                          });
-        }
-    }
-    if (!lastDisplayed.isEmpty()) {
+    bool updated = false;
+    QString lastDisplayedId;
+    if (conversation.isSwarm()) {
+        updated = true;
+        lastDisplayedId = conversation.interactions->getLatestId();
+    } else
+        std::tie(updated, lastDisplayedId) = conversation.interactions->clearUnread(pimpl_->db);
+    if (!lastDisplayedId.isEmpty()) {
         auto to = conversation.isSwarm()
                       ? "swarm:" + convId
                       : "jami:" + pimpl_->peersForConversation(conversation).front();
-        ConfigurationManager::instance().setMessageDisplayed(owner.id, to, lastDisplayed, 3);
+        ConfigurationManager::instance().setMessageDisplayed(owner.id, to, lastDisplayedId, 3);
     }
-    if (emitUpdated) {
+    if (updated) {
         conversation.unreadMessages = 0;
         pimpl_->invalidateModel();
         Q_EMIT conversationUpdated(convId);
@@ -1719,7 +1690,7 @@ ConversationModelPimpl::ConversationModelPimpl(const ConversationModel& linked,
     connect(&callbacksHandler,
             &CallbacksHandler::accountMessageStatusChanged,
             this,
-            &ConversationModelPimpl::slotUpdateInteractionStatus);
+            &ConversationModelPimpl::updateInteractionStatus);
 
     // Call related
     connect(&*linked.owner.contactModel,
@@ -1886,7 +1857,7 @@ ConversationModelPimpl::~ConversationModelPimpl()
     disconnect(&callbacksHandler,
                &CallbacksHandler::accountMessageStatusChanged,
                this,
-               &ConversationModelPimpl::slotUpdateInteractionStatus);
+               &ConversationModelPimpl::updateInteractionStatus);
 
     // Call related
     disconnect(&*linked.owner.contactModel,
@@ -2061,23 +2032,8 @@ ConversationModelPimpl::initConversations()
 
         auto convIdx = indexOf(conv[0]);
 
-        // Check if file transfer interactions were left in an incorrect state
-        std::lock_guard<std::mutex> lk(interactionsLocks[conversations[convIdx].uid]);
-        for (auto& interaction : *(conversations[convIdx].interactions)) {
-            if (interaction.second.status == interaction::Status::TRANSFER_CREATED
-                || interaction.second.status == interaction::Status::TRANSFER_AWAITING_HOST
-                || interaction.second.status == interaction::Status::TRANSFER_AWAITING_PEER
-                || interaction.second.status == interaction::Status::TRANSFER_ONGOING
-                || interaction.second.status == interaction::Status::TRANSFER_ACCEPTED) {
-                // If a datatransfer was left in a non-terminal status in DB, we switch this status
-                // to ERROR
-                // TODO : Improve for DBus clients as daemon and transfer may still be ongoing
-                storage::updateInteractionStatus(db,
-                                                 interaction.first,
-                                                 interaction::Status::TRANSFER_ERROR);
-                interaction.second.status = interaction::Status::TRANSFER_ERROR;
-            }
-        }
+        // Resolve any file transfer interactions were left in an incorrect state
+        conversations[convIdx].interactions->resolveTransferStates(db);
     }
     invalidateModel();
 
@@ -2226,14 +2182,12 @@ ConversationModelPimpl::sort(const conversation::Info& convA, const conversation
     if (convA.uid == convB.uid)
         return false;
 
-    auto& mtxA = interactionsLocks[convA.uid];
-    auto& mtxB = interactionsLocks[convB.uid];
-    std::lock(mtxA, mtxB);
-    std::lock_guard<std::mutex> lockConvA(mtxA, std::adopt_lock);
-    std::lock_guard<std::mutex> lockConvB(mtxB, std::adopt_lock);
-
     auto& historyA = convA.interactions;
     auto& historyB = convB.interactions;
+
+    std::lock(historyA->getMutex(), historyB->getMutex());
+    std::lock_guard<std::recursive_mutex> lockConvA(historyA->getMutex(), std::adopt_lock);
+    std::lock_guard<std::recursive_mutex> lockConvB(historyB->getMutex(), std::adopt_lock);
 
     // A or B is a new conversation (without CONTACT interaction)
     if (convA.uid.isEmpty() || convB.uid.isEmpty())
@@ -2256,14 +2210,7 @@ ConversationModelPimpl::sort(const conversation::Info& convA, const conversation
     if (historyB->empty())
         return true;
     // Sort by last Interaction
-    try {
-        auto lastMessageA = historyA->rbegin()->second;
-        auto lastMessageB = historyB->rbegin()->second;
-        return lastMessageA.timestamp > lastMessageB.timestamp;
-    } catch (const std::exception& e) {
-        qDebug() << "ConversationModel::sortConversations(), can't get lastMessage";
-        return false;
-    }
+    return historyA->getLatestTimestamp() > historyB->getLatestTimestamp();
 }
 
 void
@@ -2319,18 +2266,10 @@ ConversationModelPimpl::slotSwarmLoaded(uint32_t requestId,
                 downloadFile = (bytesProgress == 0);
             }
 
-            {
-                // If message is loaded, insert message at beginning
-                std::lock_guard<std::mutex> lk(interactionsLocks[conversation.uid]);
-                auto itExists = conversation.interactions->find(msgId);
-                // If found, nothing to do.
-                if (itExists != conversation.interactions->end())
-                    continue;
-
-                auto result = conversation.interactions->insert(std::make_pair(msgId, msg), true);
-                if (!result.second) {
-                    continue;
-                }
+            // If message is loaded, insert message at beginning
+            if (!conversation.interactions->insert(msgId, msg, 0)) {
+                qDebug() << Q_FUNC_INFO << "Insert failed: duplicate ID";
+                continue;
             }
 
             if (downloadFile) {
@@ -2437,23 +2376,11 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
             linked.owner.dataTransferModel->registerTransferId(fileId, msgId);
         }
 
-        {
-            // If message is received, insert message after its parent.
-            std::lock_guard<std::mutex> lk(interactionsLocks[conversation.uid]);
-            auto itExists = conversation.interactions->find(msgId);
-            // If found, nothing to do.
-            if (itExists != conversation.interactions->end())
-                return;
-            int index = conversation.interactions->indexOfMessage(msg.parentId);
-            if (index >= 0) {
-                auto result = conversation.interactions->insert(index + 1, qMakePair(msgId, msg));
-                if (!result.second) {
-                    return;
-                }
-            } else {
-                return;
-            }
+        if (!conversation.interactions->insert(msgId, msg)) {
+            qWarning() << Q_FUNC_INFO << "Insert failed: duplicate ID";
+            return;
         }
+
         auto updateUnread = msg.authorUri != linked.owner.profileInfo.uri;
         if (updateUnread)
             conversation.unreadMessages++;
@@ -2491,26 +2418,8 @@ ConversationModelPimpl::slotMessageUpdated(const QString& accountId,
         QString msgId = message.id;
         auto msg = interaction::Info(message, linked.owner.profileInfo.uri);
 
-        {
-            std::lock_guard<std::mutex> lk(interactionsLocks[conversation.uid]);
-            auto itExists = conversation.interactions->find(msgId);
-            // If not found, nothing to do.
-            if (itExists == conversation.interactions->end())
-                return;
-            // Now there is two cases:
-            // ParentId changed, in this case, remove previous message and re-insert at new place
-            // Else, just update body
-            conversation.interactions->erase(itExists);
-            int index = conversation.interactions->indexOfMessage(msg.parentId);
-            if (index >= 0) {
-                auto result = conversation.interactions->insert(index + 1, qMakePair(msgId, msg));
-                if (!result.second) {
-                    return;
-                }
-            } else {
-                return;
-            }
-        }
+        conversation.interactions->update(msgId, msg);
+        // The conversation is updated, so we need to notify the view.
         invalidateModel();
         Q_EMIT linked.modelChanged();
         Q_EMIT linked.dataChanged(indexOf(conversationId));
@@ -2870,11 +2779,7 @@ ConversationModelPimpl::addConversationRequest(const MapStringString& convReques
         {"linearizedParent", ""},
     };
     auto msg = interaction::Info(messageMap, linked.owner.profileInfo.uri);
-
-    {
-        std::lock_guard<std::mutex> lk(interactionsLocks[convId]);
-        conversation.interactions->insert(std::make_pair(convId, msg), true);
-    }
+    conversation.interactions->insert(convId, msg);
 
     // add the author to the contact model's contact list as a PENDING
     // if they aren't already a contact
@@ -2935,8 +2840,7 @@ ConversationModelPimpl::slotPendingContactAccepted(const QString& uri)
                                                                     interaction::Status::SUCCESS);
             auto convIdx = indexOf(convs[0]);
             if (convIdx >= 0) {
-                std::lock_guard<std::mutex> lk(interactionsLocks[conversations[convIdx].uid]);
-                conversations[convIdx].interactions->emplace(msgId, interaction);
+                conversations[convIdx].interactions->insert(msgId, interaction, 0);
             }
             filteredConversations.invalidate();
             Q_EMIT linked.newInteraction(convs[0], msgId, interaction);
@@ -3092,11 +2996,7 @@ ConversationModelPimpl::addSwarmConversation(const QString& convId)
             {"linearizedParent", ""},
         };
         auto msg = interaction::Info(messageMap, linked.owner.profileInfo.uri);
-
-        {
-            std::lock_guard<std::mutex> lk(interactionsLocks[convId]);
-            conversation.interactions->insert(std::make_pair(convId, msg), true);
-        }
+        conversation.interactions->insert(convId, msg, 0);
         conversation.needsSyncing = true;
         Q_EMIT linked.conversationUpdated(conversation.uid);
         Q_EMIT linked.dataChanged(indexOf(conversation.uid));
@@ -3127,34 +3027,32 @@ ConversationModelPimpl::addConversationWith(const QString& convId,
         conversation.callId = "";
     }
     storage::getHistory(db, conversation, linked.owner.profileInfo.uri);
-    std::vector<std::function<void(void)>> updateSlots;
-    {
-        std::lock_guard<std::mutex> lk(interactionsLocks[conversation.uid]);
-        for (auto& interaction : (*(conversation.interactions))) {
-            if (interaction.second.status != interaction::Status::SENDING) {
-                continue;
+
+    QList<std::function<void(void)>> toUpdate;
+    conversation.interactions->forEachInteraction(
+        [&](const QString& id, interaction::Info& interaction) {
+            if (interaction.status != interaction::Status::SENDING) {
+                return;
             }
             // Get the message status from daemon, else unknown
-            auto id = storage::getDaemonIdByInteractionId(db, interaction.first);
+            auto daemonId = storage::getDaemonIdByInteractionId(db, id);
             int status = 0;
-            if (id.isEmpty()) {
-                continue;
+            if (daemonId.isEmpty()) {
+                return;
             }
             try {
-                auto msgId = std::stoull(id.toStdString());
+                auto msgId = std::stoull(daemonId.toStdString());
                 status = ConfigurationManager::instance().getMessageStatus(msgId);
-                updateSlots.emplace_back([this, convId, contactUri, id, status]() -> void {
+                toUpdate.emplace_back([this, convId, contactUri, daemonId, status]() {
                     auto accId = linked.owner.id;
-                    slotUpdateInteractionStatus(accId, convId, contactUri, id, status);
+                    updateInteractionStatus(accId, convId, contactUri, daemonId, status);
                 });
             } catch (const std::exception& e) {
-                qDebug() << "message id was invalid";
+                qWarning() << Q_FUNC_INFO << "Failed: message id was invalid";
             }
-        }
-    }
-    for (const auto& s : updateSlots) {
-        s();
-    }
+        });
+    Q_FOREACH (const auto& func, toUpdate)
+        func();
 
     conversation.unreadMessages = getNumberOfUnreadMessagesFor(convId);
 
@@ -3393,20 +3291,12 @@ ConversationModelPimpl::addOrUpdateCallMessage(const QString& callId,
     // now set the formatted call message string in memory only
     msg.body = interaction::getCallInteractionString(msg.authorUri == linked.owner.profileInfo.uri,
                                                      msg);
-    bool newInteraction = false;
-    {
-        std::lock_guard<std::mutex> lk(interactionsLocks[conv_it->uid]);
-        auto interactionIt = conv_it->interactions->find(msgId);
-        newInteraction = interactionIt == conv_it->interactions->end();
-        if (newInteraction) {
-            conv_it->interactions->emplace(msgId, msg);
-        } else {
-            interactionIt->second = msg;
-            conv_it->interactions->emitDataChanged(interactionIt);
-        }
+    auto [added, success] = conv_it->interactions->addOrUpdate(msgId, msg);
+    if (!success) {
+        qWarning() << Q_FUNC_INFO << QString("Failed: to %1 msg").arg(added ? "add" : "update");
+        return;
     }
-
-    if (newInteraction)
+    if (added)
         Q_EMIT linked.newInteraction(conv_it->uid, msgId, msg);
 
     invalidateModel();
@@ -3504,10 +3394,8 @@ ConversationModelPimpl::addIncomingMessage(const QString& peerId,
         addConversationWith(convIds[0], peerId, isRequest);
         Q_EMIT linked.newConversation(convIds[0]);
     } else {
-        {
-            std::lock_guard<std::mutex> lk(interactionsLocks[conversations[conversationIdx].uid]);
-            conversations[conversationIdx].interactions->emplace(msgId, msg);
-        }
+        // Maybe check if this is failing?
+        conversations[conversationIdx].interactions->append(msgId, msg);
         conversations[conversationIdx].unreadMessages = getNumberOfUnreadMessagesFor(convIds[0]);
     }
 
@@ -3539,11 +3427,11 @@ ConversationModelPimpl::slotCallAddedToConference(const QString& callId, const Q
 }
 
 void
-ConversationModelPimpl::slotUpdateInteractionStatus(const QString& accountId,
-                                                    const QString& conversationId,
-                                                    const QString& peerId,
-                                                    const QString& messageId,
-                                                    int status)
+ConversationModelPimpl::updateInteractionStatus(const QString& accountId,
+                                                const QString& conversationId,
+                                                const QString& peerId,
+                                                const QString& messageId,
+                                                int status)
 {
     if (accountId != linked.owner.id) {
         return;
@@ -3602,6 +3490,37 @@ ConversationModelPimpl::slotUpdateInteractionStatus(const QString& accountId,
         bool updateDisplayedUid = false;
         QString oldDisplayedUid = 0;
         {
+            auto& interactions = conversation.interactions;
+            // Try to update the status.
+            if (interactions->updateStatus(msgId, newStatus)) {
+                // Determine if the interaction is outgoing and has been displayed.
+                bool isInteractionDisplayed = newStatus == interaction::Status::DISPLAYED
+                                              && interactions->isOutgoing(msgId);
+
+                // Get the last displayed interaction ID and timestamp for this peer.
+                auto [lastIdForPeer, lastTimestampForPeer] = interactions->getDisplayedInfoForPeer(
+                    peerId);
+
+                if (!lastIdForPeer.isEmpty()) {
+                    auto lastDisplayedIt = interactions->find(messageId);
+                    bool interactionIsLast = lastDisplayedIt == interactions->end()
+                                             || lastDisplayedIt->second.timestamp
+                                                    < it->second.timestamp;
+                    updateDisplayedUid = interactionDisplayed && interactionIsLast;
+                    if (updateDisplayedUid) {
+                        oldDisplayedUid = messageId;
+                        if (peerId != linked.owner.profileInfo.uri)
+                            conversation.interactions->setRead(peerId, it->first);
+                    }
+                } else {
+                    oldDisplayedUid = "";
+                    if (peerId != linked.owner.profileInfo.uri)
+                        conversation.interactions->setRead(peerId, it->first);
+                    updateDisplayedUid = true;
+                }
+                emitUpdated = true;
+            }
+
             std::lock_guard<std::mutex> lk(interactionsLocks[conversation.uid]);
             auto& interactions = conversation.interactions;
             auto it = interactions->find(msgId);
