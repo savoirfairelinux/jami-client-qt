@@ -37,7 +37,6 @@ JamiListView {
 
     function loadMoreMsgsIfNeeded() {
         if (atYBeginning && !CurrentConversation.allMessagesLoaded) {
-            print("load more messages", atYBeginning, CurrentConversation.allMessagesLoaded)
             MessagesAdapter.loadMoreMessages()
         }
     }
@@ -175,7 +174,8 @@ JamiListView {
     Connections {
         target: CurrentConversation
         function onScrollTo(id) {
-            var idx = MessagesAdapter.getMessageIndexFromId(id)
+            // Get the filtered index from the interaction ID.
+            var idx = MessagesAdapter.messageListModel.getDisplayIndex(id)
             positionViewAtIndex(idx, ListView.Visible)
         }
     }

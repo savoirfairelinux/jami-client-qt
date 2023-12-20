@@ -20,12 +20,11 @@
 
 #include "interaction.h"
 #include "messagelistmodel.h"
+#include "account.h"
 #include "member.h"
 #include "typedefs.h"
 
-#include <map>
 #include <memory>
-#include <vector>
 
 namespace lrc {
 
