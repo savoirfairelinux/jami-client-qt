@@ -584,7 +584,7 @@ MessagesAdapter::onMessagesFoundProcessed(const QString& accountId,
     bool isSearchInProgress = messageInformation.size();
     if (isSearchInProgress) {
         for (auto it = messageInformation.begin(); it != messageInformation.end(); it++) {
-            mediaInteractions_->insert(qMakePair(it.key(), it.value()));
+            mediaInteractions_->append(it.key(), it.value());
         }
     } else {
         set_mediaMessageListModel(QVariant::fromValue(mediaInteractions_.get()));
@@ -743,23 +743,6 @@ MessagesAdapter::startSearch(const QString& text, bool isMedia)
     } catch (...) {
         qDebug() << "Exception during startSearch()";
     }
-}
-
-int
-MessagesAdapter::getMessageIndexFromId(const QString& id)
-{
-    const QString& convId = lrcInstance_->get_selectedConvUid();
-    const auto& conversation = lrcInstance_->getConversationFromConvUid(convId);
-    auto allInteractions = conversation.interactions.get();
-    int index = 0;
-    for (auto it = allInteractions->rbegin(); it != allInteractions->rend(); it++) {
-        if (interaction::isDisplayedInChatview(it->second.type)) {
-            if (it->first == id)
-                return index;
-            index++;
-        }
-    }
-    return -1;
 }
 
 MessageListModel*
