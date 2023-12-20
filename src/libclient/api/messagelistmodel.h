@@ -24,6 +24,8 @@
 
 #include <QAbstractListModel>
 
+#include <mutex>
+
 namespace lrc {
 namespace api {
 
@@ -74,93 +76,96 @@ class MessageListModel : public QAbstractListModel
     Q_OBJECT
 
 public:
+    // A pair of message id and interaction info.
     using item_t = const QPair<QString, interaction::Info>;
 
-    typedef QList<QPair<QString, interaction::Info>>::ConstIterator constIterator;
     typedef QList<QPair<QString, interaction::Info>>::Iterator iterator;
-    typedef QList<QPair<QString, interaction::Info>>::reverse_iterator reverseIterator;
 
     explicit MessageListModel(const account::Info* account, QObject* parent = nullptr);
     ~MessageListModel() = default;
 
-    // map functions
-    QPair<iterator, bool> emplace(const QString& msgId,
-                                  interaction::Info message,
-                                  bool beginning = false);
-    iterator find(const QString& msgId);
-    iterator findActiveCall(const MapStringString& commit);
-    iterator erase(const iterator& it);
-
-    constIterator find(const QString& msgId) const;
-    QPair<iterator, bool> insert(std::pair<QString, interaction::Info> message,
-                                 bool beginning = false);
-    Q_INVOKABLE int erase(const QString& msgId);
-    interaction::Info& operator[](const QString& messageId);
-    iterator end();
-    constIterator end() const;
-    reverseIterator rend();
-
-    constIterator cend() const;
-    iterator begin();
-    constIterator begin() const;
-    reverseIterator rbegin();
-    Q_INVOKABLE int size() const;
     void clear();
     void reloadHistory();
     bool empty() const;
-    interaction::Info at(const QString& intId) const;
-    QPair<QString, interaction::Info> front() const;
-    QPair<QString, interaction::Info> last() const;
-    QPair<QString, interaction::Info> atIndex(int index) const;
-
-    QPair<iterator, bool> insert(int index, QPair<QString, interaction::Info> message);
     int indexOfMessage(const QString& msgId, bool reverse = true) const;
 
+    // QAbstractListModel interface
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
     Q_INVOKABLE virtual QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const;
     Q_INVOKABLE virtual QVariant data(int idx, int role = Qt::DisplayRole) const;
     QHash<int, QByteArray> roleNames() const override;
+
+    // QAbstractListModel interface wrappers
     QVariant dataForItem(item_t item, int indexRow, int role = Qt::DisplayRole) const;
-    bool contains(const QString& msgId);
     int getIndexOfMessage(const QString& messageId) const;
+
     void addHyperlinkInfo(const QString& messageId, const QVariantMap& info);
     void addReaction(const QString& messageId, const MapStringString& reaction);
     void rmReaction(const QString& messageId, const QString& reactionId);
     void setParsedMessage(const QString& messageId, const QString& parsed);
-
     void setRead(const QString& peer, const QString& messageId);
     QString getRead(const QString& peer);
 
-    // use these if the underlying data model is changed from conversationmodel
-    // Note: this is not ideal, and this class should be refactored into a proper
-    // view model and absorb the interaction management logic to avoid exposing
-    // these emission wrappers
-    void emitDataChanged(iterator it, VectorInt roles = {});
-    void emitDataChanged(const QString& msgId, VectorInt roles = {});
     bool isOnlyEmoji(const QString& text) const;
 
     QVariantMap convertReactMessagetoQVariant(const QSet<QString>&);
     QString lastSelfMessageId(const QString& id) const;
+
+    // ------------- NEW -------------
+    bool insert(const QString& id, const interaction::Info& interaction, int index = -1);
+    bool append(const QString& id, const interaction::Info& interaction);
+    bool update(const QString& id, const interaction::Info& interaction);
+    bool updateStatus(const QString& id, interaction::Status newStatus, const QString& newBody = {});
+    QPair<bool, bool> addOrUpdate(const QString& id, const interaction::Info& interaction);
+    void remove(const QString& id);
+
+    // Thread-safe access to interactions.
+    // Note: be careful when using these functions to modify the interactions as
+    //       dataChanged() signal is not emitted. Use add/update/remove instead
+    //       if per-message UI updates are required. Also, DO NOT use these to
+    //       modify the interactions_ container.
+    using InteractionCb = std::function<void(const QString&, interaction::Info&)>;
+    void forEach(const InteractionCb&);
+    // Operations on a single interaction. Returns true if the interaction is found.
+    // Note: if idHint is an empty string, the last interaction is used.
+    bool with(const QString& idHint, const InteractionCb&);
+    // A convenience function to access the last interaction.
+    bool withLast(const InteractionCb&);
+
+    QPair<QString, time_t> getDisplayedInfoForPeer(const QString& peerId);
+    bool isOutgoing(const QString& id);
+
+    // Used when sorting conversations by timestamp, where locking multiple
+    // interactions simultaneously is required.
+    std::recursive_mutex& getMutex();
 
 protected:
     using Role = MessageList::Role;
 
 private:
     QList<QPair<QString, interaction::Info>> interactions_;
+
+    iterator find(const QString& msgId);
+
     // Note: because read status are updated even if interaction is not loaded
     // we need to keep track of these status outside the interaction::Info
-    // lastDisplayedMessageUid_ stores: {"peerId":"messageId"}
-    // messageToReaders_ caches: "messageId":["peer1", "peer2"]
     // to allow quick access.
-    QMap<QString, QString> lastDisplayedMessageUid_;
-    QMap<QString, QStringList> messageToReaders_;
+    // lastDisplayedMessageUid_ is used to keep track of the last message displayed
+    // for each peer. This is used to update the far end read status of the interaction.
+    // messageToReaders_ is used to keep track of the readers of each message.
+    // This is a different view of the above map, and is used to update the read
+    // status of the interaction.
+    QMap<QString, QString> lastDisplayedMessageUid_; // {"peerId": "messageId"}
+    QMap<QString, QStringList> messageToReaders_;    // {"messageId": ["peer1", "peer2"]}
     QMap<QString, QSet<QString>> replyTo_;
+
     const account::Info* account_;
     void updateReplies(item_t& message);
 
-    void insertMessage(int index, item_t& message);
-    iterator insertMessage(iterator it, item_t& message);
-    void removeMessage(int index, iterator it);
+    // ------------- NEW -------------
+    int move(iterator it, const QString& newParentId);
+
+    mutable std::recursive_mutex mutex_;
 };
 } // namespace api
 } // namespace lrc
