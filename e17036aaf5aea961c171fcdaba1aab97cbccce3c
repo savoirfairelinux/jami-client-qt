@@ -110,6 +110,24 @@
       "message": "The second time dbus starts it should force reload the history",
       "revId": "e17036aaf5aea961c171fcdaba1aab97cbccce3c",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "447d1415_bddfcb28",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-12-20T17:35:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "299f8fa6_56ac0b0f",
+      "revId": "e17036aaf5aea961c171fcdaba1aab97cbccce3c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
