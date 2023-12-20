@@ -112,6 +112,7 @@ registerTypes(QQmlEngine* engine,
               QObject* app)
 {
     // setup the adapters (their lifetimes are that of MainApplication)
+    auto avatarRegistry = new AvatarRegistry(lrcInstance, engine);
     auto callAdapter = new CallAdapter(settingsManager, systemTray, lrcInstance, engine);
     auto previewEngine = new PreviewEngine(connectivityMonitor, engine);
     auto imageDownloader = new ImageDownloader(connectivityMonitor, engine);
@@ -129,10 +130,10 @@ registerTypes(QQmlEngine* engine,
     auto tipsModel = new TipsModel(settingsManager, engine);
     auto videoDevices = new VideoDevices(lrcInstance, engine);
     auto currentAccountToMigrate = new CurrentAccountToMigrate(lrcInstance, engine);
-    auto avatarRegistry = new AvatarRegistry(lrcInstance, engine);
     auto wizardViewStepModel = new WizardViewStepModel(lrcInstance, accountAdapter, settingsManager, engine);
 
     // qml adapter registration
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_HELPERS, avatarRegistry, "AvatarRegistry");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, callAdapter, "CallAdapter");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, tipsModel, "TipsModel");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, messagesAdapter, "MessagesAdapter");
@@ -149,7 +150,6 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, currentAccount, "CurrentAccount");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, videoDevices, "VideoDevices");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, currentAccountToMigrate, "CurrentAccountToMigrate")
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_HELPERS, avatarRegistry, "AvatarRegistry");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, wizardViewStepModel, "WizardViewStepModel")
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_HELPERS, imageDownloader, "ImageDownloader")
 
