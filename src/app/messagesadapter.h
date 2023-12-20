@@ -45,11 +45,18 @@ public:
         auto index = sourceModel()->index(sourceRow, 0, sourceParent);
         auto type = static_cast<interaction::Type>(
             sourceModel()->data(index, MessageList::Role::Type).toInt());
-        return interaction::isDisplayedInChatview(type);
+        return interaction::isTypeDisplayable(type);
     };
     bool lessThan(const QModelIndex& left, const QModelIndex& right) const override
     {
         return left.row() > right.row();
+    };
+
+    Q_INVOKABLE int getDisplayIndex(const QString& id)
+    {
+        auto sourceRow = ((MessageListModel*) sourceModel())->getIndexOfMessage(id);
+        auto index = mapFromSource(sourceModel()->index(sourceRow, 0));
+        return index.row();
     };
 };
 
@@ -135,7 +142,6 @@ protected:
     Q_INVOKABLE QVariant dataForInteraction(const QString& interactionId,
                                             int role = Qt::DisplayRole) const;
     Q_INVOKABLE void startSearch(const QString& text, bool isMedia);
-    Q_INVOKABLE int getMessageIndexFromId(const QString& id);
 
     // Run corrsponding js functions, c++ to qml.
     void setMessagesImageContent(const QString& path, bool isBased64 = false);
