@@ -48,7 +48,6 @@
 #endif
 
 #include "api/account.h"
-#include "api/contact.h"
 #include "api/contactmodel.h"
 #include "api/conversationmodel.h"
 
