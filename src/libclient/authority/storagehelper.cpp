@@ -496,7 +496,7 @@ getHistory(Database& db, api::conversation::Info& conversation, const QString& l
                                                type,
                                                status,
                                                (payloads[i + 6] == "1" ? true : false)});
-            conversation.interactions->emplace(payloads[i], std::move(msg));
+            conversation.interactions->append(payloads[i], std::move(msg));
             if (status != api::interaction::Status::DISPLAYED || !payloads[i + 1].isEmpty()) {
                 continue;
             }
