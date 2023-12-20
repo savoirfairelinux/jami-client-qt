@@ -73,8 +73,6 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
         filteredMsgListModel_->setSourceModel(conversation.interactions.get());
 
         set_currentConvComposingList(conversationTypersUrlToName(conversation.typers));
-        mediaInteractions_.reset(new MessageListModel(&lrcInstance_->getCurrentAccountInfo(), this));
-        set_mediaMessageListModel(QVariant::fromValue(mediaInteractions_.get()));
     });
 
     connect(messageParser_, &MessageParser::messageParsed, this, &MessagesAdapter::onMessageParsed);
@@ -83,9 +81,10 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     connect(timestampTimer_, &QTimer::timeout, this, &MessagesAdapter::timestampUpdated);
     timestampTimer_->start(timestampUpdateIntervalMs_);
 
-    connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, this, [this]() {
-        connectConversationModel();
-    });
+    connect(lrcInstance_,
+            &LRCInstance::currentAccountIdChanged,
+            this,
+            &MessagesAdapter::connectConversationModel);
 
     connectConversationModel();
 }
@@ -142,6 +141,9 @@ MessagesAdapter::connectConversationModel()
                      this,
                      &MessagesAdapter::onMessagesFoundProcessed,
                      Qt::UniqueConnection);
+
+    mediaInteractions_.reset(new MessageListModel(&lrcInstance_->getCurrentAccountInfo(), this));
+    set_mediaMessageListModel(QVariant::fromValue(mediaInteractions_.get()));
 }
 
 void
@@ -379,18 +381,7 @@ QVariant
 MessagesAdapter::dataForInteraction(const QString& interactionId, int role) const
 {
     if (auto* model = getMsgListSourceModel()) {
-        auto idx = model->indexOfMessage(interactionId);
-        if (idx != -1)
-            return model->data(idx, role);
-    }
-    return {};
-}
-
-int
-MessagesAdapter::getIndexOfMessage(const QString& interactionId) const
-{
-    if (auto* model = getMsgListSourceModel()) {
-        return model->indexOfMessage(interactionId);
+        return model->data(interactionId, role);
     }
     return {};
 }
@@ -584,7 +575,7 @@ MessagesAdapter::onMessagesFoundProcessed(const QString& accountId,
     bool isSearchInProgress = messageInformation.size();
     if (isSearchInProgress) {
         for (auto it = messageInformation.begin(); it != messageInformation.end(); it++) {
-            mediaInteractions_->insert(qMakePair(it.key(), it.value()));
+            mediaInteractions_->append(it.key(), it.value());
         }
     } else {
         set_mediaMessageListModel(QVariant::fromValue(mediaInteractions_.get()));
@@ -743,23 +734,6 @@ MessagesAdapter::startSearch(const QString& text, bool isMedia)
     } catch (...) {
         qDebug() << "Exception during startSearch()";
     }
-}
-
-int
-MessagesAdapter::getMessageIndexFromId(const QString& id)
-{
-    const QString& convId = lrcInstance_->get_selectedConvUid();
-    const auto& conversation = lrcInstance_->getConversationFromConvUid(convId);
-    auto allInteractions = conversation.interactions.get();
-    int index = 0;
-    for (auto it = allInteractions->rbegin(); it != allInteractions->rend(); it++) {
-        if (interaction::isDisplayedInChatview(it->second.type)) {
-            if (it->first == id)
-                return index;
-            index++;
-        }
-    }
-    return -1;
 }
 
 MessageListModel*
