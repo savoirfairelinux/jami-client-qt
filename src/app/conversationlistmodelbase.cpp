@@ -108,35 +108,38 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
     case Role::UnreadMessagesCount:
         return QVariant(item.unreadMessages);
     case Role::LastInteractionTimeStamp: {
-        if (!item.interactions->empty()) {
-            auto ts = static_cast<qint32>(item.interactions->rbegin()->second.timestamp);
-            return QVariant(ts);
-        }
-        break;
+        qint32 ts = 0;
+        item.interactions->withLast([&ts](const QString&, const interaction::Info& interaction) {
+            ts = interaction.timestamp;
+        });
+        return QVariant(ts);
     }
     case Role::LastInteraction: {
-        if (!item.interactions->empty()) {
-            auto interaction = item.interactions->rbegin()->second;
+        QString lastInteractionBody;
+        item.interactions->withLast([&](const QString&, const interaction::Info& interaction) {
             auto& accInfo = lrcInstance_->getCurrentAccountInfo();
-            if (interaction.type == interaction::Type::DATA_TRANSFER) {
-                return QVariant(interaction.commit.value("displayName"));
+            if (interaction.type == interaction::Type::UPDATE_PROFILE) {
+                lastInteractionBody = interaction::getProfileUpdatedString();
+            } else if (interaction.type == interaction::Type::DATA_TRANSFER) {
+                lastInteractionBody = interaction.commit.value("displayName");
             } else if (interaction.type == lrc::api::interaction::Type::CALL) {
-                return QVariant(interaction::getCallInteractionString(interaction.authorUri
-                                                                          == accInfo.profileInfo.uri,
-                                                                      interaction));
+                const auto isOutgoing = interaction.authorUri == accInfo.profileInfo.uri;
+                lastInteractionBody = interaction::getCallInteractionString(isOutgoing, interaction);
             } else if (interaction.type == lrc::api::interaction::Type::CONTACT) {
                 auto bestName = interaction.authorUri == accInfo.profileInfo.uri
                                     ? accInfo.accountModel->bestNameForAccount(accInfo.id)
                                     : accInfo.contactModel->bestNameForContact(
                                         interaction.authorUri);
-                return QVariant(
-                    interaction::getContactInteractionString(bestName,
-                                                             interaction::to_action(
-                                                                 interaction.commit["action"])));
+                lastInteractionBody
+                    = interaction::getContactInteractionString(bestName,
+                                                               interaction::to_action(
+                                                                   interaction.commit["action"]));
+            } else {
+                lastInteractionBody = interaction.body.isEmpty() ? tr("(deleted message)")
+                                                                 : interaction.body;
             }
-            return QVariant(interaction.body);
-        }
-        break;
+        });
+        return QVariant(lastInteractionBody);
     }
     case Role::IsSwarm:
         return QVariant(item.isSwarm());

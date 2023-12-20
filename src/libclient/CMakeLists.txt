@@ -309,6 +309,7 @@ set(LIBCLIENT_HEADERS_API
   api/contactmodel.h
   api/conversationmodel.h
   api/datatransfermodel.h
+  api/messagelistmodel.h
   api/datatransfer.h
   api/interaction.h
   api/lrc.h
