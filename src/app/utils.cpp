@@ -436,7 +436,7 @@ Utils::contactPhoto(LRCInstance* instance,
             auto avatarName = contactInfo.profileInfo.uri == bestName ? QString() : bestName;
             photo = Utils::fallbackAvatar("jami:" + contactInfo.profileInfo.uri, avatarName);
         }
-    } catch (const std::exception& e) {
+    } catch (const std::exception&) {
         photo = fallbackAvatar("jami:" + contactUri, QString(), size);
     }
     return Utils::scaleAndFrame(photo, size);
