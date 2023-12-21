@@ -27,6 +27,8 @@
 #include "systemtray.h"
 #include "videoprovider.h"
 
+#include <QWKQuick/qwkquickglobal.h>
+
 #include <QAction>
 #include <QCommandLineParser>
 #include <QCoreApplication>
@@ -138,7 +140,6 @@ ScreenInfo::onPhysicalDotsPerInchChanged()
 
 MainApplication::MainApplication(int& argc, char** argv)
     : QApplication(argc, argv)
-    , isCleanupped(false)
 {
     const char* qtVersion = qVersion();
     if (strncmp(qtVersion, QT_VERSION_STR, strnlen(qtVersion, sizeof qtVersion)) != 0) {
@@ -166,8 +167,6 @@ MainApplication::MainApplication(int& argc, char** argv)
     // the logging features.
     qInstallMessageHandler(messageHandler);
 
-    QObject::connect(this, &QApplication::aboutToQuit, this, &MainApplication::cleanup);
-
     qCInfo(app_) << "Using Qt runtime version:" << qtVersion;
 }
 
@@ -183,6 +182,8 @@ MainApplication::init()
     // This 2-phase initialisation prevents ephemeral instances from
     // performing unnecessary tasks, like initializing the webengine.
     engine_.reset(new QQmlApplicationEngine(this));
+
+    QWK::registerTypes(engine_.get());
 
     connectivityMonitor_ = new ConnectivityMonitor(this);
     settingsManager_ = new AppSettingsManager(this);
@@ -464,17 +465,6 @@ MainApplication::initSystray()
     systemTray_->setContextMenu(menu);
 
     systemTray_->show();
-}
-
-void
-MainApplication::cleanup()
-{
-    // In Qt 6.5, QApplication::exit(0) will signal aboutToQuit, and aboutToQuit is connected to cleanup
-    // TODO: delete cleanup.
-    if (!isCleanupped) {
-        isCleanupped = true;
-        QApplication::exit(0);
-    }
 }
 
 void

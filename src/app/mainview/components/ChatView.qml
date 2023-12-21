@@ -115,8 +115,8 @@ Rectangle {
 
             Layout.alignment: Qt.AlignHCenter
             Layout.fillWidth: true
-            Layout.preferredHeight: JamiTheme.chatViewHeaderPreferredHeight
-            Layout.maximumHeight: JamiTheme.chatViewHeaderPreferredHeight
+            Layout.preferredHeight: JamiTheme.qwkTitleBarHeight
+            Layout.maximumHeight: JamiTheme.qwkTitleBarHeight
             Layout.minimumWidth: JamiTheme.mainViewPaneMinWidth
 
             DropArea {
@@ -180,14 +180,14 @@ Rectangle {
         ConversationErrorsRow {
             id: errorRect
             Layout.fillWidth: true
-            Layout.preferredHeight: JamiTheme.chatViewHeaderPreferredHeight
+            Layout.preferredHeight: JamiTheme.qwkTitleBarHeight
             visible: false
         }
 
         NotificationArea {
             id: notificationArea
             Layout.fillWidth: true
-            Layout.preferredHeight: JamiTheme.chatViewHeaderPreferredHeight
+            Layout.preferredHeight: JamiTheme.qwkTitleBarHeight
             visible: CurrentConversation.activeCalls.length > 0 && !root.inCallView
         }
 
