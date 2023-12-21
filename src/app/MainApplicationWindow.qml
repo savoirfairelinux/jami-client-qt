@@ -24,15 +24,19 @@ import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
+
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 import net.jami.Helpers 1.1
 import net.jami.Constants 1.1
+
 import "mainview"
 import "mainview/components"
 import "wizardview"
 import "commoncomponents"
+
+import QWindowKit
 
 ApplicationWindow {
     id: root
@@ -89,6 +93,7 @@ ApplicationWindow {
     }
 
     property ApplicationWindow appWindow: root
+    property WindowAgent appWindowAgent: windowAgent
     property LayoutManager layoutManager: LayoutManager {
         appContainer: appContainer
     }
@@ -342,8 +347,63 @@ ApplicationWindow {
     onClosing: root.close()
 
     Component.onCompleted: {
+        windowAgent.setup(root);
         startClient();
         if (Qt.platform.os.toString() !== "windows" && Qt.platform.os.toString() !== "osx")
             DBusErrorHandler.setActive(true);
+    }
+
+    WindowAgent {
+        id: windowAgent
+    }
+
+    Rectangle {
+        id: titleBar
+        anchors {
+            top: parent.top
+            topMargin: 1
+            left: parent.left
+            right: parent.right
+        }
+        height: 32
+        color: "transparent"
+        Component.onCompleted: appWindowAgent.setTitleBar(titleBar)
+
+        Row {
+            anchors {
+                top: parent.top
+                right: parent.right
+            }
+            height: parent.height
+
+            QWKButton {
+                id: minButton
+                height: parent.height
+                source: JamiResources.window_bar_minimize_svg
+                onClicked: root.showMinimized()
+                Component.onCompleted: appWindowAgent.setSystemButton(WindowAgent.Minimize, minButton)
+            }
+
+            QWKButton {
+                id: maxButton
+                height: parent.height
+                source: root.visibility === Window.Maximized ?
+                            JamiResources.window_bar_restore_svg :
+                            JamiResources.window_bar_maximize_svg
+                onClicked: root.visibility === Window.Maximized ?
+                            root.showNormal() :
+                            root.showMaximized()
+                Component.onCompleted: appWindowAgent.setSystemButton(WindowAgent.Maximize, maxButton)
+            }
+
+            QWKButton {
+                id: closeButton
+                height: parent.height
+                source: JamiResources.window_bar_close_svg
+                baseColor: "#e81123"
+                onClicked: root.close()
+                Component.onCompleted: appWindowAgent.setSystemButton(WindowAgent.Close, closeButton)
+            }
+        }
     }
 }

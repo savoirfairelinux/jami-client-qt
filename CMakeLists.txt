@@ -75,6 +75,29 @@ if(NOT MSVC)
   set(CMAKE_CXX_FLAGS_DEBUG "-Og -ggdb")
 endif()
 
+# qwindowkit (frameless window)
+include(FetchContent)
+# This patch helps static analysis in QtCreator find the QWindowKit module
+set(QWINDOWKIT_PATCH ${PROJECT_SOURCE_DIR}/extras/patches/0001-qwindowkit-annotation.patch)
+set(QWINDOWKIT_PATCH_CMD git apply ${QWINDOWKIT_PATCH})
+FetchContent_Declare(
+  qwindowkit
+  GIT_REPOSITORY https://github.com/stdware/qwindowkit.git
+  GIT_TAG main
+  PATCH_COMMAND ${QWINDOWKIT_PATCH_CMD}
+  UPDATE_DISCONNECTED 1
+)
+set(QWINDOWKIT_BUILD_WIDGETS OFF CACHE BOOL "Don't build qwindowkit widgets" FORCE)
+set(QWINDOWKIT_BUILD_STATIC ON CACHE BOOL "Use the qwindowkit static library" FORCE)
+if (WIN32)
+  # https://github.com/stdware/qwindowkit?tab=readme-ov-file#integrate
+  # If you don't want the system borders on Windows 10/11, you can disable this option.
+  # If so, the Windows 10 top border issue will disappear. However, part of the client edge
+  # area will be occupied as the resizing margins.
+  set(QWINDOWKIT_ENABLE_WINDOWS_SYSTEM_BORDERS OFF CACHE BOOL "Disable windows system borders" FORCE)
+endif()
+FetchContent_MakeAvailable(qwindowkit)
+list(APPEND CLIENT_LIBS QWindowKit::Quick)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
