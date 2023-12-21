@@ -74,16 +74,15 @@ Rectangle {
         id: messagingHeaderRectRowLayout
 
         anchors.fill: parent
-        anchors.rightMargin: 8
+        anchors.rightMargin: 8 + systemButtonGroupLoader.spacing
         spacing: 16
 
-        JamiPushButton {
+        JamiPushButton { ParentHitTestVisible {}
             id: backToWelcomeViewButton
 
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
             Layout.leftMargin: 8
 
-            //preferredSize: 24
             mirror: UtilsAdapter.isRTL
 
             source: JamiResources.back_24dp_svg
@@ -106,10 +105,12 @@ Rectangle {
 
             color: JamiTheme.transparentColor
 
-            ColumnLayout {
+            ColumnLayout { ParentHitTestVisible {}
                 id: userNameOrIdColumnLayout
+                objectName: "userNameOrIdColumnLayout"
 
-                anchors.fill: parent
+                height: parent.height
+                width: childrenRect.width
 
                 spacing: 0
 
@@ -144,7 +145,7 @@ Rectangle {
             }
         }
 
-        Searchbar {
+        Searchbar { ParentHitTestVisible {}
             id: rowSearchBar
 
             reductionEnabled: true
@@ -180,7 +181,7 @@ Rectangle {
             }
         }
 
-        JamiPushButton {
+        JamiPushButton { ParentHitTestVisible {}
             id: startAAudioCallButton
 
             visible: interactionButtonsVisibility && (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
@@ -190,7 +191,7 @@ Rectangle {
             onClicked: CallAdapter.placeAudioOnlyCall()
         }
 
-        JamiPushButton {
+        JamiPushButton { ParentHitTestVisible {}
             id: startAVideoCallButton
 
             visible: CurrentAccount.videoEnabled_Video && interactionButtonsVisibility && (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
@@ -200,7 +201,7 @@ Rectangle {
             onClicked: CallAdapter.placeCall()
         }
 
-        JamiPushButton {
+        JamiPushButton { ParentHitTestVisible {}
             id: addParticipantsButton
 
             checkable: true
@@ -212,7 +213,7 @@ Rectangle {
             onClicked: extrasPanel.switchToPanel(ChatView.AddMemberPanel)
         }
 
-        JamiPushButton {
+        JamiPushButton { ParentHitTestVisible {}
             id: selectPluginButton
 
             visible: PluginAdapter.chatHandlersListCount && interactionButtonsVisibility
@@ -222,7 +223,7 @@ Rectangle {
             onClicked: pluginSelector()
         }
 
-        JamiPushButton {
+        JamiPushButton { ParentHitTestVisible {}
             id: sendContactRequestButton
             objectName: "sendContactRequestButton"
 
@@ -233,7 +234,7 @@ Rectangle {
             onClicked: CurrentConversation.isBanned ? MessagesAdapter.unbanConversation(CurrentConversation.id) : MessagesAdapter.sendConversationRequest()
         }
 
-        JamiPushButton {
+        JamiPushButton { ParentHitTestVisible {}
             id: detailsButton
             objectName: "detailsButton"
 
