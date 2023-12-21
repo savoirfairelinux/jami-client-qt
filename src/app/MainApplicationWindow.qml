@@ -23,6 +23,7 @@ import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtQuick.Effects
 import Qt5Compat.GraphicalEffects
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
@@ -33,6 +34,7 @@ import "mainview"
 import "mainview/components"
 import "wizardview"
 import "commoncomponents"
+import QWindowKit
 
 ApplicationWindow {
     id: root
@@ -70,7 +72,7 @@ ApplicationWindow {
         sourceComponent: GenericErrorsRow {
             id: genericError
             text: CurrentAccount.enabled ? JamiStrings.noNetworkConnectivity : JamiStrings.disabledAccount
-            height: visible? JamiTheme.chatViewHeaderPreferredHeight : 0
+            height: visible ? JamiTheme.chatViewHeaderPreferredHeight : 0
         }
     }
 
@@ -240,7 +242,7 @@ ApplicationWindow {
         target: MainApplication
 
         function onAboutToQuit() {
-            cleanupMainView()
+            cleanupMainView();
         }
 
         function onCloseRequested() {
@@ -278,7 +280,7 @@ ApplicationWindow {
             });
     }
 
-    function presentUpdateConfirmInstallDialog(switchToBeta=false) {
+    function presentUpdateConfirmInstallDialog(switchToBeta = false) {
         return viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
                 "title": JamiStrings.updateDialogTitle,
                 "infoText": switchToBeta ? JamiStrings.confirmBeta : JamiStrings.updateFound,
@@ -329,7 +331,7 @@ ApplicationWindow {
                 presentUpdateInfoDialog(JamiStrings.updateNotFound);
             } else {
                 // Show a dialog describing that an update were found, and offering to install it.
-                presentUpdateConfirmInstallDialog()
+                presentUpdateConfirmInstallDialog();
             }
         }
 
@@ -342,8 +344,110 @@ ApplicationWindow {
     onClosing: root.close()
 
     Component.onCompleted: {
+        windowAgent.setup(root);
         startClient();
         if (Qt.platform.os.toString() !== "windows" && Qt.platform.os.toString() !== "osx")
             DBusErrorHandler.setActive(true);
+    }
+
+    WindowAgent {
+        id: windowAgent
+    }
+
+    Rectangle {
+        id: titleBar
+        anchors {
+            top: parent.top
+            topMargin: 1
+            left: parent.left
+            right: parent.right
+        }
+        height: 32
+        color: "transparent"
+        Component.onCompleted: windowAgent.setTitleBar(titleBar)
+
+        Row {
+            anchors {
+                top: parent.top
+                right: parent.right
+            }
+            height: parent.height
+
+            QWKButton {
+                id: minButton
+                height: parent.height
+                source: JamiResources.window_bar_minimize_svg
+                onClicked: root.showMinimized()
+                Component.onCompleted: windowAgent.setSystemButton(WindowAgent.Minimize, minButton)
+            }
+
+            QWKButton {
+                id: maxButton
+                height: parent.height
+                source: root.visibility === Window.Maximized ? JamiResources.window_bar_restore_svg : JamiResources.window_bar_maximize_svg
+                onClicked: root.visibility === Window.Maximized ? root.showNormal() : root.showMaximized()
+                Component.onCompleted: windowAgent.setSystemButton(WindowAgent.Maximize, maxButton)
+            }
+
+            QWKButton {
+                id: closeButton
+                height: parent.height
+                source: JamiResources.window_bar_close_svg
+                baseColor: "#e81123"
+                onClicked: root.close()
+                Component.onCompleted: windowAgent.setSystemButton(WindowAgent.Close, closeButton)
+            }
+        }
+    }
+
+    component QWKButton: Button {
+        id: control
+        width: height * 1.5
+        leftPadding: 0
+        topPadding: 0
+        rightPadding: 0
+        bottomPadding: 0
+        leftInset: 0
+        topInset: 0
+        rightInset: 0
+        bottomInset: 0
+
+        property alias source: image.source
+        contentItem: Item {
+            Image {
+                id: image
+                anchors.centerIn: parent
+                mipmap: true
+                width: 12
+                height: 12
+                layer.enabled: true
+                layer.effect: MultiEffect {
+                    colorizationColor: JamiTheme.primaryForegroundColor
+                    colorization: 1.0
+                }
+            }
+        }
+
+        property color baseColor: Qt.rgba(0, 0, 0, 0.15)
+        readonly property color pressedColor: {
+            const darker = Qt.darker(baseColor, 1.3);
+            return Qt.rgba(darker.r, darker.g, darker.b, baseColor.a * 1.3);
+        }
+        background: Rectangle {
+            color: {
+                if (!control.enabled)
+                    return "gray";
+                if (control.pressed)
+                    return control.pressedColor;
+                if (control.hovered)
+                    return control.baseColor;
+                return "transparent";
+            }
+            Behavior on color {
+                ColorAnimation {
+                    duration: 100
+                }
+            }
+        }
     }
 }
