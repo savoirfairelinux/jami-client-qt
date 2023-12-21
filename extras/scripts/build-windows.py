@@ -274,7 +274,7 @@ def build(config_str, qt_dir, tests):
     # We need to update the minimum SDK version to be able to
     # build with system theme support
     cmake_options = [
-        "-DJAMICORE_AS_SUBDIR=ON",
+        "-DJAMICORE_AS_SUBDIR=OFF",
         "-DCMAKE_PREFIX_PATH=" + qt_dir,
         "-DCMAKE_MSVCIDE_RUN_PATH=" + qt_dir + "\\bin",
         "-DCMAKE_INSTALL_PREFIX=" + os.getcwd(),
