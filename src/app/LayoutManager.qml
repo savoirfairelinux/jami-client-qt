@@ -71,6 +71,9 @@ QtObject {
 
     // Save the window geometry and visibility settings.
     function saveWindowSettings() {
+        // TODO: adjust for QWK
+        return;
+
         // If closed-to-tray or minimized or fullscreen, save the cached windowedVisibility
         // value instead.
         if (isHidden || isFullScreen) {
