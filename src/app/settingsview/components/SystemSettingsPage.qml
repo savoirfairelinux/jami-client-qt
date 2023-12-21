@@ -108,13 +108,22 @@ SettingsPageBase {
             }
 
             ToggleSwitch {
-                id: applicationOnStartUpCheckBox
+                id: runOnStartUpCheckBox
                 Layout.fillWidth: true
 
                 checked: UtilsAdapter.checkStartupLink()
                 labelText: JamiStrings.runStartup
                 tooltipText: JamiStrings.tipRunStartup
                 onSwitchToggled: UtilsAdapter.setRunOnStartUp(checked)
+            }
+
+            ToggleSwitch {
+                id: useNativeWindowFrameCheckBox
+                Layout.fillWidth: true
+
+                checked: !UtilsAdapter.getAppValue(Settings.Key.UseFramelessWindow)
+                labelText: JamiStrings.useNativeWindowFrame
+                onSwitchToggled: UtilsAdapter.setAppValue(Settings.Key.UseFramelessWindow, !checked)
             }
 
             RowLayout {

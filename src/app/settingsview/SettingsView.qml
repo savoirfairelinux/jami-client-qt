@@ -56,7 +56,7 @@ ListSelectionView {
     splitViewStateKey: "Main"
     inhibits: ["ConversationView"]
 
-    leftPaneItem: viewCoordinator.getView("SettingsSidePanel")
+    leftPaneItem: viewCoordinator.getView("SettingsSidePanel", true)
 
     Component.onCompleted: {
         leftPaneItem.updateModel();
@@ -76,7 +76,7 @@ ListSelectionView {
         // Currently needed when changing the show link preview setting.
         CurrentConversation.reloadInteractions();
         if (UtilsAdapter.getAccountListSize() === 0) {
-            viewCoordinator.requestAppWindowWizardView();
+            viewCoordinator.present("WizardView");
         } else {
             AccountAdapter.changeAccount(0);
         }
@@ -85,8 +85,7 @@ ListSelectionView {
     property int selectedMenu: index
 
     rightPaneItem: StackView {
-        id: settingsView
-        objectName: "settingsView"
+        objectName: "SettingsLayout"
 
         property var currentIndex: selectedMenu !== -1 ? selectedMenu : 0
         anchors.fill: parent

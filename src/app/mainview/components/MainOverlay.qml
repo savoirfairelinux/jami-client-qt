@@ -127,9 +127,12 @@ Item {
         id: overlayUpperPartRect
 
         anchors.top: parent.top
-
-        width: parent.width
         height: 50
+        anchors.left: parent.left
+        anchors.right: parent.right
+        // QWK: spacing
+        anchors.leftMargin: qwkSystemButtonSpacing.left
+        anchors.rightMargin: qwkSystemButtonSpacing.right
 
         RowLayout {
             anchors.fill: parent
