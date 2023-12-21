@@ -1,0 +1,34 @@
+From ca2be6466c150d1b82a646d97b27df35b45d90f1 Mon Sep 17 00:00:00 2001
+From: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
+Date: Tue, 9 Jan 2024 15:25:19 -0500
+Subject: [PATCH] workaround right margin
+
+---
+ src/core/contexts/win32windowcontext.cpp | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+diff --git a/src/core/contexts/win32windowcontext.cpp b/src/core/contexts/win32windowcontext.cpp
+index 3f6623e..9ee7752 100644
+--- a/src/core/contexts/win32windowcontext.cpp
++++ b/src/core/contexts/win32windowcontext.cpp
+@@ -402,6 +402,17 @@ namespace QWK {
+                     return true;
+                 }
+             }
++
++#if !QWINDOWKIT_CONFIG(ENABLE_WINDOWS_SYSTEM_BORDERS)
++            if (msg->message == WM_MOVE || msg->message == WM_SIZE || msg->message == WM_IME_SETCONTEXT) {
++                // Workaround for a right-margin bug.
++                static const auto flags = SWP_FRAMECHANGED | SWP_NOMOVE |
++                                          SWP_NOSIZE | SWP_NOZORDER |
++                                          SWP_NOOWNERZORDER;
++                SetWindowPos(msg->hwnd, NULL, 0, 0, 0, 0, flags);
++            }
++#endif
++
+             return false;
+         }
+
+--
+2.7.4
+
