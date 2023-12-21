@@ -46,7 +46,17 @@ Rectangle {
         }
     }
 
-    property bool interactionButtonsVisibility: {
+    property bool addMemberVisibility: {
+        return swarmDetailsVisibility
+                && !CurrentConversation.isCoreDialog
+                && !CurrentConversation.isRequest;
+    }
+
+    property bool swarmDetailsVisibility: {
+        return CurrentConversation.isSwarm && !CurrentConversation.isRequest;
+    }
+
+    readonly property bool interactionButtonsVisibility: {
         if (CurrentConversation.inCall)
             return false;
         if (LRCInstance.currentAccountType === Profile.Type.SIP)
@@ -58,32 +68,27 @@ Rectangle {
         return true;
     }
 
-    property bool addMemberVisibility: {
-        return swarmDetailsVisibility
-                && !CurrentConversation.isCoreDialog
-                && !CurrentConversation.isRequest;
-    }
-
-    property bool swarmDetailsVisibility: {
-        return CurrentConversation.isSwarm && !CurrentConversation.isRequest;
-    }
-
     color: JamiTheme.chatviewBgColor
 
     RowLayout {
         id: messagingHeaderRectRowLayout
 
         anchors.fill: parent
-        anchors.rightMargin: 8
+        // QWK: spacing
+        anchors.rightMargin: 8 + systemButtonGroupLoader.spacing
+        anchors.leftMargin: {
+            if (Qt.platform.os.toString() === "osx" && viewCoordinator.isInSinglePaneMode)
+                return 80;
+            return 0;
+        }
         spacing: 16
 
-        JamiPushButton {
+        JamiPushButton { QWKSetParentHitTestVisible {}
             id: backToWelcomeViewButton
 
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
             Layout.leftMargin: 8
 
-            //preferredSize: 24
             mirror: UtilsAdapter.isRTL
 
             source: JamiResources.back_24dp_svg
@@ -106,10 +111,11 @@ Rectangle {
 
             color: JamiTheme.transparentColor
 
-            ColumnLayout {
+            ColumnLayout { QWKSetParentHitTestVisible {}
                 id: userNameOrIdColumnLayout
+                objectName: "userNameOrIdColumnLayout"
 
-                anchors.fill: parent
+                height: parent.height
 
                 spacing: 0
 
@@ -144,63 +150,30 @@ Rectangle {
             }
         }
 
-        Searchbar {
-            id: rowSearchBar
-
-            reductionEnabled: true
-
-            Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-            Layout.preferredHeight: 30
-            Layout.preferredWidth: 40 + (isOpen ? JamiTheme.searchbarSize : 0)
-            colorSearchBar: JamiTheme.backgroundColor
-
-            hoverButtonRadius: JamiTheme.chatViewHeaderButtonRadius
-
-            Behavior on Layout.preferredWidth  {
-                NumberAnimation {
-                    duration: 150
-                }
-            }
-
-            visible: root.swarmDetailsVisibility
-
-            onSearchBarTextChanged: function (text) {
-                MessagesAdapter.searchbarPrompt = text;
-            }
-
-            onSearchClicked: extrasPanel.switchToPanel(ChatView.MessagesResearchPanel)
-
-            Shortcut {
-                sequence: "Ctrl+Shift+F"
-                context: Qt.ApplicationShortcut
-                enabled: rowSearchBar.visible
-                onActivated: {
-                    rowSearchBar.openSearchBar();
-                }
-            }
-        }
-
-        JamiPushButton {
+        JamiPushButton { QWKSetParentHitTestVisible {}
             id: startAAudioCallButton
 
-            visible: interactionButtonsVisibility && (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
+            visible: interactionButtonsVisibility &&
+                     (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
             source: JamiResources.place_audiocall_24dp_svg
             toolTipText: JamiStrings.placeAudioCall
 
             onClicked: CallAdapter.placeAudioOnlyCall()
         }
 
-        JamiPushButton {
+        JamiPushButton { QWKSetParentHitTestVisible {}
             id: startAVideoCallButton
 
-            visible: CurrentAccount.videoEnabled_Video && interactionButtonsVisibility && (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
+            visible: interactionButtonsVisibility &&
+                     CurrentAccount.videoEnabled_Video &&
+                     (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
             source: JamiResources.videocam_24dp_svg
             toolTipText: JamiStrings.placeVideoCall
 
             onClicked: CallAdapter.placeCall()
         }
 
-        JamiPushButton {
+        JamiPushButton { QWKSetParentHitTestVisible {}
             id: addParticipantsButton
 
             checkable: true
@@ -212,7 +185,7 @@ Rectangle {
             onClicked: extrasPanel.switchToPanel(ChatView.AddMemberPanel)
         }
 
-        JamiPushButton {
+        JamiPushButton { QWKSetParentHitTestVisible {}
             id: selectPluginButton
 
             visible: PluginAdapter.chatHandlersListCount && interactionButtonsVisibility
@@ -222,7 +195,7 @@ Rectangle {
             onClicked: pluginSelector()
         }
 
-        JamiPushButton {
+        JamiPushButton { QWKSetParentHitTestVisible {}
             id: sendContactRequestButton
             objectName: "sendContactRequestButton"
 
@@ -230,16 +203,39 @@ Rectangle {
             source: JamiResources.add_people_24dp_svg
             toolTipText: JamiStrings.addToConversations
 
-            onClicked: CurrentConversation.isBanned ? MessagesAdapter.unbanConversation(CurrentConversation.id) : MessagesAdapter.sendConversationRequest()
+            onClicked: CurrentConversation.isBanned ?
+                           MessagesAdapter.unbanConversation(CurrentConversation.id) :
+                           MessagesAdapter.sendConversationRequest()
         }
 
-        JamiPushButton {
+        JamiPushButton { QWKSetParentHitTestVisible {}
+            id: searchMessagesButton
+            objectName: "searchMessagesButton"
+
+            checkable: true
+            checked: extrasPanel.isOpen(ChatView.MessagesResearchPanel)
+            visible: root.swarmDetailsVisibility
+            source:  JamiResources.ic_baseline_search_24dp_svg
+            toolTipText: JamiStrings.search
+
+            onClicked: extrasPanel.switchToPanel(ChatView.MessagesResearchPanel)
+
+            Shortcut {
+                sequence: "Ctrl+Shift+F"
+                context: Qt.ApplicationShortcut
+                enabled: parent.visible
+                onActivated: extrasPanel.switchToPanel(ChatView.MessagesResearchPanel)
+            }
+        }
+
+        JamiPushButton { QWKSetParentHitTestVisible {}
             id: detailsButton
             objectName: "detailsButton"
 
             checkable: true
             checked: extrasPanel.isOpen(ChatView.SwarmDetailsPanel)
-            visible: interactionButtonsVisibility && (swarmDetailsVisibility || LRCInstance.currentAccountType === Profile.Type.SIP) // TODO if SIP not a request
+            visible: interactionButtonsVisibility &&
+                     (swarmDetailsVisibility || LRCInstance.currentAccountType === Profile.Type.SIP) // TODO if SIP not a request
             source: JamiResources.swarm_details_panel_svg
             toolTipText: JamiStrings.details
 

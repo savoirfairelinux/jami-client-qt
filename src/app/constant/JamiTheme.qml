@@ -474,7 +474,6 @@ Item {
     // MessageWebView
     property real chatViewHairLineSize: 1
     property real chatViewMaximumWidth: 900
-    property real chatViewHeaderPreferredHeight: 50
     property real chatViewFooterPreferredHeight: 35
     property real chatViewFooterMaximumHeight: 315
     property real chatViewFooterRowSpacing: 4
@@ -710,4 +709,7 @@ Item {
     property color chatSettingButtonBackgroundColor: darkTheme ? "#303030" : "#F0EFEF"
     property color chatSettingButtonBorderColor: darkTheme ? "#03B9E9" : "#005699"
     property color chatSettingButtonTextColor: textColor
+
+    // QWK
+    property real qwkTitleBarHeight: 50
 }

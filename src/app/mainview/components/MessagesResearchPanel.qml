@@ -26,13 +26,33 @@ import net.jami.Constants 1.1
 import "../../commoncomponents"
 import "../../settingsview/components"
 
-Rectangle {
+Page {
     id: root
 
-    color: JamiTheme.chatviewBgColor
+    header: Item {
+        height: 45
+        Searchbar {
+            onVisibleChanged: {
+                if (visible) {
+                    clearText();
+                    forceActiveFocus();
+                }
+            }
+            anchors.fill: parent
+            anchors.margins: 5
+            onSearchBarTextChanged: function (text) {
+                MessagesAdapter.searchbarPrompt = text;
+            }
+        }
+    }
+
+    background: Rectangle {
+        color: JamiTheme.backgroundColor
+    }
 
     ColumnLayout {
         anchors.fill: parent
+        anchors.topMargin: 10
 
         TabBar {
             id: researchTabBar
@@ -88,7 +108,7 @@ Rectangle {
         Rectangle {
             id: view
 
-            color: JamiTheme.chatviewBgColor
+            color: JamiTheme.backgroundColor
             Layout.fillWidth: true
             Layout.fillHeight: true
 
