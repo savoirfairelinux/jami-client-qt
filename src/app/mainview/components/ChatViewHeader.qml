@@ -74,7 +74,7 @@ Rectangle {
         id: messagingHeaderRectRowLayout
 
         anchors.fill: parent
-        anchors.rightMargin: 8
+        anchors.rightMargin: 8 + systemButtonGroupLoader.spacing
         spacing: 16
 
         JamiPushButton {
@@ -83,7 +83,6 @@ Rectangle {
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
             Layout.leftMargin: 8
 
-            //preferredSize: 24
             mirror: UtilsAdapter.isRTL
 
             source: JamiResources.back_24dp_svg
