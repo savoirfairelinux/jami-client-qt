@@ -1,0 +1,34 @@
+From ca2be6466c150d1b82a646d97b27df35b45d90f1 Mon Sep 17 00:00:00 2001
+From: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
+Date: Tue, 9 Jan 2024 15:25:19 -0500
+Subject: [PATCH] workaround right margin
+
+---
+ src/core/contexts/win32windowcontext.cpp | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+diff --git a/src/core/contexts/win32windowcontext.cpp b/src/core/contexts/win32windowcontext.cpp
+index 3f6623e..9ee7752 100644
+--- a/src/core/contexts/win32windowcontext.cpp
++++ b/src/core/contexts/win32windowcontext.cpp
+@@ -402,6 +402,17 @@ namespace QWK {
+                     return true;
+                 }
+             }
++
++#if !QWINDOWKIT_CONFIG(ENABLE_WINDOWS_SYSTEM_BORDERS)
++            if (msg->message == WM_MOVE) {
++                // Workaround for a bug where moving the window causes a black border to appear on the
++                // right side of the window until the window is resized. Not sure why absorbing this message
++                // fixes it, but it seems to. Note: only happens with ENABLE_WINDOWS_SYSTEM_BORDERS disabled
++                // and on Windows 10.
++                return true;
++            }
++#endif
++
+             return false;
+         }
+ 
+-- 
+2.7.4
+
