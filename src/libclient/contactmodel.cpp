@@ -23,6 +23,8 @@
 
 #include "api/contactmodel.h"
 
+#include <QThreadPool>
+
 // LRC
 #include "api/account.h"
 #include "api/contact.h"
@@ -120,6 +122,8 @@ public:
     std::mutex bannedContactsMtx_;
     QString searchStatus_ {};
     QMap<QString, QString> nonContactLookup_;
+
+    QThreadPool profileThreadPool;
 
 public Q_SLOTS:
     /**
@@ -607,6 +611,8 @@ ContactModelPimpl::ContactModelPimpl(const ContactModel& linked,
     , behaviorController(behaviorController)
     , callbacksHandler(callbacksHandler)
 {
+    profileThreadPool.setMaxThreadCount(8);
+
     // Init contacts map
     if (linked.owner.profileInfo.type == profile::Type::SIP)
         fillWithSIPContacts();
@@ -690,6 +696,7 @@ ContactModelPimpl::~ContactModelPimpl()
                &ConfigurationManagerInterface::userSearchEnded,
                this,
                &ContactModelPimpl::slotUserSearchEnded);
+    profileThreadPool.waitForDone();
 }
 
 bool
@@ -1196,42 +1203,44 @@ ContactModelPimpl::slotProfileReceived(const QString& accountId,
     if (accountId != linked.owner.id)
         return;
 
-    QFile vCardFile(path);
-    if (!vCardFile.open(QIODevice::ReadOnly | QIODevice::Text))
-        return;
-    QTextStream in(&vCardFile);
+    profileThreadPool.start([=] {
+        QFile vCardFile(path);
+        if (!vCardFile.open(QIODevice::ReadOnly | QIODevice::Text))
+            return;
+        QTextStream in(&vCardFile);
 
-    auto vCard = in.readAll();
+        auto vCard = in.readAll();
 
-    profile::Info profileInfo;
-    profileInfo.uri = peer;
-    profileInfo.type = profile::Type::JAMI;
+        profile::Info profileInfo;
+        profileInfo.uri = peer;
+        profileInfo.type = profile::Type::JAMI;
 
-    for (auto& e : QString(vCard).split("\n"))
-        if (e.contains("PHOTO"))
-            profileInfo.avatar = e.split(":")[1];
-        else if (e.contains("FN"))
-            profileInfo.alias = e.split(":")[1];
+        for (auto& e : QString(vCard).split("\n"))
+            if (e.contains("PHOTO"))
+                profileInfo.avatar = e.split(":")[1];
+            else if (e.contains("FN"))
+                profileInfo.alias = e.split(":")[1];
 
-    if (peer == linked.owner.profileInfo.uri) {
-        auto avatarChanged = profileInfo.avatar != linked.owner.profileInfo.avatar;
-        auto aliasChanged = profileInfo.alias != linked.owner.profileInfo.alias;
-        if (profileInfo.avatar.isEmpty())
-            return; // In this case, probably a new device without avatar.
-        // Only save the new profile once
-        if (aliasChanged)
-            linked.owner.accountModel->setAlias(linked.owner.id, profileInfo.alias, !avatarChanged);
-        if (avatarChanged)
-            linked.owner.accountModel->setAvatar(linked.owner.id, profileInfo.avatar, true);
-        return;
-    }
-    vCardFile.remove();
+        if (peer == linked.owner.profileInfo.uri) {
+            auto avatarChanged = profileInfo.avatar != linked.owner.profileInfo.avatar;
+            auto aliasChanged = profileInfo.alias != linked.owner.profileInfo.alias;
+            if (profileInfo.avatar.isEmpty())
+                return; // In this case, probably a new device without avatar.
+            // Only save the new profile once
+            if (aliasChanged)
+                linked.owner.accountModel->setAlias(linked.owner.id, profileInfo.alias, !avatarChanged);
+            if (avatarChanged)
+                linked.owner.accountModel->setAvatar(linked.owner.id, profileInfo.avatar, true);
+            return;
+        }
+        vCardFile.remove();
 
-    contact::Info contactInfo;
-    contactInfo.profileInfo = profileInfo;
+        contact::Info contactInfo;
+        contactInfo.profileInfo = profileInfo;
 
-    linked.owner.contactModel->addContact(contactInfo);
-    contactInfo.profileInfo.avatar.clear(); // Do not store after update
+        linked.owner.contactModel->addContact(contactInfo);
+        contactInfo.profileInfo.avatar.clear(); // Do not store after update
+    });
 }
 
 void
