@@ -66,7 +66,8 @@ extern const QString defaultDownloadPath;
     X(ChatViewEnterIsNewLine, false) \
     X(ShowSendOption, false) \
     X(EnablePtt, false) \
-    X(PttKeys, 32)
+    X(PttKeys, 32) \
+    X(UseFramelessWindow, true)
 #ifdef APPSTORE
 #define KEYS COMMON_KEYS
 #else
