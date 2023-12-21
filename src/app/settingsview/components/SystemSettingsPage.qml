@@ -108,7 +108,7 @@ SettingsPageBase {
             }
 
             ToggleSwitch {
-                id: applicationOnStartUpCheckBox
+                id: runOnStartUpCheckBox
                 Layout.fillWidth: true
 
                 checked: UtilsAdapter.checkStartupLink()

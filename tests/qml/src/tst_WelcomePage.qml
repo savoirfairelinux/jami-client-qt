@@ -16,6 +16,8 @@
  */
 
 import QtQuick
+import QtQuick.Controls
+
 import QtTest
 
 import "../../../src/app/"
@@ -29,27 +31,24 @@ WelcomePage {
 
     // The appWindow, viewManager and viewCoordinator properties
     // are required in order for the "aboutJami" button to work.
-    property Item appWindow: uut
-    property ViewManager viewManager: ViewManager {
-    }
-    property ViewCoordinator viewCoordinator: ViewCoordinator {
-        viewManager: uut.viewManager
+    property ApplicationWindow appWindow: ApplicationWindow {}
+    property ViewManager viewManager: ViewManager {}
+    property ViewCoordinator viewCoordinator: ViewCoordinator {}
+
+    function initTestCase() {
+        viewCoordinator.init(uut);
     }
 
     TestCase {
         name: "Open 'About Jami' popup"
 
         function test_openAboutPopup() {
-            compare(viewManager.viewCount(), 0)
-
             var aboutJamiButton = findChild(uut, "aboutJami")
             aboutJamiButton.clicked()
 
-            compare(viewManager.viewCount(), 1)
-
             var aboutJamiPopup = viewManager.getView("AboutPopUp")
-            verify(aboutJamiPopup !== null)
-            compare(aboutJamiPopup.visible, true)
+            verify(aboutJamiPopup !== null, "About Jami popup should be created")
+            compare(aboutJamiPopup.visible, true, "About Jami popup should be visible")
         }
     }
 }

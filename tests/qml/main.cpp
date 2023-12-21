@@ -90,7 +90,7 @@ public Q_SLOTS:
 
         // Create 2 Account
         QSignalSpy accountStatusChangedSpy(&lrcInstance_->accountModel(),
-                                        &AccountModel::accountStatusChanged);
+                                           &AccountModel::accountStatusChanged);
 
         QSignalSpy accountAddedSpy(&lrcInstance_->accountModel(), &AccountModel::accountAdded);
         aliceId = lrcInstance_->accountModel().createNewAccount(profile::Type::JAMI, "Alice");
