@@ -55,10 +55,7 @@ BaseView {
 
         function onCloseWizardView() {
             root.dismiss();
-            viewCoordinator.preload("SidePanel");
-            viewCoordinator.preload("SettingsSidePanel");
             viewCoordinator.present("WelcomePage");
-            viewCoordinator.preload("ConversationView");
         }
     }
 
