@@ -32,11 +32,8 @@ OngoingCallPage {
     height: 600
 
     property QtObject appWindow
-    property ViewManager viewManager: ViewManager {
-    }
-    property ViewCoordinator viewCoordinator: ViewCoordinator {
-        viewManager: uut.viewManager
-    }
+    property ViewManager viewManager: ViewManager {}
+    property ViewCoordinator viewCoordinator: ViewCoordinator {}
 
     TestCase {
         name: "Check basic visibility of action bar during a call"

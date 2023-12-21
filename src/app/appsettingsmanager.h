@@ -33,6 +33,14 @@
 extern const QString defaultDownloadPath;
 
 // clang-format off
+
+// Define USE_FRAMELESS_WINDOW_DEFAULT based on the platform
+#ifdef Q_OS_LINUX
+#define USE_FRAMELESS_WINDOW_DEFAULT false
+#else
+#define USE_FRAMELESS_WINDOW_DEFAULT true
+#endif
+
 // Common key-value pairs for both APPSTORE and non-APPSTORE builds
 #define COMMON_KEYS \
     X(MinimizeOnClose, false) \
@@ -66,7 +74,8 @@ extern const QString defaultDownloadPath;
     X(ChatViewEnterIsNewLine, false) \
     X(ShowSendOption, false) \
     X(EnablePtt, false) \
-    X(PttKeys, 32)
+    X(PttKeys, 32) \
+    X(UseFramelessWindow, USE_FRAMELESS_WINDOW_DEFAULT)
 #ifdef APPSTORE
 #define KEYS COMMON_KEYS
 #else

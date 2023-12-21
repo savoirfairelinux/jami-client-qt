@@ -45,9 +45,11 @@ ListSelectionView {
 
     color: JamiTheme.transparentColor
 
-    leftPaneItem: viewCoordinator.getView("SidePanel")
+    leftPaneItem: viewCoordinator.getView("SidePanel", true)
 
     rightPaneItem: StackLayout {
+        objectName: "ConversationLayout"
+
         currentIndex: !CurrentConversation.hasCall ? 0 : 1
         onCurrentIndexChanged: chatView.parent = currentIndex === 1 ? callStackView.chatViewContainer : chatViewContainer
 

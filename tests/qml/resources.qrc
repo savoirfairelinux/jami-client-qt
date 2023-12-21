@@ -3,8 +3,22 @@
         <file>src/tst_WizardView.qml</file>
         <file>src/tst_NewSwarmPage.qml</file>
         <file>src/tst_MessageOptions.qml</file>
+        <file>src/tst_OngoingCallPage.qml</file>
+        <file>src/tst_MainView.qml</file>
+        <file>src/tst_MaterialTextEdit.qml</file>
+        <file>src/tst_ChatView.qml</file>
+        <file>src/tst_ChatViewFooter.qml</file>
+        <file>src/tst_CachedImage.qml</file>
+        <file>src/tst_CallMessageDelegate.qml</file>
+        <file>src/tst_DataTransferMessageDelegate.qml</file>
+        <file>src/tst_FilesToSendContainer.qml</file>
+        <file>src/tst_PresenceIndicator.qml</file>
+        <file>src/tst_RecordBox.qml</file>
+        <file>src/tst_SettingsSidePanel.qml</file>
+        <file>src/tst_WelcomePage.qml</file>
         <file>src/resources/gif_test.gif</file>
         <file>src/resources/gz_test.gz</file>
         <file>src/resources/png_test.png</file>
+        <file>src/TestWrapper.qml</file>
     </qresource>
 </RCC>
