@@ -1,0 +1,24 @@
+From 4033391112c89c0752f0daeb655c19adda2c3ad6 Mon Sep 17 00:00:00 2001
+From: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
+Date: Mon, 8 Jan 2024 15:33:06 -0500
+Subject: [PATCH] QWindowKit annotation
+
+---
+ src/quick/qwkquickglobal.cpp | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/quick/qwkquickglobal.cpp b/src/quick/qwkquickglobal.cpp
+index 1af2943..33f437f 100644
+--- a/src/quick/qwkquickglobal.cpp
++++ b/src/quick/qwkquickglobal.cpp
+@@ -21,6 +21,7 @@ namespace QWK {
+         }
+         once = true;
+ 
++        // @uri QWindowKit
+         qmlRegisterType<QuickWindowAgent>(kModuleUri, 1, 0, "WindowAgent");
+         qmlRegisterModule(kModuleUri, 1, 0);
+     }
+-- 
+2.34.1
+

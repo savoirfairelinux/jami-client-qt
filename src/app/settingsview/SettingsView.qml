@@ -75,7 +75,7 @@ ListSelectionView {
         // Currently needed when changing the show link preview setting.
         CurrentConversation.reloadInteractions();
         if (UtilsAdapter.getAccountListSize() === 0) {
-            viewCoordinator.requestAppWindowWizardView();
+            viewCoordinator.present("WizardView");
         } else {
             AccountAdapter.changeAccount(0);
         }

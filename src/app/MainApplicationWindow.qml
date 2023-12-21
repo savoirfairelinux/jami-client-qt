@@ -24,15 +24,19 @@ import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
+
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 import net.jami.Helpers 1.1
 import net.jami.Constants 1.1
+
 import "mainview"
 import "mainview/components"
 import "wizardview"
 import "commoncomponents"
+
+import QWindowKit
 
 ApplicationWindow {
     id: root
@@ -89,6 +93,7 @@ ApplicationWindow {
     }
 
     property ApplicationWindow appWindow: root
+    property WindowAgent appWindowAgent: windowAgent
     property LayoutManager layoutManager: LayoutManager {
         appContainer: appContainer
     }
@@ -342,8 +347,58 @@ ApplicationWindow {
     onClosing: root.close()
 
     Component.onCompleted: {
+        // print("SettingsView: Component.onCompleted");
+        // windowAgent.setup(root);
+        // viewManager.createUniqueView("qrc:/commoncomponents/QWKTitleBar.qml",
+        //                              this,
+        //                              function (titleBar) {
+        //                                  windowAgent.setTitleBar(titleBar);
+        //                              },
+        //                              {});
+
         startClient();
         if (Qt.platform.os.toString() !== "windows" && Qt.platform.os.toString() !== "osx")
             DBusErrorHandler.setActive(true);
     }
+
+    WindowAgent {
+        id: windowAgent
+    }
+
+    // Use a loader to load the window controls.
+    // Loader {
+    //     id: windowControlsLoader
+
+    //     active: Qt.platform.os.toString() !== "osx"
+    //     anchors {
+    //         top: parent.top
+    //         right: parent.right
+
+    //         // Note: these margins prevent image scaling artifacts.
+    //         topMargin: 1
+    //         rightMargin: 1
+    //     }
+
+    //     onLoaded: {
+    //         var windowControls = windowControlsLoader.item;
+    //         print("Loaded window controls: " + windowControls);
+    //         //windowAgent.setTitleBar(windowControls);
+    //         //windowAgent.setup(root);
+    //     }
+
+    //     source: "qrc:/commoncomponents/QWKTitleBar.qml"
+    // }
+
+    // QWKTitleBar {
+    //     id: titleBar
+
+    //     anchors {
+    //         top: parent.top
+    //         right: parent.right
+
+    //         // Note: these margins prevent image scaling artifacts.
+    //         topMargin: 1
+    //         rightMargin: 1
+    //     }
+    // }
 }
