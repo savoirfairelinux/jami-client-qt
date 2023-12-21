@@ -477,6 +477,7 @@ Item {
     property string enableNotifications: qsTr("Enable notifications")
     property string showNotifications: qsTr("Show notifications")
     property string keepMinimized: qsTr("Minimize on close")
+    property string useNativeWindowFrame: qsTr("Use native window frame (requires restart)")
     property string tipRunStartup: qsTr("Run at system startup")
     property string runStartup: qsTr("Launch at startup")
     property string downloadFolder: qsTr("Choose download directory")

@@ -26,23 +26,11 @@ Rectangle {
 
     signal searchBarTextChanged(string text)
     signal returnPressedWhileSearching
-    signal searchClicked
 
-    property bool reductionEnabled: false
     property alias textContent: textArea.text
     property alias placeHolderText: textArea.placeholderText
-
     property real hoverButtonRadius: JamiTheme.chatViewHeaderButtonRadius
-
-    property var colorSearchBar: JamiTheme.secondaryBackgroundColor
-
     property string currentConversationId: CurrentConversation.id
-
-    property bool isOpen: reductionEnabled ? extrasPanel.isOpen(ChatView.MessagesResearchPanel) : true
-    onIsOpenChanged: {
-        if (isOpen)
-            textArea.forceActiveFocus();
-    }
 
     function clearText() {
         textArea.clear();
@@ -50,7 +38,7 @@ Rectangle {
     }
 
     radius: JamiTheme.primaryRadius
-    color: isOpen ? colorSearchBar : "transparent"
+    color: JamiTheme.secondaryBackgroundColor
 
     onFocusChanged: {
         if (focus) {
@@ -64,32 +52,13 @@ Rectangle {
         lineEditObj: textArea
     }
 
-    PushButton {
+    ResponsiveImage {
         id: startSearch
 
         anchors.verticalCenter: root.verticalCenter
         anchors.left: root.left
         anchors.leftMargin: 10
-        hoverEnabled: reductionEnabled
-        enabled: reductionEnabled
-        radius: hoverButtonRadius
-        hoveredColor: JamiTheme.hoveredButtonColor
         source: JamiResources.ic_baseline_search_24dp_svg
-        toolTipText: JamiStrings.search
-        normalColor: JamiTheme.primaryBackgroundColor
-        imageColor: {
-            if (reductionEnabled) {
-                if (hovered) {
-                    JamiTheme.chatviewButtonColor;
-                } else {
-                    JamiTheme.chatViewFooterImgColor;
-                }
-            } else {
-                JamiTheme.chatviewButtonColor;
-            }
-        }
-
-        onClicked: root.searchClicked()
     }
 
     Rectangle {
@@ -100,21 +69,7 @@ Rectangle {
         anchors.right: root.right
         anchors.verticalCenter: root.verticalCenter
         color: "transparent"
-
-        opacity: isOpen
-        visible: opacity
-        Behavior on opacity  {
-            NumberAnimation {
-                duration: 150
-            }
-        }
-
-        width: isOpen ? JamiTheme.searchbarSize : 0
-        Behavior on width  {
-            NumberAnimation {
-                duration: 150
-            }
-        }
+        width: JamiTheme.searchbarSize
 
         TextField {
             id: textArea
