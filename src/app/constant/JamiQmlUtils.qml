@@ -24,9 +24,6 @@ import net.jami.Enums 1.1
 
 Item {
     property string qmlFilePrefix: "file:/"
-
-    readonly property string mainViewLoadPath: "qrc:/mainview/MainView.qml"
-    readonly property string wizardViewLoadPath: "qrc:/wizardview/WizardView.qml"
     readonly property string base64StringTitle: "data:image/png;base64,"
 
     property var accountCreationInputParaObject: ({})

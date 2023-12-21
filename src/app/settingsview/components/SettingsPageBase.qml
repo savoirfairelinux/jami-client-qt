@@ -25,11 +25,13 @@ import "../../commoncomponents"
 
 JamiSplitView {
     id: root
+
     required property Item flickableContent
     property real contentFlickableWidth: Math.min(JamiTheme.maximumWidthSettingsView, settingsPage.width - 2 * JamiTheme.preferredSettingsMarginSize)
     property alias title: settingsPage.title
     property color backgroundColor: JamiTheme.secondaryBackgroundColor
     property alias pageContainer: settingsPage
+
     Page {
         id: settingsPage
         SplitView.maximumWidth: root.width
