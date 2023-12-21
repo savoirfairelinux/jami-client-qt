@@ -21,7 +21,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301 USA.
 
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.19)
 
 if(APPLE)
   project(Jami)
@@ -75,6 +75,37 @@ if(NOT MSVC)
   set(CMAKE_CXX_FLAGS_DEBUG "-Og -ggdb")
 endif()
 
+include(${PROJECT_SOURCE_DIR}/extras/build/cmake/contrib_tools.cmake)
+set(EXTRA_PATCHES_DIR ${PROJECT_SOURCE_DIR}/extras/patches)
+
+list(APPEND QWINDOWKIT_OPTIONS
+  QWINDOWKIT_BUILD_WIDGETS OFF
+  QWINDOWKIT_INSTALL OFF
+  QWINDOWKIT_BUILD_STATIC ON
+)
+
+if(WIN32)
+  list(APPEND QWINDOWKIT_PATCHES ${EXTRA_PATCHES_DIR}/0002-workaround-right-margin.patch)
+  list(APPEND QWINDOWKIT_OPTIONS QWINDOWKIT_ENABLE_WINDOWS_SYSTEM_BORDERS OFF)
+endif()
+
+# qmsetup uses the wrong package dir on Fedora at least.
+check_redhat_based(IS_REDHAT_BASED)
+if(IS_REDHAT_BASED)
+  list(APPEND QWINDOWKIT_PATCHES ${EXTRA_PATCHES_DIR}/0001-fix-fedora-fc-build.patch)
+  set(qmsetup_cmake_path ${CMAKE_BINARY_DIR}/_install/lib64/cmake/qmsetup)
+endif()
+
+# qwindowkit (frameless window)
+add_fetch_content(
+  TARGET qwindowkit
+  URL https://github.com/stdware/qwindowkit.git
+  BRANCH 79b1f3110754f9c21af2d7dacbd07b1a9dbaf6ef
+  PATCHES ${QWINDOWKIT_PATCHES}
+  OPTIONS ${QWINDOWKIT_OPTIONS}
+)
+
+list(APPEND CLIENT_LIBS QWindowKit::Quick)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -102,7 +133,7 @@ if(QT6_VER AND QT6_PATH)
   find_package(QT NAMES Qt6 REQUIRED
     PATHS ${QT6_PATH} NO_DEFAULT_PATH)
 else()
-  message(STATUS "Looking for Qt 6" ${CMAKE_PREFIX_PATH})
+  message(STATUS "Looking for Qt 6 in ${CMAKE_PREFIX_PATH}")
   find_package(QT NAMES Qt6 REQUIRED)
 endif()
 if (${QT_VERSION_MINOR} GREATER_EQUAL ${QT6_MINVER_MINOR})
