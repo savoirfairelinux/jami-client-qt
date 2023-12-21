@@ -27,3 +27,7 @@
 	path = 3rdparty/tidy-html5
 	url = https://github.com/htacg/tidy-html5.git
 	ignore = dirty
+[submodule "3rdparty/qwindowkit"]
+	path = 3rdparty/qwindowkit
+	url = https://github.com/stdware/qwindowkit.git
+	branch = main

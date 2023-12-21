@@ -75,6 +75,25 @@ if(NOT MSVC)
   set(CMAKE_CXX_FLAGS_DEBUG "-Og -ggdb")
 endif()
 
+set(QWINDOWKIT_BUILD_WIDGETS OFF CACHE BOOL "Don't build qwindowkit widgets" FORCE)
+set(QWINDOWKIT_BUILD_STATIC ON CACHE BOOL "Build qwindowkit static library" FORCE)
+# https://github.com/stdware/qwindowkit?tab=readme-ov-file#integrate
+# If you don't want the system borders on Windows 10/11, you can disable this option.
+# If so, the Windows 10 top border issue will disappear. However, part of the client edge
+# area will be occupied as the resizing margins.
+if (WIN32)
+  set(QWINDOWKIT_ENABLE_WINDOWS_SYSTEM_BORDERS OFF CACHE BOOL "Disable windows system borders" FORCE)
+endif()
+
+add_subdirectory(3rdparty/qwindowkit)
+list(APPEND CLIENT_LIBS QWindowKit::Quick)
+# TODO: Add the QML_IMPORT_PATH for QWindowKit
+list(APPEND EXTRA_QML_IMPORT_PATH
+    ${CMAKE_CURRENT_LIST_DIR}/build/3rdparty/qwindowkit/include/QWKQuick/
+    ${CMAKE_CURRENT_LIST_DIR}/build/3rdparty/qwindowkit/include/QWKCore/
+)
+set(QML_IMPORT_PATH ${QML_IMPORT_PATH} ${EXTRA_QML_IMPORT_PATH}
+    CACHE STRING "Qt Creator extra qml import paths" FORCE)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
