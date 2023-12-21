@@ -24,29 +24,29 @@ import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
+
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 import net.jami.Helpers 1.1
 import net.jami.Constants 1.1
+
 import "mainview"
 import "mainview/components"
 import "wizardview"
 import "commoncomponents"
 
+import QWindowKit
+
 ApplicationWindow {
-    id: root
+    id: appWindow
 
     property bool isRTL: UtilsAdapter.isRTL
 
     LayoutMirroring.enabled: isRTL
     LayoutMirroring.childrenInherit: isRTL
 
-    enum LoadedSource {
-        MainView,
-        AccountMigrationView,
-        None
-    }
+    property bool useFrameLess: true
 
     onActiveFocusItemChanged: {
         focusOverlay.margin = -5;
@@ -70,7 +70,7 @@ ApplicationWindow {
         sourceComponent: GenericErrorsRow {
             id: genericError
             text: CurrentAccount.enabled ? JamiStrings.noNetworkConnectivity : JamiStrings.disabledAccount
-            height: visible? JamiTheme.chatViewHeaderPreferredHeight : 0
+            height: visible? JamiTheme.qwkTitleBarHeight : 0
         }
     }
 
@@ -88,36 +88,29 @@ ApplicationWindow {
         border.color: JamiTheme.tintedBlue
     }
 
-    property ApplicationWindow appWindow: root
-    property LayoutManager layoutManager: LayoutManager {
-        appContainer: appContainer
-    }
-    property ViewManager viewManager: ViewManager {
-    }
-    property ViewCoordinator viewCoordinator: ViewCoordinator {
-        viewManager: root.viewManager
+    // Used to manage full screen mode and save/restore window geometry.
+    LayoutManager {
+        id: layoutManager
     }
 
+    // Used to manage dynamic view loading and unloading.
+    ViewManager {
+        id: viewManager
+    }
+
+    // Used to manage the view stack and the current view.
+    ViewCoordinator {
+        id: viewCoordinator
+    }
+
+    // Used to prevent the window from being visible until the
+    // window geometry has been restored and the view stack has
+    // been loaded.
     property bool windowSettingsLoaded: false
+
+    // This setting can be used to block a loading Jami instance
+    // from showNormal() and showMaximized() when starting minimized.
     property bool allowVisibleWindow: true
-
-    function checkLoadedSource() {
-        var sourceString = mainApplicationLoader.source.toString();
-        if (sourceString === JamiQmlUtils.mainViewLoadPath)
-            return MainApplicationWindow.LoadedSource.MainView;
-        return MainApplicationWindow.LoadedSource.None;
-    }
-
-    function startClient() {
-        setMainLoaderSource(JamiQmlUtils.mainViewLoadPath);
-    }
-
-    function setMainLoaderSource(source) {
-        if (checkLoadedSource() === MainApplicationWindow.LoadedSource.MainView) {
-            cleanupMainView();
-        }
-        mainApplicationLoader.setSource(source);
-    }
 
     function cleanupMainView() {
         // Save the main view window size if loading anything else.
@@ -139,86 +132,126 @@ ApplicationWindow {
 
     title: JamiStrings.appTitle
 
-    visible: mainApplicationLoader.status === Loader.Ready && windowSettingsLoaded && allowVisibleWindow
+    visible: windowSettingsLoaded && allowVisibleWindow
 
-    // To facilitate reparenting of the callview during
-    // fullscreen mode, we need QQuickItem based object.
+    Connections {
+        id: connectionMigrationEnded
+
+        target: CurrentAccountToMigrate
+
+        function onAccountNeedsMigration(accountId) {
+            viewCoordinator.present("AccountMigrationView");
+        }
+
+        function onAllMigrationsFinished() {
+            viewCoordinator.dismiss("AccountMigrationView");
+            viewCoordinator.present("WelcomePage");
+        }
+    }
+
+    Component.onCompleted: {
+        // Main window, load any valid app settings, and allow the
+        // layoutManager to handle as much as possible.
+        layoutManager.restoreWindowSettings();
+
+        if (useFrameLess) {
+            // QWK: setup
+            windowAgent.setup(appWindow);
+            windowAgent.setTitleBar(titleBar);
+            // Now register the system buttons (will only happen if not on macOS).
+            if (systemButtonGroupLoader.item) {
+                const sysBtns = systemButtonGroupLoader.item;
+                windowAgent.setSystemButton(WindowAgent.Minimize, sysBtns.minButton);
+                windowAgent.setSystemButton(WindowAgent.Maximize, sysBtns.maxButton);
+                windowAgent.setSystemButton(WindowAgent.Close, sysBtns.closeButton);
+            }
+        }
+
+        // Set the viewCoordinator's root item.
+        viewCoordinator.init(mainView);
+
+        // Navigate to something.
+        if (UtilsAdapter.getAccountListSize() > 0) {
+            // Already have an account.
+            if (CurrentAccountToMigrate.accountToMigrateListSize > 0)
+                // Do we need to migrate any accounts?
+                viewCoordinator.present("AccountMigrationView");
+            else
+                // Okay now just start the client normally.
+                viewCoordinator.present("WelcomePage");
+        } else {
+            // No account, so start the wizard.
+            viewCoordinator.present("WizardView");
+        }
+
+        // Set up the event filter for macOS.
+        if (Qt.platform.os.toString() === "osx") {
+            MainApplication.setEventFilter();
+        }
+
+        // Quiet check for updates on start if set to.
+        if (Qt.platform.os.toString() === "windows") {
+            if (UtilsAdapter.getAppValue(Settings.AutoUpdate)) {
+                AppVersionManager.checkForUpdates(true);
+                AppVersionManager.setAutoUpdateCheck(true);
+            }
+        }
+
+        // Handle a start URI if set as start option.
+        MainApplication.handleUriAction();
+
+        // Dbus error handler for Linux.
+        if (Qt.platform.os.toString() !== "windows" && Qt.platform.os.toString() !== "osx")
+            DBusErrorHandler.setActive(true);
+
+        // This will allow visible to become true if not starting minimized.
+        windowSettingsLoaded = true;
+    }
+
+    // QWK: Window Title bar
     Item {
-        id: appContainer
+        id: titleBar
+        height: JamiTheme.qwkTitleBarHeight
+        readonly property var vInfo: JSON.parse(viewCoordinator.currentViewInfo)
+        anchors {
+            top: parent.top
+            right: parent.right
+            left: parent.left
+        }
+    }
 
+    MainView {
+        id: mainView
+        objectName: "MainView"
         anchors.fill: parent
     }
 
+    // QWK: On Windows and Linux, use custom system buttons.
     Loader {
-        id: mainApplicationLoader
+        id: systemButtonGroupLoader
+        readonly property real spacing: {
+            width + (Qt.platform.os.toString() !== "osx" ? 24 : 0)
+        }
+        active: Qt.platform.os.toString() !== "osx" && useFrameLess
+        anchors {
+            top: parent.top
+            right: parent.right
+            // Note: leave these margins, they prevent image scaling artifacts
+            topMargin: 1
+            rightMargin: 1
+        }
+        source: "qrc:/commoncomponents/QWKSystemButtonGroup.qml"
+    }
 
+    // QWK: Main interop component.
+    WindowAgent {
+        id: windowAgent
+    }
+
+    // Use this as a parent for fullscreen items.
+    Item {
+        id: appContainer
         anchors.fill: parent
-        z: -1
-
-        asynchronous: true
-        visible: status == Loader.Ready
-
-        Connections {
-            id: connectionMigrationEnded
-
-            target: CurrentAccountToMigrate
-
-            function onAccountNeedsMigration(accountId) {
-                viewCoordinator.present("AccountMigrationView");
-            }
-
-            function onAllMigrationsFinished() {
-                viewCoordinator.dismiss("AccountMigrationView");
-                startClient();
-            }
-        }
-
-        // Set `visible = false` when loading a new QML file.
-        onSourceChanged: windowSettingsLoaded = false
-
-        onLoaded: {
-            if (UtilsAdapter.getAccountListSize() === 0) {
-                layoutManager.restoreWindowSettings();
-                if (!viewCoordinator.rootView)
-                    // Set the viewCoordinator's root item.
-                    viewCoordinator.init(item);
-                viewCoordinator.present("WizardView");
-            } else {
-                // Main window, load any valid app settings, and allow the
-                // layoutManager to handle as much as possible.
-                layoutManager.restoreWindowSettings();
-
-                // Present the welcome view once the viewCoordinator is setup.
-                viewCoordinator.initialized.connect(function () {
-                        viewCoordinator.preload("SidePanel");
-                        viewCoordinator.preload("SettingsSidePanel");
-                        viewCoordinator.present("WelcomePage");
-                        viewCoordinator.preload("ConversationView");
-                    });
-                if (!viewCoordinator.rootView)
-                    // Set the viewCoordinator's root item.
-                    viewCoordinator.init(item);
-                if (CurrentAccountToMigrate.accountToMigrateListSize > 0)
-                    viewCoordinator.present("AccountMigrationView");
-            }
-            if (Qt.platform.os.toString() === "osx") {
-                MainApplication.setEventFilter();
-            }
-
-            // This will trigger `visible = true`.
-            windowSettingsLoaded = true;
-
-            // Quiet check for updates on start if set to.
-            if (Qt.platform.os.toString() === "windows") {
-                if (UtilsAdapter.getAppValue(Settings.AutoUpdate)) {
-                    AppVersionManager.checkForUpdates(true);
-                    AppVersionManager.setAutoUpdateCheck(true);
-                }
-            }
-
-            // Handle a start URI if set as start option.
-            MainApplication.handleUriAction();
-        }
     }
 
     Connections {
@@ -339,11 +372,5 @@ ApplicationWindow {
         }
     }
 
-    onClosing: root.close()
-
-    Component.onCompleted: {
-        startClient();
-        if (Qt.platform.os.toString() !== "windows" && Qt.platform.os.toString() !== "osx")
-            DBusErrorHandler.setActive(true);
-    }
+    onClosing: appWindow.close()
 }

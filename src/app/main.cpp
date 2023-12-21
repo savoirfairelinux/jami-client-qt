@@ -43,6 +43,9 @@
 int
 main(int argc, char* argv[])
 {
+//    qputenv("QT_WIN_DEBUG_CONSOLE", "attach");
+//    qputenv("QSG_INFO", "1");
+
     setlocale(LC_ALL, "en_US.utf8");
 
 #ifdef Q_OS_LINUX

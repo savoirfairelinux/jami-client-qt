@@ -173,7 +173,7 @@ SidePanelBase {
             color: JamiTheme.backgroundColor
         }
 
-        header: AccountComboBox {
+        header: AccountComboBox { ParentHitTestVisible {}
             id: accountComboBox
             Shortcut {
                 sequence: "Ctrl+J"

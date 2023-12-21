@@ -39,10 +39,6 @@ Rectangle {
 
     objectName: "mainView"
 
-    // To calculate tab bar bottom border hidden rect left margin.
-    property int tabBarLeftMargin: 8
-    property int tabButtonShrinkSize: 8
-
     property string currentConvId: CurrentConversation.id
     onCurrentConvIdChanged: {
         if (currentConvId !== '') {
