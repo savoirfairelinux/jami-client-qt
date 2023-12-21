@@ -22,6 +22,30 @@
       },
       "revId": "a80c7e06c8e62cb1c06e88e7d3f6923db7fa1efd",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4f12778_58ff5a61",
+        "filename": "src/app/settingsview/components/PluginAvailableDelegate.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 993
+      },
+      "writtenOn": "2023-12-21T21:25:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c69b3c04_a0650fee",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 9
+      },
+      "revId": "a80c7e06c8e62cb1c06e88e7d3f6923db7fa1efd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
