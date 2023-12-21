@@ -108,7 +108,6 @@ private:
     void setApplicationFont();
     void initQmlLayer();
     void initSystray();
-    void cleanup();
 
 private:
     std::map<Option, QVariant> runOptions_;
@@ -123,6 +122,4 @@ private:
     AppSettingsManager* settingsManager_;
 
     ScreenInfo screenInfo_;
-
-    bool isCleanupped;
 };
