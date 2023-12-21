@@ -96,6 +96,9 @@ BaseModalDialog {
                 height: buttonSize
                 width: buttonSize
 
+                enabled: VideoDevices.listSize !== 0
+                hoverEnabled: enabled
+
                 normalColor: "transparent"
                 imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
                 toolTipText: JamiStrings.takePhoto

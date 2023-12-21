@@ -16,6 +16,8 @@
  */
 import QtQuick
 import net.jami.Constants 1.1
+import net.jami.Adapters 1.1
+
 import "contextmenu"
 
 BaseContextMenu {
@@ -42,6 +44,8 @@ BaseContextMenu {
             canTrigger: true
             iconSource: JamiResources.message_video_black_24dp_svg
             itemName: JamiStrings.leaveVideoMessage
+
+            isActif: VideoDevices.listSize !== 0
 
             onClicked: {
                 root.videoRecordMessageButtonClicked();
