@@ -133,6 +133,11 @@ Rectangle {
             Connections {
                 target: CurrentConversation
 
+                function onIdChanged() {
+                    if (!chatViewHeader.interactionButtonsVisibility)
+                       extrasPanel.closePanel()
+                }
+
                 function onNeedsHost() {
                     viewCoordinator.presentDialog(appWindow, "mainview/components/HostPopup.qml");
                 }
