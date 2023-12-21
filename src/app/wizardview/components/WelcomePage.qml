@@ -382,7 +382,7 @@ Rectangle {
         }
     }
 
-    JamiPushButton {
+    JamiPushButton { ParentHitTestVisible {}
         id: backButton
 
         objectName: "welcomePageBackButton"
