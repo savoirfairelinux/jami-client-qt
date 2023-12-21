@@ -396,7 +396,7 @@ Control {
                         anchors.left: root.bigMsg ? bubble.left : timestampItem.left
                         anchors.bottom: parent.bottom
                         anchors.bottomMargin: root.bigMsg || bubble.isDeleted ? 6 : 10
-                        anchors.leftMargin: root.bigMsg ? 10 : - timestampItem.width - 10
+                        anchors.leftMargin: root.bigMsg ? 10 : - timestampItem.width - 16
                         visible: bubble.isEdited
                         z: 1
 
