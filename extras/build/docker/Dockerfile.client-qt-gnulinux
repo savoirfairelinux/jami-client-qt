@@ -66,4 +66,9 @@ RUN apt-get install -y -o Acquire::Retries=10 \
         libssl-dev
 RUN apt-get install -y pandoc \
         googletest \
-        libgtest-dev
+        libgtest-dev \
+        wget
+
+# Install a recent version of CMake
+ADD extras/packaging/gnu-linux/scripts/install-cmake.sh /opt/install-cmake.sh
+RUN /opt/install-cmake.sh

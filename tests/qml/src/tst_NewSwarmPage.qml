@@ -39,9 +39,7 @@ ColumnLayout {
         id: uut
 
         property ViewManager viewManager: ViewManager {}
-        property ViewCoordinator viewCoordinator: ViewCoordinator {
-            viewManager: uut.viewManager
-        }
+        property ViewCoordinator viewCoordinator: ViewCoordinator {}
 
         Layout.alignment: Qt.AlignHCenter
         Layout.preferredWidth: root.width

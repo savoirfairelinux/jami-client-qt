@@ -41,9 +41,11 @@ DualPaneView {
     splitViewStateKey: "Main"
     inhibits: ["ConversationView"]
 
-    leftPaneItem: viewCoordinator.getView("SidePanel")
+    leftPaneItem: viewCoordinator.getView("SidePanel", true)
     rightPaneItem: Rectangle {
         id: root
+        objectName: "NewSwarmLayout"
+
         color: JamiTheme.chatviewBgColor
 
         anchors.fill: parent

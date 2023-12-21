@@ -172,6 +172,7 @@ Q_SIGNALS:
     void showExperimentalCallSwarm();
     void changeLanguage();
     void donationCampaignSettingsChanged();
+    void useFramelessWindowChanged();
 
 private:
     QClipboard* clipboard_;
