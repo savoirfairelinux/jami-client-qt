@@ -28,10 +28,6 @@ QtObject {
 
     signal initialized
 
-    function requestAppWindowWizardView() {
-        viewCoordinator.present("WizardView");
-    }
-
     // A map of view names to file paths for QML files that define each view.
     property variant resources: {
         "SidePanel": "mainview/components/SidePanel.qml",
@@ -47,7 +43,12 @@ QtObject {
     // The `main` view of the application window.
     property StackView rootView
 
-    property var currentViewName: rootView && rootView.currentItem && rootView.currentItem.objectName || null
+    property Item currentView: rootView && rootView.currentItem || null
+    onCurrentViewChanged: print("currentView changed to " + currentView)
+    property var currentViewName: currentView && currentView.objectName || null
+    onCurrentViewNameChanged: print("currentViewName changed to " + currentViewName)
+    property bool isDualPane: currentView && currentView instanceof DualPaneView
+    onIsDualPaneChanged: print("isDualPane changed to " + isDualPane)
 
     function init(mainStackView) {
         rootView = Qt.createQmlObject(`import QtQuick; import QtQuick.Controls

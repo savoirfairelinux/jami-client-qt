@@ -75,6 +75,58 @@ if(NOT MSVC)
   set(CMAKE_CXX_FLAGS_DEBUG "-Og -ggdb")
 endif()
 
+# Helper function to add external content with patches and options.
+function(add_fetch_content_with_patches target_name repo_url git_tag patch_files options)
+  include(FetchContent)
+
+  # Create a string for the patch command
+  set(patch_cmd "")
+  foreach(patch_file IN LISTS patch_files)
+    list(APPEND patch_cmd git apply ${patch_file})
+  endforeach()
+
+  message(STATUS "Patches for ${target_name}: ${patch_cmd}")
+
+  # Declare the external content
+  FetchContent_Declare(
+    ${target_name}
+    GIT_REPOSITORY ${repo_url}
+    GIT_TAG ${git_tag}
+    PATCH_COMMAND ${patch_cmd}
+    UPDATE_DISCONNECTED 1
+  )
+
+  # Apply options
+  foreach(option IN LISTS options)
+    set(${option} CACHE INTERNAL "")
+  endforeach()
+
+  # Make the content available
+  FetchContent_MakeAvailable(${target_name})
+endfunction()
+
+set(QWINDOWKIT_OPTIONS
+  QWINDOWKIT_BUILD_WIDGETS OFF
+  QWINDOWKIT_BUILD_STATIC ON
+)
+
+if(WIN32)
+  list(APPEND QWINDOWKIT_OPTIONS QWINDOWKIT_ENABLE_WINDOWS_SYSTEM_BORDERS OFF)
+  list(APPEND QWINDOWKIT_PATCHES
+    ${PROJECT_SOURCE_DIR}/extras/patches/0002-workaround-right-margin.patch
+  )
+endif()
+
+# qwindowkit (frameless window)
+add_fetch_content_with_patches(
+  qwindowkit
+  "https://github.com/stdware/qwindowkit.git"
+  main
+  "${QWINDOWKIT_PATCHES}"
+  "${QWINDOWKIT_OPTIONS}"
+)
+
+list(APPEND CLIENT_LIBS QWindowKit::Quick)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
