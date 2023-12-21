@@ -263,7 +263,13 @@ SidePanelBase {
 
         background: null
 
-        header: AccountComboBox {
+        header: AccountComboBox { QWKSetParentHitTestVisible {}
+            id: accountComboBox
+            Shortcut {
+                sequence: "Ctrl+J"
+                context: Qt.ApplicationShortcut
+                onActivated: accountComboBox.togglePopup()
+            }
         }
 
         ListView {
