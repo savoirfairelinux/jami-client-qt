@@ -30,10 +30,11 @@ WelcomePage {
     // The appWindow, viewManager and viewCoordinator properties
     // are required in order for the "aboutJami" button to work.
     property Item appWindow: uut
-    property ViewManager viewManager: ViewManager {
+    ViewManager {
+        id: viewManager
     }
-    property ViewCoordinator viewCoordinator: ViewCoordinator {
-        viewManager: uut.viewManager
+    ViewCoordinator {
+        id: viewCoordinator
     }
 
     TestCase {
