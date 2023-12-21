@@ -73,17 +73,26 @@ QtObject {
     function saveWindowSettings() {
         // If closed-to-tray or minimized or fullscreen, save the cached windowedVisibility
         // value instead.
-        if (isHidden || isFullScreen) {
-            AppSettingsManager.setValue(Settings.WindowState, priv.windowedVisibility)
-        } else {
-            AppSettingsManager.setValue(Settings.WindowState, visibility)
-        }
+        const visibilityToSave = isHidden || isFullScreen ? priv.windowedVisibility : visibility;
 
         // Likewise, don't save fullscreen geometry.
         const geometry = isFullScreen ?
                            priv.windowedGeometry :
                            Qt.rect(appWindow.x, appWindow.y,
-                                   appWindow.width, appWindow.height)
+                                   appWindow.width, appWindow.height);
+
+        // QWK: Account for the frameless window's offset.
+        if (appWindow.useFrameLess) {
+            if (Qt.platform.os.toString() !== "osx") {
+                // Add [7, 30, 0, 0] on Windows and GNU/Linux.
+                geometry.x += 7;
+                geometry.y += 30;
+            }
+        }
+
+        console.debug("Saving window: " + JSON.stringify(geometry) + " " + visibilityToSave);
+
+        AppSettingsManager.setValue(Settings.WindowState, visibilityToSave)
         AppSettingsManager.setValue(Settings.WindowGeometry, geometry)
     }
 
@@ -110,6 +119,8 @@ QtObject {
         // State.
         const visibilityStr = AppSettingsManager.getValue(Settings.WindowState)
         var visibilitySetting = parseInt(visibilityStr)
+
+        console.debug("Restoring window: " + JSON.stringify(geometry) + " " + visibilitySetting)
 
         // We should never restore a hidden or fullscreen state here. Default to normal
         // windowed state in such a case. This shouldn't happen.
