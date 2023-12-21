@@ -75,6 +75,37 @@ if(NOT MSVC)
   set(CMAKE_CXX_FLAGS_DEBUG "-Og -ggdb")
 endif()
 
+include(${PROJECT_SOURCE_DIR}/extras/build/cmake/contrib_tools.cmake)
+set(EXTRA_PATCHES_DIR ${PROJECT_SOURCE_DIR}/extras/patches)
+
+list(APPEND QWINDOWKIT_OPTIONS
+  QWINDOWKIT_BUILD_WIDGETS OFF
+  QWINDOWKIT_INSTALL OFF
+  QWINDOWKIT_BUILD_STATIC ON
+)
+
+if(WIN32)
+  list(APPEND QWINDOWKIT_PATCHES ${EXTRA_PATCHES_DIR}/0002-workaround-right-margin.patch)
+  list(APPEND QWINDOWKIT_OPTIONS QWINDOWKIT_ENABLE_WINDOWS_SYSTEM_BORDERS OFF)
+endif()
+
+# qmsetup uses the wrong package dir on Fedora at least.
+check_redhat_based(IS_REDHAT_BASED)
+if(IS_REDHAT_BASED)
+  list(APPEND QWINDOWKIT_PATCHES ${EXTRA_PATCHES_DIR}/0001-fix-fedora-fc-build.patch)
+  set(qmsetup_cmake_path ${CMAKE_BINARY_DIR}/_install/lib64/cmake/qmsetup)
+endif()
+
+# qwindowkit (frameless window)
+add_fetch_content(
+  TARGET qwindowkit
+  URL https://github.com/stdware/qwindowkit.git
+  BRANCH 79b1f3110754f9c21af2d7dacbd07b1a9dbaf6ef
+  PATCHES ${QWINDOWKIT_PATCHES}
+  OPTIONS ${QWINDOWKIT_OPTIONS}
+)
+
+list(APPEND CLIENT_LIBS QWindowKit::Quick)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
