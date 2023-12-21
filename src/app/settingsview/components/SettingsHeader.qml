@@ -29,7 +29,7 @@ RowLayout {
     signal backArrowClicked
     spacing: 10
 
-    BackButton {
+    BackButton { QWKSetParentHitTestVisible {}
         id: backToSettingsMenuButton
 
         Layout.preferredWidth: JamiTheme.preferredFieldHeight
