@@ -34,6 +34,8 @@ import "mainview/components"
 import "wizardview"
 import "commoncomponents"
 
+import QWindowKit
+
 ApplicationWindow {
     id: root
 
@@ -342,8 +344,117 @@ ApplicationWindow {
     onClosing: root.close()
 
     Component.onCompleted: {
+        windowAgent.setup(root);
         startClient();
         if (Qt.platform.os.toString() !== "windows" && Qt.platform.os.toString() !== "osx")
             DBusErrorHandler.setActive(true);
+    }
+
+    WindowAgent {
+        id: windowAgent
+    }
+
+    Rectangle {
+        id: titleBar
+        anchors {
+            top: parent.top
+            topMargin: 1
+            left: parent.left
+            right: parent.right
+        }
+        height: 32
+        color: "transparent"
+        Component.onCompleted: windowAgent.setTitleBar(titleBar)
+
+        Row {
+            anchors {
+                top: parent.top
+                right: parent.right
+            }
+            height: parent.height
+
+            component QWKButton : Button {
+                id: control
+                width: height * 1.5
+                leftPadding: 0
+                topPadding: 0
+                rightPadding: 0
+                bottomPadding: 0
+                leftInset: 0
+                topInset: 0
+                rightInset: 0
+                bottomInset: 0
+                property alias source: image.source
+                contentItem: Item {
+                    Image {
+                        id: image
+                        anchors.centerIn: parent
+                        mipmap: true
+                        width: 12
+                        height: 12
+                    }
+                }
+                background: Rectangle {
+                    color: {
+                        if (!control.enabled) {
+                            return "gray";
+                        }
+                        if (control.pressed) {
+                            return Qt.rgba(0, 0, 0, 0.15);
+                        }
+                        if (control.hovered) {
+                            return Qt.rgba(0, 0, 0, 0.15);
+                        }
+                        return "transparent";
+                    }
+                }
+            }
+
+            QWKButton {
+                id: minButton
+                height: parent.height
+                source: JamiResources.arrow_drop_down_24dp_svg
+                onClicked: root.showMinimized()
+                Component.onCompleted: windowAgent.setSystemButton(WindowAgent.Minimize, minButton)
+            }
+
+            QWKButton {
+                id: maxButton
+                height: parent.height
+                source: root.visibility === Window.Maximized ?
+                            JamiResources.arrow_drop_down_24dp_svg :
+                            JamiResources.baseline_desktop_windows_24dp_svg
+                onClicked: {
+                    if (root.visibility === Window.Maximized) {
+                        root.showNormal()
+                    } else {
+                        root.showMaximized()
+                    }
+                }
+                Component.onCompleted: windowAgent.setSystemButton(WindowAgent.Maximize, maxButton)
+            }
+
+            QWKButton {
+                id: closeButton
+                height: parent.height
+                source: JamiResources.close_black_24dp_svg
+                background: Rectangle {
+                    color: {
+                        if (!closeButton.enabled) {
+                            return "gray";
+                        }
+                        if (closeButton.pressed) {
+                            return "#e81123";
+                        }
+                        if (closeButton.hovered) {
+                            return "#e81123";
+                        }
+                        return "transparent";
+                    }
+                }
+                onClicked: root.close()
+                Component.onCompleted: windowAgent.setSystemButton(WindowAgent.Close, closeButton)
+            }
+        }
     }
 }

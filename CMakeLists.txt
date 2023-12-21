@@ -75,6 +75,8 @@ if(NOT MSVC)
   set(CMAKE_CXX_FLAGS_DEBUG "-Og -ggdb")
 endif()
 
+add_subdirectory(3rdparty/qwindowkit)
+list(APPEND CLIENT_LIBS QWindowKit::Quick)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)

@@ -27,6 +27,8 @@
 #include "systemtray.h"
 #include "videoprovider.h"
 
+#include <QWKQuick/qwkquickglobal.h>
+
 #include <QAction>
 #include <QCommandLineParser>
 #include <QCoreApplication>
@@ -130,6 +132,8 @@ MainApplication::init()
     // This 2-phase initialisation prevents ephemeral instances from
     // performing unnecessary tasks, like initializing the webengine.
     engine_.reset(new QQmlApplicationEngine(this));
+
+    QWK::registerTypes(engine_.get());
 
     connectivityMonitor_ = new ConnectivityMonitor(this);
     settingsManager_ = new AppSettingsManager(this);
