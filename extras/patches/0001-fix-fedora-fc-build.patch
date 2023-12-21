@@ -1,0 +1,25 @@
+From 161d28abb6784115ad71fcb6977e112e9d5756d4 Mon Sep 17 00:00:00 2001
+From: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
+Date: Tue, 23 Jan 2024 15:38:34 -0500
+Subject: [PATCH] fix-fedora-fc-build
+
+---
+ CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 0fb89c8..3a6ad6d 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -65,7 +65,7 @@ if(NOT TARGET qmsetup::library)
+     )
+ 
+     # Find package again
+-    find_package(qmsetup REQUIRED PATHS ${_package_path})
++    find_package(qmsetup REQUIRED PATHS ${_package_path} ${qmsetup_cmake_path})
+ 
+     # Update import path
+     set(qmsetup_DIR ${_package_path} CACHE PATH "" FORCE)
+-- 
+2.34.1
+
