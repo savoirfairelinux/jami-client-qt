@@ -111,6 +111,7 @@ Rectangle {
 
         ChatViewHeader {
             id: chatViewHeader
+            objectName: "chatViewHeader"
 
             Layout.alignment: Qt.AlignHCenter
             Layout.fillWidth: true
