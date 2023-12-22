@@ -742,6 +742,7 @@ Item {
     property string sendFile: qsTr("Send file")
     property string leaveAudioMessage: qsTr("Audio message")
     property string leaveVideoMessage: qsTr("Video message")
+    property string discardRestart: qsTr("Discard and restart")
     property string showMore: qsTr("Show more")
     property string showLess: qsTr("Show less")
 

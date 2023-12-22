@@ -53,7 +53,7 @@ Popup {
     signal validatePhoto(string photo)
 
     modal: true
-    closePolicy: Popup.CloseOnPressOutsideParent
+    closePolicy: Popup.NoAutoClose
 
     function openRecorder(vid) {
         isVideo = vid;
@@ -233,7 +233,7 @@ Popup {
                     hoveredColor: JamiTheme.recordBoxHoverColor
                     source: JamiResources.round_close_24dp_svg
 
-                    toolTipText: JamiStrings.back
+                    toolTipText: JamiStrings.close
                     focusPolicy: Qt.TabFocus
 
                     onClicked: {
@@ -259,16 +259,19 @@ Popup {
                         Layout.alignment: Qt.AlignCenter
                         preferredSize: btnSize
 
-                        source: JamiResources.record_black_24dp_svg
+
                         imageColor: JamiTheme.whiteColor
-                        imageContainerHeight: 20
-                        imageContainerWidth: 20
+
+                        source: JamiResources.record_round_black_24dp_svg
+
+                        imageContainerHeight: 25
+                        imageContainerWidth: 25
 
                         focusPolicy: Qt.TabFocus
 
                         background: RoundedBorderRectangle {
-                            opacity: recordButton.hovered ? 1 : 0.7
-                            fillColor: recordButton.hovered ? JamiTheme.recordBoxHoverColor : JamiTheme.recordBoxButtonColor
+                            opacity: recordButton.hovered ? 1 : 0.5
+                            fillColor: JamiTheme.screenshotButtonColor //recordButton.hovered ? JamiTheme.recordBoxHoverColor : JamiTheme.recordBoxButtonColor
                             radius: {
                                 "tl": 5,
                                 "tr": root.isAudio ? 0 : 5,
@@ -276,6 +279,8 @@ Popup {
                                 "bl": 5
                             }
                         }
+
+                        toolTipText: JamiStrings.startRec
 
                         onClicked: {
                             updateState(RecordBox.States.RECORDING);
@@ -289,17 +294,24 @@ Popup {
 
                         Layout.alignment: Qt.AlignCenter
                         preferredSize: btnSize
+                        source: JamiResources.record_black_24dp_svg
 
-                        normalColor: JamiTheme.screenshotButtonColor
-                        hoveredColor: JamiTheme.screenshotButtonColor
-                        background.opacity: hovered ? 1 : 0.5
 
-                        source: JamiResources.record_round_black_24dp_svg
-
+                        imageContainerHeight: 20
+                        imageContainerWidth: 20
                         imageColor: JamiTheme.whiteColor
-                        imageContainerHeight: 25
-                        imageContainerWidth: 25
                         focusPolicy: Qt.TabFocus
+
+                        background: RoundedBorderRectangle {
+                            opacity: screenshotBtn.hovered ? 1 : 0.7
+                            fillColor: screenshotBtn.hovered ? JamiTheme.recordBoxHoverColor : JamiTheme.recordBoxButtonColor
+                            radius: {
+                                "tl": 5,
+                                "tr": root.isAudio ? 0 : 5,
+                                "br": root.isAudio ? 0 : 5,
+                                "bl": 5
+                            }
+                        }
 
                         onClicked: {
                             root.photo = videoProvider.captureVideoFrame(VideoDevices.getDefaultDevice());
@@ -321,6 +333,8 @@ Popup {
                         imageContainerWidth: 20
 
                         focusPolicy: Qt.TabFocus
+
+                        toolTipText: JamiStrings.stopRec
 
                         background: RoundedBorderRectangle {
                             opacity: btnStop.hovered ? 1 : 0.7
@@ -355,6 +369,8 @@ Popup {
 
                         focusPolicy: Qt.TabFocus
 
+                        toolTipText: JamiStrings.discardRestart
+
                         background: RoundedBorderRectangle {
                             opacity: btnRestart.hovered ? 1 : 0.7
                             fillColor: btnRestart.hovered ? JamiTheme.recordBoxHoverColor : JamiTheme.recordBoxButtonColor
@@ -374,6 +390,33 @@ Popup {
                         }
                     }
 
+                    RoundedBorderRectangle {
+                        opacity: 0.7
+                        fillColor: JamiTheme.recordBoxButtonColor
+                        visible: (!recordButton.visible && !root.isPhoto) || root.isAudio
+
+                        Layout.preferredHeight: btnSend.height
+                        Layout.preferredWidth: time.width + 20
+                        radius: {
+                            "tl": 0,
+                            "tr": timer.running ? 5 : 0,
+                            "br": timer.running ? 5 : 0,
+                            "bl": 0
+                        }
+
+                        Text {
+                            id: time
+
+                            anchors.centerIn: parent
+                            opacity: 1
+
+                            text: "00:00"
+                            color: JamiTheme.whiteColor
+                            font.pointSize: (isVideo ? 12 : 20)
+                        }
+                    }
+
+
                     JamiPushButton {
                         id: btnSend
 
@@ -385,17 +428,19 @@ Popup {
                         imageContainerHeight: 25
                         imageContainerWidth: 25
 
-                        source: JamiResources.check_circle_24dp_svg
+                        source: root.isPhoto ? JamiResources.check_circle_24dp_svg : JamiResources.send_black_24dp_svg
 
                         focusPolicy: Qt.TabFocus
 
+                        toolTipText: JamiStrings.send
+
                         background: RoundedBorderRectangle {
                             opacity: btnSend.hovered ? 1 : 0.7
-                            fillColor: btnSend.hovered ? JamiTheme.recordBoxHoverColor : JamiTheme.recordBoxButtonColor
+                            fillColor: JamiTheme.chatViewFooterSendButtonColor //btnSend.hovered ? JamiTheme.recordBoxHoverColor : JamiTheme.recordBoxButtonColor
                             radius: {
                                 "tl": 0,
-                                "tr": root.isPhoto ? 5 : 0,
-                                "br": root.isPhoto ? 5 : 0,
+                                "tr": 5,
+                                "br": 5,
                                 "bl": 0
                             }
                         }
@@ -411,6 +456,7 @@ Popup {
                             updateState(RecordBox.States.INIT);
                         }
                     }
+
                     Timer {
                         id: timer
 
@@ -420,32 +466,7 @@ Popup {
                         onTriggered: updateTimer()
                     }
 
-                    RoundedBorderRectangle {
-                        opacity: 0.7
-                        fillColor: JamiTheme.recordBoxButtonColor
-                        visible: (!recordButton.visible && !root.isPhoto) || root.isAudio
-
-                        Layout.preferredHeight: btnSend.height
-                        Layout.preferredWidth: time.width + 20
-                        radius: {
-                            "tl": 0,
-                            "tr": 5,
-                            "br": 5,
-                            "bl": 0
-                        }
-
-                        Text {
-                            id: time
-
-                            anchors.centerIn: parent
-                            opacity: 1
-
-                            text: "00:00"
-                            color: JamiTheme.whiteColor
-                            font.pointSize: (isVideo ? 12 : 20)
-                        }
                     }
-                }
         }
     }
     }
