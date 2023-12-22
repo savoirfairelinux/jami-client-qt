@@ -24,17 +24,14 @@ import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 
-import "../../../src/app/"
 import "../../../src/app/wizardview"
 import "../../../src/app/commoncomponents"
 
 WizardView {
     id: uut
 
-    property ViewManager viewManager: ViewManager {}
-    property ViewCoordinator viewCoordinator: ViewCoordinator {
-        viewManager: uut.viewManager
-    }
+    width: 400
+    height: 600
 
     function clearSignalSpy() {
         spyAccountIsReady.clear()
@@ -95,63 +92,80 @@ WizardView {
     }
 
     TestCase {
-        name: "Create Jami account ui flow (no registered name)"
+        name: "WelcomePage to different account creation page and return back"
         when: windowShown
 
-        function test_createEmptyJamiAccountUiFlow() {
-            uut.clearSignalSpy()
-
+        function test_welcomePageStepInStepOut() {
             var controlPanelStackView = findChild(uut, "controlPanelStackView")
 
             var welcomePage = findChild(uut, "welcomePage")
             var createAccountPage = findChild(uut, "createAccountPage")
-
-            var usernameEdit = findChild(createAccountPage, "usernameEdit")
-            var popup = findChild(createAccountPage, "popup")
-            var joinButton = findChild(popup, "joinButton")
-            var createAccountStack = findChild(createAccountPage, "createAccountStack")
-            var chooseUsernameButton = findChild(createAccountPage, "chooseUsernameButton")
-
-            // WelcomePage initially
-            compare(controlPanelStackView.children[controlPanelStackView.currentIndex],
-                    welcomePage)
+            var importFromDevicePage = findChild(uut, "importFromDevicePage")
+            var importFromBackupPage = findChild(uut, "importFromBackupPage")
+            var connectToAccountManagerPage = findChild(uut, "connectToAccountManagerPage")
+            var createSIPAccountPage = findChild(uut, "createSIPAccountPage")
 
             // Go to createAccount page
             WizardViewStepModel.startAccountCreationFlow(
                         WizardViewStepModel.AccountCreationOption.CreateJamiAccount)
-            compare(createAccountStack.currentIndex, 0)
+            compare(controlPanelStackView.children[controlPanelStackView.currentIndex],
+                    createAccountPage)
+            WizardViewStepModel.previousStep()
+            compare(controlPanelStackView.children[controlPanelStackView.currentIndex],
+                    welcomePage)
 
-            compare(usernameEdit.visible, true)
+            // Go to CreateRendezVous page
+            WizardViewStepModel.startAccountCreationFlow(
+                        WizardViewStepModel.AccountCreationOption.CreateRendezVous)
+            compare(controlPanelStackView.children[controlPanelStackView.currentIndex],
+                    createAccountPage)
+            WizardViewStepModel.previousStep()
+            compare(controlPanelStackView.children[controlPanelStackView.currentIndex],
+                    welcomePage)
 
-            // This will show the popup because no username
-            compare(popup.visible, false)
-            chooseUsernameButton.clicked()
-            compare(popup.visible, true)
-            compare(joinButton.visible, true)
+            // Go to CreateRendezVous page
+            WizardViewStepModel.startAccountCreationFlow(
+                        WizardViewStepModel.AccountCreationOption.ImportFromDevice)
+            compare(controlPanelStackView.children[controlPanelStackView.currentIndex],
+                    importFromDevicePage)
+            WizardViewStepModel.previousStep()
+            compare(controlPanelStackView.children[controlPanelStackView.currentIndex],
+                    welcomePage)
 
-            // Create jami account
-            joinButton.clicked()
+            // Go to ImportFromBackup page
+            WizardViewStepModel.startAccountCreationFlow(
+                        WizardViewStepModel.AccountCreationOption.ImportFromBackup)
+            compare(controlPanelStackView.children[controlPanelStackView.currentIndex],
+                    importFromBackupPage)
+            WizardViewStepModel.previousStep()
+            compare(controlPanelStackView.children[controlPanelStackView.currentIndex],
+                    welcomePage)
 
-            // Wait until the account creation is finished
-            spyAccountIsReady.wait()
-            compare(spyAccountIsReady.count, 1)
+            // Go to ConnectToAccountManager page
+            WizardViewStepModel.startAccountCreationFlow(
+                        WizardViewStepModel.AccountCreationOption.ConnectToAccountManager)
+            compare(controlPanelStackView.children[controlPanelStackView.currentIndex],
+                    connectToAccountManagerPage)
+            WizardViewStepModel.previousStep()
+            compare(controlPanelStackView.children[controlPanelStackView.currentIndex],
+                    welcomePage)
 
-            spyAccountConfigFinalized.wait()
-            compare(spyAccountConfigFinalized.count, 1)
-
-            AccountAdapter.deleteCurrentAccount()
-
-            // Wait until the account removal is finished
-            spyAccountIsRemoved.wait()
-            compare(spyAccountIsRemoved.count, 1)
+            // Go to CreateSipAccount page
+            WizardViewStepModel.startAccountCreationFlow(
+                        WizardViewStepModel.AccountCreationOption.CreateSipAccount)
+            compare(controlPanelStackView.children[controlPanelStackView.currentIndex],
+                    createSIPAccountPage)
+            WizardViewStepModel.previousStep()
+            compare(controlPanelStackView.children[controlPanelStackView.currentIndex],
+                    welcomePage)
         }
     }
 
     TestCase {
-        name: "Create SIP account ui flow"
+        name: "Create Sip account ui flow"
         when: windowShown
 
-        function test_createEmptyJamiAccountUiFlow() {
+        function test_createSipAccountUiFlow() {
             uut.clearSignalSpy()
 
             var controlPanelStackView = findChild(uut, "controlPanelStackView")
@@ -159,30 +173,40 @@ WizardView {
             var welcomePage = findChild(uut, "welcomePage")
             var createSIPAccountPage = findChild(uut, "createSIPAccountPage")
 
+            var sipUsernameEdit = findChild(createSIPAccountPage, "sipUsernameEdit")
+            var sipPasswordEdit = findChild(createSIPAccountPage, "sipPasswordEdit")
             var sipServernameEdit = findChild(createSIPAccountPage, "sipServernameEdit")
-            var createAccountStack = findChild(createSIPAccountPage, "createAccountStack")
-            var createSIPAccountButton = findChild(createSIPAccountPage, "createSIPAccountButton")
+            var createAccountButton = findChild(createSIPAccountPage, "createSIPAccountButton")
 
-            // WelcomePage initially
-            compare(controlPanelStackView.children[controlPanelStackView.currentIndex],
-                    welcomePage)
-
-            // Go to createAccount page
+            // Go to createSipAccount page
             WizardViewStepModel.startAccountCreationFlow(
                         WizardViewStepModel.AccountCreationOption.CreateSipAccount)
-            compare(createAccountStack.currentIndex, 0)
 
-            compare(sipServernameEdit.visible, true)
+            // Set up paras
+            var userName = "testUserName"
+            var serverName = "testServerName"
+            var password = "testPassword"
+            var proxy = "testProxy"
 
-            // Create SIP Account
-            createSIPAccountButton.clicked()
+            sipUsernameEdit.dynamicText = userName
+            sipPasswordEdit.dynamicText = password
+            sipServernameEdit.dynamicText = serverName
+
+            createAccountButton.clicked()
 
             // Wait until the account creation is finished
             spyAccountIsReady.wait()
             compare(spyAccountIsReady.count, 1)
 
-            spyAccountConfigFinalized.wait()
-            compare(spyAccountConfigFinalized.count, 1)
+            // Check if paras match with setup
+            compare(CurrentAccount.username, userName)
+            compare(CurrentAccount.hostname, serverName)
+            compare(CurrentAccount.password, password)
+
+            WizardViewStepModel.nextStep()
+
+            spyCloseWizardView.wait()
+            compare(spyCloseWizardView.count, 1)
 
             AccountAdapter.deleteCurrentAccount()
 

@@ -224,6 +224,7 @@ Rectangle {
 
         JamiPushButton {
             id: sendContactRequestButton
+            objectName: "sendContactRequestButton"
 
             visible: CurrentConversation.isTemporary || CurrentConversation.isBanned
             source: JamiResources.add_people_24dp_svg
@@ -234,6 +235,7 @@ Rectangle {
 
         JamiPushButton {
             id: detailsButton
+            objectName: "detailsButton"
 
             checkable: true
             checked: extrasPanel.isOpen(ChatView.SwarmDetailsPanel)

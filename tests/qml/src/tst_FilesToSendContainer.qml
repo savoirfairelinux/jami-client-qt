@@ -50,15 +50,15 @@ ColumnLayout {
 
             function test_add_remove_file_test() {
                 // Add animated image file
-                uut.filesToSendListModel.addToPending(":/src/app/resources/gif_test.gif")
+                uut.filesToSendListModel.addToPending(":/src/resources/gif_test.gif")
                 compare(uut.filesToSendCount, 1)
 
                 // Add image file
-                uut.filesToSendListModel.addToPending(":/src/app/resources/png_test.png")
+                uut.filesToSendListModel.addToPending(":/src/resources/png_test.png")
                 compare(uut.filesToSendCount, 2)
 
                 // Add normal file
-                uut.filesToSendListModel.addToPending(":/src/app/resources/gz_test.gz")
+                uut.filesToSendListModel.addToPending(":/src/resources/gz_test.gz")
                 compare(uut.filesToSendCount, 3)
 
                 // Flush
