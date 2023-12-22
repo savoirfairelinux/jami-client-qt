@@ -50,8 +50,9 @@ Q_INVOKABLE void
 FilesToSendListModel::addToPending(QString filePath)
 {
     auto fileInfo = QFileInfo(filePath);
-    if (!fileInfo.exists())
+    if (!fileInfo.exists()) {
         return;
+    }
 
     // QImageReader will treat .gz file (Jami archive) as svgz image format
     // so decideFormatFromContent is needed

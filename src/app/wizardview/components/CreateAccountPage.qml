@@ -47,7 +47,7 @@ Rectangle {
     }
 
     function clearAllTextFields() {
-        chooseUsernameButton.enabled = true;
+        joinJamiButton.enabled = true;
         encryptButton.enabled = true;
         customizeButton.enabled = true;
         usernameEdit.dynamicText = "";
@@ -220,9 +220,9 @@ Rectangle {
                             }
                         }
 
-                        KeyNavigation.tab: chooseUsernameButton
+                        KeyNavigation.tab: joinJamiButton
                         KeyNavigation.up: usernameEdit
-                        KeyNavigation.down: chooseUsernameButton
+                        KeyNavigation.down: joinJamiButton
                     }
 
                     objectName: "usernameEdit"
@@ -266,7 +266,7 @@ Rectangle {
                 }
 
                 MaterialButton {
-                    id: chooseUsernameButton
+                    id: joinJamiButton
                     z: -1
 
                     TextMetrics {
@@ -274,10 +274,10 @@ Rectangle {
                         font.weight: Font.Bold
                         font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
                         font.capitalization: Font.AllUppercase
-                        text: chooseUsernameButton.text
+                        text: joinJamiButton.text
                     }
 
-                    objectName: "chooseUsernameButton"
+                    objectName: "joinJamiButton"
 
                     Layout.alignment: Qt.AlignCenter
                     Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
@@ -338,7 +338,7 @@ Rectangle {
                         toolTipText: JamiStrings.encryptWithPassword
 
                         KeyNavigation.tab: customizeButton
-                        KeyNavigation.up: chooseUsernameButton
+                        KeyNavigation.up: joinJamiButton
                         KeyNavigation.down: backButton
                         KeyNavigation.right: customizeButton
 
@@ -371,7 +371,7 @@ Rectangle {
                         toolTipText: JamiStrings.customizeYourProfile
 
                         KeyNavigation.tab: backButton
-                        KeyNavigation.up: chooseUsernameButton
+                        KeyNavigation.up: joinJamiButton
                         KeyNavigation.left: encryptButton
                         KeyNavigation.down: backButton
 
@@ -393,7 +393,7 @@ Rectangle {
                     visible: false
 
                     onJoinClicked: {
-                        chooseUsernameButton.enabled = false;
+                        joinJamiButton.enabled = false;
                         customizeButton.enabled = false;
                         encryptButton.enabled = false;
                     }

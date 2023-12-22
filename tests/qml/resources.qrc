@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>src/tst_LocalAccount.qml</file>
         <file>src/tst_WizardView.qml</file>
         <file>src/tst_NewSwarmPage.qml</file>
         <file>src/tst_MessageOptions.qml</file>

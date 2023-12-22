@@ -22,6 +22,10 @@
 #include "qmlregister.h"
 #include "systemtray.h"
 #include "videoprovider.h"
+#include "api/profile.h"
+#include "api/account.h"
+#include "api/conversationmodel.h"
+#include "api/contactmodel.h"
 
 #include <atomic>
 
@@ -30,6 +34,7 @@
 #include <QQmlEngine>
 #include <QScopedPointer>
 #include <QtQuickTest/quicktest.h>
+#include <QSignalSpy>
 
 #ifdef WITH_WEBENGINE
 #include <QtWebEngineCore>
@@ -40,6 +45,9 @@
 #include <windows.h>
 #endif
 
+#include <thread>
+using namespace std::literals::chrono_literals;
+
 class Setup : public QObject
 {
     Q_OBJECT
@@ -48,6 +56,16 @@ public:
     Setup(bool muteDaemon = false)
         : muteDaemon_(muteDaemon)
     {}
+
+    ~Setup()
+    {
+        QSignalSpy accountRemovedSpy(&lrcInstance_->accountModel(), &AccountModel::accountRemoved);
+        lrcInstance_->accountModel().removeAccount(aliceId);
+        lrcInstance_->accountModel().removeAccount(bobId);
+        while (accountRemovedSpy.count() != 2) {
+            accountRemovedSpy.wait();
+        }
+    }
 
 public Q_SLOTS:
 
@@ -69,6 +87,31 @@ public Q_SLOTS:
 
         auto downloadPath = settingsManager_->getValue(Settings::Key::DownloadPath);
         lrcInstance_->accountModel().downloadDirectory = downloadPath.toString() + "/";
+
+        // Create 2 Account
+        QSignalSpy accountStatusChangedSpy(&lrcInstance_->accountModel(),
+                                        &AccountModel::accountStatusChanged);
+
+        QSignalSpy accountAddedSpy(&lrcInstance_->accountModel(), &AccountModel::accountAdded);
+        aliceId = lrcInstance_->accountModel().createNewAccount(profile::Type::JAMI, "Alice");
+        accountAddedSpy.wait(15000);
+        QCOMPARE(accountAddedSpy.count(), 1);
+
+        bobId = lrcInstance_->accountModel().createNewAccount(profile::Type::JAMI, "Bob");
+        accountAddedSpy.wait(15000);
+        QCOMPARE(accountAddedSpy.count(), 2);
+
+        // Create a conversation
+        auto& aliceInfo = lrcInstance_->accountModel().getAccountInfo(aliceId);
+        auto& bobInfo = lrcInstance_->accountModel().getAccountInfo(bobId);
+        ConversationModel* bobCM = bobInfo.conversationModel.get();
+        QSignalSpy conversationReqSpy(&*bobCM, &ConversationModel::newConversation);
+        contact::Info bobContact;
+        bobContact.profileInfo.uri = bobInfo.profileInfo.uri;
+        bobContact.profileInfo.type = profile::Type::TEMPORARY;
+        aliceInfo.contactModel->addContact(bobContact);
+        conversationReqSpy.wait(15000);
+        QCOMPARE(conversationReqSpy.count(), 1);
     }
 
     /*
@@ -83,7 +126,9 @@ public Q_SLOTS:
      */
     void qmlEngineAvailable(QQmlEngine* engine)
     {
-        lrcInstance_->set_currentAccountId();
+        lrcInstance_->set_currentAccountId(aliceId);
+        auto& aliceInfo = lrcInstance_->accountModel().getAccountInfo(aliceId);
+        lrcInstance_->set_selectedConvUid(aliceInfo.conversationModel->getConversations()[0].uid);
 
         // Expose custom types to the QML engine.
         Utils::registerTypes(engine,
@@ -119,6 +164,8 @@ private:
     ScreenInfo screenInfo_;
 
     bool muteDaemon_ {false};
+    QString aliceId;
+    QString bobId;
 };
 
 int
