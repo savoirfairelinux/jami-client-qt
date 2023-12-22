@@ -94,6 +94,9 @@ Rectangle {
         id: recordBox
 
         visible: false
+        parent: root
+        x: messageBar.x + 140
+        y: isVideo ? -165 : -65
     }
 
     ColumnLayout {
@@ -171,7 +174,7 @@ Rectangle {
             sendButtonVisibility: text || messageBar.fileContainer.filesToSendCount
 
             onEmojiButtonClicked: {
-                if (emojiPicker != null && emojiPicker.opened) {
+                if (emojiPicker !== null && emojiPicker.opened) {
                     emojiPicker.closeEmojiPicker();
                 } else {
                     openEmojiPicker();
@@ -193,14 +196,10 @@ Rectangle {
             }
 
             onVideoRecordMessageButtonClicked: {
-                recordBox.y = -recordBox.height - 200;
-                recordBox.x = recordBox.width + 200
                 recordBox.openRecorder(true);
             }
 
             onAudioRecordMessageButtonClicked: {
-                recordBox.y = -recordBox.height - 150;
-                recordBox.x = recordBox.width + 200;
                 recordBox.openRecorder(false);
             }
 
