@@ -1207,11 +1207,17 @@ ContactModelPimpl::slotProfileReceived(const QString& accountId,
     profileInfo.uri = peer;
     profileInfo.type = profile::Type::JAMI;
 
-    for (auto& e : QString(vCard).split("\n"))
-        if (e.contains("PHOTO"))
-            profileInfo.avatar = e.split(":")[1];
-        else if (e.contains("FN"))
-            profileInfo.alias = e.split(":")[1];
+    for (auto& e : QString(vCard).split("\n")) {
+        if (e.contains("PHOTO")) {
+            auto splitted = e.split(":");
+            if (splitted.size() > 1)
+                profileInfo.avatar = e.split(":")[1];
+        } else if (e.contains("FN")) {
+            auto splitted = e.split(":");
+            if (splitted.size() > 1)
+                profileInfo.alias = e.split(":")[1];
+        }
+    }
 
     if (peer == linked.owner.profileInfo.uri) {
         auto avatarChanged = profileInfo.avatar != linked.owner.profileInfo.avatar;
