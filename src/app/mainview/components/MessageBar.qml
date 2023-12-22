@@ -32,6 +32,7 @@ RowLayout {
     property alias fileContainer: dataTransferSendContainer
     property var textAreaObj: messageBarTextArea
     property real marginSize: JamiTheme.messageBarMarginSize
+    property alias leftRectangle: sharePopup
     property bool sendButtonVisibility: true
     property bool animate: false
     property bool showDefault: !UtilsAdapter.getAppValue(Settings.Key.ShowSendOption)
@@ -57,6 +58,7 @@ RowLayout {
     height: rectHeight + (dataTransferSendContainer.visible ?  dataTransferSendContainer.height + (!showTypo ? 40 : - marginSize) : 0 )
 
     Rectangle {
+        id: leftRectangle
 
         Layout.preferredHeight: parent.height
         Layout.preferredWidth: childrenRect.width

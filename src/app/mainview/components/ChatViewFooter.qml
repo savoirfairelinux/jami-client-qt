@@ -171,7 +171,7 @@ Rectangle {
             sendButtonVisibility: text || messageBar.fileContainer.filesToSendCount
 
             onEmojiButtonClicked: {
-                if (emojiPicker != null && emojiPicker.opened) {
+                if (emojiPicker !== null && emojiPicker.opened) {
                     emojiPicker.closeEmojiPicker();
                 } else {
                     openEmojiPicker();
@@ -193,14 +193,14 @@ Rectangle {
             }
 
             onVideoRecordMessageButtonClicked: {
-                recordBox.y = -recordBox.height - 200;
-                recordBox.x = recordBox.width + 200
+                recordBox.y = leftRectangle.y //- messageBar.implicitHeight - leftRectangle.height//- 55
+                recordBox.x = -leftRectangle.x + 100;
                 recordBox.openRecorder(true);
             }
 
             onAudioRecordMessageButtonClicked: {
-                recordBox.y = -recordBox.height - 150;
-                recordBox.x = recordBox.width + 200;
+                recordBox.y = leftRectangle.y - leftRectangle.height
+                recordBox.x = leftRectangle.x + 135;
                 recordBox.openRecorder(false);
             }
 
