@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72543cd3_7aa3d3ed",
+        "filename": "src/libclient/contactmodel.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 614,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-12-26T22:17:38Z",
+      "side": 1,
+      "message": "why limit to 8? maybe use the global instance?",
+      "range": {
+        "startLine": 614,
+        "startChar": 4,
+        "endLine": 614,
+        "endChar": 43
+      },
+      "revId": "e8e0daab65ce4c26cab656e9f5d40fbe1dbeb50d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
