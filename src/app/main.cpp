@@ -55,14 +55,6 @@ main(int argc, char* argv[])
     setenv("QML_DISABLE_DISK_CACHE", "1", true);
 
     /*
-     * Not quite sure why the GTK theme is not applied on Wayland when
-     * using the wayland platform plugin, but we can force XCB to make
-     * sure it works when X11 is available, otherwise fallback to Wayland.
-     * Could be related to: https://bugreports.qt.io/browse/QTBUG-99684.
-     */
-    setenv("QT_QPA_PLATFORM", "xcb:wayland", true);
-
-    /*
      * Some GNU/Linux distros, like Zorin OS, set QT_STYLE_OVERRIDE
      * to force a particular Qt style.  This has been fine with Qt5
      * even when using our own Qt package which may not have that
