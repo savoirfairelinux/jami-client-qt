@@ -39,6 +39,30 @@
       },
       "revId": "4295d2b7f322395a8ac6eb27a50acf7b7ed4d436",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b81308b_d2c25de5",
+        "filename": "src/app/commoncomponents/ShareMenu.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-12-27T21:32:36Z",
+      "side": 1,
+      "message": "I thought it could be useful for the user to see that it\u0027s possible to send video messages even if they don\u0027t have a webcam. Just for them to know that it\u0027s an available functionality.",
+      "parentUuid": "feb2153b_2542b221",
+      "range": {
+        "startLine": 48,
+        "startChar": 12,
+        "endLine": 48,
+        "endChar": 19
+      },
+      "revId": "4295d2b7f322395a8ac6eb27a50acf7b7ed4d436",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
