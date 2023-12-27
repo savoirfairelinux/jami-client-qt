@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5900dd8b_1643d16c",
+        "filename": "tests/qml/main.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-12-27T01:44:43Z",
+      "side": 1,
+      "message": "this will loop forever if AccountModel::accountAdded is not emitted, maybe:\n\n```\naccountAddedSpy.wait(15s);\nQCOMPARE(accountAddedSpy.count(), 1);\n```",
+      "range": {
+        "startLine": 97,
+        "startChar": 8,
+        "endLine": 99,
+        "endChar": 9
+      },
+      "revId": "1354a1564562bbf6b7c384acd93765173c932265",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d50dac29_ff759f45",
+        "filename": "tests/qml/main.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2023-12-27T01:44:43Z",
+      "side": 1,
+      "message": "what\u0027s the extended wait here for?",
+      "range": {
+        "startLine": 105,
+        "startChar": 8,
+        "endLine": 105,
+        "endChar": 41
+      },
+      "revId": "1354a1564562bbf6b7c384acd93765173c932265",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
