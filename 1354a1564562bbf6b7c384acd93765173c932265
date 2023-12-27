@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0966cde6_ab73203a",
+        "filename": "tests/qml/main.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-12-27T15:02:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5900dd8b_1643d16c",
+      "range": {
+        "startLine": 97,
+        "startChar": 8,
+        "endLine": 99,
+        "endChar": 9
+      },
+      "revId": "1354a1564562bbf6b7c384acd93765173c932265",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d50dac29_ff759f45",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-12-27T01:44:43Z",
       "side": 1,
       "message": "what\u0027s the extended wait here for?",
+      "range": {
+        "startLine": 105,
+        "startChar": 8,
+        "endLine": 105,
+        "endChar": 41
+      },
+      "revId": "1354a1564562bbf6b7c384acd93765173c932265",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0323abe_292826d2",
+        "filename": "tests/qml/main.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2023-12-27T15:02:48Z",
+      "side": 1,
+      "message": "oops. I forgot to remove it",
+      "parentUuid": "d50dac29_ff759f45",
       "range": {
         "startLine": 105,
         "startChar": 8,
