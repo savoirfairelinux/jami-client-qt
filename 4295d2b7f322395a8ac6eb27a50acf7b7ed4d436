@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f29229c4_b1f2e1a6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2023-12-27T19:19:52Z",
+      "side": 1,
+      "message": "Îf someone plug into any free USB port his webcam or enables a virtual webcam will these icons be shown again (and the other direction if you disable a virtual webcam or remove the webcam (again))?",
+      "revId": "4295d2b7f322395a8ac6eb27a50acf7b7ed4d436",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "feb2153b_2542b221",
         "filename": "src/app/commoncomponents/ShareMenu.qml",
         "patchSetId": 1
