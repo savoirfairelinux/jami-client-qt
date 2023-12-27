@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa90b757_876bbf08",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-12-27T21:54:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d185a8e_cfb0a5fa",
+      "range": {
+        "startLine": 7,
+        "startChar": 11,
+        "endLine": 7,
+        "endChar": 17
+      },
+      "revId": "f77ae5bab7a8411a8ce1eb4b361704dd03582189",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f84a6e06_a547b55e",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-12-27T13:11:45Z",
       "side": 1,
       "message": "the Video Message button should not be shown  if there is no device. You can check the video settings page to check how it\u0027s done",
+      "range": {
+        "startLine": 98,
+        "startChar": 11,
+        "endLine": 98,
+        "endChar": 21
+      },
+      "revId": "f77ae5bab7a8411a8ce1eb4b361704dd03582189",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ba70d3f_0387772e",
+        "filename": "src/app/mainview/components/ChatViewFooter.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2023-12-27T21:54:06Z",
+      "side": 1,
+      "message": "done in another patch",
+      "parentUuid": "f84a6e06_a547b55e",
       "range": {
         "startLine": 98,
         "startChar": 11,
