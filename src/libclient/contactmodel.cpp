@@ -1220,15 +1220,11 @@ ContactModelPimpl::slotProfileReceived(const QString& accountId,
     }
 
     if (peer == linked.owner.profileInfo.uri) {
-        auto avatarChanged = profileInfo.avatar != linked.owner.profileInfo.avatar;
-        auto aliasChanged = profileInfo.alias != linked.owner.profileInfo.alias;
         if (profileInfo.avatar.isEmpty())
             return; // In this case, probably a new device without avatar.
-        // Only save the new profile once
-        if (aliasChanged)
-            linked.owner.accountModel->setAlias(linked.owner.id, profileInfo.alias, !avatarChanged);
-        if (avatarChanged)
-            linked.owner.accountModel->setAvatar(linked.owner.id, profileInfo.avatar, true);
+        // Profile is saved by daemon, just update client
+        linked.owner.accountModel->setAlias(linked.owner.id, profileInfo.alias, false);
+        linked.owner.accountModel->setAvatar(linked.owner.id, profileInfo.avatar, false);
         return;
     }
     vCardFile.remove();
