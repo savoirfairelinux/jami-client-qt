@@ -63,6 +63,8 @@ ColumnLayout {
             height: childrenRect.height
             spacing: 10
             Repeater {
+                Component.onCompleted: root.visible = root.storeAvailable && pluginStoreRepeater.count !== 0 || !root.storeAvailable
+                onCountChanged: root.visible = root.storeAvailable && pluginStoreRepeater.count !== 0 || !root.storeAvailable
                 id: pluginStoreRepeater
                 model: PluginStoreListModel
                 delegate: Item {
