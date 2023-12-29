@@ -86,10 +86,10 @@ Control {
             enabled: true
             effect: DropShadow {
                 z: -1
-                horizontalOffset: 3.0
-                verticalOffset: 3.0
-                radius: 5.0
-                color: JamiTheme.shadowColor
+                horizontalOffset: 1.0
+                verticalOffset: 1.0
+                radius: 6.0
+                color: "#29000000"
                 transparentBorder: true
                 samples: radius + 1
             }
