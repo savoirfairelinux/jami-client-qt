@@ -16,6 +16,23 @@
       "message": "timestamp seems incorrect",
       "revId": "9a0347a3ccde81df147c6ef47cc6a3e4ee05387b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bc1c739_92b4aad7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-01-02T20:40:51Z",
+      "side": 1,
+      "message": "If a multi-device starts the call, the avatar in the header is not correct",
+      "revId": "9a0347a3ccde81df147c6ef47cc6a3e4ee05387b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
