@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021-2023 Savoir-faire Linux Inc.
+ * Copyright (C) 2021-2024 Savoir-faire Linux Inc.
  * Author: Kateryna Kostiuk <kateryna.kostiuk@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify

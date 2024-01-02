@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020-2023 Savoir-faire Linux Inc.
+ * Copyright (C) 2020-2024 Savoir-faire Linux Inc.
  * Author: Capucine Berthet <capucine.berthet@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify

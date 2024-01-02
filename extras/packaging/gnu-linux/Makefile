@@ -1,5 +1,5 @@
 # -*- mode: makefile; -*-
-# Copyright (C) 2016-2023 Savoir-faire Linux Inc.
+# Copyright (C) 2016-2024 Savoir-faire Linux Inc.
 #
 # Author: Maxim Cournoyer <maxim.cournoyer@savoirfairelinux.com>
 #

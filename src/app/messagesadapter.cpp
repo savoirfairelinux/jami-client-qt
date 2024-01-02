@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020-2023 Savoir-faire Linux Inc.
+ * Copyright (C) 2020-2024 Savoir-faire Linux Inc.
  * Author: Edric Ladent Milaret <edric.ladent-milaret@savoirfairelinux.com>
  * Author: Anthony Léonard <anthony.leonard@savoirfairelinux.com>
  * Author: Olivier Soldano <olivier.soldano@savoirfairelinux.com>

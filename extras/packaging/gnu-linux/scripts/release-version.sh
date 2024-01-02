@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (C) 2023 Savoir-faire Linux Inc.
+# Copyright (C) 2024 Savoir-faire Linux Inc.
 #
 # Author: Amin Bandali <amin.bandali@savoirfairelinux.com>
 #

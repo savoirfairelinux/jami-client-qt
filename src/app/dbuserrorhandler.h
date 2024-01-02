@@ -1,5 +1,5 @@
 /*!
- * Copyright (C) 2020-2023 Savoir-faire Linux Inc.
+ * Copyright (C) 2020-2024 Savoir-faire Linux Inc.
  * Author: Stepan Salenikovich <stepan.salenikovich@savoirfairelinux.com>
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
  *

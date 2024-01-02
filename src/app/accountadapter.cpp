@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020-2023 Savoir-faire Linux Inc.
+ * Copyright (C) 2020-2024 Savoir-faire Linux Inc.
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
  * Author: Yang Wang <yang.yang@savoirfairelinux.com>
  * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>

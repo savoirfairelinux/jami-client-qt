@@ -1,4 +1,4 @@
-# Copyright (C) 2020-2023 Savoir-faire Linux Inc.
+# Copyright (C) 2020-2024 Savoir-faire Linux Inc.
 #
 # Author: Albert Babí <albert.babi@savoirfairelinux.com>
 # Author: Amin Bandali <amin.bandali@savoirfairelinux.com>

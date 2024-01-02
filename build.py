@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # build.py --- Convenience script for building and running Jami
 
-# Copyright (C) 2016-2023 Savoir-faire Linux Inc.
+# Copyright (C) 2016-2024 Savoir-faire Linux Inc.
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
