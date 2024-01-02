@@ -199,57 +199,46 @@ JamiListView {
         role: "Type"
 
         DelegateChoice {
-            id: delegateChoice
             roleValue: Interaction.Type.TEXT
-
             TextMessageDelegate {
-                Component.onCompleted:  {
-                    computeChatview(this, index)
-                }
+                Component.onCompleted: computeChatview(this, index)
             }
         }
 
         DelegateChoice {
             roleValue: Interaction.Type.CALL
-
             CallMessageDelegate {
-                Component.onCompleted:  {
-                    computeChatview(this, index)
-                }
+                Component.onCompleted: computeChatview(this, index)
             }
         }
 
         DelegateChoice {
             roleValue: Interaction.Type.CONTACT
-
             ContactMessageDelegate {
-                Component.onCompleted:  {
-                    computeChatview(this, index)
-                }
+                Component.onCompleted: computeChatview(this, index)
+            }
+        }
+
+        DelegateChoice {
+            roleValue: Interaction.Type.UPDATE_PROFILE
+            ContactMessageDelegate {
+                Component.onCompleted: computeChatview(this, index)
             }
         }
 
         DelegateChoice {
             roleValue: Interaction.Type.INITIAL
-
             GeneratedMessageDelegate {
-                font.bold: true
-                Component.onCompleted:  {
-                    computeChatview(this, index)
-                }
+                Component.onCompleted: computeChatview(this, index)
             }
         }
 
         DelegateChoice {
             roleValue: Interaction.Type.DATA_TRANSFER
-
             DataTransferMessageDelegate {
-                Component.onCompleted:  {
-                    computeChatview(this, index)
-                }
+                Component.onCompleted: computeChatview(this, index)
             }
         }
-
     }
 
     onAtYBeginningChanged: loadMoreMsgsIfNeeded()

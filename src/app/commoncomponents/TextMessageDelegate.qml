@@ -33,8 +33,6 @@ SBSMessageBase {
     property string colorUrl: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewLinkColorLight : JamiTheme.chatviewLinkColorDark
     property string colorText: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
 
-
-
     Connections {
         target: bubble
         function onColorChanged(color) {
@@ -45,7 +43,6 @@ SBSMessageBase {
                 MessagesAdapter.parseMessage(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl, bubble.color);
         }
     }
-
 
     isOutgoing: Author === CurrentAccount.uri
     author: Author
