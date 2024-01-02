@@ -174,7 +174,7 @@ Rectangle {
             sendButtonVisibility: text || messageBar.fileContainer.filesToSendCount
 
             onEmojiButtonClicked: {
-                if (emojiPicker !== null && emojiPicker.opened) {
+                if (emojiPicker && emojiPicker.opened) {
                     emojiPicker.closeEmojiPicker();
                 } else {
                     openEmojiPicker();
