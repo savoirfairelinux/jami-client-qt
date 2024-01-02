@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Copyright (C) 2016-2023 Savoir-faire Linux Inc.
+# Copyright (C) 2016-2024 Savoir-faire Linux Inc.
 #
 # Author: Alexandre Viau <alexandre.viau@savoirfairelinux.com>
 # Author: Guillaume Roguez <guillaume.roguez@savoirfairelinux.com>

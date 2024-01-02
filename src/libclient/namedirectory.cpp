@@ -1,5 +1,5 @@
 /****************************************************************************
- *    Copyright (C) 2016-2023 Savoir-faire Linux Inc.                       *
+ *    Copyright (C) 2016-2024 Savoir-faire Linux Inc.                       *
  *   Author : Alexandre Viau <alexandre.viau@savoirfairelinux.com>          *
  *                                                                          *
  *   This library is free software; you can redistribute it and/or          *

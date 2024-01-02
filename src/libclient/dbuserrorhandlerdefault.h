@@ -1,5 +1,5 @@
 /****************************************************************************
- *    Copyright (C) 2015-2023 Savoir-faire Linux Inc.                       *
+ *    Copyright (C) 2015-2024 Savoir-faire Linux Inc.                       *
  *   Author : Stepan Salenikovich <stepan.salenikovich@savoirfairelinux.com>*
  *                                                                          *
  *   This library is free software; you can redistribute it and/or          *

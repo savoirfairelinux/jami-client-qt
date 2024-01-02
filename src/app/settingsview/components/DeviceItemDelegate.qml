@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019-2023 Savoir-faire Linux Inc.
+ * Copyright (C) 2019-2024 Savoir-faire Linux Inc.
  * Author: Yang Wang   <yang.wang@savoirfairelinux.com>
  *
  *
