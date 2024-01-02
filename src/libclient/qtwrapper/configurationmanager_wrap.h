@@ -77,19 +77,19 @@ public:
                     Q_EMIT this->stunStatusFailure(QString(reason.c_str()));
                 }),
             exportable_callback<ConfigurationSignal::RegistrationStateChanged>(
-                [this](const std::string& accountID,
+                [this](const std::string& accountId,
                        const std::string& registration_state,
                        unsigned detail_code,
                        const std::string& detail_str) {
-                    Q_EMIT this->registrationStateChanged(QString(accountID.c_str()),
+                    Q_EMIT this->registrationStateChanged(QString(accountId.c_str()),
                                                           QString(registration_state.c_str()),
                                                           detail_code,
                                                           QString(detail_str.c_str()));
                 }),
             exportable_callback<ConfigurationSignal::VolatileDetailsChanged>(
-                [this](const std::string& accountID,
+                [this](const std::string& accountId,
                        const std::map<std::string, std::string>& details) {
-                    Q_EMIT this->volatileAccountDetailsChanged(QString(accountID.c_str()),
+                    Q_EMIT this->volatileAccountDetailsChanged(QString(accountId.c_str()),
                                                                convertMap(details));
                 }),
             exportable_callback<ConfigurationSignal::CertificateExpired>(
@@ -106,11 +106,11 @@ public:
                                                        convertStringList(list));
                 }),
             exportable_callback<ConfigurationSignal::CertificateStateChanged>(
-                [this](const std::string& accountID,
+                [this](const std::string& accountId,
                        const std::string& certId,
                        const std::string& state) {
-                    QTimer::singleShot(0, [this, accountID, certId, state] {
-                        Q_EMIT this->certificateStateChanged(QString(accountID.c_str()),
+                    QTimer::singleShot(0, [this, accountId, certId, state] {
+                        Q_EMIT this->certificateStateChanged(QString(accountId.c_str()),
                                                              QString(certId.c_str()),
                                                              QString(state.c_str()));
                     });
@@ -205,10 +205,10 @@ public:
                                               confirmed);
                 }),
             exportable_callback<ConfigurationSignal::ProfileReceived>(
-                [this](const std::string& accountID,
+                [this](const std::string& accountId,
                        const std::string& peer,
                        const std::string& vCard) {
-                    Q_EMIT this->profileReceived(QString(accountID.c_str()),
+                    Q_EMIT this->profileReceived(QString(accountId.c_str()),
                                                  QString(peer.c_str()),
                                                  QString(vCard.c_str()));
                 }),
@@ -428,52 +428,54 @@ public Q_SLOTS: // METHODS
                               path.toStdString());
     }
 
-    bool exportOnRing(const QString& accountID, const QString& password)
+    bool exportOnRing(const QString& accountId, const QString& password)
     {
-        return libjami::exportOnRing(accountID.toStdString(), password.toStdString());
+        return libjami::exportOnRing(accountId.toStdString(), password.toStdString());
     }
 
-    bool exportToFile(const QString& accountID,
+    bool exportToFile(const QString& accountId,
                       const QString& destinationPath,
                       const QString& password = {})
     {
-        return libjami::exportToFile(accountID.toStdString(),
+        return libjami::exportToFile(accountId.toStdString(),
                                      destinationPath.toStdString(),
+                                     "password",
                                      password.toStdString());
     }
 
-    MapStringString getKnownRingDevices(const QString& accountID)
+    MapStringString getKnownRingDevices(const QString& accountId)
     {
-        MapStringString temp = convertMap(libjami::getKnownRingDevices(accountID.toStdString()));
+        MapStringString temp = convertMap(libjami::getKnownRingDevices(accountId.toStdString()));
         return temp;
     }
 
-    bool lookupName(const QString& accountID, const QString& nameServiceURL, const QString& name)
+    bool lookupName(const QString& accountId, const QString& nameServiceURL, const QString& name)
     {
-        return libjami::lookupName(accountID.toStdString(),
+        return libjami::lookupName(accountId.toStdString(),
                                    nameServiceURL.toStdString(),
                                    name.toStdString());
     }
 
-    bool lookupAddress(const QString& accountID,
+    bool lookupAddress(const QString& accountId,
                        const QString& nameServiceURL,
                        const QString& address)
     {
-        return libjami::lookupAddress(accountID.toStdString(),
+        return libjami::lookupAddress(accountId.toStdString(),
                                       nameServiceURL.toStdString(),
                                       address.toStdString());
     }
 
-    bool registerName(const QString& accountID, const QString& password, const QString& name)
+    bool registerName(const QString& accountId, const QString& password, const QString& name)
     {
-        return libjami::registerName(accountID.toStdString(),
-                                     password.toStdString(),
-                                     name.toStdString());
+        return libjami::registerName(accountId.toStdString(),
+                                     name.toStdString(),
+                                     "password",
+                                     password.toStdString());
     }
 
-    MapStringString getAccountDetails(const QString& accountID)
+    MapStringString getAccountDetails(const QString& accountId)
     {
-        MapStringString temp = convertMap(libjami::getAccountDetails(accountID.toStdString()));
+        MapStringString temp = convertMap(libjami::getAccountDetails(accountId.toStdString()));
         return temp;
     }
 
@@ -523,10 +525,10 @@ public Q_SLOTS: // METHODS
         return temp;
     }
 
-    MapStringString getCodecDetails(const QString& accountID, int payload)
+    MapStringString getCodecDetails(const QString& accountId, int payload)
     {
         MapStringString temp = convertMap(
-            libjami::getCodecDetails(accountID.toStdString().c_str(), payload));
+            libjami::getCodecDetails(accountId.toStdString().c_str(), payload));
         return temp;
     }
 
@@ -536,10 +538,10 @@ public Q_SLOTS: // METHODS
         return QVector<unsigned int>(v.begin(), v.end());
     }
 
-    VectorMapStringString getContacts(const QString& accountID)
+    VectorMapStringString getContacts(const QString& accountId)
     {
         VectorMapStringString temp;
-        for (const auto& x : libjami::getContacts(accountID.toStdString())) {
+        for (const auto& x : libjami::getContacts(accountId.toStdString())) {
             temp.push_back(convertMap(x));
         }
         return temp;
@@ -579,10 +581,10 @@ public Q_SLOTS: // METHODS
         return temp;
     }
 
-    VectorMapStringString getCredentials(const QString& accountID)
+    VectorMapStringString getCredentials(const QString& accountId)
     {
         VectorMapStringString temp;
-        for (auto x : libjami::getCredentials(accountID.toStdString())) {
+        for (auto x : libjami::getCredentials(accountId.toStdString())) {
             temp.push_back(convertMap(x));
         }
         return temp;
@@ -686,9 +688,9 @@ public Q_SLOTS: // METHODS
         libjami::monitor(continuous);
     }
 
-    void removeAccount(const QString& accountID)
+    void removeAccount(const QString& accountId)
     {
-        libjami::removeAccount(accountID.toStdString());
+        libjami::removeAccount(accountId.toStdString());
     }
 
     bool changeAccountPassword(const QString& id,
@@ -700,14 +702,14 @@ public Q_SLOTS: // METHODS
                                               newPassword.toStdString());
     }
 
-    void sendRegister(const QString& accountID, bool enable)
+    void sendRegister(const QString& accountId, bool enable)
     {
-        libjami::sendRegister(accountID.toStdString(), enable);
+        libjami::sendRegister(accountId.toStdString(), enable);
     }
 
-    void setAccountDetails(const QString& accountID, MapStringString details)
+    void setAccountDetails(const QString& accountId, MapStringString details)
     {
-        libjami::setAccountDetails(accountID.toStdString(), convertMap(details));
+        libjami::setAccountDetails(accountId.toStdString(), convertMap(details));
     }
 
     void setAccountsOrder(const QString& order)
@@ -715,10 +717,10 @@ public Q_SLOTS: // METHODS
         libjami::setAccountsOrder(order.toStdString());
     }
 
-    void setActiveCodecList(const QString& accountID, VectorUInt& list)
+    void setActiveCodecList(const QString& accountId, VectorUInt& list)
     {
         // const std::vector<unsigned int> converted = convertStringList(list);
-        libjami::setActiveCodecList(accountID.toStdString(),
+        libjami::setActiveCodecList(accountId.toStdString(),
                                     std::vector<unsigned>(list.begin(), list.end()));
     }
 
@@ -752,13 +754,13 @@ public Q_SLOTS: // METHODS
         libjami::setAudioRingtoneDevice(index);
     }
 
-    void setCredentials(const QString& accountID, VectorMapStringString credentialInformation)
+    void setCredentials(const QString& accountId, VectorMapStringString credentialInformation)
     {
         std::vector<std::map<std::string, std::string>> temp;
         for (auto x : credentialInformation) {
             temp.push_back(convertMap(x));
         }
-        libjami::setCredentials(accountID.toStdString(), temp);
+        libjami::setCredentials(accountId.toStdString(), temp);
     }
 
     void setHistoryLimit(int days)
@@ -806,10 +808,10 @@ public Q_SLOTS: // METHODS
         libjami::setVolume(device.toStdString(), value);
     }
 
-    MapStringString getVolatileAccountDetails(const QString& accountID)
+    MapStringString getVolatileAccountDetails(const QString& accountId)
     {
         MapStringString temp = convertMap(
-            libjami::getVolatileAccountDetails(accountID.toStdString()));
+            libjami::getVolatileAccountDetails(accountId.toStdString()));
         return temp;
     }
 
@@ -832,8 +834,9 @@ public Q_SLOTS: // METHODS
     void revokeDevice(const QString& accountId, const QString& password, const QString& deviceId)
     {
         libjami::revokeDevice(accountId.toStdString(),
-                              password.toStdString(),
-                              deviceId.toStdString());
+                              deviceId.toStdString(),
+                              "password",
+                              password.toStdString());
     }
 
     void addContact(const QString& accountId, const QString& uri)
@@ -852,10 +855,10 @@ public Q_SLOTS: // METHODS
                                                flag);
     }
 
-    QVector<Message> getLastMessages(const QString& accountID, const uint64_t& base_timestamp)
+    QVector<Message> getLastMessages(const QString& accountId, const uint64_t& base_timestamp)
     {
         QVector<Message> result;
-        for (auto& message : libjami::getLastMessages(accountID.toStdString(), base_timestamp)) {
+        for (auto& message : libjami::getLastMessages(accountId.toStdString(), base_timestamp)) {
             result.append({message.from.c_str(), convertMap(message.payloads), message.received});
         }
         return result;
@@ -873,9 +876,9 @@ public Q_SLOTS: // METHODS
         return libjami::getMessageStatus(id);
     }
 
-    MapStringString getNearbyPeers(const QString& accountID)
+    MapStringString getNearbyPeers(const QString& accountId)
     {
-        return convertMap(libjami::getNearbyPeers(accountID.toStdString()));
+        return convertMap(libjami::getNearbyPeers(accountId.toStdString()));
     }
 
     void connectivityChanged()
@@ -883,9 +886,9 @@ public Q_SLOTS: // METHODS
         libjami::connectivityChanged();
     }
 
-    MapStringString getContactDetails(const QString& accountID, const QString& uri)
+    MapStringString getContactDetails(const QString& accountId, const QString& uri)
     {
-        return convertMap(libjami::getContactDetails(accountID.toStdString(), uri.toStdString()));
+        return convertMap(libjami::getContactDetails(accountId.toStdString(), uri.toStdString()));
     }
 
     void sendFile(const QString& accountId,
@@ -1031,29 +1034,29 @@ public Q_SLOTS: // METHODS
                                          size);
     }
 
-    void setDefaultModerator(const QString& accountID, const QString& peerURI, const bool& state)
+    void setDefaultModerator(const QString& accountId, const QString& peerURI, const bool& state)
     {
-        libjami::setDefaultModerator(accountID.toStdString(), peerURI.toStdString(), state);
+        libjami::setDefaultModerator(accountId.toStdString(), peerURI.toStdString(), state);
     }
 
-    QStringList getDefaultModerators(const QString& accountID)
+    QStringList getDefaultModerators(const QString& accountId)
     {
-        return convertStringList(libjami::getDefaultModerators(accountID.toStdString()));
+        return convertStringList(libjami::getDefaultModerators(accountId.toStdString()));
     }
 
-    void enableLocalModerators(const QString& accountID, const bool& isModEnabled)
+    void enableLocalModerators(const QString& accountId, const bool& isModEnabled)
     {
-        libjami::enableLocalModerators(accountID.toStdString(), isModEnabled);
+        libjami::enableLocalModerators(accountId.toStdString(), isModEnabled);
     }
 
-    bool isLocalModeratorsEnabled(const QString& accountID)
+    bool isLocalModeratorsEnabled(const QString& accountId)
     {
-        return libjami::isLocalModeratorsEnabled(accountID.toStdString());
+        return libjami::isLocalModeratorsEnabled(accountId.toStdString());
     }
 
-    void setAllModerators(const QString& accountID, const bool& allModerators)
+    void setAllModerators(const QString& accountId, const bool& allModerators)
     {
-        libjami::setAllModerators(accountID.toStdString(), allModerators);
+        libjami::setAllModerators(accountId.toStdString(), allModerators);
     }
 
     VectorMapStringString getConnectionList(const QString& accountId, const QString& uid)
@@ -1074,9 +1077,9 @@ public Q_SLOTS: // METHODS
         return temp;
     }
 
-    bool isAllModerators(const QString& accountID)
+    bool isAllModerators(const QString& accountId)
     {
-        return libjami::isAllModerators(accountID.toStdString());
+        return libjami::isAllModerators(accountId.toStdString());
     }
 
     MapStringString conversationInfos(const QString& accountId, const QString& conversationId)
@@ -1155,12 +1158,12 @@ Q_SIGNALS: // SIGNALS
     void accountDetailsChanged(const QString& accountId, const MapStringString& details);
     void historyChanged();
     void stunStatusFailure(const QString& reason);
-    void registrationStateChanged(const QString& accountID,
+    void registrationStateChanged(const QString& accountId,
                                   const QString& registration_state,
                                   unsigned detail_code,
                                   const QString& detail_str);
     void stunStatusSuccess(const QString& message);
-    void volatileAccountDetailsChanged(const QString& accountID, MapStringString details);
+    void volatileAccountDetailsChanged(const QString& accountId, MapStringString details);
     void certificatePinned(const QString& certId);
     void certificatePathPinned(const QString& path, const QStringList& certIds);
     void certificateExpired(const QString& certId);
@@ -1187,10 +1190,10 @@ Q_SIGNALS: // SIGNALS
                              int status,
                              const QString& address,
                              const QString& name);
-    void migrationEnded(const QString& accountID, const QString& result);
-    void contactAdded(const QString& accountID, const QString& uri, bool banned);
-    void contactRemoved(const QString& accountID, const QString& uri, bool banned);
-    void profileReceived(const QString& accountID, const QString& peer, const QString& vCard);
+    void migrationEnded(const QString& accountId, const QString& result);
+    void contactAdded(const QString& accountId, const QString& uri, bool banned);
+    void contactRemoved(const QString& accountId, const QString& uri, bool banned);
+    void profileReceived(const QString& accountId, const QString& peer, const QString& vCard);
     void dataTransferEvent(const QString& accountId,
                            const QString& conversationId,
                            const QString& interactionId,

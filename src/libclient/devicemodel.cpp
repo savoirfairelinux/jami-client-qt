@@ -94,7 +94,7 @@ DeviceModel::getDevice(const QString& id) const
 void
 DeviceModel::revokeDevice(const QString& id, const QString& password)
 {
-    ConfigurationManager::instance().revokeDevice(owner.id, password, id);
+    ConfigurationManager::instance().revokeDevice(owner.id, id, "password", password);
 }
 
 void
