@@ -52,8 +52,15 @@ Popup {
 
     signal validatePhoto(string photo)
 
-    modal: true
+    modal: isPhoto
     closePolicy: Popup.NoAutoClose
+
+    Connections {
+        target: CurrentConversation
+        function onIdChanged() {
+            root.close()
+        }
+    }
 
     function openRecorder(vid) {
         isVideo = vid;
@@ -145,6 +152,8 @@ Popup {
         width: 300
         height: 300
 
+
+
         Rectangle {
 
             radius: 5
@@ -153,6 +162,16 @@ Popup {
             height: root.isAudio ? 100 : 300
             width: 300
             color: root.isAudio ? JamiTheme.secondaryBackgroundColor : "transparent"
+
+            layer {
+                enabled: !isPhoto
+                effect: DropShadow {
+                    radius: 5.0
+                    color: JamiTheme.shadowColor
+                    transparentBorder: true
+                    samples: radius + 1
+                }
+            }
 
             Image {
                 id: screenshotImg
