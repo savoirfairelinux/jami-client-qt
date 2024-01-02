@@ -33,6 +33,42 @@
       "message": "Also for deleted messages",
       "revId": "2986e0cbd95ed354b7bd9cdbf67ff5a44f94f7c4",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d748425_088984a5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-01-02T21:51:44Z",
+      "side": 1,
+      "message": "Done for last interaction. Then https://review.jami.net/c/jami-client-qt/+/27112 to show the interactions in the chat view.",
+      "parentUuid": "5c6b9c1b_fd399af2",
+      "revId": "2986e0cbd95ed354b7bd9cdbf67ff5a44f94f7c4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c4eae6d_98721961",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-01-02T21:51:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "308daaff_1051c22f",
+      "revId": "2986e0cbd95ed354b7bd9cdbf67ff5a44f94f7c4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
