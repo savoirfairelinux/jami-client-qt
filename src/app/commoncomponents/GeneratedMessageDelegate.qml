@@ -33,10 +33,13 @@ Column {
     property int timestamp: Timestamp
     property string formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
     property string formattedDay: MessagesAdapter.getFormattedDay(Timestamp)
+
     width: ListView.view ? ListView.view.width : 0
     spacing: 2
     topPadding: 12
     bottomPadding: 12
+    font.bold: true
+
     ColumnLayout {
 
         width: parent.width

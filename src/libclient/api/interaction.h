@@ -51,7 +51,7 @@ Q_ENUM_NS(Type)
 static inline bool
 isTypeDisplayable(const Type& type)
 {
-    return type != interaction::Type::VOTE && type != interaction::Type::UPDATE_PROFILE;
+    return type != interaction::Type::VOTE;
 }
 
 static inline const QString
