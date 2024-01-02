@@ -321,7 +321,7 @@ AccountModel::registerName(const QString& accountId,
                            const QString& password,
                            const QString& username)
 {
-    return ConfigurationManager::instance().registerName(accountId, password, username);
+    return ConfigurationManager::instance().registerName(accountId, username, "password", password);
 }
 
 bool
@@ -329,7 +329,7 @@ AccountModel::exportToFile(const QString& accountId,
                            const QString& path,
                            const QString& password) const
 {
-    return ConfigurationManager::instance().exportToFile(accountId, path, password);
+    return ConfigurationManager::instance().exportToFile(accountId, path, "password", password);
 }
 
 bool
