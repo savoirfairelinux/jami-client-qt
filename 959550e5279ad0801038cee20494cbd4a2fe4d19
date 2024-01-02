@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43a57776_48ff8f9c",
+        "filename": "src/app/mainview/components/ScrollToBottomButton.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-01-02T13:32:03Z",
+      "side": 1,
+      "message": "why not change JamiTheme.shadow color?",
+      "range": {
+        "startLine": 92,
+        "startChar": 25,
+        "endLine": 92,
+        "endChar": 33
+      },
+      "revId": "959550e5279ad0801038cee20494cbd4a2fe4d19",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
