@@ -371,6 +371,19 @@ LRCInstance::setContentDraft(const QString& convUid,
 }
 
 void
+LRCInstance::setRecordDraft(const QString& convUid,
+                             const QString& accountId,
+                             const QString& content)
+{
+    if (accountId.isEmpty() || convUid.isEmpty()) {
+        return;
+    }
+    auto draftKey = accountId + "_" + convUid;
+    if (contentDrafts_[draftKey] == content)
+        return;
+}
+
+void
 LRCInstance::selectConversation(const QString& convId, const QString& accountId)
 {
     // reselection can be used to update the conversation

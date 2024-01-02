@@ -107,12 +107,16 @@ public:
     Q_INVOKABLE void makeConversationPermanent(const QString& convId = {},
                                                const QString& accountId = {});
     Q_INVOKABLE QString getContentDraft(const QString& convUid, const QString& accountId);
+    Q_INVOKABLE QString getRecordDraft(const QString& convUid, const QString& accountId);
     Q_INVOKABLE void setContentDraft(const QString& convUid,
                                      const QString& accountId,
                                      const QString& content);
     Q_INVOKABLE int indexOfActiveCall(const QString& confId,
                                       const QString& uri,
                                       const QString& deviceId);
+    Q_INVOKABLE void setRecordDraft(const QString& convUid,
+                                     const QString& accountId,
+                                     const QString& content);
 
     int getCurrentAccountIndex();
     void setCurrAccDisplayName(const QString& displayName);
@@ -156,6 +160,7 @@ private:
 
     QString selectedConvUid_;
     MapStringString contentDrafts_;
+    MapStringString recordDrafts_;
     MapStringString lastConferences_;
 
     conversation::Info invalid {"", nullptr};

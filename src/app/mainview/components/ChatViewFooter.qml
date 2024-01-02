@@ -55,6 +55,10 @@ Rectangle {
         }
     }
 
+    function updateRecordDraft() {
+
+    }
+
     Connections {
         target: CurrentConversation
 

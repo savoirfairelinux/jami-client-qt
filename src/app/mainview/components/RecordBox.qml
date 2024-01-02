@@ -52,8 +52,15 @@ Popup {
 
     signal validatePhoto(string photo)
 
-    modal: true
+    modal: isPhoto
     closePolicy: Popup.NoAutoClose
+
+    Connections {
+        target: CurrentConversation
+        function onIdChanged() {
+            root.close()
+        }
+    }
 
     function openRecorder(vid) {
         isVideo = vid;
@@ -126,17 +133,17 @@ Popup {
         time.text = min + ":" + sec;
     }
 
-    onActiveFocusChanged: {
-        if (visible) {
-            closeRecorder();
-        }
-    }
+//    onActiveFocusChanged: {
+//        if (visible) {
+//            closeRecorder();
+//        }
+//    }
 
-    onVisibleChanged: {
-        if (!visible) {
-            closeRecorder();
-        }
-    }
+//    onVisibleChanged: {
+//        if (!visible) {
+//            closeRecorder();
+//        }
+//    }
 
     Rectangle {
         id: boxBackground
@@ -154,11 +161,21 @@ Popup {
             width: 300
             color: root.isAudio ? JamiTheme.secondaryBackgroundColor : "transparent"
 
+            layer {
+                enabled: !isPhoto
+                effect: DropShadow {
+                    radius: 5.0
+                    color: JamiTheme.shadowColor
+                    transparentBorder: true
+                    samples: radius + 1
+                }
+            }
+
             Image {
                 id: screenshotImg
                 visible: root.showVideo && root.isPhoto && btnSend.visible
                 anchors.fill: parent
-                fillMode: Image.PreserveAspectCrop // Ajuste l'image tout en préservant l'aspect
+                fillMode: Image.PreserveAspectCrop
 
                 source: root.photo === "" ? "" : "data:image/png;base64," + root.photo
             }
