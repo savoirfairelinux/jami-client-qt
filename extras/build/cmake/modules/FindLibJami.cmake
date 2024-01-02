@@ -1,4 +1,4 @@
-# Copyright (C) 2015-2023 Savoir-faire Linux Inc.
+# Copyright (C) 2015-2024 Savoir-faire Linux Inc.
 #
 # Author: Alexandre Lision <alexandre.lision@savoirfairelinux.com>
 # Author: Emmanuel Lepage Vallee <emmanuel.lepage@savoirfairelinux.com>

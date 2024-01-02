@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 ##
-##  Copyright (C) 2016-2023 Savoir-faire Linux Inc.
+##  Copyright (C) 2016-2024 Savoir-faire Linux Inc.
 ##
 ##  Author: Edric Milaret <edric.ladent-milaret@savoirfairelinux.com>
 ##  Author: Guillaume Roguez <guillaume.roguez@savoirfairelinux.com>
