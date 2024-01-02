@@ -458,7 +458,9 @@ MessageListModel::dataForItem(const item_t& item, int, int role) const
         return QVariant(item.second.authorUri);
     case Role::Body: {
         if (account_) {
-            if (item.second.type == lrc::api::interaction::Type::CALL) {
+            if (item.second.type == lrc::api::interaction::Type::UPDATE_PROFILE) {
+                return QVariant(interaction::getProfileUpdatedString());
+            } else if (item.second.type == lrc::api::interaction::Type::CALL) {
                 return QVariant(
                     interaction::getCallInteractionString(item.second.authorUri
                                                               == account_->profileInfo.uri,
