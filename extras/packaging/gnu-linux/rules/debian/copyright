@@ -3,7 +3,7 @@ Upstream-Name: jami
 Upstream-Contact: Amin Bandali <bandali@gnu.org>
 Source: https://dl.jami.net/release/tarballs/
 Files: *
-Copyright: 2004-2023 Savoir-faire Linux Inc.
+Copyright: 2004-2024 Savoir-faire Linux Inc.
 License: GPL-3+
 Comment: Upstream embeds everything that is needed to build Jami inside the release tarball.
  Everything that is already in Debian has been removed.
@@ -50,7 +50,7 @@ Files: daemon/src/media/audio/opensl/audio_common.h
        daemon/src/media/audio/opensl/audio_recorder.h
        daemon/src/media/audio/opensl/buf_manager.h
 Copyright: 2015 The Android Open Source Project
-           2015-2023 Savoir-faire Linux Inc.
+           2015-2024 Savoir-faire Linux Inc.
 License: Apache-2.0
 
 Files: daemon/extras/tools/bootstrap
