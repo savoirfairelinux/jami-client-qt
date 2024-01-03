@@ -16,6 +16,24 @@
       "message": "TODO bump",
       "revId": "699bc6a3b06b6237b036259019ebf3607333747f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c002a239_4db49ef4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-01-03T14:31:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "734a2c5d_f3fa9e87",
+      "revId": "699bc6a3b06b6237b036259019ebf3607333747f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
