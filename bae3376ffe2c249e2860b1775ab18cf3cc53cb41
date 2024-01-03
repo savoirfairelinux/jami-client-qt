@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44fb2996_1236be95",
+        "filename": "src/app/commoncomponents/GeneratedMessageDelegate.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-01-03T18:04:02Z",
+      "side": 1,
+      "message": "I guess we should see a better text message like \"XXX changed the profile of the conversation\"",
+      "range": {
+        "startLine": 41,
+        "startChar": 15,
+        "endLine": 41,
+        "endChar": 19
+      },
+      "revId": "bae3376ffe2c249e2860b1775ab18cf3cc53cb41",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
