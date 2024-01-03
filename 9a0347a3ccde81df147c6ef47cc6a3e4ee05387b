@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9272cfac_d8b69a67",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2024-01-03T22:23:53Z",
+      "side": 1,
+      "message": "I followed Charlotte\u0027s design",
+      "parentUuid": "5c887012_fb7cba82",
+      "range": {
+        "startLine": 7,
+        "startChar": 22,
+        "endLine": 7,
+        "endChar": 32
+      },
+      "revId": "9a0347a3ccde81df147c6ef47cc6a3e4ee05387b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "daecfa22_1b5822bd",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 6
@@ -54,6 +78,24 @@
       "writtenOn": "2024-01-02T20:40:51Z",
       "side": 1,
       "message": "If a multi-device starts the call, the avatar in the header is not correct",
+      "revId": "9a0347a3ccde81df147c6ef47cc6a3e4ee05387b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6377237_b8c3738e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2024-01-03T22:23:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "daecfa22_1b5822bd",
       "revId": "9a0347a3ccde81df147c6ef47cc6a3e4ee05387b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
