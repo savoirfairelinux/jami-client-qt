@@ -214,7 +214,7 @@ Rectangle {
             onExtrasPanelWidthChanged: {
                 resolvePanes();
                 // This range should ensure that the panel won't restore to maximized.
-                if (extrasPanelWidth != 0 && extrasPanelWidth != width) {
+                if (extrasPanelWidth !== 0 && extrasPanelWidth !== width) {
                     console.debug("Saving previous extras panel width: %1".arg(extrasPanelWidth));
                     previousExtrasPanelWidth = extrasPanelWidth;
                 }
