@@ -265,7 +265,7 @@ ContactModel::addContact(contact::Info contactInfo)
 
     // if contactInfo is already a contact for the daemon, type should be equals to RING
     // if the user add a temporary item for a SIP account, should be directly transformed
-    if (!details.empty()
+    if ((!details.empty() && details.value("removed") == "0")
         || (profile.type == profile::Type::TEMPORARY
             && owner.profileInfo.type == profile::Type::SIP))
         profile.type = owner.profileInfo.type;
