@@ -21,9 +21,12 @@
 #include "mainapplication.h"
 #include "instancemanager.h"
 #include "version.h"
+#if defined(Q_OS_MACOS)
+#include <os/macos/macutils.h>
+#endif
 
-#include <QCryptographicHash>
 #include <QApplication>
+#include <QCryptographicHash>
 #include <QtQuick>
 #ifdef WITH_WEBENGINE
 #include <QtWebEngineCore>
@@ -32,14 +35,10 @@
 #if defined(HAS_VULKAN) && !defined(Q_OS_LINUX)
 #include <QVulkanInstance>
 #endif
-#if defined(Q_OS_MACOS)
-#include <os/macos/macutils.h>
-#endif
 
 #include <clocale>
 
 #ifndef ENABLE_TESTS
-
 int
 main(int argc, char* argv[])
 {
