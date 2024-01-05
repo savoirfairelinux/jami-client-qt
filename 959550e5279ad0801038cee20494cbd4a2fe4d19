@@ -22,6 +22,30 @@
       },
       "revId": "959550e5279ad0801038cee20494cbd4a2fe4d19",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fab0eada_ebc6f3f8",
+        "filename": "src/app/mainview/components/ScrollToBottomButton.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2024-01-05T14:48:22Z",
+      "side": 1,
+      "message": "Because it\u0027s used in some other components and I don\u0027t want to change the color for them.",
+      "parentUuid": "43a57776_48ff8f9c",
+      "range": {
+        "startLine": 92,
+        "startChar": 25,
+        "endLine": 92,
+        "endChar": 33
+      },
+      "revId": "959550e5279ad0801038cee20494cbd4a2fe4d19",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
