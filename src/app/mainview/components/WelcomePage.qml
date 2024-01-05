@@ -258,6 +258,8 @@ ListSelectionView {
                 MaterialButton {
                     id: aboutJami
 
+                    objectName: "aboutJami"
+
                     TextMetrics {
                         id: textSize
                         font.weight: Font.Bold
