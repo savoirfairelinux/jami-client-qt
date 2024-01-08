@@ -16,6 +16,24 @@
       "message": "Charlotte should validate this",
       "revId": "1df7f3e85ff68c9427e240d2e4fca5a62d437145",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a6b83cb_74a4b22c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2024-01-08T14:36:35Z",
+      "side": 1,
+      "message": "She has validated",
+      "parentUuid": "2be05cf6_0d0e92b4",
+      "revId": "1df7f3e85ff68c9427e240d2e4fca5a62d437145",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
