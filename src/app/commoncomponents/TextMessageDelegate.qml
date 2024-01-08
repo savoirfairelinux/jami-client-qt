@@ -68,6 +68,7 @@ SBSMessageBase {
             topPadding: bubble.isDeleted ? 6 : 10
             bottomPadding: bubble.isDeleted ? 6 : 10
             anchors.right: isOutgoing ? parent.right : undefined
+            anchors.rightMargin: isOutgoing && !isEmojiOnly ? root.timeWidth + root.editedWidth : 0
             text: {
                 if (Body !== "" && ParsedBody.length === 0) {
                     MessagesAdapter.parseMessage(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl, bubble.color);
@@ -90,7 +91,7 @@ SBSMessageBase {
                 else if (isEmojiOnly)
                     Math.min((2 / 3) * root.maxMsgWidth, implicitWidth, innerContent.width - senderMargin - (innerContent.width - senderMargin) % (JamiTheme.chatviewEmojiSize + 2));
                 else
-                    Math.min((2 / 3) * root.maxMsgWidth, implicitWidth + 5 + root.timeWidth + root.editedWidth, innerContent.width - senderMargin + 5 + root.timeWidth + root.editedWidth);
+                    Math.min((2 / 3) * root.maxMsgWidth, implicitWidth + 5, innerContent.width - senderMargin + 5);
             }
 
             wrapMode: Label.WrapAtWordBoundaryOrAnywhere
