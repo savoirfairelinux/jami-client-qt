@@ -64,6 +64,7 @@ Control {
     property real maxMsgWidth: root.width - senderMargin - 2 * hPadding - avatarBlockWidth
     property bool bigMsg
     property bool timeUnderBubble: false
+    property var type: Type
 
     // If the ListView attached properties are not available,
     // then the root delegate is likely a Loader.
@@ -263,6 +264,7 @@ Control {
 
                     PushButton {
                         id: more
+                        objectName: "more"
 
                         anchors.rightMargin: isOutgoing ? 10 : 0
                         anchors.leftMargin: !isOutgoing ? 10 : 0
@@ -273,7 +275,10 @@ Control {
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.right: isOutgoing ? optionButtonItem.right : undefined
                         anchors.left: !isOutgoing ? optionButtonItem.left : undefined
-                        visible: CurrentAccount.type !== Profile.Type.SIP && Body !== "" && (bubbleArea.bubbleHovered || hovered || reply.hovered || bgHandler.hovered)
+                        visible: CurrentAccount.type !== Profile.Type.SIP
+                                 && root.type !== Interaction.Type.CALL
+                                 && Body !== ""
+                                 && (bubbleArea.bubbleHovered || hovered || reply.hovered || bgHandler.hovered)
                         source: JamiResources.more_vert_24dp_svg
                         width: optionButtonItem.width / 2
                         height: optionButtonItem.height
@@ -283,7 +288,7 @@ Control {
 
                         function bind() {
                             more.isOpen = false;
-                            visible = Qt.binding(() => CurrentAccount.type !== Profile.Type.SIP && Body !== "" && (bubbleArea.bubbleHovered || hovered || reply.hovered || bgHandler.hovered));
+                            visible = Qt.binding(() => CurrentAccount.type !== Profile.Type.SIP && root.type !== Interaction.Type.CALL && Body !== "" && (bubbleArea.bubbleHovered || hovered || reply.hovered || bgHandler.hovered));
                             imageColor = Qt.binding(() => hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor);
                             normalColor = Qt.binding(() => JamiTheme.primaryBackgroundColor);
                         }
@@ -299,7 +304,7 @@ Control {
                                         "isOutgoing": isOutgoing,
                                         "msgId": Id,
                                         "msgBody": Body,
-                                        "type": Type,
+                                        "type": root.type,
                                         "transferName": TransferName,
                                         "msgBubble": bubble,
                                         "listView": listView
@@ -315,6 +320,7 @@ Control {
 
                     PushButton {
                         id: reply
+                        objectName: "reply"
 
                         circled: false
                         imageColor: hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor
@@ -327,7 +333,10 @@ Control {
                         anchors.rightMargin: 5
                         anchors.right: isOutgoing ? more.left : undefined
                         anchors.left: !isOutgoing ? more.right : undefined
-                        visible: CurrentAccount.type !== Profile.Type.SIP && Body !== "" && (bubbleArea.bubbleHovered || hovered || more.hovered || bgHandler.hovered)
+                        visible: CurrentAccount.type !== Profile.Type.SIP
+                                 && root.type !== Interaction.Type.CALL
+                                 && Body !== ""
+                                 && (bubbleArea.bubbleHovered || hovered || more.hovered || bgHandler.hovered)
 
                         onClicked: {
                             MessagesAdapter.editId = "";
@@ -355,12 +364,12 @@ Control {
                     property bool bubbleHovered
                     property string imgSource
 
-                    width: (Type === Interaction.Type.TEXT ? root.textContentWidth : innerContent.childrenRect.width)
+                    width: (root.type === Interaction.Type.TEXT ? root.textContentWidth : innerContent.childrenRect.width)
                     height: innerContent.childrenRect.height + (visible ? root.extraHeight : 0) + (root.bigMsg ? 15 : 0)
 
                     HoverHandler {
                         target: root
-                        enabled: Type === Interaction.Type.DATA_TRANSFER
+                        enabled: root.type === Interaction.Type.DATA_TRANSFER
                         onHoveredChanged: {
                             root.hoveredLink = enabled && hovered ? bubble.imgSource : ""
                         }
