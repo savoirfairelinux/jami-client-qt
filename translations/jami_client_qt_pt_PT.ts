@@ -33,6 +33,14 @@
     </message>
 </context>
 <context>
+    <name>ConversationListModelBase</name>
+    <message>
+        <location filename="../src/app/conversationlistmodelbase.cpp" line="138"/>
+        <source>(deleted message)</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>ConversationsAdapter</name>
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="189"/>
@@ -3713,7 +3721,7 @@ conectar para sincronizar a conversação.</translation>
         <translation>A chamar</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="373"/>
+        <location filename="../src/app/messagesadapter.cpp" line="347"/>
         <location filename="../src/libclient/api/call.h" line="72"/>
         <source>Connecting</source>
         <translation>A conectar</translation>
@@ -3729,7 +3737,7 @@ conectar para sincronizar a conversação.</translation>
         <translation>Inativo</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="390"/>
+        <location filename="../src/app/messagesadapter.cpp" line="364"/>
         <location filename="../src/libclient/api/call.h" line="78"/>
         <location filename="../src/libclient/api/call.h" line="84"/>
         <source>Finished</source>
@@ -3751,85 +3759,92 @@ conectar para sincronizar a conversação.</translation>
         <translation>Comunicação estabelecida</translation>
     </message>
     <message>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="211"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="994"/>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="453"/>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="924"/>
         <source>Invitation received</source>
         <translation>Convite recebido</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="260"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="208"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="992"/>
+        <location filename="../src/libclient/api/interaction.h" line="259"/>
+        <location filename="../src/libclient/api/interaction.h" line="271"/>
+        <location filename="../src/libclient/api/interaction.h" line="273"/>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="450"/>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="922"/>
         <source>Contact added</source>
         <translation>Contacto adicionado</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="262"/>
+        <location filename="../src/libclient/api/interaction.h" line="261"/>
         <source>%1 was invited to join</source>
         <translation>%1 foi convidado a aderir</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="264"/>
+        <location filename="../src/libclient/api/interaction.h" line="263"/>
         <source>%1 joined</source>
         <translation>%1 entrou</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="266"/>
+        <location filename="../src/libclient/api/interaction.h" line="265"/>
         <source>%1 left</source>
         <translation>% 1 saiu</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="268"/>
+        <location filename="../src/libclient/api/interaction.h" line="267"/>
         <source>%1 was kicked</source>
         <translation>%1 foi expulso</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="270"/>
+        <location filename="../src/libclient/api/interaction.h" line="269"/>
         <source>%1 was re-added</source>
         <translation>%1 foi adicionado novamente</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="359"/>
+        <location filename="../src/libclient/api/interaction.h" line="426"/>
         <source>Private conversation created</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="361"/>
+        <location filename="../src/libclient/api/interaction.h" line="428"/>
         <source>Swarm created</source>
         <translation>Criado um enxame</translation>
     </message>
     <message>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="174"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="180"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="990"/>
+        <location filename="../src/libclient/api/interaction.h" line="490"/>
+        <source>(profile updated)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/libclient/api/interaction.h" line="309"/>
+        <location filename="../src/libclient/api/interaction.h" line="315"/>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="920"/>
         <source>Outgoing call</source>
         <translation>Chamada efetuada</translation>
     </message>
     <message>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="176"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="186"/>
+        <location filename="../src/libclient/api/interaction.h" line="311"/>
+        <location filename="../src/libclient/api/interaction.h" line="321"/>
         <source>Incoming call</source>
         <translation>Chamada recebida</translation>
     </message>
     <message>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="182"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="988"/>
+        <location filename="../src/libclient/api/interaction.h" line="317"/>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="918"/>
         <source>Missed outgoing call</source>
         <translation>Chamadas efetuadas perdidas</translation>
     </message>
     <message>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="188"/>
+        <location filename="../src/libclient/api/interaction.h" line="323"/>
         <source>Missed incoming call</source>
         <translation>Chamadas recebidas perdidas</translation>
     </message>
     <message>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="198"/>
+        <location filename="../src/libclient/api/interaction.h" line="480"/>
         <source>Join call</source>
         <translation>Juntar-me à chamada</translation>
     </message>
     <message>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="213"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="996"/>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="455"/>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="926"/>
         <source>Invitation accepted</source>
         <translation>Convite aceite</translation>
     </message>
@@ -4116,67 +4131,67 @@ conectar para sincronizar a conversação.</translation>
         <translation>Não aceite em lugar nenhum</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="375"/>
+        <location filename="../src/app/messagesadapter.cpp" line="349"/>
         <source>Accept</source>
         <translation>Aceitar</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="367"/>
+        <location filename="../src/app/messagesadapter.cpp" line="341"/>
         <source>Sending</source>
         <translation>A enviar</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="371"/>
+        <location filename="../src/app/messagesadapter.cpp" line="345"/>
         <source>Sent</source>
         <translation>Enviado</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="380"/>
+        <location filename="../src/app/messagesadapter.cpp" line="354"/>
         <source>Unable to make contact</source>
         <translation>Não é possível fazer contato</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="384"/>
+        <location filename="../src/app/messagesadapter.cpp" line="358"/>
         <source>Waiting for contact</source>
         <translation>Aguardando pelo contato</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="386"/>
+        <location filename="../src/app/messagesadapter.cpp" line="360"/>
         <source>Incoming transfer</source>
         <translation>Recebendo transferência</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="388"/>
+        <location filename="../src/app/messagesadapter.cpp" line="362"/>
         <source>Timed out waiting for contact</source>
         <translation>O tempo de aguardo pelo contato chegou ao fim</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="741"/>
+        <location filename="../src/app/messagesadapter.cpp" line="704"/>
         <source>Today</source>
         <translation>Hoje</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="743"/>
+        <location filename="../src/app/messagesadapter.cpp" line="706"/>
         <source>Yesterday</source>
         <translation>Ontem</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="377"/>
+        <location filename="../src/app/messagesadapter.cpp" line="351"/>
         <source>Canceled</source>
         <translation>Cancelada</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="382"/>
+        <location filename="../src/app/messagesadapter.cpp" line="356"/>
         <source>Ongoing</source>
         <translation>Em andamento</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="722"/>
+        <location filename="../src/app/messagesadapter.cpp" line="685"/>
         <source>just now</source>
         <translation>agora mesmo</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="369"/>
+        <location filename="../src/app/messagesadapter.cpp" line="343"/>
         <source>Failure</source>
         <translation>Falha</translation>
     </message>
@@ -4196,8 +4211,8 @@ conectar para sincronizar a conversação.</translation>
         <translation>localizaçãoServiçosInconhecidoErro</translation>
     </message>
     <message>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1166"/>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1179"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1182"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1195"/>
         <source>%1 (you)</source>
         <translation type="unfinished"/>
     </message>
@@ -4384,17 +4399,17 @@ conectar para sincronizar a conversação.</translation>
 <context>
     <name>UtilsAdapter</name>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="341"/>
+        <location filename="../src/app/utilsadapter.cpp" line="343"/>
         <source>%1 Mbps</source>
         <translation>%1 Mb/s</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="341"/>
+        <location filename="../src/app/utilsadapter.cpp" line="343"/>
         <source>Default</source>
         <translation>Predefinição</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="546"/>
+        <location filename="../src/app/utilsadapter.cpp" line="537"/>
         <source>System</source>
         <translation>Sistema</translation>
     </message>
@@ -4402,22 +4417,22 @@ conectar para sincronizar a conversação.</translation>
 <context>
     <name>lrc::ContactModelPimpl</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="480"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="484"/>
         <source>Searching…</source>
         <translation>A pesquisar…</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1017"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1022"/>
         <source>Invalid ID</source>
         <translation>ID inválido</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1020"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1025"/>
         <source>Username not found</source>
         <translation>Nome de usuário não encontrado</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1023"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1028"/>
         <source>Couldn&apos;t lookup…</source>
         <translation>Não foi possível encontrar...</translation>
     </message>
@@ -4425,7 +4440,7 @@ conectar para sincronizar a conversação.</translation>
 <context>
     <name>lrc::api::ContactModel</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="443"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="447"/>
         <source>Bad URI scheme</source>
         <translation>Mau esquema de URI</translation>
     </message>

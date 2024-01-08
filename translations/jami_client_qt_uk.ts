@@ -33,6 +33,14 @@
     </message>
 </context>
 <context>
+    <name>ConversationListModelBase</name>
+    <message>
+        <location filename="../src/app/conversationlistmodelbase.cpp" line="138"/>
+        <source>(deleted message)</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>ConversationsAdapter</name>
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="189"/>
@@ -3712,7 +3720,7 @@ connects to synchronize the conversation.</source>
         <translation>Дзвінок</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="373"/>
+        <location filename="../src/app/messagesadapter.cpp" line="347"/>
         <location filename="../src/libclient/api/call.h" line="72"/>
         <source>Connecting</source>
         <translation>З&apos;єднання</translation>
@@ -3728,7 +3736,7 @@ connects to synchronize the conversation.</source>
         <translation>Неактивний</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="390"/>
+        <location filename="../src/app/messagesadapter.cpp" line="364"/>
         <location filename="../src/libclient/api/call.h" line="78"/>
         <location filename="../src/libclient/api/call.h" line="84"/>
         <source>Finished</source>
@@ -3750,85 +3758,92 @@ connects to synchronize the conversation.</source>
         <translation>Зв’язок встановлено</translation>
     </message>
     <message>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="211"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="994"/>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="453"/>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="924"/>
         <source>Invitation received</source>
         <translation>Отримано запрошення</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="260"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="208"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="992"/>
+        <location filename="../src/libclient/api/interaction.h" line="259"/>
+        <location filename="../src/libclient/api/interaction.h" line="271"/>
+        <location filename="../src/libclient/api/interaction.h" line="273"/>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="450"/>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="922"/>
         <source>Contact added</source>
         <translation>Контакт додано</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="262"/>
+        <location filename="../src/libclient/api/interaction.h" line="261"/>
         <source>%1 was invited to join</source>
         <translation>%1 запрошений приєднатися</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="264"/>
+        <location filename="../src/libclient/api/interaction.h" line="263"/>
         <source>%1 joined</source>
         <translation>%1 приєднується</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="266"/>
+        <location filename="../src/libclient/api/interaction.h" line="265"/>
         <source>%1 left</source>
         <translation>Користувач %1 вийшов</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="268"/>
+        <location filename="../src/libclient/api/interaction.h" line="267"/>
         <source>%1 was kicked</source>
         <translation>%1 був відкинутий</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="270"/>
+        <location filename="../src/libclient/api/interaction.h" line="269"/>
         <source>%1 was re-added</source>
         <translation>%1 було додано повторно</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="359"/>
+        <location filename="../src/libclient/api/interaction.h" line="426"/>
         <source>Private conversation created</source>
         <translation>Приватна розмова створена</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="361"/>
+        <location filename="../src/libclient/api/interaction.h" line="428"/>
         <source>Swarm created</source>
         <translation>Створена пастка</translation>
     </message>
     <message>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="174"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="180"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="990"/>
+        <location filename="../src/libclient/api/interaction.h" line="490"/>
+        <source>(profile updated)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/libclient/api/interaction.h" line="309"/>
+        <location filename="../src/libclient/api/interaction.h" line="315"/>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="920"/>
         <source>Outgoing call</source>
         <translation>Вихідний виклик</translation>
     </message>
     <message>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="176"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="186"/>
+        <location filename="../src/libclient/api/interaction.h" line="311"/>
+        <location filename="../src/libclient/api/interaction.h" line="321"/>
         <source>Incoming call</source>
         <translation>Вхідний виклик</translation>
     </message>
     <message>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="182"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="988"/>
+        <location filename="../src/libclient/api/interaction.h" line="317"/>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="918"/>
         <source>Missed outgoing call</source>
         <translation>Пропущений вихідний виклик</translation>
     </message>
     <message>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="188"/>
+        <location filename="../src/libclient/api/interaction.h" line="323"/>
         <source>Missed incoming call</source>
         <translation>Пропущений вхідний виклик</translation>
     </message>
     <message>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="198"/>
+        <location filename="../src/libclient/api/interaction.h" line="480"/>
         <source>Join call</source>
         <translation>Приєднати виклик</translation>
     </message>
     <message>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="213"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="996"/>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="455"/>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="926"/>
         <source>Invitation accepted</source>
         <translation>Запрошення прийнято</translation>
     </message>
@@ -4115,67 +4130,67 @@ connects to synchronize the conversation.</source>
         <translation>Ніде не прийнято</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="375"/>
+        <location filename="../src/app/messagesadapter.cpp" line="349"/>
         <source>Accept</source>
         <translation>Прийняти</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="367"/>
+        <location filename="../src/app/messagesadapter.cpp" line="341"/>
         <source>Sending</source>
         <translation>Відправлення</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="371"/>
+        <location filename="../src/app/messagesadapter.cpp" line="345"/>
         <source>Sent</source>
         <translation>Відправлено</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="380"/>
+        <location filename="../src/app/messagesadapter.cpp" line="354"/>
         <source>Unable to make contact</source>
         <translation>Не змогла зв&apos;язатися</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="384"/>
+        <location filename="../src/app/messagesadapter.cpp" line="358"/>
         <source>Waiting for contact</source>
         <translation>Очікуючи контакту</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="386"/>
+        <location filename="../src/app/messagesadapter.cpp" line="360"/>
         <source>Incoming transfer</source>
         <translation>Прихідний трансфер</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="388"/>
+        <location filename="../src/app/messagesadapter.cpp" line="362"/>
         <source>Timed out waiting for contact</source>
         <translation>Почастий, що чекають контакту</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="741"/>
+        <location filename="../src/app/messagesadapter.cpp" line="704"/>
         <source>Today</source>
         <translation>Сьогодні</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="743"/>
+        <location filename="../src/app/messagesadapter.cpp" line="706"/>
         <source>Yesterday</source>
         <translation>Вчора</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="377"/>
+        <location filename="../src/app/messagesadapter.cpp" line="351"/>
         <source>Canceled</source>
         <translation>Скасовано</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="382"/>
+        <location filename="../src/app/messagesadapter.cpp" line="356"/>
         <source>Ongoing</source>
         <translation>Продовження</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="722"/>
+        <location filename="../src/app/messagesadapter.cpp" line="685"/>
         <source>just now</source>
         <translation>щойно</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="369"/>
+        <location filename="../src/app/messagesadapter.cpp" line="343"/>
         <source>Failure</source>
         <translation>Невдача</translation>
     </message>
@@ -4195,8 +4210,8 @@ connects to synchronize the conversation.</source>
         <translation>Розміщення ПослугиНевідомоПошибка</translation>
     </message>
     <message>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1166"/>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1179"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1182"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1195"/>
         <source>%1 (you)</source>
         <translation>%1 (ви)</translation>
     </message>
@@ -4383,17 +4398,17 @@ connects to synchronize the conversation.</source>
 <context>
     <name>UtilsAdapter</name>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="341"/>
+        <location filename="../src/app/utilsadapter.cpp" line="343"/>
         <source>%1 Mbps</source>
         <translation>%1 Мбіт/с</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="341"/>
+        <location filename="../src/app/utilsadapter.cpp" line="343"/>
         <source>Default</source>
         <translation>За замовчуванням</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="546"/>
+        <location filename="../src/app/utilsadapter.cpp" line="537"/>
         <source>System</source>
         <translation>Система</translation>
     </message>
@@ -4401,22 +4416,22 @@ connects to synchronize the conversation.</source>
 <context>
     <name>lrc::ContactModelPimpl</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="480"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="484"/>
         <source>Searching…</source>
         <translation>Пошук…</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1017"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1022"/>
         <source>Invalid ID</source>
         <translation>Недійний ідентифікатор</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1020"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1025"/>
         <source>Username not found</source>
         <translation>Назва користувача не знайдена</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1023"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1028"/>
         <source>Couldn&apos;t lookup…</source>
         <translation>Не міг шукати...</translation>
     </message>
@@ -4424,7 +4439,7 @@ connects to synchronize the conversation.</source>
 <context>
     <name>lrc::api::ContactModel</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="443"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="447"/>
         <source>Bad URI scheme</source>
         <translation>Погано схема URI</translation>
     </message>

@@ -33,6 +33,14 @@
     </message>
 </context>
 <context>
+    <name>ConversationListModelBase</name>
+    <message>
+        <location filename="../src/app/conversationlistmodelbase.cpp" line="138"/>
+        <source>(deleted message)</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>ConversationsAdapter</name>
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="189"/>
@@ -3708,7 +3716,7 @@ connects to synchronize the conversation.</source>
         <translation>통화 중</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="373"/>
+        <location filename="../src/app/messagesadapter.cpp" line="347"/>
         <location filename="../src/libclient/api/call.h" line="72"/>
         <source>Connecting</source>
         <translation>연결</translation>
@@ -3724,7 +3732,7 @@ connects to synchronize the conversation.</source>
         <translation>활동하지 않는</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="390"/>
+        <location filename="../src/app/messagesadapter.cpp" line="364"/>
         <location filename="../src/libclient/api/call.h" line="78"/>
         <location filename="../src/libclient/api/call.h" line="84"/>
         <source>Finished</source>
@@ -3746,85 +3754,92 @@ connects to synchronize the conversation.</source>
         <translation>확정된 통보</translation>
     </message>
     <message>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="211"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="994"/>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="453"/>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="924"/>
         <source>Invitation received</source>
         <translation>초대 받은 것</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="260"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="208"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="992"/>
+        <location filename="../src/libclient/api/interaction.h" line="259"/>
+        <location filename="../src/libclient/api/interaction.h" line="271"/>
+        <location filename="../src/libclient/api/interaction.h" line="273"/>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="450"/>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="922"/>
         <source>Contact added</source>
         <translation>연락처 추가</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="262"/>
+        <location filename="../src/libclient/api/interaction.h" line="261"/>
         <source>%1 was invited to join</source>
         <translation>%1가 가입하도록 초청되었습니다</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="264"/>
+        <location filename="../src/libclient/api/interaction.h" line="263"/>
         <source>%1 joined</source>
         <translation>%1 님이 참가했습니다</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="266"/>
+        <location filename="../src/libclient/api/interaction.h" line="265"/>
         <source>%1 left</source>
         <translation>%1 왼쪽</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="268"/>
+        <location filename="../src/libclient/api/interaction.h" line="267"/>
         <source>%1 was kicked</source>
         <translation>%1가 발자국되었습니다</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="270"/>
+        <location filename="../src/libclient/api/interaction.h" line="269"/>
         <source>%1 was re-added</source>
         <translation>%1가 다시 추가되었습니다</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="359"/>
+        <location filename="../src/libclient/api/interaction.h" line="426"/>
         <source>Private conversation created</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="361"/>
+        <location filename="../src/libclient/api/interaction.h" line="428"/>
         <source>Swarm created</source>
         <translation>무리가 만들어졌습니다</translation>
     </message>
     <message>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="174"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="180"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="990"/>
+        <location filename="../src/libclient/api/interaction.h" line="490"/>
+        <source>(profile updated)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/libclient/api/interaction.h" line="309"/>
+        <location filename="../src/libclient/api/interaction.h" line="315"/>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="920"/>
         <source>Outgoing call</source>
         <translation>출력 전화</translation>
     </message>
     <message>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="176"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="186"/>
+        <location filename="../src/libclient/api/interaction.h" line="311"/>
+        <location filename="../src/libclient/api/interaction.h" line="321"/>
         <source>Incoming call</source>
         <translation>수신 전화</translation>
     </message>
     <message>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="182"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="988"/>
+        <location filename="../src/libclient/api/interaction.h" line="317"/>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="918"/>
         <source>Missed outgoing call</source>
         <translation>출력 전화가 빠진 것</translation>
     </message>
     <message>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="188"/>
+        <location filename="../src/libclient/api/interaction.h" line="323"/>
         <source>Missed incoming call</source>
         <translation>수신 전화가 빠진 것</translation>
     </message>
     <message>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="198"/>
+        <location filename="../src/libclient/api/interaction.h" line="480"/>
         <source>Join call</source>
         <translation>전화에 가입</translation>
     </message>
     <message>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="213"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="996"/>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="455"/>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="926"/>
         <source>Invitation accepted</source>
         <translation>초대 신청은 받아들여졌습니다.</translation>
     </message>
@@ -4111,67 +4126,67 @@ connects to synchronize the conversation.</source>
         <translation>어디 에서도 받아들여지지 않는 것</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="375"/>
+        <location filename="../src/app/messagesadapter.cpp" line="349"/>
         <source>Accept</source>
         <translation>수락</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="367"/>
+        <location filename="../src/app/messagesadapter.cpp" line="341"/>
         <source>Sending</source>
         <translation>전송</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="371"/>
+        <location filename="../src/app/messagesadapter.cpp" line="345"/>
         <source>Sent</source>
         <translation>보내</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="380"/>
+        <location filename="../src/app/messagesadapter.cpp" line="354"/>
         <source>Unable to make contact</source>
         <translation>연락이 불가능하다</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="384"/>
+        <location filename="../src/app/messagesadapter.cpp" line="358"/>
         <source>Waiting for contact</source>
         <translation>연락을 기다리고 있습니다</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="386"/>
+        <location filename="../src/app/messagesadapter.cpp" line="360"/>
         <source>Incoming transfer</source>
         <translation>유입 송금</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="388"/>
+        <location filename="../src/app/messagesadapter.cpp" line="362"/>
         <source>Timed out waiting for contact</source>
         <translation>연락을 기다리는 시간</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="741"/>
+        <location filename="../src/app/messagesadapter.cpp" line="704"/>
         <source>Today</source>
         <translation>오늘날</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="743"/>
+        <location filename="../src/app/messagesadapter.cpp" line="706"/>
         <source>Yesterday</source>
         <translation>어제</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="377"/>
+        <location filename="../src/app/messagesadapter.cpp" line="351"/>
         <source>Canceled</source>
         <translation>취소됨</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="382"/>
+        <location filename="../src/app/messagesadapter.cpp" line="356"/>
         <source>Ongoing</source>
         <translation>계속되고 있는</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="722"/>
+        <location filename="../src/app/messagesadapter.cpp" line="685"/>
         <source>just now</source>
         <translation>지금</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="369"/>
+        <location filename="../src/app/messagesadapter.cpp" line="343"/>
         <source>Failure</source>
         <translation>실패</translation>
     </message>
@@ -4191,8 +4206,8 @@ connects to synchronize the conversation.</source>
         <translation>위치서비스 알려지지 않은 오류</translation>
     </message>
     <message>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1166"/>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1179"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1182"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1195"/>
         <source>%1 (you)</source>
         <translation type="unfinished"/>
     </message>
@@ -4379,17 +4394,17 @@ connects to synchronize the conversation.</source>
 <context>
     <name>UtilsAdapter</name>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="341"/>
+        <location filename="../src/app/utilsadapter.cpp" line="343"/>
         <source>%1 Mbps</source>
         <translation>%1메가비트/초</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="341"/>
+        <location filename="../src/app/utilsadapter.cpp" line="343"/>
         <source>Default</source>
         <translation>기본값</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="546"/>
+        <location filename="../src/app/utilsadapter.cpp" line="537"/>
         <source>System</source>
         <translation>시스템</translation>
     </message>
@@ -4397,22 +4412,22 @@ connects to synchronize the conversation.</source>
 <context>
     <name>lrc::ContactModelPimpl</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="480"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="484"/>
         <source>Searching…</source>
         <translation>찾아...</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1017"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1022"/>
         <source>Invalid ID</source>
         <translation>유효하지 않은 주민등록증</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1020"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1025"/>
         <source>Username not found</source>
         <translation>사용자 이름 발견되지 않았습니다</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1023"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1028"/>
         <source>Couldn&apos;t lookup…</source>
         <translation>찾아볼 수 없었어요</translation>
     </message>
@@ -4420,7 +4435,7 @@ connects to synchronize the conversation.</source>
 <context>
     <name>lrc::api::ContactModel</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="443"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="447"/>
         <source>Bad URI scheme</source>
         <translation>나쁜 URI 계획</translation>
     </message>
