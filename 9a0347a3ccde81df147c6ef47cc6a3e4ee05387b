@@ -121,6 +121,30 @@
       },
       "revId": "9a0347a3ccde81df147c6ef47cc6a3e4ee05387b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7bd28466_a4d25c5c",
+        "filename": "src/app/mainview/components/NotificationArea.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1004
+      },
+      "writtenOn": "2024-01-08T14:06:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "52af8cc4_3cf2ba91",
+      "range": {
+        "startLine": 77,
+        "startChar": 34,
+        "endLine": 77,
+        "endChar": 41
+      },
+      "revId": "9a0347a3ccde81df147c6ef47cc6a3e4ee05387b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
