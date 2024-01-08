@@ -364,7 +364,7 @@ Control {
                     property bool bubbleHovered
                     property string imgSource
 
-                    width: (root.type === Interaction.Type.TEXT ? root.textContentWidth : innerContent.childrenRect.width)
+                    width: (root.type === Interaction.Type.TEXT ? root.textContentWidth + ( IsEmojiOnly || root.bigMsg ? 0 : root.timeWidth + root.editedWidth): innerContent.childrenRect.width)
                     height: innerContent.childrenRect.height + (visible ? root.extraHeight : 0) + (root.bigMsg ? 15 : 0)
 
                     HoverHandler {
@@ -408,7 +408,6 @@ Control {
                         anchors.leftMargin: root.bigMsg ? 10 : - timestampItem.width - 16
                         visible: bubble.isEdited
                         z: 1
-
                         ResponsiveImage {
                             id: editedImage
                             source: JamiResources.round_edit_24dp_svg
