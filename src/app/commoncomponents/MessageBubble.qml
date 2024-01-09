@@ -24,6 +24,7 @@ Rectangle {
     property bool out: true
     property int type: MsgSeq.single
     property bool isReply: false
+    property alias mask: mask
 
     Rectangle {
         id: maskReplyBorder
