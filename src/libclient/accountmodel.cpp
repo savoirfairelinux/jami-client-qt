@@ -564,8 +564,9 @@ AccountModelPimpl::slotAccountDetailsChanged(const QString& accountId,
 {
     auto account = accounts.find(accountId);
     if (account == accounts.end()) {
-        throw std::out_of_range("AccountModelPimpl::slotAccountDetailsChanged, can't find "
-                                + accountId.toStdString());
+        qWarning() << "AccountModelPimpl::slotAccountDetailsChanged, can't find "
+                   << accountId;
+        return;
     }
     auto& accountInfo = account->second.first;
     accountInfo.fromDetails(details);
