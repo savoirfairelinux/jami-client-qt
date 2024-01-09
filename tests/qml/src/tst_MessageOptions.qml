@@ -82,7 +82,8 @@ Item {
                 "username": "currentAccountUsername"
             });
             // Block on account creation
-            accountAdded.wait(1000);
+            accountAdded.wait(2000);
+            compare(accountAdded.count, 1)
 
             // Add some emoji reactions (one from current account uri, one from another uri)
             emojiReactions.reactions = {
@@ -100,6 +101,10 @@ Item {
             // Check that emojiReplied has our emoji.
             verify(JSON.stringify(optionsPopup.emojiReplied) === JSON.stringify(["🌭"]),
                 "Message options popup should have emoji replied");
+        }
+
+        function cleanupTestCase() {
+            AccountAdapter.deleteCurrentAccount()
         }
     }
 }
