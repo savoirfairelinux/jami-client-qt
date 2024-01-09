@@ -33,6 +33,7 @@ SidePanelBase {
     color: JamiTheme.backgroundColor
     property int currentIndex
     property bool isSinglePane
+    signal updated
 
     function getHeaders() {
         if (AppVersionManager.isUpdaterEnabled()) {
@@ -188,8 +189,19 @@ SidePanelBase {
 
     function updateModel() {
         if (visible) {
-            listView.model = {};
             listView.model = getHeaders();
+            root.updated()
+        }
+    }
+
+    Timer {
+        id: timerTranslate
+
+        interval: 100
+        repeat: false
+
+        onTriggered: {
+            updateModel()
         }
     }
 
@@ -206,7 +218,10 @@ SidePanelBase {
         target: UtilsAdapter
 
         function onChangeLanguage() {
-            updateModel();
+            // For some reason, under Qt 6.5.3, even if locale is changed before
+            // model is not computer correctly.
+            // Delaying the update works
+            timerTranslate.restart()
         }
     }
 
@@ -253,6 +268,8 @@ SidePanelBase {
 
         ListView {
             id: listView
+            objectName: "listView"
+
             width: page.width
             height: page.height
             clip: true
