@@ -54,6 +54,11 @@ SBSMessageBase {
 
         function onActiveCallsChanged() {
             root.isActive = LRCInstance.indexOfActiveCall(ConfId, ActionUri, DeviceId) !== -1;
+            if (root.isActive) {
+                bubble.mask.border.color = CurrentConversation.color;
+                bubble.mask.border.width = 1.5;
+                bubble.mask.z = -2;
+            }
         }
     }
 
