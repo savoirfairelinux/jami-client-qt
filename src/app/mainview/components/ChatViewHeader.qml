@@ -83,7 +83,6 @@ Rectangle {
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
             Layout.leftMargin: 8
 
-            //preferredSize: 24
             mirror: UtilsAdapter.isRTL
 
             source: JamiResources.back_24dp_svg

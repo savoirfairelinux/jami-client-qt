@@ -93,7 +93,6 @@ ApplicationWindow {
     }
 
     property ApplicationWindow appWindow: root
-    property WindowAgent appWindowAgent: windowAgent
     property LayoutManager layoutManager: LayoutManager {
         appContainer: appContainer
     }
@@ -144,86 +143,126 @@ ApplicationWindow {
 
     title: JamiStrings.appTitle
 
-    visible: mainApplicationLoader.status === Loader.Ready && windowSettingsLoaded && allowVisibleWindow
+    visible: windowSettingsLoaded && allowVisibleWindow
 
-    // To facilitate reparenting of the callview during
-    // fullscreen mode, we need QQuickItem based object.
+    Connections {
+        id: connectionMigrationEnded
+
+        target: CurrentAccountToMigrate
+
+        function onAccountNeedsMigration(accountId) {
+            viewCoordinator.present("AccountMigrationView");
+        }
+
+        function onAllMigrationsFinished() {
+            viewCoordinator.dismiss("AccountMigrationView");
+            viewCoordinator.present("WelcomePage");
+        }
+    }
+
+    Component.onCompleted: {
+        // Main window, load any valid app settings, and allow the
+        // layoutManager to handle as much as possible.
+        layoutManager.restoreWindowSettings();
+
+        // Set the viewCoordinator's root item.
+        viewCoordinator.init(mainView);
+
+        // Navigate to something.
+        if (UtilsAdapter.getAccountListSize() > 0) {
+            // Already have an account.
+            if (CurrentAccountToMigrate.accountToMigrateListSize > 0)
+                // Do we need to migrate any accounts?
+                viewCoordinator.present("AccountMigrationView");
+            else
+                // Okay now just start the client normally.
+                viewCoordinator.present("WelcomePage");
+        } else {
+            // No account, so start the wizard.
+            viewCoordinator.present("WizardView");
+        }
+
+        // Set up the event filter for macOS.
+        if (Qt.platform.os.toString() === "osx") {
+            MainApplication.setEventFilter();
+        }
+
+        // Quiet check for updates on start if set to.
+        if (Qt.platform.os.toString() === "windows") {
+            if (UtilsAdapter.getAppValue(Settings.AutoUpdate)) {
+                AppVersionManager.checkForUpdates(true);
+                AppVersionManager.setAutoUpdateCheck(true);
+            }
+        }
+
+        // Handle a start URI if set as start option.
+        MainApplication.handleUriAction();
+
+        // Dbus error handler for Linux.
+        if (Qt.platform.os.toString() !== "windows" && Qt.platform.os.toString() !== "osx")
+            DBusErrorHandler.setActive(true);
+
+        // QWK setup.
+        windowAgent.setup(root);
+        // Now register the system buttons (will only happen if not on macOS).
+        if (systemButtonGroupLoader.item) {
+            const sysBtns = systemButtonGroupLoader.item;
+            // Register them.
+            windowAgent.setSystemButton(WindowAgent.Minimize, sysBtns.minButton);
+            windowAgent.setSystemButton(WindowAgent.Maximize, sysBtns.maxButton);
+            windowAgent.setSystemButton(WindowAgent.Close, sysBtns.closeButton);
+        }
+
+        // This will allow visible to become true if not starting minimized.
+        windowSettingsLoaded = true;
+    }
+
+    // Window Title bar
     Item {
-        id: appContainer
+        id: titleBar
+        height: 32
+        readonly property var vInfo: JSON.parse(viewCoordinator.currentViewInfo)
+        anchors {
+            top: parent.top
+            right: parent.right
+            left: parent.left
+            leftMargin: {
+                if (Qt.platform.os.toString() === "osx")
+                    return 0;
+                return vInfo.visibleViewWidths.length > 0 ? vInfo.visibleViewWidths[0] : 0
+            }
+        }
+        Component.onCompleted: windowAgent.setTitleBar(titleBar)
+    }
 
+    MainView {
+        id: mainView
+        objectName: "MainView"
         anchors.fill: parent
     }
 
+    // On Windows and Linux, use custom system buttons.
     Loader {
-        id: mainApplicationLoader
+        id: systemButtonGroupLoader
+        active: Qt.platform.os.toString() !== "osx"
+        anchors {
+            top: parent.top
+            right: parent.right
+            // Note: leave these margins, they prevent image scaling artifacts
+            topMargin: 1
+            rightMargin: 1
+        }
+        source: "qrc:/commoncomponents/QWKSystemButtonGroup.qml"
+    }
 
+    WindowAgent {
+        id: windowAgent
+    }
+
+    // Use this as a parent for fullscreen items.
+    Item {
+        id: appContainer
         anchors.fill: parent
-        z: -1
-
-        asynchronous: true
-        visible: status == Loader.Ready
-
-        Connections {
-            id: connectionMigrationEnded
-
-            target: CurrentAccountToMigrate
-
-            function onAccountNeedsMigration(accountId) {
-                viewCoordinator.present("AccountMigrationView");
-            }
-
-            function onAllMigrationsFinished() {
-                viewCoordinator.dismiss("AccountMigrationView");
-                startClient();
-            }
-        }
-
-        // Set `visible = false` when loading a new QML file.
-        onSourceChanged: windowSettingsLoaded = false
-
-        onLoaded: {
-            if (UtilsAdapter.getAccountListSize() === 0) {
-                layoutManager.restoreWindowSettings();
-                if (!viewCoordinator.rootView)
-                    // Set the viewCoordinator's root item.
-                    viewCoordinator.init(item);
-                viewCoordinator.present("WizardView");
-            } else {
-                // Main window, load any valid app settings, and allow the
-                // layoutManager to handle as much as possible.
-                layoutManager.restoreWindowSettings();
-
-                // Present the welcome view once the viewCoordinator is setup.
-                viewCoordinator.initialized.connect(function () {
-                        viewCoordinator.preload("SidePanel");
-                        viewCoordinator.preload("SettingsSidePanel");
-                        viewCoordinator.present("WelcomePage");
-                        viewCoordinator.preload("ConversationView");
-                    });
-                if (!viewCoordinator.rootView)
-                    // Set the viewCoordinator's root item.
-                    viewCoordinator.init(item);
-                if (CurrentAccountToMigrate.accountToMigrateListSize > 0)
-                    viewCoordinator.present("AccountMigrationView");
-            }
-            if (Qt.platform.os.toString() === "osx") {
-                MainApplication.setEventFilter();
-            }
-
-            // This will trigger `visible = true`.
-            windowSettingsLoaded = true;
-
-            // Quiet check for updates on start if set to.
-            if (Qt.platform.os.toString() === "windows") {
-                if (UtilsAdapter.getAppValue(Settings.AutoUpdate)) {
-                    AppVersionManager.checkForUpdates(true);
-                    AppVersionManager.setAutoUpdateCheck(true);
-                }
-            }
-
-            // Handle a start URI if set as start option.
-            MainApplication.handleUriAction();
-        }
     }
 
     Connections {
@@ -345,60 +384,4 @@ ApplicationWindow {
     }
 
     onClosing: root.close()
-
-    Component.onCompleted: {
-        // print("SettingsView: Component.onCompleted");
-        // windowAgent.setup(root);
-        // viewManager.createUniqueView("qrc:/commoncomponents/QWKTitleBar.qml",
-        //                              this,
-        //                              function (titleBar) {
-        //                                  windowAgent.setTitleBar(titleBar);
-        //                              },
-        //                              {});
-
-        startClient();
-        if (Qt.platform.os.toString() !== "windows" && Qt.platform.os.toString() !== "osx")
-            DBusErrorHandler.setActive(true);
-    }
-
-    WindowAgent {
-        id: windowAgent
-    }
-
-    // Use a loader to load the window controls.
-    // Loader {
-    //     id: windowControlsLoader
-
-    //     active: Qt.platform.os.toString() !== "osx"
-    //     anchors {
-    //         top: parent.top
-    //         right: parent.right
-
-    //         // Note: these margins prevent image scaling artifacts.
-    //         topMargin: 1
-    //         rightMargin: 1
-    //     }
-
-    //     onLoaded: {
-    //         var windowControls = windowControlsLoader.item;
-    //         print("Loaded window controls: " + windowControls);
-    //         //windowAgent.setTitleBar(windowControls);
-    //         //windowAgent.setup(root);
-    //     }
-
-    //     source: "qrc:/commoncomponents/QWKTitleBar.qml"
-    // }
-
-    // QWKTitleBar {
-    //     id: titleBar
-
-    //     anchors {
-    //         top: parent.top
-    //         right: parent.right
-
-    //         // Note: these margins prevent image scaling artifacts.
-    //         topMargin: 1
-    //         rightMargin: 1
-    //     }
-    // }
 }

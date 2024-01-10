@@ -24,47 +24,36 @@ import QWindowKit
 
 Row {
     id: root
-        anchors {
-            top: parent.top
-            right: parent.right
-
-            // Note: these margins prevent image scaling artifacts.
-            topMargin: 1
-            rightMargin: 1
-        }
-
     height: 32
-    //Component.onCompleted: appWindowAgent.setTitleBar(this)
+
     property alias minButton: minButton
     property alias maxButton: maxButton
     property alias closeButton: closeButton
 
-    QWKButton {
-        id: minButton
+    component SystemButton : QWKButton {
         height: parent.height
-        source: JamiResources.window_bar_minimize_svg
-        onClicked: appWindow.showMinimized()
-        //Component.onCompleted: appWindowAgent.setSystemButton(WindowAgent.Minimize, minButton)
     }
 
-    QWKButton {
+    SystemButton {
+        id: minButton
+        source: JamiResources.window_bar_minimize_svg
+        onClicked: appWindow.showMinimized()
+    }
+
+    SystemButton {
         id: maxButton
-        height: parent.height
         source: appWindow.visibility === Window.Maximized ?
                     JamiResources.window_bar_restore_svg :
                     JamiResources.window_bar_maximize_svg
         onClicked: appWindow.visibility === Window.Maximized ?
                        appWindow.showNormal() :
                        appWindow.showMaximized()
-        //Component.onCompleted: appWindowAgent.setSystemButton(WindowAgent.Maximize, maxButton)
     }
 
-    QWKButton {
+    SystemButton {
         id: closeButton
-        height: parent.height
         source: JamiResources.window_bar_close_svg
         baseColor: "#e81123"
         onClicked: appWindow.close()
-        //Component.onCompleted: appWindowAgent.setSystemButton(WindowAgent.Close, closeButton)
     }
 }
