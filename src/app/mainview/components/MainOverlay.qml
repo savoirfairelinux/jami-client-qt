@@ -193,7 +193,7 @@ Item {
                 radius: height / 2
                 color: JamiTheme.recordIconColor
 
-                SequentialAnimation on color  {
+                SequentialAnimation on color {
                     loops: Animation.Infinite
                     running: recordingRect.visible
                     ColorAnimation {
@@ -257,6 +257,8 @@ Item {
     CallActionBar {
         id: __callActionBar
 
+        objectName: "callActionBar"
+
         anchors {
             bottom: parent.bottom
             bottomMargin: 26
@@ -268,7 +270,7 @@ Item {
         visible: root.opacity
     }
 
-    Behavior on opacity  {
+    Behavior on opacity {
         NumberAnimation {
             duration: JamiTheme.overlayFadeDuration
         }

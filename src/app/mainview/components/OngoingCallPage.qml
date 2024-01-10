@@ -305,6 +305,8 @@ Rectangle {
             CallOverlay {
                 id: callOverlay
 
+                objectName: "callOverlay"
+
                 anchors.fill: parent
 
                 function toggleConversation() {

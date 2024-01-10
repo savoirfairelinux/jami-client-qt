@@ -144,6 +144,8 @@ Item {
     MainOverlay {
         id: mainOverlay
 
+        objectName: "mainOverlay"
+
         anchors.fill: parent
 
         Connections {
