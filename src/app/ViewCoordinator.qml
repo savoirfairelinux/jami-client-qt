@@ -26,8 +26,6 @@ QtObject {
 
     required property QtObject viewManager
 
-    signal initialized
-
     // A map of view names to file paths for QML files that define each view.
     property variant resources: {
         "SidePanel": "mainview/components/SidePanel.qml",
@@ -43,17 +41,42 @@ QtObject {
     // The `main` view of the application window.
     property StackView rootView
 
-    property Item currentView: rootView && rootView.currentItem || null
-    onCurrentViewChanged: print("currentView changed to " + currentView)
-    property var currentViewName: currentView && currentView.objectName || null
-    onCurrentViewNameChanged: print("currentViewName changed to " + currentViewName)
-    property bool isDualPane: currentView && currentView instanceof DualPaneView
-    onIsDualPaneChanged: print("isDualPane changed to " + isDualPane)
+    readonly property Item currentView: rootView && rootView.currentItem || null
+    readonly property var currentViewName: currentView && currentView.objectName || null
+    readonly property bool isDualPane: currentView && currentView instanceof DualPaneView
+    readonly property bool isSinglePaneMode: !isDualPane || currentView.isSinglePane
+    readonly property bool isRTL: Qt.application.layoutDirection === Qt.RightToLeft
+    // A list of the current visible views. This could be a single view or two views in
+    // dual pane mode. The list is ordered [minor, major] where major is the view on the
+    // right side when not in RTL and should represent the main or content-type view.
+    readonly property var visibleViews: {
+        if (!currentView)
+            return []
+        if (isDualPane) {
+            if (isSinglePaneMode)
+                return [currentView.rightPaneItem]
+            return [currentView.leftPaneItem, currentView.rightPaneItem]
+        }
+        return [currentView]
+    }
+    // Aggregate this info and expose it as a single string for convenience.
+    // JSON indented by 2 spaces.
+    readonly property string currentViewInfo: {
+        var info = {
+            currentViewName: currentViewName,
+            isDualPane: isDualPane,
+            isSinglePaneMode: isSinglePaneMode,
+            visibleViews: visibleViews.map(function(view) {
+                return view && view.objectName || null;
+            })
+        };
+        return JSON.stringify(info, null, 2);
+    }
+    onCurrentViewInfoChanged: Qt.callLater(print, "currentViewInfo changed to " + currentViewInfo)
 
     function init(mainStackView) {
         rootView = Qt.createQmlObject(`import QtQuick; import QtQuick.Controls
                                       StackView { anchors.fill: parent }`, mainStackView);
-        initialized();
     }
 
     function deinit() {
@@ -172,6 +195,8 @@ QtObject {
                 var objectName = view ? view.objectName : obj.objectName;
                 if (!viewManager.destroyView(resources[objectName])) {
                     print("could not destroy view:", objectName);
+                } else {
+                    print("destroyed view:", objectName);
                 }
             } else
                 view.dismissed();
@@ -198,8 +223,20 @@ QtObject {
         }
     }
 
-    function getView(viewName) {
-        return viewManager.getView(viewName);
+    function getView(viewName, forceCreate = false) {
+        // If the view is already loaded, return it.
+        var view = viewManager.getView(resources[viewName]);
+        if (view)
+            return view;
+        if (!forceCreate)
+            return null;
+        // Otherwise, create it.
+        view = viewManager.createView(resources[viewName], null);
+        if (!view) {
+            console.log("Failed to load view: " + viewName);
+            return null;
+        }
+        return view;
     }
 
     // Load a view without presenting it.

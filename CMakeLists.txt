@@ -79,7 +79,7 @@ endif()
 include(FetchContent)
 # This patch helps static analysis in QtCreator find the QWindowKit module
 set(QWINDOWKIT_PATCHES
-  ${PROJECT_SOURCE_DIR}/extras/patches/0001-qwindowkit-annotation.patch
+  #${PROJECT_SOURCE_DIR}/extras/patches/0001-qwindowkit-annotation.patch
   ${PROJECT_SOURCE_DIR}/extras/patches/0002-workaround-right-margin.patch
 )
 set(QWINDOWKIT_PATCH_CMD git apply ${QWINDOWKIT_PATCHES})

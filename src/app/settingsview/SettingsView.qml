@@ -56,7 +56,7 @@ ListSelectionView {
     splitViewStateKey: "Main"
     inhibits: ["ConversationView"]
 
-    leftPaneItem: viewCoordinator.getView("SettingsSidePanel")
+    leftPaneItem: viewCoordinator.getView("SettingsSidePanel", true)
 
     Component.onCompleted: {
         leftPaneItem.updateModel();
@@ -84,8 +84,7 @@ ListSelectionView {
     property int selectedMenu: index
 
     rightPaneItem: StackView {
-        id: settingsView
-        objectName: "settingsView"
+        objectName: "SettingsLayout"
 
         property var currentIndex: selectedMenu !== -1 ? selectedMenu : 0
         anchors.fill: parent

@@ -35,7 +35,7 @@ ListSelectionView {
     color: JamiTheme.secondaryBackgroundColor
 
     onPresented: LRCInstance.deselectConversation()
-    leftPaneItem: viewCoordinator.getView("SidePanel")
+    leftPaneItem: viewCoordinator.getView("SidePanel", true)
 
     property variant uiCustomization: CurrentAccount.uiCustomization
 
@@ -120,6 +120,8 @@ ListSelectionView {
 
     rightPaneItem: JamiFlickable {
         id: root
+        objectName: "WelcomeLayout"
+
         anchors.fill: parent
         property int thresholdSize: 700
         property int thresholdHeight: 570
