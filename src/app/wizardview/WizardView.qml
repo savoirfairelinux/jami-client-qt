@@ -54,11 +54,8 @@ BaseView {
         target: WizardViewStepModel
 
         function onCloseWizardView() {
-            root.dismiss();
-            viewCoordinator.preload("SidePanel");
-            viewCoordinator.preload("SettingsSidePanel");
+            //root.dismiss();
             viewCoordinator.present("WelcomePage");
-            viewCoordinator.preload("ConversationView");
         }
     }
 
