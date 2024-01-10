@@ -76,50 +76,50 @@ Rectangle {
             Layout.preferredWidth: JamiTheme.welcomeLogoWidth
             Layout.preferredHeight: JamiTheme.welcomeLogoHeight
 
-            Loader {
-                id: videoPlayer
+            // Loader {
+            //     id: videoPlayer
 
-                property var mediaInfo: UtilsAdapter.getVideoPlayer(JamiTheme.darkTheme ? JamiResources.logo_dark_webm : JamiResources.logo_light_webm, JamiTheme.secondaryBackgroundColor)
-                anchors.fill: parent
-                anchors.margins: 2
-                sourceComponent: WITH_WEBENGINE ? avMediaComp : basicPlayer
+            //     property var mediaInfo: UtilsAdapter.getVideoPlayer(JamiTheme.darkTheme ? JamiResources.logo_dark_webm : JamiResources.logo_light_webm, JamiTheme.secondaryBackgroundColor)
+            //     anchors.fill: parent
+            //     anchors.margins: 2
+            //     sourceComponent: WITH_WEBENGINE ? avMediaComp : basicPlayer
 
-                Component {
-                    id: avMediaComp
-                    Loader {
-                        Component.onCompleted: {
-                            var qml = "qrc:/webengine/VideoPreview.qml";
-                            setSource(qml, {
-                                    "isVideo": mediaInfo.isVideo,
-                                    "html": mediaInfo.html
-                                });
-                        }
-                    }
-                }
+            //     Component {
+            //         id: avMediaComp
+            //         Loader {
+            //             Component.onCompleted: {
+            //                 var qml = "qrc:/webengine/VideoPreview.qml";
+            //                 setSource(qml, {
+            //                         "isVideo": mediaInfo.isVideo,
+            //                         "html": mediaInfo.html
+            //                     });
+            //             }
+            //         }
+            //     }
 
-                Component {
-                    id: basicPlayer
+            //     Component {
+            //         id: basicPlayer
 
-                    Item {
-                        // NOTE: Seems to crash on snap for whatever reason. For now use VideoPreview in priority
-                        MediaPlayer {
-                            id: mediaPlayer
-                            source: JamiTheme.darkTheme ? JamiResources.logo_dark_webm : JamiResources.logo_light_webm
-                            videoOutput: videoOutput
-                            loops: MediaPlayer.Infinite
-                        }
+            //         Item {
+            //             // NOTE: Seems to crash on snap for whatever reason. For now use VideoPreview in priority
+            //             MediaPlayer {
+            //                 id: mediaPlayer
+            //                 source: JamiTheme.darkTheme ? JamiResources.logo_dark_webm : JamiResources.logo_light_webm
+            //                 videoOutput: videoOutput
+            //                 loops: MediaPlayer.Infinite
+            //             }
 
-                        VideoOutput {
-                            id: videoOutput
-                            anchors.fill: parent
-                        }
+            //             VideoOutput {
+            //                 id: videoOutput
+            //                 anchors.fill: parent
+            //             }
 
-                        Component.onCompleted: {
-                            mediaPlayer.play();
-                        }
-                    }
-                }
-            }
+            //             Component.onCompleted: {
+            //                 mediaPlayer.play();
+            //             }
+            //         }
+            //     }
+            // }
         }
 
         Text {
