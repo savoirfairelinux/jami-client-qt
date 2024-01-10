@@ -76,6 +76,7 @@ if(NOT MSVC)
 endif()
 
 # Helper function to add external content with patches and options.
+# Note: options must be a list of key-value pairs, e.g. "QWINDOWKIT_BUILD_EXAMPLES ON"
 function(add_fetch_content_with_patches target_name repo_url git_tag patch_files options)
   include(FetchContent)
 
@@ -84,8 +85,6 @@ function(add_fetch_content_with_patches target_name repo_url git_tag patch_files
   foreach(patch_file IN LISTS patch_files)
     list(APPEND patch_cmd git apply ${patch_file})
   endforeach()
-
-  message(STATUS "Patches for ${target_name}: ${patch_cmd}")
 
   # Declare the external content
   FetchContent_Declare(
@@ -97,8 +96,15 @@ function(add_fetch_content_with_patches target_name repo_url git_tag patch_files
   )
 
   # Apply options
-  foreach(option IN LISTS options)
-    set(${option} CACHE INTERNAL "")
+  list(LENGTH options len)
+  math(EXPR len "${len} - 1")
+  foreach(idx RANGE 0 ${len} 2)
+    list(GET options ${idx} key)
+    math(EXPR next_idx "${idx} + 1")
+    list(GET options ${next_idx} value)
+    message("${key} = ${value}")
+    # Forcing STRING here seems to work for both BOOL and STRING options.
+    set(${key} ${value} CACHE STRING "${key}" FORCE)
   endforeach()
 
   # Make the content available
@@ -107,7 +113,9 @@ endfunction()
 
 set(QWINDOWKIT_OPTIONS
   QWINDOWKIT_BUILD_WIDGETS OFF
+  QWINDOWKIT_INSTALL OFF
   QWINDOWKIT_BUILD_STATIC ON
+  QWINDOWKIT_BUILD_EXAMPLES OFF
 )
 
 if(WIN32)
