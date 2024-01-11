@@ -26,6 +26,10 @@
 #define N_SERVICES 3
 #endif
 
+#ifdef Q_OS_MACOS
+#include "IOKit/pwr_mgt/IOPMLib.h"
+#endif
+
 class ScreenSaver : public QObject
 {
     Q_OBJECT
@@ -40,16 +44,21 @@ public:
 #ifdef Q_OS_LINUX
 private:
     bool createInterface(void);
-    QString services_[N_SERVICES] = { "org.freedesktop.ScreenSaver",
-                                      "org.gnome.ScreenSaver",
-                                      "org.mate.ScreenSaver" };
+    QString services_[N_SERVICES] = {"org.freedesktop.ScreenSaver",
+                                     "org.gnome.ScreenSaver",
+                                     "org.mate.ScreenSaver"};
 
-    QString paths_[N_SERVICES] = { "/org/freedesktop/ScreenSaver",
-                                   "/org/gnome/ScreenSaver",
-                                   "/org/mate/ScreenSaver" };
+    QString paths_[N_SERVICES] = {"/org/freedesktop/ScreenSaver",
+                                  "/org/gnome/ScreenSaver",
+                                  "/org/mate/ScreenSaver"};
 
     uint request_;
     QDBusConnection sessionBus_;
     QDBusInterface* screenSaverInterface_;
+#endif
+
+#ifdef Q_OS_MACOS
+private:
+    IOPMAssertionID preventSleepAssertionID {0};
 #endif
 };
