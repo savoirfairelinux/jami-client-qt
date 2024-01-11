@@ -67,6 +67,11 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
 
             auto& accInfo = lrcInstance_->getAccountInfo(convInfo.accountId);
             accInfo.conversationModel->selectConversation(convInfo.uid);
+            int unreadMsgCount = accInfo.conversationModel->getNumberOfUnreadMessagesFor(convInfo.uid);
+            qDebug() << "unreadMsgCount" << unreadMsgCount;
+            if (unreadMsgCount)
+                Q_EMIT unreadMsg();
+
             accInfo.conversationModel->clearUnreadInteractions(convInfo.uid);
 
             // this may be a request, so adjust that filter also

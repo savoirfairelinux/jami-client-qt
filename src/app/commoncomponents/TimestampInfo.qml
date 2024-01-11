@@ -33,6 +33,7 @@ ColumnLayout {
     property real detailsOpacity: 0.6
     property color timeColor: JamiTheme.chatviewSecondaryInformationColor
     property alias timeLabel: formattedTimeLabel
+    property alias borderColor: dayRectangle.border.color
 
     spacing: 0
 

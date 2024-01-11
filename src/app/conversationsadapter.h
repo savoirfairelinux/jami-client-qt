@@ -79,7 +79,7 @@ Q_SIGNALS:
     void navigateToWelcomePageRequested();
     void conversationReady(const QString& convId);
 
-    void timerUpdated(const QString& convId);
+    void unreadMsg();
 
 private Q_SLOTS:
     void onCurrentAccountIdChanged();

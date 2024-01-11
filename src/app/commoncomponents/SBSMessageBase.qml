@@ -91,11 +91,23 @@ Control {
 
         TimestampInfo {
             id: dateItem
+
             showDay: root.showDay
             formattedDay: root.formattedDay
             Layout.alignment: Qt.AlignHCenter
             Layout.fillWidth: true
             Layout.fillHeight: true
+
+            borderColor: CurrentConversation.color
+
+            Connections {
+                target: ConversationsAdapter
+
+                function onUnreadMsg() {
+                    dateItem.borderColor = CurrentConversation.color;
+                    print("unread msg");
+                }
+            }
         }
 
 
