@@ -314,7 +314,7 @@ CallAdapter::onCallStatusChanged(const QString& callId, int code)
                     currentConfSubcalls_.clear();
                     return;
                 }
-            } else {
+            } else if (currentConfSubcalls_.size() >= 2) {
                 // okay, still a conference, so just update the subcall list and this call
                 saveConferenceSubcalls();
                 Q_EMIT lrcInstance_->conversationUpdated(currentConvInfo.uid, accountId_);
