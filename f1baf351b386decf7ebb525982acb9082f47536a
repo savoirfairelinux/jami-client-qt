@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7addf29_1db94c3f",
+        "filename": "src/app/mainview/components/NotificationArea.qml",
+        "patchSetId": 17
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-01-11T13:21:08Z",
+      "side": 1,
+      "message": "cleanup code \u0026 if host is self(from another device), it should show our own avatar",
+      "range": {
+        "startLine": 81,
+        "startChar": 26,
+        "endLine": 82,
+        "endChar": 121
+      },
+      "revId": "f1baf351b386decf7ebb525982acb9082f47536a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
