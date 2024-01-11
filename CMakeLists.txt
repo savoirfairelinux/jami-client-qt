@@ -343,6 +343,8 @@ if(Vulkan_FOUND)
   add_definitions(-DHAS_VULKAN)
   include_directories(${Vulkan_INCLUDE_DIR})
 endif()
+# Define PREFER_VULKAN to prefer Vulkan over the default API
+# on GNU/Linux and Windows. Metal is always preferred on macOS.
 
 if(MSVC)
   set(WINDOWS_SYS_LIBS
