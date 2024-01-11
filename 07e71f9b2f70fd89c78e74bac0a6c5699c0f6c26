@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "025fbc43_c507bd74",
+        "filename": "tests/qml/src/tst_OngoingCallPage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-01-11T19:40:59Z",
+      "side": 1,
+      "message": "Fixed.",
+      "parentUuid": "b6c4e25a_a48fb792",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "07e71f9b2f70fd89c78e74bac0a6c5699c0f6c26",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f5686317_2893c476",
         "filename": "tests/qml/src/tst_OngoingCallPage.qml",
         "patchSetId": 1
@@ -54,6 +78,30 @@
       "writtenOn": "2024-01-11T18:45:34Z",
       "side": 1,
       "message": "remove trailing spaces (can be configured in your IDE settings)",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 8
+      },
+      "revId": "07e71f9b2f70fd89c78e74bac0a6c5699c0f6c26",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb921829_b1d3ac07",
+        "filename": "tests/qml/src/tst_OngoingCallPage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-01-11T19:40:59Z",
+      "side": 1,
+      "message": "Done (thanks for the tip!)",
+      "parentUuid": "f5686317_2893c476",
       "range": {
         "startLine": 45,
         "startChar": 0,
