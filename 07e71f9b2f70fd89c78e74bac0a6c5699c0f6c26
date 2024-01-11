@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d8841eb_f0b214c7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-01-11T18:45:34Z",
+      "side": 1,
+      "message": "some nitpicks",
+      "revId": "07e71f9b2f70fd89c78e74bac0a6c5699c0f6c26",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6c4e25a_a48fb792",
+        "filename": "tests/qml/src/tst_OngoingCallPage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-01-11T18:45:34Z",
+      "side": 1,
+      "message": "2021-2024 \u003d\u003e 2024",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "07e71f9b2f70fd89c78e74bac0a6c5699c0f6c26",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5686317_2893c476",
+        "filename": "tests/qml/src/tst_OngoingCallPage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-01-11T18:45:34Z",
+      "side": 1,
+      "message": "remove trailing spaces (can be configured in your IDE settings)",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 8
+      },
+      "revId": "07e71f9b2f70fd89c78e74bac0a6c5699c0f6c26",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6aff1645_8c0ccaf2",
+        "filename": "tests/qml/src/tst_OngoingCallPage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-01-11T18:45:34Z",
+      "side": 1,
+      "message": "thx for the comment, nice work",
+      "range": {
+        "startLine": 71,
+        "startChar": 56,
+        "endLine": 71,
+        "endChar": 69
+      },
+      "revId": "07e71f9b2f70fd89c78e74bac0a6c5699c0f6c26",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
