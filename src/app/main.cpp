@@ -93,7 +93,7 @@ main(int argc, char* argv[])
     }
 #else
     if (std::invoke([] {
-#if defined(HAS_VULKAN) && !defined(Q_OS_LINUX)
+#if defined(HAS_VULKAN) && defined(PREFER_VULKAN)
             // Somehow, several bug reports show that, on Windows, QVulkanInstance
             // verification  passes, but goes on to fail when creating the QQuickWindow
             // with "Failed to initialize graphics backend for Vulkan".
@@ -119,8 +119,6 @@ main(int argc, char* argv[])
         // removed. So we need to re-implement this (custom controls)
         // or wait for a future version
         QQuickWindow::setGraphicsApi(QSGRendererInterface::VulkanRhi);
-    } else {
-        QQuickWindow::setGraphicsApi(QSGRendererInterface::Unknown);
     }
 #endif
 
