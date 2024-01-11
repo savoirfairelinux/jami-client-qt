@@ -31,7 +31,8 @@ ScreenSaver::ScreenSaver(QObject* parent)
 }
 #else
     : QObject(parent)
-{}
+{
+}
 #endif
 
 #ifdef Q_OS_LINUX
@@ -83,6 +84,18 @@ ScreenSaver::inhibit(void)
         qDebug() << "Error inhibiting screen saver: " << error.message() << error.name();
     }
 #endif
+
+#ifdef Q_OS_MACOS
+    CFStringRef reasonForActivity = CFStringCreateWithCString(NULL,
+                                                              "Active Call: Keeping Screen Awake",
+                                                              kCFStringEncodingUTF8);
+    IOReturn success = IOPMAssertionCreateWithName(kIOPMAssertionTypePreventUserIdleDisplaySleep,
+                                                   kIOPMAssertionLevelOn,
+                                                   reasonForActivity,
+                                                   &preventSleepAssertionID);
+    CFRelease(reasonForActivity);
+    return true;
+#endif
     return false;
 }
 
@@ -111,6 +124,12 @@ ScreenSaver::uninhibit(void)
     }
     request_ = 0u;
 #endif
+#ifdef Q_OS_MACOS
+    IOReturn releaseResult = IOPMAssertionRelease(preventSleepAssertionID);
+    preventSleepAssertionID = 0;
+    return true;
+#endif
+
     return false;
 }
 
@@ -119,6 +138,9 @@ ScreenSaver::isInhibited(void)
 {
 #ifdef Q_OS_LINUX
     return request_ != 0u;
+#endif
+#ifdef Q_OS_MACOS
+    return preventSleepAssertionID != 0;
 #endif
     return false;
 }
