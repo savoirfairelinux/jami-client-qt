@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "126998fa_b55c1550",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-01-12T17:03:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d8841eb_f0b214c7",
+      "revId": "07e71f9b2f70fd89c78e74bac0a6c5699c0f6c26",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b6c4e25a_a48fb792",
@@ -55,6 +73,30 @@
       "side": 1,
       "message": "Fixed.",
       "parentUuid": "b6c4e25a_a48fb792",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "07e71f9b2f70fd89c78e74bac0a6c5699c0f6c26",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "095e1725_8b381915",
+        "filename": "tests/qml/src/tst_OngoingCallPage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-01-12T17:03:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "025fbc43_c507bd74",
       "range": {
         "startLine": 2,
         "startChar": 22,
@@ -112,6 +154,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "409a3de2_a403d6aa",
+        "filename": "tests/qml/src/tst_OngoingCallPage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-01-12T17:03:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb921829_b1d3ac07",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 8
+      },
+      "revId": "07e71f9b2f70fd89c78e74bac0a6c5699c0f6c26",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6aff1645_8c0ccaf2",
@@ -125,6 +191,30 @@
       "writtenOn": "2024-01-11T18:45:34Z",
       "side": 1,
       "message": "thx for the comment, nice work",
+      "range": {
+        "startLine": 71,
+        "startChar": 56,
+        "endLine": 71,
+        "endChar": 69
+      },
+      "revId": "07e71f9b2f70fd89c78e74bac0a6c5699c0f6c26",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f7b4329_b5bd1901",
+        "filename": "tests/qml/src/tst_OngoingCallPage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-01-12T17:03:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6aff1645_8c0ccaf2",
       "range": {
         "startLine": 71,
         "startChar": 56,
