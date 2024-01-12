@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fa36765_812ad6e1",
+        "filename": "tests/qml/src/tst_OngoingCallPage.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-01-12T17:00:40Z",
+      "side": 1,
+      "message": "interesting",
+      "range": {
+        "startLine": 53,
+        "startChar": 12,
+        "endLine": 62,
+        "endChar": 38
+      },
+      "revId": "e1f36b85f88e0866c17397f40885b7fb475f0a93",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
