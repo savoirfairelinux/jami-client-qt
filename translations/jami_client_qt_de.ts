@@ -37,7 +37,7 @@
     <message>
         <location filename="../src/app/conversationlistmodelbase.cpp" line="138"/>
         <source>(deleted message)</source>
-        <translation type="unfinished"/>
+        <translation>(gelöschte Nachricht)</translation>
     </message>
 </context>
 <context>
@@ -3822,7 +3822,7 @@ eine Verbindung herstellt, um die Unterhaltung zu synchronisieren.</translation>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="490"/>
         <source>(profile updated)</source>
-        <translation type="unfinished"/>
+        <translation>(Profil aktualisiert)</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="309"/>

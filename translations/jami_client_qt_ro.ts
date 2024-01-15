@@ -37,7 +37,7 @@
     <message>
         <location filename="../src/app/conversationlistmodelbase.cpp" line="138"/>
         <source>(deleted message)</source>
-        <translation type="unfinished"/>
+        <translation>(mesaj șters)</translation>
     </message>
 </context>
 <context>
@@ -3821,7 +3821,7 @@ să se conecteze pentru a sincroniza conversația.</translation>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="490"/>
         <source>(profile updated)</source>
-        <translation type="unfinished"/>
+        <translation>(profil actualizat)</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="309"/>
