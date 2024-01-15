@@ -34,17 +34,19 @@ Loader {
     property bool showTime
     property bool showDay
     property int timestamp: Timestamp
-    property string formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
-    property string formattedDay: MessagesAdapter.getFormattedDay(Timestamp)
+    property string formattedTime: MessagesAdapter.getFormattedTime(root.timestamp)
+    property string formattedDay: MessagesAdapter.getFormattedDay(root.timestamp)
 
     property int seq: MsgSeq.single
     property string author: Author
+    property string body: Body
+    property var status: Status
 
     width: ListView.view ? ListView.view.width : 0
 
     sourceComponent: {
-        if (Status === Interaction.Status.TRANSFER_FINISHED) {
-            mediaInfo = MessagesAdapter.getMediaInfo(Body)
+        if (root.status === Interaction.Status.TRANSFER_FINISHED) {
+            mediaInfo = MessagesAdapter.getMediaInfo(root.body)
             if (Object.keys(mediaInfo).length !== 0 && WITH_WEBENGINE)
                 return localMediaMsgComp
         }
@@ -61,8 +63,9 @@ Loader {
         SBSMessageBase {
             id: dataTransferItem
 
-            property var transferStats: MessagesAdapter.getTransferStats(Id, Status)
-            property bool canOpen: Status === Interaction.Status.TRANSFER_FINISHED || isOutgoing
+            transferId: Id
+            property var transferStats: MessagesAdapter.getTransferStats(transferId, root.Status)
+            property bool canOpen: root.status === Interaction.Status.TRANSFER_FINISHED || isOutgoing
             property real maxMsgWidth: root.width - senderMargin -
                                        2 * hPadding - avatarBlockWidth
                                        - buttonsLoader.width - 24 - 6 - 24
@@ -73,7 +76,6 @@ Loader {
             author: Author
             location: Body
             transferName: TransferName
-            transferId: Id
             readers: Readers
             timestamp: root.timestamp
             formattedTime: root.formattedTime
@@ -90,7 +92,7 @@ Loader {
                         enabled: canOpen
                         onHoveredChanged: {
                             if (enabled && hovered) {
-                                dataTransferItem.hoveredLink = UtilsAdapter.urlFromLocalPath(Body)
+                                dataTransferItem.hoveredLink = UtilsAdapter.urlFromLocalPath(location)
                             } else {
                                 dataTransferItem.hoveredLink = ""
                             }
@@ -101,33 +103,30 @@ Loader {
                     }
                     Loader {
                         id: buttonsLoader
+                        objectName: "buttonsLoader"
 
-                        property string iconSourceA
-                        property string iconSourceB
+                        property string iconSource
 
                         Layout.margins: 8
 
                         sourceComponent: {
-                            switch (Status) {
+                            switch (root.status) {
+                            case Interaction.Status.TRANSFER_CREATED:
+                            case Interaction.Status.TRANSFER_FINISHED:
+                                iconSource = JamiResources.link_black_24dp_svg
+                                return terminatedComp
                             case Interaction.Status.TRANSFER_CANCELED:
                             case Interaction.Status.TRANSFER_ERROR:
                             case Interaction.Status.TRANSFER_UNJOINABLE_PEER:
                             case Interaction.Status.TRANSFER_TIMEOUT_EXPIRED:
-                                iconSourceA = JamiResources.error_outline_black_24dp_svg
-                                return terminatedComp
-                            case Interaction.Status.TRANSFER_CREATED:
-                            case Interaction.Status.TRANSFER_FINISHED:
-                                iconSourceA = JamiResources.link_black_24dp_svg
-                                return terminatedComp
                             case Interaction.Status.TRANSFER_AWAITING_HOST:
-                                iconSourceA = JamiResources.download_black_24dp_svg
-                                iconSourceB = JamiResources.close_black_24dp_svg
+                                iconSource = JamiResources.download_black_24dp_svg
                                 return optionsComp
                             case Interaction.Status.TRANSFER_ONGOING:
-                                iconSourceA = JamiResources.close_black_24dp_svg
+                                iconSource = JamiResources.close_black_24dp_svg
                                 return optionsComp
                             default:
-                                iconSourceA = JamiResources.error_outline_black_24dp_svg
+                                iconSource = JamiResources.error_outline_black_24dp_svg
                                 return terminatedComp
                             }
                         }
@@ -146,41 +145,22 @@ Loader {
                                 }
 
                                 contentItem: ResponsiveImage {
-                                    source: buttonsLoader.iconSourceA
+                                    source: buttonsLoader.iconSource
                                     color: UtilsAdapter.luma(bubble.color) ? JamiTheme.fileIconLightColor : JamiTheme.fileIconDarkColor
                                 }
                             }
                         }
                         Component {
                             id: optionsComp
-                            ColumnLayout {
-                                Layout.leftMargin: 12
-                                PushButton {
-                                    source: buttonsLoader.iconSourceA
-                                    normalColor: JamiTheme.chatviewBgColor
-                                    imageColor: JamiTheme.chatviewButtonColor
-                                    onClicked: {
-                                        switch (Status) {
-                                        case Interaction.Status.TRANSFER_ONGOING:
-                                            return MessagesAdapter.cancelFile(Id)
-                                        case Interaction.Status.TRANSFER_AWAITING_HOST:
-                                            return MessagesAdapter.acceptFile(Id)
-                                        default: break
-                                        }
-                                    }
-                                }
-                                PushButton {
-                                    visible: !CurrentConversation.isSwarm
-                                    height: visible * implicitHeight
-                                    source: buttonsLoader.iconSourceB
-                                    normalColor: JamiTheme.chatviewBgColor
-                                    imageColor: JamiTheme.chatviewButtonColor
-                                    onClicked: {
-                                        switch (Status) {
-                                        case Interaction.Status.TRANSFER_AWAITING_HOST:
-                                            return MessagesAdapter.cancelFile(Id)
-                                        default: break
-                                        }
+                            PushButton {
+                                source: buttonsLoader.iconSource
+                                normalColor: JamiTheme.chatviewBgColor
+                                imageColor: JamiTheme.chatviewButtonColor
+                                onClicked: {
+                                    if (root.status === Interaction.Status.TRANSFER_ONGOING) {
+                                        return MessagesAdapter.cancelFile(transferId)
+                                    } else {
+                                        return MessagesAdapter.acceptFile(transferId)
                                     }
                                 }
                             }
@@ -190,13 +170,11 @@ Loader {
                         Layout.rightMargin: 24
                         spacing: 4
                         TextEdit {
-                            id: transferName
-
                             width: Math.min(implicitWidth, maxMsgWidth)
                             topPadding: 10
                             text: CurrentConversation.isSwarm ?
-                                      TransferName :
-                                      Body
+                                      transferName :
+                                      location
                             wrapMode: Label.WrapAtWordBoundaryOrAnywhere
                             font.pointSize: 11
                             renderType: Text.NativeRendering
@@ -211,7 +189,7 @@ Loader {
                                                  Qt.ArrowCursor
                                 onClicked: function (mouse) {
                                     if (canOpen) {
-                                        dataTransferItem.hoveredLink = UtilsAdapter.urlFromLocalPath(Body)
+                                        dataTransferItem.hoveredLink = UtilsAdapter.urlFromLocalPath(location)
                                         Qt.openUrlExternally(new Url(dataTransferItem.hoveredLink))
                                     } else {
                                         dataTransferItem.hoveredLink = ""
@@ -248,7 +226,7 @@ Loader {
                 ,ProgressBar {
                     id: progressBar
 
-                    visible: Status === Interaction.Status.TRANSFER_ONGOING
+                    visible: root.status === Interaction.Status.TRANSFER_ONGOING
                     height: visible * implicitHeight
                     value: transferStats.progress / transferStats.totalSize
                     width: transferItem.width
@@ -265,16 +243,16 @@ Loader {
             id: localMediaMsgItem
 
             isOutgoing: Author === CurrentAccount.uri
-            property var transferStats: MessagesAdapter.getTransferStats(Id, Status)
+            transferId: Id
+            property var transferStats: MessagesAdapter.getTransferStats(transferId, root.status)
             showTime: root.showTime
             seq: root.seq
             author: Author
             location: Body
             transferName: TransferName
-            transferId: Id
             readers: Readers
-            formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
-            formattedDay: MessagesAdapter.getFormattedDay(Timestamp)
+            formattedTime: MessagesAdapter.getFormattedTime(root.timestamp)
+            formattedDay: MessagesAdapter.getFormattedDay(root.timestamp)
 
             property real contentWidth
 
@@ -420,7 +398,7 @@ Loader {
                             readonly property real aspectRatio: paintedWidth / paintedHeight
                             readonly property real idealWidth: innerContent.width - senderMargin
                             onStatusChanged: {
-                                if (status == Image.Ready && aspectRatio) {
+                                if (root.status == Image.Ready && aspectRatio) {
                                     height = Qt.binding(() => JamiQmlUtils.clamp(idealWidth / aspectRatio, 64, 256))
                                     width = Qt.binding(() => height * aspectRatio)
 
