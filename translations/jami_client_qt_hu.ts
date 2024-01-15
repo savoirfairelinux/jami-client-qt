@@ -37,7 +37,7 @@
     <message>
         <location filename="../src/app/conversationlistmodelbase.cpp" line="138"/>
         <source>(deleted message)</source>
-        <translation type="unfinished"/>
+        <translation>(törölt üzenet)</translation>
     </message>
 </context>
 <context>
@@ -1035,7 +1035,7 @@ A névjegy bármikor módosítható a Fiókbeállításaiból.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="842"/>
         <source>Customize your profile</source>
-        <translation>Saját profil testreszabása</translation>
+        <translation>Saját névjegy testreszabása</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="845"/>
@@ -3820,7 +3820,7 @@ csatlakozzon a beszélgetés összehangolásához.</translation>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="490"/>
         <source>(profile updated)</source>
-        <translation type="unfinished"/>
+        <translation>(névjegy frissítve)</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="309"/>

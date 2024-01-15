@@ -3822,7 +3822,7 @@ të lidhet, për njëkohësim të bisedës.</translation>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="490"/>
         <source>(profile updated)</source>
-        <translation type="unfinished"/>
+        <translation>(u përditësua profil)</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="309"/>
