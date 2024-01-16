@@ -91,6 +91,7 @@ ApplicationWindow {
     // Used to manage full screen mode and save/restore window geometry.
     LayoutManager {
         id: layoutManager
+        appContainer: appContainer
     }
 
     // Used to manage dynamic view loading and unloading.
@@ -132,7 +133,7 @@ ApplicationWindow {
 
     title: JamiStrings.appTitle
 
-    visible: windowSettingsLoaded && allowVisibleWindow
+    visible: mainViewLoader.status === Loader.Ready && windowSettingsLoaded && allowVisibleWindow
 
     Connections {
         id: connectionMigrationEnded
@@ -149,17 +150,19 @@ ApplicationWindow {
         }
     }
 
-    Component.onCompleted: {
+    function initMainView(view) {
+        console.info("Initializing main view");
+
         // Main window, load any valid app settings, and allow the
         // layoutManager to handle as much as possible.
         layoutManager.restoreWindowSettings();
 
+        // QWK: setup
         if (useFrameLess) {
-            // QWK: setup
-            windowAgent.setup(appWindow);
             windowAgent.setTitleBar(titleBar);
-            // Now register the system buttons (will only happen if not on macOS).
+            // Now register the system buttons (non-macOS).
             if (systemButtonGroupLoader.item) {
+                console.info("Registering system buttons");
                 const sysBtns = systemButtonGroupLoader.item;
                 windowAgent.setSystemButton(WindowAgent.Minimize, sysBtns.minButton);
                 windowAgent.setSystemButton(WindowAgent.Maximize, sysBtns.maxButton);
@@ -168,7 +171,7 @@ ApplicationWindow {
         }
 
         // Set the viewCoordinator's root item.
-        viewCoordinator.init(mainView);
+        viewCoordinator.init(view);
 
         // Navigate to something.
         if (UtilsAdapter.getAccountListSize() > 0) {
@@ -200,12 +203,36 @@ ApplicationWindow {
         // Handle a start URI if set as start option.
         MainApplication.handleUriAction();
 
+        // This will allow visible to become true if not starting minimized.
+        windowSettingsLoaded = true;
+    }
+
+    Component.onCompleted: {
+        // QWK: setup
+        if (useFrameLess) {
+            console.info("Using frameless window");
+            windowAgent.setup(appWindow);
+        }
+
+        mainViewLoader.active = true;
+
         // Dbus error handler for Linux.
         if (Qt.platform.os.toString() !== "windows" && Qt.platform.os.toString() !== "osx")
             DBusErrorHandler.setActive(true);
+    }
 
-        // This will allow visible to become true if not starting minimized.
-        windowSettingsLoaded = true;
+    // Use this as a parent for fullscreen items.
+    Item {
+        id: appContainer
+        anchors.fill: parent
+    }
+
+    Loader {
+        id: mainViewLoader
+        active: false
+        source: "qrc:/mainview/MainView.qml"
+        anchors.fill: parent
+        onLoaded: initMainView(item)
     }
 
     // QWK: Window Title bar
@@ -217,12 +244,6 @@ ApplicationWindow {
             right: parent.right
             left: parent.left
         }
-    }
-
-    MainView {
-        id: mainView
-        objectName: "MainView"
-        anchors.fill: parent
     }
 
     // QWK: On Windows and Linux, use custom system buttons.
@@ -245,12 +266,6 @@ ApplicationWindow {
     // QWK: Main interop component.
     WindowAgent {
         id: windowAgent
-    }
-
-    // Use this as a parent for fullscreen items.
-    Item {
-        id: appContainer
-        anchors.fill: parent
     }
 
     Connections {

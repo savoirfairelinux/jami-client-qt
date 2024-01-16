@@ -35,12 +35,12 @@ Rectangle {
     signal dismissed
 
     Component.onCompleted: {
-        console.log("+++ " + objectName);
+        console.debug("Created", objectName);
         if (managed)
             presented();
     }
     Component.onDestruction: {
-        console.log("--- " + objectName);
+        console.debug("Destroyed", objectName);
         if (managed)
             dismissed();
     }

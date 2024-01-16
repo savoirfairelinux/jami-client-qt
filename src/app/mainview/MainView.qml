@@ -36,7 +36,6 @@ import "js/keyboardshortcuttablecreation.js" as KeyboardShortcutTableCreation
 
 Rectangle {
     id: mainView
-
     objectName: "mainView"
 
     property string currentConvId: CurrentConversation.id

@@ -74,7 +74,13 @@ Rectangle {
         id: messagingHeaderRectRowLayout
 
         anchors.fill: parent
+        // QWK: spacing
         anchors.rightMargin: 8 + systemButtonGroupLoader.spacing
+        anchors.leftMargin: {
+            if (Qt.platform.os.toString() === "osx" && viewCoordinator.isInSinglePaneMode)
+                return 80;
+            return 0;
+        }
         spacing: 16
 
         JamiPushButton { ParentHitTestVisible {}
