@@ -77,45 +77,49 @@ endif()
 
 # Helper function to add external content with patches and options.
 # Note: options must be a list of key-value pairs, e.g. "QWINDOWKIT_BUILD_EXAMPLES ON"
-function(add_fetch_content_with_patches target_name repo_url git_tag patch_files options)
-  include(FetchContent)
+include(FetchContent)
+include(CMakeParseArguments)
+
+function(add_fetch_content_with_patches)
+  # Parse function arguments
+  set(oneValueArgs TARGET URL BRANCH)
+  set(multiValueArgs PATCHES OPTIONS)
+  cmake_parse_arguments(PARSE_ARGV 0 AFCWP "" "${oneValueArgs}" "${multiValueArgs}")
 
   # Create a string for the patch command
   set(patch_cmd "")
-  foreach(patch_file IN LISTS patch_files)
-    list(APPEND patch_cmd git apply ${patch_file})
+  foreach(patch_file IN LISTS AFCWP_PATCHES)
+    list(APPEND patch_cmd "git apply ${patch_file}")
   endforeach()
 
   # Declare the external content
   FetchContent_Declare(
-    ${target_name}
-    GIT_REPOSITORY ${repo_url}
-    GIT_TAG ${git_tag}
+    ${AFCWP_TARGET}
+    GIT_REPOSITORY ${AFCWP_URL}
+    GIT_TAG ${AFCWP_BRANCH}
     PATCH_COMMAND ${patch_cmd}
     UPDATE_DISCONNECTED 1
   )
 
   # Apply options
-  list(LENGTH options len)
-  math(EXPR len "${len} - 1")
-  foreach(idx RANGE 0 ${len} 2)
-    list(GET options ${idx} key)
-    math(EXPR next_idx "${idx} + 1")
-    list(GET options ${next_idx} value)
-    message("${key} = ${value}")
-    # Forcing STRING here seems to work for both BOOL and STRING options.
+  list(LENGTH AFCWP_OPTIONS options_length)
+  math(EXPR max_idx "${options_length} - 1")
+  foreach(idx RANGE 0 ${max_idx} 2)
+    list(GET AFCWP_OPTIONS ${idx} key)
+    math(EXPR value_idx "${idx} + 1")
+    list(GET AFCWP_OPTIONS ${value_idx} value)
     set(${key} ${value} CACHE STRING "${key}" FORCE)
   endforeach()
 
   # Make the content available
-  FetchContent_MakeAvailable(${target_name})
+  FetchContent_MakeAvailable(${AFCWP_TARGET})
 endfunction()
 
-set(QWINDOWKIT_OPTIONS
+list(APPEND QWINDOWKIT_OPTIONS
   QWINDOWKIT_BUILD_WIDGETS OFF
   QWINDOWKIT_INSTALL OFF
   QWINDOWKIT_BUILD_STATIC ON
-  QWINDOWKIT_BUILD_EXAMPLES OFF
+  QWINDOWKIT_BUILD_EXAMPLES OFF # default
 )
 
 if(WIN32)
@@ -126,13 +130,22 @@ if(WIN32)
 endif()
 
 # qwindowkit (frameless window)
+# Example usage
 add_fetch_content_with_patches(
-  qwindowkit
-  "https://github.com/stdware/qwindowkit.git"
-  main
-  "${QWINDOWKIT_PATCHES}"
-  "${QWINDOWKIT_OPTIONS}"
+  TARGET qwindowkit
+  URL https://github.com/stdware/qwindowkit.git
+  BRANCH 79b1f3110754f9c21af2d7dacbd07b1a9dbaf6ef
+  PATCHES ${QWINDOWKIT_PATCHES}
+  OPTIONS ${QWINDOWKIT_OPTIONS}
 )
+
+# add_fetch_content_with_patches(
+#   qwindowkit
+#   "https://github.com/stdware/qwindowkit.git"
+#   79b1f3110754f9c21af2d7dacbd07b1a9dbaf6ef
+#   "${QWINDOWKIT_PATCHES}"
+#   "${QWINDOWKIT_OPTIONS}"
+# )
 
 list(APPEND CLIENT_LIBS QWindowKit::Quick)
 

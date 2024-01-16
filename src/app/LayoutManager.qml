@@ -28,8 +28,8 @@ import "mainview/components"
 QtObject {
     id: root
 
-    // // A window-sized container for reparenting components.
-    // required property Item appContainer
+    // A window-sized container for reparenting components.
+    required property Item appContainer
 
     // True if the main window is fullscreen.
     readonly property bool isFullScreen: visibility === Window.FullScreen
