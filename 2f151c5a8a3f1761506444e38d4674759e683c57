@@ -143,6 +143,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e74888b_334ba3e5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-01-17T00:49:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fea9ac4b_7e20807a",
+      "range": {
+        "startLine": 13,
+        "startChar": 11,
+        "endLine": 13,
+        "endChar": 52
+      },
+      "revId": "2f151c5a8a3f1761506444e38d4674759e683c57",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "50b9b75a_fe93c247",
@@ -180,6 +204,30 @@
       "side": 1,
       "message": "Ack",
       "parentUuid": "50b9b75a_fe93c247",
+      "range": {
+        "startLine": 24,
+        "startChar": 4,
+        "endLine": 24,
+        "endChar": 11
+      },
+      "revId": "2f151c5a8a3f1761506444e38d4674759e683c57",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60673b8c_86c67fe9",
+        "filename": "src/app/mainapplication.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-01-17T00:49:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8550b95_50dd198c",
       "range": {
         "startLine": 24,
         "startChar": 4,
