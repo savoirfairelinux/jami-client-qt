@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7a66f2cf_7d361c32",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 28
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-01-17T21:46:41Z",
+      "side": 1,
+      "message": "I think we should make frameless window optional, and report this as an issue with qwindowkit.",
+      "parentUuid": "fb1d05d9_6d750df3",
+      "range": {
+        "startLine": 81,
+        "startChar": 2,
+        "endLine": 81,
+        "endChar": 26
+      },
+      "revId": "31e9a6967fb10d4cfd51cea4ddad5757dd14dded",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6e4302c8_2bec0055",
         "filename": "CMakeLists.txt",
         "patchSetId": 28
@@ -60,6 +84,24 @@
       "writtenOn": "2024-01-17T17:49:26Z",
       "side": 1,
       "message": "Chatview is ugly, not sure how to improve this :/",
+      "revId": "31e9a6967fb10d4cfd51cea4ddad5757dd14dded",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80002b51_1a8c84a7",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 28
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-01-17T21:46:41Z",
+      "side": 1,
+      "message": "Changed button sizing. This can be approached iteratively.",
+      "parentUuid": "6e4302c8_2bec0055",
       "revId": "31e9a6967fb10d4cfd51cea4ddad5757dd14dded",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
