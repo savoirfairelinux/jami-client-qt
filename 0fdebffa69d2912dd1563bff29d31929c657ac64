@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef3f3c12_971755f5",
+        "filename": "tests/CMakeLists.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-01-17T21:13:57Z",
+      "side": 1,
+      "message": "How does this impact the use of CTest? `add_test` is called below using `-input TEST_INPUT` which allows for CTest to execute the binary with the given supplied parameters. Ideally, both can work. I support making test-running as accessible as possible.",
+      "revId": "0fdebffa69d2912dd1563bff29d31929c657ac64",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
