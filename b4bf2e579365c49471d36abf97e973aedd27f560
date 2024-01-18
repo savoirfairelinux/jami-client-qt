@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0280d733_ae3b776d",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 32
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-01-18T15:24:15Z",
+      "side": 1,
+      "message": "breaks fullscreen",
+      "range": {
+        "startLine": 78,
+        "startChar": 10,
+        "endLine": 78,
+        "endChar": 28
+      },
+      "revId": "b4bf2e579365c49471d36abf97e973aedd27f560",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
