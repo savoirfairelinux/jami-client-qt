@@ -98,7 +98,7 @@ UtilsAdapter::setAppValue(const Settings::Key key, const QVariant& value)
     // Any donation campaign-related keys can trigger a donation campaign check
     else if (key == Settings::Key::IsDonationVisible
              || key == Settings::Key::Donation2023VisibleDate
-             || key == Settings::Key::Donation2023EndDate)
+             || key == Settings::Key::Donation2023EndDate2)
         Q_EMIT donationCampaignSettingsChanged();
 #endif
 }
