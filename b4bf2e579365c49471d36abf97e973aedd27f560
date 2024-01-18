@@ -22,6 +22,30 @@
       },
       "revId": "b4bf2e579365c49471d36abf97e973aedd27f560",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be58f55a_3b7fb0ac",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 32
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-01-18T22:47:59Z",
+      "side": 1,
+      "message": "kinda done, but there are several scenarios in the call view that are broken or need specific coloration for the system buttons",
+      "parentUuid": "0280d733_ae3b776d",
+      "range": {
+        "startLine": 78,
+        "startChar": 10,
+        "endLine": 78,
+        "endChar": 28
+      },
+      "revId": "b4bf2e579365c49471d36abf97e973aedd27f560",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
