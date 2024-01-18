@@ -46,6 +46,30 @@
       },
       "revId": "a42a30f6b862e158eca606177d8f01866daaab27",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c0b6b7f_d236027d",
+        "filename": "src/libclient/accountmodel.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 567,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-01-18T20:26:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b583cbb_99ec7a82",
+      "range": {
+        "startLine": 567,
+        "startChar": 23,
+        "endLine": 567,
+        "endChar": 67
+      },
+      "revId": "a42a30f6b862e158eca606177d8f01866daaab27",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
