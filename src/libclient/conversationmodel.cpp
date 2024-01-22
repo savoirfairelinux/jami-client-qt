@@ -2381,7 +2381,8 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
         auto msg = interaction::Info(message, linked.owner.profileInfo.uri);
 
         if (msg.type == interaction::Type::CALL) {
-            msg.body = interaction::getCallInteractionString(msg.authorUri == linked.owner.profileInfo.uri,
+            msg.body = interaction::getCallInteractionString(msg.authorUri
+                                                                 == linked.owner.profileInfo.uri,
                                                              msg);
         } else if (msg.type == interaction::Type::DATA_TRANSFER) {
             // save data transfer interaction to db and assosiate daemon id with interaction id,
@@ -2851,7 +2852,7 @@ ConversationModelPimpl::addConversationRequest(const MapStringString& convReques
 void
 ConversationModelPimpl::slotPendingContactAccepted(const QString& uri)
 {
-    profile::Type type;
+    profile::Type type {};
     try {
         type = linked.owner.contactModel->getContact(uri).profileInfo.type;
     } catch (std::out_of_range& e) {

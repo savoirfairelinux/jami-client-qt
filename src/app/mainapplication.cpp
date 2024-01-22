@@ -70,7 +70,7 @@ messageHandler(QtMsgType type, const QMessageLogContext& context, const QString&
     // In debug mode, always include file URI (including line info).
     // Only do this when the level Info/Debug, as it is already included in the constructed
     // message for the other levels.
-    if (type == QtDebugMsg || type == QtInfoMsg) {
+    if (type == QtDebugMsg || type == QtInfoMsg || !isQml) {
         auto fileName = isQml ? context.file : QUrl::fromLocalFile(context.file).toString();
         fileLineInfo = QString(" %1:%2").arg(!fileName.isEmpty() ? fileName : "unknown",
                                              context.line ? QString::number(context.line) : "0");
@@ -160,7 +160,7 @@ MainApplication::MainApplication(int& argc, char** argv)
                                      "*.debug=true\n"
                                      "libclient.debug=false\n"
                                      "qt.*=false\n"
-                                     "qml.debug=false\n"
+                                     "qml.debug=true\n"
                                      "\n");
     // These can be set in the environment as well.
     // e.g. QT_LOGGING_RULES="*.debug=false;qml.debug=true"

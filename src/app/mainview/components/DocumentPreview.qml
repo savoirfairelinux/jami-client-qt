@@ -128,11 +128,11 @@ Item {
                         fillMode: Image.PreserveAspectCrop
 
                         source: {
-                            fileSource = "file://" + Body;
+                            fileSource = UtilsAdapter.urlFromLocalPath(Body);
                             if (!mediaInfo.isImage && !mediaInfo.isAnimatedImage) {
                                 return "";
                             }
-                            return "file://" + Body;
+                            return fileSource;
                         }
                     }
                 }

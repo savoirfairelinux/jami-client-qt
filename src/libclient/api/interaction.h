@@ -443,8 +443,10 @@ struct Info
     Info(const SwarmMessage& msg, const QString& accountUri)
     {
         MapStringString msgBody;
-        for (const auto& key : msg.body.keys()) {
-            msgBody.insert(key, msg.body.value(key));
+        for (auto it = msg.body.cbegin(); it != msg.body.cend(); ++it) {
+            const auto& key = it.key();
+            const auto& value = it.value();
+            msgBody.insert(key, value);
         }
         init(msgBody, accountUri);
         parentId = msg.linearizedParent;

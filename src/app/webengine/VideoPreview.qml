@@ -35,7 +35,7 @@ Rectangle {
         anchors.topMargin: root.isVideo ? 0 : wev.implicitHeight / 2
         settings.fullScreenSupportEnabled: root.isVideo
         settings.javascriptCanOpenWindows: false
-        Component.onCompleted: loadHtml(root.html, 'file://')
+        Component.onCompleted: loadHtml(root.html, 'file:///')
         onFullScreenRequested: function (request) {
             if (request.toggleOn) {
                 layoutManager.pushFullScreenItem(this, root, null, function () {

@@ -147,7 +147,7 @@ JamiListView {
         id: overlay
         anchors.fill: parent
         color: JamiTheme.chatviewBgColor
-        visible: opacity !== 0
+        visible: opacity > 0
         SequentialAnimation {
             id: fadeAnimation
             NumberAnimation {
