@@ -68,7 +68,7 @@ SBSMessageBase {
             topPadding: bubble.isDeleted ? 6 : 10
             bottomPadding: bubble.isDeleted ? 6 : 10
             anchors.right: isOutgoing ? parent.right : undefined
-            anchors.rightMargin: isOutgoing && !isEmojiOnly ? root.timeWidth + root.editedWidth : 0
+            anchors.rightMargin: isOutgoing && !isEmojiOnly && !bigMsg ? root.timeWidth + root.editedWidth : 0
             text: {
                 if (Body !== "" && ParsedBody.length === 0) {
                     MessagesAdapter.parseMessage(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl, bubble.color);
