@@ -40,18 +40,19 @@ Loader {
     property int seq: MsgSeq.single
     property string author: Author
     property string body: Body
-    property var transferStatus: Status
+    property int transferStatus: Status
+    onTransferStatusChanged: {
+        if (transferStatus === Interaction.Status.TRANSFER_FINISHED) {
+            mediaInfo = MessagesAdapter.getMediaInfo(root.body);
+            if (Object.keys(mediaInfo).length !== 0 && WITH_WEBENGINE) {
+                sourceComponent = localMediaMsgComp;
+                return;
+            }
+        }
+        sourceComponent = dataTransferMsgComp;
+    }
 
     width: ListView.view ? ListView.view.width : 0
-
-    sourceComponent: {
-        if (root.transferStatus === Interaction.Status.TRANSFER_FINISHED) {
-            mediaInfo = MessagesAdapter.getMediaInfo(root.body)
-            if (Object.keys(mediaInfo).length !== 0 && WITH_WEBENGINE)
-                return localMediaMsgComp
-        }
-        return dataTransferMsgComp
-    }
 
     opacity: 0
     Behavior on opacity { NumberAnimation { duration: 100 } }
@@ -294,8 +295,6 @@ Loader {
                         return avComp
                     }
 
-
-
                     Component {
                         id: avComp
 
@@ -304,7 +303,7 @@ Loader {
                                 var qml = WITH_WEBENGINE ?
                                             "qrc:/webengine/MediaPreviewBase.qml" :
                                             "qrc:/nowebengine/MediaPreviewBase.qml"
-                                setSource( qml, { isVideo: mediaInfo.isVideo, html:mediaInfo.html } )
+                                setSource( qml, { isVideo: mediaInfo.isVideo, html: mediaInfo.html } )
                             }
                         }
                     }
@@ -383,9 +382,11 @@ Loader {
                             antialiasing: true
                             autoTransform: true
                             asynchronous: true
-                            source: Body !== undefined ? UtilsAdapter.urlFromLocalPath(Body) : ''
 
-                            Component.onCompleted: localMediaMsgItem.bubble.imgSource = source
+                            Component.onCompleted: {
+                                source = UtilsAdapter.urlFromLocalPath(Body);
+                                localMediaMsgItem.bubble.imgSource = source;
+                            }
 
                             // The sourceSize represents the maximum source dimensions.
                             // This should not be a dynamic binding, as property changes
@@ -401,7 +402,6 @@ Loader {
                                 if (img.status == Image.Ready && aspectRatio) {
                                     height = Qt.binding(() => JamiQmlUtils.clamp(idealWidth / aspectRatio, 64, 256))
                                     width = Qt.binding(() => height * aspectRatio)
-
                                 }
                             }
 

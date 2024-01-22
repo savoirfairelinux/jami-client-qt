@@ -20,7 +20,6 @@
 
 #include "api/accountmodel.h"
 #include "api/contactmodel.h"
-#include "api/conversationmodel.h"
 
 #include <QFileInfo>
 
@@ -186,7 +185,11 @@ MessageListModel::update(const QString& id, const interaction::Info& interaction
             return true;
         }
     }
-    // Just update bodies notify the view.
+    // DataTransfer interactions should not be updated.
+    if (current.type == interaction::Type::DATA_TRANSFER) {
+        return true;
+    }
+    // Just update bodies notify the view otherwise.
     current.body = interaction.body;
     current.previousBodies = interaction.previousBodies;
     current.parsedBody = interaction.parsedBody;
