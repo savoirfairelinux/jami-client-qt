@@ -31,7 +31,7 @@ import "../../../src/app/commoncomponents"
 DataTransferMessageDelegate {
     id: uut
     timestamp: 0
-    status: Interaction.Status.TRANSFER_FINISHED
+    transferStatus: Interaction.Status.TRANSFER_FINISHED
     author: ""
     body: ""
 
@@ -39,9 +39,9 @@ DataTransferMessageDelegate {
         name: "Check basic visibility for header buttons"
         function test_checkBasicVisibility() {
             var buttonsLoader = findChild(uut, "buttonsLoader")
-            uut.status = Interaction.Status.TRANSFER_AWAITING_HOST
+            uut.transferStatus = Interaction.Status.TRANSFER_AWAITING_HOST
             compare(buttonsLoader.iconSource, JamiResources.download_black_24dp_svg)
-            uut.status = Interaction.Status.TRANSFER_FINISHED
+            uut.transferStatus = Interaction.Status.TRANSFER_FINISHED
             compare(buttonsLoader.iconSource, JamiResources.link_black_24dp_svg)
         }
     }
