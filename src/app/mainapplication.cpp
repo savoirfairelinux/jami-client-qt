@@ -160,7 +160,7 @@ MainApplication::MainApplication(int& argc, char** argv)
                                      "*.debug=true\n"
                                      "libclient.debug=false\n"
                                      "qt.*=false\n"
-                                     "qml.debug=false\n"
+                                     "qml.debug=true\n"
                                      "\n");
     // These can be set in the environment as well.
     // e.g. QT_LOGGING_RULES="*.debug=false;qml.debug=true"
