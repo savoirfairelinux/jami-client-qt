@@ -40,12 +40,12 @@ Loader {
     property int seq: MsgSeq.single
     property string author: Author
     property string body: Body
-    property var status: Status
+    property var transferStatus: Status
 
     width: ListView.view ? ListView.view.width : 0
 
     sourceComponent: {
-        if (root.status === Interaction.Status.TRANSFER_FINISHED) {
+        if (root.transferStatus === Interaction.Status.TRANSFER_FINISHED) {
             mediaInfo = MessagesAdapter.getMediaInfo(root.body)
             if (Object.keys(mediaInfo).length !== 0 && WITH_WEBENGINE)
                 return localMediaMsgComp
@@ -64,8 +64,8 @@ Loader {
             id: dataTransferItem
 
             transferId: Id
-            property var transferStats: MessagesAdapter.getTransferStats(transferId, root.Status)
-            property bool canOpen: root.status === Interaction.Status.TRANSFER_FINISHED || isOutgoing
+            property var transferStats: MessagesAdapter.getTransferStats(transferId, root.transferStatus)
+            property bool canOpen: root.transferStatus === Interaction.Status.TRANSFER_FINISHED || isOutgoing
             property real maxMsgWidth: root.width - senderMargin -
                                        2 * hPadding - avatarBlockWidth
                                        - buttonsLoader.width - 24 - 6 - 24
@@ -110,7 +110,7 @@ Loader {
                         Layout.margins: 8
 
                         sourceComponent: {
-                            switch (root.status) {
+                            switch (root.transferStatus) {
                             case Interaction.Status.TRANSFER_CREATED:
                             case Interaction.Status.TRANSFER_FINISHED:
                                 iconSource = JamiResources.link_black_24dp_svg
@@ -157,7 +157,7 @@ Loader {
                                 normalColor: JamiTheme.chatviewBgColor
                                 imageColor: JamiTheme.chatviewButtonColor
                                 onClicked: {
-                                    if (root.status === Interaction.Status.TRANSFER_ONGOING) {
+                                    if (root.transferStatus === Interaction.Status.TRANSFER_ONGOING) {
                                         return MessagesAdapter.cancelFile(transferId)
                                     } else {
                                         return MessagesAdapter.acceptFile(transferId)
@@ -226,7 +226,7 @@ Loader {
                 ,ProgressBar {
                     id: progressBar
 
-                    visible: root.status === Interaction.Status.TRANSFER_ONGOING
+                    visible: root.transferStatus === Interaction.Status.TRANSFER_ONGOING
                     height: visible * implicitHeight
                     value: transferStats.progress / transferStats.totalSize
                     width: transferItem.width
@@ -244,7 +244,7 @@ Loader {
 
             isOutgoing: Author === CurrentAccount.uri
             transferId: Id
-            property var transferStats: MessagesAdapter.getTransferStats(transferId, root.status)
+            property var transferStats: MessagesAdapter.getTransferStats(transferId, root.transferStatus)
             showTime: root.showTime
             seq: root.seq
             author: Author
@@ -398,7 +398,7 @@ Loader {
                             readonly property real aspectRatio: paintedWidth / paintedHeight
                             readonly property real idealWidth: innerContent.width - senderMargin
                             onStatusChanged: {
-                                if (root.status == Image.Ready && aspectRatio) {
+                                if (img.status == Image.Ready && aspectRatio) {
                                     height = Qt.binding(() => JamiQmlUtils.clamp(idealWidth / aspectRatio, 64, 256))
                                     width = Qt.binding(() => height * aspectRatio)
 
