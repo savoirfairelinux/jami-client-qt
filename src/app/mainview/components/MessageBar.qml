@@ -56,6 +56,10 @@ RowLayout {
 
     height: rectHeight + (dataTransferSendContainer.visible ?  dataTransferSendContainer.height + (!showTypo ? 40 : - marginSize) : 0 )
 
+    onShowTypoChanged: {
+        messageBarTextArea.forceActiveFocus();
+    }
+
     Rectangle {
         Layout.preferredHeight: parent.height
         Layout.preferredWidth: childrenRect.width
