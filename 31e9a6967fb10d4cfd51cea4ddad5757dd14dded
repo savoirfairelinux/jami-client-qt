@@ -48,6 +48,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d7afe0f_625f2a52",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 28
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-01-23T20:49:41Z",
+      "side": 1,
+      "message": "horrid workaround but should build for now",
+      "parentUuid": "473d2e7c_2b761031",
+      "range": {
+        "startLine": 7,
+        "startChar": 16,
+        "endLine": 7,
+        "endChar": 25
+      },
+      "revId": "31e9a6967fb10d4cfd51cea4ddad5757dd14dded",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb1d05d9_6d750df3",
