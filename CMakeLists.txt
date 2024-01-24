@@ -391,6 +391,45 @@ endif()
 # Define PREFER_VULKAN to prefer Vulkan over the default API
 # on GNU/Linux and Windows. Metal is always preferred on macOS.
 
+# hunspell
+find_package(hunspell)
+if(hunspell_FOUND)
+  include_directories(${hunspell_INCLUDE_DIR})
+  find_path(HUNSPELL_INCLUDE_DIRS
+            NAMES hunspell.hxx
+            PATH_SUFFIXES hunspell
+            HINTS ${PKG_HUNSPELL_INCLUDE_DIRS}
+  )
+
+  find_library(HUNSPELL_LIBRARIES
+              NAMES ${PKG_HUNSPELL_LIBRARIES} hunspell hunspell-1.7 libhunspell libhunspell-1.7 libhunspell-devel libhunspell-dev
+              HINTS ${PKG_HUNSPELL_LIBRARY_DIRS}
+  )
+else()
+  set(HUNSPELL_DIR ${PROJECT_SOURCE_DIR}/3rdparty/hunspell)
+  set(HUNSPELL_INCLUDE_DIR ${HUNSPELL_DIR}/src)
+
+  # hunspell submodule build
+  execute_process(
+    COMMAND autoreconf -vfi
+    WORKING_DIRECTORY ${HUNSPELL_DIR}
+  )
+  execute_process(
+    COMMAND ./configure
+    WORKING_DIRECTORY ${HUNSPELL_DIR}
+  )
+  execute_process(
+    COMMAND make -j
+    WORKING_DIRECTORY ${HUNSPELL_DIR}
+  )
+
+  file(GLOB_RECURSE HUNSPELL_INCLUDE ${HUNSPELL_INCLUDE_DIR}/hunspell/hunspell.hxx)
+  file(GLOB_RECURSE HUNSPELL_LIBRARIES ${HUNSPELL_INCLUDE_DIR}/hunspell/.libs/libhunspell-1.7.a)
+endif()
+
+include_directories(${HUNSPELL_INCLUDE_DIR})
+list(APPEND CLIENT_LIBS ${HUNSPELL_LIBRARIES})
+
 if(MSVC)
   set(WINDOWS_SYS_LIBS
     windowsapp.lib
