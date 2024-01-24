@@ -169,7 +169,7 @@ APT_CLIENT_DEPENDENCIES = [
     'qml6-module-qtquick-dialogs', 'qml6-module-qtquick-layouts',
     'qml6-module-qtquick-shapes', 'qml6-module-qtquick-window',
     'qml6-module-qtquick-templates', 'qml6-module-qt-labs-platform',
-    'libqrencode-dev', 'libnm-dev'
+    'libqrencode-dev', 'libnm-dev', 'hunspell'
 ]
 
 APT_QT_WEBENGINE = [

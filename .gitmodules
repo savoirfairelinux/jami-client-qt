@@ -27,3 +27,6 @@
 	path = 3rdparty/tidy-html5
 	url = https://github.com/htacg/tidy-html5.git
 	ignore = dirty
+[submodule "3rdparty/hunspell"]
+	path = 3rdparty/hunspell
+	url = https://github.com/hunspell/hunspell.git
