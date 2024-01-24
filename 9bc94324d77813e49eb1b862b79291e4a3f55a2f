@@ -41,6 +41,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f62a7ee0_0af12353",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 44
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-01-24T19:17:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a12cd87c_c531ab1a",
+      "revId": "9bc94324d77813e49eb1b862b79291e4a3f55a2f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8acf5a82_5e695262",
@@ -66,6 +84,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b5294946_11781fd3",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 44
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-01-24T19:17:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8acf5a82_5e695262",
+      "range": {
+        "startLine": 78,
+        "startChar": 10,
+        "endLine": 78,
+        "endChar": 28
+      },
+      "revId": "9bc94324d77813e49eb1b862b79291e4a3f55a2f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fe4092da_a6732da4",
         "filename": "src/app/commoncomponents/BaseView.qml",
         "patchSetId": 44
@@ -77,6 +119,30 @@
       "writtenOn": "2024-01-24T13:24:30Z",
       "side": 1,
       "message": "remove?",
+      "range": {
+        "startLine": 38,
+        "startChar": 16,
+        "endLine": 38,
+        "endChar": 21
+      },
+      "revId": "9bc94324d77813e49eb1b862b79291e4a3f55a2f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd823efb_5f6b855a",
+        "filename": "src/app/commoncomponents/BaseView.qml",
+        "patchSetId": 44
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-01-24T19:17:30Z",
+      "side": 1,
+      "message": "I think we can leave these for now as they\u0027re useful and filtered out with our current default log filter.",
+      "parentUuid": "fe4092da_a6732da4",
       "range": {
         "startLine": 38,
         "startChar": 16,
