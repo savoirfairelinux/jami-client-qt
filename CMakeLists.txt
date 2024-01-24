@@ -757,6 +757,7 @@ else()
   list(APPEND CLIENT_LIBS ${CONTRIB})
 
   find_package(Iconv REQUIRED)
+  find_library(LZMA lzma)
   list(APPEND CLIENT_LIBS Iconv::Iconv)
   list(APPEND CLIENT_LIBS
     "-framework AVFoundation"
@@ -765,6 +766,7 @@ else()
     "-framework Security"
       compression
       resolv
+      ${LZMA}
     )
 
   # translations
