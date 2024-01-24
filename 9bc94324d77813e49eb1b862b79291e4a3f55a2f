@@ -3,6 +3,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8fc2fdbe_23ab4085",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 44
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-01-24T13:24:30Z",
+      "side": 1,
+      "message": "Broken scenario:\n\nIn a call double-clic \u003d\u003e goes fullscreen, double-clic \u003d\u003e stays in a fullscreen mode instead restoring previous state",
+      "range": {
+        "startLine": 13,
+        "startChar": 18,
+        "endLine": 13,
+        "endChar": 25
+      },
+      "revId": "9bc94324d77813e49eb1b862b79291e4a3f55a2f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a12cd87c_c531ab1a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 44
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-01-24T13:24:30Z",
+      "side": 1,
+      "message": "Build is now working on Fedora",
+      "revId": "9bc94324d77813e49eb1b862b79291e4a3f55a2f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8acf5a82_5e695262",
         "filename": "CMakeLists.txt",
         "patchSetId": 44
@@ -19,6 +59,52 @@
         "startChar": 10,
         "endLine": 78,
         "endChar": 28
+      },
+      "revId": "9bc94324d77813e49eb1b862b79291e4a3f55a2f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe4092da_a6732da4",
+        "filename": "src/app/commoncomponents/BaseView.qml",
+        "patchSetId": 44
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-01-24T13:24:30Z",
+      "side": 1,
+      "message": "remove?",
+      "range": {
+        "startLine": 38,
+        "startChar": 16,
+        "endLine": 38,
+        "endChar": 21
+      },
+      "revId": "9bc94324d77813e49eb1b862b79291e4a3f55a2f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49efe9c0_112ae304",
+        "filename": "src/app/settingsview/SettingsSidePanel.qml",
+        "patchSetId": 44
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-01-24T13:24:30Z",
+      "side": 1,
+      "message": "Pretty all shortcuts are broken. Ctrl+M is crashing Jami, Ctrl+J not working",
+      "range": {
+        "startLine": 269,
+        "startChar": 27,
+        "endLine": 269,
+        "endChar": 31
       },
       "revId": "9bc94324d77813e49eb1b862b79291e4a3f55a2f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
