@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8acf5a82_5e695262",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 44
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-01-24T12:58:21Z",
+      "side": 1,
+      "message": "seems now cmake_minimum_required(VERSION 3.16) \u003d\u003e cmake_minimum_required(VERSION 3.19)\n\n\nCMake Error at build/_deps/qwindowkit-src/CMakeLists.txt:1 (cmake_minimum_required):\n  CMake 3.19 or higher is required.  You are running version 3.16.3",
+      "range": {
+        "startLine": 78,
+        "startChar": 10,
+        "endLine": 78,
+        "endChar": 28
+      },
+      "revId": "9bc94324d77813e49eb1b862b79291e4a3f55a2f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
