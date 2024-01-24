@@ -16,6 +16,24 @@
       "message": "child windows are broken (at least on Windows 11):\ndefault\t[1706131131691][WRN]: QWindowsContext::windowsProc: No Qt Window found for event 0x6 (WM_ACTIVATE), hwnd\u003d0x0x260b72.\ndefault\t[1706131131692][WRN]: QWindowsContext::windowsProc: No Qt Window found for event 0x6 (WM_ACTIVATE), hwnd\u003d0x0x260b72.\ndefault\t[1706131131693][WRN]: QWindowsContext::windowsProc: No Qt Window found for event 0x8 (WM_KILLFOCUS), hwnd\u003d0x0x260b72.\ndefault\t[1706131131696][WRN]: QWindowsContext::windowsProc: No Qt Window found for event 0x6 (WM_ACTIVATE), hwnd\u003d0x0x260b72.\ndefault\t[1706131131698][WRN]: QWindowsContext::windowsProc: No Qt Window found for event 0x6 (WM_ACTIVATE), hwnd\u003d0x0x260b72.\ndefault\t[1706131131699][WRN]: QWindowsContext::windowsProc: No Qt Window found for event 0x8 (WM_KILLFOCUS), hwnd\u003d0x0x260b72.",
       "revId": "30f9f785e9d9362dcaab9a98cdd0378e5e15e9a2",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37ba86d3_404b9e64",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 45
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-01-24T21:24:12Z",
+      "side": 1,
+      "message": "macOS seems fine",
+      "parentUuid": "da14227a_f987a09d",
+      "revId": "30f9f785e9d9362dcaab9a98cdd0378e5e15e9a2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
