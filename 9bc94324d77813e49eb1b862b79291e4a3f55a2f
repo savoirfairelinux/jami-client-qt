@@ -48,6 +48,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2bfa785_57c737cc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 44
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-01-25T13:47:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79a909f6_57543d93",
+      "range": {
+        "startLine": 13,
+        "startChar": 18,
+        "endLine": 13,
+        "endChar": 25
+      },
+      "revId": "9bc94324d77813e49eb1b862b79291e4a3f55a2f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a12cd87c_c531ab1a",
@@ -214,6 +238,30 @@
       "side": 1,
       "message": "could not reproduce on Windows/macOS/Linux-GNOME-X",
       "parentUuid": "49efe9c0_112ae304",
+      "range": {
+        "startLine": 269,
+        "startChar": 27,
+        "endLine": 269,
+        "endChar": 31
+      },
+      "revId": "9bc94324d77813e49eb1b862b79291e4a3f55a2f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b77bcacc_811160ff",
+        "filename": "src/app/settingsview/SettingsSidePanel.qml",
+        "patchSetId": 44
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-01-25T13:47:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "63e4e0e0_f5e788e8",
       "range": {
         "startLine": 269,
         "startChar": 27,
