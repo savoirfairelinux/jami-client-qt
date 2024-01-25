@@ -49,6 +49,10 @@ Item {
 
     signal settingsPageRequested(int index)
 
+    function requestSettingsPage(index) {
+        settingsPageRequested(index);
+    }
+
     function updateMessageBarButtonsPoints() {
         if (messageBarButtonsRowObj && audioRecordMessageButtonObj && videoRecordMessageButtonObj) {
             audioRecordMessageButtonInMainViewPoint = messageBarButtonsRowObj.mapToItem(mainViewRectObj, audioRecordMessageButtonObj.x, audioRecordMessageButtonObj.y);
