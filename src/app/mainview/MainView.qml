@@ -64,7 +64,7 @@ Rectangle {
     Shortcut {
         sequence: "Ctrl+M"
         context: Qt.ApplicationShortcut
-        onActivated: JamiQmlUtils.settingsPageRequested(12)
+        onActivated: JamiQmlUtils.requestSettingsPage(12)
     }
 
     WheelHandler {
@@ -117,19 +117,19 @@ Rectangle {
     Shortcut {
         sequence: "Ctrl+G"
         context: Qt.ApplicationShortcut
-        onActivated: JamiQmlUtils.settingsPageRequested(5)
+        onActivated: JamiQmlUtils.requestSettingsPage(5)
     }
 
     Shortcut {
         sequence: "Ctrl+Alt+I"
         context: Qt.ApplicationShortcut
-        onActivated: JamiQmlUtils.settingsPageRequested(0)
+        onActivated: JamiQmlUtils.requestSettingsPage(0)
     }
 
     Shortcut {
         sequence: "Ctrl+P"
         context: Qt.ApplicationShortcut
-        onActivated: JamiQmlUtils.settingsPageRequested(15)
+        onActivated: JamiQmlUtils.requestSettingsPage(15)
     }
 
     Shortcut {
