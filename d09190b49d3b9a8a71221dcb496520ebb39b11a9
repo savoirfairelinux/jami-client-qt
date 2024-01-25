@@ -16,6 +16,24 @@
       "message": "Does `Forward call` refer to `Call transfer`?\n\nDoes this feature do both Cold (Blind) and Warm (Attended) Transfers?\n\nhttps://www.onsip.com/voip-resources/voip-fundamentals/types-of-call-transfers-cold-blind-and-warm-attended-transfers\n\nThank you",
       "revId": "d09190b49d3b9a8a71221dcb496520ebb39b11a9",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d5ca6cf_c5d6f6b9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-01-25T13:46:02Z",
+      "side": 1,
+      "message": "it works for both blind/attended",
+      "parentUuid": "6ad1218d_d3275325",
+      "revId": "d09190b49d3b9a8a71221dcb496520ebb39b11a9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
