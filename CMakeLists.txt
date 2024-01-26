@@ -432,6 +432,12 @@ if(MSVC)
   file(GLOB_RECURSE QRENCODE_INCLUDE ${QRENCODE_DIR}/qrencode.h)
   get_filename_component(QRENCODE_INCLUDE_DIR ${QRENCODE_INCLUDE} DIRECTORY)
 
+  # hunspell
+  set(HUNSPELL_DIR ${PROJECT_SOURCE_DIR}/3rdparty/hunspell)
+  file(GLOB_RECURSE HUNSPELL_LIB ${HUNSPELL_DIR}/src/hunspell/.libs/libhunspell-1.7.lib)
+  file(GLOB_RECURSE HUNSPELL_INCLUDE ${HUNSPELL_DIR}/src/hunspell/hunspell.hxx)
+  get_filename_component(HUNSPELL_INCLUDE_DIR ${HUNSPELL_SRC_DIR} DIRECTORY)
+
   # daemon
   set(JAMID_SRC_PATH ${DAEMON_DIR}/contrib/msvc/include)
   set(GNUTLS_LIB ${DAEMON_DIR}/contrib/msvc/lib/x64/libgnutls.lib)
@@ -449,7 +455,8 @@ if(MSVC)
   include_directories(
     ${JAMID_SRC_PATH}
     ${LIBCLIENT_SRC_DIR}
-    ${QRENCODE_INCLUDE_DIR})
+    ${QRENCODE_INCLUDE_DIR}
+    ${HUNSPELL_INCLUDE_DIR})
 elseif (NOT APPLE)
   list(APPEND COMMON_SOURCES
     ${APP_SRC_DIR}/xrectsel.c
@@ -606,6 +613,14 @@ add_subdirectory(3rdparty/tidy-html5 EXCLUDE_FROM_ALL)
 list(APPEND CLIENT_LINK_DIRS ${tidy_BINARY_DIR}/Release)
 list(APPEND CLIENT_INCLUDE_DIRS ${tidy_SOURCE_DIR}/include)
 list(APPEND CLIENT_LIBS tidy-static)
+
+# hunspell
+set(HUNSPELL_DIR ${PROJECT_SOURCE_DIR}/3rdparty/hunspell)
+set(HUNSPELL_LIBRARIES ${HUNSPELL_DIR}/src/hunspell/.libs/libhunspell-1.7.a)
+set(HUNSPELL_INCLUDE_DIRS ${HUNSPELL_DIR}/hunspell/src)
+
+include_directories(${HUNSPELL_INCLUDE_DIRS})
+list(APPEND CLIENT_LIBS ${HUNSPELL_LIBRARIES})
 
 # common executable sources
 qt_add_executable(
