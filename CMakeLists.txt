@@ -391,6 +391,9 @@ endif()
 # Define PREFER_VULKAN to prefer Vulkan over the default API
 # on GNU/Linux and Windows. Metal is always preferred on macOS.
 
+set(HUNSPELL_DIR ${PROJECT_SOURCE_DIR}/3rdparty/hunspell)
+set(HUNSPELL_INCLUDE_DIR ${HUNSPELL_DIR}/src)
+file(GLOB_RECURSE HUNSPELL_INCLUDE ${HUNSPELL_INCLUDE_DIR}/hunspell/hunspell.hxx)
 if(MSVC)
   set(WINDOWS_SYS_LIBS
     windowsapp.lib
@@ -512,6 +515,8 @@ elseif (NOT APPLE)
   find_library(${LIBCLIENT_NAME} ${LIBCLIENT_NAME} NO_DEFAULT_PATH)
   find_library(qrencode qrencode)
   find_library(X11 X11)
+  file(GLOB_RECURSE HUNSPELL_LIB ${HUNSPELL_DIR}/src/hunspell/.libs/libhunspell-1.7.a)
+
 else() # APPLE
   list(APPEND COMMON_SOURCES
     ${APP_SRC_DIR}/os/macos/appversionmanager.mm
@@ -614,6 +619,10 @@ add_subdirectory(3rdparty/tidy-html5 EXCLUDE_FROM_ALL)
 list(APPEND CLIENT_LINK_DIRS ${tidy_BINARY_DIR}/Release)
 list(APPEND CLIENT_INCLUDE_DIRS ${tidy_SOURCE_DIR}/include)
 list(APPEND CLIENT_LIBS tidy-static)
+
+# hunspell
+include_directories(${HUNSPELL_INCLUDE_DIR})
+list(APPEND CLIENT_LIBS ${HUNSPELL_LIB})
 
 # common executable sources
 qt_add_executable(
