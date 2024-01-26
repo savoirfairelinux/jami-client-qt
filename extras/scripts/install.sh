@@ -220,6 +220,12 @@ else
                          -DWITH_DAEMON_SUBMODULE=true)
 fi
 
+# build hunspell
+(
+    cd ${TOP}
+    ./extras/scripts/build_hunspell.sh
+)
+
 echo "info: Configuring $client client with flags: ${client_cmake_flags[*]}"
 cmake .. "${client_cmake_flags[@]}"
 make -j"${proc}" V=1
