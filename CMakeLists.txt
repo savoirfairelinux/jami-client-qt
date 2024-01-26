@@ -435,7 +435,8 @@ if(MSVC)
   include_directories(
     ${JAMID_SRC_PATH}
     ${LIBCLIENT_SRC_DIR}
-    ${QRENCODE_INCLUDE_DIR})
+    ${QRENCODE_INCLUDE_DIR}
+    ${HUNSPELL_SRC_DIR})
 elseif (NOT APPLE)
   list(APPEND COMMON_SOURCES
     ${APP_SRC_DIR}/xrectsel.c
@@ -591,6 +592,21 @@ add_subdirectory(3rdparty/tidy-html5 EXCLUDE_FROM_ALL)
 list(APPEND CLIENT_LINK_DIRS ${tidy_BINARY_DIR}/Release)
 list(APPEND CLIENT_INCLUDE_DIRS ${tidy_SOURCE_DIR}/include)
 list(APPEND CLIENT_LIBS tidy-static)
+
+#Hunspell
+set(HUNSPELL_DIR ${PROJECT_SOURCE_DIR}/3rdparty/hunspell)
+execute_process(
+    COMMAND ./autoreconf -vfi
+    COMMAND ./configure
+    COMMAND make
+    WORKING_DIRECTORY ${HUNSPELL_DIR}
+)
+
+set(HUNSPELL_LIBRARIES ${HUNSPELL_DIR}/src/hunspell/.libs/libhunspell-1.7.a)
+set(HUNSPELL_INCLUDE_DIRS ${HUNSPELL_DIR}/hunspell/src)
+
+include_directories(${HUNSPELL_INCLUDE_DIRS})
+list(APPEND CLIENT_LIBS ${HUNSPELL_LIBRARIES})
 
 # common executable sources
 qt_add_executable(
