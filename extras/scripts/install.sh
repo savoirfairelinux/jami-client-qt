@@ -241,6 +241,12 @@ if [ -n "${extra_cmake_flags}" ]; then
     client_cmake_flags+=(${extra_cmake_flags})
 fi
 
+# build hunspell
+(
+    cd ${TOP}
+    ./extras/scripts/build_hunspell.sh
+)
+
 echo "info: Configuring $client client with flags: ${client_cmake_flags[*]}"
 cmake .. "${client_cmake_flags[@]}"
 make -j"${proc}" V=1
