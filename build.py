@@ -112,7 +112,7 @@ ZYPPER_CLIENT_DEPENDENCIES = [
     'qt6-svg-devel', 'qt6-multimedia-devel', 'qt6-multimedia-imports',
     'qt6-declarative-devel', 'qt6-qmlcompiler-private-devel',
     'qt6-quickcontrols2-devel', 'qt6-shadertools-devel',
-    'qrencode-devel', 'NetworkManager-devel'
+    'qrencode-devel', 'NetworkManager-devel', 'hunspell-devel', 'libhunspell-devel'
 ]
 
 ZYPPER_QT_WEBENGINE = [
@@ -139,7 +139,7 @@ DNF_CLIENT_DEPENDENCIES = [
     'libnotify-devel',
     'qt6-qtbase-devel',
     'qt6-qtsvg-devel', 'qt6-qtmultimedia-devel', 'qt6-qtdeclarative-devel',
-    'qrencode-devel', 'NetworkManager-libnm-devel'
+    'qrencode-devel', 'NetworkManager-libnm-devel', 'hunspell-devel', 'libhunspell-devel'
 ]
 
 DNF_QT_WEBENGINE = ['qt6-qtwebengine-devel']
@@ -171,7 +171,7 @@ APT_CLIENT_DEPENDENCIES = [
     'qml6-module-qtquick-dialogs', 'qml6-module-qtquick-layouts',
     'qml6-module-qtquick-shapes', 'qml6-module-qtquick-window',
     'qml6-module-qtquick-templates', 'qml6-module-qt-labs-platform',
-    'libqrencode-dev', 'libnm-dev'
+    'libqrencode-dev', 'libnm-dev', 'hunspell', 'libhunspell-dev'
 ]
 
 APT_QT_WEBENGINE = [
@@ -194,7 +194,7 @@ PACMAN_CLIENT_DEPENDENCIES = [
     'qt6-declarative', 'qt6-5compat', 'qt6-multimedia',
     'qt6-networkauth', 'qt6-shadertools',
     'qt6-svg', 'qt6-tools',
-    'qrencode', 'libnm'
+    'qrencode', 'libnm', 'hunspell'
 ]
 
 PACMAN_QT_WEBENGINE = ['qt6-webengine']
