@@ -411,6 +411,48 @@ endif()
 # Define PREFER_VULKAN to prefer Vulkan over the default API
 # on GNU/Linux and Windows. Metal is always preferred on macOS.
 
+find_package(PkgConfig REQUIRED)
+
+# hunspell
+pkg_check_modules(HUNSPELL hunspell)
+if(HUNSPELL_FOUND)
+  include_directories(${HUNSPELL_INCLUDE_DIR})
+  find_path(HUNSPELL_INCLUDE_DIRS
+            NAMES hunspell.hxx
+            PATH_SUFFIXES hunspell
+            HINTS ${HUNSPELL_INCLUDE_DIRS}
+  )
+
+  find_library(HUNSPELL_LIBRARIES
+              NAMES ${HUNSPELL_LIBRARIES} hunspell hunspell-1.7 libhunspell libhunspell-1.7 libhunspell-devel libhunspell-dev
+              HINTS ${HUNSPELL_LIBRARY_DIRS}
+  )
+  if(MSVC)
+  elseif (NOT APPLE)
+    set(HUNSPELL_DICT_DIR "/usr/share/hunspell/")
+  else()
+    set(HUNSPELL_DICT_DIR "/Library/Spelling/")
+  endif()
+else()
+  set(HUNSPELL_DIR ${PROJECT_SOURCE_DIR}/3rdparty/hunspell)
+  set(HUNSPELL_INCLUDE_DIR ${HUNSPELL_DIR}/src)
+
+  # hunspell submodule build
+  execute_process(
+    COMMAND autoreconf -vfi
+    WORKING_DIRECTORY ${HUNSPELL_DIR}
+  )
+  execute_process(
+    COMMAND ./configure
+    WORKING_DIRECTORY ${HUNSPELL_DIR}
+  )
+  execute_process(
+    COMMAND make -j
+    WORKING_DIRECTORY ${HUNSPELL_DIR}
+  )
+  file(GLOB_RECURSE HUNSPELL_LIBRARIES ${HUNSPELL_INCLUDE_DIR}/hunspell/.libs/libhunspell-1.7.a)
+endif()
+
 if(MSVC)
   set(WINDOWS_SYS_LIBS
     windowsapp.lib
@@ -483,7 +525,8 @@ elseif (NOT APPLE)
     ${APP_SRC_DIR}/screencastportal.h)
   list(APPEND QT_MODULES DBus)
 
-  find_package(PkgConfig REQUIRED)
+  include_directories(${HUNSPELL_INCLUDE_DIR})
+  list(APPEND CLIENT_LIBS ${HUNSPELL_LIBRARIES})
 
   pkg_check_modules(GLIB REQUIRED glib-2.0)
   if(GLIB_FOUND)
