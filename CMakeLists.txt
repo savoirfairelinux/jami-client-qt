@@ -391,6 +391,11 @@ endif()
 # Define PREFER_VULKAN to prefer Vulkan over the default API
 # on GNU/Linux and Windows. Metal is always preferred on macOS.
 
+set(HUNSPELL_DIR ${PROJECT_SOURCE_DIR}/3rdparty/hunspell)
+set(HUNSPELL_INCLUDE_DIR ${HUNSPELL_DIR}/src)
+file(GLOB_RECURSE HUNSPELL_INCLUDE ${HUNSPELL_INCLUDE_DIR}/hunspell/hunspell.hxx)
+include_directories(${HUNSPELL_INCLUDE_DIR})
+
 if(MSVC)
   set(WINDOWS_SYS_LIBS
     windowsapp.lib
@@ -402,7 +407,8 @@ if(MSVC)
     User32.lib
     Gdi32.lib
     Crypt32.lib
-    Strmiids.lib)
+    Strmiids.lib
+    libhunspell*.lib)
 
   list(APPEND COMMON_SOURCES
     ${APP_SRC_DIR}/connectivitymonitor.cpp
@@ -512,6 +518,7 @@ elseif (NOT APPLE)
   find_library(${LIBCLIENT_NAME} ${LIBCLIENT_NAME} NO_DEFAULT_PATH)
   find_library(qrencode qrencode)
   find_library(X11 X11)
+
 else() # APPLE
   list(APPEND COMMON_SOURCES
     ${APP_SRC_DIR}/os/macos/appversionmanager.mm
@@ -614,6 +621,20 @@ add_subdirectory(3rdparty/tidy-html5 EXCLUDE_FROM_ALL)
 list(APPEND CLIENT_LINK_DIRS ${tidy_BINARY_DIR}/Release)
 list(APPEND CLIENT_INCLUDE_DIRS ${tidy_SOURCE_DIR}/include)
 list(APPEND CLIENT_LIBS tidy-static)
+
+# hunspell
+pkg_check_modules(PKG_HUNSPELL QUIET hunspell)
+
+find_path(HUNSPELL_INCLUDE_DIRS
+          NAMES hunspell.hxx
+          PATH_SUFFIXES hunspell
+          HINTS ${PKG_HUNSPELL_INCLUDE_DIRS}
+)
+find_library(HUNSPELL_LIBRARIES
+             NAMES ${PKG_HUNSPELL_LIBRARIES} hunspell hunspell-1.7 libhunspell libhunspell-1.7-0 libhunspell-devel libhunspell-dev
+             HINTS ${PKG_HUNSPELL_LIBRARY_DIRS}
+)
+list(APPEND CLIENT_LIBS ${HUNSPELL_LIBRARIES})
 
 # common executable sources
 qt_add_executable(
