@@ -16,6 +16,24 @@
       "message": "Needs to be declared as QML_SINGLETON?",
       "revId": "9d674c7a25e2427a54ee4134c224588fd5db2e54",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "516ea2b1_25169bde",
+        "filename": "src/app/contactadapter.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-01-29T16:47:55Z",
+      "side": 1,
+      "message": "Yes.\nalthough it seems to work without this macro, not using may introduce some issues in the way the QML engine handles the registered QML singletons, as we can see there are several seemingly important declarations behind the macro:\n```\n#define QML_SINGLETON \\\n    Q_CLASSINFO(\"QML.Singleton\", \"true\") \\\n    enum class QmlIsSingleton {yes \u003d true}; \\\n    template\u003ctypename, typename\u003e friend struct QML_PRIVATE_NAMESPACE::QmlSingleton; \\\n    template\u003ctypename... Args\u003e \\\n    friend void QML_REGISTER_TYPES_AND_REVISIONS(const char *uri, int versionMajor, QList\u003cint\u003e *); \\\n    inline constexpr void qt_qmlMarker_singleton() {}\n```",
+      "parentUuid": "167f7e18_78a6aaf8",
+      "revId": "9d674c7a25e2427a54ee4134c224588fd5db2e54",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
