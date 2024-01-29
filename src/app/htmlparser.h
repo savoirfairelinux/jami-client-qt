@@ -37,6 +37,8 @@ public:
         : QObject(parent)
     {
         doc_ = tidyCreate();
+        tidyOptSetBool(doc_, TidyOutCharEncoding, yes);
+        tidyOptSetValue(doc_, TidyCharEncoding, "utf8");
         tidyOptSetBool(doc_, TidyQuiet, yes);
         tidyOptSetBool(doc_, TidyShowWarnings, no);
         tidyOptSetInt(doc_, TidyUseCustomTags, TidyCustomEmpty);
@@ -49,7 +51,7 @@ public:
 
     bool parseHtmlString(const QString& html)
     {
-        return tidyParseString(doc_, html.toLocal8Bit().data()) >= 0;
+        return tidyParseString(doc_, html.toUtf8().data()) >= 0;
     }
 
     using TagNodeList = QMap<TidyTagId, QList<TidyNode>>;
@@ -86,11 +88,15 @@ public:
     // Extract the text value from a node.
     QString getNodeText(TidyNode node)
     {
-        TidyBuffer nodeValue = {};
+        TidyBuffer nodeValue = {0};
         if (!node || tidyNodeGetText(doc_, node, &nodeValue) != yes) {
             return QString();
         }
-        QString result = QString::fromUtf8((char*) nodeValue.bp, nodeValue.size);
+        // Print the raw data (assume it's UTF-8)
+        QString result;
+        if (nodeValue.bp && nodeValue.size > 0) {
+            result = QString::fromUtf8(reinterpret_cast<char*>(nodeValue.bp), nodeValue.size);
+        }
         tidyBufFree(&nodeValue);
         return result;
     }
