@@ -22,6 +22,30 @@
       },
       "revId": "5eeff3f4b6b183900faa9aef376a4d2765da3296",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "376835f8_805eac08",
+        "filename": "src/app/htmlparser.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-01-29T20:34:28Z",
+      "side": 1,
+      "message": "yes. was hoping to have the tests fail on Windows CI but that\u0027s not gonna happen today",
+      "parentUuid": "b2eea207_855b1dd5",
+      "range": {
+        "startLine": 53,
+        "startChar": 44,
+        "endLine": 53,
+        "endChar": 50
+      },
+      "revId": "5eeff3f4b6b183900faa9aef376a4d2765da3296",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
