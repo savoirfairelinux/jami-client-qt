@@ -2379,9 +2379,11 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
         }
         QString msgId = message.id;
         auto msg = interaction::Info(message, linked.owner.profileInfo.uri);
-        api::datatransfer::Info info;
 
-        if (msg.type == interaction::Type::DATA_TRANSFER) {
+        if (msg.type == interaction::Type::CALL) {
+            msg.body = interaction::getCallInteractionString(msg.authorUri == linked.owner.profileInfo.uri,
+                                                             msg);
+        } else if (msg.type == interaction::Type::DATA_TRANSFER) {
             // save data transfer interaction to db and assosiate daemon id with interaction id,
             // conversation id and db id
             QString fileId = message.body.value("fileId");
