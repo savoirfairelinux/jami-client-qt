@@ -129,6 +129,14 @@ SystemTray::SystemTray(AppSettingsManager* settingsManager, QObject* parent)
 SystemTray::~SystemTray()
 {
 #ifdef USE_LIBNOTIFY
+    // Clearing notifications to ensure that g_object_unref is called on every
+    // NotifyNotification object *before* we call notify_uninit. This isn't strictly
+    // necessary, but if we don't do it, then the destructor will call g_object_unref
+    // anyway, and this will happen *after* notify_uninit, which causes GLib to
+    // generate cryptic warnings when Jami shuts down, e.g.:
+    // `instance '0x5627a4e236a0' has no handler with id '309'`
+    pimpl_->notifications.clear();
+
     notify_uninit();
 #endif // USE_LIBNOTIFY
     hide();
