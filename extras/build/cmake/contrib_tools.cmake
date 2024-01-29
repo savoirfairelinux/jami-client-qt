@@ -71,13 +71,15 @@ function(add_fetch_content)
 
   # Apply options
   list(LENGTH AFCWP_OPTIONS options_length)
-  math(EXPR max_idx "${options_length} - 1")
-  foreach(idx RANGE 0 ${max_idx} 2)
-    list(GET AFCWP_OPTIONS ${idx} key)
-    math(EXPR value_idx "${idx} + 1")
-    list(GET AFCWP_OPTIONS ${value_idx} value)
-    set(${key} ${value} CACHE STRING "${key}" FORCE)
-  endforeach()
+  if(NOT ${options_length} EQUAL 0)
+    math(EXPR max_idx "${options_length} - 1")
+    foreach(idx RANGE 0 ${max_idx} 2)
+      list(GET AFCWP_OPTIONS ${idx} key)
+      math(EXPR value_idx "${idx} + 1")
+      list(GET AFCWP_OPTIONS ${value_idx} value)
+      set(${key} ${value} CACHE STRING "${key}" FORCE)
+    endforeach()
+  endif()
 
   # Make the content available
   FetchContent_MakeAvailable(${AFCWP_TARGET})
