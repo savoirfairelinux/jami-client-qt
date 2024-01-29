@@ -49,7 +49,7 @@ public:
 
     bool parseHtmlString(const QString& html)
     {
-        return tidyParseString(doc_, html.toLocal8Bit().data()) >= 0;
+        return tidyParseString(doc_, html.toUtf8().data()) >= 0;
     }
 
     using TagNodeList = QMap<TidyTagId, QList<TidyNode>>;
@@ -86,11 +86,14 @@ public:
     // Extract the text value from a node.
     QString getNodeText(TidyNode node)
     {
-        TidyBuffer nodeValue = {};
+        TidyBuffer nodeValue = {0};
         if (!node || tidyNodeGetText(doc_, node, &nodeValue) != yes) {
             return QString();
         }
-        QString result = QString::fromUtf8((char*) nodeValue.bp, nodeValue.size);
+        QString result;
+        if (nodeValue.bp && nodeValue.size > 0) {
+            result = QString::fromUtf8(reinterpret_cast<char*>(nodeValue.bp), nodeValue.size);
+        }
         tidyBufFree(&nodeValue);
         return result;
     }
