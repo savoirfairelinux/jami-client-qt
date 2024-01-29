@@ -8,6 +8,7 @@ set(QT_TESTING_MODULES
     QuickTest
     Test
     Widgets
+    HttpServer
 )
 find_package(Qt${QT_VERSION_MAJOR} CONFIG REQUIRED ${QT_TESTING_MODULES})
 foreach(MODULE ${QT_TESTING_MODULES})
@@ -84,6 +85,7 @@ set(UNIT_TESTS_SOURCE_FILES
     ${CMAKE_SOURCE_DIR}/tests/unittests/account_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/contact_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/messageparser_unittest.cpp
+    ${CMAKE_SOURCE_DIR}/tests/unittests/previewengine_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/globaltestenvironment.h
     ${COMMON_TESTS_SOURCES})
 
