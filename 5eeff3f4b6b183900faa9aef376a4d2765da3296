@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2eea207_855b1dd5",
+        "filename": "src/app/htmlparser.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-01-29T20:16:29Z",
+      "side": 1,
+      "message": "remove?",
+      "range": {
+        "startLine": 53,
+        "startChar": 44,
+        "endLine": 53,
+        "endChar": 50
+      },
+      "revId": "5eeff3f4b6b183900faa9aef376a4d2765da3296",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
