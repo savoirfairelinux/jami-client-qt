@@ -163,7 +163,7 @@
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="44"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="737"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="738"/>
         <source>Could not re-connect to the Jami daemon (jamid).
 Jami will now quit.</source>
         <translation>Jami arka plan prosesine (jamid) yeniden bağlanılamadı.
@@ -171,7 +171,7 @@ Jami şimdi kapatılacak.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="45"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="736"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="737"/>
         <source>Trying to reconnect to the Jami daemon (jamid)…</source>
         <translation>Jami arka plan prosesine (jamid) yeniden bağlanmaya çalışılıyor…</translation>
     </message>
@@ -855,430 +855,435 @@ Profil, hesap ayarlarından her zaman değiştirilebilir.</translation>
         <translation>Aydınlık</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="483"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="480"/>
+        <source>Use native window frame (requires restart)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="484"/>
         <source>Include local video in recording</source>
         <translation>Yerel görüntüyü kayda dahil et</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="484"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="485"/>
         <source>Default settings</source>
         <translation>Ön tanımlı ayarlara sıfırla</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="487"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="488"/>
         <source>Enable typing indicators</source>
         <translation>Yazma göstergelerini etkinleştir</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="488"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="489"/>
         <source>Send and receive typing indicators showing that a message is being typed.</source>
         <translation>İleti yazıldığını gösteren yazım göstergelerini gönder ve al.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="489"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="490"/>
         <source>Show link preview in conversations</source>
         <translation>Görüşmelerde bağlantı ön izlemesini göster</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="511"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="512"/>
         <source>Delete file from device</source>
         <translation>Dosyayı aygıttan sil</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="528"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="529"/>
         <source>Content access error</source>
         <translation>İçerik erişim hatası</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="529"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="530"/>
         <source>Content not found</source>
         <translation>İçerik bulunamadı</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="592"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="593"/>
         <source>Enter account password</source>
         <translation>Hesap parolasını gir</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="593"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="594"/>
         <source>This account is password encrypted, enter the password to generate a PIN code.</source>
         <translation>Bu hesap parola ile şifrelenmiştir; PIN kodu oluşturabilmek için parolayı gir.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="595"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="596"/>
         <source>PIN expired</source>
         <translation>PIN süresi doldu</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="596"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="597"/>
         <source>On another device</source>
         <translation>Diğer aygıtta</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="597"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="598"/>
         <source>Install and launch Jami, select &quot;Import from another device&quot; and scan the QR code.</source>
         <translation>Jami&apos;yi kur ve başlat, &quot;Başka bir aygıttan içe aktar&quot;ı seç ve QR kodunu tara.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="598"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="599"/>
         <source>Link new device</source>
         <translation>Yeni aygıt bağla</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="599"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="600"/>
         <source>In Jami, scan QR code or manually enter the PIN.</source>
         <translation>Jami&apos;yle QR kodunu tara veya PIN&apos;i manuel olarak gir.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="600"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="601"/>
         <source>The PIN code is valid for: </source>
         <translation>PIN kodu aşağıdakiler için geçerlidir:</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="603"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="604"/>
         <source>Enter password</source>
         <translation>Parolayı gir</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="605"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="606"/>
         <source>Enter account password to confirm the removal of this device</source>
         <translation>Bu aygıtın kaldırılmasını doğrulamak için hesap parolasını gir</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="612"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="613"/>
         <source>Select image as avatar</source>
         <translation>Avatar için bir görsel seç</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="613"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="614"/>
         <source>Select image</source>
         <translation>Görsel seç</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="615"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="616"/>
         <source>Remove image</source>
         <translation>Görseli kaldır</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="617"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="618"/>
         <source>Image Files (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)</source>
         <translation>Görsel Dosyaları (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="629"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="630"/>
         <source>The Jami Extension Store currently has no extension available for the platform in use. Check again later!</source>
         <translation>Jami Uzantı Mağazası henüz bu platform için mevcut bir uzantıya sahip değil. Daha sonra tekrar kontrol et!</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="745"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="746"/>
         <source>Discard and restart</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="747"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="748"/>
         <source>Show less</source>
         <translation>Daha az göster</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="749"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="750"/>
         <source>Show preview</source>
         <translation>Ön izlemeyi göster</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="750"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="751"/>
         <source>Continue editing</source>
         <translation>Düzenlemeye devam et</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="753"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="754"/>
         <source>Strikethrough</source>
         <translation>Üstü çizili</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="759"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="760"/>
         <source>Unordered list</source>
         <translation>Sırasız liste</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="760"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="761"/>
         <source>Ordered list</source>
         <translation>Sıralı Liste</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="763"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="764"/>
         <source>Press Shift+Enter to insert a new line</source>
         <translation>Yeni bir satır eklemek için Shift+Enter tuşlarına bas</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="764"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="765"/>
         <source>Press Enter to insert a new line</source>
         <translation>Yeni bir satır eklemek için Enter&apos;a bas</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="780"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="781"/>
         <source>Select dedicated device for hosting future calls in this swarm. If not set, the host will be the device starting a call.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="781"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="782"/>
         <source>Select this device</source>
         <translation>Bu aygıtı seç</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="782"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="783"/>
         <source>Select device</source>
         <translation>Aygıt seç</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="841"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="842"/>
         <source>Encrypt your account with a password</source>
         <translation>Hesabını bir parolayla şifrele</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="842"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="843"/>
         <source>Customize your profile</source>
         <translation>Profilini özelleştir</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="845"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="846"/>
         <source>Appearance</source>
         <translation>Görünüş</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="865"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="866"/>
         <source>Donate</source>
         <translation>Bağış</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="866"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="867"/>
         <source>If you enjoy using Jami and believe in our mission, would you make a donation?</source>
         <translation>Jami&apos;yi kullanmaktan hoşlanıyor ve misyonumuza inanıyorsan bağış yapmak ister misin?</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="867"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="868"/>
         <source>Not now</source>
         <translation>Şimdi değil</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="868"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="869"/>
         <source>Enable donation campaign</source>
         <translation>Bağış kampanyasını etkinleştir</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="871"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="872"/>
         <source>Enter</source>
         <translation>Enter</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="872"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="873"/>
         <source>Shift+Enter</source>
         <translation>Shift+Enter</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="873"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="874"/>
         <source>Enter or Shift+Enter to insert a new line</source>
         <translation>Yeni bir satır eklemek için Enter veya Shift+Enter</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="887"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="888"/>
         <source>View</source>
         <translation>Görünüm</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="874"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="875"/>
         <source>Text formatting</source>
         <translation>Metin biçimlendirme</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="864"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="865"/>
         <source>Free and private sharing. &lt;a href=&quot;https://jami.net/whydonate/&quot;&gt;Donate&lt;/a&gt; to expand it.</source>
         <translation>Ücretsiz ve özel paylaşım. Geliştirilebilmesi için &lt;a href=&quot;https://jami.net/whydonate/&quot;&gt;bağış&lt;/a&gt; yap.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="877"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="878"/>
         <source>Connected</source>
         <translation>Bağlı</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="878"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="879"/>
         <source>Connecting TLS</source>
         <translation>TLS&apos;ye bağlanılıyor</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="879"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="880"/>
         <source>Connecting ICE</source>
         <translation>ICE&apos;ye bağlanılıyor</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="880"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="881"/>
         <source>Connecting</source>
         <translation>Bağlanılıyor</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="881"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="882"/>
         <source>Waiting</source>
         <translation>Bekleniyor</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="882"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="883"/>
         <source>Contact</source>
         <translation>Kişi</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="883"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="884"/>
         <source>Connection</source>
         <translation>Bağlantı</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="884"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="885"/>
         <source>Channels</source>
         <translation>Kanallar</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="885"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="886"/>
         <source>Copy all data</source>
         <translation>Tüm verileri kopyala</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="886"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="887"/>
         <source>Remote: </source>
         <translation>Uzak:</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="499"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="500"/>
         <source>Accept transfer limit (in Mb)</source>
         <translation>Kabul edilebilir aktarım sınırı (MB)</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="519"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="520"/>
         <source>A new version of Jami was found
 Would you like to update now?</source>
         <translation>Jami&apos;nin yeni bir versiyonu var.
 Şimdi güncellemek ister misin?</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="542"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="543"/>
         <source>Save recordings to</source>
         <translation>Kayıtları şuraya kaydet:</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="543"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="544"/>
         <source>Save screenshots to</source>
         <translation>Ekran görüntülerini şuraya kaydet:</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="585"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="586"/>
         <source>Select &quot;Link another device&quot;</source>
         <translation>&quot;Başka bir aygıt bağla&quot;yı seç</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="689"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="690"/>
         <source>Share freely and privately with Jami</source>
         <translation>Jami ile özgürce ve özel olarak paylaş</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="715"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="716"/>
         <source>Unban</source>
         <translation>Yasağı kaldır</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="732"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="733"/>
         <source>Add</source>
         <translation>Ekle</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="741"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="742"/>
         <source>more emojis</source>
         <translation>daha fazla emoji</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="766"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="767"/>
         <source>Reply to</source>
         <translation>Yanıtla</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="767"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="768"/>
         <source>In reply to</source>
         <translation>Yanıt olarak</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="768"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="769"/>
         <source> replied to</source>
         <translation>yanıtlandı</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="770"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="771"/>
         <source>Reply</source>
         <translation>Yanıtla</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="467"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="772"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="773"/>
         <source>Edit</source>
         <translation>Düzenle</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="773"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="774"/>
         <source>Edited</source>
         <translation>Düzenlendi</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="774"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="775"/>
         <source>Join call</source>
         <translation>Çağrıya katıl</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="778"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="779"/>
         <source>A call is in progress. Do you want to join the call?</source>
         <translation>Bir çağrı sürüyor. Görüşmeye katılmak istiyor musun?</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="779"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="780"/>
         <source>Current host for this swarm seems unreachable. Do you want to host the call?</source>
         <translation>Bu swarm&apos;ın mevcut sunucusuna ulaşılamıyor gibi görünüyor. Çağrıya ev sahipliği yapmak ister misin?</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="783"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="784"/>
         <source>Remove current device</source>
         <translation>Mevcut aygıtı kaldır</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="784"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="785"/>
         <source>Host only this call</source>
         <translation>Yalnızca bu çağrıyı barındır</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="785"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="786"/>
         <source>Host this call</source>
         <translation>Bu çağrıyı barındır</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="786"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="787"/>
         <source>Make me the default host for future calls</source>
         <translation>Gelecekteki çağrılar için beni varsayılan olarak ev sahibi yap.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="801"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="802"/>
         <source>Mute conversation</source>
         <translation>Görüşmeyi sessize al</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="804"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="805"/>
         <source>Default host (calls)</source>
         <translation>Varsayılan ev sahibi (çağrılar)</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="807"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="808"/>
         <source>None</source>
         <translation>Hiçbiri</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="821"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="822"/>
         <source>Tip</source>
         <translation>İpucu</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="823"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="824"/>
         <source>Add a profile picture and nickname to complete your profile</source>
         <translation>Profilini tamamlamak için profil görseli ve rumuz ekle</translation>
     </message>
@@ -1379,13 +1384,13 @@ Would you like to update now?</source>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="228"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="720"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="721"/>
         <source>Mute</source>
         <translation>Sessiz</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="229"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="721"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="722"/>
         <source>Unmute</source>
         <translation>Sesi aç</translation>
     </message>
@@ -1558,7 +1563,7 @@ Would you like to update now?</source>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="255"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="557"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="558"/>
         <source>Copy</source>
         <translation>Kopyala</translation>
     </message>
@@ -2204,217 +2209,217 @@ Görselini ve rumuzunu, hesap ayarlarından istediğin zaman değiştirilebilirs
         <translation>Aygıt adı:</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="553"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="554"/>
         <source>Markdown</source>
         <translation>Markdown</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="620"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="621"/>
         <source>Auto update</source>
         <translation>Otomatik güncelleme</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="621"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="622"/>
         <source>Disable all</source>
         <translation>Tümünü devre dışı bırak</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="622"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="623"/>
         <source>Installed</source>
         <translation>Kurulu</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="623"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="624"/>
         <source>Install</source>
         <translation>Kur</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="624"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="625"/>
         <source>Installing</source>
         <translation>Kuruluyor</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="625"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="626"/>
         <source>Install manually</source>
         <translation>Elle kur</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="626"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="627"/>
         <source>Install an extension directly from your device.</source>
         <translation>Doğrudan aygıttan bir uzantı yükle.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="627"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="628"/>
         <source>Available</source>
         <translation>Uygun</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="628"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="629"/>
         <source>Plugins store is not available</source>
         <translation>Uzantı mağazası mevcut değil</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="631"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="632"/>
         <source>Installation failed</source>
         <translation>Yükleme başarısız</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="632"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="633"/>
         <source>The installation of the plugin failed</source>
         <translation>Uzantı kurulumu başarısız</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="650"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="651"/>
         <source>Version %1</source>
         <translation>Versiyon %1</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="651"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="652"/>
         <source>Last update %1</source>
         <translation>Son güncelleme %1</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="652"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="653"/>
         <source>By %1</source>
         <translation>%1 tarafından</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="653"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="654"/>
         <source>Proposed by %1</source>
         <translation>%1 öneriyor</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="656"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="657"/>
         <source>More information</source>
         <translation>Daha fazla bilgi</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="743"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="744"/>
         <source>Audio message</source>
         <translation>Sesli ileti</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="744"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="745"/>
         <source>Video message</source>
         <translation>Görüntülü ileti</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="746"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="747"/>
         <source>Show more</source>
         <translation>Daha fazlasını göster</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="751"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="752"/>
         <source>Bold</source>
         <translation>Kalın</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="752"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="753"/>
         <source>Italic</source>
         <translation>İtalik</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="754"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="755"/>
         <source>Title</source>
         <translation>Başlık</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="755"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="756"/>
         <source>Heading</source>
         <translation>Başlık</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="756"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="757"/>
         <source>Link</source>
         <translation>Bağlantı</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="757"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="758"/>
         <source>Code</source>
         <translation>Kod</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="758"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="759"/>
         <source>Quote</source>
         <translation>Alıntı</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="761"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="762"/>
         <source>Show formatting</source>
         <translation>Biçimlendirmeyi göster</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="762"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="763"/>
         <source>Hide formatting</source>
         <translation>Biçimlendirmeyi gizle</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="775"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="776"/>
         <source>Join in audio</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="776"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="777"/>
         <source>Join in video</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="777"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="778"/>
         <source>Started a call</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="832"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="833"/>
         <source>Share your Jami identifier in order to be contacted more easily!</source>
         <translation>Daha kolay iletişime geçilebilmen için Jami tanımlayıcını paylaş!</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="833"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="834"/>
         <source>Jami identity</source>
         <translation>Jami kimliği</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="834"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="835"/>
         <source>Show fingerprint</source>
         <translation>Parmak izini göster</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="835"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="836"/>
         <source>Show registered name</source>
         <translation>Kayıtlı adı göster</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="838"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="839"/>
         <source>Enabling your account allows you to be contacted on Jami</source>
         <translation>Hesabını etkinleştirmek, Jami üzerinden iletişime geçilmeni sağlar</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="848"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="849"/>
         <source>Experimental</source>
         <translation>Deneysel</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="851"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="852"/>
         <source>Ringtone</source>
         <translation>Zil sesi</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="854"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="855"/>
         <source>Rendezvous point</source>
         <translation>Randevu noktası</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="857"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="858"/>
         <source>Moderation</source>
         <translation>Yönetim</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="860"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="861"/>
         <source>Theme</source>
         <translation>Tema</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="861"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="862"/>
         <source>Text zoom level</source>
         <translation>Metin yakınlaştırma düzeyi</translation>
     </message>
@@ -2531,255 +2536,255 @@ Lütfen yeniden dene.</translation>
         <translation>Bildirimleri etkinleştir</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="481"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="482"/>
         <source>Launch at startup</source>
         <translation>Başlangıçta çalıştır</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="482"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="483"/>
         <source>Choose download directory</source>
         <translation>İndirme dizini seç</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="490"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="491"/>
         <source>Preview requires downloading content from third-party servers.</source>
         <translation>Ön izleme, içeriğin üçüncü taraf sunuculardan indirilmesini gerektirir.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="492"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="493"/>
         <source>User interface language</source>
         <translation>Kullanıcı arabirim dili</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="493"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="494"/>
         <source>Vertical view</source>
         <translation>Dikey görünüm</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="494"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="495"/>
         <source>Horizontal view</source>
         <translation>Yatay görünüm</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="497"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="498"/>
         <source>File transfer</source>
         <translation>Dosya aktarımı</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="498"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="499"/>
         <source>Automatically accept incoming files</source>
         <translation>Gelen dosyaları otomatik kabul et</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="500"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="501"/>
         <source>in MB, 0 = unlimited</source>
         <translation>MB&apos;ta, 0 = sınırsız</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="503"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="504"/>
         <source>Register</source>
         <translation>Kaydol</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="504"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="505"/>
         <source>Incorrect password</source>
         <translation>Geçersiz parola</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="505"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="522"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="506"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="523"/>
         <source>Network error</source>
         <translation>Ağ hatası</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="506"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="530"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="507"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="531"/>
         <source>Something went wrong</source>
         <translation>Bir şeyler yanlış gitti</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="509"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="510"/>
         <source>Save file</source>
         <translation>Dosyayı kaydet</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="510"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="511"/>
         <source>Open location</source>
         <translation>Konumu aç</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="769"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="770"/>
         <source>Me</source>
         <translation>Ben</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="514"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="515"/>
         <source>Install beta version</source>
         <translation>Beta sürümünü yükle</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="515"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="516"/>
         <source>Check for updates now</source>
         <translation>Şimdi güncellemeleri denetle</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="516"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="517"/>
         <source>Enable/Disable automatic updates</source>
         <translation>Otomatik güncellemeleri aç/kapat</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="517"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="518"/>
         <source>Updates</source>
         <translation>Güncellemeler</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="518"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="519"/>
         <source>Update</source>
         <translation>Güncelle</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="520"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="521"/>
         <source>No new version of Jami was found</source>
         <translation>Jami&apos;nin yeni sürümü bulunamadı</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="521"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="522"/>
         <source>An error occured when checking for a new version</source>
         <translation>Yeni sürüm denetlenirken hata oluştu</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="523"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="524"/>
         <source>SSL error</source>
         <translation>SSL hatası</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="524"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="525"/>
         <source>Installer download canceled</source>
         <translation>Yükleyici indirme işlemi iptal edildi</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="526"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="527"/>
         <source>This will uninstall your current Release version and you can always download the latest Release version on our website</source>
         <translation>Bu, mevcut uygulama sürümünü kaldıracak. İstediğin zaman internet sitemizdeki en son uygulama sürümünü indirebilirsin</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="527"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="528"/>
         <source>Network disconnected</source>
         <translation>Ağ bağlı değil</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="533"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="534"/>
         <source>Troubleshoot</source>
         <translation>Sorun giderme</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="534"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="535"/>
         <source>Open logs</source>
         <translation>Günlükleri aç</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="535"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="536"/>
         <source>Get logs</source>
         <translation>Günlükleri al</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="537"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="538"/>
         <source>(Experimental) Enable call support for swarm</source>
         <translation>(Deneysel) Swarm için çağrı desteğini etkinleştir</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="538"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="539"/>
         <source>This feature will enable call buttons in swarms with multiple participants.</source>
         <translation>Bu özellik, birden fazla katılımcının bulunduğu swarm&apos;larda çağrı düğmelerini etkinleştirecektir.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="541"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="542"/>
         <source>Quality</source>
         <translation>Kalite</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="545"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="546"/>
         <source>Always record calls</source>
         <translation>Çağrıları her zaman kaydet</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="548"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="549"/>
         <source>Keyboard Shortcut Table</source>
         <translation>Klavye Kısayolları Tablosu</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="549"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="550"/>
         <source>Keyboard Shortcuts</source>
         <translation>Klavye Kısa Yolları</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="550"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="551"/>
         <source>Conversation</source>
         <translation>Görüşme</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="551"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="552"/>
         <source>Call</source>
         <translation>Çaldır</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="552"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="553"/>
         <source>Settings</source>
         <translation>Ayarlar</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="556"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="557"/>
         <source>Debug</source>
         <translation>Hata ayıkla</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="558"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="559"/>
         <source>Report Bug</source>
         <translation>Hata Bildir</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="559"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="560"/>
         <source>Clear</source>
         <translation>Temizle</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="560"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="709"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="561"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="710"/>
         <source>Cancel</source>
         <translation>İptal</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="561"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="562"/>
         <source>Copied to clipboard!</source>
         <translation>Panoya kopyalandı!</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="562"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="563"/>
         <source>Receive Logs</source>
         <translation>Günlükleri al</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="565"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="566"/>
         <source>Archive</source>
         <translation>Arşiv</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="566"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="567"/>
         <source>Open file</source>
         <translation>Dosyayı aç</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="569"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="570"/>
         <source>Generating account…</source>
         <translation>Hesap oluşturuluyor...</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="570"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="571"/>
         <source>Import from archive backup</source>
         <translation>Arşiv yedeğinden içe aktar</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="572"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="573"/>
         <source>Select archive file</source>
         <translation>Arşiv dosyasını seç</translation>
     </message>
@@ -2789,512 +2794,512 @@ Lütfen yeniden dene.</translation>
         <translation>Aygıt bağla</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="576"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="577"/>
         <source>Import</source>
         <translation>İçe aktar</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="578"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="579"/>
         <source>A PIN is required to use an existing Jami account on this device.</source>
         <translation>Bu aygıtta mevcut bir Jami hesabını kullanmak için PIN gereklidir.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="584"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="585"/>
         <source>Choose the account to link</source>
         <translation>Bağlanacak hesabı seç</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="590"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="591"/>
         <source>The PIN and the account password should be entered in your device within 10 minutes.</source>
         <translation>PIN ve hesap parolası 10 dakika içinde aygıtınıza girilmelidir.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="798"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="799"/>
         <source>Contact&apos;s name</source>
         <translation>Kişinin adı</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="813"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="814"/>
         <source>Reinstate member</source>
         <translation>Üyeyi yeniden görevlendirme</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="827"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="828"/>
         <source>Delete message</source>
         <translation>İletiyi sil</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="828"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="829"/>
         <source>*(Deleted Message)*</source>
         <translation>*(Silinmiş İleti)*</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="829"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="830"/>
         <source>Edit message</source>
         <translation>İletiyi düzenle</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="325"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="591"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="592"/>
         <source>Close</source>
         <translation>Kapat</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="544"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="545"/>
         <source>Call recording</source>
         <translation>Çağrı kaydı</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="573"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="574"/>
         <source>If the account is encrypted with a password, please fill the following field.</source>
         <translation>Hesap bir parola ile şifreli ise lütfen aşağıdaki alanı doldur.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="577"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="578"/>
         <source>Enter the PIN code</source>
         <translation>PIN kodunu gir</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="579"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="580"/>
         <source>Step 01</source>
         <translation>Adım 01</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="580"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="581"/>
         <source>Step 02</source>
         <translation>Adım 02</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="581"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="582"/>
         <source>Step 03</source>
         <translation>Adım 03</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="582"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="583"/>
         <source>Step 04</source>
         <translation>Adım 04</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="583"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="584"/>
         <source>Go to the account management settings of a previous device</source>
         <translation>Önceki bir aygıtın hesap yönetimi ayarlarına gir</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="586"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="587"/>
         <source>The PIN code will be available for 10 minutes</source>
         <translation>PIN kodu 10 dakika boyunca kullanılabilir olacak.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="587"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="588"/>
         <source>Fill if the account is password-encrypted.</source>
         <translation>Hesap parolayla şifrelenmişse gir.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="594"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="595"/>
         <source>Add Device</source>
         <translation>Aygıt Ekle</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="604"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="605"/>
         <source>Enter current password</source>
         <translation>Güncel parolayı gir</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="606"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="607"/>
         <source>Enter new password</source>
         <translation>Yeni parolayı gir</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="607"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="608"/>
         <source>Confirm new password</source>
         <translation>Yeni parolayı doğrula</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="608"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="609"/>
         <source>Change</source>
         <translation>Değiştir</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="609"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="610"/>
         <source>Export</source>
         <translation>Dışa aktar</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="614"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="615"/>
         <source>Import avatar from image file</source>
         <translation>Avatarı görsel dosyasından içe aktar</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="616"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="617"/>
         <source>Take photo</source>
         <translation>Fotoğraf çek</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="630"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="631"/>
         <source>Preferences</source>
         <translation>Tercihler</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="633"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="634"/>
         <source>Reset</source>
         <translation>Sıfırla</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="634"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="635"/>
         <source>Uninstall</source>
         <translation>Kaldır</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="635"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="636"/>
         <source>Reset Preferences</source>
         <translation>Tercihleri ​​sıfırla</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="636"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="637"/>
         <source>Select a plugin to install</source>
         <translation>Kurmak için bir uzantı seçin</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="637"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="638"/>
         <source>Uninstall plugin</source>
         <translation>Uzantıyı kaldır</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="638"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="639"/>
         <source>Are you sure you wish to reset %1 preferences?</source>
         <translation>%1 tercihlerini sıfırlamak istediğine emin misin?</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="639"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="640"/>
         <source>Are you sure you wish to uninstall %1?</source>
         <translation>%1 kaldırmak istediğine emin misin?</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="640"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="641"/>
         <source>Go back to plugins list</source>
         <translation>Uzantı listesine geri gön</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="641"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="642"/>
         <source>Select a file</source>
         <translation>Bir dosya seç</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="123"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="642"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="643"/>
         <source>Select</source>
         <translation>Seç</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="643"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="644"/>
         <source>Choose image file</source>
         <translation>Görsel dosyasını seç</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="644"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="645"/>
         <source>Plugin Files (*.jpl)</source>
         <translation>Eklenti Dosyaları (*.jpl)</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="645"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="646"/>
         <source>Load/Unload</source>
         <translation>Yükle/Yüklemeyi Kaldır</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="646"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="647"/>
         <source>Select An Image to %1</source>
         <translation>%1 Bir Görsel Seç</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="647"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="648"/>
         <source>Edit preference</source>
         <translation>Tercihi düzenle</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="648"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="649"/>
         <source>On/Off</source>
         <translation>Aç/Kapat</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="649"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="650"/>
         <source>Choose Plugin</source>
         <translation>Uzantı seç</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="655"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="656"/>
         <source>Information</source>
         <translation>Bilgi</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="657"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="658"/>
         <source>Profile</source>
         <translation>Profil</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="660"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="661"/>
         <source>Enter the account password to confirm the removal of this device</source>
         <translation>Bu aygıtın kaldırılmasını doğrulamak için hesap parolasını gir</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="663"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="664"/>
         <source>Select a screen to share</source>
         <translation>Paylaşılacak ekranı seç</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="664"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="665"/>
         <source>Select a window to share</source>
         <translation>Paylaşmak için bir pencere seç</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="665"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="666"/>
         <source>All Screens</source>
         <translation>Tüm Ekranlar</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="666"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="667"/>
         <source>Screens</source>
         <translation>Ekranlar</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="667"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="668"/>
         <source>Windows</source>
         <translation>Pencereler</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="668"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="669"/>
         <source>Screen %1</source>
         <translation>Ekran %1</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="671"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="672"/>
         <source>QR code</source>
         <translation>QR kodu</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="674"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="675"/>
         <source>Link this device to an existing account</source>
         <translation>Bu aygıtı var olan hesaba bağla</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="675"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="676"/>
         <source>Import from another device</source>
         <translation>Başka bir aygıttan içe aktar</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="676"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="677"/>
         <source>Import from an archive backup</source>
         <translation>Arşiv yedeğinden içe aktar</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="677"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="678"/>
         <source>Advanced features</source>
         <translation>Gelişmiş özellikler</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="678"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="679"/>
         <source>Show advanced features</source>
         <translation>Gelişmiş özellikleri göster</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="679"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="680"/>
         <source>Hide advanced features</source>
         <translation>Gelişmiş özellikleri gizle</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="680"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="681"/>
         <source>Connect to a JAMS server</source>
         <translation>Bir JAMS sunucusuna bağlan</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="681"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="682"/>
         <source>Create account from Jami Account Management Server (JAMS)</source>
         <translation>Jami Hesap Yönetim Sunucusunda (JAMS) hesap oluştur</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="682"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="683"/>
         <source>Configure a SIP account</source>
         <translation>SIP hesabı yapılandır</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="683"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="684"/>
         <source>Error while creating your account. Check your credentials.</source>
         <translation>Hesabınız oluşturulurken hata oluştu. Lütfen kimlik bilgilerinizi gözden geçirin.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="684"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="685"/>
         <source>Create a rendezvous point</source>
         <translation>Bir randevu noktası oluştur</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="685"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="686"/>
         <source>Join Jami</source>
         <translation>Jami&apos;ye katıl</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="686"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="687"/>
         <source>Create new Jami account</source>
         <translation>Yeni Jami hesabı oluştur</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="687"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="688"/>
         <source>Create new SIP account</source>
         <translation>Yeni SIP hesabı oluştur</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="688"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="689"/>
         <source>About Jami</source>
         <translation>Jami hakkında</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="690"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="691"/>
         <source>I already have an account</source>
         <translation>Zaten bir hesabım var</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="691"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="692"/>
         <source>Use existing Jami account</source>
         <translation>Mevcut Jami hesabını kullan</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="692"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="693"/>
         <source>Welcome to Jami</source>
         <translation>Jami&apos;ye Hoşgeldin</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="695"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="696"/>
         <source>Clear Text</source>
         <translation>Metni Temizle</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="696"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="697"/>
         <source>Conversations</source>
         <translation>Görüşmeler</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="697"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="698"/>
         <source>Search Results</source>
         <translation>Arama Sonuçları</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="700"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="701"/>
         <source>Decline contact request</source>
         <translation>İletişim isteğini reddet</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="701"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="702"/>
         <source>Accept contact request</source>
         <translation>İletişim isteğini kabul et</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="704"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="705"/>
         <source>Automatically check for updates</source>
         <translation>Güncellemeleri otomatik olarak kontrol et</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="707"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="708"/>
         <source>Ok</source>
         <translation>Tamam</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="466"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="708"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="709"/>
         <source>Save</source>
         <translation>Kaydet</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="710"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="711"/>
         <source>Upgrade</source>
         <translation>Yükselt</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="711"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="712"/>
         <source>Later</source>
         <translation>Sonra</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="712"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="713"/>
         <source>Delete</source>
         <translation>Sil</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="714"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="715"/>
         <source>Block</source>
         <translation>Engelle</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="718"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="719"/>
         <source>Set moderator</source>
         <translation>Moderatör ata</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="719"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="720"/>
         <source>Unset moderator</source>
         <translation>Moderatörlükten çıkar</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="321"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="722"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="723"/>
         <source>Maximize</source>
         <translation>En büyük</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="723"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="724"/>
         <source>Minimize</source>
         <translation>En küçük</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="724"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="725"/>
         <source>Hangup</source>
         <translation>Hatta beklet</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="725"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="726"/>
         <source>Local muted</source>
         <translation>Sizde sessiz</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="728"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="729"/>
         <source>Default moderators</source>
         <translation>Varsayılan moderatörler</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="729"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="730"/>
         <source>Enable local moderators</source>
         <translation>Yerel moderatörleri etkinleştir</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="730"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="731"/>
         <source>Make all participants moderators</source>
         <translation>Tüm katılımcıları moderatör ata</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="731"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="732"/>
         <source>Add default moderator</source>
         <translation>Varsayılan moderatör ekle</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="733"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="734"/>
         <source>Remove default moderator</source>
         <translation>Varsayılan moderatörü kaldır</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="740"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="741"/>
         <source>Add emoji</source>
         <translation>Emoji ekle</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="742"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="743"/>
         <source>Send file</source>
         <translation>Dosya gönder</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="765"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="766"/>
         <source>Send</source>
         <translation>Gönder</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="469"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="713"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="714"/>
         <source>Remove</source>
         <translation>Kaldır</translation>
     </message>
@@ -3314,143 +3319,143 @@ Lütfen yeniden dene.</translation>
         <translation>Kapatırken simge durumuna küçült</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="480"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="481"/>
         <source>Run at system startup</source>
         <translation>Sistem başlangıcında çalıştır</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="567"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="568"/>
         <source>Create account from backup</source>
         <translation>Yedekten hesap oluştur</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="568"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="569"/>
         <source>Restore account from backup</source>
         <translation>Hesabı yedekten geri yükle</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="571"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="572"/>
         <source>Import Jami account from local archive file.</source>
         <translation>Jami hesabını yerel arşiv dosyasından içe aktar.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="771"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="772"/>
         <source>Write to %1</source>
         <translation>%1 yaz</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="789"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="790"/>
         <source>%1 has sent you a request for a conversation.</source>
         <translation>%1 sana bir görüşme isteği gönderdi.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="790"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="791"/>
         <source>Hello,
 Would you like to join the conversation?</source>
         <translation>Merhaba,
 Görüşmeye katılmak ister misin?</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="791"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="792"/>
         <source>You have accepted
 the conversation request</source>
         <translation>Görüşme isteğini
 kabul ettin</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="792"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="793"/>
         <source>Waiting until %1
 connects to synchronize the conversation.</source>
         <translation>Görüşmeyi eş zamanlamak için %1
 bağlanması bekleniyor.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="795"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="796"/>
         <source>%1 Members</source>
         <translation>%1 Üye</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="796"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="797"/>
         <source>Member</source>
         <translation>Üye</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="797"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="798"/>
         <source>Swarm&apos;s name</source>
         <translation>Swarm&apos;ın adı</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="799"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="800"/>
         <source>Add a description</source>
         <translation>Açıklama ekle</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="802"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="803"/>
         <source>Ignore all notifications from this conversation</source>
         <translation>Bu görüşmedeki tüm bildirimleri yoksay</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="803"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="804"/>
         <source>Choose a color</source>
         <translation>Bir renk seç</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="805"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="806"/>
         <source>Leave conversation</source>
         <translation>Görüşmeden ayrıl</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="806"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="807"/>
         <source>Type of swarm</source>
         <translation>Swarm türü</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="810"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="811"/>
         <source>Create the swarm</source>
         <translation>Swarm oluştur</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="811"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="812"/>
         <source>Go to conversation</source>
         <translation>Görüşmeye git</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="812"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="813"/>
         <source>Kick member</source>
         <translation>Üyeyi at</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="814"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="815"/>
         <source>Administrator</source>
         <translation>Yönetici</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="815"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="816"/>
         <source>Invited</source>
         <translation>Davet edildi</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="816"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="817"/>
         <source>Remove member</source>
         <translation>Üyeyi kaldır</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="817"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="818"/>
         <source>To:</source>
         <translation>Bu:</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="820"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="821"/>
         <source>Customize</source>
         <translation>Özelleştir</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="822"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="823"/>
         <source>Dismiss</source>
         <translation>Reddet</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="824"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="825"/>
         <source>Your profile is only shared with your contacts</source>
         <translation>Profilin yalnızca kişilerinle paylaşılır</translation>
     </message>
@@ -3671,17 +3676,17 @@ bağlanması bekleniyor.</translation>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="381"/>
+        <location filename="../src/app/mainapplication.cpp" line="435"/>
         <source>E&amp;xit</source>
         <translation>Ç&amp;ıkış Yap</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="383"/>
+        <location filename="../src/app/mainapplication.cpp" line="437"/>
         <source>&amp;Quit</source>
         <translation>&amp;Kapat</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="389"/>
+        <location filename="../src/app/mainapplication.cpp" line="443"/>
         <source>&amp;Show Jami</source>
         <translation>&amp;Jami&apos;yi Göster</translation>
     </message>
@@ -4254,27 +4259,27 @@ bağlanması bekleniyor.</translation>
 <context>
     <name>SystemTray</name>
     <message>
-        <location filename="../src/app/systemtray.cpp" line="216"/>
+        <location filename="../src/app/systemtray.cpp" line="224"/>
         <source>Answer</source>
         <translation>Yanıtla</translation>
     </message>
     <message>
-        <location filename="../src/app/systemtray.cpp" line="217"/>
+        <location filename="../src/app/systemtray.cpp" line="225"/>
         <source>Decline</source>
         <translation>Reddet</translation>
     </message>
     <message>
-        <location filename="../src/app/systemtray.cpp" line="219"/>
+        <location filename="../src/app/systemtray.cpp" line="227"/>
         <source>Open conversation</source>
         <translation>Görüşme başlat</translation>
     </message>
     <message>
-        <location filename="../src/app/systemtray.cpp" line="221"/>
+        <location filename="../src/app/systemtray.cpp" line="229"/>
         <source>Accept</source>
         <translation>Kabul et</translation>
     </message>
     <message>
-        <location filename="../src/app/systemtray.cpp" line="222"/>
+        <location filename="../src/app/systemtray.cpp" line="230"/>
         <source>Refuse</source>
         <translation>Reddet</translation>
     </message>
@@ -4410,17 +4415,17 @@ bağlanması bekleniyor.</translation>
 <context>
     <name>UtilsAdapter</name>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="343"/>
+        <location filename="../src/app/utilsadapter.cpp" line="345"/>
         <source>%1 Mbps</source>
         <translation>%1 Mb/sn</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="343"/>
+        <location filename="../src/app/utilsadapter.cpp" line="345"/>
         <source>Default</source>
         <translation>Varsayılan</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="537"/>
+        <location filename="../src/app/utilsadapter.cpp" line="539"/>
         <source>System</source>
         <translation>Sistem</translation>
     </message>
