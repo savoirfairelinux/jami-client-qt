@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57fa07bc_78d9ae11",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-01-30T14:01:01Z",
+      "side": 1,
+      "message": "build seems broken: \n1: QWARN  : qml_test::UnknownTestFunc() file:///foo/src/app/commoncomponents/QWKSetParentHitTestVisible.qml:36: ReferenceError: appWindow is not defined",
+      "range": {
+        "startLine": 9,
+        "startChar": 26,
+        "endLine": 9,
+        "endChar": 35
+      },
+      "revId": "ff26cc4e737e98ae9b198fca08a68e5eee7e1a33",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
