@@ -46,6 +46,30 @@
       },
       "revId": "ea7dcdb8c9c4fbdb0acff2b607004178d8f612d8",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0d525cf_6e37b0c2",
+        "filename": "tests/unittests/previewengine_unittest.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-01-31T16:26:25Z",
+      "side": 1,
+      "message": "This will not change anything, as it would be a decoding error for è anyway",
+      "parentUuid": "b1bdfdd9_8c97fcb1",
+      "range": {
+        "startLine": 92,
+        "startChar": 47,
+        "endLine": 92,
+        "endChar": 71
+      },
+      "revId": "ea7dcdb8c9c4fbdb0acff2b607004178d8f612d8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ],
   "submitRequirementResults": []
