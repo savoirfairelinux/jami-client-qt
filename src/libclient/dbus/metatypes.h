@@ -97,6 +97,7 @@ operator<<(QDBusArgument& argument, const SwarmMessage& m)
     argument << m.body;
     argument << m.reactions;
     argument << m.editions;
+    argument << m.status;
     argument.endStructure();
 
     return argument;
@@ -112,6 +113,7 @@ operator>>(const QDBusArgument& argument, SwarmMessage& m)
     argument >> m.body;
     argument >> m.reactions;
     argument >> m.editions;
+    argument >> m.status;
     argument.endStructure();
 
     return argument;
