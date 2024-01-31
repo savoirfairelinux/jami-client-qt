@@ -21,7 +21,7 @@
 #include "previewengine.h"
 #include "qmlregister.h"
 #include "systemtray.h"
-#include "videoprovider.h"
+
 #include "api/profile.h"
 #include "api/account.h"
 #include "api/conversationmodel.h"
@@ -139,14 +139,6 @@ public Q_SLOTS:
                              previewEngine_.get(),
                              &screenInfo_,
                              this);
-
-        auto videoProvider = new VideoProvider(lrcInstance_->avModel(), this);
-        engine->rootContext()->setContextProperty("videoProvider", videoProvider);
-#ifdef WITH_WEBENGINE
-        engine->rootContext()->setContextProperty("WITH_WEBENGINE", QVariant(true));
-#else
-        engine->rootContext()->setContextProperty("WITH_WEBENGINE", QVariant(false));
-#endif
     }
 
     /*

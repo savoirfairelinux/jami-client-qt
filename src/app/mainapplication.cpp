@@ -25,9 +25,7 @@
 #include "appsettingsmanager.h"
 #include "connectivitymonitor.h"
 #include "systemtray.h"
-#include "videoprovider.h"
 #include "previewengine.h"
-#include "conversationlistmodel.h"
 
 #include <QWKQuick/qwkquickglobal.h>
 
@@ -257,18 +255,6 @@ MainApplication::init()
     // The presence of start URI should override the startMinimized setting for this instance.
     set_startMinimized(startMinimizedSetting && runOptions_[Option::StartUri].isNull());
 
-#ifdef WITH_WEBENGINE
-    engine_.get()->rootContext()->setContextProperty("WITH_WEBENGINE", QVariant(true));
-#else
-    engine_.get()->rootContext()->setContextProperty("WITH_WEBENGINE", QVariant(false));
-#endif
-
-#ifdef APPSTORE
-    engine_.get()->rootContext()->setContextProperty("APPSTORE", QVariant(true));
-#else
-    engine_.get()->rootContext()->setContextProperty("APPSTORE", QVariant(false));
-#endif
-
     initQmlLayer();
 
     settingsManager_->setValue(Settings::Key::StartMinimized,
@@ -413,13 +399,9 @@ MainApplication::initQmlLayer()
                          &screenInfo_,
                          this);
 
-    auto videoProvider = new VideoProvider(lrcInstance_->avModel(), this);
-    engine_->rootContext()->setContextProperty("videoProvider", videoProvider);
-
-    // Find modules (runtime) under the root source dir.
-    engine_->addImportPath("qrc:/");
-
     engine_->load(QUrl(QStringLiteral("qrc:/MainApplicationWindow.qml")));
+
+    // Report the render interface used.
     qCWarning(app_) << "Main window loaded using" << getRenderInterfaceString();
 }
 
