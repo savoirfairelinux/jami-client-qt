@@ -22,6 +22,30 @@
       },
       "revId": "ea7dcdb8c9c4fbdb0acff2b607004178d8f612d8",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1bdfdd9_8c97fcb1",
+        "filename": "tests/unittests/previewengine_unittest.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-01-31T01:13:00Z",
+      "side": 1,
+      "message": "en: `Test with UTF-8 characters which are only in Hungarian alphabet, i.e. űŰőŐ.`\nhu: `Teszt UTF-8 karakterekkel, amelyek csak magyar ábécében vannak, azaz űŰőŐ.`",
+      "parentUuid": "c8a1f11f_6d83ed92",
+      "range": {
+        "startLine": 92,
+        "startChar": 47,
+        "endLine": 92,
+        "endChar": 71
+      },
+      "revId": "ea7dcdb8c9c4fbdb0acff2b607004178d8f612d8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
