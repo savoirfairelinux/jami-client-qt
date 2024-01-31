@@ -1,0 +1,7 @@
+Verified+1: Jenkins CI <jenkins@ring-packaging.cx>
+Code-Review+2: Sébastien Blin <sebastien.blin@savoirfairelinux.com>
+Submitted-by: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
+Submitted-at: Wed, 31 Jan 2024 10:32:44 -0500
+Reviewed-on: https://review.jami.net/c/jami-client-qt/+/24010
+Project: jami-client-qt
+Branch: refs/heads/master
