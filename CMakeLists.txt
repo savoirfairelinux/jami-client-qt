@@ -29,13 +29,12 @@ else()
   project(jami)
 endif()
 
+include(${PROJECT_SOURCE_DIR}/extras/build/cmake/extra_tools.cmake)
+
 option(WITH_DAEMON_SUBMODULE "Build with daemon submodule" ON)
 option(JAMICORE_AS_SUBDIR "Build Jami-core as a subdir dependency" OFF)
 option(ENABLE_TESTS "Build with tests" OFF)
 option(WITH_WEBENGINE "Build with WebEngine" ON)
-if(WITH_WEBENGINE)
-  add_definitions(-DWITH_WEBENGINE)
-endif()
 option(ENABLE_LIBWRAP "Enable libwrap (single process mode)" ON)
 if(NOT (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     OR ENABLE_LIBWRAP
@@ -50,6 +49,10 @@ if(ENABLE_ASAN AND NOT MSVC)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address -fno-omit-frame-pointer")
   set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fsanitize=address")
 endif()
+
+# These values are exposed to QML and are better off being defined as values.
+define_macro_with_value(WITH_WEBENGINE)
+define_macro_with_value(APPSTORE)
 
 # jami-core
 if(NOT WITH_DAEMON_SUBMODULE)
@@ -837,7 +840,6 @@ else()
           MACOSX_BUNDLE_COPYRIGHT "${PROJ_COPYRIGHT}")
       if(APPSTORE)
           message(STATUS "app store version")
-          add_definitions(-DAPPSTORE)
           set_target_properties(${PROJECT_NAME} PROPERTIES
                XCODE_ATTRIBUTE_CODE_SIGN_ENTITLEMENTS "${CMAKE_CURRENT_SOURCE_DIR}/resources/entitlements/appstore/Jami.entitlements")
       else()

@@ -22,6 +22,8 @@
 
 #pragma once
 
+#include "api/conversationmodel.h"
+
 #include <QCryptographicHash>
 #include <QDir>
 
@@ -46,10 +48,6 @@
 #else
 #define LPCWSTR char*
 #endif
-
-#include "api/account.h"
-#include "api/contactmodel.h"
-#include "api/conversationmodel.h"
 
 class LRCInstance;
 

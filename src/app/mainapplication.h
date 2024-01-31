@@ -57,8 +57,8 @@ private:
 class MainApplication : public QApplication
 {
     Q_OBJECT
-    Q_DISABLE_COPY(MainApplication)
     QML_RO_PROPERTY(bool, startMinimized)
+
 public:
     explicit MainApplication(int& argc, char** argv);
     ~MainApplication();
