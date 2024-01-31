@@ -70,6 +70,30 @@
       },
       "revId": "ea7dcdb8c9c4fbdb0acff2b607004178d8f612d8",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "671286bf_bcc520e7",
+        "filename": "tests/unittests/previewengine_unittest.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-01-31T19:27:40Z",
+      "side": 1,
+      "message": "è should indeed trigger a decoding error; it only appears in extended ASCII/ISO 8859-1\n\nperhaps better to cover various multibyte though - added in https://review.jami.net/c/jami-client-qt/+/27411",
+      "parentUuid": "f0d525cf_6e37b0c2",
+      "range": {
+        "startLine": 92,
+        "startChar": 47,
+        "endLine": 92,
+        "endChar": 71
+      },
+      "revId": "ea7dcdb8c9c4fbdb0acff2b607004178d8f612d8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ],
   "submitRequirementResults": []
