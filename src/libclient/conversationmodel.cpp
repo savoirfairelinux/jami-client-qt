@@ -2381,7 +2381,8 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
         auto msg = interaction::Info(message, linked.owner.profileInfo.uri);
 
         if (msg.type == interaction::Type::CALL) {
-            msg.body = interaction::getCallInteractionString(msg.authorUri == linked.owner.profileInfo.uri,
+            msg.body = interaction::getCallInteractionString(msg.authorUri
+                                                                 == linked.owner.profileInfo.uri,
                                                              msg);
         } else if (msg.type == interaction::Type::DATA_TRANSFER) {
             // save data transfer interaction to db and assosiate daemon id with interaction id,
@@ -2432,6 +2433,14 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
                                QString(message.body.value("totalSize")).toInt());
         }
         Q_EMIT linked.dataChanged(indexOf(conversationId));
+        // Update status
+        using namespace libjami::Account;
+        for (const auto& uri : message.status.keys()) {
+            if (uri == linked.owner.profileInfo.uri)
+                continue;
+            if (message.status.value(uri) == static_cast<int>(MessageStates::DISPLAYED))
+                conversation.interactions->setRead(uri, message.id);
+        }
     } catch (const std::exception& e) {
         qDebug() << "messages received for not existing conversation";
     }
@@ -2851,7 +2860,7 @@ ConversationModelPimpl::addConversationRequest(const MapStringString& convReques
 void
 ConversationModelPimpl::slotPendingContactAccepted(const QString& uri)
 {
-    profile::Type type;
+    profile::Type type = profile::Type::INVALID;
     try {
         type = linked.owner.contactModel->getContact(uri).profileInfo.type;
     } catch (std::out_of_range& e) {
@@ -3469,123 +3478,36 @@ ConversationModelPimpl::updateInteractionStatus(const QString& accountId,
     if (accountId != linked.owner.id) {
         return;
     }
-    // non-swarm conversation
-    if (conversationId.isEmpty() || conversationId == linked.owner.profileInfo.uri) {
-        auto convIds = storage::getConversationsWithPeer(db, peerUri);
-        if (convIds.empty()) {
-            return;
-        }
-        auto conversationIdx = indexOf(convIds[0]);
-        auto& conversation = conversations[conversationIdx];
-        auto newStatus = interaction::Status::INVALID;
-        switch (static_cast<libjami::Account::MessageStates>(status)) {
-        case libjami::Account::MessageStates::SENDING:
-            newStatus = interaction::Status::SENDING;
-            break;
-        case libjami::Account::MessageStates::CANCELLED:
-            newStatus = interaction::Status::TRANSFER_CANCELED;
-            break;
-        case libjami::Account::MessageStates::SENT:
-            newStatus = interaction::Status::SUCCESS;
-            break;
-        case libjami::Account::MessageStates::FAILURE:
-            newStatus = interaction::Status::FAILURE;
-            break;
-        case libjami::Account::MessageStates::DISPLAYED:
-            newStatus = interaction::Status::DISPLAYED;
-            break;
-        case libjami::Account::MessageStates::UNKNOWN:
-        default:
-            newStatus = interaction::Status::UNKNOWN;
-            break;
-        }
-        auto idString = messageId;
-        // for not swarm conversation messageId in hexdesimal string format. Convert to normal string
-        // TODO messageId should be received from daemon in string format
-        if (static_cast<libjami::Account::MessageStates>(status)
-            == libjami::Account::MessageStates::DISPLAYED) {
-            std::istringstream ss(messageId.toStdString());
-            ss >> std::hex;
-            uint64_t id;
-            if (!(ss >> id))
-                return;
-            idString = QString::number(id);
-        }
-        // Update database
-        auto msgId = storage::getInteractionIdByDaemonId(db, idString);
-        if (msgId.isEmpty()) {
-            return;
-        }
-        storage::updateInteractionStatus(db, msgId, newStatus);
-        // Update conversations
-        bool updated = false;
-        bool updateDisplayedUid = false;
-        QString oldDisplayedUid = 0;
-        {
-            auto& interactions = conversation.interactions;
-            // Try to update the status.
-            if (interactions->updateStatus(msgId, newStatus)) {
-                updated = true;
-                interactions->with(msgId, [&](const QString& id, interaction::Info& interaction) {
-                    // Determine if the interaction is outgoing and has been displayed.
-                    bool interactionIsDisplayed = newStatus == interaction::Status::DISPLAYED
-                                                  && interaction::isOutgoing(interaction);
-
-                    // Get the last displayed interaction ID and timestamp for this peer.
-                    auto [lastIdForPeer, lastTimestampForPeer]
-                        = interactions->getDisplayedInfoForPeer(peerUri);
-
-                    if (lastIdForPeer.isEmpty()) {
-                        oldDisplayedUid = "";
-                        if (peerUri != linked.owner.profileInfo.uri)
-                            conversation.interactions->setRead(peerUri, msgId);
-                        updateDisplayedUid = true;
-                    } else {
-                        bool interactionIsLast = lastTimestampForPeer < interaction.timestamp;
-                        updateDisplayedUid = interactionIsDisplayed && interactionIsLast;
-                        if (updateDisplayedUid) {
-                            oldDisplayedUid = messageId;
-                            if (peerUri != linked.owner.profileInfo.uri)
-                                conversation.interactions->setRead(peerUri, msgId);
-                        }
-                    }
-                });
-            }
-        }
-        if (updateDisplayedUid) {
-            Q_EMIT linked.displayedInteractionChanged(conversation.uid,
-                                                      peerUri,
-                                                      oldDisplayedUid,
-                                                      msgId);
-        }
-        if (updated) {
-            invalidateModel();
-        }
-        return;
-    }
-    // swarm conversation
     try {
         auto& conversation = getConversationForUid(conversationId).get();
         if (conversation.isSwarm()) {
+            auto emitDisplayed = false;
             using namespace libjami::Account;
             auto msgState = static_cast<MessageStates>(status);
-            auto& interactions = conversation.interactions;
-            interactions->with(messageId,
-                               [&](const QString& id, const interaction::Info& interaction) {
-                                   if (interaction.type == interaction::Type::TEXT) {
-                                       interaction::Status newState;
-                                       if (msgState == MessageStates::SENDING) {
-                                           newState = interaction::Status::SENDING;
-                                       } else if (msgState == MessageStates::SENT) {
-                                           newState = interaction::Status::SUCCESS;
-                                       } else {
-                                           return;
+            if (peerUri != linked.owner.profileInfo.uri) {
+                auto& interactions = conversation.interactions;
+                interactions->with(messageId,
+                                   [&](const QString& id, const interaction::Info& interaction) {
+                                       if (interaction.type == interaction::Type::TEXT) {
+                                           interaction::Status newState;
+                                           if (msgState == MessageStates::SENDING) {
+                                               newState = interaction::Status::SENDING;
+                                           } else if (msgState == MessageStates::SENT) {
+                                               newState = interaction::Status::SUCCESS;
+                                           } else if (msgState == MessageStates::DISPLAYED) {
+                                               newState = interaction::Status::DISPLAYED;
+                                           } else {
+                                               return;
+                                           }
+                                           if (interactions->updateStatus(id, newState)
+                                               && newState == interaction::Status::DISPLAYED) {
+                                               emitDisplayed = true;
+                                           }
                                        }
-                                       interactions->updateStatus(id, newState);
-                                   }
-                               });
+                                   });
+            }
 
-            if (msgState == MessageStates::DISPLAYED) {
+            if (emitDisplayed) {
                 auto previous = conversation.interactions->getRead(peerUri);
                 if (peerUri != linked.owner.profileInfo.uri)
                     conversation.interactions->setRead(peerUri, messageId);
@@ -3600,10 +3522,6 @@ ConversationModelPimpl::updateInteractionStatus(const QString& accountId,
                                                                          peerUri);
                     Q_EMIT linked.dataChanged(indexOf(conversationId));
                 }
-                Q_EMIT linked.displayedInteractionChanged(conversationId,
-                                                          peerUri,
-                                                          previous,
-                                                          messageId);
             }
         }
     } catch (const std::out_of_range& e) {
@@ -3998,7 +3916,7 @@ ConversationModelPimpl::acceptTransfer(const QString& convUid, const QString& in
         return;
 
     auto& interactions = conversation.interactions;
-    if (!interactions->with(interactionId, [&](const QString& id, interaction::Info& interaction) {
+    if (!interactions->with(interactionId, [&](const QString&, interaction::Info& interaction) {
             auto fileId = interaction.commit["fileId"];
             if (fileId.isEmpty()) {
                 qWarning() << "Cannot download file without fileId";
