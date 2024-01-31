@@ -83,6 +83,26 @@ convertMap(const MapStringString& m)
     return temp;
 }
 
+inline MapStringInt
+convertMap(const std::map<std::string, int32_t>& m)
+{
+    MapStringInt temp;
+    for (const auto& [key, value] : m) {
+        temp[QString(key.c_str())] = value;
+    }
+    return temp;
+}
+
+inline std::map<std::string, int32_t>
+convertMap(const MapStringInt& m)
+{
+    std::map<std::string, int32_t> temp;
+    for (const auto& [key, value] : m.toStdMap()) {
+        temp[key.toStdString()] = value;
+    }
+    return temp;
+}
+
 inline VectorMapStringString
 convertVecMap(const std::vector<std::map<std::string, std::string>>& m)
 {
