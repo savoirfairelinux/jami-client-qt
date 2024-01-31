@@ -24,15 +24,17 @@ class PreviewEngineFixture : public ::testing::Test
 public:
     // Prepare unit test context. Called at
     // prior each unit test execution
-    void SetUp() override {
+    void SetUp() override
+    {
         server = new QHttpServer();
         // Setup a server that can return an HTML body.
         server->listen(QHostAddress::LocalHost, 8000);
     }
 
-   // Close unit test context. Called
-   // after each unit test ending
-    void TearDown() override {
+    // Close unit test context. Called
+    // after each unit test ending
+    void TearDown() override
+    {
         delete server;
     }
 
@@ -47,9 +49,8 @@ public:
 TEST_F(PreviewEngineFixture, ParsingALinkEmitsInfoReadySignal)
 {
     auto link = QString("http://localhost:8000/test");
-    server->route("/test", [] () {
-        return QString("<meta property=\"og:title\" content=\"Test title\">");
-    });
+    server->route("/test",
+                  []() { return QString("<meta property=\"og:title\" content=\"Test title\">"); });
 
     QSignalSpy infoReadySpy(globalEnv.previewEngine.data(), &PreviewEngine::infoReady);
 
@@ -71,8 +72,9 @@ TEST_F(PreviewEngineFixture, ParsingALinkEmitsInfoReadySignal)
 TEST_F(PreviewEngineFixture, UTF8CharactersAreParsedCorrectly)
 {
     auto link = QString("http://localhost:8000/test");
-    server->route("/test", [] () {
-        return QString("<meta property=\"og:description\" content=\"Test de caractères Utf-8");
+    server->route("/test", []() {
+        return QString("<meta property=\"og:description\" content=\""
+                       "Teszt UTF-8 karakterekkel, amelyek csak magyar ábécében vannak, azaz űŰőŐ");
     });
 
     QSignalSpy infoReadySpy(globalEnv.previewEngine.data(), &PreviewEngine::infoReady);
@@ -89,5 +91,6 @@ TEST_F(PreviewEngineFixture, UTF8CharactersAreParsedCorrectly)
     // Check that the description is parsed correctly.
     QVariantMap info = infoReadyArguments.at(1).toMap();
     EXPECT_TRUE(info.contains("description"));
-    EXPECT_EQ(info["description"].toString(), "Test de caractères Utf-8");
+    EXPECT_EQ(info["description"].toString(),
+              "Teszt UTF-8 karakterekkel, amelyek csak magyar ábécében vannak, azaz űŰőŐ");
 }
