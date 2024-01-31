@@ -89,6 +89,7 @@ struct SwarmMessage
     MapStringString body;
     VectorMapStringString reactions;
     VectorMapStringString editions;
+    MapStringInt status;
 };
 typedef QVector<SwarmMessage> VectorSwarmMessage;
 

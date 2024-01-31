@@ -271,7 +271,8 @@ public:
                                           msg.linearizedParent.c_str(),
                                           convertMap(msg.body),
                                           convertVecMap(msg.reactions),
-                                          convertVecMap(msg.editions)});
+                                          convertVecMap(msg.editions),
+                                          convertMap(msg.status)});
                        }
 
                        Q_EMIT swarmLoaded(id,
@@ -298,7 +299,8 @@ public:
                                              message.linearizedParent.c_str(),
                                              convertMap(message.body),
                                              convertVecMap(message.reactions),
-                                             convertVecMap(message.editions)};
+                                             convertVecMap(message.editions),
+                                             convertMap(message.status)};
                        Q_EMIT swarmMessageReceived(QString(accountId.c_str()),
                                                    QString(conversationId.c_str()),
                                                    msg);
@@ -312,7 +314,8 @@ public:
                                              message.linearizedParent.c_str(),
                                              convertMap(message.body),
                                              convertVecMap(message.reactions),
-                                             convertVecMap(message.editions)};
+                                             convertVecMap(message.editions),
+                                             convertMap(message.status)};
                        Q_EMIT swarmMessageUpdated(QString(accountId.c_str()),
                                                   QString(conversationId.c_str()),
                                                   msg);
