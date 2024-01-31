@@ -463,6 +463,19 @@ struct Info
         }
         for (auto i = mapStringEmoji.begin(); i != mapStringEmoji.end(); i++)
             reactions.insert(i.key(), i.value());
+        auto maxStatus = 0;
+        status = Status::SENDING;
+        for (const auto& member: msg.status.keys()) {
+            if (member == accountUri)
+                continue;
+            auto stValue = msg.status.value(member);
+            if (stValue > maxStatus) {
+                maxStatus = stValue;
+                status = maxStatus <= 1 ? Status::SENDING : (stValue == 2 ? Status::SUCCESS : Status::DISPLAYED);
+            }
+            if (maxStatus == 3)
+                break;
+        }
     }
 };
 
