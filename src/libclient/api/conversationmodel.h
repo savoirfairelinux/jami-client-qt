@@ -513,17 +513,6 @@ Q_SIGNALS:
     void composingStatusChanged(const QString& uid,
                                 const QString& contactUri,
                                 bool isComposing) const;
-    /**
-     * Emitted when last displayed interaction changed
-     * @param uid of conversation
-     * @param participant URI
-     * @param previousUid uid of a previous displayed interaction
-     * @param newdUid uid of a new displayed interaction
-     */
-    void displayedInteractionChanged(const QString& uid,
-                                     const QString& participantURI,
-                                     const QString& previousUid,
-                                     const QString& newdUid) const;
 
     /**
      * Emitted when search status changed

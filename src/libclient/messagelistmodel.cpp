@@ -206,6 +206,9 @@ MessageListModel::updateStatus(const QString& id,
         return false;
     }
     VectorInt roles;
+    if (it->second.status == newStatus) {
+        return false;
+    }
     it->second.status = newStatus;
     roles.push_back(Role::Status);
     if (!newBody.isEmpty()) {
@@ -347,13 +350,18 @@ MessageListModel::setRead(const QString& peer, const QString& messageId)
 {
     std::lock_guard<std::recursive_mutex> lk(mutex_);
     auto i = lastDisplayedMessageUid_.find(peer);
+    auto msgIdx = indexOfMessage(messageId);
     if (i != lastDisplayedMessageUid_.end()) {
         auto old = i.value();
+        auto oldMsgIdx = indexOfMessage(old);
+        if (oldMsgIdx > msgIdx) {
+            // Previous latest read is newer than this message, ignore.
+            return;
+        }
         messageToReaders_[old].removeAll(peer);
-        auto msgIdx = indexOfMessage(old);
         // Remove from latest read
-        if (msgIdx != -1) {
-            QModelIndex modelIndex = QAbstractListModel::index(msgIdx, 0);
+        if (oldMsgIdx != -1) {
+            QModelIndex modelIndex = QAbstractListModel::index(oldMsgIdx, 0);
             Q_EMIT dataChanged(modelIndex, modelIndex, {Role::Readers});
         }
     }
@@ -361,7 +369,6 @@ MessageListModel::setRead(const QString& peer, const QString& messageId)
     lastDisplayedMessageUid_[peer] = messageId;
     messageToReaders_[messageId].append(peer);
     // update interaction
-    auto msgIdx = indexOfMessage(messageId);
     // Remove from latest read
     if (msgIdx != -1) {
         QModelIndex modelIndex = QAbstractListModel::index(msgIdx, 0);
