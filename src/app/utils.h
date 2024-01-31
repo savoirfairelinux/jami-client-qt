@@ -22,6 +22,8 @@
 
 #pragma once
 
+#include "api/conversationmodel.h"
+
 #include <QCryptographicHash>
 #include <QDir>
 
@@ -47,9 +49,19 @@
 #define LPCWSTR char*
 #endif
 
-#include "api/account.h"
-#include "api/contactmodel.h"
-#include "api/conversationmodel.h"
+// Some barely readable helper macros to make code more readable.
+// https://stackoverflow.com/a/41268349
+// Define two genetic macros
+#define SECOND_ARG(A, B, ...) B
+#define CONCAT2(A, B)         A##B
+// If a macro is detected, add an arg, so the second one will be 1.
+#define IS_DEFINED_TRUE ~, 1
+// IS_DEFINED merely concats a converted macro to the end of IS_DEFINED_TRUE.
+// If empty, IS_DEFINED_TRUE converts fine.  If not 0 remains second argument.
+#define IS_DEFINED(X)        IS_DEFINED_IMPL(CONCAT2(IS_DEFINED_TRUE, X), 0, ~)
+#define IS_DEFINED_IMPL(...) SECOND_ARG(__VA_ARGS__)
+// Convert a macro to a 'string, QVariant-boolean-value'
+#define DEFINE_TO_BOOL_KV(X) #X, QVariant((bool) IS_DEFINED(X))
 
 class LRCInstance;
 

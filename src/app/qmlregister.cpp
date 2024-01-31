@@ -51,7 +51,7 @@
 #include "callparticipantsmodel.h"
 #include "pluginlistmodel.h"
 #include "pluginstorelistmodel.h"
-
+#include "videoprovider.h"
 #include "qrimageprovider.h"
 #include "avatarimageprovider.h"
 #include "avatarregistry.h"
@@ -74,6 +74,7 @@
 
 #include <QMetaType>
 #include <QQmlEngine>
+#include <QQmlContext>
 
 // clang-format off
 // TODO: remove this
@@ -272,6 +273,15 @@ registerTypes(QQmlEngine* engine,
 
     engine->addImageProvider(QLatin1String("qrImage"), new QrImageProvider(lrcInstance));
     engine->addImageProvider(QLatin1String("avatarimage"), new AvatarImageProvider(lrcInstance));
+
+    // Find modules (runtime) under the root source dir.
+    engine->addImportPath("qrc:/");
+
+    auto videoProvider = new VideoProvider(lrcInstance->avModel(), app);
+    engine->rootContext()->setContextProperty("videoProvider", videoProvider);
+
+    engine->rootContext()->setContextProperty(DEFINE_TO_BOOL_KV(WITH_WEBENGINE));
+    engine->rootContext()->setContextProperty(DEFINE_TO_BOOL_KV(APPSTORE));
 }
 // clang-format on
 } // namespace Utils
