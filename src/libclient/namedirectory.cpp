@@ -22,6 +22,8 @@
 #include "private/namedirectory_p.h"
 #include "dbus/configurationmanager.h"
 
+Q_LOGGING_CATEGORY(libclientLog, "ndir")
+
 NameDirectoryPrivate::NameDirectoryPrivate(NameDirectory* q)
     : q_ptr(q)
 {
@@ -63,10 +65,11 @@ NameDirectoryPrivate::slotNameRegistrationEnded(const QString& accountId,
                                                 int status,
                                                 const QString& name)
 {
-    qDebug() << "Name registration ended. Account:" << accountId << "status:" << status
-             << "name:" << name;
+    LC_DBG << "Name registration ended. Account:" << accountId << "status:" << status
+           << "name:" << name;
 
-    Q_EMIT q_ptr->nameRegistrationEnded(static_cast<NameDirectory::RegisterNameStatus>(status), name);
+    Q_EMIT q_ptr->nameRegistrationEnded(static_cast<NameDirectory::RegisterNameStatus>(status),
+                                        name);
 }
 
 // Registered Name found
@@ -78,41 +81,50 @@ NameDirectoryPrivate::slotRegisteredNameFound(const QString& accountId,
 {
     switch (static_cast<NameDirectory::LookupStatus>(status)) {
     case NameDirectory::LookupStatus::INVALID_NAME:
-        qDebug() << "lookup name is INVALID: address: " << address << " name: " << name << " accountId: " << accountId;
+        LC_DBG << "lookup name is INVALID: address: " << address << " name: " << name
+               << " accountId: " << accountId;
         break;
     case NameDirectory::LookupStatus::NOT_FOUND:
-        qDebug() << "lookup name NOT FOUND: address: " << address << " name: " << name << " accountId: " << accountId;
+        LC_DBG << "lookup name NOT FOUND: address: " << address << " name: " << name
+               << " accountId: " << accountId;
         break;
     case NameDirectory::LookupStatus::ERROR:
-        qDebug() << "lookup name ERROR: address: " << address << " name: " << name << " accountId: " << accountId;
+        LC_DBG << "lookup name ERROR: address: " << address << " name: " << name
+               << " accountId: " << accountId;
         break;
     case NameDirectory::LookupStatus::SUCCESS:
         break;
     }
 
-    Q_EMIT q_ptr->registeredNameFound(static_cast<NameDirectory::LookupStatus>(status), address, name);
+    Q_EMIT q_ptr->registeredNameFound(static_cast<NameDirectory::LookupStatus>(status),
+                                      address,
+                                      name);
 }
 
 // Export account has ended with pin generated
 void
 NameDirectoryPrivate::slotExportOnRingEnded(const QString& accountId, int status, const QString& pin)
 {
-    qDebug() << "Export on ring ended for account: " << accountId << "status: " << status
-             << "PIN: " << pin;
+    LC_DBG << "Export on ring ended for account: " << accountId << "status: " << status
+           << "PIN: " << pin;
 
     Q_EMIT q_ptr->exportOnRingEnded(static_cast<NameDirectory::ExportOnRingStatus>(status), pin);
 }
 
 // Lookup a name
 bool
-NameDirectory::lookupName(const QString& accountId, const QString& name, const QString& nameServiceURL) const
+NameDirectory::lookupName(const QString& accountId,
+                          const QString& name,
+                          const QString& nameServiceURL) const
 {
     return ConfigurationManager::instance().lookupName(accountId, nameServiceURL, name);
 }
 
 // Lookup an address
 bool
-NameDirectory::lookupAddress(const QString& accountId, const QString& address, const QString& nameServiceURL) const
+NameDirectory::lookupAddress(const QString& accountId,
+                             const QString& address,
+                             const QString& nameServiceURL) const
 {
     return ConfigurationManager::instance().lookupAddress(accountId, nameServiceURL, address);
 }

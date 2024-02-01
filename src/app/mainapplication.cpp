@@ -21,6 +21,7 @@
 
 #include "mainapplication.h"
 
+#include "global.h"
 #include "qmlregister.h"
 #include "appsettingsmanager.h"
 #include "connectivitymonitor.h"
@@ -40,7 +41,6 @@
 #include <QTranslator>
 #include <QLibraryInfo>
 #include <QQuickWindow>
-#include <QLoggingCategory>
 
 #include <thread>
 
@@ -53,7 +53,7 @@
 #include "dbuserrorhandler.h"
 #endif
 
-Q_LOGGING_CATEGORY(app_, "app_")
+Q_LOGGING_CATEGORY(qClientLog, "mainapp")
 
 static const QtMessageHandler QT_DEFAULT_MESSAGE_HANDLER = qInstallMessageHandler(0);
 
@@ -66,8 +66,11 @@ messageHandler(QtMsgType type, const QMessageLogContext& context, const QString&
 
     QString fileLineInfo = "";
 #ifdef QT_DEBUG
-    // In debug mode, always include file and line info.
-    fileLineInfo = QString("[%1:%2]").arg(context.file ? context.file : "unknown",
+    // In debug mode, always include file (file name only for non QML files) and line info.
+    auto fileName = QString(context.category) != QLatin1String("qml")
+                        ? QFileInfo(context.file).fileName()
+                        : context.file;
+    fileLineInfo = QString("[%1:%2]").arg(!fileName.isEmpty() ? fileName : "unknown",
                                           context.line ? QString::number(context.line) : "0");
 #else
     // In release mode, include file and line info only for QML category which will always
@@ -142,7 +145,7 @@ MainApplication::MainApplication(int& argc, char** argv)
 {
     const char* qtVersion = qVersion();
     if (strncmp(qtVersion, QT_VERSION_STR, strnlen(qtVersion, sizeof qtVersion)) != 0) {
-        qCFatal(app_) << "Qt build version mismatch!" << QT_VERSION_STR;
+        C_FATAL << "Qt build version mismatch!" << QT_VERSION_STR;
     }
 
     parseArguments();
@@ -152,6 +155,7 @@ MainApplication::MainApplication(int& argc, char** argv)
     // without using `qt.*=false`. It may be useful for debugging Qt/QtQuick issues.
     QLoggingCategory::setFilterRules("\n"
                                      "*.debug=true\n"
+                                     "ndir.debug=false\n"
                                      "qt.*=false\n"
                                      "qml.debug=false\n"
                                      "\n");
@@ -166,7 +170,7 @@ MainApplication::MainApplication(int& argc, char** argv)
     // the logging features.
     qInstallMessageHandler(messageHandler);
 
-    qCInfo(app_) << "Using Qt runtime version:" << qtVersion;
+    C_INFO << "Using Qt runtime version:" << qtVersion;
 }
 
 MainApplication::~MainApplication()
@@ -277,10 +281,10 @@ MainApplication::handleUriAction(const QString& arg)
     QString uri {};
     if (arg.isEmpty() && !runOptions_[Option::StartUri].isNull()) {
         uri = runOptions_[Option::StartUri].toString();
-        qCDebug(app_) << "URI action invoked by run option" << uri;
+        C_DBG << "URI action invoked by run option" << uri;
     } else if (!arg.isEmpty()) {
         uri = arg;
-        qCDebug(app_) << "URI action invoked by secondary instance" << uri;
+        C_DBG << "URI action invoked by secondary instance" << uri;
         Q_EMIT searchAndSelect(uri.replace("jami:", ""));
     }
 }
@@ -402,7 +406,7 @@ MainApplication::initQmlLayer()
     engine_->load(QUrl(QStringLiteral("qrc:/MainApplicationWindow.qml")));
 
     // Report the render interface used.
-    qCWarning(app_) << "Main window loaded using" << getRenderInterfaceString();
+    C_DBG << "Main window loaded using" << getRenderInterfaceString();
 }
 
 void

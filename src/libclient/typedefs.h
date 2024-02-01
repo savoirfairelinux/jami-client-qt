@@ -26,6 +26,15 @@
 #include <QtCore/QDebug>
 #include <QtCore/QDateTime>
 
+#include <QtCore/QLoggingCategory>
+
+Q_DECLARE_LOGGING_CATEGORY(libclientLog)
+#define LC_DBG  qCDebug(libclientLog)
+#define LC_INFO qCInfo(libclientLog)
+#define LC_WARN qCWarning(libclientLog)
+#define LC_ERR  qCCritical(libclientLog)
+#define LC_FATAL qCFatal(libclientLog)
+
 // Typedefs (required to avoid '<' and '>' in the DBus XML)
 typedef QMap<QString, QString> MapStringString;
 typedef QMap<QString, int> MapStringInt;
