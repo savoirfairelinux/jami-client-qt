@@ -97,7 +97,9 @@ if (NOT (CMAKE_CXX_COMPILER_ID MATCHES "MSVC"))
     -Wno-reorder
     -Wunused
     -Woverloaded-virtual
-    -Wvarargs)
+    -Wvarargs
+    -Wno-gnu-zero-variadic-macro-arguments
+)
 endif()
 
 # Add more warnings for compilers that support it.
