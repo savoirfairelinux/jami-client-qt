@@ -29,8 +29,6 @@
 #include "api/account.h"
 #include "api/contact.h"
 #include "api/conversationmodel.h"
-#include "api/interaction.h"
-#include "api/lrc.h"
 #include "api/accountmodel.h"
 #include "api/callmodel.h"
 #include "callbackshandler.h"
@@ -170,7 +168,11 @@ public Q_SLOTS:
      * @param isOutgoing
      * @param toUri
      */
-    void slotNewCall(const QString& fromId, const QString& callId, const QString& displayname, bool isOutgoing, const QString& toUri);
+    void slotNewCall(const QString& fromId,
+                     const QString& callId,
+                     const QString& displayname,
+                     bool isOutgoing,
+                     const QString& toUri);
 
     /**
      * Listen from callbacksHandler for new account interaction and add pending contact if not present
@@ -248,7 +250,7 @@ ContactModel::addContact(contact::Info contactInfo)
     // If passed contact is a banned contact, call the daemon to unban it
     auto it = std::find(pimpl_->bannedContacts.begin(), pimpl_->bannedContacts.end(), profile.uri);
     if (it != pimpl_->bannedContacts.end()) {
-        qDebug() << QString("Unban-ing contact %1").arg(profile.uri);
+        LC_DBG << QString("Unban-ing contact %1").arg(profile.uri);
         ConfigurationManager::instance().addContact(owner.id, profile.uri);
         // bannedContacts will be updated in slotContactAdded
         return;
@@ -256,7 +258,7 @@ ContactModel::addContact(contact::Info contactInfo)
 
     if ((owner.profileInfo.type != profile.type)
         and (profile.type == profile::Type::JAMI or profile.type == profile::Type::SIP)) {
-        qDebug() << "ContactModel::addContact, types invalid.";
+        LC_DBG << "ContactModel::addContact, types invalid.";
         return;
     }
 
@@ -292,7 +294,7 @@ ContactModel::addContact(contact::Info contactInfo)
     case profile::Type::INVALID:
     case profile::Type::COUNT__:
     default:
-        qDebug() << "ContactModel::addContact, cannot add contact with invalid type.";
+        LC_DBG << "ContactModel::addContact, cannot add contact with invalid type.";
         return;
     }
 
@@ -341,7 +343,7 @@ ContactModel::removeContact(const QString& contactUri, bool banned)
     try {
         const auto& contact = getContact(contactUri);
         if (contact.isBanned) {
-            qWarning() << "Contact already banned";
+            LC_WARN << "Contact already banned";
             return;
         }
     } catch (...) {
@@ -421,7 +423,7 @@ ContactModel::getSearchResults() const
 void
 ContactModel::searchContact(const QString& query)
 {
-    qDebug() << "query! " << query;
+    LC_DBG << "query! " << query;
     // always reset temporary contact
     pimpl_->searchResult.clear();
 
@@ -634,10 +636,7 @@ ContactModelPimpl::ContactModelPimpl(const ContactModel& linked,
             &CallbacksHandler::registeredNameFound,
             this,
             &ContactModelPimpl::slotRegisteredNameFound);
-    connect(&*linked.owner.callModel,
-            &CallModel::newCall,
-            this,
-            &ContactModelPimpl::slotNewCall);
+    connect(&*linked.owner.callModel, &CallModel::newCall, this, &ContactModelPimpl::slotNewCall);
     connect(&callbacksHandler,
             &lrc::CallbacksHandler::newAccountMessage,
             this,
@@ -674,10 +673,7 @@ ContactModelPimpl::~ContactModelPimpl()
                &CallbacksHandler::registeredNameFound,
                this,
                &ContactModelPimpl::slotRegisteredNameFound);
-    disconnect(&*linked.owner.callModel,
-               &CallModel::newCall,
-               this,
-               &ContactModelPimpl::slotNewCall);
+    disconnect(&*linked.owner.callModel, &CallModel::newCall, this, &ContactModelPimpl::slotNewCall);
     disconnect(&callbacksHandler,
                &lrc::CallbacksHandler::newAccountMessage,
                this,
@@ -910,8 +906,8 @@ ContactModelPimpl::slotContactRemoved(const QString& accountId,
                                     contact->profileInfo.uri);
                 if (it == bannedContacts.end()) {
                     // should not happen
-                    qDebug("ContactModel::slotContactsRemoved(): Contact is banned but not present "
-                           "in bannedContacts. This is most likely the result of an earlier bug.");
+                    LC_DBG << "Contact is banned but not present in bannedContacts. This is most "
+                              "likely the result of an earlier bug.";
                 } else {
                     bannedContacts.erase(it);
                 }
