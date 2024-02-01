@@ -302,6 +302,7 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/pluginversionmanager.cpp)
 
 set(COMMON_HEADERS
+  ${APP_SRC_DIR}/global.h
   ${APP_SRC_DIR}/avatarimageprovider.h
   ${APP_SRC_DIR}/networkmanager.h
   ${APP_SRC_DIR}/smartlistmodel.h
