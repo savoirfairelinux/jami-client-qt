@@ -40,6 +40,8 @@
 #include "dbus/configurationmanager.h"
 #include "authority/storagehelper.h"
 
+Q_LOGGING_CATEGORY(libclientLog, "libclient")
+
 namespace lrc {
 
 using namespace api;
