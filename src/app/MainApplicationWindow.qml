@@ -94,16 +94,10 @@ ApplicationWindow {
         id: layoutManager
         appContainer: fullscreenContainer
     }
-
     // Used to manage dynamic view loading and unloading.
-    ViewManager {
-        id: viewManager
-    }
-
+    property ViewManager viewManager: ViewManager {}
     // Used to manage the view stack and the current view.
-    ViewCoordinator {
-        id: viewCoordinator
-    }
+    property ViewCoordinator viewCoordinator: ViewCoordinator {}
 
     // Used to prevent the window from being visible until the
     // window geometry has been restored and the view stack has
@@ -232,17 +226,6 @@ ApplicationWindow {
     Item {
         id: fullscreenContainer
         anchors.fill: parent
-    }
-
-    // QWK: Provide spacing for widgets that may be occluded by the system buttons.
-    QtObject {
-        id: qwkSystemButtonSpacing
-        readonly property bool isMacOS: Qt.platform.os.toString() === "osx"
-        readonly property bool isFullscreen: layoutManager.isFullScreen
-        // macOS buttons are on the left.
-        readonly property real left: useFrameless && isMacOS && viewCoordinator.isInSinglePaneMode ? 80 : 0
-        // Windows and Linux buttons are on the right.
-        readonly property real right: useFrameless && !isMacOS && !isFullscreen ? sysBtnsLoader.width + 24 : 0
     }
 
     // QWK: Window Title bar
