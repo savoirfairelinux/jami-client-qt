@@ -131,8 +131,8 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         // QWK: spacing
-        anchors.leftMargin: qwkSystemButtonSpacing.left
-        anchors.rightMargin: qwkSystemButtonSpacing.right
+        anchors.leftMargin: layoutManager.qwkSystemButtonSpacing.left
+        anchors.rightMargin: layoutManager.qwkSystemButtonSpacing.right
 
         RowLayout {
             anchors.fill: parent

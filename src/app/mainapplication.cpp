@@ -332,49 +332,59 @@ MainApplication::parseArguments()
         }
     }
 
-    QCommandLineParser parser;
-    parser.addHelpOption();
-    parser.addVersionOption();
+    parser_.addHelpOption();
+    parser_.addVersionOption();
 
     QCommandLineOption webDebugOption(QStringList() << "remote-debugging-port",
                                       "Web debugging port.",
                                       "port");
-    parser.addOption(webDebugOption);
+    parser_.addOption(webDebugOption);
 
     QCommandLineOption minimizedOption({"m", "minimized"}, "Start minimized.");
-    parser.addOption(minimizedOption);
+    parser_.addOption(minimizedOption);
 
     QCommandLineOption debugOption({"d", "debug"}, "Debug out.");
-    parser.addOption(debugOption);
+    parser_.addOption(debugOption);
 
     QCommandLineOption logFileOption({"f", "file"}, "Debug to <file>.", "file");
-    parser.addOption(logFileOption);
+    parser_.addOption(logFileOption);
 
 #ifdef Q_OS_WINDOWS
     QCommandLineOption updateUrlOption({"u", "url"}, "<url> for debugging version queries.", "url");
-    parser.addOption(updateUrlOption);
+    parser_.addOption(updateUrlOption);
 
 #endif
     QCommandLineOption terminateOption({"t", "term"}, "Terminate all instances.");
-    parser.addOption(terminateOption);
+    parser_.addOption(terminateOption);
 
     QCommandLineOption muteDaemonOption({"q", "quiet"}, "Mute daemon logging. (only if debug)");
-    parser.addOption(muteDaemonOption);
+    parser_.addOption(muteDaemonOption);
 
-    parser.process(*this);
+#ifdef QT_DEBUG
+    // In debug mode, add an option to test a specific QML component via its name.
+    // e.g. ./jami --test AccountComboBox
+    parser_.addOption(QCommandLineOption("test", "Test a QML component via its name.", "uri"));
+    // We may need to force the test window dimensions in the case that the component to test
+    // does not specify its own dimensions and is dependent on parent/sibling dimensions.
+    // e.g. ./jami --test AccountComboBox -w 200
+    parser_.addOption(QCommandLineOption("width", "Width for the test window.", "width"));
+    parser_.addOption(QCommandLineOption("height", "Height for the test window.", "height"));
+#endif
 
-    runOptions_[Option::StartMinimized] = parser.isSet(minimizedOption);
-    runOptions_[Option::Debug] = parser.isSet(debugOption);
-    if (parser.isSet(logFileOption)) {
-        auto logFileValue = parser.value(logFileOption);
+    parser_.process(*this);
+
+    runOptions_[Option::StartMinimized] = parser_.isSet(minimizedOption);
+    runOptions_[Option::Debug] = parser_.isSet(debugOption);
+    if (parser_.isSet(logFileOption)) {
+        auto logFileValue = parser_.value(logFileOption);
         auto logFile = logFileValue.isEmpty() ? Utils::getDebugFilePath() : logFileValue;
         qputenv("JAMI_LOG_FILE", logFile.toStdString().c_str());
     }
 #ifdef Q_OS_WINDOWS
-    runOptions_[Option::UpdateUrl] = parser.value(updateUrlOption);
+    runOptions_[Option::UpdateUrl] = parser.parser_(updateUrlOption);
 #endif
-    runOptions_[Option::TerminationRequested] = parser.isSet(terminateOption);
-    runOptions_[Option::MuteDaemon] = parser.isSet(muteDaemonOption);
+    runOptions_[Option::TerminationRequested] = parser_.isSet(terminateOption);
+    runOptions_[Option::MuteDaemon] = parser_.isSet(muteDaemonOption);
 }
 
 void
@@ -390,6 +400,35 @@ MainApplication::setApplicationFont()
     setFont(font);
 }
 
+QString
+findResource(const QString& targetBasename, const QString& basePath = ":/")
+{
+    QDir dir(basePath);
+    // List all entries in the directory excluding special entries '.' and '..'
+    QStringList entries = dir.entryList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot,
+                                        QDir::DirsFirst);
+
+    Q_FOREACH (const QString& entry, entries) {
+        QString fullPath = basePath + "/" + entry;
+        QFileInfo fileInfo(fullPath);
+
+        if (fileInfo.isDir()) {
+            // Recursively search in subdirectories
+            QString found = findResource(targetBasename, fullPath);
+            if (!found.isEmpty()) {
+                return found; // Return the first match found in any subdirectory
+            }
+        } else if (fileInfo.isFile()
+                   && fileInfo.fileName().contains(targetBasename, Qt::CaseInsensitive)) {
+            // Match found, return the full path but remove the leading ":/".
+            return fileInfo.absoluteFilePath().mid(2);
+        }
+    }
+
+    // No match found in this directory or its subdirectories
+    return QString();
+}
+
 void
 MainApplication::initQmlLayer()
 {
@@ -403,7 +442,30 @@ MainApplication::initQmlLayer()
                          &screenInfo_,
                          this);
 
-    engine_->load(QUrl(QStringLiteral("qrc:/MainApplicationWindow.qml")));
+    QUrl url;
+    if (parser_.isSet("test")) {
+        // List the QML files in the project source tree.
+        const auto targetTestComponent = findResource(parser_.value("test"));
+        if (targetTestComponent.isEmpty()) {
+            C_FATAL << "Failed to find QML component:" << parser_.value("test");
+        }
+        engine_->rootContext()->setContextProperty("testComponentURI", targetTestComponent);
+        // Log the width and height values for the test window.
+        const auto testWidth = parser_.isSet("width") ? parser_.value("width").toInt() : 0;
+        const auto testHeight = parser_.isSet("height") ? parser_.value("height").toInt() : 0;
+        engine_->rootContext()->setContextProperty("testWidth", testWidth);
+        engine_->rootContext()->setContextProperty("testHeight", testHeight);
+        url = u"qrc:/ComponentTestWindow.qml"_qs;
+    } else {
+        url = u"qrc:/MainApplicationWindow.qml"_qs;
+    }
+    QObject::connect(
+        engine_.get(),
+        &QQmlApplicationEngine::objectCreationFailed,
+        this,
+        [url]() { C_FATAL << "Failed to load QML component:" << url; },
+        Qt::QueuedConnection);
+    engine_->load(url);
 
     // Report the render interface used.
     C_DBG << "Main window loaded using" << getRenderInterfaceString();
