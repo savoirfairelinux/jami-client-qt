@@ -287,12 +287,12 @@ public:
     void setCurrentCall(const QString& callId) const;
 
     /**
-     * Update call mediaList to be used in the call answering
+     * Set whether the user's video media should be muted
      *
      * @param callId
-     * @param acceptVideo
+     * @param muteVideo
      */
-    void updateCallMediaList(const QString& callId, bool acceptVideo);
+    void setVideoMuted(const QString& callId, bool videoMuted);
 
     /**
      * Change the conference layout
