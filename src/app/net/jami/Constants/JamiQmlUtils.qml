@@ -34,6 +34,12 @@ Item {
         return accountCreationInputParaObject;
     }
 
+    // For list models (1 column).
+    function getModelData(model, index, role) {
+        const modelIndex = model.index(index, 0);
+        return model.data(modelIndex, role);
+    }
+
     // MessageBar buttons in mainview points
     property var mainViewRectObj
     property var messageBarButtonsRowObj
