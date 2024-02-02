@@ -94,16 +94,10 @@ ApplicationWindow {
         id: layoutManager
         appContainer: fullscreenContainer
     }
-
     // Used to manage dynamic view loading and unloading.
-    ViewManager {
-        id: viewManager
-    }
-
+    property ViewManager viewManager: ViewManager {}
     // Used to manage the view stack and the current view.
-    ViewCoordinator {
-        id: viewCoordinator
-    }
+    property ViewCoordinator viewCoordinator: ViewCoordinator {}
 
     // Used to prevent the window from being visible until the
     // window geometry has been restored and the view stack has
