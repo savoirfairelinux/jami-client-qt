@@ -20,9 +20,11 @@
  */
 import QtQuick
 import QtQuick.Layouts
+
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
+
 import "../../commoncomponents"
 
 Item {
@@ -61,9 +63,15 @@ Item {
 
     // (un)subscribe to an app-wide mouse move event trap filtered
     // for the overlay's geometry
-    onVisibleChanged: {
-        visible ? CallOverlayModel.registerFilter(appWindow, this) : CallOverlayModel.unregisterFilter(appWindow, this);
+    function setupFilter() {
+        if (visible) {
+            CallOverlayModel.registerFilter(appWindow, this);
+        } else {
+            CallOverlayModel.unregisterFilter(appWindow, this);
+        }
     }
+    Component.onCompleted: setupFilter()
+    onVisibleChanged: setupFilter()
 
     Connections {
         target: CallOverlayModel
