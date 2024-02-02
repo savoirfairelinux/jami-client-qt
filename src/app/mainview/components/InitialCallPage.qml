@@ -219,12 +219,8 @@ Rectangle {
 
                         onClicked: {
                             if (type === "cam" || type === "mic") {
-                                var acceptVideoMedia = true;
-                                if (type === "cam")
-                                    acceptVideoMedia = true;
-                                else if (type === "mic")
-                                    acceptVideoMedia = false;
-                                CallAdapter.setCallMedia(CurrentAccount.id, CurrentConversation.id, acceptVideoMedia);
+                                var muteVideo = (type === "mic");
+                                CallAdapter.setCallMedia(CurrentAccount.id, CurrentConversation.id, muteVideo);
                                 callAccepted();
                             } else {
                                 callCanceled();

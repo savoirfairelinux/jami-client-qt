@@ -348,42 +348,47 @@ CallModel::getParticipantsInfos(const QString& callId)
 }
 
 void
-CallModel::updateCallMediaList(const QString& callId, bool acceptVideo)
+CallModel::setVideoMuted(const QString& callId, bool videoMuted)
 {
-    try {
-        auto callInfos = pimpl_->calls.find(callId);
-        if (callInfos != pimpl_->calls.end()) {
-            for (auto it = callInfos->second->mediaList.begin();
-                 it != callInfos->second->mediaList.end();
-                 it++) {
-                if ((*it)[MediaAttributeKey::MEDIA_TYPE] == MediaAttributeValue::VIDEO
-                    && !acceptVideo) {
-                    (*it)[MediaAttributeKey::ENABLED] = TRUE_STR;
-                    (*it)[MediaAttributeKey::MUTED] = TRUE_STR;
-                    callInfos->second->videoMuted = !acceptVideo;
-                }
-            }
+    auto call = pimpl_->calls.find(callId);
+    if (call == pimpl_->calls.end())
+        return;
+
+    auto& callInfo = call->second;
+    callInfo->videoMuted = videoMuted;
+
+    for (auto& media : callInfo->mediaList) {
+        if (!media.contains(MediaAttributeKey::MEDIA_TYPE))
+            continue;
+
+        if (media[MediaAttributeKey::MEDIA_TYPE] == MediaAttributeValue::VIDEO) {
+            media[MediaAttributeKey::MUTED] = videoMuted ? TRUE_STR : FALSE_STR;
         }
-    } catch (...) {
     }
+}
+
+static void
+initializeMediaList(VectorMapStringString& mediaList, bool audioOnly)
+{
+    mediaList.push_back({{MediaAttributeKey::MEDIA_TYPE, MediaAttributeValue::AUDIO},
+                         {MediaAttributeKey::ENABLED, TRUE_STR},
+                         {MediaAttributeKey::MUTED, FALSE_STR},
+                         {MediaAttributeKey::SOURCE, ""},
+                         {MediaAttributeKey::LABEL, "audio_0"}});
+    if (audioOnly)
+        return;
+    mediaList.push_back({{MediaAttributeKey::MEDIA_TYPE, MediaAttributeValue::VIDEO},
+                         {MediaAttributeKey::ENABLED, TRUE_STR},
+                         {MediaAttributeKey::MUTED, FALSE_STR},
+                         {MediaAttributeKey::SOURCE, ""},
+                         {MediaAttributeKey::LABEL, "video_0"}});
 }
 
 QString
 CallModel::createCall(const QString& uri, bool isAudioOnly, VectorMapStringString mediaList)
 {
     if (mediaList.isEmpty()) {
-        MapStringString mediaAttribute = {{MediaAttributeKey::MEDIA_TYPE,
-                                           MediaAttributeValue::AUDIO},
-                                          {MediaAttributeKey::ENABLED, TRUE_STR},
-                                          {MediaAttributeKey::MUTED, FALSE_STR},
-                                          {MediaAttributeKey::SOURCE, ""},
-                                          {MediaAttributeKey::LABEL, "audio_0"}};
-        mediaList.push_back(mediaAttribute);
-        if (!isAudioOnly) {
-            mediaAttribute[MediaAttributeKey::MEDIA_TYPE] = MediaAttributeValue::VIDEO;
-            mediaAttribute[MediaAttributeKey::LABEL] = "video_0";
-            mediaList.push_back(mediaAttribute);
-        }
+        initializeMediaList(mediaList, isAudioOnly);
     }
 #ifdef ENABLE_LIBWRAP
     auto callId = CallManager::instance().placeCallWithMedia(owner.id, uri, mediaList);
@@ -1451,7 +1456,10 @@ CallModelPimpl::slotCallStateChanged(const QString& accountId,
         callInfo->type = call::Type::DIALOG;
         callInfo->isAudioOnly = details["AUDIO_ONLY"] == TRUE_STR;
         callInfo->videoMuted = details["VIDEO_MUTED"] == TRUE_STR;
-        callInfo->mediaList = {};
+        // NOTE: The CallModel::setVideoMuted function currently relies on callInfo->mediaList
+        // having been initialized. Not doing so leads to a bug where the user's camera wrongly
+        // gets turned on when they receive a call and click on "Answer in audio".
+        initializeMediaList(callInfo->mediaList, callInfo->isAudioOnly);
         calls.emplace(callId, std::move(callInfo));
 
         if (!(details["CALL_TYPE"] == "1") && !linked.owner.confProperties.allowIncoming
