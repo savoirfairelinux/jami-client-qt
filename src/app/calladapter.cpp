@@ -389,16 +389,13 @@ CallAdapter::hangUpACall(const QString& accountId, const QString& convUid)
 }
 
 void
-CallAdapter::setCallMedia(const QString& accountId, const QString& convUid, bool video)
+CallAdapter::setCallMedia(const QString& accountId, const QString& convUid, bool videoMuted)
 {
     const auto& convInfo = lrcInstance_->getConversationFromConvUid(convUid, accountId);
     if (convInfo.uid.isEmpty())
         return;
-    try {
-        lrcInstance_->getAccountInfo(accountId).callModel->updateCallMediaList(convInfo.callId,
-                                                                               video);
-    } catch (...) {
-    }
+
+    lrcInstance_->getAccountInfo(accountId).callModel->setVideoMuted(convInfo.callId, videoMuted);
 }
 
 void
