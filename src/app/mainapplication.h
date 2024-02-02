@@ -29,6 +29,7 @@
 #include <QQmlEngine>
 #include <QScreen>
 #include <QWindow>
+#include <QCommandLineParser>
 
 #include <memory>
 
@@ -122,6 +123,6 @@ private:
     SystemTray* systemTray_;
     AppSettingsManager* settingsManager_;
     PreviewEngine* previewEngine_;
-
     ScreenInfo screenInfo_;
+    QCommandLineParser parser_;
 };

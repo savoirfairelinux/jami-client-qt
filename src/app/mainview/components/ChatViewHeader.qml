@@ -75,8 +75,8 @@ Rectangle {
 
         anchors.fill: parent
         // QWK: spacing
-        anchors.leftMargin: qwkSystemButtonSpacing.left
-        anchors.rightMargin: 10 + qwkSystemButtonSpacing.right
+        anchors.leftMargin: layoutManager.qwkSystemButtonSpacing.left
+        anchors.rightMargin: 10 + layoutManager.qwkSystemButtonSpacing.right
         spacing: 16
 
         JamiPushButton { QWKSetParentHitTestVisible {}

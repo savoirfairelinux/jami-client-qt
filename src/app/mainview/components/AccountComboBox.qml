@@ -29,7 +29,7 @@ Label {
 
     property alias popup: comboBoxPopup
 
-    width: parent ? parent.width : o
+    width: parent ? parent.width : 0
     height: JamiTheme.accountListItemHeight
 
     property bool inSettings: viewCoordinator.currentViewName === "SettingsView"
