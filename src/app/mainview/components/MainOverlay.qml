@@ -61,9 +61,15 @@ Item {
 
     // (un)subscribe to an app-wide mouse move event trap filtered
     // for the overlay's geometry
-    onVisibleChanged: {
-        visible ? CallOverlayModel.registerFilter(appWindow, this) : CallOverlayModel.unregisterFilter(appWindow, this);
+    function setupFilter() {
+        if (visible) {
+            CallOverlayModel.registerFilter(appWindow, this);
+        } else {
+            CallOverlayModel.unregisterFilter(appWindow, this);
+        }
     }
+    Component.onCompleted: setupFilter()
+    onVisibleChanged: setupFilter()
 
     Connections {
         target: CallOverlayModel
