@@ -19,6 +19,8 @@
 
 #include "calloverlaymodel.h"
 
+#include "global.h"
+
 #include <QEvent>
 #include <QMouseEvent>
 #include <QQuickWindow>
@@ -360,23 +362,37 @@ CallOverlayModel::clearControls()
 }
 
 void
-CallOverlayModel::registerFilter(QQuickWindow* object, QQuickItem* item)
+CallOverlayModel::registerFilter(QObject* object, QQuickItem* item)
 {
-    if (!object || !item || watchedItems_.contains(item))
+    QQuickWindow* window = qobject_cast<QQuickWindow*>(object);
+    if (!window || !item) {
+        C_WARN << "Attempting to register an invalid object or item" << object << item;
         return;
+    }
+    if (watchedItems_.contains(item)) {
+        C_DBG << "Item already registered" << item;
+    }
     watchedItems_.push_back(item);
-    if (watchedItems_.size() == 1)
-        object->installEventFilter(this);
+    if (watchedItems_.size() == 1) {
+        window->installEventFilter(this);
+    }
 }
 
 void
-CallOverlayModel::unregisterFilter(QQuickWindow* object, QQuickItem* item)
+CallOverlayModel::unregisterFilter(QObject* object, QQuickItem* item)
 {
-    if (!object || !item || !watchedItems_.contains(item))
+    QQuickWindow* window = qobject_cast<QQuickWindow*>(object);
+    if (!window || !item) {
+        C_WARN << "Attempting to unregister an invalid object or item" << object << item;
         return;
+    }
+    if (!watchedItems_.contains(item)) {
+        C_DBG << "Item not registered" << item;
+    }
     watchedItems_.removeOne(item);
-    if (watchedItems_.size() == 0)
-        object->removeEventFilter(this);
+    if (watchedItems_.size() == 0) {
+        window->removeEventFilter(this);
+    }
 }
 
 bool
