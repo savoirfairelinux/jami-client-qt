@@ -21,6 +21,7 @@ import QtTest
 
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
+import net.jami.Adapters 1.1
 
 import "../../../src/app/"
 import "../../../src/app/mainview/components"
@@ -33,15 +34,11 @@ TestWrapper {
         height: 600
 
         TestCase {
-            name: "Check basic visibility of action bar during a call"
+            name: "Check various components within the OngoingCallPage"
             when: windowShown // Mouse events can only be handled
                               // after the window has been shown.
 
-            property var mainOverlay
-
             function initTestCase() {
-                mainOverlay = findChild(uut, "mainOverlay")
-
                 // The CallActionBar on the OngoingCallPage starts out invisible and
                 // is made visible whenever the user moves their mouse.
                 // This is implemented via an event filter in the CallOverlayModel
@@ -49,12 +46,15 @@ TestWrapper {
                 // visible. In the actual Jami application, this happens when a call
                 // is started, but we need to toggle the visiblity manually here
                 // because the MainOverlay is visible at the beginning of the test.
-                mainOverlay.visible = false
-                mainOverlay.visible = true
+                const mainOverlay = findChild(uut, "mainOverlay");
+                mainOverlay.visible = false;
+                mainOverlay.visible = true;
             }
 
-            function test_checkCallActionBarVisibility() {
-                var callActionBar = findChild(mainOverlay, "callActionBar")
+            // The following test is labeled with "0" to make sure it runs first.
+            // This prevents having to wait for the CallActionBar to fade out.
+            function test_0_checkCallActionBarVisibility() {
+                var callActionBar = findChild(uut, "callActionBar")
 
                 // The primary and secondary actions in the CallActionBar are currently being added
                 // one by one (not using a loop) to CallOverlayModel in the Component.onCompleted
@@ -77,6 +77,46 @@ TestWrapper {
 
                 wait(waitTime)
                 compare(callActionBar.visible, true)
+            }
+
+            function test_checkLocalPreviewAnchoring() {
+                const localPreview = findChild(uut, "localPreview");
+                const container = localPreview.parent;
+
+                // The preview should normally be invisible at first, but there is a bug
+                // in the current implementation that makes it visible. This will need to
+                // be adjusted once the bug is fixed.
+                compare(localPreview.visible, true);
+
+                // Start a preview of a local resource.
+                const dummyImgFile = UtilsAdapter.createDummyImage();
+                localPreview.startWithId(UtilsAdapter.urlFromLocalPath(dummyImgFile));
+
+                // First check that the preview is anchored.
+                verify(localPreview.state.indexOf("unanchored") === -1);
+
+                const previewCenter = Qt.point(localPreview.width / 2, localPreview.height / 2);
+                const center = Qt.point(container.width / 2, container.height / 2);
+                function moveAndVerifyState(dx, dy, expectedState) {
+                    const toCenterX = (center.x - (localPreview.x + previewCenter.x)) / 2;
+                    const toCenterY = (center.y - (localPreview.y + previewCenter.y)) / 2;
+                    mouseDrag(localPreview, 0, 0, toCenterX + dx, toCenterY + dy);
+                    wait(250);
+                    compare(localPreview.state, expectedState);
+                }
+
+                moveAndVerifyState(-uut.previewMargin, -uut.previewMarginYTop - 1, "anchor_top_left");
+                moveAndVerifyState(uut.previewMargin, -uut.previewMarginYTop - 1, "anchor_top_right");
+                moveAndVerifyState(-uut.previewMargin, uut.height, "anchor_bottom_left");
+                moveAndVerifyState(uut.previewMargin, uut.height, "anchor_bottom_right");
+
+                // Verify that during a drag process, the preview is unanchored.
+                mousePress(localPreview);
+                mouseMove(localPreview, 100, 100);
+                verify(localPreview.state.indexOf("unanchored") !== -1);
+
+                // Stop the preview.
+                localPreview.startWithId("");
             }
         }
     }

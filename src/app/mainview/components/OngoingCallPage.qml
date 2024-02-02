@@ -30,12 +30,11 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
-    property point clickPos
+    // Constraints for the preview component.
     property int previewMargin: 15
     property int previewMarginYTop: previewMargin + 42
     property int previewMarginYBottom: previewMargin + 84
-    property int previewToX: 0
-    property int previewToY: 0
+
     property alias chatViewContainer: chatViewContainer
     property string callPreviewId
 
@@ -90,42 +89,6 @@ Rectangle {
 
     function closeContextMenuAndRelatedWindows() {
         callOverlay.closeContextMenuAndRelatedWindows();
-    }
-
-    function previewMagneticSnap() {
-        // Calculate the position where the previewRenderer should attach to.
-        var previewRendererCenter = Qt.point(previewRenderer.x + previewRenderer.width / 2, previewRenderer.y + previewRenderer.height / 2);
-        var parentCenter = Qt.point(parent.x + parent.width / 2, parent.y + parent.height / 2);
-        if (previewRendererCenter.x >= parentCenter.x) {
-            if (previewRendererCenter.y >= parentCenter.y) {
-                // Bottom right.
-                previewToX = Qt.binding(function () {
-                        return callPageMainRect.width - previewRenderer.width - previewMargin;
-                    });
-                previewToY = Qt.binding(function () {
-                        return callPageMainRect.height - previewRenderer.height - previewMarginYBottom;
-                    });
-            } else {
-                // Top right.
-                previewToX = Qt.binding(function () {
-                        return callPageMainRect.width - previewRenderer.width - previewMargin;
-                    });
-                previewToY = previewMarginYTop;
-            }
-        } else {
-            if (previewRendererCenter.y >= parentCenter.y) {
-                // Bottom left.
-                previewToX = previewMargin;
-                previewToY = Qt.binding(function () {
-                        return callPageMainRect.height - previewRenderer.height - previewMarginYBottom;
-                    });
-            } else {
-                // Top left.
-                previewToX = previewMargin;
-                previewToY = previewMarginYTop;
-            }
-        }
-        previewRenderer.state = "geoChanging";
     }
 
     onWidthChanged: {
@@ -209,8 +172,9 @@ Rectangle {
 
             LocalVideo {
                 id: previewRenderer
-                visible: (CurrentCall.isSharing || !CurrentCall.isVideoMuted) && !CurrentCall.isConference
+                objectName: "localPreview"
 
+                visible: (CurrentCall.isSharing || !CurrentCall.isVideoMuted) && !CurrentCall.isConference
                 height: width * invAspectRatio
                 width: Math.max(callPageMainRect.width / 5, JamiTheme.minimumPreviewWidth)
                 x: callPageMainRect.width - previewRenderer.width - previewMargin
@@ -241,54 +205,97 @@ Rectangle {
                     controlPreview.start();
                 }
 
+                anchors.topMargin: previewMarginYTop
+                anchors.leftMargin: previewMargin
+                anchors.rightMargin: previewMargin
+                anchors.bottomMargin: previewMarginYBottom
+
+                state: "anchor_top_right"
+
                 states: [
+                    // Not anchored
                     State {
-                        name: "geoChanging"
-                        PropertyChanges {
+                        name: "unanchored"
+                        AnchorChanges {
                             target: previewRenderer
-                            x: previewToX
-                            y: previewToY
+                            anchors.top: undefined
+                            anchors.right: undefined
+                            anchors.bottom: undefined
+                            anchors.left: undefined
+                        }
+                    },
+                    State {
+                        name: "anchor_top_left"
+                        AnchorChanges {
+                            target: previewRenderer
+                            anchors.top: callPageMainRect.top
+                            anchors.left: callPageMainRect.left
+                        }
+                    },
+                    State {
+                        name: "anchor_top_right"
+                        AnchorChanges {
+                            target: previewRenderer
+                            anchors.top: callPageMainRect.top
+                            anchors.right: callPageMainRect.right
+                        }
+                    },
+                    State {
+                        name: "anchor_bottom_right"
+                        AnchorChanges {
+                            target: previewRenderer
+                            anchors.bottom: callPageMainRect.bottom
+                            anchors.right: callPageMainRect.right
+                        }
+                    },
+                    State {
+                        name: "anchor_bottom_left"
+                        AnchorChanges {
+                            target: previewRenderer
+                            anchors.bottom: callPageMainRect.bottom
+                            anchors.left: callPageMainRect.left
                         }
                     }
                 ]
 
                 transitions: Transition {
-                    PropertyAnimation {
-                        properties: "x,y"
-                        easing.type: Easing.OutExpo
+                    AnchorAnimation {
                         duration: 250
-
-                        onStopped: {
-                            previewRenderer.state = "";
-                        }
+                        easing.type: Easing.OutBack
+                        easing.overshoot: 1.5
                     }
                 }
 
-                MouseArea {
-                    id: dragMouseArea
-
-                    anchors.fill: previewRenderer
-
-                    onPressed: function (mouse) {
-                        clickPos = Qt.point(mouse.x, mouse.y);
-                    }
-
-                    onReleased: {
-                        previewRenderer.state = "";
-                        previewMagneticSnap();
-                    }
-
-                    onPositionChanged: function (mouse) {
-                        // Calculate mouse position relative change.
-                        var delta = Qt.point(mouse.x - clickPos.x, mouse.y - clickPos.y);
-                        var deltaW = previewRenderer.x + delta.x + previewRenderer.width;
-                        var deltaH = previewRenderer.y + delta.y + previewRenderer.height;
-
-                        // Check if the previewRenderer exceeds the border of callPageMainRect.
-                        if (deltaW < callPageMainRect.width && previewRenderer.x + delta.x > 1)
-                            previewRenderer.x += delta.x;
-                        if (deltaH < callPageMainRect.height && previewRenderer.y + delta.y > 1)
-                            previewRenderer.y += delta.y;
+                DragHandler {
+                    readonly property var container: callPageMainRect
+                    target: parent
+                    dragThreshold: 4
+                    xAxis.maximum: container.width - parent.width - previewMargin
+                    xAxis.minimum: previewMargin
+                    yAxis.maximum: container.height - parent.height - previewMarginYBottom
+                    yAxis.minimum: previewMarginYTop
+                    onActiveChanged: {
+                        if (active) {
+                            previewRenderer.state = "unanchored";
+                        } else {
+                            const center = Qt.point(target.x + target.width / 2,
+                                                    target.y + target.height / 2);
+                            const containerCenter = Qt.point(container.x + container.width / 2,
+                                                             container.y + container.height / 2);
+                            if (center.x >= containerCenter.x) {
+                                if (center.y >= containerCenter.y) {
+                                    previewRenderer.state = "anchor_bottom_right";
+                                } else {
+                                    previewRenderer.state = "anchor_top_right";
+                                }
+                            } else {
+                                if (center.y >= containerCenter.y) {
+                                    previewRenderer.state = "anchor_bottom_left";
+                                } else {
+                                    previewRenderer.state = "anchor_top_left";
+                                }
+                            }
+                        }
                     }
                 }
 
