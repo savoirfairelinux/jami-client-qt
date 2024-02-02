@@ -41,6 +41,20 @@ QtObject {
     // Used to store if a OngoingCallPage component is fullscreened.
     property bool isCallFullscreen: false
 
+    // QWK: Provide spacing for widgets that may be occluded by the system buttons.
+    property QtObject qwkSystemButtonSpacing: QtObject {
+        id: qwkSystemButtonSpacing
+        readonly property bool isMacOS: Qt.platform.os.toString() === "osx"
+        // macOS buttons are on the left.
+        readonly property real left: {
+            appWindow.useFrameless && isMacOS && viewCoordinator.isInSinglePaneMode ? 80 : 0
+        }
+        // Windows and Linux buttons are on the right.
+        readonly property real right: {
+            appWindow.useFrameless && !isMacOS && !root.isFullscreen ? sysBtnsLoader.width + 24 : 0
+        }
+    }
+
     // Restore a visible windowed mode.
     function restoreApp() {
         if (isHidden) {

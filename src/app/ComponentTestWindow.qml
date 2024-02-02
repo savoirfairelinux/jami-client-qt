@@ -12,42 +12,25 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 import QtQuick
 import QtQuick.Controls
-import QtTest
 
 import net.jami.Adapters 1.1
 
-import "../../../src/app/"
-
-// The purpose of this component is to fake the ApplicationWindow and prevent
-// each UUT from having to manage its own top level app management objects
-// (currently ViewManager, ViewCoordinator, and ApplicationWindow).
-Item {
-    id: tw
-
-    width: childrenRect.width
-    height: childrenRect.height
-
-    // A binding to the windowShown property
-    Binding {
-        tw.appWindow: uut.Window.window
-        when: QTestRootObject.windowShown
-    }
-
-    Component.onCompleted: viewCoordinator.init(this)
-
-    property int visibility: 0
-    Binding {
-        tw.visibility: uut.Window.window.visibility
-        when: QTestRootObject.windowShown
-    }
+// A window into which we can load a QML file for testing.
+ApplicationWindow {
+    id: appWindow
+    visible: true
+    width: testWidth || loader.implicitWidth || 800
+    height: testHeight || loader.implicitHeight || 600
+    title: testComponentURI
 
     // WARNING: The following currently must be maintained in tandem with MainApplicationWindow.qml
     // Used to manage full screen mode and save/restore window geometry.
+    readonly property bool useFrameless: false
     property bool isRTL: UtilsAdapter.isRTL
     LayoutMirroring.enabled: isRTL
     LayoutMirroring.childrenInherit: isRTL
@@ -58,7 +41,25 @@ Item {
     property ViewManager viewManager: ViewManager {}
     // Used to manage the view stack and the current view.
     property ViewCoordinator viewCoordinator: ViewCoordinator {}
-    property QtObject appWindow: QtObject {
-        property bool useFrameless: false
+
+    Loader {
+        id: loader
+        source: Qt.resolvedUrl(testComponentURI)
+        onStatusChanged: {
+            console.log("Status changed to:", loader.status)
+            if (loader.status == Loader.Error || loader.status == Loader.Null) {
+                console.error("Couldn't load component:", source)
+                Qt.exit(1);
+            } else if (loader.status == Loader.Ready) {
+                console.info("Loaded component:", source);
+                // If any of the dimensions are not set, set them to the appWindow's dimensions
+                item.width = item.width || Qt.binding(() => appWindow.width);
+                item.height = item.height || Qt.binding(() => appWindow.height);
+                viewCoordinator.init(item);
+            }
+        }
     }
+
+    // Closing this window should always exit the application.
+    onClosing: Qt.quit()
 }
