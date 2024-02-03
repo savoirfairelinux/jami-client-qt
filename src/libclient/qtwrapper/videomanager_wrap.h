@@ -130,10 +130,10 @@ public Q_SLOTS: // METHODS
 #endif
     }
 
-    void closeVideoInput(const QString& resource)
+    bool closeVideoInput(const QString& resource)
     {
 #ifdef ENABLE_VIDEO
-        libjami::closeVideoInput(resource.toLatin1().toStdString());
+        return libjami::closeVideoInput(resource.toLatin1().toStdString());
 #endif
     }
 

@@ -32,6 +32,20 @@ Item {
     width: childrenRect.width
     height: childrenRect.height
 
+    // This is a helper function to wait for a signal to be emitted and check a condition.
+    function waitForSignalAndCheck(signalObject, signalName, action, checkExpression) {
+        // Create the SignalSpy component dynamically with the provided signal object and name.
+        const spy = Qt.createQmlObject('import QtTest 1.0; SignalSpy {}', this);
+        spy.target = signalObject;
+        spy.signalName = signalName;
+        // Perform the action that should emit the signal.
+        action();
+        // Wait a maximum of 1 second for the signal to be emitted.
+        spy.wait(1000);
+        // Check the signal count and the provided expression.
+        return spy.count > 0 && checkExpression();
+    }
+
     // A binding to the windowShown property
     Binding {
         tw.appWindow: uut.Window.window

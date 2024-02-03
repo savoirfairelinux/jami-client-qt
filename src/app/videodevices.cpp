@@ -257,8 +257,12 @@ void
 VideoDevices::stopDevice(const QString& id)
 {
     if (!id.isEmpty()) {
-        lrcInstance_->avModel().stopPreview(id);
-        deviceOpen_ = false;
+        qInfo() << "Stopping device" << id;
+        if (lrcInstance_->avModel().stopPreview(id)) {
+            deviceOpen_ = false;
+        } else {
+            qWarning() << "Failed to stop device" << id;
+        }
     }
 }
 
