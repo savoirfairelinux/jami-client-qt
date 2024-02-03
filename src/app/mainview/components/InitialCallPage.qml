@@ -39,31 +39,22 @@ Rectangle {
         id: previewRenderer
         anchors.centerIn: parent
         anchors.fill: parent
-        visible: !CurrentCall.isAudioOnly && CurrentAccount.videoEnabled_Video && VideoDevices.listSize !== 0 && ((CurrentCall.status >= Call.Status.INCOMING_RINGING && CurrentCall.status <= Call.Status.SEARCHING) || CurrentCall.status === Call.Status.CONNECTED)
-        opacity: 0.5
 
-        // HACK: this is a workaround to the preview video starting
-        // and stopping a few times. The root cause should be investigated ASAP.
-        Timer {
-            id: controlPreview
-            property bool startVideo
-            interval: 1000
-            onTriggered: {
-                var rendId = visible && startVideo ? VideoDevices.getDefaultDevice() : "";
-                previewRenderer.startWithId(rendId);
+        readonly property bool start: {
+            if (CurrentCall.isAudioOnly || !CurrentAccount.videoEnabled_Video || !VideoDevices.listSize) {
+                return false;
             }
-        }
-        onVisibleChanged: {
-            controlPreview.stop();
-            if (visible) {
-                controlPreview.startVideo = true;
-                controlPreview.interval = 1000;
-            } else {
-                controlPreview.startVideo = false;
-                controlPreview.interval = 0;
+            const isCallStatusEligible =
+                (CurrentCall.status >= Call.Status.INCOMING_RINGING &&
+                 CurrentCall.status <= Call.Status.SEARCHING) ||
+                CurrentCall.status === Call.Status.CONNECTED;
+            if (!isCallStatusEligible) {
+                return false;
             }
-            controlPreview.start();
+            return true;
         }
+        onStartChanged: previewRenderer.startWithId(start ? VideoDevices.getDefaultDevice() : "")
+        opacity: 0.5
     }
 
     ListModel {

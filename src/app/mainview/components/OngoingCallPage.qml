@@ -41,9 +41,7 @@ Rectangle {
     // A link to the first child will provide access to the chat view.
     property var chatView: chatViewContainer.children[0]
 
-    onCallPreviewIdChanged: {
-        controlPreview.start();
-    }
+    onCallPreviewIdChanged: previewRenderer.startWithId(callPreviewId);
 
     color: "black"
 
@@ -173,46 +171,79 @@ Rectangle {
             LocalVideo {
                 id: previewRenderer
 
-                visible: (CurrentCall.isSharing || !CurrentCall.isVideoMuted) && !CurrentCall.isConference
+                visibilityCondition: (CurrentCall.isSharing || !CurrentCall.isVideoMuted) &&
+                                     !CurrentCall.isConference
                 height: width * invAspectRatio
                 width: Math.max(callPageMainRect.width / 5, JamiTheme.minimumPreviewWidth)
-                x: callPageMainRect.width - previewRenderer.width - previewMargin
-                y: previewMarginYTop
                 flip: CurrentCall.flipSelf && !CurrentCall.isSharing
-
-                // HACK: this is a workaround to the preview video starting
-                // and stopping a few times. The root cause should be investigated ASAP.
-                Timer {
-                    id: controlPreview
-                    property bool startVideo
-                    interval: 1000
-                    onTriggered: {
-                        var rendId = visible && startVideo ? root.callPreviewId : "";
-                        previewRenderer.startWithId(rendId);
-                    }
-                }
-
-                onVisibleChanged: {
-                    controlPreview.stop();
-                    if (visible) {
-                        controlPreview.startVideo = true;
-                        controlPreview.interval = 1000;
-                    } else {
-                        controlPreview.startVideo = false;
-                        controlPreview.interval = 0;
-                    }
-                    controlPreview.start();
-                }
+                blurRadius: hidden ? 25 : 0
 
                 anchors.topMargin: previewMarginYTop
-                anchors.leftMargin: previewMargin
-                anchors.rightMargin: previewMargin
+                anchors.leftMargin: sideMargin
+                anchors.rightMargin: sideMargin
                 anchors.bottomMargin: previewMarginYBottom
 
-                state: "unanchored"
+                opacity: hidden ? callOverlay.mainOverlayOpacity : 1
 
+                // Allow hiding the preview (available when anchored)
+                readonly property bool anchored: state !== "unanchored"
+                property bool hidden: false
+                readonly property real hiddenHandleSize: 32
+                // Compute the margin as a function of the preview width in order to
+                // apply a negative margin and expose a constant width handle.
+                // If not hidden, return the previewMargin.
+                property real sideMargin: !hidden ? previewMargin : -(width - hiddenHandleSize)
+                // Animate the hiddenSize with a Behavior.
+                Behavior on sideMargin { NumberAnimation { duration: 250; easing.type: Easing.OutExpo }}
+                readonly property bool onLeft: state.indexOf("left") !== -1
+                Button {
+                    id: hidePreviewButton
+                    width: previewRenderer.hiddenHandleSize
+                    state: {
+                        if (!previewRenderer.onLeft) {
+                            return previewRenderer.hidden ? "left" : "right";
+                        }
+                        return previewRenderer.hidden ? "right" : "left";
+                    }
+                    states: [
+                        State {
+                            name: "left"
+                            AnchorChanges {
+                                target: hidePreviewButton
+                                anchors.left: parent.left
+                            }
+                        },
+                        State {
+                            name: "right"
+                            AnchorChanges {
+                                target: hidePreviewButton
+                                anchors.right: parent.right
+                            }
+                        }
+                    ]
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    opacity: (previewRenderer.anchored && hoverHandler.hovered) || previewRenderer.hidden
+                    Behavior on opacity { NumberAnimation { duration: 250; easing.type: Easing.OutExpo }}
+                    visible: opacity > 0
+                    background: Rectangle {
+                        color: JamiTheme.mediumGrey
+                        opacity: 0.5
+                    }
+                    contentItem: Item {
+                        ResponsiveImage {
+                            anchors.centerIn: parent
+                            source: hidePreviewButton.state === "left" ?
+                                        JamiResources.chevron_left_black_24dp_svg :
+                                        JamiResources.chevron_right_black_24dp_svg
+                            color: JamiTheme.darkGreyColor
+                        }
+                    }
+                    onClicked: previewRenderer.hidden = !previewRenderer.hidden
+                }
+
+                state: "anchor_top_right"
                 states: [
-                    // Not anchored
                     State {
                         name: "unanchored"
                         AnchorChanges {
@@ -265,10 +296,16 @@ Rectangle {
                     }
                 }
 
+                HoverHandler {
+                    id: hoverHandler
+                }
+
                 DragHandler {
+                    id: dragHandler
                     readonly property var container: callPageMainRect
                     target: parent
                     dragThreshold: 4
+                    enabled: !previewRenderer.hidden
                     xAxis.maximum: container.width - parent.width - previewMargin
                     xAxis.minimum: previewMargin
                     yAxis.maximum: container.height - parent.height - previewMarginYBottom
