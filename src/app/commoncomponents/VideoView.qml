@@ -29,6 +29,10 @@ Item {
     property real invAspectRatio: (videoOutput.sourceRect.height / videoOutput.sourceRect.width) || 0.5625 // 16:9 default
     property bool crop: false
     property bool flip: false
+    property real blurRadius: 0
+
+    // We need to know if the frames are being rendered to the screen or not.
+    readonly property bool isRendering: videoProvider.activeRenderers[rendererId] ? true : false
 
     // This rect describes the actual rendered content rectangle
     // as the VideoOutput component may use PreserveAspectFit
@@ -55,7 +59,7 @@ Item {
 
         antialiasing: true
         anchors.fill: parent
-        opacity: videoProvider.activeRenderers[rendererId] === true
+        opacity: isRendering
         visible: opacity
 
         fillMode: crop ? VideoOutput.PreserveAspectCrop : VideoOutput.PreserveAspectFit
@@ -70,7 +74,7 @@ Item {
         layer.effect: FastBlur {
             source: videoOutput
             anchors.fill: root
-            radius: (1. - opacity) * 100
+            radius: blurRadius ? blurRadius : (1. - opacity) * 100
         }
 
         transform: Scale {
