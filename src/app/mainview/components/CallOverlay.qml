@@ -32,6 +32,7 @@ Item {
     id: root
 
     property bool participantsSide: UtilsAdapter.getAppValue(Settings.ParticipantsSide)
+    property alias mainOverlayOpacity: mainOverlay.opacity
 
     signal chatButtonClicked
     signal fullScreenClicked
