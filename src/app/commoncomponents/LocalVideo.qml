@@ -23,7 +23,10 @@ import net.jami.Adapters 1.1
 VideoView {
     id: root
 
+    property bool visibilityCondition: true
+
     crop: true
+    visible: isRendering && visibilityCondition
 
     function startWithId(id, force = false) {
         if (id !== undefined && id.length === 0) {
