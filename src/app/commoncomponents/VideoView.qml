@@ -29,6 +29,7 @@ Item {
     property real invAspectRatio: (videoOutput.sourceRect.height / videoOutput.sourceRect.width) || 0.5625 // 16:9 default
     property bool crop: false
     property bool flip: false
+    property real blurRadius: 0
 
     // This rect describes the actual rendered content rectangle
     // as the VideoOutput component may use PreserveAspectFit
@@ -70,7 +71,7 @@ Item {
         layer.effect: FastBlur {
             source: videoOutput
             anchors.fill: root
-            radius: (1. - opacity) * 100
+            radius: blurRadius ? blurRadius : (1. - opacity) * 100
         }
 
         transform: Scale {
