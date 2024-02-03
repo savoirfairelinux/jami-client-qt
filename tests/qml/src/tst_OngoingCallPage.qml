@@ -38,7 +38,12 @@ TestWrapper {
             when: windowShown // Mouse events can only be handled
                               // after the window has been shown.
 
+            property string dummyImgFile
+
             function initTestCase() {
+                // Create a dummy image file to use for the local preview.
+                dummyImgFile = UtilsAdapter.createDummyImage();
+
                 // The CallActionBar on the OngoingCallPage starts out invisible and
                 // is made visible whenever the user moves their mouse.
                 // This is implemented via an event filter in the CallOverlayModel
@@ -79,50 +84,88 @@ TestWrapper {
                 compare(callActionBar.visible, true)
             }
 
-            function test_checkLocalPreviewAnchoring() {
+            // Define a generic local preview test wrapper function that starts and stops
+            // the local preview, and calls the provided test function in between.
+            function localPreviewTestWrapper(testFunction) {
                 const localPreview = findChild(uut, "localPreview");
-                const container = localPreview.parent;
 
-                // The preview should normally be invisible at first, but there is a bug
-                // in the current implementation that makes it visible. This will need to
-                // be adjusted once the bug is fixed.
-                compare(localPreview.visible, true);
+                // The preview should normally be invisible at first.
+                compare(localPreview.visible, false);
 
                 // Start a preview of a local resource.
-                const dummyImgFile = UtilsAdapter.createDummyImage();
                 localPreview.startWithId(UtilsAdapter.urlFromLocalPath(dummyImgFile));
 
-                // First check that the preview is anchored.
-                verify(localPreview.state.indexOf("unanchored") === -1);
+                // Wait for the preview to become visible.
+                wait(250);
+                compare(localPreview.visible, true);
 
-                const containerCenter = Qt.point(container.width / 2, container.height / 2);
-                function moveAndVerifyState(dx, dy, expectedState) {
-                    const previewCenter = Qt.point(localPreview.x + localPreview.width / 2,
-                                                   localPreview.y + localPreview.height / 2);
-                    const destination = Qt.point(containerCenter.x + dx,
-                                                 containerCenter.y + dy);
-                    // Position the mouse at the center of the preview, then drag it until
-                    // we reach the destination point.
-                    mouseDrag(container, previewCenter.x, previewCenter.y,
-                              destination.x - previewCenter.x, destination.y - previewCenter.y);
-                    wait(250);
-                    compare(localPreview.state, expectedState);
-                }
-
-                const dx = 1;
-                const dy = 1;
-                moveAndVerifyState(-dx, -dy, "anchor_top_left");
-                moveAndVerifyState(dx, -dy, "anchor_top_right");
-                moveAndVerifyState(-dx, dy, "anchor_bottom_left");
-                moveAndVerifyState(dx, dy, "anchor_bottom_right");
-
-                // Verify that during a drag process, the preview is unanchored.
-                mousePress(localPreview);
-                mouseMove(localPreview, 100, 100);
-                verify(localPreview.state.indexOf("unanchored") !== -1);
+                // Call the provided test function.
+                testFunction(localPreview);
 
                 // Stop the preview.
                 localPreview.startWithId("");
+                wait(250);
+                compare(localPreview.visible, false);
+            }
+
+            function test_localPreviewAnchoring() {
+                localPreviewTestWrapper(function(localPreview) {
+                    const container = localPreview.parent;
+
+                    // First check that the preview is anchored.
+                    verify(localPreview.state.indexOf("unanchored") === -1);
+
+                    const containerCenter = Qt.point(container.width / 2, container.height / 2);
+                    function moveAndVerifyState(dx, dy, expectedState) {
+                        const previewCenter = Qt.point(localPreview.x + localPreview.width / 2,
+                                                       localPreview.y + localPreview.height / 2);
+                        const destination = Qt.point(containerCenter.x + dx,
+                                                     containerCenter.y + dy);
+                        // Position the mouse at the center of the preview, then drag it until
+                        // we reach the destination point.
+                        mouseDrag(container, previewCenter.x, previewCenter.y,
+                                  destination.x - previewCenter.x, destination.y - previewCenter.y);
+                        wait(250);
+                        compare(localPreview.state, expectedState);
+                    }
+
+                    const dx = 1;
+                    const dy = 1;
+                    moveAndVerifyState(-dx, -dy, "anchor_top_left");
+                    moveAndVerifyState(dx, -dy, "anchor_top_right");
+                    moveAndVerifyState(-dx, dy, "anchor_bottom_left");
+                    moveAndVerifyState(dx, dy, "anchor_bottom_right");
+
+                    // Verify that during a drag process, the preview is unanchored.
+                    mousePress(localPreview);
+                    mouseMove(localPreview, 100, 100);
+                    verify(localPreview.state.indexOf("unanchored") !== -1);
+                    mouseRelease(localPreview);
+                });
+            }
+
+            function test_localPreviewHiding() {
+                localPreviewTestWrapper(function(localPreview) {
+                    // Make sure the preview is anchored.
+                    verify(localPreview.state.indexOf("unanchored") === -1);
+
+                    // It should also not be hidden.
+                    compare(localPreview.hidden, false);
+
+                    // We presume that the preview is anchored and that once we hover over the
+                    // local preview, that the hide button will become visible.
+                    // Note: There is currently an issue where the CallOverlay is detecting hover
+                    // events, but child controls are not. This should be addressed as it seems
+                    // to affect MouseArea, HoverHandler, Buttons, and other controls that rely
+                    // on hover events. For now, we'll manually trigger the onClicked event.
+                    const hidePreviewButton = findChild(localPreview, "hidePreviewButton");
+                    hidePreviewButton.onClicked();
+                    compare(localPreview.hidden, true);
+
+                    // "Click" the hide button again to unhide the preview.
+                    hidePreviewButton.onClicked();
+                    compare(localPreview.hidden, false);
+                });
             }
         }
     }
