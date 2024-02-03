@@ -88,11 +88,9 @@ public Q_SLOTS:
         auto downloadPath = settingsManager_->getValue(Settings::Key::DownloadPath);
         lrcInstance_->accountModel().downloadDirectory = downloadPath.toString() + "/";
 
-        // Create 2 Account
-        QSignalSpy accountStatusChangedSpy(&lrcInstance_->accountModel(),
-                                           &AccountModel::accountStatusChanged);
-
+        // Create 2 Accounts
         QSignalSpy accountAddedSpy(&lrcInstance_->accountModel(), &AccountModel::accountAdded);
+
         aliceId = lrcInstance_->accountModel().createNewAccount(profile::Type::JAMI, "Alice");
         accountAddedSpy.wait(15000);
         QCOMPARE(accountAddedSpy.count(), 1);

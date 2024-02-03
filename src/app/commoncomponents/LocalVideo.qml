@@ -23,19 +23,26 @@ import net.jami.Adapters 1.1
 VideoView {
     id: root
 
+    property bool visibilityCondition: true
+
     crop: true
+    visible: isRendering && visibilityCondition
 
     function startWithId(id, force = false) {
         if (id !== undefined && id.length === 0) {
-            VideoDevices.stopDevice(rendererId);
-            rendererId = id;
-        } else {
-            const forceRestart = rendererId === id;
-            if (!forceRestart) {
-                // Stop previous device
-                VideoDevices.stopDevice(rendererId);
-            }
-            rendererId = VideoDevices.startDevice(id, forceRestart);
+            stop();
+            return;
         }
+        const forceRestart = rendererId === id;
+        if (!forceRestart) {
+            // Stop previous device
+            VideoDevices.stopDevice(rendererId);
+        }
+        rendererId = VideoDevices.startDevice(id, forceRestart);
+    }
+
+    function stop() {
+        VideoDevices.stopDevice(rendererId);
+        rendererId = "";
     }
 }

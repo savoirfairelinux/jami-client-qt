@@ -157,7 +157,7 @@ MainApplication::MainApplication(int& argc, char** argv)
     // Note: the following will cause detailed Qt logging and effectively spam the console
     // without using `qt.*=false`. It may be useful for debugging Qt/QtQuick issues.
     QLoggingCategory::setFilterRules("\n"
-                                     "*.debug=true\n"
+                                     "*.debug=false\n"
                                      "libclient.debug=false\n"
                                      "qt.*=false\n"
                                      "qml.debug=false\n"
