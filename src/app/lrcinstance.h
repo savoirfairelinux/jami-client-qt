@@ -141,12 +141,16 @@ public:
 
 Q_SIGNALS:
     void accountListChanged();
+    void currentAccountRemoved();
     void selectedConvUidChanged();
     void restoreAppRequested();
     void notificationClicked();
     void conversationUpdated(const QString& convId, const QString& accountId);
     void draftSaved(const QString& convId);
     void base64SwarmAvatarChanged();
+
+private Q_SLOTS:
+    void onAccountRemoved(const QString& accountId);
 
 private:
     std::unique_ptr<Lrc> lrc_;

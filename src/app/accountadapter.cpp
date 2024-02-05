@@ -22,6 +22,8 @@
 
 #include "appsettingsmanager.h"
 #include "qtutils.h"
+#include "systemtray.h"
+#include "lrcinstance.h"
 #include "accountlistmodel.h"
 
 #include <QtConcurrent/QtConcurrent>
@@ -59,6 +61,14 @@ AccountModel*
 AccountAdapter::getModel()
 {
     return &(lrcInstance_->accountModel());
+}
+
+AccountAdapter*
+AccountAdapter::create(QQmlEngine*, QJSEngine*)
+{
+    return new AccountAdapter(qApp->property("AppSettingsManager").value<AppSettingsManager*>(),
+                              qApp->property("SystemTray").value<SystemTray*>(),
+                              qApp->property("LRCInstance").value<LRCInstance*>());
 }
 
 void

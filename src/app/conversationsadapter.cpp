@@ -21,8 +21,6 @@
 
 #include "qtutils.h"
 #include "systemtray.h"
-#include "qmlregister.h"
-#include "qtutils.h"
 
 #ifdef Q_OS_LINUX
 #include "namedirectory.h"
@@ -138,6 +136,12 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
             &LRCInstance::currentAccountIdChanged,
             this,
             &ConversationsAdapter::onCurrentAccountIdChanged);
+
+    connect(lrcInstance_,
+            &LRCInstance::currentAccountRemoved,
+            this,
+            &ConversationsAdapter::onCurrentAccountRemoved,
+            Qt::DirectConnection);
 
     connectConversationModel();
 }
@@ -593,6 +597,14 @@ ConversationsAdapter::openDialogConversationWith(const QString& peerUri)
     if (convInfo.uid.isEmpty() || !convInfo.isCoreDialog())
         return;
     lrcInstance_->selectConversation(convInfo.uid);
+}
+
+void
+ConversationsAdapter::onCurrentAccountRemoved()
+{
+    // Unbind proxy model source models.
+    convModel_->bindSourceModel(nullptr);
+    searchModel_->bindSourceModel(nullptr);
 }
 
 void

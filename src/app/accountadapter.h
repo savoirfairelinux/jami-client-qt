@@ -20,8 +20,7 @@
 
 #include "qmladapterbase.h"
 
-#include "systemtray.h"
-#include "lrcinstance.h"
+#include "api/accountmodel.h"
 
 #include <QSettings>
 #include <QString>
@@ -29,6 +28,7 @@
 #include <QApplication> // QML registration
 
 class AppSettingsManager;
+class SystemTray;
 
 class AccountAdapter final : public QmlAdapterBase
 {
@@ -44,12 +44,7 @@ Q_SIGNALS:
     void modelChanged();
 
 public:
-    static AccountAdapter* create(QQmlEngine*, QJSEngine*)
-    {
-        return new AccountAdapter(qApp->property("AppSettingsManager").value<AppSettingsManager*>(),
-                                  qApp->property("SystemTray").value<SystemTray*>(),
-                                  qApp->property("LRCInstance").value<LRCInstance*>());
-    }
+    static AccountAdapter* create(QQmlEngine*, QJSEngine*);
 
     explicit AccountAdapter(AppSettingsManager* settingsManager,
                             SystemTray* systemTray,

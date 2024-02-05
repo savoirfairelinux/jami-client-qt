@@ -70,6 +70,12 @@ LRCInstance::LRCInstance(migrateCallback willMigrateCb,
         set_currentAccountAvatarSet(!getCurrentAccountInfo().profileInfo.avatar.isEmpty());
     });
 
+    connect(&accountModel(),
+            &AccountModel::accountRemoved,
+            this,
+            &LRCInstance::onAccountRemoved,
+            Qt::DirectConnection);
+
     // set the current account if any
     auto accountList = accountModel().getAccountList();
     if (accountList.size()) {
@@ -469,4 +475,12 @@ VectorMapStringString
 LRCInstance::getChannelList(const QString& accountId, const QString& uid)
 {
     return Lrc::getChannelList(accountId, uid);
+}
+
+void
+LRCInstance::onAccountRemoved(const QString& accountId)
+{
+    if (accountId != currentAccountId_)
+        return;
+    Q_EMIT currentAccountRemoved();
 }
