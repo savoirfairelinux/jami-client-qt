@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75667b8d_abd913e2",
+        "filename": "src/app/mainapplication.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-02-05T16:46:03Z",
+      "side": 1,
+      "message": "I\u0027m not sure if there\u0027s an easy way to fix this (and it doesn\u0027t really matter) but right now the file name gets printed twice when we get a QML warning, e.g.:\n\ndefault\t[1707151068036][WRN][ManageAccountPage.qml:39]: qrc:/settingsview/components/ManageAccountPage.qml:39:23: QML ColumnLayout: Layout polish loop detected for QQuickColumnLayout(0x55c6c782b850, parent\u003d0x55c6c68fe310, geometry\u003d40,0 420x1003). Aborting after two iterations.",
+      "range": {
+        "startLine": 70,
+        "startChar": 4,
+        "endLine": 74,
+        "endChar": 94
+      },
+      "revId": "6c0414eb71c387e3d5794e9cdd84ac9e3b43554b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
