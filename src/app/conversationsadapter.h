@@ -19,7 +19,6 @@
 
 #pragma once
 
-#include "lrcinstance.h"
 #include "qmladapterbase.h"
 #include "conversationlistmodel.h"
 #include "searchresultslistmodel.h"
@@ -91,6 +90,7 @@ Q_SIGNALS:
     void conversationReady(const QString& convId);
 
 private Q_SLOTS:
+    void onCurrentAccountRemoved();
     void onCurrentAccountIdChanged();
 
     // cross-account slots
