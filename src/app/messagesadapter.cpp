@@ -387,6 +387,7 @@ MessagesAdapter::dataForInteraction(const QString& interactionId, int role) cons
     return {};
 }
 
+// KESS
 void
 MessagesAdapter::userIsComposing(bool isComposing)
 {
@@ -558,7 +559,7 @@ MessagesAdapter::onComposingStatusChanged(const QString& convId,
                                           bool isComposing)
 {
     Q_UNUSED(contactUri)
-    if (lrcInstance_->get_selectedConvUid() == convId) {
+    if (lrcInstance_->get_selectedConvUid() == convId && settingsManager_->getValue(Settings::Key::EnableTypingIndicator).toBool()) {
         const QString& accId = lrcInstance_->get_currentAccountId();
         auto& conversation = lrcInstance_->getConversationFromConvUid(convId, accId);
         set_currentConvComposingList(conversationTypersUrlToName(conversation.typers));
