@@ -40,7 +40,8 @@ CurrentAccount::CurrentAccount(LRCInstance* lrcInstance,
     connect(lrcInstance_,
             &LRCInstance::currentAccountIdChanged,
             this,
-            &CurrentAccount::setupForAccount);
+            &CurrentAccount::setupForAccount,
+            Qt::DirectConnection);
 
     setupForAccount();
 }
