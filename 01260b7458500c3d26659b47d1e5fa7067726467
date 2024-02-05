@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ae53863_05b03e2c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1024
+      },
+      "writtenOn": "2024-02-05T17:03:38Z",
+      "side": 1,
+      "message": "Let me know whether you think this approach is complete or not in relation to 1527",
+      "revId": "01260b7458500c3d26659b47d1e5fa7067726467",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
