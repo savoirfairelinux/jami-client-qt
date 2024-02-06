@@ -41,4 +41,8 @@ VideoView {
             rendererId = VideoDevices.startDevice(id, forceRestart);
         }
     }
+
+    function stop() {
+        startWithId("");
+    }
 }
