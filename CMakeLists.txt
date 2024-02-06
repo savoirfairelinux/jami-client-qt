@@ -588,6 +588,7 @@ add_subdirectory(3rdparty/SortFilterProxyModel)
 set(SFPM_OBJECTS $<TARGET_OBJECTS:SortFilterProxyModel>)
 
 # md4c
+set(BUILD_MD2HTML_EXECUTABLE OFF CACHE BOOL "Don't build md2html executable" FORCE)
 set(BUILD_SHARED_LIBS OFF CACHE BOOL "Don't build shared md4c library" FORCE)
 add_subdirectory(3rdparty/md4c EXCLUDE_FROM_ALL)
 list(APPEND CLIENT_LINK_DIRS ${MD4C_BINARY_DIR}/src)
