@@ -77,7 +77,7 @@ SBSMessageBase {
                 if (ParsedBody !== "")
                     return ParsedBody;
                 bubble.isDeleted = true;
-                return UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author) + " " + JamiStrings.deletedMessage ;
+                return ((CurrentAccount.uri === Author) ? JamiStrings.you : UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author)) + " " + JamiStrings.deletedMessage ;
             }
             horizontalAlignment: Text.AlignLeft
 

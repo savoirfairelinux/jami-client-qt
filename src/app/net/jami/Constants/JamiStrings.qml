@@ -346,6 +346,7 @@ Item {
     property string noNetworkConnectivity: qsTr("No network connectivity")
     property string deletedMessage: qsTr("deleted a message")
     property string backCall: qsTr("Back to Call")
+    property string you: qsTr("you")
 
     //MessagesResearch
     property string jumpTo: qsTr("Jump to")
