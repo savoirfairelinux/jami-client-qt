@@ -36,12 +36,15 @@ Rectangle {
     color: "black"
 
     LocalVideo {
-        id: previewRenderer
+        id: localPreview
         anchors.centerIn: parent
         anchors.fill: parent
 
         readonly property bool start: {
-            if (CurrentCall.isAudioOnly || !CurrentAccount.videoEnabled_Video || !VideoDevices.listSize) {
+            if (CurrentCall.isAudioOnly || !CurrentAccount.videoEnabled_Video) {
+                return false;
+            }
+            if (!VideoDevices.listSize) {
                 return false;
             }
             const isCallStatusEligible =
@@ -53,7 +56,7 @@ Rectangle {
             }
             return true;
         }
-        onStartChanged: previewRenderer.startWithId(start ? VideoDevices.getDefaultDevice() : "")
+        onStartChanged: localPreview.startWithId(start ? VideoDevices.getDefaultDevice() : "")
         opacity: 0.5
     }
 

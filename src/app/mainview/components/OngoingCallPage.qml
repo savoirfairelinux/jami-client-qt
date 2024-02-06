@@ -41,8 +41,6 @@ Rectangle {
     // A link to the first child will provide access to the chat view.
     property var chatView: chatViewContainer.children[0]
 
-    onCallPreviewIdChanged: previewRenderer.startWithId(callPreviewId);
-
     color: "black"
 
     Connections {
@@ -129,8 +127,8 @@ Rectangle {
 
                 onTapped: function (eventPoint, button) {
                     if (button === Qt.RightButton) {
-                        var isOnLocal = eventPoint.position.x >= previewRenderer.x && eventPoint.position.x <= previewRenderer.x + previewRenderer.width;
-                        isOnLocal &= eventPoint.position.y >= previewRenderer.y && eventPoint.position.y <= previewRenderer.y + previewRenderer.height;
+                        var isOnLocal = eventPoint.position.x >= localPreview.x && eventPoint.position.x <= localPreview.x + localPreview.width;
+                        isOnLocal &= eventPoint.position.y >= localPreview.y && eventPoint.position.y <= localPreview.y + localPreview.height;
                         isOnLocal |= participantsLayer.hoveredOverlaySinkId.indexOf("camera://") === 0;
                         callOverlay.openCallViewContextMenuInPos(eventPoint.position.x, eventPoint.position.y, participantsLayer.hoveredOverlayUri, participantsLayer.hoveredOverlaySinkId, participantsLayer.hoveredOverVideoMuted, isOnLocal);
                     }
@@ -169,14 +167,19 @@ Rectangle {
             }
 
             LocalVideo {
-                id: previewRenderer
+                id: localPreview
+
+                readonly property var container: parent
+                readonly property string callPreviewId: root.callPreviewId
 
                 visibilityCondition: (CurrentCall.isSharing || !CurrentCall.isVideoMuted) &&
                                      !CurrentCall.isConference
                 height: width * invAspectRatio
-                width: Math.max(callPageMainRect.width / 5, JamiTheme.minimumPreviewWidth)
+                width: Math.max(container.width / 5, JamiTheme.minimumPreviewWidth)
                 flip: CurrentCall.flipSelf && !CurrentCall.isSharing
                 blurRadius: hidden ? 25 : 0
+                onCallPreviewIdChanged: startWithId(callPreviewId)
+                onVisibleChanged: if (!visible) stop()
 
                 anchors.topMargin: previewMarginYTop
                 anchors.leftMargin: sideMargin
@@ -196,15 +199,12 @@ Rectangle {
                 // Animate the hiddenSize with a Behavior.
                 Behavior on sideMargin { NumberAnimation { duration: 250; easing.type: Easing.OutExpo }}
                 readonly property bool onLeft: state.indexOf("left") !== -1
-                Button {
+                PushButton {
                     id: hidePreviewButton
-                    width: previewRenderer.hiddenHandleSize
-                    state: {
-                        if (!previewRenderer.onLeft) {
-                            return previewRenderer.hidden ? "left" : "right";
-                        }
-                        return previewRenderer.hidden ? "right" : "left";
-                    }
+                    width: localPreview.hiddenHandleSize
+                    state: localPreview.onLeft ?
+                               (localPreview.hidden ? "right" : "left") :
+                               (localPreview.hidden ? "left" : "right")
                     states: [
                         State {
                             name: "left"
@@ -223,23 +223,23 @@ Rectangle {
                     ]
                     anchors.top: parent.top
                     anchors.bottom: parent.bottom
-                    opacity: (previewRenderer.anchored && hoverHandler.hovered) || previewRenderer.hidden
+                    opacity: (localPreview.anchored && hoverHandler.hovered) || localPreview.hidden
                     Behavior on opacity { NumberAnimation { duration: 250; easing.type: Easing.OutExpo }}
                     visible: opacity > 0
                     background: Rectangle {
+                        readonly property color normalColor: JamiTheme.mediumGrey
                         color: JamiTheme.mediumGrey
-                        opacity: 0.5
+                        opacity: hidePreviewButton.hovered ? 0.7 : 0.5
+                        Behavior on opacity { NumberAnimation { duration: 250; easing.type: Easing.OutExpo }}
                     }
-                    contentItem: Item {
-                        ResponsiveImage {
-                            anchors.centerIn: parent
-                            source: hidePreviewButton.state === "left" ?
-                                        JamiResources.chevron_left_black_24dp_svg :
-                                        JamiResources.chevron_right_black_24dp_svg
-                            color: JamiTheme.darkGreyColor
-                        }
-                    }
-                    onClicked: previewRenderer.hidden = !previewRenderer.hidden
+                    normalImageSource: hidePreviewButton.state === "left" ?
+                                           JamiResources.chevron_left_black_24dp_svg :
+                                           JamiResources.chevron_right_black_24dp_svg
+                    imageColor: JamiTheme.darkGreyColor
+                    onClicked: localPreview.hidden = !localPreview.hidden
+                    toolTipText: localPreview.hidden ?
+                                     JamiStrings.showLocalVideo :
+                                     JamiStrings.hideLocalVideo
                 }
 
                 state: "anchor_top_right"
@@ -247,7 +247,7 @@ Rectangle {
                     State {
                         name: "unanchored"
                         AnchorChanges {
-                            target: previewRenderer
+                            target: localPreview
                             anchors.top: undefined
                             anchors.right: undefined
                             anchors.bottom: undefined
@@ -257,33 +257,33 @@ Rectangle {
                     State {
                         name: "anchor_top_left"
                         AnchorChanges {
-                            target: previewRenderer
-                            anchors.top: callPageMainRect.top
-                            anchors.left: callPageMainRect.left
+                            target: localPreview
+                            anchors.top: localPreview.container.top
+                            anchors.left: localPreview.container.left
                         }
                     },
                     State {
                         name: "anchor_top_right"
                         AnchorChanges {
-                            target: previewRenderer
-                            anchors.top: callPageMainRect.top
-                            anchors.right: callPageMainRect.right
+                            target: localPreview
+                            anchors.top: localPreview.container.top
+                            anchors.right: localPreview.container.right
                         }
                     },
                     State {
                         name: "anchor_bottom_right"
                         AnchorChanges {
-                            target: previewRenderer
-                            anchors.bottom: callPageMainRect.bottom
-                            anchors.right: callPageMainRect.right
+                            target: localPreview
+                            anchors.bottom: localPreview.container.bottom
+                            anchors.right: localPreview.container.right
                         }
                     },
                     State {
                         name: "anchor_bottom_left"
                         AnchorChanges {
-                            target: previewRenderer
-                            anchors.bottom: callPageMainRect.bottom
-                            anchors.left: callPageMainRect.left
+                            target: localPreview
+                            anchors.bottom: localPreview.container.bottom
+                            anchors.left: localPreview.container.left
                         }
                     }
                 ]
@@ -302,17 +302,17 @@ Rectangle {
 
                 DragHandler {
                     id: dragHandler
-                    readonly property var container: callPageMainRect
+                    readonly property var container: localPreview.container
                     target: parent
                     dragThreshold: 4
-                    enabled: !previewRenderer.hidden
+                    enabled: !localPreview.hidden
                     xAxis.maximum: container.width - parent.width - previewMargin
                     xAxis.minimum: previewMargin
                     yAxis.maximum: container.height - parent.height - previewMarginYBottom
                     yAxis.minimum: previewMarginYTop
                     onActiveChanged: {
                         if (active) {
-                            previewRenderer.state = "unanchored";
+                            localPreview.state = "unanchored";
                         } else {
                             const center = Qt.point(target.x + target.width / 2,
                                                     target.y + target.height / 2);
@@ -320,15 +320,15 @@ Rectangle {
                                                              container.y + container.height / 2);
                             if (center.x >= containerCenter.x) {
                                 if (center.y >= containerCenter.y) {
-                                    previewRenderer.state = "anchor_bottom_right";
+                                    localPreview.state = "anchor_bottom_right";
                                 } else {
-                                    previewRenderer.state = "anchor_top_right";
+                                    localPreview.state = "anchor_top_right";
                                 }
                             } else {
                                 if (center.y >= containerCenter.y) {
-                                    previewRenderer.state = "anchor_bottom_left";
+                                    localPreview.state = "anchor_bottom_left";
                                 } else {
-                                    previewRenderer.state = "anchor_top_left";
+                                    localPreview.state = "anchor_top_left";
                                 }
                             }
                         }
@@ -338,8 +338,8 @@ Rectangle {
                 layer.enabled: true
                 layer.effect: OpacityMask {
                     maskSource: Rectangle {
-                        width: previewRenderer.width
-                        height: previewRenderer.height
+                        width: localPreview.width
+                        height: localPreview.height
                         radius: JamiTheme.primaryRadius
                     }
                 }

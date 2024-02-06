@@ -29,7 +29,9 @@ VideoView {
     visible: isRendering && visibilityCondition
 
     function startWithId(id, force = false) {
+        console.warn("startWithId", id, force);
         if (id !== undefined && id.length === 0) {
+            console.warn("Invalid id; stopping device", rendererId);
             VideoDevices.stopDevice(rendererId);
             rendererId = id;
         } else {
@@ -40,5 +42,9 @@ VideoView {
             }
             rendererId = VideoDevices.startDevice(id, forceRestart);
         }
+    }
+
+    function stop() {
+        startWithId("");
     }
 }

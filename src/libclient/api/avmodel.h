@@ -243,7 +243,7 @@ public:
      * Stop preview renderer and the camera.
      * @param resource
      */
-    Q_INVOKABLE void stopPreview(const QString& resource);
+    Q_INVOKABLE bool stopPreview(const QString& resource);
     /**
      * Get the list of available windows ids
      * X11: a id is of the form 0x0000000
