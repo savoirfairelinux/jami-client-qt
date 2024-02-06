@@ -560,10 +560,10 @@ AVModel::startPreview(const QString& resource)
     return VideoManager::instance().openVideoInput(resource);
 }
 
-void
+bool
 AVModel::stopPreview(const QString& resource)
 {
-    VideoManager::instance().closeVideoInput(resource);
+    return VideoManager::instance().closeVideoInput(resource);
 }
 
 #ifdef WIN32
@@ -795,42 +795,50 @@ AVModel::useDirectRenderer() const
 #endif
 }
 
-QString AVModel::createMediaPlayer(const QString& resource)
+QString
+AVModel::createMediaPlayer(const QString& resource)
 {
     return VideoManager::instance().createMediaPlayer(resource);
 }
 
-void AVModel::closeMediaPlayer(const QString& resource)
+void
+AVModel::closeMediaPlayer(const QString& resource)
 {
     VideoManager::instance().closeMediaPlayer(resource);
 }
 
-bool AVModel::pausePlayer(const QString& id, bool pause)
+bool
+AVModel::pausePlayer(const QString& id, bool pause)
 {
     return VideoManager::instance().pausePlayer(id, pause);
 }
 
-bool AVModel::mutePlayerAudio(const QString& id, bool mute)
+bool
+AVModel::mutePlayerAudio(const QString& id, bool mute)
 {
     return VideoManager::instance().mutePlayerAudio(id, mute);
 }
 
-bool AVModel::playerSeekToTime(const QString& id, int time)
+bool
+AVModel::playerSeekToTime(const QString& id, int time)
 {
     return VideoManager::instance().playerSeekToTime(id, time);
 }
 
-qint64 AVModel::getPlayerPosition(const QString& id)
+qint64
+AVModel::getPlayerPosition(const QString& id)
 {
     return VideoManager::instance().getPlayerPosition(id);
 }
 
-qint64 AVModel::getPlayerDuration(const QString& id)
+qint64
+AVModel::getPlayerDuration(const QString& id)
 {
     return VideoManager::instance().getPlayerDuration(id);
 }
 
-void AVModel::setAutoRestart(const QString& id, bool restart)
+void
+AVModel::setAutoRestart(const QString& id, bool restart)
 {
     VideoManager::instance().setAutoRestart(id, restart);
 }
