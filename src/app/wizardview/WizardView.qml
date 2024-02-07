@@ -33,7 +33,7 @@ BaseView {
 
     inhibits: ["ConversationView"]
 
-    color: JamiTheme.backgroundColor
+    color: JamiTheme.secondaryBackgroundColor
 
     Connections {
         target: AccountAdapter
@@ -90,6 +90,7 @@ BaseView {
         property ScrollBar vScrollBar: ScrollBar.vertical
 
         anchors.fill: parent
+        anchors.topMargin: appWindow.useFrameless && Qt.platform.os.toString() === "osx" ? 16 : 0
 
         contentHeight: controlPanelStackView.height
         boundsBehavior: Flickable.StopAtBounds
