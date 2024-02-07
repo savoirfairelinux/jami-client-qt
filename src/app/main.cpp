@@ -28,7 +28,7 @@
 #include <QApplication>
 #include <QCryptographicHash>
 #include <QtQuick>
-#ifdef WITH_WEBENGINE
+#if WITH_WEBENGINE
 #include <QtWebEngineCore>
 #include <QtWebEngineQuick>
 #endif
@@ -74,7 +74,7 @@ main(int argc, char* argv[])
     QApplication::setHighDpiScaleFactorRoundingPolicy(
         Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
 
-#ifdef WITH_WEBENGINE
+#if WITH_WEBENGINE
     qputenv("QTWEBENGINE_CHROMIUM_FLAGS",
             "--disable-web-security"
             " --single-process");
