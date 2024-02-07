@@ -80,25 +80,19 @@ Item {
                     }
                 }
                 contentItem: ColumnLayout {
-                    width: parent.width
-                    JamiPushButton {
+                    JamiPushButton { QWKSetParentHitTestVisible {}
                         id: closeButton
+                        readonly property bool alignLeft: Qt.platform.os.toString() !== "osx"
                         normalColor: Qt.rgba(124, 124, 124, 0.36)
                         hoveredColor: Qt.rgba(124, 124, 124, 0.75)
-                        Layout.alignment: Qt.AlignRight
+                        Layout.alignment: alignLeft ? Qt.AlignLeft : Qt.AlignRight
+                        Layout.leftMargin: 10
+                        Layout.rightMargin: 30
                         Layout.topMargin: 10
-                        Layout.rightMargin: 35
-                        Layout.preferredWidth: JamiTheme.preferredFieldHeight
-                        Layout.preferredHeight: childrenRect.height
-
                         imageColor: JamiTheme.blackColor
                         toolTipText: JamiStrings.closeSettings
-
-                        preferredSize: 32
                         source: JamiResources.round_close_24dp_svg
-                        onClicked: {
-                            closed();
-                        }
+                        onClicked: closed()
                     }
 
                     ResponsiveImage {
