@@ -309,13 +309,15 @@ getAccountAvatar(const QString& accountId)
     QString filePath;
     filePath = accountLocalPath + "profile.vcf";
     QFile file(filePath);
-    if (!file.open(QIODevice::ReadOnly))
+    if (!file.open(QIODevice::ReadOnly)) {
         return {};
+    }
     const auto vCard = lrc::vCard::utils::toHashMap(file.readAll());
-    const auto photo = (vCard.find(vCard::Property::PHOTO_PNG) == vCard.end())
-                           ? vCard[vCard::Property::PHOTO_JPEG]
-                           : vCard[vCard::Property::PHOTO_PNG];
-    return photo;
+    for (const auto& key : vCard.keys()) {
+        if (key.contains("PHOTO"))
+            return vCard[key];
+    }
+    return {};
 }
 
 static QPair<QString, QString>
