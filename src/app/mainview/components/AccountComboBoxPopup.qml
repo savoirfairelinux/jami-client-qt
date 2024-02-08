@@ -35,7 +35,7 @@ Popup {
 
     // limit the number of accounts shown at once
     implicitHeight: {
-        return visible ? Math.min(JamiTheme.accountListItemHeight * Math.min(6, listView.model.count + 1) + 96, appWindow.height - parent.height) : 0;
+        return visible ? Math.min(JamiTheme.accountListItemHeight * Math.min(6, listView.model.count + 1) + 91, appWindow.height - parent.height) : 0;
     }
     padding: 0
     modal: true
