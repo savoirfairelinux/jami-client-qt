@@ -397,6 +397,8 @@ def run_install(args):
         install_args.append('-w')
     if args.arch:
         install_args += ('-a', args.arch)
+    if args.extra_cmake_flags:
+        install_args += ('-D', args.extra_cmake_flags)
 
     if args.distribution == OSX_DISTRIBUTION_NAME:
         # The `universal_newlines` parameter has been renamed to `text` in
@@ -740,6 +742,9 @@ def parse_args():
     ap.add_argument('--pywinmake', dest='pywinmake',
                     default=False, action='store_true',
                     help='Build Jami for Windows using pywinmake')
+    # Allow supplying extra congifure flags to the client cmake.
+    ap.add_argument('--extra-cmake-flags', type=str,
+                    help='Extra flags to pass to the client cmake')
 
     dist = choose_distribution()
 
