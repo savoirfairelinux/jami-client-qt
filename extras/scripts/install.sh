@@ -29,6 +29,8 @@ export OSTYPE
   # -W: disable libwrap and shared library
   # -w: do not use Qt WebEngine
   # -a: arch to build
+  # -A: enable AddressSanitizer
+  # -D: extra CMake flags for the client
 
 set -ex
 
@@ -44,9 +46,10 @@ priv_install=true
 enable_libwrap=true
 enable_webengine=true
 asan=
+extra_cmake_flags=''
 arch=''
 
-while getopts gsc:dQ:P:p:uWwa:A OPT; do
+while getopts gsc:dQ:P:p:uWwa:AD: OPT; do
   case "$OPT" in
     g)
       global='true'
@@ -80,6 +83,9 @@ while getopts gsc:dQ:P:p:uWwa:A OPT; do
     ;;
     A)
       asan='true'
+    ;;
+    D)
+      extra_cmake_flags="${OPTARG}"
     ;;
     \?)
       exit 1
@@ -218,6 +224,11 @@ if [ "${global}" = "true" ]; then
 else
     client_cmake_flags+=(-DCMAKE_INSTALL_PREFIX="${INSTALL_DIR}"
                          -DWITH_DAEMON_SUBMODULE=true)
+fi
+
+# Add extra flags for the client
+if [ -n "${extra_cmake_flags}" ]; then
+    client_cmake_flags+=(${extra_cmake_flags})
 fi
 
 echo "info: Configuring $client client with flags: ${client_cmake_flags[*]}"
