@@ -69,7 +69,11 @@ COPY --from=builder /snap/snapcraft /snap/snapcraft
 COPY --from=builder /snap/bin/snapcraft /snap/bin/snapcraft
 
 # Generate locale and install dependencies.
-RUN apt-get update && apt-get dist-upgrade --yes && apt-get install --yes snapd sudo apt-transport-https locales && locale-gen en_US.UTF-8
+RUN apt-get update && apt-get dist-upgrade --yes && apt-get install --yes snapd sudo apt-transport-https locales wget && locale-gen en_US.UTF-8
+
+# Install CMake 3.21 for Qt 6
+ADD extras/packaging/gnu-linux/scripts/install-cmake.sh /opt/install-cmake.sh
+RUN /opt/install-cmake.sh
 
 # Set the proper environment.
 ENV LANG="en_US.UTF-8"
