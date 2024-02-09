@@ -22,6 +22,30 @@
       },
       "revId": "702f4401cd12a85fca5b6e23bd4407f33e6c2eab",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bff7d2c4_1bfb4a56",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-02-09T21:54:19Z",
+      "side": 1,
+      "message": "Agreed that we should -\u003e cqfd, both for local and the CI, but this could be useful for native docker on Windows. At least for now. I\u0027ll try running cqfd in WSL2 first. Anyway, the idea is to have exactly what our CI is doing locally.",
+      "parentUuid": "77a7cef8_ae962f2d",
+      "range": {
+        "startLine": 9,
+        "startChar": 14,
+        "endLine": 9,
+        "endChar": 22
+      },
+      "revId": "702f4401cd12a85fca5b6e23bd4407f33e6c2eab",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
