@@ -55,6 +55,7 @@ ApplicationWindow {
 
     Loader {
         id: loader
+
         source: Qt.resolvedUrl(testComponentURI)
         onStatusChanged: {
             console.log("Status changed to:", loader.status)
@@ -66,7 +67,6 @@ ApplicationWindow {
                 // If any of the dimensions are not set, set them to the appWindow's dimensions
                 item.width = item.width || Qt.binding(() => appWindow.width);
                 item.height = item.height || Qt.binding(() => appWindow.height);
-                viewCoordinator.init(item);
             }
         }
     }
