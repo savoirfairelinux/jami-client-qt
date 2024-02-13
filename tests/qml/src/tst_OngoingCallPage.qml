@@ -106,6 +106,9 @@ TestWrapper {
                                              "visibleChanged",
                                              () => localPreview.stop(),
                                              () => !localPreview.visible));
+
+                // Move the mouse to the center of the call screen.
+                mouseMove(uut);
             }
 
             function test_localPreviewAnchoring() {
@@ -113,7 +116,7 @@ TestWrapper {
                     const container = localPreview.parent;
 
                     // First check that the preview is anchored.
-                    verify(localPreview.state.indexOf("unanchored") === -1);
+                    verify(localPreview.anchored);
 
                     const containerCenter = Qt.point(container.width / 2, container.height / 2);
                     function moveAndVerifyState(dx, dy, expectedState) {
@@ -139,7 +142,7 @@ TestWrapper {
                     // Verify that during a drag process, the preview is unanchored.
                     mousePress(localPreview);
                     mouseMove(localPreview, 100, 100);
-                    verify(localPreview.state.indexOf("unanchored") !== -1);
+                    verify(!localPreview.anchored);
                     mouseRelease(localPreview);
                 });
             }
@@ -147,23 +150,33 @@ TestWrapper {
             function test_localPreviewHiding() {
                 localPreviewTestWrapper(function(localPreview) {
                     // Make sure the preview is anchored.
-                    verify(localPreview.state.indexOf("unanchored") === -1);
+                    verify(localPreview.anchored);
 
                     // It should also not be hidden.
                     compare(localPreview.hidden, false);
 
                     // We presume that the preview is anchored and that once we hover over the
                     // local preview, that the hide button will become visible.
-                    // Note: There is currently an issue where the CallOverlay is detecting hover
-                    // events, but child controls are not. This should be addressed as it seems
-                    // to affect MouseArea, HoverHandler, Buttons, and other controls that rely
-                    // on hover events. For now, we'll manually trigger the onClicked event.
                     const hidePreviewButton = findChild(localPreview, "hidePreviewButton");
-                    hidePreviewButton.onClicked();
+                    // This is required when the opacity has an animation.
+                    if (hidePreviewButton.visible) {
+                        verify(waitForSignalAndCheck(hidePreviewButton,
+                                                     "visibleChanged",
+                                                     undefined,
+                                                     () => !hidePreviewButton.visible));
+                    }
+                    compare(hidePreviewButton.visible, false);
+                    verify(waitForSignalAndCheck(hidePreviewButton,
+                                                 "visibleChanged",
+                                                 () => mouseMove(localPreview),
+                                                 () => hidePreviewButton.visible));
+
+                    // Click the hide button to hide the preview.
+                    mouseClick(hidePreviewButton);
                     compare(localPreview.hidden, true);
 
-                    // "Click" the hide button again to unhide the preview.
-                    hidePreviewButton.onClicked();
+                    // Click the hide button again to show the preview.
+                    mouseClick(hidePreviewButton);
                     compare(localPreview.hidden, false);
                 });
             }
