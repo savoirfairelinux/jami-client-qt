@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdca6da1_b3bfb965",
+        "filename": "src/libclient/messagelistmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-02-13T22:05:07Z",
+      "side": 1,
+      "message": "When and why is this required?\nrefactored: https://review.jami.net/c/jami-client-qt/+/26948/25/src/libclient/conversationmodel.cpp#b2502",
+      "range": {
+        "startLine": 192,
+        "startChar": 0,
+        "endLine": 192,
+        "endChar": 52
+      },
+      "revId": "129c99541c8f30cd7d94bb6f068f1056474b40ea",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
