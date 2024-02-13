@@ -16,6 +16,24 @@
       "message": "Will this patch also take care of this issue: https://git.jami.net/savoirfairelinux/jami-project/-/issues/1590",
       "revId": "0426bad084f8f4e17b2c010f93ebf48ba72c9dec",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42eeec1d_6890f0c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-02-13T16:30:54Z",
+      "side": 1,
+      "message": "Not intentionally. If not, it may be addressed separately.",
+      "parentUuid": "035f737a_151df4c2",
+      "revId": "0426bad084f8f4e17b2c010f93ebf48ba72c9dec",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
