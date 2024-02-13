@@ -74,6 +74,11 @@ public Q_SLOTS:
      */
     void applicationAvailable()
     {
+        QLoggingCategory::setFilterRules("\n"
+                                         "*.debug=false\n"
+                                         "libclient.debug=false\n"
+                                         "\n");
+
         connectivityMonitor_.reset(new ConnectivityMonitor(this));
         settingsManager_.reset(new AppSettingsManager(this));
         systemTray_.reset(new SystemTray(settingsManager_.get(), this));

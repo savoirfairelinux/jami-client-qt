@@ -154,16 +154,17 @@ TestWrapper {
 
                     // We presume that the preview is anchored and that once we hover over the
                     // local preview, that the hide button will become visible.
-                    // Note: There is currently an issue where the CallOverlay is detecting hover
-                    // events, but child controls are not. This should be addressed as it seems
-                    // to affect MouseArea, HoverHandler, Buttons, and other controls that rely
-                    // on hover events. For now, we'll manually trigger the onClicked event.
                     const hidePreviewButton = findChild(localPreview, "hidePreviewButton");
-                    hidePreviewButton.onClicked();
+                    mouseMove(localPreview);
+                    wait(250);
+                    compare(hidePreviewButton.visible, true);
+
+                    // Click the hide button to hide the preview.
+                    mouseClick(hidePreviewButton);
                     compare(localPreview.hidden, true);
 
-                    // "Click" the hide button again to unhide the preview.
-                    hidePreviewButton.onClicked();
+                    // Click the hide button again to show the preview.
+                    mouseClick(hidePreviewButton);
                     compare(localPreview.hidden, false);
                 });
             }

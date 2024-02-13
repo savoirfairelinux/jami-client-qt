@@ -273,14 +273,46 @@ ItemDelegate {
         popup: Popup {
             id: itemPopup
 
-            y: isVertical ? -(implicitHeight - root.height) / 2 - 18 : -implicitHeight - 12
+            y: {
+                // Determine the y position based on the orientation.
+                if (isVertical) {
+                    // For a vertical layout, adjust the y position to center the item vertically
+                    // relative to the root's height, with an additional upward offset of 18 pixels.
+                    y = -(implicitHeight - root.height) / 2 - 18;
+                } else {
+                    // For non-vertical layouts, position the item fully above its normal position
+                    // with an upward offset of 12 pixels from its implicit height.
+                    y = -implicitHeight - 12;
+                }
+            }
+
             x: {
-                if (isVertical)
-                    return -implicitWidth - 12;
-                var xValue = -(implicitWidth - root.width) / 2 - 18;
-                var mainPoint = mapToItem(viewCoordinator.rootView, xValue, y);
-                var diff = mainPoint.x + itemListView.implicitWidth - viewCoordinator.rootView.width;
-                return diff > 0 ? xValue - diff - 24 : xValue;
+                // Initialize the x position based on the orientation.
+                if (isVertical) {
+                    // If the layout is vertical, position the item to the left of its implicit width
+                    // with an additional offset of 12 pixels.
+                    x = -implicitWidth - 12;
+                } else {
+                    // Note: isn't some of this logic built into the Popup?
+
+                    // Calculate an initial x value aiming to center the item horizontally
+                    // relative to the root's width, with an additional offset.
+                    var xValue = -(implicitWidth - root.width) / 2 - 18;
+
+                    // Map the adjusted x value to the coordinate space of the callOverlay to
+                    // determine the actual position of the item within the overlay.
+                    var pointMappedContainer = mapToItem(callOverlay, xValue, y);
+
+                    // Calculate the difference between the right edge of the itemListView
+                    // (considering its position within callOverlay) and the right edge of the callOverlay.
+                    // This checks if the item extends outside the overlay.
+                    var diff = pointMappedContainer.x + itemListView.implicitWidth - callOverlay.width;
+
+                    // If the item extends beyond the overlay, adjust x value to the left to ensure
+                    // it fits within the overlay, with an extra leftward margin of 24 pixels.
+                    x = diff > 0 ? xValue - diff - 24 : xValue;
+                }
+
             }
 
             implicitWidth: contentItem.implicitWidth

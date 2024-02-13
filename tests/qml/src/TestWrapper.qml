@@ -52,8 +52,6 @@ Item {
         when: QTestRootObject.windowShown
     }
 
-    Component.onCompleted: viewCoordinator.init(this)
-
     property int visibility: 0
     Binding {
         tw.visibility: uut.Window.window.visibility
