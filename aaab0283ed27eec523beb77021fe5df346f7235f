@@ -22,6 +22,30 @@
       },
       "revId": "aaab0283ed27eec523beb77021fe5df346f7235f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1975ff42_0515de40",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-02-13T22:08:38Z",
+      "side": 1,
+      "message": "Seems to work fine on Linux/Windows for me. Maybe check the latest patchset.",
+      "parentUuid": "f856f422_bfb2d121",
+      "range": {
+        "startLine": 10,
+        "startChar": 15,
+        "endLine": 10,
+        "endChar": 17
+      },
+      "revId": "aaab0283ed27eec523beb77021fe5df346f7235f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
