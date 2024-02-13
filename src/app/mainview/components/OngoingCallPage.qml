@@ -190,6 +190,7 @@ Rectangle {
                 opacity: hidden ? callOverlay.mainOverlayOpacity : 1
 
                 // Allow hiding the preview (available when anchored)
+                readonly property bool hovered: hoverHandler.hovered
                 readonly property bool anchored: state !== "unanchored"
                 property bool hidden: false
                 readonly property real hiddenHandleSize: 32
@@ -226,7 +227,7 @@ Rectangle {
                     ]
                     anchors.top: parent.top
                     anchors.bottom: parent.bottom
-                    opacity: (localPreview.anchored && hoverHandler.hovered) || localPreview.hidden
+                    opacity: (localPreview.anchored && localPreview.hovered) || localPreview.hidden
                     Behavior on opacity { NumberAnimation { duration: 250; easing.type: Easing.OutExpo }}
                     visible: opacity > 0
                     background: Rectangle {

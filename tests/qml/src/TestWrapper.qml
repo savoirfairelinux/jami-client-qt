@@ -39,7 +39,8 @@ Item {
         spy.target = signalObject;
         spy.signalName = signalName;
         // Perform the action that should emit the signal.
-        action();
+        if (action)
+            action();
         // Wait a maximum of 1 second for the signal to be emitted.
         spy.wait(1000);
         // Check the signal count and the provided expression.
@@ -51,8 +52,6 @@ Item {
         tw.appWindow: uut.Window.window
         when: QTestRootObject.windowShown
     }
-
-    Component.onCompleted: viewCoordinator.init(this)
 
     property int visibility: 0
     Binding {
