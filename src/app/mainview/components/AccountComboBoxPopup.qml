@@ -223,6 +223,7 @@ Popup {
 
         JamiListView {
             id: listView
+            objectName: "accountList"
 
             Layout.fillHeight: true
             Layout.preferredWidth: parent.width
