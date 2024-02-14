@@ -341,7 +341,7 @@ SidePanelBase {
                 Layout.fillWidth: true
                 Layout.leftMargin: 15
                 Layout.rightMargin: 15
-                Layout.topMargin: 10
+                Layout.topMargin: sidePanelTabBar.visible ? 10 : 0
 
                 visible: JamiQmlUtils.isDonationBannerVisible
             }
