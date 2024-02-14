@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecb24fd0_a33f1b68",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 2858,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-02-14T00:35:00Z",
+      "side": 1,
+      "message": "pretty sure if out_of_range we should return there\n\nhttps://review.jami.net/c/jami-client-qt/+/27408 btw",
+      "range": {
+        "startLine": 2858,
+        "startChar": 30,
+        "endLine": 2858,
+        "endChar": 31
+      },
+      "revId": "3d3b4612df398b2aa01ec6b18019b07fec34a8c2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}

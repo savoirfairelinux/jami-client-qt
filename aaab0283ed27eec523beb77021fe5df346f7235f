@@ -46,6 +46,30 @@
       },
       "revId": "aaab0283ed27eec523beb77021fe5df346f7235f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f3967cb_ac4ac3ff",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-02-14T00:35:00Z",
+      "side": 1,
+      "message": "I confirm latest patchset is ok!",
+      "parentUuid": "1975ff42_0515de40",
+      "range": {
+        "startLine": 10,
+        "startChar": 15,
+        "endLine": 10,
+        "endChar": 17
+      },
+      "revId": "aaab0283ed27eec523beb77021fe5df346f7235f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }

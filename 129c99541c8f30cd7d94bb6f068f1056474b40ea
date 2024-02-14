@@ -22,6 +22,30 @@
       },
       "revId": "129c99541c8f30cd7d94bb6f068f1056474b40ea",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "516cdb24_57a6595e",
+        "filename": "src/libclient/messagelistmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-02-14T00:35:00Z",
+      "side": 1,
+      "message": "I guess on merge \u0026 edit/delete message",
+      "parentUuid": "bdca6da1_b3bfb965",
+      "range": {
+        "startLine": 192,
+        "startChar": 0,
+        "endLine": 192,
+        "endChar": 52
+      },
+      "revId": "129c99541c8f30cd7d94bb6f068f1056474b40ea",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
