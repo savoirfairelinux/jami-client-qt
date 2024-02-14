@@ -45,26 +45,31 @@ BaseModalDialog {
         open();
     }
 
-    button1.text: buttonTitles[0]
-    button1Role: buttonRoles[0]
-    button2.text: buttonTitles[1] ? buttonTitles[1] : null
-    button2Role: buttonRoles[1]
-    button1.onClicked: {
-        if (buttonCallBacks[0])
-            buttonCallBacks[0]();
-        close();
-    }
-    button2.onClicked: {
-        if (buttonCallBacks[1])
-            buttonCallBacks[1]();
-        close();
-    }
+    buttonsModel: [
+        {
+            text: buttonTitles[0],
+            role: buttonRoles[0],
+            onClicked: function() {
+                if (buttonCallBacks[0])
+                    buttonCallBacks[0]();
+                close();
+            }
+        },
+        {
+            text: buttonTitles[1] ? buttonTitles[1] : "",
+            role: buttonRoles[1],
+            onClicked: function() {
+                if (buttonCallBacks[1])
+                    buttonCallBacks[1]();
+                close();
+            }
+        }
+    ]
 
     Component.onCompleted: {
+        const button1 = buttons[0];
         for (var i = 0; i < buttonStyles.length; i++){
-
             switch (buttonStyles[i]) {
-
             case SimpleMessageDialog.ButtonStyle.TintedBlue:
                 button1.color = JamiTheme.buttonTintedBlue;
                 button1.hoveredColor = JamiTheme.buttonTintedBlueHovered;

@@ -73,13 +73,17 @@ BaseModalDialog {
         done(success, purpose);
     }
 
-    button1.text: (purpose === PasswordDialog.ExportAccount) ? JamiStrings.exportAccount : JamiStrings.change
-    button1Role: DialogButtonBox.ApplyRole
-    button1.enabled: purpose === PasswordDialog.SetPassword
-
-    button2.text: JamiStrings.cancel
-    button2Role: DialogButtonBox.RejectRole
-    button2.onClicked: close()
+    buttonsModel: [
+        {
+            text: (purpose === PasswordDialog.ExportAccount) ? JamiStrings.exportAccount : JamiStrings.change,
+            role: DialogButtonBox.ApplyRole,
+            enabled: purpose === PasswordDialog.SetPasswords
+        },
+        {
+            text: JamiStrings.cancel,
+            role: DialogButtonBox.RejectRole
+        }
+    ]
 
     popupContent: ColumnLayout {
         id: popupContentColumnLayout
@@ -88,6 +92,7 @@ BaseModalDialog {
         spacing: 16
 
         function validatePassword() {
+            const button1 = buttons[0];
             switch (purpose) {
             case PasswordDialog.ExportAccount:
                 button1.enabled = currentPasswordEdit.dynamicText.length > 0;
@@ -118,7 +123,8 @@ BaseModalDialog {
         onVisibleChanged: validatePassword()
 
         Component.onCompleted: {
-            root.button1.clicked.connect(function() {
+            const button1 = buttons[0];
+            button1.clicked.connect(function() {
                 button1.enabled = false;
                 timerToOperate.restart();
             });

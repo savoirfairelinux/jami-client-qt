@@ -31,17 +31,17 @@ BaseModalDialog {
     property string textLabel: ""
 
     closeButtonVisible: false
-    button1.text: confirmLabel
-    button1.contentColorProvider: JamiTheme.redButtonColor
-    button1.onClicked: {
-        close();
-        accepted();
-    }
-    button2.text: JamiStrings.optionCancel
-    button2.onClicked: close()
 
-    button1Role: DialogButtonBox.AcceptRole
-    button2Role: DialogButtonBox.RejectRole
+    buttonsModel: [
+        {
+            text: confirmLabel,
+            role: DialogButtonBox.AcceptRole
+        },
+        {
+            text: JamiStrings.optionCancel,
+            role: DialogButtonBox.RejectRole
+        }
+    ]
 
     popupContent: ColumnLayout {
         id: column
