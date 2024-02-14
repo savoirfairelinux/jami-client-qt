@@ -70,6 +70,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5552bcf6_1f6b7129",
+        "filename": "src/app/commoncomponents/LocalVideo.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-02-14T17:03:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0042854c_c00074ba",
+      "range": {
+        "startLine": 46,
+        "startChar": 8,
+        "endLine": 46,
+        "endChar": 19
+      },
+      "revId": "490389352fb040a7bc816f886c6cf5776603b88a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d234c8d5_a8b0d0f1",
@@ -106,6 +130,30 @@
       "writtenOn": "2024-02-13T19:57:11Z",
       "side": 1,
       "message": "no QSignalSpy?",
+      "range": {
+        "startLine": 107,
+        "startChar": 16,
+        "endLine": 107,
+        "endChar": 20
+      },
+      "revId": "490389352fb040a7bc816f886c6cf5776603b88a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61ec4052_8a256aa4",
+        "filename": "tests/qml/src/tst_OngoingCallPage.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-02-14T17:03:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "edfc7816_a11f8f0d",
       "range": {
         "startLine": 107,
         "startChar": 16,
