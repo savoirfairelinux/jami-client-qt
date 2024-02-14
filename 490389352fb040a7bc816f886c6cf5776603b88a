@@ -73,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "39e42f26_0c1c18a7",
+        "filename": "src/app/commoncomponents/LocalVideo.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-02-14T23:01:01Z",
+      "side": 1,
+      "message": "I can confirm that even though the issue is related to this change, is not introduced with it. I see a black preview component, which is expected as this change makes it so that the preview is not visible when not rendering frames corresponding to its renderer ID.\n\nhttps://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/1569\n\nI suggest we fix it in a subsequent change.",
+      "parentUuid": "9f68058e_b6e6faa4",
+      "range": {
+        "startLine": 29,
+        "startChar": 13,
+        "endLine": 29,
+        "endChar": 24
+      },
+      "revId": "490389352fb040a7bc816f886c6cf5776603b88a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0042854c_c00074ba",
         "filename": "src/app/commoncomponents/LocalVideo.qml",
         "patchSetId": 9
