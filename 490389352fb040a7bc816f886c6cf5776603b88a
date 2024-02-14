@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "43dba516_f52f5679",
+        "filename": "src/app/commoncomponents/LocalVideo.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-02-14T18:45:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28136381_6e4bfab9",
+      "range": {
+        "startLine": 26,
+        "startChar": 18,
+        "endLine": 26,
+        "endChar": 37
+      },
+      "revId": "490389352fb040a7bc816f886c6cf5776603b88a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9f68058e_b6e6faa4",
@@ -107,6 +131,30 @@
       "writtenOn": "2024-02-13T19:57:11Z",
       "side": 1,
       "message": "videoProvider.activeRenderers[rendererId] !\u003d\u003d null?",
+      "range": {
+        "startLine": 35,
+        "startChar": 40,
+        "endLine": 35,
+        "endChar": 96
+      },
+      "revId": "490389352fb040a7bc816f886c6cf5776603b88a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e40bbc0_1665715a",
+        "filename": "src/app/commoncomponents/VideoView.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-02-14T18:45:23Z",
+      "side": 1,
+      "message": "yup. just with undefined",
+      "parentUuid": "d234c8d5_a8b0d0f1",
       "range": {
         "startLine": 35,
         "startChar": 40,
