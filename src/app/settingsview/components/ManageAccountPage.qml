@@ -44,6 +44,7 @@ SettingsPageBase {
         anchors.left: parent.left
         anchors.leftMargin: JamiTheme.preferredSettingsMarginSize
 
+
         ColumnLayout {
             id: enableAccount
 
@@ -428,14 +429,13 @@ SettingsPageBase {
                 id: deleteDescription
 
                 Layout.alignment: Qt.AlignLeft
-                Layout.preferredWidth: parent.width
+                Layout.fillWidth: true
 
                 text: JamiStrings.deleteAccountDescription
                 color: JamiTheme.textColor
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
                 wrapMode: Text.WordWrap
-                visible: !root.isSIP
 
                 font.pixelSize: JamiTheme.settingsDescriptionPixelSize
                 font.kerning: true
