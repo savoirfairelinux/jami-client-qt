@@ -106,7 +106,7 @@ RowLayout {
 
         up.indicator: Rectangle {
 
-            width: parent.width / 8
+            width: root.itemWidth / 8
             radius: 4
             anchors {
                 top: parent.top
@@ -132,7 +132,7 @@ RowLayout {
 
         down.indicator: Rectangle {
 
-            width: parent.width / 8
+            width: root.itemWidth / 8
             radius: 4
             anchors {
                 top: parent.top
