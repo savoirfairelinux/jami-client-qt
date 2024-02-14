@@ -101,7 +101,16 @@ Control {
 
         Label {
             id: username
-            text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author)
+
+            wrapMode: Text.NoWrap
+            text: textMetricsUsername.elidedText
+            TextMetrics {
+                id: textMetricsUsername
+
+                text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author)
+                elideWidth: 200
+                elide: Qt.ElideMiddle
+            }
             visible: (seq === MsgSeq.first || seq === MsgSeq.single) && !isOutgoing && !isReply
 
             font.pointSize: JamiTheme.smallFontSize
