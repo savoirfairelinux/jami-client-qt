@@ -72,10 +72,27 @@ public:
             // and the app can be relaunched (can be the case after a client crash or Ctrl+C)
         }
 
-        memLock_.acquire();
-        const bool result = sharedMem_.create(sizeof(quint64));
-        memLock_.release();
+        // Lambda function to attempt shared memory creation.
+        auto attemptCreateSharedMemory = [&]() -> bool {
+            memLock_.acquire();
+            bool created = sharedMem_.create(sizeof(quint64));
+            memLock_.release();
+            return created;
+        };
+
+        // Attempt to create the shared memory
+        bool result = attemptCreateSharedMemory();
         if (!result) {
+            // Handle the special case for aarch64 where creation might fail with a NotFound
+            // error initially.
+            if (sharedMem_.error() == QSharedMemory::NotFound) {
+                // Retry creating the shared memory
+                if (attemptCreateSharedMemory()) {
+                    return true; // Success on second attempt
+                }
+            }
+
+            // If creation failed (either initially or on retry), perform cleanup.
             release();
             return false;
         }
