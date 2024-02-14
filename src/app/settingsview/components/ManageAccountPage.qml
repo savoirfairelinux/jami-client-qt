@@ -428,7 +428,7 @@ SettingsPageBase {
                 id: deleteDescription
 
                 Layout.alignment: Qt.AlignLeft
-                Layout.preferredWidth: parent.width
+                Layout.fillWidth: true
 
                 text: JamiStrings.deleteAccountDescription
                 color: JamiTheme.textColor
