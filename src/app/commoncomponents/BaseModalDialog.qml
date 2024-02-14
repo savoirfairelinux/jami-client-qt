@@ -33,11 +33,9 @@ Popup {
     property var popupcontainerSubContentLoader: containerSubContentLoader
 
     property bool closeButtonVisible: true
-    property int button1Role
-    property int button2Role
 
-    property alias button1: action1
-    property alias button2: action2
+    property alias buttonsModel: buttonRepeater.model
+    property list<MaterialButton> buttons: []
 
     property alias popupContentLoadStatus: containerSubContentLoader.status
     property alias popupContent: containerSubContentLoader.sourceComponent
@@ -59,7 +57,7 @@ Popup {
         property color color: JamiTheme.secondaryBackgroundColor
         anchors.centerIn: parent
         leftPadding: popupMargins
-        bottomPadding: action1.visible || action2.visible ? 10 :popupMargins
+        bottomPadding: buttons.count > 0 ? 10 :popupMargins
 
         background: Rectangle {
             id: bgRect
@@ -133,6 +131,7 @@ Popup {
 
             DialogButtonBox {
                 id: buttonBox
+
                 Layout.alignment: Qt.AlignRight
                 spacing: 1.5
 
@@ -143,31 +142,49 @@ Popup {
                     height: buttonBox.childrenRect.height
                 }
 
-                visible: action1.text.length > 0
+                visible: buttonRepeater.count > 0
                 contentHeight: childrenRect.height + 14
 
-                MaterialButton {
-                    id: action1
-
-                    visible: text.length > 0
-                    rightPadding: buttonMargin
-                    leftPadding: buttonMargin
-                    tertiary: true
-                    autoAccelerator: true
-
-                    DialogButtonBox.buttonRole: root.button1Role
+                onAccepted: {
+                    root.accepted();
+                    root.close();
                 }
+                onRejected: root.close()
 
-                MaterialButton {
-                    id: action2
-
-                    visible: text.length > 0
-                    rightPadding: buttonMargin
-                    leftPadding: buttonMargin
-                    tertiary: true
-                    autoAccelerator: true
-
-                    DialogButtonBox.buttonRole: root.button2Role
+                Repeater {
+                    id: buttonRepeater
+                    MaterialButton {
+                        rightPadding: buttonMargin
+                        leftPadding: buttonMargin
+                        tertiary: true
+                        autoAccelerator: true
+                        text: modelData.text
+                        Component.onCompleted: {
+                            // Add the button to the list of buttons.
+                            buttons.push(this);
+                            // Set the button properties from the model data.
+                            if (modelData.contentColorProvider)
+                                contentColorProvider = modelData.contentColorProvider;
+                            if (modelData.buttonRole)
+                                buttonRole = modelData.role;
+                            if (modelData.enabled)
+                                enabled = modelData.enabled;
+                            // I don't understand why this is used. Can it be removed?
+                            // Used in DaemonReconnectPopup.qml
+                            if (modelData.visible)
+                                visible = modelData.visible;
+                            if (modelData.objectName)
+                                objectName = modelData.objectName;
+                            if (modelData.tooltipText)
+                                tooltipText = modelData.tooltipText;
+                            if (modelData.role === DialogButtonBox.AcceptRole)
+                                clicked.connect(buttonBox.accepted);
+                            else if (modelData.role === DialogButtonBox.RejectRole)
+                                clicked.connect(buttonBox.rejected);
+                            else if (modelData.onClicked)
+                                clicked.connect(modelData.onClicked);
+                        }
+                    }
                 }
             }
         }

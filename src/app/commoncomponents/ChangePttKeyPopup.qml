@@ -30,19 +30,23 @@ BaseModalDialog {
 
     closeButtonVisible: false
 
-    button1.text: JamiStrings.assign
-    button2.text: JamiStrings.cancel
-
-    button1Role: DialogButtonBox.ApplyRole
-    button2Role: DialogButtonBox.RejectRole
-    button1.onClicked: {
-        if (!(pressedKey === Qt.Key_unknown)){
-            PTTListener.setPttKey(pressedKey);
-            choiceMade(pressedKey);
+    buttonsModel: [
+        {
+            text: JamiStrings.assign,
+            role: DialogButtonBox.ApplyRole,
+            onClicked: function() {
+                if (!(pressedKey === Qt.Key_unknown)){
+                    PTTListener.setPttKey(pressedKey);
+                    choiceMade(pressedKey);
+                }
+                close();
+            }
+        },
+        {
+            text: JamiStrings.cancel,
+            role: DialogButtonBox.RejectRole,
         }
-        close();
-    }
-    button2.onClicked: close();
+    ]
 
     signal accepted
     signal choiceMade(int chosenKey)

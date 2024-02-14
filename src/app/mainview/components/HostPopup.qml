@@ -31,23 +31,28 @@ BaseModalDialog {
         return role === Member.Role.ADMIN;
     }
 
-    button1.text: isAdmin ? JamiStrings.becomeHostOneCall : JamiStrings.hostThisCall
-    button1Role: DialogButtonBox.ApplyRole
-    button1.onClicked: {
-        MessagesAdapter.joinCall(CurrentAccount.uri, CurrentAccount.deviceId, "0");
-        close();
-    }
-
-    button2.text: JamiStrings.becomeDefaultHost
-    button2Role: DialogButtonBox.ApplyRole
-    button2.visible: isAdmin
-    button2.toolTipText: JamiStrings.becomeDefaultHost
-    button2.onClicked: {
-        CurrentConversation.setInfo("rdvAccount", CurrentAccount.uri);
-        CurrentConversation.setInfo("rdvDevice", CurrentAccount.deviceId);
-        MessagesAdapter.joinCall(CurrentAccount.uri, CurrentAccount.deviceId, "0");
-        close();
-    }
+    buttonsModel: [
+        {
+            text: isAdmin ? JamiStrings.becomeHostOneCall : JamiStrings.hostThisCall,
+            role: DialogButtonBox.ApplyRole,
+            onClicked: function() {
+                MessagesAdapter.joinCall(CurrentAccount.uri, CurrentAccount.deviceId, "0");
+                close();
+            }
+        },
+        {
+            text: JamiStrings.becomeDefaultHost,
+            role: DialogButtonBox.ApplyRole,
+            visible: isAdmin,
+            toolTipText: JamiStrings.becomeDefaultHost,
+            onClicked: function() {
+                CurrentConversation.setInfo("rdvAccount", CurrentAccount.uri);
+                CurrentConversation.setInfo("rdvDevice", CurrentAccount.deviceId);
+                MessagesAdapter.joinCall(CurrentAccount.uri, CurrentAccount.deviceId, "0");
+                close();
+            }
+        }
+    ]
 
     popupContent: ColumnLayout {
         id: mainLayout

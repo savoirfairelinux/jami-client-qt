@@ -29,10 +29,14 @@ BaseModalDialog {
 
     autoClose: false
 
-    button1.text: JamiStrings.optionOk
-    button1Role: DialogButtonBox.AcceptRole
-    button1.visible: connectionFailed
-    button1.onClicked: Qt.quit()
+    buttonsModel: [
+        {
+            text: JamiStrings.optionOk,
+            role: DialogButtonBox.AcceptRole,
+            visible: connectionFailed,
+            onClicked: Qt.quit()
+        }
+    ]
 
     Connections {
         target: {
