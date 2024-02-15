@@ -32,12 +32,12 @@ QVariant
 PixmapManipulatorDefault::numberCategoryIcon(const QVariant& p,
                                              const QSize& size,
                                              bool displayPresence,
-                                             bool isPresent)
+                                             int presence)
 {
     Q_UNUSED(p)
     Q_UNUSED(size)
     Q_UNUSED(displayPresence)
-    Q_UNUSED(isPresent)
+    Q_UNUSED(presence)
     return QVariant();
 }
 
@@ -45,12 +45,12 @@ QVariant
 PixmapManipulatorDefault::conversationPhoto(const lrc::api::conversation::Info& conversation,
                                             const lrc::api::account::Info& accountInfo,
                                             const QSize& size,
-                                            bool displayPresence)
+                                            int presence)
 {
     Q_UNUSED(conversation)
     Q_UNUSED(accountInfo)
     Q_UNUSED(size)
-    Q_UNUSED(displayPresence)
+    Q_UNUSED(presence)
     return QVariant();
 }
 

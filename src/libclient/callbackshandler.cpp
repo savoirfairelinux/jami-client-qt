@@ -408,10 +408,9 @@ CallbacksHandler::slotNewAccountMessage(const QString& accountId,
 void
 CallbacksHandler::slotNewBuddySubscription(const QString& accountId,
                                            const QString& uri,
-                                           bool status,
+                                           int status,
                                            const QString& message)
 {
-    Q_UNUSED(status)
     Q_UNUSED(message)
     Q_EMIT newBuddySubscription(accountId, uri, status);
 }
