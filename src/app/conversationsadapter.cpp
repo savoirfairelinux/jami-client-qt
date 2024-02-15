@@ -23,8 +23,9 @@
 #include "systemtray.h"
 
 #ifdef Q_OS_LINUX
-#include "namedirectory.h"
+#include <namedirectory.h>
 #endif
+#include <api/contact.h>
 
 #include <QApplication>
 #include <QJsonObject>

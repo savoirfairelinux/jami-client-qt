@@ -28,16 +28,15 @@
 #include "qtutils.h"
 #include "utils.h"
 
-#include "api/lrc.h"
-#include "api/account.h"
-#include "api/avmodel.h"
-#include "api/behaviorcontroller.h"
-#include "api/contact.h"
-#include "api/contactmodel.h"
-#include "api/conversation.h"
-#include "api/conversationmodel.h"
-#include "api/accountmodel.h"
-#include "api/callmodel.h"
+#include <api/lrc.h>
+#include <api/account.h>
+#include <api/avmodel.h>
+#include <api/behaviorcontroller.h>
+#include <api/contactmodel.h>
+#include <api/conversation.h>
+#include <api/conversationmodel.h>
+#include <api/accountmodel.h>
+#include <api/callmodel.h>
 
 #include <QObject>
 #include <QThreadPool>
@@ -48,7 +47,6 @@ class ConnectivityMonitor;
 
 using namespace lrc::api;
 
-using migrateCallback = std::function<void()>;
 using getConvPredicate = std::function<bool(const conversation::Info& conv)>;
 
 class LRCInstance : public QObject
@@ -61,9 +59,7 @@ class LRCInstance : public QObject
     QML_PROPERTY(bool, currentAccountAvatarSet)
 
 public:
-    explicit LRCInstance(migrateCallback willMigrateCb,
-                         migrateCallback didMigrateCb,
-                         const QString& updateUrl,
+    explicit LRCInstance(const QString& updateUrl,
                          ConnectivityMonitor* connectivityMonitor,
                          bool debugMode,
                          bool muteDaemon);

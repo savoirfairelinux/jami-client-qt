@@ -19,6 +19,8 @@
 
 #include "lrcinstance.h"
 
+#include <api/contact.h>
+
 ModeratorListModel::ModeratorListModel(LRCInstance* instance, QObject* parent)
     : AbstractListModelBase(parent)
 {

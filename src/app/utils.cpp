@@ -25,6 +25,8 @@
 #include "jamiavatartheme.h"
 #include "lrcinstance.h"
 
+#include <api/contact.h>
+
 #include <qrencode.h>
 
 #include <QApplication>

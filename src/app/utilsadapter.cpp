@@ -27,8 +27,8 @@
 #include "utils.h"
 #include "version.h"
 
-#include "api/pluginmodel.h"
-#include "api/datatransfermodel.h"
+#include <api/datatransfermodel.h>
+#include <api/contact.h>
 
 #include <QApplication>
 #include <QBuffer>

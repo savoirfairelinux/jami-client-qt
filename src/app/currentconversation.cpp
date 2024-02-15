@@ -19,6 +19,7 @@
 #include "currentconversation.h"
 
 #include <api/conversationmodel.h>
+#include <api/contact.h>
 
 CurrentConversation::CurrentConversation(LRCInstance* lrcInstance, QObject* parent)
     : QObject(parent)
