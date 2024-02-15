@@ -176,10 +176,9 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
             try {
                 auto& accInfo = lrcInstance_->getAccountInfo(accountId_);
                 if (peerUri == accInfo.profileInfo.uri)
-                    return true; // Self account
+                    return 2; // Self account
                 auto contact = accInfo.contactModel->getContact(peerUri);
-                if (contact.isPresent)
-                    return true;
+                return contact.presence;
             } catch (const std::exception&) {
             }
         return false;
