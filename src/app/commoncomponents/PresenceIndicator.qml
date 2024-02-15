@@ -29,6 +29,17 @@ Rectangle {
     property int status: Account.Status.REGISTERED
     property int size: 15
 
+    MaterialToolTip {
+        visible: text !== "" && hoverHandler.hovered
+        delay: Qt.styleHints.mousePressAndHoldInterval
+        text: status === 2 ? qsTr("Connected") : status === 1 ? qsTr("Available") : ""
+    }
+
+    HoverHandler {
+        id: hoverHandler
+        target: parent
+    }
+
     width: size
     height: size
     radius: size * 0.5
@@ -40,6 +51,10 @@ Rectangle {
         if (status === Account.Status.REGISTERED)
             return JamiTheme.presenceGreen;
         else if (status === Account.Status.TRYING)
+            return JamiTheme.unPresenceOrange;
+        else if (status === 2)
+            return JamiTheme.presenceGreen;
+        else if (status === 1)
             return JamiTheme.unPresenceOrange;
         return JamiTheme.notificationRed;
     }

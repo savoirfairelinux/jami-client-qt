@@ -81,7 +81,7 @@ ContactAdapter::getContactSelectableModel(int type)
     }
     case SmartListModel::Type::CONFERENCE:
         selectableProxyModel_->setPredicate([](const QModelIndex& index, const QRegularExpression&) {
-            return index.data(Role::Presence).toBool();
+            return index.data(Role::Presence).toInt();
         });
         break;
     case SmartListModel::Type::TRANSFER:
