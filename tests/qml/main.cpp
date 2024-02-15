@@ -22,12 +22,11 @@
 #include "qmlregister.h"
 #include "systemtray.h"
 
-#include "api/profile.h"
-#include "api/account.h"
-#include "api/conversationmodel.h"
-#include "api/contactmodel.h"
-
-#include <atomic>
+#include <api/profile.h>
+#include <api/account.h>
+#include <api/conversationmodel.h>
+#include <api/contactmodel.h>
+#include <api/contact.h>
 
 #include <QFontDatabase>
 #include <QQmlContext>
@@ -45,7 +44,9 @@
 #include <windows.h>
 #endif
 
+#include <atomic>
 #include <thread>
+
 using namespace std::literals::chrono_literals;
 
 class Setup : public QObject
@@ -81,8 +82,7 @@ public Q_SLOTS:
 
         QFontDatabase::addApplicationFont(":/images/FontAwesome.otf");
 
-        lrcInstance_.reset(
-            new LRCInstance(nullptr, nullptr, "", connectivityMonitor_.get(), true, muteDaemon_));
+        lrcInstance_.reset(new LRCInstance("", connectivityMonitor_.get(), true, muteDaemon_));
         lrcInstance_->subscribeToDebugReceived();
 
         auto downloadPath = settingsManager_->getValue(Settings::Key::DownloadPath);

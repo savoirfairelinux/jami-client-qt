@@ -33,7 +33,6 @@
 #include "authority/storagehelper.h"
 #include "callbackshandler.h"
 #include "database.h"
-#include "vcard.h"
 
 // old LRC
 #include "api/profile.h"
@@ -64,9 +63,7 @@ public:
     AccountModelPimpl(AccountModel& linked,
                       Lrc& lrc,
                       const CallbacksHandler& callbackHandler,
-                      const BehaviorController& behaviorController,
-                      MigrationCb& willMigrateCb,
-                      MigrationCb& didMigrateCb);
+                      const BehaviorController& behaviorController);
     ~AccountModelPimpl();
 
     using AccountInfoDbMap = std::map<QString, std::pair<account::Info, std::shared_ptr<Database>>>;
@@ -84,10 +81,9 @@ public:
     /**
      * Add the profile information from an account to the db then add it to accounts.
      * @param accountId
-     * @param db an optional migrated database object
      * @note this method get details for an account from the daemon.
      */
-    void addToAccounts(const QString& accountId, std::shared_ptr<Database> db = nullptr);
+    void addToAccounts(const QString& accountId);
 
     /**
      * Remove account from accounts list. Emit accountRemoved.
@@ -196,16 +192,9 @@ public Q_SLOTS:
 
 AccountModel::AccountModel(Lrc& lrc,
                            const CallbacksHandler& callbacksHandler,
-                           const BehaviorController& behaviorController,
-                           MigrationCb& willMigrateCb,
-                           MigrationCb& didMigrateCb)
+                           const BehaviorController& behaviorController)
     : QObject(nullptr)
-    , pimpl_(std::make_unique<AccountModelPimpl>(*this,
-                                                 lrc,
-                                                 callbacksHandler,
-                                                 behaviorController,
-                                                 willMigrateCb,
-                                                 didMigrateCb))
+    , pimpl_(std::make_unique<AccountModelPimpl>(*this, lrc, callbacksHandler, behaviorController))
 {}
 
 AccountModel::~AccountModel() {}
@@ -375,9 +364,7 @@ AccountModel::getAccountInfo(const QString& accountId) const
 AccountModelPimpl::AccountModelPimpl(AccountModel& linked,
                                      Lrc& lrc,
                                      const CallbacksHandler& callbacksHandler,
-                                     const BehaviorController& behaviorController,
-                                     MigrationCb& willMigrateCb,
-                                     MigrationCb& didMigrateCb)
+                                     const BehaviorController& behaviorController)
     : linked(linked)
     , lrc {lrc}
     , behaviorController(behaviorController)
@@ -395,9 +382,8 @@ AccountModelPimpl::AccountModelPimpl(AccountModel& linked,
             return;
         }
 
-    auto accountDbs = authority::storage::migrateIfNeeded(accountIds, willMigrateCb, didMigrateCb);
     for (const auto& id : accountIds) {
-        addToAccounts(id, accountDbs.at(accountIds.indexOf(id)));
+        addToAccounts(id);
     }
 
     connect(&callbacksHandler,
@@ -728,38 +714,39 @@ AccountModelPimpl::slotNewPosition(const QString& accountId,
 }
 
 void
-AccountModelPimpl::addToAccounts(const QString& accountId, std::shared_ptr<Database> db)
+AccountModelPimpl::addToAccounts(const QString& accountId)
 {
-    if (db == nullptr) {
-        try {
-            auto appPath = authority::storage::getPath();
-            auto dbName = accountId + "/history";
-            db = DatabaseFactory::create<Database>(dbName, appPath);
-            // create the profiles path if necessary
-            QDir profilesDir(appPath + accountId + "/profiles");
-            if (!profilesDir.exists()) {
-                profilesDir.mkpath(".");
-            }
-        } catch (const std::runtime_error& e) {
-            qWarning() << e.what();
-            return;
-        }
-    }
+    auto appPath = authority::storage::getPath();
+    auto dbName = accountId + "/history";
 
-    auto it = accounts.emplace(accountId, std::make_pair(account::Info(), db));
-
-    if (!it.second) {
-        qWarning("failed to add new account: id already present in map");
+    // Create and load the database.
+    auto db = std::make_shared<Database>(dbName, appPath);
+    try {
+        db->load();
+    } catch (const std::exception& e) {
+        LC_WARN << e.what();
         return;
     }
 
-    // Init profile
+    // Create the profiles path if necessary.
+    QDir profilesDir(appPath + accountId + "/profiles");
+    if (!profilesDir.exists()) {
+        profilesDir.mkpath(".");
+    }
+
+    auto it = accounts.emplace(accountId, std::make_pair(account::Info(), db));
+    if (!it.second) {
+        LC_WARN << "failed to add new account: id already present in map";
+        return;
+    }
+
+    // Initialize the profile.
     account::Info& newAccInfo = (it.first)->second.first;
     newAccInfo.id = accountId;
     newAccInfo.profileInfo.avatar = authority::storage::getAccountAvatar(accountId);
     updateAccountDetails(newAccInfo);
 
-    // Init models for this account
+    // Initialize models for this account.
     newAccInfo.accountModel = &linked;
     newAccInfo.callModel = std::make_unique<CallModel>(newAccInfo,
                                                        lrc,

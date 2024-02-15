@@ -28,13 +28,11 @@
 #include <QRegularExpression>
 #include <QtConcurrent/QtConcurrent>
 
-LRCInstance::LRCInstance(migrateCallback willMigrateCb,
-                         migrateCallback didMigrateCb,
-                         const QString& updateUrl,
+LRCInstance::LRCInstance(const QString& updateUrl,
                          ConnectivityMonitor* connectivityMonitor,
                          bool debugMode,
                          bool muteDaemon)
-    : lrc_(std::make_unique<Lrc>(willMigrateCb, didMigrateCb, !debugMode || muteDaemon))
+    : lrc_(std::make_unique<Lrc>(!debugMode || muteDaemon))
     , updateManager_(std::make_unique<AppVersionManager>(updateUrl, connectivityMonitor, this))
     , connectivityMonitor_(*connectivityMonitor)
     , threadPool_(new QThreadPool(this))

@@ -267,6 +267,3 @@ private:
         return p | second; \
     } \
     DO_PRAGMA(GCC diagnostic pop)
-
-#include <functional>
-typedef std::function<void()> MigrationCb;
