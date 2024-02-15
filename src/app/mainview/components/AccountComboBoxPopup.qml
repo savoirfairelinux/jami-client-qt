@@ -105,6 +105,7 @@ Popup {
 
                         Avatar {
                             id: avatar
+                            objectName: "accountComboBoxPopupAvatar"
 
                             Layout.preferredWidth: JamiTheme.accountListAvatarSize
                             Layout.preferredHeight: JamiTheme.accountListAvatarSize

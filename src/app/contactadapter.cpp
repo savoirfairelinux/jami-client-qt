@@ -259,7 +259,7 @@ ContactAdapter::connectSignals()
             &ContactAdapter::bannedStatusChanged,
             Qt::UniqueConnection);
     connect(lrcInstance_->getCurrentContactModel(),
-            &ContactModel::modelUpdated,
+            &ContactModel::contactAdded,
             this,
             &ContactAdapter::onModelUpdated,
             Qt::UniqueConnection);
