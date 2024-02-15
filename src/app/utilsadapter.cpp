@@ -610,17 +610,17 @@ UtilsAdapter::setTempCreationImageFromImage(const QImage& image, const QString& 
     }
 }
 
-bool
+int
 UtilsAdapter::getContactPresence(const QString& accountId, const QString& uri)
 {
     try {
         if (lrcInstance_->getAccountInfo(accountId).profileInfo.uri == uri)
             return true; // It's the same account
         auto info = lrcInstance_->getAccountInfo(accountId).contactModel->getContact(uri);
-        return info.isPresent;
+        return info.presence;
     } catch (...) {
     }
-    return false;
+    return 0;
 }
 
 QString

@@ -624,7 +624,8 @@ Rectangle {
                             opacity: (MemberRole === Member.Role.INVITED || MemberRole === Member.Role.BANNED) ? 0.5 : 1
 
                             imageId: CurrentAccount.uri === MemberUri ? CurrentAccount.id : MemberUri
-                            showPresenceIndicator: UtilsAdapter.getContactPresence(CurrentAccount.id, MemberUri)
+                            presenceStatus: UtilsAdapter.getContactPresence(CurrentAccount.id, MemberUri)
+                            showPresenceIndicator: presenceStatus > 0
                             mode: CurrentAccount.uri === MemberUri ? Avatar.Mode.Account : Avatar.Mode.Contact
                         }
 
