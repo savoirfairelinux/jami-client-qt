@@ -496,8 +496,7 @@ Utils::conversationAvatar(LRCInstance* instance,
 QImage
 Utils::tempConversationAvatar(const QSize& size)
 {
-    QString img = QByteArrayFromFile(QStandardPaths::writableLocation(QStandardPaths::CacheLocation)
-                                     + "tmpSwarmImage");
+    QString img = QByteArrayFromFile(getTempSwarmAvatarPath());
     if (img.isEmpty())
         return fallbackAvatar(QString(), QString(), size);
     return scaleAndFrame(imageFromBase64String(img, true), size);
@@ -932,4 +931,11 @@ QString
 Utils::generateUid()
 {
     return QUuid::createUuid().toString(QUuid::Id128);
+}
+
+QString
+Utils::getTempSwarmAvatarPath()
+{
+    return QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QDir::separator()
+           + "tmpSwarmImage";
 }

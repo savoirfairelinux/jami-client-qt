@@ -561,8 +561,7 @@ QString
 UtilsAdapter::tempCreationImage(const QString& imageId) const
 {
     if (imageId == "temp")
-        return Utils::QByteArrayFromFile(
-            QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + "tmpSwarmImage");
+        return Utils::QByteArrayFromFile(Utils::getTempSwarmAvatarPath());
     if (lrcInstance_->getCurrentConversationModel())
         return lrcInstance_->getCurrentConversationModel()->avatar(imageId);
     return {};
@@ -597,8 +596,7 @@ UtilsAdapter::setTempCreationImageFromImage(const QImage& image, const QString& 
     }
     // Save the image
     if (imageId == "temp") {
-        QFile file(QStandardPaths::writableLocation(QStandardPaths::CacheLocation)
-                   + "tmpSwarmImage");
+        QFile file(Utils::getTempSwarmAvatarPath());
         file.open(QIODevice::WriteOnly);
         file.write(ba.toBase64());
         file.close();

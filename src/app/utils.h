@@ -101,6 +101,7 @@ QImage getCirclePhoto(const QImage original, int sizePhoto);
 QImage halfCrop(const QImage original, bool leftSide);
 QColor getAvatarColor(const QString& canonicalUri);
 QImage tempConversationAvatar(const QSize& size);
+QString getTempSwarmAvatarPath();
 QImage fallbackAvatar(const QString& canonicalUriStr,
                       const QString& letterStr = {},
                       const QSize& size = defaultAvatarSize);
@@ -123,4 +124,5 @@ QString generateUid();
 // Misc
 QString humanFileSize(qint64 fileSize);
 QString getDebugFilePath();
+
 } // namespace Utils
