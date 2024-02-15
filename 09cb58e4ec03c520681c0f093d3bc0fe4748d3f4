@@ -41,6 +41,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e719c446_23f8de0b",
+        "filename": "src/libclient/api/interaction.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-02-15T20:00:32Z",
+      "side": 1,
+      "message": "Done. The enum can\u0027t be used if I remember, it\u0027s C++20",
+      "parentUuid": "e2b6204b_fe31ebf3",
+      "range": {
+        "startLine": 468,
+        "startChar": 8,
+        "endLine": 480,
+        "endChar": 9
+      },
+      "revId": "09cb58e4ec03c520681c0f093d3bc0fe4748d3f4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "40821474_4c6c3f58",
@@ -58,6 +82,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1b67691_2b4ea84c",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 3482,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-02-15T20:00:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40821474_4c6c3f58",
+      "revId": "09cb58e4ec03c520681c0f093d3bc0fe4748d3f4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ea5ea7a3_59f3af52",
@@ -71,6 +113,30 @@
       "writtenOn": "2024-02-15T19:41:17Z",
       "side": 1,
       "message": "unused now",
+      "range": {
+        "startLine": 3511,
+        "startChar": 0,
+        "endLine": 3511,
+        "endChar": 76
+      },
+      "revId": "09cb58e4ec03c520681c0f093d3bc0fe4748d3f4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4188dfe2_3400a3d9",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 3511,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-02-15T20:00:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea5ea7a3_59f3af52",
       "range": {
         "startLine": 3511,
         "startChar": 0,
