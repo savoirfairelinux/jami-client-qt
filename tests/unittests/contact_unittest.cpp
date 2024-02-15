@@ -64,7 +64,7 @@ TEST_F(ContactFixture, AddSIPContactTest)
 
     // ModelUpdated signal spy
     QSignalSpy modelUpdatedSpy(globalEnv.lrcInstance->getCurrentContactModel(),
-                               &lrc::api::ContactModel::modelUpdated);
+                               &lrc::api::ContactModel::contactUpdated);
 
     // Add temp contact test
     globalEnv.lrcInstance->getCurrentConversationModel()->setFilter("test");
