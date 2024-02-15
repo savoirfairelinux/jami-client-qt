@@ -1198,6 +1198,7 @@ ContactModelPimpl::slotProfileReceived(const QString& accountId,
         return;
 
     profileThreadPool.start([=] {
+        qInfo() << "***************** thread id:" << QThread::currentThreadId();
         QFile vCardFile(path);
         if (!vCardFile.open(QIODevice::ReadOnly | QIODevice::Text))
             return;

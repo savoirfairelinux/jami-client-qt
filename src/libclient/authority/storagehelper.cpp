@@ -100,13 +100,6 @@ JSONFromString(const QString& str)
 }
 
 static QString
-JSONStringFromInitList(const std::initializer_list<QPair<QString, QJsonValue>> args)
-{
-    QJsonObject jsonObject(args);
-    return stringFromJSON(jsonObject);
-}
-
-static QString
 readJSONValue(const QJsonObject& json, const QString& key)
 {
     if (!json.isEmpty() && json.contains(key) && json[key].isString()) {
@@ -311,6 +304,7 @@ getAccountAvatar(const QString& accountId)
     if (!file.open(QIODevice::ReadOnly)) {
         return {};
     }
+    qInfo() << "***************** thread id:" << QThread::currentThreadId();
     const auto vCard = lrc::vCard::utils::toHashMap(file.readAll());
     for (const auto& key : vCard.keys()) {
         if (key.contains("PHOTO"))
@@ -328,6 +322,7 @@ getOverridenInfos(const QString& accountId, const QString& peerUri)
     QHash<QByteArray, QByteArray> overridenVCard;
     QString overridenAlias, overridenAvatar;
     if (fileOverride.open(QIODevice::ReadOnly)) {
+        qInfo() << "***************** thread id:" << QThread::currentThreadId();
         overridenVCard = lrc::vCard::utils::toHashMap(fileOverride.readAll());
         overridenAlias = overridenVCard[vCard::Property::FORMATTED_NAME];
         for (const auto& key : overridenVCard.keys())
@@ -367,6 +362,7 @@ buildContactFromProfile(const QString& accountId,
 
     auto [overridenAlias, overridenAvatar] = getOverridenInfos(accountId, peerUri);
 
+    qInfo() << "***************** thread id:" << QThread::currentThreadId();
     const auto vCard = lrc::vCard::utils::toHashMap(file.readAll());
     const auto alias = vCard[vCard::Property::FORMATTED_NAME];
     profileInfo.alias = overridenAlias.isEmpty() ? alias : overridenAlias;
@@ -388,10 +384,12 @@ avatar(const QString& accountId, const QString& peerUri)
     QFile file(b64filePath);
     if (!file.open(QIODevice::ReadOnly))
         return {};
+    qInfo() << "***************** thread id:" << QThread::currentThreadId();
     const auto vCard = lrc::vCard::utils::toHashMap(file.readAll());
-    for (const auto& key : vCard.keys()) {
-        if (key.contains("PHOTO"))
-            return vCard[key];
+    for (auto it = vCard.cbegin(); it != vCard.cend(); ++it) {
+        if (it.key().contains("PHOTO")) {
+            return it.value();
+        }
     }
     return {};
 }

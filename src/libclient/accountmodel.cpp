@@ -477,9 +477,21 @@ AccountModelPimpl::updateAccounts()
 void
 AccountModelPimpl::updateAccountDetails(account::Info& accountInfo)
 {
-    // Fill account::Info struct with details from daemon
-    MapStringString details = ConfigurationManager::instance().getAccountDetails(accountInfo.id);
-    accountInfo.fromDetails(details);
+    auto measureExecutionTime = [](const QString& msg, auto&& func) {
+        auto start = std::chrono::high_resolution_clock::now();
+        LC_WARN << "+++++++++++++++++ Start measuring time" << msg;
+        func();
+        auto end = std::chrono::high_resolution_clock::now();
+        auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+        LC_WARN << "----------------- End measuring time" << msg
+                << " - Elapsed time: " << duration.count() << " ms";
+    };
+
+    measureExecutionTime("LRC getAccountDetails", [&] {
+        // Fill account::Info struct with details from daemon
+        MapStringString details = ConfigurationManager::instance().getAccountDetails(accountInfo.id);
+        accountInfo.fromDetails(details);
+    });
 
     // Fill account::Info::confProperties credentials
     VectorMapStringString credGet = ConfigurationManager::instance().getCredentials(accountInfo.id);
@@ -716,6 +728,16 @@ AccountModelPimpl::slotNewPosition(const QString& accountId,
 void
 AccountModelPimpl::addToAccounts(const QString& accountId)
 {
+    auto measureExecutionTime = [](const QString& msg, auto&& func) {
+        auto start = std::chrono::high_resolution_clock::now();
+        LC_WARN << "+++++++++++++++++ Start measuring time" << msg;
+        func();
+        auto end = std::chrono::high_resolution_clock::now();
+        auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+        LC_WARN << "----------------- End measuring time" << msg
+                << " - Elapsed time: " << duration.count() << " ms";
+    };
+
     auto appPath = authority::storage::getPath();
     auto dbName = accountId + "/history";
 
@@ -748,24 +770,27 @@ AccountModelPimpl::addToAccounts(const QString& accountId)
 
     // Initialize models for this account.
     newAccInfo.accountModel = &linked;
-    newAccInfo.callModel = std::make_unique<CallModel>(newAccInfo,
-                                                       lrc,
-                                                       callbacksHandler,
-                                                       behaviorController);
-    newAccInfo.contactModel = std::make_unique<ContactModel>(newAccInfo,
-                                                             *db,
-                                                             callbacksHandler,
-                                                             behaviorController);
-    newAccInfo.conversationModel = std::make_unique<ConversationModel>(newAccInfo,
-                                                                       lrc,
-                                                                       *db,
-                                                                       callbacksHandler,
-                                                                       behaviorController);
-    newAccInfo.peerDiscoveryModel = std::make_unique<PeerDiscoveryModel>(callbacksHandler,
-                                                                         accountId);
-    newAccInfo.deviceModel = std::make_unique<DeviceModel>(newAccInfo, callbacksHandler);
-    newAccInfo.codecModel = std::make_unique<CodecModel>(newAccInfo, callbacksHandler);
-    newAccInfo.dataTransferModel = std::make_unique<DataTransferModel>();
+    measureExecutionTime("LRC MODELS CREATION", [&] {
+        newAccInfo.callModel = std::make_unique<CallModel>(newAccInfo,
+                                                           lrc,
+                                                           callbacksHandler,
+                                                           behaviorController);
+        newAccInfo.contactModel = std::make_unique<ContactModel>(newAccInfo,
+                                                                 *db,
+                                                                 callbacksHandler,
+                                                                 behaviorController);
+        newAccInfo.conversationModel = std::make_unique<ConversationModel>(newAccInfo,
+                                                                           lrc,
+                                                                           *db,
+                                                                           callbacksHandler,
+                                                                           behaviorController);
+
+        newAccInfo.peerDiscoveryModel = std::make_unique<PeerDiscoveryModel>(callbacksHandler,
+                                                                             accountId);
+        newAccInfo.deviceModel = std::make_unique<DeviceModel>(newAccInfo, callbacksHandler);
+        newAccInfo.codecModel = std::make_unique<CodecModel>(newAccInfo, callbacksHandler);
+        newAccInfo.dataTransferModel = std::make_unique<DataTransferModel>();
+    });
 }
 
 void
