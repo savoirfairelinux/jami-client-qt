@@ -199,6 +199,8 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
+        MainApplication.logThreadID();
+
         // QWK: setup
         if (useFrameless) {
             windowAgent.setup(appWindow);

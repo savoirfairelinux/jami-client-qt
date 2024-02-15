@@ -506,3 +506,9 @@ MainApplication::setEventFilter()
 {
     installEventFilter(this);
 }
+
+void
+MainApplication::logThreadID()
+{
+    C_DBG << "*********** Thread ID:" << QThread::currentThreadId();
+}
