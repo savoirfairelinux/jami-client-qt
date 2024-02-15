@@ -72,18 +72,18 @@ public:
     virtual QVariant conversationPhoto(const lrc::api::conversation::Info& conversation,
                                        const lrc::api::account::Info& accountInfo,
                                        const QSize& size,
-                                       bool displayPresence = true)
+                                       int presence = 0)
     {
         Q_UNUSED(conversation);
         Q_UNUSED(accountInfo);
         Q_UNUSED(size);
-        Q_UNUSED(displayPresence);
+        Q_UNUSED(presence);
         return {};
     }
     virtual QVariant numberCategoryIcon(const QVariant& p,
                                         const QSize& size,
                                         bool displayPresence = false,
-                                        bool isPresent = false)
+                                        int presence = 0)
         = 0;
     virtual QByteArray toByteArray(const QVariant& pxm) = 0;
     virtual QVariant personPhoto(const QByteArray& data, const QString& type = "PNG") = 0;

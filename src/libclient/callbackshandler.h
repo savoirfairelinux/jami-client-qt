@@ -68,7 +68,7 @@ Q_SIGNALS:
      * @param contactUri the peer.
      * @param present if the peer is online.
      */
-    void newBuddySubscription(const QString& accountId, const QString& contactUri, bool present);
+    void newBuddySubscription(const QString& accountId, const QString& contactUri, int present);
     /**
      * Connect this signal to get information when peer discovery changes.
      * @param contactUri the peer.
@@ -407,12 +407,12 @@ private Q_SLOTS:
      * Emit newBuddySubscription
      * @param accountId
      * @param contactUri
-     * @param status if the contact is present
+     * @param status if the contact is present (1=dht presence, 0=offline, 2=connected)
      * @param message unused for now
      */
     void slotNewBuddySubscription(const QString& accountId,
                                   const QString& contactUri,
-                                  bool status,
+                                  int status,
                                   const QString& message);
     /**
      * Emit contactAdded

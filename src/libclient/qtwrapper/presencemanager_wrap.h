@@ -60,7 +60,7 @@ public:
                exportable_callback<PresenceSignal::NewBuddyNotification>(
                    [this](const std::string& accountID,
                           const std::string& buddyUri,
-                          bool status,
+                          int status,
                           const std::string& lineStatus) {
                        Q_EMIT this->newBuddyNotification(QString(accountID.c_str()),
                                                          QString(buddyUri.c_str()),
@@ -126,7 +126,7 @@ Q_SIGNALS: // SIGNALS
     void serverError(const QString& accountID, const QString& error, const QString& msg);
     void newBuddyNotification(const QString& accountID,
                               const QString& buddyUri,
-                              bool status,
+                              int status,
                               const QString& lineStatus);
     void subscriptionStateChanged(const QString& accountID, const QString& buddyUri, bool state);
 };

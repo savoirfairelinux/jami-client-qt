@@ -24,6 +24,7 @@ Item {
     id: root
 
     property alias imageId: avatar.imageId
+    property alias presenceStatus: avatar.presenceStatus
     property alias showPresenceIndicator: avatar.showPresenceIndicator
     property alias animationMode: animation.mode
 
