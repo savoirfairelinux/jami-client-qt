@@ -54,6 +54,7 @@
 
 namespace lrc {
 
+using namespace authority;
 using namespace api;
 
 class AccountModelPimpl : public QObject
@@ -288,7 +289,7 @@ AccountModel::setAlias(const QString& accountId, const QString& alias, bool save
     accountInfo.profileInfo.alias = alias;
 
     if (save)
-        authority::storage::createOrUpdateProfile(accountInfo.id, accountInfo.profileInfo);
+        storage::vcard::setProfile(accountInfo.id, accountInfo.profileInfo);
     Q_EMIT profileUpdated(accountId);
 }
 
@@ -301,7 +302,7 @@ AccountModel::setAvatar(const QString& accountId, const QString& avatar, bool sa
     accountInfo.profileInfo.avatar = avatar;
 
     if (save)
-        authority::storage::createOrUpdateProfile(accountInfo.id, accountInfo.profileInfo);
+        storage::vcard::setProfile(accountInfo.id, accountInfo.profileInfo);
     Q_EMIT profileUpdated(accountId);
 }
 
@@ -382,7 +383,7 @@ AccountModelPimpl::AccountModelPimpl(AccountModel& linked,
             return;
         }
 
-    for (const auto& id : accountIds) {
+    for (auto& id : accountIds) {
         addToAccounts(id);
     }
 
@@ -691,6 +692,8 @@ AccountModelPimpl::slotAccountProfileReceived(const QString& accountId,
                                               const QString& displayName,
                                               const QString& userPhoto)
 {
+    LC_WARN << accountId << displayName;
+
     auto account = accounts.find(accountId);
     if (account == accounts.end())
         return;
@@ -698,7 +701,7 @@ AccountModelPimpl::slotAccountProfileReceived(const QString& accountId,
     accountInfo.profileInfo.avatar = userPhoto;
     accountInfo.profileInfo.alias = displayName;
 
-    authority::storage::createOrUpdateProfile(accountInfo.id, accountInfo.profileInfo);
+    storage::vcard::setProfile(accountInfo.id, accountInfo.profileInfo);
 
     Q_EMIT linked.profileUpdated(accountId);
 }
@@ -716,7 +719,7 @@ AccountModelPimpl::slotNewPosition(const QString& accountId,
 void
 AccountModelPimpl::addToAccounts(const QString& accountId)
 {
-    auto appPath = authority::storage::getPath();
+    auto appPath = storage::getPath();
     auto dbName = accountId + "/history";
 
     // Create and load the database.
@@ -743,7 +746,7 @@ AccountModelPimpl::addToAccounts(const QString& accountId)
     // Initialize the profile.
     account::Info& newAccInfo = (it.first)->second.first;
     newAccInfo.id = accountId;
-    newAccInfo.profileInfo.avatar = authority::storage::getAccountAvatar(accountId);
+    newAccInfo.profileInfo.avatar = storage::getAccountAvatar(accountId);
     updateAccountDetails(newAccInfo);
 
     // Initialize models for this account.
@@ -779,7 +782,7 @@ AccountModelPimpl::removeFromAccounts(const QString& accountId)
     }
     auto& accountInfo = account->second.first;
     if (accountInfo.profileInfo.type == profile::Type::SIP) {
-        auto accountDir = QDir(authority::storage::getPath() + accountId);
+        auto accountDir = QDir(storage::getPath() + accountId);
         accountDir.removeRecursively();
     }
 
@@ -1107,8 +1110,7 @@ AccountModel::setTopAccount(const QString& accountId)
 QString
 AccountModel::accountVCard(const QString& accountId, bool compressImage) const
 {
-    return authority::storage::vcard::profileToVcard(getAccountInfo(accountId).profileInfo,
-                                                     compressImage);
+    return storage::vcard::profileToVcard(getAccountInfo(accountId).profileInfo, compressImage);
 }
 
 const QString
@@ -1202,7 +1204,7 @@ AccountModel::reloadHistory()
 QString
 AccountModel::avatar(const QString& accountId) const
 {
-    return authority::storage::avatar(accountId);
+    return storage::avatar(accountId);
 }
 
 } // namespace lrc

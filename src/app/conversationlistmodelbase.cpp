@@ -19,6 +19,8 @@
 
 #include "conversationlistmodelbase.h"
 
+#include "global.h"
+
 #include <api/contact.h>
 
 ConversationListModelBase::ConversationListModelBase(LRCInstance* instance, QObject* parent)
@@ -218,9 +220,9 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
         try {
             contact = contactModel->getContact(peerUri);
         } catch (const std::exception&) {
-            qWarning() << Q_FUNC_INFO << "Can't find contact" << peerUri << " for account "
-                       << lrcInstance_->accountModel().bestNameForAccount(accInfo.id)
-                       << " - Conv: " << item.uid;
+            C_WARN << "Can't find contact" << peerUri << "for account"
+                   << lrcInstance_->accountModel().bestNameForAccount(accInfo.id)
+                   << "- Conv:" << item.uid;
         }
 
         switch (role) {

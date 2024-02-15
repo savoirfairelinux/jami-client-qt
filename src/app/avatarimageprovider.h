@@ -25,52 +25,73 @@
 
 #include <QImage>
 
-class AvatarImageProvider : public QuickImageProviderBase
+class AsyncAvatarImageResponseRunnable : public AsyncImageResponseRunnable
 {
+    Q_OBJECT
 public:
-    AvatarImageProvider(LRCInstance* instance = nullptr)
-        : QuickImageProviderBase(QQuickImageProvider::Image,
-                                 QQmlImageProviderBase::ForceAsynchronousImageLoading,
-                                 instance)
+    AsyncAvatarImageResponseRunnable(const QString& id,
+                                     const QSize& requestedSize,
+                                     LRCInstance* lrcInstance)
+        : AsyncImageResponseRunnable(id, requestedSize, lrcInstance)
     {}
 
-    QImage requestImage(const QString& id, QSize* size, const QSize& requestedSize) override
+    void run() override
     {
-        Q_UNUSED(size)
-
-        if (requestedSize == QSize(0, 0)) {
-            qWarning() << Q_FUNC_INFO << "Image request has no dimensions";
-            return {};
+        // For avatar images, the requested size should be a square. Anything else
+        // is a request made prior to an aspect ratio guard calculation.
+        if (requestedSize_ == QSize(0, 0) || requestedSize_.width() != requestedSize_.height()) {
+            return;
         }
 
         // the first string is the item uri and the second is a uid
         // that is used for trigger a reload of the underlying image
         // data and can be discarded at this point
-        auto idInfo = id.split("_");
+        auto idInfo = id_.split("_");
 
         if (idInfo.size() < 2) {
             qWarning() << Q_FUNC_INFO << "Missing element(s) in the image url";
-            return {};
+            return;
         }
 
         const auto& imageId = idInfo.at(1);
         if (!imageId.size()) {
             qWarning() << Q_FUNC_INFO << "Missing id in the image url";
-            return {};
+            return;
         }
 
+        QImage image;
         const auto& type = idInfo.at(0);
+
         if (type == "conversation") {
             if (imageId == "temp")
-                return Utils::tempConversationAvatar(requestedSize);
-            return Utils::conversationAvatar(lrcInstance_, imageId, requestedSize);
+                image = Utils::tempConversationAvatar(requestedSize_);
+            image = Utils::conversationAvatar(lrcInstance_, imageId, requestedSize_);
+        } else if (type == "account") {
+            image = Utils::accountPhoto(lrcInstance_, imageId, requestedSize_);
+        } else if (type == "contact") {
+            image = Utils::contactPhoto(lrcInstance_, imageId, requestedSize_);
+        } else {
+            qWarning() << Q_FUNC_INFO << "Missing valid prefix in the image url";
+            return;
         }
-        if (type == "account")
-            return Utils::accountPhoto(lrcInstance_, imageId, requestedSize);
-        if (type == "contact")
-            return Utils::contactPhoto(lrcInstance_, imageId, requestedSize);
 
-        qWarning() << Q_FUNC_INFO << "Missing valid prefix in the image url";
-        return {};
+        Q_EMIT done(image);
+    }
+};
+
+class AvatarImageProvider : public AsyncImageProviderBase
+{
+public:
+    AvatarImageProvider(LRCInstance* instance = nullptr)
+        : AsyncImageProviderBase(instance)
+    {}
+
+    QQuickImageResponse* requestImageResponse(const QString& id, const QSize& requestedSize) override
+    {
+        auto response = new AsyncImageResponse<AsyncAvatarImageResponseRunnable>(id,
+                                                                                 requestedSize,
+                                                                                 &pool_,
+                                                                                 lrcInstance_);
+        return response;
     }
 };
