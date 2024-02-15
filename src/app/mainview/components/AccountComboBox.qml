@@ -111,6 +111,7 @@ Label {
 
                 Avatar {
                     id: avatar
+                    objectName: "accountComboBoxAvatar"
 
                     Layout.preferredWidth: JamiTheme.accountListAvatarSize
                     Layout.preferredHeight: JamiTheme.accountListAvatarSize
