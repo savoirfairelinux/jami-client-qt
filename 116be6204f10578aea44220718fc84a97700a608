@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "018e60f9_82739ab3",
+        "filename": "src/app/settingsview/components/ManageAccountPage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-02-15T19:03:08Z",
+      "side": 1,
+      "message": "extra",
+      "revId": "116be6204f10578aea44220718fc84a97700a608",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}

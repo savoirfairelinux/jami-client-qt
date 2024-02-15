@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b196efe1_8ae7edd6",
+        "filename": "src/app/settingsview/components/ManageAccountPage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-02-15T19:03:08Z",
+      "side": 0,
+      "message": "this will display misleading info for SIP accounts",
+      "range": {
+        "startLine": 438,
+        "startChar": 16,
+        "endLine": 438,
+        "endChar": 36
+      },
+      "revId": "6698f453072dadd0fc244f087af6d150cdb6253b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
