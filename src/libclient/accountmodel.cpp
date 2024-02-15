@@ -54,6 +54,7 @@
 
 namespace lrc {
 
+using namespace authority;
 using namespace api;
 
 class AccountModelPimpl : public QObject
@@ -288,7 +289,7 @@ AccountModel::setAlias(const QString& accountId, const QString& alias, bool save
     accountInfo.profileInfo.alias = alias;
 
     if (save)
-        authority::storage::createOrUpdateProfile(accountInfo.id, accountInfo.profileInfo);
+        storage::vcard::setProfile(accountInfo.id, accountInfo.profileInfo);
     Q_EMIT profileUpdated(accountId);
 }
 
@@ -301,7 +302,7 @@ AccountModel::setAvatar(const QString& accountId, const QString& avatar, bool sa
     accountInfo.profileInfo.avatar = avatar;
 
     if (save)
-        authority::storage::createOrUpdateProfile(accountInfo.id, accountInfo.profileInfo);
+        storage::vcard::setProfile(accountInfo.id, accountInfo.profileInfo);
     Q_EMIT profileUpdated(accountId);
 }
 
@@ -371,6 +372,16 @@ AccountModelPimpl::AccountModelPimpl(AccountModel& linked,
     , callbacksHandler(callbacksHandler)
     , username_changed(false)
 {
+    auto measureExecutionTime = [](const QString& msg, auto&& func) {
+        auto start = std::chrono::high_resolution_clock::now();
+        LC_WARN << "+++++++++++++++++ Start measuring time" << msg;
+        func();
+        auto end = std::chrono::high_resolution_clock::now();
+        auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+        LC_WARN << "----------------- End measuring time" << msg
+                << " - Elapsed time: " << duration.count() << " ms";
+    };
+
     const QStringList accountIds = ConfigurationManager::instance().getAccountList();
 
     // NOTE: If the daemon is down, but dbus answered, id can contains
@@ -382,9 +393,11 @@ AccountModelPimpl::AccountModelPimpl(AccountModel& linked,
             return;
         }
 
-    for (const auto& id : accountIds) {
-        addToAccounts(id);
-    }
+    measureExecutionTime("LRC addToAccounts loop", [&] {
+        for (auto& id : accountIds) {
+            addToAccounts(id);
+        }
+    });
 
     connect(&callbacksHandler,
             &CallbacksHandler::accountsChanged,
@@ -691,6 +704,8 @@ AccountModelPimpl::slotAccountProfileReceived(const QString& accountId,
                                               const QString& displayName,
                                               const QString& userPhoto)
 {
+    LC_WARN << accountId << displayName;
+
     auto account = accounts.find(accountId);
     if (account == accounts.end())
         return;
@@ -698,7 +713,7 @@ AccountModelPimpl::slotAccountProfileReceived(const QString& accountId,
     accountInfo.profileInfo.avatar = userPhoto;
     accountInfo.profileInfo.alias = displayName;
 
-    authority::storage::createOrUpdateProfile(accountInfo.id, accountInfo.profileInfo);
+    storage::vcard::setProfile(accountInfo.id, accountInfo.profileInfo);
 
     Q_EMIT linked.profileUpdated(accountId);
 }
@@ -716,7 +731,17 @@ AccountModelPimpl::slotNewPosition(const QString& accountId,
 void
 AccountModelPimpl::addToAccounts(const QString& accountId)
 {
-    auto appPath = authority::storage::getPath();
+    auto measureExecutionTime = [](const QString& msg, auto&& func) {
+        auto start = std::chrono::high_resolution_clock::now();
+        LC_WARN << "+++++++++++++++++ Start measuring time" << msg;
+        func();
+        auto end = std::chrono::high_resolution_clock::now();
+        auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+        LC_WARN << "----------------- End measuring time" << msg
+                << " - Elapsed time: " << duration.count() << " ms";
+    };
+
+    auto appPath = storage::getPath();
     auto dbName = accountId + "/history";
 
     // Create and load the database.
@@ -743,29 +768,31 @@ AccountModelPimpl::addToAccounts(const QString& accountId)
     // Initialize the profile.
     account::Info& newAccInfo = (it.first)->second.first;
     newAccInfo.id = accountId;
-    newAccInfo.profileInfo.avatar = authority::storage::getAccountAvatar(accountId);
+    newAccInfo.profileInfo.avatar = storage::getAccountAvatar(accountId);
     updateAccountDetails(newAccInfo);
 
     // Initialize models for this account.
     newAccInfo.accountModel = &linked;
-    newAccInfo.callModel = std::make_unique<CallModel>(newAccInfo,
-                                                       lrc,
-                                                       callbacksHandler,
-                                                       behaviorController);
-    newAccInfo.contactModel = std::make_unique<ContactModel>(newAccInfo,
-                                                             *db,
-                                                             callbacksHandler,
-                                                             behaviorController);
-    newAccInfo.conversationModel = std::make_unique<ConversationModel>(newAccInfo,
-                                                                       lrc,
-                                                                       *db,
-                                                                       callbacksHandler,
-                                                                       behaviorController);
-    newAccInfo.peerDiscoveryModel = std::make_unique<PeerDiscoveryModel>(callbacksHandler,
-                                                                         accountId);
-    newAccInfo.deviceModel = std::make_unique<DeviceModel>(newAccInfo, callbacksHandler);
-    newAccInfo.codecModel = std::make_unique<CodecModel>(newAccInfo, callbacksHandler);
-    newAccInfo.dataTransferModel = std::make_unique<DataTransferModel>();
+    measureExecutionTime("LRC Models", [&] {
+        newAccInfo.callModel = std::make_unique<CallModel>(newAccInfo,
+                                                           lrc,
+                                                           callbacksHandler,
+                                                           behaviorController);
+        newAccInfo.contactModel = std::make_unique<ContactModel>(newAccInfo,
+                                                                 *db,
+                                                                 callbacksHandler,
+                                                                 behaviorController);
+        newAccInfo.conversationModel = std::make_unique<ConversationModel>(newAccInfo,
+                                                                           lrc,
+                                                                           *db,
+                                                                           callbacksHandler,
+                                                                           behaviorController);
+        newAccInfo.peerDiscoveryModel = std::make_unique<PeerDiscoveryModel>(callbacksHandler,
+                                                                             accountId);
+        newAccInfo.deviceModel = std::make_unique<DeviceModel>(newAccInfo, callbacksHandler);
+        newAccInfo.codecModel = std::make_unique<CodecModel>(newAccInfo, callbacksHandler);
+        newAccInfo.dataTransferModel = std::make_unique<DataTransferModel>();
+    });
 }
 
 void
@@ -779,7 +806,7 @@ AccountModelPimpl::removeFromAccounts(const QString& accountId)
     }
     auto& accountInfo = account->second.first;
     if (accountInfo.profileInfo.type == profile::Type::SIP) {
-        auto accountDir = QDir(authority::storage::getPath() + accountId);
+        auto accountDir = QDir(storage::getPath() + accountId);
         accountDir.removeRecursively();
     }
 
@@ -1107,8 +1134,7 @@ AccountModel::setTopAccount(const QString& accountId)
 QString
 AccountModel::accountVCard(const QString& accountId, bool compressImage) const
 {
-    return authority::storage::vcard::profileToVcard(getAccountInfo(accountId).profileInfo,
-                                                     compressImage);
+    return storage::vcard::profileToVcard(getAccountInfo(accountId).profileInfo, compressImage);
 }
 
 const QString
@@ -1202,7 +1228,7 @@ AccountModel::reloadHistory()
 QString
 AccountModel::avatar(const QString& accountId) const
 {
-    return authority::storage::avatar(accountId);
+    return storage::avatar(accountId);
 }
 
 } // namespace lrc

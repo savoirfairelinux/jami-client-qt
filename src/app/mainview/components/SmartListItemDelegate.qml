@@ -76,6 +76,7 @@ ItemDelegate {
 
         ConversationAvatar {
             id: avatar
+            objectName: "smartlistItemDelegateAvatar"
 
             imageId: UID
             presenceStatus: Presence

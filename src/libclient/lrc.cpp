@@ -74,9 +74,20 @@ Lrc::Lrc(bool muteDaemon)
         setenv("JAMI_DISABLE_SHM", "1", true);
 #endif
 #endif
+    auto measureExecutionTime = [](const QString& msg, auto&& func) {
+        auto start = std::chrono::high_resolution_clock::now();
+        LC_WARN << "+++++++++++++++++ Start measuring time" << msg;
+        func();
+        auto end = std::chrono::high_resolution_clock::now();
+        auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+        LC_WARN << "----------------- End measuring time" << msg
+                << " - Elapsed time: " << duration.count() << " ms";
+    };
+
     // Ensure Daemon is running/loaded (especially on non-DBus platforms)
     // before instantiating LRC and its members
-    InstanceManager::instance(muteDaemon);
+    measureExecutionTime("InstanceManager::instance",
+                         [&] { InstanceManager::instance(muteDaemon); });
     lrcPimpl_ = std::make_unique<LrcPimpl>(*this);
 }
 
