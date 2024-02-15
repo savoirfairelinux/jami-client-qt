@@ -241,9 +241,9 @@ public:
 
 public Q_SLOTS:
     /**
-     * Listen from contactModel when updated (like new alias, avatar, etc.)
+     * Listen for a peer update from contactModel (new alias, avatar, etc.)
      */
-    void slotContactModelUpdated(const QString& uri);
+    void slotContactUpdated(const QString& uri);
     /**
      * Listen from contactModel when a new contact is added
      * @param uri
@@ -1671,9 +1671,9 @@ ConversationModelPimpl::ConversationModelPimpl(const ConversationModel& linked,
 
     // Contact related
     connect(&*linked.owner.contactModel,
-            &ContactModel::modelUpdated,
+            &ContactModel::contactUpdated,
             this,
-            &ConversationModelPimpl::slotContactModelUpdated);
+            &ConversationModelPimpl::slotContactUpdated);
     connect(&*linked.owner.contactModel,
             &ContactModel::contactAdded,
             this,
@@ -1838,9 +1838,9 @@ ConversationModelPimpl::~ConversationModelPimpl()
 {
     // Contact related
     disconnect(&*linked.owner.contactModel,
-               &ContactModel::modelUpdated,
+               &ContactModel::contactUpdated,
                this,
-               &ConversationModelPimpl::slotContactModelUpdated);
+               &ConversationModelPimpl::slotContactUpdated);
     disconnect(&*linked.owner.contactModel,
                &ContactModel::contactAdded,
                this,
@@ -2867,7 +2867,7 @@ ConversationModelPimpl::slotPendingContactAccepted(const QString& uri)
     } catch (std::out_of_range& e) {
     }
     profile::Info profileInfo {uri, {}, {}, type};
-    storage::createOrUpdateProfile(linked.owner.id, profileInfo, true);
+    storage::vcard::setProfile(linked.owner.id, profileInfo, true);
     auto convs = storage::getConversationsWithPeer(db, uri);
     if (!convs.empty()) {
         try {
@@ -2916,9 +2916,9 @@ ConversationModelPimpl::slotContactRemoved(const QString& uri)
 }
 
 void
-ConversationModelPimpl::slotContactModelUpdated(const QString& uri)
+ConversationModelPimpl::slotContactUpdated(const QString& uri)
 {
-    // Update presence for all conversations with this peer
+    // Update all conversations with this peer
     for (auto& conversation : conversations) {
         auto members = peersForConversation(conversation);
         if (members.indexOf(uri) != -1) {
@@ -2928,6 +2928,8 @@ ConversationModelPimpl::slotContactModelUpdated(const QString& uri)
         }
     }
 
+    // TODO: investigate and possibly refactor the following search list management.
+    // Might just need comments to clarify the intent.
     if (currentFilter.isEmpty()) {
         if (searchResults.empty())
             return;
@@ -2935,6 +2937,7 @@ ConversationModelPimpl::slotContactModelUpdated(const QString& uri)
         Q_EMIT linked.searchResultUpdated();
         return;
     }
+
     searchResults.clear();
     auto users = linked.owner.contactModel->getSearchResults();
     for (auto& user : users) {
@@ -3490,28 +3493,27 @@ ConversationModelPimpl::updateInteractionStatus(const QString& accountId,
         using namespace libjami::Account;
         auto msgState = static_cast<MessageStates>(status);
         auto& interactions = conversation.interactions;
-        interactions->with(messageId,
-                            [&](const QString& id, const interaction::Info& interaction) {
-                                if (interaction.type != interaction::Type::DATA_TRANSFER) {
-                                    interaction::Status newState;
-                                    if (msgState == MessageStates::SENDING) {
-                                        newState = interaction::Status::SENDING;
-                                    } else if (msgState == MessageStates::SENT) {
-                                        newState = interaction::Status::SUCCESS;
-                                    } else if (msgState == MessageStates::DISPLAYED) {
-                                        newState = interaction::Status::DISPLAYED;
-                                    } else {
-                                        return;
-                                    }
-                                    if (interactions->updateStatus(id, newState)
-                                        && newState == interaction::Status::DISPLAYED) {
-                                        emitDisplayed = true;
-                                    }
-                                } else if (msgState == MessageStates::DISPLAYED) {
-                                    emitDisplayed = true; // Status for file transfer is managed otherwise,
-                                    // But at least set interaction as read
-                                }
-                            });
+        interactions->with(messageId, [&](const QString& id, const interaction::Info& interaction) {
+            if (interaction.type != interaction::Type::DATA_TRANSFER) {
+                interaction::Status newState;
+                if (msgState == MessageStates::SENDING) {
+                    newState = interaction::Status::SENDING;
+                } else if (msgState == MessageStates::SENT) {
+                    newState = interaction::Status::SUCCESS;
+                } else if (msgState == MessageStates::DISPLAYED) {
+                    newState = interaction::Status::DISPLAYED;
+                } else {
+                    return;
+                }
+                if (interactions->updateStatus(id, newState)
+                    && newState == interaction::Status::DISPLAYED) {
+                    emitDisplayed = true;
+                }
+            } else if (msgState == MessageStates::DISPLAYED) {
+                emitDisplayed = true; // Status for file transfer is managed otherwise,
+                // But at least set interaction as read
+            }
+        });
 
         if (emitDisplayed)
             conversation.interactions->setRead(peerUri, messageId);

@@ -62,6 +62,7 @@ ItemDelegate {
         spacing: 10
 
         Avatar {
+            objectName: "accountComboBoxDelegateAvatar"
             Layout.preferredWidth: JamiTheme.accountListAvatarSize
             Layout.preferredHeight: JamiTheme.accountListAvatarSize
             Layout.alignment: Qt.AlignVCenter
