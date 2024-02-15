@@ -262,12 +262,12 @@ MainApplication::init()
     // The presence of start URI should override the startMinimized setting for this instance.
     set_startMinimized(startMinimizedSetting && runOptions_[Option::StartUri].isNull());
 
-    initQmlLayer();
+    //    initQmlLayer();
 
-    settingsManager_->setValue(Settings::Key::StartMinimized,
-                               runOptions_[Option::StartMinimized].toBool());
+    //    settingsManager_->setValue(Settings::Key::StartMinimized,
+    //                               runOptions_[Option::StartMinimized].toBool());
 
-    initSystray();
+    //    initSystray();
 
     return true;
 }
@@ -505,4 +505,10 @@ void
 MainApplication::setEventFilter()
 {
     installEventFilter(this);
+}
+
+void
+MainApplication::logThreadID(const QString& msg)
+{
+    C_DBG.noquote() << "*********** Thread ID:" << QThread::currentThreadId() << msg;
 }

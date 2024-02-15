@@ -97,6 +97,8 @@ public:
         return QApplication::eventFilter(object, event);
     }
 
+    Q_INVOKABLE static void logThreadID(const QString& msg = {});
+
 Q_SIGNALS:
     void closeRequested();
     void searchAndSelect(const QString& request);
