@@ -32,14 +32,11 @@
 #include <QImage>
 #include <QByteArray>
 #include <QBuffer>
-#include <QLockFile>
 #include <QJsonObject>
 #include <QJsonDocument>
 
 #include <fstream>
-#if !defined(Q_OS_LINUX) || __GNUC__ > 8
 #include <filesystem>
-#endif
 #include <thread>
 #include <cstring>
 
@@ -137,6 +134,7 @@ prepareUri(const QString& uri, api::profile::Type type)
 }
 
 namespace vcard {
+
 QString
 compressedAvatar(const QString& image)
 {
@@ -217,33 +215,12 @@ profileToVcard(const api::profile::Info& profileInfo, bool compressImage)
 void
 setProfile(const QString& accountId, const api::profile::Info& profileInfo, bool isPeer, bool ov)
 {
-    auto vcard = vcard::profileToVcard(profileInfo);
-    auto path = profileVcardPath(accountId, isPeer ? profileInfo.uri : "", ov);
-    QLockFile lf(path + ".lock");
-    QFile file(path);
-    QFileInfo fileInfo(path);
-    auto dir = fileInfo.dir();
-    if (!dir.exists()) {
-#if !defined(Q_OS_LINUX) || __GNUC__ > 8
-        if (!std::filesystem::create_directory(dir.path().toStdString())) {
-#endif
-            qWarning() << "Cannot create " << dir.path();
-#if !defined(Q_OS_LINUX) || __GNUC__ > 8
-        }
-#endif
-    }
-    if (!lf.lock()) {
-        qWarning().noquote() << "Can't lock file for writing: " << file.fileName();
-        return;
-    }
-    if (!file.open(QIODevice::WriteOnly)) {
-        lf.unlock();
-        qWarning().noquote() << "Can't open file for writing: " << file.fileName();
-        return;
-    }
-    QTextStream(&file) << vcard;
-    file.close();
-    lf.unlock();
+    withProfile(
+        accountId,
+        isPeer ? profileInfo.uri : "",
+        QIODevice::WriteOnly,
+        [&](const QByteArray&, QTextStream& stream) { stream << profileToVcard(profileInfo, ov); },
+        isPeer ? ov : false);
 }
 } // namespace vcard
 
@@ -265,68 +242,65 @@ getPeerParticipantsForConversation(Database& db, const QString& conversationId)
 }
 
 void
-createOrUpdateProfile(const QString& accountId,
-                      const api::profile::Info& profileInfo,
-                      bool isPeer,
-                      bool ov)
+createOrUpdateProfile(const QString& accountId, const api::profile::Info& profileInfo, bool ov)
 {
-    if (isPeer) {
-        auto contact = storage::buildContactFromProfile(accountId,
-                                                        profileInfo.uri,
-                                                        profileInfo.type);
-        if (!profileInfo.alias.isEmpty())
-            contact.profileInfo.alias = profileInfo.alias;
-        if (!profileInfo.avatar.isEmpty())
-            contact.profileInfo.avatar = profileInfo.avatar;
-        vcard::setProfile(accountId, contact.profileInfo, isPeer, ov);
-        return;
-    }
-    vcard::setProfile(accountId, profileInfo, isPeer, ov);
+    auto contact = storage::buildContactFromProfile(accountId, profileInfo.uri, profileInfo.type);
+    if (!profileInfo.alias.isEmpty())
+        contact.profileInfo.alias = profileInfo.alias;
+    if (!profileInfo.avatar.isEmpty())
+        contact.profileInfo.avatar = profileInfo.avatar;
+    vcard::setProfile(accountId, contact.profileInfo, true /*isPeer*/, ov);
 }
 
 void
 removeProfile(const QString& accountId, const QString& peerUri)
 {
     auto path = profileVcardPath(accountId, peerUri);
-    if (!QFile::remove(path))
+    if (!QFile::remove(path)) {
         qWarning() << "Couldn't remove vcard for" << peerUri << "at" << path;
-    auto opath = profileVcardPath(accountId, peerUri, true);
-    QFile::remove(opath);
+    }
+    auto overridePath = profileVcardPath(accountId, peerUri, true);
+    QFile::remove(overridePath);
 }
 
 QString
 getAccountAvatar(const QString& accountId)
 {
-    auto accountLocalPath = getPath() + accountId + "/";
-    QString filePath;
-    filePath = accountLocalPath + "profile.vcf";
-    QFile file(filePath);
-    if (!file.open(QIODevice::ReadOnly)) {
-        return {};
-    }
-    const auto vCard = lrc::vCard::utils::toHashMap(file.readAll());
-    for (const auto& key : vCard.keys()) {
-        if (key.contains("PHOTO"))
-            return vCard[key];
-    }
-    return {};
+    QString avatar;
+    withProfile(
+        accountId,
+        "",
+        QIODevice::ReadOnly,
+        [&](const QByteArray& readData, QTextStream&) {
+            QHash<QByteArray, QByteArray> vCard = lrc::vCard::utils::toHashMap(readData);
+            for (auto it = vCard.cbegin(); it != vCard.cend(); ++it)
+                if (it.key().contains("PHOTO")) {
+                    avatar = it.value();
+                    return;
+                }
+        },
+        false);
+    return avatar;
 }
 
 static QPair<QString, QString>
 getOverridenInfos(const QString& accountId, const QString& peerUri)
 {
-    QString b64filePathOverride = profileVcardPath(accountId, peerUri, true);
-    QFile fileOverride(b64filePathOverride);
-
-    QHash<QByteArray, QByteArray> overridenVCard;
     QString overridenAlias, overridenAvatar;
-    if (fileOverride.open(QIODevice::ReadOnly)) {
-        overridenVCard = lrc::vCard::utils::toHashMap(fileOverride.readAll());
-        overridenAlias = overridenVCard[vCard::Property::FORMATTED_NAME];
-        for (const auto& key : overridenVCard.keys())
-            if (key.contains("PHOTO"))
-                overridenAvatar = overridenVCard[key];
-    }
+    withProfile(
+        accountId,
+        peerUri,
+        QIODevice::ReadOnly,
+        [&](const QByteArray& readData, QTextStream&) {
+            QHash<QByteArray, QByteArray> vCard = lrc::vCard::utils::toHashMap(readData);
+            overridenAlias = vCard[vCard::Property::FORMATTED_NAME];
+            for (auto it = vCard.cbegin(); it != vCard.cend(); ++it)
+                if (it.key().contains("PHOTO")) {
+                    overridenAvatar = it.value();
+                    return;
+                }
+        },
+        true);
     return {overridenAlias, overridenAvatar};
 }
 
@@ -335,35 +309,127 @@ buildContactFromProfile(const QString& accountId,
                         const QString& peerUri,
                         const api::profile::Type& type)
 {
+    // Get base contact info
     lrc::api::profile::Info profileInfo;
     profileInfo.uri = peerUri;
     profileInfo.type = type;
-    auto accountLocalPath = getPath() + accountId + "/";
-    QString b64filePath = profileVcardPath(accountId, peerUri);
-    QFile file(b64filePath);
-    if (!file.open(QIODevice::ReadOnly)) {
-        // try non-base64 path
-        QString filePath = accountLocalPath + "profiles/" + peerUri + ".vcf";
-        file.setFileName(filePath);
-        if (!file.open(QIODevice::ReadOnly)) {
-            return {profileInfo, "", true, false};
-        }
-        // rename it
-        qWarning().noquote() << "Renaming profile: " << filePath;
-        file.rename(b64filePath);
-        // reopen it
-        if (!file.open(QIODevice::ReadOnly)) {
-            qWarning().noquote() << "Can't open file: " << b64filePath;
-            return {profileInfo, "", true, false};
-        }
+
+    // Try to get overriden infos first
+    auto [overridenAlias, overridenAvatar] = getOverridenInfos(accountId, peerUri);
+    if (!overridenAlias.isEmpty())
+        profileInfo.alias = overridenAlias;
+    if (!overridenAvatar.isEmpty())
+        profileInfo.avatar = overridenAvatar;
+
+    // If either alias or avatar is empty, get from profile
+    if (profileInfo.alias.isEmpty() || profileInfo.avatar.isEmpty()) {
+        withProfile(
+            accountId,
+            peerUri,
+            QIODevice::ReadOnly,
+            [&](const QByteArray& readData, QTextStream&) {
+                QHash<QByteArray, QByteArray> vCard = lrc::vCard::utils::toHashMap(readData);
+                if (profileInfo.alias.isEmpty())
+                    profileInfo.alias = vCard[vCard::Property::FORMATTED_NAME];
+                if (profileInfo.avatar.isEmpty())
+                    for (auto it = vCard.cbegin(); it != vCard.cend(); ++it)
+                        if (it.key().contains("PHOTO")) {
+                            profileInfo.avatar = it.value();
+                            return;
+                        }
+            },
+            false);
     }
 
-    auto [overridenAlias, overridenAvatar] = getOverridenInfos(accountId, peerUri);
-
-    const auto vCard = lrc::vCard::utils::toHashMap(file.readAll());
-    const auto alias = vCard[vCard::Property::FORMATTED_NAME];
-    profileInfo.alias = overridenAlias.isEmpty() ? alias : overridenAlias;
     return {profileInfo, "", type == api::profile::Type::JAMI, false};
+}
+
+// Utility function to ensure directory exists
+bool
+ensureDirectoryExists(const QString& path)
+{
+    QDir dir(path);
+    if (!dir.exists()) {
+        if (!std::filesystem::create_directory(path.toStdString())) {
+            return false; // Directory creation failed
+        }
+    }
+    return true; // Directory exists or was successfully created
+}
+
+bool
+withProfile(const QString& accountId,
+            const QString& peerUri,
+            QIODevice::OpenMode flags,
+            ProfileLoadedCb&& callback,
+            bool ov)
+{
+    QString path = profileVcardPath(accountId, !peerUri.isEmpty() ? peerUri : "", ov);
+
+    // Ensure the directory exists if we are writing
+    if (flags & QIODevice::WriteOnly && !ensureDirectoryExists(QFileInfo(path).absolutePath())) {
+        LC_WARN << "Cannot create directory for path:" << path;
+        return false;
+    }
+
+    // Add QIODevice::Text to the flags
+    flags |= QIODevice::Text;
+
+    QFile file(path);
+    if (!file.open(flags)) {
+        LC_DBG << "Can't open file: " << path;
+        return false;
+    }
+
+    QByteArray readData;
+    QTextStream outStream(&file);
+    if (flags & QIODevice::ReadOnly) {
+        readData = file.readAll();
+    }
+
+    // Log what we are doing with the profile for now
+    LC_DBG << (flags & QIODevice::ReadOnly ? "Reading" : "Writing") << "profile:" << path;
+
+    // Execute the callback with readData and outStream
+    callback(readData, outStream);
+
+    file.close();
+    return true;
+}
+
+QMap<QString, QString>
+getProfileData(const QString& accountId, const QString& peerUri)
+{
+    QMap<QString, QString> profileData;
+
+    // Try to get overriden infos first
+    auto [overridenAlias, overridenAvatar] = getOverridenInfos(accountId, peerUri);
+    if (!overridenAlias.isEmpty())
+        profileData["alias"] = overridenAlias;
+    if (!overridenAvatar.isEmpty())
+        profileData["avatar"] = overridenAvatar;
+
+    // If either alias or avatar is empty, get from profile
+    if (profileData["alias"].isEmpty() || profileData["avatar"].isEmpty()) {
+        withProfile(
+            accountId,
+            peerUri,
+            QIODevice::ReadOnly,
+            [&](const QByteArray& readData, QTextStream&) {
+                QHash<QByteArray, QByteArray> vCard = lrc::vCard::utils::toHashMap(readData);
+                if (profileData["alias"].isEmpty())
+                    profileData["alias"] = vCard[vCard::Property::FORMATTED_NAME];
+                if (profileData["avatar"].isEmpty())
+                    for (auto it = vCard.cbegin(); it != vCard.cend(); ++it)
+                        if (it.key().contains("PHOTO")) {
+                            profileData["avatar"] = it.value();
+                            return;
+                        }
+            },
+            false);
+    }
+
+    return profileData;
 }
 
 QString
@@ -372,21 +438,26 @@ avatar(const QString& accountId, const QString& peerUri)
     if (peerUri.isEmpty())
         return getAccountAvatar(accountId);
 
-    auto [_overridenAlias, overridenAvatar] = getOverridenInfos(accountId, peerUri);
+    auto [_, overridenAvatar] = getOverridenInfos(accountId, peerUri);
     if (!overridenAvatar.isEmpty())
         return overridenAvatar;
 
-    QString b64filePath;
-    b64filePath = profileVcardPath(accountId, peerUri);
-    QFile file(b64filePath);
-    if (!file.open(QIODevice::ReadOnly))
-        return {};
-    const auto vCard = lrc::vCard::utils::toHashMap(file.readAll());
-    for (const auto& key : vCard.keys()) {
-        if (key.contains("PHOTO"))
-            return vCard[key];
-    }
-    return {};
+    QString avatar;
+    withProfile(
+        accountId,
+        peerUri,
+        QIODevice::ReadOnly,
+        [&](const QByteArray& readData, QTextStream&) {
+            QHash<QByteArray, QByteArray> vCard = lrc::vCard::utils::toHashMap(readData);
+            for (auto it = vCard.cbegin(); it != vCard.cend(); ++it)
+                if (it.key().contains("PHOTO")) {
+                    avatar = it.value();
+                    return;
+                }
+        },
+        false);
+
+    return avatar;
 }
 
 VectorString
@@ -461,41 +532,40 @@ getHistory(Database& db, api::conversation::Info& conversation, const QString& l
                     "conversation=:conversation",
                     {{":conversation", conversation.uid}});
     auto nCols = 8;
-    if (interactionsResult.nbrOfCols == nCols) {
-        auto payloads = interactionsResult.payloads;
-        for (decltype(payloads.size()) i = 0; i < payloads.size(); i += nCols) {
-            QString durationString;
-            auto extra_data_str = payloads[i + 7];
-            if (!extra_data_str.isEmpty()) {
-                auto jsonData = JSONFromString(extra_data_str);
-                durationString = readJSONValue(jsonData, "duration");
-            }
-            auto body = payloads[i + 2];
-            auto type = api::interaction::to_type(payloads[i + 4]);
-            std::time_t duration = durationString.isEmpty()
-                                       ? 0
-                                       : std::stoi(durationString.toStdString());
-            auto status = api::interaction::to_status(payloads[i + 5]);
-            if (type == api::interaction::Type::CALL) {
-                body = api::interaction::getCallInteractionStringNonSwarm(payloads[i + 1]
-                                                                              == localUri,
-                                                                          duration);
-            } else if (type == api::interaction::Type::CONTACT) {
-                body = storage::getContactInteractionString(payloads[i + 1], status);
-            }
-            auto msg = api::interaction::Info({payloads[i + 1],
-                                               body,
-                                               std::stoi(payloads[i + 3].toStdString()),
-                                               duration,
-                                               type,
-                                               status,
-                                               (payloads[i + 6] == "1" ? true : false)});
-            conversation.interactions->append(payloads[i], std::move(msg));
-            if (status != api::interaction::Status::DISPLAYED || !payloads[i + 1].isEmpty()) {
-                continue;
-            }
-            conversation.interactions->setRead(conversation.participants.front().uri, payloads[i]);
+    if (interactionsResult.nbrOfCols != nCols)
+        return;
+
+    auto payloads = interactionsResult.payloads;
+    for (decltype(payloads.size()) i = 0; i < payloads.size(); i += nCols) {
+        QString durationString;
+        auto extra_data_str = payloads[i + 7];
+        if (!extra_data_str.isEmpty()) {
+            auto jsonData = JSONFromString(extra_data_str);
+            durationString = readJSONValue(jsonData, "duration");
         }
+        auto body = payloads[i + 2];
+        auto type = api::interaction::to_type(payloads[i + 4]);
+        std::time_t duration = durationString.isEmpty() ? 0
+                                                        : std::stoi(durationString.toStdString());
+        auto status = api::interaction::to_status(payloads[i + 5]);
+        if (type == api::interaction::Type::CALL) {
+            body = api::interaction::getCallInteractionStringNonSwarm(payloads[i + 1] == localUri,
+                                                                      duration);
+        } else if (type == api::interaction::Type::CONTACT) {
+            body = storage::getContactInteractionString(payloads[i + 1], status);
+        }
+        auto msg = api::interaction::Info({payloads[i + 1],
+                                           body,
+                                           std::stoi(payloads[i + 3].toStdString()),
+                                           duration,
+                                           type,
+                                           status,
+                                           (payloads[i + 6] == "1" ? true : false)});
+        conversation.interactions->append(payloads[i], std::move(msg));
+        if (status != api::interaction::Status::DISPLAYED || !payloads[i + 1].isEmpty()) {
+            continue;
+        }
+        conversation.interactions->setRead(conversation.participants.front().uri, payloads[i]);
     }
 }
 

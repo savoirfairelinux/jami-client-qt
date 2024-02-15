@@ -43,7 +43,7 @@ public:
     Q_INVOKABLE QString getUid(const QString& id);
 
     // add or update a specific image in the cache
-    QString addOrUpdateImage(const QString& id);
+    Q_SLOT QString addOrUpdateImage(const QString& id);
 
 Q_SIGNALS:
     void avatarUidChanged(const QString& id);
