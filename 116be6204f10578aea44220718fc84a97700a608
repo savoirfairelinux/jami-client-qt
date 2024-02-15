@@ -16,6 +16,24 @@
       "message": "extra",
       "revId": "116be6204f10578aea44220718fc84a97700a608",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c0f6200_b7609e80",
+        "filename": "src/app/settingsview/components/ManageAccountPage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-02-15T19:26:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "018e60f9_82739ab3",
+      "revId": "116be6204f10578aea44220718fc84a97700a608",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
