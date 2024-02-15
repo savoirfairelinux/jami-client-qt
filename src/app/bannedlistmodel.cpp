@@ -21,6 +21,8 @@
 
 #include "lrcinstance.h"
 
+#include <api/contact.h>
+
 BannedListModel::BannedListModel(QObject* parent)
     : AbstractListModelBase(parent)
 

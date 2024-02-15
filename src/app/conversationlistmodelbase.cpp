@@ -19,6 +19,8 @@
 
 #include "conversationlistmodelbase.h"
 
+#include <api/contact.h>
+
 ConversationListModelBase::ConversationListModelBase(LRCInstance* instance, QObject* parent)
     : AbstractListModelBase(parent)
 {

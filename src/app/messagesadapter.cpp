@@ -29,6 +29,7 @@
 #include "previewengine.h"
 
 #include <api/datatransfermodel.h>
+#include <api/contact.h>
 
 #include <QApplication>
 #include <QBuffer>

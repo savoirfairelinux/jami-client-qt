@@ -31,14 +31,12 @@
 #include "api/avmodel.h"
 #include "api/pluginmodel.h"
 #include "api/behaviorcontroller.h"
-#include "api/datatransfermodel.h"
 #include "api/accountmodel.h"
 #include "callbackshandler.h"
 #include "dbus/callmanager.h"
 #include "dbus/configurationmanager.h"
 #include "dbus/instancemanager.h"
 #include "dbus/configurationmanager.h"
-#include "authority/storagehelper.h"
 
 Q_LOGGING_CATEGORY(libclientLog, "libclient")
 
@@ -54,7 +52,7 @@ bool isFinished(const QString& callState);
 class LrcPimpl
 {
 public:
-    LrcPimpl(Lrc& linked, MigrationCb& willMigrateCb, MigrationCb& didMigrateCb);
+    LrcPimpl(Lrc& linked);
 
     const Lrc& linked;
     std::unique_ptr<BehaviorController> behaviorController;
@@ -64,7 +62,7 @@ public:
     std::unique_ptr<PluginModel> PluginModel_;
 };
 
-Lrc::Lrc(MigrationCb willDoMigrationCb, MigrationCb didDoMigrationCb, bool muteDaemon)
+Lrc::Lrc(bool muteDaemon)
 {
     lrc::api::Lrc::holdConferences.store(true);
 #ifndef ENABLE_LIBWRAP
@@ -79,7 +77,7 @@ Lrc::Lrc(MigrationCb willDoMigrationCb, MigrationCb didDoMigrationCb, bool muteD
     // Ensure Daemon is running/loaded (especially on non-DBus platforms)
     // before instantiating LRC and its members
     InstanceManager::instance(muteDaemon);
-    lrcPimpl_ = std::make_unique<LrcPimpl>(*this, willDoMigrationCb, didDoMigrationCb);
+    lrcPimpl_ = std::make_unique<LrcPimpl>(*this);
 }
 
 Lrc::~Lrc()
@@ -245,15 +243,11 @@ Lrc::monitor(bool continuous)
     ConfigurationManager::instance().monitor(continuous);
 }
 
-LrcPimpl::LrcPimpl(Lrc& linked, MigrationCb& willMigrateCb, MigrationCb& didMigrateCb)
+LrcPimpl::LrcPimpl(Lrc& linked)
     : linked(linked)
     , behaviorController(std::make_unique<BehaviorController>())
     , callbackHandler(std::make_unique<CallbacksHandler>(linked))
-    , accountModel(std::make_unique<AccountModel>(linked,
-                                                  *callbackHandler,
-                                                  *behaviorController,
-                                                  willMigrateCb,
-                                                  didMigrateCb))
+    , accountModel(std::make_unique<AccountModel>(linked, *callbackHandler, *behaviorController))
     , AVModel_ {std::make_unique<AVModel>(*callbackHandler)}
     , PluginModel_ {std::make_unique<PluginModel>()}
 {}

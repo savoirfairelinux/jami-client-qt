@@ -16,8 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "mainapplication.h"
-#include "qmlregister.h"
+#include "lrcinstance.h"
 #include "appsettingsmanager.h"
 #include "connectivitymonitor.h"
 #include "systemtray.h"
@@ -47,8 +46,7 @@ public:
         systemTray.reset(new SystemTray(settingsManager.get(), nullptr));
 
         std::atomic_bool isMigrating(false);
-        lrcInstance.reset(
-            new LRCInstance(nullptr, nullptr, "", connectivityMonitor.get(), debugMode, muteDaemon));
+        lrcInstance.reset(new LRCInstance("", connectivityMonitor.get(), debugMode, muteDaemon));
         lrcInstance->subscribeToDebugReceived();
 
         // setup the adapters (their lifetimes are that of MainApplication)

@@ -346,9 +346,7 @@ uint64_t getLastTimestamp(Database& db);
  * @param willMigrateCb to invoke when migration will occur
  * @param didMigrateCb to invoke when migration has completed
  */
-std::vector<std::shared_ptr<Database>> migrateIfNeeded(const QStringList& accountIds,
-                                                       MigrationCb& willMigrateCb,
-                                                       MigrationCb& didMigrateCb);
+std::vector<std::shared_ptr<Database>> migrateIfNeeded(const QStringList& accountIds);
 
 } // namespace storage
 

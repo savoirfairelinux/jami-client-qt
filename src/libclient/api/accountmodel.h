@@ -52,9 +52,7 @@ class LIB_EXPORT AccountModel : public QObject
 public:
     AccountModel(Lrc& lrc,
                  const CallbacksHandler& callbackHandler,
-                 const api::BehaviorController& behaviorController,
-                 MigrationCb& willMigrateCb,
-                 MigrationCb& didMigrateCb);
+                 const api::BehaviorController& behaviorController);
 
     ~AccountModel();
     /**
