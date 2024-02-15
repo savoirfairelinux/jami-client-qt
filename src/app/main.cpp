@@ -142,6 +142,9 @@ main(int argc, char* argv[])
         return 0;
     }
 
+    // Log thread id to help debugging
+    MainApplication::logThreadID("MAIN THREAD");
+
     return app.exec();
 }
 #endif

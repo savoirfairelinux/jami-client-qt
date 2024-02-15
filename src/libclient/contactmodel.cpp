@@ -47,6 +47,8 @@
 
 // Std
 #include <algorithm>
+#include <thread>
+#include <chrono>
 
 namespace lrc {
 
@@ -329,7 +331,6 @@ ContactModel::addToContacts(const QString& contactUri)
     auto iter = pimpl_->contacts.find(contactUri);
     if (iter != pimpl_->contacts.end())
         return;
-
     auto contactInfo = storage::buildContactFromProfile(owner.id,
                                                         contactUri,
                                                         profile::Type::PENDING);
@@ -613,12 +614,6 @@ ContactModelPimpl::ContactModelPimpl(const ContactModel& linked,
     , behaviorController(behaviorController)
     , callbacksHandler(callbacksHandler)
 {
-    // Init contacts map
-    if (linked.owner.profileInfo.type == profile::Type::SIP)
-        fillWithSIPContacts();
-    else
-        fillWithJamiContacts();
-
     // connect the signals
     connect(&callbacksHandler,
             &CallbacksHandler::newBuddySubscription,
@@ -653,6 +648,14 @@ ContactModelPimpl::ContactModelPimpl(const ContactModel& linked,
             &ConfigurationManagerInterface::userSearchEnded,
             this,
             &ContactModelPimpl::slotUserSearchEnded);
+
+    // Init contacts map on a new thread as there is likely a lot of IO
+    profileThreadPool.start([this] {
+        if (this->linked.owner.profileInfo.type == profile::Type::SIP)
+            fillWithSIPContacts();
+        else
+            fillWithJamiContacts();
+    });
 }
 
 ContactModelPimpl::~ContactModelPimpl()
@@ -721,6 +724,7 @@ ContactModelPimpl::fillWithJamiContacts()
     const VectorMapStringString& contacts_vector = ConfigurationManager::instance().getContacts(
         linked.owner.id);
     for (auto contact_info : contacts_vector) {
+        // std::this_thread::sleep_for(std::chrono::milliseconds(100));
         std::lock_guard<std::mutex> lk(contactsMtx_);
         bool banned = contact_info["banned"] == "true" ? true : false;
         addToContacts(contact_info["id"],
@@ -779,7 +783,7 @@ ContactModelPimpl::fillWithJamiContacts()
                     auto it = contacts.find(uri);
                     if (it != contacts.end()) {
                         it->isPresent = key == "Online";
-                        linked.modelUpdated(uri);
+                        Q_EMIT linked.modelUpdated(uri);
                     }
                 }
                 break;
@@ -927,6 +931,9 @@ ContactModelPimpl::slotContactRemoved(const QString& accountId,
     }
 }
 
+// VCard is deserialized twice here: buildContactFromProfile and avatar.
+//   each one will load getOverridenInfos
+// fix const iter
 void
 ContactModelPimpl::addToContacts(const QString& contactUri,
                                  const profile::Type& type,
@@ -968,9 +975,9 @@ ContactModelPimpl::addToContacts(const QString& contactUri,
         contactInfo.registeredName = info.registeredName;
         contactInfo.isPresent = info.isPresent;
         iter.value() = contactInfo;
-    } else
-        contacts.insert(iter, contactInfo.profileInfo.uri, contactInfo);
-
+    } else {
+        contacts.insert(contactInfo.profileInfo.uri, contactInfo);
+    }
     if (banned) {
         bannedContacts.append(contactUri);
     }
@@ -1198,6 +1205,7 @@ ContactModelPimpl::slotProfileReceived(const QString& accountId,
         return;
 
     profileThreadPool.start([=] {
+        qInfo() << "***************** thread id:" << QThread::currentThreadId();
         QFile vCardFile(path);
         if (!vCardFile.open(QIODevice::ReadOnly | QIODevice::Text))
             return;
