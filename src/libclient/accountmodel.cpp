@@ -839,8 +839,8 @@ account::Info::fromDetails(const MapStringString& details)
     confProperties.upnpEnabled = toBool(details[ConfProperties::UPNP_ENABLED]);
     confProperties.hasCustomUserAgent = toBool(details[ConfProperties::HAS_CUSTOM_USER_AGENT]);
     confProperties.allowIncoming = toBool(details[ConfProperties::ALLOW_CERT_FROM_HISTORY])
-                                   | toBool(details[ConfProperties::ALLOW_CERT_FROM_CONTACT])
-                                   | toBool(details[ConfProperties::ALLOW_CERT_FROM_TRUSTED]);
+                                   || toBool(details[ConfProperties::ALLOW_CERT_FROM_CONTACT])
+                                   || toBool(details[ConfProperties::ALLOW_CERT_FROM_TRUSTED]);
     confProperties.allowIPAutoRewrite = toBool(details[ConfProperties::ACCOUNT_IP_AUTO_REWRITE]);
     confProperties.archivePassword = details[ConfProperties::ARCHIVE_PASSWORD];
     confProperties.archiveHasPassword = toBool(details[ConfProperties::ARCHIVE_HAS_PASSWORD]);
