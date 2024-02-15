@@ -95,6 +95,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "05eaf8cd_df7da845",
+        "filename": "src/app/commoncomponents/LocalVideo.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-02-15T14:29:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39e42f26_0c1c18a7",
+      "range": {
+        "startLine": 29,
+        "startChar": 13,
+        "endLine": 29,
+        "endChar": 24
+      },
+      "revId": "490389352fb040a7bc816f886c6cf5776603b88a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0042854c_c00074ba",
