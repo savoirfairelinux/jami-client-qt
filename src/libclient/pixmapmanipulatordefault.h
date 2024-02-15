@@ -29,11 +29,11 @@ public:
     QVariant conversationPhoto(const lrc::api::conversation::Info& conversation,
                                const lrc::api::account::Info& accountInfo,
                                const QSize& size,
-                               bool displayPresence = true) override;
+                               int presence = 0) override;
     QVariant numberCategoryIcon(const QVariant& p,
                                 const QSize& size,
                                 bool displayPresence = false,
-                                bool isPresent = false) override;
+                                int presence = 0) override;
     QByteArray toByteArray(const QVariant& pxm) override;
     QVariant personPhoto(const QByteArray& data, const QString& type = "PNG") override;
     QVariant decorationRole(const QModelIndex& index) override;
