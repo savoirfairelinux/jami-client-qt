@@ -112,7 +112,8 @@ ConversationListProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& s
     using namespace ConversationList;
     if (index.data(Role::Uris).toStringList().isEmpty()) {
         // TODO: Find out why, and fix in libjami/libjamiclient.
-        qCritical() << "Filtering 0 member conversation. Fix me";
+        qCritical() << "Filtering 0 member conversation. Fix me"
+                    << index.data(Role::UID).toString();
         return false;
     }
 

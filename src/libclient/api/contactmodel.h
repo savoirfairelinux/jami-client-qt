@@ -68,11 +68,6 @@ public:
      */
     void addContact(contact::Info contactInfo);
     /**
-     * Add a pending item into the contact list
-     * @param contactUri
-     */
-    void addToContacts(const QString& contactUri);
-    /**
      * Ask the daemon to remove a contact.
      * @param contactUri
      * @param banned
@@ -131,11 +126,17 @@ public:
      */
     QString avatar(const QString& contactUri) const;
 
+    /**
+     * Get display name from storage
+     * @param contactUri
+     */
+    QString displayName(const QString& contactUri) const;
+
 Q_SIGNALS:
     /**
-     * Connect this signal to know when this model was updated.
+     * Connect this signal to know when a contact was updated.
      */
-    void modelUpdated(const QString& uri) const;
+    void contactUpdated(const QString& uri) const;
     /**
      * Connect this signal to know when a contact was added.
      * @param contactUri
@@ -158,7 +159,10 @@ Q_SIGNALS:
      * @param isOutgoing
      * @param toUri
      */
-    void newCall(const QString& from, const QString& callId, bool isOutgoing, const QString& toUri) const;
+    void newCall(const QString& from,
+                 const QString& callId,
+                 bool isOutgoing,
+                 const QString& toUri) const;
     /**
      * Connect this signal to know when a text message arrives for this account
      * @param accountId

@@ -40,6 +40,8 @@ namespace authority {
 
 namespace storage {
 
+using ProfileLoadedCb = std::function<void(const QByteArray&, QTextStream&)>;
+
 /**
  * Get the base path for the application's local storage
  * @return local storage path
@@ -105,15 +107,15 @@ VectorString getConversationsWithPeer(Database& db, const QString& participant_u
 VectorString getPeerParticipantsForConversation(Database& db, const QString& conversationId);
 
 /**
- * Creates or updates a contact or account vCard file with profile data.
+ * Creates or updates a contact vCard file with profile data. Will read the profile
+ * from disk, update the fields and write it back to disk.
  * @param  accountId
  * @param  profileInfo the contact info containing peer profile information
- * @param  isPeer indicates that a the profileInfo is that of a peer
+ * @param  onCompleted callback to invoke when the profile has been created or updated
  * @param  ov if the client is storing a new vcard
  */
 void createOrUpdateProfile(const QString& accountId,
                            const api::profile::Info& profileInfo,
-                           bool isPeer = false,
                            bool ov = false);
 
 /**
@@ -131,7 +133,8 @@ void removeProfile(const QString& accountId, const QString& peerUri);
 QString getAccountAvatar(const QString& accountId);
 
 /**
- * Build a contact info struct from a vCard
+ * Build a contact info struct from a local profile which includes
+ * combining information from the override and regular vCard files.
  * @param  accountId
  * @param  peer_uri
  * @param  type of contact to build
@@ -140,6 +143,32 @@ QString getAccountAvatar(const QString& accountId);
 api::contact::Info buildContactFromProfile(const QString& accountId,
                                            const QString& peer_uri,
                                            const api::profile::Type& type);
+
+/**
+ * This will return the most pertinent data from the vCard set, including the
+ * avatar and display name. Both the override and regular vCard files are
+ * checked and the result is an aggregation of the two.
+ * @param accountId
+ * @param peerUri
+ * @return a map containing the pertinent data (avatar and display name)
+ */
+QMap<QString, QString> getProfileData(const QString& accountId, const QString& peerUri);
+
+/**
+ * @brief withProfileVCard
+ * @param accountId
+ * @param peerUri
+ * @param flag the open mode flag
+ * @param onLoadedCb callback to invoke when the profile has been loaded
+ * @param ov if we want to use an override vcard
+ * @return true if the profile was loaded successfully
+ */
+bool
+withProfile(const QString& accountId,
+            const QString& peerUri,
+            QIODevice::OpenMode flags,
+            ProfileLoadedCb&& onLoadedCb,
+            bool ov = false);
 
 /**
  * Get a contact's avatar

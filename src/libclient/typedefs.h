@@ -26,6 +26,8 @@
 #include <QtCore/QDebug>
 #include <QtCore/QDateTime>
 
+#include <QThread>
+
 #include <QtCore/QLoggingCategory>
 
 Q_DECLARE_LOGGING_CATEGORY(libclientLog)
