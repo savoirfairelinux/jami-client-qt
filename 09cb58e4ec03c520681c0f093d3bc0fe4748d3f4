@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6046e7c_9862ed9c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-02-15T19:41:17Z",
+      "side": 1,
+      "message": "some conversation last interaction timestamps seem to have changed after running the first time with this stack. not certain if it\u0027s related",
+      "revId": "09cb58e4ec03c520681c0f093d3bc0fe4748d3f4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2b6204b_fe31ebf3",
+        "filename": "src/libclient/api/interaction.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-02-15T19:41:17Z",
+      "side": 1,
+      "message": "Some comments on why this is done would be good here. Perhaps using the enum instead of the underlying type also.",
+      "range": {
+        "startLine": 468,
+        "startChar": 8,
+        "endLine": 480,
+        "endChar": 9
+      },
+      "revId": "09cb58e4ec03c520681c0f093d3bc0fe4748d3f4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40821474_4c6c3f58",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 3482,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-02-15T19:41:17Z",
+      "side": 1,
+      "message": "can return early for a bit of this:\n```\n        auto\u0026 conversation \u003d getConversationForUid(conversationId).get();\n\n        // Proceed only if the conversation is a swarm\n        if (!conversation.isSwarm()) {\n            return;\n        }\n\n        // Early return if peerUri matches owner profile URI, as no update is needed in this case\n        if (peerUri \u003d\u003d linked.owner.profileInfo.uri) {\n            return;\n        }\n```",
+      "revId": "09cb58e4ec03c520681c0f093d3bc0fe4748d3f4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea5ea7a3_59f3af52",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 3511,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-02-15T19:41:17Z",
+      "side": 1,
+      "message": "unused now",
+      "range": {
+        "startLine": 3511,
+        "startChar": 0,
+        "endLine": 3511,
+        "endChar": 76
+      },
+      "revId": "09cb58e4ec03c520681c0f093d3bc0fe4748d3f4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}

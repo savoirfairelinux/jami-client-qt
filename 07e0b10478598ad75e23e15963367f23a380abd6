@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d799afc3_bd8d14c3",
+        "filename": "src/libclient/api/conversationmodel.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-02-15T19:41:17Z",
+      "side": 0,
+      "message": "newdUid \u003c-- new displayed Uid ?? why not just newUid?",
+      "range": {
+        "startLine": 521,
+        "startChar": 14,
+        "endLine": 521,
+        "endChar": 21
+      },
+      "revId": "07e0b10478598ad75e23e15963367f23a380abd6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
