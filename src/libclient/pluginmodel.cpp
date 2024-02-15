@@ -147,8 +147,9 @@ bool
 PluginModel::uninstallPlugin(const QString& rootPath)
 {
     auto result = PluginManager::instance().uninstallPlugin(rootPath);
-    for (auto plugin : pluginsPath_.keys(rootPath)) {
-        pluginsPath_.remove(plugin);
+    QList<QString> keysToRemove = pluginsPath_.keys(rootPath);
+    for (const auto& key : keysToRemove) {
+        pluginsPath_.remove(key);
     }
     Q_EMIT modelUpdated();
     return result;
@@ -163,7 +164,7 @@ PluginModel::getPluginPath(const QString& pluginId)
 void
 PluginModel::setPluginsPath()
 {
-    for (auto plugin : getInstalledPlugins()) {
+    for (const auto& plugin : getInstalledPlugins()) {
         auto details = getPluginDetails(plugin);
         pluginsPath_[details.id] = details.path;
     }
