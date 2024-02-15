@@ -130,7 +130,7 @@ public Q_SLOTS:
      * @param contactUri
      * @param status
      */
-    void slotNewBuddySubscription(const QString& accountId, const QString& uri, bool status);
+    void slotNewBuddySubscription(const QString& accountId, const QString& uri, int status);
 
     /**
      * Listen CallbacksHandler when a contact is added
@@ -790,7 +790,7 @@ ContactModelPimpl::fillWithJamiContacts()
                     std::lock_guard<std::mutex> lk(contactsMtx_);
                     auto it = contacts.find(uri);
                     if (it != contacts.end()) {
-                        it->isPresent = key == "Online";
+                        it->presence = key == "Online" ? 1 : 0;
                         linked.modelUpdated(uri);
                     }
                 }
@@ -804,7 +804,7 @@ ContactModelPimpl::fillWithJamiContacts()
 void
 ContactModelPimpl::slotNewBuddySubscription(const QString& accountId,
                                             const QString& contactUri,
-                                            bool status)
+                                            int state)
 {
     if (accountId != linked.owner.id)
         return;
@@ -812,7 +812,7 @@ ContactModelPimpl::slotNewBuddySubscription(const QString& accountId,
         std::lock_guard<std::mutex> lk(contactsMtx_);
         auto it = contacts.find(contactUri);
         if (it != contacts.end()) {
-            it->isPresent = status;
+            it->presence = state;
         } else
             return;
     }
@@ -978,7 +978,7 @@ ContactModelPimpl::addToContacts(const QString& contactUri,
     if (iter != contacts.end()) {
         auto info = iter.value();
         contactInfo.registeredName = info.registeredName;
-        contactInfo.isPresent = info.isPresent;
+        contactInfo.presence = info.presence;
         iter.value() = contactInfo;
     } else
         contacts.insert(iter, contactInfo.profileInfo.uri, contactInfo);

@@ -150,7 +150,7 @@ public:
                                                    const QString& imageId = "temp");
 
     // For Swarm details page
-    Q_INVOKABLE bool getContactPresence(const QString& accountId, const QString& uri);
+    Q_INVOKABLE int getContactPresence(const QString& accountId, const QString& uri);
     Q_INVOKABLE QString getContactBestName(const QString& accountId, const QString& uri);
     Q_INVOKABLE lrc::api::member::Role getParticipantRole(const QString& accountId,
                                                           const QString& convId,

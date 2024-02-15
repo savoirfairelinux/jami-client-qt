@@ -32,7 +32,7 @@ namespace contact {
  * @var profileInfo
  * @var registeredName
  * @var isTrusted
- * @var isPresent
+ * @var presence
  * @var isBanned
  */
 struct Info
@@ -40,7 +40,7 @@ struct Info
     profile::Info profileInfo;
     QString registeredName;
     bool isTrusted = false;
-    bool isPresent = false;
+    int presence = 0;
     bool isBanned = false;
     QString conversationId {};
 };
