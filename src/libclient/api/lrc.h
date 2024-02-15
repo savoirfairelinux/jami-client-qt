@@ -41,13 +41,10 @@ class LIB_EXPORT Lrc
 {
 public:
     /**
-     * Construct an Lrc object and optionally invoke callbacks
-     * to control ui informing the user of a possibly lengthy
-     * migration process.
-     * @param willMigrateCb
-     * @param didMigrateCb
+     * Construct an Lrc object.
+     * @param muteDaemon
      */
-    Lrc(MigrationCb willMigrateCb = {}, MigrationCb didMigrateCb = {}, bool muteDaemon = false);
+    Lrc(bool muteDaemon = false);
     ~Lrc();
     /**
      * get a reference on account model.

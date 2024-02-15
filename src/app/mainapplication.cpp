@@ -298,30 +298,7 @@ MainApplication::initLrc(const QString& downloadUrl,
                          bool debugMode,
                          bool muteDaemon)
 {
-    /*
-     * Init mainwindow and finish splash when mainwindow shows up.
-     */
-    std::atomic_bool isMigrating(false);
-    lrcInstance_.reset(new LRCInstance(
-        [this, &isMigrating] {
-            /*
-             * TODO: splash screen for account migration.
-             */
-            isMigrating = true;
-            while (isMigrating) {
-                this->processEvents();
-            }
-        },
-        [&isMigrating] {
-            while (!isMigrating) {
-                std::this_thread::sleep_for(std::chrono::milliseconds(10));
-            }
-            isMigrating = false;
-        },
-        downloadUrl,
-        cm,
-        debugMode,
-        muteDaemon));
+    lrcInstance_.reset(new LRCInstance(downloadUrl, cm, debugMode, muteDaemon));
     lrcInstance_->subscribeToDebugReceived();
 }
 
