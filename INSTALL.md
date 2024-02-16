@@ -131,6 +131,11 @@ Notes:
 
 - `--global-install` to install client-qt globally under /usr/local
 - `--prefix` to change the destination of the install.
++ For developers:
+    + `--asan` add address sanitizer on the binary
+    + `--debug` enable debug symbols
+    + `--testing` will build the tests for both the daemon and client
+    + `--no-libwrap` will build the DBUS version.
 
 ## Build only the client
 

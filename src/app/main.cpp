@@ -38,7 +38,7 @@
 
 #include <clocale>
 
-#ifndef ENABLE_TESTS
+#ifndef BUILD_TESTING
 int
 main(int argc, char* argv[])
 {
