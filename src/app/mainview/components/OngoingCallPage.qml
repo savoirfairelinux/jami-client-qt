@@ -176,7 +176,24 @@ Rectangle {
                 visibilityCondition: (CurrentCall.isSharing || !CurrentCall.isVideoMuted) &&
                                      !CurrentCall.isConference
                 height: width * invAspectRatio
-                width: Math.max(container.width / 5, JamiTheme.minimumPreviewWidth)
+                // The width uses an offset to allow the user to scale it.
+                readonly property real baseWidth: container.width / 5
+                readonly property real maxPreviewWidth: {
+                    if (width > height)
+                        return container.width * 0.75
+                    else
+                        return container.height / invAspectRatio * 0.75
+                }
+                property real widthOffset: 0
+                function addToWidthOffset(value) {
+                    widthOffset += value;
+                    widthOffset = JamiQmlUtils.clamp(widthOffset,
+                                                     JamiTheme.minimumPreviewWidth - baseWidth,
+                                                     maxPreviewWidth - baseWidth)
+                }
+                width: JamiQmlUtils.clamp(baseWidth + widthOffset,
+                                         JamiTheme.minimumPreviewWidth,
+                                         maxPreviewWidth)
                 flip: CurrentCall.flipSelf && !CurrentCall.isSharing
                 blurRadius: hidden ? 25 : 0
                 onCallPreviewIdChanged: startWithId(callPreviewId)
@@ -201,6 +218,9 @@ Rectangle {
                 // Animate the hiddenSize with a Behavior.
                 Behavior on sideMargin { NumberAnimation { duration: 250; easing.type: Easing.OutExpo }}
                 readonly property bool onLeft: state.indexOf("left") !== -1
+                onOnLeftChanged: console.warn("onLeftChanged", onLeft)
+                readonly property bool onTop: state.indexOf("top") !== -1
+                onOnTopChanged: console.warn("onTopChanged", onTop)
                 PushButton {
                     id: hidePreviewButton
                     objectName: "hidePreviewButton"
@@ -302,6 +322,19 @@ Rectangle {
 
                 HoverHandler {
                     id: hoverHandler
+                }
+
+                WheelHandler {
+                    onWheel: function(event) {
+                        parent.opacity = JamiQmlUtils.clamp(parent.opacity + event.angleDelta.y / 120 * 0.1,
+                                                            0.25, 1);
+                    }
+                    acceptedModifiers: Qt.CTRL
+                }
+
+                WheelHandler {
+                    onWheel: (event) => localPreview.addToWidthOffset(event.angleDelta.y / 120 * 10)
+                    acceptedModifiers: Qt.NoModifier
                 }
 
                 DragHandler {
