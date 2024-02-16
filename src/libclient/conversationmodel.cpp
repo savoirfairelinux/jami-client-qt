@@ -3491,7 +3491,7 @@ ConversationModelPimpl::updateInteractionStatus(const QString& accountId,
         auto& interactions = conversation.interactions;
         interactions->with(messageId,
                             [&](const QString& id, const interaction::Info& interaction) {
-                                if (interaction.type == interaction::Type::TEXT) {
+                                if (interaction.type != interaction::Type::DATA_TRANSFER) {
                                     interaction::Status newState;
                                     if (msgState == MessageStates::SENDING) {
                                         newState = interaction::Status::SENDING;
@@ -3506,6 +3506,9 @@ ConversationModelPimpl::updateInteractionStatus(const QString& accountId,
                                         && newState == interaction::Status::DISPLAYED) {
                                         emitDisplayed = true;
                                     }
+                                } else if (msgState == MessageStates::DISPLAYED) {
+                                    emitDisplayed = true; // Status for file transfer is managed otherwise,
+                                    // But at least set interaction as read
                                 }
                             });
 
