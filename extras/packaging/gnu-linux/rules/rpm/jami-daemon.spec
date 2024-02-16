@@ -50,6 +50,7 @@ BuildRequires: libuuid-devel
 BuildRequires: libva-devel
 BuildRequires: libvdpau-devel
 BuildRequires: pcre-devel
+BuildRequires: pipewire-devel
 BuildRequires: uuid-devel
 BuildRequires: yaml-cpp-devel
 
