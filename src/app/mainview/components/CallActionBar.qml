@@ -112,6 +112,7 @@ Control {
         },
         Action {
             id: shareMenuAction
+            enabled: !CurrentCall.isSharing
             text: JamiStrings.selectShareMethod
             property int popupMode: CallActionBar.ActionPopupMode.ListElement
             property var listModel: ListModel {
@@ -123,7 +124,7 @@ Control {
                         "Name": JamiStrings.shareScreen,
                         "IconSource": JamiResources.laptop_black_24dp_svg
                     });
-                if (Qt.platform.os.toString() !== "osx" && !UtilsAdapter.isWayland()) {
+                if (Qt.platform.os.toString() !== "osx") {
                     shareModel.append({
                             "Name": JamiStrings.shareWindow,
                             "IconSource": JamiResources.window_black_24dp_svg
@@ -293,7 +294,14 @@ Control {
         },
         Action {
             id: muteVideoAction
-            onTriggered: CallAdapter.muteCameraToggle()
+            onTriggered: {
+                if (CurrentCall.isSharing && UtilsAdapter.isWayland()) {
+                    AvAdapter.muteCamera = false;
+                    AvAdapter.stopSharing(CurrentCall.sharingSource);
+                } else {
+                    CallAdapter.muteCameraToggle();
+                }
+            }
             checkable: true
             icon.source: checked ? JamiResources.videocam_off_24dp_svg : JamiResources.videocam_24dp_svg
             icon.color: checked ? "red" : "white"
