@@ -176,7 +176,12 @@ Rectangle {
                 visibilityCondition: (CurrentCall.isSharing || !CurrentCall.isVideoMuted) &&
                                      !CurrentCall.isConference
                 height: width * invAspectRatio
-                width: Math.max(container.width / 5, JamiTheme.minimumPreviewWidth)
+
+                // Keep the area of the preview a proportion of the screen size plus a
+                // modifier to allow the user to scale it.
+                readonly property real containerArea: container.width * container.height
+                property real scalingFactor: 1
+                width: Math.sqrt(containerArea / 16) * scalingFactor
                 flip: CurrentCall.flipSelf && !CurrentCall.isSharing
                 blurRadius: hidden ? 25 : 0
                 onCallPreviewIdChanged: startWithId(callPreviewId)
@@ -206,10 +211,23 @@ Rectangle {
                     objectName: "hidePreviewButton"
 
                     width: localPreview.hiddenHandleSize
-                    state: localPreview.onLeft ?
-                               (localPreview.hidden ? "right" : "left") :
-                               (localPreview.hidden ? "left" : "right")
+                    state: {
+                        if (!localPreview.anchored) {
+                            return "none";
+                        }
+                        return localPreview.onLeft ?
+                                    (localPreview.hidden ? "right" : "left") :
+                                    (localPreview.hidden ? "left" : "right")
+                    }
                     states: [
+                        State {
+                            name: "none"
+                            // Override visible to false when the localPreview isn't anchored.
+                            PropertyChanges {
+                                target: hidePreviewButton
+                                visible: false
+                            }
+                        },
                         State {
                             name: "left"
                             AnchorChanges {
@@ -302,6 +320,23 @@ Rectangle {
 
                 HoverHandler {
                     id: hoverHandler
+                }
+
+                WheelHandler {
+                    onWheel: function(event) {
+                        const delta = event.angleDelta.y / 120 * 0.1;
+                        parent.opacity = JamiQmlUtils.clamp(parent.opacity + delta, 0.25, 1);
+                    }
+                    acceptedModifiers: Qt.CTRL
+                }
+
+                WheelHandler {
+                    onWheel: function(event) {
+                        const delta = event.angleDelta.y / 120 * 0.1;
+                        localPreview.scalingFactor = JamiQmlUtils.clamp(localPreview.scalingFactor + delta, 0.5, 4);
+                    }
+                    acceptedModifiers: Qt.NoModifier
+                    enabled: !localPreview.hidden
                 }
 
                 DragHandler {
