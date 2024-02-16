@@ -194,10 +194,10 @@ endif()
 
 if(ENABLE_LIBWRAP)
   # The daemon is only required for when using direct linking
-  if(NOT LIBJAMI_LIB)
-    message(FATAL_ERROR "Jami daemon library is required when \
-building with ENABLE_LIBWRAP")
-  endif()
+#   if(NOT LIBJAMI_LIB)
+#     message(FATAL_ERROR "Jami daemon library is required when \
+# building with ENABLE_LIBWRAP")
+#   endif()
 
   # Use native calls (no DBus)
   add_definitions(-DENABLE_LIBWRAP=true)
@@ -480,7 +480,7 @@ if(NOT(APPLE OR MSVC))
 endif()
 
 if(ENABLE_LIBWRAP)
-  target_link_libraries(${LIBCLIENT_NAME} qtwrapper ${LIBJAMI_LIB})
+  target_link_libraries(${LIBCLIENT_NAME} qtwrapper)
   if (NOT (CMAKE_CXX_COMPILER_ID MATCHES "MSVC"))
     target_link_libraries(${LIBCLIENT_NAME} ${AVUTIL_LIBRARY})
   endif()
