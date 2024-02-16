@@ -33,7 +33,7 @@ Row {
         height: parent.height
     }
 
-    visible: appWindow.visibility !== Window.FullScreen
+    visible: !layoutManager.isCallFullscreen
 
     SystemButton {
         id: minButton
