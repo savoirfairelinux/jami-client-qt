@@ -112,6 +112,7 @@ Control {
         },
         Action {
             id: shareMenuAction
+            enabled: !CurrentCall.isSharing
             text: JamiStrings.selectShareMethod
             property int popupMode: CallActionBar.ActionPopupMode.ListElement
             property var listModel: ListModel {
@@ -123,7 +124,7 @@ Control {
                         "Name": JamiStrings.shareScreen,
                         "IconSource": JamiResources.laptop_black_24dp_svg
                     });
-                if (Qt.platform.os.toString() !== "osx" && !UtilsAdapter.isWayland()) {
+                if (Qt.platform.os.toString() !== "osx") {
                     shareModel.append({
                             "Name": JamiStrings.shareWindow,
                             "IconSource": JamiResources.window_black_24dp_svg
@@ -293,7 +294,24 @@ Control {
         },
         Action {
             id: muteVideoAction
-            onTriggered: CallAdapter.muteCameraToggle()
+            onTriggered: {
+                if (CurrentCall.isSharing && UtilsAdapter.isWayland()) {
+                    // Unmuting the camera while a screen share is ongoing causes the daemon
+                    // to stop sharing. However, on Wayland, every share has an associated
+                    // ScreenCastPortal object which is managed by the client and needs to
+                    // be destroyed when the share ends. This is why we explicitly call the
+                    // stopSharing function below.
+                    //
+                    // The muteCamera is set whenever a share starts and is normally used by
+                    // the stopSharing to restore the camera to its previous state when a share
+                    // ends. Here we know that the user wants to unmute the camera, so we
+                    // have to explicitly set muteCamera to false.
+                    AvAdapter.muteCamera = false;
+                    AvAdapter.stopSharing(CurrentCall.sharingSource);
+                } else {
+                    CallAdapter.muteCameraToggle();
+                }
+            }
             checkable: true
             icon.source: checked ? JamiResources.videocam_off_24dp_svg : JamiResources.videocam_24dp_svg
             icon.color: checked ? "red" : "white"
