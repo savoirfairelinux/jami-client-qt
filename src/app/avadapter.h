@@ -69,8 +69,15 @@ protected:
      */
     Q_INVOKABLE bool hasCamera() const;
 
-    // Share the screen specificed by screen number.
+    // Share the screen specificed by screen number (all platforms except Linux with Wayland).
     Q_INVOKABLE void shareEntireScreen(int screenNumber);
+
+    // Share a screen on Linux with Wayland.
+    // Sharing a screen on Wayland requires getting permission from the user. The logic for
+    // this is handled inside FFmpeg (in the pipewiregrab demuxer) using xdg-desktop-portal.
+    // The choice of screen is also handled by xdg-desktop-portal, which is why we don't need
+    // an argument for it (whereas we do on other platforms, cf. shareEntireScreen above).
+    Q_INVOKABLE void shareEntireScreenWayland();
 
     // Share the all screens connected.
     Q_INVOKABLE void shareAllScreens();
@@ -87,8 +94,15 @@ protected:
     // Select screen area to display (from all screens).
     Q_INVOKABLE void shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned height);
 
-    // Select window to display.
+    // Select window to display (all platforms except Linux with Wayland).
     Q_INVOKABLE void shareWindow(const QString& windowProcessId, const QString& windowId);
+
+    // Share a window on Linux with Wayland.
+    // Sharing a window on Wayland requires getting permission from the user. The logic for
+    // this is handled inside FFmpeg (in the pipewiregrab demuxer) using xdg-desktop-portal.
+    // The choice of window is also handled by xdg-desktop-portal, which is why we don't need
+    // arguments for it (whereas we do on other platforms, cf. shareWindow above).
+    Q_INVOKABLE void shareWindowWayland();
 
     // Returns the screensharing resource
     Q_INVOKABLE QString getSharingResource(int screenId = -2,
