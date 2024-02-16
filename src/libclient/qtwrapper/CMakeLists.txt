@@ -48,5 +48,4 @@ add_library(${PROJECT_NAME} STATIC
   ${PLUGIN_SOURCES})
 
 target_link_libraries(${PROJECT_NAME}
-  Qt::Core
-  ${LIBJAMI_LIB})
+  Qt::Core jami-core)
