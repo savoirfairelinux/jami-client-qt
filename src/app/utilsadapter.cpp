@@ -868,7 +868,7 @@ UtilsAdapter::urlFromLocalPath(const QString& filePath) const
     return QUrl::fromLocalFile(filePath);
 }
 
-#ifdef ENABLE_TESTS
+#ifdef BUILD_TESTING
 // Must only be used for testing purposes
 QString
 UtilsAdapter::createDummyImage() const

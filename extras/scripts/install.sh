@@ -48,8 +48,9 @@ enable_webengine=true
 asan=
 extra_cmake_flags=''
 arch=''
+enable_testing=false
 
-while getopts gsc:dQ:P:p:uWwa:AD: OPT; do
+while getopts gsc:dQ:P:p:uWwa:AtD: OPT; do
   case "$OPT" in
     g)
       global='true'
@@ -83,6 +84,9 @@ while getopts gsc:dQ:P:p:uWwa:AD: OPT; do
     ;;
     A)
       asan='true'
+    ;;
+    t)
+      enable_testing='true'
     ;;
     D)
       extra_cmake_flags="${OPTARG}"
@@ -200,6 +204,12 @@ client_cmake_flags=(-DCMAKE_BUILD_TYPE="${BUILD_TYPE}"
 
 if [ "${asan}" = "true" ]; then
     client_cmake_flags+=(-DENABLE_ASAN=true)
+fi
+
+if [ "${enable_testing}" = "true" ]; then
+    client_cmake_flags+=(-DBUILD_TESTING=On)
+else
+    client_cmake_flags+=(-DBUILD_TESTING=Off)
 fi
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
