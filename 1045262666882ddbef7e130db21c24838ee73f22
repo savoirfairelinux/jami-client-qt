@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3354facf_cc08c2f7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-02-16T13:49:55Z",
+      "side": 1,
+      "message": "Is it a known issue documented somewhere for Asahi?\n\nLooks like a hack but it\u0027s a small and if it works I\u0027m ok with that. Ideally a note with an upstream ticket would be nice, so whenever someone will see this part on the code, they can check if upstream is resolved.",
+      "range": {
+        "startLine": 9,
+        "startChar": 16,
+        "endLine": 9,
+        "endChar": 28
+      },
+      "revId": "1045262666882ddbef7e130db21c24838ee73f22",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b34692b_8e976da4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-02-16T13:49:55Z",
+      "side": 1,
+      "message": "I let Kessler validate",
+      "revId": "1045262666882ddbef7e130db21c24838ee73f22",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
