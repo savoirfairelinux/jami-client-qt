@@ -32,7 +32,7 @@ endif()
 include(${PROJECT_SOURCE_DIR}/extras/build/cmake/extra_tools.cmake)
 
 option(WITH_DAEMON_SUBMODULE "Build with daemon submodule" ON)
-option(JAMICORE_AS_SUBDIR "Build Jami-core as a subdir dependency" OFF)
+option(JAMICORE_AS_SUBDIR "Build Jami-core as a subdir dependency" ON)
 option(WITH_WEBENGINE "Build with WebEngine" ON)
 option(ENABLE_LIBWRAP "Enable libwrap (single process mode)" ON)
 if(NOT (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
@@ -493,19 +493,12 @@ elseif (NOT APPLE)
     add_definitions(${LIBGDKPIXBUF_CFLAGS})
   endif()
 
-  list(PREPEND CMAKE_PREFIX_PATH
-    ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg/libavutil)
-  pkg_check_modules(LIBAVUTIL libavutil>=55.75.100)
-  list(REMOVE_ITEM CMAKE_PREFIX_PATH
-    ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg/libavutil)
-
   include_directories(
     ${LIBCLIENT_SRC_DIR}
     ${LIBNM_INCLUDE_DIRS}
     ${LIBNOTIFY_INCLUDE_DIRS}
     ${LIBGDKPIXBUF_INCLUDE_DIRS}
-    ${GLIB_INCLUDE_DIRS}
-    ${LIBAVUTIL_INCLUDE_DIRS})
+    ${GLIB_INCLUDE_DIRS})
 
   set(JAMI_DATA_PREFIX "${CMAKE_INSTALL_PREFIX}/share")
 
