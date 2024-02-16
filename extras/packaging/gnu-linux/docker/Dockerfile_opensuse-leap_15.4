@@ -99,7 +99,8 @@ RUN zypper --non-interactive install -y \
         gstreamer-plugins-bad-devel \
         gstreamer-plugins-base-devel \
         cmake \
-        wget
+        wget \
+        pipewire-devel
 
 # openSUSE Leap 15.4 comes with Python 3.6 by default,
 # but we need at least 3.7 to compile Qt 6.6.1
@@ -112,4 +113,10 @@ ADD extras/packaging/gnu-linux/scripts/build-package-rpm.sh /opt/build-package-r
 
 ENV CC=gcc
 ENV CXX=g++
+
+# Setting this variable so that FFmpeg gets built without pipewiregrab
+# (see daemon/contrib/bootstrap and daemon/contrib/src/ffmpeg/rules.mak)
+# We rely on PipeWire for screen sharing on Wayland, but the version available on openSUSE Leap 15.4 is too old.
+ENV DISABLE_PIPEWIRE=true
+
 CMD ["/opt/build-package-rpm.sh"]
