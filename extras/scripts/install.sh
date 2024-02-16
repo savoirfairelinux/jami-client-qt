@@ -122,41 +122,27 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 else
     cd "$DAEMON"
 
-    # Build the contribs.
-    mkdir -p contrib/native
-    (
-        cd contrib/native
-        ../bootstrap ${prefix:+"--prefix=$prefix"} ${asan:+"--enable-asan"}
-        make -j"${proc}"
-    )
-
-    if [[ "${enable_libwrap}" != "true" ]]; then
-      # Disable shared if requested
-      if [[ "$OSTYPE" != "darwin"* ]]; then
-        CONFIGURE_FLAGS+=" --disable-shared"
-      fi
+    mkdir -p "${BUILD_DIR}"
+    cd "${BUILD_DIR}"
+    # TODO asan
+    daemon_cmake_flags=(-DCMAKE_BUILD_TYPE="${BUILD_TYPE}")
+    if [ "${enable_libwrap}" = "false" ]; then
+        daemon_cmake_flags+=(-DJAMI_DBUS=On)
     else
-      CONFIGURE_FLAGS+="--without-dbus"
+        daemon_cmake_flags+=(-DJAMI_DBUS=Off)
     fi
-
-    BUILD_TYPE="Release"
-    if [ "${debug}" = "true" ]; then
-      BUILD_TYPE="Debug"
-      CONFIGURE_FLAGS+=" --enable-debug"
+    if [ "${enable_testing}" = "true" ]; then
+        daemon_cmake_flags+=(-DBUILD_TESTING=On)
+    else
+        daemon_cmake_flags+=(-DBUILD_TESTING=Off)
     fi
-
-    if [ "${asan}" = "true" ]; then
-      CONFIGURE_FLAGS+=" --enable-asan"
-    fi
-
-    # Build the daemon itself.
-    test -f configure || ./autogen.sh
-
     if [ "${global}" = "true" ]; then
-        ./configure ${CONFIGURE_FLAGS} ${prefix:+"--prefix=$prefix"}
+        daemon_cmake_flags+=(${prefix:+"-DCMAKE_INSTALL_PREFIX=$prefix"}c)
     else
-        ./configure ${CONFIGURE_FLAGS} --prefix="${INSTALL_DIR}"
+        daemon_cmake_flags+=(-DCMAKE_INSTALL_PREFIX="${INSTALL_DIR}")
     fi
+
+    cmake .. "${daemon_cmake_flags[@]}"
     make -j"${proc}" V=1
     make_install "${global}" "${priv_install}"
 

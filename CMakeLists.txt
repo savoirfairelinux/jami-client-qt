@@ -864,6 +864,7 @@ else()
 endif()
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CLIENT_INCLUDE_DIRS})
+target_link_directories(${PROJECT_NAME} PRIVATE /home/sblin/Projects/jami-project/client-qt/daemon/contrib/x86_64-linux-gnu/lib/)
 target_link_directories(${PROJECT_NAME} PRIVATE ${CLIENT_LINK_DIRS})
 target_link_libraries(${PROJECT_NAME} PRIVATE ${CLIENT_LIBS})
 
