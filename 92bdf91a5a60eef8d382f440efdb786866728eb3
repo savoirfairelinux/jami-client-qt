@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "572db930_58270b0f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-02-16T23:32:29Z",
+      "side": 1,
+      "message": "There seem to be some issues toggling F11-fullscreen that are independant of this change.",
+      "revId": "92bdf91a5a60eef8d382f440efdb786866728eb3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
