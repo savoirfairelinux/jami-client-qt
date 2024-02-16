@@ -26,7 +26,7 @@ set(CMAKE_SCRIPTS_DIR ${PROJECT_SOURCE_DIR}/extras/build/cmake)
 include(${CMAKE_SCRIPTS_DIR}/extra_tools.cmake)
 
 option(WITH_DAEMON_SUBMODULE "Build with daemon submodule" ON)
-option(JAMICORE_AS_SUBDIR "Build Jami-core as a subdir dependency" OFF)
+option(JAMICORE_AS_SUBDIR "Build Jami-core as a subdir dependency" ON)
 option(WITH_WEBENGINE "Build with WebEngine" ON)
 option(ENABLE_LIBWRAP "Enable libwrap (single process mode)" ON)
 if(NOT (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
@@ -1013,6 +1013,7 @@ else()
 endif()
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CLIENT_INCLUDE_DIRS})
+target_link_directories(${PROJECT_NAME} PRIVATE /home/sblin/Projects/jami-project/client-qt/daemon/contrib/x86_64-linux-gnu/lib/)
 target_link_directories(${PROJECT_NAME} PRIVATE ${CLIENT_LINK_DIRS})
 target_link_libraries(${PROJECT_NAME} PRIVATE ${CLIENT_LIBS})
 
