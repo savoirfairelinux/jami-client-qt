@@ -25,7 +25,11 @@
 #include "api/devicemodel.h"
 
 #ifdef Q_OS_LINUX
+#include "screencastportal.h"
 #include "xrectsel.h"
+#ifndef ENABLE_LIBWRAP
+#include <sys/prctl.h>
+#endif
 #endif
 
 #include <QtConcurrent/QtConcurrent>
@@ -58,6 +62,12 @@ AvAdapter::AvAdapter(LRCInstance* instance, QObject* parent)
             &lrc::api::AVModel::onRendererFpsChange,
             this,
             &AvAdapter::updateRenderersFPSInfo);
+#ifdef Q_OS_LINUX
+    connect(&lrcInstance_->behaviorController(),
+            &BehaviorController::callStatusChanged,
+            this,
+            &AvAdapter::onCallStatusChanged);
+#endif
 }
 
 // The top left corner of primary screen is (0, 0).
@@ -118,6 +128,93 @@ AvAdapter::shareEntireScreen(int screenNumber)
     lrcInstance_->getCurrentCallModel()
         ->addMedia(callId, resource, lrc::api::CallModel::MediaRequestType::SCREENSHARING);
 }
+
+#ifdef Q_OS_LINUX
+static std::map<QString, std::unique_ptr<ScreenCastPortal>> callPortal;
+
+void
+AvAdapter::onCallStatusChanged(const QString& accountId, const QString& callId)
+{
+    auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
+    auto& callModel = accInfo.callModel;
+    const auto call = callModel->getCall(callId);
+
+    if (call.status == lrc::api::call::Status::ENDED) {
+        closePortal(callId);
+    }
+}
+
+void
+AvAdapter::closePortal(const QString& callId)
+{
+    if (callPortal.count(callId)) {
+        lrcInstance_->avModel().stopPreview(callPortal[callId]->videoInputId);
+        callPortal.erase(callId);
+    }
+}
+
+void
+AvAdapter::shareWayland(bool entireScreen)
+{
+    QString callId = lrcInstance_->getCurrentCallId();
+    closePortal(callId);
+
+    PortalCaptureType captureType = entireScreen ? PortalCaptureType::SCREEN
+                                                 : PortalCaptureType::WINDOW;
+    auto portal = std::make_unique<ScreenCastPortal>(captureType);
+
+    int err = portal->getPipewireFd();
+    if (err == EACCES) {
+        qInfo() << "Can't share screen: permission denied";
+        return;
+    } else if (err != 0) {
+        qWarning() << "Failed to get PipeWire fd. Error code:" << err;
+        return;
+    }
+    QString resource = QString("%1%2pipewire pid:%3 fd:%4 node:%5")
+                           .arg(libjami::Media::VideoProtocolPrefix::DISPLAY)
+                           .arg(libjami::Media::VideoProtocolPrefix::SEPARATOR)
+                           .arg(getpid())
+                           .arg(portal->pipewireFd)
+                           .arg(portal->pipewireNode);
+#ifndef ENABLE_LIBWRAP
+    // If the daemon is running as a separate process, then it can't directly use the
+    // PipeWire file descriptor opened by the client, so it will attempt to duplicate
+    // it using the pidfd_getfd system call. This requires the daemon process to have
+    // ptrace permission on the client process. On some systems, this will be true by
+    // default (as long as the client and daemon processes have the same uid), but it
+    // may not be if the Yama Linux Security Module is used. The call to prctl below
+    // will grant permission if the Yama LSM is enabled and set to mode 1.
+    //
+    // References:
+    // https://man7.org/linux/man-pages/man2/pidfd_getfd.2.html
+    // https://man7.org/linux/man-pages/man2/prctl.2.html
+    // https://github.com/torvalds/linux/blob/master/Documentation/admin-guide/LSM/Yama.rst
+    prctl(PR_SET_PTRACER, PR_SET_PTRACER_ANY);
+#endif
+    // We open the video input here (instead of letting the daemon do it) to ensure
+    // that the daemon doesn't try to restart it while we still need it, since this
+    // would require getting a new file descriptor for PipeWire.
+    portal->videoInputId = lrcInstance_->avModel().startPreview(resource);
+
+    callPortal[callId] = std::move(portal);
+    muteCamera_ = !isCapturing();
+    lrcInstance_->getCurrentCallModel()
+        ->addMedia(callId, resource, lrc::api::CallModel::MediaRequestType::SCREENSHARING);
+}
+
+void
+AvAdapter::shareEntireScreenWayland()
+{
+    shareWayland(true);
+}
+
+void
+AvAdapter::shareWindowWayland()
+{
+    shareWayland(false);
+}
+#endif // Q_OS_LINUX
 
 void
 AvAdapter::shareAllScreens()
@@ -307,6 +404,9 @@ void
 AvAdapter::stopSharing(const QString& source)
 {
     auto callId = lrcInstance_->getCurrentCallId();
+#ifdef Q_OS_LINUX
+    closePortal(callId);
+#endif
     if (!source.isEmpty() && !callId.isEmpty()) {
         if (source.startsWith(libjami::Media::VideoProtocolPrefix::DISPLAY)) {
             qDebug() << "Stopping display: " << source;
