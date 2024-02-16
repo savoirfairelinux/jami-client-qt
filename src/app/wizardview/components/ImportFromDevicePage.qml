@@ -125,14 +125,8 @@ Rectangle {
                 switch (detail) {
                 case "success":
                     break
-                case "credentials_required":
-                    console.warn("[Linkdevice] STATE 3 enter creds forced with", detail);
-                    // root.forceAuthPage = true;
-                    WizardViewStepModel.jumpToAuthLinkDevice();
-                    break;
                 case "archive_with_auth":
                     console.warn("[Linkdevice] STATE 3 go to password page");
-                    // root.forceAuthPage = true;
                     WizardViewStepModel.jumpToAuthLinkDevice();
                     break
                 case "invalid_credentials":
@@ -281,6 +275,12 @@ Rectangle {
         anchors.top: parent.top
         anchors.margins: JamiTheme.wizardViewPageBackButtonMargins
 
+        visible: true
+
+        KeyNavigation.tab: startDiscoveryBtn
+        KeyNavigation.backtab: startDiscoveryBtn
+        KeyNavigation.up: startDiscoveryBtn
+        KeyNavigation.down: startDiscoveryBtn
 
         // KeyNavigation.tab: pinFromDevice
         // KeyNavigation.up: connectBtn.enabled ? connectBtn : passwordFromDevice
