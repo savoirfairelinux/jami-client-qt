@@ -69,7 +69,6 @@ string(SUBSTRING ${CMAKE_GENERATOR} 0 14 CMAKE_GENERATOR_SHORT)
 if(CMAKE_GENERATOR_SHORT MATCHES "Visual Studio ")
   message(STATUS "Generating VS project")
   set(CMAKE_CXX_COMPILER_ID "MSVC")
-  set(ENABLE_TEST false)
   add_definitions(-DUNICODE -D_UNICODE)
   remove_definitions(-D_MBCS)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Zi /W0 /MP /EHsc")
@@ -154,10 +153,6 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
   set(CMAKE_SKIP_BUILD_RPATH false)
   set(CMAKE_BUILD_WITH_INSTALL_RPATH false)
   set(CMAKE_INSTALL_RPATH "${CMAKE_CURRENT_SOURCE_DIR}")
-endif()
-
-if(NOT ENABLE_TEST)
-  set(ENABLE_TEST false)
 endif()
 
 if(NOT (${ENABLE_VIDEO} MATCHES false))
@@ -453,7 +448,7 @@ set(LIBCLIENT_HEADERS_PRIVATE
   private/namedirectory_p.h
   private/smartInfoHub_p.h)
 
-if(ENABLE_LIBWRAP AND (NOT ENABLE_TEST))
+if(ENABLE_LIBWRAP)
   list(APPEND LIBCLIENT_HEADERS_PRIVATE
     qtwrapper/callmanager_wrap.h
     qtwrapper/configurationmanager_wrap.h
@@ -463,9 +458,7 @@ if(ENABLE_LIBWRAP AND (NOT ENABLE_TEST))
     qtwrapper/pluginmanager_wrap.h)
 endif()
 
-if(NOT ENABLE_TEST)
-  qt_wrap_cpp(LIBCLIENT_HEADERS_MOC ${LIBCLIENT_HEADERS_PRIVATE})
-endif()
+qt_wrap_cpp(LIBCLIENT_HEADERS_MOC ${LIBCLIENT_HEADERS_PRIVATE})
 
 foreach(MODULE ${QT_MODULES})
   list(APPEND QT_LIBS "Qt::${MODULE}")
