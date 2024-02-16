@@ -37,9 +37,7 @@ option(ENABLE_TESTS "Build with tests" OFF)
 option(WITH_WEBENGINE "Build with WebEngine" ON)
 option(ENABLE_LIBWRAP "Enable libwrap (single process mode)" ON)
 if(NOT (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-    OR ENABLE_LIBWRAP
-    # because mocks use the same interface present in qtwrapper/
-    OR ENABLE_TEST)
+    OR ENABLE_LIBWRAP)
   set(ENABLE_LIBWRAP true)
 endif()
 option(ENABLE_ASAN "Enable address sanitization" OFF)
