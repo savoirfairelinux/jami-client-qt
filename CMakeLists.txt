@@ -33,7 +33,7 @@ include(${PROJECT_SOURCE_DIR}/extras/build/cmake/extra_tools.cmake)
 
 option(WITH_DAEMON_SUBMODULE "Build with daemon submodule" ON)
 option(JAMICORE_AS_SUBDIR "Build Jami-core as a subdir dependency" OFF)
-option(ENABLE_TESTS "Build with tests" OFF)
+option(BUILD_TESTING "Build with tests" OFF)
 option(WITH_WEBENGINE "Build with WebEngine" ON)
 option(ENABLE_LIBWRAP "Enable libwrap (single process mode)" ON)
 if(NOT (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
@@ -871,7 +871,7 @@ qt_import_qml_plugins(${PROJECT_NAME})
 qt_finalize_executable(${PROJECT_NAME})
 
 # tests
-if(ENABLE_TESTS)
+if(BUILD_TESTING)
   message("Add Jami tests")
   add_subdirectory(${TESTS_DIR})
 endif()

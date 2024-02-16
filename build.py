@@ -389,6 +389,8 @@ def run_install(args):
         install_args.append('-u')
     if args.debug:
         install_args.append('-d')
+    if args.testing:
+        install_args.append('-t')
     if args.asan:
         install_args.append('-A')
     if args.no_libwrap:
@@ -727,6 +729,9 @@ def parse_args():
                     default=True, action='store_false')
     ap.add_argument('--qt', type=str,
                     help='Use the Qt path supplied')
+    ap.add_argument('--testing', dest='testing',
+                    default=False, action='store_true',
+                    help='Enable testing for both client and daemon')
     ap.add_argument('--no-libwrap', dest='no_libwrap',
                     default=False, action='store_true',
                     help='Disable libwrap. Also set --disable-shared option to daemon configure')

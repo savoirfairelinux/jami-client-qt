@@ -172,7 +172,7 @@ public:
     Q_INVOKABLE QString getMimeNameForUrl(const QUrl& fileUrl) const;
     Q_INVOKABLE QUrl urlFromLocalPath(const QString& filePath) const;
 
-#ifdef ENABLE_TESTS
+#ifdef BUILD_TESTING
     Q_INVOKABLE QString createDummyImage() const;
 #endif
     Q_INVOKABLE bool isWayland() const;
