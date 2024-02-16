@@ -114,7 +114,9 @@ Item {
     }
 
     function openShareScreen() {
-        if (Qt.application.screens.length === 1) {
+        if (UtilsAdapter.isWayland()) {
+            AvAdapter.shareEntireScreenWayland();
+        } else if (Qt.application.screens.length === 1) {
             AvAdapter.shareEntireScreen(0);
         } else {
             SelectScreenWindowCreation.presentSelectScreenWindow(appWindow, false);
@@ -123,7 +125,11 @@ Item {
 
     function openShareWindow() {
         AvAdapter.getListWindows();
-        if (AvAdapter.windowsNames.length >= 1) {
+        if (AvAdapter.windowsNames.length === 0)
+            return;
+        if (UtilsAdapter.isWayland()) {
+            AvAdapter.shareWindowWayland();
+        } else {
             SelectScreenWindowCreation.presentSelectScreenWindow(appWindow, true);
         }
     }
