@@ -112,6 +112,7 @@ Control {
         },
         Action {
             id: shareMenuAction
+            enabled: !CurrentCall.isSharing
             text: JamiStrings.selectShareMethod
             property int popupMode: CallActionBar.ActionPopupMode.ListElement
             property var listModel: ListModel {
@@ -123,7 +124,7 @@ Control {
                         "Name": JamiStrings.shareScreen,
                         "IconSource": JamiResources.laptop_black_24dp_svg
                     });
-                if (Qt.platform.os.toString() !== "osx" && !UtilsAdapter.isWayland()) {
+                if (Qt.platform.os.toString() !== "osx") {
                     shareModel.append({
                             "Name": JamiStrings.shareWindow,
                             "IconSource": JamiResources.window_black_24dp_svg
