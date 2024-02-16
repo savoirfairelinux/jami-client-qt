@@ -28,4 +28,6 @@ ADD extras/packaging/gnu-linux/scripts/install-cmake.sh /opt/install-cmake.sh
 RUN /opt/install-cmake.sh
 
 ADD extras/packaging/gnu-linux/scripts/build-package-debian.sh /opt/build-package-debian.sh
+
+ENV DISABLE_PIPEWIRE=true
 CMD ["/opt/build-package-debian.sh"]

@@ -120,6 +120,18 @@ AvAdapter::shareEntireScreen(int screenNumber)
 }
 
 void
+AvAdapter::shareEntireScreenWayland()
+{
+    QString resource = QString("%1%2pipewire capture-type:1")
+                           .arg(libjami::Media::VideoProtocolPrefix::DISPLAY)
+                           .arg(libjami::Media::VideoProtocolPrefix::SEPARATOR);
+    auto callId = lrcInstance_->getCurrentCallId();
+    muteCamera_ = !isCapturing();
+    lrcInstance_->getCurrentCallModel()
+        ->addMedia(callId, resource, lrc::api::CallModel::MediaRequestType::SCREENSHARING);
+}
+
+void
 AvAdapter::shareAllScreens()
 {
     const auto arrangementRect = getAllScreensBoundingRect();
@@ -252,6 +264,18 @@ AvAdapter::shareWindow(const QString& windowProcessId, const QString& windowId)
     auto resource = lrcInstance_->getCurrentCallModel()->getDisplay(windowProcessId, windowId);
     auto callId = lrcInstance_->getCurrentCallId();
 
+    muteCamera_ = !isCapturing();
+    lrcInstance_->getCurrentCallModel()
+        ->addMedia(callId, resource, lrc::api::CallModel::MediaRequestType::SCREENSHARING);
+}
+
+void
+AvAdapter::shareWindowWayland()
+{
+    QString resource = QString("%1%2pipewire capture-type:2")
+                           .arg(libjami::Media::VideoProtocolPrefix::DISPLAY)
+                           .arg(libjami::Media::VideoProtocolPrefix::SEPARATOR);
+    auto callId = lrcInstance_->getCurrentCallId();
     muteCamera_ = !isCapturing();
     lrcInstance_->getCurrentCallModel()
         ->addMedia(callId, resource, lrc::api::CallModel::MediaRequestType::SCREENSHARING);
