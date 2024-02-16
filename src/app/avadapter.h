@@ -69,8 +69,17 @@ protected:
      */
     Q_INVOKABLE bool hasCamera() const;
 
-    // Share the screen specificed by screen number.
+    // Share the screen specificed by screen number (all platforms except Wayland).
     Q_INVOKABLE void shareEntireScreen(int screenNumber);
+
+#ifdef Q_OS_LINUX
+    // Share a screen on Wayland.
+    // Sharing a screen on Wayland requires getting permission from the user. The logic for
+    // this is handled by the ScreenCastPortal class using xdg-desktop-portal.
+    // The choice of screen is also handled by xdg-desktop-portal, which is why we don't need
+    // an argument for it (whereas we do on other platforms, cf. shareEntireScreen above).
+    Q_INVOKABLE void shareEntireScreenWayland();
+#endif
 
     // Share the all screens connected.
     Q_INVOKABLE void shareAllScreens();
@@ -87,8 +96,17 @@ protected:
     // Select screen area to display (from all screens).
     Q_INVOKABLE void shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned height);
 
-    // Select window to display.
+    // Select window to display (all platforms except Wayland).
     Q_INVOKABLE void shareWindow(const QString& windowProcessId, const QString& windowId);
+
+#ifdef Q_OS_LINUX
+    // Share a window on Wayland.
+    // Sharing a window on Wayland requires getting permission from the user. The logic for
+    // this is handled by the ScreenCastPortal class using xdg-desktop-portal.
+    // The choice of window is also handled by xdg-desktop-portal, which is why we don't need
+    // arguments for it (whereas we do on other platforms, cf. shareWindow above).
+    Q_INVOKABLE void shareWindowWayland();
+#endif
 
     // Returns the screensharing resource
     Q_INVOKABLE QString getSharingResource(int screenId = -2,
@@ -121,10 +139,24 @@ private Q_SLOTS:
     void onAudioDeviceEvent();
     void onRendererStarted(const QString& id, const QSize& size);
     void onRendererStopped(const QString& id);
+#ifdef Q_OS_LINUX
+    // This function needs to be called whenever a screen/window share stops on Wayland.
+    // Failure to do so can cause subsequent sharing attempts to fail.
+    void closePortal(const QString& callId);
+
+    // On Wayland, we need to be informed of call status changes so that we can call
+    // closePortal if a call ends while a screen/window share was in progress.
+    void onCallStatusChanged(const QString& accountId, const QString& callId);
+#endif
 
 private:
     // Get screens arrangement rect relative to primary screen.
     const QRect getAllScreensBoundingRect();
+
+#ifdef Q_OS_LINUX
+    // Used internally by shareEntireScreenWayland and shareWindowWayland
+    void shareWayland(bool entireScreen);
+#endif
 
     // Get the screen number
     int getScreenNumber(int screenId = 0) const;

@@ -455,10 +455,12 @@ elseif (NOT APPLE)
     ${APP_SRC_DIR}/xrectsel.c
     ${APP_SRC_DIR}/connectivitymonitor.cpp
     ${APP_SRC_DIR}/dbuserrorhandler.cpp
-    ${APP_SRC_DIR}/appversionmanager.cpp)
+    ${APP_SRC_DIR}/appversionmanager.cpp
+    ${APP_SRC_DIR}/screencastportal.cpp)
   list(APPEND COMMON_HEADERS
     ${APP_SRC_DIR}/xrectsel.h
-    ${APP_SRC_DIR}/dbuserrorhandler.h)
+    ${APP_SRC_DIR}/dbuserrorhandler.h
+    ${APP_SRC_DIR}/screencastportal.h)
   list(APPEND QT_MODULES DBus)
 
   find_package(PkgConfig REQUIRED)
@@ -471,6 +473,11 @@ elseif (NOT APPLE)
   pkg_check_modules(GIO REQUIRED gio-2.0)
   if(GIO_FOUND)
     add_definitions(${GIO_CFLAGS})
+  endif()
+
+  pkg_check_modules(GIOUNIX REQUIRED gio-unix-2.0)
+  if(GIOUNIX_FOUND)
+    add_definitions(${GIOUNIX_CFLAGS})
   endif()
 
   pkg_check_modules(LIBNM libnm)
@@ -584,6 +591,7 @@ include_directories(
 if(ENABLE_LIBWRAP)
   list(APPEND COMMON_HEADERS
     ${LIBCLIENT_SRC_DIR}/qtwrapper/instancemanager_wrap.h)
+  add_definitions(-DENABLE_LIBWRAP=true)
 endif()
 
 # SFPM
