@@ -26,6 +26,7 @@ import "../../commoncomponents"
 Rectangle {
     id: root
     property alias textInput: messageBar.textAreaObj
+    property alias messageBar: messageBar
     property string previousConvId
     property string previousAccountId
     property bool showTypo: messageBar.showTypo

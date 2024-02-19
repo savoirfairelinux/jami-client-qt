@@ -39,6 +39,10 @@ Rectangle {
 
     property var mapPositions: PositionManager.mapStatus
 
+    // The purpose of this alias is to make the message bar
+    // accessible to the EmojiPicker
+    property alias messageBar: chatViewFooter.messageBar
+
     required property bool inCallView
 
     // Hide the extrasPanel when going into a call view, but save the previous
