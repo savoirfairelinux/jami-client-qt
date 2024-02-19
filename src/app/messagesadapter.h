@@ -36,11 +36,18 @@
 class FilteredMsgListModel final : public QSortFilterProxyModel
 {
     Q_OBJECT
+    Q_PROPERTY(int count READ count NOTIFY countChanged)
 public:
     explicit FilteredMsgListModel(QObject* parent = nullptr)
         : QSortFilterProxyModel(parent)
     {
         sort(0, Qt::AscendingOrder);
+
+        connect(this, &QAbstractItemModel::rowsInserted, this, &FilteredMsgListModel::countChanged);
+        connect(this, &QAbstractItemModel::rowsRemoved, this, &FilteredMsgListModel::countChanged);
+        connect(this, &QAbstractItemModel::modelReset, this, &FilteredMsgListModel::countChanged);
+        connect(this, &QAbstractItemModel::layoutChanged, this, &FilteredMsgListModel::countChanged);
+
     }
     bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override
     {
@@ -60,6 +67,22 @@ public:
         auto index = mapFromSource(sourceModel()->index(sourceRow, 0));
         return index.row();
     };
+    Q_INVOKABLE QVariantMap get(int row) const
+    {
+        QVariantMap map;
+        QModelIndex modelIndex = index(row, 0);
+        QHash<int, QByteArray> roles = roleNames();
+        for (QHash<int, QByteArray>::const_iterator it = roles.begin(); it != roles.end(); ++it)
+            map.insert(it.value(), data(modelIndex, it.key()));
+        return map;
+    }
+
+    int count() const
+    {
+        return rowCount();
+    }
+Q_SIGNALS:
+    void countChanged();
 };
 
 class MessagesAdapter final : public QmlAdapterBase
