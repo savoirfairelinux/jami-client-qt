@@ -1618,6 +1618,7 @@ ConversationModel::acceptConversationRequest(const QString& conversationId)
             auto notAdded = contact.profileInfo.type == profile::Type::TEMPORARY
                             || contact.profileInfo.type == profile::Type::PENDING;
             if (notAdded) {
+                contact.profileInfo.type = profile::Type::TEMPORARY;
                 owner.contactModel->addContact(contact);
                 return;
             }

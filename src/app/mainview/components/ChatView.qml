@@ -322,9 +322,9 @@ Rectangle {
                             return false;
                         else if (CurrentConversation.needsSyncing)
                             return false;
-                        else if (CurrentConversation.isSwarm && CurrentConversation.isRequest)
+                        else if (CurrentConversation.isRequest)
                             return false;
-                        return CurrentConversation.isSwarm || CurrentConversation.isTemporary;
+                        return CurrentConversation.isSwarm;
                     }
 
                     onHeightChanged: {

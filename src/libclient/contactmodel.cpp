@@ -246,32 +246,39 @@ ContactModel::getAddedTs(const QString& contactUri) const
 void
 ContactModel::addContact(contact::Info contactInfo)
 {
+    qWarning() << "@@@@@XXX?";
     auto& profile = contactInfo.profileInfo;
     // If passed contact is a banned contact, call the daemon to unban it
     auto it = std::find(pimpl_->bannedContacts.begin(), pimpl_->bannedContacts.end(), profile.uri);
     if (it != pimpl_->bannedContacts.end()) {
+        qWarning() << "@@@@@XXX";
         LC_DBG << QString("Unban-ing contact %1").arg(profile.uri);
         ConfigurationManager::instance().addContact(owner.id, profile.uri);
         // bannedContacts will be updated in slotContactAdded
         return;
     }
+        qWarning() << "@@@@@XXX";
 
     if ((owner.profileInfo.type != profile.type)
         and (profile.type == profile::Type::JAMI or profile.type == profile::Type::SIP)) {
+        qWarning() << "@@@@@XXX";
         LC_DBG << "ContactModel::addContact, types invalid.";
         return;
     }
 
+        qWarning() << "@@@@@XXX";
     MapStringString details = ConfigurationManager::instance()
                                   .getContactDetails(owner.id, contactInfo.profileInfo.uri);
 
     // if contactInfo is already a contact for the daemon, type should be equals to RING
     // if the user add a temporary item for a SIP account, should be directly transformed
+        qWarning() << "@@@@@XXX";
     if ((!details.empty() && details.value("removed") == "0")
         || (profile.type == profile::Type::TEMPORARY
             && owner.profileInfo.type == profile::Type::SIP))
         profile.type = owner.profileInfo.type;
 
+        qWarning() << "@@@@@XXX";
     switch (profile.type) {
     case profile::Type::TEMPORARY: {
         // make a temporary contact available for UI elements, it will be upgraded to
@@ -279,6 +286,7 @@ ContactModel::addContact(contact::Info contactInfo)
         std::lock_guard<std::mutex> lk(pimpl_->contactsMtx_);
         contactInfo.profileInfo.type = profile::Type::PENDING;
         pimpl_->contacts.insert(contactInfo.profileInfo.uri, contactInfo);
+        qWarning() << "@@@@@XXX";
         ConfigurationManager::instance().addContact(owner.id, profile.uri);
         ConfigurationManager::instance()
             .sendTrustRequest(owner.id,
@@ -287,17 +295,21 @@ ContactModel::addContact(contact::Info contactInfo)
         return;
     }
     case profile::Type::PENDING:
+        qWarning() << "@@@@@XXX";
         return;
     case profile::Type::JAMI:
     case profile::Type::SIP:
+        qWarning() << "@@@@@XXX";
         break;
     case profile::Type::INVALID:
     case profile::Type::COUNT__:
     default:
+    qWarning() << "@@@@@XXX?";
         LC_DBG << "ContactModel::addContact, cannot add contact with invalid type.";
         return;
     }
 
+        qWarning() << "@@@@@XXX";
     storage::createOrUpdateProfile(owner.id, profile, true);
 
     {
