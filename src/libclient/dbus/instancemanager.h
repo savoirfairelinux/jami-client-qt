@@ -18,15 +18,11 @@
  ***************************************************************************/
 #pragma once
 
-#ifdef ENABLE_TEST
-#include "../../test/mocks/instancemanager_mock.h"
-#else
 #ifdef ENABLE_LIBWRAP
 #include "../qtwrapper/instancemanager_wrap.h"
 #else
 #include "instance_dbus_interface.h"
 #include <QDBusPendingReply>
-#endif
 #endif
 #include <typedefs.h>
 
