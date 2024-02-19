@@ -612,7 +612,10 @@ Utils::getProjectCredits()
         return {};
     }
     QTextStream in(&projectCreditsFile);
-    return in.readAll();
+    return in.readAll().arg(QObject::tr("Created by"), QObject::tr("Artwork by"), QObject::tr("Special thanks to")
+                            , QObject::tr("This is a list of people who have made a significant investment of time,\
+                            with useful results, into Jami. Any such contributors who wish to be added to the list \
+                            should contact us."));
 }
 
 inline QString
