@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6d1e194_5ed039c4",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2024-02-19T14:25:19Z",
+      "side": 1,
+      "message": "BUILD_TESTING is automatically added by CTest\nhttps://cmake.org/cmake/help/latest/module/CTest.html",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 2
+      },
+      "revId": "3d3dd84f1302b7075abd001bb21fe18159c920b1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
