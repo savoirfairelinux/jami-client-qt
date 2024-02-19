@@ -35,7 +35,7 @@
 <context>
     <name>ConversationListModelBase</name>
     <message>
-        <location filename="../src/app/conversationlistmodelbase.cpp" line="138"/>
+        <location filename="../src/app/conversationlistmodelbase.cpp" line="140"/>
         <source>(deleted message)</source>
         <translation type="unfinished"/>
     </message>
@@ -43,12 +43,12 @@
 <context>
     <name>ConversationsAdapter</name>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="193"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="194"/>
         <source>%1 received a new message</source>
         <translation>%1 έλαβε νέο μήνυμα</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="248"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="249"/>
         <source>%1 received a new trust request</source>
         <translation>%1 έλαβε νέο αίτημα εμπιστοσύνης</translation>
     </message>
@@ -64,47 +64,47 @@
 <context>
     <name>CurrentConversation</name>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="139"/>
+        <location filename="../src/app/currentconversation.cpp" line="140"/>
         <source>Private</source>
         <translation>Ιδιωτικό</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="141"/>
+        <location filename="../src/app/currentconversation.cpp" line="142"/>
         <source>Private group (restricted invites)</source>
         <translation>Ιδιωτική ομάδα (συγκριτικές προσκλήσεις)</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="143"/>
+        <location filename="../src/app/currentconversation.cpp" line="144"/>
         <source>Private group</source>
         <translation>Ιδιωτική ομάδα</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="145"/>
+        <location filename="../src/app/currentconversation.cpp" line="146"/>
         <source>Public group</source>
         <translation>Δημόσια ομάδα</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="326"/>
+        <location filename="../src/app/currentconversation.cpp" line="327"/>
         <source>An error occurred while fetching this repository</source>
         <translation>Έγινε λάθος κατά την παραγωγή αυτού του αποθεματολογίου</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="328"/>
+        <location filename="../src/app/currentconversation.cpp" line="329"/>
         <source>Unrecognized conversation mode</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="332"/>
+        <location filename="../src/app/currentconversation.cpp" line="333"/>
         <source>Not authorized to update conversation information</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="334"/>
+        <location filename="../src/app/currentconversation.cpp" line="335"/>
         <source>An error occurred while committing a new message</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="330"/>
+        <location filename="../src/app/currentconversation.cpp" line="331"/>
         <source>An invalid message was detected</source>
         <translation>Εντοπίστηκε ένα μη έγκυρο μήνυμα</translation>
     </message>
@@ -1031,117 +1031,127 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="842"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="788"/>
+        <source>Show local video</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="789"/>
+        <source>Hide local video</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="844"/>
         <source>Encrypt your account with a password</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="843"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="845"/>
         <source>Customize your profile</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="846"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="848"/>
         <source>Appearance</source>
         <translation>Εμφάνιση</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="866"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="868"/>
         <source>Donate</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="867"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="869"/>
         <source>If you enjoy using Jami and believe in our mission, would you make a donation?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="868"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="870"/>
         <source>Not now</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="869"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="871"/>
         <source>Enable donation campaign</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="872"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="874"/>
         <source>Enter</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="873"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="875"/>
         <source>Shift+Enter</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="874"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="876"/>
         <source>Enter or Shift+Enter to insert a new line</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="888"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="890"/>
         <source>View</source>
         <translation>Προβολή</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="875"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="877"/>
         <source>Text formatting</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="865"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="867"/>
         <source>Free and private sharing. &lt;a href=&quot;https://jami.net/whydonate/&quot;&gt;Donate&lt;/a&gt; to expand it.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="878"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="880"/>
         <source>Connected</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="879"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="881"/>
         <source>Connecting TLS</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="880"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="882"/>
         <source>Connecting ICE</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="881"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="883"/>
         <source>Connecting</source>
         <translation>Συνδέεται</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="882"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="884"/>
         <source>Waiting</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="883"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="885"/>
         <source>Contact</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="884"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="886"/>
         <source>Connection</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="885"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="887"/>
         <source>Channels</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="886"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="888"/>
         <source>Copy all data</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="887"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="889"/>
         <source>Remote: </source>
         <translation type="unfinished"/>
     </message>
@@ -1258,27 +1268,27 @@ Would you like to update now?</source>
         <translation>Κάντε με το προεπιλεγμένο οικοδεσπότη για μελλοντικές κλήσεις</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="802"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="804"/>
         <source>Mute conversation</source>
         <translation>Μείνε αθόρυβα.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="805"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="807"/>
         <source>Default host (calls)</source>
         <translation>Υποκαταστήματα υποκατάστασης</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="808"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="810"/>
         <source>None</source>
         <translation>Κανένα</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="822"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="824"/>
         <source>Tip</source>
         <translation>Συμβουλή</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="824"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="826"/>
         <source>Add a profile picture and nickname to complete your profile</source>
         <translation>Προσθέστε μια εικόνα προφίλ και παρατσούκλι για να συμπληρώσετε το προφίλ σας</translation>
     </message>
@@ -2361,57 +2371,57 @@ Your picture and your nickname can be changed at all time in the settings of you
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="833"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="835"/>
         <source>Share your Jami identifier in order to be contacted more easily!</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="834"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="836"/>
         <source>Jami identity</source>
         <translation>Ταυτότητα Τζάμι</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="835"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="837"/>
         <source>Show fingerprint</source>
         <translation>Δείξτε αποτυπώματα δακτύλων</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="836"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="838"/>
         <source>Show registered name</source>
         <translation>Δείξτε το εγγεγραμμένο όνομα</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="839"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="841"/>
         <source>Enabling your account allows you to be contacted on Jami</source>
         <translation>Η ενεργοποίηση του λογαριασμού σας σας επιτρέπει να επικοινωνήσετε με τον Jami</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="849"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="851"/>
         <source>Experimental</source>
         <translation>Επειραματική</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="852"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="854"/>
         <source>Ringtone</source>
         <translation>Χρονόφωνο</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="855"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="857"/>
         <source>Rendezvous point</source>
         <translation>Σημείο συνάντησης</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="858"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="860"/>
         <source>Moderation</source>
         <translation>Μετριοπαθία</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="861"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="863"/>
         <source>Theme</source>
         <translation>Θέμα</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="862"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="864"/>
         <source>Text zoom level</source>
         <translation>Επίπεδο μετριασμού κειμένου</translation>
     </message>
@@ -2805,27 +2815,27 @@ Please try again later.</source>
         <translation>Το PIN και το κωδικό πρόσβασης του λογαριασμού πρέπει να εισάγονται στην συσκευή σας εντός 10 λεπτών.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="799"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="801"/>
         <source>Contact&apos;s name</source>
         <translation>Όνομα του επικοινωνούμενου</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="814"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="816"/>
         <source>Reinstate member</source>
         <translation>Επανακατάσταση του μέλους</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="828"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="830"/>
         <source>Delete message</source>
         <translation>Διαγραφή μηνύματος</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="829"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="831"/>
         <source>*(Deleted Message)*</source>
         <translation>*Μετάχυση διαγραφής) *</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="830"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="832"/>
         <source>Edit message</source>
         <translation>Τροποποίηση μηνύματος</translation>
     </message>
@@ -3335,115 +3345,115 @@ Please try again later.</source>
         <translation>Γράψτε στο %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="790"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="792"/>
         <source>%1 has sent you a request for a conversation.</source>
         <translation>Το %1 σας έχει στείλει αίτημα για συζήτηση.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="791"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="793"/>
         <source>Hello,
 Would you like to join the conversation?</source>
         <translation>Γεια σας, θα θέλατε να συμμετάσχετε στη συζήτηση;</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="792"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="794"/>
         <source>You have accepted
 the conversation request</source>
         <translation>Αποδέχτηκες την αίτηση συζήτησης.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="793"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="795"/>
         <source>Waiting until %1
 connects to synchronize the conversation.</source>
         <translation>Περιμένει μέχρι το %1 να συνδεθεί για να συγχρονίσει τη συζήτηση.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="796"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="798"/>
         <source>%1 Members</source>
         <translation>%1 Μέλη</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="797"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="799"/>
         <source>Member</source>
         <translation>Μέλος</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="798"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="800"/>
         <source>Swarm&apos;s name</source>
         <translation>Το όνομα του σπαράγγιου</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="800"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="802"/>
         <source>Add a description</source>
         <translation>Προσθήκη περιγραφής</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="803"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="805"/>
         <source>Ignore all notifications from this conversation</source>
         <translation>Αγνοήστε όλες τις ειδοποιήσεις από αυτή τη συζήτηση</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="804"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="806"/>
         <source>Choose a color</source>
         <translation>Επιλέξτε χρώμα</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="806"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="808"/>
         <source>Leave conversation</source>
         <translation>Αφήστε τη συζήτηση</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="807"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="809"/>
         <source>Type of swarm</source>
         <translation>Τύπος σμήνος</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="811"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="813"/>
         <source>Create the swarm</source>
         <translation>Δημιουργήστε το σμήνος</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="812"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="814"/>
         <source>Go to conversation</source>
         <translation>Πήγαινε στη συζήτηση</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="813"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="815"/>
         <source>Kick member</source>
         <translation>Κουκ μέλος</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="815"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="817"/>
         <source>Administrator</source>
         <translation>Διαχειριστής</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="816"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="818"/>
         <source>Invited</source>
         <translation>Καλεσμένοι</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="817"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="819"/>
         <source>Remove member</source>
         <translation>Αφαίρεση μέλος</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="818"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="820"/>
         <source>To:</source>
         <translation>Για:</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="821"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="823"/>
         <source>Customize</source>
         <translation>Προσαρμογή</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="823"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="825"/>
         <source>Dismiss</source>
         <translation>Απόρριψη</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="825"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="827"/>
         <source>Your profile is only shared with your contacts</source>
         <translation>Το προφίλ σας διαμοιράζεται μόνο με τις επαφές σας</translation>
     </message>
@@ -3664,17 +3674,17 @@ connects to synchronize the conversation.</source>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="430"/>
+        <location filename="../src/app/mainapplication.cpp" line="469"/>
         <source>E&amp;xit</source>
         <translation>Έ&amp;ξοδος</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="432"/>
+        <location filename="../src/app/mainapplication.cpp" line="471"/>
         <source>&amp;Quit</source>
         <translation>&amp;Απαλλαγή</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="438"/>
+        <location filename="../src/app/mainapplication.cpp" line="477"/>
         <source>&amp;Show Jami</source>
         <translation>&amp;Show Jami</translation>
     </message>
@@ -3725,7 +3735,7 @@ connects to synchronize the conversation.</source>
         <translation>Καλεί</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="348"/>
+        <location filename="../src/app/messagesadapter.cpp" line="349"/>
         <location filename="../src/libclient/api/call.h" line="72"/>
         <source>Connecting</source>
         <translation>Συνδέεται</translation>
@@ -3741,7 +3751,7 @@ connects to synchronize the conversation.</source>
         <translation>Ανενεργό</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="365"/>
+        <location filename="../src/app/messagesadapter.cpp" line="366"/>
         <location filename="../src/libclient/api/call.h" line="78"/>
         <location filename="../src/libclient/api/call.h" line="84"/>
         <source>Finished</source>
@@ -3763,8 +3773,7 @@ connects to synchronize the conversation.</source>
         <translation>Επικοινωνία επιτεύχθηκε</translation>
     </message>
     <message>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="455"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="926"/>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="454"/>
         <source>Invitation received</source>
         <translation>Η πρόσκληση παραλήφθηκε</translation>
     </message>
@@ -3772,8 +3781,7 @@ connects to synchronize the conversation.</source>
         <location filename="../src/libclient/api/interaction.h" line="259"/>
         <location filename="../src/libclient/api/interaction.h" line="271"/>
         <location filename="../src/libclient/api/interaction.h" line="273"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="452"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="924"/>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="451"/>
         <source>Contact added</source>
         <translation>Η επαφή προστέθηκε</translation>
     </message>
@@ -3813,14 +3821,13 @@ connects to synchronize the conversation.</source>
         <translation>Δημιουργήθηκε σμήνος</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="490"/>
+        <location filename="../src/libclient/api/interaction.h" line="508"/>
         <source>(profile updated)</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="309"/>
         <location filename="../src/libclient/api/interaction.h" line="315"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="922"/>
         <source>Outgoing call</source>
         <translation>Εξερχόμενη κλήση</translation>
     </message>
@@ -3832,7 +3839,6 @@ connects to synchronize the conversation.</source>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="317"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="920"/>
         <source>Missed outgoing call</source>
         <translation>Αναπάντητη εξερχόμενη κλήση</translation>
     </message>
@@ -3842,13 +3848,12 @@ connects to synchronize the conversation.</source>
         <translation>Αναπάντητη εισερχόμενη κλήση</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="480"/>
+        <location filename="../src/libclient/api/interaction.h" line="498"/>
         <source>Join call</source>
         <translation>Συμμετάσχετε στην κλήση</translation>
     </message>
     <message>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="457"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="928"/>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="456"/>
         <source>Invitation accepted</source>
         <translation>Αποκλήθηκε η πρόσκληση</translation>
     </message>
@@ -4135,67 +4140,67 @@ connects to synchronize the conversation.</source>
         <translation>Δεν είναι αποδεκτό πουθενά</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="350"/>
+        <location filename="../src/app/messagesadapter.cpp" line="351"/>
         <source>Accept</source>
         <translation>Αποδοχή</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="342"/>
+        <location filename="../src/app/messagesadapter.cpp" line="343"/>
         <source>Sending</source>
         <translation>Αποστέλλεται</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="346"/>
+        <location filename="../src/app/messagesadapter.cpp" line="347"/>
         <source>Sent</source>
         <translation>Αποστολή</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="355"/>
+        <location filename="../src/app/messagesadapter.cpp" line="356"/>
         <source>Unable to make contact</source>
         <translation>Αδύνατον να επικοινωνήσει</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="359"/>
+        <location filename="../src/app/messagesadapter.cpp" line="360"/>
         <source>Waiting for contact</source>
         <translation>Περιμένω επαφή</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="361"/>
+        <location filename="../src/app/messagesadapter.cpp" line="362"/>
         <source>Incoming transfer</source>
         <translation>Ερχόμενη μεταφορά</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="363"/>
+        <location filename="../src/app/messagesadapter.cpp" line="364"/>
         <source>Timed out waiting for contact</source>
         <translation>Έτοιμο για επαφή</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="705"/>
+        <location filename="../src/app/messagesadapter.cpp" line="706"/>
         <source>Today</source>
         <translation>Σήμερα</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="707"/>
+        <location filename="../src/app/messagesadapter.cpp" line="708"/>
         <source>Yesterday</source>
         <translation>Χθες</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="352"/>
+        <location filename="../src/app/messagesadapter.cpp" line="353"/>
         <source>Canceled</source>
         <translation>Ακυρώθηκε</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="357"/>
+        <location filename="../src/app/messagesadapter.cpp" line="358"/>
         <source>Ongoing</source>
         <translation>Σε εξέλιξη</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="686"/>
+        <location filename="../src/app/messagesadapter.cpp" line="687"/>
         <source>just now</source>
         <translation>Μόλις τώρα</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="344"/>
+        <location filename="../src/app/messagesadapter.cpp" line="345"/>
         <source>Failure</source>
         <translation>Αποτυχία</translation>
     </message>
@@ -4421,22 +4426,22 @@ connects to synchronize the conversation.</source>
 <context>
     <name>lrc::ContactModelPimpl</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="486"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="498"/>
         <source>Searching…</source>
         <translation>Γίνεται αναζήτηση...</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1018"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1030"/>
         <source>Invalid ID</source>
         <translation>Μη έγκυρο ID</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1021"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1033"/>
         <source>Username not found</source>
         <translation>Το όνομα χρήστη δεν βρέθηκε</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1024"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1036"/>
         <source>Couldn&apos;t lookup…</source>
         <translation>Δεν μπορούσα να ψάξω...</translation>
     </message>
@@ -4444,7 +4449,7 @@ connects to synchronize the conversation.</source>
 <context>
     <name>lrc::api::ContactModel</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="449"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="461"/>
         <source>Bad URI scheme</source>
         <translation>Κακό σύστημα URI</translation>
     </message>

@@ -35,7 +35,7 @@
 <context>
     <name>ConversationListModelBase</name>
     <message>
-        <location filename="../src/app/conversationlistmodelbase.cpp" line="138"/>
+        <location filename="../src/app/conversationlistmodelbase.cpp" line="140"/>
         <source>(deleted message)</source>
         <translation type="unfinished"/>
     </message>
@@ -43,12 +43,12 @@
 <context>
     <name>ConversationsAdapter</name>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="193"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="194"/>
         <source>%1 received a new message</source>
         <translation>%1 は新しいメッセージを受け取った</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="248"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="249"/>
         <source>%1 received a new trust request</source>
         <translation>%1 は新しい信頼要求を受け取った</translation>
     </message>
@@ -64,47 +64,47 @@
 <context>
     <name>CurrentConversation</name>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="139"/>
+        <location filename="../src/app/currentconversation.cpp" line="140"/>
         <source>Private</source>
         <translation>プライベート</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="141"/>
+        <location filename="../src/app/currentconversation.cpp" line="142"/>
         <source>Private group (restricted invites)</source>
         <translation>プライベートグループ (限定招待)</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="143"/>
+        <location filename="../src/app/currentconversation.cpp" line="144"/>
         <source>Private group</source>
         <translation>プライベートグループ</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="145"/>
+        <location filename="../src/app/currentconversation.cpp" line="146"/>
         <source>Public group</source>
         <translation>パブリックグループ</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="326"/>
+        <location filename="../src/app/currentconversation.cpp" line="327"/>
         <source>An error occurred while fetching this repository</source>
         <translation>このリポジトリを取得する際にエラーが発生しました</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="328"/>
+        <location filename="../src/app/currentconversation.cpp" line="329"/>
         <source>Unrecognized conversation mode</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="332"/>
+        <location filename="../src/app/currentconversation.cpp" line="333"/>
         <source>Not authorized to update conversation information</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="334"/>
+        <location filename="../src/app/currentconversation.cpp" line="335"/>
         <source>An error occurred while committing a new message</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="330"/>
+        <location filename="../src/app/currentconversation.cpp" line="331"/>
         <source>An invalid message was detected</source>
         <translation>誤ったメッセージが検出されました</translation>
     </message>
@@ -1028,117 +1028,127 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="842"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="788"/>
+        <source>Show local video</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="789"/>
+        <source>Hide local video</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="844"/>
         <source>Encrypt your account with a password</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="843"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="845"/>
         <source>Customize your profile</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="846"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="848"/>
         <source>Appearance</source>
         <translation>着せかえ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="866"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="868"/>
         <source>Donate</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="867"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="869"/>
         <source>If you enjoy using Jami and believe in our mission, would you make a donation?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="868"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="870"/>
         <source>Not now</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="869"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="871"/>
         <source>Enable donation campaign</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="872"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="874"/>
         <source>Enter</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="873"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="875"/>
         <source>Shift+Enter</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="874"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="876"/>
         <source>Enter or Shift+Enter to insert a new line</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="888"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="890"/>
         <source>View</source>
         <translation>表示</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="875"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="877"/>
         <source>Text formatting</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="865"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="867"/>
         <source>Free and private sharing. &lt;a href=&quot;https://jami.net/whydonate/&quot;&gt;Donate&lt;/a&gt; to expand it.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="878"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="880"/>
         <source>Connected</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="879"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="881"/>
         <source>Connecting TLS</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="880"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="882"/>
         <source>Connecting ICE</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="881"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="883"/>
         <source>Connecting</source>
         <translation>接続中</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="882"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="884"/>
         <source>Waiting</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="883"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="885"/>
         <source>Contact</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="884"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="886"/>
         <source>Connection</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="885"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="887"/>
         <source>Channels</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="886"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="888"/>
         <source>Copy all data</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="887"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="889"/>
         <source>Remote: </source>
         <translation type="unfinished"/>
     </message>
@@ -1256,27 +1266,27 @@ Would you like to update now?</source>
         <translation>将来の電話のデフォルトホストに私をしてください</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="802"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="804"/>
         <source>Mute conversation</source>
         <translation>会話をミュートする</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="805"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="807"/>
         <source>Default host (calls)</source>
         <translation>既定ホスト (コール)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="808"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="810"/>
         <source>None</source>
         <translation>なし</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="822"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="824"/>
         <source>Tip</source>
         <translation>提示</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="824"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="826"/>
         <source>Add a profile picture and nickname to complete your profile</source>
         <translation>プロフィール画像とニックネームを追加してプロフィールを完了します</translation>
     </message>
@@ -2359,57 +2369,57 @@ Your picture and your nickname can be changed at all time in the settings of you
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="833"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="835"/>
         <source>Share your Jami identifier in order to be contacted more easily!</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="834"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="836"/>
         <source>Jami identity</source>
         <translation>Jami identity</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="835"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="837"/>
         <source>Show fingerprint</source>
         <translation>指紋表示</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="836"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="838"/>
         <source>Show registered name</source>
         <translation>登録された名前表示</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="839"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="841"/>
         <source>Enabling your account allows you to be contacted on Jami</source>
         <translation>アカウントを有効にすると、Jamiで連絡を受けることができます</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="849"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="851"/>
         <source>Experimental</source>
         <translation>エクスペリメンタル</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="852"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="854"/>
         <source>Ringtone</source>
         <translation>着信音</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="855"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="857"/>
         <source>Rendezvous point</source>
         <translation>Rendezvous point</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="858"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="860"/>
         <source>Moderation</source>
         <translation>適度</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="861"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="863"/>
         <source>Theme</source>
         <translation>テーマ</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="862"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="864"/>
         <source>Text zoom level</source>
         <translation>テキスト拡大レベル</translation>
     </message>
@@ -2803,27 +2813,27 @@ Please try again later.</source>
         <translation> PIN と アカウント パスワードは 10 分以内にデバイスに入力する必要があります.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="799"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="801"/>
         <source>Contact&apos;s name</source>
         <translation>連絡先の名前</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="814"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="816"/>
         <source>Reinstate member</source>
         <translation>メンバーを復帰する</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="828"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="830"/>
         <source>Delete message</source>
         <translation>メッセージを削除</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="829"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="831"/>
         <source>*(Deleted Message)*</source>
         <translation>* 削除されたメッセージ) *</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="830"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="832"/>
         <source>Edit message</source>
         <translation>メッセージ編集</translation>
     </message>
@@ -3333,116 +3343,116 @@ Please try again later.</source>
         <translation>%1 に書き込み</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="790"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="792"/>
         <source>%1 has sent you a request for a conversation.</source>
         <translation>%1は,会話の要請を送った.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="791"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="793"/>
         <source>Hello,
 Would you like to join the conversation?</source>
         <translation>こんにちは
 会話に参加しませんか？</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="792"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="794"/>
         <source>You have accepted
 the conversation request</source>
         <translation>相談の要請を受け入れた</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="793"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="795"/>
         <source>Waiting until %1
 connects to synchronize the conversation.</source>
         <translation>%1が接続するまで,会話を同期する.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="796"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="798"/>
         <source>%1 Members</source>
         <translation>%1 会員</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="797"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="799"/>
         <source>Member</source>
         <translation>メンバー</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="798"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="800"/>
         <source>Swarm&apos;s name</source>
         <translation>Swarmの名前</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="800"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="802"/>
         <source>Add a description</source>
         <translation>記述を追加する</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="803"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="805"/>
         <source>Ignore all notifications from this conversation</source>
         <translation>この会話の通知を無視する</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="804"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="806"/>
         <source>Choose a color</source>
         <translation>色を選び</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="806"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="808"/>
         <source>Leave conversation</source>
         <translation>話しをやめましょう</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="807"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="809"/>
         <source>Type of swarm</source>
         <translation>Swarmの種類</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="811"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="813"/>
         <source>Create the swarm</source>
         <translation>Swarmを作る</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="812"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="814"/>
         <source>Go to conversation</source>
         <translation>話し合いに行け</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="813"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="815"/>
         <source>Kick member</source>
         <translation>蹴り成員</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="815"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="817"/>
         <source>Administrator</source>
         <translation>管理者</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="816"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="818"/>
         <source>Invited</source>
         <translation>招待された</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="817"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="819"/>
         <source>Remove member</source>
         <translation>メンバーを削除</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="818"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="820"/>
         <source>To:</source>
         <translation>目的地:</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="821"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="823"/>
         <source>Customize</source>
         <translation>調整する</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="823"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="825"/>
         <source>Dismiss</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="825"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="827"/>
         <source>Your profile is only shared with your contacts</source>
         <translation>プロフィールは連絡先以外に共有されません</translation>
     </message>
@@ -3663,17 +3673,17 @@ connects to synchronize the conversation.</source>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="430"/>
+        <location filename="../src/app/mainapplication.cpp" line="469"/>
         <source>E&amp;xit</source>
         <translation>電子化</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="432"/>
+        <location filename="../src/app/mainapplication.cpp" line="471"/>
         <source>&amp;Quit</source>
         <translation>退場</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="438"/>
+        <location filename="../src/app/mainapplication.cpp" line="477"/>
         <source>&amp;Show Jami</source>
         <translation>Jamiを表示</translation>
     </message>
@@ -3724,7 +3734,7 @@ connects to synchronize the conversation.</source>
         <translation>発信中</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="348"/>
+        <location filename="../src/app/messagesadapter.cpp" line="349"/>
         <location filename="../src/libclient/api/call.h" line="72"/>
         <source>Connecting</source>
         <translation>接続中</translation>
@@ -3740,7 +3750,7 @@ connects to synchronize the conversation.</source>
         <translation>活動しない</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="365"/>
+        <location filename="../src/app/messagesadapter.cpp" line="366"/>
         <location filename="../src/libclient/api/call.h" line="78"/>
         <location filename="../src/libclient/api/call.h" line="84"/>
         <source>Finished</source>
@@ -3762,8 +3772,7 @@ connects to synchronize the conversation.</source>
         <translation>通信を確立しました</translation>
     </message>
     <message>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="455"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="926"/>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="454"/>
         <source>Invitation received</source>
         <translation>招待を受信しました</translation>
     </message>
@@ -3771,8 +3780,7 @@ connects to synchronize the conversation.</source>
         <location filename="../src/libclient/api/interaction.h" line="259"/>
         <location filename="../src/libclient/api/interaction.h" line="271"/>
         <location filename="../src/libclient/api/interaction.h" line="273"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="452"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="924"/>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="451"/>
         <source>Contact added</source>
         <translation>連絡先を追加しました</translation>
     </message>
@@ -3812,14 +3820,13 @@ connects to synchronize the conversation.</source>
         <translation>Swarmを作りました</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="490"/>
+        <location filename="../src/libclient/api/interaction.h" line="508"/>
         <source>(profile updated)</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="309"/>
         <location filename="../src/libclient/api/interaction.h" line="315"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="922"/>
         <source>Outgoing call</source>
         <translation>発信</translation>
     </message>
@@ -3831,7 +3838,6 @@ connects to synchronize the conversation.</source>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="317"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="920"/>
         <source>Missed outgoing call</source>
         <translation>不在発信</translation>
     </message>
@@ -3841,13 +3847,12 @@ connects to synchronize the conversation.</source>
         <translation>不在着信</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="480"/>
+        <location filename="../src/libclient/api/interaction.h" line="498"/>
         <source>Join call</source>
         <translation>通話に参加</translation>
     </message>
     <message>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="457"/>
-        <location filename="../src/libclient/authority/storagehelper.cpp" line="928"/>
+        <location filename="../src/libclient/authority/storagehelper.cpp" line="456"/>
         <source>Invitation accepted</source>
         <translation>招待を受け入れました</translation>
     </message>
@@ -4134,67 +4139,67 @@ connects to synchronize the conversation.</source>
         <translation>どこにも受け入れられない</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="350"/>
+        <location filename="../src/app/messagesadapter.cpp" line="351"/>
         <source>Accept</source>
         <translation>受け入れ</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="342"/>
+        <location filename="../src/app/messagesadapter.cpp" line="343"/>
         <source>Sending</source>
         <translation>送信中</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="346"/>
+        <location filename="../src/app/messagesadapter.cpp" line="347"/>
         <source>Sent</source>
         <translation>送信</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="355"/>
+        <location filename="../src/app/messagesadapter.cpp" line="356"/>
         <source>Unable to make contact</source>
         <translation>連絡が取れなかった</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="359"/>
+        <location filename="../src/app/messagesadapter.cpp" line="360"/>
         <source>Waiting for contact</source>
         <translation>連絡を待っています</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="361"/>
+        <location filename="../src/app/messagesadapter.cpp" line="362"/>
         <source>Incoming transfer</source>
         <translation>受信転送</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="363"/>
+        <location filename="../src/app/messagesadapter.cpp" line="364"/>
         <source>Timed out waiting for contact</source>
         <translation>連絡を待たせている</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="705"/>
+        <location filename="../src/app/messagesadapter.cpp" line="706"/>
         <source>Today</source>
         <translation>今日</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="707"/>
+        <location filename="../src/app/messagesadapter.cpp" line="708"/>
         <source>Yesterday</source>
         <translation>昨日</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="352"/>
+        <location filename="../src/app/messagesadapter.cpp" line="353"/>
         <source>Canceled</source>
         <translation>キャンセルしました</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="357"/>
+        <location filename="../src/app/messagesadapter.cpp" line="358"/>
         <source>Ongoing</source>
         <translation>継続する</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="686"/>
+        <location filename="../src/app/messagesadapter.cpp" line="687"/>
         <source>just now</source>
         <translation>たった今</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="344"/>
+        <location filename="../src/app/messagesadapter.cpp" line="345"/>
         <source>Failure</source>
         <translation>失敗</translation>
     </message>
@@ -4420,22 +4425,22 @@ connects to synchronize the conversation.</source>
 <context>
     <name>lrc::ContactModelPimpl</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="486"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="498"/>
         <source>Searching…</source>
         <translation>検索中…</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1018"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1030"/>
         <source>Invalid ID</source>
         <translation>不正なID</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1021"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1033"/>
         <source>Username not found</source>
         <translation>ユーザー名が見つかりませんでした</translation>
     </message>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="1024"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="1036"/>
         <source>Couldn&apos;t lookup…</source>
         <translation>見つけられませんでした...</translation>
     </message>
@@ -4443,7 +4448,7 @@ connects to synchronize the conversation.</source>
 <context>
     <name>lrc::api::ContactModel</name>
     <message>
-        <location filename="../src/libclient/contactmodel.cpp" line="449"/>
+        <location filename="../src/libclient/contactmodel.cpp" line="461"/>
         <source>Bad URI scheme</source>
         <translation>不正なURLスキーム</translation>
     </message>
