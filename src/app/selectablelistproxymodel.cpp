@@ -136,6 +136,7 @@ SelectableListProxyModel::updateSelection(bool rowsRemoved)
     }
 
     Q_EMIT validSelectionChanged();
+    Q_EMIT countChanged();
 }
 
 void

@@ -29,6 +29,7 @@ class SelectableListProxyModel : public QSortFilterProxyModel
 {
     Q_OBJECT
     QML_PROPERTY(int, currentFilteredRow)
+    Q_PROPERTY(int count READ count NOTIFY countChanged)
 
 public:
     explicit SelectableListProxyModel(QAbstractListModel* model, QObject* parent = nullptr);
@@ -42,11 +43,27 @@ public:
     Q_INVOKABLE QVariant dataForRow(int row, int role) const;
     void selectSourceRow(int row);
 
+    Q_INVOKABLE QVariantMap get(int row) const
+    {
+        QVariantMap map;
+        QModelIndex modelIndex = index(row, 0);
+        QHash<int, QByteArray> roles = roleNames();
+        for (QHash<int, QByteArray>::const_iterator it = roles.begin(); it != roles.end(); ++it)
+            map.insert(it.value(), data(modelIndex, it.key()));
+        return map;
+    }
+
+    int count() const
+    {
+        return rowCount();
+    }
+
 public Q_SLOTS:
     void updateSelection(bool rowsRemoved = false);
 
 Q_SIGNALS:
     void validSelectionChanged();
+    void countChanged();
 
 private Q_SLOTS:
     void onModelUpdated();
