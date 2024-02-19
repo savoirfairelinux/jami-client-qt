@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b3c0579_6bc2e1da",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 867,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-02-19T22:34:45Z",
+      "side": 1,
+      "message": "remove dirty test",
+      "range": {
+        "startLine": 867,
+        "startChar": 18,
+        "endLine": 867,
+        "endChar": 129
+      },
+      "revId": "28504eeb5beb4a53fd2a0eaee57fb6fda169bda0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
