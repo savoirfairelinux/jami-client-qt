@@ -140,9 +140,20 @@ QString getAccountAvatar(const QString& accountId);
  * @param  type of contact to build
  * @return the contact info containing peer profile information
  */
+[[deprecated]]
 api::contact::Info buildContactFromProfile(const QString& accountId,
                                            const QString& peer_uri,
                                            const api::profile::Type& type);
+
+/**
+ * This will return the most pertinent data from the vCard set, including the
+ * avatar and display name. Both the override and regular vCard files are
+ * checked and the result is an aggregation of the two.
+ * @param accountId
+ * @param peerUri
+ * @return a map containing the pertinent data (avatar and display name)
+ */
+QMap<QString, QString> getProfileData(const QString& accountId, const QString& peerUri);
 
 /**
  * @brief withProfileVCard
@@ -156,7 +167,7 @@ api::contact::Info buildContactFromProfile(const QString& accountId,
 bool
 withProfile(const QString& accountId,
             const QString& peerUri,
-            QIODevice::OpenModeFlag flag,
+            QIODevice::OpenMode flags,
             ProfileLoadedCb&& onLoadedCb,
             bool ov = false);
 

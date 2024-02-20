@@ -703,6 +703,8 @@ AccountModelPimpl::slotAccountProfileReceived(const QString& accountId,
                                               const QString& displayName,
                                               const QString& userPhoto)
 {
+    LC_WARN << accountId << displayName;
+
     auto account = accounts.find(accountId);
     if (account == accounts.end())
         return;

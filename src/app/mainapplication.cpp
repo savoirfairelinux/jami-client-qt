@@ -63,6 +63,7 @@ messageHandler(QtMsgType type, const QMessageLogContext& context, const QString&
     const static std::string fmt[5] = {"DBG", "WRN", "CRT", "FTL", "INF"};
     const QByteArray localMsg = msg.toUtf8();
     const auto ts = QString::number(QDateTime::currentMSecsSinceEpoch());
+    const auto tid = QString::number(reinterpret_cast<quintptr>(QThread::currentThreadId()), 16);
 
     QString fileLineInfo = "";
     const auto isQml = QString(context.category) == QLatin1String("qml");
@@ -84,8 +85,8 @@ messageHandler(QtMsgType type, const QMessageLogContext& context, const QString&
     }
 #endif
 
-    const auto fmtMsg = QString("[%1][%2]:%3 %4")
-                            .arg(ts, fmt[type].c_str(), fileLineInfo, localMsg.constData());
+    const auto fmtMsg = QString("[%1][%2][%3]:%4 %5")
+                            .arg(ts, fmt[type].c_str(), tid, fileLineInfo, localMsg.constData());
 
     (*QT_DEFAULT_MESSAGE_HANDLER)(type, context, fmtMsg);
 }
@@ -505,10 +506,4 @@ void
 MainApplication::setEventFilter()
 {
     installEventFilter(this);
-}
-
-void
-MainApplication::logThreadID(const QString& msg)
-{
-    C_DBG.noquote() << "*********** Thread ID:" << QThread::currentThreadId() << msg;
 }

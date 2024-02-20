@@ -251,7 +251,6 @@ createOrUpdateProfile(const QString& accountId,
                       bool ov)
 {
     if (isPeer) {
-        qInfo() << "***************** thread id:" << QThread::currentThreadId();
         auto contact = storage::buildContactFromProfile(accountId,
                                                         profileInfo.uri,
                                                         profileInfo.type);
@@ -262,7 +261,6 @@ createOrUpdateProfile(const QString& accountId,
         vcard::setProfile(accountId, contact.profileInfo, isPeer, ov);
         return;
     }
-    qInfo() << "***************** thread id:" << QThread::currentThreadId();
     vcard::setProfile(accountId, profileInfo, isPeer, ov);
 }
 
@@ -325,9 +323,15 @@ buildContactFromProfile(const QString& accountId,
                         const QString& peerUri,
                         const api::profile::Type& type)
 {
+    // To avoid blocking on IO during initialization, we build contact info using
+    // the base information, then asynchronously update the contact info with the
+    // profile information retrieved from the profile VCard files.
+
+    // Get base contact info
     lrc::api::profile::Info profileInfo;
     profileInfo.uri = peerUri;
     profileInfo.type = type;
+
     // Try to get overriden infos first
     auto [overridenAlias, overridenAvatar] = getOverridenInfos(accountId, peerUri);
     if (!overridenAlias.isEmpty())
@@ -356,6 +360,94 @@ buildContactFromProfile(const QString& accountId,
     }
 
     return {profileInfo, "", type == api::profile::Type::JAMI, false};
+}
+
+// Utility function to ensure directory exists
+bool
+ensureDirectoryExists(const QString& path)
+{
+    QDir dir(path);
+    if (!dir.exists()) {
+        if (!std::filesystem::create_directory(path.toStdString())) {
+            return false; // Directory creation failed
+        }
+    }
+    return true; // Directory exists or was successfully created
+}
+
+bool
+withProfile(const QString& accountId,
+            const QString& peerUri,
+            QIODevice::OpenMode flags,
+            ProfileLoadedCb&& callback,
+            bool ov)
+{
+    QString path = profileVcardPath(accountId, !peerUri.isEmpty() ? peerUri : "", ov);
+
+    // Ensure the directory exists if we are writing
+    if (flags & QIODevice::WriteOnly && !ensureDirectoryExists(QFileInfo(path).absolutePath())) {
+        LC_WARN << "Cannot create directory for path:" << path;
+        return false;
+    }
+
+    // Add QIODevice::Text to the flags
+    flags |= QIODevice::Text;
+
+    QFile file(path);
+    if (!file.open(flags)) {
+        LC_DBG << "Can't open file: " << path;
+        return false;
+    }
+
+    QByteArray readData;
+    QTextStream outStream(&file);
+    if (flags & QIODevice::ReadOnly) {
+        readData = file.readAll();
+    }
+
+    // Log what we are doing with the profile for now
+    LC_DBG << (flags & QIODevice::ReadOnly ? "Reading" : "Writing") << "profile:" << path;
+
+    // Execute the callback with readData and outStream
+    callback(readData, outStream);
+
+    file.close();
+    return true;
+}
+
+QMap<QString, QString>
+getProfileData(const QString& accountId, const QString& peerUri)
+{
+    QMap<QString, QString> profileData;
+
+    // Try to get overriden infos first
+    auto [overridenAlias, overridenAvatar] = getOverridenInfos(accountId, peerUri);
+    if (!overridenAlias.isEmpty())
+        profileData["alias"] = overridenAlias;
+    if (!overridenAvatar.isEmpty())
+        profileData["avatar"] = overridenAvatar;
+
+    // If either alias or avatar is empty, get from profile
+    if (profileData["alias"].isEmpty() || profileData["avatar"].isEmpty()) {
+        withProfile(
+            accountId,
+            peerUri,
+            QIODevice::ReadOnly,
+            [&](const QByteArray& readData, QTextStream&) {
+                QHash<QByteArray, QByteArray> vCard = lrc::vCard::utils::toHashMap(readData);
+                if (profileData["alias"].isEmpty())
+                    profileData["alias"] = vCard[vCard::Property::FORMATTED_NAME];
+                if (profileData["avatar"].isEmpty())
+                    for (auto it = vCard.cbegin(); it != vCard.cend(); ++it)
+                        if (it.key().contains("PHOTO")) {
+                            profileData["avatar"] = it.value();
+                            return;
+                        }
+            },
+            false);
+    }
+
+    return profileData;
 }
 
 QString
@@ -762,53 +854,6 @@ getLastTimestamp(Database& db)
                  << e.what();
     }
     return result;
-}
-
-// Utility function to ensure directory exists
-bool
-ensureDirectoryExists(const QString& path)
-{
-    QDir dir(path);
-    if (!dir.exists()) {
-        if (!std::filesystem::create_directory(path.toStdString())) {
-            return false; // Directory creation failed
-        }
-    }
-    return true; // Directory exists or was successfully created
-}
-
-bool
-withProfile(const QString& accountId,
-            const QString& peerUri,
-            QIODevice::OpenModeFlag flags,
-            ProfileLoadedCb&& callback,
-            bool ov)
-{
-    QString path = profileVcardPath(accountId, !peerUri.isEmpty() ? peerUri : "", ov);
-
-    // Ensure the directory exists if we are writing
-    if (flags & QIODevice::WriteOnly && !ensureDirectoryExists(QFileInfo(path).absolutePath())) {
-        LC_WARN << "Cannot create directory for path:" << path;
-        return false;
-    }
-
-    QFile file(path);
-    if (!file.open(flags)) {
-        LC_DBG << "Can't open file: " << path;
-        return false;
-    }
-
-    QByteArray readData;
-    QTextStream outStream(&file);
-    if (flags & QIODevice::ReadOnly) {
-        readData = file.readAll(); // Load the file content if in read mode
-    }
-
-    // Execute the callback with readData and outStream
-    callback(readData, outStream);
-
-    file.close();
-    return true;
 }
 
 } // namespace storage

@@ -80,6 +80,7 @@ ItemDelegate {
 
         ConversationAvatar {
             id: avatar
+            objectName: "smartlistItemDelegateAvatar"
 
             imageId: UID
             showPresenceIndicator: Presence !== undefined ? Presence : false
@@ -111,7 +112,6 @@ ItemDelegate {
                     source: JamiResources.check_black_24dp_svg
                 }
             }
-
         }
 
         ColumnLayout {
