@@ -302,8 +302,18 @@ getFormattedCallDuration(const std::time_t duration)
  * @return the formatted and translated call message string
  */
 static inline QString
-getCallInteractionStringNonSwarm(bool isSelf, const std::time_t& duration)
+getCallInteractionStringNonSwarm(bool isSelf,
+                                 const std::time_t& duration,
+                                 const QString& reason = "")
 {
+    if (reason == "busy") {
+        return QObject::tr("Missed call, peer is busy");
+    } else if (reason == "declined") {
+        return QObject::tr("Missed call, peer declined");
+    } else if (reason == "no_device") {
+        return QObject::tr("Missed call, peer offline");
+    }
+
     if (duration < 0) {
         if (isSelf) {
             return QObject::tr("Outgoing call");
@@ -467,16 +477,18 @@ struct Info
             reactions.insert(i.key(), i.value());
         // Compute the status of the message.
         // Basically, we got the status per member.
-        // We consider the message as sent if at least one member has received it or displayed if someone displayed it.
+        // We consider the message as sent if at least one member has received it or displayed if
+        // someone displayed it.
         auto maxStatus = 0;
         status = Status::SENDING;
-        for (const auto& member: msg.status.keys()) {
+        for (const auto& member : msg.status.keys()) {
             if (member == accountUri)
                 continue;
             auto stValue = msg.status.value(member);
             if (stValue > maxStatus) {
                 maxStatus = stValue;
-                status = maxStatus <= 1 ? Status::SENDING : (stValue == 2 ? Status::SUCCESS : Status::DISPLAYED);
+                status = maxStatus <= 1 ? Status::SENDING
+                                        : (stValue == 2 ? Status::SUCCESS : Status::DISPLAYED);
             }
             if (maxStatus == 3)
                 break;
@@ -498,7 +510,7 @@ getCallInteractionString(bool isSelf, const Info& info)
             return QObject::tr("Join call");
         }
     }
-    return getCallInteractionStringNonSwarm(isSelf, info.duration);
+    return getCallInteractionStringNonSwarm(isSelf, info.duration, info.commit["reason"]);
 }
 
 static inline QString
