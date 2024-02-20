@@ -45,6 +45,20 @@ ColumnLayout {
     ColumnLayout {
         Layout.fillWidth: true
 
+         SettingSpinBox {
+            id: dhtPortUsed
+
+            visible: !root.isSIP
+
+            title: JamiStrings.dhtPortUsed
+            itemWidth: root.itemWidth
+            bottomValue: 0
+            topValue: 65535
+
+            valueField: CurrentAccount.dhtPort
+            onNewValue: CurrentAccount.dhtPort = valueField
+        }
+
         ToggleSwitch {
             id: checkAutoConnectOnLocalNetwork
             visible: !root.isSIP

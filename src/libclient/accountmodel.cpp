@@ -849,6 +849,7 @@ account::Info::fromDetails(const MapStringString& details)
     confProperties.proxyEnabled = toBool(details[ConfProperties::PROXY_ENABLED]);
     confProperties.proxyServer = details[ConfProperties::PROXY_SERVER];
     confProperties.proxyPushToken = details[ConfProperties::PROXY_PUSH_TOKEN];
+    confProperties.dhtPort = toInt(details[ConfProperties::DHT_PORT]);
     confProperties.peerDiscovery = toBool(details[ConfProperties::DHT_PEER_DISCOVERY]);
     confProperties.accountDiscovery = toBool(details[ConfProperties::ACCOUNT_PEER_DISCOVERY]);
     confProperties.accountPublish = toBool(details[ConfProperties::ACCOUNT_PUBLISH]);
@@ -905,7 +906,6 @@ account::Info::fromDetails(const MapStringString& details)
     confProperties.TLS.disableSecureDlgCheck = toBool(
         details[ConfProperties::TLS::DISABLE_SECURE_DLG_CHECK]);
     // DHT
-    confProperties.DHT.port = toInt(details[ConfProperties::DHT::PORT]);
     confProperties.DHT.PublicInCalls = toBool(details[ConfProperties::DHT::PUBLIC_IN_CALLS]);
     confProperties.DHT.AllowFromTrusted = toBool(details[ConfProperties::DHT::ALLOW_FROM_TRUSTED]);
     // RingNS
@@ -960,6 +960,7 @@ account::ConfProperties_t::toDetails() const
     details[ConfProperties::PROXY_ENABLED] = toQString(this->proxyEnabled);
     details[ConfProperties::PROXY_SERVER] = this->proxyServer;
     details[ConfProperties::PROXY_PUSH_TOKEN] = this->proxyPushToken;
+    details[ConfProperties::DHT_PORT] = toQString(this->dhtPort);
     details[ConfProperties::DHT_PEER_DISCOVERY] = toQString(this->peerDiscovery);
     details[ConfProperties::ACCOUNT_PEER_DISCOVERY] = toQString(this->accountDiscovery);
     details[ConfProperties::ACCOUNT_PUBLISH] = toQString(this->accountPublish);
@@ -1014,7 +1015,6 @@ account::ConfProperties_t::toDetails() const
     details[ConfProperties::TLS::DISABLE_SECURE_DLG_CHECK] = toQString(
         this->TLS.disableSecureDlgCheck);
     // DHT
-    details[ConfProperties::DHT::PORT] = toQString(this->DHT.port);
     details[ConfProperties::DHT::PUBLIC_IN_CALLS] = toQString(this->DHT.PublicInCalls);
     details[ConfProperties::DHT::ALLOW_FROM_TRUSTED] = toQString(this->DHT.AllowFromTrusted);
     // RingNS

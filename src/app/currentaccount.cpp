@@ -145,6 +145,8 @@ CurrentAccount::updateData()
         set_peerDiscovery(accConfig.peerDiscovery, true);
         set_sendReadReceipt(accConfig.sendReadReceipt, true);
         set_isRendezVous(accConfig.isRendezVous, true);
+        set_dhtPort(accConfig.dhtPort, true);
+        qWarning() << "CurrentAccount::updateData() - dhtPort: " << get_dhtPort();
         set_autoAnswer(accConfig.autoAnswer, true);
         set_proxyEnabled(accConfig.proxyEnabled, true);
         set_upnpEnabled(accConfig.upnpEnabled, true);
