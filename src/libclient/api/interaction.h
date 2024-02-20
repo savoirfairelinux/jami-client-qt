@@ -302,8 +302,16 @@ getFormattedCallDuration(const std::time_t duration)
  * @return the formatted and translated call message string
  */
 static inline QString
-getCallInteractionStringNonSwarm(bool isSelf, const std::time_t& duration)
+getCallInteractionStringNonSwarm(bool isSelf, const std::time_t& duration, const QString& reason = "")
 {
+    if (reason == "busy") {
+        return QObject::tr("Missed call, peer is busy");
+    } else if (reason == "declined") {
+        return QObject::tr("Missed call, peer declined");
+    } else if (reason == "no_device") {
+        return QObject::tr("Missed call, peer offline");
+    }
+
     if (duration < 0) {
         if (isSelf) {
             return QObject::tr("Outgoing call");
@@ -498,7 +506,7 @@ getCallInteractionString(bool isSelf, const Info& info)
             return QObject::tr("Join call");
         }
     }
-    return getCallInteractionStringNonSwarm(isSelf, info.duration);
+    return getCallInteractionStringNonSwarm(isSelf, info.duration, info.commit["reason"]);
 }
 
 static inline QString
