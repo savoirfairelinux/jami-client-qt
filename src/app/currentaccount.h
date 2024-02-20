@@ -116,6 +116,7 @@ class CurrentAccount final : public QObject
     QML_RO_PROPERTY(lrc::api::profile::Type, type)
 
     QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(bool, keepAliveEnabled)
+    QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(int, dhtPort)
     QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(bool, peerDiscovery)
     QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(bool, sendReadReceipt)
     QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(bool, isRendezVous)

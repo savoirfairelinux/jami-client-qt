@@ -162,6 +162,7 @@ Item {
     property string videoRTPMaxPort: qsTr("Video RTP maximum port")
 
     // AdvancedOpenDHTSettings
+    property string dhtPortUsed: qsTr("Current DHT port used")
     property string enablePeerDiscovery: qsTr("Enable local peer discovery")
     property string tooltipPeerDiscovery: qsTr("Connect to other DHT nodes advertising on your local network.")
     property string openDHTConfig: qsTr("OpenDHT configuration")
