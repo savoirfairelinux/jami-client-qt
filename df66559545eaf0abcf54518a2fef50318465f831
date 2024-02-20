@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26716478_dd29f1f7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2024-02-20T08:20:50Z",
+      "side": 1,
+      "message": "Should \"And the volunteers who contribute to this project!\" (without \"\") be added? https://git.jami.net/savoirfairelinux/jami-project/-/issues/1623",
+      "revId": "df66559545eaf0abcf54518a2fef50318465f831",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
