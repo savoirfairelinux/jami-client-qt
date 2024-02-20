@@ -42,6 +42,7 @@ ItemDelegate {
             height: 1
             width: parent.width - 20
             color: JamiTheme.hoverColor
+            visible: index != 0
 
         }
 
