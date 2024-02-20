@@ -100,13 +100,6 @@ JSONFromString(const QString& str)
 }
 
 static QString
-JSONStringFromInitList(const std::initializer_list<QPair<QString, QJsonValue>> args)
-{
-    QJsonObject jsonObject(args);
-    return stringFromJSON(jsonObject);
-}
-
-static QString
 readJSONValue(const QJsonObject& json, const QString& key)
 {
     if (!json.isEmpty() && json.contains(key) && json[key].isString()) {
