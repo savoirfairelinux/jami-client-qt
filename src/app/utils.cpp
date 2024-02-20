@@ -675,12 +675,8 @@ Utils::getAvatarColor(const QString& canonicalUri)
     if (canonicalUri.isEmpty()) {
         return JamiAvatarTheme::defaultAvatarColor_;
     }
-    auto h = QString(
-        QCryptographicHash::hash(canonicalUri.toLocal8Bit(), QCryptographicHash::Md5).toHex());
-    if (h.isEmpty() || h.isNull()) {
-        return JamiAvatarTheme::defaultAvatarColor_;
-    }
-    auto colorIndex = std::string("0123456789abcdef").find(h.at(0).toLatin1());
+    auto h = QCryptographicHash::hash(canonicalUri.toUtf8(), QCryptographicHash::Md5).toHex();
+    auto colorIndex = std::string_view("0123456789abcdef").find(h.at(0));
     return JamiAvatarTheme::avatarColors_[colorIndex];
 }
 
