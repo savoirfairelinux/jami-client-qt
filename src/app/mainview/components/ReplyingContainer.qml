@@ -78,7 +78,14 @@ Rectangle {
             Label {
                 id: username
 
-                text: author === CurrentAccount.uri ? CurrentAccount.bestName : UtilsAdapter.getBestNameForUri(CurrentAccount.id, author)
+                wrapMode: Text.NoWrap
+                text: textMetricsUsername.elidedText
+                TextMetrics {
+                    id: textMetricsUsername
+                    text: author === CurrentAccount.uri ? CurrentAccount.bestName : UtilsAdapter.getBestNameForUri(CurrentAccount.id, author)
+                    elideWidth: 200
+                    elide: Qt.ElideMiddle
+                }
 
                 color: UtilsAdapter.luma(root.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
                 font.pointSize: JamiTheme.textFontSize
