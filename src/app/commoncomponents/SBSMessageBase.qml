@@ -150,7 +150,15 @@ Control {
                     Label {
                         id: replyTo
 
-                        text: isOutgoing ? JamiStrings.inReplyTo : UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author) + JamiStrings.repliedTo
+                        wrapMode: Text.NoWrap
+                        text: textMetricsUsername1.elidedText
+                        TextMetrics {
+                            id: textMetricsUsername1
+                            text: isOutgoing ? JamiStrings.inReplyTo : UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author) + JamiStrings.repliedTo
+                            elideWidth: 200
+                            elide: Qt.ElideMiddle
+                        }
+
                         color: JamiTheme.messageReplyColor
                         font.pointSize: JamiTheme.textFontSize
                         font.kerning: true
@@ -175,7 +183,15 @@ Control {
                     Label {
                         id: replyToUserName
 
-                        text: replyItem.isSelf ? JamiStrings.inReplyToMe : replyToLayout.replyUserName
+                        wrapMode: Text.NoWrap
+                        text: textMetricsUsername2.elidedText
+                        TextMetrics {
+                            id: textMetricsUsername2
+                            text: replyItem.isSelf ? JamiStrings.inReplyToMe : replyToLayout.replyUserName
+                            elideWidth: 200
+                            elide: Qt.ElideMiddle
+                        }
+
                         color: JamiTheme.messageReplyColor
                         font.pointSize: JamiTheme.textFontSize
                         font.kerning: true
