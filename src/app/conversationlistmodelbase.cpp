@@ -171,17 +171,19 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
         return ret;
     }
     case Role::Presence: {
-        // The conversation can show a green dot if at least one peer is present
+        // A conversation presence is the max of the members presence
+        auto maxPresence = 0;
         Q_FOREACH (const auto& peerUri, model_->peersForConversation(item.uid))
             try {
                 auto& accInfo = lrcInstance_->getAccountInfo(accountId_);
                 if (peerUri == accInfo.profileInfo.uri)
                     return 2; // Self account
                 auto contact = accInfo.contactModel->getContact(peerUri);
-                return contact.presence;
+                if (contact.presence > maxPresence)
+                    maxPresence = contact.presence;
             } catch (const std::exception&) {
             }
-        return false;
+        return maxPresence;
     };
     default:
         break;
