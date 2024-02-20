@@ -36,12 +36,14 @@ BaseModalDialog {
     button1Role: DialogButtonBox.DestructiveRole
     button1.enabled: false
     button1.onClicked: {
-        DeviceItemListModel.revokeDevice(deviceId, passwordEdit.dynamicText);
+        DeviceItemListModel.revokeDevice(deviceId, pwd);
         close();
     }
     button2.text: JamiStrings.optionCancel
     button2Role: DialogButtonBox.RejectRole
     button2.onClicked: close()
+
+    property var pwd: ""
 
     popupContent: ColumnLayout {
         id: revokeDeviceContentColumnLayout
@@ -73,7 +75,10 @@ BaseModalDialog {
 
             placeholderText: JamiStrings.enterCurrentPassword
 
-            onDynamicTextChanged: root.button1.enabled = dynamicText.length > 0
+            onDynamicTextChanged: {
+                root.pwd = dynamicText
+                root.button1.enabled = dynamicText.length > 0
+            }
         }
     }
 }
