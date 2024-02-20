@@ -110,6 +110,7 @@ struct ConfProperties_t
     QString proxyServer;
     QString proxyPushToken;
     bool peerDiscovery;
+    int dhtPort;
     bool accountDiscovery;
     bool accountPublish;
     int registrationExpire;
@@ -176,7 +177,6 @@ struct ConfProperties_t
     } TLS;
     struct DHT_t
     {
-        int port;
         bool PublicInCalls;
         bool AllowFromTrusted;
     } DHT;
