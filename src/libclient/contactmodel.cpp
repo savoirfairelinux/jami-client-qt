@@ -107,6 +107,13 @@ public:
      */
     QString sipUriReceivedFilter(const QString& uri);
 
+    /**
+     * Update the cached profile info for a contact.
+     * Warning: this method assumes the caller has locked the contacts mutex.
+     * @param profileInfo
+     */
+    void updateCachedProfile(profile::Info& profileInfo);
+
     // Helpers
     const BehaviorController& behaviorController;
     const ContactModel& linked;
@@ -124,6 +131,10 @@ public:
     QMap<QString, QString> nonContactLookup_;
 
     QThreadPool profileThreadPool;
+    // A set of cached profiles for contacts. If we receive new profile data,
+    // just store it and remove the cache set. This will trigger an update
+    // of the profile info the next time it is requested for consumption.
+    QSet<QString> cachedProfiles;
 
 public Q_SLOTS:
     /**
@@ -306,7 +317,7 @@ ContactModel::addContact(contact::Info contactInfo)
         std::lock_guard<std::mutex> lk(pimpl_->contactsMtx_);
         auto iter = pimpl_->contacts.find(contactInfo.profileInfo.uri);
         if (iter == pimpl_->contacts.end())
-            pimpl_->contacts.insert(iter, contactInfo.profileInfo.uri, contactInfo);
+            pimpl_->contacts.insert(contactInfo.profileInfo.uri, contactInfo);
         else {
             // On non-DBus platform, contactInfo.profileInfo.type may be wrong as the contact
             // may be trusted already. We must use Profile::Type from pimpl_->contacts
@@ -392,21 +403,29 @@ void
 ContactModel::updateContact(const QString& uri, const MapStringString& infos)
 {
     std::unique_lock<std::mutex> lk(pimpl_->contactsMtx_);
-    auto ci = pimpl_->contacts.find(uri);
-    if (ci != pimpl_->contacts.end()) {
-        if (infos.contains("avatar")) {
-            ci->profileInfo.avatar = storage::vcard::compressedAvatar(infos["avatar"]);
-        } else {
-            // Else it will be resetted
-            ci->profileInfo.avatar = storage::avatar(owner.id, uri);
-        }
-        if (infos.contains("title"))
-            ci->profileInfo.alias = infos["title"];
-        storage::createOrUpdateProfile(owner.id, ci->profileInfo, true, true);
-        lk.unlock();
-        Q_EMIT profileUpdated(uri);
-        Q_EMIT modelUpdated(uri);
+    auto it = pimpl_->contacts.find(uri);
+    if (it == pimpl_->contacts.end()) {
+        return;
     }
+
+    // Write the updated profile to the in-memory cache
+    auto& profileInfo = it->profileInfo;
+    if (infos.contains("avatar"))
+        profileInfo.avatar = storage::vcard::compressedAvatar(infos["avatar"]);
+    if (infos.contains("title"))
+        profileInfo.alias = infos["title"];
+
+    // Update the profile in the database
+    storage::vcard::setProfile(owner.id, profileInfo, true /*isPeer*/, true /*ov*/);
+
+    // We can consider the contact profile as cached
+    pimpl_->cachedProfiles.insert(uri);
+
+    // Update observers
+    lk.unlock();
+    LC_WARN << "ContactModel::updateContact" << uri;
+    Q_EMIT profileUpdated(uri);
+    Q_EMIT modelUpdated(uri);
 }
 
 const QList<QString>&
@@ -570,16 +589,30 @@ ContactModel::bestNameForContact(const QString& contactUri) const
 QString
 ContactModel::avatar(const QString& uri) const
 {
-    {
-        std::lock_guard<std::mutex> lk(pimpl_->contactsMtx_);
-        // For search results it's loaded and not in storage yet.
-        if (pimpl_->searchResult.contains(uri)) {
-            auto contact = pimpl_->searchResult.value(uri);
-            return contact.profileInfo.avatar;
-        }
+    std::unique_lock<std::mutex> lk(pimpl_->contactsMtx_);
+    // For search results it's loaded and not in storage yet.
+    if (pimpl_->searchResult.contains(uri)) {
+        auto contact = pimpl_->searchResult.value(uri);
+        return contact.profileInfo.avatar;
     }
-    // Else search in storage (because not cached!)
-    return storage::avatar(owner.id, uri);
+
+    // Try to find the contact.
+    auto it = pimpl_->contacts.find(uri);
+    if (it == pimpl_->contacts.end()) {
+        // We couldn't find an avatar.
+        return {};
+    }
+
+    // If we have an avatar that appears to be recently cached, return it.
+    if (pimpl_->cachedProfiles.contains(uri)) {
+        LC_INFO << "Returning cached avatar for" << uri;
+        return it->profileInfo.avatar;
+    }
+
+    // Otherwise, update the profile info and return the avatar.
+    pimpl_->updateCachedProfile(it->profileInfo);
+
+    return it->profileInfo.avatar;
 }
 
 const QString
@@ -649,50 +682,47 @@ ContactModelPimpl::ContactModelPimpl(const ContactModel& linked,
             this,
             &ContactModelPimpl::slotUserSearchEnded);
 
-    // Init contacts map on a new thread as there is likely a lot of IO
-    profileThreadPool.start([this] {
-        if (this->linked.owner.profileInfo.type == profile::Type::SIP)
-            fillWithSIPContacts();
-        else
-            fillWithJamiContacts();
-    });
+    if (this->linked.owner.profileInfo.type == profile::Type::SIP)
+        fillWithSIPContacts();
+    else
+        fillWithJamiContacts();
 }
 
 ContactModelPimpl::~ContactModelPimpl()
 {
-    disconnect(&callbacksHandler,
-               &CallbacksHandler::newBuddySubscription,
-               this,
-               &ContactModelPimpl::slotNewBuddySubscription);
-    disconnect(&callbacksHandler,
-               &CallbacksHandler::contactAdded,
-               this,
-               &ContactModelPimpl::slotContactAdded);
-    disconnect(&callbacksHandler,
-               &CallbacksHandler::contactRemoved,
-               this,
-               &ContactModelPimpl::slotContactRemoved);
-    disconnect(&callbacksHandler,
-               &CallbacksHandler::registeredNameFound,
-               this,
-               &ContactModelPimpl::slotRegisteredNameFound);
-    disconnect(&*linked.owner.callModel, &CallModel::newCall, this, &ContactModelPimpl::slotNewCall);
-    disconnect(&callbacksHandler,
-               &lrc::CallbacksHandler::newAccountMessage,
-               this,
-               &ContactModelPimpl::slotNewAccountMessage);
-    disconnect(&callbacksHandler,
-               &CallbacksHandler::transferStatusCreated,
-               this,
-               &ContactModelPimpl::slotNewAccountTransfer);
-    disconnect(&ConfigurationManager::instance(),
-               &ConfigurationManagerInterface::profileReceived,
-               this,
-               &ContactModelPimpl::slotProfileReceived);
-    disconnect(&ConfigurationManager::instance(),
-               &ConfigurationManagerInterface::userSearchEnded,
-               this,
-               &ContactModelPimpl::slotUserSearchEnded);
+    //    disconnect(&callbacksHandler,
+    //               &CallbacksHandler::newBuddySubscription,
+    //               this,
+    //               &ContactModelPimpl::slotNewBuddySubscription);
+    //    disconnect(&callbacksHandler,
+    //               &CallbacksHandler::contactAdded,
+    //               this,
+    //               &ContactModelPimpl::slotContactAdded);
+    //    disconnect(&callbacksHandler,
+    //               &CallbacksHandler::contactRemoved,
+    //               this,
+    //               &ContactModelPimpl::slotContactRemoved);
+    //    disconnect(&callbacksHandler,
+    //               &CallbacksHandler::registeredNameFound,
+    //               this,
+    //               &ContactModelPimpl::slotRegisteredNameFound);
+    //    disconnect(&*linked.owner.callModel, &CallModel::newCall, this,
+    //    &ContactModelPimpl::slotNewCall); disconnect(&callbacksHandler,
+    //               &lrc::CallbacksHandler::newAccountMessage,
+    //               this,
+    //               &ContactModelPimpl::slotNewAccountMessage);
+    //    disconnect(&callbacksHandler,
+    //               &CallbacksHandler::transferStatusCreated,
+    //               this,
+    //               &ContactModelPimpl::slotNewAccountTransfer);
+    //    disconnect(&ConfigurationManager::instance(),
+    //               &ConfigurationManagerInterface::profileReceived,
+    //               this,
+    //               &ContactModelPimpl::slotProfileReceived);
+    //    disconnect(&ConfigurationManager::instance(),
+    //               &ConfigurationManagerInterface::userSearchEnded,
+    //               this,
+    //               &ContactModelPimpl::slotUserSearchEnded);
     profileThreadPool.waitForDone();
 }
 
@@ -720,19 +750,13 @@ ContactModelPimpl::fillWithSIPContacts()
 bool
 ContactModelPimpl::fillWithJamiContacts()
 {
-    // Add contacts from daemon
-    const VectorMapStringString& contacts_vector = ConfigurationManager::instance().getContacts(
-        linked.owner.id);
-    for (auto contact_info : contacts_vector) {
-        // std::this_thread::sleep_for(std::chrono::milliseconds(100));
-        std::lock_guard<std::mutex> lk(contactsMtx_);
-        bool banned = contact_info["banned"] == "true" ? true : false;
+    // Add existing contacts from libjami
+    for (auto contact_info : ConfigurationManager::instance().getContacts(linked.owner.id))
         addToContacts(contact_info["id"],
                       linked.owner.profileInfo.type,
                       "",
-                      banned,
+                      contact_info["banned"] == "true",
                       contact_info["conversationId"]);
-    }
 
     // Add pending contacts
     const VectorMapStringString& pending_tr {
@@ -838,17 +862,15 @@ ContactModelPimpl::slotContactAdded(const QString& accountId, const QString& con
     }
 
     bool isBanned = false;
-
     {
         // Always get contactsMtx_ lock before bannedContactsMtx_.
         std::lock_guard<std::mutex> lk(contactsMtx_);
-
         {
             // Check whether contact is banned or not
             std::lock_guard<std::mutex> lk(bannedContactsMtx_);
-            auto it = std::find(bannedContacts.begin(), bannedContacts.end(), contactUri);
+            auto it = std::find(bannedContacts.cbegin(), bannedContacts.cend(), contactUri);
 
-            isBanned = (it != bannedContacts.end());
+            isBanned = (it != bannedContacts.cend());
 
             // If contact is banned, do not re-add it, simply update its flag and the banned contacts list
             if (isBanned) {
@@ -905,10 +927,10 @@ ContactModelPimpl::slotContactRemoved(const QString& accountId,
             if (contact->isBanned) {
                 // Contact was banned, update bannedContacts
                 std::lock_guard<std::mutex> lk(bannedContactsMtx_);
-                auto it = std::find(bannedContacts.begin(),
-                                    bannedContacts.end(),
+                auto it = std::find(bannedContacts.cbegin(),
+                                    bannedContacts.cend(),
                                     contact->profileInfo.uri);
-                if (it == bannedContacts.end()) {
+                if (it == bannedContacts.cend()) {
                     // should not happen
                     LC_DBG << "Contact is banned but not present in bannedContacts. This is most "
                               "likely the result of an earlier bug.";
@@ -931,9 +953,6 @@ ContactModelPimpl::slotContactRemoved(const QString& accountId,
     }
 }
 
-// VCard is deserialized twice here: buildContactFromProfile and avatar.
-//   each one will load getOverridenInfos
-// fix const iter
 void
 ContactModelPimpl::addToContacts(const QString& contactUri,
                                  const profile::Type& type,
@@ -943,23 +962,10 @@ ContactModelPimpl::addToContacts(const QString& contactUri,
 {
     // create a vcard if necessary
     profile::Info profileInfo {contactUri, {}, displayName, linked.owner.profileInfo.type};
-    auto contactInfo = storage::buildContactFromProfile(linked.owner.id, contactUri, type);
-    auto updateProfile = false;
-    if (!profileInfo.alias.isEmpty() && contactInfo.profileInfo.alias != profileInfo.alias) {
-        updateProfile = true;
-        contactInfo.profileInfo.alias = profileInfo.alias;
-    }
-    auto oldAvatar = storage::avatar(linked.owner.id, contactUri);
-    if (!profileInfo.avatar.isEmpty() && oldAvatar != profileInfo.avatar) {
-        updateProfile = true;
-        contactInfo.profileInfo.avatar = profileInfo.avatar;
-    }
-    if (updateProfile)
-        storage::vcard::setProfile(linked.owner.id, contactInfo.profileInfo, true);
+    api::contact::Info contactInfo = {profileInfo, "", type == api::profile::Type::JAMI, false};
 
     contactInfo.isBanned = banned;
     contactInfo.conversationId = conversationId;
-    contactInfo.profileInfo.avatar.clear();
 
     if (type == profile::Type::JAMI) {
         ConfigurationManager::instance().lookupAddress(linked.owner.id, "", contactUri);
@@ -969,17 +975,21 @@ ContactModelPimpl::addToContacts(const QString& contactUri,
     }
 
     contactInfo.profileInfo.type = type; // Because PENDING should not be stored in the database
-    auto iter = contacts.find(contactInfo.profileInfo.uri);
-    if (iter != contacts.end()) {
-        auto info = iter.value();
-        contactInfo.registeredName = info.registeredName;
-        contactInfo.isPresent = info.isPresent;
-        iter.value() = contactInfo;
-    } else {
-        contacts.insert(contactInfo.profileInfo.uri, contactInfo);
-    }
-    if (banned) {
-        bannedContacts.append(contactUri);
+    {
+        std::lock_guard<std::mutex> lk(contactsMtx_);
+        auto iter = contacts.find(contactInfo.profileInfo.uri);
+        if (iter != contacts.end()) {
+            auto info = iter.value();
+            contactInfo.registeredName = info.registeredName;
+            contactInfo.isPresent = info.isPresent;
+            iter.value() = contactInfo;
+        } else {
+            contacts.insert(contactInfo.profileInfo.uri, contactInfo);
+        }
+        if (banned) {
+            std::lock_guard<std::mutex> lk(bannedContactsMtx_);
+            bannedContacts.append(contactUri);
+        }
     }
 }
 
@@ -1061,7 +1071,8 @@ ContactModelPimpl::slotNewCall(const QString& fromId,
                 // Update the display name
                 if (!displayname.isEmpty()) {
                     it->profileInfo.alias = displayname;
-                    storage::createOrUpdateProfile(linked.owner.id, it->profileInfo, true);
+                    storage::vcard::setProfile(linked.owner.id, it->profileInfo, true);
+                    cachedProfiles.insert(it->profileInfo.uri);
                 }
             }
         }
@@ -1148,10 +1159,11 @@ ContactModelPimpl::sipUriReceivedFilter(const QString& uri)
             } else {
                 // if not "+"  from incoming
                 // sub "+" char from contacts to see if user exit
-                for (auto& contactUri : contacts.keys()) {
+                for (auto it = contacts.cbegin(); it != contacts.cend(); ++it) {
+                    const QString& contactUri = it.key();
                     if (!contactUri.isEmpty()) {
                         for (int j = 2; j <= 4; j++) {
-                            if (QString(contactUri).remove(0, j) == remoteUserQStr) {
+                            if (contactUri.mid(j) == remoteUserQStr) {
                                 return contactUri;
                             }
                         }
@@ -1166,6 +1178,20 @@ ContactModelPimpl::sipUriReceivedFilter(const QString& uri)
     }
     // "@" is not found -> not possible since all response uri has one
     return "";
+}
+
+void
+ContactModelPimpl::updateCachedProfile(profile::Info& profileInfo)
+{
+    // WARNING: this method assumes the caller has locked the contacts mutex
+    const auto newProfileInfo = storage::getProfileData(linked.owner.id, profileInfo.uri);
+
+    profileInfo.alias = newProfileInfo["alias"];
+    profileInfo.avatar = newProfileInfo["avatar"];
+
+    // No matter what has been updated here, we want to make sure the contact
+    // is considered cached now.
+    cachedProfiles.insert(profileInfo.uri);
 }
 
 void
