@@ -18,6 +18,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import Qt5Compat.GraphicalEffects
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -47,6 +48,8 @@ SBSMessageBase {
 
     bubble.border.color: CurrentConversation.color
     bubble.border.width: root.isActive ? 1.5 : 0
+    bubble.color: JamiTheme.messageInBgColor
+    bubble.opacity: 0.6
 
     Connections {
         target: CurrentConversation
@@ -65,7 +68,7 @@ SBSMessageBase {
     property bool isActive: LRCInstance.indexOfActiveCall(ConfId, ActionUri, DeviceId) !== -1
     visible: isActive || ConfId === "" || Duration > 0
 
-    property var baseColor: isOutgoing? CurrentConversation.color : JamiTheme.messageInBgColor
+    property var baseColor: JamiTheme.messageInBgColor
 
     innerContent.children: [
         RowLayout {
@@ -74,22 +77,59 @@ SBSMessageBase {
             spacing: 10
             visible: root.visible
 
-            Label {
+            Image {
+                id: statusIcon
+                Layout.leftMargin: 8
+                width: 10
+                height: 10
+                verticalAlignment: Qt.AlignVCenter
+                visible: !root.isActive
+
+                source: {
+                    if (root.isOutgoing) {
+                        if (Duration > 0)
+                            return "qrc:/icons/outgoing-call.svg";
+                        else
+                            return "qrc:/icons/missed-outgoing-call.svg";
+                    } else {
+                        if (Duration > 0)
+                            return "qrc:/icons/incoming-call.svg";
+                        else
+                            return "qrc:/icons/missed-incoming-call.svg";
+                    }
+                }
+                layer {
+                    enabled: true
+                    effect: ColorOverlay {
+                        color: {
+                            if (Duration > 0)
+                                return UtilsAdapter.luma(root.baseColor) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
+                            return JamiTheme.redColor
+                        }
+                    }
+                }
+
+            }
+
+            TextEdit {
                 id: callLabel
 
-                Layout.margins: 8
+                topPadding: 8
+                bottomPadding: 8
+
                 Layout.fillWidth: true
                 Layout.rightMargin: root.isActive ? 0 : root.timeWidth + 16
-                Layout.leftMargin: root.isActive ? 10 : 8
+                Layout.leftMargin: root.isActive ? 10 : -5 /* spacing is 10 and we want 5px with icon */
 
                 text: {
                     if (root.isActive)
                         return JamiStrings.startedACall;
                     return Body;
                 }
+                verticalAlignment: Qt.AlignVCenter
                 horizontalAlignment: Qt.AlignHCenter
 
-                font.pointSize: JamiTheme.mediumFontSize
+                font.pointSize: JamiTheme.smallFontSize
                 font.hintingPreference: Font.PreferNoHinting
                 renderType: Text.NativeRendering
                 textFormat: Text.MarkdownText
