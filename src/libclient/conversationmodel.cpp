@@ -2822,7 +2822,7 @@ ConversationModelPimpl::addConversationRequest(const MapStringString& convReques
         {"linearizedParent", ""},
     };
     auto msg = interaction::Info(messageMap, linked.owner.profileInfo.uri);
-    conversation.interactions->insert(convId, msg);
+    conversation.interactions->insert(convId, msg, 0);
 
     // add the author to the contact model's contact list as a PENDING
     // if they aren't already a contact
