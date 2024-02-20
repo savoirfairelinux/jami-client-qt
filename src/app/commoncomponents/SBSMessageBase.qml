@@ -405,6 +405,8 @@ Control {
                                 return -20;
                             if (root.bigMsg || bubble.isDeleted)
                                 return 5;
+                            if (root.type === Interaction.Type.CALL)
+                                return 8;
                             return 9;
                         }
                     }
