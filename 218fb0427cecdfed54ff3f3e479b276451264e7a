@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20faa7e9_5797f0c8",
+        "filename": "src/app/mainview/components/AccountItemDelegate.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-02-21T20:45:52Z",
+      "side": 1,
+      "message": "check",
+      "range": {
+        "startLine": 45,
+        "startChar": 27,
+        "endLine": 45,
+        "endChar": 29
+      },
+      "revId": "218fb0427cecdfed54ff3f3e479b276451264e7a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
