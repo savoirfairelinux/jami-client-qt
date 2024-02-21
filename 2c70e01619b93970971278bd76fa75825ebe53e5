@@ -16,6 +16,24 @@
       "message": "If you are using Multistream - should you be able to resize your shared screen and your camera independend of each other?\n\nWhat if you change your camera / your camera resolution and/or fps during the call? Does this patch also take account of such scenarios?",
       "revId": "2c70e01619b93970971278bd76fa75825ebe53e5",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d79e8b42_0c9716c4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-02-21T21:54:01Z",
+      "side": 1,
+      "message": "This is only introducing the resize/opacity change for the local preview widget. There is currently only one instance in the call view. I think multistream resizability will be an eventuality, but not within the current call view design.",
+      "parentUuid": "043b89a6_39283719",
+      "revId": "2c70e01619b93970971278bd76fa75825ebe53e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
