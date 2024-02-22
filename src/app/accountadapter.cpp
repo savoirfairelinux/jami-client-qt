@@ -227,7 +227,7 @@ AccountAdapter::createJAMSAccount(const QVariantMap& settings)
         &lrcInstance_->accountModel(),
         &lrc::api::AccountModel::accountAdded,
         [this](const QString& accountId) {
-            if (!lrcInstance_->accountModel().getAccountList().size())
+            if (!lrcInstance_->accountModel().getAccountCount())
                 return;
 
             Utils::oneShotConnect(&lrcInstance_->accountModel(),
