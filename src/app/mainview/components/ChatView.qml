@@ -21,7 +21,6 @@ import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
-
 import "../../commoncomponents"
 import "../js/pluginhandlerpickercreation.js" as PluginHandlerPickerCreation
 
@@ -135,7 +134,7 @@ Rectangle {
 
                 function onIdChanged() {
                     if (!chatViewHeader.interactionButtonsVisibility)
-                       extrasPanel.closePanel()
+                        extrasPanel.closePanel();
                 }
 
                 function onNeedsHost() {
@@ -251,14 +250,10 @@ Rectangle {
                     chatContents.visible = true;
                     return;
                 }
-
                 const isExpanding = width > previousWidth;
 
                 // Provide a detailed log here, as this function seems problematic.
-                console.debug("ChatViewSplitView.resolvePanes: f: %1 w: %2 pw: %3 epw: %4 pepw: %5 ie: %6"
-                              .arg(force).arg(width).arg(previousWidth)
-                              .arg(extrasPanelWidth).arg(previousExtrasPanelWidth).arg(isExpanding));
-
+                console.debug("ChatViewSplitView.resolvePanes: f: %1 w: %2 pw: %3 epw: %4 pepw: %5 ie: %6".arg(force).arg(width).arg(previousWidth).arg(extrasPanelWidth).arg(previousExtrasPanelWidth).arg(isExpanding));
                 const maximizePredicate = (!isExpanding || force) && chatContents.visible;
                 const minimizePredicate = (isExpanding || force) && !chatContents.visible;
                 const mainViewMinWidth = JamiTheme.mainViewPaneMinWidth;
@@ -323,6 +318,7 @@ Rectangle {
 
                 ChatViewFooter {
                     id: chatViewFooter
+                    objectName: "chatViewFooter"
 
                     visible: {
                         if (CurrentAccount.type === Profile.Type.SIP)
@@ -333,7 +329,7 @@ Rectangle {
                             return false;
                         else if (CurrentConversation.isRequest)
                             return false;
-                        return CurrentConversation.isSwarm;
+                        return CurrentConversation.isSwarm || CurrentConversation.isTemporary;
                     }
 
                     onHeightChanged: {

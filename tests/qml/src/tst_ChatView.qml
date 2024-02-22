@@ -49,6 +49,16 @@ ListSelectionView {
                 var sendContactRequestButton = findChild(chatviewHeader, "sendContactRequestButton")
                 compare(detailsButton.visible, true)
                 compare(sendContactRequestButton.visible, false)
+
+                var chatViewFooter = findChild(uut, "chatViewFooter")
+                CurrentConversation.isTemporary = true
+                compare(chatViewFooter.visible, true)
+                CurrentConversation.isTemporary = false
+                CurrentConversation.isRequest = true
+                compare(chatViewFooter.visible, false)
+                CurrentConversation.isRequest = false
+                CurrentConversation.needsSyncing = true
+                compare(chatViewFooter.visible, false)
             }
         }
     }
