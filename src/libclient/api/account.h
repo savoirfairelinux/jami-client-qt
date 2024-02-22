@@ -209,7 +209,6 @@ Q_ENUM_NS(LookupStatus)
 
 struct Info
 {
-    bool valid = true;
     QString registeredName;
     Status status = account::Status::INVALID;
     std::unique_ptr<lrc::api::CallModel> callModel;
