@@ -203,16 +203,18 @@ QStringList
 AccountModel::getAccountList() const
 {
     QStringList filteredAccountIds;
-    const QStringList accountIds = ConfigurationManager::instance().getAccountList();
-
-    for (auto const& id : accountIds) {
-        auto account = pimpl_->accounts.find(id);
-        // Do not include accounts flagged for removal
-        if (account != pimpl_->accounts.end() && account->second.first.valid)
-            filteredAccountIds.push_back(id);
+    filteredAccountIds.reserve(pimpl_->accounts.size());
+    for (auto const& acc : pimpl_->accounts) {
+        if (acc.second.first.valid)
+            filteredAccountIds.push_back(acc.first);
     }
-
     return filteredAccountIds;
+}
+
+size_t
+AccountModel::getAccountCount() const
+{
+    return pimpl_->accounts.size();
 }
 
 void
@@ -331,12 +333,11 @@ void
 AccountModel::removeAccount(const QString& accountId) const
 {
     auto account = pimpl_->accounts.find(accountId);
-    if (account == pimpl_->accounts.end()) {
-        return;
+    if (account != pimpl_->accounts.end()) {
+        account->second.second->close();
     }
 
     // Close db here for its removal
-    account->second.second->close();
     ConfigurationManager::instance().removeAccount(accountId);
 }
 
