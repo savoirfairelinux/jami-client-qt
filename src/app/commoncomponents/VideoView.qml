@@ -32,7 +32,7 @@ Item {
     property real blurRadius: 0
 
     // We need to know if the frames are being rendered to the screen or not.
-    readonly property bool isRendering: videoProvider.activeRenderers[rendererId] !== undefined
+    readonly property bool isRendering: videoProvider.activeRenderers[rendererId] === true
 
     // This rect describes the actual rendered content rectangle
     // as the VideoOutput component may use PreserveAspectFit
