@@ -144,6 +144,7 @@ CurrentAccount::updateData()
         set_deviceId(accConfig.deviceId);
         set_peerDiscovery(accConfig.peerDiscovery, true);
         set_sendReadReceipt(accConfig.sendReadReceipt, true);
+        set_sendComposing(accConfig.sendComposing, true);
         set_isRendezVous(accConfig.isRendezVous, true);
         set_dhtPort(accConfig.dhtPort, true);
         set_autoAnswer(accConfig.autoAnswer, true);

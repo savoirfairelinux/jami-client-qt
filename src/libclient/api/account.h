@@ -81,6 +81,7 @@ struct ConfProperties_t
     QString dtmfType;
     bool autoAnswer;
     bool sendReadReceipt;
+    bool sendComposing;
     bool isRendezVous;
     int activeCallLimit;
     QString hostname;
