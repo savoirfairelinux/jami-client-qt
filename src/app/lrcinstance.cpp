@@ -282,7 +282,7 @@ LRCInstance::getCurrentContactModel()
 int
 LRCInstance::getCurrentAccountIndex()
 {
-    for (int i = 0; i < accountModel().getAccountList().size(); i++) {
+    for (int i = 0; i < accountModel().getAccountCount(); i++) {
         if (accountModel().getAccountList()[i] == get_currentAccountId()) {
             return i;
         }
@@ -410,6 +410,10 @@ LRCInstance::indexOfActiveCall(const QString& confId, const QString& uri, const 
 void
 LRCInstance::deselectConversation()
 {
+    // Only do this if we have an account selected
+    if (get_currentAccountId().isEmpty()) {
+        return;
+    }
     set_selectedConvUid();
 }
 
@@ -482,5 +486,15 @@ LRCInstance::onAccountRemoved(const QString& accountId)
 {
     if (accountId != currentAccountId_)
         return;
+
+    // If there are any accounts left, select the first one, otherwise clear the current account
+    // and request presentation of the wizard view.
+    auto accountList = accountModel().getAccountList();
+    if (accountList.size()) {
+        set_currentAccountId(accountList.at(0));
+    } else {
+        set_currentAccountId();
+    }
+
     Q_EMIT currentAccountRemoved();
 }

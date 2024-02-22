@@ -107,8 +107,13 @@ BannedListModel::flags(const QModelIndex& index) const
 void
 BannedListModel::reset()
 {
+    auto contactModel = lrcInstance_->getCurrentContactModel();
+    if (!contactModel) {
+        return;
+    }
+
     beginResetModel();
-    bannedlist_ = lrcInstance_->getCurrentAccountInfo().contactModel->getBannedContacts();
+    bannedlist_ = contactModel->getBannedContacts();
     endResetModel();
     set_count(rowCount());
 }
