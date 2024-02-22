@@ -269,6 +269,12 @@ ApplicationWindow {
             raise();
             layoutManager.restoreApp();
         }
+
+        function onCurrentAccountRemoved() {
+            if (UtilsAdapter.getAccountListSize() === 0) {
+                viewCoordinator.present("WizardView");
+            }
+        }
     }
 
     Connections {

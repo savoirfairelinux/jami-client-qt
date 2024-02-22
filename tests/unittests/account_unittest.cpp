@@ -40,7 +40,7 @@ public:
  */
 TEST_F(AccountFixture, InitialAccountListCheck)
 {
-    auto accountListSize = globalEnv.lrcInstance->accountModel().getAccountList().size();
+    auto accountListSize = globalEnv.lrcInstance->accountModel().getAccountCount();
 
     ASSERT_EQ(accountListSize, 0);
 }
@@ -66,7 +66,7 @@ TEST_F(AccountFixture, CreateSIPAccountTest)
     // Select the created account
     globalEnv.lrcInstance->set_currentAccountId(accountAddedArguments.at(0).toString());
 
-    auto accountListSize = globalEnv.lrcInstance->accountModel().getAccountList().size();
+    auto accountListSize = globalEnv.lrcInstance->accountModel().getAccountCount();
     ASSERT_EQ(accountListSize, 1);
 
     // Make sure the account setup is done
@@ -86,6 +86,6 @@ TEST_F(AccountFixture, CreateSIPAccountTest)
     accountRemovedSpy.wait();
     EXPECT_EQ(accountRemovedSpy.count(), 1);
 
-    accountListSize = globalEnv.lrcInstance->accountModel().getAccountList().size();
+    accountListSize = globalEnv.lrcInstance->accountModel().getAccountCount();
     ASSERT_EQ(accountListSize, 0);
 }
