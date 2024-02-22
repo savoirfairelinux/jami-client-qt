@@ -274,7 +274,7 @@ UtilsAdapter::setConversationFilter(const QString& filter)
 int
 UtilsAdapter::getAccountListSize()
 {
-    return lrcInstance_->accountModel().getAccountList().size();
+    return lrcInstance_->accountModel().getAccountCount();
 }
 
 bool

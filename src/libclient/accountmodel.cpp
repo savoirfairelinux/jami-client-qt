@@ -73,6 +73,7 @@ public:
     Lrc& lrc;
     const CallbacksHandler& callbacksHandler;
     const BehaviorController& behaviorController;
+    QList<QString> accountIdList;
     AccountInfoDbMap accounts;
 
     // Synchronization tools
@@ -200,20 +201,16 @@ AccountModel::AccountModel(Lrc& lrc,
 
 AccountModel::~AccountModel() {}
 
-QStringList
+const QStringList&
 AccountModel::getAccountList() const
 {
-    QStringList filteredAccountIds;
-    const QStringList accountIds = ConfigurationManager::instance().getAccountList();
+    return pimpl_->accountIdList;
+}
 
-    for (auto const& id : accountIds) {
-        auto account = pimpl_->accounts.find(id);
-        // Do not include accounts flagged for removal
-        if (account != pimpl_->accounts.end() && account->second.first.valid)
-            filteredAccountIds.push_back(id);
-    }
-
-    return filteredAccountIds;
+size_t
+AccountModel::getAccountCount() const
+{
+    return pimpl_->accountIdList.size();
 }
 
 void
@@ -332,12 +329,11 @@ void
 AccountModel::removeAccount(const QString& accountId) const
 {
     auto account = pimpl_->accounts.find(accountId);
-    if (account == pimpl_->accounts.end()) {
-        return;
+    if (account != pimpl_->accounts.end()) {
+        account->second.second->close();
     }
 
     // Close db here for its removal
-    account->second.second->close();
     ConfigurationManager::instance().removeAccount(accountId);
 }
 
@@ -372,18 +368,18 @@ AccountModelPimpl::AccountModelPimpl(AccountModel& linked,
     , callbacksHandler(callbacksHandler)
     , username_changed(false)
 {
-    const QStringList accountIds = ConfigurationManager::instance().getAccountList();
+    accountIdList = ConfigurationManager::instance().getAccountList();
 
     // NOTE: If the daemon is down, but dbus answered, id can contains
     // "Remote peer disconnected", "The name is not activable", etc.
     // So avoid to migrate useless directories.
-    for (auto& id : accountIds)
+    for (const auto& id : accountIdList)
         if (id.indexOf(" ") != -1) {
             qWarning() << "Invalid dbus answer. Daemon not running";
             return;
         }
 
-    for (auto& id : accountIds) {
+    for (const auto& id : accountIdList) {
         addToAccounts(id);
     }
 
@@ -436,13 +432,13 @@ AccountModelPimpl::updateAccounts()
 {
     qDebug() << "Syncing lrc accounts list with the daemon";
     ConfigurationManagerInterface& configurationManager = ConfigurationManager::instance();
-    QStringList accountIds = configurationManager.getAccountList();
+    accountIdList = configurationManager.getAccountList();
 
     // Detect removed accounts
     QStringList toBeRemoved;
     for (auto& it : accounts) {
         auto& accountInfo = it.second.first;
-        if (!accountIds.contains(accountInfo.id)) {
+        if (!accountIdList.contains(accountInfo.id)) {
             qDebug() << QString("detected account removal %1").arg(accountInfo.id);
             toBeRemoved.push_back(accountInfo.id);
         }
@@ -453,7 +449,7 @@ AccountModelPimpl::updateAccounts()
     }
 
     // Detect new accounts
-    for (auto& id : accountIds) {
+    for (auto& id : accountIdList) {
         auto account = accounts.find(id);
         // NOTE: If the daemon is down, but dbus answered, id can contains
         // "Remote peer disconnected", "The name is not activable", etc.
@@ -572,7 +568,7 @@ AccountModelPimpl::slotVolatileAccountDetailsChanged(const QString& accountId,
 {
     auto account = accounts.find(accountId);
     if (account == accounts.end()) {
-        qWarning() << Q_FUNC_INFO << ": can't find " << accountId;
+        LC_DBG << Q_FUNC_INFO << ": can't find " << accountId;
         return;
     }
     auto& accountInfo = account->second.first;
@@ -789,7 +785,7 @@ AccountModelPimpl::removeFromAccounts(const QString& accountId)
     /* Inform client about account removal. Do *not* free account structures
        before we are sure that the client stopped using it, otherwise we might
        get into use-after-free troubles. */
-    accountInfo.valid = false;
+    accountIdList.removeOne(accountId);
     Q_EMIT linked.accountRemoved(accountId);
 
     // Now we can free them
