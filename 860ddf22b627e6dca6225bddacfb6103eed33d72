@@ -22,6 +22,30 @@
       },
       "revId": "860ddf22b627e6dca6225bddacfb6103eed33d72",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50a836a7_0df1710f",
+        "filename": "src/libclient/contactmodel.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 1201,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-02-22T21:45:21Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "4bfae8f9_6b125997",
+      "range": {
+        "startLine": 1201,
+        "startChar": 14,
+        "endLine": 1201,
+        "endChar": 23
+      },
+      "revId": "860ddf22b627e6dca6225bddacfb6103eed33d72",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
