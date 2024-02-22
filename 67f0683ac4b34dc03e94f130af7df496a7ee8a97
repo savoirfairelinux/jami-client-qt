@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02acdd00_bcc1867a",
+        "filename": "src/libclient/contactmodel.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-02-22T19:13:37Z",
+      "side": 1,
+      "message": "used?",
+      "range": {
+        "startLine": 50,
+        "startChar": 13,
+        "endLine": 51,
+        "endChar": 13
+      },
+      "revId": "67f0683ac4b34dc03e94f130af7df496a7ee8a97",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
