@@ -282,7 +282,7 @@ LRCInstance::getCurrentContactModel()
 int
 LRCInstance::getCurrentAccountIndex()
 {
-    for (int i = 0; i < accountModel().getAccountList().size(); i++) {
+    for (int i = 0; i < accountModel().getAccountCount(); i++) {
         if (accountModel().getAccountList()[i] == get_currentAccountId()) {
             return i;
         }
