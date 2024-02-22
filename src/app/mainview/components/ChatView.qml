@@ -323,6 +323,7 @@ Rectangle {
 
                 ChatViewFooter {
                     id: chatViewFooter
+                    objectName: "chatViewFooter"
 
                     visible: {
                         if (CurrentAccount.type === Profile.Type.SIP)
@@ -333,7 +334,7 @@ Rectangle {
                             return false;
                         else if (CurrentConversation.isRequest)
                             return false;
-                        return CurrentConversation.isSwarm;
+                        return CurrentConversation.isSwarm || CurrentConversation.isTemporary;
                     }
 
                     onHeightChanged: {
