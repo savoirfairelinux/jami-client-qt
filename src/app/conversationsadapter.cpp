@@ -603,9 +603,11 @@ ConversationsAdapter::openDialogConversationWith(const QString& peerUri)
 void
 ConversationsAdapter::onCurrentAccountRemoved()
 {
-    // Unbind proxy model source models.
-    convModel_->bindSourceModel(nullptr);
-    searchModel_->bindSourceModel(nullptr);
+    // Unbind proxy model source models if there is no current account
+    if (lrcInstance_->get_currentAccountId().isEmpty()) {
+        convModel_->bindSourceModel(nullptr);
+        searchModel_->bindSourceModel(nullptr);
+    }
 }
 
 void

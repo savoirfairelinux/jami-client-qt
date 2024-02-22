@@ -20,6 +20,7 @@
 #include "bannedlistmodel.h"
 
 #include "lrcinstance.h"
+#include "global.h"
 
 #include <api/contact.h>
 
@@ -108,7 +109,13 @@ void
 BannedListModel::reset()
 {
     beginResetModel();
-    bannedlist_ = lrcInstance_->getCurrentAccountInfo().contactModel->getBannedContacts();
+    auto contactModel = lrcInstance_->getCurrentContactModel();
+    if (!contactModel) {
+        C_DBG << "Contact model is not available.";
+        bannedlist_.clear();
+    } else {
+        bannedlist_ = contactModel->getBannedContacts();
+    }
     endResetModel();
     set_count(rowCount());
 }

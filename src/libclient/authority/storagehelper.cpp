@@ -364,7 +364,7 @@ withProfile(const QString& accountId,
 
     QFile file(path);
     if (!file.open(flags)) {
-        LC_DBG << "Can't open file: " << path;
+        LC_DBG << "Can't open file:" << path;
         return false;
     }
 
