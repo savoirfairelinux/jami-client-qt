@@ -35,7 +35,7 @@ int
 AccountListModel::rowCount(const QModelIndex& parent) const
 {
     if (!parent.isValid() && lrcInstance_) {
-        return lrcInstance_->accountModel().getAccountList().size();
+        return lrcInstance_->accountModel().getAccountCount();
     }
     return 0;
 }
@@ -71,7 +71,7 @@ AccountListModel::data(const QModelIndex& index, int role) const
 void
 AccountListModel::updateNotifications()
 {
-    for (int i = 0; i < lrcInstance_->accountModel().getAccountList().size(); ++i) {
+    for (int i = 0; i < lrcInstance_->accountModel().getAccountCount(); ++i) {
         QModelIndex modelIndex = QAbstractListModel::index(i, 0);
         Q_EMIT dataChanged(modelIndex, modelIndex, {Role::NotificationCount});
     }
