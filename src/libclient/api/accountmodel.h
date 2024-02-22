@@ -58,7 +58,13 @@ public:
     /**
      * @return a list of all acountId.
      */
-    Q_INVOKABLE QStringList getAccountList() const;
+    Q_INVOKABLE const QStringList& getAccountList() const;
+
+    /**
+     * @return account list size
+     */
+    Q_INVOKABLE size_t getAccountCount() const;
+
     /**
      * get account informations associated to an accountId.
      * @param accountId.
