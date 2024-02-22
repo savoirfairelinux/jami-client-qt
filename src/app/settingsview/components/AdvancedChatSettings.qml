@@ -53,4 +53,17 @@ ColumnLayout {
 
         onSwitchToggled: CurrentAccount.sendReadReceipt = checked
     }
+
+    ToggleSwitch {
+        id: enableTypingIndicatorCheckbox
+
+        Layout.fillWidth: true
+
+        checked: CurrentAccount.sendComposing
+        labelText: JamiStrings.enableTypingIndicator
+        descText: JamiStrings.enableTypingIndicatorDescription
+        tooltipText: JamiStrings.enableTypingIndicator
+
+        onSwitchToggled: CurrentAccount.sendComposing = checked
+    }
 }

@@ -391,10 +391,8 @@ MessagesAdapter::dataForInteraction(const QString& interactionId, int role) cons
 void
 MessagesAdapter::userIsComposing(bool isComposing)
 {
-    if (!settingsManager_->getValue(Settings::Key::EnableTypingIndicator).toBool()
-        || lrcInstance_->get_selectedConvUid().isEmpty()) {
+    if (lrcInstance_->get_selectedConvUid().isEmpty())
         return;
-    }
     lrcInstance_->getCurrentConversationModel()->setIsComposing(lrcInstance_->get_selectedConvUid(),
                                                                 isComposing);
 }

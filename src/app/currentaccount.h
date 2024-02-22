@@ -119,6 +119,7 @@ class CurrentAccount final : public QObject
     QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(int, dhtPort)
     QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(bool, peerDiscovery)
     QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(bool, sendReadReceipt)
+    QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(bool, sendComposing)
     QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(bool, isRendezVous)
     QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(bool, autoAnswer)
     QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(bool, proxyEnabled)

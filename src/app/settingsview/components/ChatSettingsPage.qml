@@ -66,19 +66,6 @@ SettingsPageBase {
             }
 
             ToggleSwitch {
-                id: enableTypingIndicatorCheckbox
-
-                Layout.fillWidth: true
-
-                checked: UtilsAdapter.getAppValue(Settings.EnableTypingIndicator)
-                labelText: JamiStrings.enableTypingIndicator
-                descText: JamiStrings.enableTypingIndicatorDescription
-                tooltipText: JamiStrings.enableTypingIndicator
-
-                onSwitchToggled: UtilsAdapter.setAppValue(Settings.Key.EnableTypingIndicator, checked)
-            }
-
-            ToggleSwitch {
                 id: displayImagesCheckbox
                 visible: WITH_WEBENGINE
 
@@ -258,10 +245,8 @@ SettingsPageBase {
                 acceptTransferBelowSpinBox.valueField = UtilsAdapter.getDefault(Settings.Key.AcceptTransferBelow);
                 UtilsAdapter.setToDefault(Settings.Key.AutoAcceptFiles);
                 UtilsAdapter.setToDefault(Settings.Key.AcceptTransferBelow);
-                UtilsAdapter.setToDefault(Settings.Key.EnableTypingIndicator);
                 UtilsAdapter.setToDefault(Settings.Key.ChatViewEnterIsNewLine);
                 UtilsAdapter.setToDefault(Settings.Key.DisplayHyperlinkPreviews);
-                enableTypingIndicatorCheckbox.checked = UtilsAdapter.getAppValue(Settings.EnableTypingIndicator);
                 displayImagesCheckbox.checked = UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews);
                 if (UtilsAdapter.getAppValue(Settings.Key.ChatViewEnterIsNewLine))
                     enterButton.checked = true;
