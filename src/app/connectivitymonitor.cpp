@@ -16,6 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "global.h"
+
 #ifndef _WIN32
 #include <glib.h>
 #include <gio/gio.h>
@@ -171,10 +173,10 @@ static void
 logConnectionInfo(NMActiveConnection* connection)
 {
     if (connection) {
-        qDebug() << "primary network connection:" << nm_active_connection_get_uuid(connection)
-                 << "default: " << (nm_active_connection_get_default(connection) ? "yes" : "no");
+        C_INFO << "primary network connection:" << nm_active_connection_get_uuid(connection)
+               << "default: " << (nm_active_connection_get_default(connection) ? "yes" : "no");
     } else {
-        qWarning() << "no primary network connection detected, check network settings";
+        C_WARN << "no primary network connection detected, check network settings";
     }
 }
 
@@ -191,11 +193,10 @@ nmClientCallback(G_GNUC_UNUSED GObject* source_object, GAsyncResult* result, Con
 {
     GError* error = nullptr;
     if (auto nm_client = nm_client_new_finish(result, &error)) {
-        qDebug() << "NetworkManager client initialized, version: "
-                 << nm_client_get_version(nm_client)
-                 << ", daemon running:" << (nm_client_get_nm_running(nm_client) ? "yes" : "no")
-                 << ", networking enabled:"
-                 << (nm_client_networking_get_enabled(nm_client) ? "yes" : "no");
+        C_INFO << "NetworkManager client initialized, version: " << nm_client_get_version(nm_client)
+               << ", daemon running:" << (nm_client_get_nm_running(nm_client) ? "yes" : "no")
+               << ", networking enabled:"
+               << (nm_client_networking_get_enabled(nm_client) ? "yes" : "no");
 
         auto connection = nm_client_get_primary_connection(nm_client);
         logConnectionInfo(connection);
@@ -205,7 +206,7 @@ nmClientCallback(G_GNUC_UNUSED GObject* source_object, GAsyncResult* result, Con
                          cm);
 
     } else {
-        qWarning() << "error initializing NetworkManager client: " << error->message;
+        C_WARN << "error initializing NetworkManager client: " << error->message;
         g_clear_error(&error);
     }
 }
@@ -222,7 +223,7 @@ ConnectivityMonitor::ConnectivityMonitor(QObject* parent)
 
 ConnectivityMonitor::~ConnectivityMonitor()
 {
-    qDebug() << "Destroying connectivity monitor";
+    C_DBG << "Destroying connectivity monitor";
 }
 
 bool

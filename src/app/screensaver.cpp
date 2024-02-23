@@ -18,6 +18,8 @@
 
 #include "screensaver.h"
 
+#include "global.h"
+
 #include <QDebug>
 
 ScreenSaver::ScreenSaver(QObject* parent)
@@ -31,8 +33,7 @@ ScreenSaver::ScreenSaver(QObject* parent)
 }
 #else
     : QObject(parent)
-{
-}
+{}
 #endif
 
 #ifdef Q_OS_LINUX
@@ -50,7 +51,7 @@ ScreenSaver::createInterface(void)
                                                    services_[i],
                                                    sessionBus_);
         if (screenSaverInterface_ && screenSaverInterface_->isValid()) {
-            qDebug() << "Screen saver dbus interface: " << services_[i];
+            C_INFO << "Screen saver dbus interface: " << services_[i];
             return true;
         }
     }
