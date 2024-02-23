@@ -19,6 +19,7 @@
 #include "systemtray.h"
 
 #include "appsettingsmanager.h"
+#include "global.h"
 
 #ifdef USE_LIBNOTIFY
 #include <libnotify/notification.h>
@@ -106,8 +107,8 @@ SystemTray::SystemTray(AppSettingsManager* settingsManager, QObject* parent)
     char* spec = nullptr;
 
     if (notify_get_server_info(&name, &vendor, &version, &spec)) {
-        qDebug() << QString("notify server name: %1, vendor: %2, version: %3, spec: %4")
-                        .arg(name, vendor, version, spec);
+        C_INFO << QString("notify server name: %1, vendor: %2, version: %3, spec: %4")
+                      .arg(name, vendor, version, spec);
     }
 
     // check  notify server capabilities
@@ -167,7 +168,7 @@ SystemTray::hideNotification(const QString& id)
     // Close
     GError* error = nullptr;
     if (!notify_notification_close(notification->second.nn.get(), &error)) {
-        qWarning("could not close notification: %s", error->message);
+        C_WARN << QString("could not close notification: %1").arg(error->message);
         g_clear_error(&error);
         return false;
     }
@@ -235,7 +236,7 @@ SystemTray::showNotification(const QString& id,
     GError* error = nullptr;
     notify_notification_show(notification.get(), &error);
     if (error) {
-        qWarning("failed to show notification: %s", error->message);
+        C_WARN << QString("failed to show notification: %1").arg(error->message);
         g_clear_error(&error);
     }
 #else
