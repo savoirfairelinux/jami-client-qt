@@ -146,6 +146,14 @@ MessageListModel::insert(const QString& id, const interaction::Info& interaction
     }
     beginInsertRows(QModelIndex(), index, index);
     interactions_.emplace(interactions_.cbegin() + index, id, interaction);
+    // Update last sent if the message is outgoing and successful.
+    if (interaction.sent() && index > lastSentIdx_) {
+        auto oldIdx = indexOfMessage(lastSent_);
+        lastSentIdx_ = index;
+        lastSent_ = id;
+        auto modelIndex = QAbstractListModel::index(oldIdx, 0);
+        Q_EMIT dataChanged(modelIndex, modelIndex, {Role::IsLastSent});
+    }
     endInsertRows();
     return true;
 }
@@ -160,6 +168,14 @@ MessageListModel::append(const QString& id, const interaction::Info& interaction
     }
     beginInsertRows(QModelIndex(), interactions_.size(), interactions_.size());
     interactions_.emplace_back(id, interaction);
+    // Update last sent if the message is outgoing and successful.
+    if (interaction.sent()) {
+        auto oldIdx = indexOfMessage(lastSent_);
+        lastSentIdx_ = interactions_.size() - 1;
+        lastSent_ = id;
+        auto modelIndex = QAbstractListModel::index(oldIdx, 0);
+        Q_EMIT dataChanged(modelIndex, modelIndex, {Role::IsLastSent});
+    }
     endInsertRows();
     return true;
 }
@@ -218,8 +234,18 @@ MessageListModel::updateStatus(const QString& id,
         it->second.body = newBody;
         roles.push_back(Role::Body);
     }
-    auto modelIndex = QAbstractListModel::index(indexOfMessage(id), 0);
+    // Update last sent if the message is outgoing and successful.
+    auto idx = indexOfMessage(id);
+    auto modelIndex = QAbstractListModel::index(idx, 0);
     Q_EMIT dataChanged(modelIndex, modelIndex, roles);
+    if (it->second.sent() && idx > lastSentIdx_) {
+        auto oldIdx = indexOfMessage(lastSent_);
+        lastSentIdx_ = idx;
+        lastSent_ = id;
+        Q_EMIT dataChanged(modelIndex, modelIndex, {Role::IsLastSent});
+        modelIndex = QAbstractListModel::index(oldIdx, 0);
+        Q_EMIT dataChanged(modelIndex, modelIndex, {Role::IsLastSent});
+    }
     return true;
 }
 
@@ -486,6 +512,8 @@ MessageListModel::dataForItem(const item_t& item, int, int role) const
         }
         return QVariant(item.second.body);
     }
+    case Role::IsLastSent:
+        return QVariant(item.first == lastSent_);
     case Role::Timestamp:
         return QVariant::fromValue(item.second.timestamp);
     case Role::Duration:

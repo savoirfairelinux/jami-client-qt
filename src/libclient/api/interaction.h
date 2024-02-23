@@ -413,6 +413,11 @@ struct Info
     Info& operator=(const Info& other) = delete;
     Info& operator=(Info&& other) = default;
 
+    bool sent() const
+    {
+        return status == Status::SUCCESS || status == Status::DISPLAYED || status == Status::TRANSFER_FINISHED;
+    }
+
     void init(const MapStringString& message, const QString& accountURI)
     {
         type = to_type(message["type"]);

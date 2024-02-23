@@ -57,6 +57,7 @@ struct Info;
     X(FileExtension) \
     X(Readers) \
     X(IsEmojiOnly) \
+    X(IsLastSent) \
     X(Index)
 
 namespace MessageList {
@@ -145,6 +146,9 @@ private:
     QMap<QString, QString> lastDisplayedMessageUid_; // {"peerId": "messageId"}
     QMap<QString, QStringList> messageToReaders_;    // {"messageId": ["peer1", "peer2"]}
     QMap<QString, QSet<QString>> replyTo_;
+
+    QString lastSent_;
+    int lastSentIdx_ {-1};
 
     iterator find(const QString& msgId);
     int move(iterator it, const QString& newParentId);
