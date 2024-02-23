@@ -18,6 +18,7 @@
 #include "currentcall.h"
 
 #include "callparticipantsmodel.h"
+#include "global.h"
 
 #include <api/callparticipantsmodel.h>
 #include <api/devicemodel.h>
@@ -377,7 +378,7 @@ CurrentCall::onCurrentAccountIdChanged()
         auto& accInfo = lrcInstance_->getCurrentAccountInfo();
         set_isSIP(accInfo.profileInfo.type == profile::Type::SIP);
     } catch (const std::exception& e) {
-        qWarning() << "Can't update current call type" << e.what();
+        C_DBG << "Can't update current call type" << e.what();
     }
 
     connectModel();

@@ -162,6 +162,8 @@ MainApplication::MainApplication(int& argc, char** argv)
                                      "libclient.debug=false\n"
                                      "qt.*=false\n"
                                      "qml.debug=false\n"
+                                     "default.debug=false\n"
+                                     "client.debug=false\n"
                                      "\n");
     // These can be set in the environment as well.
     // e.g. QT_LOGGING_RULES="*.debug=false;qml.debug=true"
@@ -449,7 +451,7 @@ MainApplication::initQmlLayer()
     engine_->load(url);
 
     // Report the render interface used.
-    C_DBG << "Main window loaded using" << getRenderInterfaceString();
+    C_INFO << "Main window loaded using" << getRenderInterfaceString();
 }
 
 void
