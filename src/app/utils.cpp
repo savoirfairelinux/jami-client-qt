@@ -24,6 +24,7 @@
 
 #include "jamiavatartheme.h"
 #include "lrcinstance.h"
+#include "global.h"
 
 #include <api/contact.h>
 
@@ -488,7 +489,7 @@ Utils::conversationAvatar(LRCInstance* instance,
         painter.drawImage(avatar.rect(), peerAAvatar);
         painter.drawImage(avatar.rect(), peerBAvatar);
     } catch (const std::exception& e) {
-        qDebug() << Q_FUNC_INFO << e.what();
+        C_DBG << e.what();
     }
     return avatar;
 }
