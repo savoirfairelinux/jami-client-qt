@@ -51,6 +51,24 @@
       "parentUuid": "481f8243_7edea095",
       "revId": "50c25a1c629430ace2b33992839321303cf38391",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcb7217c_baeed6a9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-02-23T22:27:46Z",
+      "side": 1,
+      "message": "okay I\u0027ve tested with and without DBus; seems to work well now",
+      "parentUuid": "d14e95d6_2ff780ee",
+      "revId": "50c25a1c629430ace2b33992839321303cf38391",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
