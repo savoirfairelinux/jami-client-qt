@@ -588,6 +588,7 @@ Item {
 
     property real cornerIconSize: 40
 
+    property color sending: darkTheme ? "#8c8c8c" : "#7f7f7f"
     property color wizardIconColor: darkTheme ? "#8c8c8c" : "#7f7f7f"
 
     // InfoBox
