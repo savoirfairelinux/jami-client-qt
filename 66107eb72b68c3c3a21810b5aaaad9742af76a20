@@ -22,6 +22,30 @@
       },
       "revId": "66107eb72b68c3c3a21810b5aaaad9742af76a20",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eebcdf1d_71e68416",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-02-23T19:18:36Z",
+      "side": 1,
+      "message": "should work for both vcard properties now",
+      "parentUuid": "0d63443f_f29cb3cb",
+      "range": {
+        "startLine": 9,
+        "startChar": 108,
+        "endLine": 9,
+        "endChar": 111
+      },
+      "revId": "66107eb72b68c3c3a21810b5aaaad9742af76a20",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
