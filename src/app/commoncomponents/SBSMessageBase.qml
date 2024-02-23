@@ -597,12 +597,27 @@ Control {
                     radius: width / 2
                     width: 12
                     height: 12
-                    border.color: JamiTheme.tintedBlue
+                    border.color: JamiTheme.sending
                     border.width: 1
                     color: JamiTheme.transparentColor
                     visible: isOutgoing && Status === Interaction.Status.SENDING
 
                     anchors.bottom: parent.bottom
+                }
+
+                ResponsiveImage {
+                    id: sent
+
+                    containerHeight: 12
+                    containerWidth: 12
+
+                    width: 12
+                    height: 12
+
+                    visible: IsLastSent
+                    anchors.bottom: parent.bottom
+
+                    source: JamiResources.receive_svg
                 }
 
                 ReadStatus {
