@@ -20,6 +20,8 @@
 
 #include "appsettingsmanager.h"
 
+#include "global.h"
+
 #include <QCoreApplication>
 #include <QLibraryInfo>
 
@@ -101,7 +103,7 @@ AppSettingsManager::loadTranslations()
     installedTr_.clear();
 
     QString locale_name = getLanguage();
-    qDebug() << QString("Using locale: %1").arg(locale_name);
+    C_INFO << QString("Using locale: %1").arg(locale_name);
     QString locale_lang = locale_name.split('_')[0];
 
     QTranslator* qtTranslator_lang = new QTranslator(qApp);
