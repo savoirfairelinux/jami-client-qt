@@ -98,7 +98,6 @@ Control {
             Layout.fillHeight: true
         }
 
-
         Label {
             id: username
 
@@ -300,10 +299,7 @@ Control {
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.right: isOutgoing ? optionButtonItem.right : undefined
                         anchors.left: !isOutgoing ? optionButtonItem.left : undefined
-                        visible: CurrentAccount.type !== Profile.Type.SIP
-                                 && root.type !== Interaction.Type.CALL
-                                 && Body !== ""
-                                 && (bubbleArea.bubbleHovered || hovered || reply.hovered || bgHandler.hovered)
+                        visible: CurrentAccount.type !== Profile.Type.SIP && root.type !== Interaction.Type.CALL && Body !== "" && (bubbleArea.bubbleHovered || hovered || reply.hovered || bgHandler.hovered)
                         source: JamiResources.more_vert_24dp_svg
                         width: optionButtonItem.width / 2
                         height: optionButtonItem.height
@@ -358,10 +354,7 @@ Control {
                         anchors.rightMargin: 5
                         anchors.right: isOutgoing ? more.left : undefined
                         anchors.left: !isOutgoing ? more.right : undefined
-                        visible: CurrentAccount.type !== Profile.Type.SIP
-                                 && root.type !== Interaction.Type.CALL
-                                 && Body !== ""
-                                 && (bubbleArea.bubbleHovered || hovered || more.hovered || bgHandler.hovered)
+                        visible: CurrentAccount.type !== Profile.Type.SIP && root.type !== Interaction.Type.CALL && Body !== "" && (bubbleArea.bubbleHovered || hovered || more.hovered || bgHandler.hovered)
 
                         onClicked: {
                             MessagesAdapter.editId = "";
@@ -389,14 +382,14 @@ Control {
                     property bool bubbleHovered
                     property string imgSource
 
-                    width: (root.type === Interaction.Type.TEXT ? root.textContentWidth + ( IsEmojiOnly || root.bigMsg ? 0 : root.timeWidth + root.editedWidth): innerContent.childrenRect.width)
+                    width: (root.type === Interaction.Type.TEXT ? root.textContentWidth + (IsEmojiOnly || root.bigMsg ? 0 : root.timeWidth + root.editedWidth) : innerContent.childrenRect.width)
                     height: innerContent.childrenRect.height + (visible ? root.extraHeight : 0) + (root.bigMsg ? 15 : 0)
 
                     HoverHandler {
                         target: root
                         enabled: root.type === Interaction.Type.DATA_TRANSFER
                         onHoveredChanged: {
-                            root.hoveredLink = enabled && hovered ? bubble.imgSource : ""
+                            root.hoveredLink = enabled && hovered ? bubble.imgSource : "";
                         }
                     }
 
@@ -406,12 +399,12 @@ Control {
                         showTime: IsEmojiOnly && !(root.seq === MsgSeq.last || root.seq === MsgSeq.single) ? false : true
                         formattedTime: root.formattedTime
 
-                        timeColor: IsEmojiOnly || root.timeUnderBubble? (JamiTheme.darkTheme ? "white" : "dark") : (UtilsAdapter.luma(bubble.color) ? "white" : "dark")
+                        timeColor: IsEmojiOnly || root.timeUnderBubble ? (JamiTheme.darkTheme ? "white" : "dark") : (UtilsAdapter.luma(bubble.color) ? "white" : "dark")
                         timeLabel.opacity: 0.5
 
                         anchors.bottom: parent.bottom
                         anchors.right: IsEmojiOnly ? (isOutgoing ? parent.right : undefined) : parent.right
-                        anchors.left: ((IsEmojiOnly|| root.timeUnderBubble) && !isOutgoing) ? parent.left : undefined
+                        anchors.left: ((IsEmojiOnly || root.timeUnderBubble) && !isOutgoing) ? parent.left : undefined
                         anchors.leftMargin: (IsEmojiOnly && !isOutgoing && emojiReactions.visible) ? bubble.timePosition : 0
                         anchors.rightMargin: IsEmojiOnly ? ((isOutgoing && emojiReactions.visible) ? bubble.timePosition : 0) : (root.timeUnderBubble ? 0 : 10)
                         timeLabel.Layout.bottomMargin: {
@@ -432,7 +425,7 @@ Control {
                         anchors.left: root.bigMsg ? bubble.left : timestampItem.left
                         anchors.bottom: parent.bottom
                         anchors.bottomMargin: root.bigMsg || bubble.isDeleted ? 6 : 10
-                        anchors.leftMargin: root.bigMsg ? 10 : - timestampItem.width - 16
+                        anchors.leftMargin: root.bigMsg ? 10 : -timestampItem.width - 16
                         visible: bubble.isEdited
                         z: 1
                         ResponsiveImage {
@@ -489,7 +482,7 @@ Control {
                     borderColor: root.getBaseColor()
                     maxWidth: 2 / 3 * maxMsgWidth - JamiTheme.emojiMargins
 
-                    state: root.isOutgoing ? "anchorsRight" : (IsEmojiOnly ? "anchorsLeft" :(emojiReactions.width > bubble.width - JamiTheme.emojiMargins ? "anchorsLeft" : "anchorsRight"))
+                    state: root.isOutgoing ? "anchorsRight" : (IsEmojiOnly ? "anchorsLeft" : (emojiReactions.width > bubble.width - JamiTheme.emojiMargins ? "anchorsLeft" : "anchorsRight"))
 
                     TapHandler {
                         onTapped: {
@@ -597,12 +590,27 @@ Control {
                     radius: width / 2
                     width: 12
                     height: 12
-                    border.color: JamiTheme.tintedBlue
+                    border.color: JamiTheme.sending
                     border.width: 1
                     color: JamiTheme.transparentColor
                     visible: isOutgoing && Status === Interaction.Status.SENDING
 
                     anchors.bottom: parent.bottom
+                }
+
+                ResponsiveImage {
+                    id: sent
+
+                    containerHeight: 12
+                    containerWidth: 12
+
+                    width: 12
+                    height: 12
+
+                    visible: IsLastSent && !readsOne.visible
+                    anchors.bottom: parent.bottom
+
+                    source: JamiResources.receive_svg
                 }
 
                 ReadStatus {
