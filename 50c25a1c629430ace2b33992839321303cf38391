@@ -33,6 +33,24 @@
       "message": "broken on DBus",
       "revId": "50c25a1c629430ace2b33992839321303cf38391",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0984c9ba_72a5a1ae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-02-23T21:52:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "481f8243_7edea095",
+      "revId": "50c25a1c629430ace2b33992839321303cf38391",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
