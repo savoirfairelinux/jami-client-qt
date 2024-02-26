@@ -26,8 +26,10 @@ import net.jami.Constants 1.1
 SBSMessageBase {
     id: root
 
+    property var confId: ConfId
+    property var currentCallId: CurrentCall.id
     component JoinCallButton: MaterialButton {
-        visible: root.isActive
+        visible: root.isActive && root.currentCallId !== root.confId
         toolTipText: JamiStrings.joinCall
         color: JamiTheme.blackColor
         background.opacity: hovered ? 0.2 : 0.1
@@ -56,7 +58,7 @@ SBSMessageBase {
         enabled: root.isActive
 
         function onActiveCallsChanged() {
-            root.isActive = LRCInstance.indexOfActiveCall(ConfId, ActionUri, DeviceId) !== -1;
+            root.isActive = LRCInstance.indexOfActiveCall(root.confId, ActionUri, DeviceId) !== -1;
             if (root.isActive) {
                 bubble.mask.border.color = CurrentConversation.color;
                 bubble.mask.border.width = 1.5;
@@ -65,8 +67,8 @@ SBSMessageBase {
         }
     }
 
-    property bool isActive: LRCInstance.indexOfActiveCall(ConfId, ActionUri, DeviceId) !== -1
-    visible: isActive || ConfId === "" || Duration > 0
+    property bool isActive: LRCInstance.indexOfActiveCall(root.confId, ActionUri, DeviceId) !== -1
+    visible: isActive || root.confId === "" || Duration > 0
 
     property var baseColor: JamiTheme.messageInBgColor
 
@@ -113,12 +115,13 @@ SBSMessageBase {
 
             TextEdit {
                 id: callLabel
+                objectName: "callLabel"
 
                 topPadding: 8
                 bottomPadding: 8
 
                 Layout.fillWidth: true
-                Layout.rightMargin: root.isActive ? 0 : root.timeWidth + 16
+                Layout.rightMargin: root.isActive && root.currentCallId !== root.confId ? 0 : root.timeWidth + 16
                 Layout.leftMargin: root.isActive ? 10 : -5 /* spacing is 10 and we want 5px with icon */
 
                 text: {
@@ -139,20 +142,22 @@ SBSMessageBase {
 
             JoinCallButton {
                 id: joinCallInAudio
+                objectName: "joinCallInAudio"
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
 
                 text: JamiStrings.joinInAudio
-                onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, ConfId, true)
+                onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, root.confId, true)
             }
 
             JoinCallButton {
                 id: joinCallInVideo
+                objectName: "joinCallInVideo"
                 text: JamiStrings.joinInVideo
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
 
-                onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, ConfId)
+                onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, root.confId)
                 Layout.rightMargin: 4
             }
         }
@@ -165,7 +170,7 @@ SBSMessageBase {
         }
     }
     Component.onCompleted: {
-        bubble.timestampItem.visible = !root.isActive;
+        bubble.timestampItem.visible = !root.isActive || root.currentCallId === root.confId;
         opacity = 1;
     }
 }

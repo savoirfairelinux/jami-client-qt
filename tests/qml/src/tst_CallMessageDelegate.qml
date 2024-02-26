@@ -43,5 +43,24 @@ TestWrapper {
                 compare(replyButton.visible, false)
             }
         }
+
+        TestCase {
+            name: "Check button visibility for swarm call"
+            function test_checkOptionButtonsVisibility() {
+                uut.isActive = true
+                uut.currentCallId = "foo"
+                uut.confId = "foo"
+                var callLabel = findChild(uut, "callLabel")
+                var joinCallInAudio = findChild(uut, "joinCallInAudio")
+                var joinCallInVideo = findChild(uut, "joinCallInVideo")
+                compare(callLabel.visible, true)
+                compare(joinCallInAudio.visible, false)
+                compare(joinCallInVideo.visible, false)
+                uut.confId = "bar"
+                compare(callLabel.visible, true)
+                compare(joinCallInAudio.visible, true)
+                compare(joinCallInVideo.visible, true)
+            }
+        }
     }
 }
