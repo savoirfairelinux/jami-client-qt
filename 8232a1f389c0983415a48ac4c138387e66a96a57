@@ -34,6 +34,69 @@
       "parentUuid": "8a114b7e_5e29484c",
       "revId": "8232a1f389c0983415a48ac4c138387e66a96a57",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d534f518_f0289dd7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-02-26T14:43:00Z",
+      "side": 1,
+      "message": "2 small nitpicks",
+      "revId": "8232a1f389c0983415a48ac4c138387e66a96a57",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69bbc907_98ff56ba",
+        "filename": "src/app/conversationlistmodel.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-02-26T14:43:00Z",
+      "side": 1,
+      "message": "commented?",
+      "range": {
+        "startLine": 117,
+        "startChar": 8,
+        "endLine": 117,
+        "endChar": 14
+      },
+      "revId": "8232a1f389c0983415a48ac4c138387e66a96a57",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5f6cd2d_0220193a",
+        "filename": "src/libclient/authority/storagehelper.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-02-26T14:43:00Z",
+      "side": 1,
+      "message": "why mixing Qt \u0026 std? Guess std or Qt can do both?",
+      "range": {
+        "startLine": 351,
+        "startChar": 12,
+        "endLine": 357,
+        "endChar": 12
+      },
+      "revId": "8232a1f389c0983415a48ac4c138387e66a96a57",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
