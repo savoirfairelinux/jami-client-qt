@@ -16,6 +16,24 @@
       "message": "With 2 accounts:\nDelete 1\nStart search a new contact (e.g. hnoss) on the second account\n\u003d\u003e No result found anymore (aka the list is not shown)",
       "revId": "8232a1f389c0983415a48ac4c138387e66a96a57",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6498898_58c7494f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-02-26T14:38:13Z",
+      "side": 1,
+      "message": "Not this patch, higher in the stack",
+      "parentUuid": "8a114b7e_5e29484c",
+      "revId": "8232a1f389c0983415a48ac4c138387e66a96a57",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
