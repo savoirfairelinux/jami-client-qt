@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c4b2ff1_2b508398",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-02-26T14:37:51Z",
+      "side": 1,
+      "message": "With 2 accounts:\nDelete 1\nStart search a new contact (e.g. hnoss) on the second account\n\u003d\u003e No result found anymore (aka the list is not shown)",
+      "revId": "acd3d22bd98b31c9d2e91eb6be9ef6b5a3b0b45f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
