@@ -1730,7 +1730,9 @@ ConversationModelPimpl::ConversationModelPimpl(const ConversationModel& linked,
             &ConfigurationManagerInterface::composingStatusChanged,
             this,
             &ConversationModelPimpl::slotComposingStatusChanged);
-    connect(&callbacksHandler, &CallbacksHandler::needsHost, this, [&](auto, auto convId) {
+    connect(&callbacksHandler, &CallbacksHandler::needsHost, this, [&](auto accountId, auto convId) {
+        if (accountId != linked.owner.id)
+            return;
         emit linked.needsHost(convId);
     });
 
