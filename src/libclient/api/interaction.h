@@ -307,11 +307,11 @@ getCallInteractionStringNonSwarm(bool isSelf,
                                  const QString& reason = "")
 {
     if (reason == "busy") {
-        return QObject::tr("Missed call, peer is busy");
+        return QObject::tr("User busy");
     } else if (reason == "declined") {
-        return QObject::tr("Missed call, peer declined");
+        return QObject::tr("User declined");
     } else if (reason == "no_device") {
-        return QObject::tr("Missed call, peer offline");
+        return QObject::tr("User offline");
     }
 
     if (duration < 0) {
