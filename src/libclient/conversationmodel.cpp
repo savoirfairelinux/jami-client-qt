@@ -3218,7 +3218,6 @@ ConversationModelPimpl::slotNewCall(const QString& fromId,
         }
 
         auto& conversation = conversations.at(conversationIndices.at(0));
-        qDebug() << "Add call to conversation " << conversation.uid << " - " << callId;
         conversation.callId = callId;
 
         addOrUpdateCallMessage(callId, fromId, true);
@@ -3315,13 +3314,13 @@ ConversationModelPimpl::addOrUpdateCallMessage(const QString& callId,
         }
         try {
             auto& conv = getConversationForPeerUri(from).get();
-            if (conv.callId.isEmpty())
+            if (!conv.isSwarm() && conv.callId.isEmpty()) {
                 conv.callId = callId;
+            }
         } catch (...) {
             return;
         }
     }
-    // do not save call interaction for swarm conversation
     if (conv_it->isSwarm())
         return;
     auto uriString = incoming ? storage::prepareUri(from, linked.owner.profileInfo.type)
