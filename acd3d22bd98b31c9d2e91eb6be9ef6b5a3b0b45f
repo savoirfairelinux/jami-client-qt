@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2056935f_84bde315",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-02-28T20:10:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c4b2ff1_2b508398",
+      "revId": "acd3d22bd98b31c9d2e91eb6be9ef6b5a3b0b45f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f4684a4_6efbf330",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-02-26T14:48:33Z",
       "side": 1,
       "message": "setCount to 0?\nI guess we may want a warning there (mostly if there is an account)",
+      "range": {
+        "startLine": 111,
+        "startChar": 9,
+        "endLine": 111,
+        "endChar": 21
+      },
+      "revId": "acd3d22bd98b31c9d2e91eb6be9ef6b5a3b0b45f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9afeb8e3_d048eeae",
+        "filename": "src/app/bannedlistmodel.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-02-28T20:10:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f4684a4_6efbf330",
       "range": {
         "startLine": 111,
         "startChar": 9,
