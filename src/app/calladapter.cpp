@@ -354,10 +354,11 @@ CallAdapter::onCallInfosChanged(const QString& accountId, const QString& callId)
 }
 
 void
-CallAdapter::onCallAddedToConference(const QString& callId, const QString& confId)
+CallAdapter::onCallAddedToConference(const QString& callId, const QString& conversationId, const QString& confId)
 {
     Q_UNUSED(callId)
     Q_UNUSED(confId)
+    Q_UNUSED(conversationId)
     saveConferenceSubcalls();
 }
 
