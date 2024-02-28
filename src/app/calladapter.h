@@ -122,7 +122,7 @@ public Q_SLOTS:
     void onAccountChanged();
     void onCallStatusChanged(const QString& accountId, const QString& callId);
     void onCallStatusChanged(const QString& callId, int code);
-    void onCallAddedToConference(const QString& callId, const QString& confId);
+    void onCallAddedToConference(const QString& callId, const QString& conversationId, const QString& confId);
     void onCallStarted(const QString& callId);
     void onCallEnded(const QString& callId);
     void onCallInfosChanged(const QString& accountId, const QString& callId);
