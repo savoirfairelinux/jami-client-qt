@@ -76,6 +76,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccb1cf5c_ce63d55b",
+        "filename": "src/app/conversationlistmodel.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-02-28T16:11:53Z",
+      "side": 1,
+      "message": "Done. Checked and still required it seems. If commented will yield conversations without participants (appearing as banned in the smartlist).",
+      "parentUuid": "69bbc907_98ff56ba",
+      "range": {
+        "startLine": 117,
+        "startChar": 8,
+        "endLine": 117,
+        "endChar": 14
+      },
+      "revId": "8232a1f389c0983415a48ac4c138387e66a96a57",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b5f6cd2d_0220193a",
@@ -89,6 +113,30 @@
       "writtenOn": "2024-02-26T14:43:00Z",
       "side": 1,
       "message": "why mixing Qt \u0026 std? Guess std or Qt can do both?",
+      "range": {
+        "startLine": 351,
+        "startChar": 12,
+        "endLine": 357,
+        "endChar": 12
+      },
+      "revId": "8232a1f389c0983415a48ac4c138387e66a96a57",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55bce01b_4b7908d7",
+        "filename": "src/libclient/authority/storagehelper.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-02-28T16:11:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5f6cd2d_0220193a",
       "range": {
         "startLine": 351,
         "startChar": 12,
