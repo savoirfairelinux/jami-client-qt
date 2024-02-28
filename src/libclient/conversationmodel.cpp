@@ -310,9 +310,10 @@ public Q_SLOTS:
     /**
      * Listen from CallModel when a call is added to a conference
      * @param callId
+     * @param conversationId
      * @param confId
      */
-    void slotCallAddedToConference(const QString& callId, const QString& confId);
+    void slotCallAddedToConference(const QString& callId, const QString& conversationId, const QString& confId);
     /**
      * Listen from CallbacksHandler when a conference is deleted.
      * @param accountId
@@ -3454,10 +3455,11 @@ ConversationModelPimpl::addIncomingMessage(const QString& peerId,
 }
 
 void
-ConversationModelPimpl::slotCallAddedToConference(const QString& callId, const QString& confId)
+ConversationModelPimpl::slotCallAddedToConference(const QString& callId, const QString& conversationId, const QString& confId)
 {
     for (auto& conversation : conversations) {
-        if (conversation.callId == callId && conversation.confId != confId) {
+        if ((conversationId == conversation.uid)
+            || (!callId.isEmpty() && conversation.callId == callId && conversation.confId != confId)) {
             conversation.confId = confId;
             invalidateModel();
             // Refresh the conference status only if attached
