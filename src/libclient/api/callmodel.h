@@ -480,9 +480,10 @@ Q_SIGNALS:
     /**
      * Emitted when a call is added to a conference
      * @param callId
+     * @param conversationId
      * @param confId
      */
-    void callAddedToConference(const QString& callId, const QString& confId) const;
+    void callAddedToConference(const QString& callId, const QString& conversationId, const QString& confId) const;
 
     /**
      * Emitted when a voice mail notice arrives

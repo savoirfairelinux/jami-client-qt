@@ -173,7 +173,7 @@ Q_SIGNALS:
      * Connect this signal to know when a new conference is created
      * @param callId of the conference
      */
-    void conferenceCreated(const QString& accountId, const QString& callId);
+    void conferenceCreated(const QString& accountId, const QString& conversationId, const QString& callId);
     void conferenceChanged(const QString& accountId, const QString& confId, const QString& state);
     /**
      * Connect this signal to know when a conference is removed
@@ -500,9 +500,10 @@ private Q_SLOTS:
     /**
      * Emit conferenceCreated
      * @param accountId
-     * @param callId of the conference
+     * @param callId         of the conference
+     * @param conversationId of the conference
      */
-    void slotConferenceCreated(const QString& accountId, const QString& callId);
+    void slotConferenceCreated(const QString& accountId, const QString& conversationId, const QString& callId);
     /**
      * Emit conferenceRemove
      * @param accountId

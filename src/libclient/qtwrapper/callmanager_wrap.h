@@ -144,11 +144,12 @@ public:
                                                   QString(filepath.c_str()));
                 }),
             exportable_callback<CallSignal::ConferenceCreated>(
-                [this](const std::string& accountId, const std::string& confId) {
-                    LOG_LIBJAMI_SIGNAL2("conferenceCreated",
+                [this](const std::string& accountId, const std::string& conversationId, const std::string& confId) {
+                    LOG_LIBJAMI_SIGNAL3("conferenceCreated",
                                         QString(accountId.c_str()),
+                                        QString(conversationId.c_str()),
                                         QString(confId.c_str()));
-                    Q_EMIT conferenceCreated(QString(accountId.c_str()), QString(confId.c_str()));
+                    Q_EMIT conferenceCreated(QString(accountId.c_str()), QString(conversationId.c_str()), QString(confId.c_str()));
                 }),
             exportable_callback<CallSignal::ConferenceChanged>([this](const std::string& accountId,
                                                                       const std::string& confId,
@@ -628,7 +629,7 @@ Q_SIGNALS: // SIGNALS
                               const QString& callId,
                               const VectorMapStringString& mediaList);
     void recordPlaybackFilepath(const QString& callId, const QString& filepath);
-    void conferenceCreated(const QString& accountId, const QString& confId);
+    void conferenceCreated(const QString& accountId, const QString& conversationId, const QString& confId);
     void conferenceChanged(const QString& accountId, const QString& confId, const QString& state);
     void updatePlaybackScale(const QString& filepath, int position, int size);
     void conferenceRemoved(const QString& accountId, const QString& confId);
