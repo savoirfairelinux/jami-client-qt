@@ -236,7 +236,7 @@ public Q_SLOTS:
      * Listen from CallbacksHandler when a conference is created.
      * @param callId
      */
-    void slotConferenceCreated(const QString& accountId, const QString& callId);
+    void slotConferenceCreated(const QString& accountId, const QString& conversationId, const QString& callId);
     void slotConferenceChanged(const QString& accountId,
                                const QString& callId,
                                const QString& state);
@@ -839,12 +839,12 @@ CallModel::joinCalls(const QString& callIdA, const QString& callIdB) const
             try {
                 auto& accountInfo = owner.accountModel->getAccountInfo(accountIdCall1);
                 if (accountInfo.callModel->hasCall(callIdA)) {
-                    Q_EMIT accountInfo.callModel->callAddedToConference(callIdA, callIdB);
+                    Q_EMIT accountInfo.callModel->callAddedToConference(callIdA, "", callIdB);
                 }
             } catch (...) {
             }
         } else {
-            Q_EMIT callAddedToConference(callIdA, callIdB);
+            Q_EMIT callAddedToConference(callIdA, "", callIdB);
         }
     } else if (call1.type == call::Type::CONFERENCE || call2.type == call::Type::CONFERENCE) {
         auto call = call1.type == call::Type::CONFERENCE ? callIdB : callIdA;
@@ -863,12 +863,12 @@ CallModel::joinCalls(const QString& callIdA, const QString& callIdB) const
             try {
                 auto& accountInfo = owner.accountModel->getAccountInfo(accountCall);
                 if (accountInfo.callModel->hasCall(call)) {
-                    accountInfo.callModel->pimpl_->slotConferenceCreated(owner.id, conf);
+                    accountInfo.callModel->pimpl_->slotConferenceCreated(owner.id, "", conf);
                 }
             } catch (...) {
             }
         } else
-            Q_EMIT callAddedToConference(call, conf);
+            Q_EMIT callAddedToConference(call, "", conf);
 
         // Remove from pendingConferences_
         for (int i = 0; i < pimpl_->pendingConferencees_.size(); ++i) {
@@ -1169,7 +1169,7 @@ CallModelPimpl::initConferencesFromDaemon()
                                    ? call::Status::IN_PROGRESS
                                    : call::Status::PAUSED;
             callInfo->startTime = now - std::chrono::seconds(diff);
-            Q_EMIT linked.callAddedToConference(call, callId);
+            Q_EMIT linked.callAddedToConference(call, "", callId);
         }
         callInfo->type = call::Type::CONFERENCE;
         VectorMapStringString infos = CallManager::instance().getConferenceInfos(linked.owner.id,
@@ -1660,7 +1660,7 @@ CallModelPimpl::slotOnConferenceInfosUpdated(const QString& confId,
     // And must be notified when a new
     QStringList callList = CallManager::instance().getParticipantList(linked.owner.id, confId);
     Q_FOREACH (const auto& call, callList) {
-        Q_EMIT linked.callAddedToConference(call, confId);
+        Q_EMIT linked.callAddedToConference(call, "", confId);
         if (calls.find(call) == calls.end()) {
             qWarning() << "Call not found";
         } else {
@@ -1710,11 +1710,10 @@ CallModel::hasCall(const QString& callId) const
 }
 
 void
-CallModelPimpl::slotConferenceCreated(const QString& accountId, const QString& confId)
+CallModelPimpl::slotConferenceCreated(const QString& accountId, const QString& conversationId, const QString& confId)
 {
     if (accountId != linked.owner.id)
         return;
-    QStringList callList = CallManager::instance().getParticipantList(linked.owner.id, confId);
 
     auto callInfo = std::make_shared<call::Info>();
     callInfo->id = confId;
@@ -1734,22 +1733,27 @@ CallModelPimpl::slotConferenceCreated(const QString& accountId, const QString& c
     calls[confId] = callInfo;
 
     QString currentCallId = currentCall_;
-    Q_FOREACH (const auto& call, callList) {
-        Q_EMIT linked.callAddedToConference(call, confId);
-        // Remove call from pendingConferences_
-        for (int i = 0; i < pendingConferencees_.size(); ++i) {
-            if (pendingConferencees_.at(i).callId == call) {
-                Q_EMIT linked.beginRemovePendingConferenceesRows(i);
-                pendingConferencees_.removeAt(i);
-                Q_EMIT linked.endRemovePendingConferenceesRows();
-                break;
+    if (!conversationId.isEmpty()) {
+        Q_EMIT linked.callAddedToConference("", conversationId, confId);
+    } else {
+        QStringList callList = CallManager::instance().getParticipantList(linked.owner.id, confId);
+        Q_FOREACH (const auto& call, callList) {
+            Q_EMIT linked.callAddedToConference(call, "", confId);
+            // Remove call from pendingConferences_
+            for (int i = 0; i < pendingConferencees_.size(); ++i) {
+                if (pendingConferencees_.at(i).callId == call) {
+                    Q_EMIT linked.beginRemovePendingConferenceesRows(i);
+                    pendingConferencees_.removeAt(i);
+                    Q_EMIT linked.endRemovePendingConferenceesRows();
+                    break;
+                }
             }
+            if (call == currentCall_)
+                currentCall_ = confId;
         }
-        if (call == currentCall_)
-            currentCall_ = confId;
+        if (currentCallId != currentCall_)
+            Q_EMIT linked.currentCallChanged(confId);
     }
-    if (currentCallId != currentCall_)
-        Q_EMIT linked.currentCallChanged(confId);
 }
 
 void
@@ -1763,7 +1767,7 @@ CallModelPimpl::slotConferenceChanged(const QString& accountId,
     QStringList callList = CallManager::instance().getParticipantList(linked.owner.id, confId);
     QString currentCallId = currentCall_;
     Q_FOREACH (const auto& call, callList) {
-        Q_EMIT linked.callAddedToConference(call, confId);
+        Q_EMIT linked.callAddedToConference(call, "", confId);
         if (call == currentCall_)
             currentCall_ = confId;
     }
