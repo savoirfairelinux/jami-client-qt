@@ -831,6 +831,10 @@ UtilsAdapter::isSystemTrayIconVisible()
 {
     if (!systemTray_)
         return false;
+    // https://bugreports.qt.io/browse/QTBUG-118656
+#if defined(Q_OS_LINUX) && !defined(Q_OS_ANDROID)
+    return true;
+#endif
     return systemTray_->geometry() != QRect();
 }
 
