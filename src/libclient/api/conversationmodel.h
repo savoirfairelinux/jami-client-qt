@@ -464,7 +464,7 @@ Q_SIGNALS:
      * Emitted when a conversation detects an error
      * @param uid
      */
-    void onConversationErrorsUpdated(const QString& uid) const;
+    void conversationErrorsUpdated(const QString& uid) const;
     /**
      * Emitted when conversation's preferences has been updated
      * @param uid

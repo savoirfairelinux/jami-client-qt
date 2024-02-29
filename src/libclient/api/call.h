@@ -149,6 +149,48 @@ struct Info
                 return true;
         return false;
     }
+
+    // Extract some common meta data for this call including:
+    // - the video preview ID
+    // - audio/video muted status
+    // - if the call is sharing (indicating that the preview is a screen share)
+    QVariantMap getCallInfoEx() const
+    {
+        bool isAudioMuted = false;
+        bool isVideoMuted = false;
+        QString previewId;
+        QVariantMap callInfo;
+        using namespace libjami::Media;
+        if (status == lrc::api::call::Status::ENDED) {
+            return {};
+        }
+        for (const auto& media : mediaList) {
+            if (media[MediaAttributeKey::MEDIA_TYPE] == Details::MEDIA_TYPE_VIDEO) {
+                if (media[MediaAttributeKey::SOURCE].startsWith(VideoProtocolPrefix::DISPLAY)
+                    || media[MediaAttributeKey::SOURCE].startsWith(VideoProtocolPrefix::FILE)) {
+                    callInfo["is_sharing"] = true;
+                    callInfo["preview_id"] = media[MediaAttributeKey::SOURCE];
+                }
+                if (media[MediaAttributeKey::ENABLED] == TRUE_STR
+                    && media[MediaAttributeKey::MUTED] == FALSE_STR && previewId.isEmpty()) {
+                    previewId = media[libjami::Media::MediaAttributeKey::SOURCE];
+                }
+                if (media[libjami::Media::MediaAttributeKey::SOURCE].startsWith(
+                        libjami::Media::VideoProtocolPrefix::CAMERA)) {
+                    isVideoMuted |= media[MediaAttributeKey::MUTED] == TRUE_STR;
+                    callInfo["is_capturing"] = media[MediaAttributeKey::MUTED] == FALSE_STR;
+                }
+            } else if (media[MediaAttributeKey::MEDIA_TYPE] == Details::MEDIA_TYPE_AUDIO) {
+                if (media[MediaAttributeKey::LABEL] == "audio_0") {
+                    isAudioMuted |= media[libjami::Media::MediaAttributeKey::MUTED] == TRUE_STR;
+                }
+            }
+        }
+        callInfo["preview_id"] = previewId;
+        callInfo["is_audio_muted"] = isAudioMuted;
+        callInfo["is_video_muted"] = isVideoMuted;
+        return callInfo;
+    }
 };
 
 static inline bool

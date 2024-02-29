@@ -61,6 +61,7 @@ class CurrentConversation final : public QObject
     QML_PROPERTY(QString, lastSelfMessageId)
     QML_RO_PROPERTY(bool, hasCall)
     QML_RO_PROPERTY(QVariant, members)
+    QML_RO_PROPERTY(QString, callPreviewId)
 
 public:
     static CurrentConversation* create(QQmlEngine*, QJSEngine*)
@@ -93,6 +94,7 @@ private Q_SLOTS:
     void updateActiveCalls(const QString&, const QString& convId);
     void onCallStatusChanged(const QString& callId, int code);
     void onShowIncomingCallView(const QString& accountId, const QString& convUid);
+    void onCallInfosChanged(const QString& accountId, const QString& callId);
 
 Q_SIGNALS:
     void needsHost();
