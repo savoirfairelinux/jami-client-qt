@@ -180,6 +180,17 @@ TestWrapper {
                     compare(localPreview.hidden, false);
                 });
             }
+
+            function test_localPreviewRemainsVisibleWhenOngoingCallPageIsToggled() {
+                localPreviewTestWrapper(function(localPreview) {
+                    // The local preview should remain visible when the OngoingCallPage is toggled.
+                    compare(localPreview.visible, true);
+                    uut.visible = false;
+                    compare(localPreview.visible, false);
+                    uut.visible = true;
+                    compare(localPreview.visible, true);
+                });
+            }
         }
     }
 }

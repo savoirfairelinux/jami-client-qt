@@ -80,13 +80,10 @@ SettingsPageBase {
         Component.onCompleted: {
             flipControl.checked = UtilsAdapter.getAppValue(Settings.FlipSelf);
             hardwareAccelControl.checked = AvAdapter.getHardwareAcceleration();
-            if (previewWidget.visible)
-                startPreviewing(true);
+            startPreviewing(true);
         }
 
-        Component.onDestruction: {
-            previewWidget.startWithId("");
-        }
+        Component.onDestruction: previewWidget.stop()
 
         // video Preview
         Rectangle {
