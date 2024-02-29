@@ -30,11 +30,6 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
-    // Constraints for the preview component.
-    property int previewMargin: 15
-    property int previewMarginYTop: previewMargin + 42
-    property int previewMarginYBottom: previewMargin + 84
-
     property alias chatViewContainer: chatViewContainer
     property string callPreviewId
 
@@ -166,187 +161,15 @@ Rectangle {
                 }
             }
 
-            LocalVideo {
+            // Note: this component should not be used within a layout, as
+            // it implements anchor management itself.
+            InCallLocalVideo {
                 id: localPreview
                 objectName: "localPreview"
 
-                readonly property var container: parent
-                readonly property string callPreviewId: root.callPreviewId
-
-                visibilityCondition: (CurrentCall.isSharing || !CurrentCall.isVideoMuted) &&
-                                     !CurrentCall.isConference
-                height: width * invAspectRatio
-                width: Math.max(container.width / 5, JamiTheme.minimumPreviewWidth)
-                flip: CurrentCall.flipSelf && !CurrentCall.isSharing
-                blurRadius: hidden ? 25 : 0
-                onCallPreviewIdChanged: startWithId(callPreviewId)
-                onVisibleChanged: if (!visible) stop()
-
-                anchors.topMargin: previewMarginYTop
-                anchors.leftMargin: sideMargin
-                anchors.rightMargin: sideMargin
-                anchors.bottomMargin: previewMarginYBottom
-
-                opacity: hidden ? callOverlay.mainOverlayOpacity : 1
-
-                // Allow hiding the preview (available when anchored)
-                readonly property bool hovered: hoverHandler.hovered
-                readonly property bool anchored: state !== "unanchored"
-                property bool hidden: false
-                readonly property real hiddenHandleSize: 32
-                // Compute the margin as a function of the preview width in order to
-                // apply a negative margin and expose a constant width handle.
-                // If not hidden, return the previewMargin.
-                property real sideMargin: !hidden ? previewMargin : -(width - hiddenHandleSize)
-                // Animate the hiddenSize with a Behavior.
-                Behavior on sideMargin { NumberAnimation { duration: 250; easing.type: Easing.OutExpo }}
-                readonly property bool onLeft: state.indexOf("left") !== -1
-                PushButton {
-                    id: hidePreviewButton
-                    objectName: "hidePreviewButton"
-
-                    width: localPreview.hiddenHandleSize
-                    state: localPreview.onLeft ?
-                               (localPreview.hidden ? "right" : "left") :
-                               (localPreview.hidden ? "left" : "right")
-                    states: [
-                        State {
-                            name: "left"
-                            AnchorChanges {
-                                target: hidePreviewButton
-                                anchors.left: parent.left
-                            }
-                        },
-                        State {
-                            name: "right"
-                            AnchorChanges {
-                                target: hidePreviewButton
-                                anchors.right: parent.right
-                            }
-                        }
-                    ]
-                    anchors.top: parent.top
-                    anchors.bottom: parent.bottom
-                    opacity: (localPreview.anchored && localPreview.hovered) || localPreview.hidden
-                    Behavior on opacity { NumberAnimation { duration: 250; easing.type: Easing.OutExpo }}
-                    visible: opacity > 0
-                    background: Rectangle {
-                        readonly property color normalColor: JamiTheme.mediumGrey
-                        color: JamiTheme.mediumGrey
-                        opacity: hidePreviewButton.hovered ? 0.7 : 0.5
-                        Behavior on opacity { NumberAnimation { duration: 250; easing.type: Easing.OutExpo }}
-                    }
-                    normalImageSource: hidePreviewButton.state === "left" ?
-                                           JamiResources.chevron_left_black_24dp_svg :
-                                           JamiResources.chevron_right_black_24dp_svg
-                    imageColor: JamiTheme.darkGreyColor
-                    onClicked: localPreview.hidden = !localPreview.hidden
-                    toolTipText: localPreview.hidden ?
-                                     JamiStrings.showLocalVideo :
-                                     JamiStrings.hideLocalVideo
-                }
-
-                state: "anchor_top_right"
-                states: [
-                    State {
-                        name: "unanchored"
-                        AnchorChanges {
-                            target: localPreview
-                            anchors.top: undefined
-                            anchors.right: undefined
-                            anchors.bottom: undefined
-                            anchors.left: undefined
-                        }
-                    },
-                    State {
-                        name: "anchor_top_left"
-                        AnchorChanges {
-                            target: localPreview
-                            anchors.top: localPreview.container.top
-                            anchors.left: localPreview.container.left
-                        }
-                    },
-                    State {
-                        name: "anchor_top_right"
-                        AnchorChanges {
-                            target: localPreview
-                            anchors.top: localPreview.container.top
-                            anchors.right: localPreview.container.right
-                        }
-                    },
-                    State {
-                        name: "anchor_bottom_right"
-                        AnchorChanges {
-                            target: localPreview
-                            anchors.bottom: localPreview.container.bottom
-                            anchors.right: localPreview.container.right
-                        }
-                    },
-                    State {
-                        name: "anchor_bottom_left"
-                        AnchorChanges {
-                            target: localPreview
-                            anchors.bottom: localPreview.container.bottom
-                            anchors.left: localPreview.container.left
-                        }
-                    }
-                ]
-
-                transitions: Transition {
-                    AnchorAnimation {
-                        duration: 250
-                        easing.type: Easing.OutBack
-                        easing.overshoot: 1.5
-                    }
-                }
-
-                HoverHandler {
-                    id: hoverHandler
-                }
-
-                DragHandler {
-                    id: dragHandler
-                    readonly property var container: localPreview.container
-                    target: parent
-                    dragThreshold: 4
-                    enabled: !localPreview.hidden
-                    xAxis.maximum: container.width - parent.width - previewMargin
-                    xAxis.minimum: previewMargin
-                    yAxis.maximum: container.height - parent.height - previewMarginYBottom
-                    yAxis.minimum: previewMarginYTop
-                    onActiveChanged: {
-                        if (active) {
-                            localPreview.state = "unanchored";
-                        } else {
-                            const center = Qt.point(target.x + target.width / 2,
-                                                    target.y + target.height / 2);
-                            const containerCenter = Qt.point(container.x + container.width / 2,
-                                                             container.y + container.height / 2);
-                            if (center.x >= containerCenter.x) {
-                                if (center.y >= containerCenter.y) {
-                                    localPreview.state = "anchor_bottom_right";
-                                } else {
-                                    localPreview.state = "anchor_top_right";
-                                }
-                            } else {
-                                if (center.y >= containerCenter.y) {
-                                    localPreview.state = "anchor_bottom_left";
-                                } else {
-                                    localPreview.state = "anchor_top_left";
-                                }
-                            }
-                        }
-                    }
-                }
-
-                layer.enabled: true
-                layer.effect: OpacityMask {
-                    maskSource: Rectangle {
-                        width: localPreview.width
-                        height: localPreview.height
-                        radius: JamiTheme.primaryRadius
-                    }
-                }
+                container: parent
+                //callPreviewId: root.callPreviewId
+                opacityModifier: callOverlay.mainOverlayOpacity
             }
 
             CallOverlay {

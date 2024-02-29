@@ -224,43 +224,14 @@ CurrentCall::updateCallInfo()
     set_isGrid(callInfo.layout == call::Layout::GRID);
     set_isAudioOnly(callInfo.isAudioOnly);
 
-    bool isAudioMuted {};
-    bool isVideoMuted {};
-    bool isSharing {};
-    QString sharingSource {};
-    bool isCapturing {};
-    QString previewId {};
-    using namespace libjami::Media;
-    if (callInfo.status != lrc::api::call::Status::ENDED) {
-        for (const auto& media : callInfo.mediaList) {
-            if (media[MediaAttributeKey::MEDIA_TYPE] == Details::MEDIA_TYPE_VIDEO) {
-                if (media[MediaAttributeKey::SOURCE].startsWith(VideoProtocolPrefix::DISPLAY)
-                    || media[MediaAttributeKey::SOURCE].startsWith(VideoProtocolPrefix::FILE)) {
-                    isSharing = true;
-                    sharingSource = media[MediaAttributeKey::SOURCE];
-                }
-                if (media[MediaAttributeKey::ENABLED] == TRUE_STR
-                    && media[MediaAttributeKey::MUTED] == FALSE_STR && previewId.isEmpty()) {
-                    previewId = media[libjami::Media::MediaAttributeKey::SOURCE];
-                }
-                if (media[libjami::Media::MediaAttributeKey::SOURCE].startsWith(
-                        libjami::Media::VideoProtocolPrefix::CAMERA)) {
-                    isVideoMuted |= media[MediaAttributeKey::MUTED] == TRUE_STR;
-                    isCapturing = media[MediaAttributeKey::MUTED] == FALSE_STR;
-                }
-            } else if (media[MediaAttributeKey::MEDIA_TYPE] == Details::MEDIA_TYPE_AUDIO) {
-                if (media[MediaAttributeKey::LABEL] == "audio_0") {
-                    isAudioMuted |= media[libjami::Media::MediaAttributeKey::MUTED] == TRUE_STR;
-                }
-            }
-        }
-    }
-    set_previewId(previewId);
-    set_isAudioMuted(isAudioMuted);
-    set_isVideoMuted(isVideoMuted);
-    set_isSharing(isSharing);
-    set_sharingSource(sharingSource);
-    set_isCapturing(isCapturing);
+    auto callInfoEx = callInfo.getCallInfoEx();
+    set_previewId(callInfoEx["preview_id"].toString());
+    set_isAudioMuted(callInfoEx["is_audio_muted"].toBool());
+    set_isVideoMuted(callInfoEx["is_video_muted"].toBool());
+    set_isSharing(callInfoEx["is_sharing"].toBool());
+    set_sharingSource(isSharing_ ? callInfoEx["preview_id"].toString() : QString());
+    set_isCapturing(callInfoEx["is_capturing"].toBool());
+
     set_isHandRaised(callModel->isHandRaised(id_));
     set_isModerator(callModel->isModerator(id_));
 

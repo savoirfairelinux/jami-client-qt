@@ -1089,7 +1089,7 @@ ConversationModel::popFrontError(const QString& conversationId)
 
     auto& conversation = conversationOpt->get();
     conversation.errors.pop_front();
-    Q_EMIT onConversationErrorsUpdated(conversationId);
+    Q_EMIT conversationErrorsUpdated(conversationId);
 }
 
 void
@@ -2704,7 +2704,7 @@ ConversationModelPimpl::slotOnConversationError(const QString& accountId,
     try {
         auto& conversation = getConversationForUid(conversationId).get();
         conversation.errors.push_back({code, what});
-        Q_EMIT linked.onConversationErrorsUpdated(conversationId);
+        Q_EMIT linked.conversationErrorsUpdated(conversationId);
     } catch (...) {
     }
 }
