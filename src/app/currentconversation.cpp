@@ -18,6 +18,8 @@
 
 #include "currentconversation.h"
 
+#include "global.h"
+
 #include <api/conversationmodel.h>
 #include <api/contact.h>
 
@@ -264,51 +266,39 @@ void
 CurrentConversation::connectModel()
 {
     membersModel_->setMembers({}, {}, {});
-    auto convModel = lrcInstance_->getCurrentConversationModel();
-    if (!convModel)
+
+    auto currentConversationModel = lrcInstance_->getCurrentConversationModel();
+    auto currentCallModel = lrcInstance_->getCurrentCallModel();
+    if (!currentConversationModel || !currentCallModel) {
+        C_DBG << "CurrentConversation: can't connect to unavailable models";
         return;
+    }
 
     auto connectObjectSignal = [this](auto obj, auto signal, auto slot) {
         connect(obj, signal, this, slot, Qt::UniqueConnection);
     };
 
-    connectObjectSignal(convModel,
+    connectObjectSignal(currentConversationModel,
                         &ConversationModel::conversationUpdated,
                         &CurrentConversation::onConversationUpdated);
-    connectObjectSignal(convModel,
+    connectObjectSignal(currentConversationModel,
                         &ConversationModel::profileUpdated,
                         &CurrentConversation::updateProfile);
-
-    connect(lrcInstance_->getCurrentConversationModel(),
-            &ConversationModel::profileUpdated,
-            this,
-            &CurrentConversation::updateProfile,
-            Qt::UniqueConnection);
-    connect(lrcInstance_->getCurrentConversationModel(),
-            &ConversationModel::onConversationErrorsUpdated,
-            this,
-            &CurrentConversation::updateErrors,
-            Qt::UniqueConnection);
-    connect(lrcInstance_->getCurrentConversationModel(),
-            &ConversationModel::activeCallsChanged,
-            this,
-            &CurrentConversation::updateActiveCalls,
-            Qt::UniqueConnection);
-    connect(lrcInstance_->getCurrentConversationModel(),
-            &ConversationModel::conversationPreferencesUpdated,
-            this,
-            &CurrentConversation::updateConversationPreferences,
-            Qt::UniqueConnection);
-    connect(lrcInstance_->getCurrentConversationModel(),
-            &ConversationModel::needsHost,
-            this,
-            &CurrentConversation::onNeedsHost,
-            Qt::UniqueConnection);
-    connect(lrcInstance_->getCurrentCallModel(),
-            &CallModel::callStatusChanged,
-            this,
-            &CurrentConversation::onCallStatusChanged,
-            Qt::UniqueConnection);
+    connectObjectSignal(currentConversationModel,
+                        &ConversationModel::conversationErrorsUpdated,
+                        &CurrentConversation::updateErrors);
+    connectObjectSignal(currentConversationModel,
+                        &ConversationModel::activeCallsChanged,
+                        &CurrentConversation::updateActiveCalls);
+    connectObjectSignal(currentConversationModel,
+                        &ConversationModel::conversationPreferencesUpdated,
+                        &CurrentConversation::updateConversationPreferences);
+    connectObjectSignal(currentConversationModel,
+                        &ConversationModel::needsHost,
+                        &CurrentConversation::onNeedsHost);
+    connectObjectSignal(currentCallModel,
+                        &CallModel::callStatusChanged,
+                        &CurrentConversation::onCallStatusChanged);
 }
 
 void
