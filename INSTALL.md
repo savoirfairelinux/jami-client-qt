@@ -212,7 +212,7 @@ Only 64-bit MSVC build can be compiled.
 
   |                      | Qt Version |
   | -------------------- | ---------- |
-  | Minimum requirement: | 6.6.1      |
+  | Minimum requirement: | 6.6.2      |
 
 - Install [Python3](https://www.python.org/downloads/) for Windows
 
@@ -238,7 +238,7 @@ Only 64-bit MSVC build can be compiled.
 - Using a new **Non-Elevated Command Prompt**
 
 ```bash
-    python build.py --install --qt <path-to-qt-bin-folder> (e.g. C:/Qt/6.6.1/msvc2019_64)
+    python build.py --install --qt <path-to-qt-bin-folder> (e.g. C:/Qt/6.6.2/msvc2019_64)
 ```
 
 > **SDK** Note:
@@ -281,7 +281,7 @@ Once the build has finished, you should then be able to use the Visual Studio So
 
 ```
     python extras\scripts\build-windows.py --init
-    python extras\scripts\build-windows.py --qt <path-to-qt-bin-folder> (e.g. C:/Qt/6.6.1/msvc2019_64)
+    python extras\scripts\build-windows.py --qt <path-to-qt-bin-folder> (e.g. C:/Qt/6.6.2/msvc2019_64)
 ```
 
 ## Building On MacOS

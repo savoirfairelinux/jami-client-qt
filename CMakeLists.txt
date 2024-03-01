@@ -87,7 +87,6 @@ list(APPEND QWINDOWKIT_OPTIONS
 )
 
 if(WIN32)
-  list(APPEND QWINDOWKIT_PATCHES ${EXTRA_PATCHES_DIR}/0002-workaround-right-margin.patch)
   list(APPEND QWINDOWKIT_OPTIONS QWINDOWKIT_ENABLE_WINDOWS_SYSTEM_BORDERS OFF)
 endif()
 
@@ -103,7 +102,7 @@ endif()
 add_fetch_content(
   TARGET qwindowkit
   URL https://github.com/stdware/qwindowkit.git
-  BRANCH 79b1f3110754f9c21af2d7dacbd07b1a9dbaf6ef
+  BRANCH 1a5462d80b6b07dcb25522e7b187994c7f82506d
   PATCHES ${QWINDOWKIT_PATCHES}
   OPTIONS ${QWINDOWKIT_OPTIONS}
 )
@@ -140,6 +139,11 @@ else()
   find_package(QT NAMES Qt6 REQUIRED)
 endif()
 if (${QT_VERSION_MINOR} GREATER_EQUAL ${QT6_MINVER_MINOR})
+  # Enforce a minimum Qt version of 6.6.2 for the Windows build
+  # https://github.com/stdware/qwindowkit/issues/23
+  if(MSVC AND ${QT_VERSION_MINOR} EQUAL 6 AND ${QT_VERSION_PATCH} LESS 2)
+    message(FATAL_ERROR "Qt 6.6.2 or higher is required. Found ${QT_VERSION}")
+  endif()
   # Qt version is 6.6 or higher
   message(STATUS "Found a suitable Qt version ${QT_VERSION}")
 else()
