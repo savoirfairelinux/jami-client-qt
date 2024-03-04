@@ -857,7 +857,7 @@ Profili mund të ndryshohet kurdo, që nga rregullimet e llogarisë.</translatio
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="480"/>
         <source>Use native window frame (requires restart)</source>
-        <translation type="unfinished"/>
+        <translation>Përdor kornizë dritareje të sistemit (lyp rinisje)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="484"/>
@@ -1037,12 +1037,12 @@ Profili mund të ndryshohet kurdo, që nga rregullimet e llogarisë.</translatio
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="788"/>
         <source>Show local video</source>
-        <translation type="unfinished"/>
+        <translation>Shfaq video vendore</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="789"/>
         <source>Hide local video</source>
-        <translation type="unfinished"/>
+        <translation>Fshihe videon vendore</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="844"/>

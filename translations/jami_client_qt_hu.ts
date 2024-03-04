@@ -1035,12 +1035,12 @@ A névjegy bármikor módosítható a Fiókbeállításaiból.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="788"/>
         <source>Show local video</source>
-        <translation type="unfinished"/>
+        <translation>Helyi videó megjelenítése</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="789"/>
         <source>Hide local video</source>
-        <translation type="unfinished"/>
+        <translation>Helyi videó elrejtése</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="844"/>
@@ -1420,7 +1420,7 @@ Kíván most frissíteni?</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="233"/>
         <source>Unmute camera</source>
-        <translation>Kamera elindítása</translation>
+        <translation>Fényképezőgép elindítása</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="234"/>
