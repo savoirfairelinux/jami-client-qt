@@ -613,7 +613,7 @@ UtilsAdapter::getContactPresence(const QString& accountId, const QString& uri)
 {
     try {
         if (lrcInstance_->getAccountInfo(accountId).profileInfo.uri == uri)
-            return true; // It's the same account
+            return 2; // It's the same account
         auto info = lrcInstance_->getAccountInfo(accountId).contactModel->getContact(uri);
         return info.presence;
     } catch (...) {
