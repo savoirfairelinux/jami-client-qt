@@ -607,7 +607,7 @@ Control {
                     width: 12
                     height: 12
 
-                    visible: IsLastSent && !readsOne.visible
+                    visible: IsLastSent === true && root.readers.length === 0
                     anchors.bottom: parent.bottom
 
                     source: JamiResources.receive_svg
@@ -618,13 +618,7 @@ Control {
 
                     visible: root.readers.length === 1 && CurrentAccount.sendReadReceipt
 
-                    width: {
-                        if (root.readers.length === 0)
-                            return 0;
-                        var nbAvatars = root.readers.length;
-                        var margin = JamiTheme.avatarReadReceiptSize / 3;
-                        return nbAvatars * JamiTheme.avatarReadReceiptSize - (nbAvatars - 1) * margin;
-                    }
+                    width: JamiTheme.avatarReadReceiptSize
                     height: JamiTheme.avatarReadReceiptSize
 
                     anchors.bottom: parent.bottom
@@ -648,13 +642,22 @@ Control {
 
             ReadStatus {
                 id: readsMultiple
-                visible: root.readers.length > 1 && CurrentAccount.sendReadReceipt
+                visible: {
+                    if (!readers)
+                        return false;
+                    return readers.length > 1 && CurrentAccount.sendReadReceipt
+                }
                 width: {
-                    if (root.readers.length === 0)
+                    if (readers.length === 0)
                         return 0;
-                    var nbAvatars = root.readers.length;
+                    var nbAvatars = readers.length;
                     var margin = JamiTheme.avatarReadReceiptSize / 3;
                     return nbAvatars * JamiTheme.avatarReadReceiptSize - (nbAvatars - 1) * margin;
+                }
+                height: {
+                    if (readers.length === 0)
+                        return 0;
+                    return JamiTheme.avatarReadReceiptSize
                 }
 
                 anchors.right: parent.right
