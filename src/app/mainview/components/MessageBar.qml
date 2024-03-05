@@ -193,7 +193,6 @@ RowLayout {
                     sendMessageButtonClicked();
                 }
                 onTextChanged: {
-                    MessagesAdapter.userIsComposing(text ? true : false);
                     if (!text) {
                         messageBarTextArea.heightBinding();
                     }

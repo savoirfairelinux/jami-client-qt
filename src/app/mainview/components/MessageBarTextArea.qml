@@ -171,6 +171,7 @@ JamiFlickable {
         textFormat: TextEdit.PlainText
         placeholderTextColor: JamiTheme.messageBarPlaceholderTextColor
         horizontalAlignment: Text.AlignLeft
+        property var cacheText: ""
 
         background: Rectangle {
             border.width: 0
@@ -183,10 +184,10 @@ JamiFlickable {
         }
 
         onTextChanged: {
-            if (text)
-                MessagesAdapter.userIsComposing(true);
-            else
-                MessagesAdapter.userIsComposing(false);
+            if (text != cacheText) {
+                cacheText = text;
+                MessagesAdapter.userIsComposing(text ? true : false);
+            }
         }
 
         // Intercept paste event to use C++ QMimeData
