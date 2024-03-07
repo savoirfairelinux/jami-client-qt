@@ -230,8 +230,7 @@ Rectangle {
 
             checkable: true
             checked: extrasPanel.isOpen(ChatView.SwarmDetailsPanel)
-            visible: interactionButtonsVisibility &&
-                     (swarmDetailsVisibility || LRCInstance.currentAccountType === Profile.Type.SIP) // TODO if SIP not a request
+            visible: (swarmDetailsVisibility || LRCInstance.currentAccountType === Profile.Type.SIP)
             source: JamiResources.swarm_details_panel_svg
             toolTipText: JamiStrings.details
 
