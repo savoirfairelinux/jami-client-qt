@@ -149,6 +149,8 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+  # Remove warnings related to `import`.
+  add_definitions(-Wno-import-preprocessor-directive-pedantic)
   set(CMAKE_MACOSX_RPATH on)
   set(CMAKE_SKIP_BUILD_RPATH false)
   set(CMAKE_BUILD_WITH_INSTALL_RPATH false)

@@ -987,22 +987,27 @@ CallModel::getDisplay(int idx, int x, int y, int w, int h)
 QString
 CallModel::getDisplay(const QString& windowProcessId, const QString& windowId)
 {
+#if defined(__APPLE__)
+    Q_UNUSED(windowProcessId)
+    Q_UNUSED(windowId)
+    return {};
+#else
     QString sep = libjami::Media::VideoProtocolPrefix::SEPARATOR;
     QString ret {};
-#if (defined(Q_OS_UNIX) && !defined(__APPLE__))
+#if defined(Q_OS_UNIX)
     Q_UNUSED(windowId);
     ret = QString("%1%2:+0,0 window-id:%3")
               .arg(libjami::Media::VideoProtocolPrefix::DISPLAY)
               .arg(sep)
               .arg(windowProcessId);
-#endif
-#ifdef WIN32
+#elif WIN32
     ret = QString("%1%2:+0,0 window-id:hwnd=%3")
               .arg(libjami::Media::VideoProtocolPrefix::DISPLAY)
               .arg(sep)
               .arg(windowProcessId);
 #endif
     return ret;
+#endif
 }
 
 CallModelPimpl::CallModelPimpl(const CallModel& linked,
