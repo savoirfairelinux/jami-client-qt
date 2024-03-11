@@ -21,6 +21,7 @@
 
 #include "qtutils.h"
 #include "systemtray.h"
+#include "utils.h"
 
 #ifdef Q_OS_LINUX
 #include <namedirectory.h>

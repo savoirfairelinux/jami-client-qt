@@ -19,6 +19,7 @@
 #include "currentconversation.h"
 
 #include "global.h"
+#include "utils.h"
 
 #include <api/conversationmodel.h>
 #include <api/contact.h>

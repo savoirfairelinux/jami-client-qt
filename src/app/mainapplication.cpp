@@ -27,6 +27,7 @@
 #include "connectivitymonitor.h"
 #include "systemtray.h"
 #include "previewengine.h"
+#include "utils.h"
 
 #include <QWKQuick/qwkquickglobal.h>
 

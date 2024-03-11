@@ -63,6 +63,7 @@
 #include "pluginlistpreferencemodel.h"
 #include "preferenceitemlistmodel.h"
 #include "wizardviewstepmodel.h"
+#include "observableconversation.h"
 
 #include "api/peerdiscoverymodel.h"
 #include "api/codecmodel.h"
@@ -215,7 +216,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERSINGLETONTYPE_CUSTOM(NS_HELPERS, AppVersionManager, lrcInstance->getAppVersionManager())
     QML_REGISTERSINGLETONTYPE_WITH_INSTANCE(NameDirectory); // C++ singleton
 
-    // QAbstractListModels
+    // QML Creatable types
     QML_REGISTERTYPE(NS_MODELS, BannedListModel);
     QML_REGISTERTYPE(NS_MODELS, MediaCodecListModel);
     QML_REGISTERTYPE(NS_MODELS, AudioDeviceModel);
@@ -224,6 +225,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERTYPE(NS_MODELS, PluginListPreferenceModel);
     QML_REGISTERTYPE(NS_MODELS, FilesToSendListModel);
     QML_REGISTERTYPE(NS_MODELS, CallInformationListModel);
+    QML_REGISTERTYPE(NS_MODELS, ObservableConversation);
 
     // Roles & type enums for models
     QML_REGISTERNAMESPACE(NS_MODELS, AccountList::staticMetaObject, "AccountList");
