@@ -19,7 +19,9 @@
  */
 
 #include "avadapter.h"
+
 #include "qtutils.h"
+#include "utils.h"
 
 #include "api/codecmodel.h"
 #include "api/devicemodel.h"
@@ -204,10 +206,14 @@ AvAdapter::shareFile(const QString& filePath)
                               &lrc::api::AVModel::fileOpened,
                               this,
                               [this, callId, filePath, resource](bool hasAudio, bool hasVideo) {
-                                    lrcInstance_->avModel().setAutoRestart(resource, true);
-                                    lrcInstance_->getCurrentCallModel()
-                                        ->addMedia(callId, filePath, lrc::api::CallModel::MediaRequestType::FILESHARING, false, hasAudio);
-                                    lrcInstance_->avModel().pausePlayer(resource, false);
+                                  lrcInstance_->avModel().setAutoRestart(resource, true);
+                                  lrcInstance_->getCurrentCallModel()
+                                      ->addMedia(callId,
+                                                 filePath,
+                                                 lrc::api::CallModel::MediaRequestType::FILESHARING,
+                                                 false,
+                                                 hasAudio);
+                                  lrcInstance_->avModel().pausePlayer(resource, false);
                               });
 
         lrcInstance_->avModel().createMediaPlayer(resource);

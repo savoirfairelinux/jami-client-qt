@@ -28,6 +28,7 @@
 #include "systemtray.h"
 #include "appsettingsmanager.h"
 #include "pttlistener.h"
+#include "utils.h"
 
 #include <api/callmodel.h>
 #include <api/callparticipantsmodel.h>
