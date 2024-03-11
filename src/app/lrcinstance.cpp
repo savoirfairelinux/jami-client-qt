@@ -20,7 +20,6 @@
 
 #include "lrcinstance.h"
 
-#include "global.h"
 #include "connectivitymonitor.h"
 
 #include <QBuffer>
