@@ -18,6 +18,7 @@
  */
 
 #include "globaltestenvironment.h"
+#include "utils.h"
 
 #include <QApplication>
 #include <QStandardPaths>

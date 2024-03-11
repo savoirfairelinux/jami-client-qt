@@ -21,6 +21,7 @@
 #include "previewengine.h"
 #include "qmlregister.h"
 #include "systemtray.h"
+#include "utils.h"
 
 #include <api/profile.h>
 #include <api/account.h>

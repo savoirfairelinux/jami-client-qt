@@ -20,6 +20,7 @@
 
 #include "quickimageproviderbase.h"
 #include "accountlistmodel.h"
+#include "utils.h"
 
 #include <QPair>
 #include <QString>
