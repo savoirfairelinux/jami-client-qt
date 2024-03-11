@@ -1,6 +1,7 @@
 #include "positionmanager.h"
 
 #include "appsettingsmanager.h"
+#include "utils.h"
 
 #include "qtutils.h"
 #include <QApplication>
@@ -23,13 +24,11 @@ PositionManager::PositionManager(AppSettingsManager* settingsManager,
     connect(lrcInstance_,
             &LRCInstance::selectedConvUidChanged,
             this,
-            &PositionManager::onNewConversation,
-            Qt::UniqueConnection);
+            &PositionManager::onNewConversation);
     connect(lrcInstance_,
             &LRCInstance::currentAccountIdChanged,
             this,
-            &PositionManager::onNewAccount,
-            Qt::UniqueConnection);
+            &PositionManager::onNewAccount);
     connect(
         this,
         &PositionManager::localPositionReceived,
@@ -40,17 +39,11 @@ PositionManager::PositionManager(AppSettingsManager* settingsManager,
         Qt::QueuedConnection);
 
     localPositioning_.reset(new Positioning());
-    connectAccountModel();
-}
 
-void
-PositionManager::connectAccountModel()
-{
-    QObject::connect(&lrcInstance_->accountModel(),
-                     &AccountModel::newPosition,
-                     this,
-                     &PositionManager::onPositionReceived,
-                     Qt::UniqueConnection);
+    connect(&lrcInstance_->accountModel(),
+            &AccountModel::newPosition,
+            this,
+            &PositionManager::onPositionReceived);
 }
 
 void

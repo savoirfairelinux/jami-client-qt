@@ -83,7 +83,6 @@ protected:
     void countdownUpdate();
     void sendStopMessage(QString accountId = "", const QString convId = "");
 
-    Q_INVOKABLE void connectAccountModel();
     Q_INVOKABLE void pinMap(const QString& key);
     Q_INVOKABLE void unPinMap(const QString& key);
     Q_INVOKABLE void setMapActive(const QString& key);
