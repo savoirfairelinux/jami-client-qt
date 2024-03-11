@@ -37,7 +37,7 @@
     <message>
         <location filename="../src/app/conversationlistmodelbase.cpp" line="140"/>
         <source>(deleted message)</source>
-        <translation>(избрисана порука)</translation>
+        <translation>(izbrisana poruka)</translation>
     </message>
 </context>
 <context>
@@ -154,12 +154,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="39"/>
         <source>Jami is a universal communication platform, with privacy as its foundation, that relies on a free distributed network for everyone.</source>
-        <translation>Џами је универзална комуникацијска платформа, са приватношћу као основом, која се ослања на слободну дистрибуирују мрежу за све.</translation>
+        <translation>Jami je univerzalna komunikaciona platforma, sa privatnošću kao osnovom, koja se oslanja na besplatnu distribuiranu mrežu za sve.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="40"/>
         <source>Migrating to the Swarm technology will enable synchronizing this conversation across multiple devices and improve reliability. The legacy conversation history will be cleared in the process.</source>
-        <translation>Миграција на технологију Сварм ће омогућити синхронизацију овог разговора на више уређаја и побољшати поузданост.</translation>
+        <translation>Prelazak na Swarm tehnologiju će omogućiti sinhronizaciju ovog razgovora na više uređaja i poboljšati pouzdanost. Zastarela istorija razgovora će biti očišćena u tom procesu.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="44"/>
@@ -222,7 +222,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="71"/>
         <source>Your session has expired or been revoked on this device. Please enter your password.</source>
-        <translation>Ваша сесија је истекла или је отклана на овом уређају.</translation>
+        <translation>Vaša sesija je istekla ili je opozvana na ovom uređaju. Molim vas unesite vašu šifru.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="72"/>
@@ -237,7 +237,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="74"/>
         <source>Delete account</source>
-        <translation>Убришајте рачун</translation>
+        <translation>Obrisati nalog</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="75"/>
@@ -282,7 +282,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="85"/>
         <source>Enable custom ringtone</source>
-        <translation>Омогућити прилагођени зову</translation>
+        <translation>Omogući prilagođenu melodiju zvona</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="86"/>
@@ -342,12 +342,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="101"/>
         <source>Enable read receipts</source>
-        <translation>Омогућивање потврда за читање</translation>
+        <translation>Omogući potvrde o čitanju</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="102"/>
         <source>Send and receive receipts indicating that a message have been displayed</source>
-        <translation>Пошаљи и прими потврде да је порука приказана</translation>
+        <translation>Slanje i primanje potvrda koje pokazuju da je poruka prikazana</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="105"/>
@@ -367,7 +367,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="110"/>
         <source>Enable SDES key exchange</source>
-        <translation>Омогућивање размене СДЕС кључева</translation>
+        <translation>Omogući razmenu SDES ključeva</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="111"/>
@@ -402,7 +402,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="117"/>
         <source>Verify server TLS certificates</source>
-        <translation>Проверите сертификате TLS сервера</translation>
+        <translation>Verifikujte TLS sertifikate servera</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="118"/>
@@ -492,7 +492,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="141"/>
         <source>Allow IP Auto Rewrite</source>
-        <translation>Дозволите аутоматску пренапис IP-а</translation>
+        <translation>Dozvoli automatsko prepisivanje IP-a</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="142"/>
@@ -677,7 +677,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="204"/>
         <source>Enable hardware acceleration</source>
-        <translation>Омогућити хардверско забрзање</translation>
+        <translation>Omogući hardversko ubrzanje</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="207"/>
@@ -722,7 +722,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="347"/>
         <source>deleted a message</source>
-        <translation>обрисао поруку</translation>
+        <translation>obrisao poruku</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="348"/>
@@ -793,7 +793,8 @@ If a username is not chosen, a randomly generated 40-character identifier will b
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="409"/>
         <source>This Jami account exists only on this device.
 The account will be lost if this device is lost or the application is uninstalled. It is recommended to make a backup of this account.</source>
-        <translation>Овај рачун Jami постоји само на овом уређају. Рачун ће бити изгубљен ако се овај уређај изгуби или апликација је деинсталирана. Препоручује се да направите резервни коментар овог рачун.</translation>
+        <translation>Ovaj Jami nalog postoji samo na ovom uređaju. 
+Nalog će biti izgubljen ako se ovaj uređaj izgubi ili se aplikacija deinstalira. Preporučuje se da napravite rezervnu kopiju ovog naloga.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="424"/>
@@ -819,7 +820,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="435"/>
         <source>A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected by a password.</source>
-        <translation>Јами рачун се ствара и чува локално само на овом уређају, као архив који садржи кључеве вашег рачун.</translation>
+        <translation>Jami nalog se kreira i čuva lokalno samo na ovom uređaju, kao arhiva koja sadrži ključeve vašeg naloga. Pristup ovoj arhivi može opciono biti zaštićen lozinkom.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="436"/>
@@ -829,7 +830,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="462"/>
         <source>Would you really like to delete this account?</source>
-        <translation>Да ли заиста желите да избришете овај рачун?</translation>
+        <translation>Da li zaista želite da izbrišete ovaj nalog?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="463"/>
@@ -864,12 +865,12 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="488"/>
         <source>Enable typing indicators</source>
-        <translation>Омогућивање индикатора за вађење</translation>
+        <translation>Omogući indikatore kucanja</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="489"/>
         <source>Send and receive typing indicators showing that a message is being typed.</source>
-        <translation>Пошаљи и прими индикатори за упис који показују да се порука уписва.</translation>
+        <translation>Šaljite i primajte indikatore kucanja koji pokazuju da se poruka kuca.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="490"/>
@@ -879,7 +880,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="512"/>
         <source>Delete file from device</source>
-        <translation>Избриши датотеку са уређаја</translation>
+        <translation>Izbrišite datoteku sa uređaja</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="529"/>
@@ -1485,7 +1486,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="212"/>
         <source>Your account only exists on this device. If you lose your device or uninstall the application, your account will be deleted and CANNOT be recovered. You can &lt;a href=&apos;blank&apos;&gt; back up your account &lt;/a&gt; now or later (in the Account Settings).</source>
-        <translation>Ваш налог постоји само на овом уређају. Ако изгубите уређај или деинсталирате апликацију, ваш налог ће бити избрисан и НЕ МОЖЕ СЕ опоравити. Можете &lt;a href=&apos;blank&apos;&gt;направити резервну копију свог налога&lt;/a&gt; сада или касније (у подешавањима налога).</translation>
+        <translation>Vaš nalog postoji samo na ovom uređaju. Ako izgubite uređaj ili deinstalirate aplikaciju, vaš nalog će biti izbrisan i NE MOŽE SE oporaviti. Možete 1 napraviti rezervnu kopiju svog naloga 1 sada ili kasnije (u podešavanjima naloga).</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="238"/>
@@ -1500,12 +1501,12 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="240"/>
         <source>Participant is still muted on their device</source>
-        <translation>Учесник је још увек у тишину на свом уређају</translation>
+        <translation>Učesnik je i dalje isključen na svom uređaju</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="241"/>
         <source>You are still muted on your device</source>
-        <translation>Још увек си у тишину на свом уређају</translation>
+        <translation>I dalje ste isključeni na svom uređaju</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="242"/>
@@ -1616,7 +1617,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="267"/>
         <source>Would you really like to block this conversation?</source>
-        <translation>Да ли би заиста желео да блокирамо овај разговор?</translation>
+        <translation>Da li zaista želite da blokirate ovaj razgovor?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="268"/>
@@ -1918,7 +1919,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="341"/>
         <source>Place video call</source>
-        <translation>Постави видео позив</translation>
+        <translation>Uputi video poziv</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="342"/>
@@ -2119,7 +2120,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="407"/>
         <source>Your Jami account is registered only on this device as an archive containing the keys of your account. Access to this archive can be protected by a password.</source>
-        <translation>Ваш рачун Jami је регистровано само на овом уређају као архив који садржи кључеве вашег рачун.</translation>
+        <translation>Vaš Jami nalog je registrovan samo na ovom uređaju kao arhiva koja sadrži ključeve vašeg naloga. Pristup ovoj arhivi može biti zaštićen lozinkom.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="408"/>
@@ -2129,7 +2130,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="410"/>
         <source>Delete your account</source>
-        <translation>Убришите свој рачун</translation>
+        <translation>Izbrišite svoj nalog</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="411"/>
@@ -2139,7 +2140,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="412"/>
         <source>List of the devices that are linked to this account:</source>
-        <translation>Список уређаја који су повезани са овим рачуном:</translation>
+        <translation>Lista uređaja koji su povezani sa ovim nalogom:</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="413"/>
@@ -2389,7 +2390,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="841"/>
         <source>Enabling your account allows you to be contacted on Jami</source>
-        <translation>Омогућивање вашег рачуна омогућава вам да будете контактирани на Џамију.</translation>
+        <translation>Omogućavanje vašeg naloga omogućava vam da budete kontaktirani na Jamiju</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="851"/>
@@ -2424,7 +2425,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="425"/>
         <source>Set a password</source>
-        <translation>Устави лозинку</translation>
+        <translation>Postavite lozinku</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="426"/>
@@ -2444,7 +2445,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="177"/>
         <source>Enable account</source>
-        <translation>Омогућивање рачуна</translation>
+        <translation>Omogući nalog</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="430"/>
@@ -2459,7 +2460,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="443"/>
         <source>Set username</source>
-        <translation>Устави корисничко име</translation>
+        <translation>Podesite korisničko ime</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="444"/>
@@ -2530,7 +2531,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="477"/>
         <source>Enable notifications</source>
-        <translation>Омогућивање обавештења</translation>
+        <translation>Omogući obaveštenja</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="482"/>
@@ -2617,12 +2618,12 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="515"/>
         <source>Install beta version</source>
-        <translation>Инсталирајте бета верзију</translation>
+        <translation>Instalirajte beta verziju</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="516"/>
         <source>Check for updates now</source>
-        <translation>Проверите да ли је сада нешто ново</translation>
+        <translation>Proverite ažuriranja sada</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="517"/>
@@ -2687,12 +2688,12 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="538"/>
         <source>(Experimental) Enable call support for swarm</source>
-        <translation>(Експериментални) Омогућивање позива за рогу</translation>
+        <translation>(Eksperimentalno) Omogući podršku za pozive za roj</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="539"/>
         <source>This feature will enable call buttons in swarms with multiple participants.</source>
-        <translation>Ова функција ће омогућити дугме позива у родовима са више учесника.</translation>
+        <translation>Ova funkcija će omogućiti dugmad za pozivanje u rojevima sa više učesnika.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="542"/>
@@ -2798,7 +2799,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="579"/>
         <source>A PIN is required to use an existing Jami account on this device.</source>
-        <translation>ПИН је потребан за коришћење постојећег рачуна Џами на овом уређају.</translation>
+        <translation>PIN je neophodan za korišćenje postojećeg Jami naloga na ovom uređaju.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="585"/>
@@ -2828,7 +2829,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="831"/>
         <source>*(Deleted Message)*</source>
-        <translation>*(Избришено поруке) *</translation>
+        <translation>*(Izbrisana poruka)*</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="832"/>
@@ -3155,7 +3156,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="692"/>
         <source>Use existing Jami account</source>
-        <translation>Користите постојећи рачун Џами</translation>
+        <translation>Koristite postojeći Jami nalog</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="693"/>
@@ -3262,7 +3263,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="730"/>
         <source>Enable local moderators</source>
-        <translation>Омогућити локалне модератере</translation>
+        <translation>Omogući lokalne moderatore</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="731"/>
@@ -3464,7 +3465,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="45"/>
         <source>Focus conversations list</source>
-        <translation>Список разговорних разговора</translation>
+        <translation>Fokusirajte listu razgovora</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="49"/>
@@ -3549,7 +3550,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="117"/>
         <source>Cancel message edition</source>
-        <translation>Убриши издање поруке</translation>
+        <translation>Otkaži izdanje poruke</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="125"/>
@@ -4143,7 +4144,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="343"/>
         <source>Sending</source>
-        <translation>Пошаљивање</translation>
+        <translation>Slanje</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="347"/>
@@ -4318,7 +4319,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="103"/>
         <source>Jami is distributed and your account is only stored locally on your device. If you lose your password or your local account data, you WILL NOT be able to recover your account if you did not back it up earlier.</source>
-        <translation>Џами се дистрибуира и ваш рачун се чува само локално на вашем уређају. Ако изгубите лозинку или локалне податке о рачун, НЕћете моћи да вратите рачун ако га раније не направите резервни коментар.</translation>
+        <translation>Jami se distribuira i vaš nalog se čuva samo lokalno na vašem uređaju. Ako izgubite lozinku ili podatke o lokalnom nalogu, NEĆETE moći da vratite svoj nalog ako niste ranije napravili rezervnu kopiju.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="109"/>
@@ -4348,12 +4349,12 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="129"/>
         <source>With Jami, your account is stored in a directory on your device. The password is only used to encrypt your account in order to protect you from someone who has physical access to your device.</source>
-        <translation>Са Џамијем, ваш рачун се чува у директорији на вашем уређају.</translation>
+        <translation>Sa Jami, vaš nalog se čuva u direktorijumu na vašem uređaju. Lozinka se koristi samo za šifrovanje vašeg naloga kako bi vas zaštitila od nekoga ko ima fizički pristup vašem uređaju.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="149"/>
         <source>Your account is only stored on your own devices. If you delete your account from all of your devices, the account is gone forever and you CANNOT recover it.</source>
-        <translation>Ако избришете свој рачун са свих уређаја, рачун је заувек нестао и НЕ можете га опоравити.</translation>
+        <translation>Vaš nalog se čuva samo na vašim uređajima. Ako izbrišete svoj nalog sa svih svojih uređaja, nalog će zauvek nestati i NE MOŽETE da ga povratite.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="153"/>
@@ -4398,7 +4399,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="147"/>
         <source>What happens when I delete my account?</source>
-        <translation>Шта се дешава када бринем свој рачун?</translation>
+        <translation>Šta se dešava kada izbrišem svoj nalog?</translation>
     </message>
 </context>
 <context>
