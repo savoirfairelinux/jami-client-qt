@@ -26,7 +26,6 @@
 
 #include "appversionmanager.h"
 #include "qtutils.h"
-#include "utils.h"
 
 #include <api/lrc.h>
 #include <api/account.h>
@@ -38,6 +37,7 @@
 #include <api/accountmodel.h>
 #include <api/callmodel.h>
 
+#include <QApplication>
 #include <QObject>
 #include <QThreadPool>
 
@@ -166,3 +166,15 @@ private:
     QThreadPool* threadPool_;
 };
 Q_DECLARE_METATYPE(LRCInstance*)
+
+class UsesLibclient
+{
+public:
+    UsesLibclient()
+    {
+        lrcInstance_ = qApp->property("LRCInstance").value<LRCInstance*>();
+    }
+
+protected:
+    LRCInstance* lrcInstance_;
+};

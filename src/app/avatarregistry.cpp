@@ -19,6 +19,7 @@
 #include "avatarregistry.h"
 
 #include "lrcinstance.h"
+#include "utils.h"
 
 AvatarRegistry::AvatarRegistry(LRCInstance* instance, QObject* parent)
     : QObject(parent)

@@ -97,6 +97,11 @@ Item {
 
         InitialCallPage {
         }
+        // Item {
+        //     id: ongoingCallPage
+        //     property var chatViewContainer: Item {}
+        // }
+
         OngoingCallPage {
             id: ongoingCallPage
         }

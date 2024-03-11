@@ -19,7 +19,9 @@
  */
 
 #include "avadapter.h"
+
 #include "qtutils.h"
+#include "utils.h"
 
 #include "api/codecmodel.h"
 #include "api/devicemodel.h"

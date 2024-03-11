@@ -30,7 +30,7 @@ ListSelectionView {
     managed: false
 
     splitViewStateKey: "Main"
-    hasValidSelection: CurrentConversation.id !== ''
+    hasValidSelection: currentConversation.uid !== ''
 
     visible: false
     onPresented: visible = true
@@ -50,10 +50,17 @@ ListSelectionView {
     rightPaneItem: StackLayout {
         objectName: "ConversationLayout"
 
-        currentIndex: !CurrentConversation.hasCall ? 0 : 1
+        currentIndex: !currentConversation.hasCall ? 0 : 1
         onCurrentIndexChanged: chatView.parent = currentIndex === 1 ? callStackView.chatViewContainer : chatViewContainer
 
         anchors.fill: parent
+
+        ObservableConversation {
+            id: currentConversation
+            accountId: CurrentAccount.id
+            uid: LRCInstance.selectedConvUid
+            onUidChanged: console.warn("ConversationView: onUidChanged", uid);
+        }
 
         Item {
             id: chatViewContainer
@@ -66,9 +73,9 @@ ListSelectionView {
                 anchors.fill: parent
                 inCallView: parent == callStackView.chatViewContainer
 
-                readonly property string currentConvId: CurrentConversation.id
+                readonly property string currentConvId: currentConversation.uid
                 onCurrentConvIdChanged: {
-                    if (!CurrentConversation.hasCall) {
+                    if (!currentConversation.hasCall) {
                         Qt.callLater(focusChatView);
                     } else {
                         dismiss();

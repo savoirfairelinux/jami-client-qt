@@ -62,6 +62,7 @@ JamiListView {
 
         // actually select the conversation
         function onValidSelectionChanged() {
+            console.warn("onValidSelectionChanged");
             var row = model.currentFilteredRow;
             var convId = model.dataForRow(row, ConversationList.UID);
             LRCInstance.selectConversation(convId);

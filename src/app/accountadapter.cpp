@@ -25,6 +25,7 @@
 #include "systemtray.h"
 #include "lrcinstance.h"
 #include "accountlistmodel.h"
+#include "utils.h"
 
 #include <QtConcurrent/QtConcurrent>
 

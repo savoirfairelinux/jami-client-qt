@@ -19,6 +19,7 @@
 #include "currentconversation.h"
 
 #include "global.h"
+#include "utils.h"
 
 #include <api/conversationmodel.h>
 #include <api/contact.h>
@@ -27,29 +28,29 @@ CurrentConversation::CurrentConversation(LRCInstance* lrcInstance, QObject* pare
     : QObject(parent)
     , lrcInstance_(lrcInstance)
 {
-    membersModel_ = new CurrentConversationMembers(lrcInstance, this);
-    set_members(QVariant::fromValue(membersModel_));
+    // membersModel_ = new CurrentConversationMembers(lrcInstance, this);
+    // set_members(QVariant::fromValue(membersModel_));
 
-    // whenever the account changes, reconnect the new conversation model
-    // for updates to the conversation and call state/id
-    connect(lrcInstance_,
-            &LRCInstance::currentAccountIdChanged,
-            this,
-            &CurrentConversation::connectModel);
-    connectModel();
+    // // whenever the account changes, reconnect the new conversation model
+    // // for updates to the conversation and call state/id
+    // connect(lrcInstance_,
+    //         &LRCInstance::currentAccountIdChanged,
+    //         this,
+    //         &CurrentConversation::connectModel);
+    // connectModel();
 
-    // update when the conversation itself changes
-    connect(lrcInstance_,
-            &LRCInstance::selectedConvUidChanged,
-            this,
-            &CurrentConversation::updateData);
+    // // update when the conversation itself changes
+    // connect(lrcInstance_,
+    //         &LRCInstance::selectedConvUidChanged,
+    //         this,
+    //         &CurrentConversation::updateData);
 
-    connect(&lrcInstance_->behaviorController(),
-            &BehaviorController::showIncomingCallView,
-            this,
-            &CurrentConversation::onShowIncomingCallView);
+    // connect(&lrcInstance_->behaviorController(),
+    //         &BehaviorController::showIncomingCallView,
+    //         this,
+    //         &CurrentConversation::onShowIncomingCallView);
 
-    updateData();
+    // updateData();
 }
 
 void

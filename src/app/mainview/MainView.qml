@@ -38,7 +38,7 @@ Rectangle {
     id: mainView
     objectName: "mainView"
 
-    property string currentConvId: CurrentConversation.id
+    property string currentConvId: LRCInstance.selectedConvUid
     onCurrentConvIdChanged: {
         if (currentConvId !== '') {
             viewCoordinator.present("ConversationView")
