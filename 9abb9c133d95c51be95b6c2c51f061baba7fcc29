@@ -16,6 +16,24 @@
       "message": "The dictionary path should be automatically detected using \n$ hunspell -D",
       "revId": "9abb9c133d95c51be95b6c2c51f061baba7fcc29",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae94f77a_9c399c43",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 982
+      },
+      "writtenOn": "2024-03-14T15:19:41Z",
+      "side": 1,
+      "message": "Not resolved",
+      "parentUuid": "adf55d80_778c276a",
+      "revId": "9abb9c133d95c51be95b6c2c51f061baba7fcc29",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
