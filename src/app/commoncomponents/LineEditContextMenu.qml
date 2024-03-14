@@ -28,6 +28,8 @@ ContextMenuAutoLoader {
     property var selectionEnd
     property bool customizePaste: false
     property bool selectOnly: false
+    property var suggestionList
+    property var nbMenuItems
 
     signal contextMenuRequirePaste
 
@@ -69,6 +71,55 @@ ContextMenuAutoLoader {
         }
     ]
 
+    ListView {
+        model: ListModel {
+            id: dynamicModel
+        }
+
+        Instantiator {
+            model: dynamicModel
+            delegate: GeneralMenuItem {
+                id: suggestion
+
+                canTrigger: true
+                isActif: true
+                itemName: model.name
+                hasIcon: false
+                onClicked: {
+                    replaceWord(model.name);
+                }
+            }
+
+            onObjectAdded: {
+                menuItems.push(object);
+            }
+
+            onObjectRemoved: {
+                menuItems.splice(nbMenuItems, suggestionList.length);
+            }
+        }
+    }
+
+    function removeItems() {
+        dynamicModel.remove(0, suggestionList.length);
+        suggestionList.length = 0;
+    }
+
+    function addMenuItem(wordList) {
+        nbMenuItems = menuItems.length; // Keep initial number of items for easier removal
+        suggestionList = wordList;
+        for (var i = 0; i < suggestionList.length; ++i) {
+            dynamicModel.append({
+                    "name": suggestionList[i]
+            });
+        }
+    }
+
+    function replaceWord(word) {
+        lineEditObj.remove(selectionStart, selectionEnd);
+        lineEditObj.insert(lineEditObj.cursorPosition, word);
+    }
+
     function openMenuAt(mouseEvent) {
         if (lineEditObj.selectedText.length === 0 && selectOnly)
             return;
@@ -85,6 +136,12 @@ ContextMenuAutoLoader {
         enabled: root.status === Loader.Ready
         function onOpened() {
             lineEditObj.select(selectionStart, selectionEnd);
+        }
+        function onClosed() {
+            if (!suggestionList || suggestionList.length == 0) {
+                return;
+            }
+            removeItems();
         }
     }
 
