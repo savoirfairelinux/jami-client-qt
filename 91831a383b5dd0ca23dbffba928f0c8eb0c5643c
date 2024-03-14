@@ -16,6 +16,24 @@
       "message": "I noticed an error when trying to spell check a correct word after an other wrong word spell check replacement.\nIt says that the index I try to remove is non existent. The algorithm is keeping in memory a suggestions array or a menu items after the first spell replacement. Causing this bug.\n\nHow to reproduce:\n1- type a wrong word.\n2- Right click on it replace with a correct one.\n3- Right click the good word.\n4- left click out of the menu.\nError message display",
       "revId": "91831a383b5dd0ca23dbffba928f0c8eb0c5643c",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09162cf1_7f444701",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 982
+      },
+      "writtenOn": "2024-03-14T15:19:59Z",
+      "side": 1,
+      "message": "Not resolved",
+      "parentUuid": "e955283b_cb861a2b",
+      "revId": "91831a383b5dd0ca23dbffba928f0c8eb0c5643c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
