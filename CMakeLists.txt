@@ -323,7 +323,8 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/imagedownloader.cpp
   ${APP_SRC_DIR}/pluginversionmanager.cpp
   ${APP_SRC_DIR}/connectioninfolistmodel.cpp
-  ${APP_SRC_DIR}/pluginversionmanager.cpp)
+  ${APP_SRC_DIR}/pluginversionmanager.cpp
+  ${APP_SRC_DIR}/spellchecker.cpp)
 
 set(COMMON_HEADERS
   ${APP_SRC_DIR}/global.h
@@ -392,7 +393,8 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/imagedownloader.h
   ${APP_SRC_DIR}/pluginversionmanager.h
   ${APP_SRC_DIR}/connectioninfolistmodel.h
-  ${APP_SRC_DIR}/pttlistener.h)
+  ${APP_SRC_DIR}/pttlistener.h
+  ${APP_SRC_DIR}/spellchecker.h)
 
 # For libavutil/avframe.
 set(LIBJAMI_CONTRIB_DIR "${DAEMON_DIR}/contrib")
