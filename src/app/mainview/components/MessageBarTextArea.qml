@@ -179,8 +179,18 @@ JamiFlickable {
         }
 
         onReleased: function (event) {
-            if (event.button === Qt.RightButton)
+            if (event.button === Qt.RightButton) {
+                var position = textArea.positionAt(event.x, event.y);
+
+                textArea.moveCursorSelection(position, TextInput.SelectWords);
+                textArea.selectWord();
+                if(!MessagesAdapter.spell(textArea.selectedText)) {
+                    var wordList = MessagesAdapter.spellSuggestionsRequest(textArea.selectedText);
+                    textAreaContextMenu.addMenuItem(wordList);
+                }
+
                 textAreaContextMenu.openMenuAt(event);
+            }
         }
 
         onTextChanged: {

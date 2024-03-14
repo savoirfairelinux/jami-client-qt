@@ -28,6 +28,7 @@ ContextMenuAutoLoader {
     property var selectionEnd
     property bool customizePaste: false
     property bool selectOnly: false
+    property var suggestionList
 
     signal contextMenuRequirePaste
 
@@ -69,6 +70,65 @@ ContextMenuAutoLoader {
         }
     ]
 
+    ListView {
+        model: ListModel {
+            id: dynamicModel
+        }
+
+        Instantiator {
+            model: dynamicModel
+            delegate: GeneralMenuItem {
+                id: suggestion
+
+                canTrigger: true
+                isActif: true
+                itemName: model.name
+                hasIcon: false
+                onClicked: {
+                    console.log("Clic detected");
+                    replaceWord(model.name);
+                }
+            }
+
+            onObjectAdded: {
+                menuItems.push(object);
+            }
+
+            onObjectRemoved: {
+                var index = -1;
+                for (var i = 0; i < menuItems.length; i++) {
+                    if (menuItems[i] === object) {
+                        index = i;
+                        console.log("Index : " + index);
+                        break;
+                    }
+                }
+                if (index !== -1) {
+                    menuItems.splice(index, 1);
+                }
+            }
+        }
+    }
+
+    function removeItems(itemNamesToRemove) {
+         for (var i = 0; i < suggestionList.length; ++i) {
+            dynamicModel.remove(suggestionList[i]);
+        }
+    }
+
+    function addMenuItem(wordList) {
+        suggestionList = wordList
+        for (var i = 0; i < suggestionList.length; ++i)
+        {
+            dynamicModel.append({ "name": suggestionList[i] })
+        }
+    }
+
+    function replaceWord(word) {
+        lineEditObj.remove(selectionStart , selectionEnd);
+        lineEditObj.insert(lineEditObj.cursorPosition , word);
+    }
+
     function openMenuAt(mouseEvent) {
         if (lineEditObj.selectedText.length === 0 && selectOnly)
             return;
@@ -85,6 +145,9 @@ ContextMenuAutoLoader {
         enabled: root.status === Loader.Ready
         function onOpened() {
             lineEditObj.select(selectionStart, selectionEnd);
+        }
+        function onClosed() {
+            removeItems(suggestionList);
         }
     }
 
