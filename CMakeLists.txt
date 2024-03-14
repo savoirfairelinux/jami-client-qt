@@ -365,7 +365,7 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/pluginversionmanager.cpp
   ${APP_SRC_DIR}/linkdevicemodel.cpp
   ${APP_SRC_DIR}/qrcodescannermodel.cpp
-)
+  ${APP_SRC_DIR}/spellchecker.cpp)
 
 set(COMMON_HEADERS
   ${APP_SRC_DIR}/global.h
@@ -439,7 +439,7 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/crashreporter.h
   ${APP_SRC_DIR}/linkdevicemodel.h
   ${APP_SRC_DIR}/qrcodescannermodel.h
-)
+  ${APP_SRC_DIR}/spellchecker.h)
 
 # For libavutil/avframe.
 set(LIBJAMI_CONTRIB_DIR "${DAEMON_DIR}/contrib")
