@@ -76,10 +76,19 @@ AppSettingsManager::getDefault(const Settings::Key key) const
 }
 
 QString
-AppSettingsManager::getLanguage()
+AppSettingsManager::getLanguage(void)
 {
     auto pref = getValue(Settings::Key::LANG).toString();
     return pref == "SYSTEM" ? QLocale::system().name() : pref;
+}
+
+QString
+AppSettingsManager::getDictionaryPath(void)
+{
+    QLocale locale = QLocale::system();
+    QString language = AppSettingsManager::getLanguage();
+    QString hunspellDataDir = "/usr/share/hunspell/" + language;
+    return hunspellDataDir;
 }
 
 void
