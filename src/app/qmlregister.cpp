@@ -63,6 +63,7 @@
 #include "pluginlistpreferencemodel.h"
 #include "preferenceitemlistmodel.h"
 #include "wizardviewstepmodel.h"
+#include "spellchecker.h"
 
 #include "api/peerdiscoverymodel.h"
 #include "api/codecmodel.h"
@@ -224,6 +225,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERTYPE(NS_MODELS, PluginListPreferenceModel);
     QML_REGISTERTYPE(NS_MODELS, FilesToSendListModel);
     QML_REGISTERTYPE(NS_MODELS, CallInformationListModel);
+    QML_REGISTERTYPE(NS_MODELS, SpellChecker);
 
     // Roles & type enums for models
     QML_REGISTERNAMESPACE(NS_MODELS, AccountList::staticMetaObject, "AccountList");

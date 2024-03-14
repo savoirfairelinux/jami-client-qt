@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2020-2024 Savoir-faire Linux Inc.
  * Author: Edric Ladent Milaret <edric.ladent-milaret@savoirfairelinux.com>
- * Author: Anthony Léonard <anthony.leonard@savoirfairelinux.com>
+ * Author: Anthony L�onard <anthony.leonard@savoirfairelinux.com>
  * Author: Olivier Soldano <olivier.soldano@savoirfairelinux.com>
  * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
  * Author: Isa Nanic <isa.nanic@savoirfairelinux.com>
@@ -27,6 +27,7 @@
 #include "qtutils.h"
 #include "messageparser.h"
 #include "previewengine.h"
+#include "spellchecker.h"
 
 #include <api/datatransfermodel.h>
 #include <api/contact.h>
@@ -45,6 +46,8 @@
 #include <QtMath>
 #include <QRegExp>
 
+#define SUGGESTIONS_MAX_SIZE 3 // limit the number of spelling suggestions
+
 MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
                                  PreviewEngine* previewEngine,
                                  LRCInstance* instance,
@@ -56,6 +59,8 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     , mediaInteractions_(std::make_unique<MessageListModel>(nullptr))
     , timestampTimer_(new QTimer(this))
 {
+    spellChecker_ = new SpellChecker(settingsManager_->getDictionaryPath());
+
     setObjectName(typeid(*this).name());
 
     set_messageListModel(QVariant::fromValue(filteredMsgListModel_));
@@ -732,4 +737,30 @@ MessagesAdapter::getMsgListSourceModel() const
     // We are certain that filteredMsgListModel_'s source model is a MessageListModel,
     // However it may be a nullptr if not yet set.
     return static_cast<MessageListModel*>(filteredMsgListModel_->sourceModel());
+}
+
+bool
+MessagesAdapter::spell(const QString& word)
+{
+    return spellChecker_->spell(word);
+}
+
+QVariantList
+MessagesAdapter::spellSuggestionsRequest(const QString& word)
+{
+    QStringList suggestionsList;
+    QVariantList variantList;
+    if (spellChecker_ == nullptr || spellChecker_->spell(word)) {
+        return variantList;
+    }
+
+    suggestionsList = spellChecker_->suggest(word);
+    for (const auto& suggestion : suggestionsList) {
+        if (variantList.size() >= SUGGESTIONS_MAX_SIZE) {
+            break;
+        }
+        variantList.append(QVariant(suggestion));
+    }
+
+    return variantList;
 }

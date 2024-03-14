@@ -24,6 +24,7 @@
 #include "previewengine.h"
 #include "messageparser.h"
 #include "appsettingsmanager.h"
+#include "spellchecker.h"
 
 #include <QObject>
 #include <QString>
@@ -165,6 +166,8 @@ public:
     Q_INVOKABLE QVariant dataForInteraction(const QString& interactionId,
                                             int role = Qt::DisplayRole) const;
     Q_INVOKABLE void startSearch(const QString& text, bool isMedia);
+    Q_INVOKABLE QVariantList spellSuggestionsRequest(const QString& word);
+    Q_INVOKABLE bool spell(const QString& word);
 
     // Run corrsponding js functions, c++ to qml.
     void setMessagesImageContent(const QString& path, bool isBased64 = false);
@@ -200,6 +203,7 @@ private:
 
     AppSettingsManager* settingsManager_;
     MessageParser* messageParser_;
+    SpellChecker* spellChecker_;
 
     FilteredMsgListModel* filteredMsgListModel_;
 
