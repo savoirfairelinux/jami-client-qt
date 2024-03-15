@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1bbf3ba_fbca5e0e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-03-15T08:15:27Z",
+      "side": 1,
+      "message": "https://git.jami.net/savoirfairelinux/jami-client-gnome/-/issues/1169#note_47830\n\nCan multiple languages please be selected in the Jami settings? (Point 1 in link above)\n\nAdditionally, multiple languages please be selected per conversation. (Point 2 in link above)\n\nThank you",
+      "revId": "937fb2b0606deb461709adc6ac7a57b9b9fa02e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
