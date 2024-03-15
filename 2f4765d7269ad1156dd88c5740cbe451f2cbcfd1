@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "937deb7c_6cff3e58",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-03-15T08:12:05Z",
+      "side": 1,
+      "message": "1. Should the commit message include a reference to:\nhttps://git.jami.net/savoirfairelinux/jami-client-gnome/-/issues/1169\n\n2. Should the patches with the topic \"jlamy_hunspell\" have commit messages that also include the reference above?\nhttps://review.jami.net/q/topic:%22jlamy_hunspell%22\n\n3. Should the issue at https://git.jami.net/savoirfairelinux/jami-client-gnome/-/issues/1169 be assigned to Jérôme Lamy?\n\nThank you",
+      "revId": "2f4765d7269ad1156dd88c5740cbe451f2cbcfd1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
