@@ -37,7 +37,7 @@
     <message>
         <location filename="../src/app/conversationlistmodelbase.cpp" line="140"/>
         <source>(deleted message)</source>
-        <translation type="unfinished"/>
+        <translation>(mensagem apagada)</translation>
     </message>
 </context>
 <context>
@@ -91,17 +91,17 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="329"/>
         <source>Unrecognized conversation mode</source>
-        <translation type="unfinished"/>
+        <translation>Mode conversa não reconhecido</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="333"/>
         <source>Not authorized to update conversation information</source>
-        <translation type="unfinished"/>
+        <translation>Não autorizado para atualizar informações da conversa</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="335"/>
         <source>An error occurred while committing a new message</source>
-        <translation type="unfinished"/>
+        <translation>Um erro ocorreu enquanto </translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="331"/>
@@ -308,37 +308,37 @@ Jami será finalizado agora.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="90"/>
         <source>Push-to-talk</source>
-        <translation type="unfinished"/>
+        <translation>Aperte para falar</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="91"/>
         <source>Enable push-to-talk</source>
-        <translation type="unfinished"/>
+        <translation>Ative o aperte para falar</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="92"/>
         <source>Keyboard shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Atalho do teclado</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="93"/>
         <source>Change keyboard shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Mudar o atalho do teclado</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="96"/>
         <source>Change shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Mudar o atalho</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="97"/>
         <source>Press the key to be assigned to push-to-talk shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Aperte a tecla para ser atribuída ao atralho de aperte para falar</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="98"/>
         <source>Assign</source>
-        <translation type="unfinished"/>
+        <translation>Atribuir</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="101"/>
@@ -598,7 +598,7 @@ Jami será finalizado agora.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="176"/>
         <source>Extensions</source>
-        <translation type="unfinished"/>
+        <translation>Extensões</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="186"/>
@@ -723,7 +723,7 @@ Jami será finalizado agora.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="347"/>
         <source>deleted a message</source>
-        <translation type="unfinished"/>
+        <translation>Apagar a mensagem</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="348"/>
@@ -850,7 +850,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="480"/>
         <source>Use native window frame (requires restart)</source>
-        <translation type="unfinished"/>
+        <translation>Usar o frame de janela nativa (requer reinicio)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="484"/>
@@ -880,17 +880,17 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="512"/>
         <source>Delete file from device</source>
-        <translation type="unfinished"/>
+        <translation>Apagar arquivo do dispositivo</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="529"/>
         <source>Content access error</source>
-        <translation type="unfinished"/>
+        <translation>Erro de acesso ao conteúdo</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="530"/>
         <source>Content not found</source>
-        <translation type="unfinished"/>
+        <translation>Conteúdo não encontrado</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="593"/>
@@ -1055,17 +1055,17 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="868"/>
         <source>Donate</source>
-        <translation type="unfinished"/>
+        <translation>Doar</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="869"/>
         <source>If you enjoy using Jami and believe in our mission, would you make a donation?</source>
-        <translation type="unfinished"/>
+        <translation>Se você está gostando do Jami e acredita na nossa missão, gostaria de fazer uma doação?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="870"/>
         <source>Not now</source>
-        <translation type="unfinished"/>
+        <translation>Não agora</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="871"/>
@@ -2365,12 +2365,12 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="778"/>
         <source>Started a call</source>
-        <translation type="unfinished"/>
+        <translation>Começar uma chamada</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="835"/>
         <source>Share your Jami identifier in order to be contacted more easily!</source>
-        <translation type="unfinished"/>
+        <translation>Compartilhe sua identidade Jami para ser contactado mais facilmente!</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="836"/>
@@ -4303,7 +4303,7 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="81"/>
         <source>Donate</source>
-        <translation type="unfinished"/>
+        <translation>Doar</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="86"/>

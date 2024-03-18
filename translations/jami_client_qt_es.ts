@@ -323,22 +323,22 @@ Jami se cerrará.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="93"/>
         <source>Change keyboard shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Cambiar modo abreviado de teclado</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="96"/>
         <source>Change shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Cambiar modo abreviado</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="97"/>
         <source>Press the key to be assigned to push-to-talk shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Presionar la tecla para asignarla al acceso directo pulsar-para-hablar</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="98"/>
         <source>Assign</source>
-        <translation type="unfinished"/>
+        <translation>Asignar</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="101"/>
@@ -856,7 +856,7 @@ El perfil puede cambiarse en cualquier momento desde las configuraciones de la c
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="480"/>
         <source>Use native window frame (requires restart)</source>
-        <translation type="unfinished"/>
+        <translation>Usar marco de ventana nativo (requiere reinicio)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="484"/>
@@ -951,32 +951,32 @@ El perfil puede cambiarse en cualquier momento desde las configuraciones de la c
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="613"/>
         <source>Select image as avatar</source>
-        <translation type="unfinished"/>
+        <translation>Seleccionar una imagen como avatar</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="614"/>
         <source>Select image</source>
-        <translation type="unfinished"/>
+        <translation>Seleccionar una imagen</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="616"/>
         <source>Remove image</source>
-        <translation type="unfinished"/>
+        <translation>Quitar la imagen</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="618"/>
         <source>Image Files (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)</source>
-        <translation type="unfinished"/>
+        <translation>Ficheros de imágenes (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="630"/>
         <source>The Jami Extension Store currently has no extension available for the platform in use. Check again later!</source>
-        <translation type="unfinished"/>
+        <translation>El almacen de extensiones Jami actualmente no tiene una extensión disponible para la plataforma en uso. ¡Vuelva a comprobarlo más tarde!</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="746"/>
         <source>Discard and restart</source>
-        <translation type="unfinished"/>
+        <translation>Desechar y reiniciar</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="748"/>
@@ -1021,27 +1021,27 @@ El perfil puede cambiarse en cualquier momento desde las configuraciones de la c
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="781"/>
         <source>Select dedicated device for hosting future calls in this swarm. If not set, the host will be the device starting a call.</source>
-        <translation type="unfinished"/>
+        <translation>Seleccione un dispositivo dedicado para alojar futuras llamadas en este enjambre. Si no se establece, el host será el dispositivo que inicie una llamada.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="782"/>
         <source>Select this device</source>
-        <translation type="unfinished"/>
+        <translation>Seleccione este dispositivo</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="783"/>
         <source>Select device</source>
-        <translation type="unfinished"/>
+        <translation>Seleccione dispositivo</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="788"/>
         <source>Show local video</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar vídeo local</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="789"/>
         <source>Hide local video</source>
-        <translation type="unfinished"/>
+        <translation>Ocultar vídeo local</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="844"/>
@@ -1051,7 +1051,7 @@ El perfil puede cambiarse en cualquier momento desde las configuraciones de la c
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="845"/>
         <source>Customize your profile</source>
-        <translation type="unfinished"/>
+        <translation>Personaliza tu perfil</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="848"/>
@@ -1086,12 +1086,12 @@ El perfil puede cambiarse en cualquier momento desde las configuraciones de la c
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="875"/>
         <source>Shift+Enter</source>
-        <translation type="unfinished"/>
+        <translation>Mayús+Enter</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="876"/>
         <source>Enter or Shift+Enter to insert a new line</source>
-        <translation type="unfinished"/>
+        <translation>Enter o Mayús + Enter para insertar una nueva línea</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="890"/>
@@ -1106,7 +1106,7 @@ El perfil puede cambiarse en cualquier momento desde las configuraciones de la c
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="867"/>
         <source>Free and private sharing. &lt;a href=&quot;https://jami.net/whydonate/&quot;&gt;Donate&lt;/a&gt; to expand it.</source>
-        <translation type="unfinished"/>
+        <translation>Compartir libre y privado. &lt;a href=&quot;https://jami.net/whydonate/&quot;&gt;Dona&lt;/a&gt; para expandirlo.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="880"/>
@@ -1457,7 +1457,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="60"/>
         <source>Add another account</source>
-        <translation type="unfinished"/>
+        <translation>Agregar otra cuenta</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="61"/>
@@ -2365,12 +2365,12 @@ Tu imagen y tu apodo se pueden cambiar en todo momento en la configuración de t
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="776"/>
         <source>Join in audio</source>
-        <translation type="unfinished"/>
+        <translation>Unirse en audio</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="777"/>
         <source>Join in video</source>
-        <translation type="unfinished"/>
+        <translation>Únete en vídeo</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="778"/>
@@ -3834,7 +3834,7 @@ se conecte para sincronizar la conversación.</translation>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="508"/>
         <source>(profile updated)</source>
-        <translation type="unfinished"/>
+        <translation>(perfil actualizado)</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="309"/>

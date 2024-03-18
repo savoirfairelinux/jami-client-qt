@@ -2421,7 +2421,7 @@ Ihr Bild und Ihr Spitzname können jederzeit in den Einstellungen Ihres Kontos g
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="860"/>
         <source>Moderation</source>
-        <translation>Maß</translation>
+        <translation>Moderation</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="863"/>

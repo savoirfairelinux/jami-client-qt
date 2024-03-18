@@ -159,7 +159,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="40"/>
         <source>Migrating to the Swarm technology will enable synchronizing this conversation across multiple devices and improve reliability. The legacy conversation history will be cleared in the process.</source>
-        <translation>Миграција на технологију Сварм ће омогућити синхронизацију овог разговора на више уређаја и побољшати поузданост.</translation>
+        <translation>Prelazak na Swarm tehnologiju će omogućiti sinhronizaciju ovog razgovora na više uređaja i poboljšati pouzdanost. Zastarela istorija razgovora biće obrisana u tom procesu.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="44"/>
@@ -283,12 +283,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="85"/>
         <source>Enable custom ringtone</source>
-        <translation>Омогућити прилагођени зову</translation>
+        <translation>Omogućite prilagođenu melodiju zvona</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="86"/>
         <source>Select custom ringtone</source>
-        <translation>Изаберете прилагођени звон</translation>
+        <translation>Izaberite prilagođenu melodiju zvona</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="87"/>
@@ -413,17 +413,17 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="120"/>
         <source>Select a private key</source>
-        <translation>Изаберете приватни кључ</translation>
+        <translation>Izaberite privatni ključ</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="121"/>
         <source>Select a user certificate</source>
-        <translation>Изаберете корисничко сертификат</translation>
+        <translation>Izaberite korisnički sertifikat</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="122"/>
         <source>Select a CA certificate</source>
-        <translation>Изаберете сертификат CA</translation>
+        <translation>Izaberite CA sertifikat</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="124"/>
@@ -613,7 +613,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="188"/>
         <source>Select audio input device</source>
-        <translation>Изаберете уређај за улазак аудио</translation>
+        <translation>Izaberite audio ulazni uređaj</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="189"/>
@@ -623,7 +623,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="190"/>
         <source>Select audio output device</source>
-        <translation>Изаберете аудио излаз уређаја</translation>
+        <translation>Izaberite audio izlazni uređaj</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="191"/>
@@ -648,7 +648,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="198"/>
         <source>Select video device</source>
-        <translation>Изаберете видео уређај</translation>
+        <translation>Izaberite video uređaj</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="199"/>
@@ -658,12 +658,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="200"/>
         <source>Resolution</source>
-        <translation>Резолуција</translation>
+        <translation>Rezolucija</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="201"/>
         <source>Select video resolution</source>
-        <translation>Изаберете резолуцију видео снимка</translation>
+        <translation>Izaberite rezoluciju videa</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="202"/>
@@ -673,17 +673,17 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="203"/>
         <source>Select video frame rate (frames per second)</source>
-        <translation>Изаберете брзину кадрова видео снимка (кадрова у секунди)</translation>
+        <translation>Izaberite brzinu kadrova za video (frejmovi u sekundi)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="204"/>
         <source>Enable hardware acceleration</source>
-        <translation>Омогућити хардверско забрзање</translation>
+        <translation>Omogući hardversko ubrzanje</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="207"/>
         <source>Select screen sharing frame rate (frames per second)</source>
-        <translation>Изаберете брзину кадрова за дељење екрана (кадрова у секунди)</translation>
+        <translation>Izaberite brzinu kadrova za deljenje ekrana (frejmovi u sekundi)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="208"/>
@@ -1176,7 +1176,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="586"/>
         <source>Select &quot;Link another device&quot;</source>
-        <translation>Изаберете &quot;Пузи други уређај&quot;</translation>
+        <translation>Izaberite „Poveži drugi uređaj“</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="690"/>
@@ -1692,7 +1692,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="284"/>
         <source>Select sharing method</source>
-        <translation>Изаберете методу дељења</translation>
+        <translation>Izaberite metod deljenja</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="285"/>
@@ -1777,7 +1777,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="304"/>
         <source>Video bitrate</source>
-        <translation>Битрат видео</translation>
+        <translation>Video bitaža</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="305"/>
@@ -1914,12 +1914,12 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="340"/>
         <source>Place audio call</source>
-        <translation>Уведите аудио позив</translation>
+        <translation>Uputite audio poziv</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="341"/>
         <source>Place video call</source>
-        <translation>Постави видео позив</translation>
+        <translation>Uputite video poziv</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="342"/>
@@ -2526,7 +2526,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="476"/>
         <source>Select a folder</source>
-        <translation>Изаберете папку</translation>
+        <translation>Izaberite fasciklu</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="477"/>
@@ -2693,7 +2693,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="539"/>
         <source>This feature will enable call buttons in swarms with multiple participants.</source>
-        <translation>Ова функција ће омогућити дугме позива у родовима са више учесника.</translation>
+        <translation>Ova funkcija će omogućiti dugmad za pozivanje u rojevima sa više učesnika.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="542"/>
@@ -2784,7 +2784,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="573"/>
         <source>Select archive file</source>
-        <translation>Изаберете архивски датотека</translation>
+        <translation>Izaberite datoteku arhive</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="440"/>
@@ -2980,18 +2980,18 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="642"/>
         <source>Select a file</source>
-        <translation>Изаберете датотеку</translation>
+        <translation>Izaberite datoteku</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="123"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="643"/>
         <source>Select</source>
-        <translation>Изаберете</translation>
+        <translation>Izaberite</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="644"/>
         <source>Choose image file</source>
-        <translation>Изаберете фајл слике</translation>
+        <translation>Izaberite datoteku slike</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="645"/>
@@ -3021,7 +3021,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="650"/>
         <source>Choose Plugin</source>
-        <translation>Изаберете додатак</translation>
+        <translation>Izaberite dodatak</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="656"/>
@@ -3263,7 +3263,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="730"/>
         <source>Enable local moderators</source>
-        <translation>Омогућити локалне модератере</translation>
+        <translation>Omogućite lokalne moderatore</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="731"/>
