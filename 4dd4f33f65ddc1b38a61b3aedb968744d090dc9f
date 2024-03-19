@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af095893_12186c60",
+        "filename": "extras/packaging/gnu-linux/rules/debian/control",
+        "patchSetId": 10
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-03-19T15:45:28Z",
+      "side": 1,
+      "message": "still needed if we disable pipewire?",
+      "range": {
+        "startLine": 48,
+        "startChar": 3,
+        "endLine": 48,
+        "endChar": 71
+      },
+      "revId": "4dd4f33f65ddc1b38a61b3aedb968744d090dc9f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae22c150_ccad29d3",
+        "filename": "src/app/avadapter.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-03-19T15:45:28Z",
+      "side": 1,
+      "message": "all except Wayland",
+      "range": {
+        "startLine": 72,
+        "startChar": 52,
+        "endLine": 72,
+        "endChar": 93
+      },
+      "revId": "4dd4f33f65ddc1b38a61b3aedb968744d090dc9f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c8f08e0_9b7bafbc",
+        "filename": "src/app/avadapter.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-03-19T15:45:28Z",
+      "side": 1,
+      "message": "Wayland (else GNU/Linux)",
+      "range": {
+        "startLine": 75,
+        "startChar": 25,
+        "endLine": 75,
+        "endChar": 44
+      },
+      "revId": "4dd4f33f65ddc1b38a61b3aedb968744d090dc9f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "461bba28_9b291d68",
+        "filename": "src/app/avadapter.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-03-19T15:45:28Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 97,
+        "startChar": 54,
+        "endLine": 97,
+        "endChar": 69
+      },
+      "revId": "4dd4f33f65ddc1b38a61b3aedb968744d090dc9f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82d13c5e_f09c19d8",
+        "filename": "src/app/avadapter.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-03-19T15:45:28Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 100,
+        "startChar": 18,
+        "endLine": 100,
+        "endChar": 44
+      },
+      "revId": "4dd4f33f65ddc1b38a61b3aedb968744d090dc9f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1dfa8a93_dc8db657",
+        "filename": "src/app/avadapter.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-03-19T15:45:28Z",
+      "side": 1,
+      "message": "maybe Q_OS_LINUX, because Wayland doesn\u0027t exist on other platfoms",
+      "range": {
+        "startLine": 153,
+        "startChar": 9,
+        "endLine": 153,
+        "endChar": 21
+      },
+      "revId": "4dd4f33f65ddc1b38a61b3aedb968744d090dc9f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf25ebba_d3852390",
+        "filename": "src/app/mainview/components/CallActionBar.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-03-19T15:45:28Z",
+      "side": 1,
+      "message": "why callAdapter.muteCameraToggle doesn\u0027t work here?",
+      "range": {
+        "startLine": 299,
+        "startChar": 34,
+        "endLine": 300,
+        "endChar": 44
+      },
+      "revId": "4dd4f33f65ddc1b38a61b3aedb968744d090dc9f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
