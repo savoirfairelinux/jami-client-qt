@@ -89,7 +89,12 @@ Popup {
                 spacing: 15
                 Layout.preferredWidth: 400
                 Layout.preferredHeight: childrenRect.height + 30 < 700 ? childrenRect.height + 30 : 700
-                model: Object.entries(reactions)
+
+		property var orderedReactions: Object.entries(reactions).sort(function(a, b) {
+        		return a[0] === CurrentAccount.uri ? -1 : 0;
+    		})
+    		model: orderedReactions
+
                 clip: true
                 property int modelCount: Object.entries(reactions).length
 
@@ -121,7 +126,7 @@ Popup {
                         elide: Text.ElideRight
                         font.pointSize: JamiTheme.namePopupFontsize
                         color: JamiTheme.chatviewTextColor
-                        text: isMe ? " " + CurrentAccount.bestName + "   " : " " + UtilsAdapter.getBestNameForUri(CurrentAccount.id, authorUri) + "   "
+                        text: isMe ? "Me" : " " + UtilsAdapter.getBestNameForUri(CurrentAccount.id, authorUri) + "   "
                     }
 
                     GridLayout {
