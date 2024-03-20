@@ -22,6 +22,30 @@
       },
       "revId": "a8a736bc8c8f1720dab3270d6160b97818c387d5",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fdf0f3e_b5536b78",
+        "filename": "extras/packaging/gnu-linux/docker/Dockerfile_fedora_37",
+        "patchSetId": 10
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-03-20T19:17:47Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "530c6bf6_011e3d15",
+      "range": {
+        "startLine": 101,
+        "startChar": 19,
+        "endLine": 101,
+        "endChar": 35
+      },
+      "revId": "a8a736bc8c8f1720dab3270d6160b97818c387d5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }

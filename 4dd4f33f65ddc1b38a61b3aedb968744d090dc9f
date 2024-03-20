@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e13650e_a18c9ce8",
+        "filename": "extras/packaging/gnu-linux/rules/debian/control",
+        "patchSetId": 10
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-03-20T19:17:47Z",
+      "side": 1,
+      "message": "Yes, or at least this was the simplest solution I could find to make the build work on all Debian-based platforms.\n\nThe alternative would be to remove libpipewire-0.3-dev from the build dependencies for Ubuntu 20.04 only, but I looked and there doesn\u0027t seem to be an easy way to have conditional dependencies in a control file. We could define a variable (similar to ${shlibs:Depends}), but then we\u0027d need to add extra code elsewhere to define its value. We could also have a separate control file specifically for Ubuntu 20.04, but I felt like simply adding an extra package in the list was easier.",
+      "parentUuid": "af095893_12186c60",
+      "range": {
+        "startLine": 48,
+        "startChar": 3,
+        "endLine": 48,
+        "endChar": 71
+      },
+      "revId": "4dd4f33f65ddc1b38a61b3aedb968744d090dc9f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ae22c150_ccad29d3",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-19T15:45:28Z",
       "side": 1,
       "message": "all except Wayland",
+      "range": {
+        "startLine": 72,
+        "startChar": 52,
+        "endLine": 72,
+        "endChar": 93
+      },
+      "revId": "4dd4f33f65ddc1b38a61b3aedb968744d090dc9f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8bf22fb4_bc184cf8",
+        "filename": "src/app/avadapter.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-03-20T19:17:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae22c150_ccad29d3",
       "range": {
         "startLine": 72,
         "startChar": 52,
@@ -70,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce890d1c_41c20b69",
+        "filename": "src/app/avadapter.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-03-20T19:17:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c8f08e0_9b7bafbc",
+      "range": {
+        "startLine": 75,
+        "startChar": 25,
+        "endLine": 75,
+        "endChar": 44
+      },
+      "revId": "4dd4f33f65ddc1b38a61b3aedb968744d090dc9f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "461bba28_9b291d68",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-03-19T15:45:28Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 97,
+        "startChar": 54,
+        "endLine": 97,
+        "endChar": 69
+      },
+      "revId": "4dd4f33f65ddc1b38a61b3aedb968744d090dc9f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a282b79_329668ca",
+        "filename": "src/app/avadapter.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-03-20T19:17:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "461bba28_9b291d68",
       "range": {
         "startLine": 97,
         "startChar": 54,
@@ -116,6 +212,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "569c9048_1b95535f",
+        "filename": "src/app/avadapter.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-03-20T19:17:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82d13c5e_f09c19d8",
+      "range": {
+        "startLine": 100,
+        "startChar": 18,
+        "endLine": 100,
+        "endChar": 44
+      },
+      "revId": "4dd4f33f65ddc1b38a61b3aedb968744d090dc9f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1dfa8a93_dc8db657",
@@ -139,6 +259,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4363982_8751be1e",
+        "filename": "src/app/avadapter.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-03-20T19:17:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1dfa8a93_dc8db657",
+      "range": {
+        "startLine": 153,
+        "startChar": 9,
+        "endLine": 153,
+        "endChar": 21
+      },
+      "revId": "4dd4f33f65ddc1b38a61b3aedb968744d090dc9f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bf25ebba_d3852390",
@@ -152,6 +296,30 @@
       "writtenOn": "2024-03-19T15:45:28Z",
       "side": 1,
       "message": "why callAdapter.muteCameraToggle doesn\u0027t work here?",
+      "range": {
+        "startLine": 299,
+        "startChar": 34,
+        "endLine": 300,
+        "endChar": 44
+      },
+      "revId": "4dd4f33f65ddc1b38a61b3aedb968744d090dc9f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03fc3484_9d5f7b5c",
+        "filename": "src/app/mainview/components/CallActionBar.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-03-20T19:17:47Z",
+      "side": 1,
+      "message": "I added a comment to explain this. Let me know if you\u0027d like more detail or if you can think of a better solution, but it\u0027s important to do the ScreenCastPortal cleanup when a screen share ends, regardless of the reason (this is also why I added an \u0027onCallStatusChanged\u0027 slot in avadapter.cpp).",
+      "parentUuid": "bf25ebba_d3852390",
       "range": {
         "startLine": 299,
         "startChar": 34,
