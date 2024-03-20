@@ -135,24 +135,62 @@ JamiFlickable {
             color: "transparent"
         }
 
+        Rectangle {
+            id: underlineRect
+            visible: false
+            color: "red"
+            height: 2
+        }
+
+        TextMetrics {
+            id: textMetrics
+            elide: Text.ElideMiddle
+            font.family: textArea.font.family
+        }
+
+        Text {
+            id: highlight
+            color: "black"
+            font.bold: true
+            visible: false
+        }
+
         onReleased: function (event) {
             if (event.button === Qt.RightButton) {
                 var position = textArea.positionAt(event.x, event.y);
-
                 textArea.moveCursorSelection(position, TextInput.SelectWords);
                 textArea.selectWord();
-                if(!MessagesAdapter.spell(textArea.selectedText)) {
+                if (!MessagesAdapter.spell(textArea.selectedText)) {
                     var wordList = MessagesAdapter.spellSuggestionsRequest(textArea.selectedText);
                     if (wordList.length !== 0) {
                         textAreaContextMenu.addMenuItem(wordList);
                     }
                 }
-
                 textAreaContextMenu.openMenuAt(event);
             }
         }
 
         onTextChanged: {
+            if (textArea.cursorPosition > 0) {
+                var previousChar = textArea.text.charAt(textArea.cursorPosition - 1);
+                if (!previousChar.match(/[a-zA-Z]/)) {
+                    var oldcursorPosition = textArea.cursorPosition;
+                    // Move cursor on the word we want to check. Exclude punctuation
+                    var i = 0;
+                    while (!textArea.text.charAt(textArea.cursorPosition - i).match(/[a-zA-Z]/)) {
+                        i++;
+                    }
+                    textArea.cursorPosition = textArea.cursorPosition - i; // remove space or punctuation
+                    textArea.selectWord();
+                    var spellCorrect = MessagesAdapter.spell(textArea.selectedText);
+                    if (!spellCorrect) {
+                        highlightPreviousWord();
+                    }
+                    textArea.deselect();
+                    // restore cursor position
+                    textArea.cursorPosition = oldcursorPosition;
+                }
+            }
             if (text !== debounceText && !showPreview) {
                 debounceText = text;
                 MessagesAdapter.userIsComposing(text ? true : false);
@@ -191,6 +229,17 @@ JamiFlickable {
                 nextItemInFocusChain().forceActiveFocus(Qt.TabFocusReason);
                 keyEvent.accepted = true;
             }
+        }
+
+        function highlightPreviousWord() {
+            textMetrics.text = textArea.selectedText;
+            var cursorRect = textArea.cursorRectangle;
+            var x = cursorRect.x;
+            var y = cursorRect.y + cursorRect.height;
+            underlineRect.x = x - textMetrics.width;
+            underlineRect.y = y;
+            underlineRect.width = textMetrics.width;
+            underlineRect.visible = true;
         }
     }
 }
