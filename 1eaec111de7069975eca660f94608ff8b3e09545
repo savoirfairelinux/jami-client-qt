@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e5f5e1d_7c2dbbec",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 16
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-03-21T21:14:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a725b95_7f8846c0",
+      "range": {
+        "startLine": 7,
+        "startChar": 25,
+        "endLine": 7,
+        "endChar": 32
+      },
+      "revId": "1eaec111de7069975eca660f94608ff8b3e09545",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ecc85fe1_adfc78de",
@@ -76,6 +100,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecf6a757_d1362f4b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-03-21T21:14:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ecc85fe1_adfc78de",
+      "revId": "1eaec111de7069975eca660f94608ff8b3e09545",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ae15d178_46a55808",
@@ -89,6 +131,30 @@
       "writtenOn": "2024-03-21T17:32:30Z",
       "side": 1,
       "message": "not needed?",
+      "range": {
+        "startLine": 594,
+        "startChar": 19,
+        "endLine": 594,
+        "endChar": 34
+      },
+      "revId": "1eaec111de7069975eca660f94608ff8b3e09545",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cdf2d181_2a616126",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 16
+      },
+      "lineNbr": 594,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-03-21T21:14:20Z",
+      "side": 1,
+      "message": "Needed because this macro was previously only defined in `src/libclient/CMakeLists.txt`, but I use it in `avadapter.cpp` and `screencastportal.cpp` which are in `src/app/`.",
+      "parentUuid": "ae15d178_46a55808",
       "range": {
         "startLine": 594,
         "startChar": 19,
