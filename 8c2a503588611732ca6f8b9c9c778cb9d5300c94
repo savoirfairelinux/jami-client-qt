@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3269a138_b7b4b7b4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-03-21T20:38:36Z",
+      "side": 1,
+      "message": "Should \"Jérôme Lamy\" be added to \"Created by\" in the \"About Jami\" dialog? Thank you",
+      "revId": "8c2a503588611732ca6f8b9c9c778cb9d5300c94",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
