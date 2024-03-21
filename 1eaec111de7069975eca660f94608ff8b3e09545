@@ -43,6 +43,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f9519fbd_aa187c4e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-03-21T20:34:12Z",
+      "side": 1,
+      "message": "Should \"François-Simon Fauteux-Chapleau\" be added to \"Created by\" in the \"About Jami\" dialog? Thank you",
+      "revId": "1eaec111de7069975eca660f94608ff8b3e09545",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ae15d178_46a55808",
         "filename": "CMakeLists.txt",
         "patchSetId": 16
