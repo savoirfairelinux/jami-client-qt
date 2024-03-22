@@ -46,6 +46,30 @@
       },
       "revId": "b45271d361d5699e14551bbcdfad514387786e02",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53407918_54ed2d5c",
+        "filename": "src/app/avadapter.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-03-22T14:12:51Z",
+      "side": 1,
+      "message": "Compiling with `--no-libwrap` fails for me if `\u003csys/prctl.h\u003e` is not included.",
+      "parentUuid": "83b3a3ad_59189dbe",
+      "range": {
+        "startLine": 30,
+        "startChar": 1,
+        "endLine": 32,
+        "endChar": 19
+      },
+      "revId": "b45271d361d5699e14551bbcdfad514387786e02",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
