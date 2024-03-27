@@ -35,7 +35,7 @@
 #include <QtQuickTest/quicktest.h>
 #include <QSignalSpy>
 
-#ifdef WITH_WEBENGINE
+#if WITH_WEBENGINE
 #include <QtWebEngineCore>
 #include <QtWebEngineQuick>
 #endif
@@ -206,7 +206,7 @@ main(int argc, char** argv)
     // Allow the user to enable fatal warnings for certain tests.
     Utils::remove_argument(argv, argc, "--failonwarn", [&]() { qputenv("QT_FATAL_WARNINGS", "1"); });
 
-#ifdef WITH_WEBENGINE
+#if WITH_WEBENGINE
     QtWebEngineQuick::initialize();
 #endif
     QTEST_SET_MAIN_SOURCE_PATH
