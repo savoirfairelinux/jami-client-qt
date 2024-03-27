@@ -178,13 +178,6 @@ JamiFlickable {
             color: "transparent"
         }
 
-        Rectangle {
-            id: underlineRect
-            visible: false
-            color: "red"
-            height: 2
-        }
-
         TextMetrics {
             id: textMetrics
             elide: Text.ElideMiddle
@@ -277,12 +270,13 @@ JamiFlickable {
         function highlightPreviousWord() {
             textMetrics.text = textArea.selectedText;
             var cursorRect = textArea.cursorRectangle;
-            var x = cursorRect.x;
+            var x = cursorRect.x - textMetrics.width;
             var y = cursorRect.y + cursorRect.height;
-            underlineRect.x = x - textMetrics.width;
-            underlineRect.y = y;
-            underlineRect.width = textMetrics.width;
-            underlineRect.visible = true;
+
+            var rectObject = Qt.createQmlObject('import QtQuick 2.5; Rectangle {height: 2; color: "red";}', parent);
+            rectObject.x = x;
+            rectObject.y = y;
+            rectObject.width = textMetrics.width
         }
     }
 }
