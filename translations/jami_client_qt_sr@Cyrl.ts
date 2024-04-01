@@ -308,37 +308,37 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="90"/>
         <source>Push-to-talk</source>
-        <translation type="unfinished"/>
+        <translation>Voki-toki</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="91"/>
         <source>Enable push-to-talk</source>
-        <translation type="unfinished"/>
+        <translation>Omogućite voki-toki</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="92"/>
         <source>Keyboard shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Prečica na tastaturi</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="93"/>
         <source>Change keyboard shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Promenite prečicu na tastaturi</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="96"/>
         <source>Change shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Promenite prečicu</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="97"/>
         <source>Press the key to be assigned to push-to-talk shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Pritisnite taster da budete dodeljeni voki-toki prečici</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="98"/>
         <source>Assign</source>
-        <translation type="unfinished"/>
+        <translation>Dodeli</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="101"/>
@@ -598,7 +598,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="176"/>
         <source>Extensions</source>
-        <translation type="unfinished"/>
+        <translation>Proširenja</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="186"/>
@@ -850,7 +850,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="480"/>
         <source>Use native window frame (requires restart)</source>
-        <translation type="unfinished"/>
+        <translation>Koristite izvorni okvir prozora (zahteva ponovno pokretanje)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="484"/>
@@ -885,12 +885,12 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="529"/>
         <source>Content access error</source>
-        <translation type="unfinished"/>
+        <translation>Greška u pristupu sadržaju</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="530"/>
         <source>Content not found</source>
-        <translation type="unfinished"/>
+        <translation>Sadržaj nije pronađen</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="593"/>
@@ -900,22 +900,22 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="594"/>
         <source>This account is password encrypted, enter the password to generate a PIN code.</source>
-        <translation type="unfinished"/>
+        <translation>Ovaj nalog je šifrovan lozinkom, unesite lozinku da biste generisali PIN kod.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="596"/>
         <source>PIN expired</source>
-        <translation type="unfinished"/>
+        <translation>PIN je istekao</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="597"/>
         <source>On another device</source>
-        <translation type="unfinished"/>
+        <translation>Na drugom uređaju</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="598"/>
         <source>Install and launch Jami, select &quot;Import from another device&quot; and scan the QR code.</source>
-        <translation type="unfinished"/>
+        <translation>Instalirajte i pokrenite Jami, izaberite „Uvezi sa drugog uređaja“ i skenirajte QR kod.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="599"/>
@@ -925,12 +925,12 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="600"/>
         <source>In Jami, scan QR code or manually enter the PIN.</source>
-        <translation type="unfinished"/>
+        <translation>U Jamiju, skenirajte QR kod ili ručno unesite PIN.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="601"/>
         <source>The PIN code is valid for: </source>
-        <translation type="unfinished"/>
+        <translation>PIN kod važi za:</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="604"/>
