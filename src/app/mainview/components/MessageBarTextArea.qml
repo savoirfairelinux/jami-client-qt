@@ -166,23 +166,7 @@ JamiFlickable {
         onTextChanged: {
             if (textArea.cursorPosition > 0) {
                 var previousChar = textArea.text.charAt(textArea.cursorPosition - 1);
-                if (!previousChar.match(/[a-zA-Z]/)) {
-                    var oldcursorPosition = textArea.cursorPosition;
-                    // Move cursor on the word we want to check. Exclude punctuation
-                    var i = 0;
-                    while (!textArea.text.charAt(textArea.cursorPosition - i).match(/[a-zA-Z]/)) {
-                        i++;
-                    }
-                    textArea.cursorPosition = textArea.cursorPosition - i; // remove space or punctuation
-                    textArea.selectWord();
-                    var spellCorrect = MessagesAdapter.spell(textArea.selectedText);
-                    if (!spellCorrect) {
-                        highlightPreviousWord();
-                    }
-                    textArea.deselect();
-                    // restore cursor position
-                    textArea.cursorPosition = oldcursorPosition;
-                }
+                updateUnderlineText();
             }
             if (text !== debounceText && !showPreview) {
                 debounceText = text;
@@ -224,16 +208,59 @@ JamiFlickable {
             }
         }
 
-        function highlightPreviousWord() {
+        function highlightCurrentWord() {
             textMetrics.text = textArea.selectedText;
             var cursorRect = textArea.cursorRectangle;
             var x = cursorRect.x - textMetrics.width;
             var y = cursorRect.y + cursorRect.height;
+            var underlineObject = Qt.createQmlObject('import QtQuick 2.5; Rectangle {height: 2; color: "red";}', parent);
+            underlineObject.x = x;
+            underlineObject.y = y;
+            underlineObject.width = textMetrics.width;
+            underlineList.push(underlineObject);
+        }
 
-            var rectObject = Qt.createQmlObject('import QtQuick 2.5; Rectangle {height: 2; color: "red";}', parent);
-            rectObject.x = x;
-            rectObject.y = y;
-            rectObject.width = textMetrics.width
+        function updateUnderlineText() {
+            /* Need to refresh all of the underline object. Otherwise the
+             * underline stay persistent on type
+             */
+            clearUnderlines();
+            var cursorPosition = textArea.cursorPosition;
+            var oldCursorPosition = cursorPosition;
+
+            // Extract word from text
+            var words = textArea.text.split(/\W+/);
+            var cursorIndex = 0;
+            for (var i = 0; i < words.length; i++) {
+                var word = words[i];
+                if (word.length === 0) {
+                    continue; // Skip empty words
+                }
+
+                // Find the position of the word in the text
+                var wordIndex = textArea.text.indexOf(word, cursorIndex);
+                textArea.cursorPosition = wordIndex;
+                textArea.selectWord();
+                if (!MessagesAdapter.spell(textArea.selectedText)) {
+                    highlightCurrentWord();
+                }
+                // Update cursor index
+                cursorIndex = wordIndex + word.length;
+                textArea.deselect();
+            }
+            textArea.cursorPosition = oldCursorPosition;
+        }
+
+        function clearUnderlines() {
+            // Destroy all of the underline boxes
+            while (underlineList.length > 0) {
+                // Get the previous item
+                var underlineObject = underlineList[underlineList.length - 1];
+                // Remove the last item
+                underlineList.pop();
+                // Destroy the removed item
+                underlineObject.destroy();
+            }
         }
     }
 }
