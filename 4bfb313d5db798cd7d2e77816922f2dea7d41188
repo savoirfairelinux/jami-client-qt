@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69672f17_5f8749b1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 982
+      },
+      "writtenOn": "2024-04-02T17:15:58Z",
+      "side": 1,
+      "message": "Spelling and display are now working as they should. Just need to work on the dictionary integration and fetch",
+      "revId": "4bfb313d5db798cd7d2e77816922f2dea7d41188",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
