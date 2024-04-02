@@ -266,7 +266,8 @@ JamiFlickable {
 
         function updateUnderlineText() {
             /* Need to refresh all of the underline object. Otherwise the
-               underline stay persistent on type */
+             * underline stay persistent on type
+             */
             clearUnderlines();
             var cursorPosition = textArea.cursorPosition;
             var oldCursorPosition = cursorPosition;
@@ -276,12 +277,14 @@ JamiFlickable {
             var cursorIndex = 0;
             for (var i = 0; i < words.length; i++) {
                 var word = words[i];
+                if (word.length === 0) {
+                    continue; // Skip empty words
+                }
+
                 // Find the position of the word in the text
                 var wordIndex = textArea.text.indexOf(word, cursorIndex);
-
-                textArea.cursorPosition = cursorIndex;
+                textArea.cursorPosition = wordIndex;
                 textArea.selectWord();
-                console.log(textArea.selectedText);
                 if (!MessagesAdapter.spell(textArea.selectedText)) {
                     highlightCurrentWord();
                 }
