@@ -507,10 +507,6 @@ CallModel::getProposed(VectorMapStringString mediaList,
                        bool mute,
                        bool shareAudio)
 {
-    auto& callInfo = pimpl_->calls[callId];
-    if (!callInfo || source.isEmpty())
-        return {};
-
     QString resource {};
     auto aid = 0;
     auto vid = 0;
@@ -557,7 +553,7 @@ CallModel::getProposed(VectorMapStringString mediaList,
         break;
     }
     default:
-        return {};
+        return mediaList;
     }
 
     VectorMapStringString proposedList {};
