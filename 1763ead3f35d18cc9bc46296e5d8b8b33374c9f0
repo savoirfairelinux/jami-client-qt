@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aea904f2_4e161fe8",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 9
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-04-04T14:01:31Z",
+      "side": 1,
+      "message": "should be possible to use the system package if present",
+      "range": {
+        "startLine": 624,
+        "startChar": 0,
+        "endLine": 624,
+        "endChar": 19
+      },
+      "revId": "1763ead3f35d18cc9bc46296e5d8b8b33374c9f0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05507b68_a2240776",
+        "filename": "extras/scripts/build_hunspell.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-04-04T14:01:31Z",
+      "side": 1,
+      "message": "RIP: https://github.com/hunspell/hunspell/pull/617\n\nIt\u0027d have avoided this dirty script. Also, instead using it from install.sh, it can probably be included in the CMake file",
+      "range": {
+        "startLine": 8,
+        "startChar": 5,
+        "endLine": 8,
+        "endChar": 16
+      },
+      "revId": "1763ead3f35d18cc9bc46296e5d8b8b33374c9f0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2abfb499_2cc437ff",
+        "filename": "extras/scripts/build_hunspell.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-04-04T14:01:31Z",
+      "side": 1,
+      "message": "generally we pass the cpucount (don\u0027t know if the project is big)",
+      "range": {
+        "startLine": 11,
+        "startChar": 5,
+        "endLine": 11,
+        "endChar": 7
+      },
+      "revId": "1763ead3f35d18cc9bc46296e5d8b8b33374c9f0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
