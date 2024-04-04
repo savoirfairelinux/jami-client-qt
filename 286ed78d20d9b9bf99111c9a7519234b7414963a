@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcd6a010_f60a117d",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 763,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-04-04T19:37:39Z",
+      "side": 1,
+      "message": "will never be true and crash if spellChecker_ is nullptr",
+      "range": {
+        "startLine": 763,
+        "startChar": 21,
+        "endLine": 763,
+        "endChar": 42
+      },
+      "revId": "286ed78d20d9b9bf99111c9a7519234b7414963a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
