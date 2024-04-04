@@ -43,8 +43,14 @@ LocalVideo {
 
     visibilityCondition: (CurrentCall.isSharing || !CurrentCall.isVideoMuted) &&
                          !CurrentCall.isConference
+
+    // Keep the area of the preview a proportion of the screen size plus a
+    // modifier to allow the user to scale it.
+    readonly property real containerArea: container.width * container.height
+    property real scalingFactor: 1
+    width: Math.sqrt(containerArea / 16) * scalingFactor
     height: width * invAspectRatio
-    width: Math.max(container.width / 5, JamiTheme.minimumPreviewWidth)
+
     flip: CurrentCall.flipSelf && !CurrentCall.isSharing
     blurRadius: hidden ? 25 : 0
 
@@ -62,6 +68,20 @@ LocalVideo {
     // Animate the hiddenSize with a Behavior.
     Behavior on sideMargin { NumberAnimation { duration: 250; easing.type: Easing.OutExpo }}
     readonly property bool onLeft: state.indexOf("left") !== -1
+
+    MouseArea {
+        anchors.fill: parent
+        enabled: !localPreview.hidden
+        onWheel: function(event) {
+            const delta = event.angleDelta.y / 120 * 0.1;
+            if (event.modifiers & Qt.ControlModifier) {
+                parent.opacity = JamiQmlUtils.clamp(parent.opacity + delta, 0.25, 1);
+            } else {
+                localPreview.scalingFactor = JamiQmlUtils.clamp(localPreview.scalingFactor + delta, 0.5, 4);
+            }
+        }
+    }
+
     PushButton {
         id: hidePreviewButton
         objectName: "hidePreviewButton"
