@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e88931db_711e2d80",
+        "filename": "src/app/commoncomponents/LineEditContextMenu.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-04-04T19:39:11Z",
+      "side": 1,
+      "message": "weird line, should be automatically done",
+      "range": {
+        "startLine": 105,
+        "startChar": 21,
+        "endLine": 105,
+        "endChar": 32
+      },
+      "revId": "42b2161a1f3d0a040ae19188974e33b3631147a3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62cb98fb_3c565b33",
+        "filename": "src/app/commoncomponents/LineEditContextMenu.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-04-04T19:39:11Z",
+      "side": 1,
+      "message": "\u003d\u003d\u003d",
+      "range": {
+        "startLine": 140,
+        "startChar": 28,
+        "endLine": 140,
+        "endChar": 44
+      },
+      "revId": "42b2161a1f3d0a040ae19188974e33b3631147a3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
