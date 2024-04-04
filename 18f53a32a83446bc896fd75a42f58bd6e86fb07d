@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5346942a_b2206358",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-04-04T14:16:47Z",
+      "side": 1,
+      "message": "this change should be marked as a WIP. this is certainly not the way this will be done. the proposal (to have a portable solution) is to download the current language dictionary from https://cgit.freedesktop.org/libreoffice/dictionaries/tree/ to somewhere in the user Jami folder",
+      "revId": "18f53a32a83446bc896fd75a42f58bd6e86fb07d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5c86e897_1b79db4a",
