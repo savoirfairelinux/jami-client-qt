@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c86e897_1b79db4a",
+        "filename": "src/app/appsettingsmanager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-04-04T14:03:58Z",
+      "side": 1,
+      "message": "remove this, not needed from coding style",
+      "range": {
+        "startLine": 79,
+        "startChar": 32,
+        "endLine": 79,
+        "endChar": 36
+      },
+      "revId": "18f53a32a83446bc896fd75a42f58bd6e86fb07d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c29d5d61_a6e464bb",
+        "filename": "src/app/appsettingsmanager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-04-04T14:03:58Z",
+      "side": 1,
+      "message": "only on linux and not the best way to concatenate paths.",
+      "range": {
+        "startLine": 89,
+        "startChar": 32,
+        "endLine": 89,
+        "endChar": 50
+      },
+      "revId": "18f53a32a83446bc896fd75a42f58bd6e86fb07d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e98ee72a_a7a252b8",
+        "filename": "src/app/appsettingsmanager.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-04-04T14:03:58Z",
+      "side": 1,
+      "message": "const",
+      "range": {
+        "startLine": 149,
+        "startChar": 20,
+        "endLine": 149,
+        "endChar": 32
+      },
+      "revId": "18f53a32a83446bc896fd75a42f58bd6e86fb07d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
