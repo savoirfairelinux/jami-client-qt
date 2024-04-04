@@ -41,6 +41,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3a0352e_f339dd42",
+        "filename": "src/app/appsettingsmanager.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 982
+      },
+      "writtenOn": "2024-04-04T19:21:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c86e897_1b79db4a",
+      "range": {
+        "startLine": 79,
+        "startChar": 32,
+        "endLine": 79,
+        "endChar": 36
+      },
+      "revId": "18f53a32a83446bc896fd75a42f58bd6e86fb07d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c29d5d61_a6e464bb",
@@ -77,6 +101,30 @@
       "writtenOn": "2024-04-04T14:03:58Z",
       "side": 1,
       "message": "const",
+      "range": {
+        "startLine": 149,
+        "startChar": 20,
+        "endLine": 149,
+        "endChar": 32
+      },
+      "revId": "18f53a32a83446bc896fd75a42f58bd6e86fb07d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "611b90ff_cf12d217",
+        "filename": "src/app/appsettingsmanager.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 982
+      },
+      "writtenOn": "2024-04-04T19:21:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e98ee72a_a7a252b8",
       "range": {
         "startLine": 149,
         "startChar": 20,

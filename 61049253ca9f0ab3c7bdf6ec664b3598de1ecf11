@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b2d5e25_3bbb1ced",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 982
+      },
+      "writtenOn": "2024-04-04T19:21:50Z",
+      "side": 1,
+      "message": "About the path, the dictionary will be store on request at a specific location.",
+      "revId": "61049253ca9f0ab3c7bdf6ec664b3598de1ecf11",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
