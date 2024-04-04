@@ -28,6 +28,7 @@ import SortFilterProxyModel 0.2
 JamiFlickable {
     id: root
 
+    property int underlineHeight: 2
     property int maxWidth: 330
     property bool tooMuch: {
         if (maxWidth > 0)
@@ -112,7 +113,7 @@ JamiFlickable {
         leftPadding: JamiTheme.scrollBarHandleSize
         rightPadding: JamiTheme.scrollBarHandleSize
         topPadding: 0
-        bottomPadding: 0
+        bottomPadding: underlineHeight
 
         Connections {
             target: textArea
@@ -155,7 +156,7 @@ JamiFlickable {
         leftPadding: JamiTheme.scrollBarHandleSize
         rightPadding: JamiTheme.scrollBarHandleSize
         topPadding: 0
-        bottomPadding: 0
+        bottomPadding: underlineHeight
 
         persistentSelection: true
 
@@ -208,10 +209,7 @@ JamiFlickable {
         }
 
         onTextChanged: {
-            if (textArea.cursorPosition > 0) {
-                var previousChar = textArea.text.charAt(textArea.cursorPosition - 1);
-                updateUnderlineText();
-            }
+            updateUnderlineText();
             if (text != cacheText) {
                 cacheText = text;
                 MessagesAdapter.userIsComposing(text ? true : false);
@@ -223,6 +221,9 @@ JamiFlickable {
         // eg. Enter -> Send messages
         //     Shift + Enter -> Next Line
         Keys.onPressed: function (keyEvent) {
+            // Update underline on each input to take into account deleted text and sent ones
+            updateUnderlineText();
+
             if (keyEvent.matches(StandardKey.Paste)) {
                 MessagesAdapter.onPaste();
                 keyEvent.accepted = true;
