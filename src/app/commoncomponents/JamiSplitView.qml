@@ -21,11 +21,12 @@ import net.jami.Constants 1.1
 
 // A SplitView that supports dynamic RTL and splitView state saving.
 SplitView {
-    id: root
+    id: control
 
     property bool isRTL: UtilsAdapter.isRTL
     property bool isSinglePane: false
     property bool isSwapped: false
+    property real handleSize: 0
 
     onIsRTLChanged: {
         if (isRTL && isSinglePane && !isSwapped)
@@ -42,11 +43,11 @@ SplitView {
     property bool autoManageState: !(parent instanceof BaseView)
 
     function saveSplitViewState() {
-        UtilsAdapter.setAppValue("sv_" + splitViewStateKey, root.saveState());
+        UtilsAdapter.setAppValue("sv_" + splitViewStateKey, control.saveState());
     }
 
     function restoreSplitViewState() {
-        root.restoreState(UtilsAdapter.getAppValue("sv_" + splitViewStateKey));
+        control.restoreState(UtilsAdapter.getAppValue("sv_" + splitViewStateKey));
     }
 
     onResizingChanged: if (!resizing)
@@ -69,15 +70,32 @@ SplitView {
     }
 
     handle: Rectangle {
-        visible: !isSinglePane
-        implicitWidth: JamiTheme.splitViewHandlePreferredWidth
-        implicitHeight: root.height
-        color: JamiTheme.primaryBackgroundColor
-        Rectangle {
-            anchors.left: parent.left
-            implicitWidth: 1
-            implicitHeight: root.height
-            color: JamiTheme.tabbarBorderColor
+        id: handleRoot
+
+        readonly property int defaultSize: control.handleSize
+
+        implicitWidth: control.orientation === Qt.Horizontal ? handleRoot.defaultSize : control.width
+        implicitHeight: control.orientation === Qt.Horizontal ? control.height : handleRoot.defaultSize
+
+        // Perhaps the color should get lighter in dark theme
+        readonly property color baseColor: JamiTheme.tabbarBorderColor
+        color: SplitHandle.pressed ? Qt.darker(baseColor, 1.1)
+            : (SplitHandle.hovered ? Qt.darker(baseColor, 1.05) : baseColor)
+
+        containmentMask: Item {
+            readonly property real extraOverflow: 6
+
+            // We need to shift the containment mask to the left or up (LTR will reverse this) to make sure that
+            // a scrollview handle is not obstructed by the splitview handle hover zone.
+            readonly property real scrollHandleOffsetSize: JamiTheme.scrollBarHandleSize / 2
+            readonly property real scrollHandleOffset: isRTL ? -scrollHandleOffsetSize : scrollHandleOffsetSize
+            readonly property real handleHoverPosition: -extraOverflow + scrollHandleOffset
+            readonly property real handleHoverSize: handleRoot.defaultSize + (extraOverflow * 2) + scrollHandleOffset
+
+            x: control.orientation === Qt.Horizontal ? handleHoverPosition : 0
+            y: control.orientation === Qt.Horizontal ? 0 : handleHoverPosition
+            width: control.orientation === Qt.Horizontal ? handleHoverSize : handleRoot.width
+            height: control.orientation === Qt.Horizontal ? handleRoot.height : handleHoverSize
         }
     }
 }
