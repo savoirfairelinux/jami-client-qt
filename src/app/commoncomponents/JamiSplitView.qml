@@ -21,11 +21,12 @@ import net.jami.Constants 1.1
 
 // A SplitView that supports dynamic RTL and splitView state saving.
 SplitView {
-    id: root
+    id: control
 
     property bool isRTL: UtilsAdapter.isRTL
     property bool isSinglePane: false
     property bool isSwapped: false
+    property real handleSize: 1
 
     onIsRTLChanged: {
         if (isRTL && isSinglePane && !isSwapped)
@@ -42,11 +43,11 @@ SplitView {
     property bool autoManageState: !(parent instanceof BaseView)
 
     function saveSplitViewState() {
-        UtilsAdapter.setAppValue("sv_" + splitViewStateKey, root.saveState());
+        UtilsAdapter.setAppValue("sv_" + splitViewStateKey, control.saveState());
     }
 
     function restoreSplitViewState() {
-        root.restoreState(UtilsAdapter.getAppValue("sv_" + splitViewStateKey));
+        control.restoreState(UtilsAdapter.getAppValue("sv_" + splitViewStateKey));
     }
 
     onResizingChanged: if (!resizing)
@@ -69,15 +70,28 @@ SplitView {
     }
 
     handle: Rectangle {
-        visible: !isSinglePane
-        implicitWidth: JamiTheme.splitViewHandlePreferredWidth
-        implicitHeight: root.height
-        color: JamiTheme.primaryBackgroundColor
-        Rectangle {
-            anchors.left: parent.left
-            implicitWidth: 1
-            implicitHeight: root.height
-            color: JamiTheme.tabbarBorderColor
+        id: handleRoot
+
+        readonly property int defaultSize: control.handleSize
+
+        implicitWidth: control.orientation === Qt.Horizontal ? handleRoot.defaultSize : control.width
+        implicitHeight: control.orientation === Qt.Horizontal ? control.height : handleRoot.defaultSize
+
+        color: JamiTheme.tabbarBorderColor
+
+        containmentMask: Item {
+            // In the default configuration, the total handle size is the sum of the default size of the
+            // handle and the extra handle size (4). If the layout is not right-to-left (RTL), the handle
+            // is positioned at 0 on the X-axis, otherwise it's positioned to the left by the extra handle
+            // size (4 pixels). This is done to make it easier to grab small scroll-view handles that are
+            // adjacent to the SplitView handle. Note: vertically oriented handles are not offset.
+            readonly property real extraHandleSize: 4
+            readonly property real handleXPosition: !isRTL ? 0 : -extraHandleSize
+            readonly property real handleSize: handleRoot.defaultSize + extraHandleSize
+
+            x: control.orientation === Qt.Horizontal ? handleXPosition : 0
+            width: control.orientation === Qt.Horizontal ? handleSize : handleRoot.width
+            height: control.orientation === Qt.Horizontal ? handleRoot.height : handleSize
         }
     }
 }
