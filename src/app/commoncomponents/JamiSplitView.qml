@@ -21,11 +21,12 @@ import net.jami.Constants 1.1
 
 // A SplitView that supports dynamic RTL and splitView state saving.
 SplitView {
-    id: root
+    id: control
 
     property bool isRTL: UtilsAdapter.isRTL
     property bool isSinglePane: false
     property bool isSwapped: false
+    property real handleSize: 1
 
     onIsRTLChanged: {
         if (isRTL && isSinglePane && !isSwapped)
@@ -42,11 +43,11 @@ SplitView {
     property bool autoManageState: !(parent instanceof BaseView)
 
     function saveSplitViewState() {
-        UtilsAdapter.setAppValue("sv_" + splitViewStateKey, root.saveState());
+        UtilsAdapter.setAppValue("sv_" + splitViewStateKey, control.saveState());
     }
 
     function restoreSplitViewState() {
-        root.restoreState(UtilsAdapter.getAppValue("sv_" + splitViewStateKey));
+        control.restoreState(UtilsAdapter.getAppValue("sv_" + splitViewStateKey));
     }
 
     onResizingChanged: if (!resizing)
@@ -69,15 +70,33 @@ SplitView {
     }
 
     handle: Rectangle {
-        visible: !isSinglePane
-        implicitWidth: JamiTheme.splitViewHandlePreferredWidth
-        implicitHeight: root.height
-        color: JamiTheme.primaryBackgroundColor
-        Rectangle {
-            anchors.left: parent.left
-            implicitWidth: 1
-            implicitHeight: root.height
-            color: JamiTheme.tabbarBorderColor
+        id: handleRoot
+
+        readonly property int defaultSize: control.handleSize
+
+        implicitWidth: control.orientation === Qt.Horizontal ? handleRoot.defaultSize : control.width
+        implicitHeight: control.orientation === Qt.Horizontal ? control.height : handleRoot.defaultSize
+
+        // Perhaps the color should get lighter in dark theme
+        readonly property color baseColor: JamiTheme.tabbarBorderColor
+        color: SplitHandle.pressed ? Qt.darker(baseColor, 1.1)
+            : (SplitHandle.hovered ? Qt.darker(baseColor, 1.05) : baseColor)
+
+        containmentMask: Item {
+            // In the default configuration, the total handle size is 5 (1 + 2 * 2), and the handle is offset
+            // to the right by 2 pixels in the case of left-to-right layout, and otherwise to the left by 2 pixels.
+            // This is done to make it easier to grab small scroll-view handles. The vertical treatment is independent
+            // of the left-to-rightness.
+            readonly property real extraOverflow: 2
+            readonly property real extraOverflowOffest: 2
+            readonly property real handleHoverXPosition: -extraOverflow + (!isRTL ? extraOverflowOffest : -extraOverflowOffest)
+            readonly property real handleHoverYPosition: -extraOverflow + extraOverflowOffest
+            readonly property real handleHoverSize: handleRoot.defaultSize + (extraOverflow * 2)
+
+            x: control.orientation === Qt.Horizontal ? handleHoverXPosition : 0
+            y: control.orientation === Qt.Horizontal ? 0 : handleHoverYPosition
+            width: control.orientation === Qt.Horizontal ? handleHoverSize : handleRoot.width
+            height: control.orientation === Qt.Horizontal ? handleRoot.height : handleHoverSize
         }
     }
 }
