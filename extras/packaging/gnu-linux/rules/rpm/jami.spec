@@ -2,6 +2,9 @@
 %define version     RELEASE_VERSION
 %define release     0
 
+# Exclude vendored Qt6 from dependency generator
+%define __requires_exclude ^libQt6.*$
+
 Name:          %{name}
 Version:       %{version}
 Release:       %{release}%{?dist}
