@@ -16,6 +16,9 @@
 %define computed_job_count_ %(echo $(( %available_memory / %memory_required_per_core / %max_parallel_builds )))
 %define computed_job_count %max %computed_job_count_ 1
 %define job_count %min %cpu_count %computed_job_count
+# Exclude vendored Qt6 from dependency generator
+%define __provides_exclude_from ^%{_libdir}/qt-jami/.*$
+%define __requires_exclude ^libQt6.*$
 
 Name:          %{name}
 Version:       %{version}
