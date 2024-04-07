@@ -1,5 +1,5 @@
 ARG RISK=edge
-ARG UBUNTU=focal
+ARG UBUNTU=jammy
 
 FROM ubuntu:$UBUNTU as builder
 ARG RISK
