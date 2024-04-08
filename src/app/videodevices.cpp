@@ -18,7 +18,7 @@
 
 #include "videodevices.h"
 
-#include "api/devicemodel.h"
+#include "global.h"
 
 VideoInputDeviceModel::VideoInputDeviceModel(LRCInstance* lrcInstance,
                                              VideoDevices* videoDeviceInstance)
@@ -260,11 +260,10 @@ VideoDevices::stopDevice(const QString& id)
         return;
     }
 
-    qInfo() << "Stopping device" << id;
     if (lrcInstance_->avModel().stopPreview(id)) {
         deviceOpen_ = false;
     } else {
-        qWarning() << "Failed to stop device" << id;
+        C_DBG << "Failed to stop device" << id;
     }
 }
 
