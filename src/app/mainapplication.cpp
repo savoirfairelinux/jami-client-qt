@@ -425,7 +425,8 @@ MainApplication::initQmlLayer()
                          &screenInfo_,
                          this);
 
-    QUrl url;
+    QUrl url = u"qrc:/MainApplicationWindow.qml"_qs;
+#ifdef QT_DEBUG
     if (parser_.isSet("test")) {
         // List the QML files in the project source tree.
         const auto targetTestComponent = findResource(parser_.value("test"));
@@ -439,9 +440,8 @@ MainApplication::initQmlLayer()
         engine_->rootContext()->setContextProperty("testWidth", testWidth);
         engine_->rootContext()->setContextProperty("testHeight", testHeight);
         url = u"qrc:/ComponentTestWindow.qml"_qs;
-    } else {
-        url = u"qrc:/MainApplicationWindow.qml"_qs;
     }
+#endif
     QObject::connect(
         engine_.get(),
         &QQmlApplicationEngine::objectCreationFailed,
