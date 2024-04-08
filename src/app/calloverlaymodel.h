@@ -137,8 +137,7 @@ public:
     Q_INVOKABLE QVariant overflowHiddenModel();
     Q_INVOKABLE QVariant pendingConferenceesModel();
 
-    Q_INVOKABLE void registerFilter(QObject* object, QQuickItem* item);
-    Q_INVOKABLE void unregisterFilter(QObject* object, QQuickItem* item);
+    Q_INVOKABLE void setEventFilterActive(QObject* object, QQuickItem* item, bool isActive);
     bool eventFilter(QObject* object, QEvent* event) override;
 
 Q_SIGNALS:
