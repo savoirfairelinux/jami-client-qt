@@ -362,36 +362,32 @@ CallOverlayModel::clearControls()
 }
 
 void
-CallOverlayModel::registerFilter(QObject* object, QQuickItem* item)
+CallOverlayModel::setEventFilterActive(QObject* object, QQuickItem* item, bool isActive)
 {
     QQuickWindow* window = qobject_cast<QQuickWindow*>(object);
     if (!window || !item) {
-        C_WARN << "Attempting to register an invalid object or item" << object << item;
+        C_WARN << "Attempting to" << (isActive ? "register" : "unregister")
+               << "an invalid object or item" << window << item;
         return;
     }
-    if (watchedItems_.contains(item)) {
-        C_DBG << "Item already registered" << item;
-    }
-    watchedItems_.push_back(item);
-    if (watchedItems_.size() == 1) {
-        window->installEventFilter(this);
-    }
-}
-
-void
-CallOverlayModel::unregisterFilter(QObject* object, QQuickItem* item)
-{
-    QQuickWindow* window = qobject_cast<QQuickWindow*>(object);
-    if (!window || !item) {
-        C_WARN << "Attempting to unregister an invalid object or item" << object << item;
-        return;
-    }
-    if (!watchedItems_.contains(item)) {
-        C_DBG << "Item not registered" << item;
-    }
-    watchedItems_.removeOne(item);
-    if (watchedItems_.size() == 0) {
-        window->removeEventFilter(this);
+    if (isActive) {
+        if (watchedItems_.contains(item)) {
+            C_DBG << "Item already registered" << item;
+        } else {
+            watchedItems_.push_back(item);
+            if (watchedItems_.size() == 1) {
+                window->installEventFilter(this);
+            }
+        }
+    } else {
+        if (!watchedItems_.contains(item)) {
+            C_DBG << "Item not registered" << item;
+        } else {
+            watchedItems_.removeOne(item);
+            if (watchedItems_.size() == 0) {
+                window->removeEventFilter(this);
+            }
+        }
     }
 }
 
