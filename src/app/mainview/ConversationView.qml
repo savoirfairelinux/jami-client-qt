@@ -48,10 +48,10 @@ ListSelectionView {
     leftPaneItem: viewCoordinator.getView("SidePanel", true)
 
     rightPaneItem: StackLayout {
+        id: conversationStackLayout
         objectName: "ConversationLayout"
 
-        currentIndex: !CurrentConversation.hasCall ? 0 : 1
-        onCurrentIndexChanged: chatView.parent = currentIndex === 1 ? callStackView.chatViewContainer : chatViewContainer
+        currentIndex: CurrentConversation.hasCall ? 1 : 0
 
         anchors.fill: parent
 
@@ -64,24 +64,29 @@ ListSelectionView {
             ChatView {
                 id: chatView
                 anchors.fill: parent
-                inCallView: parent == callStackView.chatViewContainer
+
+                // Parent the chat view to the call stack view when in call.
+                parent: callStackView.chatViewContainer ? callStackView.chatViewContainer : chatViewContainer
+                inCallView: parent === callStackView.chatViewContainer
 
                 readonly property string currentConvId: CurrentConversation.id
                 onCurrentConvIdChanged: {
-                    if (!CurrentConversation.hasCall) {
-                        Qt.callLater(focusChatView);
-                    } else {
-                        dismiss();
-                        callStackView.contentView.forceActiveFocus();
-                    }
+                    Qt.callLater(function() {
+                        if (CurrentConversation.hasCall) {
+                            dismiss();
+                            callStackView.contentView.forceActiveFocus();
+                        } else {
+                            focusChatView();
+                        }
+                    });
                 }
 
                 onDismiss: {
-                    if (!inCallView) {
-                        viewNode.dismiss();
-                    } else {
+                    if (inCallView) {
                         callStackView.chatViewContainer.visible = false;
                         callStackView.contentView.forceActiveFocus();
+                    } else {
+                        viewNode.dismiss();
                     }
                 }
 
