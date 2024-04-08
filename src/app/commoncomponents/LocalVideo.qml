@@ -28,6 +28,8 @@ VideoView {
     crop: true
     visible: isRendering && visibilityCondition
 
+    Component.onDestruction: VideoDevices.stopDevice(rendererId);
+
     function startWithId(id, force = false) {
         if (id !== undefined && id.length === 0) {
             stop();
