@@ -25,6 +25,8 @@
 #include "directrenderer.h"
 #else
 #include "shmrenderer.h"
+#include <csignal>
+#include <thread>
 #endif
 #include "callbackshandler.h"
 #include "dbus/callmanager.h"
@@ -42,11 +44,7 @@
 
 #include <algorithm> // std::sort
 #include <chrono>
-#include <csignal>
 #include <iomanip> // for std::put_time
-#include <fstream>
-#include <mutex>
-#include <thread>
 #include <string>
 #include <sstream>
 
@@ -328,7 +326,7 @@ void
 AVModel::setDeviceSettings(video::Settings& settings)
 {
     MapStringString newSettings;
-    auto rate = QString::number(settings.rate, 'f', 7);
+    auto rate = QString::number(static_cast<double>(settings.rate), 'f', 7);
     rate = rate.left(rate.length() - 1);
     newSettings["channel"] = settings.channel;
     newSettings["name"] = settings.name;
@@ -357,7 +355,7 @@ AVModel::getDeviceIdFromName(const QString& deviceName) const
         return settings.name == deviceName;
     });
     if (iter == devices.end()) {
-        qWarning() << "Couldn't find device: " << deviceName;
+        LC_WARN << "Couldn't find device: " << deviceName;
         return {};
     }
     return *iter;
@@ -491,7 +489,7 @@ void
 AVModel::stopLocalRecorder(const QString& path) const
 {
     if (path.isEmpty()) {
-        qWarning("stopLocalRecorder: can't stop non existing recording");
+        LC_WARN << "stopLocalRecorder: can't stop non existing recording";
         return;
     }
 
@@ -664,7 +662,7 @@ AVModel::getListWindows() const
                                                                      });
 
     if (xcb_connection_has_error(c.get())) {
-        qDebug() << "xcb connection has error";
+        LC_DBG << "xcb connection has error";
         return ret;
     }
 
@@ -690,7 +688,7 @@ AVModel::getListWindows() const
     propertyPtr replyPropList(xcb_get_property_reply(c.get(), propCookieList, &e),
                               [](auto* ptr) { free(ptr); });
     if (e) {
-        qDebug() << "Error: " << e->error_code;
+        LC_DBG << "Error: " << e->error_code;
         free(e);
     }
     if (replyPropList.get()) {
@@ -710,7 +708,7 @@ AVModel::getListWindows() const
                                            free(ptr);
                                        }};
                 if (e) {
-                    qDebug() << "Error: " << e->error_code;
+                    LC_DBG << "Error: " << e->error_code;
                     free(e);
                 }
                 if (replyProp.get()) {
@@ -987,7 +985,7 @@ AVModelPimpl::getDevice(int type) const
         if (deviceIdx < devices.size())
             result = devices.at(deviceIdx);
     } catch (std::bad_alloc& ba) {
-        qWarning() << "bad_alloc caught: " << ba.what();
+        LC_WARN << "bad_alloc caught: " << ba.what();
         return "";
     }
     return result;
@@ -1060,7 +1058,7 @@ AVModelPimpl::removeRenderer(const QString& id)
     QWriteLocker lk(&renderersMutex_);
     auto it = renderers_.find(id);
     if (it == renderers_.end()) {
-        qWarning() << "Cannot remove renderer. " << id << "not found";
+        LC_DBG << "Cannot remove renderer. " << id << " not found";
         return {};
     }
     auto removed = std::move(it->second);

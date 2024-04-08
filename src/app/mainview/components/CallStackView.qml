@@ -25,7 +25,11 @@ import "../../commoncomponents"
 
 Item {
     id: root
-    property alias chatViewContainer: ongoingCallPage.chatViewContainer
+    property var chatViewContainer: {
+        if (callStackMainView.item instanceof OngoingCallPage)
+            return callStackMainView.item.chatViewContainer;
+        return undefined;
+    }
     property alias contentView: callStackMainView
 
     property var sipKeys: ["1", "2", "3", "A", "4", "5", "6", "B", "7", "8", "9", "C", "*", "0", "#", "D"]
@@ -61,44 +65,49 @@ Item {
     // TODO: this should all be done by listening to
     // parent visibility change or parent `Component.onDestruction`
     function needToCloseInCallConversationAndPotentialWindow() {
-        ongoingCallPage.closeInCallConversation();
-        ongoingCallPage.closeContextMenuAndRelatedWindows();
+        if (callStackMainView.item instanceof OngoingCallPage) {
+            callStackMainView.item.closeInCallConversation();
+            callStackMainView.item.closeContextMenuAndRelatedWindows();
+        }
     }
 
     function toggleFullScreen() {
         if (!layoutManager.isCallFullscreen) {
-            layoutManager.pushFullScreenItem(callStackMainView.currentItem, callStackMainView, null, null);
+            layoutManager.pushFullScreenItem(callStackMainView.item, callStackMainView, null, null);
         } else {
-            layoutManager.removeFullScreenItem(callStackMainView.currentItem);
+            layoutManager.removeFullScreenItem(callStackMainView.item);
         }
     }
 
-    StackLayout {
+    Loader {
         id: callStackMainView
 
         anchors.fill: parent
 
-        property Item currentItem: itemAt(currentIndex)
-
-        currentIndex: {
+        sourceComponent: {
             switch (CurrentCall.status) {
             case Call.Status.IN_PROGRESS:
             case Call.Status.CONNECTED:
             case Call.Status.PAUSED:
-                return 1;
+                return ongoingCallPageComponent;
             case Call.Status.SEARCHING:
             case Call.Status.CONNECTING:
             case Call.Status.INCOMING_RINGING:
             case Call.Status.OUTGOING_RINGING:
+                return initialCallPageComponent;
             default:
-                return 0;
+                return null;
             }
         }
 
-        InitialCallPage {
+        Component {
+            id: initialCallPageComponent
+            InitialCallPage {}
         }
-        OngoingCallPage {
-            id: ongoingCallPage
+
+        Component {
+            id: ongoingCallPageComponent
+            OngoingCallPage {}
         }
     }
 }
