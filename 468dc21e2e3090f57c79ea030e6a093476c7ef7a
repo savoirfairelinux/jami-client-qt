@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "954b1798_53af0795",
+        "filename": "src/app/commoncomponents/JamiSplitView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-04-09T14:22:36Z",
+      "side": 1,
+      "message": "Yes. Right now `JamiTheme.tabbarBorderColor` is black (#000000) in dark theme, so trying to make it darker doesn\u0027t do anything.",
+      "range": {
+        "startLine": 80,
+        "startChar": 40,
+        "endLine": 80,
+        "endChar": 48
+      },
+      "revId": "468dc21e2e3090f57c79ea030e6a093476c7ef7a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bd12658_a78ad835",
+        "filename": "src/app/commoncomponents/JamiSplitView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-04-09T14:22:36Z",
+      "side": 1,
+      "message": "This color change isn\u0027t really noticeable (at least for me on my current monitor) with a handle that\u0027s only a pixel wide. I\u0027d suggest either making the handle a bit bigger or just using a fixed color.",
+      "range": {
+        "startLine": 82,
+        "startChar": 8,
+        "endLine": 83,
+        "endChar": 76
+      },
+      "revId": "468dc21e2e3090f57c79ea030e6a093476c7ef7a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c05edb13_74ab3091",
+        "filename": "src/app/commoncomponents/JamiSplitView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-04-09T14:22:36Z",
+      "side": 1,
+      "message": "Would it make sense to simply make `extraOverflow` one pixel bigger instead of having an extra parameter?",
+      "range": {
+        "startLine": 91,
+        "startChar": 34,
+        "endLine": 91,
+        "endChar": 54
+      },
+      "revId": "468dc21e2e3090f57c79ea030e6a093476c7ef7a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
