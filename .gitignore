@@ -1,9 +1,18 @@
 *.user
 doc/Doxyfile
 
+### VisualStudioCode ###
+.vscode/**/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+**/.history
+
 GeneratedFiles/
-.vs/
-.vscode/
 x64/
 x86/
 [wW]in32/
