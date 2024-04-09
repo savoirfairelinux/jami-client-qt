@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c09e02a1_ea4637e1",
+        "filename": "src/app/commoncomponents/JamiSplitView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-04-09T14:43:03Z",
+      "side": 1,
+      "message": "Will remove as mentioned in https://review.jami.net/c/jami-client-qt/+/27993/comment/7bd12658_a78ad835/",
+      "parentUuid": "954b1798_53af0795",
+      "range": {
+        "startLine": 80,
+        "startChar": 40,
+        "endLine": 80,
+        "endChar": 48
+      },
+      "revId": "468dc21e2e3090f57c79ea030e6a093476c7ef7a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7bd12658_a78ad835",
         "filename": "src/app/commoncomponents/JamiSplitView.qml",
         "patchSetId": 3
