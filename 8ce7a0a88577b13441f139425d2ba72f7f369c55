@@ -64,6 +64,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c08c1978_7466041a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-04-09T17:49:19Z",
+      "side": 1,
+      "message": "No indeed. Jenkins can\u0027t be accessed without a VPN. This avoid some potential attacks on a opened jenkins. A local build is the only option for external contribs.",
+      "parentUuid": "8115e54a_ac976f3b",
+      "revId": "8ce7a0a88577b13441f139425d2ba72f7f369c55",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "331c62d5_40535ba1",
