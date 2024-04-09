@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f28752a0_8c67d2ff",
+        "filename": "src/app/commoncomponents/JamiSplitView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-04-09T14:40:51Z",
+      "side": 1,
+      "message": "Yeah, I agree with the fixed color. Keeps it simple and Charlotte has requested moving towards transparent handles in the future (some redesign may be required).",
+      "parentUuid": "7bd12658_a78ad835",
+      "range": {
+        "startLine": 82,
+        "startChar": 8,
+        "endLine": 83,
+        "endChar": 76
+      },
+      "revId": "468dc21e2e3090f57c79ea030e6a093476c7ef7a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c05edb13_74ab3091",
         "filename": "src/app/commoncomponents/JamiSplitView.qml",
         "patchSetId": 3
@@ -60,6 +84,30 @@
       "writtenOn": "2024-04-09T14:22:36Z",
       "side": 1,
       "message": "Would it make sense to simply make `extraOverflow` one pixel bigger instead of having an extra parameter?",
+      "range": {
+        "startLine": 91,
+        "startChar": 34,
+        "endLine": 91,
+        "endChar": 54
+      },
+      "revId": "468dc21e2e3090f57c79ea030e6a093476c7ef7a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9356239d_bd3a11d6",
+        "filename": "src/app/commoncomponents/JamiSplitView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-04-09T14:40:51Z",
+      "side": 1,
+      "message": "Yeah, considering that it\u0027s not parametrized at the root component and shouldn\u0027t need to be changed, we can hard-code something simple here.",
+      "parentUuid": "c05edb13_74ab3091",
       "range": {
         "startLine": 91,
         "startChar": 34,
