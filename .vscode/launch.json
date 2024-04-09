@@ -1,0 +1,75 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Jami-Tests-Run",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/usr/bin/ctest",
+            "args": ["-V", "-R"],
+            "cwd": "${workspaceFolder}/build/tests",
+            "externalConsole": false,
+            "environment": [
+                {
+                    "name": "HOME",
+                    "value": "/tmp"
+                }
+            ]
+        },
+        {
+            "name": "Jami-Client",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/jami",
+            "args": [
+                "-d",
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "cmake-build",
+            "miDebuggerPath": "/usr/bin/gdb",
+        },
+        {
+            "name": "Jami-Daemon-Debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/daemon/bin/dbus/jamid",
+            "args": [
+                "-cdp",
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "cmake-build",
+            "miDebuggerPath": "/usr/bin/gdb",
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Jami-Client-IPC",
+            "configurations": [
+                "Jami-Daemon-Debug",
+                "Jami-Client",
+            ]
+        }
+    ]
+}

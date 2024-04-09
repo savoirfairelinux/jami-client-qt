@@ -1,0 +1,52 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "cmake-configure",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "-S", ".",
+                "-B", "build",
+                "-DCMAKE_BUILD_TYPE=Debug",
+                "-DCMAKE_PREFIX_PATH=\"/usr/lib64/qt-jami;/usr/lib/libqt-jami\"",
+                "-DBUILD_TESTING=True"
+            ],
+            "group": "build",
+            "problemMatcher": [],
+            "detail": "Generate the build system files with CMake."
+        },
+        {
+            "label": "cmake-build",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build", "build",
+                "-j$(nproc)",
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "detail": "Compile the project using the generated build system.",
+            "dependsOn": [
+                "cmake-configure"
+            ]
+        },
+        {
+            "label": "cmake-clean",
+            "type": "shell",
+            "command": "rm",
+            "args": [
+                "-rf",
+                "build"
+            ],
+            "group": "build",
+            "problemMatcher": [],
+            "detail": "Clean the build directory."
+        }
+    ]
+}
