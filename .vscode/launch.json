@@ -65,6 +65,9 @@
     ],
     "compounds": [
         {
+            // Using this configuration will require manually reconfiguring the project using
+            // build.py --no-libwrap, otherwise the daemon executable will not be built and the
+            // client will not be built with ENABLE_LIBWRAP=False.
             "name": "Jami-Client-IPC",
             "configurations": [
                 "Jami-Daemon-Debug",
