@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ce4df39_12c09c80",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-04-09T16:25:48Z",
+      "side": 1,
+      "message": "review changes in https://review.jami.net/c/jami-client-qt/+/27993/3..4\nCRLF --\u003e LF in https://review.jami.net/c/jami-client-qt/+/27993/4..5",
+      "revId": "5b92e4708a02986f9b4950c9105791fb09ba0c77",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}

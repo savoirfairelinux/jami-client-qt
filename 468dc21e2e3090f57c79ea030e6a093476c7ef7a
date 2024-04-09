@@ -48,6 +48,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d86fa265_6eedb0c5",
+        "filename": "src/app/commoncomponents/JamiSplitView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-04-09T16:25:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c09e02a1_ea4637e1",
+      "range": {
+        "startLine": 80,
+        "startChar": 40,
+        "endLine": 80,
+        "endChar": 48
+      },
+      "revId": "468dc21e2e3090f57c79ea030e6a093476c7ef7a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7bd12658_a78ad835",
@@ -95,6 +119,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7da4cfe5_db97573f",
+        "filename": "src/app/commoncomponents/JamiSplitView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-04-09T16:25:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f28752a0_8c67d2ff",
+      "range": {
+        "startLine": 82,
+        "startChar": 8,
+        "endLine": 83,
+        "endChar": 76
+      },
+      "revId": "468dc21e2e3090f57c79ea030e6a093476c7ef7a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c05edb13_74ab3091",
@@ -132,6 +180,30 @@
       "side": 1,
       "message": "Yeah, considering that it\u0027s not parametrized at the root component and shouldn\u0027t need to be changed, we can hard-code something simple here.",
       "parentUuid": "c05edb13_74ab3091",
+      "range": {
+        "startLine": 91,
+        "startChar": 34,
+        "endLine": 91,
+        "endChar": 54
+      },
+      "revId": "468dc21e2e3090f57c79ea030e6a093476c7ef7a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e96a15d_33aa1f3d",
+        "filename": "src/app/commoncomponents/JamiSplitView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-04-09T16:25:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9356239d_bd3a11d6",
       "range": {
         "startLine": 91,
         "startChar": 34,
