@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74ce2024_a50f6107",
+        "filename": ".vscode/tasks.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-04-10T13:07:21Z",
+      "side": 1,
+      "message": "On linux, we should try to get Qt from /usr/lib64/qt-jami or /usr/lib/libqt-jami",
+      "range": {
+        "startLine": 27,
+        "startChar": 18,
+        "endLine": 27,
+        "endChar": 32
+      },
+      "revId": "24b52481c8da3e80dc5f6fd0e5e2e2fb3b5cdcd4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
