@@ -22,15 +22,28 @@ if(MSVC)
         googletest
         URL https://github.com/google/googletest/archive/refs/tags/release-1.11.0.zip
     )
-    # for Windows: Prevent overriding the parent project's compiler/linker settings
-    set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+    if(MSVC)
+        # for Windows: Prevent overriding the parent project's compiler/linker settings
+        set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+    endif()
     FetchContent_MakeAvailable(googletest)
+elseif(APPLE)
+    # Use pkg-config to find gtest on macOS
+    find_package(PkgConfig REQUIRED)
+    pkg_search_module(GTEST REQUIRED gtest)
+    list(APPEND EXTRA_TEST_LIBS ${GTEST_LIBRARIES})
+    list(APPEND EXTRA_TEST_LIB_DIRS ${GTEST_LIBRARY_DIRS})
+    # Add the link directories to the target
+    link_directories(${EXTRA_TEST_LIB_DIRS})
+    list(APPEND EXTRA_TEST_INCLUDES ${GTEST_INCLUDE_DIRS})
 else()
     find_package(GTest REQUIRED)
+    list(APPEND EXTRA_TEST_LIBS gtest)
 endif()
 
 set(QML_TEST_LIBS ${QT_LIBS} ${LIBCLIENT_NAME} ${QT_TEST_LIBS})
 set(TESTS_INCLUDES
+    ${EXTRA_TEST_INCLUDES}
     ${CMAKE_SOURCE_DIR}/src
     ${CMAKE_SOURCE_DIR}/tests/qml
     ${CMAKE_SOURCE_DIR}/tests/unittests)
@@ -91,7 +104,7 @@ set(UNIT_TESTS_SOURCE_FILES
 
 set(ALL_TESTS_LIBS
     ${QML_TEST_LIBS}
-    gtest
+    ${EXTRA_TEST_LIBS}
     ${CLIENT_LIBS})
 
 set(ALL_TESTS_INCLUDES
