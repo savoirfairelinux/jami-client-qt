@@ -2,21 +2,6 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Jami-Tests-Run",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "/usr/bin/ctest",
-            "args": ["-V", "-R"],
-            "cwd": "${workspaceFolder}/build/tests",
-            "externalConsole": false,
-            "environment": [
-                {
-                    "name": "HOME",
-                    "value": "/tmp"
-                }
-            ]
-        },
-        {
             "name": "Jami-Client",
             "type": "cppdbg",
             "request": "launch",
@@ -38,6 +23,21 @@
             ],
             "preLaunchTask": "cmake-build",
             "miDebuggerPath": "/usr/bin/gdb",
+        },
+        {
+            "name": "Jami-Tests-Run",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/usr/bin/ctest",
+            "args": ["-V", "-R"],
+            "cwd": "${workspaceFolder}/build/tests",
+            "externalConsole": false,
+            "environment": [
+                {
+                    "name": "HOME",
+                    "value": "/tmp"
+                }
+            ]
         },
         {
             "name": "Jami-Daemon-Debug",

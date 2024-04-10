@@ -10,7 +10,19 @@
                 "-B", "build",
                 "-DCMAKE_BUILD_TYPE=Debug",
                 "-DCMAKE_PREFIX_PATH=\"/usr/lib64/qt-jami;/usr/lib/libqt-jami\"",
-                "-DBUILD_TESTING=True"
+            ],
+            "group": "build",
+            "problemMatcher": [],
+            "detail": "Generate the build system files with CMake."
+        },
+        {
+            "label": "cmake-configure-tests",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "-S", ".",
+                "-B", "build",
+                "-DBUILD_TESTING=${input:buildTestingInput}"
             ],
             "group": "build",
             "problemMatcher": [],
@@ -47,6 +59,14 @@
             "group": "build",
             "problemMatcher": [],
             "detail": "Clean the build directory."
+        }
+    ],
+    "inputs": [
+        {
+            "id": "buildTestingInput",
+            "type": "pickString",
+            "description": "Do you want to enable testing?",
+            "options": ["True", "False"],
         }
     ]
 }
