@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e432ca0_bbddfd3c",
+        "filename": ".vscode/tasks.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-04-10T19:29:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "49cc7b40_42892076",
+      "range": {
+        "startLine": 10,
+        "startChar": 19,
+        "endLine": 10,
+        "endChar": 21
+      },
+      "revId": "56560fdd8c38719d0c036e48165d08ba9ccd71a2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "05103d2f_113ec0fc",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-04-10T18:28:42Z",
       "side": 1,
       "message": "\"-DMAKE_PREFIX_PATH\u003d/usr/lib64/qt-jami:/usr/lib/jami-libqt\"",
+      "range": {
+        "startLine": 11,
+        "startChar": 18,
+        "endLine": 11,
+        "endChar": 35
+      },
+      "revId": "56560fdd8c38719d0c036e48165d08ba9ccd71a2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5eb6409_07ccd821",
+        "filename": ".vscode/tasks.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-04-10T19:29:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05103d2f_113ec0fc",
       "range": {
         "startLine": 11,
         "startChar": 18,

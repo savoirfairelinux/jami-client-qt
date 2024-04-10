@@ -22,6 +22,30 @@
       },
       "revId": "24b52481c8da3e80dc5f6fd0e5e2e2fb3b5cdcd4",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ab15180_d0697de5",
+        "filename": ".vscode/tasks.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-04-10T19:29:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "74ce2024_a50f6107",
+      "range": {
+        "startLine": 27,
+        "startChar": 18,
+        "endLine": 27,
+        "endChar": 32
+      },
+      "revId": "24b52481c8da3e80dc5f6fd0e5e2e2fb3b5cdcd4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
