@@ -94,6 +94,20 @@ ${QT_MAJOR}.${QT_MINOR}/${qt_version}/single
         DEBEMAIL="The Jami project <jami@gnu.org>" dch --release \
                 --distribution "unstable" debian/changelog
 
+        # HACK: For now on ubuntu 24.04 there is no python3.10 package
+        # So create a conda environment to install the required packages
+        CONDA=/root/miniconda3/bin/conda
+        if command -v ${CONDA} &> /dev/null; then
+            . /root/miniconda3/etc/profile.d/conda.sh
+            export PATH="/root/miniconda3/bin:$PATH"
+            conda activate base
+            conda create -n chromium python=3.10 -y
+            conda activate chromium
+            python -m pip install html5lib
+            python -m pip install six
+        fi
+
+
         # Build and package Qt.
         dpkg-buildpackage -uc -us -d ${DPKG_BUILD_OPTIONS}
 
