@@ -1,0 +1,272 @@
+From 34c63ffe4b986249d9bddc6e61889732e510227b Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?S=C3=A9bastien=20Blin?=
+ <sebastien.blin@savoirfairelinux.com>
+Date: Tue, 16 Apr 2024 09:54:32 -0400
+Subject: [PATCH] fix imp->importlib
+
+---
+ .../chromium/mojo/public/tools/mojom/mojom/fileutil.py    | 1 -
+ .../mojo/public/tools/mojom/mojom/fileutil_unittest.py    | 5 +----
+ .../tools/mojom/mojom/generate/generator_unittest.py      | 7 ++-----
+ .../tools/mojom/mojom/generate/translate_unittest.py      | 4 ----
+ .../mojo/public/tools/mojom/mojom/parse/ast_unittest.py   | 6 ------
+ .../mojom/mojom/parse/conditional_features_unittest.py    | 8 ++------
+ .../chromium/mojo/public/tools/mojom/mojom/parse/lexer.py | 1 -
+ .../mojo/public/tools/mojom/mojom/parse/lexer_unittest.py | 7 ++-----
+ .../public/tools/mojom/mojom/parse/parser_unittest.py     | 5 -----
+ 9 files changed, 7 insertions(+), 37 deletions(-)
+
+diff --git a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/fileutil.py b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/fileutil.py
+index 29daec367c..124f12c134 100644
+--- a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/fileutil.py
++++ b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/fileutil.py
+@@ -3,7 +3,6 @@
+ # found in the LICENSE file.
+ 
+ import errno
+-import imp
+ import os.path
+ import sys
+ 
+diff --git a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/fileutil_unittest.py b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/fileutil_unittest.py
+index 48eaf4eca9..c93d22898d 100644
+--- a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/fileutil_unittest.py
++++ b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/fileutil_unittest.py
+@@ -2,19 +2,16 @@
+ # Use of this source code is governed by a BSD-style license that can be
+ # found in the LICENSE file.
+ 
+-import imp
+ import os.path
+ import shutil
+-import sys
+ import tempfile
+ import unittest
+ 
+ from mojom import fileutil
+ 
+-
+ class FileUtilTest(unittest.TestCase):
+   def testEnsureDirectoryExists(self):
+-    """Test that EnsureDirectoryExists fuctions correctly."""
++    """Test that EnsureDirectoryExists functions correctly."""
+ 
+     temp_dir = tempfile.mkdtemp()
+     try:
+diff --git a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/generate/generator_unittest.py b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/generate/generator_unittest.py
+index 76cda3981f..7143e07c4d 100644
+--- a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/generate/generator_unittest.py
++++ b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/generate/generator_unittest.py
+@@ -2,12 +2,11 @@
+ # Use of this source code is governed by a BSD-style license that can be
+ # found in the LICENSE file.
+ 
+-import imp
++import importlib.util
+ import os.path
+ import sys
+ import unittest
+ 
+-
+ def _GetDirAbove(dirname):
+   """Returns the directory "above" this file containing |dirname| (which must
+   also be "above" this file)."""
+@@ -20,12 +19,11 @@ def _GetDirAbove(dirname):
+ 
+ 
+ try:
+-  imp.find_module("mojom")
++  importlib.util.find_spec("mojom")
+ except ImportError:
+   sys.path.append(os.path.join(_GetDirAbove("pylib"), "pylib"))
+ from mojom.generate import generator
+ 
+-
+ class StringManipulationTest(unittest.TestCase):
+   """generator contains some string utilities, this tests only those."""
+ 
+@@ -69,6 +67,5 @@ class StringManipulationTest(unittest.TestCase):
+     self.assertEquals("SNAKE_D3D11_CASE",
+                       generator.ToUpperSnakeCase("snakeD3d11Case"))
+ 
+-
+ if __name__ == "__main__":
+   unittest.main()
+diff --git a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/generate/translate_unittest.py b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/generate/translate_unittest.py
+index 4259374513..558e71e119 100644
+--- a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/generate/translate_unittest.py
++++ b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/generate/translate_unittest.py
+@@ -2,16 +2,12 @@
+ # Use of this source code is governed by a BSD-style license that can be
+ # found in the LICENSE file.
+ 
+-import imp
+-import os.path
+-import sys
+ import unittest
+ 
+ from mojom.generate import module as mojom
+ from mojom.generate import translate
+ from mojom.parse import ast
+ 
+-
+ class TranslateTest(unittest.TestCase):
+   """Tests |parser.Parse()|."""
+ 
+diff --git a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/ast_unittest.py b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/ast_unittest.py
+index c36376712e..b289f7b11f 100644
+--- a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/ast_unittest.py
++++ b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/ast_unittest.py
+@@ -2,14 +2,10 @@
+ # Use of this source code is governed by a BSD-style license that can be
+ # found in the LICENSE file.
+ 
+-import imp
+-import os.path
+-import sys
+ import unittest
+ 
+ from mojom.parse import ast
+ 
+-
+ class _TestNode(ast.NodeBase):
+   """Node type for tests."""
+ 
+@@ -20,13 +16,11 @@ class _TestNode(ast.NodeBase):
+   def __eq__(self, other):
+     return super().__eq__(other) and self.value == other.value
+ 
+-
+ class _TestNodeList(ast.NodeListBase):
+   """Node list type for tests."""
+ 
+   _list_item_type = _TestNode
+ 
+-
+ class ASTTest(unittest.TestCase):
+   """Tests various AST classes."""
+ 
+diff --git a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/conditional_features_unittest.py b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/conditional_features_unittest.py
+index 5fc582025e..2fa5d2be6a 100644
+--- a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/conditional_features_unittest.py
++++ b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/conditional_features_unittest.py
+@@ -2,12 +2,11 @@
+ # Use of this source code is governed by a BSD-style license that can be
+ # found in the LICENSE file.
+ 
+-import imp
++import importlib.util
+ import os
+ import sys
+ import unittest
+ 
+-
+ def _GetDirAbove(dirname):
+   """Returns the directory "above" this file containing |dirname| (which must
+   also be "above" this file)."""
+@@ -18,9 +17,8 @@ def _GetDirAbove(dirname):
+     if tail == dirname:
+       return path
+ 
+-
+ try:
+-  imp.find_module('mojom')
++  importlib.util.find_spec("mojom")
+ except ImportError:
+   sys.path.append(os.path.join(_GetDirAbove('pylib'), 'pylib'))
+ import mojom.parse.ast as ast
+@@ -29,7 +27,6 @@ import mojom.parse.parser as parser
+ 
+ ENABLED_FEATURES = frozenset({'red', 'green', 'blue'})
+ 
+-
+ class ConditionalFeaturesTest(unittest.TestCase):
+   """Tests |mojom.parse.conditional_features|."""
+ 
+@@ -356,6 +353,5 @@ class ConditionalFeaturesTest(unittest.TestCase):
+                       conditional_features.RemoveDisabledDefinitions,
+                       definition, ENABLED_FEATURES)
+ 
+-
+ if __name__ == '__main__':
+   unittest.main()
+diff --git a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/lexer.py b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/lexer.py
+index 73ca15df94..1083a1af7b 100644
+--- a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/lexer.py
++++ b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/lexer.py
+@@ -2,7 +2,6 @@
+ # Use of this source code is governed by a BSD-style license that can be
+ # found in the LICENSE file.
+ 
+-import imp
+ import os.path
+ import sys
+ 
+diff --git a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/lexer_unittest.py b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/lexer_unittest.py
+index ce376da66e..bc9f835431 100644
+--- a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/lexer_unittest.py
++++ b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/lexer_unittest.py
+@@ -2,12 +2,11 @@
+ # Use of this source code is governed by a BSD-style license that can be
+ # found in the LICENSE file.
+ 
+-import imp
++import importlib.util
+ import os.path
+ import sys
+ import unittest
+ 
+-
+ def _GetDirAbove(dirname):
+   """Returns the directory "above" this file containing |dirname| (which must
+   also be "above" this file)."""
+@@ -18,17 +17,15 @@ def _GetDirAbove(dirname):
+     if tail == dirname:
+       return path
+ 
+-
+ sys.path.insert(1, os.path.join(_GetDirAbove("mojo"), "third_party"))
+ from ply import lex
+ 
+ try:
+-  imp.find_module("mojom")
++  importlib.util.find_spec("mojom")
+ except ImportError:
+   sys.path.append(os.path.join(_GetDirAbove("pylib"), "pylib"))
+ import mojom.parse.lexer
+ 
+-
+ # This (monkey-patching LexToken to make comparison value-based) is evil, but
+ # we'll do it anyway. (I'm pretty sure ply's lexer never cares about comparing
+ # for object identity.)
+diff --git a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/parser_unittest.py b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/parser_unittest.py
+index 0513343ec7..0a26307b1a 100644
+--- a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/parser_unittest.py
++++ b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/parser_unittest.py
+@@ -2,16 +2,12 @@
+ # Use of this source code is governed by a BSD-style license that can be
+ # found in the LICENSE file.
+ 
+-import imp
+-import os.path
+-import sys
+ import unittest
+ 
+ from mojom.parse import ast
+ from mojom.parse import lexer
+ from mojom.parse import parser
+ 
+-
+ class ParserTest(unittest.TestCase):
+   """Tests |parser.Parse()|."""
+ 
+@@ -1375,6 +1371,5 @@ class ParserTest(unittest.TestCase):
+         r" *associated\? MyInterface& a;$"):
+       parser.Parse(source3, "my_file.mojom")
+ 
+-
+ if __name__ == "__main__":
+   unittest.main()
+-- 
+2.43.0
+
