@@ -25,6 +25,8 @@ import net.jami.Enums 1.1
 import net.jami.Constants 1.1
 import "../../commoncomponents"
 
+import "qrc:/js/markdownedition.js" as MDE
+
 RowLayout {
     id: root
 
@@ -358,231 +360,6 @@ RowLayout {
                         id: listViewTypo
                         height: JamiTheme.chatViewFooterButtonSize
 
-                        function isStyle(text, start, end, char1, char2, regex) {
-                            if (char1 === "**") {
-                                return isStarStyle(text, start, end, "bold");
-                            }
-                            if (char1 === "*") {
-                                return isStarStyle(text, start, end, "italic");
-                            }
-                            var selectedText = text.substring(start - char1.length, end + char2.length);
-                            return (selectedText.startsWith(char1) && selectedText.endsWith(char2));
-                        }
-
-                        function isStarStyle(text, selectionStart, selectionEnd, type) {
-                            let start = selectionStart;
-                            while (start > 0 && text[start - 1] === "*") {
-                                start--;
-                            }
-                            let end = selectionEnd;
-                            while (end < text.length && text[end] === "*") {
-                                end++;
-                            }
-                            const starCount = Math.min(selectionStart - start, end - selectionEnd);
-                            if (type === "italic") {
-                                return starCount === 1 || starCount === 3;
-                            }
-                            return starCount === 2 || starCount === 3;
-                        }
-
-                        function addStyle(text, start, end, char1, char2, regex) {
-                            // get the selected text with markdown effect
-                            var selectedText = text.substring(start - char1.length, end + char2.length);
-                            if (isStyle(text, start, end, char1, char2, regex)) {
-                                // If the selected text is already formatted with the given characters, remove them
-                                selectedText = text.substring(start, end);
-                                root.text = text.substring(0, start - char1.length) + selectedText + text.substring(end + char2.length);
-                                messageBarTextArea.selectText(start - char1.length, end - char1.length);
-                            } else {
-                                // Otherwise, add the formatting characters to the selected text
-                                root.text = text.substring(0, start) + char1 + text.substring(start, end) + char2 + text.substring(end);
-                                messageBarTextArea.selectText(start + char1.length, end + char1.length);
-                            }
-                        }
-
-                        function isPrefixSyle(message, selectionStart, selectionEnd, delimiter, isOrderedList) {
-                            //represents all the selected lines
-                            var multilineSelection;
-                            var newPrefix;
-                            var newSuffix;
-                            var newStartPos;
-                            var newEndPos;
-                            function nextIndexOf(text, char1, startPos) {
-                                return text.indexOf(char1, startPos + 1);
-                            }
-
-                            //get the previous index of the multilineSelection text
-                            if (message[selectionStart] === "\n")
-                                newStartPos = message.lastIndexOf('\n', selectionStart - 1);
-                            else
-                                newStartPos = message.lastIndexOf('\n', selectionStart);
-
-                            //get the next index of the multilineSelection text
-                            if (message[selectionEnd] === "\n" || message[selectionEnd] === undefined)
-                                newEndPos = selectionEnd;
-                            else
-                                newEndPos = nextIndexOf(message, "\n", selectionEnd);
-
-                            //if the text is empty
-                            if (newStartPos === -1)
-                                newStartPos = 0;
-                            newPrefix = message.slice(0, newStartPos);
-                            multilineSelection = message.slice(newStartPos, newEndPos);
-                            newSuffix = message.slice(newEndPos);
-                            var isFirstLineSelected = !multilineSelection.startsWith('\n') || newPrefix === "";
-                            var getDelimiter_counter = 1;
-                            function getDelimiter() {
-                                return `${getDelimiter_counter++}. `;
-                            }
-                            function getHasCurrentMarkdown() {
-                                const linesQuantity = (multilineSelection.match(/\n/g) || []).length;
-                                const newLinesWithDelimitersQuantity = (multilineSelection.match(new RegExp(`\n${delimiter}`, 'g')) || []).length;
-                                if (newLinesWithDelimitersQuantity === linesQuantity && !isFirstLineSelected)
-                                    return true;
-                                return linesQuantity === newLinesWithDelimitersQuantity && multilineSelection.startsWith(delimiter);
-                            }
-                            function getHasCurrentMarkdownBullet() {
-                                const linesQuantity = (multilineSelection.match(/\n/g) || []).length;
-                                const newLinesWithDelimitersQuantity = (multilineSelection.match(/\n\d+\. /g) || []).length;
-                                if (newLinesWithDelimitersQuantity === linesQuantity && !isFirstLineSelected)
-                                    return true;
-                                return linesQuantity === newLinesWithDelimitersQuantity && (/^\d\. /).test(multilineSelection);
-                            }
-                            var newValue;
-                            var newStart;
-                            var newEnd;
-                            var count;
-                            var startPos;
-                            var multilineSelectionLength;
-                            if (!isOrderedList) {
-                                return getHasCurrentMarkdown();
-                            } else {
-                                return getHasCurrentMarkdownBullet();
-                            }
-                        }
-
-                        function addPrefixStyle(message, selectionStart, selectionEnd, delimiter, isOrderedList) {
-                            //represents all the selected lines
-                            var multilineSelection;
-                            var newPrefix;
-                            var newSuffix;
-                            var newStartPos;
-                            var newEndPos;
-                            function nextIndexOf(text, char1, startPos) {
-                                return text.indexOf(char1, startPos + 1);
-                            }
-
-                            //get the previous index of the multilineSelection text
-                            if (message[selectionStart] === "\n")
-                                newStartPos = message.lastIndexOf('\n', selectionStart - 1);
-                            else
-                                newStartPos = message.lastIndexOf('\n', selectionStart);
-
-                            //get the next index of the multilineSelection text
-                            if (message[selectionEnd] === "\n" || message[selectionEnd] === undefined)
-                                newEndPos = selectionEnd;
-                            else
-                                newEndPos = nextIndexOf(message, "\n", selectionEnd);
-
-                            //if the text is empty
-                            if (newStartPos === -1)
-                                newStartPos = 0;
-                            newPrefix = message.slice(0, newStartPos);
-                            multilineSelection = message.slice(newStartPos, newEndPos);
-                            newSuffix = message.slice(newEndPos);
-                            var isFirstLineSelected = !multilineSelection.startsWith('\n') || newPrefix === "";
-                            var getDelimiter_counter = 1;
-                            function getDelimiter() {
-                                return `${getDelimiter_counter++}. `;
-                            }
-                            function getHasCurrentMarkdown() {
-                                const linesQuantity = (multilineSelection.match(/\n/g) || []).length;
-                                const newLinesWithDelimitersQuantity = (multilineSelection.match(new RegExp(`\n${delimiter}`, 'g')) || []).length;
-                                if (newLinesWithDelimitersQuantity === linesQuantity && !isFirstLineSelected)
-                                    return true;
-                                return linesQuantity === newLinesWithDelimitersQuantity && multilineSelection.startsWith(delimiter);
-                            }
-                            function getHasCurrentMarkdownBullet() {
-                                const linesQuantity = (multilineSelection.match(/\n/g) || []).length;
-                                const newLinesWithDelimitersQuantity = (multilineSelection.match(/\n\d+\. /g) || []).length;
-                                if (newLinesWithDelimitersQuantity === linesQuantity && !isFirstLineSelected)
-                                    return true;
-                                return linesQuantity === newLinesWithDelimitersQuantity && (/^\d\. /).test(multilineSelection);
-                            }
-                            var newValue;
-                            var newStart;
-                            var newEnd;
-                            var count;
-                            var startPos;
-                            var multilineSelectionLength;
-                            if (!isOrderedList) {
-                                if (getHasCurrentMarkdown()) {
-
-                                    // clear first line from delimiter
-                                    if (isFirstLineSelected)
-                                        multilineSelection = multilineSelection.slice(delimiter.length);
-                                    newValue = newPrefix + multilineSelection.replace(new RegExp(`\n${delimiter}`, 'g'), '\n') + newSuffix;
-                                    count = 0;
-                                    if (isFirstLineSelected)
-                                        count++;
-                                    count += (multilineSelection.match(/\n/g) || []).length;
-                                    newStart = Math.max(selectionStart - delimiter.length, 0);
-                                    newEnd = Math.max(selectionEnd - (delimiter.length * count), 0);
-                                } else {
-                                    newValue = newPrefix + multilineSelection.replace(/\n/g, `\n${delimiter}`) + newSuffix;
-                                    count = 0;
-                                    if (isFirstLineSelected) {
-                                        newValue = delimiter + newValue;
-                                        count++;
-                                    }
-                                    count += (multilineSelection.match(new RegExp('\\n', 'g')) || []).length;
-                                    newStart = selectionStart + delimiter.length;
-                                    newEnd = selectionEnd + (delimiter.length * count);
-                                }
-                            } else if (getHasCurrentMarkdownBullet()) {
-                                if (message[selectionStart] === "\n")
-                                    startPos = message.lastIndexOf('\n', selectionStart - 1) + 1;
-                                else
-                                    startPos = message.lastIndexOf('\n', selectionStart) + 1;
-                                newStart = startPos;
-                                multilineSelection = multilineSelection.replace(/^\d+\.\s/gm, '');
-                                newValue = newPrefix + multilineSelection + newSuffix;
-                                multilineSelectionLength = multilineSelection.length;
-
-                                //if the first line is not selected, we need to remove the first "\n" of multilineSelection
-                                if (newStart)
-                                    multilineSelectionLength = multilineSelection.length - 1;
-                                newEnd = Math.max(newStart + multilineSelectionLength, 0);
-                            } else {
-                                if (message[selectionStart] === "\n")
-                                    startPos = message.lastIndexOf('\n', selectionStart - 1) + 1;
-                                else
-                                    startPos = message.lastIndexOf('\n', selectionStart) + 1;
-                                newStart = startPos;
-
-                                // if no text is selected
-                                if (selectionStart === selectionEnd)
-                                    newStart = newStart + 3;
-                                if (isFirstLineSelected)
-                                    multilineSelection = getDelimiter() + multilineSelection;
-                                const selectionArr = Array.from(multilineSelection);
-                                for (var i = 0; i < selectionArr.length; i++) {
-                                    if (selectionArr[i] === '\n')
-                                        selectionArr[i] = `\n${getDelimiter()}`;
-                                }
-                                multilineSelection = selectionArr.join('');
-                                newValue = newPrefix + multilineSelection + newSuffix;
-                                multilineSelectionLength = multilineSelection.length;
-
-                                //if the first line is not selected, we meed to remove the first "\n" of multilineSelection
-                                if (startPos)
-                                    multilineSelectionLength = multilineSelection.length - 1;
-                                newEnd = Math.max(startPos + multilineSelectionLength, 0);
-                            }
-                            root.text = newValue;
-                            messageBarTextArea.selectText(newStart, newEnd);
-                        }
-
                         ListView {
                             id: listViewTypoFirst
 
@@ -600,70 +377,56 @@ RowLayout {
                             height: JamiTheme.chatViewFooterButtonSize
                             orientation: ListView.Horizontal
                             interactive: false
-                            leftMargin: 5
-                            rightMargin: 5
                             spacing: 5
 
                             property list<Action> menuTypoActionsFirst: [
                                 Action {
                                     id: boldAction
-                                    property var iconSrc: JamiResources.bold_black_24dp_svg
-                                    property var shortcutText: JamiStrings.bold
+                                    property string iconSrc: JamiResources.bold_black_24dp_svg
+                                    property string shortcutText: JamiStrings.bold
                                     property string shortcutKey: "Ctrl+B"
-                                    property bool isStyle: listViewTypo.isStyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, "**", "**", /\\*\*.+\\*\*/)
-                                    onTriggered: function clickAction() {
-                                        listViewTypo.addStyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, "**", "**", /\\*\*.+\\*\*/);
-                                    }
+                                    property bool isStyle: MDE.isStyle(messageBarTextArea, root.text, "**", "**")
+                                    onTriggered: MDE.addStyle(messageBarTextArea, root.text, "**", "**")
                                 },
                                 Action {
                                     id: italicAction
-                                    property var iconSrc: JamiResources.italic_black_24dp_svg
-                                    property var shortcutText: JamiStrings.italic
+                                    property string iconSrc: JamiResources.italic_black_24dp_svg
+                                    property string shortcutText: JamiStrings.italic
                                     property string shortcutKey: "Ctrl+I"
-                                    property bool isStyle: listViewTypo.isStyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, "*", "*", /(?:\*.+\*|\*\*\*.+\*\*\*)/)
-                                    onTriggered: function clickAction() {
-                                        listViewTypo.addStyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, "*", "*", /(?:\*.+\*|\*\*\*.+\*\*\*)/);
-                                    }
+                                    property bool isStyle: MDE.isStyle(messageBarTextArea, root.text, "*", "*")
+                                    onTriggered: MDE.addStyle(messageBarTextArea, root.text, "*", "*")
                                 },
                                 Action {
                                     id: strikethroughAction
-                                    property var iconSrc: JamiResources.s_barre_black_24dp_svg
-                                    property var shortcutText: JamiStrings.strikethrough
+                                    property string iconSrc: JamiResources.s_barre_black_24dp_svg
+                                    property string shortcutText: JamiStrings.strikethrough
                                     property string shortcutKey: "Shift+Alt+X"
-                                    property bool isStyle: listViewTypo.isStyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, "~~", "~~", /\~\~.+\~\~/)
-                                    onTriggered: function clickAction() {
-                                        listViewTypo.addStyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, "~~", "~~", /\~\~.+\~\~/);
-                                    }
+                                    property bool isStyle: MDE.isStyle(messageBarTextArea, root.text, "~~", "~~")
+                                    onTriggered: MDE.addStyle(messageBarTextArea, root.text, "~~", "~~")
                                 },
                                 Action {
                                     id: titleAction
-                                    property var iconSrc: JamiResources.title_black_24dp_svg
-                                    property var shortcutText: JamiStrings.heading
+                                    property string iconSrc: JamiResources.title_black_24dp_svg
+                                    property string shortcutText: JamiStrings.heading
                                     property string shortcutKey: "Ctrl+Alt+H"
-                                    property bool isStyle: listViewTypo.isPrefixSyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, "### ", false)
-                                    onTriggered: function clickAction() {
-                                        listViewTypo.addPrefixStyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, "### ", false);
-                                    }
+                                    property bool isStyle: MDE.isPrefixSyle(messageBarTextArea, root.text, "### ", false)
+                                    onTriggered: MDE.addPrefixStyle(messageBarTextArea, root.text, "### ", false)
                                 },
                                 Action {
                                     id: linkAction
-                                    property var iconSrc: JamiResources.link_web_black_24dp_svg
-                                    property var shortcutText: JamiStrings.link
+                                    property string iconSrc: JamiResources.link_web_black_24dp_svg
+                                    property string shortcutText: JamiStrings.link
                                     property string shortcutKey: "Ctrl+Alt+K"
-                                    property bool isStyle: listViewTypo.isStyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, "[", "](url)", /\[.+\]\(.+\)/)
-                                    onTriggered: function clickAction() {
-                                        listViewTypo.addStyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, "[", "](url)", /\[.+\]\(.+\)/);
-                                    }
+                                    property bool isStyle: MDE.isStyle(messageBarTextArea, root.text, "[", "](url)")
+                                    onTriggered: MDE.addStyle(messageBarTextArea, root.text, "[", "](url)")
                                 },
                                 Action {
                                     id: codeAction
-                                    property var iconSrc: JamiResources.code_black_24dp_svg
-                                    property var shortcutText: JamiStrings.code
+                                    property string iconSrc: JamiResources.code_black_24dp_svg
+                                    property string shortcutText: JamiStrings.code
                                     property string shortcutKey: "Ctrl+Alt+C"
-                                    property bool isStyle: listViewTypo.isStyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, "```", "```", /\`\`\`.+\`\`\`/)
-                                    onTriggered: function clickAction() {
-                                        listViewTypo.addStyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, "```", "```", /\`\`\`.+\`\`\`/);
-                                    }
+                                    property bool isStyle: MDE.isStyle(messageBarTextArea, root.text, "```", "```")
+                                    onTriggered: MDE.addStyle(messageBarTextArea, root.text, "```", "```")
                                 }
                             ]
 
@@ -795,8 +558,6 @@ RowLayout {
                             height: JamiTheme.chatViewFooterButtonSize
                             orientation: ListView.Horizontal
                             interactive: false
-                            leftMargin: 10
-                            rightMargin: 10
                             spacing: 10
 
                             Rectangle {
@@ -808,33 +569,27 @@ RowLayout {
                             property list<Action> menuTypoActionsSecond: [
                                 Action {
                                     id: quoteAction
-                                    property var iconSrc: JamiResources.quote_black_24dp_svg
-                                    property var shortcutText: JamiStrings.quote
+                                    property string iconSrc: JamiResources.quote_black_24dp_svg
+                                    property string shortcutText: JamiStrings.quote
                                     property string shortcutKey: "Shift+Alt+9"
-                                    property bool isStyle: listViewTypo.isPrefixSyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, "> ", false)
-                                    onTriggered: function clickAction() {
-                                        listViewTypo.addPrefixStyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, "> ", false);
-                                    }
+                                    property bool isStyle: MDE.isPrefixSyle(messageBarTextArea, root.text, "> ", false)
+                                    onTriggered: MDE.addPrefixStyle(messageBarTextArea, root.text, "> ", false)
                                 },
                                 Action {
                                     id: unorderedListAction
-                                    property var iconSrc: JamiResources.bullet_point_black_24dp_svg
-                                    property var shortcutText: JamiStrings.unorderedList
+                                    property string iconSrc: JamiResources.bullet_point_black_24dp_svg
+                                    property string shortcutText: JamiStrings.unorderedList
                                     property string shortcutKey: "Shift+Alt+8"
-                                    property bool isStyle: listViewTypo.isPrefixSyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, "- ", false)
-                                    onTriggered: function clickAction() {
-                                        listViewTypo.addPrefixStyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, "- ", false);
-                                    }
+                                    property bool isStyle: MDE.isPrefixSyle(messageBarTextArea, root.text, "- ", false)
+                                    onTriggered: MDE.addPrefixStyle(messageBarTextArea, root.text, "- ", false)
                                 },
                                 Action {
                                     id: orderedListAction
-                                    property var iconSrc: JamiResources.bullet_number_black_24dp_svg
-                                    property var shortcutText: JamiStrings.orderedList
+                                    property string iconSrc: JamiResources.bullet_number_black_24dp_svg
+                                    property string shortcutText: JamiStrings.orderedList
                                     property string shortcutKey: "Shift+Alt+7"
-                                    property bool isStyle: listViewTypo.isPrefixSyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, "", true)
-                                    onTriggered: function clickAction() {
-                                        listViewTypo.addPrefixStyle(root.text, messageBarTextArea.selectionStart, messageBarTextArea.selectionEnd, "", true);
-                                    }
+                                    property bool isStyle: MDE.isPrefixSyle(messageBarTextArea, root.text, "", true)
+                                    onTriggered: MDE.addPrefixStyle(messageBarTextArea, root.text, "", true)
                                 }
                             ]
 
@@ -945,8 +700,8 @@ RowLayout {
                         property list<Action> menuActions: [
                             Action {
                                 id: sendFile
-                                property var iconSrc: JamiResources.link_black_24dp_svg
-                                property var toolTip: JamiStrings.sendFile
+                                property string iconSrc: JamiResources.link_black_24dp_svg
+                                property string toolTip: JamiStrings.sendFile
                                 property bool show: true
                                 property bool needWebEngine: false
                                 property bool needVideoDevice: false
@@ -958,8 +713,8 @@ RowLayout {
                             },
                             Action {
                                 id: addEmoji
-                                property var iconSrc: JamiResources.emoji_black_24dp_svg
-                                property var toolTip: JamiStrings.addEmoji
+                                property string iconSrc: JamiResources.emoji_black_24dp_svg
+                                property string toolTip: JamiStrings.addEmoji
                                 property bool show: true
                                 property bool needWebEngine: true
                                 property bool needVideoDevice: false
@@ -1047,8 +802,8 @@ RowLayout {
                         property list<Action> menuMoreButton: [
                             Action {
                                 id: leaveAudioMessage
-                                property var iconSrc: JamiResources.message_audio_black_24dp_svg
-                                property var toolTip: JamiStrings.leaveAudioMessage
+                                property string iconSrc: JamiResources.message_audio_black_24dp_svg
+                                property string toolTip: JamiStrings.leaveAudioMessage
                                 property bool show: false
                                 property bool needWebEngine: false
                                 property bool needVideoDevice: false
@@ -1059,8 +814,8 @@ RowLayout {
                             },
                             Action {
                                 id: leaveVideoMessage
-                                property var iconSrc: JamiResources.message_video_black_24dp_svg
-                                property var toolTip: JamiStrings.leaveVideoMessage
+                                property string iconSrc: JamiResources.message_video_black_24dp_svg
+                                property string toolTip: JamiStrings.leaveVideoMessage
                                 property bool show: false
                                 property bool needWebEngine: false
                                 property bool needVideoDevice: true
@@ -1071,8 +826,8 @@ RowLayout {
                             },
                             Action {
                                 id: shareLocation
-                                property var iconSrc: JamiResources.localisation_sharing_send_pin_svg
-                                property var toolTip: JamiStrings.shareLocation
+                                property string iconSrc: JamiResources.localisation_sharing_send_pin_svg
+                                property string toolTip: JamiStrings.shareLocation
                                 property bool show: false
                                 property bool needWebEngine: true
                                 property bool needVideoDevice: false
