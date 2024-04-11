@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7f755a5d_790abc6c",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 9
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 982
+      },
+      "writtenOn": "2024-04-11T18:38:43Z",
+      "side": 1,
+      "message": "This code is working fine if hunspell is installed on the machine. Tested on virgin ubuntu machine.\nIs there a way to add hunspell to Jenkins to prevent the failed build ?",
+      "parentUuid": "744f6b9f_efc04b4f",
+      "range": {
+        "startLine": 624,
+        "startChar": 0,
+        "endLine": 624,
+        "endChar": 19
+      },
+      "revId": "1763ead3f35d18cc9bc46296e5d8b8b33374c9f0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "05507b68_a2240776",
         "filename": "extras/scripts/build_hunspell.sh",
         "patchSetId": 9
@@ -61,6 +85,30 @@
       "writtenOn": "2024-04-04T14:01:31Z",
       "side": 1,
       "message": "RIP: https://github.com/hunspell/hunspell/pull/617\n\nIt\u0027d have avoided this dirty script. Also, instead using it from install.sh, it can probably be included in the CMake file",
+      "range": {
+        "startLine": 8,
+        "startChar": 5,
+        "endLine": 8,
+        "endChar": 16
+      },
+      "revId": "1763ead3f35d18cc9bc46296e5d8b8b33374c9f0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5631cf74_bbf5df59",
+        "filename": "extras/scripts/build_hunspell.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 982
+      },
+      "writtenOn": "2024-04-11T18:38:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05507b68_a2240776",
       "range": {
         "startLine": 8,
         "startChar": 5,
@@ -84,6 +132,30 @@
       "writtenOn": "2024-04-04T14:01:31Z",
       "side": 1,
       "message": "generally we pass the cpucount (don\u0027t know if the project is big)",
+      "range": {
+        "startLine": 11,
+        "startChar": 5,
+        "endLine": 11,
+        "endChar": 7
+      },
+      "revId": "1763ead3f35d18cc9bc46296e5d8b8b33374c9f0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db8e30e7_cabdb5d1",
+        "filename": "extras/scripts/build_hunspell.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 982
+      },
+      "writtenOn": "2024-04-11T18:38:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2abfb499_2cc437ff",
       "range": {
         "startLine": 11,
         "startChar": 5,
