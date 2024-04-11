@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9b931d73_8de1f359",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 9
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-04-11T20:40:36Z",
+      "side": 1,
+      "message": "like md4c, we have a subdirectory just in case. then CMake do the stuff https://review.jami.net/c/jami-client-qt/+/27205",
+      "parentUuid": "7f755a5d_790abc6c",
+      "range": {
+        "startLine": 624,
+        "startChar": 0,
+        "endLine": 624,
+        "endChar": 19
+      },
+      "revId": "1763ead3f35d18cc9bc46296e5d8b8b33374c9f0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "05507b68_a2240776",
         "filename": "extras/scripts/build_hunspell.sh",
         "patchSetId": 9
