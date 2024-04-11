@@ -44,6 +44,23 @@ QUILT_REFRESH_ARGS="-p 1"
 
 if [ ! -f "${qt_deb_path}" ] || [ "${FORCE_REBUILD_QT}" = "true" ]; then
     (
+
+        # HACK: For now on ubuntu 24.04 there is no python3.10 package
+        # So create a PyEnv environment to install the required packages
+        if cat /etc/os-release | grep -Eq "24.04"; then
+            apt-get install git gcc make python3-pip libssl-dev curl libreadline-dev -y
+            curl https://pyenv.run | bash
+            export PYENV_ROOT="$HOME/.pyenv"
+            [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+            eval "$(pyenv init -)"
+            pyenv install 3.10.0
+            pyenv local 3.10.0
+
+            python -m pip install html5lib
+            python -m pip install six
+        fi
+
+
         flock 9                 # block until the lock file is gone
         test -f "${qt_deb_path}" && exit 0 # check again
 
