@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d92a96d_3866bd4d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-04-11T14:17:46Z",
+      "side": 1,
+      "message": "In 1:1 with this patch camera doesn\u0027T close anymore",
+      "revId": "8854ee87431b06bbcb2e964319d9bb6c5197c41c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
