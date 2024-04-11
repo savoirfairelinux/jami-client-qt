@@ -2,6 +2,27 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "run-tests",
+            "type": "shell",
+            "command": "ctest",
+            "options": {
+                "cwd": "${workspaceFolder}/build/tests",
+                "env": {
+                    "HOME": "/tmp"
+                }
+            },
+            "args": [
+                "-V",
+                "-R"
+            ],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "detail": "Run the tests using CTest."
+        },
+        {
             "label": "cmake-configure",
             "type": "shell",
             "command": "cmake",
