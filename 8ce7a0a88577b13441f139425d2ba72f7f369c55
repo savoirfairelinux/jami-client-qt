@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af9a2b9c_10004ee3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-04-11T12:21:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a59bbf1_798833f2",
+      "range": {
+        "startLine": 10,
+        "startChar": 33,
+        "endLine": 10,
+        "endChar": 42
+      },
+      "revId": "8ce7a0a88577b13441f139425d2ba72f7f369c55",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e1cef85e_ae39c2e9",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-04-09T17:28:13Z",
       "side": 1,
       "message": "Works good. Thank you for the patch. Just a small nitpick",
+      "range": {
+        "startLine": 11,
+        "startChar": 46,
+        "endLine": 11,
+        "endChar": 58
+      },
+      "revId": "8ce7a0a88577b13441f139425d2ba72f7f369c55",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c254e8f_29031e86",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-04-11T12:21:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e1cef85e_ae39c2e9",
       "range": {
         "startLine": 11,
         "startChar": 46,
@@ -95,6 +143,30 @@
       "writtenOn": "2024-04-09T17:28:13Z",
       "side": 1,
       "message": "Generated: https://dl.jami.net/internal/fedora_38/jami-libqt-6.6.1-6.fc38.x86_64.rpm\n\nHere is the result:\n\nrpm --query --provides ./jami-libqt-6.6.1-1.x86_64.rpm\njami-libqt \u003d 6.6.1-6.fc38\njami-libqt(x86-64) \u003d 6.6.1-6.fc38",
+      "range": {
+        "startLine": 20,
+        "startChar": 8,
+        "endLine": 20,
+        "endChar": 31
+      },
+      "revId": "8ce7a0a88577b13441f139425d2ba72f7f369c55",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bd1b7de_e38e9bdd",
+        "filename": "extras/packaging/gnu-linux/rules/rpm/jami-libqt.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-04-11T12:21:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "331c62d5_40535ba1",
       "range": {
         "startLine": 20,
         "startChar": 8,
