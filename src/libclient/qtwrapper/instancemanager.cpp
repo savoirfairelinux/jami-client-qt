@@ -29,6 +29,8 @@ static int ringFlags = 0;
 
 InstanceManagerInterface::InstanceManagerInterface(bool muteDaemon)
 {
+    libjami::setProgramDir(QCoreApplication::applicationDirPath().toStdString());
+
     using namespace std::placeholders;
 
     using std::bind;

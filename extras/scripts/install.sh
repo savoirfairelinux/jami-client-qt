@@ -153,6 +153,11 @@ else
       CONFIGURE_FLAGS+=" --enable-asan"
     fi
 
+    # Supply an empty datadir for macOS
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        CONFIGURE_FLAGS+=" --datadir=''"
+    fi
+
     # Build the daemon itself.
     test -f configure || ./autogen.sh
 

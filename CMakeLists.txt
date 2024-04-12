@@ -820,6 +820,14 @@ else()
       compression
       resolv
     )
+  
+  # ringtones. Copy the entire directory to the app bundle.
+  # daemon/ringtones -> Jami.app/Contents/Resources/ringtones
+  execute_process(
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${DAEMON_DIR}/ringtones
+    ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.app/Contents/Resources/ringtones
+  )
 
   # translations
   if(Qt${QT_VERSION_MAJOR}LinguistTools_FOUND)
@@ -864,7 +872,6 @@ else()
           XCODE_ATTRIBUTE_ENABLE_HARDENED_RUNTIME TRUE)
   endif()
   if(DEPLOY)
-    message("Qt deploying in dir " ${QML_SRC_DIR})
     execute_process(COMMAND
       "${CMAKE_PREFIX_PATH}/bin/macdeployqt"
       "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.app"
