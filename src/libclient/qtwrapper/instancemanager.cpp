@@ -24,11 +24,25 @@
 #ifdef ENABLE_VIDEO
 #include "videomanager.h"
 #endif // ENABLE_VIDEO
+#include <QDir>
 
 static int ringFlags = 0;
 
 InstanceManagerInterface::InstanceManagerInterface(bool muteDaemon)
 {
+    // The following code is used to set the resource directory for libjami, and is required
+    // for the ringtones to work properly on platforms where the resource directory path is not
+    // fixed (e.g. macOS).
+#if defined(Q_OS_WIN)
+    // On Windows, the resource directory is set to the application's directory.
+    libjami::setResourceDirPath(QCoreApplication::applicationDirPath().toStdString());
+#elif defined(Q_OS_MAC)
+    // On macOS, the resource directory is set to the application bundle's path + "/Resources".
+    // The application bundle's path is the application's directory.
+    auto resourceDir = QCoreApplication::applicationDirPath() + QDir::separator() + "Resources";
+    libjami::setResourceDirPath(resourceDir.toStdString());
+#endif
+
     using namespace std::placeholders;
 
     using std::bind;
