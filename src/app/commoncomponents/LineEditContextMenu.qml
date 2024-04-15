@@ -15,8 +15,11 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import QtQuick
+import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import "contextmenu"
+import "../mainview"
+import "../mainview/components"
 
 ContextMenuAutoLoader {
     id: root
@@ -27,8 +30,16 @@ ContextMenuAutoLoader {
     property var selectionEnd
     property bool customizePaste: false
     property bool selectOnly: false
+    property bool checkSpell: false
+    property var suggestionList
+    property var menuItemsLength
+    property var language
 
     signal contextMenuRequirePaste
+    SpellLanguageContextMenu {
+        id: spellLanguageContextMenu
+        active: checkSpell
+    }
 
     property list<GeneralMenuItem> menuItems: [
         GeneralMenuItem {
@@ -38,9 +49,8 @@ ContextMenuAutoLoader {
             isActif: lineEditObj.selectedText.length
             itemName: JamiStrings.copy
             hasIcon: false
-            onClicked: {
+            onClicked:
                 lineEditObj.copy();
-            }
         },
         GeneralMenuItem {
             id: cut
@@ -49,9 +59,8 @@ ContextMenuAutoLoader {
             isActif: lineEditObj.selectedText.length && !selectOnly
             itemName: JamiStrings.cut
             hasIcon: false
-            onClicked: {
+            onClicked:
                 lineEditObj.cut();
-            }
         },
         GeneralMenuItem {
             id: paste
@@ -65,8 +74,67 @@ ContextMenuAutoLoader {
                 else
                     lineEditObj.paste();
             }
+        },
+        GeneralMenuItem {
+            id: language
+            visible: checkSpell
+            canTrigger: checkSpell
+            itemName: JamiStrings.language
+            hasIcon: false
+            onClicked: {
+                spellLanguageContextMenu.openMenu();
+            }
         }
     ]
+
+    ListView {
+        model: ListModel {
+            id: dynamicModel
+        }
+
+        Instantiator {
+            model: dynamicModel
+            delegate: GeneralMenuItem {
+                id: suggestion
+
+                canTrigger: true
+                isActif: true
+                itemName: model.name
+                hasIcon: false
+                onClicked: {
+                    replaceWord(model.name);
+                }
+            }
+
+            onObjectAdded: {
+                menuItems.push(object);
+            }
+
+            onObjectRemoved: {
+                menuItems.splice(menuItemsLength, suggestionList.length);
+            }
+        }
+    }
+
+    function removeItems() {
+        dynamicModel.remove(0, suggestionList.length);
+        suggestionList.length = 0;
+    }
+
+    function addMenuItem(wordList) {
+        menuItemsLength = menuItems.length; // Keep initial number of items for easier removal
+        suggestionList = wordList;
+        for (var i = 0; i < suggestionList.length; ++i) {
+            dynamicModel.append({
+                    "name": suggestionList[i]
+                });
+        }
+    }
+
+    function replaceWord(word) {
+        lineEditObj.remove(selectionStart, selectionEnd);
+        lineEditObj.insert(lineEditObj.cursorPosition, word);
+    }
 
     function openMenuAt(mouseEvent) {
         if (lineEditObj.selectedText.length === 0 && selectOnly)
@@ -84,6 +152,12 @@ ContextMenuAutoLoader {
         enabled: root.status === Loader.Ready
         function onOpened() {
             lineEditObj.select(selectionStart, selectionEnd);
+        }
+        function onClosed() {
+            if (!suggestionList || suggestionList.length == 0) {
+                return;
+            }
+            removeItems();
         }
     }
 

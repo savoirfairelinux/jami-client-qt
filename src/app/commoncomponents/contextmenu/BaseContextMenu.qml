@@ -44,11 +44,15 @@ Menu {
 
     function loadMenuItems(menuItems) {
         root.addItem(menuTopBorder);
+
+        // Establish the preferred width of the menu by taking the maximum width of the items
         for (var j = 0; j < menuItems.length; ++j) {
             var currentItemWidth = menuItems[j].itemPreferredWidth;
             if (currentItemWidth !== JamiTheme.menuItemsPreferredWidth && currentItemWidth > menuPreferredWidth && menuItems[j].canTrigger)
                 menuPreferredWidth = currentItemWidth;
         }
+
+        // Add the items to the menu
         for (var i = 0; i < menuItems.length; ++i) {
             if (menuItems[i].canTrigger) {
                 menuItems[i].parentMenu = root;

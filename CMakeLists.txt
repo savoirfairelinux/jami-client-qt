@@ -255,7 +255,7 @@ set(PYTHON_EXEC ${Python3_EXECUTABLE})
 
 # Versioning and build ID generation
 set(VERSION_FILE ${CMAKE_CURRENT_BINARY_DIR}/version_info.cpp)
-# Touch the file to make sure it exists at configure time as
+# Touch the file to ensure it exists at configure time as
 # we add it to the target_sources below.
 file(TOUCH ${VERSION_FILE})
 add_custom_target(
@@ -347,6 +347,7 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/conversationlistmodel.cpp
   ${APP_SRC_DIR}/searchresultslistmodel.cpp
   ${APP_SRC_DIR}/calloverlaymodel.cpp
+  ${APP_SRC_DIR}/spellcheckdictionarymanager.cpp
   ${APP_SRC_DIR}/filestosendlistmodel.cpp
   ${APP_SRC_DIR}/wizardviewstepmodel.cpp
   ${APP_SRC_DIR}/avatarregistry.cpp
@@ -361,13 +362,13 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/currentcall.cpp
   ${APP_SRC_DIR}/messageparser.cpp
   ${APP_SRC_DIR}/previewengine.cpp
-  ${APP_SRC_DIR}/imagedownloader.cpp
+  ${APP_SRC_DIR}/filedownloader.cpp
   ${APP_SRC_DIR}/pluginversionmanager.cpp
   ${APP_SRC_DIR}/connectioninfolistmodel.cpp
   ${APP_SRC_DIR}/pluginversionmanager.cpp
   ${APP_SRC_DIR}/linkdevicemodel.cpp
   ${APP_SRC_DIR}/qrcodescannermodel.cpp
-)
+  ${APP_SRC_DIR}/spellchecker.cpp)
 
 set(COMMON_HEADERS
   ${APP_SRC_DIR}/global.h
@@ -419,6 +420,7 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/conversationlistmodel.h
   ${APP_SRC_DIR}/searchresultslistmodel.h
   ${APP_SRC_DIR}/calloverlaymodel.h
+  ${APP_SRC_DIR}/spellcheckdictionarymanager.h
   ${APP_SRC_DIR}/filestosendlistmodel.h
   ${APP_SRC_DIR}/wizardviewstepmodel.h
   ${APP_SRC_DIR}/avatarregistry.h
@@ -433,7 +435,7 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/currentcall.h
   ${APP_SRC_DIR}/messageparser.h
   ${APP_SRC_DIR}/htmlparser.h
-  ${APP_SRC_DIR}/imagedownloader.h
+  ${APP_SRC_DIR}/filedownloader.h
   ${APP_SRC_DIR}/pluginversionmanager.h
   ${APP_SRC_DIR}/connectioninfolistmodel.h
   ${APP_SRC_DIR}/pttlistener.h
@@ -441,7 +443,7 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/crashreporter.h
   ${APP_SRC_DIR}/linkdevicemodel.h
   ${APP_SRC_DIR}/qrcodescannermodel.h
-)
+  ${APP_SRC_DIR}/spellchecker.h)
 
 # For libavutil/avframe.
 set(LIBJAMI_CONTRIB_DIR "${DAEMON_DIR}/contrib")
@@ -467,6 +469,48 @@ if(ENABLE_CRASHREPORTS)
     list(APPEND COMMON_SOURCES ${CRASHREPORT_CLIENT_DIR}/crashpad.cpp)
     list(APPEND COMMON_HEADERS ${CRASHREPORT_CLIENT_DIR}/crashpad.h)
   endif()
+endif()
+
+find_package(PkgConfig REQUIRED)
+
+# hunspell
+pkg_check_modules(HUNSPELL hunspell)
+if(MSVC)
+elseif (NOT APPLE)
+  set(HUNSPELL_DICT_DIR "/usr/share/hunspell/")
+else()
+  set(HUNSPELL_DICT_DIR "/Library/Spelling/")
+endif()
+
+if(HUNSPELL_FOUND)
+  message(STATUS "hunspell found")
+  include_directories(${HUNSPELL_INCLUDE_DIR})
+  find_path(HUNSPELL_INCLUDE_DIRS
+            NAMES hunspell.hxx
+            PATH_SUFFIXES hunspell
+            HINTS ${HUNSPELL_INCLUDE_DIRS}
+  )
+
+  find_library(HUNSPELL_LIBRARIES
+                NAMES ${HUNSPELL_LIBRARIES}
+                hunspell
+                hunspell-1.7
+                libhunspell
+                libhunspell-1.7
+                libhunspell-devel
+                libhunspell-dev
+              HINTS ${HUNSPELL_LIBRARY_DIRS}
+  )
+else()
+  message(STATUS "hunspell not found - building hunspell")
+
+  set(HUNSPELL_DIR ${PROJECT_SOURCE_DIR}/3rdparty/hunspell)
+
+  # Build using the submodule and its CMakeLists.txt
+  add_subdirectory(${HUNSPELL_DIR} hunspell_build)
+
+  set(HUNSPELL_INCLUDE_DIR ${HUNSPELL_DIR}/src)
+  set(HUNSPELL_LIBRARIES hunspell::hunspell)
 endif()
 
 if(MSVC)
@@ -530,8 +574,6 @@ elseif (NOT APPLE)
     ${APP_SRC_DIR}/dbuserrorhandler.h
     ${APP_SRC_DIR}/screencastportal.h)
   list(APPEND QT_MODULES DBus)
-
-  find_package(PkgConfig REQUIRED)
 
   pkg_check_modules(GLIB REQUIRED glib-2.0)
   if(GLIB_FOUND)
@@ -614,6 +656,13 @@ else() # APPLE
     add_definitions(-DBETA)
   endif()
 endif()
+
+message(STATUS "Adding HUNSPELL_INCLUDE_DIR" ${HUNSPELL_INCLUDE_DIR})
+list(APPEND CLIENT_INCLUDE_DIRS ${HUNSPELL_INCLUDE_DIR} ${CMAKE_BINARY_DIR}/include
+${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/hunspell/src)
+
+message(STATUS "Adding HUNSPELL_LIBRARIES" ${HUNSPELL_INCLUDE_DIR})
+list(APPEND CLIENT_LIBS ${HUNSPELL_LIBRARIES})
 
 # Qt find package
 if(QT6_VER AND QT6_PATH)
@@ -703,7 +752,9 @@ qt_add_executable(
   ${QML_RESOURCES_QML}
   ${SFPM_OBJECTS})
 
-# Make sure we can find the generated version file
+add_dependencies(${PROJECT_NAME} hunspell)
+
+# Ensure the generated version file can be found.
 add_dependencies(${PROJECT_NAME} generate_version_info)
 
 foreach(MODULE ${QT_MODULES})
@@ -796,6 +847,11 @@ elseif (NOT APPLE)
     ${PROJECT_NAME}
     PRIVATE
     JAMI_INSTALL_PREFIX="${JAMI_DATA_PREFIX}")
+
+  target_compile_definitions(
+    ${PROJECT_NAME}
+    PRIVATE
+    HUNSPELL_INSTALL_DIR="${HUNSPELL_DICT_DIR}")
 
   # Logos
   install(

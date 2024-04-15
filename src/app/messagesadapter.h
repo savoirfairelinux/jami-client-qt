@@ -23,6 +23,8 @@
 #include "previewengine.h"
 #include "messageparser.h"
 #include "appsettingsmanager.h"
+#include "spellchecker.h"
+#include "spellcheckdictionarymanager.h"
 
 #include <QObject>
 #include <QString>
@@ -46,7 +48,6 @@ public:
         connect(this, &QAbstractItemModel::rowsRemoved, this, &FilteredMsgListModel::countChanged);
         connect(this, &QAbstractItemModel::modelReset, this, &FilteredMsgListModel::countChanged);
         connect(this, &QAbstractItemModel::layoutChanged, this, &FilteredMsgListModel::countChanged);
-
     }
     bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override
     {
@@ -101,11 +102,14 @@ public:
     {
         return new MessagesAdapter(qApp->property("AppSettingsManager").value<AppSettingsManager*>(),
                                    qApp->property("PreviewEngine").value<PreviewEngine*>(),
+                                   qApp->property("SpellCheckDictionaryManager")
+                                       .value<SpellCheckDictionaryManager*>(),
                                    qApp->property("LRCInstance").value<LRCInstance*>());
     }
 
     explicit MessagesAdapter(AppSettingsManager* settingsManager,
                              PreviewEngine* previewEngine,
+                             SpellCheckDictionaryManager* spellCheckDictionaryManager,
                              LRCInstance* instance,
                              QObject* parent = nullptr);
     ~MessagesAdapter() = default;
@@ -164,6 +168,10 @@ public:
     Q_INVOKABLE QVariant dataForInteraction(const QString& interactionId,
                                             int role = Qt::DisplayRole) const;
     Q_INVOKABLE void startSearch(const QString& text, bool isMedia);
+    Q_INVOKABLE QVariantList spellSuggestionsRequest(const QString& word);
+    Q_INVOKABLE bool spell(const QString& word);
+    Q_INVOKABLE void updateDictionnary(const QString& path);
+    Q_INVOKABLE QVariantList findWords(const QString& text);
 
     // Run corrsponding js functions, c++ to qml.
     void setMessagesImageContent(const QString& path, bool isBased64 = false);
@@ -198,14 +206,12 @@ private:
     QList<QString> conversationTypersUrlToName(const QSet<QString>& typersSet);
 
     AppSettingsManager* settingsManager_;
+    SpellCheckDictionaryManager* spellCheckDictionaryManager_;
     MessageParser* messageParser_;
-
     FilteredMsgListModel* filteredMsgListModel_;
-
-    static constexpr const int loadChunkSize_ {20};
-
     std::unique_ptr<MessageListModel> mediaInteractions_;
-
-    QTimer* timestampTimer_ {nullptr};
+    QTimer* timestampTimer_;
+    std::shared_ptr<SpellChecker> spellChecker_;
+    static constexpr const int loadChunkSize_ {20};
     static constexpr const int timestampUpdateIntervalMs_ {1000};
 };
