@@ -31,3 +31,7 @@
 	path = 3rdparty/zxing-cpp
 	url = https://github.com/nu-book/zxing-cpp.git
         ignore = dirty
+[submodule "3rdparty/hunspell"]
+	path = 3rdparty/hunspell
+	url = https://gitlab.savoirfairelinux.com/jami/hunspell.git
+	ignore = dirty
