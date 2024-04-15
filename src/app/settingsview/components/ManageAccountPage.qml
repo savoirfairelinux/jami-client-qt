@@ -38,7 +38,6 @@ SettingsPageBase {
     flickableContent: ColumnLayout {
         id: manageAccountColumnLayout
 
-        width: contentFlickableWidth
         spacing: JamiTheme.settingsBlockSpacing
         anchors.left: parent.left
         anchors.leftMargin: JamiTheme.preferredSettingsMarginSize

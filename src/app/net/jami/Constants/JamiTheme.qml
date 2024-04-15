@@ -516,6 +516,7 @@ Item {
     property int showTypoSecondToggleWidth: 540
     property int messageBarMaximumHeight: 150
     property int messageBarMinimumHeight: 36
+    property int messageUnderlineHeight: 2
 
     // InvitationView
     property real invitationViewAvatarSize: 112
