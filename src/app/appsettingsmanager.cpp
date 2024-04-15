@@ -88,13 +88,23 @@ const QString
 AppSettingsManager::getDictionaryPath()
 {
     QString language = AppSettingsManager::getLanguage();
-    QString hunspellDataDir = "/usr/share/hunspell/" + language;
+
+    #if defined(HUNSPELL_INSTALL_DIR)
+        QString hunspellDataDir = HUNSPELL_INSTALL_DIR;
+    #elif defined(Q_OS_MACOS)
+        QDir dir(qApp->applicationDirPath());
+        dir.cdUp();
+        QString hunspellDataDir = dir.absolutePath() + "/Resources/share";
+    #else
+        QString hunspellDataDir = qApp->applicationDirPath() + QDir::separator() + "share";
+    #endif
+    qDebug() << "hunspellDataDir " << hunspellDataDir;
     return hunspellDataDir;
 }
 
 void
 AppSettingsManager::loadTranslations()
-{
+{   
 #if defined(Q_OS_LINUX) && defined(JAMI_INSTALL_PREFIX)
     QString appDir = JAMI_INSTALL_PREFIX;
 #elif defined(Q_OS_MACOS)

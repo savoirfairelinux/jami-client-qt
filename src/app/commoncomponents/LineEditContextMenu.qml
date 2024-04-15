@@ -137,7 +137,7 @@ ContextMenuAutoLoader {
             lineEditObj.select(selectionStart, selectionEnd);
         }
         function onClosed() {
-            if(suggestionList.length == 0) {
+            if(!suggestionList || suggestionList.length == 0) {
                 return;
             }
             removeItems();
