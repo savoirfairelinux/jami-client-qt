@@ -21,6 +21,7 @@
 #include "qtutils.h"
 #include "messageparser.h"
 #include "previewengine.h"
+#include "spellchecker.h"
 
 #include <api/datatransfermodel.h>
 #include <api/contact.h>
@@ -39,17 +40,25 @@
 #include <QtMath>
 #include <QRegExp>
 
+#define SUGGESTIONS_MAX_SIZE 3 // limit the number of spelling suggestions
+
 MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
                                  PreviewEngine* previewEngine,
+                                 SpellCheckDictionaryManager* spellCheckDictionaryManager,
                                  LRCInstance* instance,
                                  QObject* parent)
     : QmlAdapterBase(instance, parent)
     , settingsManager_(settingsManager)
+    , spellCheckDictionaryManager_(spellCheckDictionaryManager)
     , messageParser_(new MessageParser(previewEngine, this))
     , filteredMsgListModel_(new FilteredMsgListModel(this))
     , mediaInteractions_(std::make_unique<MessageListModel>(nullptr))
     , timestampTimer_(new QTimer(this))
 {
+    // Default SpellChecker with default dictionnary path. Can be update with updateDictionnary
+    #if defined(Q_OS_LINUX)
+    spellChecker_ = new SpellChecker(spellCheckDictionaryManager_->getDictionaryPath());
+    #endif
     setObjectName(typeid(*this).name());
 
     set_messageListModel(QVariant::fromValue(filteredMsgListModel_));
@@ -726,4 +735,36 @@ MessagesAdapter::getMsgListSourceModel() const
     // We are certain that filteredMsgListModel_'s source model is a MessageListModel,
     // However it may be a nullptr if not yet set.
     return static_cast<MessageListModel*>(filteredMsgListModel_->sourceModel());
+}
+
+bool
+MessagesAdapter::spell(const QString& word)
+{
+    return spellChecker_->spell(word);
+}
+
+QVariantList
+MessagesAdapter::spellSuggestionsRequest(const QString& word)
+{
+    QStringList suggestionsList;
+    QVariantList variantList;
+    if (spellChecker_ == nullptr || spellChecker_->spell(word)) {
+        return variantList;
+    }
+
+    suggestionsList = spellChecker_->suggest(word);
+    for (const auto& suggestion : suggestionsList) {
+        if (variantList.size() >= SUGGESTIONS_MAX_SIZE) {
+            break;
+        }
+        variantList.append(QVariant(suggestion));
+    }
+
+    return variantList;
+}
+
+void
+MessagesAdapter::updateDictionnary(const QString& path)
+{
+    return spellChecker_->replaceDictionary(path);
 }

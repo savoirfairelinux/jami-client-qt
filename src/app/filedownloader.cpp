@@ -15,32 +15,32 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "imagedownloader.h"
+#include "filedownloader.h"
 
 #include <QDir>
 #include <QLockFile>
 
-ImageDownloader::ImageDownloader(ConnectivityMonitor* cm, QObject* parent)
+FileDownloader::FileDownloader(ConnectivityMonitor* cm, QObject* parent)
     : NetworkManager(cm, parent)
 {}
 
 void
-ImageDownloader::downloadImage(const QUrl& url, const QString& localPath)
+FileDownloader::downloadFile(const QUrl& url, const QString& localPath)
 {
     Utils::oneShotConnect(this, &NetworkManager::errorOccurred, this, [this, localPath]() {
-        onDownloadImageFinished({}, localPath);
+        onDownloadFileFinished({}, localPath);
     });
 
-    sendGetRequest(url, [this, localPath](const QByteArray& imageData) {
-        onDownloadImageFinished(imageData, localPath);
+    sendGetRequest(url, [this, localPath](const QByteArray& fileData) {
+        onDownloadFileFinished(fileData, localPath);
     });
 }
 
 void
-ImageDownloader::onDownloadImageFinished(const QByteArray& data, const QString& localPath)
+FileDownloader::onDownloadFileFinished(const QByteArray& data, const QString& localPath)
 {
     if (data.isEmpty()) {
-        Q_EMIT downloadImageFailed(localPath);
+        Q_EMIT downloadFileFailed(localPath);
         return;
     }
 
@@ -49,7 +49,7 @@ ImageDownloader::onDownloadImageFinished(const QByteArray& data, const QString& 
     const QDir dir;
     if (!dir.mkpath(dirPath)) {
         qWarning() << Q_FUNC_INFO << "Failed to create directory" << dirPath;
-        Q_EMIT downloadImageFailed(localPath);
+        Q_EMIT downloadFileFailed(localPath);
         return;
     }
 
@@ -58,10 +58,10 @@ ImageDownloader::onDownloadImageFinished(const QByteArray& data, const QString& 
     if (lf.lock() && file.open(QIODevice::WriteOnly)) {
         file.write(data);
         file.close();
-        Q_EMIT downloadImageSuccessful(localPath);
+        Q_EMIT downloadFileSuccessful(localPath);
         return;
     }
 
-    qWarning() << Q_FUNC_INFO << "Failed to write image to" << localPath;
-    Q_EMIT downloadImageFailed(localPath);
+    qWarning() << Q_FUNC_INFO << "Failed to write file to" << localPath;
+    Q_EMIT downloadFileFailed(localPath);
 }
