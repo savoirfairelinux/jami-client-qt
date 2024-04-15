@@ -16,6 +16,7 @@
  */
 
 #include "appsettingsmanager.h"
+#include "spellcheckdictionarymanager.h"
 #include "connectivitymonitor.h"
 #include "mainapplication.h"
 #include "previewengine.h"
@@ -94,6 +95,7 @@ public Q_SLOTS:
         settingsManager_.reset(new AppSettingsManager(this));
         systemTray_.reset(new SystemTray(settingsManager_.get(), this));
         previewEngine_.reset(new PreviewEngine(connectivityMonitor_.get(), this));
+        spellCheckDictionaryManager_.reset(new SpellCheckDictionaryManager(settingsManager_.get(), this));
 
         QFontDatabase::addApplicationFont(":/images/FontAwesome.otf");
 
@@ -152,6 +154,7 @@ public Q_SLOTS:
                              lrcInstance_.get(),
                              systemTray_.get(),
                              settingsManager_.get(),
+                             spellCheckDictionaryManager_.get(),
                              connectivityMonitor_.get(),
                              previewEngine_.get(),
                              &screenInfo_,
@@ -169,6 +172,7 @@ private:
 
     QScopedPointer<ConnectivityMonitor> connectivityMonitor_;
     QScopedPointer<AppSettingsManager> settingsManager_;
+    QScopedPointer<SpellCheckDictionaryManager> spellCheckDictionaryManager_;
     QScopedPointer<SystemTray> systemTray_;
     QScopedPointer<PreviewEngine> previewEngine_;
     ScreenInfo screenInfo_;

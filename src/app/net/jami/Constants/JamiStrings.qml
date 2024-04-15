@@ -110,6 +110,7 @@ Item {
     property string enablePTT: qsTr("Enable push-to-talk")
     property string keyboardShortcut: qsTr("Keyboard shortcut")
     property string changeKeyboardShortcut: qsTr("Change keyboard shortcut")
+    property string denyNewCallsAutoAnswer: qsTr("Deny new calls when already in an auto-answered call")
 
     // ChangePttKeyPopup
     property string changeShortcut: qsTr("Change shortcut")
@@ -275,6 +276,7 @@ Item {
     property string share: qsTr("Share")
     property string cut: qsTr("Cut")
     property string paste: qsTr("Paste")
+    property string language: qsTr("Language")
 
     // ConversationContextMenu
     property string startAudioCall: qsTr("Start audio call")
@@ -508,7 +510,7 @@ Item {
     property string displayHyperlinkPreviews: qsTr("Web link previews")
     property string displayHyperlinkPreviewsDescription: qsTr("Preview requires downloading content from third-party servers.")
 
-    property string language: qsTr("User interface language")
+    property string userInterfaceLanguage: qsTr("User interface language")
     property string verticalViewOpt: qsTr("Vertical view")
     property string horizontalViewOpt: qsTr("Horizontal view")
 
@@ -905,4 +907,12 @@ Item {
     property string copyAllData: qsTr("Copy all data")
     property string remote: qsTr("Remote: %1")
     property string view: qsTr("View")
+
+    // Spellchecker
+    property string enableSpellCheck: qsTr("Check spelling while typing")
+    property string spellCheckLanguage: qsTr("Text language")
+    property string spellCheckLanguageDescription: qsTr("To install new dictionaries, use the system package manager.")
+    property string spellchecking: qsTr("Spellchecking")
+    property string refresh: qsTr("Refresh")
+    property string refreshAvailableDictionaries: qsTr("Refresh installed dictionaries")
 }

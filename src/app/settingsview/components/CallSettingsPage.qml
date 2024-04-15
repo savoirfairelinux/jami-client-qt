@@ -27,7 +27,6 @@ import "../../commoncomponents"
 import "../../mainview/components"
 import "../../mainview/js/contactpickercreation.js" as ContactPickerCreation
 
-
 SettingsPageBase {
     id: root
 
@@ -94,6 +93,15 @@ SettingsPageBase {
                 labelText: JamiStrings.autoAnswerCalls
                 checked: CurrentAccount.autoAnswer
                 onSwitchToggled: CurrentAccount.autoAnswer = checked
+            }
+
+            ToggleSwitch {
+                id: checkBoxDenyNewCallsAutoAnswer
+                visible: CurrentAccount.autoAnswer
+
+                labelText: JamiStrings.denyNewCallsAutoAnswer
+                checked: CurrentAccount.denyNewCallsAutoAnswer
+                onSwitchToggled: CurrentAccount.denyNewCallsAutoAnswer = checked
             }
         }
 
@@ -375,7 +383,7 @@ SettingsPageBase {
                 }
             }
         }
-        ColumnLayout{
+        ColumnLayout {
             width: parent.width
             spacing: 9
             Text {
@@ -392,7 +400,7 @@ SettingsPageBase {
                 labelText: JamiStrings.enablePTT
                 checked: UtilsAdapter.getAppValue(Settings.EnablePtt)
                 onSwitchToggled: {
-                    UtilsAdapter.setAppValue(Settings.Key.EnablePtt, checked)
+                    UtilsAdapter.setAppValue(Settings.Key.EnablePtt, checked);
                 }
             }
             RowLayout {
@@ -418,13 +426,13 @@ SettingsPageBase {
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                     background: Rectangle {
-                         id: backgroundRect
-                         anchors.centerIn: parent
-                         width: keyLabel.width + 2 * JamiTheme.preferredMarginSize
-                         height: keyLabel.height + JamiTheme.preferredMarginSize
-                         color: JamiTheme.lightGrey_
-                         border.color: JamiTheme.darkGreyColor
-                         radius: 4
+                        id: backgroundRect
+                        anchors.centerIn: parent
+                        width: keyLabel.width + 2 * JamiTheme.preferredMarginSize
+                        height: keyLabel.height + JamiTheme.preferredMarginSize
+                        color: JamiTheme.lightGrey_
+                        border.color: JamiTheme.darkGreyColor
+                        radius: 4
                     }
                 }
                 MaterialButton {
@@ -436,8 +444,8 @@ SettingsPageBase {
                     onClicked: {
                         var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ChangePttKeyPopup.qml");
                         dlg.choiceMade.connect(function (chosenKey) {
-                             keyLabel.text = PTTListener.keyToString(chosenKey);
-                        });
+                                keyLabel.text = PTTListener.keyToString(chosenKey);
+                            });
                     }
                 }
             }
