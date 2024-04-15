@@ -14,7 +14,7 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="538"/>
         <source>Incoming call</source>
-        <translation>Входящий звонок</translation>
+        <translation>Входящий вызов</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="539"/>
@@ -154,7 +154,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="39"/>
         <source>Jami is a universal communication platform, with privacy as its foundation, that relies on a free distributed network for everyone.</source>
-        <translation>Jami — это универсальная платформа для общения, основанная на конфиденциальности, базирующейся на бесплатной распределенной сети для всех.</translation>
+        <translation>Джами́ — это универсальная платформа для общения, основанная на конфиденциальности, которая строится на базе свободной и бесплатной распределенной сети.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="40"/>
@@ -208,7 +208,7 @@ Jami сейчас завершит работу.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="66"/>
         <source>Transfer this call</source>
-        <translation>Перевести этот звонок</translation>
+        <translation>Перевести этот вызов</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="67"/>
@@ -313,7 +313,7 @@ Jami сейчас завершит работу.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="91"/>
         <source>Enable push-to-talk</source>
-        <translation>Включить &quot;нажми и говори&quot;</translation>
+        <translation>Включить функцию «нажми и говори»</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="92"/>
@@ -333,7 +333,7 @@ Jami сейчас завершит работу.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="97"/>
         <source>Press the key to be assigned to push-to-talk shortcut</source>
-        <translation>Нажмите кнопку, которая будет назначена сочетанию &quot;нажми и говори&quot;</translation>
+        <translation>Нажмите кнопку, которая будет назначена для активации функции «нажми и говори»</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="98"/>
@@ -578,7 +578,7 @@ Jami сейчас завершит работу.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="170"/>
         <source>Bootstrap</source>
-        <translation>Инициализация</translation>
+        <translation>Сервер начальной загрузки</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="173"/>
@@ -723,7 +723,7 @@ Jami сейчас завершит работу.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="347"/>
         <source>deleted a message</source>
-        <translation>удалённое сообщение</translation>
+        <translation>удалил(а) сообщение</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="348"/>
@@ -855,7 +855,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="480"/>
         <source>Use native window frame (requires restart)</source>
-        <translation>Использовать системную оконную рамку (требуется перезагрузка)</translation>
+        <translation>Использовать системную рамку окна (требуется перезапуск приложения)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="484"/>
@@ -995,7 +995,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="754"/>
         <source>Strikethrough</source>
-        <translation>Зачеркнуть</translation>
+        <translation>Зачёркивание</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="760"/>
@@ -1020,7 +1020,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="781"/>
         <source>Select dedicated device for hosting future calls in this swarm. If not set, the host will be the device starting a call.</source>
-        <translation>Выбрать выделенное устройство для размещения будущих звонков в этом рое. Если не задано, звонок будет размещаться на устройстве, откуда он начат.</translation>
+        <translation>Выбрать выделенное устройство для размещения будущих вызовов в этом рое. Если не задано, разговор будет размещаться на устройстве, откуда он начат.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="782"/>
@@ -1090,7 +1090,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="876"/>
         <source>Enter or Shift+Enter to insert a new line</source>
-        <translation>Enter или Shift+Enter чтобы вставить новую строку</translation>
+        <translation>Enter или Shift+Enter, чтобы вставить новую строку</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="890"/>
@@ -1187,7 +1187,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="690"/>
         <source>Share freely and privately with Jami</source>
-        <translation>Поделитесь свободно и в частном порядке с Джами</translation>
+        <translation>Общайтесь свободно и конфиденциально с Джами</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="716"/>
@@ -1243,12 +1243,12 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="779"/>
         <source>A call is in progress. Do you want to join the call?</source>
-        <translation>Звонок в процессе.</translation>
+        <translation>Идет разговор. Вы хотите присоединиться к разговору?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="780"/>
         <source>Current host for this swarm seems unreachable. Do you want to host the call?</source>
-        <translation>Устройство, где размещён этот рой, похоже, недоступно. Хотите разместить этот звонок?</translation>
+        <translation>Устройство, где размещён данный рой, похоже, недоступно. Хотите разместить этот вызов?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="784"/>
@@ -1258,12 +1258,12 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="785"/>
         <source>Host only this call</source>
-        <translation>Разместить только этот звонок</translation>
+        <translation>Разместить только этот вызов</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="786"/>
         <source>Host this call</source>
-        <translation>Разместить этот звонок</translation>
+        <translation>Разместить этот вызов</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="787"/>
@@ -1405,12 +1405,12 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="230"/>
         <source>Pause call</source>
-        <translation>Приостановить звонок</translation>
+        <translation>Приостановить вызов</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="231"/>
         <source>Resume call</source>
-        <translation>Продолжить звонок</translation>
+        <translation>Возобновить вызов</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="232"/>
@@ -1435,7 +1435,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="236"/>
         <source>Details</source>
-        <translation>Детали</translation>
+        <translation>Подробности</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="181"/>
@@ -1653,7 +1653,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="275"/>
         <source>Transfer call</source>
-        <translation>Перевести звонок</translation>
+        <translation>Перевести вызов</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="276"/>
@@ -1875,7 +1875,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="328"/>
         <source>Position share duration</source>
-        <translation>Продолжительность позиционных акций</translation>
+        <translation>Продолжительность трансляции местоположения</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="329"/>
@@ -1920,12 +1920,12 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="340"/>
         <source>Place audio call</source>
-        <translation>Сделать аудиозвонок</translation>
+        <translation>Начать голосовой вызов</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="341"/>
         <source>Place video call</source>
-        <translation>Сделать видеозвонок</translation>
+        <translation>Совершить видеовызов</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="342"/>
@@ -1970,7 +1970,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="354"/>
         <source>Search</source>
-        <translation>Поиск:</translation>
+        <translation>Поиск</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="357"/>
@@ -2371,7 +2371,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="778"/>
         <source>Started a call</source>
-        <translation>Начат звонок</translation>
+        <translation>Начат вызов</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="835"/>
@@ -2625,7 +2625,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="515"/>
         <source>Install beta version</source>
-        <translation>Установить бета версию</translation>
+        <translation>Установить бета-версию</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="516"/>
@@ -2710,7 +2710,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="546"/>
         <source>Always record calls</source>
-        <translation>Всегда записывать разговоры</translation>
+        <translation>Всегда записывать звонки</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="549"/>
@@ -3346,7 +3346,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="772"/>
         <source>Write to %1</source>
-        <translation>Написать %1</translation>
+        <translation>Написать сообщение пользователю %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="792"/>
@@ -3520,12 +3520,12 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="85"/>
         <source>Start an audio call</source>
-        <translation>Сделать аудиозвонок</translation>
+        <translation>Начать голосовой вызов</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="89"/>
         <source>Start a video call</source>
-        <translation>Сделать видеозвонок</translation>
+        <translation>Начать видеовызов</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="93"/>
@@ -3595,7 +3595,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="154"/>
         <source>Answer an incoming call</source>
-        <translation>Ответ на входящий звонок</translation>
+        <translation>Ответить на входящий вызов</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="158"/>
@@ -4304,7 +4304,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="90"/>
         <source>The choice of the name Jami was inspired by the Swahili word &apos;jamii&apos;, which means &apos;community&apos; as a noun and &apos;together&apos; as an adverb.</source>
-        <translation>Выбор имени Джами был вдохновлен словом &quot;джами&quot; на суахили, что означает &quot;сообщество&quot; как существительное и &quot;вместе&quot; как прилагательное.</translation>
+        <translation>Выбор имени Джами был вдохновлен словом «джами́» на суахили, что означает «сообщество» как существительное и «вместе» как наречие.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="81"/>
@@ -4334,7 +4334,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="109"/>
         <source>Can I make a conference call?</source>
-        <translation>Можно сделать телефонный звонок?</translation>
+        <translation>Возможно ли совершать групповые конференц-вызовы?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="114"/>
