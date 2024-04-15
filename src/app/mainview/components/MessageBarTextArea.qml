@@ -17,19 +17,17 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
-
 import SortFilterProxyModel 0.2
-
 import "../../commoncomponents"
 
 JamiFlickable {
     id: root
 
+    property int underlineHeight: JamiTheme.messageUnderlineHeight
     property alias text: textArea.text
     property var textAreaObj: textArea
     property alias placeholderText: textArea.placeholderText
@@ -39,9 +37,12 @@ JamiFlickable {
     property bool showPreview: false
     property bool isShowTypo: UtilsAdapter.getAppValue(Settings.Key.ShowMardownOption)
     property int textWidth: textArea.contentWidth
+    property var spellCheckActive: AppSettingsManager.getValue(Settings.EnableSpellCheck)
+    property var language: AppSettingsManager.getValue(Settings.SpellLang)
 
     // Used to cache the editable text when showing the preview message
     // and also to debounce the textChanged signal's effect on the composing status.
+    property var underlineList: []
     property string cachedText
     property string debounceText
 
@@ -72,6 +73,7 @@ JamiFlickable {
 
         lineEditObj: textArea
         customizePaste: true
+        checkSpell: (Qt.platform.os.toString() === "linux") ? true : false
 
         onContextMenuRequirePaste: {
             // Intercept paste event to use C++ QMimeData
@@ -115,9 +117,79 @@ JamiFlickable {
     TextArea.flickable: TextArea {
         id: textArea
 
+        CachedFile {
+            id: cachedFile
+        }
+
+        function updateCorrection(language) {
+            cachedFile.updateDictionnary(language);
+            textArea.updateUnderlineText();
+        }
+
+        // Listen to settings changes and apply it to this widget
+        Connections {
+            target: UtilsAdapter
+
+            function onChangeLanguage() {
+                textArea.updateUnderlineText();
+            }
+
+            function onChangeFontSize() {
+                textArea.updateUnderlineText();
+            }
+
+            function onSpellLanguageChanged() {
+                root.language = SpellCheckDictionaryManager.getSpellLanguage();
+                if ((Qt.platform.os.toString() !== "linux") || (AppSettingsManager.getValue(Settings.SpellLang) === "NONE")) {
+                    spellCheckActive = false;
+                } else {
+                    spellCheckActive = AppSettingsManager.getValue(Settings.EnableSpellCheck);
+                }
+                if (spellCheckActive === true) {
+                    root.language = SpellCheckDictionaryManager.getSpellLanguage();
+                    textArea.updateCorrection(root.language);
+                } else {
+                    textArea.clearUnderlines();
+                }
+            }
+
+            function onEnableSpellCheckChanged() {
+                // Disable spell check on non-linux platforms yet
+                if ((Qt.platform.os.toString() !== "linux") || (AppSettingsManager.getValue(Settings.SpellLang) === "NONE")) {
+                    spellCheckActive = false;
+                } else {
+                    spellCheckActive = AppSettingsManager.getValue(Settings.EnableSpellCheck);
+                }
+                if (spellCheckActive === true) {
+                    root.language = SpellCheckDictionaryManager.getSpellLanguage();
+                    textArea.updateCorrection(root.language);
+                } else {
+                    textArea.clearUnderlines();
+                }
+            }
+        }
+
+        // Initialize the settings if the component wasn't loaded when changing settings
+        Component.onCompleted: {
+            if ((Qt.platform.os.toString() !== "linux") || (AppSettingsManager.getValue(Settings.SpellLang) === "NONE")) {
+                spellCheckActive = false;
+            } else {
+                spellCheckActive = AppSettingsManager.getValue(Settings.EnableSpellCheck);
+            }
+            if (spellCheckActive === true) {
+                root.language = SpellCheckDictionaryManager.getSpellLanguage();
+                textArea.updateCorrection(root.language);
+            } else {
+                textArea.clearUnderlines();
+            }
+        }
+
         readOnly: showPreview
         leftPadding: JamiTheme.scrollBarHandleSize
         rightPadding: JamiTheme.scrollBarHandleSize
+        topPadding: 0
+        bottomPadding: underlineHeight
+
         persistentSelection: true
         verticalAlignment: TextEdit.AlignVCenter
         font.pointSize: JamiTheme.textFontSize + 2
@@ -135,12 +207,37 @@ JamiFlickable {
             color: "transparent"
         }
 
+        TextMetrics {
+            id: textMetrics
+            elide: Text.ElideMiddle
+            font.family: textArea.font.family
+            font.pointSize: JamiTheme.textFontSize + 2
+        }
+
+        Text {
+            id: highlight
+            color: "black"
+            font.bold: true
+            visible: false
+        }
+
         onReleased: function (event) {
-            if (event.button === Qt.RightButton)
+            if (event.button === Qt.RightButton) {
+                var position = textArea.positionAt(event.x, event.y);
+                textArea.moveCursorSelection(position, TextInput.SelectWords);
+                textArea.selectWord();
+                if (!MessagesAdapter.spell(textArea.selectedText)) {
+                    var wordList = MessagesAdapter.spellSuggestionsRequest(textArea.selectedText);
+                    if (wordList.length !== 0) {
+                        textAreaContextMenu.addMenuItem(wordList);
+                    }
+                }
                 textAreaContextMenu.openMenuAt(event);
+            }
         }
 
         onTextChanged: {
+            updateUnderlineText();
             if (text !== debounceText && !showPreview) {
                 debounceText = text;
                 MessagesAdapter.userIsComposing(text ? true : false);
@@ -152,6 +249,8 @@ JamiFlickable {
         // eg. Enter -> Send messages
         //     Shift + Enter -> Next Line
         Keys.onPressed: function (keyEvent) {
+            // Update underline on each input to take into account deleted text and sent ones
+            updateUnderlineText();
             if (keyEvent.matches(StandardKey.Paste)) {
                 MessagesAdapter.onPaste();
                 keyEvent.accepted = true;
@@ -178,6 +277,42 @@ JamiFlickable {
             } else if (keyEvent.key === Qt.Key_Tab) {
                 nextItemInFocusChain().forceActiveFocus(Qt.TabFocusReason);
                 keyEvent.accepted = true;
+            }
+        }
+
+        function updateUnderlineText() {
+            clearUnderlines();
+            // We iterate over the whole text to find words to check and underline them if needed
+            if (spellCheckActive) {
+                var text = textArea.text;
+                var words = MessagesAdapter.findWords(text);
+                if (!words)
+                    return;
+                for (var i = 0; i < words.length; i++) {
+                    var wordInfo = words[i];
+                    if (wordInfo && wordInfo.word && !MessagesAdapter.spell(wordInfo.word)) {
+                        textMetrics.text = wordInfo.word;
+                        var xPos = textArea.positionToRectangle(wordInfo.position).x;
+                        var yPos = textArea.positionToRectangle(wordInfo.position).y + textArea.positionToRectangle(wordInfo.position).height;
+                        var underlineObject = Qt.createQmlObject('import QtQuick; Rectangle {height: 2; color: "red";}', textArea);
+                        underlineObject.x = xPos;
+                        underlineObject.y = yPos;
+                        underlineObject.width = textMetrics.width;
+                        underlineList.push(underlineObject);
+                    }
+                }
+            }
+        }
+
+        function clearUnderlines() {
+            // Destroy all of the underline boxes
+            while (underlineList.length > 0) {
+                // Get the previous item
+                var underlineObject = underlineList[underlineList.length - 1];
+                // Remove the last item
+                underlineList.pop();
+                // Destroy the removed item
+                underlineObject.destroy();
             }
         }
     }
