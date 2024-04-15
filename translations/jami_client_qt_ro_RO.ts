@@ -178,7 +178,7 @@ Jami se va închide acum.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="48"/>
         <source>Version</source>
-        <translation>Versiune</translation>
+        <translation>Versiunea</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="57"/>
