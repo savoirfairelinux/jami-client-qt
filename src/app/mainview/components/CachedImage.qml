@@ -64,8 +64,8 @@ Item {
     }
 
     Connections {
-        target: ImageDownloader
-        function onDownloadImageSuccessful(localPath) {
+        target: FileDownloader
+        function onDownloadFileSuccessful(localPath) {
             if (localPath === cachedImage.localPath) {
                 image.source = UtilsAdapter.urlFromLocalPath(localPath);
             }
@@ -90,7 +90,7 @@ Item {
         }
         if (downloadUrl && downloadUrl !== "" && localPath !== "") {
             if (!UtilsAdapter.fileExists(localPath)) {
-                ImageDownloader.downloadImage(downloadUrl, localPath);
+                FileDownloader.downloadFile(downloadUrl, localPath);
             } else {
                 image.source = UtilsAdapter.urlFromLocalPath(localPath);
                 if (image.isGif) {
