@@ -116,22 +116,22 @@ Rectangle {
 
                 spacing: 0
 
-                LineEditContextMenu {
-                    id: displayNameContextMenu
-                    lineEditObj: title
-                    selectOnly: true
-                        }
-                MouseArea {
-                    anchors.fill: parent
-                    acceptedButtons: Qt.RightButton
-                    cursorShape: Qt.IBeamCursor
-                    onClicked: function (mouse) {
-                        displayNameContextMenu.openMenuAt(mouse);
-                    }
-                        }
-
                 ElidedTextLabel {
                     id: title
+
+                    LineEditContextMenu {
+                        id: displayNameContextMenu
+                        lineEditObj: title
+                        selectOnly: true
+                    }
+                    MouseArea {
+                        anchors.fill: parent
+                        acceptedButtons: Qt.RightButton
+                        cursorShape: Qt.IBeamCursor
+                        onClicked: function (mouse) {
+                            displayNameContextMenu.openMenuAt(mouse);
+                        }
+                    }
 
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
 
