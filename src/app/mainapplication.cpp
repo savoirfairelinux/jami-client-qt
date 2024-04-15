@@ -20,6 +20,7 @@
 #include "global.h"
 #include "qmlregister.h"
 #include "appsettingsmanager.h"
+#include "spellcheckdictionarymanager.h"
 #include "connectivitymonitor.h"
 #include "systemtray.h"
 #include "previewengine.h"
@@ -156,7 +157,7 @@ MainApplication::MainApplication(int& argc, char** argv)
                                      "*.debug=true\n"
                                      "libclient.debug=false\n"
                                      "qt.*=false\n"
-                                     "qml.debug=false\n"
+                                     "qml.debug=true\n"
                                      "default.debug=false\n"
                                      "client.debug=false\n"
                                      "\n");
@@ -190,6 +191,7 @@ MainApplication::init()
     // to any other initialization. This won't do anything if crashpad isn't
     // enabled.
     settingsManager_ = new AppSettingsManager(this);
+    spellCheckDictionaryManager_ = new SpellCheckDictionaryManager(settingsManager_, this);
     crashReporter_ = new CrashReporter(settingsManager_, this);
 
     // This 2-phase initialisation prevents ephemeral instances from
@@ -423,6 +425,7 @@ MainApplication::initQmlLayer()
                          lrcInstance_.get(),
                          systemTray_,
                          settingsManager_,
+                         spellCheckDictionaryManager_,
                          connectivityMonitor_,
                          previewEngine_,
                          &screenInfo_,
