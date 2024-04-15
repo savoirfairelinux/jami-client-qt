@@ -63,6 +63,8 @@ extern const QString defaultDownloadPath;
     X(WindowState, QWindow::AutomaticVisibility) \
     X(EnableExperimentalSwarm, false) \
     X(LANG, "SYSTEM") \
+    X(SpellLang, "None") \
+    X(EnableSpellCheck, true) \
     X(PluginStoreEndpoint, "https://plugins.jami.net") \
     X(PositionShareDuration, 15) \
     X(PositionShareLimit, true) \

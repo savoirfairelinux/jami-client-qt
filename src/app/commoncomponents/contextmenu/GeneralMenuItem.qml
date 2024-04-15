@@ -28,6 +28,7 @@ MenuItem {
     id: menuItem
 
     property string itemName: ""
+    property string content: ""
     property alias iconSource: contextMenuItemImage.source
     property string iconColor: ""
     property bool canTrigger: true
