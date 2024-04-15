@@ -1,5 +1,5 @@
 ARG RISK=edge
-ARG UBUNTU=jammy
+ARG UBUNTU=focal
 
 FROM ubuntu:$UBUNTU as builder
 ARG RISK
@@ -83,6 +83,7 @@ ENV PATH="/snap/bin:/snap/snapcraft/current/usr/bin:/snap/snapcraft/current/libe
 ENV SNAP="/snap/snapcraft/current"
 ENV SNAP_NAME="snapcraft"
 ENV SNAP_ARCH="amd64"
+ENV DISABLE_PIPEWIRE=true
 
 ADD extras/packaging/gnu-linux/scripts/build-package-snap.sh /opt/build-package-snap.sh
 CMD ["/opt/build-package-snap.sh"]
