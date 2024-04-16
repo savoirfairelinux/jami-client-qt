@@ -508,7 +508,7 @@ Item {
     property string displayHyperlinkPreviews: qsTr("Web link previews")
     property string displayHyperlinkPreviewsDescription: qsTr("Preview requires downloading content from third-party servers.")
 
-    property string language: qsTr("User interface language")
+    property string userLanguage: qsTr("User interface language")
     property string verticalViewOpt: qsTr("Vertical view")
     property string horizontalViewOpt: qsTr("Horizontal view")
 
