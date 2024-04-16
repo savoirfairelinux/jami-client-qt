@@ -157,8 +157,8 @@ SettingsPageBase {
                 Layout.fillWidth: true
                 height: JamiTheme.preferredFieldHeight
 
-                labelText: JamiStrings.language
-                tipText: JamiStrings.language
+                labelText: JamiStrings.userLanguage
+                tipText: JamiStrings.userLanguage
                 comboModel: ListModel {
                     id: langModel
                     Component.onCompleted: {
