@@ -481,6 +481,7 @@ elseif (NOT APPLE)
                 NAMES ${HUNSPELL_LIBRARIES} hunspell hunspell-1.7 libhunspell libhunspell-1.7 libhunspell-devel libhunspell-dev
                 HINTS ${HUNSPELL_LIBRARY_DIRS}
     )
+    set(HUNSPELL_DICT_DIR "/usr/share/hunspell/")
   else()
     set(HUNSPELL_DIR ${PROJECT_SOURCE_DIR}/3rdparty/hunspell)
     set(HUNSPELL_INCLUDE_DIR ${HUNSPELL_DIR}/src)
@@ -757,6 +758,11 @@ elseif (NOT APPLE)
     ${PROJECT_NAME}
     PRIVATE
     JAMI_INSTALL_PREFIX="${JAMI_DATA_PREFIX}")
+
+  target_compile_definitions(
+    ${PROJECT_NAME}
+    PRIVATE
+    HUNSPELL_INSTALL_DIR="${HUNSPELL_DICT_DIR}")
 
   # Logos
   install(
