@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c536c8f6_9aa98e0d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-04-16T21:59:56Z",
+      "side": 1,
+      "message": "Would a “Proofing language” Jami setting be added? Inspiration from “Set Proofing Language” at\nhttps://support.microsoft.com/en-us/office/check-spelling-and-grammar-in-a-different-language-667ba67a-a202-42fd-8596-edc1fa320e00\n\n“Proofing” can include:\n* “Spell checker language”\nhttps://en.wikipedia.org/wiki/Spell_checker\n* “Grammar checker language”\nhttps://en.wikipedia.org/wiki/Grammar_checker\n\n“Proofing” would include if available a “spelling checker”, a “grammar checker”, and a “style checker”. If any of these checkers are not currently available that is fine and if they are added in the future then the string would not need to be updated.\n\nThe “User interface language” Jami setting can be set to English and the “Proofing language” might be set to a language that does not have a fully translated user interface.\n\nThank you",
+      "revId": "510204854d6644adea3a9134e7335d9ed32849b7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
