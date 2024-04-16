@@ -274,7 +274,7 @@ parts:
       cmake .. -DENABLE_LIBWRAP=true \
                -DLIBJAMI_BUILD_DIR=$SNAPCRAFT_PART_BUILD/daemon/src \
                -DCMAKE_INSTALL_PREFIX=/usr \
-               -DCMAKE_BUILD_TYPE=Release
+               -DCMAKE_BUILD_TYPE=Debug
       make -j$SNAPCRAFT_PARALLEL_BUILD_COUNT
       DESTDIR=$SNAPCRAFT_PART_INSTALL make install
     build-packages:
@@ -304,7 +304,6 @@ parts:
     - libswscale-dev
     - libva-dev
     - libvdpau-dev
-    - libpipewire-0.2-dev
     - libargon2-0-dev # opendht
     - libexpat1-dev
     - libjsoncpp-dev

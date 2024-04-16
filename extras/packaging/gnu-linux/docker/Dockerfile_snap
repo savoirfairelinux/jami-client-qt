@@ -75,6 +75,11 @@ RUN apt-get update && apt-get dist-upgrade --yes && apt-get install --yes snapd 
 ADD extras/packaging/gnu-linux/scripts/install-cmake.sh /opt/install-cmake.sh
 RUN /opt/install-cmake.sh
 
+# We need PipeWire for screen sharing on Wayland, but the default version on
+# Ubuntu 20.04 (focal) is too old, so we have to build it from source
+ADD extras/packaging/gnu-linux/scripts/install-pipewire-from-source.sh /opt/install-pipewire-from-source.sh
+RUN /opt/install-pipewire-from-source.sh
+
 # Set the proper environment.
 ENV LANG="en_US.UTF-8"
 ENV LANGUAGE="en_US:en"
@@ -83,7 +88,6 @@ ENV PATH="/snap/bin:/snap/snapcraft/current/usr/bin:/snap/snapcraft/current/libe
 ENV SNAP="/snap/snapcraft/current"
 ENV SNAP_NAME="snapcraft"
 ENV SNAP_ARCH="amd64"
-ENV DISABLE_PIPEWIRE=true
 
 ADD extras/packaging/gnu-linux/scripts/build-package-snap.sh /opt/build-package-snap.sh
 CMD ["/opt/build-package-snap.sh"]
