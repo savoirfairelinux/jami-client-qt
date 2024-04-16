@@ -785,6 +785,11 @@ elseif (NOT APPLE)
     PRIVATE
     JAMI_INSTALL_PREFIX="${JAMI_DATA_PREFIX}")
 
+  target_compile_definitions(
+    ${PROJECT_NAME}
+    PRIVATE
+    HUNSPELL_INSTALL_DIR="${HUNSPELL_DICT_DIR}")
+
   # Logos
   install(
     FILES resources/images/jami.svg
