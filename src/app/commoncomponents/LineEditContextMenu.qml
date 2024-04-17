@@ -67,6 +67,15 @@ ContextMenuAutoLoader {
                 else
                     lineEditObj.paste();
             }
+        },
+        GeneralMenuItem {
+            id: language
+
+            canTrigger: true
+            itemName: JamiStrings.language
+            hasIcon: false
+            onClicked: {
+            }
         }
     ]
 
