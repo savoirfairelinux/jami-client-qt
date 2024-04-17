@@ -257,6 +257,7 @@ Item {
     property string share: qsTr("Share")
     property string cut: qsTr("Cut")
     property string paste: qsTr("Paste")
+    property string language: qsTr("Language")
 
     // ConversationContextMenu
     property string startAudioCall: qsTr("Start audio call")
