@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4784a68d_adb0abbc",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-04-18T21:44:59Z",
+      "side": 1,
+      "message": "Can a keyboard shortcut/accelerator, eg \"L\", please be associated with the contextual menu option? Thank you",
+      "range": {
+        "startLine": 260,
+        "startChar": 36,
+        "endLine": 260,
+        "endChar": 44
+      },
+      "revId": "5b085f9a966e12c1358af72ef16f699f90488b78",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
