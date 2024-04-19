@@ -27,7 +27,7 @@
 #include "positionmanager.h"
 #include "tipsmodel.h"
 #include "connectivitymonitor.h"
-#include "imagedownloader.h"
+#include "filedownloader.h"
 #include "utilsadapter.h"
 #include "conversationsadapter.h"
 #include "currentcall.h"
@@ -208,7 +208,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, VideoDevices);
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, CurrentAccountToMigrate);
     QML_REGISTERSINGLETON_TYPE(NS_MODELS, WizardViewStepModel);
-    QML_REGISTERSINGLETON_TYPE(NS_HELPERS, ImageDownloader);
+    QML_REGISTERSINGLETON_TYPE(NS_HELPERS, FileDownloader);
 
     // TODO: remove these
     QML_REGISTERSINGLETONTYPE_CUSTOM(NS_MODELS, AVModel, &lrcInstance->avModel())
