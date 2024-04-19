@@ -50,6 +50,24 @@
       "message": "Should \"Alessandro Astone\" be added to the \"Created by\" section in the \"About Jami\" dialog? Thank you",
       "revId": "92341b27b6b7899b80f805e89ac1ebf6f088a051",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53d7a442_5d38dd3c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-04-19T14:40:28Z",
+      "side": 1,
+      "message": "We generally do a beta per week, a release per month.\nHowever these days, the team is really small due to some other priorities, so it\u0027s slow.\nWe didn\u0027t do the packaging for fedora 40 yet.",
+      "parentUuid": "c1e0199d_2b8fdf34",
+      "revId": "92341b27b6b7899b80f805e89ac1ebf6f088a051",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
