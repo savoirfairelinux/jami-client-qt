@@ -47,6 +47,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "041175ca_9971ff7b",
+        "filename": "extras/packaging/gnu-linux/scripts/install-pipewire-from-source.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-04-19T14:36:49Z",
+      "side": 1,
+      "message": "Done (but this would only make a difference if we were sourcing the script instead of executing it, no?)",
+      "parentUuid": "a9e0b039_57ebaf44",
+      "range": {
+        "startLine": 7,
+        "startChar": 1,
+        "endLine": 7,
+        "endChar": 7
+      },
+      "revId": "9a8b4e9b81d9961d78f80b6ab8ac247fb2805c1d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aaf0ba36_a716fb4d",
@@ -60,6 +84,30 @@
       "writtenOn": "2024-04-19T12:08:36Z",
       "side": 1,
       "message": "this is probably a +x file and the shebang will choose \"python3\" directly. Ideally python3 is not necessary (because the binary name can change on some distrib (python/python3/etc)",
+      "range": {
+        "startLine": 23,
+        "startChar": 8,
+        "endLine": 23,
+        "endChar": 32
+      },
+      "revId": "9a8b4e9b81d9961d78f80b6ab8ac247fb2805c1d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "870a9b9b_a4a05468",
+        "filename": "extras/packaging/gnu-linux/scripts/install-pipewire-from-source.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-04-19T14:36:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aaf0ba36_a716fb4d",
       "range": {
         "startLine": 23,
         "startChar": 8,
