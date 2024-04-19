@@ -103,6 +103,8 @@ public:
     Q_INVOKABLE const QString getStyleSheet(const QString& name, const QString& source);
     Q_INVOKABLE const QString getLocalDataPath();
     Q_INVOKABLE const QString getCachePath();
+    Q_INVOKABLE const QString getDictionaryPath();
+    Q_INVOKABLE const QString getDictionaryUrl();
     Q_INVOKABLE bool createStartupLink();
     Q_INVOKABLE QString GetRingtonePath();
     Q_INVOKABLE bool checkStartupLink();
