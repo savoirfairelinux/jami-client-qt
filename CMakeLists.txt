@@ -320,7 +320,7 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/currentcall.cpp
   ${APP_SRC_DIR}/messageparser.cpp
   ${APP_SRC_DIR}/previewengine.cpp
-  ${APP_SRC_DIR}/imagedownloader.cpp
+  ${APP_SRC_DIR}/filedownloader.cpp
   ${APP_SRC_DIR}/pluginversionmanager.cpp
   ${APP_SRC_DIR}/connectioninfolistmodel.cpp
   ${APP_SRC_DIR}/pluginversionmanager.cpp
@@ -390,7 +390,7 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/currentcall.h
   ${APP_SRC_DIR}/messageparser.h
   ${APP_SRC_DIR}/htmlparser.h
-  ${APP_SRC_DIR}/imagedownloader.h
+  ${APP_SRC_DIR}/filedownloader.h
   ${APP_SRC_DIR}/pluginversionmanager.h
   ${APP_SRC_DIR}/connectioninfolistmodel.h
   ${APP_SRC_DIR}/pttlistener.h

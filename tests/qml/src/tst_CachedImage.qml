@@ -44,14 +44,14 @@ Item {
 
             SignalSpy {
                 id: spyDownloadSuccessful
-                target: ImageDownloader
-                signalName: "onDownloadImageSuccessful"
+                target: FileDownloader
+                signalName: "onDownloadFileSuccessful"
             }
 
             SignalSpy {
                 id: spyDownloadFailed
-                target: ImageDownloader
-                signalName: "onDownloadImageFailed"
+                target: FileDownloader
+                signalName: "onDownloadFileFailed"
             }
 
             function test_goodDownLoad() {
