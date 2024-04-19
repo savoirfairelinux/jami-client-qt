@@ -902,3 +902,9 @@ UtilsAdapter::isWayland() const
 {
     return !qEnvironmentVariableIsEmpty("WAYLAND_DISPLAY");
 }
+
+QUrl UtilsAdapter::getDictionnaryUrl() const
+{
+    QUrl url = QUrl("https://cgit.freedesktop.org/libreoffice/dictionaries/tree/");
+    return url;
+}

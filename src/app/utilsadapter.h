@@ -172,6 +172,8 @@ public:
     Q_INVOKABLE QString getMimeNameForUrl(const QUrl& fileUrl) const;
     Q_INVOKABLE QUrl urlFromLocalPath(const QString& filePath) const;
 
+    // For hunspell
+    Q_INVOKABLE QUrl getDictionnaryUrl() const;
 #ifdef BUILD_TESTING
     Q_INVOKABLE QString createDummyImage() const;
 #endif
