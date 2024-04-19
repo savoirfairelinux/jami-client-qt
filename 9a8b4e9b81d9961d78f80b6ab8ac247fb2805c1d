@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf34c327_2ed50723",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-04-19T12:08:36Z",
+      "side": 1,
+      "message": "Note: technically this will work on suse too (except the apt-get). Nothing to do here.",
+      "range": {
+        "startLine": 7,
+        "startChar": 12,
+        "endLine": 7,
+        "endChar": 25
+      },
+      "revId": "9a8b4e9b81d9961d78f80b6ab8ac247fb2805c1d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9e0b039_57ebaf44",
+        "filename": "extras/packaging/gnu-linux/scripts/install-pipewire-from-source.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-04-19T12:08:36Z",
+      "side": 1,
+      "message": "This script will change the workdir. Ideally this should not be the case at the end. Like keep pwd and go back at the end",
+      "range": {
+        "startLine": 7,
+        "startChar": 1,
+        "endLine": 7,
+        "endChar": 7
+      },
+      "revId": "9a8b4e9b81d9961d78f80b6ab8ac247fb2805c1d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aaf0ba36_a716fb4d",
+        "filename": "extras/packaging/gnu-linux/scripts/install-pipewire-from-source.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-04-19T12:08:36Z",
+      "side": 1,
+      "message": "this is probably a +x file and the shebang will choose \"python3\" directly. Ideally python3 is not necessary (because the binary name can change on some distrib (python/python3/etc)",
+      "range": {
+        "startLine": 23,
+        "startChar": 8,
+        "endLine": 23,
+        "endChar": 32
+      },
+      "revId": "9a8b4e9b81d9961d78f80b6ab8ac247fb2805c1d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
