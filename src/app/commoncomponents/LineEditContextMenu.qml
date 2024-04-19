@@ -15,8 +15,11 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import QtQuick
+import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import "contextmenu"
+import "../mainview"
+import "../mainview/components"
 
 ContextMenuAutoLoader {
     id: root
@@ -31,6 +34,10 @@ ContextMenuAutoLoader {
     property var nbMenuItems
 
     signal contextMenuRequirePaste
+
+    CachedFile {
+        id: cachedFile
+    }
 
     property list<GeneralMenuItem> menuItems: [
         GeneralMenuItem {
@@ -75,6 +82,8 @@ ContextMenuAutoLoader {
             itemName: JamiStrings.language
             hasIcon: false
             onClicked: {
+                var language = "en/en_GB"
+                cachedFile.updateDictionnary(language);
             }
         }
     ]

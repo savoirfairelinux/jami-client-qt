@@ -35,6 +35,9 @@
 #include <QMimeData>
 #include <QMimeDatabase>
 
+static constexpr char dictionaryUrl[]
+    = "https://cgit.freedesktop.org/libreoffice/dictionaries/plain/";
+
 UtilsAdapter::UtilsAdapter(AppSettingsManager* settingsManager,
                            SystemTray* systemTray,
                            LRCInstance* instance,
@@ -899,4 +902,16 @@ bool
 UtilsAdapter::isWayland() const
 {
     return !qEnvironmentVariableIsEmpty("WAYLAND_DISPLAY");
+}
+
+const QString
+UtilsAdapter::getDictionaryPath()
+{
+    return getCachePath() + "/dictionaries/";
+}
+
+const QString
+UtilsAdapter::getDictionaryUrl()
+{
+    return dictionaryUrl;
 }
