@@ -24,7 +24,7 @@
 #include <QQmlEngine>   // QML registration
 #include <QApplication> // QML registration
 
-class ImageDownloader : public NetworkManager
+class FileDownloader : public NetworkManager
 {
     Q_OBJECT
     QML_SINGLETON
@@ -32,23 +32,23 @@ class ImageDownloader : public NetworkManager
     QML_PROPERTY(QString, cachePath)
 
 public:
-    static ImageDownloader* create(QQmlEngine*, QJSEngine*)
+    static FileDownloader* create(QQmlEngine*, QJSEngine*)
     {
-        return new ImageDownloader(
+        return new FileDownloader(
             qApp->property("ConnectivityMonitor").value<ConnectivityMonitor*>());
     }
 
-    explicit ImageDownloader(ConnectivityMonitor* cm, QObject* parent = nullptr);
-    ~ImageDownloader() = default;
+    explicit FileDownloader(ConnectivityMonitor* cm, QObject* parent = nullptr);
+    ~FileDownloader() = default;
 
-    // Download an image and call onDownloadImageFinished when done
-    Q_INVOKABLE void downloadImage(const QUrl& url, const QString& localPath);
+    // Download an image and call onDownloadFileFinished when done
+    Q_INVOKABLE void downloadFile(const QUrl& url, const QString& localPath);
 
 Q_SIGNALS:
-    void downloadImageSuccessful(const QString& localPath);
-    void downloadImageFailed(const QString& localPath);
+    void downloadFileSuccessful(const QString& localPath);
+    void downloadFileFailed(const QString& localPath);
 
 private Q_SLOTS:
     // Saves the image to the localPath and emits the appropriate signal
-    void onDownloadImageFinished(const QByteArray& reply, const QString& localPath);
+    void onDownloadFileFinished(const QByteArray& reply, const QString& localPath);
 };
