@@ -43,8 +43,8 @@ PKG_CONFIG_PATH="${QT_JAMI_PREFIX}/lib/pkgconfig:${PKG_CONFIG_PATH}"
 CMAKE_PREFIX_PATH="${QT_JAMI_PREFIX}/lib/cmake:${CMAKE_PREFIX_PATH}"
 QT_MAJOR=6
 QT_MINOR=6
-QT_PATCH=1
-QT_RELEASE_PATCH=1
+QT_PATCH=3
+QT_RELEASE_PATCH=0
 
 QT_MAJOR_MINOR=${QT_MAJOR}.${QT_MINOR}
 QT_MAJOR_MINOR_PATCH=${QT_MAJOR}.${QT_MINOR}.${QT_PATCH}
@@ -52,7 +52,7 @@ QT_MAJOR_MINOR_PATCH=${QT_MAJOR}.${QT_MINOR}.${QT_PATCH}
 QT_TARBALL_URL=https://download.qt.io/archive/qt/$QT_MAJOR_MINOR/\
 $QT_MAJOR_MINOR_PATCH/single/qt-everywhere-src-$QT_MAJOR_MINOR_PATCH.tar.xz
 
-QT_TARBALL_SHA256="dd3668f65645fe270bc615d748bd4dc048bd17b9dc297025106e6ecc419ab95d"
+QT_TARBALL_SHA256="69d0348fef415da98aa890a34651e9cfb232f1bffcee289b7b4e21386bf36104"
 QT_TARBALL_FILE_NAME=$(basename "$QT_TARBALL_URL")
 CACHED_QT_TARBALL=$TARBALLS/$QT_TARBALL_FILE_NAME
 
@@ -111,6 +111,8 @@ if [ ! -f "${RPM_PATH}" ]; then
             cp /root/rpmbuild/RPMS/x86_64/jami-libqt-$QT_MAJOR_MINOR_PATCH-*.fc38.x86_64.rpm "${RPM_PATH}"
         elif [[ "${DISTRIBUTION}" == "fedora_39" ]]; then
             cp /root/rpmbuild/RPMS/x86_64/jami-libqt-$QT_MAJOR_MINOR_PATCH-*.fc39.x86_64.rpm "${RPM_PATH}"
+        elif [[ "${DISTRIBUTION}" == "fedora_40" ]]; then
+            cp /root/rpmbuild/RPMS/x86_64/jami-libqt-$QT_MAJOR_MINOR_PATCH-*.fc40.x86_64.rpm "${RPM_PATH}"
         elif [[ "${DISTRIBUTION}" == "alma_9" ]]; then
             cp /root/rpmbuild/RPMS/x86_64/jami-libqt-$QT_MAJOR_MINOR_PATCH-*.el9.x86_64.rpm "${RPM_PATH}"
         else
