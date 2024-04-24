@@ -43,7 +43,7 @@ class SpellChecker : public QObject
 public:
     explicit SpellChecker(const QString&);
     ~SpellChecker() = default;
-
+    void replaceDictionary(const QString& dictionaryPath);
     Q_INVOKABLE bool spell(const QString& word);
     Q_INVOKABLE QStringList suggest(const QString& word);
     Q_INVOKABLE void ignoreWord(const QString& word);
