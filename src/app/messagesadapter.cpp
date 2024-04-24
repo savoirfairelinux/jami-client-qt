@@ -59,6 +59,7 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     , mediaInteractions_(std::make_unique<MessageListModel>(nullptr))
     , timestampTimer_(new QTimer(this))
 {
+    // Default SpellChecker with default dictionnary path. Can be update with updateDictionnary
     spellChecker_ = new SpellChecker(settingsManager_->getDictionaryPath());
 
     setObjectName(typeid(*this).name());
@@ -763,4 +764,10 @@ MessagesAdapter::spellSuggestionsRequest(const QString& word)
     }
 
     return variantList;
+}
+
+void
+MessagesAdapter::updateDictionnary(const QString& path)
+{
+    return spellChecker_->replaceDictionary(path);
 }

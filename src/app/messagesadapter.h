@@ -168,6 +168,7 @@ public:
     Q_INVOKABLE void startSearch(const QString& text, bool isMedia);
     Q_INVOKABLE QVariantList spellSuggestionsRequest(const QString& word);
     Q_INVOKABLE bool spell(const QString& word);
+    Q_INVOKABLE void updateDictionnary(const QString& path);
 
     // Run corrsponding js functions, c++ to qml.
     void setMessagesImageContent(const QString& path, bool isBased64 = false);
