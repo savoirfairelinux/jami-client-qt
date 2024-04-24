@@ -1,0 +1,349 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdf420fb_a1c732d8",
+        "filename": "src/app/commoncomponents/SpellLanguageContextMenu.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-04-24T21:39:22Z",
+      "side": 1,
+      "message": "Is the SFL convention to *not* have your name in the files? Thank you",
+      "range": {
+        "startLine": 3,
+        "startChar": 3,
+        "endLine": 3,
+        "endChar": 61
+      },
+      "revId": "ab174ed90a3f7ff2256b29b827b219066e723f1d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "413b0c28_1a724632",
+        "filename": "src/app/commoncomponents/SpellLanguageContextMenu.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-04-24T21:39:22Z",
+      "side": 1,
+      "message": "Typo with double `n`? Should `updateDictionnary` be `updateDictionary`? Thank you",
+      "range": {
+        "startLine": 360,
+        "startChar": 27,
+        "endLine": 360,
+        "endChar": 44
+      },
+      "revId": "ab174ed90a3f7ff2256b29b827b219066e723f1d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "379f2020_99d20c57",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-04-24T21:39:22Z",
+      "side": 1,
+      "message": "Should there be a space ` ` after `//` (and start with a capital letter) to be `// Advanced information`? Thank you",
+      "range": {
+        "startLine": 298,
+        "startChar": 4,
+        "endLine": 298,
+        "endChar": 26
+      },
+      "revId": "ab174ed90a3f7ff2256b29b827b219066e723f1d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e56c26f8_a6764be2",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-04-24T21:39:22Z",
+      "side": 1,
+      "message": "Should there be a space ` ` after `//` to be `// MessagesResearch`? Thank you",
+      "range": {
+        "startLine": 352,
+        "startChar": 4,
+        "endLine": 352,
+        "endChar": 22
+      },
+      "revId": "ab174ed90a3f7ff2256b29b827b219066e723f1d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c0255a6_8432650c",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 868,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-04-24T21:39:22Z",
+      "side": 1,
+      "message": "Should there be a space ` ` after `//` to be `// Donation campaign`? Thank you",
+      "range": {
+        "startLine": 868,
+        "startChar": 4,
+        "endLine": 868,
+        "endChar": 23
+      },
+      "revId": "ab174ed90a3f7ff2256b29b827b219066e723f1d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dbc7426_5e5ad81f",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 875,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-04-24T21:39:22Z",
+      "side": 1,
+      "message": "Should there be a space ` ` after `//` to be `// Chat setting page`? Thank you",
+      "range": {
+        "startLine": 875,
+        "startChar": 4,
+        "endLine": 875,
+        "endChar": 23
+      },
+      "revId": "ab174ed90a3f7ff2256b29b827b219066e723f1d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eef8e4ed_ca5a1f9c",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 881,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-04-24T21:39:22Z",
+      "side": 1,
+      "message": "Should there be a space ` ` after `//` to be `// Connection monitoring`? Thank you",
+      "range": {
+        "startLine": 881,
+        "startChar": 4,
+        "endLine": 881,
+        "endChar": 27
+      },
+      "revId": "ab174ed90a3f7ff2256b29b827b219066e723f1d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8fe2f53_f4cf53e9",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 894,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-04-24T21:39:22Z",
+      "side": 1,
+      "message": "Should there be a space ` ` after `//` to be `// Language`? Thank you",
+      "range": {
+        "startLine": 894,
+        "startChar": 4,
+        "endLine": 894,
+        "endChar": 14
+      },
+      "revId": "ab174ed90a3f7ff2256b29b827b219066e723f1d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0877a6b9_7c409432",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 905,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-04-24T21:39:22Z",
+      "side": 1,
+      "message": "Should this be `Kurdish (Sorani)`? Thank you",
+      "range": {
+        "startLine": 905,
+        "startChar": 42,
+        "endLine": 905,
+        "endChar": 56
+      },
+      "revId": "ab174ed90a3f7ff2256b29b827b219066e723f1d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9410e46b_00dd3f82",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 910,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-04-24T21:39:22Z",
+      "side": 1,
+      "message": "Can different English variations please be added? eg. `english_australia` English (Australia), `english_canada` English (Canada), `english_uk` English (UK), `english_usa` English (USA), `english_south_africa` English (South Africa).\n\nFor a more complete list:\n1. Open LibreOffice Writer\n2. Click on the language in the middle of the status bar at the bottom of the window\n3. Click `More…`\n4. Click on the `Font` tab\n5. Click on the `Language:` drop-down\n6. Scroll to `English (Australia)` and the other English languages are shown thereafter\n\nThank you",
+      "range": {
+        "startLine": 910,
+        "startChar": 20,
+        "endLine": 910,
+        "endChar": 27
+      },
+      "revId": "ab174ed90a3f7ff2256b29b827b219066e723f1d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63ba5725_4192ba91",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 910,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-04-24T21:39:22Z",
+      "side": 1,
+      "message": "In the English language, languages are spelt with a capital letter:\n`Afrikaans`, …, `English`, …, `French`, …, `Hungarian`, …\n\nThe translation into the Hungarian (magyar) language, languages are spelt with a lowercase letter:\n`afrikaans`, …, `angol`, …, `francia`, …, `magyar`, …\n\nThank you",
+      "range": {
+        "startLine": 910,
+        "startChar": 35,
+        "endLine": 910,
+        "endChar": 42
+      },
+      "revId": "ab174ed90a3f7ff2256b29b827b219066e723f1d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27b889fe_6d490ae4",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 916,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-04-24T21:39:22Z",
+      "side": 1,
+      "message": "Should this be `Scots Gaelic`? Thank you",
+      "range": {
+        "startLine": 916,
+        "startChar": 43,
+        "endLine": 916,
+        "endChar": 58
+      },
+      "revId": "ab174ed90a3f7ff2256b29b827b219066e723f1d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c69e055c_b7998614",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 927,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-04-24T21:39:22Z",
+      "side": 1,
+      "message": "Should this be `Kurdish (Kurmanji)`? Thank you",
+      "range": {
+        "startLine": 927,
+        "startChar": 41,
+        "endLine": 927,
+        "endChar": 54
+      },
+      "revId": "ab174ed90a3f7ff2256b29b827b219066e723f1d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0f998f0_b26fdb3a",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 938,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-04-24T21:39:22Z",
+      "side": 1,
+      "message": "Should this be `Portuguese (Brazil)`? Thank you",
+      "range": {
+        "startLine": 938,
+        "startChar": 44,
+        "endLine": 938,
+        "endChar": 61
+      },
+      "revId": "ab174ed90a3f7ff2256b29b827b219066e723f1d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68362cd9_3d4e4549",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 939,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-04-24T21:39:22Z",
+      "side": 1,
+      "message": "Should this be `Portuguese (Portugal)`? Thank you",
+      "range": {
+        "startLine": 939,
+        "startChar": 44,
+        "endLine": 939,
+        "endChar": 63
+      },
+      "revId": "ab174ed90a3f7ff2256b29b827b219066e723f1d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
