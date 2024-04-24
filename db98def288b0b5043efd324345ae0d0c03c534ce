@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57a4bdcf_6639bd39",
+        "filename": "src/app/commoncomponents/LineEditContextMenu.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-04-24T21:52:00Z",
+      "side": 1,
+      "message": "Can the default language be taken from an option in `Jami settings`?\n\neg. a `Proofing language` option in `Jami settings`, `General`, `Chat`\n\nPerhaps code from the `User interface language` in `Jami settings`, `General`, `System` can be used and/or reused?\n\nThank you",
+      "range": {
+        "startLine": 86,
+        "startChar": 31,
+        "endLine": 86,
+        "endChar": 41
+      },
+      "revId": "db98def288b0b5043efd324345ae0d0c03c534ce",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
