@@ -83,8 +83,7 @@ ContextMenuAutoLoader {
             itemName: JamiStrings.language
             hasIcon: false
             onClicked: {
-                var language = "en/en_GB"
-                cachedFile.updateDictionnary(language);
+
             }
         }
     ]
