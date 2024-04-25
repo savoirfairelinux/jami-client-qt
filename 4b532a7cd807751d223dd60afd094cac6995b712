@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39973fab_007739f0",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 767,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-04-25T15:04:52Z",
+      "side": 1,
+      "message": "SUGGESTIONS_MAX_SIZE to suggest and avoid the break line 770",
+      "range": {
+        "startLine": 767,
+        "startChar": 37,
+        "endLine": 767,
+        "endChar": 44
+      },
+      "revId": "4b532a7cd807751d223dd60afd094cac6995b712",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
