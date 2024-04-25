@@ -22,6 +22,30 @@
       },
       "revId": "db98def288b0b5043efd324345ae0d0c03c534ce",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be8f3c20_a776f7b8",
+        "filename": "src/app/commoncomponents/LineEditContextMenu.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 982
+      },
+      "writtenOn": "2024-04-25T12:45:10Z",
+      "side": 1,
+      "message": "Hi Ovari,\nThis commit is in order to add an option to change the language on the fly. At the creation of the module refer to this patch https://review.jami.net/c/jami-client-qt/+/27865 \nThe default language is the one defined by the Jami language settings. \nThe code will evolved to memorized the language selected by the user, and add multi language\u0027s dictionaries.\nStill a lot to do.",
+      "parentUuid": "57a4bdcf_6639bd39",
+      "range": {
+        "startLine": 86,
+        "startChar": 31,
+        "endLine": 86,
+        "endChar": 41
+      },
+      "revId": "db98def288b0b5043efd324345ae0d0c03c534ce",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
