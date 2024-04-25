@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33f7808a_2629e78b",
+        "filename": "src/app/spellchecker.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-04-25T15:02:34Z",
+      "side": 1,
+      "message": "no need for name here, same for \\file at the end",
+      "range": {
+        "startLine": 3,
+        "startChar": 18,
+        "endLine": 3,
+        "endChar": 24
+      },
+      "revId": "18d6238ae56dc99bcc1a494a96abb78200651de4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e352c81f_f6d16d5d",
+        "filename": "src/app/spellchecker.h",
+        "patchSetId": 24
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-04-25T15:02:34Z",
+      "side": 1,
+      "message": "for private members in Jami it\u0027s \"hunspell_\" not \"_hunspell\"",
+      "range": {
+        "startLine": 53,
+        "startChar": 30,
+        "endLine": 53,
+        "endChar": 39
+      },
+      "revId": "18d6238ae56dc99bcc1a494a96abb78200651de4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}

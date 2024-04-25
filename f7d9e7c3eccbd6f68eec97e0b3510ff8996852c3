@@ -142,6 +142,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "345657d3_152f7a41",
+        "filename": "src/app/spellchecker.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-04-25T15:02:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89baec16_242ab90f",
+      "range": {
+        "startLine": 31,
+        "startChar": 11,
+        "endLine": 31,
+        "endChar": 17
+      },
+      "revId": "f7d9e7c3eccbd6f68eec97e0b3510ff8996852c3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eba119ac_dd0b86d6",
@@ -179,6 +203,30 @@
       "side": 1,
       "message": "Assign with QTextCodec::codecForName what return a pointer",
       "parentUuid": "eba119ac_dd0b86d6",
+      "range": {
+        "startLine": 33,
+        "startChar": 11,
+        "endLine": 33,
+        "endChar": 18
+      },
+      "revId": "f7d9e7c3eccbd6f68eec97e0b3510ff8996852c3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5eadfce2_34d282e1",
+        "filename": "src/app/spellchecker.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-04-25T15:02:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de58df94_1b40453d",
       "range": {
         "startLine": 33,
         "startChar": 11,
