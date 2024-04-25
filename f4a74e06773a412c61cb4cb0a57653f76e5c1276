@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4299f0b_694c9c9e",
+        "filename": "3rdparty/hunspell",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-04-25T14:49:21Z",
+      "side": 1,
+      "message": "not used by the cmake",
+      "range": {
+        "startLine": 1,
+        "startChar": 18,
+        "endLine": 1,
+        "endChar": 58
+      },
+      "revId": "f4a74e06773a412c61cb4cb0a57653f76e5c1276",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
