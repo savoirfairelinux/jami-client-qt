@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eac2ebcf_c9beb76a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-04-25T13:56:16Z",
+      "side": 1,
+      "message": "missing ticket and unclear comment. \"fix bug\" is not really explicit. \"callmodel: do not attach video when accepting in audio\" may be clearer\n\nAnd in the long desc explain what was wrong with the previous approach ;)",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 42
+      },
+      "revId": "e4a70c25d269a1c8612c55da86fd22aa79b4cb61",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "615bb54d_08abac73",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 4
@@ -14,6 +37,24 @@
       "writtenOn": "2024-04-22T23:30:45Z",
       "side": 1,
       "message": "When hovering above the `Join in audio` and `Join in video` buttons and the icons at the top right of the chat window, both have the same popup tooltip, i.e. `Join call`. Should the popup tooltip be different? Perhaps screen readers could also benefit from the different popup tooltips.\n\nSuggestions:\n1. In `Started a call` in chat, change `Join in audio` to `Join call in audio`\n2. In `Started a call` in chat, change `Join in video` to `Join call in video`\n3. (a) Telephone icon in top right of chat, change popup tooltip `Join call` to `Join call in audio`\u003cbr\u003e\n(b) In `Started a call` in chat, change popup tooltip `Join call` to `Join call in audio`\n4. (a) Video icon in top right of chat, change popup tooltip `Join call` to `Join call in video`\u003cbr\u003e\n(b) In `Started a call` in chat, change popup tooltip `Join call` to `Join call in video`\n5. In chat, change `Started a call` to `Call in progress`\n\nhttps://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/1616\n\nThank you",
+      "revId": "e4a70c25d269a1c8612c55da86fd22aa79b4cb61",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c043f1c_9cdd87f3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-04-25T13:56:16Z",
+      "side": 1,
+      "message": "unrelated",
+      "parentUuid": "615bb54d_08abac73",
       "revId": "e4a70c25d269a1c8612c55da86fd22aa79b4cb61",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
