@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a0f7845_39e6d4ad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-04-25T17:20:51Z",
+      "side": 1,
+      "message": "The code is clean but I would like to test it.\n\nCan the behaviour be covered with automated tests?",
+      "revId": "a676ad395ac8cf30d8b060b586e23ed958628984",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
