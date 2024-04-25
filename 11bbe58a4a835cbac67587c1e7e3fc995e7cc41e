@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "191af221_0e562efe",
+        "filename": "src/app/mainview/components/MessageBarTextArea.qml",
+        "patchSetId": 22
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-04-25T15:20:21Z",
+      "side": 1,
+      "message": "sqash with previous commit",
+      "range": {
+        "startLine": 45,
+        "startChar": 17,
+        "endLine": 45,
+        "endChar": 30
+      },
+      "revId": "11bbe58a4a835cbac67587c1e7e3fc995e7cc41e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
