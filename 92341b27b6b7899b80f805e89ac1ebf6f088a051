@@ -68,6 +68,24 @@
       "parentUuid": "c1e0199d_2b8fdf34",
       "revId": "92341b27b6b7899b80f805e89ac1ebf6f088a051",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e630757c_3a9096b3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1063
+      },
+      "writtenOn": "2024-04-27T13:26:49Z",
+      "side": 1,
+      "message": "This is not necessarily about releasing a f40 build. When upgrading from f39 the f39 jami packages will remain installed and prevent pulling in the Qt6 dependencies.\n\nThis is critical for the f39-\u003ef40 upgrade because the KDE stack moves from Qt5 to Qt6 requiring new dependencies.\n\nJust now another user that fell victim of this came asking for help in the Fedora KDE matrix channel.",
+      "parentUuid": "53d7a442_5d38dd3c",
+      "revId": "92341b27b6b7899b80f805e89ac1ebf6f088a051",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
