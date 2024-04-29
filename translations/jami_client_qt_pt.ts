@@ -2190,7 +2190,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="437"/>
         <source>Enter a nickname, surname…</source>
-        <translation type="unfinished"/>
+        <translation>Introduza uma alcunha, apelido…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="438"/>
@@ -3203,7 +3203,7 @@ Por favor, tente novamente mais tarde.</translation>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="466"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="709"/>
         <source>Save</source>
-        <translation>Salvar</translation>
+        <translation>Guardar</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="711"/>
