@@ -288,7 +288,7 @@ Once the build has finished, you should then be able to use the Visual Studio So
 
 **Set up**
 
-- macOS minimum version 10.15
+- macOS minimum version 11.0
 - install python3
 - download xcode
 - install Qt 6.6
