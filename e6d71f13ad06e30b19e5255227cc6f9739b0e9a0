@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0614918e_c4e97340",
+        "filename": "resources/misc/projectcredits.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-05-02T00:23:35Z",
+      "side": 1,
+      "message": "Please change to `Ad majórem Dei glóriam`. Thank you",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 5
+      },
+      "revId": "e6d71f13ad06e30b19e5255227cc6f9739b0e9a0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
