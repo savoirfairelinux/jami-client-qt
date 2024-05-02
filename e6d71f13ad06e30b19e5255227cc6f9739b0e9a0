@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e6ff62f9_b7201dc7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2024-05-02T14:04:13Z",
+      "side": 1,
+      "message": "Then we should add \"And the volunteers who contribute to this project!\" like Android? https://git.jami.net/savoirfairelinux/jami-project/-/issues/1623\n\nand the others like me and Ovari on Android and iOS too?",
+      "parentUuid": "bf75d29a_6a0d49a1",
+      "revId": "e6d71f13ad06e30b19e5255227cc6f9739b0e9a0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0614918e_c4e97340",
         "filename": "resources/misc/projectcredits.html",
         "patchSetId": 2
