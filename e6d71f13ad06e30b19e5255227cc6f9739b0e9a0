@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf75d29a_6a0d49a1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-05-02T13:49:26Z",
+      "side": 1,
+      "message": "it\u0027s the goal of this patch",
+      "parentUuid": "97b5c8cd_34d44cfd",
+      "revId": "e6d71f13ad06e30b19e5255227cc6f9739b0e9a0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0614918e_c4e97340",
