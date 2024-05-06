@@ -707,7 +707,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="315"/>
         <source>Turn off sharing</source>
-        <translation>Ακλείστε τη διανομή</translation>
+        <translation>Απενεργοποίηση κοινοποίησης</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="316"/>
