@@ -274,7 +274,7 @@ BaseModalDialog {
                             height: qrImage.height + 4
                             anchors.centerIn: parent
                             radius: 5
-                            color: JamiTheme.darkTheme ? JamiTheme.whiteColor : JamiTheme.jamiButtonBorderColor
+                            color: JamiTheme.whiteColor
                             Image {
                                  id: qrImage
                                  anchors.centerIn: parent
