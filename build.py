@@ -131,7 +131,7 @@ DNF_DEPENDENCIES = [
     'uuid-devel', 'gnutls-devel', 'nettle-devel', 'opus-devel', 'speexdsp-devel',
     'yaml-cpp-devel', 'swig', 'jsoncpp-devel',
     'patch', 'libva-devel', 'openssl-devel', 'libvdpau-devel', 'msgpack-devel',
-    'sqlite-devel', 'openssl-static', 'pandoc', 'nasm',
+    'sqlite-devel', 'pipewire-devel', 'pandoc', 'nasm',
     'bzip2'
 ]
 
