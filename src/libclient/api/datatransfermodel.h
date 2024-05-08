@@ -38,7 +38,7 @@ namespace api {
 class BehaviorController;
 
 namespace datatransfer {
-class Info;
+struct Info;
 } // namespace datatransfer
 
 /**
