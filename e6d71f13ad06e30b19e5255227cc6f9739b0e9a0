@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f712c9e6_51d82b86",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-05-08T13:58:58Z",
+      "side": 1,
+      "message": "\"We would like to thank our contributors, whose efforts over many years have made this software what it is.\"\n\nAndroid needs to be changed.\n\nAlso do you agree to get your name in the credits?",
+      "parentUuid": "e6ff62f9_b7201dc7",
+      "revId": "e6d71f13ad06e30b19e5255227cc6f9739b0e9a0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0614918e_c4e97340",
         "filename": "resources/misc/projectcredits.html",
         "patchSetId": 2
