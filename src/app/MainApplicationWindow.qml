@@ -116,7 +116,8 @@ ApplicationWindow {
     function close(force = false) {
         // If we're in the onboarding wizard or 'MinimizeOnClose'
         // is set, then we can quit
-        if (force || !UtilsAdapter.getAppValue(Settings.MinimizeOnClose) || !UtilsAdapter.getAccountListSize()) {
+        var minimizeToTray = UtilsAdapter.getAppValue(Settings.MinimizeOnClose) && UtilsAdapter.isSystemTrayIconVisible();
+        if (force || !minimizeToTray || !UtilsAdapter.getAccountListSize()) {
             Qt.quit();
         } else {
             layoutManager.closeToTray();

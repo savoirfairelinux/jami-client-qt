@@ -26,6 +26,7 @@
 #include "systemtray.h"
 #include "utils.h"
 #include "version.h"
+#include "global.h"
 
 #include <api/datatransfermodel.h>
 #include <api/contact.h>
@@ -229,7 +230,7 @@ UtilsAdapter::getConvIdForUri(const QString& accountId, const QString& uri)
             return {};
         return convInfo->get().uid;
     } catch (const std::out_of_range& e) {
-        qDebug() << e.what();
+        C_DBG << e.what();
         return "";
     }
 }
@@ -242,7 +243,7 @@ UtilsAdapter::getPeerUri(const QString& accountId, const QString& uid)
         const auto& convInfo = convModel->getConversationForUid(uid).value();
         return convInfo.get().participants.front().uri;
     } catch (const std::out_of_range& e) {
-        qDebug() << e.what();
+        C_DBG << e.what();
         return "";
     }
 }
@@ -745,7 +746,7 @@ UtilsAdapter::isSystemThemeDark()
 #endif
     return readAppsUseLightThemeRegistry(true);
 #else
-    qWarning("System theme detection is not implemented or is not supported");
+    C_WARN << "System theme detection is not implemented or is not supported";
     return false;
 #endif // WIN32
 #endif // __has_include(<gio/gio.h>)
@@ -827,13 +828,7 @@ UtilsAdapter::isRTL()
 bool
 UtilsAdapter::isSystemTrayIconVisible()
 {
-    if (!systemTray_)
-        return false;
-    // https://bugreports.qt.io/browse/QTBUG-118656
-#if defined(Q_OS_LINUX) && !defined(Q_OS_ANDROID)
-    return true;
-#endif
-    return systemTray_->geometry() != QRect();
+    return QSystemTrayIcon::isSystemTrayAvailable() && systemTray_;
 }
 
 QString
@@ -891,7 +886,7 @@ UtilsAdapter::createDummyImage() const
         qInfo() << "Dummy image created" << QDir::tempPath() + "/dummy.png";
         return QDir::tempPath() + "/dummy.png";
     } else {
-        qWarning() << "Could not create dummy image";
+        C_WARN << "Could not create dummy image";
         return "";
     }
 }
