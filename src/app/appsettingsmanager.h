@@ -43,7 +43,7 @@ extern const QString defaultDownloadPath;
 
 // Common key-value pairs for both APPSTORE and non-APPSTORE builds
 #define COMMON_KEYS \
-    X(MinimizeOnClose, false) \
+    X(MinimizeOnClose, true) \
     X(DownloadPath, defaultDownloadPath) \
     X(ScreenshotPath, {}) \
     X(EnableNotifications, true) \
