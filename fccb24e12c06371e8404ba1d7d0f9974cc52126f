@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a28dddf_7d7e296f",
+        "filename": "src/app/utilsadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 836,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-05-14T15:09:29Z",
+      "side": 1,
+      "message": "This returns true on Gnome without systray, causing now users to have Jami not closed on GNOME and no access.\n\nNote that isVisible is true after the call of show, but doesn\u0027t care if drawn or not.",
+      "range": {
+        "startLine": 836,
+        "startChar": 16,
+        "endLine": 836,
+        "endChar": 32
+      },
+      "revId": "fccb24e12c06371e8404ba1d7d0f9974cc52126f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
