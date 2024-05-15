@@ -22,6 +22,30 @@
       },
       "revId": "fccb24e12c06371e8404ba1d7d0f9974cc52126f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "966ef9d7_15222484",
+        "filename": "src/app/utilsadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 836,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-05-15T19:57:57Z",
+      "side": 1,
+      "message": "As per our tests, this should work. Must have been fixed in Qt.",
+      "parentUuid": "5a28dddf_7d7e296f",
+      "range": {
+        "startLine": 836,
+        "startChar": 16,
+        "endLine": 836,
+        "endChar": 32
+      },
+      "revId": "fccb24e12c06371e8404ba1d7d0f9974cc52126f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
