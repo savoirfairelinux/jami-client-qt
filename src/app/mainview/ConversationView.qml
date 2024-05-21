@@ -65,8 +65,15 @@ ListSelectionView {
                 id: chatView
                 anchors.fill: parent
 
+                // Use callStackView.chatViewContainer only when hasCall is true
+                // and callStackView.chatViewContainer not null.
+                // Because after a swarm call ends, callStackView.chatViewContainer might not be null
+                // due to a lack of call state change signals for the swarm call.
+                readonly property bool hasCall: CurrentConversation.hasCall
+                readonly property var inCallChatContainer: hasCall ? callStackView.chatViewContainer : null
+
                 // Parent the chat view to the call stack view when in call.
-                parent: callStackView.chatViewContainer ? callStackView.chatViewContainer : chatViewContainer
+                parent: inCallChatContainer ? inCallChatContainer : chatViewContainer
                 inCallView: parent === callStackView.chatViewContainer
 
                 readonly property string currentConvId: CurrentConversation.id

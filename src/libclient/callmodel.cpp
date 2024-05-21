@@ -186,6 +186,7 @@ public:
     Lrc& lrc;
 
     QList<call::PendingConferenceeInfo> pendingConferencees_;
+    QString waitForConference_ {};
 
 public Q_SLOTS:
     /**
@@ -398,7 +399,11 @@ CallModel::createCall(const QString& uri, bool isAudioOnly, VectorMapStringStrin
 #endif // ENABLE_LIBWRAP
 
     if (callId.isEmpty()) {
-        qDebug() << "no call placed between (account: " << owner.id << ", contact: " << uri << ")";
+        if (uri.startsWith("swarm:")) {
+            pimpl_->waitForConference_ = uri;
+            return {};
+        }
+        qWarning() << "no call placed between (account: " << owner.id << ", contact: " << uri << ")";
         return "";
     }
 
@@ -1735,6 +1740,10 @@ CallModelPimpl::slotConferenceCreated(const QString& accountId, const QString& c
     QString currentCallId = currentCall_;
     if (!conversationId.isEmpty()) {
         Q_EMIT linked.callAddedToConference("", conversationId, confId);
+        if (currentCall_ != confId && waitForConference_.contains(conversationId)) {
+            currentCall_ = confId;
+            Q_EMIT linked.currentCallChanged(confId);
+        }
     } else {
         QStringList callList = CallManager::instance().getParticipantList(linked.owner.id, confId);
         Q_FOREACH (const auto& call, callList) {
