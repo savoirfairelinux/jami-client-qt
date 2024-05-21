@@ -65,8 +65,12 @@ ListSelectionView {
                 id: chatView
                 anchors.fill: parent
 
+                property bool hasCall: CurrentConversation.hasCall
+                property var callContainer: hasCall ? callStackView.chatViewContainer : null
+                property var mainContainer: callContainer ? callContainer : chatViewContainer
+
                 // Parent the chat view to the call stack view when in call.
-                parent: callStackView.chatViewContainer ? callStackView.chatViewContainer : chatViewContainer
+                parent: mainContainer
                 inCallView: parent === callStackView.chatViewContainer
 
                 readonly property string currentConvId: CurrentConversation.id
