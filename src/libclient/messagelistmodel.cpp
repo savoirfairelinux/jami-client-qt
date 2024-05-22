@@ -249,6 +249,29 @@ MessageListModel::updateStatus(const QString& id,
     return true;
 }
 
+bool
+MessageListModel::updateTransferStatus(const QString& id,
+                               interaction::TransferStatus newStatus,
+                               const QString& newBody)
+{
+    const std::lock_guard<std::recursive_mutex> lk(mutex_);
+    auto it = find(id);
+    if (it == interactions_.end()) {
+        return false;
+    }
+    VectorInt roles;
+    if (it->second.transferStatus == newStatus) {
+        return false;
+    }
+    it->second.transferStatus = newStatus;
+    roles.push_back(Role::TransferStatus);
+    if (!newBody.isEmpty()) {
+        it->second.body = newBody;
+        roles.push_back(Role::Body);
+    }
+    return true;
+}
+
 QPair<bool, bool>
 MessageListModel::addOrUpdate(const QString& id, const interaction::Info& interaction)
 {
@@ -529,6 +552,8 @@ MessageListModel::dataForItem(const item_t& item, int, int role) const
         return QVariant(static_cast<int>(item.second.type));
     case Role::Status:
         return QVariant(static_cast<int>(item.second.status));
+    case Role::TransferStatus:
+        return QVariant(static_cast<int>(item.second.transferStatus));
     case Role::IsRead:
         return QVariant(item.second.isRead);
     case Role::LinkPreviewInfo:

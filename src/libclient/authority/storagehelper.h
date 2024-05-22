@@ -310,6 +310,7 @@ void updateInteractionBody(Database& db, const QString& id, const QString& newBo
  * @param isRead
  */
 void updateInteractionStatus(Database& db, const QString& id, api::interaction::Status newStatus);
+void updateInteractionTransferStatus(Database& db, const QString& id, api::interaction::TransferStatus newStatus);
 
 /**
  * Set interaction to the read state

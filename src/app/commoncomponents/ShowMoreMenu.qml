@@ -153,7 +153,7 @@ BaseContextMenu {
         GeneralMenuItem {
             id: removeLocally
 
-            canTrigger: type === Interaction.Type.DATA_TRANSFER && Status === Interaction.Status.TRANSFER_FINISHED
+            canTrigger: type === Interaction.Type.DATA_TRANSFER && TransferStatus === Interaction.TransferStatus.TRANSFER_FINISHED
             iconSource: JamiResources.trash_black_24dp_svg
             itemName: JamiStrings.removeLocally
             onClicked: {

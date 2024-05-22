@@ -489,6 +489,7 @@ beginConversationWithPeer(Database& db,
                                 api::interaction::Type::CONTACT,
                                 isOutgoing ? api::interaction::Status::SUCCESS
                                            : api::interaction::Status::UNKNOWN,
+                                api::interaction::TransferStatus::INVALID,
                                 isOutgoing};
     // Add first interaction
     addMessageToConversation(db, newConversationsId, msg);
@@ -547,6 +548,7 @@ getHistory(Database& db, api::conversation::Info& conversation, const QString& l
                                            duration,
                                            type,
                                            status,
+                                           api::interaction::TransferStatus::INVALID,
                                            (payloads[i + 6] == "1" ? true : false)});
         conversation.interactions->append(payloads[i], std::move(msg));
         if (status != api::interaction::Status::DISPLAYED || !payloads[i + 1].isEmpty()) {
@@ -696,9 +698,9 @@ updateDataTransferInteractionForDaemonId(Database& db,
         return;
     }
     auto body = result[0];
-    auto status = api::interaction::to_status(result[1]);
+    auto status = api::interaction::to_transferStatus(result[1]);
     interaction.body = body;
-    interaction.status = status;
+    interaction.transferStatus = status;
 }
 
 QString
@@ -723,6 +725,16 @@ updateInteractionBody(Database& db, const QString& id, const QString& newBody)
 
 void
 updateInteractionStatus(Database& db, const QString& id, api::interaction::Status newStatus)
+{
+    db.update("interactions",
+              {"status=:status"},
+              {{":status", api::interaction::to_string(newStatus)}},
+              "id=:id",
+              {{":id", id}});
+}
+
+void
+updateInteractionTransferStatus(Database& db, const QString& id, api::interaction::TransferStatus newStatus)
 {
     db.update("interactions",
               {"status=:status"},
