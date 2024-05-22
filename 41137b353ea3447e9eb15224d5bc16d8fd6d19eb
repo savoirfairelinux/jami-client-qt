@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "08ba5dbc_b2a1f0a2",
+        "filename": "src/app/mainview/ConversationView.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2024-05-22T13:38:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67c1108e_21208bad",
+      "revId": "41137b353ea3447e9eb15224d5bc16d8fd6d19eb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f4b2915d_84fc7589",
@@ -41,6 +59,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0e28032_bc1fb00b",
+        "filename": "src/app/mainview/ConversationView.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2024-05-22T13:38:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4b2915d_84fc7589",
+      "range": {
+        "startLine": 68,
+        "startChar": 16,
+        "endLine": 69,
+        "endChar": 92
+      },
+      "revId": "41137b353ea3447e9eb15224d5bc16d8fd6d19eb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5b59077c_f49afdc1",
@@ -54,6 +96,30 @@
       "writtenOn": "2024-05-22T00:27:06Z",
       "side": 1,
       "message": "use this expression directly to define `parent`",
+      "range": {
+        "startLine": 70,
+        "startChar": 44,
+        "endLine": 70,
+        "endChar": 93
+      },
+      "revId": "41137b353ea3447e9eb15224d5bc16d8fd6d19eb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6863abf_4821d2c9",
+        "filename": "src/app/mainview/ConversationView.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2024-05-22T13:38:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b59077c_f49afdc1",
       "range": {
         "startLine": 70,
         "startChar": 44,
