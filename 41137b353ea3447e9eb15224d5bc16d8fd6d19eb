@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67c1108e_21208bad",
+        "filename": "src/app/mainview/ConversationView.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-05-22T00:27:06Z",
+      "side": 1,
+      "message": "put a note here that clarifies why this is done (lack of swarm call state-change etc.)",
+      "revId": "41137b353ea3447e9eb15224d5bc16d8fd6d19eb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4b2915d_84fc7589",
+        "filename": "src/app/mainview/ConversationView.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-05-22T00:27:06Z",
+      "side": 1,
+      "message": "readonly",
+      "range": {
+        "startLine": 68,
+        "startChar": 16,
+        "endLine": 69,
+        "endChar": 92
+      },
+      "revId": "41137b353ea3447e9eb15224d5bc16d8fd6d19eb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b59077c_f49afdc1",
+        "filename": "src/app/mainview/ConversationView.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-05-22T00:27:06Z",
+      "side": 1,
+      "message": "use this expression directly to define `parent`",
+      "range": {
+        "startLine": 70,
+        "startChar": 44,
+        "endLine": 70,
+        "endChar": 93
+      },
+      "revId": "41137b353ea3447e9eb15224d5bc16d8fd6d19eb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
