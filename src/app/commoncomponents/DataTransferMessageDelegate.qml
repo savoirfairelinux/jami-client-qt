@@ -40,9 +40,9 @@ Loader {
     property int seq: MsgSeq.single
     property string author: Author
     property string body: Body
-    property int transferStatus: Status
+    property int transferStatus: TransferStatus
     onTransferStatusChanged: {
-        if (transferStatus === Interaction.Status.TRANSFER_FINISHED) {
+        if (transferStatus === Interaction.TransferStatus.TRANSFER_FINISHED) {
             mediaInfo = MessagesAdapter.getMediaInfo(root.body);
             if (Object.keys(mediaInfo).length !== 0 && WITH_WEBENGINE) {
                 sourceComponent = localMediaMsgComp;
@@ -66,7 +66,7 @@ Loader {
 
             transferId: Id
             property var transferStats: MessagesAdapter.getTransferStats(transferId, root.transferStatus)
-            property bool canOpen: root.transferStatus === Interaction.Status.TRANSFER_FINISHED || isOutgoing
+            property bool canOpen: root.transferStatus === Interaction.TransferStatus.TRANSFER_FINISHED || isOutgoing
             property real maxMsgWidth: root.width - senderMargin -
                                        2 * hPadding - avatarBlockWidth
                                        - buttonsLoader.width - 24 - 6 - 24
@@ -112,18 +112,18 @@ Loader {
 
                         sourceComponent: {
                             switch (root.transferStatus) {
-                            case Interaction.Status.TRANSFER_CREATED:
-                            case Interaction.Status.TRANSFER_FINISHED:
+                            case Interaction.TransferStatus.TRANSFER_CREATED:
+                            case Interaction.TransferStatus.TRANSFER_FINISHED:
                                 iconSource = JamiResources.link_black_24dp_svg
                                 return terminatedComp
-                            case Interaction.Status.TRANSFER_CANCELED:
-                            case Interaction.Status.TRANSFER_ERROR:
-                            case Interaction.Status.TRANSFER_UNJOINABLE_PEER:
-                            case Interaction.Status.TRANSFER_TIMEOUT_EXPIRED:
-                            case Interaction.Status.TRANSFER_AWAITING_HOST:
+                            case Interaction.TransferStatus.TRANSFER_CANCELED:
+                            case Interaction.TransferStatus.TRANSFER_ERROR:
+                            case Interaction.TransferStatus.TRANSFER_UNJOINABLE_PEER:
+                            case Interaction.TransferStatus.TRANSFER_TIMEOUT_EXPIRED:
+                            case Interaction.TransferStatus.TRANSFER_AWAITING_HOST:
                                 iconSource = JamiResources.download_black_24dp_svg
                                 return optionsComp
-                            case Interaction.Status.TRANSFER_ONGOING:
+                            case Interaction.TransferStatus.TRANSFER_ONGOING:
                                 iconSource = JamiResources.close_black_24dp_svg
                                 return optionsComp
                             default:
@@ -158,7 +158,7 @@ Loader {
                                 normalColor: JamiTheme.chatviewBgColor
                                 imageColor: JamiTheme.chatviewButtonColor
                                 onClicked: {
-                                    if (root.transferStatus === Interaction.Status.TRANSFER_ONGOING) {
+                                    if (root.transferStatus === Interaction.TransferStatus.TRANSFER_ONGOING) {
                                         return MessagesAdapter.cancelFile(transferId)
                                     } else {
                                         return MessagesAdapter.acceptFile(transferId)
@@ -227,7 +227,7 @@ Loader {
                 ,ProgressBar {
                     id: progressBar
 
-                    visible: root.transferStatus === Interaction.Status.TRANSFER_ONGOING
+                    visible: root.transferStatus === Interaction.TransferStatus.TRANSFER_ONGOING
                     height: visible * implicitHeight
                     value: transferStats.progress / transferStats.totalSize
                     width: transferItem.width
