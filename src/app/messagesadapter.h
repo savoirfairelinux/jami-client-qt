@@ -159,7 +159,6 @@ public:
                                   const QColor& linkColor = QColor(0x06, 0x45, 0xad),
                                   const QColor& backgroundColor = QColor(0x0, 0x0, 0x0));
     Q_INVOKABLE void onPaste();
-    Q_INVOKABLE QString getStatusString(int status);
     Q_INVOKABLE QVariantMap getTransferStats(const QString& messageId, int);
     Q_INVOKABLE QVariant dataForInteraction(const QString& interactionId,
                                             int role = Qt::DisplayRole) const;

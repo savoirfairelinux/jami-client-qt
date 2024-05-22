@@ -119,6 +119,12 @@ enum class Status {
     FAILURE,
     SUCCESS,
     DISPLAYED,
+    COUNT__
+};
+Q_ENUM_NS(Status)
+
+enum class TransferStatus {
+    INVALID,
     TRANSFER_CREATED,
     TRANSFER_ACCEPTED,
     TRANSFER_CANCELED,
@@ -131,7 +137,7 @@ enum class Status {
     TRANSFER_FINISHED,
     COUNT__
 };
-Q_ENUM_NS(Status)
+Q_ENUM_NS(TransferStatus)
 
 static inline const QString
 to_string(const Status& status)
@@ -147,26 +153,6 @@ to_string(const Status& status)
         return "SUCCESS";
     case Status::DISPLAYED:
         return "DISPLAYED";
-    case Status::TRANSFER_CREATED:
-        return "TRANSFER_CREATED";
-    case Status::TRANSFER_ACCEPTED:
-        return "TRANSFER_ACCEPTED";
-    case Status::TRANSFER_CANCELED:
-        return "TRANSFER_CANCELED";
-    case Status::TRANSFER_ERROR:
-        return "TRANSFER_ERROR";
-    case Status::TRANSFER_UNJOINABLE_PEER:
-        return "TRANSFER_UNJOINABLE_PEER";
-    case Status::TRANSFER_ONGOING:
-        return "TRANSFER_ONGOING";
-    case Status::TRANSFER_AWAITING_HOST:
-        return "TRANSFER_AWAITING_HOST";
-    case Status::TRANSFER_AWAITING_PEER:
-        return "TRANSFER_AWAITING_PEER";
-    case Status::TRANSFER_TIMEOUT_EXPIRED:
-        return "TRANSFER_TIMEOUT_EXPIRED";
-    case Status::TRANSFER_FINISHED:
-        return "TRANSFER_FINISHED";
     case Status::INVALID:
     case Status::COUNT__:
     default:
@@ -187,28 +173,66 @@ to_status(const QString& status)
         return Status::SUCCESS;
     else if (status == "DISPLAYED")
         return Status::DISPLAYED;
-    else if (status == "TRANSFER_CREATED")
-        return Status::TRANSFER_CREATED;
-    else if (status == "TRANSFER_ACCEPTED")
-        return Status::TRANSFER_ACCEPTED;
-    else if (status == "TRANSFER_CANCELED")
-        return Status::TRANSFER_CANCELED;
-    else if (status == "TRANSFER_ERROR")
-        return Status::TRANSFER_ERROR;
-    else if (status == "TRANSFER_UNJOINABLE_PEER")
-        return Status::TRANSFER_UNJOINABLE_PEER;
-    else if (status == "TRANSFER_ONGOING")
-        return Status::TRANSFER_ONGOING;
-    else if (status == "TRANSFER_AWAITING_HOST")
-        return Status::TRANSFER_AWAITING_HOST;
-    else if (status == "TRANSFER_AWAITING_PEER")
-        return Status::TRANSFER_AWAITING_PEER;
-    else if (status == "TRANSFER_TIMEOUT_EXPIRED")
-        return Status::TRANSFER_TIMEOUT_EXPIRED;
-    else if (status == "TRANSFER_FINISHED")
-        return Status::TRANSFER_FINISHED;
     else
         return Status::INVALID;
+}
+
+static inline const QString
+to_string(const TransferStatus& status)
+{
+    switch (status) {
+    case TransferStatus::TRANSFER_CREATED:
+        return "TRANSFER_CREATED";
+    case TransferStatus::TRANSFER_ACCEPTED:
+        return "TRANSFER_ACCEPTED";
+    case TransferStatus::TRANSFER_CANCELED:
+        return "TRANSFER_CANCELED";
+    case TransferStatus::TRANSFER_ERROR:
+        return "TRANSFER_ERROR";
+    case TransferStatus::TRANSFER_UNJOINABLE_PEER:
+        return "TRANSFER_UNJOINABLE_PEER";
+    case TransferStatus::TRANSFER_ONGOING:
+        return "TRANSFER_ONGOING";
+    case TransferStatus::TRANSFER_AWAITING_HOST:
+        return "TRANSFER_AWAITING_HOST";
+    case TransferStatus::TRANSFER_AWAITING_PEER:
+        return "TRANSFER_AWAITING_PEER";
+    case TransferStatus::TRANSFER_TIMEOUT_EXPIRED:
+        return "TRANSFER_TIMEOUT_EXPIRED";
+    case TransferStatus::TRANSFER_FINISHED:
+        return "TRANSFER_FINISHED";
+    case TransferStatus::INVALID:
+    case TransferStatus::COUNT__:
+    default:
+        return "INVALID";
+    }
+}
+
+static inline TransferStatus
+to_transferStatus(const QString& status)
+{
+    if (status == "TRANSFER_CREATED")
+        return TransferStatus::TRANSFER_CREATED;
+    else if (status == "TRANSFER_ACCEPTED")
+        return TransferStatus::TRANSFER_ACCEPTED;
+    else if (status == "TRANSFER_CANCELED")
+        return TransferStatus::TRANSFER_CANCELED;
+    else if (status == "TRANSFER_ERROR")
+        return TransferStatus::TRANSFER_ERROR;
+    else if (status == "TRANSFER_UNJOINABLE_PEER")
+        return TransferStatus::TRANSFER_UNJOINABLE_PEER;
+    else if (status == "TRANSFER_ONGOING")
+        return TransferStatus::TRANSFER_ONGOING;
+    else if (status == "TRANSFER_AWAITING_HOST")
+        return TransferStatus::TRANSFER_AWAITING_HOST;
+    else if (status == "TRANSFER_AWAITING_PEER")
+        return TransferStatus::TRANSFER_AWAITING_PEER;
+    else if (status == "TRANSFER_TIMEOUT_EXPIRED")
+        return TransferStatus::TRANSFER_TIMEOUT_EXPIRED;
+    else if (status == "TRANSFER_FINISHED")
+        return TransferStatus::TRANSFER_FINISHED;
+    else
+        return TransferStatus::INVALID;
 }
 
 enum class ContactAction { ADD, JOIN, LEAVE, BANNED, UNBANNED, INVALID };
@@ -366,6 +390,7 @@ public:
  * @var duration
  * @var type
  * @var status
+ * @var transferStatus
  * @var isRead
  * @var commit
  * @var linkPreviewInfo
@@ -381,6 +406,7 @@ struct Info
     std::time_t duration = 0;
     Type type = Type::INVALID;
     Status status = Status::INVALID;
+    TransferStatus transferStatus = TransferStatus::INVALID;
     bool isRead = false;
     MapStringString commit;
     QVariantMap linkPreviewInfo = {};
@@ -397,7 +423,8 @@ struct Info
          std::time_t duration,
          Type type,
          Status status,
-         bool isRead)
+         bool isRead,
+         TransferStatus transferStatus = TransferStatus::INVALID)
     {
         this->authorUri = authorUri;
         this->body = body;
@@ -406,6 +433,15 @@ struct Info
         this->type = type;
         this->status = status;
         this->isRead = isRead;
+        this->transferStatus = transferStatus;
+    }
+
+    static Info contact(const QString& authorUri, 
+                        std::time_t timestamp)
+    {
+        return Info(authorUri, "", timestamp, 0,
+                    Type::CONTACT, authorUri.isEmpty() ? Status::UNKNOWN : Status::SUCCESS,
+                    authorUri.isEmpty());
     }
 
     Info(const Info& other) = default;
@@ -415,7 +451,7 @@ struct Info
 
     bool sent() const
     {
-        return status == Status::SUCCESS || status == Status::DISPLAYED || status == Status::TRANSFER_FINISHED;
+        return status == Status::SUCCESS || status == Status::DISPLAYED;
     }
 
     void init(const MapStringString& message, const QString& accountURI)

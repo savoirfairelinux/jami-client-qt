@@ -482,14 +482,7 @@ beginConversationWithPeer(Database& db,
     db.insertInto("conversations",
                   {{":id", "id"}, {":participant", "participant"}},
                   {{":id", newConversationsId}, {":participant", peer_uri}});
-    api::interaction::Info msg {isOutgoing ? "" : peer_uri,
-                                {},
-                                timestamp ? timestamp : std::time(nullptr),
-                                0,
-                                api::interaction::Type::CONTACT,
-                                isOutgoing ? api::interaction::Status::SUCCESS
-                                           : api::interaction::Status::UNKNOWN,
-                                isOutgoing};
+    api::interaction::Info msg = api::interaction::Info::contact(isOutgoing ? "" : peer_uri, timestamp);
     // Add first interaction
     addMessageToConversation(db, newConversationsId, msg);
     return newConversationsId;
@@ -696,9 +689,9 @@ updateDataTransferInteractionForDaemonId(Database& db,
         return;
     }
     auto body = result[0];
-    auto status = api::interaction::to_status(result[1]);
+    auto status = api::interaction::to_transferStatus(result[1]);
     interaction.body = body;
-    interaction.status = status;
+    interaction.transferStatus = status;
 }
 
 QString
@@ -723,6 +716,16 @@ updateInteractionBody(Database& db, const QString& id, const QString& newBody)
 
 void
 updateInteractionStatus(Database& db, const QString& id, api::interaction::Status newStatus)
+{
+    db.update("interactions",
+              {"status=:status"},
+              {{":status", api::interaction::to_string(newStatus)}},
+              "id=:id",
+              {{":id", id}});
+}
+
+void
+updateInteractionTransferStatus(Database& db, const QString& id, api::interaction::TransferStatus newStatus)
 {
     db.update("interactions",
               {"status=:status"},
