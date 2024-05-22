@@ -175,7 +175,7 @@ BaseContextMenu {
         GeneralMenuItem {
             id: deleteMessage
 
-            canTrigger: root.isOutgoing && type === Interaction.Type.TEXT
+            canTrigger: root.isOutgoing && (type === Interaction.Type.TEXT || type === Interaction.Type.DATA_TRANSFER)
             iconSource: JamiResources.delete_svg
             itemName: JamiStrings.deleteMessage
             onClicked: {

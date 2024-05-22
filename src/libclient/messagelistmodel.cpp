@@ -201,16 +201,12 @@ MessageListModel::update(const QString& id, const interaction::Info& interaction
             return true;
         }
     }
-    // DataTransfer interactions should not be updated.
-    if (current.type == interaction::Type::DATA_TRANSFER) {
-        return true;
-    }
     // Just update bodies notify the view otherwise.
     current.body = interaction.body;
     current.previousBodies = interaction.previousBodies;
     current.parsedBody = interaction.parsedBody;
     auto modelIndex = QAbstractListModel::index(indexOfMessage(id), 0);
-    Q_EMIT dataChanged(modelIndex, modelIndex, {Role::Body, Role::PreviousBodies, Role::ParsedBody});
+    Q_EMIT dataChanged(modelIndex, modelIndex, {Role::TID, Role::Body, Role::PreviousBodies, Role::ParsedBody});
     return true;
 }
 
@@ -594,6 +590,8 @@ MessageListModel::dataForItem(const item_t& item, int, int role) const
         return QVariant(item.second.commit["totalSize"].toInt());
     case Role::TransferName:
         return QVariant(item.second.commit["displayName"]);
+    case Role::TID:
+        return QVariant(item.second.commit["tid"]);
     case Role::FileExtension:
         return QVariant(QFileInfo(item.second.body).suffix());
     case Role::Readers:
