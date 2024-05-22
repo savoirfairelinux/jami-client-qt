@@ -335,40 +335,6 @@ MessagesAdapter::onPaste()
     }
 }
 
-QString
-MessagesAdapter::getStatusString(int status)
-{
-    switch (static_cast<interaction::Status>(status)) {
-    case interaction::Status::SENDING:
-        return QObject::tr("Sending");
-    case interaction::Status::FAILURE:
-        return QObject::tr("Failure");
-    case interaction::Status::SUCCESS:
-        return QObject::tr("Sent");
-    case interaction::Status::TRANSFER_CREATED:
-        return QObject::tr("Connecting");
-    case interaction::Status::TRANSFER_ACCEPTED:
-        return QObject::tr("Accept");
-    case interaction::Status::TRANSFER_CANCELED:
-        return QObject::tr("Canceled");
-    case interaction::Status::TRANSFER_ERROR:
-    case interaction::Status::TRANSFER_UNJOINABLE_PEER:
-        return QObject::tr("Unable to make contact");
-    case interaction::Status::TRANSFER_ONGOING:
-        return QObject::tr("Ongoing");
-    case interaction::Status::TRANSFER_AWAITING_PEER:
-        return QObject::tr("Waiting for contact");
-    case interaction::Status::TRANSFER_AWAITING_HOST:
-        return QObject::tr("Incoming transfer");
-    case interaction::Status::TRANSFER_TIMEOUT_EXPIRED:
-        return QObject::tr("Timed out waiting for contact");
-    case interaction::Status::TRANSFER_FINISHED:
-        return QObject::tr("Finished");
-    default:
-        return {};
-    }
-}
-
 QVariantMap
 MessagesAdapter::getTransferStats(const QString& msgId, int status)
 {
