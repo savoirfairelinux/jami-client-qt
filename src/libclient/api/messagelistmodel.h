@@ -40,6 +40,7 @@ struct Info;
     X(Duration) \
     X(Type) \
     X(Status) \
+    X(TransferStatus) \
     X(IsRead) \
     X(ContactAction) \
     X(ActionUri) \
@@ -101,6 +102,7 @@ public:
     bool append(const QString& id, const interaction::Info& interaction);
     bool update(const QString& id, const interaction::Info& interaction);
     bool updateStatus(const QString& id, interaction::Status newStatus, const QString& newBody = {});
+    bool updateTransferStatus(const QString& id, interaction::TransferStatus newStatus, const QString& newBody = {});
     QPair<bool, bool> addOrUpdate(const QString& id, const interaction::Info& interaction);
 
     // Thread-safe access to interactions.

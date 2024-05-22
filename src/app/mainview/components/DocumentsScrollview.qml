@@ -60,7 +60,7 @@ JamiListView {
 
         property var messageListModel: MessagesAdapter.mediaMessageListModel
         readonly property int documentType: Interaction.Type.DATA_TRANSFER
-        readonly property int transferFinishedType: Interaction.Status.TRANSFER_FINISHED
+        readonly property int transferFinishedType: Interaction.TransferStatus.TRANSFER_FINISHED
         readonly property int transferSuccesType: Interaction.Status.SUCCESS
 
         onMessageListModelChanged: sourceModel = root.visible && messageListModel ? messageListModel : null
