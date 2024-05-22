@@ -382,7 +382,11 @@ Control {
                     property bool bubbleHovered
                     property string imgSource
 
-                    width: (root.type === Interaction.Type.TEXT ? root.textContentWidth + (IsEmojiOnly || root.bigMsg ? 0 : root.timeWidth + root.editedWidth) : innerContent.childrenRect.width)
+                    width: (root.type === Interaction.Type.TEXT || isDeleted ?
+                            root.textContentWidth + (IsEmojiOnly || root.bigMsg ?
+                                                        0
+                                                        : root.timeWidth + root.editedWidth)
+                            : innerContent.childrenRect.width)
                     height: innerContent.childrenRect.height + (visible ? root.extraHeight : 0) + (root.bigMsg ? 15 : 0)
 
                     HoverHandler {
