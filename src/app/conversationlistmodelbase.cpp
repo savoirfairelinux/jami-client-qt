@@ -125,7 +125,11 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
             if (interaction.type == interaction::Type::UPDATE_PROFILE) {
                 lastInteractionBody = interaction::getProfileUpdatedString();
             } else if (interaction.type == interaction::Type::DATA_TRANSFER) {
-                lastInteractionBody = interaction.commit.value("displayName");
+                if (interaction.commit.value("tid").isEmpty()) {
+                    lastInteractionBody = tr("Deleted media");
+                } else {
+                    lastInteractionBody = interaction.commit.value("displayName");
+                }
             } else if (interaction.type == lrc::api::interaction::Type::CALL) {
                 const auto isOutgoing = interaction.authorUri == accInfo.profileInfo.uri;
                 lastInteractionBody = interaction::getCallInteractionString(isOutgoing, interaction);

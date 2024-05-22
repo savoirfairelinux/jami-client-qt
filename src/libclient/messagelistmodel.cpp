@@ -594,6 +594,8 @@ MessageListModel::dataForItem(const item_t& item, int, int role) const
         return QVariant(item.second.commit["totalSize"].toInt());
     case Role::TransferName:
         return QVariant(item.second.commit["displayName"]);
+    case Role::TID:
+        return QVariant(item.second.commit["tid"]);
     case Role::FileExtension:
         return QVariant(QFileInfo(item.second.body).suffix());
     case Role::Readers:

@@ -42,7 +42,9 @@ Loader {
     property string body: Body
     property int transferStatus: TransferStatus
     onTransferStatusChanged: {
-        if (transferStatus === Interaction.TransferStatus.TRANSFER_FINISHED) {
+        if (TID === "") {
+            sourceComponent = deletedMsgComp
+        } else if (transferStatus === Interaction.TransferStatus.TRANSFER_FINISHED) {
             mediaInfo = MessagesAdapter.getMediaInfo(root.body);
             if (Object.keys(mediaInfo).length !== 0 && WITH_WEBENGINE) {
                 sourceComponent = localMediaMsgComp;
@@ -57,6 +59,48 @@ Loader {
     opacity: 0
     Behavior on opacity { NumberAnimation { duration: 100 } }
     onLoaded: opacity = 1
+
+    Component {
+        id: deletedMsgComp
+
+        SBSMessageBase {
+            id: deletedItem
+
+            isOutgoing: Author === CurrentAccount.uri
+            showTime: root.showTime
+            seq: root.seq
+            author: Author
+            readers: Readers
+            timestamp: root.timestamp
+            formattedTime: root.formattedTime
+            formattedDay: root.formattedTime
+            extraHeight: 0
+            innerContent.children: [
+                TextEdit {
+                    id: textEditId
+
+                    padding: JamiTheme.preferredMarginSize
+                    anchors.right: isOutgoing ? parent.right : undefined
+                    text: "<i>(" + JamiStrings.deletedMedia + ")</i>"
+                    horizontalAlignment: Text.AlignLeft
+
+                    font.pointSize: JamiTheme.mediumFontSize
+                    font.hintingPreference: Font.PreferNoHinting
+                    renderType: Text.NativeRendering
+                    textFormat: Text.RichText
+                    clip: true
+                    readOnly: true
+                    color: getBaseColor()
+
+                    function getBaseColor() {
+                        if (UtilsAdapter.luma(bubble.color))
+                            return JamiTheme.chatviewTextColorLight;
+                        return JamiTheme.chatviewTextColorDark;
+                    }
+                }
+            ]
+        }
+    }
 
     Component {
         id: dataTransferMsgComp
@@ -223,8 +267,8 @@ Loader {
                                    : JamiTheme.chatviewTextColorDark
                         }
                     }
-                }
-                ,ProgressBar {
+                },
+                ProgressBar {
                     id: progressBar
 
                     visible: root.transferStatus === Interaction.TransferStatus.TRANSFER_ONGOING
