@@ -35,6 +35,42 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5c96c6a_c61d26dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-05-24T15:30:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87ac768b_08d9ba0a",
+      "revId": "a9b21b2e2bb97dbda983944340733a4045ea0e19",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7f596a2_75bb89eb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-05-24T15:30:14Z",
+      "side": 1,
+      "message": "no",
+      "parentUuid": "07a19d41_8b757695",
+      "revId": "a9b21b2e2bb97dbda983944340733a4045ea0e19",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aee81618_e2c42e2b",
@@ -76,6 +112,54 @@
         "startChar": 20,
         "endLine": 336,
         "endChar": 28
+      },
+      "revId": "a9b21b2e2bb97dbda983944340733a4045ea0e19",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3647b01b_699809c2",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-05-24T15:30:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15223180_f6eb597b",
+      "range": {
+        "startLine": 336,
+        "startChar": 20,
+        "endLine": 336,
+        "endChar": 28
+      },
+      "revId": "a9b21b2e2bb97dbda983944340733a4045ea0e19",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2ff4236_296bc0cb",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-05-24T15:30:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aee81618_e2c42e2b",
+      "range": {
+        "startLine": 336,
+        "startChar": 36,
+        "endLine": 336,
+        "endChar": 48
       },
       "revId": "a9b21b2e2bb97dbda983944340733a4045ea0e19",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
