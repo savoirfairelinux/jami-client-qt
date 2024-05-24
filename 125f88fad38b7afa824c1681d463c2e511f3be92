@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "30747e3d_65f6eb86",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-05-24T17:48:52Z",
+      "side": 1,
+      "message": "nvm seems the case on master",
+      "revId": "125f88fad38b7afa824c1681d463c2e511f3be92",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d35a3ee_46f742a3",
@@ -14,6 +31,30 @@
       "writtenOn": "2024-05-24T17:40:48Z",
       "side": 1,
       "message": "If I start a call-swarm on my device, I don\u0027t see the callview with this patch",
+      "range": {
+        "startLine": 70,
+        "startChar": 35,
+        "endLine": 70,
+        "endChar": 40
+      },
+      "revId": "125f88fad38b7afa824c1681d463c2e511f3be92",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0684202f_948b8810",
+        "filename": "src/app/mainview/ConversationView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-05-24T17:48:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d35a3ee_46f742a3",
       "range": {
         "startLine": 70,
         "startChar": 35,
