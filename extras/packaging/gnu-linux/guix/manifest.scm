@@ -86,6 +86,7 @@
   "perl"
   ;;"pjproject"                         ;bundled because patched
   "pulseaudio"
+  "sdbus-c++"
   "speex"
   "speexdsp"
   "which"
