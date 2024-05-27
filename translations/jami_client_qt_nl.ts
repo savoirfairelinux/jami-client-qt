@@ -1054,17 +1054,17 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="868"/>
         <source>Donate</source>
-        <translation type="unfinished"/>
+        <translation>Doneren</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="869"/>
         <source>If you enjoy using Jami and believe in our mission, would you make a donation?</source>
-        <translation type="unfinished"/>
+        <translation>Als u van Jami geniet en in onze missie gelooft, zou u een donatie wilen doen?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="870"/>
         <source>Not now</source>
-        <translation type="unfinished"/>
+        <translation>Niet nu</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="871"/>
@@ -2364,12 +2364,12 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="778"/>
         <source>Started a call</source>
-        <translation type="unfinished"/>
+        <translation>Oproep gestart</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="835"/>
         <source>Share your Jami identifier in order to be contacted more easily!</source>
-        <translation type="unfinished"/>
+        <translation>Deel uw Jami Identifier zodat u makkelijker bereikbaar bent!</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="836"/>
@@ -4298,7 +4298,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="81"/>
         <source>Donate</source>
-        <translation type="unfinished"/>
+        <translation>Doneren</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="86"/>

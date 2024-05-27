@@ -1902,7 +1902,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="334"/>
         <source>%1min%2s</source>
-        <translation type="unfinished"/>
+        <translation>%1min%2s</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="335"/>
@@ -1912,7 +1912,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="336"/>
         <source>%sec</source>
-        <translation type="unfinished"/>
+        <translation>%seg</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="340"/>
@@ -2198,7 +2198,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="438"/>
         <source>Use this account on other devices</source>
-        <translation type="unfinished"/>
+        <translation>Utilizar esta conta noutros dispositivos</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="439"/>
@@ -2208,7 +2208,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="468"/>
         <source>Device name:</source>
-        <translation type="unfinished"/>
+        <translation>Nome do dispositivo:</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="554"/>
@@ -2218,22 +2218,22 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="621"/>
         <source>Auto update</source>
-        <translation type="unfinished"/>
+        <translation>Atualizar automaticamente</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="622"/>
         <source>Disable all</source>
-        <translation type="unfinished"/>
+        <translation>Desativar tudo</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="623"/>
         <source>Installed</source>
-        <translation type="unfinished"/>
+        <translation>Instalado</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="624"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>Instalar</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="625"/>
@@ -2243,67 +2243,67 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="626"/>
         <source>Install manually</source>
-        <translation type="unfinished"/>
+        <translation>Instalar manualmente</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="627"/>
         <source>Install an extension directly from your device.</source>
-        <translation type="unfinished"/>
+        <translation>Instale uma extensão diretamente a partir do seu dispositivo.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="628"/>
         <source>Available</source>
-        <translation type="unfinished"/>
+        <translation>Disponível</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="629"/>
         <source>Plugins store is not available</source>
-        <translation type="unfinished"/>
+        <translation>A loja de módulos não está disponível</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="632"/>
         <source>Installation failed</source>
-        <translation type="unfinished"/>
+        <translation>A instalação falhou</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="633"/>
         <source>The installation of the plugin failed</source>
-        <translation type="unfinished"/>
+        <translation>A instalação do módulo falhou</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="651"/>
         <source>Version %1</source>
-        <translation type="unfinished"/>
+        <translation>Versão %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="652"/>
         <source>Last update %1</source>
-        <translation type="unfinished"/>
+        <translation>Última atualização %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="653"/>
         <source>By %1</source>
-        <translation type="unfinished"/>
+        <translation>Por %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="654"/>
         <source>Proposed by %1</source>
-        <translation type="unfinished"/>
+        <translation>Proposto por %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="657"/>
         <source>More information</source>
-        <translation type="unfinished"/>
+        <translation>Mais informações</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="744"/>
         <source>Audio message</source>
-        <translation type="unfinished"/>
+        <translation>Mensagem de áudio</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="745"/>
         <source>Video message</source>
-        <translation type="unfinished"/>
+        <translation>Mensagem de vídeo</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="747"/>
@@ -2348,22 +2348,22 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="762"/>
         <source>Show formatting</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar formatação</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="763"/>
         <source>Hide formatting</source>
-        <translation type="unfinished"/>
+        <translation>Ocultar formatação</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="776"/>
         <source>Join in audio</source>
-        <translation type="unfinished"/>
+        <translation>Participar no áudio</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="777"/>
         <source>Join in video</source>
-        <translation type="unfinished"/>
+        <translation>Participar no vídeo</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="778"/>
@@ -3667,7 +3667,7 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="218"/>
         <source>Show formatting</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar formatação</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="222"/>
@@ -3698,7 +3698,7 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="414"/>
         <source>%1 is sharing their location</source>
-        <translation type="unfinished"/>
+        <translation>%1 está a partilhar a sua localização</translation>
     </message>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="419"/>
@@ -3817,7 +3817,7 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="426"/>
         <source>Private conversation created</source>
-        <translation type="unfinished"/>
+        <translation>Conversa privada criada</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="428"/>
@@ -3827,7 +3827,7 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="508"/>
         <source>(profile updated)</source>
-        <translation type="unfinished"/>
+        <translation>(perfil atualizado)</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="309"/>
@@ -4227,7 +4227,7 @@ conectar para sincronizar a conversação.</translation>
         <location filename="../src/libclient/conversationmodel.cpp" line="1182"/>
         <location filename="../src/libclient/conversationmodel.cpp" line="1195"/>
         <source>%1 (you)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (você)</translation>
     </message>
 </context>
 <context>

@@ -722,7 +722,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="347"/>
         <source>deleted a message</source>
-        <translation type="unfinished"/>
+        <translation>kustutas sõnumi</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="348"/>
@@ -1069,7 +1069,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="871"/>
         <source>Enable donation campaign</source>
-        <translation type="unfinished"/>
+        <translation>Luba kuvada rahalise toetuse meeldetuletust</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="874"/>
