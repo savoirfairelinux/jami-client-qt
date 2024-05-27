@@ -1,6 +1,6 @@
 FROM opensuse/leap:15.5
 
-RUN zypper refresh
+RUN zypper --non-interactive refresh -y
 
 RUN zypper --non-interactive install -y \
         dnf \
