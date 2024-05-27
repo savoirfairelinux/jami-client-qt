@@ -1,2 +1,3 @@
 0001-replace_imp_by_importlib.patch
 0002-fix-binary-tokenizer.patch
+0003-qtwayland-downgrade-wl-seat-to-avoid-high-resolution.patch
