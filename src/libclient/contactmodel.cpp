@@ -237,6 +237,11 @@ ContactModel::ContactModel(const account::Info& owner,
 
 ContactModel::~ContactModel() {}
 
+void
+ContactModel::initContacts() {
+    pimpl_->fillWithJamiContacts();
+}
+
 const ContactModel::ContactInfoMap&
 ContactModel::getAllContacts() const
 {
