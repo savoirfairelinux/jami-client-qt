@@ -1,6 +1,6 @@
 FROM opensuse/leap:15.5
 
-RUN zypper refresh
+RUN zypper --gpg-auto-import-keys refresh
 
 RUN zypper --non-interactive install -y \
         dnf \
