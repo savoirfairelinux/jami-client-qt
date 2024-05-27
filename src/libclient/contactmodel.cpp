@@ -1175,6 +1175,15 @@ ContactModelPimpl::slotProfileReceived(const QString& accountId,
     if (accountId != linked.owner.id)
         return;
 
+    if (linked.owner.profileInfo.uri == peer) {
+        const auto newProfileInfo = storage::getProfileData(accountId, "");
+        linked.owner.accountModel->setAlias(accountId, newProfileInfo["alias"], false);
+        linked.owner.accountModel->setAvatar(accountId, newProfileInfo["avatar"], false);
+
+        Q_EMIT linked.owner.accountModel->profileUpdated(accountId);
+        return;
+    }
+
     // Make sure this is for a contact and not the linked account,
     // then just remove the URI from the cache list and notify.
     std::lock_guard<std::mutex> lk(contactsMtx_);
