@@ -166,17 +166,6 @@ public Q_SLOTS:
      * @param ok
      */
     void slotMigrationEnded(const QString& accountId, bool ok);
-
-    /**
-     * Emit accountProfileReceived
-     * @param accountId
-     * @param displayName
-     * @param userPhoto
-     */
-    void slotAccountProfileReceived(const QString& accountId,
-                                    const QString& displayName,
-                                    const QString& userPhoto);
-
     /**
      * Emit new position
      * @param accountId
@@ -285,6 +274,7 @@ AccountModel::setAlias(const QString& accountId, const QString& alias, bool save
         return;
     accountInfo.profileInfo.alias = alias;
 
+    qWarning() << "@@@ setAlias: " << alias << " save: " << save << " accountId: " << accountId;
     if (save)
         storage::vcard::setProfile(accountInfo.id, accountInfo.profileInfo);
     Q_EMIT profileUpdated(accountId);
@@ -298,6 +288,7 @@ AccountModel::setAvatar(const QString& accountId, const QString& avatar, bool sa
         return;
     accountInfo.profileInfo.avatar = avatar;
 
+    qWarning() << "@@@setAvatar: " << " save: " << save << " accountId: " << accountId;
     if (save)
         storage::vcard::setProfile(accountInfo.id, accountInfo.profileInfo);
     Q_EMIT profileUpdated(accountId);
@@ -415,10 +406,6 @@ AccountModelPimpl::AccountModelPimpl(AccountModel& linked,
             &CallbacksHandler::migrationEnded,
             this,
             &AccountModelPimpl::slotMigrationEnded);
-    connect(&callbacksHandler,
-            &CallbacksHandler::accountProfileReceived,
-            this,
-            &AccountModelPimpl::slotAccountProfileReceived);
     connect(&callbacksHandler,
             &CallbacksHandler::newPosition,
             this,
@@ -689,25 +676,6 @@ AccountModelPimpl::slotMigrationEnded(const QString& accountId, bool ok)
         accountInfo.fromDetails(details);
     }
     Q_EMIT linked.migrationEnded(accountId, ok);
-}
-
-void
-AccountModelPimpl::slotAccountProfileReceived(const QString& accountId,
-                                              const QString& displayName,
-                                              const QString& userPhoto)
-{
-    LC_WARN << accountId << displayName;
-
-    auto account = accounts.find(accountId);
-    if (account == accounts.end())
-        return;
-    auto& accountInfo = account->second.first;
-    accountInfo.profileInfo.avatar = userPhoto;
-    accountInfo.profileInfo.alias = displayName;
-
-    storage::vcard::setProfile(accountInfo.id, accountInfo.profileInfo);
-
-    Q_EMIT linked.profileUpdated(accountId);
 }
 
 void
@@ -1210,7 +1178,9 @@ AccountModel::reloadHistory()
 QString
 AccountModel::avatar(const QString& accountId) const
 {
-    return storage::avatar(accountId);
+    auto avatar = storage::avatar(accountId);
+    qWarning() << "avatar for " << accountId << " - " << avatar.size();
+    return avatar;
 }
 
 } // namespace lrc
