@@ -531,11 +531,12 @@ AccountModelPimpl::slotAccountStatusChanged(const QString& accountID,
         if (status != api::account::Status::INITIALIZING
             && accountInfo.status == api::account::Status::INITIALIZING) {
             // Detect when a new account is generated (keys are ready). During
-            // the generation, a Ring account got the "INITIALIZING" status.
+            // the generation, an account got the "INITIALIZING" status.
             // When keys are generated, the status will change.
             // The account is already added and initialized. Just update details from daemon
             updateAccountDetails(accountInfo);
             // This will load swarms as the account was not loaded before.
+            accountInfo.contactModel->initContacts();
             accountInfo.conversationModel->initConversations();
             Q_EMIT linked.accountAdded(accountID);
         } else if (!accountInfo.profileInfo.uri.isEmpty()) {

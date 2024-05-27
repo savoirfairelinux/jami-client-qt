@@ -62,6 +62,8 @@ public:
                  const BehaviorController& behaviorController);
     ~ContactModel();
 
+    void initContacts();
+
     /**
      * Ask the daemon to add a contact.
      * @param contactInfo
