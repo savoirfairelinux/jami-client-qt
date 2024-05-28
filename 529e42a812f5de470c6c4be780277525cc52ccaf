@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4a45cf1_d167661f",
+        "filename": "src/libclient/callbackshandler.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2024-05-28T19:45:53Z",
+      "side": 0,
+      "message": "This signal is still emitted by the daemon. Should it be removed from the daemon as well?",
+      "revId": "529e42a812f5de470c6c4be780277525cc52ccaf",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
