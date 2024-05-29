@@ -191,7 +191,7 @@ Loader {
                                 onClicked: function (mouse) {
                                     if (canOpen) {
                                         dataTransferItem.hoveredLink = UtilsAdapter.urlFromLocalPath(location)
-                                        Qt.openUrlExternally(new Url(dataTransferItem.hoveredLink))
+                                        Qt.openUrlExternally(new URL(dataTransferItem.hoveredLink))
                                     } else {
                                         dataTransferItem.hoveredLink = ""
                                     }
