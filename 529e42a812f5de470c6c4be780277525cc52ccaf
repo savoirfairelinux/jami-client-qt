@@ -16,6 +16,24 @@
       "message": "This signal is still emitted by the daemon. Should it be removed from the daemon as well?",
       "revId": "529e42a812f5de470c6c4be780277525cc52ccaf",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eff2f5b0_01089979",
+        "filename": "src/libclient/callbackshandler.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-05-29T14:07:59Z",
+      "side": 0,
+      "message": "API of the daemon should be cleaned up, but some client can still use it for now",
+      "parentUuid": "b4a45cf1_d167661f",
+      "revId": "529e42a812f5de470c6c4be780277525cc52ccaf",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
