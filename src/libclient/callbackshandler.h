@@ -563,6 +563,16 @@ private Q_SLOTS:
                                    const int status);
 
     /**
+     * Emit account avatar has been received
+     * @param accountId
+     * @param displayName
+     * @param userPhoto
+     */
+    void slotAccountProfileReceived(const QString& accountId,
+                                    const QString& displayName,
+                                    const QString& userPhoto);
+
+    /**
      * Emit exportOnRingEnded
      * @param accountId
      * @param status SUCCESS = 0, WRONG_PASSWORD = 1, NETWORK_ERROR = 2

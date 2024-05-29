@@ -167,6 +167,15 @@ public Q_SLOTS:
      */
     void slotMigrationEnded(const QString& accountId, bool ok);
     /**
+     * Emit accountProfileReceived
+     * @param accountId
+     * @param displayName
+     * @param userPhoto
+     */
+    void slotAccountProfileReceived(const QString& accountId,
+                                    const QString& displayName,
+                                    const QString& userPhoto);
+    /**
      * Emit new position
      * @param accountId
      * @param peerId
@@ -684,6 +693,24 @@ AccountModelPimpl::slotNewPosition(const QString& accountId,
                                    const QString& daemonId) const
 {
     Q_EMIT linked.newPosition(accountId, peerId, body, timestamp, daemonId);
+}
+
+void
+AccountModelPimpl::slotAccountProfileReceived(const QString& accountId,
+                                              const QString& displayName,
+                                              const QString& userPhoto)
+{
+    LC_WARN << accountId << displayName;
+    auto account = accounts.find(accountId);
+    if (account == accounts.end() || userPhoto.isEmpty())
+        return;
+    // NOTE: This signal is still used for JAMS account where the avatar is
+    // retrieven from the server. In this case we MUST save it.
+    auto& accountInfo = account->second.first;
+    accountInfo.profileInfo.avatar = userPhoto;
+    accountInfo.profileInfo.alias = displayName;
+    storage::vcard::setProfile(accountInfo.id, accountInfo.profileInfo);
+    Q_EMIT linked.profileUpdated(accountId);
 }
 
 void
