@@ -540,13 +540,20 @@ Utils::getCirclePhoto(const QImage original, int sizePhoto)
                                    Qt::KeepAspectRatioByExpanding,
                                    Qt::SmoothTransformation)
                            .convertToFormat(QImage::Format_ARGB32_Premultiplied);
-    int margin = 0;
+    int marginX = 0;
+    int marginY = 0;
+
     if (scaledPhoto.width() > sizePhoto) {
-        margin = (scaledPhoto.width() - sizePhoto) / 2;
+        marginX = (scaledPhoto.width() - sizePhoto) / 2;
     }
+    if (scaledPhoto.height() > sizePhoto) {
+        marginY = (scaledPhoto.height() - sizePhoto) / 2;
+    }
+
     painter.drawEllipse(0, 0, sizePhoto, sizePhoto);
     painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
-    painter.drawImage(0, 0, scaledPhoto, margin, 0);
+    painter.drawImage(0, 0, scaledPhoto, marginX, marginY);
+
     return target;
 }
 
