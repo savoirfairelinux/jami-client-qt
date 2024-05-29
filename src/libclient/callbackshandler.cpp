@@ -236,6 +236,13 @@ CallbacksHandler::CallbacksHandler(const Lrc& parent)
             this,
             &CallbacksHandler::slotDeviceRevokationEnded,
             Qt::QueuedConnection);
+
+    connect(&ConfigurationManager::instance(),
+            &ConfigurationManagerInterface::accountProfileReceived,
+            this,
+            &CallbacksHandler::slotAccountProfileReceived,
+            Qt::QueuedConnection);
+
     connect(&ConfigurationManager::instance(),
             &ConfigurationManagerInterface::exportOnRingEnded,
             this,
@@ -654,6 +661,14 @@ void
 CallbacksHandler::slotKnownDevicesChanged(const QString& accountId, const MapStringString& devices)
 {
     Q_EMIT knownDevicesChanged(accountId, devices);
+}
+
+void
+CallbacksHandler::slotAccountProfileReceived(const QString& accountId,
+                                             const QString& displayName,
+                                             const QString& userPhoto)
+{
+    Q_EMIT accountProfileReceived(accountId, displayName, userPhoto);
 }
 
 void
