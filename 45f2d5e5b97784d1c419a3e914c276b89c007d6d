@@ -16,6 +16,24 @@
       "message": "[100%] Building CXX object CMakeFiles/jami.dir/jami_autogen/ISMKEKEPX5/qrc_qml.cpp.o\n[100%] Linking CXX executable jami\n/usr/bin/ld: ../daemon/contrib/x86_64-linux-gnu/lib/libavutil.a(hwcontext_vaapi.o): in function `vaapi_device_derive\u0027:\n/home/sblin/Projects/jami-client-qt/daemon/contrib/native-x86_64-linux-gnu/ffmpeg/libavutil/hwcontext_vaapi.c:1896: undefined reference to `vaGetDisplayDRM\u0027\n/usr/bin/ld: ../daemon/contrib/x86_64-linux-gnu/lib/libavutil.a(hwcontext_vaapi.o): in function `vaapi_device_create\u0027:\n/home/sblin/Projects/jami-client-qt/daemon/contrib/native-x86_64-linux-gnu/ffmpeg/libavutil/hwcontext_vaapi.c:1778: undefined reference to `vaGetDisplay\u0027\n/usr/bin/ld: /home/sblin/Projects/jami-client-qt/daemon/contrib/native-x86_64-linux-gnu/ffmpeg/libavutil/hwcontext_vaapi.c:1760: undefined reference to `vaGetDisplayDRM\u0027\n/usr/bin/ld: ../daemon/contrib/x86_64-linux-gnu/lib/libavutil.a(hwcontext_vdpau.o): in function `vdpau_device_create\u0027:\n/home/sblin/Projects/jami-client-qt/daemon/contrib/native-x86_64-linux-gnu/ffmpeg/libavutil/hwcontext_vdpau.c:488: undefined reference to `vdp_device_create_x11\u0027\ncollect2: error: ld returned 1 exit status\nmake[2]: *** [CMakeFiles/jami.dir/build.make:1800: jami] Error 1\nmake[1]: *** [CMakeFiles/Makefile2:600: CMakeFiles/jami.dir/all] Error 2\nmake: *** [Makefile:156: all] Error 2\nTraceback (most recent call last):\n  File \"/home/sblin/Projects/jami-client-qt/./build.py\", line 838, in \u003cmodule\u003e\n    main()\n  File \"/home/sblin/Projects/jami-client-qt/./build.py\", line 813, in main\n    run_install(parsed_args)\n  File \"/home/sblin/Projects/jami-client-qt/./build.py\", line 449, in run_install\n    return subprocess.run(command, env\u003denviron, check\u003dTrue)\n  File \"/usr/lib/python3.10/subprocess.py\", line 526, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command \u0027[\u0027extras/scripts/install.sh\u0027, \u0027-p\u0027, \u00278\u0027, \u0027-d\u0027, \u0027-Q\u0027, \u0027/usr/lib/libqt-jami\u0027]\u0027 returned non-zero exit status 2.",
       "revId": "45f2d5e5b97784d1c419a3e914c276b89c007d6d",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17002017_77a92e9a",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 8
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2024-05-29T20:44:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f45e6b29_ed11f397",
+      "revId": "45f2d5e5b97784d1c419a3e914c276b89c007d6d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
