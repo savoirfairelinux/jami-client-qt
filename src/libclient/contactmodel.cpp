@@ -133,6 +133,8 @@ public:
 
     // Store if a profile is cached for a given URI.
     QSet<QString> cachedProfiles;
+    // For non contacts (such as members of a group)
+    QMap<QString, profile::Info> cachedProfilesInfo;
 
 public Q_SLOTS:
     /**
@@ -557,10 +559,9 @@ ContactModel::bestNameForContact(const QString& contactUri) const
         return owner.accountModel->bestNameForAccount(owner.id);
     QString res = contactUri;
     try {
-        auto contact = getContact(contactUri);
         auto alias = displayName(contactUri).simplified();
         if (alias.isEmpty()) {
-            return bestIdFromContactInfo(contact);
+            return bestIdFromContactInfo(getContact(contactUri));
         }
         return alias;
     } catch (const std::out_of_range&) {
@@ -1184,16 +1185,11 @@ ContactModelPimpl::slotProfileReceived(const QString& accountId,
         return;
     }
 
-    // Make sure this is for a contact and not the linked account,
-    // then just remove the URI from the cache list and notify.
-    std::lock_guard<std::mutex> lk(contactsMtx_);
-    if (contacts.find(peer) != contacts.end()) {
-        // Remove the URI from the cache list and notify.
-        cachedProfiles.remove(peer);
-        // This signal should be listened to in order to update contact display names
-        // and avatars in the client.
-        Q_EMIT linked.profileUpdated(peer);
-    }
+    // Remove the URI from the cache list and notify.
+    cachedProfiles.remove(peer);
+    // This signal should be listened to in order to update contact display names
+    // and avatars in the client.
+    Q_EMIT linked.profileUpdated(peer);
 }
 
 void
@@ -1236,30 +1232,45 @@ ContactModelPimpl::slotUserSearchEnded(const QString& accountId,
 
 template<typename Func>
 QString
-ContactModelPimpl::getCachedProfileProperty(const QString& contactUri, Func extractor)
+ContactModelPimpl::getCachedProfileProperty(const QString& peerUri, Func extractor)
 {
     std::lock_guard<std::mutex> lk(contactsMtx_);
     // For search results it's loaded and not in storage yet.
-    if (searchResult.contains(contactUri)) {
-        auto contact = searchResult.value(contactUri);
+    if (searchResult.contains(peerUri)) {
+        auto contact = searchResult.value(peerUri);
         return extractor(contact.profileInfo);
     }
 
     // Try to find the contact.
-    auto it = contacts.find(contactUri);
-    if (it == contacts.end()) {
-        return {};
-    }
+    auto it = contacts.find(peerUri);
+    auto isContact = it != contacts.end();
+    auto getPInfo = [&]() -> profile::Info& {
+        if (!isContact) {
+            auto itNonContact = cachedProfilesInfo.find(peerUri);
+            if (itNonContact != cachedProfilesInfo.end()) {
+                return *itNonContact;
+            } else {
+                profile::Info pInfo;
+                pInfo.uri = peerUri;
+                pInfo.type = profile::Type::TEMPORARY;
+                cachedProfilesInfo.insert(peerUri, pInfo);
+                return cachedProfilesInfo[peerUri];
+            }
+        } else {
+            return it->profileInfo;
+        }
+    };
+    profile::Info& pInfo = getPInfo();
 
     // If we have a profile that appears to be recently cached, return the extracted property.
-    if (cachedProfiles.contains(contactUri)) {
-        return extractor(it->profileInfo);
+    if (cachedProfiles.contains(peerUri)) {
+        return extractor(pInfo);
     }
 
     // Otherwise, update the profile info and return the extracted property.
-    updateCachedProfile(it->profileInfo);
+    updateCachedProfile(pInfo);
 
-    return extractor(it->profileInfo);
+    return extractor(pInfo);
 }
 
 } // namespace lrc
