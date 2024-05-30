@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "068e137e_31f2c464",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2024-05-30T11:13:09Z",
+      "side": 1,
+      "message": "image first need to be scaled down",
+      "revId": "d592c046edfdb6a2a36f0d74c66392d3a67401d5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
