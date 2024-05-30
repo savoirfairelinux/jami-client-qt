@@ -66,6 +66,7 @@ RUN apt-get install -y -o Acquire::Retries=10 \
         libvdpau-dev \
         libssl-dev
 RUN apt-get install -y pandoc \
+        libcppunit-dev \
         googletest \
         libgtest-dev \
         wget
