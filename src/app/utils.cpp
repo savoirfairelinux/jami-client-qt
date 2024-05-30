@@ -420,8 +420,14 @@ Utils::contactPhoto(LRCInstance* instance,
     try {
         auto& accInfo = instance->accountModel().getAccountInfo(
             accountId.isEmpty() ? instance->get_currentAccountId() : accountId);
-        auto contactInfo = accInfo.contactModel->getContact(contactUri);
         auto contactPhoto = accInfo.contactModel->avatar(contactUri);
+        if (!contactPhoto.isEmpty()) {
+            photo = imageFromBase64String(contactPhoto);
+            if (!photo.isNull())
+                return Utils::scaleAndFrame(photo, size);
+        }
+        // If no avatar is found, generate one
+        auto contactInfo = accInfo.contactModel->getContact(contactUri);
         auto bestName = accInfo.contactModel->bestNameForContact(contactUri);
         if (accInfo.profileInfo.type == profile::Type::SIP
             && contactInfo.profileInfo.type == profile::Type::TEMPORARY) {
@@ -429,12 +435,6 @@ Utils::contactPhoto(LRCInstance* instance,
         } else if (contactInfo.profileInfo.type == profile::Type::TEMPORARY
                    && contactInfo.profileInfo.uri.isEmpty()) {
             photo = Utils::fallbackAvatar(QString(), QString());
-        } else if (!contactPhoto.isEmpty()) {
-            photo = imageFromBase64String(contactPhoto);
-            if (photo.isNull()) {
-                auto avatarName = contactInfo.profileInfo.uri == bestName ? QString() : bestName;
-                photo = Utils::fallbackAvatar("jami:" + contactInfo.profileInfo.uri, avatarName);
-            }
         } else {
             auto avatarName = contactInfo.profileInfo.uri == bestName ? QString() : bestName;
             photo = Utils::fallbackAvatar("jami:" + contactInfo.profileInfo.uri, avatarName);
