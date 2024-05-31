@@ -16,6 +16,24 @@
       "message": "It may be confused the difference between \"delete message\" and \"remove file from this device\". And text \"media deleted\" does not reflect this action, because media is still on the device. \"Message deleted\" could be more clear.",
       "revId": "e2d1c986ae558580ee50f5aa90ea1333804dce7e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83f3c166_e3d1a50b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-05-31T15:50:43Z",
+      "side": 1,
+      "message": "media should also be removed (the one in the app data)",
+      "parentUuid": "8d1d2221_13f9b6b8",
+      "revId": "e2d1c986ae558580ee50f5aa90ea1333804dce7e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
