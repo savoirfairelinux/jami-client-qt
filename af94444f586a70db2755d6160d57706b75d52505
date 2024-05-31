@@ -16,6 +16,24 @@
       "message": "space",
       "revId": "af94444f586a70db2755d6160d57706b75d52505",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "baad0eb9_430e7d7d",
+        "filename": "src/libclient/api/interaction.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2024-05-31T15:35:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7939e7e8_7f2dd2c5",
+      "revId": "af94444f586a70db2755d6160d57706b75d52505",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
