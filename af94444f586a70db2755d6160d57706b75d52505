@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7939e7e8_7f2dd2c5",
+        "filename": "src/libclient/api/interaction.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2024-05-31T15:21:48Z",
+      "side": 1,
+      "message": "space",
+      "revId": "af94444f586a70db2755d6160d57706b75d52505",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
