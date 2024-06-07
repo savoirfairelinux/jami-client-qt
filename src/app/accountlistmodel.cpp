@@ -29,6 +29,35 @@ AccountListModel::AccountListModel(LRCInstance* instance, QObject* parent)
     : AbstractListModelBase(parent)
 {
     lrcInstance_ = instance;
+
+    // Avoid resetting/redrawing the model when the account status changes.
+    QObject::connect(&lrcInstance_->accountModel(),
+                     &AccountModel::accountStatusChanged,
+                     this,
+                     [&](const QString& accountId) {
+                         auto accountList = lrcInstance_->accountModel().getAccountList();
+                         auto index = accountList.indexOf(accountId);
+                         if (index != -1) {
+                             QModelIndex modelIndex = QAbstractListModel::index(index, 0);
+                             Q_EMIT dataChanged(modelIndex, modelIndex /*, ALL ROLES */);
+                         }
+                     });
+    // If there's a reorder, it's reasonable to reset the model for simplicity, instead
+    // of computing the difference. The same goes for accounts being added and removed.
+    // These operations will only occur when the list is hidden, unless dbus is used while
+    // the list is visible.
+    QObject::connect(&lrcInstance_->accountModel(),
+                     &AccountModel::accountsReordered,
+                     this,
+                     &AccountListModel::reset);
+    QObject::connect(&lrcInstance_->accountModel(),
+                     &AccountModel::accountAdded,
+                     this,
+                     &AccountListModel::reset);
+    QObject::connect(&lrcInstance_->accountModel(),
+                     &AccountModel::accountRemoved,
+                     this,
+                     &AccountListModel::reset);
 }
 
 int
@@ -91,6 +120,7 @@ AccountListModel::roleNames() const
 void
 AccountListModel::reset()
 {
+    // Used to invalidate proxy models.
     beginResetModel();
     endResetModel();
 }
