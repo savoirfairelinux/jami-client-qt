@@ -428,8 +428,9 @@ AccountModelPimpl::updateAccounts()
     const auto previousAccountIdListSize = accountIdList.size();
     accountIdList = configurationManager.getAccountList();
 
-    // If this is just a reordering of the accounts, don't do anything
+    // If this is just a reordering of the accounts, just notify the view.
     if (accountIdList.size() == previousAccountIdListSize) {
+        Q_EMIT linked.accountsReordered();
         return;
     }
 

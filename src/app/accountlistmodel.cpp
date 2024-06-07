@@ -29,6 +29,49 @@ AccountListModel::AccountListModel(LRCInstance* instance, QObject* parent)
     : AbstractListModelBase(parent)
 {
     lrcInstance_ = instance;
+
+    // Convenience function to execute a callback with the index of an account.
+    static auto withAccountIndex = [&](const QString& accountId, std::function<void(int)> callback) {
+        auto accountList = lrcInstance_->accountModel().getAccountList();
+        auto index = accountList.indexOf(accountId);
+        if (index != -1) {
+            callback(index);
+        }
+    };
+
+    // Bind to accound added/removed signals so we can update the elements.
+    QObject::connect(&lrcInstance_->accountModel(), &AccountModel::accountAdded, this, [this]() {
+        // When an account is added, it is at the top of the list.
+        beginInsertRows(QModelIndex(), 0, 0);
+        endInsertRows();
+    });
+    QObject::connect(&lrcInstance_->accountModel(),
+                     &AccountModel::accountRemoved,
+                     this,
+                     [&](const QString& accountId) {
+                         withAccountIndex(accountId, [this](int index) {
+                             beginRemoveRows(QModelIndex(), index, index);
+                             endRemoveRows();
+                         });
+                     });
+    // We also need to bind to the status changed and current account changed
+    // signals. Status changes should just update the element, while current
+    // account changes should trigger a resort only.
+    QObject::connect(&lrcInstance_->accountModel(),
+                     &AccountModel::accountStatusChanged,
+                     this,
+                     [&](const QString& accountId) {
+                         withAccountIndex(accountId, [this](int index) {
+                             QModelIndex modelIndex = QAbstractListModel::index(index, 0);
+                             Q_EMIT dataChanged(modelIndex, modelIndex, {Role::Status});
+                         });
+                     });
+    // If there's a reorder, it's reasonable to reset the model for simplicity, instead
+    // of computing the difference, as this will only occur when the list view is hidden.
+    QObject::connect(&lrcInstance_->accountModel(),
+                     &AccountModel::accountsReordered,
+                     this,
+                     &AccountListModel::reset);
 }
 
 int
@@ -91,6 +134,7 @@ AccountListModel::roleNames() const
 void
 AccountListModel::reset()
 {
+    // Used to invalidate proxy models.
     beginResetModel();
     endResetModel();
 }
