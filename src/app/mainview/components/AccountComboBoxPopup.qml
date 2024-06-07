@@ -60,23 +60,6 @@ Popup {
 
             property bool inSettings: viewCoordinator.currentViewName === "SettingsView"
 
-            // TODO: remove these refresh hacks use QAbstractItemModels correctly
-            Connections {
-                target: AccountAdapter
-
-                function onAccountStatusChanged(accountId) {
-                    AccountListModel.reset();
-                }
-            }
-
-            Connections {
-                target: LRCInstance
-
-                function onAccountListChanged() {
-                    AccountListModel.reset();
-                }
-            }
-
             RowLayout {
                 id: mainLayout
                 anchors.fill: parent
@@ -257,11 +240,6 @@ Popup {
             color: JamiTheme.smartListHoveredColor
         }
 
-        // fake footer item as workaround for Qt 5.15 bug
-        // https://bugreports.qt.io/browse/QTBUG-85302
-        // don't use the clip trick and footer item overlay
-        // explained here https://stackoverflow.com/a/64625149
-        // as it causes other complexities in handling the drop shadow
         ItemDelegate {
             id: addAccountItem
 

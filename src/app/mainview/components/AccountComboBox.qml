@@ -34,24 +34,6 @@ Label {
 
     property bool inSettings: viewCoordinator.currentViewName === "SettingsView"
 
-    // TODO: remove these refresh hacks use QAbstractItemModels correctly
-    Connections {
-        target: AccountAdapter
-
-        function onAccountStatusChanged(accountId) {
-            AccountListModel.reset();
-        }
-    }
-
-    Connections {
-        target: LRCInstance
-
-        function onAccountListChanged() {
-            root.update();
-            AccountListModel.reset();
-        }
-    }
-
     function togglePopup() {
         if (root.popup.opened) {
             root.popup.close();
