@@ -43,9 +43,8 @@ LRCInstance::LRCInstance(const QString& updateUrl,
     muteDaemon_ = muteDaemon;
     threadPool_->setMaxThreadCount(1);
 
-    connect(this, &LRCInstance::currentAccountIdChanged, [this] {
-        // save to config, editing the accountlistmodel's underlying data
-        accountModel().setTopAccount(currentAccountId_);
+    // Update the current account when the account list changes.
+    connect(&accountModel(), &AccountModel::accountsReordered, this, [this] {
         Q_EMIT accountListChanged();
 
         profile::Info profileInfo;
@@ -60,6 +59,11 @@ LRCInstance::LRCInstance(const QString& updateUrl,
 
         // notify if the avatar is stored locally
         set_currentAccountAvatarSet(!profileInfo.avatar.isEmpty());
+    });
+
+    connect(this, &LRCInstance::currentAccountIdChanged, [this] {
+        // This will trigger `AccountModel::accountsReordered`.
+        accountModel().setTopAccount(currentAccountId_);
     });
 
     connect(&accountModel(), &AccountModel::profileUpdated, this, [this](const QString& id) {
