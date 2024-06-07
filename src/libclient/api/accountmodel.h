@@ -289,6 +289,10 @@ Q_SIGNALS:
      */
     void accountRemoved(const QString& accountID);
     /**
+     * Emitted when the account list order has changed.
+     */
+    void accountsReordered();
+    /**
      * Connect this signal to know when an account was updated.
      * @param accountID
      */
