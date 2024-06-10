@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "577daf62_73bca5f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-06-10T15:22:57Z",
+      "side": 1,
+      "message": "freetype build broken on Windows. I\u0027ll fix that separately",
+      "revId": "406a251c855a63f623230449b66a93466150a759",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
