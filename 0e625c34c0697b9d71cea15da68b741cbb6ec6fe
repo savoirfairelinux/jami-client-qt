@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f44ed8f_ea089d63",
+        "filename": "tests/unittests/previewengine_unittest.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-06-10T22:20:05Z",
+      "side": 1,
+      "message": "Can the characters `Ő ő Ű ű` please be added to the test as they seem to be unique to the magyar (Hungarian) language? Thank you",
+      "range": {
+        "startLine": 74,
+        "startChar": 59,
+        "endLine": 74,
+        "endChar": 68
+      },
+      "revId": "0e625c34c0697b9d71cea15da68b741cbb6ec6fe",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
