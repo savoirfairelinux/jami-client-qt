@@ -22,6 +22,30 @@
       },
       "revId": "97af6823bbcf5768d34e5026ce8f1d4409e242a5",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e853c3ac_238221cd",
+        "filename": "src/app/js/markdownedition.js",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-06-11T15:05:06Z",
+      "side": 1,
+      "message": "Good call. Added a clang-format file and added a guidelines section for JS files in the docs (https://review.jami.net/c/jami-docs/+/28397/1/developer/new-developers/qt-qml-coding-style.md).",
+      "parentUuid": "b1b127a3_2d6f4f32",
+      "range": {
+        "startLine": 78,
+        "startChar": 4,
+        "endLine": 78,
+        "endChar": 6
+      },
+      "revId": "97af6823bbcf5768d34e5026ce8f1d4409e242a5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
