@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ab00bf6_039ff491",
+        "filename": "src/app/js/markdownedition.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-06-11T21:08:33Z",
+      "side": 1,
+      "message": "Should the comment end with a full stop (`.`)? Thank you",
+      "range": {
+        "startLine": 59,
+        "startChar": 41,
+        "endLine": 59,
+        "endChar": 47
+      },
+      "revId": "ca2db47511a4433c329d6b1090f1f5509d0ae4a7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8739caec_63c516cf",
+        "filename": "src/app/js/markdownedition.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-06-11T21:08:33Z",
+      "side": 1,
+      "message": "Should the first letter after the (`// `) be a capital? Is it sentence case? Thank you",
+      "range": {
+        "startLine": 59,
+        "startChar": 2,
+        "endLine": 59,
+        "endChar": 6
+      },
+      "revId": "ca2db47511a4433c329d6b1090f1f5509d0ae4a7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53127424_780bc820",
+        "filename": "src/app/js/markdownedition.js",
+        "patchSetId": 6
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-06-11T21:08:33Z",
+      "side": 1,
+      "message": "Should this comment be homogenized with the comments above? Thank you",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 10
+      },
+      "revId": "ca2db47511a4433c329d6b1090f1f5509d0ae4a7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
