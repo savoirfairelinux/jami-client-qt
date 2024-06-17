@@ -91,7 +91,7 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="329"/>
         <source>Unrecognized conversation mode</source>
-        <translation>Mode conversa não reconhecido</translation>
+        <translation>Modo de conversa não reconhecido</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="333"/>
@@ -101,12 +101,12 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="335"/>
         <source>An error occurred while committing a new message</source>
-        <translation>Um erro ocorreu enquanto comitando uma nova mensagem</translation>
+        <translation>Ocorreu um erro ao confirmar uma nova mensagem</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="331"/>
         <source>An invalid message was detected</source>
-        <translation>Foi detectado um mensagem inválida.</translation>
+        <translation>Foi detectada uma mensagem inválida</translation>
     </message>
 </context>
 <context>
@@ -159,7 +159,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="40"/>
         <source>Migrating to the Swarm technology will enable synchronizing this conversation across multiple devices and improve reliability. The legacy conversation history will be cleared in the process.</source>
-        <translation>A migração para a tecnologia Swarm permitirá sincronizar esta conversa em vários dispositivos e melhorar a confiabilidade.</translation>
+        <translation>A migração para a tecnologia enxame permitirá a sincronização dessa conversa em vários dispositivos e aumentará a confiabilidade. O histórico da conversa antiga será apagado no processo.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="44"/>
@@ -173,7 +173,7 @@ Jami será finalizado agora.</translation>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="45"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="737"/>
         <source>Trying to reconnect to the Jami daemon (jamid)…</source>
-        <translation>Tentando se reconectar ao daemon do Jami (jamid)...</translation>
+        <translation>Tentando se reconectar ao daemon do Jami (jamid)…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="48"/>
@@ -183,7 +183,7 @@ Jami será finalizado agora.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="57"/>
         <source>Display QR code</source>
-        <translation>Mostrar o código QR</translation>
+        <translation>Exibir código QR</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="58"/>
@@ -198,7 +198,7 @@ Jami será finalizado agora.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="64"/>
         <source>Add to conference</source>
-        <translation>Adicionar a conferência</translation>
+        <translation>Adicionar à conferência</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="65"/>
@@ -243,7 +243,7 @@ Jami será finalizado agora.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="75"/>
         <source>In progress…</source>
-        <translation>Em progresso...</translation>
+        <translation>Em progresso…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="76"/>
@@ -343,7 +343,7 @@ Jami será finalizado agora.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="101"/>
         <source>Enable read receipts</source>
-        <translation>Ativar verificação de leitura</translation>
+        <translation>Habilitar confirmações de leitura</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="102"/>
@@ -358,7 +358,7 @@ Jami será finalizado agora.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="106"/>
         <source>Voicemail dial code</source>
-        <translation>Código de discagem de voicemail</translation>
+        <translation>Código de discagem de correio de voz</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="109"/>
@@ -373,7 +373,7 @@ Jami será finalizado agora.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="111"/>
         <source>Encrypt negotiation (TLS)</source>
-        <translation>Negociação de encriptação(TLS)</translation>
+        <translation>Negociação de criptografia (TLS)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="112"/>
@@ -393,7 +393,7 @@ Jami será finalizado agora.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="115"/>
         <source>Private key password</source>
-        <translation>Senha de chave privada</translation>
+        <translation>Senha da chave privada</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="116"/>
@@ -448,7 +448,7 @@ Jami será finalizado agora.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="130"/>
         <source>Network interface</source>
-        <translation>Interface de Rede</translation>
+        <translation>Interface de rede</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="131"/>
@@ -478,7 +478,7 @@ Jami será finalizado agora.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="136"/>
         <source>TURN Realm</source>
-        <translation>ATIVAR o Realm</translation>
+        <translation>TURN Realm</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="137"/>
@@ -528,7 +528,7 @@ Jami será finalizado agora.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="157"/>
         <source>SDP Session Negotiation (ICE Fallback)</source>
-        <translation>Negociação de sessão SDP ( ICE Fallback)</translation>
+        <translation>Negociação de sessão SDP (caso falhe o ICE)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="158"/>
@@ -578,7 +578,7 @@ Jami será finalizado agora.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="170"/>
         <source>Bootstrap</source>
-        <translation>Inicialização</translation>
+        <translation>Bootstrap</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="173"/>
@@ -693,7 +693,7 @@ Jami será finalizado agora.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="213"/>
         <source>Back up account here</source>
-        <translation>- Faz backup aqui.</translation>
+        <translation>Faça backup da conta aqui</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="214"/>
@@ -718,17 +718,17 @@ Jami será finalizado agora.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="339"/>
         <source>Hide chat</source>
-        <translation>Esconde-se</translation>
+        <translation>Ocultar bate-papo</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="347"/>
         <source>deleted a message</source>
-        <translation>Apagar a mensagem</translation>
+        <translation>excluiu uma mensagem</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="348"/>
         <source>Back to Call</source>
-        <translation>Voltar para o Call</translation>
+        <translation>Voltar para a chamada</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="374"/>
@@ -739,7 +739,8 @@ Jami será finalizado agora.</translation>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="381"/>
         <source>Are you sure you would like to join Jami without a username?
 If yes, only a randomly generated 40-character identifier will be assigned to this account.</source>
-        <translation>Se sim, só um identificador de 40 caracteres gerado aleatoriamente será atribuído a esta conta.</translation>
+        <translation>Tem certeza de que gostaria de participar do Jami sem um nome de usuário?
+Em caso afirmativo, apenas um identificador de 40 caracteres gerado aleatoriamente será atribuído a essa conta.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="382"/>
@@ -747,7 +748,10 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
 - Alphabetical characters (A to Z and a to z)
 - Numeric characters (0 to 9)
 - Special characters allowed: dash (-)</source>
-        <translation>- 32 caracteres no máximo - caracteres alfabéticos (A a Z e a a z) - caracteres numéricos (0 a 9) - caracteres especiais permitidos: punheta (-)</translation>
+        <translation>- Máximo de 32 caracteres
+- Caracteres alfabéticos (A a Z e a a z)
+- Caracteres numéricos (0 a 9)
+- Caracteres especiais permitidos: traço (-)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="388"/>
@@ -762,7 +766,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="390"/>
         <source>Encrypting your account with a password is optional, and if the password is lost it CANNOT be recovered later.</source>
-        <translation>Criptografar a sua conta com uma senha é opcional, e se a senha for perdida, NÃO PODE ser recuperada mais tarde.</translation>
+        <translation>A criptografia de sua conta com uma senha é opcional e, se a senha for perdida, NÃO PODERÁ ser recuperada posteriormente.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="391"/>
@@ -782,7 +786,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="402"/>
         <source>Display Name</source>
-        <translation>Exibir Nome</translation>
+        <translation>Nome de exibição</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="406"/>
@@ -799,7 +803,7 @@ The account will be lost if this device is lost or the application is uninstalle
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="424"/>
         <source>Encrypt account</source>
-        <translation>Conta criptografada</translation>
+        <translation>Criptografar a conta</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="427"/>
@@ -810,7 +814,8 @@ The account will be lost if this device is lost or the application is uninstalle
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="433"/>
         <source>This profile is only shared with this account's contacts.
 The profile can be changed at all times from the account&apos;s settings.</source>
-        <translation>Este perfil só é compartilhado com os contatos desta conta. O perfil pode ser alterado a qualquer momento a partir das configurações da conta.</translation>
+        <translation>Esse perfil é compartilhado apenas com os contatos dessa conta.
+O perfil pode ser alterado a qualquer momento nas configurações da conta.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="434"/>
@@ -820,7 +825,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="435"/>
         <source>A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected by a password.</source>
-        <translation>Uma conta Jami é criada e armazenada localmente apenas neste dispositivo, como um arquivo contendo as chaves da sua conta.</translation>
+        <translation>Uma conta Jami é criada e armazenada localmente apenas nesse dispositivo, como um arquivo que contém as chaves de sua conta. O acesso a esse arquivo pode, opcionalmente, ser protegido por uma senha.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="436"/>
@@ -835,22 +840,22 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="463"/>
         <source>If your account has not been backed up or added to another device, your account and registered username will be IRREVOCABLY LOST.</source>
-        <translation>Se a sua conta não for copiada ou adicionada a outro dispositivo, a sua conta e o seu nome de usuário registrado serão IRREVOCABLE LOST.</translation>
+        <translation>Se não tiver sido feito o backup da sua conta ou se ela não tiver sido adicionada a outro dispositivo, sua conta e seu nome de usuário registrado serão IRREVOGAVELMENTE PERDIDOS.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="474"/>
         <source>Dark</source>
-        <translation>Escuridão</translation>
+        <translation>Escuro</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="475"/>
         <source>Light</source>
-        <translation>Luz</translation>
+        <translation>Claro</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="480"/>
         <source>Use native window frame (requires restart)</source>
-        <translation>Usar o frame de janela nativa (requer reinício)</translation>
+        <translation>Usar o quadro de janela nativo (requer reinicialização)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="484"/>
@@ -875,7 +880,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="490"/>
         <source>Show link preview in conversations</source>
-        <translation>Mostre o link em conversas</translation>
+        <translation>Mostrar visualização do link em conversas</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="512"/>
@@ -900,7 +905,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="594"/>
         <source>This account is password encrypted, enter the password to generate a PIN code.</source>
-        <translation>Esta conta está encriptada por palavra-passe, introduza a palavra-passe para gerar um código PIN.</translation>
+        <translation>Essa conta é criptografada por senha. Digite a senha para gerar um código PIN.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="596"/>
@@ -910,7 +915,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="597"/>
         <source>On another device</source>
-        <translation>Noutro dispositivo</translation>
+        <translation>Em outro dispositivo</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="598"/>
@@ -920,12 +925,12 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="599"/>
         <source>Link new device</source>
-        <translation>Adicionar novo dispositivo</translation>
+        <translation>Vincular novo dispositivo</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="600"/>
         <source>In Jami, scan QR code or manually enter the PIN.</source>
-        <translation>No Jami, digitalize o código QR ou introduza manualmente o PIN.</translation>
+        <translation>No Jami, escaneie o código QR ou digite o PIN manualmente.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="601"/>
@@ -940,12 +945,12 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="606"/>
         <source>Enter account password to confirm the removal of this device</source>
-        <translation>Introduza a palavra-passe da conta para confirmar a remoção deste dispositivo</translation>
+        <translation>Digite a senha da conta para confirmar a remoção desse dispositivo</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="613"/>
         <source>Select image as avatar</source>
-        <translation>Selecionar imagem como avatar</translation>
+        <translation>Selecionar a imagem como avatar</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="614"/>
@@ -960,17 +965,17 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="618"/>
         <source>Image Files (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)</source>
-        <translation>Ficheiros de imagem (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)</translation>
+        <translation>Arquivos de imagem (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="630"/>
         <source>The Jami Extension Store currently has no extension available for the platform in use. Check again later!</source>
-        <translation>A Jami Extension Store não tem atualmente nenhuma extensão disponível para a plataforma em utilização. Verifique novamente mais tarde!</translation>
+        <translation>No momento, a Jami Extension Store não tem nenhuma extensão disponível para a plataforma em uso. Verifique novamente mais tarde!</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="746"/>
         <source>Discard and restart</source>
-        <translation>Rejeitar e reiniciar</translation>
+        <translation>Descartar e reiniciar</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="748"/>
@@ -985,7 +990,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="751"/>
         <source>Continue editing</source>
-        <translation>Continuar a editar</translation>
+        <translation>Continuar editando</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="754"/>
@@ -1005,17 +1010,17 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="764"/>
         <source>Press Shift+Enter to insert a new line</source>
-        <translation>Premir Shift+Enter para inserir uma nova linha</translation>
+        <translation>Pressione Shift+Enter para inserir uma nova linha</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="765"/>
         <source>Press Enter to insert a new line</source>
-        <translation>Premir Enter para inserir uma nova linha</translation>
+        <translation>Pressione Enter para inserir uma nova linha</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="781"/>
         <source>Select dedicated device for hosting future calls in this swarm. If not set, the host will be the device starting a call.</source>
-        <translation>Selecionar o dispositivo dedicado para alojar futuras chamadas neste enxame. Se não for definido, o anfitrião será o dispositivo que inicia uma chamada.</translation>
+        <translation>Selecione o dispositivo dedicado para hospedar futuras chamadas neste enxame. Se não for definido, o host será o dispositivo que está iniciando uma chamada.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="782"/>
@@ -1040,12 +1045,12 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="844"/>
         <source>Encrypt your account with a password</source>
-        <translation>Encriptar a sua conta com uma palavra-passe</translation>
+        <translation>Criptografe sua conta com uma senha</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="845"/>
         <source>Customize your profile</source>
-        <translation>Personalizar o seu perfil</translation>
+        <translation>Personalize seu perfil</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="848"/>
@@ -1070,12 +1075,12 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="871"/>
         <source>Enable donation campaign</source>
-        <translation>Ativar a campanha de donativos</translation>
+        <translation>Ativar campanha de doação</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="874"/>
         <source>Enter</source>
-        <translation>Introduzir</translation>
+        <translation>Enter</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="875"/>
@@ -1100,7 +1105,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="867"/>
         <source>Free and private sharing. &lt;a href=&quot;https://jami.net/whydonate/&quot;&gt;Donate&lt;/a&gt; to expand it.</source>
-        <translation>Partilha gratuita e privada. &lt;a href=&quot;https://jami.net/whydonate/&quot;&gt;Faça um donativo&lt;/a&gt; para o expandir.</translation>
+        <translation>Compartilhamento gratuito e privado. &lt;a href=&quot;https://jami.net/whydonate/&quot;&gt;Faça uma doação&lt;/a&gt; para expandi-lo.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="880"/>
@@ -1110,12 +1115,12 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="881"/>
         <source>Connecting TLS</source>
-        <translation>A conectar TLS</translation>
+        <translation>Conectando o TLS</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="882"/>
         <source>Connecting ICE</source>
-        <translation>A conectar ICE</translation>
+        <translation>Conectando o ICE</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="883"/>
@@ -1125,7 +1130,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="884"/>
         <source>Waiting</source>
-        <translation>A aguardar</translation>
+        <translation>Aguardando</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="885"/>
@@ -1161,7 +1166,8 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="520"/>
         <source>A new version of Jami was found
 Would you like to update now?</source>
-        <translation>Encontraram uma nova versão da Jami. Quer atualizar agora?</translation>
+        <translation>Foi encontrada uma nova versão do Jami
+Gostaria de atualizar agora?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="543"/>
@@ -1176,7 +1182,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="586"/>
         <source>Select &quot;Link another device&quot;</source>
-        <translation>Selecione &quot;Conectar outro dispositivo&quot;</translation>
+        <translation>Selecione &quot;Vincular outro dispositivo&quot;</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="690"/>
@@ -1211,7 +1217,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="769"/>
         <source> replied to</source>
-        <translation>Respondeu</translation>
+        <translation> respondeu a</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="771"/>
@@ -1227,52 +1233,52 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="774"/>
         <source>Edited</source>
-        <translation>Edição</translation>
+        <translation>Editado</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="775"/>
         <source>Join call</source>
-        <translation>Juntar chamada</translation>
+        <translation>Participar da chamada</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="779"/>
         <source>A call is in progress. Do you want to join the call?</source>
-        <translation>Uma chamada está em andamento.</translation>
+        <translation>Uma chamada está em andamento. Deseja participar da chamada?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="780"/>
         <source>Current host for this swarm seems unreachable. Do you want to host the call?</source>
-        <translation>O anfitrião atual deste enxame parece inacessível.</translation>
+        <translation>O hospedeiro atual desse enxame parece inacessível. Você deseja hospedar a chamada?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="784"/>
         <source>Remove current device</source>
-        <translation>Remover o dispositivo corrente</translation>
+        <translation>Remover o dispositivo atual</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="785"/>
         <source>Host only this call</source>
-        <translation>Só recebe esta chamada</translation>
+        <translation>Hospedar somente esta chamada</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="786"/>
         <source>Host this call</source>
-        <translation>Organizador desta chamada</translation>
+        <translation>Hospedar esta chamada</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="787"/>
         <source>Make me the default host for future calls</source>
-        <translation>Torne-me o anfitrião padrão para futuras chamadas</translation>
+        <translation>Tornar-me o hospedeiro padrão para chamadas futuras</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="804"/>
         <source>Mute conversation</source>
-        <translation>Conversa silenciosa</translation>
+        <translation>Silenciar conversa</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="807"/>
         <source>Default host (calls)</source>
-        <translation>Host padrão (chamadas)</translation>
+        <translation>Hospedeiro padrão (chamadas)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="810"/>
@@ -1282,17 +1288,17 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="824"/>
         <source>Tip</source>
-        <translation>- A dica</translation>
+        <translation>Dica</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="826"/>
         <source>Add a profile picture and nickname to complete your profile</source>
-        <translation>Adicionar uma foto de perfil e apelido para completar o seu perfil</translation>
+        <translation>Adicione uma foto de perfil e um apelido para completar seu perfil</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="36"/>
         <source>Start swarm</source>
-        <translation>Comece o enxame.</translation>
+        <translation>Iniciar enxame</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="37"/>
@@ -1307,17 +1313,17 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="119"/>
         <source>Disable secure dialog check for incoming TLS data</source>
-        <translation>Desativar a verificação de diálogo segura para dados TLS entrantes</translation>
+        <translation>Desativar a verificação de diálogo seguro para dados TLS de entrada</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="150"/>
         <source>Video codecs</source>
-        <translation>Codecs de Vídeo</translation>
+        <translation>Codecs de vídeo</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="151"/>
         <source>Audio codecs</source>
-        <translation>Codecs de Áudio</translation>
+        <translation>Codecs de áudio</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="154"/>
@@ -1332,7 +1338,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="205"/>
         <source>Mirror local video</source>
-        <translation>Espelho local vídeo</translation>
+        <translation>Espelhar vídeo local</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="211"/>
@@ -1357,7 +1363,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="218"/>
         <source>All files (*)</source>
-        <translation>Todos os ficheiros (*)</translation>
+        <translation>Todos os arquivos (*)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="221"/>
@@ -1377,18 +1383,18 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="226"/>
         <source>is recording</source>
-        <translation>Está gravando</translation>
+        <translation>está gravando</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="227"/>
         <source>are recording</source>
-        <translation>Estão gravando</translation>
+        <translation>estão gravando</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="228"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="721"/>
         <source>Mute</source>
-        <translation>Mudo</translation>
+        <translation>Silenciar</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="229"/>
@@ -1399,7 +1405,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="230"/>
         <source>Pause call</source>
-        <translation>Pausar ligação</translation>
+        <translation>Pausa chamada</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="231"/>
@@ -1409,12 +1415,12 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="232"/>
         <source>Mute camera</source>
-        <translation>Câmara mudada</translation>
+        <translation>Silenciar a câmera</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="233"/>
         <source>Unmute camera</source>
-        <translation>- Não é uma câmara silenciosa.</translation>
+        <translation>Não silenciar a câmera</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="234"/>
@@ -1486,7 +1492,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="212"/>
         <source>Your account only exists on this device. If you lose your device or uninstall the application, your account will be deleted and CANNOT be recovered. You can &lt;a href=&apos;blank&apos;&gt; back up your account &lt;/a&gt; now or later (in the Account Settings).</source>
-        <translation>A sua conta só existe neste dispositivo. Se perder o seu dispositivo ou desinstalar a aplicação, a sua conta será eliminada e NÃO pode ser recuperada. Pode fazer uma &lt;a href=&apos;blank&apos;&gt; cópia de segurança da sua conta &lt;/a&gt; agora ou mais tarde (nas configurações da conta).</translation>
+        <translation>Sua conta só existe neste dispositivo. Se você perder o dispositivo ou desinstalar o aplicativo, sua conta será excluída e NÃO poderá ser recuperada. Você pode fazer &lt;a href=&apos;blank&apos;&gt; backup da sua conta &lt;/a&gt; agora ou mais tarde (nas Configurações da conta).</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="238"/>
@@ -1526,7 +1532,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="245"/>
         <source>Host</source>
-        <translation>Servidor</translation>
+        <translation>Hospedeiro</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="246"/>
@@ -1541,7 +1547,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="248"/>
         <source>Not muted</source>
-        <translation>Seu microfone não está desligado</translation>
+        <translation>Não silenciado</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="249"/>
@@ -1551,17 +1557,17 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="250"/>
         <source>On the top</source>
-        <translation>No topo.</translation>
+        <translation>No topo</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="251"/>
         <source>Hide self</source>
-        <translation>Esconde-se</translation>
+        <translation>Ocultar-me</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="252"/>
         <source>Hide spectators</source>
-        <translation>Esconde os espectadores</translation>
+        <translation>Ocultar espectadores</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="255"/>
@@ -1587,7 +1593,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="261"/>
         <source>Start video call</source>
-        <translation>Iniciar videochamada</translation>
+        <translation>Iniciar chamada de vídeo</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="262"/>
@@ -1597,7 +1603,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="263"/>
         <source>Clear conversation</source>
-        <translation>Eliminar a conversa</translation>
+        <translation>Limpar conversa</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="264"/>
@@ -1607,17 +1613,17 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="265"/>
         <source>Remove conversation</source>
-        <translation>Excluir uma conversa</translation>
+        <translation>Remover conversa</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="266"/>
         <source>Would you really like to remove this conversation?</source>
-        <translation>Gostaria mesmo de remover esta conversa?</translation>
+        <translation>Você realmente gostaria de remover essa conversa?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="267"/>
         <source>Would you really like to block this conversation?</source>
-        <translation>Queres mesmo bloquear esta conversa?</translation>
+        <translation>Você realmente gostaria de bloquear essa conversa?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="268"/>
@@ -1697,7 +1703,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="285"/>
         <source>View plugin</source>
-        <translation>Ver os complementos</translation>
+        <translation>Ver complemento</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="286"/>
@@ -1727,32 +1733,32 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="292"/>
         <source>Take tile screenshot</source>
-        <translation>Faça uma captura de tela de telhas</translation>
+        <translation>Faça uma captura de tela do mosaico</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="293"/>
         <source>Screenshot saved to %1</source>
-        <translation>Imagem de tela guardada para % 1</translation>
+        <translation>Captura de tela salva em % 1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="294"/>
         <source>File saved to %1</source>
-        <translation>Ficheiro guardado em %1</translation>
+        <translation>Arquivo salvo em %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="297"/>
         <source>Renderers information</source>
-        <translation>Informações dos fornecedores</translation>
+        <translation>Informações sobre os renderizadores</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="298"/>
         <source>Call information</source>
-        <translation>Informações de ligação</translation>
+        <translation>Informações da chamada</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="299"/>
         <source>Peer number</source>
-        <translation>Número de pares</translation>
+        <translation>Número do par</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="300"/>
@@ -1762,7 +1768,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="301"/>
         <source>Sockets</source>
-        <translation>As portas</translation>
+        <translation>Soquetes</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="302"/>
@@ -1787,7 +1793,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="306"/>
         <source>Renderer id</source>
-        <translation>Identificação do fornecedor</translation>
+        <translation>Identificação do renderizador</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="307"/>
@@ -1814,7 +1820,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="313"/>
         <source>Your precise location could not be determined. Please check your Internet connection.</source>
-        <translation>Não foi possível determinar a sua localização precisa.</translation>
+        <translation>Não foi possível determinar sua localização exata. Verifique sua conexão com a Internet.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="314"/>
@@ -1889,12 +1895,12 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="332"/>
         <source>%1h%2min</source>
-        <translation>% 1h% 2min</translation>
+        <translation>%1h%2min</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="333"/>
         <source>%1h</source>
-        <translation>% 1h</translation>
+        <translation>%1h</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="334"/>
@@ -1919,12 +1925,12 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="341"/>
         <source>Place video call</source>
-        <translation>Fazer videochamada</translation>
+        <translation>Fazer chamada de vídeo</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="342"/>
         <source>Show available plugins</source>
-        <translation>Mostrar extensões disponíveis</translation>
+        <translation>Mostrar complementos disponíveis</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="343"/>
@@ -1939,7 +1945,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="345"/>
         <source>The account is disabled</source>
-        <translation>A conta está desativada.</translation>
+        <translation>A conta está desativada</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="346"/>
@@ -1949,7 +1955,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="351"/>
         <source>Jump to</source>
-        <translation>Salta para</translation>
+        <translation>Pular para</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="352"/>
@@ -1969,17 +1975,17 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="357"/>
         <source>{} is typing…</source>
-        <translation>{} está escrevendo...</translation>
+        <translation>{} está escrevendo…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="358"/>
         <source>{} are typing…</source>
-        <translation>{} estão escrevendo...</translation>
+        <translation>{} estão escrevendo…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="359"/>
         <source>Several people are typing…</source>
-        <translation>Várias pessoas estão escrevendo...</translation>
+        <translation>Várias pessoas estão escrevendo…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="360"/>
@@ -2009,7 +2015,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="367"/>
         <source>Creating account…</source>
-        <translation>Criando a conta...</translation>
+        <translation>Criando a conta…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="370"/>
@@ -2069,7 +2075,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="385"/>
         <source>Good to know</source>
-        <translation>É bom saber.</translation>
+        <translation>É bom saber</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="386"/>
@@ -2079,7 +2085,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="387"/>
         <source>Encrypt</source>
-        <translation>Encriptação</translation>
+        <translation>Criptografar</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="394"/>
@@ -2115,22 +2121,23 @@ Other participants&apos; location can still be received.</source>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="405"/>
         <source>Your profile is only shared with your contacts.
 Your picture and your nickname can be changed at all time in the settings of your account.</source>
-        <translation>O seu perfil só é compartilhado com os seus contatos.</translation>
+        <translation>Seu perfil é compartilhado apenas com seus contatos.
+Sua foto e seu apelido podem ser alterados a qualquer momento nas configurações de sua conta.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="407"/>
         <source>Your Jami account is registered only on this device as an archive containing the keys of your account. Access to this archive can be protected by a password.</source>
-        <translation>A sua conta Jami é registrada apenas neste dispositivo como um arquivo contendo as chaves da sua conta.</translation>
+        <translation>Sua conta Jami é registrada somente nesse dispositivo como um arquivo que contém as chaves da sua conta. O acesso a esse arquivo pode ser protegido por uma senha.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="408"/>
         <source>Backup account</source>
-        <translation>Cópia de segurança da conta</translation>
+        <translation>Fazer backup da conta</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="410"/>
         <source>Delete your account</source>
-        <translation>Eliminar a sua conta</translation>
+        <translation>Excluir sua conta</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="411"/>
@@ -2140,7 +2147,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="412"/>
         <source>List of the devices that are linked to this account:</source>
-        <translation>Lista dos dispositivos que estão ligados a esta conta:</translation>
+        <translation>Lista dos dispositivos que estão vinculados a essa conta:</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="413"/>
@@ -2150,12 +2157,12 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="414"/>
         <source>Other linked devices</source>
-        <translation>Outro dispositivo conectado</translation>
+        <translation>Outros dispositivos vinculados</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="417"/>
         <source>Backup successful</source>
-        <translation>Backup bem-sucedido</translation>
+        <translation>Backup bem sucedido</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="418"/>
@@ -2165,7 +2172,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="419"/>
         <source>Password changed successfully</source>
-        <translation>A senha alterada com sucesso</translation>
+        <translation>Senha alterada com sucesso</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="420"/>
@@ -2190,17 +2197,17 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="437"/>
         <source>Enter a nickname, surname…</source>
-        <translation>Introduza uma alcunha, apelido…</translation>
+        <translation>Digite um apelido, sobrenome…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="438"/>
         <source>Use this account on other devices</source>
-        <translation>Utilizar esta conta noutros dispositivos</translation>
+        <translation>Use esta conta em outros dispositivos</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="439"/>
         <source>This account is created and stored locally, if you want to use it on another device you have to link the new device to this account.</source>
-        <translation>Esta conta é criada e armazenada localmente. Se pretender utilizá-la noutro dispositivo, tem de vincular o novo dispositivo a esta conta.</translation>
+        <translation>Essa conta é criada e armazenada localmente. Se você quiser usá-la em outro dispositivo, deverá vincular o novo dispositivo a essa conta.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="468"/>
@@ -2210,7 +2217,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="554"/>
         <source>Markdown</source>
-        <translation>Marcação</translation>
+        <translation>Markdown</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="621"/>
@@ -2245,7 +2252,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="627"/>
         <source>Install an extension directly from your device.</source>
-        <translation>Instale uma extensão diretamente a partir do seu dispositivo.</translation>
+        <translation>Instale uma extensão diretamente de seu dispositivo.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="628"/>
@@ -2255,17 +2262,17 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="629"/>
         <source>Plugins store is not available</source>
-        <translation>A loja de módulos não está disponível</translation>
+        <translation>A loja de complementos não está disponível</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="632"/>
         <source>Installation failed</source>
-        <translation>A instalação falhou</translation>
+        <translation>Falha na instalação</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="633"/>
         <source>The installation of the plugin failed</source>
-        <translation>A instalação do módulo falhou</translation>
+        <translation>A instalação do complemento falhou</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="651"/>
@@ -2325,7 +2332,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="756"/>
         <source>Heading</source>
-        <translation>Título</translation>
+        <translation>Cabeçalho</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="757"/>
@@ -2365,12 +2372,12 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="778"/>
         <source>Started a call</source>
-        <translation>Começar uma chamada</translation>
+        <translation>Iniciou uma chamada</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="835"/>
         <source>Share your Jami identifier in order to be contacted more easily!</source>
-        <translation>Compartilhe sua identidade Jami para ser contactado mais facilmente!</translation>
+        <translation>Compartilhe seu identificador Jami para ser contatado mais facilmente!</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="836"/>
@@ -2390,7 +2397,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="841"/>
         <source>Enabling your account allows you to be contacted on Jami</source>
-        <translation>Ativar a sua conta permite que você seja contactado em Jami</translation>
+        <translation>A ativação da sua conta permite que você seja contatado pelo Jami</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="851"/>
@@ -2465,7 +2472,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="444"/>
         <source>Registering name</source>
-        <translation>Registro de nome</translation>
+        <translation>Nome de registro</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="447"/>
@@ -2480,17 +2487,17 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="451"/>
         <source>Exporting account…</source>
-        <translation>Exportando a conta...</translation>
+        <translation>Exportando a conta…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="452"/>
         <source>Remove Device</source>
-        <translation>Excluir o dispositivo</translation>
+        <translation>Remover dispositivo</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="453"/>
         <source>Are you sure you wish to remove this device?</source>
-        <translation>Realmente quer excluir este dispositivo?</translation>
+        <translation>Tem certeza de que deseja remover esse dispositivo?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="454"/>
@@ -2507,7 +2514,7 @@ Por favor, tente novamente mais tarde.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="458"/>
         <source>Banned</source>
-        <translation>Proibido</translation>
+        <translation>Banido</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="459"/>
@@ -2517,7 +2524,7 @@ Por favor, tente novamente mais tarde.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="470"/>
         <source>Device Id</source>
-        <translation>Id do Dispositivo</translation>
+        <translation>Identificação do dispositivo</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="473"/>
@@ -2542,7 +2549,7 @@ Por favor, tente novamente mais tarde.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="483"/>
         <source>Choose download directory</source>
-        <translation>Escolha a pasta de Downloads</translation>
+        <translation>Escolha a pasta de downloads</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="491"/>
@@ -2624,12 +2631,12 @@ Por favor, tente novamente mais tarde.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="516"/>
         <source>Check for updates now</source>
-        <translation>Checar por atualizações agora</translation>
+        <translation>Verificar atualizações agora</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="517"/>
         <source>Enable/Disable automatic updates</source>
-        <translation>Desativar/Ativar a atualização automática</translation>
+        <translation>Desativar / ativar a atualização automática</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="518"/>
@@ -2679,12 +2686,12 @@ Por favor, tente novamente mais tarde.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="535"/>
         <source>Open logs</source>
-        <translation>Abrir logs</translation>
+        <translation>Abrir registros</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="536"/>
         <source>Get logs</source>
-        <translation>Obter logs</translation>
+        <translation>Obter registros</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="538"/>
@@ -2714,7 +2721,7 @@ Por favor, tente novamente mais tarde.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="550"/>
         <source>Keyboard Shortcuts</source>
-        <translation>Cortareta de teclado</translation>
+        <translation>Atalhos de teclado</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="551"/>
@@ -2755,12 +2762,12 @@ Por favor, tente novamente mais tarde.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="562"/>
         <source>Copied to clipboard!</source>
-        <translation>Copiado para a área de transferência</translation>
+        <translation>Copiado para a área de transferência!</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="563"/>
         <source>Receive Logs</source>
-        <translation>Receber logs</translation>
+        <translation>Registros de recebimento</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="566"/>
@@ -2790,7 +2797,7 @@ Por favor, tente novamente mais tarde.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="440"/>
         <source>Link device</source>
-        <translation>Associar dispositivo</translation>
+        <translation>Vincular dispositivo</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="577"/>
@@ -2805,7 +2812,7 @@ Por favor, tente novamente mais tarde.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="585"/>
         <source>Choose the account to link</source>
-        <translation>Escolha a conta para ligar</translation>
+        <translation>Escolha a conta a ser vinculada</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="591"/>
@@ -2815,22 +2822,22 @@ Por favor, tente novamente mais tarde.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="801"/>
         <source>Contact&apos;s name</source>
-        <translation>Nome do contacto</translation>
+        <translation>Nome do contato</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="816"/>
         <source>Reinstate member</source>
-        <translation>Reinstar membro</translation>
+        <translation>Reintegrar o membro</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="830"/>
         <source>Delete message</source>
-        <translation>Apagar mensagem</translation>
+        <translation>Excluir mensagem</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="831"/>
         <source>*(Deleted Message)*</source>
-        <translation>*Mensagem apagada) *</translation>
+        <translation>*(Mensagem excluída)*</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="832"/>
@@ -2886,7 +2893,7 @@ Por favor, tente novamente mais tarde.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="587"/>
         <source>The PIN code will be available for 10 minutes</source>
-        <translation>O código PIN estará disponível por 10 minutos.</translation>
+        <translation>O código PIN estará disponível por 10 minutos</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="588"/>
@@ -2896,7 +2903,7 @@ Por favor, tente novamente mais tarde.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="595"/>
         <source>Add Device</source>
-        <translation>Adicionar Dispositivo</translation>
+        <translation>Adicionar dispositivo</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="605"/>
@@ -2941,7 +2948,7 @@ Por favor, tente novamente mais tarde.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="634"/>
         <source>Reset</source>
-        <translation>Resetar</translation>
+        <translation>Redefinir</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="635"/>
@@ -2951,7 +2958,7 @@ Por favor, tente novamente mais tarde.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="636"/>
         <source>Reset Preferences</source>
-        <translation>Preferências de Reset</translation>
+        <translation>Redefinir preferências</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="637"/>
@@ -2997,12 +3004,12 @@ Por favor, tente novamente mais tarde.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="645"/>
         <source>Plugin Files (*.jpl)</source>
-        <translation>Arquivos de plugins (*.jpl)</translation>
+        <translation>Arquivos de complementos (*.jpl)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="646"/>
         <source>Load/Unload</source>
-        <translation>Carregar/Descarregar</translation>
+        <translation>Carregar / descarregar</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="647"/>
@@ -3017,12 +3024,12 @@ Por favor, tente novamente mais tarde.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="649"/>
         <source>On/Off</source>
-        <translation>Ativar/Desativar</translation>
+        <translation>Ativar / desativar</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="650"/>
         <source>Choose Plugin</source>
-        <translation>Escolha Plugin</translation>
+        <translation>Escolha o complemento</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="656"/>
@@ -3067,7 +3074,7 @@ Por favor, tente novamente mais tarde.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="669"/>
         <source>Screen %1</source>
-        <translation>Ecrã %1</translation>
+        <translation>Tela %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="672"/>
@@ -3077,17 +3084,17 @@ Por favor, tente novamente mais tarde.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="675"/>
         <source>Link this device to an existing account</source>
-        <translation>Associar este dispositivo à uma conta existente</translation>
+        <translation>Vincular este dispositivo a uma conta existente</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="676"/>
         <source>Import from another device</source>
-        <translation>Importação a partir de outro dispositivo</translation>
+        <translation>Importar de outro dispositivo</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="677"/>
         <source>Import from an archive backup</source>
-        <translation>Importação de um arquivo de backup</translation>
+        <translation>Importar de um arquivo de backup</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="678"/>
@@ -3152,7 +3159,7 @@ Por favor, tente novamente mais tarde.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="691"/>
         <source>I already have an account</source>
-        <translation>Já tenho uma conta.</translation>
+        <translation>Já tenho uma conta</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="692"/>
@@ -3177,7 +3184,7 @@ Por favor, tente novamente mais tarde.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="698"/>
         <source>Search Results</source>
-        <translation>Resultados da Busca</translation>
+        <translation>Resultados da busca</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="701"/>
@@ -3254,7 +3261,7 @@ Por favor, tente novamente mais tarde.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="726"/>
         <source>Local muted</source>
-        <translation>Seu microfone está desligado localmente</translation>
+        <translation>Silenciado localmente</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="729"/>
@@ -3325,12 +3332,12 @@ Por favor, tente novamente mais tarde.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="568"/>
         <source>Create account from backup</source>
-        <translation>Criar uma conta a partir de backup</translation>
+        <translation>Criar a conta a partir do backup</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="569"/>
         <source>Restore account from backup</source>
-        <translation>Restaurar a conta do backup</translation>
+        <translation>Restaurar a conta a partir do backup</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="572"/>
@@ -3371,7 +3378,7 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="798"/>
         <source>%1 Members</source>
-        <translation>%1 Membros</translation>
+        <translation>%1 membros</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="799"/>
@@ -3381,7 +3388,7 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="800"/>
         <source>Swarm&apos;s name</source>
-        <translation>O nome do Enxame</translation>
+        <translation>O nome do enxame</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="802"/>
@@ -3391,7 +3398,7 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="805"/>
         <source>Ignore all notifications from this conversation</source>
-        <translation>Ignore todas as notificações desta conversa.</translation>
+        <translation>Ignorar todas as notificações dessa conversa</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="806"/>
@@ -3416,12 +3423,12 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="814"/>
         <source>Go to conversation</source>
-        <translation>Vai conversar.</translation>
+        <translation>Ir para a conversa</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="815"/>
         <source>Kick member</source>
-        <translation>Membro de pontapé</translation>
+        <translation>Expulsar membro</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="817"/>
@@ -3431,7 +3438,7 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="818"/>
         <source>Invited</source>
-        <translation>Convidados</translation>
+        <translation>Convidado</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="819"/>
@@ -3446,7 +3453,7 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="823"/>
         <source>Customize</source>
-        <translation>Personalização</translation>
+        <translation>Personalizar</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="825"/>
@@ -3504,12 +3511,12 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="73"/>
         <source>Decrease font size</source>
-        <translation>Diminuição do tamanho da fonte</translation>
+        <translation>Diminuir o tamanho da fonte</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="77"/>
         <source>Reset font size</source>
-        <translation>Reset tamanho de fonte</translation>
+        <translation>Redefinir o tamanho da fonte</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="85"/>
@@ -3529,7 +3536,7 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="97"/>
         <source>Search messages/files</source>
-        <translation>Mensagens/arquivos de busca</translation>
+        <translation>Pesquisar mensagens / arquivos</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="101"/>
@@ -3539,7 +3546,7 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="105"/>
         <source>Remove conversation</source>
-        <translation>Excluir uma conversa</translation>
+        <translation>Remover conversa</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="109"/>
@@ -3549,7 +3556,7 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="113"/>
         <source>Edit last message</source>
-        <translation>Edição da última mensagem</translation>
+        <translation>Editar a última mensagem</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="117"/>
@@ -3574,7 +3581,7 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="137"/>
         <source>Plugin settings</source>
-        <translation>Configurações do plug-in</translation>
+        <translation>Configurações do complemento</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="141"/>
@@ -3584,7 +3591,7 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="146"/>
         <source>Open keyboard shortcut table</source>
-        <translation>Tabela de atalhos de teclado aberta</translation>
+        <translation>Abrir a tabela de atalhos de teclado</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="154"/>
@@ -3609,12 +3616,12 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="170"/>
         <source>Stop camera</source>
-        <translation>Aparelhos de câmara</translation>
+        <translation>Parar a câmera</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="174"/>
         <source>Take tile screenshot</source>
-        <translation>Faça uma captura de tela de telhas</translation>
+        <translation>Tirar uma captura de tela do mosaico</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="182"/>
@@ -3695,7 +3702,7 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="414"/>
         <source>%1 is sharing their location</source>
-        <translation>%1 está a partilhar a sua localização</translation>
+        <translation>%1 está compartilhando sua localização</translation>
     </message>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="419"/>
@@ -3713,7 +3720,7 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/libclient/api/call.h" line="62"/>
         <source>Hold</source>
-        <translation>Aguarde</translation>
+        <translation>Retendo</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="64"/>
@@ -3819,7 +3826,7 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="428"/>
         <source>Swarm created</source>
-        <translation>Criado um enxame</translation>
+        <translation>Enxame criado</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="508"/>
@@ -3851,7 +3858,7 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="498"/>
         <source>Join call</source>
-        <translation>Juntar chamada</translation>
+        <translation>Participar da chamada</translation>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="456"/>
@@ -3862,7 +3869,7 @@ conectar para sincronizar a conversação.</translation>
         <location filename="../src/libclient/avmodel.cpp" line="391"/>
         <location filename="../src/libclient/avmodel.cpp" line="410"/>
         <source>default</source>
-        <translation>predefinição</translation>
+        <translation>padrão</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="72"/>
@@ -3907,17 +3914,17 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="80"/>
         <source>Multiple Choices</source>
-        <translation>Múltiplas Escolhas</translation>
+        <translation>Múltiplas escolhas</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="81"/>
         <source>Moved Permanently</source>
-        <translation>Movido Permanentemente</translation>
+        <translation>Movido permanentemente</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="82"/>
         <source>Moved Temporarily</source>
-        <translation>Movido Temporariamente</translation>
+        <translation>Movido temporariamente</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="83"/>
@@ -3927,12 +3934,12 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="84"/>
         <source>Alternative Service</source>
-        <translation>Serviço Alternativo</translation>
+        <translation>Serviço alternativo</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="85"/>
         <source>Bad Request</source>
-        <translation>Pedido Inadequado</translation>
+        <translation>Pedido inadequado</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="86"/>
@@ -3942,7 +3949,7 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="87"/>
         <source>Payment Required</source>
-        <translation>Pagamento Requerido</translation>
+        <translation>Pagamento requerido</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="88"/>
@@ -3952,23 +3959,23 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="89"/>
         <source>Not Found</source>
-        <translation>Não Encontrado</translation>
+        <translation>Não encontrado</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="90"/>
         <source>Method Not Allowed</source>
-        <translation>Método Não Permitido</translation>
+        <translation>Método não permitido</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="91"/>
         <location filename="../src/libclient/callmodel.cpp" line="111"/>
         <source>Not Acceptable</source>
-        <translation>Não Aceitável</translation>
+        <translation>Não aceitável</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="92"/>
         <source>Proxy Authentication Required</source>
-        <translation>Autenticação de Proxy Necessária</translation>
+        <translation>Autenticação de proxy necessária</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="93"/>
@@ -3983,67 +3990,67 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="95"/>
         <source>Request Entity Too Large</source>
-        <translation>Pedido Muito Grande</translation>
+        <translation>Entidade de solicitação muito grande</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="96"/>
         <source>Request URI Too Long</source>
-        <translation>Pedido de URI Muito Longo</translation>
+        <translation>Solicitação de URI muito longa</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="97"/>
         <source>Unsupported Media Type</source>
-        <translation>Mídia Não Suportada</translation>
+        <translation>Tipo de mídia não suportado</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="98"/>
         <source>Unsupported URI Scheme</source>
-        <translation>Tipo de URI Sem Suporte</translation>
+        <translation>Esquema de URI não suportado</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="99"/>
         <source>Bad Extension</source>
-        <translation>Complemento Inadequado</translation>
+        <translation>Extensão ruim</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="100"/>
         <source>Extension Required</source>
-        <translation>Complemento Necessário</translation>
+        <translation>Extensão necessária</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="101"/>
         <source>Session Timer Too Small</source>
-        <translation>Temporizador de Sessão Muito Pequeno</translation>
+        <translation>Temporizador de sessão muito pequeno</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="102"/>
         <source>Interval Too Brief</source>
-        <translation>Intervalo Muito Curto</translation>
+        <translation>Intervalo muito curto</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="103"/>
         <source>Temporarily Unavailable</source>
-        <translation>Temporariamente Indisponível</translation>
+        <translation>Temporariamente indisponível</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="104"/>
         <source>Call TSX Does Not Exist</source>
-        <translation>Chamada TSX Não Existe</translation>
+        <translation>Chamada TSX não existe</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="105"/>
         <source>Loop Detected</source>
-        <translation>Loop Detectado</translation>
+        <translation>Loop detectado</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="106"/>
         <source>Too Many Hops</source>
-        <translation>Muitos Ressaltos</translation>
+        <translation>Demasiados saltos</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="107"/>
         <source>Address Incomplete</source>
-        <translation>Endereço Incompleto</translation>
+        <translation>Endereço incompleto</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="108"/>
@@ -4058,22 +4065,22 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="110"/>
         <source>Request Terminated</source>
-        <translation>Pedido Terminado</translation>
+        <translation>Pedido terminado</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="112"/>
         <source>Bad Event</source>
-        <translation>Evento Inadequado</translation>
+        <translation>Evento inadequado</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="113"/>
         <source>Request Updated</source>
-        <translation>Pedido Atualizado</translation>
+        <translation>Pedido atualizado</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="114"/>
         <source>Request Pending</source>
-        <translation>Pedido Pendente</translation>
+        <translation>Pedido pendente</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="115"/>
@@ -4083,62 +4090,62 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="116"/>
         <source>Internal Server Error</source>
-        <translation>Erro Interno do Servidor</translation>
+        <translation>Erro interno do servidor</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="117"/>
         <source>Not Implemented</source>
-        <translation>Não Implementado</translation>
+        <translation>Não implementado</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="118"/>
         <source>Bad Gateway</source>
-        <translation>Gateway Inadequado</translation>
+        <translation>Gateway inadequado</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="119"/>
         <source>Service Unavailable</source>
-        <translation>Serviço Indisponível</translation>
+        <translation>Serviço indisponível</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="120"/>
         <source>Server Timeout</source>
-        <translation>Tempo do Servidor Esgotou</translation>
+        <translation>Tempo limite do servidor esgotado</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="121"/>
         <source>Version Not Supported</source>
-        <translation>Versão Não Suportada</translation>
+        <translation>Versão não suportada</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="122"/>
         <source>Message Too Large</source>
-        <translation>Mensagem Muito Grande</translation>
+        <translation>Mensagem muito grande</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="123"/>
         <source>Precondition Failure</source>
-        <translation>Requisito Insuficiente</translation>
+        <translation>Requisito insuficiente</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="124"/>
         <source>Busy Everywhere</source>
-        <translation>Ocupado em Toda Parte</translation>
+        <translation>Ocupado em toda parte</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="125"/>
         <source>Call Refused</source>
-        <translation>Chamada Recusada</translation>
+        <translation>Chamada recusada</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="126"/>
         <source>Does Not Exist Anywhere</source>
-        <translation>Não Existe em Nenhum Lugar</translation>
+        <translation>Não existe em nenhum lugar</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="127"/>
         <source>Not Acceptable Anywhere</source>
-        <translation>Não Aceitável em Qualquer Lugar</translation>
+        <translation>Não aceitável em qualquer lugar</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="351"/>
@@ -4198,7 +4205,7 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="687"/>
         <source>just now</source>
-        <translation>Agora</translation>
+        <translation>agora mesmo</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="345"/>
@@ -4255,7 +4262,7 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/app/systemtray.cpp" line="224"/>
         <source>Answer</source>
-        <translation>Resposta</translation>
+        <translation>Responder</translation>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="225"/>
@@ -4265,7 +4272,7 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/app/systemtray.cpp" line="227"/>
         <source>Open conversation</source>
-        <translation>Conversa em curso</translation>
+        <translation>Abrir a conversa</translation>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="229"/>
@@ -4293,7 +4300,7 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="94"/>
         <source>What is the green dot next to my account?</source>
-        <translation>Qual é o ponto verde ao lado da minha conta?</translation>
+        <translation>O que é o ponto verde ao lado da minha conta?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="90"/>
@@ -4313,17 +4320,17 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="96"/>
         <source>A red dot means that your account is disconnected from the network; it turns green when it&apos;s connected.</source>
-        <translation>Um ponto vermelho significa que a sua conta está desconectada da rede; torna-se verde quando está conectada.</translation>
+        <translation>Um ponto vermelho significa que sua conta está desconectada da rede. Ele fica verde quando está conectada.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="101"/>
         <source>Why should I back up my account?</source>
-        <translation>Porque é que eu devia fazer backup da minha conta?</translation>
+        <translation>Por que devo fazer o backup de minha conta?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="103"/>
         <source>Jami is distributed and your account is only stored locally on your device. If you lose your password or your local account data, you WILL NOT be able to recover your account if you did not back it up earlier.</source>
-        <translation>Jami é distribuído e sua conta é armazenada apenas localmente no seu dispositivo. Se você perder sua senha ou seus dados da conta local, você NÃO poderá recuperar sua conta se não a fez backup antes.</translation>
+        <translation>O Jami é distribuído e sua conta é armazenada apenas localmente em seu dispositivo. Se você perder sua senha ou os dados da sua conta local, NÃO será possível recuperá-la se não tiver feito um backup anteriormente.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="109"/>
@@ -4348,17 +4355,17 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="122"/>
         <source>When you create a new Jami account, you do not have to provide any private information like an email, address, or phone number.</source>
-        <translation>Quando você cria uma nova conta Jami, você não precisa fornecer nenhuma informação privada, como um e-mail, endereço ou número de telefone.</translation>
+        <translation>Ao criar uma nova conta Jami, você não precisa fornecer nenhuma informação privada, como e-mail, endereço ou número de telefone.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="129"/>
         <source>With Jami, your account is stored in a directory on your device. The password is only used to encrypt your account in order to protect you from someone who has physical access to your device.</source>
-        <translation>Com Jami, sua conta é armazenada em um diretório no seu dispositivo. A senha é usada apenas para criptografar sua conta, a fim de protegê-lo de alguém que tem acesso físico ao seu dispositivo.</translation>
+        <translation>Com o Jami, sua conta é armazenada em um diretório no seu dispositivo. A senha é usada apenas para criptografar sua conta, a fim de protegê-lo de alguém que tenha acesso físico ao seu dispositivo.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="149"/>
         <source>Your account is only stored on your own devices. If you delete your account from all of your devices, the account is gone forever and you CANNOT recover it.</source>
-        <translation>Se você excluir sua conta de todos os seus dispositivos, a conta desaparecerá para sempre e você não poderá recuperá-la.</translation>
+        <translation>Sua conta é armazenada somente em seus próprios dispositivos. Se você excluir sua conta de todos os seus dispositivos, ela desaparecerá para sempre e NÃO PODERÁ ser recuperada.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="153"/>
@@ -4368,7 +4375,7 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="155"/>
         <source>Yes, you can link your account from the settings, or you can import your backup on another device.</source>
-        <translation>Sim, pode ligar a sua conta a partir das configurações, ou pode importar o seu backup em outro dispositivo.</translation>
+        <translation>Sim, você pode vincular sua conta nas configurações ou pode importar seu backup em outro dispositivo.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="127"/>
@@ -4398,12 +4405,12 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="143"/>
         <source>In Account Settings, a button is available to create a backup your account.</source>
-        <translation>Em Configurações de Conta, um botão está disponível para criar um backup da sua conta.</translation>
+        <translation>Em configurações da conta, há um botão disponível para criar um backup de sua conta.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="147"/>
         <source>What happens when I delete my account?</source>
-        <translation>O que acontece quando eu excluir a minha conta?</translation>
+        <translation>O que acontece quando eu excluo minha conta?</translation>
     </message>
 </context>
 <context>
@@ -4416,7 +4423,7 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/app/utilsadapter.cpp" line="345"/>
         <source>Default</source>
-        <translation>Predefinição</translation>
+        <translation>Padrão</translation>
     </message>
     <message>
         <location filename="../src/app/utilsadapter.cpp" line="539"/>
@@ -4429,7 +4436,7 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="498"/>
         <source>Searching…</source>
-        <translation>Buscando...</translation>
+        <translation>Buscando…</translation>
     </message>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="1030"/>
@@ -4444,7 +4451,7 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="1036"/>
         <source>Couldn&apos;t lookup…</source>
-        <translation>Não consegui procurar...</translation>
+        <translation>Não foi possível fazer a busca…</translation>
     </message>
 </context>
 <context>
