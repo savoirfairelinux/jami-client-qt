@@ -16,9 +16,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import QtQuick
-import QtQuick.Controls
-import QtQuick.Layouts
+
+import QtQuick 2.15
+import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.15
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -34,73 +35,66 @@ BaseModalDialog {
 
     property bool darkTheme: UtilsAdapter.useApplicationTheme()
 
+    width: 400
+    height: 400
+
     popupContent: StackLayout {
         id: stackedWidget
 
-        function setGeneratingPage() {
+        function setAskPage() {
+            stackedWidget.currentIndex = askPage.pageIndex;
+        }
+
+        function setUriPage() {
+            stackedWidget.currentIndex = uriPage.pageIndex;
+        }
+
+        function setCameraPage() {
+            // do camera stuff
+            // if success update index to cam scan view
+            stackedWidget.currentIndex = cameraPage.pageIndex;
+            // else fail go to error & close page
+        }
+
+        function setFailurePage(status) {
+            // show the failure page and maybe pipe in the error and/or some logs
+            // show a close button + help link to jami docs
+            stackedWidget.currentIndex = failPage.pageIndex;
+            console.log("[LinkDevice] Encountered failure of type", status);
+        }
+
+        function setConnectingPage() {
+            // tells old device to start searching for the new device
+            // opens the spinner page and says connecting for now
+            stackedWidget.currentIndex = connectingPage.pageIndex;
+        }
+
+        function setSuccessPage() {
+            // shows the avatar and a success screen
+            // tell the user to go to the other device and start using their account
+            stackedWidget.currentIndex = successPage.pageIndex;
+        }
+
+        function setLocalAuthPage() {
             if (passwordEdit.length === 0 && CurrentAccount.hasArchivePassword) {
-                setExportPage(NameDirectory.ExportOnRingStatus.WRONG_PASSWORD, "");
+                console.log("[LinkDevice] Encountered error during generation");
+                stackedWidget.setFailurePage(NameDirectory.DeviceAuthStatus.INVALID_CREDS);
                 return;
             }
-            stackedWidget.currentIndex = exportingSpinnerPage.pageIndex;
-            spinnerMovie.playing = true;
-            timerForExport.restart();
-        }
-
-        function setExportPage(status, pin) {
-            if (status === NameDirectory.ExportOnRingStatus.SUCCESS) {
-                infoLabel.success = true;
-                pinRectangle.visible = true
-                exportedPIN.text = pin;
-            } else {
-                infoLabel.success = false;
-                infoLabel.visible = true;
-                switch (status) {
-                case NameDirectory.ExportOnRingStatus.WRONG_PASSWORD:
-                    infoLabel.text = JamiStrings.incorrectPassword;
-                    break;
-                case NameDirectory.ExportOnRingStatus.NETWORK_ERROR:
-                    infoLabel.text = JamiStrings.linkDeviceNetWorkError;
-                    break;
-                case NameDirectory.ExportOnRingStatus.INVALID:
-                    infoLabel.text = JamiStrings.somethingWentWrong;
-                    break;
-                }
-            }
-            stackedWidget.currentIndex = exportingInfoPage.pageIndex;
-            stackedWidget.height = exportingLayout.implicitHeight;
-        }
-
-        Timer {
-            id: timerForExport
-
-            repeat: false
-            interval: 200
-
-            onTriggered: {
-                AccountAdapter.model.exportOnRing(LRCInstance.currentAccountId, passwordEdit.dynamicText);
-            }
-        }
-
-        Connections {
-            target: NameDirectory
-
-            function onExportOnRingEnded(status, pin) {
-                stackedWidget.setExportPage(status, pin);
-            }
+            stackedWidget.setAskPage();
         }
 
         onVisibleChanged: {
             if (visible) {
                 if (CurrentAccount.hasArchivePassword) {
-                    stackedWidget.currentIndex = enterPasswordPage.pageIndex;
+                    stackedWidget.setLocalAuthPage();
                 } else {
-                    setGeneratingPage();
+                    stackedWidget.setAskPage();
                 }
             }
         }
 
-        // Index = 0
+        // asks the user to enter the account password before proceeding
         Item {
             id: enterPasswordPage
 
@@ -143,7 +137,7 @@ BaseModalDialog {
                         firstEntry: true
                         placeholderText: JamiStrings.password
 
-                        Layout.alignment: Qt.AlignLeft
+                        Layout.alignment: Qt.AlignLeading
                         Layout.fillWidth: true
 
                         KeyNavigation.up: btnConfirm
@@ -171,23 +165,157 @@ BaseModalDialog {
                         source: JamiResources.check_black_24dp_svg
                         normalColor: JamiTheme.tintedBlue
 
-                        onClicked: stackedWidget.setGeneratingPage()
-
+                        onClicked: stackedWidget.setLocalAuthPage()
                     }
                 }
             }
         }
 
-        // Index = 1
         Item {
-            id: exportingSpinnerPage
+            id: askPage
 
             readonly property int pageIndex: 1
+
+            width: parent.width
+            height: parent.height
+
+
+            Label {
+                Layout.alignment: Qt.AlignCenter
+                Layout.maximumWidth: root.width - 4 * JamiTheme.preferredMarginSize
+                wrapMode: Text.Wrap
+
+                text: "choose your link method"
+                color: JamiTheme.textColor
+                font.pointSize: JamiTheme.textFontSize
+                font.kerning: true
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+            }
+
+            // RowLayout {
+            //     Layout.topMargin: 10
+            //     Layout.leftMargin: JamiTheme.cornerIconSize
+            //     Layout.rightMargin: JamiTheme.cornerIconSize
+            //     spacing: JamiTheme.preferredMarginSize
+            //     Layout.bottomMargin: JamiTheme.preferredMarginSize
+            // }
+
+            ColumnLayout {
+                id: askLayout
+
+                spacing: JamiTheme.preferredMarginSize
+                anchors.centerIn: parent
+
+                Label {
+                    Layout.alignment: Qt.AlignCenter
+
+                    text: "Choose your method"
+                    color: JamiTheme.textColor
+                    font.pointSize: JamiTheme.headerFontSize
+                    font.kerning: true
+                    horizontalAlignment: Text.AlignLeading
+                    verticalAlignment: Text.AlignVCenter
+                }
+
+                Text {
+                    text: "Choose whether to use your camera to scan a link QR code or whether to enter the URL manually."
+                    color: JamiTheme.textColor
+                    font.pointSize: JamiTheme.headerFontSize
+                    font.kerning: true
+                    wrapMode: Text.WordWrap
+                    Layout.preferredWidth: parent.width * 0.75
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    Layout.alignment: Qt.AlignCenter
+                }
+
+                JamiPushButton {
+                    id: btnChooseUri
+
+                    Layout.alignment: Qt.AlignCenter
+                    height: 36
+                    width: 36
+
+                    hoverEnabled: false
+                    enabled: false
+
+                    imageColor: JamiTheme.secondaryBackgroundColor
+                    hoveredColor: JamiTheme.buttonTintedBlueHovered
+                    source: JamiResources.check_black_24dp_svg
+                    normalColor: JamiTheme.tintedBlue
+
+                    onClicked: setUriPage()
+                }
+
+                JamiPushButton {
+                    id: btnChooseCam
+
+                    Layout.alignment: Qt.AlignCenter
+                    height: 36
+                    width: 36
+
+                    hoverEnabled: false
+                    enabled: false
+
+                    imageColor: JamiTheme.secondaryBackgroundColor
+                    hoveredColor: JamiTheme.buttonTintedBlueHovered
+                    source: JamiResources.check_black_24dp_svg
+                    normalColor: JamiTheme.tintedBlue
+
+                    onClicked: setCameraPage()
+                }
+            }
+        }
+
+        Item {
+            id: failPage
+
+            readonly property int pageIndex: 2
+
+            width: parent.width
+            height: parent.height
+            Component.onCompleted: print(this, width, height)
+
+            ColumnLayout {
+                id: failLayout
+
+                spacing: JamiTheme.preferredMarginSize
+                anchors.centerIn: parent
+
+                Label {
+                    Layout.alignment: Qt.AlignCenter
+
+                    text: "Link Device Failure"
+                    color: JamiTheme.textColor
+                    font.pointSize: JamiTheme.headerFontSize
+                    font.kerning: true
+                    horizontalAlignment: Text.AlignLeading
+                    verticalAlignment: Text.AlignVCenter
+                }
+
+                Text {
+                    text: "You encountered an error."
+                    color: JamiTheme.textColor
+                    font.pointSize: JamiTheme.headerFontSize
+                    font.kerning: true
+                    wrapMode: Text.WordWrap
+                    Layout.preferredWidth: parent.width * 0.75
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                }
+            }
+        }
+
+        Item {
+            id: connectingPage
+
+            readonly property int pageIndex: 3
 
             onHeightChanged: {
                 stackedWidget.height = spinnerLayout.implicitHeight
             }
-            onWidthChanged: stackedWidget.width = exportingLayout.implicitWidth
+            onWidthChanged: stackedWidget.width = spinnerLayout.implicitWidth
 
             ColumnLayout {
                 id: spinnerLayout
@@ -202,7 +330,7 @@ BaseModalDialog {
                     color: JamiTheme.textColor
                     font.pointSize: JamiTheme.headerFontSize
                     font.kerning: true
-                    horizontalAlignment: Text.AlignLeft
+                    horizontalAlignment: Text.AlignLeading
                     verticalAlignment: Text.AlignVCenter
                 }
 
@@ -222,198 +350,41 @@ BaseModalDialog {
             }
         }
 
-        // Index = 2
         Item {
-            id: exportingInfoPage
+            id: successPage
 
-            readonly property int pageIndex: 2
+            readonly property int pageIndex: 4
 
-            width: childrenRect.width
-            height: childrenRect.height
-
-            onHeightChanged: {
-                stackedWidget.height = exportingLayout.implicitHeight
-            }
-            onWidthChanged: stackedWidget.width = exportingLayout.implicitWidth
+            width: parent.width
+            height: parent.height
+            Component.onCompleted: print(width, height)
 
             ColumnLayout {
-                id: exportingLayout
+                id: successLayout
 
                 spacing: JamiTheme.preferredMarginSize
+                anchors.centerIn: parent
 
                 Label {
-                    id: instructionLabel
-
-                    Layout.maximumWidth: Math.min(root.maximumPopupWidth, root.width) - 2 * root.popupMargins
-                    Layout.alignment: Qt.AlignLeft
-
-                    color: JamiTheme.textColor
-
-                    wrapMode: Text.Wrap
-                    text: JamiStrings.linkingInstructions
-                    font.pointSize: JamiTheme.textFontSize
-                    font.kerning: true
-                    verticalAlignment: Text.AlignVCenter
-
-                }
-
-                RowLayout {
-                    spacing: 10
-                    Layout.maximumWidth: Math.min(root.maximumPopupWidth, root.width) - 2 * root.popupMargins
-
-                    Rectangle {
-                        Layout.alignment: Qt.AlignCenter
-
-                        radius: 5
-                        color: JamiTheme.backgroundRectangleColor
-                        width: 100
-                        height: 100
-
-                        Rectangle {
-                            width: qrImage.width + 4
-                            height: qrImage.height + 4
-                            anchors.centerIn: parent
-                            radius: 5
-                            color: JamiTheme.whiteColor
-                            Image {
-                                 id: qrImage
-                                 anchors.centerIn: parent
-                                 mipmap: false
-                                 smooth: false
-                                 source: "image://qrImage/raw_" + exportedPIN.text
-                                 sourceSize.width: 80
-                                 sourceSize.height: 80
-                            }
-                        }
-
-                    }
-
-                    Rectangle {
-                        id: pinRectangle
-
-                        radius: 5
-                        color: JamiTheme.backgroundRectangleColor
-                        Layout.fillWidth: true
-                        height: 100
-                        Layout.minimumWidth: exportedPIN.width + 20
-
-                        Layout.alignment: Qt.AlignCenter
-
-                        MaterialLineEdit {
-                            id: exportedPIN
-
-                            padding: 10
-                            anchors.centerIn: parent
-
-                            text: JamiStrings.pin
-                            wrapMode: Text.NoWrap
-
-                            backgroundColor: JamiTheme.backgroundRectangleColor
-
-                            color: darkTheme ? JamiTheme.editLineColor : JamiTheme.darkTintedBlue
-                            selectByMouse: true
-                            readOnly: true
-                            font.pointSize: JamiTheme.tinyCreditsTextSize
-                            font.kerning: true
-                            horizontalAlignment: Text.AlignHCenter
-                            verticalAlignment: Text.AlignVCenter
-                        }
-                    }
-                }
-
-                Rectangle {
-                    radius: 5
-                    color: JamiTheme.infoRectangleColor
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: infoLabels.height + 38
-
-                    RowLayout {
-                        id: infoLayout
-
-                        anchors.centerIn: parent
-                        anchors.fill: parent
-                        anchors.margins: 14
-                        spacing: 10
-
-                        ResponsiveImage{
-                            Layout.fillWidth: true
-
-                            source: JamiResources.outline_info_24dp_svg
-                            fillMode: Image.PreserveAspectFit
-
-                            color: darkTheme ? JamiTheme.editLineColor : JamiTheme.darkTintedBlue
-                            Layout.fillHeight: true
-                        }
-
-                        ColumnLayout{
-                            id: infoLabels
-
-                            Layout.fillHeight: true
-                            Layout.fillWidth: true
-
-                            Label {
-                                id: otherDeviceLabel
-
-                                Layout.alignment: Qt.AlignLeft
-                                color: JamiTheme.textColor
-                                text: JamiStrings.onAnotherDevice
-
-                                font.pointSize: JamiTheme.smallFontSize
-                                font.kerning: true
-                                font.bold: true
-                            }
-
-                            Label {
-                                id: otherInstructionLabel
-
-                                Layout.fillWidth: true
-                                Layout.alignment: Qt.AlignLeft
-
-                                wrapMode: Text.Wrap
-                                color: JamiTheme.textColor
-                                text: JamiStrings.onAnotherDeviceInstruction
-
-                                font.pointSize: JamiTheme.smallFontSize
-                                font.kerning: true
-                            }
-                        }
-                    }
-                }
-
-                // Displays error messages
-                Label {
-                    id: infoLabel
-
-                    visible: false
-
-                    property bool success: false
-                    property int borderWidth: success ? 1 : 0
-                    property int borderRadius: success ? 15 : 0
-                    property string backgroundColor: success ? "whitesmoke" : "transparent"
-                    property string borderColor: success ? "lightgray" : "transparent"
-
-                    Layout.maximumWidth: JamiTheme.preferredDialogWidth
-                    Layout.margins: JamiTheme.preferredMarginSize
-
                     Layout.alignment: Qt.AlignCenter
 
-                    color: success ? JamiTheme.successLabelColor : JamiTheme.redColor
-                    padding: success ? 8 : 0
-
-                    wrapMode: Text.Wrap
-                    font.pointSize: success ? JamiTheme.textFontSize : JamiTheme.textFontSize + 3
+                    text: "Link Device Success"
+                    color: JamiTheme.textColor
+                    font.pointSize: JamiTheme.headerFontSize
                     font.kerning: true
+                    horizontalAlignment: Text.AlignLeading
+                    verticalAlignment: Text.AlignVCenter
+                }
+
+                Text {
+                    text: "You succeeded."
+                    color: JamiTheme.textColor
+                    font.pointSize: JamiTheme.headerFontSize
+                    font.kerning: true
+                    wrapMode: Text.WordWrap
+                    Layout.preferredWidth: parent.width * 0.75
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
-
-                    background: Rectangle {
-                        id: infoLabelBackground
-
-                        border.width: infoLabel.borderWidth
-                        border.color: infoLabel.borderColor
-                        radius: infoLabel.borderRadius
-                        color: JamiTheme.secondaryBackgroundColor
-                    }
                 }
             }
         }

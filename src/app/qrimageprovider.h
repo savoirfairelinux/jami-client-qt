@@ -87,7 +87,11 @@ public:
                 qWarning() << "Couldn't get account info for id:" << identifier;
                 return QImage();
             }
-        } else
+        }
+        // else if (type == QrType::JamiAuth) {
+        //     uri = id;
+        // }
+        else
             uri = identifier;
 
         if (!requestedSize.isEmpty())
