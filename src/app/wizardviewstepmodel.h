@@ -18,6 +18,7 @@
 
 #pragma once
 
+#include "linkdevicemodule.h"
 #include "qtutils.h"
 
 #include <QObject>
@@ -41,6 +42,7 @@ public:
         Initial,          // Initial welcome step.
         AccountCreation,  // General account creation step.
         NameRegistration, // Name registration step : CreateJamiAccount, CreateRendezVous
+        // Summary,          // Account creation summary (name, profile photo, get started button)
     };
     Q_ENUM(MainSteps)
 
@@ -55,8 +57,18 @@ public:
     };
     Q_ENUM(AccountCreationOption)
 
-    QML_PROPERTY(MainSteps, mainStep)
+    enum class LinkDeviceStep {
+        OutOfBand,
+        Waiting,
+        Scannable,
+        Auth,
+        // Summary // in mainsteps
+    };
+    Q_ENUM(LinkDeviceStep)
+
+    QML_PROPERTY(MainSteps, mainStep)// generates get/set+_mainstep
     QML_PROPERTY(AccountCreationOption, accountCreationOption)
+    QML_PROPERTY(LinkDeviceStep, linkDeviceStep)
     QML_PROPERTY(QVariantMap, accountCreationInfo)
 
 public:
@@ -79,6 +91,7 @@ Q_SIGNALS:
     void accountIsReady(QString accountId);
     void closeWizardView();
     void createAccountRequested(AccountCreationOption);
+    void linkStateChanged(LinkDeviceStep);
 
 private:
     void reset();

@@ -64,23 +64,70 @@ void
 WizardViewStepModel::nextStep()
 {
     if (mainStep_ != MainSteps::Initial) {
+        qWarning("[LinkDevice] is not MainStep::Initial");
         Q_EMIT createAccountRequested(accountCreationOption_);
+    }
+    // linkdev
+    if (get_accountCreationOption() == AccountCreationOption::ImportFromDevice) {
+        qWarning("[LinkDevice] is AccountCreationOption::ImportFromDevice");
+        if (get_linkDeviceStep() == LinkDeviceStep::OutOfBand) {
+            set_linkDeviceStep(LinkDeviceStep::Waiting);
+            Q_EMIT linkStateChanged(linkDeviceStep_);
+        } else if (get_linkDeviceStep() == LinkDeviceStep::Waiting) {
+            set_linkDeviceStep(LinkDeviceStep::Scannable);
+            Q_EMIT linkStateChanged(linkDeviceStep_);
+        } else if (get_linkDeviceStep() == LinkDeviceStep::Scannable) {
+            set_linkDeviceStep(LinkDeviceStep::Auth);
+            Q_EMIT linkStateChanged(linkDeviceStep_);
+        } else {
+            // ::Auth
+            Q_EMIT linkStateChanged(linkDeviceStep_);
+
+        }
     }
 }
 
 void
 WizardViewStepModel::previousStep()
 {
+    // linkdev
+    switch (get_linkDeviceStep()) {
+        case LinkDeviceStep::OutOfBand:
+            // TODO default passthrough to mainstep
+            Q_EMIT linkStateChanged(linkDeviceStep_);
+            break;
+        case LinkDeviceStep::Waiting:
+            set_linkDeviceStep(LinkDeviceStep::OutOfBand);
+            // TODO abort bootstrapping tmp account
+            Q_EMIT linkStateChanged(linkDeviceStep_);
+            return;
+        case LinkDeviceStep::Scannable:
+            // TODO abort auth channnel
+            // go back to out of band and ready to restart whole process
+            Q_EMIT linkStateChanged(linkDeviceStep_);
+            break; // for now trigger mainstep passthrough
+        case LinkDeviceStep::Auth:
+            set_linkDeviceStep(LinkDeviceStep::OutOfBand);
+            set_mainStep(MainSteps::Initial);
+            break; // potential unauthorized action from not owner of account & should be used to go back to the mainstep
+        default:
+            break;
+    }
+
     switch (get_mainStep()) {
-    case MainSteps::Initial: {
-        Q_EMIT closeWizardView();
-        break;
-    }
-    case MainSteps::AccountCreation:
-    case MainSteps::NameRegistration: {
-        reset();
-        break;
-    }
+        case MainSteps::Initial: {
+            Q_EMIT closeWizardView();
+            break;
+        }
+        case MainSteps::AccountCreation:
+        case MainSteps::NameRegistration: {
+            reset();
+            break;
+        }
+        // case MainSteps::SomethingWentWrong: {
+        //     reset();
+        //     break;
+        // }
     }
 }
 
