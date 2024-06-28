@@ -74,6 +74,7 @@ public:
     Q_INVOKABLE void startAccountCreationFlow(AccountCreationOption accountCreationOption);
     Q_INVOKABLE void nextStep();
     Q_INVOKABLE void previousStep();
+    Q_INVOKABLE void exportToPeer(const QString& accountId, const QString& uri);
 
 Q_SIGNALS:
     void accountIsReady(QString accountId);

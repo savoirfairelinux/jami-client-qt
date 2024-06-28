@@ -19,6 +19,7 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
+import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import "../../commoncomponents"
@@ -29,19 +30,47 @@ Rectangle {
     property string errorText: ""
     property int preferredHeight: importFromDevicePageColumnLayout.implicitHeight + 2 * JamiTheme.preferredMarginSize
 
+    property string authUri: ""
+    property string authQrImage: "image://authQr"
+
     signal showThisPage
+
+    // function promptAuth() {
+    //     // enable the prompt UI for account action authentication
+    //     // accountAuthPopup.enable()
+    //     if (CurrentAccount.hasArchivePassword) {
+    //         // we will need to get more information from the user to initiate the xfer
+    //         viewCoordinator.presentDialog(appWindow, "commoncomponents/AuthenticateAccountDialog.qml", {})
+    //     } else {
+    //         // if no password we can already start the process
+    //         AccountAdapter.startLinkDevice();
+    //     }
+    // }
 
     function initializeOnShowUp() {
         clearAllTextFields();
     }
 
     function clearAllTextFields() {
-        connectBtn.spinnerTriggered = false;
+        // connectBtn.spinnerTriggered = false;
     }
 
     function errorOccurred(errorMessage) {
         errorText = errorMessage;
-        connectBtn.spinnerTriggered = false;
+        // connectBtn.spinnerTriggered = false;
+    }
+
+    function updateUri(newUri) {
+        root.authQrImage = "image://authQr/" + newUri;
+        root.authUri = newUri;
+        uriQrImage.visible = true;
+        copyCodeBox.visible = true;
+    }
+
+    function dummyQr() {
+        // var fakeCode = "jami-auth://fakejamiid/123456"
+        var fakeCode = "hello there"
+        updateUri(fakeCode)
     }
 
     Connections {
@@ -55,6 +84,31 @@ Rectangle {
         }
     }
 
+    Connections {
+        target: AccountAdapter
+
+        function onDeviceAuthStateChanged(accountId, state, detail) {
+            console.warn("[LinkDevice] qml update: ", state, ", ", detail)
+            if (state == 0) {
+                console.warn("[LinkDevice] code ready: ", detail)
+                // request image
+                root.authQrImage = "image://authQr/" + detail
+                root.authUri = detail
+                uriQrImage.visible = true
+                copyCodeBox.visible = true
+                // TODO timer to stop the page and show error
+            }
+        }
+    }
+
+    // Timer {
+    //     id: retryBootstrapTimer
+    //     interval: 5000  // 5 seconds
+    //     running: false
+    //     repeat: false
+    //     onTriggered: startDiscoveryBtn.enabled = true
+    // }
+
     color: JamiTheme.secondaryBackgroundColor
 
     ColumnLayout {
@@ -66,8 +120,8 @@ Rectangle {
 
         width: Math.max(508, root.width - 100)
 
+        // title
         Text {
-
             text: JamiStrings.importAccountFromAnotherDevice
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: JamiTheme.preferredMarginSize
@@ -80,151 +134,157 @@ Rectangle {
             wrapMode: Text.WordWrap
         }
 
-        Text {
+        // desc
+        // Text {
+        //     text: JamiStrings.importFromDeviceDescription
+        //     Layout.preferredWidth: Math.min(360, root.width - JamiTheme.preferredMarginSize * 2)
+        //     Layout.topMargin: JamiTheme.wizardViewDescriptionMarginSize
+        //     Layout.alignment: Qt.AlignCenter
+        //     font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
+        //     font.weight: Font.Medium
+        //     color: JamiTheme.textColor
+        //     wrapMode: Text.WordWrap
+        //     horizontalAlignment: Text.AlignHCenter
+        //     verticalAlignment: Text.AlignVCenter
+        //     lineHeight: JamiTheme.wizardViewTextLineHeight
+        // }
 
-            text: JamiStrings.importFromDeviceDescription
-            Layout.preferredWidth: Math.min(360, root.width - JamiTheme.preferredMarginSize * 2)
-            Layout.topMargin: JamiTheme.wizardViewDescriptionMarginSize
-            Layout.alignment: Qt.AlignCenter
-            font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
-            font.weight: Font.Medium
-            color: JamiTheme.textColor
-            wrapMode: Text.WordWrap
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-            lineHeight: JamiTheme.wizardViewTextLineHeight
+        Timer {
+            id: spamTimer
+            interval: 5000  // 5 seconds
+            running: false
+            repeat: false
+            onTriggered: startDiscoveryBtn.enabled = true
         }
 
-        Flow {
+        MaterialButton {
+            id: startDiscoveryBtn
+
+            // TextMetrics {
+            //     id: startDiscoveryBtnTextSize
+            //     font.weight: Font.Bold
+            //     font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize //.wizardViewButtonFontPixelSize
+            //     text: "ready link"//passwdPushButton.text
+            // }
+
+            preferredWidth: 250//passwdPushButtonTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
+
+            primary: true
+            Layout.alignment: Qt.AlignCenter
+
+            // toolTipText: CurrentAccount.hasArchivePassword ? JamiStrings.changeCurrentPassword : JamiStrings.setAPassword
+            text: "get started"//CurrentAccount.hasArchivePassword ? JamiStrings.changePassword : JamiStrings.setPassword
+
+            enabled: true
+            onClicked: {
+                // this will come later in the process once the archive is transferred
+                // if (CurrentAccount.hasArchivePassword) {
+                //     viewCoordinator.presentDialog(appWindow, "commoncomponents/RevokePasswordDialog.qml", {
+                //     })
+                // }
+                // Example here:
+                // onClicked: viewCoordinator.presentDialog(appWindow, "commoncomponents/PasswordDialog.qml", {
+                //         "purpose": CurrentAccount.hasArchivePassword ? PasswordDialog.ChangePassword : PasswordDialog.SetPassword
+                // })
+                enabled = false
+                spamTimer.start()
+                // console.info("[LinkDevice] Requesting P2P account client-side.");
+            }
+
+            opacity: enabled ? 1.0 : 0.5
+            scale: enabled ? 1.0 : 0.8  // Scale based on opacity
+
+            Behavior on opacity {
+                NumberAnimation {
+                    from: 0.5
+                    duration: 150  // Duration for the fade animation
+                }
+            }
+
+            Behavior on scale {
+                NumberAnimation {
+                    duration: 150  // Duration for the scale animation
+                }
+            }
+
+        }
+
+        // MaterialButton {
+        //     id: debugQrBtn
+        //
+        //     preferredWidth: 150
+        //
+        //     primary: true
+        //     Layout.alignment: Qt.AlignCenter
+        //
+        //     text: "debug"
+        //     enabled: true
+        //     onClicked: {
+        //         console.warn("[LinkDevice] debug qr image")
+        //         root.dummyQr()
+        //     }
+        // }
+
+        // Button {
+        //     id: confirmPasswordBtn
+        //
+        //     // job is to confirm the transfer after the archive has been sent
+        //
+        //     onClicked: {
+        //         // this will come later in the process once the archive is transferred
+        //         if (CurrentAccount.hasArchivePassword) {
+        //             viewCoordinator.presentDialog(appWindow, "commoncomponents/RevokePasswordDialog.qml", {
+        //             })
+        //         }
+        //         // Example here:
+        //         // onClicked: viewCoordinator.presentDialog(appWindow, "commoncomponents/PasswordDialog.qml", {
+        //         //         "purpose": CurrentAccount.hasArchivePassword ? PasswordDialog.ChangePassword : PasswordDialog.SetPassword
+        //         // })
+        //     }
+        //
+        // }
+
+        // loads a scalable qr image
+        JamiAuthQr {
+            id: uriQrImage
+            imagePath: root.authQrImage
+            visible: false
+
+            Layout.alignment: Qt.AlignHCenter
+
+            opacity: root.authQrImage == "" ? 0.0 : 1.0
+
+            Behavior on opacity {
+                NumberAnimation {
+                    duration: 150
+                    easing.type: Easing.OutQuad
+                }
+            }
+        }
+
+        InfoBox {
+            id: copyCodeBox
+
+            visible: false
+
             spacing: 30
             Layout.alignment: Qt.AlignHCenter
-            Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
-            Layout.preferredWidth: Math.min(step1.width * 2 + spacing, root.width - JamiTheme.preferredMarginSize * 2)
+            title: root.authUri
 
-            InfoBox {
-                id: step1
-                icoSource: JamiResources.settings_24dp_svg
-                title: JamiStrings.importStep1
-                description: JamiStrings.importStep1Desc
-                icoColor: JamiTheme.buttonTintedBlue
-            }
+            opacity: visible ? 1.0 : 0.5
+            scale: visible ? 1.0 : 0.8  // Scale based on opacity
 
-            InfoBox {
-                id: step2
-                icoSource: JamiResources.person_24dp_svg
-                title: JamiStrings.importStep2
-                description: JamiStrings.importStep2Desc
-                icoColor: JamiTheme.buttonTintedBlue
-            }
+            Behavior on opacity {
+                NumberAnimation {
+                    from: 0.5
+                    duration: 150  // Duration for the fade animation
+                }
+                    }
 
-            InfoBox {
-                id: step3
-                icoSource: JamiResources.finger_select_svg
-                title: JamiStrings.importStep3
-                description: JamiStrings.importStep3Desc
-                icoColor: JamiTheme.buttonTintedBlue
-            }
-
-            InfoBox {
-                id: step4
-                icoSource: JamiResources.time_clock_svg
-                title: JamiStrings.importStep4
-                description: JamiStrings.importStep4Desc
-                icoColor: JamiTheme.buttonTintedBlue
-            }
-        }
-
-        ModalTextEdit {
-            id: pinFromDevice
-
-            objectName: "pinFromDevice"
-
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: Math.min(410, root.width - JamiTheme.preferredMarginSize * 2)
-            Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
-
-            focus: visible
-
-            placeholderText: JamiStrings.pin
-            staticText: ""
-
-            KeyNavigation.up: backButton
-            KeyNavigation.down: passwordFromDevice
-            KeyNavigation.tab: KeyNavigation.down
-
-            onAccepted: passwordFromDevice.forceActiveFocus()
-        }
-
-        Text {
-
-            Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
-
-            color: JamiTheme.textColor
-            wrapMode: Text.WordWrap
-            text: JamiStrings.importPasswordDesc
-            font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
-            font.weight: Font.Medium
-        }
-
-        PasswordTextEdit {
-            id: passwordFromDevice
-
-            objectName: "passwordFromDevice"
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: Math.min(410, root.width - JamiTheme.preferredMarginSize * 2)
-            Layout.topMargin: JamiTheme.wizardViewMarginSize
-
-            placeholderText: JamiStrings.enterPassword
-
-            KeyNavigation.up: pinFromDevice
-            KeyNavigation.down: {
-                if (connectBtn.enabled)
-                    return connectBtn;
-                else if (connectBtn.spinnerTriggered)
-                    return passwordFromDevice;
-                return backButton;
-            }
-            KeyNavigation.tab: KeyNavigation.down
-
-            onAccepted: pinFromDevice.forceActiveFocus()
-        }
-
-        SpinnerButton {
-            id: connectBtn
-
-            TextMetrics {
-                id: textSize
-                font.weight: Font.Bold
-                font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
-                text: connectBtn.normalText
-            }
-
-            objectName: "importFromDevicePageConnectBtn"
-
-            Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
-            Layout.bottomMargin: errorLabel.visible ? 0 : JamiTheme.wizardViewPageBackButtonMargins
-
-            preferredWidth: textSize.width + 2 * JamiTheme.buttontextWizzardPadding + 1
-            primary: true
-
-            spinnerTriggeredtext: JamiStrings.generatingAccount
-            normalText: JamiStrings.importButton
-
-            enabled: pinFromDevice.dynamicText.length !== 0 && !spinnerTriggered
-
-            KeyNavigation.tab: backButton
-            KeyNavigation.up: passwordFromDevice
-            KeyNavigation.down: backButton
-
-            onClicked: {
-                spinnerTriggered = true;
-                WizardViewStepModel.accountCreationInfo = JamiQmlUtils.setUpAccountCreationInputPara({
-                        "archivePin": pinFromDevice.dynamicText,
-                        "password": passwordFromDevice.dynamicText
-                    });
-                WizardViewStepModel.nextStep();
+            Behavior on scale {
+                NumberAnimation {
+                    duration: 150  // Duration for the scale animation
+                }
             }
         }
 
@@ -252,11 +312,11 @@ Rectangle {
         anchors.top: parent.top
         anchors.margins: JamiTheme.wizardViewPageBackButtonMargins
 
-        visible: !connectBtn.spinnerTriggered
+        visible: !uriQrImage.visible //!connectBtn.spinnerTriggered
 
-        KeyNavigation.tab: pinFromDevice
-        KeyNavigation.up: connectBtn.enabled ? connectBtn : passwordFromDevice
-        KeyNavigation.down: pinFromDevice
+        // KeyNavigation.tab: pinFromDevice
+        // KeyNavigation.up: connectBtn.enabled ? connectBtn : passwordFromDevice
+        // KeyNavigation.down: pinFromDevice
 
         onClicked: WizardViewStepModel.previousStep()
     }

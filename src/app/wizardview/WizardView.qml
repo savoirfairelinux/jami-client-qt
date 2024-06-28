@@ -56,10 +56,13 @@ BaseView {
         function onCreateAccountRequested(creationOption) {
             switch (creationOption) {
             case WizardViewStepModel.AccountCreationOption.CreateJamiAccount:
+                AccountAdapter.createJamiAccount(WizardViewStepModel.accountCreationInfo);
+                break;
             case WizardViewStepModel.AccountCreationOption.CreateRendezVous:
             case WizardViewStepModel.AccountCreationOption.ImportFromBackup:
             case WizardViewStepModel.AccountCreationOption.ImportFromDevice:
-                AccountAdapter.createJamiAccount(WizardViewStepModel.accountCreationInfo);
+                // console.info("[LinkDevice] Requesting P2P account client-side.");
+                // AccountAdapter.startLinkDevice();
                 break;
             case WizardViewStepModel.AccountCreationOption.ConnectToAccountManager:
                 AccountAdapter.createJAMSAccount(WizardViewStepModel.accountCreationInfo);

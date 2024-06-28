@@ -90,3 +90,10 @@ WizardViewStepModel::reset()
     set_accountCreationOption(AccountCreationOption::None);
     set_mainStep(MainSteps::Initial);
 }
+
+// KESS could maybe add in export to peer here instead of in linkdevicemodule
+void
+WizardViewStepModel::exportToPeer(const QString& accountId, const QString& uri)
+{
+    lrcInstance_->accountModel().exportToPeer(accountId, uri);
+}

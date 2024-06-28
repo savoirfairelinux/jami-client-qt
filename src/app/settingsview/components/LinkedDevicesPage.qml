@@ -77,7 +77,8 @@ SettingsPageBase {
             toolTipText: JamiStrings.tipLinkNewDevice
             text: JamiStrings.linkNewDevice
 
-            onClicked: viewCoordinator.presentDialog(appWindow, "settingsview/components/LinkDeviceDialog.qml")
+            onClicked: viewCoordinator.presentDialog(appWindow, "settingsview/components/LinkScanner.qml")
+            // onClicked: viewCoordinator.presentDialog(appWindow, "settingsview/components/LinkDeviceDialog.qml")
         }
 
         Text {
