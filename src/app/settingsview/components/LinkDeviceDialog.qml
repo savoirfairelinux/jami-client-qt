@@ -78,17 +78,17 @@ BaseModalDialog {
             interval: 200
 
             onTriggered: {
-                AccountAdapter.model.exportOnRing(LRCInstance.currentAccountId, passwordEdit.dynamicText);
+                // AccountAdapter.model.exportOnRing(LRCInstance.currentAccountId, passwordEdit.dynamicText);
             }
         }
 
-        Connections {
-            target: NameDirectory
-
-            function onExportOnRingEnded(status, pin) {
-                stackedWidget.setExportPage(status, pin);
-            }
-        }
+        // Connections {
+        //     target: NameDirectory
+        //
+        //     function onExportOnRingEnded(status, pin) {
+        //         stackedWidget.setExportPage(status, pin);
+        //     }
+        // }
 
         onVisibleChanged: {
             if (visible) {
@@ -100,6 +100,7 @@ BaseModalDialog {
             }
         }
 
+        // asks the user to enter the account password before proceeding
         // Index = 0
         Item {
             id: enterPasswordPage
@@ -143,7 +144,7 @@ BaseModalDialog {
                         firstEntry: true
                         placeholderText: JamiStrings.password
 
-                        Layout.alignment: Qt.AlignLeft
+                        Layout.alignment: Qt.AlignLeading
                         Layout.fillWidth: true
 
                         KeyNavigation.up: btnConfirm
@@ -178,6 +179,7 @@ BaseModalDialog {
             }
         }
 
+        // says exporting account... needs to say generating qr code or something like that
         // Index = 1
         Item {
             id: exportingSpinnerPage
@@ -202,7 +204,7 @@ BaseModalDialog {
                     color: JamiTheme.textColor
                     font.pointSize: JamiTheme.headerFontSize
                     font.kerning: true
-                    horizontalAlignment: Text.AlignLeft
+                    horizontalAlignment: Text.AlignLeading
                     verticalAlignment: Text.AlignVCenter
                 }
 
@@ -224,7 +226,7 @@ BaseModalDialog {
 
         // Index = 2
         Item {
-            id: exportingInfoPage
+            id: linkInfoPage // exportingInfoPage
 
             readonly property int pageIndex: 2
 
@@ -245,7 +247,7 @@ BaseModalDialog {
                     id: instructionLabel
 
                     Layout.maximumWidth: Math.min(root.maximumPopupWidth, root.width) - 2 * root.popupMargins
-                    Layout.alignment: Qt.AlignLeft
+                    Layout.alignment: Qt.AlignLeading
 
                     color: JamiTheme.textColor
 
@@ -281,6 +283,7 @@ BaseModalDialog {
                                  mipmap: false
                                  smooth: false
                                  source: "image://qrImage/raw_" + exportedPIN.text
+                                 // source: "image://qrImage/raw_" + exportedPIN.text
                                  sourceSize.width: 80
                                  sourceSize.height: 80
                             }
@@ -288,6 +291,7 @@ BaseModalDialog {
 
                     }
 
+                    //  TODO make this the URI backup
                     Rectangle {
                         id: pinRectangle
 
@@ -354,7 +358,7 @@ BaseModalDialog {
                             Label {
                                 id: otherDeviceLabel
 
-                                Layout.alignment: Qt.AlignLeft
+                                Layout.alignment: Qt.AlignLeading
                                 color: JamiTheme.textColor
                                 text: JamiStrings.onAnotherDevice
 
@@ -367,7 +371,7 @@ BaseModalDialog {
                                 id: otherInstructionLabel
 
                                 Layout.fillWidth: true
-                                Layout.alignment: Qt.AlignLeft
+                                Layout.alignment: Qt.AlignLeading
 
                                 wrapMode: Text.Wrap
                                 color: JamiTheme.textColor
