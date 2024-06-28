@@ -87,7 +87,8 @@ public:
                 qWarning() << "Couldn't get account info for id:" << identifier;
                 return QImage();
             }
-        } else
+        }
+        else
             uri = identifier;
 
         if (!requestedSize.isEmpty())
