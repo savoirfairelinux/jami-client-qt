@@ -1,3 +1,4 @@
+
 /*
  * Copyright (C) 2024 Savoir-faire Linux Inc.
  * Author: Fadi Shehadeh   <fadi.shehadeh@savoirfairelinux.com>
@@ -25,10 +26,9 @@ import net.jami.Enums 1.1
 import net.jami.Models 1.1
 import "../../commoncomponents"
 
-SettingsPageBase {
+Item {
     id: root
 
-    property bool isSIP: CurrentAccount.type === Profile.Type.SIP
     property int itemWidth: 250
     signal navigateToMainView
 
@@ -221,9 +221,7 @@ SettingsPageBase {
                 toolTipText: JamiStrings.tipLinkNewDevice
                 text: JamiStrings.linkNewDevice
 
-                onClicked: viewCoordinator.presentDialog(appWindow, "settingsview/components/LinkScannerBest.qml")
-                // onClicked: viewCoordinator.presentDialog(appWindow, "settingsview/components/LinkScanner.qml")
-                // onClicked: viewCoordinator.presentDialog(appWindow, "settingsview/components/LinkDeviceDialog.qml")
+                onClicked: viewCoordinator.presentDialog(appWindow, "settingsview/components/LinkDeviceDialog.qml")
             }
         }
 
