@@ -57,11 +57,15 @@ public:
 
     // Create normal Jami account, SIP account and JAMS accounts.
     Q_INVOKABLE void createJamiAccount(const QVariantMap& settings);
+    Q_INVOKABLE void startLinkDevice();
     Q_INVOKABLE void createSIPAccount(const QVariantMap& settings);
     Q_INVOKABLE void createJAMSAccount(const QVariantMap& settings);
 
     // Delete current account
     Q_INVOKABLE void deleteCurrentAccount();
+
+    Q_INVOKABLE bool exportToPeer(const QString& accountId, const QString& uri);
+    Q_INVOKABLE void provideAccountAuthentication(const QString& accountId, const QString& credentialsFromUser);
 
     // Conf property
     Q_INVOKABLE bool exportToFile(const QString& accountId,
@@ -92,6 +96,7 @@ Q_SIGNALS:
     void accountAdded(const QString& accountId, int index);
     void accountRemoved(const QString& accountId);
     void accountConfigFinalized();
+    void deviceAuthStateChanged(const QString& accountId, int state, const QString& detail);
 
 private:
     // Implement what to do when account creation fails.
