@@ -27,3 +27,6 @@
 	path = 3rdparty/tidy-html5
 	url = https://github.com/htacg/tidy-html5.git
 	ignore = dirty
+[submodule "3rdparty/zxing-cpp"]
+	path = 3rdparty/zxing-cpp
+	url = https://github.com/zxing-cpp/zxing-cpp.git
