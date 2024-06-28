@@ -70,6 +70,7 @@ public:
         return {QrType::Account, {}};
     }
 
+    // KESS
     QImage requestImage(const QString& id, QSize* size, const QSize& requestedSize) override
     {
         Q_UNUSED(size);

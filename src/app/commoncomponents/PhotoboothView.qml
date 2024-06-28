@@ -24,6 +24,7 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import "../mainview/components"
 
+// KESS
 Item {
     id: root
 
