@@ -37,11 +37,12 @@ NameDirectoryPrivate::NameDirectoryPrivate(NameDirectory* q)
             this,
             &NameDirectoryPrivate::slotRegisteredNameFound,
             Qt::QueuedConnection);
-    connect(&configurationManager,
-            &ConfigurationManagerInterface::exportOnRingEnded,
-            this,
-            &NameDirectoryPrivate::slotExportOnRingEnded,
-            Qt::QueuedConnection);
+    // TODO move to accountmodel
+    // connect(&configurationManager,
+    //         &ConfigurationManagerInterface::deviceAuthStateChanged,
+    //         this,
+    //         &NameDirectoryPrivate::slotDeviceAuthStateChanged,
+    //         Qt::QueuedConnection);
 }
 
 NameDirectory::NameDirectory()
@@ -99,15 +100,34 @@ NameDirectoryPrivate::slotRegisteredNameFound(const QString& accountId,
                                       name);
 }
 
-// Export account has ended with pin generated
-void
-NameDirectoryPrivate::slotExportOnRingEnded(const QString& accountId, int status, const QString& pin)
-{
-    LC_DBG << "Export on ring ended for account: " << accountId << "status: " << status
-           << "PIN: " << pin;
+// // Export account has ended with pin generated
+// void
+// NameDirectoryPrivate::slotExportOnRingEnded(const QString& accountId, int status, const QString& pin)
+// {
+//     LC_DBG << "Export on ring ended for account: " << accountId << "status: " << status
+//            << "PIN: " << pin;
+//
+//     Q_EMIT q_ptr->exportOnRingEnded(static_cast<NameDirectory::ExportOnRingStatus>(status), pin);
+// }
 
-    Q_EMIT q_ptr->exportOnRingEnded(static_cast<NameDirectory::ExportOnRingStatus>(status), pin);
-}
+// void slotExportToPeerEnded(const QString& accountId, int status, const QString& uri)
+// {
+// }
+
+// // TODO move this somewhere else like accounthandler?
+// // yes
+
+// void
+// NameDirectoryPrivate::slotDeviceAuthStateChanged(const QString& accountId,
+//                                             int state,
+//                                             const QString& detail)
+// {
+//     qInfo() << "[LinkDevice]" << "1: " << "device auth notification: " << detail;
+//     // if state = qrstate && detail is valid jami uri:
+//     // TODO
+//     // Q_EMIT linkdevqrready
+//     // Q_EMIT q_ptr->deviceAuthStateChanged(accountId, state, detail);
+// }
 
 // Lookup a name
 bool
@@ -126,6 +146,14 @@ NameDirectory::lookupAddress(const QString& accountId,
 {
     return ConfigurationManager::instance().lookupAddress(accountId, nameServiceURL, address);
 }
+
+// void
+// NameDirectory::deviceAuthStateChanged(const QString& accountId,
+//                                int state,
+//                                const QString& detail) const {
+//     qInfo() << "[LinkDevice]" << "2: " << "device auth notification: " << detail;
+//    // ...
+// }
 
 NameDirectory::~NameDirectory()
 {
