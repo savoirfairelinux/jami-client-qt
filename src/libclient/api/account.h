@@ -190,9 +190,15 @@ struct ConfProperties_t
     MapStringString toDetails() const;
 };
 
-// Possible account export status
-enum class ExportOnRingStatus { SUCCESS = 0, WRONG_PASSWORD = 1, NETWORK_ERROR = 2, INVALID };
-Q_ENUM_NS(ExportOnRingStatus)
+enum class ExportToPeerStatus {
+    NONE = 0,
+    TOKEN_AVAIL = 1,
+    CONNECTING = 2,
+    AUTH = 3,
+    DONE = 4,
+    ERROR = 5
+};
+Q_ENUM_NS(ExportToPeerStatus)
 
 enum class RegisterNameStatus {
     SUCCESS = 0,

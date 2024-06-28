@@ -126,7 +126,15 @@ public Q_SLOTS:
      * @param status
      * @param pin
      */
-    void slotExportOnRingEnded(const QString& accountID, int status, const QString& pin);
+    // void slotExportOnRingEnded(const QString& accountID, int status, const QString& pin);
+
+    /**
+     * Emit exportToPeerEnded.
+     * @param accountId
+     * @param status
+     * @param uri
+     */
+    void slotExportToPeerEnded(const QString& accountID, int status, const QString& pin);
 
     /**
      * @param accountId
