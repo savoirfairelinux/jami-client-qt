@@ -46,6 +46,11 @@ AccountAdapter::AccountAdapter(AppSettingsManager* settingsManager,
             this,
             &AccountAdapter::accountStatusChanged);
 
+    connect(&lrcInstance_->accountModel(),
+            &AccountModel::deviceAuthStateChanged,
+            this,
+            &AccountAdapter::deviceAuthStateChanged);
+
     connect(systemTray_,
             &SystemTray::countChanged,
             qApp->property("AccountListModel").value<AccountListModel*>(),
@@ -170,6 +175,49 @@ AccountAdapter::createJamiAccount(const QVariantMap& settings)
                                                       settings["archivePin"].toString(),
                                                       "");
     });
+}
+
+// void
+// AccountAdapter::deviceAuthStateChanged(const QString& accountId, int state, const QString& detail) {
+//     Q_EMIT deviceAuthStateChanged(accountId, state, detail);
+// }
+
+void
+AccountAdapter::startLinkDevice()
+{
+    Utils::oneShotConnect(
+        &lrcInstance_->accountModel(),
+        &lrc::api::AccountModel::accountAdded,
+        [this](const QString& accountId) {
+            Utils::oneShotConnect(&lrcInstance_->accountModel(),
+                                  &lrc::api::AccountModel::accountDetailsChanged,
+                                  [this](const QString& accountId) {
+                                      Q_UNUSED(accountId);
+                                      // For testing purpose
+                                      Q_EMIT accountConfigFinalized();
+                                  });
+
+            auto confProps = lrcInstance_->accountModel().getAccountConfig(accountId);
+            qWarning() << "[LinkDevice] setting archivePath to jami-auth";
+            confProps.archivePath = "jami-auth";
+            // confProps.archive_path = "jami-auth";
+            // confProps.archiveUrl = "jami-auth";
+            // confProps.archiveURL = "jami-auth";
+            // confProps.archive_url = "jami-auth";
+            // confProps.ARCHIVE_URL = "jami-auth";
+            lrcInstance_->accountModel().setAccountConfig(accountId, confProps);
+
+            //     Q_EMIT lrcInstance_->accountListChanged();
+            Q_EMIT accountAdded(accountId,
+                                lrcInstance_->accountModel().getAccountList().indexOf(accountId));
+        },
+        this,
+        &AccountAdapter::accountCreationFailed);
+
+    // connectFailure();
+
+    auto futureResult = QtConcurrent::run(
+        [this] { lrcInstance_->accountModel().startLinkDevice(); });
 }
 
 void
@@ -334,6 +382,13 @@ QStringList
 AccountAdapter::getDefaultModerators(const QString& accountId)
 {
     return lrcInstance_->accountModel().getDefaultModerators(accountId);
+}
+
+// KESS TENTATIVE
+bool
+AccountAdapter::exportToPeer(const QString& accountId, const QString& uri)
+{
+    return lrcInstance_->accountModel().exportToPeer(accountId, uri);
 }
 
 bool
