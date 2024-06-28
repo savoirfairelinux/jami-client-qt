@@ -99,15 +99,15 @@ NameDirectoryPrivate::slotRegisteredNameFound(const QString& accountId,
                                       name);
 }
 
-// Export account has ended with pin generated
-void
-NameDirectoryPrivate::slotExportOnRingEnded(const QString& accountId, int status, const QString& pin)
-{
-    LC_DBG << "Export on ring ended for account: " << accountId << "status: " << status
-           << "PIN: " << pin;
-
-    Q_EMIT q_ptr->exportOnRingEnded(static_cast<NameDirectory::ExportOnRingStatus>(status), pin);
-}
+// // Export account has ended with pin generated
+// void
+// NameDirectoryPrivate::slotExportOnRingEnded(const QString& accountId, int status, const QString& pin)
+// {
+//     LC_DBG << "Export on ring ended for account: " << accountId << "status: " << status
+//            << "PIN: " << pin;
+//
+//     Q_EMIT q_ptr->exportOnRingEnded(static_cast<NameDirectory::ExportOnRingStatus>(status), pin);
+// }
 
 // Lookup a name
 bool
