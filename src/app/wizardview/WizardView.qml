@@ -56,10 +56,13 @@ BaseView {
         function onCreateAccountRequested(creationOption) {
             switch (creationOption) {
             case WizardViewStepModel.AccountCreationOption.CreateJamiAccount:
+                AccountAdapter.createJamiAccount(WizardViewStepModel.accountCreationInfo);
+                break;
             case WizardViewStepModel.AccountCreationOption.CreateRendezVous:
             case WizardViewStepModel.AccountCreationOption.ImportFromBackup:
             case WizardViewStepModel.AccountCreationOption.ImportFromDevice:
-                AccountAdapter.createJamiAccount(WizardViewStepModel.accountCreationInfo);
+                // console.info("[LinkDevice] Requesting P2P account client-side.");
+                // AccountAdapter.startLinkDevice();
                 break;
             case WizardViewStepModel.AccountCreationOption.ConnectToAccountManager:
                 AccountAdapter.createJAMSAccount(WizardViewStepModel.accountCreationInfo);
@@ -70,6 +73,35 @@ BaseView {
             default:
                 print("Bad account creation option: " + creationOption);
                 WizardViewStepModel.closeWizardView();
+                break;
+            }
+        }
+
+        function onLinkStateChanged(linkOption) {
+            print("[LinkDevice] WizardView page: onLinkStateChanged")
+            switch (linkOption) {
+            // case WizardViewStepModel.LinkDeviceStep.OutOfBand:
+            //     controlPanelStackView.setPage(
+            //         importFromDevicePage
+            //     )
+            //     break;
+            case WizardViewStepModel.LinkDeviceStep.Waiting:
+                controlPanelStackView.setPage(
+                    linkDeviceLoadingPage
+                )
+                break;
+            case WizardViewStepModel.LinkDeviceStep.Scannable:
+                controlPanelStackView.setPage(
+                    linkDeviceQrPage
+                )
+                break;
+                // TODO add another waiting phase
+            case WizardViewStepModel.LinkDeviceStep.Auth:
+                controlPanelStackView.setPage(
+                    linkDeviceAuthPage
+                )
+                break;
+            default:
                 break;
             }
         }
@@ -137,11 +169,35 @@ BaseView {
 
                 onShowThisPage: controlPanelStackView.setPage(this)
             }
-
+            // Link Device Pages
             ImportFromBackupPage {
                 id: importFromBackupPage
 
                 objectName: "importFromBackupPage"
+
+                onShowThisPage: controlPanelStackView.setPage(this)
+            }
+
+            LinkDeviceLoadingPage {
+                id: linkDeviceLoadingPage
+
+                objectName: "linkDeviceLoadingPage"
+
+                onShowThisPage: controlPanelStackView.setPage(this)
+            }
+
+            LinkDeviceQrPage {
+                id: linkDeviceQrPage
+
+                objectName: "linkDeviceQrPage"
+
+                onShowThisPage: controlPanelStackView.setPage(this)
+            }
+
+            LinkDeviceAuthPage {
+                id: linkDeviceAuthPage
+
+                objectName: "linkDeviceAuthPage"
 
                 onShowThisPage: controlPanelStackView.setPage(this)
             }

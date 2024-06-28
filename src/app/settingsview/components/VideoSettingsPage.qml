@@ -1,4 +1,4 @@
-/*
+/i
  * Copyright (C) 2024 Savoir-faire Linux Inc.
  * Author: Fadi Shehadeh <fadi.shehadeh@savoirfairelinux.com>
  *
@@ -102,6 +102,13 @@ SettingsPageBase {
 
             LocalVideo {
                 id: previewWidget
+
+                onRendererIdChanged: {
+                    // console.warn("[LinkDevice] Camera render ID changed.")
+                    if (rendererId !== "") {
+                    }
+                }
+
 
                 anchors.fill: parent
                 flip: flipControl.checked
