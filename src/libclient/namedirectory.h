@@ -42,15 +42,26 @@ public:
     enum class LookupStatus { SUCCESS = 0, INVALID_NAME = 1, NOT_FOUND = 2, ERROR = 3 };
     Q_ENUM(LookupStatus)
 
-    enum class ExportOnRingStatus { SUCCESS = 0, WRONG_PASSWORD = 1, NETWORK_ERROR = 2, INVALID };
-    Q_ENUM(ExportOnRingStatus)
+    enum class DeviceAuthStatus { SUCCESS = 0, INVALID_CREDS = 1, NETWORK_ERROR = 2 };
+    Q_ENUM(DeviceAuthStatus)
 
     // Singleton
     static NameDirectory& instance();
 
     // Lookup
-    Q_INVOKABLE bool lookupName(const QString& accountId, const QString& name, const QString& nameServiceURL = "") const;
-    Q_INVOKABLE bool lookupAddress(const QString& accountId, const QString& address, const QString& nameServiceURL = "") const;
+    Q_INVOKABLE bool lookupName(const QString& accountId,
+                                const QString& name,
+                                const QString& nameServiceURL = "") const;
+    Q_INVOKABLE bool lookupAddress(const QString& accountId,
+                                   const QString& address,
+                                   const QString& nameServiceURL = "") const;
+
+    // KESS
+    // Q_INVOKABLE void deviceAuthStateChanged(const std::string& accountId, int state, const
+    // std::string& detail) const;
+    Q_INVOKABLE void slotDeviceAuthStateChanged(const QString& accountId,
+                                                int state,
+                                                const QString& detail) const;
 
 private:
     // Constructors & Destructors
@@ -70,7 +81,8 @@ Q_SIGNALS:
                              const QString& address,
                              const QString& name);
 
-    // Export account has ended with pin generated
-    void exportOnRingEnded(NameDirectory::ExportOnRingStatus status, const QString& pin);
+    // KESS
+    // void deviceAuthStateChanged(const std::string& accountId, int state, const std::string& detail);
+    void deviceAuthStateChanged(const QString& accountId, int state, const QString& detail) const;
 };
 Q_DECLARE_METATYPE(NameDirectory*)

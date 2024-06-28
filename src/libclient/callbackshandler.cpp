@@ -237,16 +237,17 @@ CallbacksHandler::CallbacksHandler(const Lrc& parent)
             &CallbacksHandler::slotDeviceRevokationEnded,
             Qt::QueuedConnection);
 
+    // KESS
+    connect(&ConfigurationManager::instance(),
+            &ConfigurationManagerInterface::deviceAuthStateChanged,
+            this,
+            &CallbacksHandler::slotDeviceAuthStateChanged,
+            Qt::QueuedConnection);
+
     connect(&ConfigurationManager::instance(),
             &ConfigurationManagerInterface::accountProfileReceived,
             this,
             &CallbacksHandler::slotAccountProfileReceived,
-            Qt::QueuedConnection);
-
-    connect(&ConfigurationManager::instance(),
-            &ConfigurationManagerInterface::exportOnRingEnded,
-            this,
-            &CallbacksHandler::slotExportOnRingEnded,
             Qt::QueuedConnection);
 
     connect(&ConfigurationManager::instance(),
@@ -548,7 +549,9 @@ CallbacksHandler::slotIncomingMessage(const QString& accountId,
 }
 
 void
-CallbacksHandler::slotConferenceCreated(const QString& accountId, const QString& convId, const QString& callId)
+CallbacksHandler::slotConferenceCreated(const QString& accountId,
+                                        const QString& convId,
+                                        const QString& callId)
 {
     Q_EMIT conferenceCreated(accountId, convId, callId);
 }
@@ -657,6 +660,7 @@ CallbacksHandler::slotDataTransferEvent(const QString& accountId,
     }
 }
 
+// KESS study this
 void
 CallbacksHandler::slotKnownDevicesChanged(const QString& accountId, const MapStringString& devices)
 {
@@ -672,17 +676,19 @@ CallbacksHandler::slotAccountProfileReceived(const QString& accountId,
 }
 
 void
+CallbacksHandler::slotDeviceAuthStateChanged(const QString& accountId,
+                                             int state,
+                                             const QString& detail)
+{
+    Q_EMIT deviceAuthStateChanged(accountId, state, detail);
+}
+
+void
 CallbacksHandler::slotDeviceRevokationEnded(const QString& accountId,
                                             const QString& deviceId,
                                             const int status)
 {
     Q_EMIT deviceRevocationEnded(accountId, deviceId, status);
-}
-
-void
-CallbacksHandler::slotExportOnRingEnded(const QString& accountId, int status, const QString& pin)
-{
-    Q_EMIT exportOnRingEnded(accountId, status, pin);
 }
 
 void
