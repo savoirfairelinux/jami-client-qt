@@ -152,12 +152,6 @@ public:
                                                         QString(displayName.c_str()),
                                                         QString(userPhoto.c_str()));
                 }),
-            exportable_callback<ConfigurationSignal::ExportOnRingEnded>(
-                [this](const std::string& accountId, int status, const std::string& pin) {
-                    Q_EMIT this->exportOnRingEnded(QString(accountId.c_str()),
-                                                   status,
-                                                   QString(pin.c_str()));
-                }),
             exportable_callback<ConfigurationSignal::NameRegistrationEnded>(
                 [this](const std::string& accountId, int status, const std::string& name) {
                     Q_EMIT this->nameRegistrationEnded(QString(accountId.c_str()),
@@ -431,11 +425,6 @@ public Q_SLOTS: // METHODS
                               path.toStdString());
     }
 
-    bool exportOnRing(const QString& accountId, const QString& password)
-    {
-        return libjami::exportOnRing(accountId.toStdString(), password.toStdString());
-    }
-
     bool exportToFile(const QString& accountId,
                       const QString& destinationPath,
                       const QString& scheme = "password",
@@ -469,7 +458,10 @@ public Q_SLOTS: // METHODS
                                       address.toStdString());
     }
 
-    bool registerName(const QString& accountId, const QString& name, const QString& scheme, const QString& password)
+    bool registerName(const QString& accountId,
+                      const QString& name,
+                      const QString& scheme,
+                      const QString& password)
     {
         return libjami::registerName(accountId.toStdString(),
                                      name.toStdString(),
@@ -835,7 +827,10 @@ public Q_SLOTS: // METHODS
         libjami::removeContact(accountId.toStdString(), uri.toStdString(), ban);
     }
 
-    void revokeDevice(const QString& accountId, const QString& deviceId, const QString& scheme, const QString& password)
+    void revokeDevice(const QString& accountId,
+                      const QString& deviceId,
+                      const QString& scheme,
+                      const QString& password)
     {
         libjami::revokeDevice(accountId.toStdString(),
                               deviceId.toStdString(),
@@ -1175,7 +1170,6 @@ Q_SIGNALS: // SIGNALS
                                  const QString& certId,
                                  const QString& status);
     void knownDevicesChanged(const QString& accountId, const MapStringString& devices);
-    void exportOnRingEnded(const QString& accountId, int status, const QString& pin);
     void incomingAccountMessage(const QString& accountId,
                                 const QString& from,
                                 const QString msgId,
