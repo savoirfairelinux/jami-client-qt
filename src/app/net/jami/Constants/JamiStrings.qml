@@ -435,8 +435,9 @@ Item {
     property string encryptDescription: qsTr("A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected by a password.")
     property string encryptWarning: qsTr("Please note that if you lose your password, it CANNOT be recovered!")
     property string enterNickname: qsTr("Enter a nickname, surname…")
-    property string linkTitle: qsTr("Use this account on other devices")
-    property string linkDescription: qsTr("This account is created and stored locally, if you want to use it on another device you have to link the new device to this account.")
+    property string linkTitle: qsTr("Communicate from another device")
+    property string newLinkTitle: qsTr("NEW: Link your Device via P2P Connection")
+    property string linkDescription: qsTr("Your messages are stored locally on this device. If you want to access them from another device you have to first link the new device to this account.")
     property string linkAnotherDevice: qsTr("Link device")
 
     // NameRegistrationDialog
@@ -577,19 +578,49 @@ Item {
     // ImportFromDevicePage
     property string importButton: qsTr("Import")
     property string pin: qsTr("Enter the PIN code")
-    property string importFromDeviceDescription: qsTr("A PIN code is required to use an existing Jami account on this device.")
-    property string importStep1: qsTr("Step 1")
-    property string importStep2: qsTr("Step 2")
-    property string importStep3: qsTr("Step 3")
-    property string importStep4: qsTr("Step 4")
-    property string importStep1Desc: qsTr("Go to the account management settings of a previous device.")
-    property string importStep2Desc: qsTr("Choose the account to link.")
+    property string importFromDeviceDescription: qsTr("A secure link will be created to transfer an existing Jami account to this device.")
+    // property string importFromDeviceDescription: qsTr("A PIN code is required to use an existing Jami account on this device.")
+    property string importStep1: qsTr("Step 01")
+    property string importStep2: qsTr("Step 02")
+    property string importStep3: qsTr("Step 03")
+    property string importStep4: qsTr("Step 04")
+    property string importStep1Desc: qsTr("Go to the account management settings of a previous device")
+    property string importStep2Desc: qsTr("Choose the account to link")
     property string importStep3Desc: qsTr("Select “Link another device.”")
     property string importStep4Desc: qsTr("The PIN code will expire in 10 minutes.")
     property string importPasswordDesc: qsTr("Fill if the account is password-encrypted.")
 
     // LinkDevicesDialog
-    property string pinTimerInfos: qsTr("The PIN code and the account password should be entered in your device within 10 minutes.")
+    // snippets
+    property string getStarted: qsTr("Get started")
+    property string ldAccessOnNewDevice: qsTr("Access you raccount on a new device")
+    property string ldNoQr: qsTr("Don't have access to a camera on your other device? You can manually enter this url into Jami on your old device instead of scanning the Qr Code.")
+
+    property string pwdAccept: qsTr("Authorize")
+    property string pwdReject: qsTr("Cancel")
+
+    property string ldAuthorizeImport: qsTr("Authorize this import")
+
+    property string askDeviceHasNoCamera: qsTr("No camera?")
+
+    // infos
+    property string ldGetStartedInfo: qsTr("Get ready to enjoy Jami on your new device.")
+
+    property string ldLoginInstructionsInfo: qsTr("Scan the QR code on your new device to sign in.")
+    property string ldLoginInstructionsInfoAlt: qsTr("Enter the security code on your old device to get started.")
+    property string ldAuthorizeXferInfo: qsTr("Authorize your account export to this new device.")
+
+    // page titles
+    // TODO lowercase them and use QFont
+    property string ldQrPageTitle: qsTr("Scan the Code")
+    property string ldQrPageTitleAlt: qsTr("Use a One-Time Link")
+    property string ldLoadingPageTitle: qsTr("Setting Things Up")
+    property string ldStartPageTitle: qsTr("Existing User")
+    property string ldScanPageTitle: qsTr("Scan a Code")
+    property string ldAuthPageTitle: qsTr("Authorize Import")
+
+    // ==
+
     property string close: qsTr("Close")
     property string enterAccountPassword: qsTr("Enter account password")
     property string enterPasswordPinCode: qsTr("This account is password encrypted, enter the password to generate a PIN code.")

@@ -37,6 +37,8 @@
 #include "typedefs.h"
 #include "conversions_wrap.hpp"
 
+#include <string_view>
+
 /*
  * Proxy class for interface org.ring.Ring.ConfigurationManager
  */
@@ -152,11 +154,11 @@ public:
                                                         QString(displayName.c_str()),
                                                         QString(userPhoto.c_str()));
                 }),
-            exportable_callback<ConfigurationSignal::ExportOnRingEnded>(
-                [this](const std::string& accountId, int status, const std::string& pin) {
-                    Q_EMIT this->exportOnRingEnded(QString(accountId.c_str()),
-                                                   status,
-                                                   QString(pin.c_str()));
+            exportable_callback<ConfigurationSignal::DeviceAuthStateChanged>(
+                [this](const std::string& accountId, int state, const std::string& detail) {
+                    Q_EMIT this->deviceAuthStateChanged(QString(accountId.c_str()),
+                                                        state,
+                                                        QString(detail.c_str()));
                 }),
             exportable_callback<ConfigurationSignal::NameRegistrationEnded>(
                 [this](const std::string& accountId, int status, const std::string& name) {
@@ -431,9 +433,21 @@ public Q_SLOTS: // METHODS
                               path.toStdString());
     }
 
-    bool exportOnRing(const QString& accountId, const QString& password)
+    // KESS go from libclient to libjami::exportToPeer
+    bool exportToPeer(const QString& accountId, const QString& uri)
     {
-        return libjami::exportOnRing(accountId.toStdString(), password.toStdString());
+        return libjami::exportToPeer(accountId.toStdString(), uri.toStdString());
+    }
+
+    // KESS go from libclient to libjami::provideAccountAuthentication
+    bool provideAccountAuthentication(const QString& accountId,
+                                      const QString& credentialsFromUser,
+                                      const std::string_view scheme)
+    {
+        qWarning() << "KESS go from libclient to libjami::provideAccount";
+        return libjami::provideAccountAuthentication(accountId.toStdString(),
+                                                     credentialsFromUser.toStdString(),
+                                                     scheme);
     }
 
     bool exportToFile(const QString& accountId,
@@ -469,7 +483,10 @@ public Q_SLOTS: // METHODS
                                       address.toStdString());
     }
 
-    bool registerName(const QString& accountId, const QString& name, const QString& scheme, const QString& password)
+    bool registerName(const QString& accountId,
+                      const QString& name,
+                      const QString& scheme,
+                      const QString& password)
     {
         return libjami::registerName(accountId.toStdString(),
                                      name.toStdString(),
@@ -835,7 +852,10 @@ public Q_SLOTS: // METHODS
         libjami::removeContact(accountId.toStdString(), uri.toStdString(), ban);
     }
 
-    void revokeDevice(const QString& accountId, const QString& deviceId, const QString& scheme, const QString& password)
+    void revokeDevice(const QString& accountId,
+                      const QString& deviceId,
+                      const QString& scheme,
+                      const QString& password)
     {
         libjami::revokeDevice(accountId.toStdString(),
                               deviceId.toStdString(),
@@ -1175,7 +1195,6 @@ Q_SIGNALS: // SIGNALS
                                  const QString& certId,
                                  const QString& status);
     void knownDevicesChanged(const QString& accountId, const MapStringString& devices);
-    void exportOnRingEnded(const QString& accountId, int status, const QString& pin);
     void incomingAccountMessage(const QString& accountId,
                                 const QString& from,
                                 const QString msgId,
@@ -1189,6 +1208,7 @@ Q_SIGNALS: // SIGNALS
                                      const QString& messageId,
                                      int status);
     void needsHost(const QString& accountId, const QString& conversationId);
+    void deviceAuthStateChanged(const QString& accountId, int state, const QString& detail);
     void nameRegistrationEnded(const QString& accountId, int status, const QString& name);
     void registeredNameFound(const QString& accountId,
                              int status,

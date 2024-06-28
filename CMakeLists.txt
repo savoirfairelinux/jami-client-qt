@@ -294,6 +294,7 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/currentaccount.cpp
   ${APP_SRC_DIR}/videodevices.cpp
   ${APP_SRC_DIR}/videoprovider.cpp
+  ${APP_SRC_DIR}/linkdevicemodule.cpp
   ${APP_SRC_DIR}/callparticipantsmodel.cpp
   ${APP_SRC_DIR}/tipsmodel.cpp
   ${APP_SRC_DIR}/positioning.cpp
@@ -363,6 +364,7 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/currentaccount.h
   ${APP_SRC_DIR}/videodevices.h
   ${APP_SRC_DIR}/videoprovider.h
+  ${APP_SRC_DIR}/linkdevicemodule.h
   ${APP_SRC_DIR}/callparticipantsmodel.h
   ${APP_SRC_DIR}/tipsmodel.h
   ${APP_SRC_DIR}/positioning.h
@@ -449,8 +451,10 @@ if(MSVC)
   include_directories(
     ${JAMID_SRC_PATH}
     ${LIBCLIENT_SRC_DIR}
+    # ${ZXING_CPP_DIR}
     ${QRENCODE_INCLUDE_DIR})
 elseif (NOT APPLE)
+
   list(APPEND COMMON_SOURCES
     ${APP_SRC_DIR}/xrectsel.c
     ${APP_SRC_DIR}/connectivitymonitor.cpp
@@ -614,6 +618,18 @@ add_subdirectory(3rdparty/tidy-html5 EXCLUDE_FROM_ALL)
 list(APPEND CLIENT_LINK_DIRS ${tidy_BINARY_DIR}/Release)
 list(APPEND CLIENT_INCLUDE_DIRS ${tidy_SOURCE_DIR}/include)
 list(APPEND CLIENT_LIBS tidy-static)
+
+# zxing-cpp
+set(ZXING_EXAMPLES OFF CACHE BOOL "Don't build zxing-cpp examples" FORCE)
+set(ZXING_UNIT_TESTS OFF CACHE BOOL "Don't build zxing-cpp unit tests" FORCE)
+set(ZXING_BLACKBOX_TESTS OFF CACHE BOOL "Don't build zxing-cpp blackbox tests" FORCE)
+set(ZXING_PYTHON_MODULE OFF CACHE BOOL "Don't build zxing-cpp python module" FORCE)
+set(ZXING_DEPENDENCIES "LOCAL")
+set(ZXINGICPP_DIR ${PROJECT_SOURCE_DIR}/3rdparty/zxing-cpp)
+add_subdirectory(${ZXINGICPP_DIR} EXCLUDE_FROM_ALL)
+list(APPEND CLIENT_LIBS ZXing)
+list(APPEND CLIENT_LINK_DIRS ${ZXINGICPP_DIR})
+list(APPEND CLIENT_INCLUDE_DIRS ${ZXINGICPP_DIR}/core/src)
 
 # common executable sources
 qt_add_executable(

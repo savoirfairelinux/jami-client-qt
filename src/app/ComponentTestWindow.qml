@@ -125,7 +125,7 @@ ApplicationWindow {
                                     model: getDataModel()
                                     delegate: ItemDelegate {
                                         highlighted: comboBox.highlightedIndex === index
-                                        width: parent.width
+                                        width: configTool.width
                                         text: JamiQmlUtils.getModelData(comboBox.model, index, displayRole)
                                     }
                                     onCurrentIndexChanged: onIndexChanged(model, currentIndex)
