@@ -1,3 +1,4 @@
+
 /*
  * Copyright (C) 2024 Savoir-faire Linux Inc.
  * Author: Fadi Shehadeh   <fadi.shehadeh@savoirfairelinux.com>
@@ -25,10 +26,9 @@ import net.jami.Enums 1.1
 import net.jami.Models 1.1
 import "../../commoncomponents"
 
-SettingsPageBase {
+Item {
     id: root
 
-    property bool isSIP: CurrentAccount.type === Profile.Type.SIP
     property int itemWidth: 250
     signal navigateToMainView
 
@@ -204,16 +204,16 @@ SettingsPageBase {
             }
 
             MaterialButton {
-                id: linkDeviceOldBtn
+                id: linkDeviceBtn
 
                 TextMetrics {
-                    id: linkDeviceOldBtnTextSize
+                    id: linkDeviceBtnTextSize
                     font.weight: Font.Bold
                     font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
-                    text: "OLD"// linkDeviceBtn.text
+                    text: "Link Device Demo"// linkDeviceBtn.text
                 }
 
-                preferredWidth: linkDeviceOldBtnTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
+                preferredWidth: linkDeviceBtnTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
 
                 primary: true
                 Layout.alignment: Qt.AlignLeft
@@ -221,32 +221,7 @@ SettingsPageBase {
                 toolTipText: JamiStrings.tipLinkNewDevice
                 text: JamiStrings.linkNewDevice
 
-                onClicked: viewCoordinator.presentDialog(appWindow, AvAdapter.hasCamera() ? "settingsview/components/LinkScannerBest.qml" : "settingsview/components/LinkDeviceDialog.qml")
-                // onClicked: viewCoordinator.presentDialog(appWindow, "settingsview/components/LinkScanner.qml")
-                // onClicked: viewCoordinator.presentDialog(appWindow, "settingsview/components/LinkDeviceDialog.qml")
-            }
-            MaterialButton {
-                id: linkDeviceNewBtn
-
-                TextMetrics {
-                    id: linkDeviceNewBtnTextSize
-                    font.weight: Font.Bold
-                    font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
-                    text: "NEW"// linkDeviceBtn.text
-                }
-
-                preferredWidth: linkDeviceNewBtnTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
-
-                primary: true
-                Layout.alignment: Qt.AlignLeft
-
-                toolTipText: JamiStrings.tipLinkNewDevice
-                text: JamiStrings.linkNewDevice
-
-                onClicked: viewCoordinator.presentDialog(appWindow, "settingsview/components/SquaredLinkScannerBest.qml")
-                // onClicked: viewCoordinator.presentDialog(appWindow, "settingsview/components/LinkScannerBest.qml")
-                // onClicked: viewCoordinator.presentDialog(appWindow, "settingsview/components/LinkScanner.qml")
-                // onClicked: viewCoordinator.presentDialog(appWindow, "settingsview/components/LinkDeviceDialog.qml")
+                onClicked: viewCoordinator.presentDialog(appWindow, "settingsview/components/LinkDeviceDialog.qml")
             }
         }
 

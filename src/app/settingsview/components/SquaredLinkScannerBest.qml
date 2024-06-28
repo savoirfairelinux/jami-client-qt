@@ -15,6 +15,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
+
+
+// KESS this was taken from mainview/components/RecordBox.qml but is aiming to replace settingsview/components/LinkScannerBest.qml as candidate for the dialog
+// this dialog should improve on the old design by being more square in design and should have less visual clutter
+// - the size should be bigger
+// - the guide should be less invasive
+// - the flip video should be a visible button overlayed on the panel
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -24,120 +32,140 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import "../../commoncomponents"
 
-Popup {
+// Popup {
+//     id: root
+//
+//     enum States {
+//         INIT,
+//         RECORDING,
+//         REC_SUCCESS
+//     }
+//
+//     property string pathRecorder: ""
+//     property int duration: 0
+//     property int state: RecordBox.States.INIT
+//     property bool isVideo: false
+//     property bool isPhoto: false
+//     property bool isAudio: false
+//     property bool showVideo: (root.isVideo && VideoDevices.listSize !== 0)
+//     property int preferredWidth: 320
+//     property int preferredHeight: 500
+//     property int btnSize: 40
+//
+//     property int offset: 3
+//     property int curveRadius: 6
+//     property int spikeHeight: 10 + offset
+//
+//     property string photo: ""
+//
+//     signal validatePhoto(string photo)
+//
+//     modal: true
+//     closePolicy: Popup.NoAutoClose
+//
+//     function openRecorder(vid) {
+//         isVideo = vid;
+//         isAudio = !vid && !isPhoto;
+//         updateState(RecordBox.States.INIT);
+//         if (isVideo) {
+//             localVideo.startWithId(VideoDevices.getDefaultDevice());
+//         }
+//         open();
+//     }
+//
+//     function closeRecorder() {
+//         if (isVideo) {
+//             localVideo.startWithId("");
+//         }
+//         if (!root.isPhoto)
+//             stopRecording();
+//         close();
+//     }
+//
+//     function updateState(new_state) {
+//         state = new_state;
+//         if (isPhoto) {
+//             screenshotBtn.visible = (state === RecordBox.States.INIT);
+//             recordButton.visible = false;
+//             btnStop.visible = false;
+//         } else {
+//             screenshotBtn.visible = false;
+//             recordButton.visible = (state === RecordBox.States.INIT);
+//             btnStop.visible = (state === RecordBox.States.RECORDING);
+//         }
+//         btnRestart.visible = (state === RecordBox.States.REC_SUCCESS);
+//         btnSend.visible = (state === RecordBox.States.REC_SUCCESS);
+//         if (state === RecordBox.States.INIT) {
+//             duration = 0;
+//             time.text = "00:00";
+//             timer.stop();
+//         } else if (state === RecordBox.States.REC_SUCCESS) {
+//             timer.stop();
+//         }
+//     }
+//
+//     function startRecording() {
+//         timer.start();
+//         pathRecorder = AVModel.startLocalMediaRecorder(isVideo ? VideoDevices.getDefaultDevice() : "");
+//         if (pathRecorder == "") {
+//             timer.stop();
+//         }
+//     }
+//
+//     function stopRecording() {
+//         if (pathRecorder !== "") {
+//             AVModel.stopLocalRecorder(pathRecorder);
+//         }
+//     }
+//
+//     function sendRecord() {
+//         if (pathRecorder !== "") {
+//             MessagesAdapter.sendFile(pathRecorder);
+//             MessagesAdapter.replyToId = "";
+//         }
+//     }
+//
+//     function updateTimer() {
+//         duration += 1;
+//         var m = Math.trunc(duration / 60);
+//         var s = (duration % 60);
+//         var min = (m < 10) ? "0" + String(m) : String(m);
+//         var sec = (s < 10) ? "0" + String(s) : String(s);
+//         time.text = min + ":" + sec;
+//     }
+//
+//     onActiveFocusChanged: {
+//         if (visible) {
+//             closeRecorder();
+//         }
+//     }
+//
+//     onVisibleChanged: {
+//         if (!visible) {
+//             closeRecorder();
+//         }
+//     }
+BaseModalDialog {
     id: root
 
-    enum States {
-        INIT,
-        RECORDING,
-        REC_SUCCESS
-    }
+    property string imageId
+    property bool newItem
+    property real buttonSize: 36
+    property real imageSize: 25
 
-    property string pathRecorder: ""
-    property int duration: 0
-    property int state: RecordBox.States.INIT
-    property bool isVideo: false
-    property bool isPhoto: false
-    property bool isAudio: false
-    property bool showVideo: (root.isVideo && VideoDevices.listSize !== 0)
-    property int preferredWidth: 320
-    property int preferredHeight: 500
-    property int btnSize: 40
 
-    property int offset: 3
-    property int curveRadius: 6
-    property int spikeHeight: 10 + offset
-
-    property string photo: ""
-
-    signal validatePhoto(string photo)
-
-    modal: true
-    closePolicy: Popup.NoAutoClose
-
-    function openRecorder(vid) {
-        isVideo = vid;
-        isAudio = !vid && !isPhoto;
-        updateState(RecordBox.States.INIT);
-        if (isVideo) {
-            localVideo.startWithId(VideoDevices.getDefaultDevice());
+    // KESS this function can be used to automatically show the camera with a fade in animation on the preview dialog
+    // there should also be two buttons overlayed...
+    // 1. list to change the camera
+    // 2. button to open manual entry of qr image below the scanner and pause the preview
+    property bool deviceHasCamerasAvail: VideoDevices.listSize !== 0
+    function startPreviewing(force = false) {
+        if (!deviceHasCamerasAvail) {
+            startAlternativeEntry();
+            return;
         }
-        open();
+        previewWidget.startWithId(VideoDevices.getDefaultDevice(), force);
     }
-
-    function closeRecorder() {
-        if (isVideo) {
-            localVideo.startWithId("");
-        }
-        if (!root.isPhoto)
-            stopRecording();
-        close();
-    }
-
-    function updateState(new_state) {
-        state = new_state;
-        if (isPhoto) {
-            screenshotBtn.visible = (state === RecordBox.States.INIT);
-            recordButton.visible = false;
-            btnStop.visible = false;
-        } else {
-            screenshotBtn.visible = false;
-            recordButton.visible = (state === RecordBox.States.INIT);
-            btnStop.visible = (state === RecordBox.States.RECORDING);
-        }
-        btnRestart.visible = (state === RecordBox.States.REC_SUCCESS);
-        btnSend.visible = (state === RecordBox.States.REC_SUCCESS);
-        if (state === RecordBox.States.INIT) {
-            duration = 0;
-            time.text = "00:00";
-            timer.stop();
-        } else if (state === RecordBox.States.REC_SUCCESS) {
-            timer.stop();
-        }
-    }
-
-    function startRecording() {
-        timer.start();
-        pathRecorder = AVModel.startLocalMediaRecorder(isVideo ? VideoDevices.getDefaultDevice() : "");
-        if (pathRecorder == "") {
-            timer.stop();
-        }
-    }
-
-    function stopRecording() {
-        if (pathRecorder !== "") {
-            AVModel.stopLocalRecorder(pathRecorder);
-        }
-    }
-
-    function sendRecord() {
-        if (pathRecorder !== "") {
-            MessagesAdapter.sendFile(pathRecorder);
-            MessagesAdapter.replyToId = "";
-        }
-    }
-
-    function updateTimer() {
-        duration += 1;
-        var m = Math.trunc(duration / 60);
-        var s = (duration % 60);
-        var min = (m < 10) ? "0" + String(m) : String(m);
-        var sec = (s < 10) ? "0" + String(s) : String(s);
-        time.text = min + ":" + sec;
-    }
-
-    onActiveFocusChanged: {
-        if (visible) {
-            closeRecorder();
-        }
-    }
-
-    onVisibleChanged: {
-        if (!visible) {
-            closeRecorder();
-        }
-    }
-
     // KESS extract this maybe?
     Rectangle {
         id: boxBackground
@@ -470,5 +498,7 @@ Popup {
                     }
         }
     }
-    }
 }
+}
+//     }
+// }

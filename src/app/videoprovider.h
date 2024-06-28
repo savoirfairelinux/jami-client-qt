@@ -47,6 +47,7 @@ public:
 
     Q_INVOKABLE void subscribe(QObject* obj, const QString& id = {});
     Q_INVOKABLE void unsubscribe(QObject* obj);
+    //KESS 
     Q_INVOKABLE QString captureVideoFrame(const QString& id);
     Q_INVOKABLE QImage captureRawVideoFrame(const QString& id);
 
