@@ -30,9 +30,6 @@ Rectangle {
     property string errorText: ""
     property int preferredHeight: importFromDevicePageColumnLayout.implicitHeight + 2 * JamiTheme.preferredMarginSize
 
-    property string authUri: ""
-    property string authQrImage: "image://authQr"
-
     signal showThisPage
 
     function initializeOnShowUp() {
@@ -40,25 +37,11 @@ Rectangle {
     }
 
     function clearAllTextFields() {
-        // connectBtn.spinnerTriggered = false;
+        // TODO clear password box
     }
 
     function errorOccurred(errorMessage) {
-        errorText = errorMessage;
-        // connectBtn.spinnerTriggered = false;
-    }
-
-    function updateUri(newUri) {
-        root.authQrImage = "image://authQr/" + newUri;
-        root.authUri = newUri;
-        uriQrImage.visible = true;
-        copyCodeBox.visible = true;
-    }
-
-    function dummyQr() {
-        // var fakeCode = "jami-auth://fakejamiid/123456"
-        var fakeCode = "hello there"
-        updateUri(fakeCode)
+        // errorText = errorMessage;
     }
 
     Connections {
@@ -66,39 +49,46 @@ Rectangle {
 
         function onMainStepChanged() {
             if (WizardViewStepModel.mainStep === WizardViewStepModel.MainSteps.AccountCreation && WizardViewStepModel.accountCreationOption === WizardViewStepModel.AccountCreationOption.ImportFromDevice) {
-                clearAllTextFields();
-                root.showThisPage();
+                clearAllTextFields()
+                root.showThisPage()
             }
         }
 
-        function onLinkStateChanged(linkOption) {
-            print("[LinkDevice] ImportFromDevicePage page: onLinkStateChanged")
-            switch (linkOption) {
-            // case WizardViewStepModel.LinkDeviceStep.OutOfBand:
-            //     print("[LinkDevice] ImportFromDevicePage page: onLinkStateChanged OOB")
-            //     root.showThisPage()
-            //     break
-            default:
-                break
-            }
-        }
+        // function onLinkStateChanged(linkOption) {
+        //     print("[LinkDevice] LinkDeviceQrPage: onLinkStateChanged")
+        //     switch (linkOption) {
+        //     case WizardViewStepModel.LinkDeviceStep.Waiting:
+        //         print("[LinkDevice] LinkDeviceQrPage page: onLinkStateChanged Waiting")
+        //         root.showThisPage()
+        //         break
+        //     default:
+        //         // print("[LinkDevice] ImportFromDevicePage page: onLinkStateChanged default")
+        //         // print("Bad account creation option: " + creationOption);
+        //         // WizardViewStepModel.closeWizardView()
+        //         break
+        //     }
+        // }
     }
 
     Connections {
         target: AccountAdapter
 
         function onDeviceAuthStateChanged(accountId, state, detail) {
-            console.warn("[LinkDevice] qml update: ", state, ", ", detail)
-            if (state == 0) {
-                // show the qr page
-
-                // set the uri
-
-                // tell the page to update
-            }
+            // console.warn("[LinkDevice] qml update: ", state, ", ", detail)
+            // if (state == 0) {
+            //     console.warn("[LinkDevice] code ready: ", detail)
+            //     // request image
+            //     root.authQrImage = "image://authQr/" + detail
+            //     // show image
+            //     root.authUri = detail
+            //     uriQrImage.visible = true
+            //     // present alternatives to scanning
+            //     copyCodeBox.visible = true
+            //     // TODO timer to stop the page and show error
+            //     root.showThisPage()
+            // }
         }
     }
-
 
     color: JamiTheme.secondaryBackgroundColor
 
@@ -113,7 +103,7 @@ Rectangle {
 
         // title
         Text {
-            text: JamiStrings.importAccountFromAnotherDevice
+            text: "LinkDeviceAuthPage"//JamiStrings.importAccountFromAnotherDevice
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: JamiTheme.preferredMarginSize
             Layout.preferredWidth: Math.min(360, root.width - JamiTheme.preferredMarginSize * 2)
@@ -124,6 +114,64 @@ Rectangle {
             font.pixelSize: JamiTheme.wizardViewTitleFontPixelSize
             wrapMode: Text.WordWrap
         }
+
+        DialogButtonBox {
+            standardButtons: DialogButtonBox.Ok | DialogButtonBox.Cancel
+
+            onAccepted: {
+                console.log("Ok clicked")
+                // 1. validate password
+                // 2. if good then proceed with provideAccountAuthentication call
+            }
+            onRejected: {
+                console.log("Cancel clicked")
+                // go back to previous page
+            }
+            onDiscarded: {
+                console.log("Discarded clicked")
+                // go back to previous page
+            }
+        }
+
+        property var pwd: ""
+
+        ColumnLayout {
+            id: authenticateUserContentColumnLayout
+
+            spacing: 16
+
+            // Label {
+            //     id: labelDeletion
+            //
+            //     Layout.alignment: Qt.AlignHCenter
+            //     Layout.maximumWidth: root.parent.width - JamiTheme.preferredMarginSize * 4
+            //
+            //     text: JamiStrings.confirmRemoval
+            //     color: JamiTheme.textColor
+            //     font.pointSize: JamiTheme.textFontSize
+            //     font.kerning: true
+            //     wrapMode: Text.Wrap
+            //
+            //     horizontalAlignment: Text.AlignHCenter
+            //     verticalAlignment: Text.AlignVCenter
+            // }
+
+            PasswordTextEdit {
+                id: passwordEdit
+
+                Layout.alignment: Qt.AlignHCenter
+                Layout.preferredWidth: JamiTheme.preferredFieldWidth
+                Layout.preferredHeight: visible ? 48 : 0
+
+                placeholderText: JamiStrings.enterCurrentPassword
+
+                onDynamicTextChanged: {
+                    root.pwd = dynamicText
+                    // root.button1.enabled = dynamicText.length > 0
+                }
+            }
+        }
+
 
         // desc
         // Text {
@@ -140,74 +188,22 @@ Rectangle {
         //     lineHeight: JamiTheme.wizardViewTextLineHeight
         // }
 
-
         MaterialButton {
-            id: startDiscoveryBtn
+            id: debugWizardBtn
 
-            // TextMetrics {
-            //     id: startDiscoveryBtnTextSize
-            //     font.weight: Font.Bold
-            //     font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize //.wizardViewButtonFontPixelSize
-            //     text: "ready link"//passwdPushButton.text
-            // }
-
-            preferredWidth: 250//passwdPushButtonTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
+            preferredWidth: 150
 
             primary: true
             Layout.alignment: Qt.AlignCenter
 
-            // toolTipText: CurrentAccount.hasArchivePassword ? JamiStrings.changeCurrentPassword : JamiStrings.setAPassword
-            text: "get started"//CurrentAccount.hasArchivePassword ? JamiStrings.changePassword : JamiStrings.setPassword
-
+            text: "debug wz"
             enabled: true
             onClicked: {
-                // this will come later in the process once the archive is transferred
-                // if (CurrentAccount.hasArchivePassword) {
-                //     viewCoordinator.presentDialog(appWindow, "commoncomponents/RevokePasswordDialog.qml", {
-                //     })
-                // }
-                // Example here:
-                // onClicked: viewCoordinator.presentDialog(appWindow, "commoncomponents/PasswordDialog.qml", {
-                //         "purpose": CurrentAccount.hasArchivePassword ? PasswordDialog.ChangePassword : PasswordDialog.SetPassword
-                // })
-                enabled = false
-                spamTimer.start()
-                // console.info("[LinkDevice] Requesting P2P account client-side.");
+                console.warn("[LinkDevice] LinkDeviceQrPage: debug WizardViewStepModel")
+                WizardViewStepModel.nextStep() // will go to the waiting page for linkdevice
             }
-
-            opacity: enabled ? 1.0 : 0.5
-            scale: enabled ? 1.0 : 0.8  // Scale based on opacity
-
-            Behavior on opacity {
-                NumberAnimation {
-                    from: 0.5
-                    duration: 150  // Duration for the fade animation
-                }
-            }
-
-            Behavior on scale {
-                NumberAnimation {
-                    duration: 150  // Duration for the scale animation
-                }
-            }
-
         }
 
-        // MaterialButton {
-        //     id: debugQrBtn
-        //
-        //     preferredWidth: 150
-        //
-        //     primary: true
-        //     Layout.alignment: Qt.AlignCenter
-        //
-        //     text: "debug"
-        //     enabled: true
-        //     onClicked: {
-        //         console.warn("[LinkDevice] debug qr image")
-        //         root.dummyQr()
-        //     }
-        // }
 
         // Button {
         //     id: confirmPasswordBtn
@@ -227,50 +223,6 @@ Rectangle {
         //     }
         //
         // }
-
-        // loads a scalable qr image
-        JamiAuthQr {
-            id: uriQrImage
-            imagePath: root.authQrImage
-            visible: false
-
-            Layout.alignment: Qt.AlignHCenter
-
-            opacity: root.authQrImage == "" ? 0.0 : 1.0
-
-            Behavior on opacity {
-                NumberAnimation {
-                    duration: 150
-                    easing.type: Easing.OutQuad
-                }
-            }
-        }
-
-        InfoBox {
-            id: copyCodeBox
-
-            visible: false
-
-            spacing: 30
-            Layout.alignment: Qt.AlignHCenter
-            title: root.authUri
-
-            opacity: visible ? 1.0 : 0.5
-            scale: visible ? 1.0 : 0.8  // Scale based on opacity
-
-            Behavior on opacity {
-                NumberAnimation {
-                    from: 0.5
-                    duration: 150  // Duration for the fade animation
-                }
-                    }
-
-            Behavior on scale {
-                NumberAnimation {
-                    duration: 150  // Duration for the scale animation
-                }
-            }
-        }
 
         Label {
             id: errorLabel
@@ -296,7 +248,7 @@ Rectangle {
         anchors.top: parent.top
         anchors.margins: JamiTheme.wizardViewPageBackButtonMargins
 
-        visible: !uriQrImage.visible //!connectBtn.spinnerTriggered
+        visible: true//!uriQrImage.visible //!connectBtn.spinnerTriggered
 
         // KeyNavigation.tab: pinFromDevice
         // KeyNavigation.up: connectBtn.enabled ? connectBtn : passwordFromDevice
