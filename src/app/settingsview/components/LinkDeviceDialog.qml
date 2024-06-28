@@ -100,6 +100,7 @@ BaseModalDialog {
             }
         }
 
+        // asks the user to enter the account password before proceeding
         // Index = 0
         Item {
             id: enterPasswordPage
@@ -178,6 +179,7 @@ BaseModalDialog {
             }
         }
 
+        // says exporting account... needs to say generating qr code or something like that
         // Index = 1
         Item {
             id: exportingSpinnerPage
@@ -288,6 +290,7 @@ BaseModalDialog {
 
                     }
 
+                    //  TODO make this the URI backup
                     Rectangle {
                         id: pinRectangle
 
