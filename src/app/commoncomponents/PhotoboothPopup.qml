@@ -28,7 +28,6 @@ import net.jami.Constants 1.1
 
 import "../mainview/components"
 
-
 BaseModalDialog {
     id: root
 
@@ -236,5 +235,3 @@ BaseModalDialog {
             }
         }
     }
-
-

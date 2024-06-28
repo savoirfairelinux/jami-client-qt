@@ -513,6 +513,7 @@ AvAdapter::isCapturing() const
     return false;
 }
 
+// KESS maybe can use this to detect camera
 bool
 AvAdapter::hasCamera() const
 {
