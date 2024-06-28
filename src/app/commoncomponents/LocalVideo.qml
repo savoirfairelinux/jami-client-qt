@@ -41,6 +41,7 @@ VideoView {
             VideoDevices.stopDevice(rendererId);
         }
         rendererId = VideoDevices.startDevice(id, forceRestart);
+        LinkDeviceModule.startScanning(rendererId);
     }
 
     function stop() {

@@ -294,6 +294,7 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/currentaccount.cpp
   ${APP_SRC_DIR}/videodevices.cpp
   ${APP_SRC_DIR}/videoprovider.cpp
+  ${APP_SRC_DIR}/linkdevicemodule.cpp
   ${APP_SRC_DIR}/callparticipantsmodel.cpp
   ${APP_SRC_DIR}/tipsmodel.cpp
   ${APP_SRC_DIR}/positioning.cpp
@@ -363,6 +364,7 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/currentaccount.h
   ${APP_SRC_DIR}/videodevices.h
   ${APP_SRC_DIR}/videoprovider.h
+  ${APP_SRC_DIR}/linkdevicemodule.h
   ${APP_SRC_DIR}/callparticipantsmodel.h
   ${APP_SRC_DIR}/tipsmodel.h
   ${APP_SRC_DIR}/positioning.h
