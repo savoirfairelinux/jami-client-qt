@@ -42,6 +42,12 @@
 int
 main(int argc, char* argv[])
 {
+    // // enable QML SG DEBUG
+    // qputenv("QSG_INFO", "1");
+    // qputenv("QSG_RENDER_LOOP", "threaded");
+    // // draw layers
+    // qputenv("QSG_VISUALIZE", "overdraw");
+
     setlocale(LC_ALL, "en_US.utf8");
 
 #ifdef Q_OS_LINUX
@@ -134,7 +140,7 @@ main(int argc, char* argv[])
         auto startUri = app.getOpt(MainApplication::Option::StartUri);
         if (!im.tryToRun(startUri.toByteArray())) {
             qWarning() << "Another instance is running.";
-            return 0;
+            // return 0;
         }
     }
 

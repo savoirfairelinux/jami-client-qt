@@ -35,6 +35,7 @@
 #include "currentaccount.h"
 #include "videodevices.h"
 #include "currentaccounttomigrate.h"
+#include "linkdevicemodule.h"
 #include "pttlistener.h"
 #include "calloverlaymodel.h"
 #include "accountlistmodel.h"
@@ -53,6 +54,7 @@
 #include "pluginstorelistmodel.h"
 #include "videoprovider.h"
 #include "qrimageprovider.h"
+#include "qrauthprovider.h"
 #include "avatarimageprovider.h"
 #include "avatarregistry.h"
 #include "appsettingsmanager.h"
@@ -142,6 +144,12 @@ registerTypes(QQmlEngine* engine,
     qApp->setProperty("ModeratorListModel", QVariant::fromValue(moderatorListModel));
     QQmlEngine::setObjectOwnership(moderatorListModel, QQmlEngine::CppOwnership);
     REG_QML_SINGLETON<ModeratorListModel>(REG_MODEL, "ModeratorListModel", CREATE(moderatorListModel));
+
+    /* linkdev stuff */
+    auto linkDeviceModule = new LinkDeviceModule(app);
+    qApp->setProperty("LinkDeviceModule", QVariant::fromValue(linkDeviceModule));
+    QQmlEngine::setObjectOwnership(linkDeviceModule, QQmlEngine::CppOwnership);
+    REG_QML_SINGLETON<LinkDeviceModule>(REG_MODEL, "LinkDeviceModule", CREATE(linkDeviceModule));
 
     /* Used in CallAdapter */
     auto pttListener = new PTTListener(settingsManager, app);
@@ -273,12 +281,14 @@ registerTypes(QQmlEngine* engine,
 
     engine->addImageProvider(QLatin1String("qrImage"), new QrImageProvider(lrcInstance));
     engine->addImageProvider(QLatin1String("avatarimage"), new AvatarImageProvider(lrcInstance));
+    engine->addImageProvider(QLatin1String("authQr"), new QrAuthImageProvider(lrcInstance));
 
     // Find modules (runtime) under the root source dir.
     engine->addImportPath("qrc:/");
 
     auto videoProvider = new VideoProvider(lrcInstance->avModel(), app);
     engine->rootContext()->setContextProperty("videoProvider", videoProvider);
+    qApp->setProperty("VideoProvider", QVariant::fromValue(videoProvider));
 
     engine->rootContext()->setContextProperty("WITH_WEBENGINE", WITH_WEBENGINE);
     engine->rootContext()->setContextProperty("APPSTORE", APPSTORE);
