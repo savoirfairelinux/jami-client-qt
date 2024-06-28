@@ -28,7 +28,7 @@ import net.jami.Constants 1.1
 
 import "../mainview/components"
 
-
+// KESS
 BaseModalDialog {
     id: root
 
