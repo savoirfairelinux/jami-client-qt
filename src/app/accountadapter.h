@@ -63,6 +63,10 @@ public:
     // Delete current account
     Q_INVOKABLE void deleteCurrentAccount();
 
+    // KESS TENTATIVE
+    Q_INVOKABLE bool exportToPeer(const QString& accountId,
+                                  const QString& uri) const;
+
     // Conf property
     Q_INVOKABLE bool exportToFile(const QString& accountId,
                                   const QString& path,

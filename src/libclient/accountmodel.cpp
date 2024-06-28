@@ -121,14 +121,25 @@ public Q_SLOTS:
     void slotAccountStatusChanged(const QString& accountID, const api::account::Status status);
 
     /**
+// <<<<<<< Updated upstream
      * Emit exportOnRingEnded.
      * @param accountId
      * @param status
      * @param pin
      */
-    void slotExportOnRingEnded(const QString& accountID, int status, const QString& pin);
+    // void slotExportOnRingEnded(const QString& accountID, int status, const QString& pin);
 
     /**
+     * Emit exportToPeerEnded.
+     * @param accountId
+     * @param status
+     * @param uri
+     */
+    // void slotExportToPeerEnded(const QString& accountID, int status, const QString& pin);
+
+    /**
+// =======
+// >>>>>>> Stashed changes
      * @param accountId
      * @param details
      */
@@ -318,9 +329,10 @@ AccountModel::exportToFile(const QString& accountId,
 }
 
 bool
-AccountModel::exportOnRing(const QString& accountId, const QString& password) const
+AccountModel::exportToPeer(const QString& accountId,
+                           const QString& uri) const
 {
-    return ConfigurationManager::instance().exportOnRing(accountId, password);
+    return ConfigurationManager::instance().exportToPeer(accountId, uri);
 }
 
 void
@@ -397,10 +409,6 @@ AccountModelPimpl::AccountModelPimpl(AccountModel& linked,
             &CallbacksHandler::volatileAccountDetailsChanged,
             this,
             &AccountModelPimpl::slotVolatileAccountDetailsChanged);
-    connect(&callbacksHandler,
-            &CallbacksHandler::exportOnRingEnded,
-            this,
-            &AccountModelPimpl::slotExportOnRingEnded);
     connect(&callbacksHandler,
             &CallbacksHandler::nameRegistrationEnded,
             this,
@@ -586,26 +594,6 @@ AccountModelPimpl::slotVolatileAccountDetailsChanged(const QString& accountId,
         accountInfo.confProperties.deviceId = new_deviceId.value();
 
     Q_EMIT linked.profileUpdated(accountId);
-}
-
-void
-AccountModelPimpl::slotExportOnRingEnded(const QString& accountID, int status, const QString& pin)
-{
-    account::ExportOnRingStatus convertedStatus = account::ExportOnRingStatus::INVALID;
-    switch (status) {
-    case 0:
-        convertedStatus = account::ExportOnRingStatus::SUCCESS;
-        break;
-    case 1:
-        convertedStatus = account::ExportOnRingStatus::WRONG_PASSWORD;
-        break;
-    case 2:
-        convertedStatus = account::ExportOnRingStatus::NETWORK_ERROR;
-        break;
-    default:
-        break;
-    }
-    Q_EMIT linked.exportOnRingEnded(accountID, convertedStatus, pin);
 }
 
 void

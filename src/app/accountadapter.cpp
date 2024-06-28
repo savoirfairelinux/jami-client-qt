@@ -336,6 +336,12 @@ AccountAdapter::getDefaultModerators(const QString& accountId)
     return lrcInstance_->accountModel().getDefaultModerators(accountId);
 }
 
+// KESS TENTATIVE
+bool AccountAdapter::exportToPeer(const QString& accountId, const QString& uri) const
+{
+    return lrcInstance_->accountModel().exportToPeer(accountId, uri);
+}
+
 bool
 AccountAdapter::exportToFile(const QString& accountId,
                              const QString& path,

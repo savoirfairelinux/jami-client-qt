@@ -48,6 +48,7 @@ public:
     Q_INVOKABLE void subscribe(QObject* obj, const QString& id = {});
     Q_INVOKABLE void unsubscribe(QObject* obj);
     Q_INVOKABLE QString captureVideoFrame(const QString& id);
+    // KESS
     Q_INVOKABLE QImage captureRawVideoFrame(const QString& id);
 
     QVariantMap getActiveRenderers();
@@ -56,6 +57,7 @@ public:
 private Q_SLOTS:
     void onRendererStarted(const QString& id, const QSize& size);
     void onFrameBufferRequested(const QString& id, AVFrame* avframe);
+    // connect
     void onFrameUpdated(const QString& id);
     void onRendererStopped(const QString& id);
 
