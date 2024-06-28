@@ -36,6 +36,7 @@
 #include "videodevices.h"
 #include "currentaccounttomigrate.h"
 #include "pttlistener.h"
+#include "linkdevicemodule.h"
 #include "calloverlaymodel.h"
 #include "accountlistmodel.h"
 #include "mediacodeclistmodel.h"
@@ -142,6 +143,12 @@ registerTypes(QQmlEngine* engine,
     qApp->setProperty("ModeratorListModel", QVariant::fromValue(moderatorListModel));
     QQmlEngine::setObjectOwnership(moderatorListModel, QQmlEngine::CppOwnership);
     REG_QML_SINGLETON<ModeratorListModel>(REG_MODEL, "ModeratorListModel", CREATE(moderatorListModel));
+
+    /* KESS linkdev stuff */
+    auto linkDeviceModule = new LinkDeviceModule(settingsManager, app);
+    qApp->setProperty("LinkDeviceModule", QVariant::fromValue(linkDeviceModule));
+    QQmlEngine::setObjectOwnership(linkDeviceModule, QQmlEngine::CppOwnership);
+    REG_QML_SINGLETON<LinkDeviceModule>(REG_MODEL, "LinkDeviceModule", CREATE(linkDeviceModule));
 
     /* Used in CallAdapter */
     auto pttListener = new PTTListener(settingsManager, app);
@@ -279,6 +286,7 @@ registerTypes(QQmlEngine* engine,
 
     auto videoProvider = new VideoProvider(lrcInstance->avModel(), app);
     engine->rootContext()->setContextProperty("videoProvider", videoProvider);
+    qApp->setProperty("VideoProvider", QVariant::fromValue(videoProvider));
 
     engine->rootContext()->setContextProperty("WITH_WEBENGINE", WITH_WEBENGINE);
     engine->rootContext()->setContextProperty("APPSTORE", APPSTORE);

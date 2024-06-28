@@ -103,7 +103,17 @@ SettingsPageBase {
             LocalVideo {
                 id: previewWidget
 
+                onRendererIdChanged: {
+                    console.warn("[LinkDevice] Camera render ID changed.")
+                    if (rendererId !== "") {
+                        LinkDeviceModule.startScanning(rendererId);
+                        // PTTListener.startScanning(rendererId);
+                    }
+                }
+
+                
                 anchors.fill: parent
+                // KESS interesting bits here
                 flip: flipControl.checked
 
                 underlayItems: Text {
