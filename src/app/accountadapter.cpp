@@ -28,6 +28,8 @@
 
 #include <QtConcurrent/QtConcurrent>
 
+// #include <string_view>
+
 AccountAdapter::AccountAdapter(AppSettingsManager* settingsManager,
                                SystemTray* systemTray,
                                LRCInstance* instance,
@@ -45,6 +47,11 @@ AccountAdapter::AccountAdapter(AppSettingsManager* settingsManager,
             &AccountModel::profileUpdated,
             this,
             &AccountAdapter::accountStatusChanged);
+
+    connect(&lrcInstance_->accountModel(),
+            &AccountModel::deviceAuthStateChanged,
+            this,
+            &AccountAdapter::deviceAuthStateChanged);
 
     connect(systemTray_,
             &SystemTray::countChanged,
@@ -170,6 +177,45 @@ AccountAdapter::createJamiAccount(const QVariantMap& settings)
                                                       settings["archivePin"].toString(),
                                                       "");
     });
+}
+
+// void
+// AccountAdapter::deviceAuthStateChanged(const QString& accountId, int state, const QString& detail) {
+//     Q_EMIT deviceAuthStateChanged(accountId, state, detail);
+// }
+
+void
+AccountAdapter::startLinkDevice()
+{
+    Utils::oneShotConnect(
+        &lrcInstance_->accountModel(),
+        &lrc::api::AccountModel::accountAdded,
+        [this](const QString& accountId) {
+            Utils::oneShotConnect(&lrcInstance_->accountModel(),
+                                  &lrc::api::AccountModel::accountDetailsChanged,
+                                  [this](const QString& accountId) {
+                                      Q_UNUSED(accountId);
+                                      // For testing purpose
+                                      Q_EMIT accountConfigFinalized();
+                                  });
+
+            auto confProps = lrcInstance_->accountModel().getAccountConfig(accountId);
+            qWarning() << "[LinkDevice] setting archivePath to jami-auth";
+            confProps.archivePath = "jami-auth";
+            // confProps.archiveUrl = "jami-auth"; // KESS TODO in account config
+            lrcInstance_->accountModel().setAccountConfig(accountId, confProps);
+
+            //     Q_EMIT lrcInstance_->accountListChanged();
+            Q_EMIT accountAdded(accountId,
+                                lrcInstance_->accountModel().getAccountList().indexOf(accountId));
+        },
+        this,
+        &AccountAdapter::accountCreationFailed);
+
+    // connectFailure();
+
+    auto futureResult = QtConcurrent::run(
+        [this] { lrcInstance_->accountModel().startLinkDevice(); });
 }
 
 void
@@ -334,6 +380,25 @@ QStringList
 AccountAdapter::getDefaultModerators(const QString& accountId)
 {
     return lrcInstance_->accountModel().getDefaultModerators(accountId);
+}
+
+bool
+AccountAdapter::exportToPeer(const QString& accountId, const QString& uri)
+{
+    return lrcInstance_->accountModel().exportToPeer(accountId, uri);
+}
+
+void
+AccountAdapter::provideAccountAuthentication(const QString& accountId,
+                                             const QString& credentialsFromUser)
+{
+    // auto scheme = std::string_view("password");
+    qWarning() << "[LinkDevice] accountadapter.cpp: providing account auth";
+    qWarning() << "[LinkDevice] accountadapter.cpp: providing account auth with pw = " << credentialsFromUser;
+    lrcInstance_->accountModel().provideAccountAuthentication(accountId, credentialsFromUser); //, scheme);
+    // lrcInstance_->accountModel().provideAccountAuthentication(accountId, credentialsFromUser.toStdString()); //, scheme);
+    // lrcInstance_->accountModel().provideAccountAuthentication(credentialsFromUser);
+    // TODO credentialsFromUser + .toString ??
 }
 
 bool
