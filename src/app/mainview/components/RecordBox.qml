@@ -138,6 +138,7 @@ Popup {
         }
     }
 
+    // KESS extract this maybe?
     Rectangle {
         id: boxBackground
         radius: 5
