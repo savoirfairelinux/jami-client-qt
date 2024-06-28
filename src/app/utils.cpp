@@ -813,6 +813,7 @@ Utils::pixmapFromSvg(const QString& svg_resource, const QSize& size)
     return pixmap;
 }
 
+// KESS can use this to convert the auth url into a qr code
 QImage
 Utils::getQRCodeImage(QString data, int margin)
 {
