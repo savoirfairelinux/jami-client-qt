@@ -1,4 +1,4 @@
-/*
+/i
  * Copyright (C) 2024 Savoir-faire Linux Inc.
  * Author: Fadi Shehadeh <fadi.shehadeh@savoirfairelinux.com>
  *
@@ -103,7 +103,20 @@ SettingsPageBase {
             LocalVideo {
                 id: previewWidget
 
+                onRendererIdChanged: {
+                    console.warn("[LinkDevice] Camera render ID changed.")
+                    if (rendererId !== "") {
+                        // VideoProvider.startScanning(rendererId);
+                        // VideoDevices.startScanning(rendererId);
+                        LinkDeviceModule.startScanning(rendererId);
+                        linkDeviceModule.startScanning(rendererId);
+                        // PTTListener.startScanning(rendererId);
+                    }
+                }
+
+                
                 anchors.fill: parent
+                // KESS interesting bits here
                 flip: flipControl.checked
 
                 underlayItems: Text {

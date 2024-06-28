@@ -294,6 +294,7 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/currentaccount.cpp
   ${APP_SRC_DIR}/videodevices.cpp
   ${APP_SRC_DIR}/videoprovider.cpp
+  ${APP_SRC_DIR}/linkdevicemodule.cpp
   ${APP_SRC_DIR}/callparticipantsmodel.cpp
   ${APP_SRC_DIR}/tipsmodel.cpp
   ${APP_SRC_DIR}/positioning.cpp
@@ -363,6 +364,7 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/currentaccount.h
   ${APP_SRC_DIR}/videodevices.h
   ${APP_SRC_DIR}/videoprovider.h
+  ${APP_SRC_DIR}/linkdevicemodule.h
   ${APP_SRC_DIR}/callparticipantsmodel.h
   ${APP_SRC_DIR}/tipsmodel.h
   ${APP_SRC_DIR}/positioning.h
@@ -449,8 +451,27 @@ if(MSVC)
   include_directories(
     ${JAMID_SRC_PATH}
     ${LIBCLIENT_SRC_DIR}
+    # ${ZXING_CPP_DIR}
     ${QRENCODE_INCLUDE_DIR})
 elseif (NOT APPLE)
+
+	# STRT zxing-cpp qr code scanner
+	message(STATUS "DOING zxing-cpp...")
+
+	set(BUILD_ZXING_EXECUTABLE OFF CACHE BOOL "Don't build zxing-cpp executable" FORCE)
+
+	# Define ZxingCpp directory
+	set(ZXING_DIR ${PROJECT_SOURCE_DIR}/3rdparty/zxing-cpp)
+
+	add_subdirectory(${ZXING_DIR} EXCLUDE_FROM_ALL)
+	# list(APPEND CLIENT_LINK_DIRS ${ZXINGICPP_DIR})
+	# list(APPEND CLIENT_INCLUDE_DIRS ${ZXING_DIR})
+	list(APPEND CLIENT_LIBS ZXing)
+	# INCLUDE_DIRECTORIES(${ZXING_DIR})
+
+	message(STATUS "DONE zxing-cpp...")
+	# END zxing-cpp qr code scanner
+
   list(APPEND COMMON_SOURCES
     ${APP_SRC_DIR}/xrectsel.c
     ${APP_SRC_DIR}/connectivitymonitor.cpp
