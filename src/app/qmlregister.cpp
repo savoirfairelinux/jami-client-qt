@@ -35,6 +35,7 @@
 #include "currentaccount.h"
 #include "videodevices.h"
 #include "currentaccounttomigrate.h"
+#include "linkdevicemodule.h"
 #include "pttlistener.h"
 #include "calloverlaymodel.h"
 #include "accountlistmodel.h"
@@ -143,6 +144,12 @@ registerTypes(QQmlEngine* engine,
     QQmlEngine::setObjectOwnership(moderatorListModel, QQmlEngine::CppOwnership);
     REG_QML_SINGLETON<ModeratorListModel>(REG_MODEL, "ModeratorListModel", CREATE(moderatorListModel));
 
+    /* KESS linkdev stuff */
+    auto linkDeviceModule = new LinkDeviceModule(app);
+    qApp->setProperty("LinkDeviceModule", QVariant::fromValue(linkDeviceModule));
+    QQmlEngine::setObjectOwnership(linkDeviceModule, QQmlEngine::CppOwnership);
+    REG_QML_SINGLETON<LinkDeviceModule>(REG_MODEL, "LinkDeviceModule", CREATE(linkDeviceModule));
+
     /* Used in CallAdapter */
     auto pttListener = new PTTListener(settingsManager, app);
     qApp->setProperty("PTTListener", QVariant::fromValue(pttListener));
@@ -240,6 +247,7 @@ registerTypes(QQmlEngine* engine,
 
     // Lrc namespaces, models, and singletons
     QML_REGISTERNAMESPACE(NS_MODELS, lrc::api::staticMetaObject, "Lrc");
+    // KESS need to pass account model?
     QML_REGISTERNAMESPACE(NS_MODELS, lrc::api::account::staticMetaObject, "Account");
     QML_REGISTERNAMESPACE(NS_MODELS, lrc::api::call::staticMetaObject, "Call");
     QML_REGISTERNAMESPACE(NS_MODELS, lrc::api::datatransfer::staticMetaObject, "Datatransfer");
@@ -250,6 +258,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERNAMESPACE(NS_MODELS, lrc::api::conversation::staticMetaObject, "Conversation");
 
     // Same as QML_REGISTERUNCREATABLE but omit the namespace in Qml
+    // KESS need to pass account model?
     QML_REGISTERUNCREATABLE_IN_NAMESPACE(AccountModel, lrc::api);
     QML_REGISTERUNCREATABLE_IN_NAMESPACE(BehaviorController, lrc::api);
     QML_REGISTERUNCREATABLE_IN_NAMESPACE(DataTransferModel, lrc::api);
@@ -279,6 +288,7 @@ registerTypes(QQmlEngine* engine,
 
     auto videoProvider = new VideoProvider(lrcInstance->avModel(), app);
     engine->rootContext()->setContextProperty("videoProvider", videoProvider);
+    qApp->setProperty("VideoProvider", QVariant::fromValue(videoProvider));
 
     engine->rootContext()->setContextProperty("WITH_WEBENGINE", WITH_WEBENGINE);
     engine->rootContext()->setContextProperty("APPSTORE", APPSTORE);

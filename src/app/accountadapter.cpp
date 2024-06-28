@@ -173,6 +173,81 @@ AccountAdapter::createJamiAccount(const QVariantMap& settings)
 }
 
 void
+AccountAdapter::startLinkDevice()
+// AccountAdapter::startLinkDevice(const QVariantMap& settings)
+{
+    // auto registeredName = settings["registeredName"].toString();
+    Utils::oneShotConnect(
+        &lrcInstance_->accountModel(),
+        &lrc::api::AccountModel::accountAdded,
+        [this](const QString& accountId) {
+            // [this, registeredName, settings](const QString& accountId) {
+            // lrcInstance_->accountModel().setAvatar(accountId, settings["avatar"].toString());
+            Utils::oneShotConnect(&lrcInstance_->accountModel(),
+                                  &lrc::api::AccountModel::accountDetailsChanged,
+                                  [this](const QString& accountId) {
+                                      Q_UNUSED(accountId);
+                                      // For testing purpose
+                                      Q_EMIT accountConfigFinalized();
+                                  });
+
+            auto confProps = lrcInstance_->accountModel().getAccountConfig(accountId);
+            // #ifdef Q_OS_WIN
+            //             confProps.Ringtone.ringtonePath = Utils::GetRingtonePath();
+            // #endif
+            // confProps.isRendezVous = settings["isRendezVous"].toBool();
+            confProps.archivePath = "jami-auth";
+            // confProps.archive_path = "jami-auth";
+            // confProps.archiveUrl = "jami-auth";
+            // confProps.archiveURL = "jami-auth";
+            // confProps.archive_url = "jami-auth";
+            // confProps.ARCHIVE_URL = "jami-auth";
+            lrcInstance_->accountModel().setAccountConfig(accountId, confProps);
+
+            // if (!registeredName.isEmpty()) {
+            //     QObject::disconnect(registeredNameSavedConnection_);
+            //     registeredNameSavedConnection_
+            //         = connect(&lrcInstance_->accountModel(),
+            //                   &lrc::api::AccountModel::profileUpdated,
+            //                   this,
+            //                   [this, addedAccountId = accountId](const QString& accountId) {
+            //                       if (addedAccountId == accountId) {
+            //                           Q_EMIT lrcInstance_->accountListChanged();
+            //                           Q_EMIT accountAdded(accountId,
+            //                                               lrcInstance_->accountModel()
+            //                                                   .getAccountList()
+            //                                                   .indexOf(accountId));
+            //                           QObject::disconnect(registeredNameSavedConnection_);
+            //                       }
+            //                   });
+
+            //     lrcInstance_->accountModel().registerName(accountId,
+            //                                               settings["password"].toString(),
+            //                                               registeredName);
+            // } else {
+            //     Q_EMIT lrcInstance_->accountListChanged();
+            //     Q_EMIT accountAdded(accountId,
+            //                         lrcInstance_->accountModel().getAccountList().indexOf(
+            //                             accountId));
+            // }
+        },
+        this,
+        &AccountAdapter::accountCreationFailed);
+
+    connectFailure();
+
+    auto futureResult = QtConcurrent::run([this] {
+        // auto futureResult = QtConcurrent::run([this, settings] {
+        // lrcInstance_->accountModel().createNewAccount(lrc::api::profile::Type::JAMI,
+        //                                               settings["alias"].toString(),
+        //                                               settings["archivePath"].toString(),
+        //                                               settings["password"].toString(),
+        //                                               settings["archivePin"].toString(),
+        //                                               "");
+    });
+}
+
+void
 AccountAdapter::createSIPAccount(const QVariantMap& settings)
 {
     Utils::oneShotConnect(
@@ -334,6 +409,13 @@ QStringList
 AccountAdapter::getDefaultModerators(const QString& accountId)
 {
     return lrcInstance_->accountModel().getDefaultModerators(accountId);
+}
+
+// KESS TENTATIVE
+bool
+AccountAdapter::exportToPeer(const QString& accountId, const QString& uri) const
+{
+    return lrcInstance_->accountModel().exportToPeer(accountId, uri);
 }
 
 bool
