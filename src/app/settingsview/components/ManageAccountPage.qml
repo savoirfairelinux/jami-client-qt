@@ -209,7 +209,7 @@ SettingsPageBase {
                     id: linkDeviceBtnTextSize
                     font.weight: Font.Bold
                     font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
-                    text: linkDeviceBtn.text
+                    text: "Link Device Demo"// linkDeviceBtn.text
                 }
 
                 preferredWidth: linkDeviceBtnTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
@@ -373,6 +373,56 @@ SettingsPageBase {
                         });
                 }
             }
+
+
+            // MaterialButton {
+            //     id: btnLinkDevDemo
+            //
+            //     TextMetrics {
+            //         id: btnLinkDevDemoTextSize
+            //         font.weight: Font.Bold
+            //         font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
+            //         text: btnLinkDevDemo.text
+            //     }
+            //
+            //     // preferredWidth: btnLinkDevDemoTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
+            //     preferredWidth: btnExportAccountTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
+            //     primary: true
+            //     Layout.alignment: Qt.AlignLeft
+            //
+            //     toolTipText: JamiStrings.tipBackupAccount
+            //     text: JamiStrings.saveAccountTitle
+            //
+            //     onClicked: {
+            //         var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+            //                 "title": JamiStrings.backupAccountHere,
+            //                 "fileMode": FileDialog.SaveFile,
+            //                 "folder": StandardPaths.writableLocation(StandardPaths.DesktopLocation),
+            //                 "nameFilters": [JamiStrings.jamiArchiveFiles, JamiStrings.allFiles]
+            //             });
+            //         dlg.fileAccepted.connect(function (file) {
+            //                 // is there password? If so, go to password dialog, else, go to following directly
+            //                 var exportPath = UtilsAdapter.getAbsPath(file.toString());
+            //                 if (CurrentAccount.hasArchivePassword) {
+            //                     viewCoordinator.presentDialog(appWindow, "commoncomponents/PasswordDialog.qml", {
+            //                             "purpose": PasswordDialog.LinkDevDemo,
+            //                             "path": exportPath
+            //                         });
+            //                     return;
+            //                 } else if (exportPath.length > 0) {
+            //                     var success = AccountAdapter.model.exportToFile(LRCInstance.currentAccountId, exportPath);
+            //                     viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+            //                             "title": success ? JamiStrings.success : JamiStrings.error,
+            //                             "infoText": success ? JamiStrings.backupSuccessful : JamiStrings.backupFailed,
+            //                             "buttonTitles": [JamiStrings.optionOk],
+            //                             "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
+            //                             "buttonRoles": [DialogButtonBox.AcceptRole]
+            //                         });
+            //                 }
+            //             });
+            //     }
+            // }
+
         }
 
         ColumnLayout {

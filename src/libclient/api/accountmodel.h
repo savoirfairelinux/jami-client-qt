@@ -116,13 +116,25 @@ public:
                                   const QString& path,
                                   const QString& password = {}) const;
     /**
+// <<<<<<< Updated upstream
      * Call exportOnRing from the daemon
      * @param accountId
      * @param password
      * @return if the export is initialized
      */
-    Q_INVOKABLE bool exportOnRing(const QString& accountId, const QString& password) const;
+    // Q_INVOKABLE bool exportOnRing(const QString& accountId, const QString& password) const;
+
     /**
+     * Call exportToPeer from the daemon
+     * @param accountId
+     * @param password
+     * @return if the export is initialized
+     */
+    // Q_INVOKABLE bool exportToPeer(const QString& accountId, const QString& uri) const;
+
+    /**
+// =======
+// >>>>>>> Stashed changes
      * Call removeAccount from the daemon
      * @param accountId to remove
      * @note will emit accountRemoved
@@ -297,16 +309,6 @@ Q_SIGNALS:
      * @param accountID
      */
     void profileUpdated(const QString& accountID);
-
-    /**
-     * Connect this signal to know when an account is exported on the DHT
-     * @param accountID
-     * @param status
-     * @param pin
-     */
-    void exportOnRingEnded(const QString& accountID,
-                           account::ExportOnRingStatus status,
-                           const QString& pin);
 
     /**
      * Name registration has ended
