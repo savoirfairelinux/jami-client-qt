@@ -122,6 +122,15 @@ public:
      * @return if the export is initialized
      */
     Q_INVOKABLE bool exportOnRing(const QString& accountId, const QString& password) const;
+
+    /**
+     * Call exportToPeer from the daemon
+     * @param accountId
+     * @param password
+     * @return if the export is initialized
+     */
+    Q_INVOKABLE bool exportToPeer(const QString& accountId, const QString& uri) const;
+
     /**
      * Call removeAccount from the daemon
      * @param accountId to remove
