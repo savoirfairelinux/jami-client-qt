@@ -27,7 +27,7 @@ VideoInputDeviceModel::VideoInputDeviceModel(LRCInstance* lrcInstance,
     , videoDevices_(videoDeviceInstance)
 {}
 
-VideoInputDeviceModel::~VideoInputDeviceModel() {}
+// VideoInputDeviceModel::~VideoInputDeviceModel() {}
 
 int
 VideoInputDeviceModel::rowCount(const QModelIndex& parent) const
