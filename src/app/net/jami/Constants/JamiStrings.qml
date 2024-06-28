@@ -437,8 +437,8 @@ Item {
     property string encryptDescription: qsTr("A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected by a password.")
     property string encryptWarning: qsTr("Please note that if you lose your password, it CANNOT be recovered!")
     property string enterNickname: qsTr("Enter a nickname, surname…")
-    property string linkTitle: qsTr("Use this account on other devices")
-    property string linkDescription: qsTr("This account is created and stored locally, if you want to use it on another device you have to link the new device to this account.")
+    property string linkTitle: qsTr("Communicate from another device")
+    property string linkDescription: qsTr("Your messages are stored locally on this device. If you want to access them from another device you have to first link the new device to this account.")
     property string linkAnotherDevice: qsTr("Link device")
 
     // NameRegistrationDialog

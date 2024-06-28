@@ -104,6 +104,7 @@ SettingsPageBase {
                 id: previewWidget
 
                 anchors.fill: parent
+                // KESS interesting bits here
                 flip: flipControl.checked
 
                 underlayItems: Text {
