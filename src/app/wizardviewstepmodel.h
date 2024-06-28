@@ -18,6 +18,7 @@
 
 #pragma once
 
+#include "linkdevicemodule.h"
 #include "qtutils.h"
 
 #include <QObject>
@@ -41,6 +42,7 @@ public:
         Initial,          // Initial welcome step.
         AccountCreation,  // General account creation step.
         NameRegistration, // Name registration step : CreateJamiAccount, CreateRendezVous
+        // Summary,          // Account creation summary (name, profile photo, get started button)
     };
     Q_ENUM(MainSteps)
 
@@ -55,8 +57,18 @@ public:
     };
     Q_ENUM(AccountCreationOption)
 
+    enum class LinkDeviceStep {
+        OutOfBand,
+        Waiting,
+        Scannable,
+        Auth,
+        // Summary // in mainsteps
+    };
+    Q_ENUM(LinkDeviceStep)
+
     QML_PROPERTY(MainSteps, mainStep)
     QML_PROPERTY(AccountCreationOption, accountCreationOption)
+    QML_PROPERTY(LinkDeviceStep, linkDeviceStep)
     QML_PROPERTY(QVariantMap, accountCreationInfo)
 
 public:
@@ -73,12 +85,18 @@ public:
 
     Q_INVOKABLE void startAccountCreationFlow(AccountCreationOption accountCreationOption);
     Q_INVOKABLE void nextStep();
+    Q_INVOKABLE void advanceLinkDevice();
+    Q_INVOKABLE void goBackLinkDevice();
+    Q_INVOKABLE void jumpToConnectingLinkDevice();
+    Q_INVOKABLE void jumpToAuthLinkDevice();
+    Q_INVOKABLE void jumpToScannableState();
     Q_INVOKABLE void previousStep();
 
 Q_SIGNALS:
     void accountIsReady(QString accountId);
     void closeWizardView();
     void createAccountRequested(AccountCreationOption);
+    void linkStateChanged(LinkDeviceStep);
 
 private:
     void reset();

@@ -1,0 +1,92 @@
+diff --git a/src/app/mainapplication.cpp b/src/app/mainapplication.cpp
+index 64a2bd81a..62bf1e7b9 100644
+--- a/src/app/mainapplication.cpp
++++ b/src/app/mainapplication.cpp
+@@ -161,7 +161,7 @@ MainApplication::MainApplication(int& argc, char** argv)
+                                      "*.debug=true\n"
+                                      "libclient.debug=false\n"
+                                      "qt.*=false\n"
+-                                     "qml.debug=false\n"
++                                     // "qml.debug=false\n"
+                                      "default.debug=false\n"
+                                      "client.debug=false\n"
+                                      "\n");
+diff --git a/src/app/pttlistener.h b/src/app/pttlistener.h
+index d3cb371eb..47fe52ccc 100644
+--- a/src/app/pttlistener.h
++++ b/src/app/pttlistener.h
+@@ -1,10 +1,13 @@
+ #pragma once
+ 
+ #include "appsettingsmanager.h"
++#include "videoprovider.h"
+ 
++#include <QCoreApplication>
+ #include <QObject>
+ #include <QThread>
+ #include <QKeyEvent>
++#include <QTimer>
+ 
+ class PTTListener : public QObject
+ {
+@@ -35,6 +38,29 @@ public:
+     PTTListener(AppSettingsManager* settingsManager, QObject* parent = nullptr);
+     ~PTTListener();
+ 
++    Q_INVOKABLE void startScanning(const QString& id)
++    {
++        qWarning() << Q_FUNC_INFO << id;
++
++        auto videoProvider = qApp->property("VideoProvider").value<VideoProvider*>();
++        auto timer = new QTimer(this);
++        connect(timer, &QTimer::timeout, this, [this, videoProvider, id]() {
++            // check the frame
++            // 1. get the frame
++            // 2. convert the frame to grayscale
++            // 3. check with QR detector from the library called zxing
++            // 4. if QR detected, emit the signal
++            // 5. if not, do nothing
++            // Let's go!
++            auto frame = videoProvider->captureRawVideoFrame(id);
++            auto greyFrame = frame.convertToFormat(QImage::Format_Grayscale8);
++            // Now use ZXing to detect QR code
++            if (!greyFrame.isNull())
++                qWarning() << "yeay gray frame!";
++        });
++        timer->start(200);
++    };
++
+ Q_SIGNALS:
+     void pttKeyPressed();
+     void pttKeyReleased();
+diff --git a/src/app/qmlregister.cpp b/src/app/qmlregister.cpp
+index 57649f834..a88d97e04 100644
+--- a/src/app/qmlregister.cpp
++++ b/src/app/qmlregister.cpp
+@@ -279,6 +279,7 @@ registerTypes(QQmlEngine* engine,
+ 
+     auto videoProvider = new VideoProvider(lrcInstance->avModel(), app);
+     engine->rootContext()->setContextProperty("videoProvider", videoProvider);
++    qApp->setProperty("VideoProvider", QVariant::fromValue(videoProvider));
+ 
+     engine->rootContext()->setContextProperty("WITH_WEBENGINE", WITH_WEBENGINE);
+     engine->rootContext()->setContextProperty("APPSTORE", APPSTORE);
+diff --git a/src/app/settingsview/components/VideoSettingsPage.qml b/src/app/settingsview/components/VideoSettingsPage.qml
+index 712b07ab4..a96d0c578 100644
+--- a/src/app/settingsview/components/VideoSettingsPage.qml
++++ b/src/app/settingsview/components/VideoSettingsPage.qml
+@@ -103,6 +103,14 @@ SettingsPageBase {
+             LocalVideo {
+                 id: previewWidget
+ 
++                onRendererIdChanged: {
++                    console.warn("DJSKDJKLASJKL")
++                    if (rendererId !== "") {
++                        // Test with PTTListener
++                        PTTListener.startScanning(rendererId);
++                    }
++                }
++
+                 anchors.fill: parent
+                 flip: flipControl.checked
+ 
