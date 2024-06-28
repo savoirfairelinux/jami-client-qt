@@ -45,6 +45,7 @@ ModalTextEdit {
         }
     }
 
+
     function startEditing() {
         root.editMode = true;
         forceActiveFocus();
