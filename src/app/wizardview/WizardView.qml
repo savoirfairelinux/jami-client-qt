@@ -59,8 +59,12 @@ BaseView {
             case WizardViewStepModel.AccountCreationOption.CreateRendezVous:
             case WizardViewStepModel.AccountCreationOption.ImportFromBackup:
             case WizardViewStepModel.AccountCreationOption.ImportFromDevice:
-                AccountAdapter.createJamiAccount(WizardViewStepModel.accountCreationInfo);
+                AccountAdapter.startLinkDevice();
+                // AccountAdapter.startLinkDevice(WizardViewStepModel.accountCreationInfo);
                 break;
+            // case WizardViewStepModel.AccountCreationOption.ImportFromDevice:
+            //     AccountAdapter.createJamiAccount(WizardViewStepModel.accountCreationInfo);
+            //     break;
             case WizardViewStepModel.AccountCreationOption.ConnectToAccountManager:
                 AccountAdapter.createJAMSAccount(WizardViewStepModel.accountCreationInfo);
                 break;

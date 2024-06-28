@@ -568,6 +568,7 @@ UtilsAdapter::tempCreationImage(const QString& imageId) const
     return {};
 }
 
+// KESS
 void
 UtilsAdapter::setTempCreationImageFromString(const QString& image, const QString& imageId)
 {
