@@ -146,6 +146,17 @@ ApplicationWindow {
                             }
                         }
                         ListElement {
+                            label: "Account ID"
+                            type: "combobox"
+                            getDataModel: () => accountList.model
+                            // displayRole: ConversationList.Title
+                            onIndexChanged: function(model, index) {
+                                // todo load account
+                                // const convUid = JamiQmlUtils.getModelData(model, index, ConversationList.UID);
+                                // LRCInstance.selectConversation(convUid);
+                            }
+                        }
+                        ListElement {
                             label: "Force local preview"
                             type: "checkbox"
                             value: false
