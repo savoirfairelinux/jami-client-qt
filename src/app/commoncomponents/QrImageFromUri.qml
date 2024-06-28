@@ -1,3 +1,4 @@
+
 /*
  * Copyright (C) 2024 Savoir-faire Linux Inc.
  * Author: Fadi Shehadeh   <fadi.shehadeh@savoirfairelinux.com>
@@ -25,10 +26,9 @@ import net.jami.Enums 1.1
 import net.jami.Models 1.1
 import "../../commoncomponents"
 
-SettingsPageBase {
+Item {
     id: root
 
-    property bool isSIP: CurrentAccount.type === Profile.Type.SIP
     property int itemWidth: 250
     signal navigateToMainView
 
@@ -204,25 +204,26 @@ SettingsPageBase {
             }
 
             MaterialButton {
-                id: linkDeviceOldBtn
+                id: linkDeviceBtn
 
                 TextMetrics {
-                    id: linkDeviceOldBtnTextSize
+                    id: linkDeviceBtnTextSize
                     font.weight: Font.Bold
                     font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
-                    text: "linkDeviceBtn.text"// TODOlinkDeviceBtn.text
+                    text: "Link Device Demo"// linkDeviceBtn.text
                 }
 
-                preferredWidth: linkDeviceOldBtnTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
+                preferredWidth: linkDeviceBtnTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
 
                 primary: true
                 Layout.alignment: Qt.AlignLeft
 
                 toolTipText: JamiStrings.tipLinkNewDevice
-                text: "Old Device"//JamiStrings.linkNewDevice
+                text: JamiStrings.linkNewDevice
 
-                onClicked: viewCoordinator.presentDialog(appWindow, "settingsview/components/LinkScanner.qml")
+                onClicked: viewCoordinator.presentDialog(appWindow, "settingsview/components/LinkDeviceDialog.qml")
             }
+        }
 
         ColumnLayout {
             id: encryptAccount
@@ -523,5 +524,4 @@ SettingsPageBase {
             }
         }
     }
-}
 }
