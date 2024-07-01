@@ -2766,7 +2766,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="562"/>
         <source>Copied to clipboard!</source>
-        <translation>Copiat în notițe!</translation>
+        <translation>Copiat în memorie!</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="563"/>
