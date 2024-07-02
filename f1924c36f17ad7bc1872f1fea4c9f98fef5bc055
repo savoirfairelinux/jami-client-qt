@@ -1,0 +1,280 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8741e074_42d732db",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-07-02T23:29:19Z",
+      "side": 1,
+      "message": "`Make an audio call`",
+      "range": {
+        "startLine": 341,
+        "startChar": 42,
+        "endLine": 341,
+        "endChar": 58
+      },
+      "revId": "f1924c36f17ad7bc1872f1fea4c9f98fef5bc055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d043e9b_211806c3",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-07-02T23:29:19Z",
+      "side": 1,
+      "message": "`make`",
+      "range": {
+        "startLine": 341,
+        "startChar": 20,
+        "endLine": 341,
+        "endChar": 25
+      },
+      "revId": "f1924c36f17ad7bc1872f1fea4c9f98fef5bc055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5974430a_dc070927",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-07-02T23:29:19Z",
+      "side": 1,
+      "message": "`Make a video call`",
+      "range": {
+        "startLine": 342,
+        "startChar": 42,
+        "endLine": 342,
+        "endChar": 58
+      },
+      "revId": "f1924c36f17ad7bc1872f1fea4c9f98fef5bc055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82ee2b46_400c4f7a",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-07-02T23:29:19Z",
+      "side": 1,
+      "message": "`make`",
+      "range": {
+        "startLine": 342,
+        "startChar": 20,
+        "endLine": 342,
+        "endChar": 25
+      },
+      "revId": "f1924c36f17ad7bc1872f1fea4c9f98fef5bc055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a46c508_1cd714fe",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-07-02T23:29:19Z",
+      "side": 1,
+      "message": "Should `plugins` be `extensions`? Thank you",
+      "range": {
+        "startLine": 343,
+        "startChar": 54,
+        "endLine": 343,
+        "endChar": 61
+      },
+      "revId": "f1924c36f17ad7bc1872f1fea4c9f98fef5bc055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0539d2a5_8d684858",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-07-02T23:29:19Z",
+      "side": 1,
+      "message": "Should `plugins` be `extensions`? Thank you",
+      "range": {
+        "startLine": 343,
+        "startChar": 24,
+        "endLine": 343,
+        "endChar": 31
+      },
+      "revId": "f1924c36f17ad7bc1872f1fea4c9f98fef5bc055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d32dd872_ab28403e",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-07-02T23:29:19Z",
+      "side": 1,
+      "message": "`A backend system error occurred: %0`",
+      "range": {
+        "startLine": 345,
+        "startChar": 40,
+        "endLine": 345,
+        "endChar": 78
+      },
+      "revId": "f1924c36f17ad7bc1872f1fea4c9f98fef5bc055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc09c3c0_8413b1ba",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-07-02T23:29:19Z",
+      "side": 1,
+      "message": "Should the contact name be included in the string to enable better translations?\n\n`{} deleted message`\n\nThank you",
+      "range": {
+        "startLine": 348,
+        "startChar": 42,
+        "endLine": 348,
+        "endChar": 59
+      },
+      "revId": "f1924c36f17ad7bc1872f1fea4c9f98fef5bc055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4a9bfef_1b329ba9",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-07-02T23:29:19Z",
+      "side": 1,
+      "message": "Change `Media` to `File`",
+      "range": {
+        "startLine": 349,
+        "startChar": 27,
+        "endLine": 349,
+        "endChar": 32
+      },
+      "revId": "f1924c36f17ad7bc1872f1fea4c9f98fef5bc055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf862326_0319ad17",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-07-02T23:29:19Z",
+      "side": 1,
+      "message": "Should the contact name be included in the string to enable better translations?\n\n`{} deleted file`\n\nThank you",
+      "range": {
+        "startLine": 349,
+        "startChar": 40,
+        "endLine": 349,
+        "endChar": 55
+      },
+      "revId": "f1924c36f17ad7bc1872f1fea4c9f98fef5bc055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9912a608_895f5c6f",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-07-02T23:29:19Z",
+      "side": 1,
+      "message": "The Details panel has a `Files` tab. Are `file`/`files` used for `media`/`media`, respectively?\n\nShould `media` be `file`?\n\nThank you",
+      "range": {
+        "startLine": 349,
+        "startChar": 50,
+        "endLine": 349,
+        "endChar": 55
+      },
+      "revId": "f1924c36f17ad7bc1872f1fea4c9f98fef5bc055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60c95f0d_c14f72ea",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-07-02T23:29:19Z",
+      "side": 1,
+      "message": "Should a space ` ` be added after `//`?\n\nThank you",
+      "range": {
+        "startLine": 352,
+        "startChar": 4,
+        "endLine": 352,
+        "endChar": 6
+      },
+      "revId": "f1924c36f17ad7bc1872f1fea4c9f98fef5bc055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
