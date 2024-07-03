@@ -34,6 +34,24 @@
       "parentUuid": "fde73ee4_8e3607a4",
       "revId": "de63de94bff0db33e85ad8d7105c4dc09af0275f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae5e6ee7_e39e343d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2024-07-03T16:53:09Z",
+      "side": 1,
+      "message": "But only from your own device?\nIf you are using the same account on multiple devices Jami will only remove the file from the chatview of this device?\n\nAnd how will synchronisation work if you have two devices with the same account and I use Windows to delete the file on device 1 but device 2 still has the file and now I connect a third device with the same account? Will device 3 try to download the file from device 2 or will it show \"deleted file\"? (Or if I cancle a download from another device and another device has already downloaded the file)",
+      "parentUuid": "7d2e149c_e9dbe546",
+      "revId": "de63de94bff0db33e85ad8d7105c4dc09af0275f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
