@@ -16,6 +16,24 @@
       "message": "What will happen if you use Windows and the folder of Jami to delete the file https://support.microsoft.com/en-us/office/delete-a-file-abaa4886-6a79-4d81-842d-46652e08c72a\n\nWill Jami also remove the file from the chat view?",
       "revId": "de63de94bff0db33e85ad8d7105c4dc09af0275f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d2e149c_e9dbe546",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2024-07-03T16:34:37Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "fde73ee4_8e3607a4",
+      "revId": "de63de94bff0db33e85ad8d7105c4dc09af0275f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
