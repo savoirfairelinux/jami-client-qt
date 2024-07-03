@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f606e859_fb6fc76f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-07-03T00:16:50Z",
+      "side": 1,
+      "message": "https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/1730",
+      "revId": "f1924c36f17ad7bc1872f1fea4c9f98fef5bc055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8741e074_42d732db",
@@ -272,6 +289,420 @@
         "startChar": 4,
         "endLine": 352,
         "endChar": 6
+      },
+      "revId": "f1924c36f17ad7bc1872f1fea4c9f98fef5bc055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2f1495d_ca893c54",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-07-03T00:16:50Z",
+      "side": 1,
+      "message": "`unlink`",
+      "range": {
+        "startLine": 454,
+        "startChar": 20,
+        "endLine": 454,
+        "endChar": 26
+      },
+      "revId": "f1924c36f17ad7bc1872f1fea4c9f98fef5bc055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48734f7f_5202eeca",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-07-03T00:16:50Z",
+      "side": 1,
+      "message": "1. Should `Remove` be `Unlink`?\n2. Should sentence case be used?\n\n`Unlink device`",
+      "range": {
+        "startLine": 454,
+        "startChar": 40,
+        "endLine": 454,
+        "endChar": 53
+      },
+      "revId": "f1924c36f17ad7bc1872f1fea4c9f98fef5bc055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ed158b1_2e9b23c4",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-07-03T00:16:50Z",
+      "side": 1,
+      "message": "`Unlink`",
+      "range": {
+        "startLine": 455,
+        "startChar": 26,
+        "endLine": 455,
+        "endChar": 32
+      },
+      "revId": "f1924c36f17ad7bc1872f1fea4c9f98fef5bc055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f033bd1_036dc846",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-07-03T00:16:50Z",
+      "side": 1,
+      "message": "`Do you really want to unlink selected device? To continue, enter account password and click Unlink.`",
+      "range": {
+        "startLine": 455,
+        "startChar": 46,
+        "endLine": 455,
+        "endChar": 90
+      },
+      "revId": "f1924c36f17ad7bc1872f1fea4c9f98fef5bc055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c093524e_22157e90",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 457,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-07-03T00:16:50Z",
+      "side": 1,
+      "message": "`Network`",
+      "range": {
+        "startLine": 457,
+        "startChar": 30,
+        "endLine": 457,
+        "endChar": 37
+      },
+      "revId": "f1924c36f17ad7bc1872f1fea4c9f98fef5bc055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "288faf22_93566c6c",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 457,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-07-03T00:16:50Z",
+      "side": 1,
+      "message": "`A network error occurred while attempting to link the device.`",
+      "range": {
+        "startLine": 457,
+        "startChar": 50,
+        "endLine": 457,
+        "endChar": 82
+      },
+      "revId": "f1924c36f17ad7bc1872f1fea4c9f98fef5bc055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1af570f3_fc2d3906",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-07-03T00:16:50Z",
+      "side": 1,
+      "message": "`Blocked`",
+      "range": {
+        "startLine": 459,
+        "startChar": 7,
+        "endLine": 459,
+        "endChar": 13
+      },
+      "revId": "f1924c36f17ad7bc1872f1fea4c9f98fef5bc055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e321d140_77175ea5",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-07-03T00:16:50Z",
+      "side": 1,
+      "message": "`Blocked`",
+      "range": {
+        "startLine": 460,
+        "startChar": 34,
+        "endLine": 460,
+        "endChar": 40
+      },
+      "revId": "f1924c36f17ad7bc1872f1fea4c9f98fef5bc055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0192ee28_7da69d69",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-07-03T00:16:50Z",
+      "side": 1,
+      "message": "`blocked`",
+      "range": {
+        "startLine": 460,
+        "startChar": 20,
+        "endLine": 460,
+        "endChar": 26
+      },
+      "revId": "f1924c36f17ad7bc1872f1fea4c9f98fef5bc055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "368d243f_59161c3e",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-07-03T00:16:50Z",
+      "side": 1,
+      "message": "`Blocked`",
+      "range": {
+        "startLine": 461,
+        "startChar": 42,
+        "endLine": 461,
+        "endChar": 48
+      },
+      "revId": "f1924c36f17ad7bc1872f1fea4c9f98fef5bc055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a732e89_6cd827fd",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-07-03T00:16:50Z",
+      "side": 1,
+      "message": "`blocked`",
+      "range": {
+        "startLine": 461,
+        "startChar": 20,
+        "endLine": 461,
+        "endChar": 26
+      },
+      "revId": "f1924c36f17ad7bc1872f1fea4c9f98fef5bc055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b796a75_a6badddd",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-07-03T00:16:50Z",
+      "side": 1,
+      "message": "`Do you really want to delete this account? To continue, click Delete.`",
+      "range": {
+        "startLine": 464,
+        "startChar": 49,
+        "endLine": 464,
+        "endChar": 94
+      },
+      "revId": "f1924c36f17ad7bc1872f1fea4c9f98fef5bc055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c4d650a_17f8ec82",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-07-03T00:16:50Z",
+      "side": 1,
+      "message": "Should this be `MB`?",
+      "range": {
+        "startLine": 502,
+        "startChar": 73,
+        "endLine": 502,
+        "endChar": 75
+      },
+      "revId": "f1924c36f17ad7bc1872f1fea4c9f98fef5bc055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67e8ec6a_71140f10",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-07-03T00:16:50Z",
+      "side": 1,
+      "message": "Remove `in `?",
+      "range": {
+        "startLine": 502,
+        "startChar": 70,
+        "endLine": 502,
+        "endChar": 73
+      },
+      "revId": "f1924c36f17ad7bc1872f1fea4c9f98fef5bc055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "415429de_d38af568",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-07-03T00:16:50Z",
+      "side": 1,
+      "message": "Remove `in `?",
+      "range": {
+        "startLine": 503,
+        "startChar": 49,
+        "endLine": 503,
+        "endChar": 52
+      },
+      "revId": "f1924c36f17ad7bc1872f1fea4c9f98fef5bc055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10bf0853_53c3f70c",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-07-03T00:16:50Z",
+      "side": 1,
+      "message": "Should this be `Mb`?",
+      "range": {
+        "startLine": 503,
+        "startChar": 52,
+        "endLine": 503,
+        "endChar": 54
+      },
+      "revId": "f1924c36f17ad7bc1872f1fea4c9f98fef5bc055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "faf06743_09182a46",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 508,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-07-03T00:16:50Z",
+      "side": 1,
+      "message": "`A network error occurred while registering the account.`\n\nPlease ignore if this is the title of a dialog box.",
+      "range": {
+        "startLine": 508,
+        "startChar": 40,
+        "endLine": 508,
+        "endChar": 53
+      },
+      "revId": "f1924c36f17ad7bc1872f1fea4c9f98fef5bc055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b285ad11_21f85ec0",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-07-03T00:16:50Z",
+      "side": 1,
+      "message": "`An unexpected error occurred.`",
+      "range": {
+        "startLine": 509,
+        "startChar": 46,
+        "endLine": 509,
+        "endChar": 66
       },
       "revId": "f1924c36f17ad7bc1872f1fea4c9f98fef5bc055",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
