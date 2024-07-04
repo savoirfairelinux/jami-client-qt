@@ -146,6 +146,16 @@ ApplicationWindow {
                             }
                         }
                         ListElement {
+                            label: "Account ID"
+                            type: "combobox"
+                            getDataModel: () => AccountListModel
+                            displayRole: AccountList.ID
+                            onIndexChanged: function(model, index) {
+                                const accountId = JamiQmlUtils.getModelData(model, index, AccountList.ID);
+                                LRCInstance.currentAccountId = accountId;
+                            }
+                        }
+                        ListElement {
                             label: "Force local preview"
                             type: "checkbox"
                             value: false
