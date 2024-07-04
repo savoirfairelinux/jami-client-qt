@@ -53,7 +53,7 @@ BaseModalDialog {
                 pinRectangle.visible = true
                 exportedPIN.text = pin;
             } else {
-                pinRectangle.success = false;
+                infoLabel.success = false;
                 infoLabel.visible = true;
                 switch (status) {
                 case NameDirectory.ExportOnRingStatus.WRONG_PASSWORD:
