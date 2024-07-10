@@ -52,6 +52,24 @@
       "parentUuid": "7d2e149c_e9dbe546",
       "revId": "de63de94bff0db33e85ad8d7105c4dc09af0275f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c00d6561_c00e668b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2024-07-10T20:03:52Z",
+      "side": 1,
+      "message": "As long as the commit exists and is not marked as deleted by a subsequent commit, the file will be considered for automatic download by the client (if enabled) or will be shown as available for download.\n\nThis new feature allow to \"remove\" a file message the same way a message can be marked as deleted. For now, the local file is not deleted if it was previously downloaded on the device.",
+      "parentUuid": "ae5e6ee7_e39e343d",
+      "revId": "de63de94bff0db33e85ad8d7105c4dc09af0275f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
