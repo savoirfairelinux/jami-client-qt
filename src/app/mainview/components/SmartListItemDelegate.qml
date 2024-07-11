@@ -38,9 +38,9 @@ ItemDelegate {
 
     highlighted: ListView.isCurrentItem
     property bool interactive: true
-    property string lastInteractionDate: LastInteractionTimeStamp === undefined ? "" : LastInteractionTimeStamp
 
-    property string lastInteractionFormattedDate: MessagesAdapter.getBestFormattedDate(lastInteractionDate)
+    property int lastInteractionTimeStamp: LastInteractionTimeStamp
+    property string lastInteractionFormattedDate: MessagesAdapter.getBestFormattedDate(lastInteractionTimeStamp)
 
     property bool showSharePositionIndicator: PositionManager.isPositionSharedToConv(accountId, UID)
     property bool showSharedPositionIndicator: PositionManager.isConvSharingPosition(accountId, UID)
@@ -58,7 +58,7 @@ ItemDelegate {
     Connections {
         target: MessagesAdapter
         function onTimestampUpdated() {
-            lastInteractionFormattedDate = MessagesAdapter.getBestFormattedDate(lastInteractionDate);
+            lastInteractionFormattedDate = MessagesAdapter.getBestFormattedDate(lastInteractionTimeStamp);
         }
     }
 
@@ -130,7 +130,7 @@ ItemDelegate {
                 color: JamiTheme.textColor
             }
             RowLayout {
-                visible: ContactType !== Profile.Type.TEMPORARY && !IsBanned && lastInteractionFormattedDate !== undefined && interactive
+                visible: ContactType !== Profile.Type.TEMPORARY && !IsBanned && lastInteractionTimeStamp > 0 && interactive
                 Layout.fillWidth: true
                 Layout.minimumHeight: 20
                 Layout.alignment: Qt.AlignTop
@@ -138,7 +138,7 @@ ItemDelegate {
                 // last Interaction date
                 Text {
                     Layout.alignment: Qt.AlignVCenter
-                    text: lastInteractionFormattedDate === undefined ? "" : lastInteractionFormattedDate
+                    text: lastInteractionFormattedDate
                     textFormat: TextEdit.PlainText
                     font.pointSize: JamiTheme.smallFontSize
                     font.weight: UnreadMessagesCount ? Font.DemiBold : Font.Normal
