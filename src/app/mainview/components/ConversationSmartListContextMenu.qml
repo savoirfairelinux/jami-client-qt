@@ -43,26 +43,26 @@ ContextMenuAutoLoader {
 
     property list<GeneralMenuItem> menuItems: [
         GeneralMenuItem {
-            id: startVideoCallItem
+            id: makeVideoCall
 
             canTrigger: CurrentAccount.videoEnabled_Video && !hasCall && !readOnly
-            itemName: JamiStrings.startVideoCall
-            iconSource: JamiResources.videocam_24dp_svg
+            itemName: JamiStrings.makeVideoCall
+            iconSource: JamiResources.make_videocall_24dp_svg
             onClicked: {
                 LRCInstance.selectConversation(responsibleConvUid, responsibleAccountId);
                 if (CurrentAccount.videoEnabled_Video)
-                    CallAdapter.placeCall();
+                    CallAdapter.makeCall();
             }
         },
         GeneralMenuItem {
-            id: startAudioCall
+            id: makeAudioCall
 
             canTrigger: !hasCall && !readOnly
-            itemName: JamiStrings.startAudioCall
-            iconSource: JamiResources.place_audiocall_24dp_svg
+            itemName: JamiStrings.makeAudioCall
+            iconSource: JamiResources.make_audiocall_24dp_svg
             onClicked: {
                 LRCInstance.selectConversation(responsibleConvUid, responsibleAccountId);
-                CallAdapter.placeAudioOnlyCall();
+                CallAdapter.makeAudioOnlyCall();
             }
         },
         GeneralMenuItem {

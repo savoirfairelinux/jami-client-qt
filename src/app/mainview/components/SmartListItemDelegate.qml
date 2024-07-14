@@ -272,7 +272,7 @@ ItemDelegate {
             CallAdapter.placeAudioOnlyCall();
         else {
             if (!CurrentConversation.readOnly) {
-                CallAdapter.placeCall();
+                CallAdapter.makeCall();
             }
         }
     }
