@@ -82,11 +82,11 @@ Window {
 
             ListElement {
                 shortcut: "Ctrl + Shift + C"
-                description: qsTr("Start an audio call")
+                description: qsTr("Start audio call")
             }
             ListElement {
                 shortcut: "Ctrl + Shift + X"
-                description: qsTr("Start a video call")
+                description: qsTr("Start video call")
             }
             ListElement {
                 shortcut: "Ctrl + Shift + L"
@@ -102,7 +102,7 @@ Window {
             }
             ListElement {
                 shortcut: "Ctrl + Shift + Delete"
-                description: qsTr("Remove conversation")
+                description: qsTr("Leave conversation")
             }
             ListElement {
                 shortcut: "Ctrl + Shift + A"
@@ -121,20 +121,20 @@ Window {
             id: keyboardSettingsShortcutsModel
 
             ListElement {
-                shortcut: "Ctrl + M"
-                description: qsTr("Media settings")
+                shortcut: "Ctrl + Alt + I"
+                description: qsTr("Account settings")
             }
             ListElement {
                 shortcut: "Ctrl + G"
                 description: qsTr("General settings")
             }
             ListElement {
-                shortcut: "Ctrl + Alt + I"
-                description: qsTr("Account settings")
+                shortcut: "Ctrl + M"
+                description: qsTr("Media settings")
             }
             ListElement {
-                shortcut: "Ctrl + P"
-                description: qsTr("Plugin settings")
+                shortcut: "Ctrl + E"
+                description: qsTr("Extensions settings")
             }
             ListElement {
                 shortcut: "Ctrl + Shift + N"
@@ -143,7 +143,7 @@ Window {
             ListElement {
                 shortcut: "F10"
                 shortcut2: ""
-                description: qsTr("Open keyboard shortcut table")
+                description: qsTr("Open keyboard shortcuts")
             }
         },
         ListModel {
@@ -151,7 +151,7 @@ Window {
 
             ListElement {
                 shortcut: "Ctrl + Y"
-                description: qsTr("Answer an incoming call")
+                description: qsTr("Answer incoming call")
             }
             ListElement {
                 shortcut: "Ctrl + D"
@@ -159,7 +159,7 @@ Window {
             }
             ListElement {
                 shortcut: "Ctrl + Shift + D"
-                description: qsTr("Decline the call request")
+                description: qsTr("Decline call request")
             }
             ListElement {
                 shortcut: "M"

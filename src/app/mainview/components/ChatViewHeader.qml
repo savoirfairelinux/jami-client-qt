@@ -147,7 +147,7 @@ Rectangle {
         }
 
         JamiPushButton { QWKSetParentHitTestVisible {}
-            id: startAAudioCallButton
+            id: startAudioCallButton
 
             visible: interactionButtonsVisibility &&
                      (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
@@ -158,7 +158,7 @@ Rectangle {
         }
 
         JamiPushButton { QWKSetParentHitTestVisible {}
-            id: startAVideoCallButton
+            id: startVideoCallButton
 
             visible: interactionButtonsVisibility &&
                      CurrentAccount.videoEnabled_Video &&

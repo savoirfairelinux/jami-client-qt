@@ -30,7 +30,7 @@ ContextMenuAutoLoader {
 
     property list<GeneralMenuItem> menuItems: [
         GeneralMenuItem {
-            id: startVideoCallItem
+            id: startVideoCall
             itemName: JamiStrings.startVideoCall
             canTrigger: ConversationsAdapter.dialogId(participantUri) !== ""
             iconSource: JamiResources.videocam_24dp_svg
