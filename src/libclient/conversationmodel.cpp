@@ -738,7 +738,7 @@ ConversationModel::makePermanent(const QString& uid)
 
         if (conversation.participants.empty()) {
             // Should not
-            qDebug() << "ConversationModel::addConversation can't add a conversation with no "
+            qDebug() << "ConversationModel::addConversation cannot add a conversation with no "
                         "participant";
             return;
         }
@@ -818,7 +818,7 @@ ConversationModel::selectConversation(const QString& uid) const
             }
         }
     } catch (const std::out_of_range& e) {
-        qDebug() << "select conversation failed. conversation not exists";
+        qDebug() << "Select conversation failed. Conversation does not exists";
     }
 }
 
@@ -837,7 +837,7 @@ ConversationModel::removeConversation(const QString& uid, bool banned)
     auto& peers = pimpl_->peersForConversation(conversation);
     if (peers.empty()) {
         // Should not
-        qDebug() << "ConversationModel::removeConversation can't remove a conversation without "
+        qDebug() << "ConversationModel::removeConversation cannot remove a conversation without "
                     "participant";
         return;
     }
@@ -902,7 +902,7 @@ ConversationModelPimpl::placeCall(const QString& uid, bool isAudioOnly)
         if (conversation.participants.empty()) {
             // Should not
             qDebug()
-                << "ConversationModel::placeCall can't call a conversation without participant";
+                << "ConversationModel::placeCall cannot call a conversation without participant";
             return;
         }
 
@@ -971,7 +971,7 @@ ConversationModelPimpl::placeCall(const QString& uid, bool isAudioOnly)
 
         auto cb = ([this, isTemporary, uri, isAudioOnly, &conversation](QString conversationId) {
             if (indexOf(conversationId) < 0) {
-                qDebug() << "Can't place call: conversation  not exists";
+                qDebug() << "Cannot place call: conversation does not exists";
                 return;
             }
 
@@ -980,7 +980,7 @@ ConversationModelPimpl::placeCall(const QString& uid, bool isAudioOnly)
 
             newConv.callId = linked.owner.callModel->createCall(uri, isAudioOnly);
             if (newConv.callId.isEmpty()) {
-                qDebug() << "Can't place call (daemon side failure ?)";
+                qDebug() << "Cannot place call (daemon side failure?)";
                 return;
             }
 
@@ -1012,7 +1012,7 @@ ConversationModelPimpl::placeCall(const QString& uid, bool isAudioOnly)
             cb(convId);
         }
     } catch (const std::out_of_range& e) {
-        qDebug() << "could not place call to not existing conversation";
+        qDebug() << "Cannot place call as conversation does not exist";
     }
 }
 
@@ -1281,7 +1281,7 @@ ConversationModel::sendMessage(const QString& uid, const QString& body, const QS
         auto& peers = pimpl_->peersForConversation(conversation);
         if (peers.isEmpty()) {
             // Should not
-            qDebug() << "ConversationModel::sendMessage can't send a interaction to a conversation "
+            qDebug() << "ConversationModel::sendMessage cannot send a interaction to a conversation "
                         "with no participant";
             return;
         }
@@ -1382,7 +1382,7 @@ ConversationModel::sendMessage(const QString& uid, const QString& body, const QS
             cb(convId);
         }
     } catch (const std::out_of_range& e) {
-        qDebug() << "could not send message to not existing conversation";
+        qDebug() << "Cannot send message as conversation does not exist";
     }
 }
 
@@ -2028,7 +2028,7 @@ ConversationModelPimpl::initConversations()
             continue;
         bool isRequest = c.second.profileInfo.type == profile::Type::PENDING;
         if (conv.empty()) {
-            // Can't find a conversation with this contact
+            // Cannot find a conversation with this contact
             // add pending not swarm conversation
             if (isRequest) {
                 addContactRequest(c.second.profileInfo.uri);
@@ -2446,7 +2446,7 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
                 conversation.interactions->setRead(uri, message.id);
         }
     } catch (const std::exception& e) {
-        qDebug() << "messages received for not existing conversation";
+        qDebug() << "Messages received for conversation that does not exist";
     }
 }
 
@@ -2463,7 +2463,7 @@ ConversationModelPimpl::slotMessageUpdated(const QString& accountId,
         auto msg = interaction::Info(message, linked.owner.profileInfo.uri);
 
         if (!conversation.interactions->update(msgId, msg)) {
-            qDebug() << "message not found or could not be reparented";
+            qDebug() << "Message not found or could not be reparented";
             return;
         }
         // The conversation is updated, so we need to notify the view.
@@ -2471,7 +2471,7 @@ ConversationModelPimpl::slotMessageUpdated(const QString& accountId,
         Q_EMIT linked.modelChanged();
         Q_EMIT linked.dataChanged(indexOf(conversationId));
     } catch (const std::exception& e) {
-        qDebug() << "messages received for not existing conversation";
+        qDebug() << "Messages received for conversation that does not exist";
     }
 }
 
@@ -2893,7 +2893,7 @@ ConversationModelPimpl::slotPendingContactAccepted(const QString& uri)
             Q_EMIT linked.newInteraction(convs[0], msgId, interaction);
             Q_EMIT linked.dataChanged(convIdx);
         } catch (std::out_of_range& e) {
-            qDebug() << "ConversationModelPimpl::slotContactAdded can't find contact";
+            qDebug() << "ConversationModelPimpl::slotContactAdded cannot find contact";
         }
     }
 }
@@ -3247,7 +3247,7 @@ ConversationModelPimpl::slotCallStatusChanged(const QString& callId, int code)
             Q_EMIT linked.dataChanged(indexOf(i->uid));
         }
     } catch (std::out_of_range& e) {
-        qDebug() << "ConversationModelPimpl::slotCallStatusChanged can't get inexistant call";
+        qDebug() << "ConversationModelPimpl::slotCallStatusChanged cannot get nonexistent call";
     }
 }
 
@@ -3258,7 +3258,7 @@ ConversationModelPimpl::slotCallStarted(const QString& callId)
         auto call = linked.owner.callModel->getCall(callId);
         addOrUpdateCallMessage(callId, call.peerUri.remove("ring:"), !call.isOutgoing);
     } catch (std::out_of_range& e) {
-        qDebug() << "ConversationModelPimpl::slotCallStarted can't start inexistant call";
+        qDebug() << "ConversationModelPimpl::slotCallStarted cannot start nonexistent call";
     }
 }
 
@@ -3286,7 +3286,7 @@ ConversationModelPimpl::slotCallEnded(const QString& callId)
                 Q_EMIT linked.dataChanged(indexOf(conversation.uid));
             }
     } catch (std::out_of_range& e) {
-        qDebug() << "ConversationModelPimpl::slotCallEnded can't end inexistant call";
+        qDebug() << "ConversationModelPimpl::slotCallEnded cannot end nonexistent call";
     }
 }
 
@@ -3516,7 +3516,7 @@ ConversationModelPimpl::updateInteractionStatus(const QString& accountId,
         if (emitDisplayed)
             conversation.interactions->setRead(peerUri, messageId);
     } catch (const std::out_of_range& e) {
-        qDebug() << "could not update message status for not existing conversation";
+        qDebug() << "Cannot update message status as conversation does not exist";
     }
 }
 
@@ -3549,7 +3549,7 @@ ConversationModelPimpl::slotComposingStatusChanged(const QString& accountId,
         else
             conversation.typers.remove(contactUri);
     } catch (const std::out_of_range& e) {
-        qDebug() << "could not update message status for not existing conversation";
+        qDebug() << "Cannot update message status as conversation does not exist";
     }
 
     Q_EMIT linked.composingStatusChanged(convId, contactUri, isComposing);
@@ -3588,7 +3588,7 @@ ConversationModel::sendFile(const QString& convUid,
         }
         auto peers = pimpl_->peersForConversation(conversation);
         if (peers.size() < 1) {
-            qDebug() << "send file error: could not send file in conversation with no participants";
+            qDebug() << "Send file error: could not send file in conversation with no participants";
             return;
         }
         /* isTemporary, and conversationReady callback used only for non-swarm conversation,
@@ -3611,7 +3611,7 @@ ConversationModel::sendFile(const QString& convUid,
             try {
                 auto conversationOpt = getConversationForUid(conversationId);
                 if (!conversationOpt.has_value()) {
-                    qDebug() << "Can't send file";
+                    qDebug() << "Cannot send file";
                     return;
                 }
                 auto contactInfo = owner.contactModel->getContact(peerId);
@@ -3643,7 +3643,7 @@ ConversationModel::sendFile(const QString& convUid,
             cb(convUidCopy);
         }
     } catch (const std::out_of_range& e) {
-        qDebug() << "could not send file to not existing conversation";
+        qDebug() << "Cannot send file to conversation that does not exist";
     }
 }
 
