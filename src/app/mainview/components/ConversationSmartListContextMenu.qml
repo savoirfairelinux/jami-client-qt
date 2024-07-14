@@ -43,7 +43,7 @@ ContextMenuAutoLoader {
 
     property list<GeneralMenuItem> menuItems: [
         GeneralMenuItem {
-            id: startVideoCallItem
+            id: startVideoCall
 
             canTrigger: CurrentAccount.videoEnabled_Video && !hasCall && !readOnly
             itemName: JamiStrings.startVideoCall

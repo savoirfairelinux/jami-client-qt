@@ -73,7 +73,7 @@ Item {
     property string authenticate: qsTr("Authenticate")
     property string deleteAccount: qsTr("Delete account")
     property string inProgress: qsTr("In progress…")
-    property string authenticationFailed: qsTr("Authentication failed")
+    property string authenticationFailed: qsTr("An error occurred while authenticating account.")
     property string password: qsTr("Password")
     property string username: qsTr("Username")
     property string alias: qsTr("Alias")
@@ -181,7 +181,7 @@ Item {
     property string callSettingsTitle: qsTr("Call settings")
     property string chatSettingsTitle: qsTr("Chat")
     property string advancedSettingsTitle: qsTr("Advanced settings")
-    property string audioVideoSettingsTitle: qsTr("Audio and Video")
+    property string audioVideoSettingsTitle: qsTr("Media")
 
     // AudioSettings
     property string audio: qsTr("Audio")
@@ -259,13 +259,13 @@ Item {
     property string paste: qsTr("Paste")
 
     // ConversationContextMenu
-    property string startVideoCall: qsTr("Start video call")
     property string startAudioCall: qsTr("Start audio call")
+    property string startVideoCall: qsTr("Start video call")
     property string clearConversation: qsTr("Clear conversation")
     property string confirmAction: qsTr("Confirm action")
-    property string removeConversation: qsTr("Remove conversation")
-    property string confirmRmConversation: qsTr("Would you really like to remove this conversation?")
-    property string confirmBlockConversation: qsTr("Would you really like to block this conversation?")
+    property string removeConversation: qsTr("Leave conversation")
+    property string confirmRmConversation: qsTr("Do you really want to leave this conversation?")
+    property string confirmBlockConversation: qsTr("Do you really want to block this conversation?")
     property string removeContact: qsTr("Remove contact")
     property string blockContact: qsTr("Block contact")
     property string convDetails: qsTr("Conversation details")
@@ -294,7 +294,7 @@ Item {
     property string screenshotTaken: qsTr("Screenshot saved to %1")
     property string fileSaved: qsTr("File saved to %1")
 
-    //advanced information
+    // Advanced information
     property string renderersInformation: qsTr("Renderers information")
     property string callInformation: qsTr("Call information")
     property string peerNumber: qsTr("Peer number")
@@ -338,18 +338,18 @@ Item {
 
     // Chatview header
     property string hideChat: qsTr("Hide chat")
-    property string placeAudioCall: qsTr("Place audio call")
-    property string placeVideoCall: qsTr("Place video call")
+    property string placeAudioCall: qsTr("Start audio call")
+    property string placeVideoCall: qsTr("Start video call")
     property string showPlugins: qsTr("Show available plugins")
     property string addToConversations: qsTr("Add to conversations")
-    property string backendError: qsTr("This is the error from the backend: %0")
+    property string backendError: qsTr("A backend system error occurred: %0")
     property string disabledAccount: qsTr("The account is disabled")
     property string noNetworkConnectivity: qsTr("No network connectivity")
     property string deletedMessage: qsTr("deleted a message")
     property string deletedMedia: qsTr("deleted a media")
     property string returnToCall: qsTr("Return to call")
 
-    //MessagesResearch
+    // MessagesResearch
     property string jumpTo: qsTr("Jump to")
     property string messages: qsTr("Messages")
     property string files: qsTr("Files")
@@ -380,7 +380,7 @@ Item {
     property string invalidUsername: qsTr("Invalid username")
     property string nameAlreadyTaken: qsTr("Name already taken")
     property string usernameAlreadyTaken: qsTr("Username already taken")
-    property string joinJamiNoPassword: qsTr("Are you sure you would like to join Jami without a username?\nIf yes, only a randomly generated 40-character identifier will be assigned to this account.")
+    property string joinJamiNoPassword: qsTr("Do you really want to join Jami without a username?\nIf yes, only a randomly generated 40-character identifier will be assigned to this account.")
     property string usernameToolTip: qsTr("- 32 characters maximum\n- Alphabetical characters (A to Z and a to z)\n- Numeric characters (0 to 9)\n- Special characters allowed: dash (-)")
 
     // Good to know
@@ -417,11 +417,11 @@ Item {
 
     // CurrentAccountSettings && AdvancedSettings
     property string backupSuccessful: qsTr("Backup successful")
-    property string backupFailed: qsTr("Backup failed")
+    property string backupFailed: qsTr("An error occurred while backing up account.")
     property string changePasswordSuccess: qsTr("Password changed successfully")
-    property string changePasswordFailed: qsTr("Password change failed")
+    property string changePasswordFailed: qsTr("An error occurred while changing account password.")
     property string setPasswordSuccess: qsTr("Password set successfully")
-    property string setPasswordFailed: qsTr("Password set failed")
+    property string setPasswordFailed: qsTr("An error occurred while setting account password.")
     property string changePassword: qsTr("Change password")
     property string setPassword: qsTr("Encrypt account")
     property string setAPassword: qsTr("Set a password")
@@ -452,16 +452,16 @@ Item {
     property string tipLinkNewDevice: qsTr("Link a new device to this account")
     property string linkDevice: qsTr("Exporting account…")
     property string removeDevice: qsTr("Remove Device")
-    property string sureToRemoveDevice: qsTr("Are you sure you wish to remove this device?")
+    property string sureToRemoveDevice: qsTr("Do you really want to unlink selected device? To continue, enter account password and click Unlink.")
     property string yourPinIs: qsTr("Your PIN is:")
-    property string linkDeviceNetWorkError: qsTr("Error connecting to the network.\nPlease try again later.")
+    property string linkDeviceNetWorkError: qsTr("A network error occurred while linking device.\nPlease try again later.")
 
     // BannedContacts
     property string banned: qsTr("Banned")
     property string bannedContacts: qsTr("Banned contacts")
 
     // DeleteAccountDialog
-    property string confirmDeleteQuestion: qsTr("Would you really like to delete this account?")
+    property string confirmDeleteQuestion: qsTr("Do you really want to delete this account? To continue, click Delete.")
     property string deleteAccountInfos: qsTr("If your account has not been backed up or added to another device, your account and registered username will be IRREVOCABLY LOST.")
 
     // DeviceItemDelegate
@@ -499,14 +499,14 @@ Item {
     // File transfer settings
     property string fileTransfer: qsTr("File transfer")
     property string autoAcceptFiles: qsTr("Automatically accept incoming files")
-    property string acceptTransferBelow: qsTr("Accept transfer limit (in Mb)")
-    property string acceptTransferTooltip: qsTr("in MB, 0 = unlimited")
+    property string acceptTransferBelow: qsTr("Accept transfer limit (Mb)")
+    property string acceptTransferTooltip: qsTr("MB, 0 = unlimited")
 
     // JamiUserIdentity settings
     property string register: qsTr("Register")
     property string incorrectPassword: qsTr("Incorrect password")
     property string networkError: qsTr("Network error")
-    property string somethingWentWrong: qsTr("Something went wrong")
+    property string somethingWentWrong: qsTr("An unexpected error occurred.")
 
     // Context Menu
     property string saveFile: qsTr("Save file")
@@ -519,9 +519,9 @@ Item {
     property string enableAutoUpdates: qsTr("Enable/Disable automatic updates")
     property string updatesTitle: qsTr("Updates")
     property string updateDialogTitle: qsTr("Update")
-    property string updateFound: qsTr("A new version of Jami was found\nWould you like to update now?")
+    property string updateFound: qsTr("A new version of Jami was found.\nDo you want to update Jami now?\nTo continue, click Update.")
     property string updateNotFound: qsTr("No new version of Jami was found")
-    property string updateCheckError: qsTr("An error occured when checking for a new version")
+    property string updateCheckError: qsTr("An error occurred when checking for a new version.")
     property string updateNetworkError: qsTr("Network error")
     property string updateSSLError: qsTr("SSL error")
     property string updateDownloadCanceled: qsTr("Installer download canceled")
@@ -530,9 +530,9 @@ Item {
     property string networkDisconnected: qsTr("Network disconnected")
     property string accessError: qsTr("Content access error")
     property string contentNotFoundError: qsTr("Content not found")
-    property string genericError: qsTr("Something went wrong")
+    property string genericError: qsTr("An unexpected error occurred.")
 
-    //Troubleshoot Settings
+    // Troubleshoot Settings
     property string troubleshootTitle: qsTr("Troubleshoot")
     property string troubleshootButton: qsTr("Open logs")
     property string troubleshootText: qsTr("Get logs")
@@ -619,7 +619,7 @@ Item {
     property string takePhoto: qsTr("Take photo")
     property string imageFiles: qsTr("Image Files (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)")
 
-    // Plugins
+    // Extensions
     property string autoUpdate: qsTr("Auto update")
     property string disableAll: qsTr("Disable all")
     property string installed: qsTr("Installed")
@@ -628,16 +628,16 @@ Item {
     property string installManually: qsTr("Install manually")
     property string installMannuallyDescription: qsTr("Install an extension directly from your device.")
     property string pluginStoreTitle: qsTr("Available")
-    property string pluginStoreNotAvailable: qsTr("Plugins store is not available")
-    property string storeNotSupportedPlatform: qsTr("The Jami Extension Store currently has no extension available for the platform in use. Check again later!")
+    property string pluginStoreNotAvailable: qsTr("The Jami Extension Store is not currently available. Please try again later.")
+    property string storeNotSupportedPlatform: qsTr("There are no extensions currently available in the Jami Extension Store for the platform in use. Please check again later.")
     property string pluginPreferences: qsTr("Preferences")
-    property string installationFailed: qsTr("Installation failed")
-    property string pluginInstallationFailed: qsTr("The installation of the plugin failed")
+    property string installationFailed: qsTr("Installation error")
+    property string pluginInstallationFailed: qsTr("An error occurred while installing the extension.")
     property string reset: qsTr("Reset")
     property string uninstall: qsTr("Uninstall")
     property string resetPreferences: qsTr("Reset Preferences")
-    property string selectPluginInstall: qsTr("Select a plugin to install")
-    property string uninstallPlugin: qsTr("Uninstall plugin")
+    property string selectPluginInstall: qsTr("Select extension to install")
+    property string uninstallPlugin: qsTr("Uninstall extension")
     property string pluginResetConfirmation: qsTr("Are you sure you wish to reset %1 preferences?")
     property string pluginUninstallConfirmation: qsTr("Are you sure you wish to uninstall %1?")
     property string goBackToPluginsList: qsTr("Go back to plugins list")
@@ -654,6 +654,7 @@ Item {
     property string lastUpdate: qsTr("Last update %1")
     property string by: qsTr("By %1")
     property string proposedBy: qsTr("Proposed by %1")
+
     // ProfilePage
     property string information: qsTr("Information")
     property string moreInformation: qsTr("More information")
@@ -663,9 +664,9 @@ Item {
     property string confirmRemovalRequest: qsTr("Enter the account password to confirm the removal of this device")
 
     // SelectScreen
-    property string selectScreen: qsTr("Select a screen to share")
-    property string selectWindow: qsTr("Select a window to share")
-    property string allScreens: qsTr("All Screens")
+    property string selectScreen: qsTr("Select screen to share")
+    property string selectWindow: qsTr("Select window to share")
+    property string allScreens: qsTr("All screens")
     property string screens: qsTr("Screens")
     property string windows: qsTr("Windows")
     property string screen: qsTr("Screen %1")
@@ -683,7 +684,7 @@ Item {
     property string connectJAMSServer: qsTr("Connect to a JAMS server")
     property string createFromJAMS: qsTr("Create account from Jami Account Management Server (JAMS)")
     property string addSIPAccount: qsTr("Configure a SIP account")
-    property string errorCreateAccount: qsTr("Error while creating your account. Check your credentials.")
+    property string errorCreateAccount: qsTr("An error occurred while creating the account. Check check credentials and try again.")
     property string createNewRV: qsTr("Create a rendezvous point")
     property string joinJami: qsTr("Join Jami")
     property string createNewJamiAccount: qsTr("Create new Jami account")
@@ -695,9 +696,9 @@ Item {
     property string welcomeToJami: qsTr("Welcome to Jami")
 
     // SmartList
-    property string clearText: qsTr("Clear Text")
+    property string clearText: qsTr("Clear text")
     property string conversations: qsTr("Conversations")
-    property string searchResults: qsTr("Search Results")
+    property string searchResults: qsTr("Search results")
 
     // SmartList context menu
     property string declineContactRequest: qsTr("Decline contact request")
@@ -707,13 +708,14 @@ Item {
     property string update: qsTr("Automatically check for updates")
 
     // Generic dialog options
-    property string optionOk: qsTr("Ok")
+    property string optionOk: qsTr("OK")
     property string optionSave: qsTr("Save")
     property string optionCancel: qsTr("Cancel")
     property string optionUpgrade: qsTr("Upgrade")
     property string optionLater: qsTr("Later")
     property string optionDelete: qsTr("Delete")
     property string optionRemove: qsTr("Remove")
+    property string optionLeave: qsTr("Leave")
     property string optionBlock: qsTr("Block")
     property string optionUnban: qsTr("Unban")
 
@@ -736,8 +738,8 @@ Item {
     property string removeDefaultModerator: qsTr("Remove default moderator")
 
     // Daemon reconnection
-    property string reconnectDaemon: qsTr("Trying to reconnect to the Jami daemon (jamid)…")
-    property string reconnectionFailed: qsTr("Could not re-connect to the Jami daemon (jamid).\nJami will now quit.")
+    property string reconnectDaemon: qsTr("Attempting to reconnect to the Jami daemon (jamid)…")
+    property string reconnectionFailed: qsTr("An error occurred while reconnecting to the Jami daemon (jamid).\nThe application will now exit.")
 
     // Message view
     property string addEmoji: qsTr("Add emoji")
@@ -792,15 +794,15 @@ Item {
 
     // Invitation View
     property string invitationViewSentRequest: qsTr("%1 has sent you a request for a conversation.")
-    property string invitationViewJoinConversation: qsTr("Hello,\nWould you like to join the conversation?")
+    property string invitationViewJoinConversation: qsTr("Hello,\nDo you want to join this conversation?")
     property string invitationViewAcceptedConversation: qsTr("You have accepted\nthe conversation request")
     property string invitationViewWaitingForSync: qsTr("Waiting until %1\nconnects to synchronize the conversation.")
 
     // SwarmDetailsPanel
     property string members: qsTr("%1 Members")
     property string member: qsTr("Member")
-    property string swarmName: qsTr("Swarm's name")
-    property string contactName: qsTr("Contact's name")
+    property string swarmName: qsTr("Swarm name")
+    property string contactName: qsTr("Contact name")
     property string addADescription: qsTr("Add a description")
 
     property string muteConversation: qsTr("Mute conversation")
@@ -865,20 +867,20 @@ Item {
     property string theme: qsTr("Theme")
     property string zoomLevel: qsTr("Text zoom level")
 
-    //Donation campaign
+    // Donation campaign
     property string donationTipBoxText: qsTr("Free and private sharing. <a href=\"https://jami.net/whydonate/\">Donate</a> to expand it.")
     property string donation: qsTr("Donate")
     property string donationText: qsTr("If you enjoy using Jami and believe in our mission, would you make a donation?")
     property string notNow: qsTr("Not now")
     property string enableDonation: qsTr("Enable donation campaign")
 
-    //Chat setting page
+    // Chat setting page
     property string enter: qsTr("Enter")
     property string shiftEnter: qsTr("Shift+Enter")
     property string textFormattingDescription: qsTr("Enter or Shift+Enter to insert a new line")
     property string textFormatting: qsTr("Text formatting")
 
-    //Connection monitoring
+    // Connection monitoring
     property string connected: qsTr("Connected")
     property string connectingTLS: qsTr("Connecting TLS")
     property string connectingICE: qsTr("Connecting ICE")
