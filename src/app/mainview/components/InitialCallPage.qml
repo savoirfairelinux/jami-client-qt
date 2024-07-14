@@ -96,7 +96,7 @@ Rectangle {
         if (CurrentAccount.videoEnabled_Video && VideoDevices.listSize !== 0)
             incomingControlsModel.append({
                     "type": "cam",
-                    "image": JamiResources.videocam_24dp_svg
+                    "image": JamiResources.make_videocall_24dp_svg
                 });
     }
 

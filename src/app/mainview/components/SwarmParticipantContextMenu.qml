@@ -30,23 +30,23 @@ ContextMenuAutoLoader {
 
     property list<GeneralMenuItem> menuItems: [
         GeneralMenuItem {
-            id: startVideoCallItem
-            itemName: JamiStrings.startVideoCall
+            id: makeVideoCall
+            itemName: JamiStrings.makeVideoCall
             canTrigger: ConversationsAdapter.dialogId(participantUri) !== ""
-            iconSource: JamiResources.videocam_24dp_svg
+            iconSource: JamiResources.make_videocall_24dp_svg
             onClicked: {
                 ConversationsAdapter.openDialogConversationWith(participantUri);
-                CallAdapter.placeCall();
+                CallAdapter.makeCall();
             }
         },
         GeneralMenuItem {
-            id: startAudioCall
-            itemName: JamiStrings.startAudioCall
+            id: makeAudioCall
+            itemName: JamiStrings.makeAudioCall
             canTrigger: ConversationsAdapter.dialogId(participantUri) !== ""
-            iconSource: JamiResources.place_audiocall_24dp_svg
+            iconSource: JamiResources.make_audiocall_24dp_svg
             onClicked: {
                 ConversationsAdapter.openDialogConversationWith(participantUri);
-                CallAdapter.placeAudioOnlyCall();
+                CallAdapter.makeAudioOnlyCall();
             }
         },
         GeneralMenuItem {

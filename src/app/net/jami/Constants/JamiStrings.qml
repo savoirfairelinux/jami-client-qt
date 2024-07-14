@@ -259,8 +259,8 @@ Item {
     property string paste: qsTr("Paste")
 
     // ConversationContextMenu
-    property string startVideoCall: qsTr("Start video call")
     property string startAudioCall: qsTr("Start audio call")
+    property string startVideoCall: qsTr("Start video call")
     property string clearConversation: qsTr("Clear conversation")
     property string confirmAction: qsTr("Confirm action")
     property string removeConversation: qsTr("Remove conversation")
@@ -294,7 +294,7 @@ Item {
     property string screenshotTaken: qsTr("Screenshot saved to %1")
     property string fileSaved: qsTr("File saved to %1")
 
-    //advanced information
+    // Advanced information
     property string renderersInformation: qsTr("Renderers information")
     property string callInformation: qsTr("Call information")
     property string peerNumber: qsTr("Peer number")
@@ -338,8 +338,8 @@ Item {
 
     // Chatview header
     property string hideChat: qsTr("Hide chat")
-    property string placeAudioCall: qsTr("Place audio call")
-    property string placeVideoCall: qsTr("Place video call")
+    property string placeAudioCall: qsTr("Start audio call")
+    property string placeVideoCall: qsTr("Start video call")
     property string showPlugins: qsTr("Show available plugins")
     property string addToConversations: qsTr("Add to conversations")
     property string backendError: qsTr("This is the error from the backend: %0")
@@ -349,7 +349,7 @@ Item {
     property string deletedMedia: qsTr("deleted a media")
     property string returnToCall: qsTr("Return to call")
 
-    //MessagesResearch
+    // MessagesResearch
     property string jumpTo: qsTr("Jump to")
     property string messages: qsTr("Messages")
     property string files: qsTr("Files")
@@ -532,7 +532,7 @@ Item {
     property string contentNotFoundError: qsTr("Content not found")
     property string genericError: qsTr("Something went wrong")
 
-    //Troubleshoot Settings
+    // Troubleshoot Settings
     property string troubleshootTitle: qsTr("Troubleshoot")
     property string troubleshootButton: qsTr("Open logs")
     property string troubleshootText: qsTr("Get logs")
@@ -619,7 +619,7 @@ Item {
     property string takePhoto: qsTr("Take photo")
     property string imageFiles: qsTr("Image Files (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)")
 
-    // Plugins
+    // Extensions
     property string autoUpdate: qsTr("Auto update")
     property string disableAll: qsTr("Disable all")
     property string installed: qsTr("Installed")
@@ -654,6 +654,7 @@ Item {
     property string lastUpdate: qsTr("Last update %1")
     property string by: qsTr("By %1")
     property string proposedBy: qsTr("Proposed by %1")
+
     // ProfilePage
     property string information: qsTr("Information")
     property string moreInformation: qsTr("More information")
@@ -865,20 +866,20 @@ Item {
     property string theme: qsTr("Theme")
     property string zoomLevel: qsTr("Text zoom level")
 
-    //Donation campaign
+    // Donation campaign
     property string donationTipBoxText: qsTr("Free and private sharing. <a href=\"https://jami.net/whydonate/\">Donate</a> to expand it.")
     property string donation: qsTr("Donate")
     property string donationText: qsTr("If you enjoy using Jami and believe in our mission, would you make a donation?")
     property string notNow: qsTr("Not now")
     property string enableDonation: qsTr("Enable donation campaign")
 
-    //Chat setting page
+    // Chat setting page
     property string enter: qsTr("Enter")
     property string shiftEnter: qsTr("Shift+Enter")
     property string textFormattingDescription: qsTr("Enter or Shift+Enter to insert a new line")
     property string textFormatting: qsTr("Text formatting")
 
-    //Connection monitoring
+    // Connection monitoring
     property string connected: qsTr("Connected")
     property string connectingTLS: qsTr("Connecting TLS")
     property string connectingICE: qsTr("Connecting ICE")

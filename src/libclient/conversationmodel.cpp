@@ -971,7 +971,7 @@ ConversationModelPimpl::placeCall(const QString& uid, bool isAudioOnly)
 
         auto cb = ([this, isTemporary, uri, isAudioOnly, &conversation](QString conversationId) {
             if (indexOf(conversationId) < 0) {
-                qDebug() << "Can't place call: conversation  not exists";
+                qDebug() << "Can't make call: conversation not exists";
                 return;
             }
 
@@ -980,7 +980,7 @@ ConversationModelPimpl::placeCall(const QString& uid, bool isAudioOnly)
 
             newConv.callId = linked.owner.callModel->createCall(uri, isAudioOnly);
             if (newConv.callId.isEmpty()) {
-                qDebug() << "Can't place call (daemon side failure ?)";
+                qDebug() << "Can't make call (daemon side failure?)";
                 return;
             }
 
@@ -1012,12 +1012,12 @@ ConversationModelPimpl::placeCall(const QString& uid, bool isAudioOnly)
             cb(convId);
         }
     } catch (const std::out_of_range& e) {
-        qDebug() << "could not place call to not existing conversation";
+        qDebug() << "could not make call to not existing conversation";
     }
 }
 
 void
-ConversationModel::placeAudioOnlyCall(const QString& uid)
+ConversationModel::makeAudioOnlyCall(const QString& uid)
 {
     pimpl_->placeCall(uid, true);
 }

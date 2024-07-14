@@ -147,26 +147,26 @@ Rectangle {
         }
 
         JamiPushButton { QWKSetParentHitTestVisible {}
-            id: startAAudioCallButton
+            id: makeAudioCallButton
 
             visible: interactionButtonsVisibility &&
                      (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
-            source: JamiResources.place_audiocall_24dp_svg
-            toolTipText: JamiStrings.placeAudioCall
+            source: JamiResources.make_audiocall_24dp_svg
+            toolTipText: JamiStrings.makeAudioCall
 
-            onClicked: CallAdapter.placeAudioOnlyCall()
+            onClicked: CallAdapter.makeAudioOnlyCall()
         }
 
         JamiPushButton { QWKSetParentHitTestVisible {}
-            id: startAVideoCallButton
+            id: makeVideoCallButton
 
             visible: interactionButtonsVisibility &&
                      CurrentAccount.videoEnabled_Video &&
                      (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
-            source: JamiResources.videocam_24dp_svg
-            toolTipText: JamiStrings.placeVideoCall
+            source: JamiResources.make_videocall_24dp_svg
+            toolTipText: JamiStrings.makeVideoCall
 
-            onClicked: CallAdapter.placeCall()
+            onClicked: CallAdapter.makeCall()
         }
 
         JamiPushButton { QWKSetParentHitTestVisible {}
