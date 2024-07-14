@@ -259,8 +259,8 @@ Item {
     property string paste: qsTr("Paste")
 
     // ConversationContextMenu
-    property string startVideoCall: qsTr("Start video call")
-    property string startAudioCall: qsTr("Start audio call")
+    // property string makeAudioCall: qsTr("Make an audio call") // Duplicate in Chatview header
+    // property string makeVideoCall: qsTr("Make a video call") // Duplicate in Chatview header
     property string clearConversation: qsTr("Clear conversation")
     property string confirmAction: qsTr("Confirm action")
     property string removeConversation: qsTr("Remove conversation")
@@ -338,8 +338,8 @@ Item {
 
     // Chatview header
     property string hideChat: qsTr("Hide chat")
-    property string placeAudioCall: qsTr("Place audio call")
-    property string placeVideoCall: qsTr("Place video call")
+    property string makeAudioCall: qsTr("Make an audio call")
+    property string makeVideoCall: qsTr("Make a video call")
     property string showPlugins: qsTr("Show available plugins")
     property string addToConversations: qsTr("Add to conversations")
     property string backendError: qsTr("This is the error from the backend: %0")
