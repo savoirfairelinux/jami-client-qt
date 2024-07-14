@@ -372,11 +372,11 @@ CallAdapter::placeAudioOnlyCall()
 }
 
 void
-CallAdapter::placeCall()
+CallAdapter::makeCall()
 {
     const auto convUid = lrcInstance_->get_selectedConvUid();
     if (!convUid.isEmpty()) {
-        lrcInstance_->getCurrentConversationModel()->placeCall(convUid);
+        lrcInstance_->getCurrentConversationModel()->makeCall(convUid);
     }
 }
 
