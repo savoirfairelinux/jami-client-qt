@@ -72,7 +72,7 @@ Rectangle {
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
             Layout.rightMargin: JamiTheme.preferredMarginSize
 
-            source: JamiResources.videocam_24dp_svg
+            source: JamiResources.make_videocall_24dp_svg
             toolTipText: JamiStrings.joinCall
 
             imageColor: root.textColor

@@ -313,7 +313,7 @@ Control {
                 }
             }
             checkable: true
-            icon.source: checked ? JamiResources.videocam_off_24dp_svg : JamiResources.videocam_24dp_svg
+            icon.source: checked ? JamiResources.videocam_off_24dp_svg : JamiResources.make_videocall_24dp_svg
             icon.color: checked ? "red" : "white"
             text: !checked ? JamiStrings.muteCamera : JamiStrings.unmuteCamera
             checked: !CurrentCall.isCapturing
