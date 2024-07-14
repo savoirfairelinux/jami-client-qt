@@ -82,11 +82,11 @@ Window {
 
             ListElement {
                 shortcut: "Ctrl + Shift + C"
-                description: qsTr("Start an audio call")
+                description: qsTr("Start audio call")
             }
             ListElement {
                 shortcut: "Ctrl + Shift + X"
-                description: qsTr("Start a video call")
+                description: qsTr("Start video call")
             }
             ListElement {
                 shortcut: "Ctrl + Shift + L"
@@ -102,7 +102,7 @@ Window {
             }
             ListElement {
                 shortcut: "Ctrl + Shift + Delete"
-                description: qsTr("Remove conversation")
+                description: qsTr("Leave conversation")
             }
             ListElement {
                 shortcut: "Ctrl + Shift + A"
@@ -118,40 +118,11 @@ Window {
             }
         },
         ListModel {
-            id: keyboardSettingsShortcutsModel
-
-            ListElement {
-                shortcut: "Ctrl + M"
-                description: qsTr("Media settings")
-            }
-            ListElement {
-                shortcut: "Ctrl + G"
-                description: qsTr("General settings")
-            }
-            ListElement {
-                shortcut: "Ctrl + Alt + I"
-                description: qsTr("Account settings")
-            }
-            ListElement {
-                shortcut: "Ctrl + P"
-                description: qsTr("Plugin settings")
-            }
-            ListElement {
-                shortcut: "Ctrl + Shift + N"
-                description: qsTr("Open account creation wizard")
-            }
-            ListElement {
-                shortcut: "F10"
-                shortcut2: ""
-                description: qsTr("Open keyboard shortcut table")
-            }
-        },
-        ListModel {
             id: keyboardCallsShortcutsModel
 
             ListElement {
                 shortcut: "Ctrl + Y"
-                description: qsTr("Answer an incoming call")
+                description: qsTr("Answer incoming call")
             }
             ListElement {
                 shortcut: "Ctrl + D"
@@ -159,7 +130,7 @@ Window {
             }
             ListElement {
                 shortcut: "Ctrl + Shift + D"
-                description: qsTr("Decline the call request")
+                description: qsTr("Decline call request")
             }
             ListElement {
                 shortcut: "M"
@@ -172,6 +143,35 @@ Window {
             ListElement {
                 shortcut: "Ctrl + Mouse middle click"
                 description: qsTr("Take tile screenshot")
+            }
+        },
+        ListModel {
+            id: keyboardSettingsShortcutsModel
+
+            ListElement {
+                shortcut: "Ctrl + Alt + I"
+                description: qsTr("Open account settings")
+            }
+            ListElement {
+                shortcut: "Ctrl + G"
+                description: qsTr("Open general settings")
+            }
+            ListElement {
+                shortcut: "Ctrl + M"
+                description: qsTr("Open media settings")
+            }
+            ListElement {
+                shortcut: "Ctrl + E"
+                description: qsTr("Open extensions settings")
+            }
+            ListElement {
+                shortcut: "Ctrl + Shift + N"
+                description: qsTr("Open account creation wizard")
+            }
+            ListElement {
+                shortcut: "F10"
+                shortcut2: ""
+                description: qsTr("View keyboard shortcuts")
             }
         },
         ListModel {
@@ -215,11 +215,11 @@ Window {
             }
             ListElement {
                 shortcut: "Shift + Alt + T"
-                description: qsTr("Show formatting")
+                description: qsTr("Show/hide formatting")
             }
             ListElement {
                 shortcut: "Shift + Alt + P"
-                description: qsTr("Show preview")
+                description: qsTr("Show preview/Continue editing")
             }
         }
     ]
