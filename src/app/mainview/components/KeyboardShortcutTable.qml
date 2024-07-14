@@ -82,11 +82,11 @@ Window {
 
             ListElement {
                 shortcut: "Ctrl + Shift + C"
-                description: qsTr("Start an audio call")
+                description: qsTr("Make an audio call")
             }
             ListElement {
                 shortcut: "Ctrl + Shift + X"
-                description: qsTr("Start a video call")
+                description: qsTr("Make a video call")
             }
             ListElement {
                 shortcut: "Ctrl + Shift + L"
