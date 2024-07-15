@@ -343,12 +343,12 @@ O Jami irá agora sair.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="101"/>
         <source>Enable read receipts</source>
-        <translation>Ativar os recibos de leitura</translation>
+        <translation>Ativar as confirmações de leitura</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="102"/>
         <source>Send and receive receipts indicating that a message have been displayed</source>
-        <translation>Enviar e receber confirmações indicando que uma mensagem foi mostrada</translation>
+        <translation>Enviar e receber confirmações de leitura que indicam que a mensagem foi mostrada</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="105"/>
@@ -1022,7 +1022,7 @@ O perfil pode ser alterado em qualquer altura a partir das configurações da co
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="781"/>
         <source>Select dedicated device for hosting future calls in this swarm. If not set, the host will be the device starting a call.</source>
-        <translation>Selecionar o dispositivo dedicado para alojar futuras chamadas neste enxame. Se não for definido, o anfitrião será o dispositivo que inicia uma chamada.</translation>
+        <translation>Selecionar o dispositivo dedicado para hospedar futuras chamadas neste enxame. Se não for definido, o hospedeiro será o dispositivo que inicia uma chamada.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="782"/>
@@ -1250,7 +1250,7 @@ Gostaria de atualizar agora?</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="780"/>
         <source>Current host for this swarm seems unreachable. Do you want to host the call?</source>
-        <translation>O atual anfitrião deste enxame parece inacessível. Quer ser o anfitrião da chamada?</translation>
+        <translation>O atual hospedeiro deste enxame parece inacessível. Quer ser o hospedeiro da chamada?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="784"/>
@@ -1260,17 +1260,17 @@ Gostaria de atualizar agora?</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="785"/>
         <source>Host only this call</source>
-        <translation>Alojar apenas esta chamada</translation>
+        <translation>Hospedar apenas esta chamada</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="786"/>
         <source>Host this call</source>
-        <translation>Alojar esta chamada</translation>
+        <translation>Hospedar esta chamada</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="787"/>
         <source>Make me the default host for future calls</source>
-        <translation>Tornar-me o anfitrião predefinido para futuras chamadas</translation>
+        <translation>Tornar-me o hospedeiro predefinido para futuras chamadas</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="804"/>
@@ -1280,7 +1280,7 @@ Gostaria de atualizar agora?</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="807"/>
         <source>Default host (calls)</source>
-        <translation>Anfitrião predefinido (chamadas)</translation>
+        <translation>Hospedeiro predefinido (chamadas)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="810"/>
@@ -1534,7 +1534,7 @@ Gostaria de atualizar agora?</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="245"/>
         <source>Host</source>
-        <translation>Anfitrião</translation>
+        <translation>Hospedeiro</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="246"/>
