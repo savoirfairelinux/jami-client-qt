@@ -3375,6 +3375,9 @@ ConversationModelPimpl::addIncomingMessage(const QString& peerId,
                                            const uint64_t& timestamp,
                                            const QString& daemonId)
 {
+    auto isSip = linked.owner.profileInfo.type == profile::Type::SIP;
+    if (!isSip)
+        return "";
     auto convIds = storage::getConversationsWithPeer(db, peerId);
     bool isRequest = false;
     if (convIds.empty()) {
@@ -3383,7 +3386,6 @@ ConversationModelPimpl::addIncomingMessage(const QString& peerId,
             auto contact = linked.owner.contactModel->getContact(peerId);
             isRequest = contact.profileInfo.type == profile::Type::PENDING;
             // if isSip, it will be a contact!
-            auto isSip = linked.owner.profileInfo.type == profile::Type::SIP;
             if (isSip
                 || (isRequest && !contact.isBanned && peerId != linked.owner.profileInfo.uri)) {
                 if (!isSip)
