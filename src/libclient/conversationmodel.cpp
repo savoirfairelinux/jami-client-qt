@@ -3242,14 +3242,17 @@ ConversationModelPimpl::slotCallEnded(const QString& callId)
         addOrUpdateCallMessage(callId, call.peerUri.remove("ring:"), !call.isOutgoing, duration);
         /* Reset the callId stored in the conversation.
            Do not call selectConversation() since it is already done in slotCallStatusChanged. */
-        for (auto& conversation : conversations)
+        size_t idx = 0;
+        for (auto& conversation : conversations) {
             if (conversation.callId == callId) {
                 conversation.callId = "";
                 conversation.confId = ""; // The participant is detached
                 invalidateModel();
                 Q_EMIT linked.conversationUpdated(conversation.uid);
-                Q_EMIT linked.dataChanged(indexOf(conversation.uid));
+                Q_EMIT linked.dataChanged(idx);
             }
+            ++idx;
+        }
     } catch (std::out_of_range& e) {
         qDebug() << "ConversationModelPimpl::slotCallEnded cannot end nonexistent call.";
     }
