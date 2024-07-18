@@ -200,7 +200,7 @@ public:
                                     QString& conversationId);
     void awaitingHost(const QString& fileId, datatransfer::Info info);
 
-    bool hasOneOneSwarmWith(const QString& participant);
+    bool hasOneOneSwarmWith(const contact::Info& participant);
 
     /**
      * accept a file transfer
@@ -2009,57 +2009,70 @@ ConversationModelPimpl::initConversations()
     if (accountDetails.empty())
         return;
 
-    // Fill swarm conversations
-    QStringList swarms = ConfigurationManager::instance().getConversations(linked.owner.id);
-    for (auto& swarmConv : swarms) {
-        addSwarmConversation(swarmConv);
-    }
+    auto isJami = linked.owner.profileInfo.type == profile::Type::JAMI;
 
-    VectorMapStringString conversationsRequests = ConfigurationManager::instance()
-                                                      .getConversationRequests(linked.owner.id);
-    for (auto& request : conversationsRequests) {
-        addConversationRequest(request);
-    }
+    if (isJami) {
+        // Fill swarm conversations
+        QStringList swarms = ConfigurationManager::instance().getConversations(linked.owner.id);
+        for (auto& swarmConv : swarms) {
+            addSwarmConversation(swarmConv);
+        }
 
-    // Fill conversations
-    for (auto const& c : linked.owner.contactModel->getAllContacts().toStdMap()) {
-        auto conv = storage::getConversationsWithPeer(db, c.second.profileInfo.uri);
-        if (hasOneOneSwarmWith(c.second.profileInfo.uri))
-            continue;
-        bool isRequest = c.second.profileInfo.type == profile::Type::PENDING;
-        if (conv.empty()) {
+        VectorMapStringString conversationsRequests = ConfigurationManager::instance()
+                                                        .getConversationRequests(linked.owner.id);
+        for (auto& request : conversationsRequests) {
+            addConversationRequest(request);
+        }
+
+        for (auto const& c : linked.owner.contactModel->getAllContacts()) {
+            if (hasOneOneSwarmWith(c))
+                continue;
+            bool isRequest = c.profileInfo.type == profile::Type::PENDING;
             // Can't find a conversation with this contact
             // add pending not swarm conversation
             if (isRequest) {
-                addContactRequest(c.second.profileInfo.uri);
-                continue;
+                addContactRequest(c.profileInfo.uri);
             }
-            conv.push_back(storage::beginConversationWithPeer(db,
-                                                              c.second.profileInfo.uri,
-                                                              true,
-                                                              linked.owner.contactModel->getAddedTs(
-                                                                  c.second.profileInfo.uri)));
         }
-        addConversationWith(conv[0], c.first, isRequest);
-
-        auto convIdx = indexOf(conv[0]);
-
-        // Resolve any file transfer interactions were left in an incorrect state
-        auto& interactions = conversations[convIdx].interactions;
-        interactions->forEach([&](const QString& id, interaction::Info& interaction) {
-            if (interaction.transferStatus == interaction::TransferStatus::TRANSFER_CREATED
-                || interaction.transferStatus == interaction::TransferStatus::TRANSFER_AWAITING_HOST
-                || interaction.transferStatus == interaction::TransferStatus::TRANSFER_AWAITING_PEER
-                || interaction.transferStatus == interaction::TransferStatus::TRANSFER_ONGOING
-                || interaction.transferStatus == interaction::TransferStatus::TRANSFER_ACCEPTED) {
-                // If a datatransfer was left in a non-terminal status in DB, we switch this status
-                // to ERROR
-                // TODO : Improve for DBus clients as daemon and transfer may still be ongoing
-                storage::updateInteractionTransferStatus(db, id, interaction::TransferStatus::TRANSFER_ERROR);
-
-                interaction.transferStatus = interaction::TransferStatus::TRANSFER_ERROR;
+    } else {
+        // Fill conversations
+        for (auto const& c : linked.owner.contactModel->getAllContacts().toStdMap()) {
+            auto conv = storage::getConversationsWithPeer(db, c.second.profileInfo.uri);
+            bool isRequest = c.second.profileInfo.type == profile::Type::PENDING;
+            if (conv.empty()) {
+                // Can't find a conversation with this contact
+                // add pending not swarm conversation
+                if (isRequest) {
+                    addContactRequest(c.second.profileInfo.uri);
+                    continue;
+                }
+                conv.push_back(storage::beginConversationWithPeer(db,
+                                                                c.second.profileInfo.uri,
+                                                                true,
+                                                                linked.owner.contactModel->getAddedTs(
+                                                                    c.second.profileInfo.uri)));
             }
-        });
+            addConversationWith(conv[0], c.first, isRequest);
+
+            auto convIdx = indexOf(conv[0]);
+
+            // Resolve any file transfer interactions were left in an incorrect state
+            auto& interactions = conversations[convIdx].interactions;
+            interactions->forEach([&](const QString& id, interaction::Info& interaction) {
+                if (interaction.transferStatus == interaction::TransferStatus::TRANSFER_CREATED
+                    || interaction.transferStatus == interaction::TransferStatus::TRANSFER_AWAITING_HOST
+                    || interaction.transferStatus == interaction::TransferStatus::TRANSFER_AWAITING_PEER
+                    || interaction.transferStatus == interaction::TransferStatus::TRANSFER_ONGOING
+                    || interaction.transferStatus == interaction::TransferStatus::TRANSFER_ACCEPTED) {
+                    // If a datatransfer was left in a non-terminal status in DB, we switch this status
+                    // to ERROR
+                    // TODO : Improve for DBus clients as daemon and transfer may still be ongoing
+                    storage::updateInteractionTransferStatus(db, id, interaction::TransferStatus::TRANSFER_ERROR);
+
+                    interaction.transferStatus = interaction::TransferStatus::TRANSFER_ERROR;
+                }
+            });
+        }
     }
     invalidateModel();
 
@@ -3848,14 +3861,21 @@ ConversationModelPimpl::slotTransferStatusAwaitingHost(const QString& fileId,
 }
 
 bool
-ConversationModelPimpl::hasOneOneSwarmWith(const QString& participant)
+ConversationModelPimpl::hasOneOneSwarmWith(const contact::Info& participant)
 {
     try {
-        auto& conversation = getConversationForPeerUri(participant).get();
-        return conversation.mode == conversation::Mode::ONE_TO_ONE;
+        if (!participant.conversationId.isEmpty()) {
+            auto& conversation = getConversationForUid(participant.conversationId).get();
+            return conversation.mode == conversation::Mode::ONE_TO_ONE;
+        }
     } catch (std::out_of_range&) {
-        return false;
+        try {
+            auto& conversation = getConversationForPeerUri(participant.profileInfo.uri).get();
+            return conversation.mode == conversation::Mode::ONE_TO_ONE;
+        } catch (std::out_of_range&) {
+        }
     }
+    return false;
 }
 
 void
