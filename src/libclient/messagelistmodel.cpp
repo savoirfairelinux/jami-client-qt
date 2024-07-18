@@ -201,8 +201,12 @@ MessageListModel::update(const QString& id, const interaction::Info& interaction
             return true;
         }
     }
-    // Just update bodies notify the view otherwise.
-    current.body = interaction.body;
+    // TODO: look into why this update with an empty body is broadcasted just
+    // after loading the messages. This is a workaround to avoid the empty
+    // file transfer path. Until then, don't update the body if it's empty.
+    if (!interaction.body.isEmpty()) {
+        current.body = interaction.body;
+    }
     current.commit = interaction.commit;
     current.previousBodies = interaction.previousBodies;
     current.parsedBody = interaction.parsedBody;
@@ -253,21 +257,24 @@ MessageListModel::updateTransferStatus(const QString& id,
                                        interaction::TransferStatus newStatus,
                                        const QString& newBody)
 {
-    const std::lock_guard<std::recursive_mutex> lk(mutex_);
-    auto it = find(id);
-    if (it == interactions_.end()) {
-        return false;
-    }
     VectorInt roles;
-    if (it->second.transferStatus == newStatus) {
+    with(id, [&](const QString&, interaction::Info& interaction) {
+        if (interaction.transferStatus == newStatus) {
+            return;
+        }
+        interaction.transferStatus = newStatus;
+        roles.push_back(Role::TransferStatus);
+        if (!newBody.isEmpty()) {
+            interaction.body = newBody;
+            roles.push_back(Role::Body);
+        }
+    });
+    if (roles.empty()) {
         return false;
     }
-    it->second.transferStatus = newStatus;
-    roles.push_back(Role::TransferStatus);
-    if (!newBody.isEmpty()) {
-        it->second.body = newBody;
-        roles.push_back(Role::Body);
-    }
+    auto idx = indexOfMessage(id);
+    auto modelIndex = QAbstractListModel::index(idx, 0);
+    Q_EMIT dataChanged(modelIndex, modelIndex, roles);
     return true;
 }
 
@@ -525,7 +532,7 @@ MessageListModel::dataForItem(const item_t& item, int, int role) const
                 auto bestName = item.second.authorUri == account_->profileInfo.uri
                                     ? account_->accountModel->bestNameForAccount(account_->id)
                                     : account_->contactModel->bestNameForContact(
-                                        item.second.authorUri);
+                                          item.second.authorUri);
                 return QVariant(
                     interaction::getContactInteractionString(bestName,
                                                              interaction::to_action(
