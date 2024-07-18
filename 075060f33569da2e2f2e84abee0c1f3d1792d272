@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41cd9982_3da84e74",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 3876,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-07-18T18:31:42Z",
+      "side": 1,
+      "message": "`hasOneOneSwarmWith` is only used in one place, to determine whether we need to call `addContactRequest` for the given participant, and `addContactRequest` already calls `getConversationForPeerUri`, so afaict this is redundant and we can delete it.",
+      "range": {
+        "startLine": 3872,
+        "startChar": 8,
+        "endLine": 3876,
+        "endChar": 9
+      },
+      "revId": "075060f33569da2e2f2e84abee0c1f3d1792d272",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
