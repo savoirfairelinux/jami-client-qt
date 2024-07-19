@@ -24,8 +24,6 @@
 namespace lrc {
 namespace vCard {
 
-constexpr static const char* PROFILE_VCF = "x-ring/ring.profile.vcard";
-
 struct Delimiter
 {
     constexpr static const char* SEPARATOR_TOKEN = ";";
