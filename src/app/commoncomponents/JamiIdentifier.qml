@@ -125,6 +125,9 @@ Item {
                     onRegisteredNameChanged: {
                         text = registeredName ? registeredName : infohash
                     }
+                    onInfohashChanged: {
+                        text = registeredName ? registeredName : infohash
+                    }
                 }
             }
         }
