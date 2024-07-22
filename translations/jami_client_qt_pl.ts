@@ -91,17 +91,17 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="329"/>
         <source>Unrecognized conversation mode</source>
-        <translation type="unfinished"/>
+        <translation>Nierozpoznany tryb konwersacji</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="333"/>
         <source>Not authorized to update conversation information</source>
-        <translation type="unfinished"/>
+        <translation>Brak autoryzacji do aktualizacji informacji o konwersacji</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="335"/>
         <source>An error occurred while committing a new message</source>
-        <translation type="unfinished"/>
+        <translation>Wystąpił błąd podczas zatwierdzania nowej wiadomości</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="331"/>
@@ -307,7 +307,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="90"/>
         <source>Push-to-talk</source>
-        <translation type="unfinished"/>
+        <translation>Naciśnij i mów</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="91"/>
@@ -317,12 +317,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="92"/>
         <source>Keyboard shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Skrót klawiszowy</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="93"/>
         <source>Change keyboard shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Zmień skrót klawiszowy</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="96"/>
@@ -332,12 +332,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="97"/>
         <source>Press the key to be assigned to push-to-talk shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Naciśnij klawisz, który ma zostać przypisany do skrótu Naciśnij i mów</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="98"/>
         <source>Assign</source>
-        <translation type="unfinished"/>
+        <translation>Przypisz</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="101"/>
@@ -597,7 +597,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="176"/>
         <source>Extensions</source>
-        <translation type="unfinished"/>
+        <translation>Rozszerzenia</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="186"/>
@@ -722,7 +722,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="347"/>
         <source>deleted a message</source>
-        <translation type="unfinished"/>
+        <translation>skasował wiadomość</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="348"/>
@@ -849,7 +849,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="480"/>
         <source>Use native window frame (requires restart)</source>
-        <translation type="unfinished"/>
+        <translation>Użyj natywnej ramki okna (wymaga ponownego uruchomienia)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="484"/>
@@ -879,17 +879,17 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="512"/>
         <source>Delete file from device</source>
-        <translation type="unfinished"/>
+        <translation>Skasuj plik z urządzenia</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="529"/>
         <source>Content access error</source>
-        <translation type="unfinished"/>
+        <translation>Błąd dostępu do zawartości</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="530"/>
         <source>Content not found</source>
-        <translation type="unfinished"/>
+        <translation>Nie znaleziono zawartości</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="593"/>
@@ -909,12 +909,12 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="597"/>
         <source>On another device</source>
-        <translation type="unfinished"/>
+        <translation>Na innym urządzeniu</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="598"/>
         <source>Install and launch Jami, select &quot;Import from another device&quot; and scan the QR code.</source>
-        <translation type="unfinished"/>
+        <translation>Zainstaluj i uruchom aplikację Jami, wybierz opcję „Importuj z innego urządzenia” i zeskanuj kod QR.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="599"/>
@@ -924,12 +924,12 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="600"/>
         <source>In Jami, scan QR code or manually enter the PIN.</source>
-        <translation type="unfinished"/>
+        <translation>W aplikacji Jami zeskanuj kod QR lub ręcznie wprowadź kod PIN.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="601"/>
         <source>The PIN code is valid for: </source>
-        <translation type="unfinished"/>
+        <translation>Kod PIN jest ważny przez: </translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="604"/>
@@ -939,32 +939,32 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="606"/>
         <source>Enter account password to confirm the removal of this device</source>
-        <translation type="unfinished"/>
+        <translation>Wprowadź hasło konta, aby potwierdzić usunięcie tego urządzenia.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="613"/>
         <source>Select image as avatar</source>
-        <translation type="unfinished"/>
+        <translation>Wybierz obraz jako awatar</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="614"/>
         <source>Select image</source>
-        <translation type="unfinished"/>
+        <translation>Wybierz obraz</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="616"/>
         <source>Remove image</source>
-        <translation type="unfinished"/>
+        <translation>Usuń obraz</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="618"/>
         <source>Image Files (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)</source>
-        <translation type="unfinished"/>
+        <translation>Pliki obrazów (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="630"/>
         <source>The Jami Extension Store currently has no extension available for the platform in use. Check again later!</source>
-        <translation type="unfinished"/>
+        <translation>Jami Extension Store nie ma obecnie dostępnych rozszerzeń dla używanej platformy. Sprawdź ponownie później!</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="746"/>
@@ -984,7 +984,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="751"/>
         <source>Continue editing</source>
-        <translation type="unfinished"/>
+        <translation>Kontynuuj edytowanie</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="754"/>
@@ -1014,17 +1014,17 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="781"/>
         <source>Select dedicated device for hosting future calls in this swarm. If not set, the host will be the device starting a call.</source>
-        <translation type="unfinished"/>
+        <translation>Wybór dedykowanego urządzenia do obsługi przyszłych połączeń w tym Roju. Jeśli nie ustawiono, hostem będzie urządzenie rozpoczynające połączenie.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="782"/>
         <source>Select this device</source>
-        <translation type="unfinished"/>
+        <translation>Wybierz to urządzenie</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="783"/>
         <source>Select device</source>
-        <translation type="unfinished"/>
+        <translation>Wybierz urządzenie</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="788"/>
@@ -1044,7 +1044,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="845"/>
         <source>Customize your profile</source>
-        <translation type="unfinished"/>
+        <translation>Dostosuj swój profil</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="848"/>
@@ -1059,7 +1059,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="869"/>
         <source>If you enjoy using Jami and believe in our mission, would you make a donation?</source>
-        <translation type="unfinished"/>
+        <translation>Jeśli lubisz korzystać z Jami i wierzysz w naszą misję, czy mógłbyś przekazać darowiznę?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="870"/>
@@ -1069,7 +1069,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="871"/>
         <source>Enable donation campaign</source>
-        <translation type="unfinished"/>
+        <translation>Włącz kampanię darowizn</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="874"/>
@@ -1079,12 +1079,12 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="875"/>
         <source>Shift+Enter</source>
-        <translation type="unfinished"/>
+        <translation>Shift+Enter</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="876"/>
         <source>Enter or Shift+Enter to insert a new line</source>
-        <translation type="unfinished"/>
+        <translation>Enter lub Shift+Enter, aby wstawić nową linię</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="890"/>
@@ -1094,7 +1094,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="877"/>
         <source>Text formatting</source>
-        <translation type="unfinished"/>
+        <translation>Formatowanie tekstu</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="867"/>
@@ -1104,17 +1104,17 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="880"/>
         <source>Connected</source>
-        <translation type="unfinished"/>
+        <translation>Połączono</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="881"/>
         <source>Connecting TLS</source>
-        <translation type="unfinished"/>
+        <translation>Łączenie TLS</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="882"/>
         <source>Connecting ICE</source>
-        <translation type="unfinished"/>
+        <translation>Łączenie ICE</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="883"/>
@@ -1124,7 +1124,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="884"/>
         <source>Waiting</source>
-        <translation type="unfinished"/>
+        <translation>Oczekiwanie</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="885"/>
@@ -1134,17 +1134,17 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="886"/>
         <source>Connection</source>
-        <translation type="unfinished"/>
+        <translation>Połączenie</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="887"/>
         <source>Channels</source>
-        <translation type="unfinished"/>
+        <translation>Kanały</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="888"/>
         <source>Copy all data</source>
-        <translation type="unfinished"/>
+        <translation>Kopiuj wszystkie informacje</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="889"/>
@@ -1449,7 +1449,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="60"/>
         <source>Add another account</source>
-        <translation type="unfinished"/>
+        <translation>Dodaj inne konto</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="61"/>
@@ -1485,7 +1485,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="212"/>
         <source>Your account only exists on this device. If you lose your device or uninstall the application, your account will be deleted and CANNOT be recovered. You can &lt;a href=&apos;blank&apos;&gt; back up your account &lt;/a&gt; now or later (in the Account Settings).</source>
-        <translation type="unfinished"/>
+        <translation>Konto użytkownika istnieje tylko na tym urządzeniu. W przypadku utraty urządzenia lub odinstalowania aplikacji konto zostanie usunięte i NIE BĘDZIE MOŻNA go odzyskać. &lt;a href=&apos;blank&apos;&gt;Kopię zapasową konta&lt;/a&gt; można utworzyć teraz lub później (w ustawieniach konta).</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="238"/>
@@ -1736,7 +1736,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="294"/>
         <source>File saved to %1</source>
-        <translation type="unfinished"/>
+        <translation>Plik zapisany w %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="297"/>

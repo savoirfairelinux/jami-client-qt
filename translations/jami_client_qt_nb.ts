@@ -723,7 +723,7 @@ Jami avslutter nå.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="347"/>
         <source>deleted a message</source>
-        <translation type="unfinished"/>
+        <translation>slettet en melding</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="348"/>
@@ -880,7 +880,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="512"/>
         <source>Delete file from device</source>
-        <translation type="unfinished"/>
+        <translation>Slett fil fra enheten</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="529"/>
@@ -1055,17 +1055,17 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="868"/>
         <source>Donate</source>
-        <translation type="unfinished"/>
+        <translation>Doner</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="869"/>
         <source>If you enjoy using Jami and believe in our mission, would you make a donation?</source>
-        <translation type="unfinished"/>
+        <translation>Hvis du liker å bruke Jami og tror på prosjektet vårt, vil du gi en donasjon?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="870"/>
         <source>Not now</source>
-        <translation type="unfinished"/>
+        <translation>Ikke nå</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="871"/>
@@ -4303,7 +4303,7 @@ kobler seg til for å synkronisere samtalen.</translation>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="81"/>
         <source>Donate</source>
-        <translation type="unfinished"/>
+        <translation>Doner</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="86"/>
