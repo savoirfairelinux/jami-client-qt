@@ -121,10 +121,7 @@ Item {
                     font.pixelSize : text.length > 16 ? JamiTheme.jamiIdSmallFontSize : JamiTheme.bigFontSize
                     property string registeredName: CurrentAccount.registeredName
                     property string infohash: CurrentAccount.uri
-                    text: registeredName ? registeredName : infohash
-                    onRegisteredNameChanged: {
-                        text = registeredName ? registeredName : infohash
-                    }
+                    text: (btnId.clicked && registeredName) ? registeredName : infohash
                 }
             }
         }
@@ -231,11 +228,9 @@ Item {
                     toolTipText: JamiStrings.identifierURI
                     onClicked: {
                         if (clicked) {
-                            usernameLabel.text = Qt.binding(function() {return CurrentAccount.uri} );
                             usernameTextEdit.staticText = Qt.binding(function() {return CurrentAccount.uri} );
                             btnId.toolTipText = JamiStrings.identifierRegisterName;
                         } else {
-                            usernameLabel.text = Qt.binding(function() {return CurrentAccount.registeredName} );
                             usernameTextEdit.staticText = Qt.binding(function() {return CurrentAccount.registeredName} );
                             btnId.toolTipText = JamiStrings.identifierURI;
                         }
