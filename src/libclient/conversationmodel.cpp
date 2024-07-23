@@ -2756,12 +2756,12 @@ ConversationModelPimpl::slotContactAdded(const QString& contactUri)
     } catch (std::out_of_range& e) {
         return;
     }
-
+    auto isSip = linked.owner.profileInfo.type == profile::Type::JAMI;
     auto isSwarm = !convId.isEmpty();
-    auto conv = !isSwarm ? storage::getConversationsWithPeer(db, contactUri)
+    auto conv = !isSwarm ? (isSip ? storage::getConversationsWithPeer(db, contactUri) : VectorString {})
                          : VectorString {convId};
     if (conv.isEmpty()) {
-        if (linked.owner.profileInfo.type == profile::Type::SIP) {
+        if (isSip) {
             auto convId = storage::beginConversationWithPeer(db,
                                                              contactUri,
                                                              true,
@@ -2888,7 +2888,8 @@ ConversationModelPimpl::slotPendingContactAccepted(const QString& uri)
     }
     profile::Info profileInfo {uri, {}, {}, type};
     storage::vcard::setProfile(linked.owner.id, profileInfo, true);
-    auto convs = storage::getConversationsWithPeer(db, uri);
+    auto isSip = linked.owner.profileInfo.type == profile::Type::SIP;
+    auto convs = isSip ? storage::getConversationsWithPeer(db, uri) : VectorString {};
     if (!convs.empty()) {
         try {
             auto contact = linked.owner.contactModel->getContact(uri);
@@ -3093,32 +3094,35 @@ ConversationModelPimpl::addConversationWith(const QString& convId,
     } catch (...) {
         conversation.callId = "";
     }
-    storage::getHistory(db, conversation, linked.owner.profileInfo.uri);
+    auto isSip = linked.owner.profileInfo.type == profile::Type::SIP;
+    if (isSip) {
+        storage::getHistory(db, conversation, linked.owner.profileInfo.uri);
 
-    QList<std::function<void(void)>> toUpdate;
-    conversation.interactions->forEach([&](const QString& id, interaction::Info& interaction) {
-        if (interaction.status != interaction::Status::SENDING) {
-            return;
-        }
-        // Get the message status from daemon, else unknown
-        auto daemonId = storage::getDaemonIdByInteractionId(db, id);
-        int status = 0;
-        if (daemonId.isEmpty()) {
-            return;
-        }
-        try {
-            auto msgId = std::stoull(daemonId.toStdString());
-            status = ConfigurationManager::instance().getMessageStatus(msgId);
-            toUpdate.emplace_back([this, convId, contactUri, daemonId, status]() {
-                auto accId = linked.owner.id;
-                updateInteractionStatus(accId, convId, contactUri, daemonId, status);
-            });
-        } catch (const std::exception& e) {
-            qWarning() << Q_FUNC_INFO << "Failed: message id was invalid";
-        }
-    });
-    Q_FOREACH (const auto& func, toUpdate)
-        func();
+        QList<std::function<void(void)>> toUpdate;
+        conversation.interactions->forEach([&](const QString& id, interaction::Info& interaction) {
+            if (interaction.status != interaction::Status::SENDING) {
+                return;
+            }
+            // Get the message status from daemon, else unknown
+            auto daemonId = storage::getDaemonIdByInteractionId(db, id);
+            int status = 0;
+            if (daemonId.isEmpty()) {
+                return;
+            }
+            try {
+                auto msgId = std::stoull(daemonId.toStdString());
+                status = ConfigurationManager::instance().getMessageStatus(msgId);
+                toUpdate.emplace_back([this, convId, contactUri, daemonId, status]() {
+                    auto accId = linked.owner.id;
+                    updateInteractionStatus(accId, convId, contactUri, daemonId, status);
+                });
+            } catch (const std::exception& e) {
+                qWarning() << Q_FUNC_INFO << "Failed: message id was invalid";
+            }
+        });
+        Q_FOREACH (const auto& func, toUpdate)
+            func();
+    }
 
     conversation.unreadMessages = getNumberOfUnreadMessagesFor(convId);
 
@@ -3225,7 +3229,8 @@ ConversationModelPimpl::slotNewCall(const QString& fromId,
     }
 
     if (toUri == linked.owner.profileInfo.uri) {
-        auto convIds = storage::getConversationsWithPeer(db, fromId);
+        auto isSip = linked.owner.profileInfo.type == profile::Type::SIP;
+        auto convIds = isSip ? storage::getConversationsWithPeer(db, fromId) : VectorString {};
         if (convIds.empty()) {
             // in case if we receive call after removing contact add conversation request;
             try {
@@ -3327,6 +3332,7 @@ ConversationModelPimpl::addOrUpdateCallMessage(const QString& callId,
                                                bool incoming,
                                                const std::time_t& duration)
 {
+    auto isSip = linked.owner.profileInfo.type == profile::Type::SIP;
     // Get conversation
     auto conv_it = std::find_if(conversations.begin(),
                                 conversations.end(),
@@ -3339,7 +3345,9 @@ ConversationModelPimpl::addOrUpdateCallMessage(const QString& callId,
             auto contact = linked.owner.contactModel->getContact(from);
             if (contact.profileInfo.type == profile::Type::PENDING) {
                 addContactRequest(from);
-                storage::beginConversationWithPeer(db, contact.profileInfo.uri);
+                if (isSip) {
+                    storage::beginConversationWithPeer(db, contact.profileInfo.uri);
+                }
             }
         } catch (const std::exception&) {
             return;
@@ -3353,7 +3361,7 @@ ConversationModelPimpl::addOrUpdateCallMessage(const QString& callId,
             return;
         }
     }
-    if (conv_it->isSwarm())
+    if (!isSip || conv_it->isSwarm())
         return;
     auto uriString = incoming ? storage::prepareUri(from, linked.owner.profileInfo.type)
                               : linked.owner.profileInfo.uri;
@@ -3795,6 +3803,7 @@ ConversationModelPimpl::usefulDataFromDataTransfer(const QString& fileId,
 void
 ConversationModelPimpl::slotTransferStatusCreated(const QString& fileId, datatransfer::Info info)
 {
+    auto isSip = linked.owner.profileInfo.type == profile::Type::SIP;
     // check if transfer is for the current account
     if (info.accountId != linked.owner.id)
         return;
@@ -3814,9 +3823,11 @@ ConversationModelPimpl::slotTransferStatusCreated(const QString& fileId, datatra
             isRequest = contact.profileInfo.type == profile::Type::PENDING;
             if (isRequest && !contact.isBanned && info.peerUri != linked.owner.profileInfo.uri) {
                 addContactRequest(info.peerUri);
-                convIds.push_back(storage::beginConversationWithPeer(db, contact.profileInfo.uri));
-                auto& conv = getConversationForPeerUri(contact.profileInfo.uri).get();
-                conv.uid = convIds[0];
+                if (isSip) {
+                    convIds.push_back(storage::beginConversationWithPeer(db, contact.profileInfo.uri));
+                    auto& conv = getConversationForPeerUri(contact.profileInfo.uri).get();
+                    conv.uid = convIds[0];
+                }
             } else {
                 return;
             }
