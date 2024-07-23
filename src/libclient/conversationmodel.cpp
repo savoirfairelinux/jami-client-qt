@@ -315,7 +315,9 @@ public Q_SLOTS:
      * @param conversationId
      * @param confId
      */
-    void slotCallAddedToConference(const QString& callId, const QString& conversationId, const QString& confId);
+    void slotCallAddedToConference(const QString& callId,
+                                   const QString& conversationId,
+                                   const QString& confId);
     /**
      * Listen from CallbacksHandler when a conference is deleted.
      * @param accountId
@@ -2022,7 +2024,7 @@ ConversationModelPimpl::initConversations()
         }
 
         VectorMapStringString conversationsRequests = ConfigurationManager::instance()
-                                                        .getConversationRequests(linked.owner.id);
+                                                          .getConversationRequests(linked.owner.id);
         for (auto& request : conversationsRequests) {
             addConversationRequest(request);
         }
@@ -2049,11 +2051,12 @@ ConversationModelPimpl::initConversations()
                     addContactRequest(c.second.profileInfo.uri);
                     continue;
                 }
-                conv.push_back(storage::beginConversationWithPeer(db,
-                                                                c.second.profileInfo.uri,
-                                                                true,
-                                                                linked.owner.contactModel->getAddedTs(
-                                                                    c.second.profileInfo.uri)));
+                conv.push_back(
+                    storage::beginConversationWithPeer(db,
+                                                       c.second.profileInfo.uri,
+                                                       true,
+                                                       linked.owner.contactModel->getAddedTs(
+                                                           c.second.profileInfo.uri)));
             }
             addConversationWith(conv[0], c.first, isRequest);
 
@@ -2063,14 +2066,18 @@ ConversationModelPimpl::initConversations()
             auto& interactions = conversations[convIdx].interactions;
             interactions->forEach([&](const QString& id, interaction::Info& interaction) {
                 if (interaction.transferStatus == interaction::TransferStatus::TRANSFER_CREATED
-                    || interaction.transferStatus == interaction::TransferStatus::TRANSFER_AWAITING_HOST
-                    || interaction.transferStatus == interaction::TransferStatus::TRANSFER_AWAITING_PEER
+                    || interaction.transferStatus
+                           == interaction::TransferStatus::TRANSFER_AWAITING_HOST
+                    || interaction.transferStatus
+                           == interaction::TransferStatus::TRANSFER_AWAITING_PEER
                     || interaction.transferStatus == interaction::TransferStatus::TRANSFER_ONGOING
-                    || interaction.transferStatus == interaction::TransferStatus::TRANSFER_ACCEPTED) {
-                    // If a datatransfer was left in a non-terminal status in DB, we switch this status
-                    // to ERROR
+                    || interaction.transferStatus
+                           == interaction::TransferStatus::TRANSFER_ACCEPTED) {
+                    // If a datatransfer was left in a non-terminal status in DB, we switch this
+                    // status to ERROR
                     // TODO : Improve for DBus clients as daemon and transfer may still be ongoing
-                    storage::updateInteractionTransferStatus(db, id, interaction::TransferStatus::TRANSFER_ERROR);
+                    storage::updateInteractionTransferStatus(
+                        db, id, interaction::TransferStatus::TRANSFER_ERROR);
 
                     interaction.transferStatus = interaction::TransferStatus::TRANSFER_ERROR;
                 }
@@ -2308,9 +2315,11 @@ ConversationModelPimpl::slotSwarmLoaded(uint32_t requestId,
                 } else {
                     msg.body = path;
                 }
-                msg.transferStatus = bytesProgress == 0 ? interaction::TransferStatus::TRANSFER_AWAITING_HOST
-                                   : bytesProgress == totalSize ? interaction::TransferStatus::TRANSFER_FINISHED
-                                                                : interaction::TransferStatus::TRANSFER_ONGOING;
+                msg.transferStatus = bytesProgress == 0
+                                         ? interaction::TransferStatus::TRANSFER_AWAITING_HOST
+                                     : bytesProgress == totalSize
+                                         ? interaction::TransferStatus::TRANSFER_FINISHED
+                                         : interaction::TransferStatus::TRANSFER_ONGOING;
                 linked.owner.dataTransferModel->registerTransferId(fileId, msgId);
                 downloadFile = (bytesProgress == 0);
             }
@@ -2422,9 +2431,11 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
             } else {
                 msg.body = path;
             }
-            msg.transferStatus = bytesProgress == 0         ? interaction::TransferStatus::TRANSFER_AWAITING_HOST
-                               : bytesProgress == totalSize ? interaction::TransferStatus::TRANSFER_FINISHED
-                                                            : interaction::TransferStatus::TRANSFER_ONGOING;
+            msg.transferStatus = bytesProgress == 0
+                                     ? interaction::TransferStatus::TRANSFER_AWAITING_HOST
+                                 : bytesProgress == totalSize
+                                     ? interaction::TransferStatus::TRANSFER_FINISHED
+                                     : interaction::TransferStatus::TRANSFER_ONGOING;
             linked.owner.dataTransferModel->registerTransferId(fileId, msgId);
         }
 
@@ -2447,7 +2458,8 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
         }
         Q_EMIT linked.newInteraction(conversationId, msgId, msg);
         Q_EMIT linked.modelChanged();
-        if (msg.transferStatus == interaction::TransferStatus::TRANSFER_AWAITING_HOST && updateUnread) {
+        if (msg.transferStatus == interaction::TransferStatus::TRANSFER_AWAITING_HOST
+            && updateUnread) {
             handleIncomingFile(conversationId,
                                msgId,
                                QString(message.body.value("totalSize")).toInt());
@@ -2694,8 +2706,9 @@ ConversationModelPimpl::slotConversationMemberEvent(const QString& accountId,
     // update participants
     try {
         auto& conversation = getConversationForUid(conversationId).get();
-        const VectorMapStringString& members
-            = ConfigurationManager::instance().getConversationMembers(linked.owner.id, conversationId);
+        const VectorMapStringString& members = ConfigurationManager::instance()
+                                                   .getConversationMembers(linked.owner.id,
+                                                                           conversationId);
         QVector<member::Member> participants;
         VectorString membersRemaining;
         for (auto& member : members) {
@@ -2758,8 +2771,9 @@ ConversationModelPimpl::slotContactAdded(const QString& contactUri)
     }
     auto isSip = linked.owner.profileInfo.type == profile::Type::JAMI;
     auto isSwarm = !convId.isEmpty();
-    auto conv = !isSwarm ? (isSip ? storage::getConversationsWithPeer(db, contactUri) : VectorString {})
-                         : VectorString {convId};
+    auto conv = !isSwarm
+                    ? (isSip ? storage::getConversationsWithPeer(db, contactUri) : VectorString {})
+                    : VectorString {convId};
     if (conv.isEmpty()) {
         if (isSip) {
             auto convId = storage::beginConversationWithPeer(db,
@@ -3167,9 +3181,9 @@ ConversationModelPimpl::getConversationForUid(const QString& uid,
         return conversationMap.at(uid);
     } catch (const std::out_of_range& e) {
         if (searchResultIncluded) {
-            auto sr = std::find_if(searchResults.begin(), searchResults.end(), [&](const auto& conv) {
-                return conv.uid == uid;
-            });
+            auto sr = std::find_if(searchResults.begin(),
+                                   searchResults.end(),
+                                   [&](const auto& conv) { return conv.uid == uid; });
             if (sr != searchResults.end()) {
                 return std::remove_const_t<conversation::Info&>(*sr);
             }
@@ -3499,11 +3513,14 @@ ConversationModelPimpl::addIncomingMessage(const QString& peerId,
 }
 
 void
-ConversationModelPimpl::slotCallAddedToConference(const QString& callId, const QString& conversationId, const QString& confId)
+ConversationModelPimpl::slotCallAddedToConference(const QString& callId,
+                                                  const QString& conversationId,
+                                                  const QString& confId)
 {
     for (auto& conversation : conversations) {
         if ((conversationId == conversation.uid)
-            || (!callId.isEmpty() && conversation.callId == callId && conversation.confId != confId)) {
+            || (!callId.isEmpty() && conversation.callId == callId
+                && conversation.confId != confId)) {
             conversation.confId = confId;
             invalidateModel();
             // Refresh the conference status only if attached
@@ -3719,11 +3736,12 @@ ConversationModel::cancelTransfer(const QString& convUid, const QString& fileId)
     bool emitUpdated = false;
     if (conversationIdx != -1) {
         auto& interactions = pimpl_->conversations[conversationIdx].interactions;
-        if (interactions->updateTransferStatus(fileId, interaction::TransferStatus::TRANSFER_CANCELED)) {
+        if (interactions->updateTransferStatus(fileId,
+                                               interaction::TransferStatus::TRANSFER_CANCELED)) {
             // update information in the db
             storage::updateInteractionTransferStatus(pimpl_->db,
-                                             fileId,
-                                             interaction::TransferStatus::TRANSFER_CANCELED);
+                                                     fileId,
+                                                     interaction::TransferStatus::TRANSFER_CANCELED);
             emitUpdated = true;
         }
     }
@@ -3771,7 +3789,8 @@ ConversationModel::removeFile(const QString& conversationId,
         return;
 
     QFile::remove(path);
-    convOpt->get().interactions->updateTransferStatus(interactionId, interaction::TransferStatus::TRANSFER_CANCELED);
+    convOpt->get().interactions->updateTransferStatus(interactionId,
+                                                      interaction::TransferStatus::TRANSFER_CANCELED);
 }
 
 int
@@ -3824,7 +3843,8 @@ ConversationModelPimpl::slotTransferStatusCreated(const QString& fileId, datatra
             if (isRequest && !contact.isBanned && info.peerUri != linked.owner.profileInfo.uri) {
                 addContactRequest(info.peerUri);
                 if (isSip) {
-                    convIds.push_back(storage::beginConversationWithPeer(db, contact.profileInfo.uri));
+                    convIds.push_back(
+                        storage::beginConversationWithPeer(db, contact.profileInfo.uri));
                     auto& conv = getConversationForPeerUri(contact.profileInfo.uri).get();
                     conv.uid = convIds[0];
                 }
@@ -3879,7 +3899,10 @@ ConversationModelPimpl::slotTransferStatusAwaitingPeer(const QString& fileId,
     if (info.accountId != linked.owner.id)
         return;
     bool intUpdated;
-    updateTransferStatus(fileId, info, interaction::TransferStatus::TRANSFER_AWAITING_PEER, intUpdated);
+    updateTransferStatus(fileId,
+                         info,
+                         interaction::TransferStatus::TRANSFER_AWAITING_PEER,
+                         intUpdated);
 }
 
 void
@@ -4014,7 +4037,10 @@ ConversationModelPimpl::slotTransferStatusOngoing(const QString& fileId, datatra
         return;
     bool intUpdated;
 
-    if (!updateTransferStatus(fileId, info, interaction::TransferStatus::TRANSFER_ONGOING, intUpdated)) {
+    if (!updateTransferStatus(fileId,
+                              info,
+                              interaction::TransferStatus::TRANSFER_ONGOING,
+                              intUpdated)) {
         return;
     }
     if (!intUpdated) {
@@ -4090,7 +4116,10 @@ ConversationModelPimpl::slotTransferStatusUnjoinable(const QString& fileId, data
     if (info.accountId != linked.owner.id)
         return;
     bool intUpdated;
-    updateTransferStatus(fileId, info, interaction::TransferStatus::TRANSFER_UNJOINABLE_PEER, intUpdated);
+    updateTransferStatus(fileId,
+                         info,
+                         interaction::TransferStatus::TRANSFER_UNJOINABLE_PEER,
+                         intUpdated);
 }
 
 void
@@ -4100,7 +4129,10 @@ ConversationModelPimpl::slotTransferStatusTimeoutExpired(const QString& fileId,
     if (info.accountId != linked.owner.id)
         return;
     bool intUpdated;
-    updateTransferStatus(fileId, info, interaction::TransferStatus::TRANSFER_TIMEOUT_EXPIRED, intUpdated);
+    updateTransferStatus(fileId,
+                         info,
+                         interaction::TransferStatus::TRANSFER_TIMEOUT_EXPIRED,
+                         intUpdated);
 }
 
 bool
@@ -4125,8 +4157,9 @@ ConversationModelPimpl::updateTransferStatus(const QString& fileId,
     }
     auto& interactions = conversations[conversationIdx].interactions;
     bool emitUpdated = interactions->updateTransferStatus(interactionId,
-                                                  newStatus,
-                                                  conversation.isSwarm() ? info.path : QString());
+                                                          newStatus,
+                                                          conversation.isSwarm() ? info.path
+                                                                                 : QString());
     if (emitUpdated) {
         invalidateModel();
     }
@@ -4146,7 +4179,8 @@ ConversationModelPimpl::updateTransferProgress(QTimer* timer,
             interactions->with(interactionId, [&](const QString& id, interaction::Info& interaction) {
                 if (interaction.transferStatus == interaction::TransferStatus::TRANSFER_ONGOING) {
                     emitUpdated = true;
-                    interactions->updateTransferStatus(id, interaction::TransferStatus::TRANSFER_ONGOING);
+                    interactions
+                        ->updateTransferStatus(id, interaction::TransferStatus::TRANSFER_ONGOING);
                 }
             });
         }
