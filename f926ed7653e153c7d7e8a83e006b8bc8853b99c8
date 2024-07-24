@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22dee945_872bc005",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-07-24T17:41:54Z",
+      "side": 1,
+      "message": "Instead of mapping each conversation ID to the corresponding `Info` directly, would it make sense to map it to its index in `conversations`?\n\nThis would still allow us to avoid looping over all conversations in `ConversationModelPimpl::getConversationForUid`, but we could additionally get rid of the loop in the `ConversationModelPimpl::indexOf` function, which is still used in several places. (Some functions, like `reloadHistory`, are currently O(n^2) in the number of conversations because of this.)",
+      "range": {
+        "startLine": 234,
+        "startChar": 4,
+        "endLine": 234,
+        "endChar": 81
+      },
+      "revId": "f926ed7653e153c7d7e8a83e006b8bc8853b99c8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8b5f4b8_5394015e",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 3317,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-07-24T17:41:54Z",
+      "side": 1,
+      "message": "A similar change would be beneficial in other places:\n- `ConversationModel::reloadHistory`\n- `ConversationModel::clearAllHistory`\n- `ConversationModelPimpl::slotContactUpdated`",
+      "range": {
+        "startLine": 3308,
+        "startChar": 8,
+        "endLine": 3317,
+        "endChar": 18
+      },
+      "revId": "f926ed7653e153c7d7e8a83e006b8bc8853b99c8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fc75438_1dbf7efd",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 3992,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-07-24T17:41:54Z",
+      "side": 1,
+      "message": "I would suggest moving these three lines of code to `eraseConversation(const QString\u0026 convId)` and deleting `eraseConversation(int index)` (which isn\u0027t called directly anywhere, and doing so would be incorrect anyway since it wouldn\u0027t update `conversationMap`).",
+      "range": {
+        "startLine": 3990,
+        "startChar": 4,
+        "endLine": 3992,
+        "endChar": 34
+      },
+      "revId": "f926ed7653e153c7d7e8a83e006b8bc8853b99c8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
