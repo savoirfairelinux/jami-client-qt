@@ -1,0 +1,8 @@
+Code-Review+2: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
+Verified+1: Jenkins CI <jenkins@ring-packaging.cx>
+Submitted-by: François-Simon Fauteux-Chapleau <francois-simon.fauteux-chapleau@savoirfairelinux.com>
+Submitted-at: Thu, 25 Jul 2024 17:52:32 -0400
+Reviewed-on: https://review.jami.net/c/jami-client-qt/+/28649
+Comments-Total: 2
+Project: jami-client-qt
+Branch: refs/heads/master
