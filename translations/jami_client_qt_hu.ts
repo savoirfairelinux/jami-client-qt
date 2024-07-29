@@ -86,7 +86,7 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="327"/>
         <source>An error occurred while fetching this repository</source>
-        <translation>Hiba történt az adattár lekérése közben</translation>
+        <translation>Hiba történt az adattár lekérése közben.</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="329"/>
@@ -101,7 +101,7 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="335"/>
         <source>An error occurred while committing a new message</source>
-        <translation>Hiba történt egy új üzenet küldésekor</translation>
+        <translation>Hiba történt egy új üzenet küldésekor.</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="331"/>
@@ -398,17 +398,17 @@ A Jami most kilép.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="116"/>
         <source>Verify certificates for incoming TLS connections</source>
-        <translation>Tanúsítványok ellenőrzése a bejövő TLS kapcsolatokhoz</translation>
+        <translation>Tanúsítványok ellenőrzése a bejövő TLS-kapcsolatokhoz</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="117"/>
         <source>Verify server TLS certificates</source>
-        <translation>Kiszolgálói TLS-tanúsítványok ellenőrzése</translation>
+        <translation>Kiszolgáló TLS-tanúsítványok ellenőrzése</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="118"/>
         <source>Require certificate for incoming TLS connections</source>
-        <translation>Tanúsítvány megkövetelése a bejövő TLS kapcsolatokhoz</translation>
+        <translation>Tanúsítvány megkövetelése a bejövő TLS-kapcsolatokhoz</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="120"/>
@@ -733,7 +733,7 @@ A Jami most kilép.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="374"/>
         <source>You can choose a username to help others more easily find and reach you on Jami.</source>
-        <translation>Kiválaszthat egy felhasználónevet, hogy mások könnyebben megtalálják és elérjék Önt a Jamin.</translation>
+        <translation>Regisztráljon felhasználónevet, hogy mások könnyebben megtalálják és elérjék Önt a Jamin.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="381"/>
@@ -900,12 +900,12 @@ A névjegy bármikor módosítható a Fiókbeállításaiból.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="593"/>
         <source>Enter account password</source>
-        <translation>Adja meg a fiók jelszavát</translation>
+        <translation>Fiók jelszavának megadása</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="594"/>
         <source>This account is password encrypted, enter the password to generate a PIN code.</source>
-        <translation>Ez a fiók jelszóval titkosított, írja be a jelszót a PIN-kód létrehozásához.</translation>
+        <translation>Ez a fiók jelszóval titkosított. Kérjük, adja meg a jelszót a PIN-kód létrehozásához.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="596"/>
@@ -930,7 +930,7 @@ A névjegy bármikor módosítható a Fiókbeállításaiból.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="600"/>
         <source>In Jami, scan QR code or manually enter the PIN.</source>
-        <translation>A Jami alkalmazásban olvassa be a QR-kódot, vagy írja be kézzel a PIN-kódot.</translation>
+        <translation>A Jami alkalmazásban QR-kód beolvasása vagy PIN-kód kézi megadása.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="601"/>
@@ -940,7 +940,7 @@ A névjegy bármikor módosítható a Fiókbeállításaiból.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="604"/>
         <source>Enter password</source>
-        <translation>Adja meg a jelszót</translation>
+        <translation>Jelszó megadása</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="606"/>
@@ -1593,12 +1593,12 @@ Kíván most frissíteni?</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="261"/>
         <source>Start video call</source>
-        <translation>Videohívás kezdeményezése</translation>
+        <translation>Videóhívás indítása</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="262"/>
         <source>Start audio call</source>
-        <translation>Hanghívás kezdeményezése</translation>
+        <translation>Hanghívás indítása</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="263"/>
@@ -1922,12 +1922,12 @@ A többi résztvevő tartózkodási helye továbbra is megkapható.</translation
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="340"/>
         <source>Place audio call</source>
-        <translation>Hanghívás</translation>
+        <translation>Hanghívás indítása</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="341"/>
         <source>Place video call</source>
-        <translation>Videohívás</translation>
+        <translation>Videóhívás indítása</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="342"/>
@@ -2179,7 +2179,7 @@ Képe és beceneve bármikor megváltoztatható fiókja beállításaiban.</tran
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="420"/>
         <source>Password change failed</source>
-        <translation>Jelszó megváltoztatása nem sikerült</translation>
+        <translation>Hiba történt a jelszó megváltoztatása közben.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="421"/>
@@ -2910,12 +2910,12 @@ Kérjük, hogy próbálja újra később.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="605"/>
         <source>Enter current password</source>
-        <translation>Adja meg jelenlegi jelszavát</translation>
+        <translation>Jelenlegi jelszó megadása</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="607"/>
         <source>Enter new password</source>
-        <translation>Adja meg az új jelszót</translation>
+        <translation>Új jelszó megadása</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="608"/>
@@ -3523,12 +3523,12 @@ csatlakozzon a beszélgetés összehangolásához.</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="85"/>
         <source>Start an audio call</source>
-        <translation>Hanghívás kezdeményezése</translation>
+        <translation>Hanghívás indítása</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="89"/>
         <source>Start a video call</source>
-        <translation>Videohívás kezdeményezése</translation>
+        <translation>Videóhívás indítása</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="93"/>
