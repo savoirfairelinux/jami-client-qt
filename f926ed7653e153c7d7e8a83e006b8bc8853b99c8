@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0872d1ad_df15486d",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2024-08-01T14:24:59Z",
+      "side": 1,
+      "message": "index in conversations can change if a conversation is removed",
+      "parentUuid": "22dee945_872bc005",
+      "range": {
+        "startLine": 234,
+        "startChar": 4,
+        "endLine": 234,
+        "endChar": 81
+      },
+      "revId": "f926ed7653e153c7d7e8a83e006b8bc8853b99c8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e8b5f4b8_5394015e",
         "filename": "src/libclient/conversationmodel.cpp",
         "patchSetId": 5
@@ -37,6 +61,30 @@
       "writtenOn": "2024-07-24T17:41:54Z",
       "side": 1,
       "message": "A similar change would be beneficial in other places:\n- `ConversationModel::reloadHistory`\n- `ConversationModel::clearAllHistory`\n- `ConversationModelPimpl::slotContactUpdated`",
+      "range": {
+        "startLine": 3308,
+        "startChar": 8,
+        "endLine": 3317,
+        "endChar": 18
+      },
+      "revId": "f926ed7653e153c7d7e8a83e006b8bc8853b99c8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "308532be_a27043e9",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 3317,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2024-08-01T14:24:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8b5f4b8_5394015e",
       "range": {
         "startLine": 3308,
         "startChar": 8,
@@ -60,6 +108,30 @@
       "writtenOn": "2024-07-24T17:41:54Z",
       "side": 1,
       "message": "I would suggest moving these three lines of code to `eraseConversation(const QString\u0026 convId)` and deleting `eraseConversation(int index)` (which isn\u0027t called directly anywhere, and doing so would be incorrect anyway since it wouldn\u0027t update `conversationMap`).",
+      "range": {
+        "startLine": 3990,
+        "startChar": 4,
+        "endLine": 3992,
+        "endChar": 34
+      },
+      "revId": "f926ed7653e153c7d7e8a83e006b8bc8853b99c8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ce4a188_f7ed3a75",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 3992,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2024-08-01T14:24:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1fc75438_1dbf7efd",
       "range": {
         "startLine": 3990,
         "startChar": 4,
