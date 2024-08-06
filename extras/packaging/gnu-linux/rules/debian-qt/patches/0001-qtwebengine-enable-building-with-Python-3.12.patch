@@ -1,10 +1,18 @@
-From deeacfdb5a6d1d300d4ba991df76aa12e5dbaa42 Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?S=C3=A9bastien=20Blin?=
- <sebastien.blin@savoirfairelinux.com>
-Date: Tue, 16 Apr 2024 09:54:32 -0400
-Subject: [PATCH] fix imp->importlib
+From 24fb774485f719df1e84dda31605d3f69202d69f Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Fran=C3=A7ois-Simon=20Fauteux-Chapleau?=
+ <francois-simon.fauteux-chapleau@savoirfairelinux.com>
+Date: Thu, 8 Aug 2024 14:59:17 -0400
+Subject: [PATCH] qtwebengine: enable building with Python 3.12
 
+Replace the deprecated imp module by importlib:
+https://codereview.qt-project.org/c/qt/qtwebengine-chromium/+/524014
+https://codereview.qt-project.org/c/qt/qtwebengine-chromium/+/534568
+
+Update six to fix html5lib import failure:
+https://codereview.qt-project.org/c/qt/qtwebengine-chromium/+/535605
+https://issues.chromium.org/issues/40286977
 ---
+ .../protobufs/binary_proto_generator.py          |  8 ++++++--
  .../mojo/public/tools/mojom/mojom/fileutil.py    |  1 -
  .../tools/mojom/mojom/fileutil_unittest.py       |  5 +----
  .../mojom/mojom/generate/generator_unittest.py   |  7 ++-----
@@ -14,11 +22,37 @@ Subject: [PATCH] fix imp->importlib
  .../mojo/public/tools/mojom/mojom/parse/lexer.py |  1 -
  .../tools/mojom/mojom/parse/lexer_unittest.py    |  7 ++-----
  .../tools/mojom/mojom/parse/parser_unittest.py   |  5 -----
- .../3rdparty/chromium/third_party/six/src/six.py | 16 ++++++++++++++++
- 10 files changed, 23 insertions(+), 37 deletions(-)
+ .../third_party/catapult/third_party/six/six.py  | 16 ++++++++++++++++
+ 11 files changed, 29 insertions(+), 39 deletions(-)
 
+diff --git a/qtwebengine/src/3rdparty/chromium/components/resources/protobufs/binary_proto_generator.py b/qtwebengine/src/3rdparty/chromium/components/resources/protobufs/binary_proto_generator.py
+index 2a1802dccdc..8b9de65ed0b 100755
+--- a/qtwebengine/src/3rdparty/chromium/components/resources/protobufs/binary_proto_generator.py
++++ b/qtwebengine/src/3rdparty/chromium/components/resources/protobufs/binary_proto_generator.py
+@@ -9,7 +9,7 @@
+ """
+ from __future__ import print_function
+ import abc
+-import imp
++from importlib import util as imp_util
+ import optparse
+ import os
+ import re
+@@ -68,7 +68,11 @@ class GoogleProtobufModuleImporter:
+       raise ImportError(fullname)
+ 
+     filepath = self._fullname_to_filepath(fullname)
+-    return imp.load_source(fullname, filepath)
++    spec = imp_util.spec_from_file_location(fullname, filepath)
++    loaded = imp_util.module_from_spec(spec)
++    spec.loader.exec_module(loaded)
++
++    return loaded
+ 
+ class BinaryProtoGenerator:
+ 
 diff --git a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/fileutil.py b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/fileutil.py
-index 29daec367c..124f12c134 100644
+index 29daec367c5..124f12c134b 100644
 --- a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/fileutil.py
 +++ b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/fileutil.py
 @@ -3,7 +3,6 @@
@@ -30,7 +64,7 @@ index 29daec367c..124f12c134 100644
  import sys
  
 diff --git a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/fileutil_unittest.py b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/fileutil_unittest.py
-index 48eaf4eca9..c93d22898d 100644
+index 48eaf4eca94..c93d22898d2 100644
 --- a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/fileutil_unittest.py
 +++ b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/fileutil_unittest.py
 @@ -2,19 +2,16 @@
@@ -55,7 +89,7 @@ index 48eaf4eca9..c93d22898d 100644
      temp_dir = tempfile.mkdtemp()
      try:
 diff --git a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/generate/generator_unittest.py b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/generate/generator_unittest.py
-index 76cda3981f..7143e07c4d 100644
+index 76cda3981f3..7143e07c4d7 100644
 --- a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/generate/generator_unittest.py
 +++ b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/generate/generator_unittest.py
 @@ -2,12 +2,11 @@
@@ -94,7 +128,7 @@ index 76cda3981f..7143e07c4d 100644
  if __name__ == "__main__":
    unittest.main()
 diff --git a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/generate/translate_unittest.py b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/generate/translate_unittest.py
-index 4259374513..558e71e119 100644
+index 4259374513f..558e71e1193 100644
 --- a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/generate/translate_unittest.py
 +++ b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/generate/translate_unittest.py
 @@ -2,16 +2,12 @@
@@ -115,7 +149,7 @@ index 4259374513..558e71e119 100644
    """Tests |parser.Parse()|."""
  
 diff --git a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/ast_unittest.py b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/ast_unittest.py
-index c36376712e..b289f7b11f 100644
+index c36376712e7..b289f7b11f6 100644
 --- a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/ast_unittest.py
 +++ b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/ast_unittest.py
 @@ -2,14 +2,10 @@
@@ -148,7 +182,7 @@ index c36376712e..b289f7b11f 100644
    """Tests various AST classes."""
  
 diff --git a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/conditional_features_unittest.py b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/conditional_features_unittest.py
-index 5fc582025e..2fa5d2be6a 100644
+index 5fc582025ee..2fa5d2be6ab 100644
 --- a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/conditional_features_unittest.py
 +++ b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/conditional_features_unittest.py
 @@ -2,12 +2,11 @@
@@ -192,7 +226,7 @@ index 5fc582025e..2fa5d2be6a 100644
  if __name__ == '__main__':
    unittest.main()
 diff --git a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/lexer.py b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/lexer.py
-index 73ca15df94..1083a1af7b 100644
+index 73ca15df94c..1083a1af7bb 100644
 --- a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/lexer.py
 +++ b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/lexer.py
 @@ -2,7 +2,6 @@
@@ -204,7 +238,7 @@ index 73ca15df94..1083a1af7b 100644
  import sys
  
 diff --git a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/lexer_unittest.py b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/lexer_unittest.py
-index ce376da66e..bc9f835431 100644
+index ce376da66e0..bc9f8354316 100644
 --- a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/lexer_unittest.py
 +++ b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/lexer_unittest.py
 @@ -2,12 +2,11 @@
@@ -241,7 +275,7 @@ index ce376da66e..bc9f835431 100644
  # we'll do it anyway. (I'm pretty sure ply's lexer never cares about comparing
  # for object identity.)
 diff --git a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/parser_unittest.py b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/parser_unittest.py
-index 0513343ec7..0a26307b1a 100644
+index 0513343ec7e..0a26307b1a3 100644
 --- a/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/parser_unittest.py
 +++ b/qtwebengine/src/3rdparty/chromium/mojo/public/tools/mojom/mojom/parse/parser_unittest.py
 @@ -2,16 +2,12 @@
@@ -268,10 +302,10 @@ index 0513343ec7..0a26307b1a 100644
 -
  if __name__ == "__main__":
    unittest.main()
-diff --git a/qtwebengine/src/3rdparty/chromium/third_party/six/src/six.py b/qtwebengine/src/3rdparty/chromium/third_party/six/src/six.py
-index 5fe9f8e141..96b06f8ce7 100644
---- a/qtwebengine/src/3rdparty/chromium/third_party/six/src/six.py
-+++ b/qtwebengine/src/3rdparty/chromium/third_party/six/src/six.py
+diff --git a/qtwebengine/src/3rdparty/chromium/third_party/catapult/third_party/six/six.py b/qtwebengine/src/3rdparty/chromium/third_party/catapult/third_party/six/six.py
+index 83f69783d1a..5e7f0ce4437 100644
+--- a/qtwebengine/src/3rdparty/chromium/third_party/catapult/third_party/six/six.py
++++ b/qtwebengine/src/3rdparty/chromium/third_party/catapult/third_party/six/six.py
 @@ -71,6 +71,11 @@ else:
              MAXSIZE = int((1 << 63) - 1)
          del X
@@ -310,5 +344,5 @@ index 5fe9f8e141..96b06f8ce7 100644
  
  
 -- 
-2.43.0
+2.34.1
 
