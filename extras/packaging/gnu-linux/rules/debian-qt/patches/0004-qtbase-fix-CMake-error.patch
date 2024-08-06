@@ -1,0 +1,39 @@
+From 347fc257401d54ce68e14abe13188993b7c0a7ca Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Fran=C3=A7ois-Simon=20Fauteux-Chapleau?=
+ <francois-simon.fauteux-chapleau@savoirfairelinux.com>
+Date: Tue, 6 Aug 2024 16:31:44 -0400
+Subject: [PATCH] qtbase: fix CMake error
+
+https://github.com/qt/qtbase/commit/3411f2984a5325a35e3bed1f961e5973d8a565b9
+---
+ src/corelib/CMakeLists.txt  | 1 -
+ src/network/configure.cmake | 1 +
+ 2 files changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/corelib/CMakeLists.txt b/src/corelib/CMakeLists.txt
+index 9b9e462638..92d7292053 100644
+--- a/src/corelib/CMakeLists.txt
++++ b/src/corelib/CMakeLists.txt
+@@ -1,7 +1,6 @@
+ # Generated from corelib.pro.
+ 
+ # special case begin
+-qt_find_package(Threads PROVIDED_TARGETS Threads::Threads)
+ qt_find_package(WrapPCRE2 PROVIDED_TARGETS WrapPCRE2::WrapPCRE2)
+ 
+ 
+diff --git a/src/network/configure.cmake b/src/network/configure.cmake
+index e89daaa8c4..371935ee4d 100644
+--- a/src/network/configure.cmake
++++ b/src/network/configure.cmake
+@@ -8,6 +8,7 @@
+ 
+ qt_find_package(WrapBrotli PROVIDED_TARGETS WrapBrotli::WrapBrotliDec MODULE_NAME network QMAKE_LIB brotli)
+ qt_find_package(Libproxy PROVIDED_TARGETS PkgConfig::Libproxy MODULE_NAME network QMAKE_LIB libproxy)
++qt_find_package(Threads PROVIDED_TARGETS Threads::Threads)
+ qt_find_package(WrapOpenSSLHeaders PROVIDED_TARGETS WrapOpenSSLHeaders::WrapOpenSSLHeaders MODULE_NAME network QMAKE_LIB openssl/nolink)
+ # openssl_headers
+ qt_config_compile_test(openssl_headers
+-- 
+2.34.1
+
