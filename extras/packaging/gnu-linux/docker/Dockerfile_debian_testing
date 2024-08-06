@@ -27,9 +27,7 @@ RUN /opt/prebuild-package-debian.sh qt-deps
 COPY extras/packaging/gnu-linux/rules/debian/control /tmp/builddeps/debian/control
 RUN /opt/prebuild-package-debian.sh jami-deps
 
-# Install CMake 3.21 for Qt 6
-ADD extras/packaging/gnu-linux/scripts/install-cmake.sh /opt/install-cmake.sh
-RUN /opt/install-cmake.sh
+RUN apt-get remove -y libre2-dev libre2-11
 
 ADD extras/packaging/gnu-linux/scripts/build-package-debian.sh /opt/build-package-debian.sh
 CMD ["/opt/build-package-debian.sh"]
