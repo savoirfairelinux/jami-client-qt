@@ -22,6 +22,16 @@
 #include <QApplication>
 #include <QStandardPaths>
 
+#ifdef Q_OS_WIN
+#define DATA_DIR    "JAMI_DATA_HOME"
+#define CONFIG_DIR  "JAMI_CONFIG_HOME"
+#define CACHE_DIR   "JAMI_CACHE_HOME"
+#else
+#define DATA_DIR    "XDG_DATA_HOME"
+#define CONFIG_DIR  "XDG_CONFIG_HOME"
+#define CACHE_DIR   "XDG_CACHE_HOME"
+#endif
+
 TestEnvironment globalEnv;
 
 int
@@ -29,13 +39,18 @@ main(int argc, char* argv[])
 {
     QDir tempDir(QStandardPaths::writableLocation(QStandardPaths::TempLocation));
 
-    auto jamiDataDir = tempDir.absolutePath() + "\\jami_test\\jami";
-    auto jamiConfigDir = tempDir.absolutePath() + "\\jami_test\\.config";
-    auto jamiCacheDir = tempDir.absolutePath() + "\\jami_test\\.cache";
+    auto jamiDataDir = tempDir.absolutePath() + "/jami_test/jami";
+    auto jamiConfigDir = tempDir.absolutePath() + "/jami_test/.config";
+    auto jamiCacheDir = tempDir.absolutePath() + "/jami_test/.cache";
 
-    bool envSet = qputenv("JAMI_DATA_HOME", jamiDataDir.toLocal8Bit());
-    envSet &= qputenv("JAMI_CONFIG_HOME", jamiConfigDir.toLocal8Bit());
-    envSet &= qputenv("JAMI_CACHE_HOME", jamiCacheDir.toLocal8Bit());
+    // Clean up the temp directories.
+    QDir(jamiDataDir).removeRecursively();
+    QDir(jamiConfigDir).removeRecursively();
+    QDir(jamiCacheDir).removeRecursively();
+
+    bool envSet = qputenv(DATA_DIR, jamiDataDir.toLocal8Bit());
+    envSet &= qputenv(CONFIG_DIR, jamiConfigDir.toLocal8Bit());
+    envSet &= qputenv(CACHE_DIR, jamiCacheDir.toLocal8Bit());
     if (!envSet)
         return 1;
 
