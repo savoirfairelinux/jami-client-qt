@@ -318,6 +318,17 @@ AccountModel::exportToFile(const QString& accountId,
 }
 
 bool
+AccountModel::exportArchiveAsPlainText(const QString& accountId,
+                                       const QString& path,
+                                       const QString& password) const
+{
+    return ConfigurationManager::instance().exportArchiveAsPlainText(accountId,
+                                                                     path,
+                                                                     "password",
+                                                                     password);
+}
+
+bool
 AccountModel::exportOnRing(const QString& accountId, const QString& password) const
 {
     return ConfigurationManager::instance().exportOnRing(accountId, password);

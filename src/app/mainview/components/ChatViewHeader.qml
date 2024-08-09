@@ -129,6 +129,19 @@ Rectangle {
                     maxWidth: userNameOrIdRect.width
                 }
 
+                // @@@ TODO: find a better place to display this information
+                ElidedTextLabel {
+                    id: convId
+
+                    Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+
+                    horizontalAlignment: Text.AlignLeft
+                    verticalAlignment: Text.AlignVCenter
+
+                    eText: CurrentConversation.id
+                    maxWidth: userNameOrIdRect.width
+                }
+
                 ElidedTextLabel {
                     id: description
 
