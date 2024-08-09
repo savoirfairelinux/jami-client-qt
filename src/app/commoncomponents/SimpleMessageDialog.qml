@@ -36,7 +36,7 @@ BaseModalDialog {
     property var buttonStyles: []
     property string infoText: ""
     property var innerContentData: []
-    property int buttonRoles: []
+    property var buttonRoles: []
 
     function openWithParameters(title, info = "") {
         root.title = title;
@@ -46,9 +46,9 @@ BaseModalDialog {
     }
 
     button1.text: buttonTitles[0]
-    button1Role: buttonRoles[0]
+    button1Role: buttonRoles.length >= 1 ? buttonRoles[0] : DialogButtonBox.InvalidRole
     button2.text: buttonTitles[1] ? buttonTitles[1] : null
-    button2Role: buttonRoles[1]
+    button2Role: buttonRoles.length >= 2 ? buttonRoles[1] : DialogButtonBox.InvalidRole
     button1.onClicked: {
         if (buttonCallBacks[0])
             buttonCallBacks[0]();

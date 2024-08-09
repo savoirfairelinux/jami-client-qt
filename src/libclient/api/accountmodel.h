@@ -116,6 +116,16 @@ public:
                                   const QString& path,
                                   const QString& password = {}) const;
     /**
+     * Call exportArchiveAsPlainText from the daemon
+     * @param accountId
+     * @param path destination
+     * @param password
+     * @return if the file is exported with success
+     */
+    Q_INVOKABLE bool exportArchiveAsPlainText(const QString& accountId,
+                                              const QString& path,
+                                              const QString& password = {}) const;
+    /**
      * Call exportOnRing from the daemon
      * @param accountId
      * @param password
