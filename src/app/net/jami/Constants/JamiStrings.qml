@@ -540,6 +540,13 @@ Item {
     property string experimentalCallSwarm: qsTr("(Experimental) Enable call support for swarm")
     property string experimentalCallSwarmTooltip: qsTr("This feature will enable call buttons in swarms with multiple participants.")
 
+    property string exportArchiveTitle: qsTr("Export archive as plain text file")
+    property string exportArchiveDescription: qsTr("@@@ TODO: write description")
+    property string tipExportArchive: qsTr("Export archive to a .txt file")
+    property string exportArchiveHere: qsTr("Export archive here")
+    property string exportArchiveSuccessful: qsTr("Archive was exported")
+    property string exportArchiveFailed: qsTr("Failed to export archive")
+
     // Recording Settings
     property string quality: qsTr("Quality")
     property string saveRecordingsTo: qsTr("Save recordings to")

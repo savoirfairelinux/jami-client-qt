@@ -447,6 +447,17 @@ public Q_SLOTS: // METHODS
                                      password.toStdString());
     }
 
+    bool exportArchiveAsPlainText(const QString& accountId,
+                                  const QString& destinationPath,
+                                  const QString& scheme = "password",
+                                  const QString& password = {})
+    {
+        return libjami::exportArchiveAsPlainText(accountId.toStdString(),
+                                                 destinationPath.toStdString(),
+                                                 scheme.toStdString(),
+                                                 password.toStdString());
+    }
+
     MapStringString getKnownRingDevices(const QString& accountId)
     {
         MapStringString temp = convertMap(libjami::getKnownRingDevices(accountId.toStdString()));

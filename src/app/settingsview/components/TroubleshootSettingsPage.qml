@@ -19,6 +19,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import Qt.labs.platform
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
@@ -36,6 +37,8 @@ SettingsPageBase {
 
     property string typePrefix: 'contact'
     property string divider: '_'
+
+    property bool isSIP: CurrentAccount.type === Profile.Type.SIP
 
     property int itemWidth
 
@@ -102,6 +105,92 @@ SettingsPageBase {
 
             ConnectionMonitoringTable {
                 id: listview
+            }
+        }
+
+        ColumnLayout {
+            id: exportArchive
+            width: parent.width
+            visible: !isSIP && CurrentAccount.managerUri === ""
+            spacing: JamiTheme.settingsCategorySpacing
+
+            Text {
+                id: exportTitle
+
+                Layout.alignment: Qt.AlignLeft
+                Layout.preferredWidth: parent.width
+
+                text: JamiStrings.exportArchiveTitle
+                color: JamiTheme.textColor
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+                wrapMode: Text.WordWrap
+
+                font.pixelSize: JamiTheme.settingsTitlePixelSize
+                font.kerning: true
+            }
+
+            Text {
+                id: exportDescription
+
+                Layout.alignment: Qt.AlignLeft
+                Layout.preferredWidth: parent.width
+
+                text: JamiStrings.exportArchiveDescription
+                color: JamiTheme.textColor
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+                wrapMode: Text.WordWrap
+
+                font.pixelSize: JamiTheme.settingsDescriptionPixelSize
+                font.kerning: true
+                lineHeight: JamiTheme.wizardViewTextLineHeight
+            }
+
+            MaterialButton {
+                id: btnExportArchive
+
+                TextMetrics {
+                    id: btnExportArchiveTextSize
+                    font.weight: Font.Bold
+                    font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
+                    text: btnExportArchive.text
+                }
+
+                preferredWidth: btnExportArchiveTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
+                primary: true
+                Layout.alignment: Qt.AlignLeft
+
+                toolTipText: JamiStrings.tipExportArchive
+                text: JamiStrings.exportArchiveTitle
+
+                onClicked: {
+                    var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+                            "title": JamiStrings.exportArchiveHere,
+                            "fileMode": FileDialog.SaveFile,
+                            "folder": StandardPaths.writableLocation(StandardPaths.DesktopLocation),
+                            "nameFilters": [JamiStrings.allFiles]
+                        });
+                    dlg.fileAccepted.connect(function (file) {
+                            var exportPath = UtilsAdapter.getAbsPath(file.toString());
+                            if (CurrentAccount.hasArchivePassword) {
+                                viewCoordinator.presentDialog(appWindow, "commoncomponents/PasswordDialog.qml", {
+                                        "purpose": PasswordDialog.ExportArchiveAsPlainText,
+                                        "path": exportPath
+                                    });
+                                return;
+                            } else if (exportPath.length > 0) {
+                                var success = AccountAdapter.model.exportArchiveAsPlainText(LRCInstance.currentAccountId, exportPath);
+                                viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+                                        "title": success ? JamiStrings.success : JamiStrings.error,
+                                        "infoText": success ? JamiStrings.exportArchiveSuccessful : JamiStrings.exportArchiveFailed,
+                                        "buttonTitles": [JamiStrings.optionOk],
+                                        "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
+                                        "buttonRoles": [DialogButtonBox.AcceptRole]
+                                    });
+                            }
+                        });
+                }
             }
         }
     }
