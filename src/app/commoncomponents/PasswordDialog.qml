@@ -30,6 +30,7 @@ BaseModalDialog {
     enum PasswordEnteringPurpose {
         ChangePassword,
         ExportAccount,
+        ExportArchiveAsPlainText,
         SetPassword
     }
 
@@ -41,6 +42,7 @@ BaseModalDialog {
     title: {
         switch (purpose) {
         case PasswordDialog.ExportAccount:
+        case PasswordDialog.ExportArchiveAsPlainText:
             return JamiStrings.enterPassword;
         case PasswordDialog.ChangePassword:
             return JamiStrings.changePassword;
@@ -55,6 +57,9 @@ BaseModalDialog {
         switch (purpose) {
         case PasswordDialog.ExportAccount:
             info = success ? JamiStrings.backupSuccessful : JamiStrings.backupFailed;
+            break;
+        case PasswordDialog.ExportArchiveAsPlainText:
+            info = success ? JamiStrings.exportArchiveSuccessful : JamiStrings.exportArchiveFailed;
             break;
         case PasswordDialog.ChangePassword:
             info = success ? JamiStrings.changePasswordSuccess : JamiStrings.changePasswordFailed;
@@ -73,7 +78,7 @@ BaseModalDialog {
         done(success, purpose);
     }
 
-    button1.text: (purpose === PasswordDialog.ExportAccount) ? JamiStrings.exportAccount : JamiStrings.change
+    button1.text: (purpose === PasswordDialog.ExportAccount || purpose === PasswordDialog.ExportArchiveAsPlainText) ? JamiStrings.exportAccount : JamiStrings.change
     button1Role: DialogButtonBox.ApplyRole
     button1.enabled: purpose === PasswordDialog.SetPassword
 
@@ -90,6 +95,7 @@ BaseModalDialog {
         function validatePassword() {
             switch (purpose) {
             case PasswordDialog.ExportAccount:
+            case PasswordDialog.ExportArchiveAsPlainText:
                 button1.enabled = currentPasswordEdit.dynamicText.length > 0;
                 break;
             case PasswordDialog.SetPassword:
@@ -104,6 +110,15 @@ BaseModalDialog {
             var success = false;
             if (path.length > 0) {
                 success = AccountAdapter.exportToFile(LRCInstance.currentAccountId, path, currentPasswordEdit.dynamicText);
+            }
+            reportStatus(success);
+            close();
+        }
+
+        function exportArchiveAsPlainTextQML() {
+            var success = false;
+            if (path.length > 0) {
+                success = AccountAdapter.model.exportArchiveAsPlainText(LRCInstance.currentAccountId, path, currentPasswordEdit.dynamicText);
             }
             reportStatus(success);
             close();
@@ -133,6 +148,8 @@ BaseModalDialog {
             onTriggered: {
                 if (purpose === PasswordDialog.ExportAccount) {
                     popupContentColumnLayout.exportAccountQML();
+                } else if (purpose === PasswordDialog.ExportArchiveAsPlainText) {
+                    popupContentColumnLayout.exportArchiveAsPlainTextQML();
                 } else {
                     popupContentColumnLayout.savePasswordQML();
                 }
@@ -146,7 +163,7 @@ BaseModalDialog {
             Layout.fillWidth: true
             Layout.preferredHeight: visible ? 48 : 0
 
-            visible: purpose === PasswordDialog.ChangePassword || purpose === PasswordDialog.ExportAccount
+            visible: purpose === PasswordDialog.ChangePassword || purpose === PasswordDialog.ExportAccount || purpose === PasswordDialog.ExportArchiveAsPlainText
             placeholderText: JamiStrings.enterCurrentPassword
 
             onDynamicTextChanged: popupContentColumnLayout.validatePassword()
