@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b39de235_78e22c25",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-08-12T18:53:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f58d7f4_3b1ff31c",
+      "range": {
+        "startLine": 543,
+        "startChar": 46,
+        "endLine": 543,
+        "endChar": 79
+      },
+      "revId": "0c9732b33a17c9b2db6198437a3a3e9ac19a3c00",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15fc5fe4_4a654c63",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-08-09T21:58:18Z",
       "side": 1,
       "message": "1. Should `account` be included in the string?\n2. Should `file` be removed? LibreOffice, Menu Bar, Export As, options shown do not have `file`\n3. Should the file extension be in brackets ()? LibreOffice, Menu Bar, Save As, drop-down in bottom right has `Text (.txt)` and `Text - Choose Encoding (.txt)`\n\n`Export account archive as plain text (.txt)`\n\nThank you",
+      "range": {
+        "startLine": 545,
+        "startChar": 44,
+        "endLine": 545,
+        "endChar": 73
+      },
+      "revId": "0c9732b33a17c9b2db6198437a3a3e9ac19a3c00",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51db1f99_8a2dc970",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-08-12T18:53:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15fc5fe4_4a654c63",
       "range": {
         "startLine": 545,
         "startChar": 44,
@@ -70,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "663cd607_58340290",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-08-12T18:53:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec89e766_b42253e7",
+      "range": {
+        "startLine": 546,
+        "startChar": 45,
+        "endLine": 546,
+        "endChar": 64
+      },
+      "revId": "0c9732b33a17c9b2db6198437a3a3e9ac19a3c00",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc40abe0_1a33c16e",
@@ -93,6 +165,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "219a1c9b_73bfb11c",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 547,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-08-12T18:53:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc40abe0_1a33c16e",
+      "range": {
+        "startLine": 547,
+        "startChar": 51,
+        "endLine": 547,
+        "endChar": 71
+      },
+      "revId": "0c9732b33a17c9b2db6198437a3a3e9ac19a3c00",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "863441d3_831d8e6f",
@@ -106,6 +202,30 @@
       "writtenOn": "2024-08-09T21:58:18Z",
       "side": 1,
       "message": "1. https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/1730#note_51850\n\n`An error occurred while exporting account archive.`\n\nThank you",
+      "range": {
+        "startLine": 548,
+        "startChar": 47,
+        "endLine": 548,
+        "endChar": 71
+      },
+      "revId": "0c9732b33a17c9b2db6198437a3a3e9ac19a3c00",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2aaf56d_de1a28cc",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 548,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-08-12T18:53:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "863441d3_831d8e6f",
       "range": {
         "startLine": 548,
         "startChar": 47,
