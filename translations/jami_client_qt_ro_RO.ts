@@ -2019,7 +2019,7 @@ Poziția celorlalți participanți poate fi primită în continuare.</translatio
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="367"/>
         <source>Creating account…</source>
-        <translation>Se creează contul...</translation>
+        <translation>Se creează contul…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="370"/>
