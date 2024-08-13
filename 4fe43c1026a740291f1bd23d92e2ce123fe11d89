@@ -3,6 +3,144 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b8e7c5e9_539550bf",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-13T22:19:08Z",
+      "side": 1,
+      "message": "Should the author be removed as SFL convention changed? Thank you",
+      "range": {
+        "startLine": 3,
+        "startChar": 3,
+        "endLine": 3,
+        "endChar": 72
+      },
+      "revId": "4fe43c1026a740291f1bd23d92e2ce123fe11d89",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0dc0c14d_0939ecdf",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-13T22:19:08Z",
+      "side": 1,
+      "message": "`An error occurred while authenticating account.`\n\nThank you",
+      "range": {
+        "startLine": 76,
+        "startChar": 48,
+        "endLine": 76,
+        "endChar": 69
+      },
+      "revId": "4fe43c1026a740291f1bd23d92e2ce123fe11d89",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60615ba8_5633e8d3",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-13T22:19:08Z",
+      "side": 1,
+      "message": "`An error occurred while backing up account.`\n\nThank you",
+      "range": {
+        "startLine": 420,
+        "startChar": 39,
+        "endLine": 420,
+        "endChar": 53
+      },
+      "revId": "4fe43c1026a740291f1bd23d92e2ce123fe11d89",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c78daf1_d91b1c51",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-13T22:19:08Z",
+      "side": 1,
+      "message": "`An error occurred while changing account password.`\n\nThank you",
+      "range": {
+        "startLine": 422,
+        "startChar": 48,
+        "endLine": 422,
+        "endChar": 70
+      },
+      "revId": "4fe43c1026a740291f1bd23d92e2ce123fe11d89",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e024a0e_7a5198e7",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-13T22:19:08Z",
+      "side": 1,
+      "message": "`An error occurred while setting account password.`\n\nThank you",
+      "range": {
+        "startLine": 424,
+        "startChar": 45,
+        "endLine": 424,
+        "endChar": 64
+      },
+      "revId": "4fe43c1026a740291f1bd23d92e2ce123fe11d89",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f33da6ae_f876e369",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-13T22:19:08Z",
+      "side": 1,
+      "message": "Should this be changed to `An unexpected error occurred.`? Thank you",
+      "range": {
+        "startLine": 533,
+        "startChar": 40,
+        "endLine": 533,
+        "endChar": 60
+      },
+      "revId": "4fe43c1026a740291f1bd23d92e2ce123fe11d89",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "16466bbe_9823524c",
         "filename": "src/app/net/jami/Constants/JamiStrings.qml",
         "patchSetId": 4
@@ -19,6 +157,213 @@
         "startChar": 70,
         "endLine": 545,
         "endChar": 80
+      },
+      "revId": "4fe43c1026a740291f1bd23d92e2ce123fe11d89",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73c2cfb8_933ca87c",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 547,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-13T22:19:08Z",
+      "side": 1,
+      "message": "Unfortunately, unsure of the context.\n\nShould this string end with a full stop `.`?\n\nPlease disregard this comment if not appropriate.\n\nThank you",
+      "range": {
+        "startLine": 547,
+        "startChar": 51,
+        "endLine": 547,
+        "endChar": 75
+      },
+      "revId": "4fe43c1026a740291f1bd23d92e2ce123fe11d89",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ef54ed4_cf6e5d28",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 548,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-13T22:19:08Z",
+      "side": 1,
+      "message": "Should the variable name be changed from `Failed` to `Error`?\n\nThis would be consistent with the variable name `genericError` which has the value `Something went wrong`.\n\nThank you",
+      "range": {
+        "startLine": 548,
+        "startChar": 33,
+        "endLine": 548,
+        "endChar": 39
+      },
+      "revId": "4fe43c1026a740291f1bd23d92e2ce123fe11d89",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de46f847_b376eafa",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-13T22:19:08Z",
+      "side": 1,
+      "message": "Change to `",
+      "range": {
+        "startLine": 629,
+        "startChar": 7,
+        "endLine": 629,
+        "endChar": 14
+      },
+      "revId": "4fe43c1026a740291f1bd23d92e2ce123fe11d89",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bac7e28b_5eb6ed09",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-13T22:19:08Z",
+      "side": 1,
+      "message": "`An error occurred while installing extension.`\n\nIf this is a heading on a dialog box, then should it be:\n`Installation error`\n\nThank you",
+      "range": {
+        "startLine": 641,
+        "startChar": 46,
+        "endLine": 641,
+        "endChar": 65
+      },
+      "revId": "4fe43c1026a740291f1bd23d92e2ce123fe11d89",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13d7e27b_2841f565",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 642,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-13T22:19:08Z",
+      "side": 1,
+      "message": "`An error occurred while installing plugin.`\n\nThank you",
+      "range": {
+        "startLine": 642,
+        "startChar": 52,
+        "endLine": 642,
+        "endChar": 89
+      },
+      "revId": "4fe43c1026a740291f1bd23d92e2ce123fe11d89",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9ce4f26_9b9241ce",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 647,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-13T22:19:08Z",
+      "side": 1,
+      "message": "`extension`",
+      "range": {
+        "startLine": 647,
+        "startChar": 53,
+        "endLine": 647,
+        "endChar": 59
+      },
+      "revId": "4fe43c1026a740291f1bd23d92e2ce123fe11d89",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54fc5112_48dd2e90",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-13T22:19:08Z",
+      "side": 1,
+      "message": "`OK`\n\nhttps://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/1730#note_52354",
+      "range": {
+        "startLine": 717,
+        "startChar": 36,
+        "endLine": 717,
+        "endChar": 38
+      },
+      "revId": "4fe43c1026a740291f1bd23d92e2ce123fe11d89",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6d9949e_51d88f2f",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 746,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-13T22:19:08Z",
+      "side": 1,
+      "message": "`Attempting to reconnect to the Jami daemon (jamid)…`\n\nThank you",
+      "range": {
+        "startLine": 746,
+        "startChar": 43,
+        "endLine": 746,
+        "endChar": 90
+      },
+      "revId": "4fe43c1026a740291f1bd23d92e2ce123fe11d89",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "245d9331_6b7045cf",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 747,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-13T22:19:08Z",
+      "side": 1,
+      "message": "`An error occurred while reconnecting to the Jami daemon (jamid).`\n\nThank you",
+      "range": {
+        "startLine": 747,
+        "startChar": 46,
+        "endLine": 747,
+        "endChar": 94
       },
       "revId": "4fe43c1026a740291f1bd23d92e2ce123fe11d89",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
