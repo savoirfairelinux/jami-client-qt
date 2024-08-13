@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16466bbe_9823524c",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-13T21:48:11Z",
+      "side": 1,
+      "message": "What is the encoding for the text file?\n\nIs the file created in ASCII, UTF-8 or some other format?\n\nDo the following non-ASCII characters work correctly:\nőŐűŰ\nএই বাংলা\nこれは日本語です\n這是中國人\nयह हिंदी है\n\n\u003e Text files created on DOS/Windows machines have different line endings than files created on Unix/Linux.\nhttps://www.shellhacks.com/find-out-text-file-line-endings-lf-or-clrf/\n\nDoes the file line ending work correctly across platforms? i.e. GNU/Linux and Windows?\n\nThank you",
+      "range": {
+        "startLine": 545,
+        "startChar": 70,
+        "endLine": 545,
+        "endChar": 80
+      },
+      "revId": "4fe43c1026a740291f1bd23d92e2ce123fe11d89",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
