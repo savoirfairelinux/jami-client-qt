@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "44521907_3f88f7ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-14T09:33:51Z",
+      "side": 1,
+      "message": "Done at https://review.jami.net/c/jami-client-qt/+/28605",
+      "revId": "4fe43c1026a740291f1bd23d92e2ce123fe11d89",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8e7c5e9_539550bf",
@@ -47,6 +64,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "72294755_cd945e63",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-14T09:33:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0dc0c14d_0939ecdf",
+      "range": {
+        "startLine": 76,
+        "startChar": 48,
+        "endLine": 76,
+        "endChar": 69
+      },
+      "revId": "4fe43c1026a740291f1bd23d92e2ce123fe11d89",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "60615ba8_5633e8d3",
@@ -60,6 +101,30 @@
       "writtenOn": "2024-08-13T22:19:08Z",
       "side": 1,
       "message": "`An error occurred while backing up account.`\n\nThank you",
+      "range": {
+        "startLine": 420,
+        "startChar": 39,
+        "endLine": 420,
+        "endChar": 53
+      },
+      "revId": "4fe43c1026a740291f1bd23d92e2ce123fe11d89",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2baa6db6_fc5ac6da",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-14T09:33:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60615ba8_5633e8d3",
       "range": {
         "startLine": 420,
         "startChar": 39,
@@ -93,6 +158,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d282a984_f2536f35",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-14T09:33:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c78daf1_d91b1c51",
+      "range": {
+        "startLine": 422,
+        "startChar": 48,
+        "endLine": 422,
+        "endChar": 70
+      },
+      "revId": "4fe43c1026a740291f1bd23d92e2ce123fe11d89",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e024a0e_7a5198e7",
@@ -116,6 +205,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f06d5afc_9377a5e9",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-14T09:33:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e024a0e_7a5198e7",
+      "range": {
+        "startLine": 424,
+        "startChar": 45,
+        "endLine": 424,
+        "endChar": 64
+      },
+      "revId": "4fe43c1026a740291f1bd23d92e2ce123fe11d89",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f33da6ae_f876e369",
@@ -129,6 +242,30 @@
       "writtenOn": "2024-08-13T22:19:08Z",
       "side": 1,
       "message": "Should this be changed to `An unexpected error occurred.`? Thank you",
+      "range": {
+        "startLine": 533,
+        "startChar": 40,
+        "endLine": 533,
+        "endChar": 60
+      },
+      "revId": "4fe43c1026a740291f1bd23d92e2ce123fe11d89",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61d6dc51_d67a0f50",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-14T09:33:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f33da6ae_f876e369",
       "range": {
         "startLine": 533,
         "startChar": 40,
@@ -231,6 +368,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de3db3f5_e7bf2e8e",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-14T09:33:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de46f847_b376eafa",
+      "range": {
+        "startLine": 629,
+        "startChar": 7,
+        "endLine": 629,
+        "endChar": 14
+      },
+      "revId": "4fe43c1026a740291f1bd23d92e2ce123fe11d89",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bac7e28b_5eb6ed09",
@@ -244,6 +405,30 @@
       "writtenOn": "2024-08-13T22:19:08Z",
       "side": 1,
       "message": "`An error occurred while installing extension.`\n\nIf this is a heading on a dialog box, then should it be:\n`Installation error`\n\nThank you",
+      "range": {
+        "startLine": 641,
+        "startChar": 46,
+        "endLine": 641,
+        "endChar": 65
+      },
+      "revId": "4fe43c1026a740291f1bd23d92e2ce123fe11d89",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b93cf149_e4dc7a7e",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-14T09:33:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bac7e28b_5eb6ed09",
       "range": {
         "startLine": 641,
         "startChar": 46,
@@ -277,6 +462,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4b24a5f_6ca71baf",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 642,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-14T09:33:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13d7e27b_2841f565",
+      "range": {
+        "startLine": 642,
+        "startChar": 52,
+        "endLine": 642,
+        "endChar": 89
+      },
+      "revId": "4fe43c1026a740291f1bd23d92e2ce123fe11d89",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d9ce4f26_9b9241ce",
@@ -290,6 +499,30 @@
       "writtenOn": "2024-08-13T22:19:08Z",
       "side": 1,
       "message": "`extension`",
+      "range": {
+        "startLine": 647,
+        "startChar": 53,
+        "endLine": 647,
+        "endChar": 59
+      },
+      "revId": "4fe43c1026a740291f1bd23d92e2ce123fe11d89",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95d22681_19f78101",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 647,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-14T09:33:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9ce4f26_9b9241ce",
       "range": {
         "startLine": 647,
         "startChar": 53,
@@ -323,6 +556,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "967e3f59_aa859be8",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-14T09:33:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54fc5112_48dd2e90",
+      "range": {
+        "startLine": 717,
+        "startChar": 36,
+        "endLine": 717,
+        "endChar": 38
+      },
+      "revId": "4fe43c1026a740291f1bd23d92e2ce123fe11d89",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a6d9949e_51d88f2f",
@@ -346,6 +603,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3c70e16_60f71a1f",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 746,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-14T09:33:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6d9949e_51d88f2f",
+      "range": {
+        "startLine": 746,
+        "startChar": 43,
+        "endLine": 746,
+        "endChar": 90
+      },
+      "revId": "4fe43c1026a740291f1bd23d92e2ce123fe11d89",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "245d9331_6b7045cf",
@@ -359,6 +640,30 @@
       "writtenOn": "2024-08-13T22:19:08Z",
       "side": 1,
       "message": "`An error occurred while reconnecting to the Jami daemon (jamid).`\n\nThank you",
+      "range": {
+        "startLine": 747,
+        "startChar": 46,
+        "endLine": 747,
+        "endChar": 94
+      },
+      "revId": "4fe43c1026a740291f1bd23d92e2ce123fe11d89",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7329713b_46cb9385",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 747,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-14T09:33:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "245d9331_6b7045cf",
       "range": {
         "startLine": 747,
         "startChar": 46,
