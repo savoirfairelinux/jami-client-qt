@@ -34,6 +34,24 @@
       "parentUuid": "8eae752d_80f36c9a",
       "revId": "57a4da18fc4b6d52604461387db3ddba178e908b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79c53590_cdc21525",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-14T10:17:42Z",
+      "side": 1,
+      "message": "Restored src/libclient/conversationmodel.cpp and could rebase.",
+      "parentUuid": "058c6e7f_018ab9ef",
+      "revId": "57a4da18fc4b6d52604461387db3ddba178e908b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
