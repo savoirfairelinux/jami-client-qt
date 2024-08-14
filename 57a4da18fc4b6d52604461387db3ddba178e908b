@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8eae752d_80f36c9a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-14T09:35:55Z",
+      "side": 1,
+      "message": "Please help resolve the \"Merge Conflict\" message.\n\nDoes clicking on \"REBASE\" resolve this message or does something else need to be done?\n\nThank you",
+      "revId": "57a4da18fc4b6d52604461387db3ddba178e908b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
