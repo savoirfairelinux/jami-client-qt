@@ -167,15 +167,6 @@ Rectangle {
             target: CurrentConversation
             enabled: true
 
-            function onActiveCallsChanged() {
-                if (CurrentConversation.activeCalls.length > 0) {
-                    notificationArea.id = CurrentConversation.activeCalls[0]["id"];
-                    notificationArea.uri = CurrentConversation.activeCalls[0]["uri"];
-                    notificationArea.device = CurrentConversation.activeCalls[0]["device"];
-                }
-                notificationArea.visible = CurrentConversation.activeCalls.length > 0 && !root.inCallView;
-            }
-
             function onErrorsChanged() {
                 if (CurrentConversation.errors.length > 0) {
                     errorRect.errorLabel.text = CurrentConversation.errors[0];
