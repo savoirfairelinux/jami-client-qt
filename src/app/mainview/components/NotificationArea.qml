@@ -29,9 +29,7 @@ Rectangle {
     opacity: visible
     color: CurrentConversation.color
 
-    property string id: ""
-    property string uri: ""
-    property string device: ""
+    property var activeCall: CurrentConversation.activeCalls.length > 0 ? CurrentConversation.activeCalls[0] : null
 
     property string textColor: UtilsAdapter.luma(root.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
     RowLayout {
@@ -64,7 +62,10 @@ Rectangle {
             border.width: 1
             border.color: root.textColor
 
-            onClicked: MessagesAdapter.joinCall(uri, device, id, true)
+            onClicked: {
+                if (activeCall !== null)
+                    MessagesAdapter.joinCall(activeCall["uri"], activeCall["device"], activeCall["id"], true)
+            }
         }
 
         PushButton {
@@ -82,7 +83,10 @@ Rectangle {
             border.color: root.textColor
             visible: CurrentAccount.videoEnabled_Video
 
-            onClicked: MessagesAdapter.joinCall(uri, device, id)
+            onClicked: {
+                if (activeCall !== null)
+                    MessagesAdapter.joinCall(activeCall["uri"], activeCall["device"], activeCall["id"])
+            }
         }
 
         PushButton {
@@ -94,7 +98,10 @@ Rectangle {
 
             source: JamiResources.round_close_24dp_svg
 
-            onClicked: ConversationsAdapter.ignoreActiveCall(CurrentConversation.id, id, uri, device)
+            onClicked: {
+                if (activeCall !== null)
+                    ConversationsAdapter.ignoreActiveCall(CurrentConversation.id, activeCall["id"], activeCall["uri"], activeCall["device"])
+            }
         }
     }
 
