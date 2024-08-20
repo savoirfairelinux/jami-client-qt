@@ -35,9 +35,11 @@ Popup {
     property bool closeButtonVisible: true
     property int button1Role
     property int button2Role
+    property int button3Role
 
     property alias button1: action1
     property alias button2: action2
+    property alias button3: action3
 
     property alias popupContentLoadStatus: containerSubContentLoader.status
     property alias popupContent: containerSubContentLoader.sourceComponent
@@ -168,6 +170,18 @@ Popup {
                     autoAccelerator: true
 
                     DialogButtonBox.buttonRole: root.button2Role
+                }
+
+                MaterialButton {
+                    id: action3
+
+                    visible: text.length > 0
+                    rightPadding: buttonMargin
+                    leftPadding: buttonMargin
+                    tertiary: true
+                    autoAccelerator: true
+
+                    DialogButtonBox.buttonRole: root.button3Role
                 }
             }
         }

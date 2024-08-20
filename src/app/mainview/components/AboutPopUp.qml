@@ -29,11 +29,13 @@ BaseModalDialog {
     margins: JamiTheme.preferredMarginSize
     title: JamiStrings.aboutJami
 
-    button1.text: JamiStrings.contribute
-    button2.text: JamiStrings.feedback
+    button1.text: JamiStrings.donate
+    button2.text: JamiStrings.contribute
+    button3.text: JamiStrings.feedback
 
-    button1.onClicked: { Qt.openUrlExternally("https://jami.net/contribute/")}
-    button2.onClicked: { Qt.openUrlExternally("mailto:jami@gnu.org")}
+    button1.onClicked: { Qt.openUrlExternally("https://jami.net/whydonate/")}
+    button2.onClicked: { Qt.openUrlExternally("https://jami.net/contribute/")}
+    button3.onClicked: { Qt.openUrlExternally("mailto:jami@gnu.org")}
 
     popupContent: JamiFlickable {
             id: aboutPopUpScrollView
