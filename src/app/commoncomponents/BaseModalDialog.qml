@@ -34,9 +34,11 @@ Popup {
     property bool closeButtonVisible: true
     property int button1Role
     property int button2Role
+    property int button3Role
 
     property alias button1: action1
     property alias button2: action2
+    property alias button3: action3
 
     property alias popupContentLoadStatus: containerSubContentLoader.status
     property alias popupContent: containerSubContentLoader.sourceComponent
@@ -133,28 +135,19 @@ Popup {
                 ScrollBar.horizontal.visible: false
             }
 
-            DialogButtonBox {
+            RowLayout {
                 id: buttonBox
 
-                Layout.alignment: Qt.AlignRight
+                Layout.fillWidth: true
+                Layout.alignment: (action1.visible && action2.visible && action3.visible) ? Qt.AlignHCenter : Qt.AlignRight
+                Layout.rightMargin: !(action1.visible && action2.visible && action3.visible) ? buttonMargin : 0
                 spacing: 1.5
-
-                background: Rectangle {
-
-                    color: "transparent"
-                    width: buttonBox.childrenRect.width
-                    height: buttonBox.childrenRect.height
-                }
-
-                visible: action1.text.length > 0
-                contentHeight: childrenRect.height + 14
 
                 MaterialButton {
                     id: action1
 
                     visible: text.length > 0
-                    rightPadding: buttonMargin
-                    leftPadding: buttonMargin
+                    horizontalPadding: buttonMargin
                     tertiary: true
                     autoAccelerator: true
 
@@ -165,13 +158,23 @@ Popup {
                     id: action2
 
                     visible: text.length > 0
-                    rightPadding: buttonMargin
-                    leftPadding: buttonMargin
+                    horizontalPadding: buttonMargin
                     tertiary: true
                     autoAccelerator: true
 
                     DialogButtonBox.buttonRole: root.button2Role
                 }
+
+                MaterialButton {
+                    id: action3
+
+                    visible: text.length > 0
+                    horizontalPadding: buttonMargin
+                    tertiary: true
+                    autoAccelerator: true
+
+                    DialogButtonBox.buttonRole: root.button3Role
+               }
             }
         }
     }
