@@ -35,9 +35,11 @@ Popup {
     property bool closeButtonVisible: true
     property int button1Role
     property int button2Role
+    property int button3Role
 
     property alias button1: action1
     property alias button2: action2
+    property alias button3: action3
 
     property alias popupContentLoadStatus: containerSubContentLoader.status
     property alias popupContent: containerSubContentLoader.sourceComponent
@@ -59,7 +61,7 @@ Popup {
         property color color: JamiTheme.secondaryBackgroundColor
         anchors.centerIn: parent
         leftPadding: popupMargins
-        bottomPadding: action1.visible || action2.visible ? 10 :popupMargins
+        bottomPadding: action1.visible || action2.visible || action3.visible? 10 : popupMargins
 
         background: Rectangle {
             id: bgRect
@@ -169,6 +171,18 @@ Popup {
 
                     DialogButtonBox.buttonRole: root.button2Role
                 }
+
+                MaterialButton {
+                    id: action3
+
+                    visible: text.length > 0
+                    rightPadding: buttonMargin
+                    leftPadding: buttonMargin
+                    tertiary: true
+                    autoAccelerator: true
+
+                    DialogButtonBox.buttonRole: root.button3Role
+                }
             }
         }
     }
@@ -181,7 +195,7 @@ Popup {
         color: JamiTheme.transparentColor
 
         // Color animation for overlay when pop up is shown.
-        ColorAnimation on color  {
+        ColorAnimation on color {
             to: JamiTheme.popupOverlayColor
             duration: 500
         }
