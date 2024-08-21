@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c33410d_8874f1a2",
+        "filename": "src/app/commoncomponents/BaseModalDialog.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-08-21T19:11:42Z",
+      "side": 1,
+      "message": "Note: this will fix the `flickable` component\u0027s preferredHeight at 400 when previously it was a binding dependant on both its contentHeight and the root component\u0027s height.\n\nPerhaps the AboutDialog is poorly implementing the BaseModalDialog?",
+      "range": {
+        "startLine": 123,
+        "startChar": 40,
+        "endLine": 123,
+        "endChar": 43
+      },
+      "revId": "6cceb2548fd5f176a60db5b079808e2cbcffa433",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
