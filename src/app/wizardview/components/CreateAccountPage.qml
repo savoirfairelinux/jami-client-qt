@@ -20,6 +20,7 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
+import QtMultimedia
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
@@ -103,7 +104,57 @@ Rectangle {
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
                 width: Math.max(508, root.width - 100)
+                Item {
 
+                    Layout.alignment: Qt.AlignCenter | Qt.AlignTop
+                    Layout.preferredWidth: JamiTheme.welcomeLogoWidth
+                    Layout.preferredHeight: JamiTheme.welcomeLogoHeight
+
+                    Loader {
+                        id: videoPlayer
+
+                        property var mediaInfo: UtilsAdapter.getVideoPlayer(JamiTheme.darkTheme ? JamiResources.logo_dark_webm : JamiResources.logo_light_webm, JamiTheme.secondaryBackgroundColor)
+                        anchors.fill: parent
+                        anchors.margins: 2
+                        sourceComponent: WITH_WEBENGINE ? avMediaComp : basicPlayer
+
+                        Component {
+                            id: avMediaComp
+                            Loader {
+                                Component.onCompleted: {
+                                    var qml = "qrc:/webengine/VideoPreview.qml";
+                                    setSource(qml, {
+                                            "isVideo": mediaInfo.isVideo,
+                                            "html": mediaInfo.html
+                                        });
+                                }
+                            }
+                        }
+
+                        Component {
+                            id: basicPlayer
+
+                            Item {
+                                // NOTE: Seems to crash on snap for whatever reason. For now use VideoPreview in priority
+                                MediaPlayer {
+                                    id: mediaPlayer
+                                    source: JamiTheme.darkTheme ? JamiResources.logo_dark_webm : JamiResources.logo_light_webm
+                                    videoOutput: videoOutput
+                                    loops: MediaPlayer.Infinite
+                                }
+
+                                VideoOutput {
+                                    id: videoOutput
+                                    anchors.fill: parent
+                                }
+
+                                Component.onCompleted: {
+                                    mediaPlayer.play();
+                                }
+                            }
+                        }
+                    }
+                }
                 Text {
                     id: joinJami
 
