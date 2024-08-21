@@ -61,7 +61,7 @@ Popup {
         property color color: JamiTheme.secondaryBackgroundColor
         anchors.centerIn: parent
         leftPadding: popupMargins
-        bottomPadding: action1.visible || action2.visible || action3.visible? 10 : popupMargins
+        bottomPadding: action1.visible || action2.visible || action3.visible ? 10 : popupMargins
 
         background: Rectangle {
             id: bgRect
@@ -120,7 +120,7 @@ Popup {
 
                 Layout.fillHeight: true
 
-                Layout.preferredHeight: Math.min(contentHeight, root.height)
+                Layout.preferredHeight: 400
                 Layout.preferredWidth: contentItem.childrenRect.width
                 Layout.rightMargin: popupMargins
                 Layout.alignment: Qt.AlignCenter
