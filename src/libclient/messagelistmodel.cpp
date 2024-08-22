@@ -201,12 +201,7 @@ MessageListModel::update(const QString& id, const interaction::Info& interaction
             return true;
         }
     }
-    // TODO: look into why this update with an empty body is broadcasted just
-    // after loading the messages. This is a workaround to avoid the empty
-    // file transfer path. Until then, don't update the body if it's empty.
-    if (!interaction.body.isEmpty()) {
-        current.body = interaction.body;
-    }
+    current.body = interaction.body;
     current.commit = interaction.commit;
     current.previousBodies = interaction.previousBodies;
     current.parsedBody = interaction.parsedBody;
