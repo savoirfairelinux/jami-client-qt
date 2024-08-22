@@ -470,6 +470,10 @@ Control {
                                 MessagesAdapter.openUrl(root.hoveredLink);
                             }
                         }
+                        onDoubleClicked: {
+                            MessagesAdapter.editId = "";
+                            MessagesAdapter.replyToId = Id;
+                        }
                         property bool bubbleHovered: containsMouse || textHovered
                         cursorShape: enabled ? Qt.PointingHandCursor : Qt.ArrowCursor
                     }
