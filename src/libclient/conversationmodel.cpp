@@ -2788,6 +2788,7 @@ ConversationModelPimpl::addConversationRequest(const MapStringString& convReques
         {"author", peerUri},
         {"timestamp", convRequest["received"]},
         {"linearizedParent", ""},
+        {"mode", convRequest["mode"]}
     };
     auto msg = interaction::Info(messageMap, linked.owner.profileInfo.uri);
     conversation.interactions->insert(convId, msg, 0);
