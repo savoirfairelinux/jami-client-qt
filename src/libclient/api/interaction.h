@@ -20,9 +20,11 @@
 
 #include <QString>
 #include <QObject>
+#include <QFileInfo>
 
 #include <ctime>
 #include "typedefs.h"
+#include "../dbus/configurationmanager.h"
 
 namespace lrc {
 
@@ -454,7 +456,10 @@ struct Info
         return status == Status::SUCCESS || status == Status::DISPLAYED;
     }
 
-    void init(const MapStringString& message, const QString& accountURI)
+    void init(const MapStringString& message,
+              const QString& accountURI,
+              const QString& accountId,
+              const QString& conversationId)
     {
         type = to_type(message["type"]);
         if (message.contains("react-to") && type == Type::TEXT) {
@@ -482,16 +487,42 @@ struct Info
             duration = message["duration"].toInt() / 1000;
             if (message.contains("confId"))
                 confId = message["confId"];
+        } else if (type == Type::DATA_TRANSFER) {
+            QString path;
+            qlonglong bytesProgress, totalSize;
+            ConfigurationManager::instance().fileTransferInfo(accountId,
+                                                               conversationId,
+                                                               message["fileId"],
+                                                               path,
+                                                               totalSize,
+                                                               bytesProgress);
+            QFileInfo fi(path);
+            body = fi.isSymLink() ? fi.symLinkTarget() : path;
+            transferStatus = bytesProgress == 0 ? TransferStatus::TRANSFER_AWAITING_HOST
+                           : bytesProgress == totalSize ? TransferStatus::TRANSFER_FINISHED
+                                                            : TransferStatus::TRANSFER_ONGOING;
+
         }
         commit = message;
     }
 
-    Info(const MapStringString& message, const QString& accountURI)
+    // NOTE: The `accountId` and `conversationId` arguments are only used for messages of
+    // type DATA_TRANSFER. They can therefore be omitted if the caller knows that `message`
+    // is of a different type. They must be provided otherwise, as failure to do so would
+    // result in the `body` and `transferStatus` fields of the returned Info struct to
+    // contain incorrect information whenever `message` is of type DATA_TRANSFER.
+    Info(const MapStringString& message,
+         const QString& accountURI,
+         const QString& accountId = "",
+         const QString& conversationId = "")
     {
-        init(message, accountURI);
+        init(message, accountURI, accountId, conversationId);
     }
 
-    Info(const SwarmMessage& msg, const QString& accountUri)
+    Info(const SwarmMessage& msg,
+         const QString& accountUri,
+         const QString& accountId,
+         const QString& conversationId)
     {
         MapStringString msgBody;
         for (auto it = msg.body.cbegin(); it != msg.body.cend(); ++it) {
@@ -499,7 +530,7 @@ struct Info
             const auto& value = it.value();
             msgBody.insert(key, value);
         }
-        init(msgBody, accountUri);
+        init(msgBody, accountUri, accountId, conversationId);
         parentId = msg.linearizedParent;
         type = to_type(msg.type);
         for (const auto& edition : msg.editions)

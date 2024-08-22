@@ -2285,31 +2285,14 @@ ConversationModelPimpl::slotSwarmLoaded(uint32_t requestId,
         auto& conversation = getConversationForUid(conversationId).get();
         for (const auto& message : messages) {
             QString msgId = message.id;
-            auto msg = interaction::Info(message, linked.owner.profileInfo.uri);
+            auto msg = interaction::Info(message, linked.owner.profileInfo.uri, accountId, conversationId);
             auto downloadFile = false;
             if (msg.type == interaction::Type::INITIAL) {
                 allLoaded = true;
             } else if (msg.type == interaction::Type::DATA_TRANSFER) {
                 QString fileId = message.body.value("fileId");
-                QString path;
-                qlonglong bytesProgress, totalSize;
-                linked.owner.dataTransferModel->fileTransferInfo(accountId,
-                                                                 conversationId,
-                                                                 fileId,
-                                                                 path,
-                                                                 totalSize,
-                                                                 bytesProgress);
-                QFileInfo fi(path);
-                if (fi.isSymLink()) {
-                    msg.body = fi.symLinkTarget();
-                } else {
-                    msg.body = path;
-                }
-                msg.transferStatus = bytesProgress == 0 ? interaction::TransferStatus::TRANSFER_AWAITING_HOST
-                                   : bytesProgress == totalSize ? interaction::TransferStatus::TRANSFER_FINISHED
-                                                                : interaction::TransferStatus::TRANSFER_ONGOING;
                 linked.owner.dataTransferModel->registerTransferId(fileId, msgId);
-                downloadFile = (bytesProgress == 0);
+                downloadFile = (msg.transferStatus == interaction::TransferStatus::TRANSFER_AWAITING_HOST);
             }
 
             // If message is loaded, insert message at beginning
@@ -2351,25 +2334,12 @@ ConversationModelPimpl::slotMessagesFound(uint32_t requestId,
     QMap<QString, interaction::Info> messageDetailedInformation;
     if (requestId == mediaResearchRequestId) {
         Q_FOREACH (const MapStringString& msg, messageIds) {
-            auto intInfo = interaction::Info(msg, "");
-            if (intInfo.type == interaction::Type::DATA_TRANSFER) {
-                auto fileId = msg["fileId"];
-
-                QString path;
-                qlonglong bytesProgress, totalSize;
-                linked.owner.dataTransferModel->fileTransferInfo(accountId,
-                                                                 conversationId,
-                                                                 fileId,
-                                                                 path,
-                                                                 totalSize,
-                                                                 bytesProgress);
-                intInfo.body = path;
-            }
+            auto intInfo = interaction::Info(msg, "", accountId, conversationId);
             messageDetailedInformation[msg["id"]] = std::move(intInfo);
         }
     } else if (requestId == msgResearchRequestId) {
         Q_FOREACH (const MapStringString& msg, messageIds) {
-            auto intInfo = interaction::Info(msg, "");
+            auto intInfo = interaction::Info(msg, "", accountId, conversationId);
             if (intInfo.type == interaction::Type::TEXT) {
                 messageDetailedInformation[msg["id"]] = std::move(intInfo);
             }
@@ -2395,33 +2365,14 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
             }
         }
         QString msgId = message.id;
-        auto msg = interaction::Info(message, linked.owner.profileInfo.uri);
+        auto msg = interaction::Info(message, linked.owner.profileInfo.uri, accountId, conversationId);
 
         if (msg.type == interaction::Type::CALL) {
             msg.body = interaction::getCallInteractionString(msg.authorUri
                                                                  == linked.owner.profileInfo.uri,
                                                              msg);
         } else if (msg.type == interaction::Type::DATA_TRANSFER) {
-            // save data transfer interaction to db and assosiate daemon id with interaction id,
-            // conversation id and db id
             QString fileId = message.body.value("fileId");
-            QString path;
-            qlonglong bytesProgress, totalSize;
-            linked.owner.dataTransferModel->fileTransferInfo(accountId,
-                                                             conversationId,
-                                                             fileId,
-                                                             path,
-                                                             totalSize,
-                                                             bytesProgress);
-            QFileInfo fi(path);
-            if (fi.isSymLink()) {
-                msg.body = fi.symLinkTarget();
-            } else {
-                msg.body = path;
-            }
-            msg.transferStatus = bytesProgress == 0         ? interaction::TransferStatus::TRANSFER_AWAITING_HOST
-                               : bytesProgress == totalSize ? interaction::TransferStatus::TRANSFER_FINISHED
-                                                            : interaction::TransferStatus::TRANSFER_ONGOING;
             linked.owner.dataTransferModel->registerTransferId(fileId, msgId);
         }
 
@@ -2473,7 +2424,7 @@ ConversationModelPimpl::slotMessageUpdated(const QString& accountId,
     try {
         auto& conversation = getConversationForUid(conversationId).get();
         QString msgId = message.id;
-        auto msg = interaction::Info(message, linked.owner.profileInfo.uri);
+        auto msg = interaction::Info(message, linked.owner.profileInfo.uri, accountId, conversationId);
 
         if (!conversation.interactions->update(msgId, msg)) {
             qDebug() << "Message not found or cannot be reparented.";
