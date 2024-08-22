@@ -154,7 +154,7 @@ APT_DEPENDENCIES = [
     'libopus-dev', 'libpcre3-dev', 'libpulse-dev', 'libssl-dev',
     'libspeex-dev', 'libspeexdsp-dev', 'libswscale-dev', 'libtool',
     'libudev-dev', 'libyaml-cpp-dev', 'sip-tester', 'swig',
-    'uuid-dev', 'yasm', 'libjsoncpp-dev', 'libva-dev', 'libvdpau-dev', 'libmsgpack-dev',
+    'uuid-dev', 'yasm', 'libjsoncpp-dev', 'libva-dev', 'libvdpau-dev', 'libpipewire-0.3-dev', 'libmsgpack-dev',
     'pandoc', 'nasm', 'dpkg-dev', 'libsystemd-dev'
 ]
 
