@@ -51,7 +51,7 @@ Rectangle {
         }
 
         PushButton {
-            id: joinCallInAudio
+            id: joinCallWithDeviceAudio
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
             Layout.rightMargin: JamiTheme.preferredMarginSize
 
@@ -68,7 +68,7 @@ Rectangle {
         }
 
         PushButton {
-            id: joinCallInVideo
+            id: joinCallWithVideo
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
             Layout.rightMargin: JamiTheme.preferredMarginSize
 
