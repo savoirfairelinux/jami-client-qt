@@ -51,7 +51,7 @@ SBSMessageBase {
     bubble.border.color: CurrentConversation.color
     bubble.border.width: root.isActive ? 1.5 : 0
     bubble.color: JamiTheme.messageInBgColor
-    bubble.opacity: 0.6
+    bubble.opacity: 1
 
     Connections {
         target: CurrentConversation
