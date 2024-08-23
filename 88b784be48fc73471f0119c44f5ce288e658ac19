@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85579f1e_a55a948e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-23T09:42:26Z",
+      "side": 1,
+      "message": "Gerrit has a message \"Please be mindful of requiring attention from too many users.\" Who should be added as reviewers? Thank you",
+      "revId": "88b784be48fc73471f0119c44f5ce288e658ac19",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
