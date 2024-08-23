@@ -42,7 +42,7 @@ Rectangle {
             Layout.fillWidth: true
             Layout.preferredHeight: 35
 
-            placeHolderText: JamiStrings.addParticipant
+            placeHolderText: JamiStrings.inviteMember
 
             onSearchBarTextChanged: function(text){
                 ContactAdapter.setSearchFilter(text);

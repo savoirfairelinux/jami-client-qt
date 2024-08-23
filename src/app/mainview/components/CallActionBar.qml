@@ -339,7 +339,7 @@ Control {
             onTriggered: root.addToConferenceClicked()
             icon.source: JamiResources.add_people_black_24dp_svg
             icon.color: "white"
-            text: JamiStrings.addParticipants
+            text: JamiStrings.inviteMembers
             enabled: CurrentCall.isModerator && !CurrentCall.isSIP
             onEnabledChanged: CallOverlayModel.setEnabled(this, addPersonAction.enabled)
         },
