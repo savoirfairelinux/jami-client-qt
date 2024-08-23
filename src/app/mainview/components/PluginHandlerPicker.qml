@@ -95,7 +95,7 @@ Popup {
                         verticalAlignment: Text.AlignVCenter
                         color: JamiTheme.textColor
 
-                        text: JamiStrings.choosePlugin
+                        text: JamiStrings.chooseExtension
                     }
 
                     PushButton {
@@ -176,7 +176,7 @@ Popup {
                         Layout.leftMargin: 5
                         Layout.topMargin: 5
 
-                        toolTipText: JamiStrings.goBackToPluginsList
+                        toolTipText: JamiStrings.goBackToExtensionsList
 
                         onClicked: {
                             stack.pop(null, StackView.Immediate);
@@ -195,7 +195,7 @@ Popup {
                         verticalAlignment: Text.AlignVCenter
 
                         color: JamiTheme.textColor
-                        text: JamiStrings.pluginPreferences
+                        text: JamiStrings.extensionPreferences
                     }
 
                     PushButton {
