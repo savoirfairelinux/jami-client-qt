@@ -174,7 +174,7 @@ DualPaneView {
                 Layout.preferredWidth: JamiTheme.preferredFieldWidth
 
                 staticText: ""
-                placeholderText: JamiStrings.addADescription
+                placeholderText: JamiStrings.addDescription
 
                 textColor: {
                     if (UtilsAdapter.luma(root.color)) {
@@ -205,7 +205,7 @@ DualPaneView {
                 preferredWidth: textSize.width + 2 * JamiTheme.buttontextWizzardPadding
 
                 primary: true
-                text: JamiStrings.createTheSwarm
+                text: JamiStrings.createSwarm
 
                 onClicked: createSwarmClicked(title.dynamicText, description.dynamicText, UtilsAdapter.tempCreationImage())
             }

@@ -141,19 +141,19 @@ SBSMessageBase {
             }
 
             JoinCallButton {
-                id: joinCallInAudio
-                objectName: "joinCallInAudio"
+                id: joinCallWithDeviceAudio
+                objectName: "joinCallWithDeviceAudio"
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
 
-                text: JamiStrings.joinInAudio
+                text: JamiStrings.joinWithDeviceAudio
                 onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, root.confId, true)
             }
 
             JoinCallButton {
-                id: joinCallInVideo
-                objectName: "joinCallInVideo"
-                text: JamiStrings.joinInVideo
+                id: joinCallWithVideo
+                objectName: "joinCallWithVideo"
+                text: JamiStrings.joinWithVideo
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
 
