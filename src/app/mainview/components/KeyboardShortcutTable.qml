@@ -37,27 +37,27 @@ Window {
             id: keyboardGeneralShortcutsModel
 
             ListElement {
-                shortcut: "Ctrl + J"
+                shortcut: "Ctrl+J"
                 description: qsTr("Open account list")
             }
             ListElement {
-                shortcut: "Ctrl + L"
+                shortcut: "Ctrl+L"
                 description: qsTr("Focus conversations list")
             }
             ListElement {
-                shortcut: "Ctrl + R"
+                shortcut: "Ctrl+R"
                 description: qsTr("Requests list")
             }
             ListElement {
-                shortcut: "Ctrl + ↑"
+                shortcut: "Ctrl+↑"
                 description: qsTr("Previous conversation")
             }
             ListElement {
-                shortcut: "Ctrl + ↓"
+                shortcut: "Ctrl+↓"
                 description: qsTr("Next conversation")
             }
             ListElement {
-                shortcut: "Ctrl + F"
+                shortcut: "Ctrl+F"
                 description: qsTr("Search bar")
             }
             ListElement {
@@ -65,15 +65,15 @@ Window {
                 description: qsTr("Full screen")
             }
             ListElement {
-                shortcut: "Ctrl + +"
+                shortcut: "Ctrl++"
                 description: qsTr("Increase font size")
             }
             ListElement {
-                shortcut: "Ctrl + -"
+                shortcut: "Ctrl+-"
                 description: qsTr("Decrease font size")
             }
             ListElement {
-                shortcut: "Ctrl + 0"
+                shortcut: "Ctrl+0"
                 description: qsTr("Reset font size")
             }
         },
@@ -81,32 +81,12 @@ Window {
             id: keyboardConversationShortcutsModel
 
             ListElement {
-                shortcut: "Ctrl + Shift + C"
-                description: qsTr("Start audio call")
-            }
-            ListElement {
-                shortcut: "Ctrl + Shift + X"
-                description: qsTr("Start video call")
-            }
-            ListElement {
-                shortcut: "Ctrl + Shift + L"
-                description: qsTr("Clear history")
-            }
-            ListElement {
-                shortcut: "Ctrl + Shift + F"
-                description: qsTr("Search messages/files")
-            }
-            ListElement {
-                shortcut: "Ctrl + Shift + B"
-                description: qsTr("Block contact")
-            }
-            ListElement {
-                shortcut: "Ctrl + Shift + Delete"
-                description: qsTr("Leave conversation")
-            }
-            ListElement {
-                shortcut: "Ctrl + Shift + A"
+                shortcut: "Ctrl+Shift+A"
                 description: qsTr("Accept contact request")
+            }
+            ListElement {
+                shortcut: "Ctrl+Shift+F"
+                description: qsTr("Search messages/files")
             }
             ListElement {
                 shortcut: "↑"
@@ -116,20 +96,40 @@ Window {
                 shortcut: "Esc"
                 description: qsTr("Cancel message edition")
             }
+            ListElement {
+                shortcut: "Ctrl+Shift+L"
+                description: qsTr("Clear history")
+            }
+            ListElement {
+                shortcut: "Ctrl+Shift+B"
+                description: qsTr("Block contact")
+            }
+            ListElement {
+                shortcut: "Ctrl+Shift+Delete"
+                description: qsTr("Leave conversation")
+            }
         },
         ListModel {
             id: keyboardCallsShortcutsModel
 
             ListElement {
-                shortcut: "Ctrl + Y"
+                shortcut: "Ctrl+Shift+C"
+                description: qsTr("Start audio call")
+            }
+            ListElement {
+                shortcut: "Ctrl+Shift+X"
+                description: qsTr("Start video call")
+            }
+            ListElement {
+                shortcut: "Ctrl+Y"
                 description: qsTr("Answer incoming call")
             }
             ListElement {
-                shortcut: "Ctrl + D"
+                shortcut: "Ctrl+D"
                 description: qsTr("End call")
             }
             ListElement {
-                shortcut: "Ctrl + Shift + D"
+                shortcut: "Ctrl+Shift+D"
                 description: qsTr("Decline call request")
             }
             ListElement {
@@ -141,85 +141,85 @@ Window {
                 description: qsTr("Stop camera")
             }
             ListElement {
-                shortcut: "Ctrl + Mouse middle click"
+                shortcut: "Ctrl+Mouse middle click"
                 description: qsTr("Take tile screenshot")
-            }
-        },
-        ListModel {
-            id: keyboardSettingsShortcutsModel
-
-            ListElement {
-                shortcut: "Ctrl + Alt + I"
-                description: qsTr("Open account settings")
-            }
-            ListElement {
-                shortcut: "Ctrl + G"
-                description: qsTr("Open general settings")
-            }
-            ListElement {
-                shortcut: "Ctrl + M"
-                description: qsTr("Open media settings")
-            }
-            ListElement {
-                shortcut: "Ctrl + E"
-                description: qsTr("Open extensions settings")
-            }
-            ListElement {
-                shortcut: "Ctrl + Shift + N"
-                description: qsTr("Open account creation wizard")
-            }
-            ListElement {
-                shortcut: "F10"
-                shortcut2: ""
-                description: qsTr("View keyboard shortcuts")
             }
         },
         ListModel {
             id: keyboardMarkdownShortcutsModel
 
             ListElement {
-                shortcut: "Ctrl + B"
+                shortcut: "Ctrl+B"
                 description: qsTr("Bold")
             }
             ListElement {
-                shortcut: "Ctrl + I"
+                shortcut: "Ctrl+I"
                 description: qsTr("Italic")
             }
             ListElement {
-                shortcut: "Shift + Alt + X"
+                shortcut: "Shift+Alt+X"
                 description: qsTr("Strikethrough")
             }
             ListElement {
-                shortcut: "Ctrl + Alt + H"
+                shortcut: "Ctrl+Alt+H"
                 description: qsTr("Heading")
             }
             ListElement {
-                shortcut: "Ctrl + Alt + K"
+                shortcut: "Ctrl+Alt+K"
                 description: qsTr("Link")
             }
             ListElement {
-                shortcut: "Ctrl + Alt + C"
+                shortcut: "Ctrl+Alt+C"
                 description: qsTr("Code")
             }
             ListElement {
-                shortcut: "Shift + Alt + 9"
+                shortcut: "Shift+Alt+9"
                 description: qsTr("Quote")
             }
             ListElement {
-                shortcut: "Shift + Alt + 8"
+                shortcut: "Shift+Alt+8"
                 description: qsTr("Unordered list")
             }
             ListElement {
-                shortcut: "Shift + Alt + 7"
+                shortcut: "Shift+Alt+7"
                 description: qsTr("Ordered list")
             }
             ListElement {
-                shortcut: "Shift + Alt + T"
+                shortcut: "Shift+Alt+T"
                 description: qsTr("Show/hide formatting")
             }
             ListElement {
-                shortcut: "Shift + Alt + P"
+                shortcut: "Shift+Alt+P"
                 description: qsTr("Show preview/Continue editing")
+            }
+        },
+        ListModel {
+            id: keyboardSettingsShortcutsModel
+
+            ListElement {
+                shortcut: "Ctrl+Alt+I"
+                description: qsTr("Open account settings")
+            }
+            ListElement {
+                shortcut: "Ctrl+G"
+                description: qsTr("Open general settings")
+            }
+            ListElement {
+                shortcut: "Ctrl+M"
+                description: qsTr("Open media settings")
+            }
+            ListElement {
+                shortcut: "Ctrl+E"
+                description: qsTr("Open extensions settings")
+            }
+            ListElement {
+                shortcut: "Ctrl+Shift+N"
+                description: qsTr("Open account creation wizard")
+            }
+            ListElement {
+                shortcut: "F10"
+                shortcut2: ""
+                description: qsTr("View keyboard shortcuts")
             }
         }
     ]
@@ -302,7 +302,7 @@ Window {
             focus: true
 
             Repeater {
-                model: [JamiStrings.generalSettingsTitle, JamiStrings.conversationKeyboardShortcuts, JamiStrings.callKeyboardShortcuts, JamiStrings.settings, JamiStrings.markdownKeyboardShortcuts]
+                model: [JamiStrings.generalSettingsTitle, JamiStrings.conversationKeyboardShortcuts, JamiStrings.callKeyboardShortcuts, JamiStrings.markdownKeyboardShortcuts, JamiStrings.settings]
 
                 TabButton {
                     id: tabButton

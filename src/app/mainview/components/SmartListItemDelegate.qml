@@ -164,7 +164,7 @@ ItemDelegate {
                 Layout.fillWidth: true
                 Layout.minimumHeight: 20
                 Layout.alignment: Qt.AlignVCenter
-                text: JamiStrings.banned
+                text: JamiStrings.blocked
                 textFormat: TextEdit.PlainText
                 visible: IsBanned
                 font.pointSize: JamiTheme.mediumFontSize
