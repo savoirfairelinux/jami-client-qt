@@ -54,7 +54,7 @@ BaseModalDialog {
             Layout.fillWidth: true
             Layout.preferredHeight: 35
 
-            placeHolderText: type === ContactList.TRANSFER ? JamiStrings.transferTo : JamiStrings.addParticipant
+            placeHolderText: type === ContactList.TRANSFER ? JamiStrings.transferTo : JamiStrings.inviteMember
 
             onSearchBarTextChanged: function(text){
                 ContactAdapter.setSearchFilter(text);
