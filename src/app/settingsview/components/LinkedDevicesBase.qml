@@ -44,7 +44,7 @@ ColumnLayout {
         } else {
             viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
                     "title": JamiStrings.removeDevice,
-                    "infoText": JamiStrings.sureToRemoveDevice,
+                    "infoText": JamiStrings.confirmRemoveDevice,
                     "buttonTitles": [JamiStrings.optionOk, JamiStrings.optionCancel],
                     "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue, SimpleMessageDialog.ButtonStyle.TintedBlack],
                     "buttonCallBacks": [function () {
