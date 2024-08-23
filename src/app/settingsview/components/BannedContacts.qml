@@ -49,7 +49,7 @@ ColumnLayout {
             contactName: ContactName
             contactID: ContactID
 
-            btnImgSource: JamiStrings.optionUnban
+            btnImgSource: JamiStrings.optionUnblock
             btnToolTip: JamiStrings.reinstateContact
 
             onClicked: bannedListWidget.currentIndex = index

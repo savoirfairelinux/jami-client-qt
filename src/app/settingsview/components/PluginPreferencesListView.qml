@@ -275,7 +275,7 @@ Rectangle {
 
             onClicked: viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
                     "title": JamiStrings.resetPreferences,
-                    "infoText": JamiStrings.pluginResetConfirmation.arg(pluginId),
+                    "infoText": JamiStrings.extensionResetConfirmation.arg(pluginId),
                     "buttonTitles": [JamiStrings.optionOk, JamiStrings.optionCancel],
                     "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue, SimpleMessageDialog.ButtonStyle.TintedBlack],
                     "buttonCallBacks": [function () {
