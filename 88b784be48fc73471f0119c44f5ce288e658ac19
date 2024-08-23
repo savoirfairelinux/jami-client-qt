@@ -16,6 +16,29 @@
       "message": "Gerrit has a message \"Please be mindful of requiring attention from too many users.\" Who should be added as reviewers? Thank you",
       "revId": "88b784be48fc73471f0119c44f5ce288e658ac19",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2292dae_07019a37",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-23T09:45:36Z",
+      "side": 1,
+      "message": "The current change is to sentence case; however, should this be `Unlink device`?\nhttps://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/1730#note_51836\n\nThank you",
+      "range": {
+        "startLine": 454,
+        "startChar": 40,
+        "endLine": 454,
+        "endChar": 53
+      },
+      "revId": "88b784be48fc73471f0119c44f5ce288e658ac19",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
