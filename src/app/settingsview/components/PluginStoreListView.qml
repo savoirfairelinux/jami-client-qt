@@ -46,7 +46,7 @@ ColumnLayout {
     Label {
         Layout.fillWidth: true
         Layout.bottomMargin: 20
-        text: JamiStrings.pluginStoreTitle
+        text: JamiStrings.extensionStoreTitle
         font.pixelSize: JamiTheme.settingsTitlePixelSize
         font.kerning: true
         color: JamiTheme.textColor
@@ -113,7 +113,7 @@ ColumnLayout {
             color: JamiTheme.textColor
             font.pixelSize: JamiTheme.bigFontSize
             horizontalAlignment: Text.AlignHCenter
-            text: JamiStrings.pluginStoreNotAvailable
+            text: JamiStrings.extensionStoreNotAvailable
         }
     }
     Loader {

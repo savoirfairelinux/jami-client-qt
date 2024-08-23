@@ -73,7 +73,7 @@ BaseModalDialog {
             Layout.bottomMargin: 5
 
             color: JamiTheme.textColor
-            text: JamiStrings.confirmDeleteQuestion
+            text: JamiStrings.confirmDeleteAccount
 
             font.pointSize: JamiTheme.textFontSize
             font.kerning: true
