@@ -139,7 +139,7 @@ Rectangle {
                         Layout.rightMargin: 2 * JamiTheme.settingsMarginSize
 
                         staticText: CurrentConversation.description
-                        placeholderText: JamiStrings.addADescription
+                        placeholderText: JamiStrings.addDescription
                         elidedText: descriptionLineButtonTextSize.elidedText
 
                         textColor: root.textColor
@@ -156,7 +156,7 @@ Rectangle {
                             descriptionLineButton.editMode = activeFocus;
                         }
 
-                        infoTipLineText: JamiStrings.addADescription
+                        infoTipLineText: JamiStrings.addDescription
                     }
                 }
             }

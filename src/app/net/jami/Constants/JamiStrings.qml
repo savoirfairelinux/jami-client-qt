@@ -206,7 +206,7 @@ Item {
     property string mirrorLocalVideo: qsTr("Mirror local video")
     property string screenSharing: qsTr("Screen sharing")
     property string selectScreenSharingFPS: qsTr("Select screen sharing frame rate (frames per second)")
-    property string noVideo: qsTr("no video")
+    property string noVideo: qsTr("No camera available")
 
     // BackupKeyPage
     property string whyBackupAccount: qsTr("Why should I back-up this account?")
@@ -310,8 +310,8 @@ Item {
     // Share location/position
     property string shareLocation: qsTr("Share location")
     property string stopSharingLocation: qsTr("Stop sharing")
-    property string locationServicesError: qsTr("Your precise location could not be determined.\nIn Device Settings, please turn on \"Location Services\".\nOther participants' location can still be received.")
-    property string locationServicesClosedError: qsTr("Your precise location could not be determined. Please check your Internet connection.")
+    property string locationServicesError: qsTr("An error occurred while sharing device location.\nEnable “Location Services” in device settings in order to use this feature.\nThe location of other members can still be received.")
+    property string locationServicesClosedError: qsTr("An error occurred while sharing device location. Please check your Internet connection and try again.")
     property string stopAllSharings: qsTr("Turn off location sharing")
     property string shortStopAllSharings: qsTr("Turn off sharing")
     property string stopConvSharing: qsTr("Stop location sharing in this conversation (%1)")
@@ -396,7 +396,7 @@ Item {
     property string sipAccount: qsTr("SIP account")
     property string proxy: qsTr("Proxy")
     property string server: qsTr("Server")
-    property string configureExistingSIP: qsTr("Configure an existing SIP account")
+    property string configureExistingSIP: qsTr("Configure existing SIP account")
     property string personalizeAccount: qsTr("Personalize account")
     property string addSip: qsTr("Add SIP account")
     property string tls: qsTr("TLS")
@@ -451,7 +451,7 @@ Item {
     // LinkedDevices
     property string tipLinkNewDevice: qsTr("Link a new device to this account")
     property string linkDevice: qsTr("Exporting account…")
-    property string removeDevice: qsTr("Remove Device")
+    property string removeDevice: qsTr("Remove device")
     property string sureToRemoveDevice: qsTr("Do you really want to unlink selected device? To continue, enter account password and click Unlink.")
     property string yourPinIs: qsTr("Your PIN is:")
     property string linkDeviceNetWorkError: qsTr("A network error occurred while linking device.\nPlease try again later.")
@@ -504,8 +504,8 @@ Item {
 
     // JamiUserIdentity settings
     property string register: qsTr("Register")
-    property string incorrectPassword: qsTr("Incorrect password")
-    property string networkError: qsTr("Network error")
+    property string incorrectPassword: qsTr("Incorrect password.")
+    property string networkError: qsTr("A network error occurred.")
     property string somethingWentWrong: qsTr("An unexpected error occurred.")
 
     // Context Menu
@@ -521,15 +521,15 @@ Item {
     property string updateDialogTitle: qsTr("Update")
     property string updateFound: qsTr("A new version of Jami was found.\nDo you want to update Jami now?\nTo continue, click Update.")
     property string updateNotFound: qsTr("No new version of Jami was found")
-    property string updateCheckError: qsTr("An error occurred when checking for a new version.")
-    property string updateNetworkError: qsTr("Network error")
-    property string updateSSLError: qsTr("SSL error")
-    property string updateDownloadCanceled: qsTr("Installer download canceled")
+    property string updateCheckError: qsTr("An error occurred while checking for a new version.")
+    property string updateNetworkError: qsTr("A network error occurred.")
+    property string updateSSLError: qsTr("An SSL error occurred.")
+    property string updateDownloadCanceled: qsTr("Installer download was canceled by user.")
     property string updateDownloading: "Downloading"
-    property string confirmBeta: qsTr("This will uninstall your current Release version and you can always download the latest Release version on our website")
+    property string confirmBeta: qsTr("This will replace the Release version with the Beta version on this device. The latest Release version can always be downloaded from the Jami website.")
     property string networkDisconnected: qsTr("Network disconnected")
-    property string accessError: qsTr("Content access error")
-    property string contentNotFoundError: qsTr("Content not found")
+    property string accessError: qsTr("An error occurred while accessing contents.")
+    property string contentNotFoundError: qsTr("Content not found.")
     property string genericError: qsTr("An unexpected error occurred.")
 
     // Troubleshoot Settings
@@ -585,7 +585,7 @@ Item {
     property string importStep4: qsTr("Step 04")
     property string importStep1Desc: qsTr("Go to the account management settings of a previous device")
     property string importStep2Desc: qsTr("Choose the account to link")
-    property string importStep3Desc: qsTr("Select \"Link another device\"")
+    property string importStep3Desc: qsTr("Select “Link another device”")
     property string importStep4Desc: qsTr("The PIN code will be available for 10 minutes")
     property string importPasswordDesc: qsTr("Fill if the account is password-encrypted.")
 
@@ -597,7 +597,7 @@ Item {
     property string addDevice: qsTr("Add Device")
     property string pinExpired: qsTr("PIN expired")
     property string onAnotherDevice: qsTr("On another device")
-    property string onAnotherDeviceInstruction: qsTr("Install and launch Jami, select \"Import from another device\" and scan the QR code.")
+    property string onAnotherDeviceInstruction: qsTr("Install and launch Jami, select “Import from another device” and scan the QR code.")
     property string linkNewDevice: qsTr("Link new device")
     property string linkingInstructions: qsTr("In Jami, scan QR code or manually enter the PIN.")
     property string pinValidity: qsTr("The PIN code is valid for: ")
@@ -684,7 +684,7 @@ Item {
     property string connectJAMSServer: qsTr("Connect to a JAMS server")
     property string createFromJAMS: qsTr("Create account from Jami Account Management Server (JAMS)")
     property string addSIPAccount: qsTr("Configure a SIP account")
-    property string errorCreateAccount: qsTr("An error occurred while creating the account. Check check credentials and try again.")
+    property string errorCreateAccount: qsTr("An error occurred while creating the account. Check credentials and try again.")
     property string createNewRV: qsTr("Create a rendezvous point")
     property string joinJami: qsTr("Join Jami")
     property string createNewJamiAccount: qsTr("Create new Jami account")
@@ -777,8 +777,8 @@ Item {
     property string edit: qsTr("Edit")
     property string edited: qsTr("Edited")
     property string joinCall: qsTr("Join call")
-    property string joinInAudio: qsTr("Join in audio")
-    property string joinInVideo: qsTr("Join in video")
+    property string joinWithDeviceAudio: qsTr("Join with device audio")
+    property string joinWithVideo: qsTr("Join with video")
     property string startedACall: qsTr("Started a call")
     property string wantToJoin: qsTr("A call is in progress. Do you want to join the call?")
     property string needsHost: qsTr("Current host for this swarm seems unreachable. Do you want to host the call?")
@@ -793,7 +793,7 @@ Item {
     property string hideLocalVideo: qsTr("Hide local video")
 
     // Invitation View
-    property string invitationViewSentRequest: qsTr("%1 has sent you a request for a conversation.")
+    property string invitationViewSentRequest: qsTr("%1 sent you a request for a conversation.")
     property string invitationViewJoinConversation: qsTr("Hello,\nDo you want to join this conversation?")
     property string invitationViewAcceptedConversation: qsTr("You have accepted\nthe conversation request")
     property string invitationViewWaitingForSync: qsTr("Waiting until %1\nconnects to synchronize the conversation.")
@@ -803,7 +803,7 @@ Item {
     property string member: qsTr("Member")
     property string swarmName: qsTr("Swarm name")
     property string contactName: qsTr("Contact name")
-    property string addADescription: qsTr("Add a description")
+    property string addDescription: qsTr("Add description")
 
     property string muteConversation: qsTr("Mute conversation")
     property string ignoreNotificationsTooltip: qsTr("Ignore all notifications from this conversation")
@@ -814,7 +814,7 @@ Item {
     property string none: qsTr("None")
 
     // NewSwarmPage
-    property string createTheSwarm: qsTr("Create the swarm")
+    property string createTheSwarm: qsTr("Create swarm")
     property string goToConversation: qsTr("Go to conversation")
     property string kickMember: qsTr("Kick member")
     property string reinstateMember: qsTr("Reinstate member")
