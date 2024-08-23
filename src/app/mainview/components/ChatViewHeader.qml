@@ -170,23 +170,23 @@ Rectangle {
         }
 
         JamiPushButton { QWKSetParentHitTestVisible {}
-            id: addParticipantsButton
+            id: inviteMembersButton
 
             checkable: true
             checked: extrasPanel.isOpen(ChatView.AddMemberPanel)
             visible: interactionButtonsVisibility && addMemberVisibility
             source: JamiResources.add_people_24dp_svg
-            toolTipText: JamiStrings.addParticipants
+            toolTipText: JamiStrings.inviteMembers
 
             onClicked: extrasPanel.switchToPanel(ChatView.AddMemberPanel)
         }
 
         JamiPushButton { QWKSetParentHitTestVisible {}
-            id: selectPluginButton
+            id: selectExtensionsButton
 
             visible: PluginAdapter.chatHandlersListCount && interactionButtonsVisibility
             source: JamiResources.plugins_24dp_svg
-            toolTipText: JamiStrings.showPlugins
+            toolTipText: JamiStrings.showExtensions
 
             onClicked: pluginSelector()
         }
