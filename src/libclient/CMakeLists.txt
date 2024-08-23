@@ -275,6 +275,7 @@ set(LIBCLIENT_SOURCES
   # other
   avmodel.cpp
   pluginmodel.cpp
+  interaction.cpp
   namedirectory.cpp
   renderer.cpp)
 
