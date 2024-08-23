@@ -387,7 +387,7 @@ SettingsPageBase {
                 Layout.alignment: Qt.AlignLeft
                 Layout.preferredWidth: parent.width
 
-                text: JamiStrings.bannedContacts
+                text: JamiStrings.blockedContacts
                 color: JamiTheme.textColor
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter

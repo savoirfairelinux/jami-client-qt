@@ -10,10 +10,10 @@ import "../../commoncomponents"
 ColumnLayout {
     function installPlugin() {
         var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
-                "title": JamiStrings.selectPluginInstall,
+                "title": JamiStrings.selectExtensionInstall,
                 "fileMode": JamiFileDialog.OpenFile,
                 "folder": StandardPaths.writableLocation(StandardPaths.DownloadLocation),
-                "nameFilters": [JamiStrings.pluginFiles, JamiStrings.allFiles]
+                "nameFilters": [JamiStrings.extensionFiles, JamiStrings.allFiles]
             });
         dlg.fileAccepted.connect(function (file) {
                 var url = UtilsAdapter.getAbsPath(file.toString());
@@ -29,7 +29,7 @@ ColumnLayout {
     function presentErrorMessage() {
         viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
                 "title": JamiStrings.installationFailed,
-                "infoText": JamiStrings.pluginInstallationFailed,
+                "infoText": JamiStrings.extensionInstallationFailed,
                 "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
                 "buttonTitles": [JamiStrings.optionOk],
                 "buttonCallBacks": [],
