@@ -86,7 +86,7 @@ SplitView {
             // size (4 pixels). This is done to make it easier to grab small scroll-view handles that are
             // adjacent to the SplitView handle. Note: vertically oriented handles are not offset.
             readonly property real extraHandleSize: 4
-            readonly property real handleXPosition: !isRTL ? 0 : -extraHandleSize
+            readonly property real handleXPosition: !UtilsAdapter.isRTL ? 0 : -extraHandleSize
             readonly property real handleSize: handleRoot.defaultSize + extraHandleSize
 
             x: control.orientation === Qt.Horizontal ? handleXPosition : 0
