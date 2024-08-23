@@ -25,7 +25,7 @@ import "../../commoncomponents"
 
 SettingsPageBase {
     id: root
-    title: JamiStrings.pluginSettingsTitle
+    title: JamiStrings.extensionSettingsTitle
     onWidthChanged: resolvePanes()
     flickableContent: RowLayout {
         width: parent.width

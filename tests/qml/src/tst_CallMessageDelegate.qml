@@ -51,15 +51,15 @@ TestWrapper {
                 uut.currentCallId = "foo"
                 uut.confId = "foo"
                 var callLabel = findChild(uut, "callLabel")
-                var joinCallInAudio = findChild(uut, "joinCallInAudio")
-                var joinCallInVideo = findChild(uut, "joinCallInVideo")
+                var joinCallWithAudio = findChild(uut, "joinCallWithAudio")
+                var joinCallWithVideo = findChild(uut, "joinCallWithVideo")
                 compare(callLabel.visible, true)
-                compare(joinCallInAudio.visible, false)
-                compare(joinCallInVideo.visible, false)
+                compare(joinCallWithAudio.visible, false)
+                compare(joinCallWithVideo.visible, false)
                 uut.confId = "bar"
                 compare(callLabel.visible, true)
-                compare(joinCallInAudio.visible, true)
-                compare(joinCallInVideo.visible, true)
+                compare(joinCallWithAudio.visible, true)
+                compare(joinCallWithVideo.visible, true)
             }
         }
     }

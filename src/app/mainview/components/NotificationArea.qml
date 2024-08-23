@@ -51,7 +51,7 @@ Rectangle {
         }
 
         PushButton {
-            id: joinCallInAudio
+            id: joinCallWithAudio
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
             Layout.rightMargin: JamiTheme.preferredMarginSize
 
@@ -68,7 +68,7 @@ Rectangle {
         }
 
         PushButton {
-            id: joinCallInVideo
+            id: joinCallWithVideo
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
             Layout.rightMargin: JamiTheme.preferredMarginSize
 
@@ -98,7 +98,7 @@ Rectangle {
         }
     }
 
-    Behavior on opacity  {
+    Behavior on opacity {
         NumberAnimation {
             from: 0
             duration: JamiTheme.shortFadeDuration

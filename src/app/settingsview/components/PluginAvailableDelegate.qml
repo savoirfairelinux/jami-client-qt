@@ -60,7 +60,7 @@ ItemDelegate {
     function presentErrorMessage() {
         viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
                 "title": JamiStrings.installationFailed,
-                "infoText": JamiStrings.pluginInstallationFailed,
+                "infoText": JamiStrings.extensionInstallationFailed,
                 "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
                 "buttonTitles": [JamiStrings.optionOk],
                 "buttonCallBacks": [],
