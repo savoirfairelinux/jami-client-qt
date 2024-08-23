@@ -111,7 +111,7 @@ SettingsPageBase {
                     font.pointSize: 18
                     font.capitalization: Font.AllUppercase
                     color: "white"
-                    text: JamiStrings.noVideo
+                    text: JamiStrings.noCamera
                 }
             }
         }
