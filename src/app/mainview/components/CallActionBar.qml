@@ -315,7 +315,7 @@ Control {
             checkable: true
             icon.source: checked ? JamiResources.videocam_off_24dp_svg : JamiResources.videocam_24dp_svg
             icon.color: checked ? "red" : "white"
-            text: !checked ? JamiStrings.muteCamera : JamiStrings.unmuteCamera
+            text: !checked ? JamiStrings.stopCamera : JamiStrings.startCamera
             checked: !CurrentCall.isCapturing
             property var menuAction: videoInputMenuAction
             enabled: CurrentAccount.videoEnabled_Video
@@ -339,7 +339,7 @@ Control {
             onTriggered: root.addToConferenceClicked()
             icon.source: JamiResources.add_people_black_24dp_svg
             icon.color: "white"
-            text: JamiStrings.addParticipants
+            text: JamiStrings.inviteMembers
             enabled: CurrentCall.isModerator && !CurrentCall.isSIP
             onEnabledChanged: CallOverlayModel.setEnabled(this, addPersonAction.enabled)
         },
@@ -437,7 +437,7 @@ Control {
             onTriggered: root.pluginsClicked()
             icon.source: JamiResources.plugins_24dp_svg
             icon.color: "white"
-            text: JamiStrings.viewPlugin
+            text: JamiStrings.viewExtension
             enabled: PluginAdapter.callMediaHandlersListCount
             onEnabledChanged: CallOverlayModel.setEnabled(this, pluginsAction.enabled)
         },

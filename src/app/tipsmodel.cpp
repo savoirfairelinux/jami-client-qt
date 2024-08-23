@@ -87,14 +87,14 @@ TipsModel::reset()
     tips_.append({{"id", "1"},
                   {"title", tr("What does Jami mean?")},
                   {"desc",
-                   tr("The choice of the name Jami was inspired by the Swahili word 'jamii', which "
-                      "means 'community' as a noun and 'together' as an adverb.")},
+                   tr("The choice of the name Jami was inspired by the Swahili word “jamii”, which "
+                      "means “community” as a noun and “together” as an adverb.")},
                   {"type", "tip"}});
     tips_.append({{"id", "2"},
                   {"title", tr("What is the green dot next to my account?")},
                   {"desc",
                    tr("A red dot means that your account is disconnected from the network; it "
-                      "turns green when it's connected.")},
+                      "turns green when it’s connected.")},
                   {"type", "tip"}});
     tips_.append(
         {{"id", "3"},
@@ -108,7 +108,7 @@ TipsModel::reset()
         {{"id", "4"},
          {"title", tr("Can I make a conference call?")},
          {"desc",
-          tr("In a call, you can click on \"Add participants\" to add a contact to a call.")},
+          tr("In a call, you can click on “Invite members” to add a contact to a call.")},
          {"type", "tip"}});
     tips_.append({{"id", "6"},
                   {"title", tr("What is a Jami account?")},
@@ -124,7 +124,7 @@ TipsModel::reset()
                   {"type", "tip"}});
     tips_.append(
         {{"id", "8"},
-         {"title", tr("Why don't I have to use a password?")},
+         {"title", tr("Why don’t I have to use a password?")},
          {"desc",
           tr("With Jami, your account is stored in a directory on your device. The password "
              "is only used to encrypt your account in order to protect you from someone "
@@ -132,7 +132,7 @@ TipsModel::reset()
          {"type", "tip"}});
     tips_.append(
         {{"id", "9"},
-         {"title", tr("Why don't I have to register a username?")},
+         {"title", tr("Why don’t I have to register a username?")},
          {"desc",
           tr("The most permanent, secure identifier is your Jami ID, but since these are difficult "
              "to use for some people, you also have the option of registering a username.")},
