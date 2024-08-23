@@ -339,7 +339,7 @@ Control {
             onTriggered: root.addToConferenceClicked()
             icon.source: JamiResources.add_people_black_24dp_svg
             icon.color: "white"
-            text: JamiStrings.addParticipants
+            text: JamiStrings.inviteMembers
             enabled: CurrentCall.isModerator && !CurrentCall.isSIP
             onEnabledChanged: CallOverlayModel.setEnabled(this, addPersonAction.enabled)
         },
@@ -437,7 +437,7 @@ Control {
             onTriggered: root.pluginsClicked()
             icon.source: JamiResources.plugins_24dp_svg
             icon.color: "white"
-            text: JamiStrings.viewPlugin
+            text: JamiStrings.viewExtension
             enabled: PluginAdapter.callMediaHandlersListCount
             onEnabledChanged: CallOverlayModel.setEnabled(this, pluginsAction.enabled)
         },
