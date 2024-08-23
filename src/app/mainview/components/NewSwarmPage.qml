@@ -174,7 +174,7 @@ DualPaneView {
                 Layout.preferredWidth: JamiTheme.preferredFieldWidth
 
                 staticText: ""
-                placeholderText: JamiStrings.addADescription
+                placeholderText: JamiStrings.addDescription
 
                 textColor: {
                     if (UtilsAdapter.luma(root.color)) {
