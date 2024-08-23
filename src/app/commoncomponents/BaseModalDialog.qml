@@ -57,7 +57,6 @@ Popup {
         id: container
 
         property color color: JamiTheme.secondaryBackgroundColor
-        anchors.centerIn: parent
         leftPadding: popupMargins
         bottomPadding: action1.visible || action2.visible ? 10 :popupMargins
 
