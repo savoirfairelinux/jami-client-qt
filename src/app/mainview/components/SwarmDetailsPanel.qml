@@ -139,7 +139,7 @@ Rectangle {
                         Layout.rightMargin: 2 * JamiTheme.settingsMarginSize
 
                         staticText: CurrentConversation.description
-                        placeholderText: JamiStrings.addADescription
+                        placeholderText: JamiStrings.addDescription
                         elidedText: descriptionLineButtonTextSize.elidedText
 
                         textColor: root.textColor
@@ -156,7 +156,7 @@ Rectangle {
                             descriptionLineButton.editMode = activeFocus;
                         }
 
-                        infoTipLineText: JamiStrings.addADescription
+                        infoTipLineText: JamiStrings.addDescription
                     }
                 }
             }
@@ -663,7 +663,7 @@ Rectangle {
                                 if (MemberRole === Member.Role.INVITED)
                                     return JamiStrings.invited;
                                 if (MemberRole === Member.Role.BANNED)
-                                    return JamiStrings.banned;
+                                    return JamiStrings.blocked;
                                 return "";
                             }
                             maxWidth: JamiTheme.preferredFieldWidth
