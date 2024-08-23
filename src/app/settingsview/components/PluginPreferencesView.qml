@@ -204,7 +204,7 @@ Item {
                             }
                             Label {
                                 Layout.fillWidth: true
-                                text: JamiStrings.versionPlugin.arg(PluginVersion)
+                                text: JamiStrings.versionExtension.arg(PluginVersion)
                                 font.pixelSize: JamiTheme.headerFontSize
                                 font.kerning: true
                                 color: JamiTheme.textColor
@@ -273,13 +273,13 @@ Item {
                         hoveredColor: JamiTheme.buttonTintedBlackHovered
                         pressedColor: JamiTheme.buttonTintedBlackPressed
                         tertiary: true
-                        toolTipText: JamiStrings.pluginUninstallConfirmation.arg(PluginId)
+                        toolTipText: JamiStrings.extensionUninstallConfirmation.arg(PluginId)
 
                         text: JamiStrings.uninstall
 
                         onClicked: viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
-                                "title": JamiStrings.uninstallPlugin,
-                                "infoText": JamiStrings.pluginUninstallConfirmation.arg(PluginName),
+                                "title": JamiStrings.uninstallExtension,
+                                "infoText": JamiStrings.extensionUninstallConfirmation.arg(PluginName),
                                 "buttonTitles": [JamiStrings.optionOk, JamiStrings.optionCancel],
                                 "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue, SimpleMessageDialog.ButtonStyle.TintedBlack],
                                 "buttonCallBacks": [function () {

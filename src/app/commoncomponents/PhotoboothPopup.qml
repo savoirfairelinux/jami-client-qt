@@ -164,7 +164,7 @@ BaseModalDialog {
                                 appWindow,
                                 "commoncomponents/JamiFileDialog.qml",
                                 {
-                                    title: JamiStrings.selectAvatarImage,
+                                    title: JamiStrings.selectProfilePicture,
                                     fileMode: JamiFileDialog.OpenFile,
                                     folder: StandardPaths.writableLocation(
                                                 StandardPaths.PicturesLocation),

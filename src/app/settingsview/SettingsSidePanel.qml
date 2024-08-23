@@ -103,13 +103,13 @@ SidePanelBase {
                             "title": JamiStrings.screenSharing
                         }]
                 }, {
-                    "title": JamiStrings.pluginSettingsTitle,
+                    "title": JamiStrings.extensionSettingsTitle,
                     "icon": JamiResources.plugins_24dp_svg,
                     "first": 15,
                     "last": 15,
                     "children": [{
                             "id": 15,
-                            "title": JamiStrings.pluginSettingsTitle
+                            "title": JamiStrings.extensionSettingsTitle
                         }]
                 }];
         } else {
@@ -175,13 +175,13 @@ SidePanelBase {
                             "title": JamiStrings.screenSharing
                         }]
                 }, {
-                    "title": JamiStrings.pluginSettingsTitle,
+                    "title": JamiStrings.extensionSettingsTitle,
                     "icon": JamiResources.plugins_24dp_svg,
                     "first": 15,
                     "last": 15,
                     "children": [{
                             "id": 15,
-                            "title": JamiStrings.pluginSettingsTitle
+                            "title": JamiStrings.extensionSettingsTitle
                         }]
                 }];
         }
