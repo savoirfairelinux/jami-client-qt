@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "523f2aa2_f99ac41f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-08-26T20:17:23Z",
+      "side": 1,
+      "message": "add a ref to\nhttps://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/1508",
+      "revId": "276a56f1c05467240211b095cdc08fcddf75b5bf",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "b9cf174b_35924b05",
