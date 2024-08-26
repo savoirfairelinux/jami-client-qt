@@ -3346,7 +3346,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="572"/>
         <source>Import Jami account from local archive file.</source>
-        <translation>Importă contul Jami din fișierul de arhivă local.</translation>
+        <translation>Importă contul Jami din fișierul arhivei.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="772"/>
