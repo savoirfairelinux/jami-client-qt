@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1dd1d801_ac848a41",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-08-26T20:05:56Z",
+      "side": 1,
+      "message": "reuse the component (place in a separate file if needed)",
+      "revId": "8aa12f30dd1fd88948d6a88a69a92022de9d6a66",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
