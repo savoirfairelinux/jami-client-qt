@@ -16,6 +16,24 @@
       "message": "Is no camera correct (because you can also use a virtual cam - so should we still change \"no video\"?)",
       "revId": "5c40507a6b30384095fbb9dd99509b4a743d8715",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "958da762_44fd6d60",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-27T19:34:23Z",
+      "side": 1,
+      "message": "This only relates to the image (camera), not sound/image.\n\nIs \"Virtual cam\" short for \"Virtual camera\"?\n\n1. Visit https://learn.microsoft.com/en-us/globalization/reference/microsoft-language-resources#ui-strings\n2. Click \"Microsoft UI String Search\"\n3. Search source string with \"No camera available\" is found and used in Skype\n4. Search source string with \"No video available\" is found but not used in Skype (used in Dynamics 365 Operations)\n\nThank you",
+      "parentUuid": "c86421d3_dfc3a82f",
+      "revId": "5c40507a6b30384095fbb9dd99509b4a743d8715",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
