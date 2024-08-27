@@ -22,6 +22,7 @@ import QtQuick.Controls
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import "../../commoncomponents"
+import "../../mainview/components"
 
 Rectangle {
     id: root
@@ -61,6 +62,8 @@ Rectangle {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
         width: Math.max(508, root.width - 100)
+
+        JamiLogoWebm {}
 
         Text {
 
