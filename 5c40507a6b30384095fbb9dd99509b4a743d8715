@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c86421d3_dfc3a82f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2024-08-27T19:24:55Z",
+      "side": 1,
+      "message": "Is no camera correct (because you can also use a virtual cam - so should we still change \"no video\"?)",
+      "revId": "5c40507a6b30384095fbb9dd99509b4a743d8715",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
