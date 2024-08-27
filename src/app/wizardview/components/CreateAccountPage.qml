@@ -101,6 +101,8 @@ Rectangle {
                 anchors.verticalCenter: parent.verticalCenter
                 width: Math.max(508, root.width - 100)
 
+                JamiLogoWebm {}
+
                 Text {
                     id: joinJami
 
