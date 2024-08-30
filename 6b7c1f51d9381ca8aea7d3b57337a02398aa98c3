@@ -16,6 +16,23 @@
       "message": "We should use \"join with audio\" without \"device\" - because in the future it might be possible to stream the internal sound of your desktop and / or a shared window as well (without using an external virtual soundcard like Voicemeeter Banana)",
       "revId": "6b7c1f51d9381ca8aea7d3b57337a02398aa98c3",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e75475bb_8806adf8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2024-08-30T12:23:36Z",
+      "side": 1,
+      "message": "Actually I meant\"join with audio only\"",
+      "revId": "6b7c1f51d9381ca8aea7d3b57337a02398aa98c3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
