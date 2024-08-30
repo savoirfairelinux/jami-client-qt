@@ -87,6 +87,29 @@
       "message": "TODO V2\n // V2 purpose : Add context of a shared message\n // example : Shared from XXX with avatar above the shared message\n - Add a message Type SHARED in daemon \n - Add a way to get the previous author Id in order to get his Avatar and username\n - Add UI based on replied message to see shared messages",
       "revId": "e7b7c27053f9f02fd4fadc4bd778ab2389b3a957",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "673381af_b994bd66",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-30T20:26:09Z",
+      "side": 1,
+      "message": "Typo? Should it be `received`?",
+      "range": {
+        "startLine": 10,
+        "startChar": 29,
+        "endLine": 10,
+        "endChar": 37
+      },
+      "revId": "e7b7c27053f9f02fd4fadc4bd778ab2389b3a957",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
