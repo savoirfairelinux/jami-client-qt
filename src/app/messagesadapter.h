@@ -126,6 +126,7 @@ public:
     Q_INVOKABLE void unbanContact(int index);
     Q_INVOKABLE void unbanConversation(const QString& convUid);
     Q_INVOKABLE void sendMessage(const QString& message);
+    Q_INVOKABLE void sendMessageToUid(const QString& message, const QString& convUid);
     Q_INVOKABLE void editMessage(const QString& convId,
                                  const QString& newBody,
                                  const QString& messageId = "");
@@ -136,6 +137,7 @@ public:
                                          const QString& emoji,
                                          const QString& messageId);
     Q_INVOKABLE void sendFile(const QString& message);
+    Q_INVOKABLE void sendFileToUid(const QString& message, const QString& convUid);
     Q_INVOKABLE void acceptFile(const QString& arg);
     Q_INVOKABLE void cancelFile(const QString& arg);
     Q_INVOKABLE void openUrl(const QString& url);
