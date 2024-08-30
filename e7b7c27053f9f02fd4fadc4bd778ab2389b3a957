@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea400a3d_0e2dbf6d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1106
+      },
+      "writtenOn": "2024-08-30T19:21:06Z",
+      "side": 1,
+      "message": "TODO V1\n - Unlink contact searchbar from the main searchbar\n - Fix responsive image/file sharing\n - Fix shared message\u0027s color and text color in the popup\n - Design a real share icon svg",
+      "revId": "e7b7c27053f9f02fd4fadc4bd778ab2389b3a957",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "893dacff_b933bcd5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1106
+      },
+      "writtenOn": "2024-08-30T19:21:06Z",
+      "side": 1,
+      "message": "TODO V2\n // V2 purpose : Add context of a shared message\n // example : Shared from XXX with avatar above the shared message\n - Add a message Type SHARED in daemon \n - Add a way to get the previous author Id in order to get his Avatar and username\n - Add UI based on replied message to see shared messages",
+      "revId": "e7b7c27053f9f02fd4fadc4bd778ab2389b3a957",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
