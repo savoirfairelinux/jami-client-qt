@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d86394a3_f7492aff",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1106
+      },
+      "writtenOn": "2024-08-30T19:31:16Z",
+      "side": 1,
+      "message": "And clean the code to make it more maintenable",
+      "parentUuid": "ea400a3d_0e2dbf6d",
+      "revId": "e7b7c27053f9f02fd4fadc4bd778ab2389b3a957",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "893dacff_b933bcd5",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
