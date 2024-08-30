@@ -278,7 +278,7 @@ Control {
 
                     anchors.right: isOutgoing ? bubble.left : undefined
                     anchors.left: !isOutgoing ? bubble.right : undefined
-                    width: JamiTheme.emojiPushButtonSize * 2
+                    width: JamiTheme.emojiPushButtonSize * 3
                     height: JamiTheme.emojiPushButtonSize
                     anchors.verticalCenter: bubble.verticalCenter
 
@@ -299,9 +299,9 @@ Control {
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.right: isOutgoing ? optionButtonItem.right : undefined
                         anchors.left: !isOutgoing ? optionButtonItem.left : undefined
-                        visible: CurrentAccount.type !== Profile.Type.SIP && root.type !== Interaction.Type.CALL && Body !== "" && (bubbleArea.bubbleHovered || hovered || reply.hovered || bgHandler.hovered)
+                        visible: CurrentAccount.type !== Profile.Type.SIP && root.type !== Interaction.Type.CALL && Body !== "" && (bubbleArea.bubbleHovered || hovered || reply.hovered || share.hovered || bgHandler.hovered)
                         source: JamiResources.more_vert_24dp_svg
-                        width: optionButtonItem.width / 2
+                        width: optionButtonItem.width / 3
                         height: optionButtonItem.height
                         circled: false
                         property bool isOpen: false
@@ -309,7 +309,7 @@ Control {
 
                         function bind() {
                             more.isOpen = false;
-                            visible = Qt.binding(() => CurrentAccount.type !== Profile.Type.SIP && root.type !== Interaction.Type.CALL && Body !== "" && (bubbleArea.bubbleHovered || hovered || reply.hovered || bgHandler.hovered));
+                            visible = Qt.binding(() => CurrentAccount.type !== Profile.Type.SIP && root.type !== Interaction.Type.CALL && Body !== "" && (bubbleArea.bubbleHovered || hovered || reply.hovered || share.hovered || bgHandler.hovered));
                             imageColor = Qt.binding(() => hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor);
                             normalColor = Qt.binding(() => JamiTheme.primaryBackgroundColor);
                         }
@@ -348,17 +348,55 @@ Control {
                         normalColor: JamiTheme.primaryBackgroundColor
                         toolTipText: JamiStrings.reply
                         source: JamiResources.reply_black_24dp_svg
-                        width: optionButtonItem.width / 2
+                        width: optionButtonItem.width / 3
                         height: optionButtonItem.height
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.rightMargin: 5
                         anchors.right: isOutgoing ? more.left : undefined
                         anchors.left: !isOutgoing ? more.right : undefined
-                        visible: CurrentAccount.type !== Profile.Type.SIP && root.type !== Interaction.Type.CALL && Body !== "" && (bubbleArea.bubbleHovered || hovered || more.hovered || bgHandler.hovered)
+                        visible: CurrentAccount.type !== Profile.Type.SIP && root.type !== Interaction.Type.CALL && Body !== "" && (bubbleArea.bubbleHovered || hovered || more.hovered || share.hovered || bgHandler.hovered)
 
                         onClicked: {
                             MessagesAdapter.editId = "";
                             MessagesAdapter.replyToId = Id;
+                        }
+                    }
+
+                    PushButton {
+                        id: share
+                        objectName: "share"
+
+                        circled: false
+                        imageColor: hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor
+                        normalColor: JamiTheme.primaryBackgroundColor
+                        toolTipText: JamiStrings.share
+                        source: JamiResources.share_black_24dp_svg
+
+                        width: optionButtonItem.width / 3
+                        height: optionButtonItem.height
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.rightMargin: 5
+                        anchors.right: isOutgoing ? reply.left : undefined
+                        anchors.left: !isOutgoing ? reply.right : undefined
+                        visible: CurrentAccount.type !== Profile.Type.SIP && root.type !== Interaction.Type.CALL && Body !== "" && (bubbleArea.bubbleHovered || hovered || reply.hovered || more.hovered || bgHandler.hovered)
+
+                        onClicked: {
+                            if (root.type === 2 || root.type === 5) {
+                                // 2=TEXT and 5=DATA_TRANSFER (all kind of files) define in interaction.h
+                                var component = Qt.createComponent("qrc:/commoncomponents/ShareMessageMenu.qml");
+                                var sharePopup = component.createObject(share, {
+                                        "isOutgoing": isOutgoing,
+                                        "msgId": Id,
+                                        "msgBody": Body,
+                                        "type": root.type,
+                                        "transferName": TransferName,
+                                        "msgBubble": bubble,
+                                        "listView": listView,
+                                        "author": UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author),
+                                        "formattedTime": formattedTime
+                                    });
+                                sharePopup.open();
+                            }
                         }
                     }
                 }
@@ -382,11 +420,7 @@ Control {
                     property bool bubbleHovered
                     property string imgSource
 
-                    width: (root.type === Interaction.Type.TEXT || isDeleted ?
-                            root.textContentWidth + (IsEmojiOnly || root.bigMsg ?
-                                                        0
-                                                        : root.timeWidth + root.editedWidth)
-                            : innerContent.childrenRect.width)
+                    width: (root.type === Interaction.Type.TEXT || isDeleted ? root.textContentWidth + (IsEmojiOnly || root.bigMsg ? 0 : root.timeWidth + root.editedWidth) : innerContent.childrenRect.width)
                     height: innerContent.childrenRect.height + (visible ? root.extraHeight : 0) + (root.bigMsg ? 15 : 0)
 
                     HoverHandler {
@@ -465,10 +499,9 @@ Control {
                         anchors.fill: parent
                         hoverEnabled: true
 
-                        onClicked: function (mouse) {
-                            if (root.hoveredLink) {
-                                MessagesAdapter.openUrl(root.hoveredLink);
-                            }
+                        onDoubleClicked: {
+                            MessagesAdapter.editId = "";
+                            MessagesAdapter.replyToId = Id;
                         }
                         property bool bubbleHovered: containsMouse || textHovered
                         cursorShape: enabled ? Qt.PointingHandCursor : Qt.ArrowCursor
