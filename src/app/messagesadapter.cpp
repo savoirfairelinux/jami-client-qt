@@ -166,6 +166,16 @@ MessagesAdapter::sendMessage(const QString& message)
 }
 
 void
+MessagesAdapter::sendMessageToUid(const QString& message, const QString& convUid)
+{
+    try {
+        lrcInstance_->getCurrentConversationModel()->sendMessage(convUid, message, replyToId_);
+    } catch (...) {
+        qDebug() << "Exception during sendMessage:" << message;
+    }
+}
+
+void
 MessagesAdapter::editMessage(const QString& convId, const QString& newBody, const QString& messageId)
 {
     try {
@@ -212,6 +222,21 @@ MessagesAdapter::sendFile(const QString& message)
     QString fileName = fi.fileName();
     try {
         auto convUid = lrcInstance_->get_selectedConvUid();
+        lrcInstance_->getCurrentConversationModel()->sendFile(convUid,
+                                                              message,
+                                                              fileName,
+                                                              replyToId_);
+    } catch (...) {
+        qDebug() << "Exception during sendFile";
+    }
+}
+
+void
+MessagesAdapter::sendFileToUid(const QString& message, const QString& convUid)
+{
+    QFileInfo fi(message);
+    QString fileName = fi.fileName();
+    try {
         lrcInstance_->getCurrentConversationModel()->sendFile(convUid,
                                                               message,
                                                               fileName,
@@ -312,8 +337,7 @@ MessagesAdapter::onPaste()
         QString path = QDir::temp().filePath(fileName);
 
         if (!pixmap.save(path, "PNG")) {
-            qDebug().noquote() << "Errors during QPixmap save"
-                               << "\n";
+            qDebug().noquote() << "Errors during QPixmap save" << "\n";
             return;
         }
 

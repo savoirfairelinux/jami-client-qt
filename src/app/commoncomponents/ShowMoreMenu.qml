@@ -198,11 +198,13 @@ BaseContextMenu {
         root.loadMenuItems(menuItems);
     }
 
+    // destroy() and setBindings() are needed to unselect the share icon from SBSMessageBase
+
     onAboutToHide: {
         root.destroy();
     }
 
     Component.onDestruction: {
-        parent.bind();
+        parent.setBindings();
     }
 }
