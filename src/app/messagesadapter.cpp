@@ -166,6 +166,12 @@ MessagesAdapter::sendMessage(const QString& message)
 }
 
 void
+MessagesAdapter::sendMessageToUid(const QString& message, const QString& convUid)
+{
+    lrcInstance_->getCurrentConversationModel()->sendMessage(convUid, message, replyToId_);
+}
+
+void
 MessagesAdapter::editMessage(const QString& convId, const QString& newBody, const QString& messageId)
 {
     try {
@@ -219,6 +225,17 @@ MessagesAdapter::sendFile(const QString& message)
     } catch (...) {
         qDebug() << "Exception during sendFile";
     }
+}
+
+void
+MessagesAdapter::sendFileToUid(const QString& message, const QString& convUid)
+{
+    QFileInfo fi(message);
+    QString fileName = fi.fileName();
+    lrcInstance_->getCurrentConversationModel()->sendFile(convUid,
+                                                              message,
+                                                              fileName,
+                                                              replyToId_);
 }
 
 void
