@@ -71,7 +71,7 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
         const QString& convId = lrcInstance_->get_selectedConvUid();
         const auto& conversation = lrcInstance_->getConversationFromConvUid(convId);
 
-        // Reset the source model for the proxy model.
+               // Reset the source model for the proxy model.
         filteredMsgListModel_->setSourceModel(conversation.interactions.get());
 
         set_currentConvComposingList(conversationTypersUrlToName(conversation.typers));
@@ -166,6 +166,16 @@ MessagesAdapter::sendMessage(const QString& message)
 }
 
 void
+MessagesAdapter::sendMessageToUid(const QString& message, const QString& convUid)
+{
+    try {
+    lrcInstance_->getCurrentConversationModel()->sendMessage(convUid, message, replyToId_);
+    } catch (...) {
+        qDebug() << "Exception during sendMessage:" << message;
+    }
+}
+
+void
 MessagesAdapter::editMessage(const QString& convId, const QString& newBody, const QString& messageId)
 {
     try {
@@ -216,6 +226,21 @@ MessagesAdapter::sendFile(const QString& message)
                                                               message,
                                                               fileName,
                                                               replyToId_);
+    } catch (...) {
+        qDebug() << "Exception during sendFile";
+    }
+}
+
+void
+MessagesAdapter::sendFileToUid(const QString& message, const QString& convUid)
+{
+    QFileInfo fi(message);
+    QString fileName = fi.fileName();
+    try {
+    lrcInstance_->getCurrentConversationModel()->sendFile(convUid,
+                                                          message,
+                                                          fileName,
+                                                          replyToId_);
     } catch (...) {
         qDebug() << "Exception during sendFile";
     }
@@ -312,8 +337,7 @@ MessagesAdapter::onPaste()
         QString path = QDir::temp().filePath(fileName);
 
         if (!pixmap.save(path, "PNG")) {
-            qDebug().noquote() << "Errors during QPixmap save"
-                               << "\n";
+            qDebug().noquote() << "Errors during QPixmap save" << "\n";
             return;
         }
 
@@ -321,7 +345,7 @@ MessagesAdapter::onPaste()
     } else if (mimeData->hasUrls()) {
         QList<QUrl> urlList = mimeData->urls();
 
-        // Extract the local paths of the files.
+               // Extract the local paths of the files.
         for (int i = 0; i < urlList.size(); ++i) {
             // Trim file:// or file:/// from url.
             const static QRegularExpression fileSchemeRe("^file:\\/{2,3}");
@@ -487,15 +511,15 @@ MessagesAdapter::removeContact(const QString& convUid, bool banContact)
 {
     auto& accInfo = lrcInstance_->getCurrentAccountInfo();
 
-    // remove the uri from the default moderators list
-    // TODO: seems like this should be done in libringclient
+           // remove the uri from the default moderators list
+           // TODO: seems like this should be done in libringclient
     QStringList list = lrcInstance_->accountModel().getDefaultModerators(accInfo.id);
     const auto contactUri = accInfo.conversationModel->peersForConversation(convUid).at(0);
     if (!contactUri.isEmpty() && list.contains(contactUri)) {
         lrcInstance_->accountModel().setDefaultModerator(accInfo.id, contactUri, false);
     }
 
-    // actually remove the contact
+           // actually remove the contact
     accInfo.contactModel->removeContact(contactUri, banContact);
 }
 
@@ -602,10 +626,10 @@ MessagesAdapter::getMediaInfo(const QString& msg)
     QString type = captured.size() == 3 ? captured[1] : "";
     if (!type.isEmpty()) {
         return {
-            {"isVideo", true},
-            {"isAudio", false},
-            {"html", html.arg("video", "100%", filePath, mime.name())},
-        };
+                {"isVideo", true},
+                {"isAudio", false},
+                {"html", html.arg("video", "100%", filePath, mime.name())},
+                };
     } else {
         static const QRegExp aPattern("(audio/)(ogg|flac|wav|mpeg|mp3)$", Qt::CaseInsensitive);
         aPattern.indexIn(mime.name());
@@ -613,10 +637,10 @@ MessagesAdapter::getMediaInfo(const QString& msg)
         type = captured.size() == 3 ? captured[1] : "";
         if (!type.isEmpty()) {
             return {
-                {"isVideo", false},
-                {"isAudio", true},
-                {"html", html.arg("audio", "54px", filePath, mime.name())},
-            };
+                    {"isVideo", false},
+                    {"isAudio", true},
+                    {"html", html.arg("audio", "54px", filePath, mime.name())},
+                    };
         }
     }
     return {};
