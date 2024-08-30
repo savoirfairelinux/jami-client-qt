@@ -157,12 +157,18 @@ MessagesAdapter::sendConversationRequest()
 void
 MessagesAdapter::sendMessage(const QString& message)
 {
-    try {
-        const auto convUid = lrcInstance_->get_selectedConvUid();
-        lrcInstance_->getCurrentConversationModel()->sendMessage(convUid, message, replyToId_);
-    } catch (...) {
-        qDebug() << "Exception during sendMessage:" << message;
-    }
+
+    const auto convUid = lrcInstance_->get_selectedConvUid();
+    lrcInstance_->getCurrentConversationModel()->sendMessage(convUid, message, replyToId_);
+
+}
+
+void
+MessagesAdapter::sendMessageToUid(const QString& message, const QString& convUid)
+{
+
+    lrcInstance_->getCurrentConversationModel()->sendMessage(convUid, message, replyToId_);
+
 }
 
 void
@@ -210,15 +216,24 @@ MessagesAdapter::sendFile(const QString& message)
 {
     QFileInfo fi(message);
     QString fileName = fi.fileName();
-    try {
-        auto convUid = lrcInstance_->get_selectedConvUid();
-        lrcInstance_->getCurrentConversationModel()->sendFile(convUid,
+
+    auto convUid = lrcInstance_->get_selectedConvUid();
+    lrcInstance_->getCurrentConversationModel()->sendFile(convUid,
+                                                          message,
+                                                          fileName,
+                                                          replyToId_);
+
+}
+
+void
+MessagesAdapter::sendFileToUid(const QString& message, const QString& convUid)
+{
+    QFileInfo fi(message);
+    QString fileName = fi.fileName();
+    lrcInstance_->getCurrentConversationModel()->sendFile(convUid,
                                                               message,
                                                               fileName,
                                                               replyToId_);
-    } catch (...) {
-        qDebug() << "Exception during sendFile";
-    }
 }
 
 void
