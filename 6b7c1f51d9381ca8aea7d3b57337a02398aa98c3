@@ -69,6 +69,24 @@
       "parentUuid": "e75475bb_8806adf8",
       "revId": "6b7c1f51d9381ca8aea7d3b57337a02398aa98c3",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbb300cd_1d62461e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2024-08-31T12:36:58Z",
+      "side": 1,
+      "message": "Yes - the internal sound will still be from my device. - But we should not use this string with 1:1 only calls and/or SIP-calls.",
+      "parentUuid": "acb4e0bf_6bea1911",
+      "revId": "6b7c1f51d9381ca8aea7d3b57337a02398aa98c3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
