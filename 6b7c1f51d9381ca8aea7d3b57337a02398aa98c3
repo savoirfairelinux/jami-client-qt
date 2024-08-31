@@ -33,6 +33,42 @@
       "message": "Actually I meant\"join with audio only\"",
       "revId": "6b7c1f51d9381ca8aea7d3b57337a02398aa98c3",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dce7db33_dfef1e8e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-31T01:47:15Z",
+      "side": 1,
+      "message": "Would internal sound still be from your device?\n\n`device` is to distinguish between `room`.",
+      "parentUuid": "d7f3311b_d141a52c",
+      "revId": "6b7c1f51d9381ca8aea7d3b57337a02398aa98c3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "acb4e0bf_6bea1911",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-08-31T01:47:15Z",
+      "side": 1,
+      "message": "1. Visit https://learn.microsoft.com/en-us/globalization/reference/microsoft-language-resources#ui-strings\n2. Click \"Microsoft UI String Search\"\n3. Enter `Join with ` in \"Search source string\"\nResponses include:\n`Join with device audio`\n`Join with room audio`\n`Join with video` (changed to lowercase `v`)\n`Join without audio on this device and keep your other device in the meeting.`\n`Join with audio on this device and leave the meeting on your other device automatically.`",
+      "parentUuid": "e75475bb_8806adf8",
+      "revId": "6b7c1f51d9381ca8aea7d3b57337a02398aa98c3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
