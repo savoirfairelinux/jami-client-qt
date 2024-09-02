@@ -842,7 +842,7 @@ Profilul poate fi modificat în orice moment în reglările contului.</translati
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="463"/>
         <source>If your account has not been backed up or added to another device, your account and registered username will be IRREVOCABLY LOST.</source>
-        <translation>Dacă contul tău nu a fost asociat cu alt aparat și nu ai o copie de rezervă, va fi pierdut DEFINITIV împreună cu numele înscris.</translation>
+        <translation>Dacă acest cont nu a fost asociat cu alt aparat și nu ai o copie de rezervă, va fi pierdut DEFINITIV împreună cu numele înscris.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="474"/>
@@ -2146,7 +2146,7 @@ Poza și pseudonimul tău pot fi schimbate din reglările contului tău.</transl
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="411"/>
         <source>If your account has not been backed up or added to another device, your account and registered name will be irrevocably lost.</source>
-        <translation>Dacă contul tău nu a fost asociat cu alt aparat și nu ai o copie de rezervă, va fi pierdut definitiv împreună cu numele înscris.</translation>
+        <translation>Dacă acest cont nu a fost asociat cu alt aparat și nu ai o copie de rezervă, va fi pierdut definitiv împreună cu numele înscris.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="412"/>
@@ -2588,7 +2588,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="501"/>
         <source>in MB, 0 = unlimited</source>
-        <translation>în Mo, 0 = nelimitat</translation>
+        <translation>în MB, 0 = nelimitat</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="504"/>
@@ -3346,7 +3346,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="572"/>
         <source>Import Jami account from local archive file.</source>
-        <translation>Importă contul Jami din fișierul de arhivă local.</translation>
+        <translation>Importă contul Jami din fișierul arhivei.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="772"/>

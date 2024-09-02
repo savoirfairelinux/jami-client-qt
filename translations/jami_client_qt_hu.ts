@@ -2169,7 +2169,7 @@ Képe és beceneve bármikor megváltoztatható fiókja beállításaiban.</tran
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="418"/>
         <source>Backup failed</source>
-        <translation>Biztonsági mentés sikertelen</translation>
+        <translation>Hiba történt a fiók biztonsági mentése közben.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="419"/>

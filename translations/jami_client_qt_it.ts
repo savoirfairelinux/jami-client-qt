@@ -799,7 +799,7 @@ Se non si sceglie un nome utente, all&apos;account verrà assegnato come nome ut
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="409"/>
         <source>This Jami account exists only on this device.
 The account will be lost if this device is lost or the application is uninstalled. It is recommended to make a backup of this account.</source>
-        <translation>This Jami account exists only on this device.
+        <translation>Questo account Jami esiste solo in questo dispositivo.
 L&apos;account andrà perso se il dispositivo viene smarrito o se l&apos;applicazione viene disinstallata. Si consiglia di fare una copia dell&apos;account.</translation>
     </message>
     <message>
