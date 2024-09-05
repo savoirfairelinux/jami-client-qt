@@ -26,6 +26,7 @@
 #include "systemtray.h"
 #include "utils.h"
 #include "version.h"
+#include "version_info.h"
 #include "global.h"
 
 #include <api/datatransfermodel.h>
@@ -125,9 +126,15 @@ UtilsAdapter::getProjectCredits()
 }
 
 const QString
-UtilsAdapter::getVersionStr()
+UtilsAdapter::getBuildIDStr()
 {
     return QString(VERSION_STRING);
+}
+
+const QString
+UtilsAdapter::getVersionStr()
+{
+    return APP_VERSION_STRING + "." + CORE_VERSION_STRING;
 }
 
 void
