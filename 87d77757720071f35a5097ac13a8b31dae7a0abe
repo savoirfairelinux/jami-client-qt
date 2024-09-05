@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be48d824_fc299618",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2024-09-05T20:46:12Z",
+      "side": 1,
+      "message": "1) Where will the crash report be uploaded? Can the user view his own crash report?\n\n2) Should you have the possibility to upload crash reports later? For example you\u0027ve declined to upload the crash report but after a few day you change your opinion and want to upload a crash report from 8 days ago.",
+      "revId": "87d77757720071f35a5097ac13a8b31dae7a0abe",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
