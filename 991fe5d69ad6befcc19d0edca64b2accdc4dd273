@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b0c2733_948871bc",
+        "filename": "extras/build/cmake/generate_version_info.cmake",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-09-05T21:04:03Z",
+      "side": 1,
+      "message": "Should the 3-character ellipsis `...` be changed to a 1-character ellipsis `…`? Thank you",
+      "range": {
+        "startLine": 3,
+        "startChar": 46,
+        "endLine": 3,
+        "endChar": 49
+      },
+      "revId": "991fe5d69ad6befcc19d0edca64b2accdc4dd273",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56812e0a_e42ff392",
+        "filename": "src/app/mainview/components/AboutPopUp.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-09-05T21:04:03Z",
+      "side": 1,
+      "message": "Should `Beta` be translatable? Thank you",
+      "range": {
+        "startLine": 108,
+        "startChar": 78,
+        "endLine": 108,
+        "endChar": 84
+      },
+      "revId": "991fe5d69ad6befcc19d0edca64b2accdc4dd273",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
