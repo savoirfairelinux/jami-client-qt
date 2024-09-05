@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29ff5f04_5b3ac0fc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-09-05T15:54:11Z",
+      "side": 1,
+      "message": "The upload-confirmation dialog should have a NoAutoClose closePolicy",
+      "revId": "224863c317bd7463c4385052c06b65cb859687d2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
