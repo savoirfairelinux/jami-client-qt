@@ -22,6 +22,7 @@ import Qt5Compat.GraphicalEffects
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
+import net.jami.Helpers 1.1
 import "../../commoncomponents"
 
 BaseModalDialog {
@@ -63,23 +64,21 @@ BaseModalDialog {
                         source: JamiTheme.darkTheme ? JamiResources.logo_jami_standard_coul_white_svg : JamiResources.logo_jami_standard_coul_svg
                     }
 
-                    Rectangle {
-                        color: JamiTheme.backgroundRectangleColor
+                    Control {
                         Layout.fillHeight: true
                         Layout.fillWidth: true
-                        radius: 5
 
-                        ColumnLayout {
-                            id: sloganLayout
+                        background: Rectangle {
+                            color: JamiTheme.backgroundRectangleColor
+                            radius: 5
+                        }
 
-                            anchors.verticalCenter: parent.verticalCenter
-
+                        padding: 10
+                        contentItem: ColumnLayout {
+                            spacing: 4
                             TextEdit {
                                 id: jamiSlogansText
-
                                 Layout.alignment: Qt.AlignLeft
-                                Layout.margins: 10
-                                Layout.bottomMargin: 0
 
                                 wrapMode: Text.WordWrap
                                 font.pixelSize: JamiTheme.menuFontSize
@@ -100,23 +99,18 @@ BaseModalDialog {
                                 }
                             }
                             TextEdit {
-                                id: jamiVersionText
-
                                 Layout.alignment: Qt.AlignLeft
-                                Layout.margins: 10
-                                Layout.topMargin: 0
-                                Layout.maximumWidth: JamiTheme.preferredDialogWidth - 2*JamiTheme.preferredMarginSize
 
                                 font.pixelSize: JamiTheme.textFontSize
                                 padding: 0
-                                text: JamiStrings.version + ": " + UtilsAdapter.getVersionStr()
+                                readonly property bool isBeta: AppVersionManager.isCurrentVersionBeta()
+                                text: JamiStrings.buildID + ": " + UtilsAdapter.getBuildIDStr() + "\n" +
+                                      JamiStrings.version + ": " + (isBeta ? "(Beta) " : "") + UtilsAdapter.getVersionStr()
 
                                 selectByMouse: true
                                 readOnly: true
 
                                 color: JamiTheme.faddedFontColor
-                                horizontalAlignment: Text.AlignHCenter
-                                verticalAlignment: Text.AlignVCenter
                             }
                         }
                     }

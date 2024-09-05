@@ -96,6 +96,7 @@ public:
     Q_INVOKABLE void setToDefault(const Settings::Key key);
 
     Q_INVOKABLE const QString getProjectCredits();
+    Q_INVOKABLE const QString getBuildIDStr();
     Q_INVOKABLE const QString getVersionStr();
     Q_INVOKABLE void setClipboardText(QString text);
     Q_INVOKABLE const QString qStringFromFile(const QString& filename);
