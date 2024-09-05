@@ -29,7 +29,8 @@ else()
   project(jami)
 endif()
 
-include(${PROJECT_SOURCE_DIR}/extras/build/cmake/extra_tools.cmake)
+set(CMAKE_SCRIPTS_DIR ${PROJECT_SOURCE_DIR}/extras/build/cmake)
+include(${CMAKE_SCRIPTS_DIR}/extra_tools.cmake)
 
 option(WITH_DAEMON_SUBMODULE "Build with daemon submodule" ON)
 option(JAMICORE_AS_SUBDIR "Build Jami-core as a subdir dependency" OFF)
@@ -117,6 +118,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # src
 set(LIBCLIENT_SRC_DIR ${PROJECT_SOURCE_DIR}/src/libclient)
 set(APP_SRC_DIR ${PROJECT_SOURCE_DIR}/src/app)
+set(VERSION_INFO_DIR ${PROJECT_SOURCE_DIR}/src/version_info)
 # doc
 set(DOC_DIR ${PROJECT_SOURCE_DIR}/doc)
 # extras
@@ -210,6 +212,23 @@ include(FindPython3)
 find_package(Python3 3.6 REQUIRED COMPONENTS Interpreter)
 set(PYTHON_EXEC ${Python3_EXECUTABLE})
 
+# Versioning and build ID generation
+set(VERSION_FILE ${CMAKE_CURRENT_BINARY_DIR}/version_info.cpp)
+# Touch the file to make sure it exists at configure time as
+# we add it to the target_sources below.
+file(TOUCH ${VERSION_FILE})
+add_custom_target(
+  generate_version_info ALL
+  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+  COMMAND ${CMAKE_COMMAND}
+  -DAPP_SOURCE_DIR=${CMAKE_SOURCE_DIR}
+  -DAPP_BINARY_DIR=${CMAKE_CURRENT_BINARY_DIR}
+  -DCORE_SOURCE_DIR=${DAEMON_DIR}
+  -DCPP_INT_FILE=${VERSION_INFO_DIR}/version_info.cpp.in
+  -P ${CMAKE_SCRIPTS_DIR}/generate_version_info.cmake
+)
+list(APPEND CLIENT_INCLUDE_DIRS ${VERSION_INFO_DIR})
+
 # Resource auto-gen
 # QML and related code files
 # Check files in the app's src directory and force a reconfigure if it
@@ -247,6 +266,7 @@ set(QML_IMPORT_PATH ${QML_DIRS}
 add_definitions(-DQT_NO_KEYWORDS)
 
 set(COMMON_SOURCES
+  ${VERSION_FILE}
   ${APP_SRC_DIR}/bannedlistmodel.cpp
   ${APP_SRC_DIR}/accountlistmodel.cpp
   ${APP_SRC_DIR}/networkmanager.cpp
@@ -625,6 +645,9 @@ qt_add_executable(
   ${QML_RESOURCES}
   ${QML_RESOURCES_QML}
   ${SFPM_OBJECTS})
+
+# Make sure we can find the generated version file
+add_dependencies(${PROJECT_NAME} generate_version_info)
 
 foreach(MODULE ${QT_MODULES})
   list(APPEND QT_LIBS "Qt::${MODULE}")

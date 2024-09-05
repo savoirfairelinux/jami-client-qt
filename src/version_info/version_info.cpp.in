@@ -1,0 +1,4 @@
+#include "version_info.h"
+
+const QString APP_VERSION_STRING = "@APP_VERSION_STRING@";
+const QString CORE_VERSION_STRING = "@CORE_VERSION_STRING@";
