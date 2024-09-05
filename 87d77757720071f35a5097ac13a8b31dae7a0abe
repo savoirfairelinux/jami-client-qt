@@ -16,6 +16,23 @@
       "message": "1) Where will the crash report be uploaded? Can the user view his own crash report?\n\n2) Should you have the possibility to upload crash reports later? For example you\u0027ve declined to upload the crash report but after a few day you change your opinion and want to upload a crash report from 8 days ago.",
       "revId": "87d77757720071f35a5097ac13a8b31dae7a0abe",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7cae3819_7832ce2a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2024-09-05T20:49:35Z",
+      "side": 1,
+      "message": "3) Should you have the possibility to delete your own crash report from the server?\n\n4) Maybe you can have a notification (opt-in; within Jami) when this bug should be fixed and tell SFL (within Jami) if the issue persists or not.\n\n5) Should you get a notification within Jami once the crash report is deleted from the server?",
+      "revId": "87d77757720071f35a5097ac13a8b31dae7a0abe",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
