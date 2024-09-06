@@ -117,6 +117,30 @@
       },
       "revId": "991fe5d69ad6befcc19d0edca64b2accdc4dd273",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c367a8e_b27234b9",
+        "filename": "src/app/mainview/components/AboutPopUp.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-09-06T14:56:03Z",
+      "side": 1,
+      "message": "This code was moved as well. If we decide to make it translatable, it can be done in a separate commit.",
+      "parentUuid": "02f6c32a_4ceb9cb7",
+      "range": {
+        "startLine": 108,
+        "startChar": 78,
+        "endLine": 108,
+        "endChar": 84
+      },
+      "revId": "991fe5d69ad6befcc19d0edca64b2accdc4dd273",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
