@@ -93,6 +93,30 @@
       },
       "revId": "991fe5d69ad6befcc19d0edca64b2accdc4dd273",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fb8bf1b_570b34cf",
+        "filename": "src/app/mainview/components/AboutPopUp.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-09-06T14:48:17Z",
+      "side": 1,
+      "message": "We could discuss this but I don\u0027t think it should be translated. In general it seems to me that the build ID and version number should not depend on any user-specific settings.",
+      "parentUuid": "02f6c32a_4ceb9cb7",
+      "range": {
+        "startLine": 108,
+        "startChar": 78,
+        "endLine": 108,
+        "endChar": 84
+      },
+      "revId": "991fe5d69ad6befcc19d0edca64b2accdc4dd273",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
