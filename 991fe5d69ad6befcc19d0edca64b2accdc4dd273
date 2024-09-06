@@ -45,6 +45,30 @@
       },
       "revId": "991fe5d69ad6befcc19d0edca64b2accdc4dd273",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02f6c32a_4ceb9cb7",
+        "filename": "src/app/mainview/components/AboutPopUp.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-09-06T14:28:25Z",
+      "side": 1,
+      "message": "I don\u0027t think so but maybe. I think that in the context of i18n, the word \"Beta\" is generally considered a standard term in the software industry and is often left untranslated.",
+      "parentUuid": "56812e0a_e42ff392",
+      "range": {
+        "startLine": 108,
+        "startChar": 78,
+        "endLine": 108,
+        "endChar": 84
+      },
+      "revId": "991fe5d69ad6befcc19d0edca64b2accdc4dd273",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
