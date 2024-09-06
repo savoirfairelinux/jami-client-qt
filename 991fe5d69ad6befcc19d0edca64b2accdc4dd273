@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb9be41d_8029c36a",
+        "filename": "extras/build/cmake/generate_version_info.cmake",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-09-06T14:41:41Z",
+      "side": 1,
+      "message": "UI-facing or comments/code in a UTF-8 encoded file? Yes, but for CMake logging, it\u0027s generally recommended to stick to output ASCII to avoid potential issues with encoding when using a terminal or environment that doesn\u0027t support UTF-8.",
+      "parentUuid": "9b0c2733_948871bc",
+      "range": {
+        "startLine": 3,
+        "startChar": 46,
+        "endLine": 3,
+        "endChar": 49
+      },
+      "revId": "991fe5d69ad6befcc19d0edca64b2accdc4dd273",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56812e0a_e42ff392",
