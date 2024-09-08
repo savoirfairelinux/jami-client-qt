@@ -39,6 +39,30 @@
       },
       "revId": "88b784be48fc73471f0119c44f5ce288e658ac19",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7ab9243_9e48d097",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-09-08T08:27:44Z",
+      "side": 1,
+      "message": "It it helps, happy for this patch to be merged as is and this can be changed updated in another patch.\n\nAnother option is for merger to update this string before merging.\n\nWhatever is more convenient and quicker for enabling this patch to land.\n\nThank you",
+      "parentUuid": "d2292dae_07019a37",
+      "range": {
+        "startLine": 454,
+        "startChar": 40,
+        "endLine": 454,
+        "endChar": 53
+      },
+      "revId": "88b784be48fc73471f0119c44f5ce288e658ac19",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
