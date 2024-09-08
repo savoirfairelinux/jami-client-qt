@@ -87,6 +87,24 @@
       "parentUuid": "acb4e0bf_6bea1911",
       "revId": "6b7c1f51d9381ca8aea7d3b57337a02398aa98c3",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c475ed6a_7abd1298",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-09-08T08:24:09Z",
+      "side": 1,
+      "message": "You can add participants in 1:1 audio/video calls.",
+      "parentUuid": "cbb300cd_1d62461e",
+      "revId": "6b7c1f51d9381ca8aea7d3b57337a02398aa98c3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
