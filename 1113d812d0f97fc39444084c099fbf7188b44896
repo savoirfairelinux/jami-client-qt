@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbba0205_ff589471",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2024-09-10T21:04:24Z",
+      "side": 1,
+      "message": "@francois-simon.fauteux-chapleau@savoirfairelinux.com There are now two different versions of these credits: https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/1689#note_52995\n\nFor all clients the credits should be the same.",
+      "revId": "1113d812d0f97fc39444084c099fbf7188b44896",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
