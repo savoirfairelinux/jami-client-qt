@@ -46,6 +46,30 @@
       },
       "revId": "c1f75486639c62718b4f0032580f95463650b061",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49099743_1d8842ae",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 29
+      },
+      "lineNbr": 779,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-09-13T22:55:06Z",
+      "side": 1,
+      "message": "`Join with video` \u003d Join a call with both audio and camera",
+      "parentUuid": "c2dbd7da_0e329289",
+      "range": {
+        "startLine": 779,
+        "startChar": 57,
+        "endLine": 779,
+        "endChar": 63
+      },
+      "revId": "c1f75486639c62718b4f0032580f95463650b061",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
