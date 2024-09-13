@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8abd93e_8f93a085",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 29
+      },
+      "lineNbr": 779,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-09-13T20:29:11Z",
+      "side": 1,
+      "message": "I read your exchange with Elys but I still don\u0027t understand the reason for including the word \"device\" here. This string is used in a menu that only gives two options to the user: they can either join a call with both audio and video (\"Join with video\"), or with audio only (\"Join with audio\"). If that menu offered a choice between several different kinds or sources of audio, then we would of course need to distinguish between them, but (at least for now) it doesn\u0027t.\n\nIf you still feel that we should keep \"device\" here, then please clarify your reasoning for doing so, otherwise I will remove it.",
+      "range": {
+        "startLine": 779,
+        "startChar": 57,
+        "endLine": 779,
+        "endChar": 63
+      },
+      "revId": "c1f75486639c62718b4f0032580f95463650b061",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
