@@ -16,6 +16,23 @@
       "message": "!build",
       "revId": "4099b1e5f5627f400d5a91ef140704ad42191c3b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "776cd49e_13446cbb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 989
+      },
+      "writtenOn": "2024-09-16T19:22:48Z",
+      "side": 1,
+      "message": "Missing:\nAlexandre Eberhardt\nJulien Robert\nLéopold Chappuis\nLouis Maillard\nVitalii Nikitchyn\nCabrel Tambue",
+      "revId": "4099b1e5f5627f400d5a91ef140704ad42191c3b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
