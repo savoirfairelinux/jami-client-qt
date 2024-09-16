@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5532730f_9b0114d0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-09-16T13:32:00Z",
+      "side": 1,
+      "message": "(Marking comment as resolved as it is no longer applicable.)",
+      "parentUuid": "13443e57_8f6cc969",
+      "revId": "343bbf8afa6f260e59f49a4b03ffbb01abf13587",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e990bbaa_49cdc460",
