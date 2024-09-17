@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3237279_ad76ddb9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 32
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-09-17T19:45:14Z",
+      "side": 1,
+      "message": "To assist in fixing the build error, can you please advise the details of the `FAILURE` at:\n\u003e https://jenkins.jami.net/job/client-qt-gnulinux/3499/ : FAILURE\n\nas the following message is received:\n\u003e Unable to connect\n\u003e An error occurred during a connection to jenkins.jami.net.\n\nThank you",
+      "revId": "3a50db182166f1c4961036ee84b1a8f810550a89",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
