@@ -168,9 +168,13 @@ struct Info
             if (media[MediaAttributeKey::MEDIA_TYPE] == Details::MEDIA_TYPE_VIDEO) {
                 if (media[MediaAttributeKey::SOURCE].startsWith(VideoProtocolPrefix::DISPLAY)
                     || media[MediaAttributeKey::SOURCE].startsWith(VideoProtocolPrefix::FILE)) {
-                    callInfo["is_sharing"] = true;
-                    callInfo["preview_id"] = media[MediaAttributeKey::SOURCE];
-                }
+                    if (media[MediaAttributeKey::MUTED] == TRUE_STR) {
+                        callInfo["is_sharing"] = false;
+                    } else {
+                        callInfo["is_sharing"] = true;
+                        callInfo["preview_id"] = media[MediaAttributeKey::SOURCE];
+                    }
+                 }
                 if (media[MediaAttributeKey::ENABLED] == TRUE_STR
                     && media[MediaAttributeKey::MUTED] == FALSE_STR && previewId.isEmpty()) {
                     previewId = media[libjami::Media::MediaAttributeKey::SOURCE];
