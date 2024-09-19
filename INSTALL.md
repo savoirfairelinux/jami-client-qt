@@ -14,7 +14,7 @@ So, you will need to get Qt 6.6 first. For this, there is 3 methods:
 ### Qt from our repo (recommended)
 
 If your distribution is supported, we provide a Qt package (libqt-jami) on our repo.
-The files will be installed in `/usr/lib/libqt-jami`.
+The files will be installed to `/usr/lib/libqt-jami` on Debian-like distributions. For RPM based distributions the files will be installed to `/usr/lib64/qt-jami`.
 
 #### Install libqt-jami, Ubuntu based
 
