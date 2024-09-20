@@ -46,7 +46,6 @@ function finishCreation() {
 }
 
 function showKeyboardShortcutTableWindow() {
-    keyboardShortcutTableWindowObject.show()
     var centerX = mainWindow.x + mainWindow.width / 2
     var centerY = mainWindow.y + mainWindow.height / 2
 
@@ -54,6 +53,11 @@ function showKeyboardShortcutTableWindow() {
     keyboardShortcutTableWindowObject.height = 0.75 * appWindow.height
     keyboardShortcutTableWindowObject.x = centerX - keyboardShortcutTableWindowObject.width / 2
     keyboardShortcutTableWindowObject.y = centerY - keyboardShortcutTableWindowObject.height / 2
+
+    keyboardShortcutTableWindowObject.visible = true
+    keyboardShortcutTableWindowObject.show()
+    keyboardShortcutTableWindowObject.raise()
+    keyboardShortcutTableWindowObject.requestActivate()
 }
 
 // Destroy and reset selectScreenWindowObject when window is closed.
