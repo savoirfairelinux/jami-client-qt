@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82d36abc_b53bc180",
+        "filename": "INSTALL.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-09-20T14:13:37Z",
+      "side": 1,
+      "message": "Since the first sentence isn\u0027t always true, I\u0027d suggest changing the phrasing a bit. Maybe something along the lines of \"The files will be installed in `/usr/lib/libqt-jami` or `/usr/lib64/qt-jami` depending on the distribution.\" (Or maybe it\u0027d be better to give the path for each distribution individually in the three sections below?)",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 165
+      },
+      "revId": "f563296eff4c5d29eb56c2978cac63af8ddeacd3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
