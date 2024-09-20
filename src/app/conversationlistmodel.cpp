@@ -143,10 +143,13 @@ ConversationListProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& s
         }
     } else {
         Q_FOREACH (const auto& filter, toFilter)
-            if (rx.match(filter).hasMatch()) {
-                match = true;
-                break;
+            if (rx.isValid()) {
+                if (rx.match(filter).hasMatch()) {
+                    match = true;
+                    break;
+                }
             }
+            
     }
 
     return requestFilter && match;
