@@ -16,6 +16,23 @@
       "message": "Can you please test if screenshare works if start and stop multiple times in a 1:1 audio-only conversation where the chatview is open and in `Vertical view` layout?\n\nhttps://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/1676#note_53250\n\nNote: The scenario is with Linux Mint 22 Cinnamon with X11 display server (not Wayland). Sorry for the noise if this patch is outside the scope of this bug. However, seeing your work on this patch encouraged better testing on the submitted issue to hopefully find how to reproduce the issue more accurately.\n\nThank you",
       "revId": "9df430e02dd24aaa6fcfd98560841d1d28fe66b4",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92e71ab8_ffdc6da2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-09-22T07:59:46Z",
+      "side": 1,
+      "message": "In a dual monitor setup, does `Screen 1` show the contents of screen 1 on the second and screen share in the same 1:1 audio-only call with the ChatView open in `Vertical view` layout?\n\nhttps://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/1676#note_53255\n\nThank you",
+      "revId": "9df430e02dd24aaa6fcfd98560841d1d28fe66b4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
