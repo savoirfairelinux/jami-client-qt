@@ -33,6 +33,24 @@
       "message": "In a dual monitor setup, does `Screen 1` show the contents of screen 1 on the second and screen share in the same 1:1 audio-only call with the ChatView open in `Vertical view` layout?\n\nhttps://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/1676#note_53255\n\nThank you",
       "revId": "9df430e02dd24aaa6fcfd98560841d1d28fe66b4",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41a4ae69_cbad951b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2024-09-23T13:32:07Z",
+      "side": 1,
+      "message": "Hey, I did some testing this morning with an X11 system as well as the dual monitor + vertical chat view set up and I can not seem to reproduce this issue. This patch fixes the screen sharing logic that was broken regardless of which display server you are running. I\u0027ll dig around some more but I don\u0027t think this issue should persist. \n\nThe problem lied in the fact that when you changed the media configuration during a call the function updateCallInfo() could be called multiple times, but this function subsequently called getCallInfoEx() which contained the erroneous logic which cause the screenshare to appear active even if it was not.",
+      "parentUuid": "92e71ab8_ffdc6da2",
+      "revId": "9df430e02dd24aaa6fcfd98560841d1d28fe66b4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
