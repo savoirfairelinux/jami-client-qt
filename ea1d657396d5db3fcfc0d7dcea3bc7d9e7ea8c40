@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "045b4ee3_8a30da54",
+        "filename": "src/app/conversationlistmodel.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2024-09-23T15:52:12Z",
+      "side": 1,
+      "message": "trailing whitespace",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 12
+      },
+      "revId": "ea1d657396d5db3fcfc0d7dcea3bc7d9e7ea8c40",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
