@@ -22,6 +22,30 @@
       },
       "revId": "ea1d657396d5db3fcfc0d7dcea3bc7d9e7ea8c40",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fc23a73_58fa58d2",
+        "filename": "src/app/conversationlistmodel.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2024-09-23T17:30:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "045b4ee3_8a30da54",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 12
+      },
+      "revId": "ea1d657396d5db3fcfc0d7dcea3bc7d9e7ea8c40",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
