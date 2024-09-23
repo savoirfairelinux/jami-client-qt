@@ -1035,12 +1035,12 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="788"/>
         <source>Show local video</source>
-        <translation type="unfinished"/>
+        <translation>Показать локальное видео</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="789"/>
         <source>Hide local video</source>
-        <translation type="unfinished"/>
+        <translation>Скрыть локальное видео</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="844"/>
