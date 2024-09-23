@@ -99,6 +99,12 @@ for ARCH in "${ARCHS[@]}"; do
   echo "$ARCH"
   cd "$DAEMON"
   HOST="${ARCH}-apple-darwin"
+  SDKROOT=$(xcrun --sdk macosx --show-sdk-path)
+
+  CC="xcrun -sdk macosx clang"
+  CXX="xcrun -sdk macosx clang++"
+  CFLAGS="-arch $ARCH -isysroot $SDKROOT"
+  CXXFLAGS="-std=c++17 $CFLAGS"
   CONFIGURE_FLAGS=" --without-dbus --host=${HOST} -with-contrib=$DAEMON/contrib/${ARCH}-apple-darwin${OS_VER} --prefix=${INSTALL}/daemon/$ARCH"
 
   if [ "${debug}" = "true" ]; then
@@ -113,7 +119,11 @@ for ARCH in "${ARCHS[@]}"; do
   mkdir -p "build-macos-${ARCH}"
   cd "build-macos-${ARCH}"
 
-  "$DAEMON"/configure $CONFIGURE_FLAGS ARCH="$ARCH" || exit 1
+  "$DAEMON"/configure $CONFIGURE_FLAGS ARCH="$ARCH" \
+    CC="$CC $CFLAGS" \
+    CXX="$CXX $CXXFLAGS" \
+    CFLAGS="$CFLAGS" \
+    CXXFLAGS="$CXXFLAGS" || exit 1
 
   echo "$CONFIGURE_FLAGS"
 
