@@ -51,6 +51,42 @@
       "parentUuid": "92e71ab8_ffdc6da2",
       "revId": "9df430e02dd24aaa6fcfd98560841d1d28fe66b4",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f72ad094_f185e29f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-09-24T01:25:27Z",
+      "side": 1,
+      "message": "Acknowledged.\n\nThank you for your reply. Please advise when this patch is merged and a new GNU/Linux release is available to enable testing.\n\nHappy to test with you if you like.\n\nThank you",
+      "parentUuid": "41a4ae69_cbad951b",
+      "revId": "9df430e02dd24aaa6fcfd98560841d1d28fe66b4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74537de5_109cad07",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-09-24T01:25:27Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "61d3dfe1_5673018a",
+      "revId": "9df430e02dd24aaa6fcfd98560841d1d28fe66b4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
