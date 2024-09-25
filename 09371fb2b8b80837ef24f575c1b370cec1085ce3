@@ -22,6 +22,30 @@
       },
       "revId": "09371fb2b8b80837ef24f575c1b370cec1085ce3",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5977248_55a01bc2",
+        "filename": "src/app/mainview/js/keyboardshortcuttablecreation.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2024-09-25T18:07:27Z",
+      "side": 1,
+      "message": "Changed order of function calls to make things clearer.",
+      "parentUuid": "c5daf3c5_f5dff5c2",
+      "range": {
+        "startLine": 51,
+        "startChar": 4,
+        "endLine": 53,
+        "endChar": 45
+      },
+      "revId": "09371fb2b8b80837ef24f575c1b370cec1085ce3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
