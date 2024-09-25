@@ -151,7 +151,7 @@ Item {
                 JamiIdControlButton {
                     id: btnEdit
                     anchors.leftMargin: JamiTheme.pushButtonMargins
-                    visible: CurrentAccount.registeredName === ""
+                    visible: CurrentAccount.registeredName === "" && CurrentAccount.enabled
                     imageColor: enabled ? JamiTheme.tintedBlue : JamiTheme.buttonTintedBlack
                     border.color: usernameTextEdit.editMode ? jamiId.contentColor : "transparent"
                     enabled: {
