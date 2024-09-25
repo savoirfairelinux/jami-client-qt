@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5daf3c5_f5dff5c2",
+        "filename": "src/app/mainview/js/keyboardshortcuttablecreation.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-09-25T14:22:14Z",
+      "side": 1,
+      "message": "It probably doesn\u0027t really matter given how Qt\u0027s internals work but I\u0027d suggest putting these three lines after the ones where we set `keyboardShortcutTableWindowObject`\u0027s size and position, since that\u0027s the logical order in which these operations should be done.",
+      "range": {
+        "startLine": 51,
+        "startChar": 4,
+        "endLine": 53,
+        "endChar": 45
+      },
+      "revId": "09371fb2b8b80837ef24f575c1b370cec1085ce3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
