@@ -438,7 +438,7 @@ A Jami most kilép.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="128"/>
         <source>Auto Registration After Expired</source>
-        <translation>Önműködő bejegyzése a lejárat után</translation>
+        <translation>Önműködő bejegyeztetés a lejárat után</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="129"/>
@@ -920,7 +920,7 @@ A névjegy bármikor módosítható a Fiókbeállításaiból.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="598"/>
         <source>Install and launch Jami, select &quot;Import from another device&quot; and scan the QR code.</source>
-        <translation>Telepítse és indítsa el a Jamit, válassza az &quot;Importálás másik eszközről&quot; lehetőséget, és olvassa be a QR-kódot.</translation>
+        <translation>Telepítse és indítsa el a Jami alkalmazást, válassza az &quot;Importálás másik eszközről&quot; lehetőséget, és olvassa be a QR-kódot.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="599"/>
@@ -2169,12 +2169,12 @@ Képe és beceneve bármikor megváltoztatható fiókja beállításaiban.</tran
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="418"/>
         <source>Backup failed</source>
-        <translation>Biztonsági mentés sikertelen</translation>
+        <translation>Hiba történt a fiók biztonsági mentése közben.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="419"/>
         <source>Password changed successfully</source>
-        <translation>Sikeres jelszóváltoztatás</translation>
+        <translation>Jelszó sikeresen megváltoztatva.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="420"/>
@@ -2184,7 +2184,7 @@ Képe és beceneve bármikor megváltoztatható fiókja beállításaiban.</tran
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="421"/>
         <source>Password set successfully</source>
-        <translation>Jelszó beállítása sikerült</translation>
+        <translation>Jelszó sikeresen beállítva.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="422"/>
@@ -2374,7 +2374,7 @@ Képe és beceneve bármikor megváltoztatható fiókja beállításaiban.</tran
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="778"/>
         <source>Started a call</source>
-        <translation>Hívás kezdeményezve</translation>
+        <translation>Hívás elindult</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="835"/>
@@ -2474,7 +2474,7 @@ Képe és beceneve bármikor megváltoztatható fiókja beállításaiban.</tran
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="444"/>
         <source>Registering name</source>
-        <translation>Név bejegyzése</translation>
+        <translation>Név bejegyeztetése</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="447"/>
@@ -4397,7 +4397,7 @@ csatlakozzon a beszélgetés összehangolásához.</translation>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="137"/>
         <source>The most permanent, secure identifier is your Jami ID, but since these are difficult to use for some people, you also have the option of registering a username.</source>
-        <translation>A legállandóbb és legbiztonságosabb azonosító a Jami-azonosító, de mivel egyesek számára nehézkes a használata, lehetőség van felhasználónév regisztrálására is.</translation>
+        <translation>A legállandóbb és legbiztonságosabb azonosító a Jami-azonosító, de mivel egyesek számára nehézkes a használata, lehetőség van felhasználónév bejegyeztetésére is.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="142"/>

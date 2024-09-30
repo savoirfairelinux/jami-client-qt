@@ -1292,12 +1292,12 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="36"/>
         <source>Start swarm</source>
-        <translation>Aloita ruumis</translation>
+        <translation>Aloita parvi</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="37"/>
         <source>Create swarm</source>
-        <translation>Luota ruumis</translation>
+        <translation>Luo parvi</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="180"/>
@@ -2210,7 +2210,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="554"/>
         <source>Markdown</source>
-        <translation>Markkina</translation>
+        <translation>Markdown</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="621"/>
@@ -2689,7 +2689,7 @@ Yritä myöhemmin uudelleen.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="538"/>
         <source>(Experimental) Enable call support for swarm</source>
-        <translation>(Kokeilu) Aktivoida puhelu- tuen ruumille</translation>
+        <translation>(Kokeilu) Aktivoida puhelutuki parvelle</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="539"/>
@@ -3320,17 +3320,17 @@ Yritä myöhemmin uudelleen.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="481"/>
         <source>Run at system startup</source>
-        <translation>Käynnistä järjestelmä käynnistys</translation>
+        <translation>Käynnistä järjestelmän käynnistyessä</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="568"/>
         <source>Create account from backup</source>
-        <translation>Luoda tili varmuuskopioinnista</translation>
+        <translation>Luo tili varmuuskopiosta</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="569"/>
         <source>Restore account from backup</source>
-        <translation>Palauttaa tili varmuuskopioinnista</translation>
+        <translation>Palauta tili varmuuskopiosta</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="572"/>
@@ -3371,7 +3371,7 @@ tahdistaa yhteyden keskusteluun.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="798"/>
         <source>%1 Members</source>
-        <translation>%1 Jäsenet</translation>
+        <translation>%1 jäsentä</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="799"/>
@@ -3381,7 +3381,7 @@ tahdistaa yhteyden keskusteluun.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="800"/>
         <source>Swarm&apos;s name</source>
-        <translation>Swarm&apos;n nimi</translation>
+        <translation>Parven nimi</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="802"/>
@@ -3406,12 +3406,12 @@ tahdistaa yhteyden keskusteluun.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="809"/>
         <source>Type of swarm</source>
-        <translation>Ruumiin tyyppi</translation>
+        <translation>Parven tyyppi</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="813"/>
         <source>Create the swarm</source>
-        <translation>Luota ruumis</translation>
+        <translation>Luo parvi</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="814"/>
@@ -3446,7 +3446,7 @@ tahdistaa yhteyden keskusteluun.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="823"/>
         <source>Customize</source>
-        <translation>Säännön mukauttaminen</translation>
+        <translation>Mukauta</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="825"/>
@@ -3529,7 +3529,7 @@ tahdistaa yhteyden keskusteluun.</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="97"/>
         <source>Search messages/files</source>
-        <translation>Hakemusviestejä/tiedostoja</translation>
+        <translation>Hae viestejä/tiedostoja</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="101"/>
@@ -3549,7 +3549,7 @@ tahdistaa yhteyden keskusteluun.</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="113"/>
         <source>Edit last message</source>
-        <translation>Muokkaa viimeinen viesti</translation>
+        <translation>Muokkaa viimeisintä viestiä</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="117"/>
