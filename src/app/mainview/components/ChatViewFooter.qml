@@ -43,17 +43,31 @@ Rectangle {
     color: JamiTheme.primaryBackgroundColor
 
     function updateMessageDraft() {
-        LRCInstance.setContentDraft(previousConvId, previousAccountId, messageBar.text);
+        // Store the current files that have not been sent, if any. Do the same for the message draft.
+        var filePathDraft = [];
+        while(messageBar.fileContainer.filesToSendCount > 0) {
+            var currentIndex = messageBar.fileContainer.filesToSendListModel.index(0, 0);
+            var filePath = messageBar.fileContainer.filesToSendListModel.data(currentIndex, FilesToSend.FilePath);
+            filePathDraft.push(filePath);
+            messageBar.fileContainer.filesToSendListModel.removeFromPending(0);
+        }
+        LRCInstance.setContentDraft(previousConvId, previousAccountId, messageBar.text, filePathDraft);
         previousConvId = CurrentConversation.id;
         previousAccountId = CurrentAccount.id;
 
         // turn off the button animations when switching convs
         messageBar.animate = false;
         messageBar.textAreaObj.clearText();
+
+        // restore the draft state of contents for a specific conversation
         var restoredContent = LRCInstance.getContentDraft(CurrentConversation.id, CurrentAccount.id);
         if (restoredContent) {
-            messageBar.textAreaObj.insertText(restoredContent);
+            messageBar.textAreaObj.insertText(restoredContent["text"]);
+            for (var i = 0; i < restoredContent["files"].length; ++i) {
+                messageBar.fileContainer.filesToSendListModel.addToPending(restoredContent["files"][i]);
+            }
         }
+
     }
 
     Connections {

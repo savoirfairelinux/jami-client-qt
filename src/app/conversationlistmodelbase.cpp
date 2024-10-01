@@ -99,7 +99,8 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
     }
     case Role::Draft: {
         if (!item.uid.isEmpty())
-            return lrcInstance_->getContentDraft(item.uid, item.accountId);
+
+            return lrcInstance_->getContentDraft(item.uid, item.accountId)["text"];
         return {};
     }
     case Role::ActiveCallsCount: {
