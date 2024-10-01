@@ -352,30 +352,36 @@ LRCInstance::stopAudioMeter()
     });
 }
 
-QString
+QVariantMap
 LRCInstance::getContentDraft(const QString& convUid, const QString& accountId)
 {
     auto draftKey = accountId + "_" + convUid;
-    return contentDrafts_[draftKey];
+    QVariantMap draftMap;
+    draftMap["text"] = contentDrafts_[draftKey];
+    draftMap["files"] = fileDrafts_[draftKey];
+
+    return draftMap;
 }
 
 void
 LRCInstance::setContentDraft(const QString& convUid,
                              const QString& accountId,
-                             const QString& content)
+                             const QString& textDraft,
+                             const QList<QString>& filePathDraft)
 {
     if (accountId.isEmpty() || convUid.isEmpty()) {
         return;
     }
-
     auto draftKey = accountId + "_" + convUid;
 
     // prevent a senseless dataChanged signal from the
     // model if nothing has changed
-    if (contentDrafts_[draftKey] == content)
+    if (contentDrafts_[draftKey] == textDraft && fileDrafts_[draftKey] == filePathDraft) {
         return;
+    }
 
-    contentDrafts_[draftKey] = content;
+    contentDrafts_[draftKey] = textDraft;
+    fileDrafts_[draftKey] = filePathDraft;
     // this signal is only needed to update the current smartlist
     Q_EMIT draftSaved(convUid);
 }
