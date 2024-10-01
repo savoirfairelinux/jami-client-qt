@@ -50,6 +50,11 @@ Rectangle {
         // turn off the button animations when switching convs
         messageBar.animate = false;
         messageBar.textAreaObj.clearText();
+
+        // clear the pending files if switching conversations
+        if (messageBar.fileContainer.filesToSendCount > 0) {
+            messageBar.fileContainer.filesToSendListModel.flush();
+        }
         var restoredContent = LRCInstance.getContentDraft(CurrentConversation.id, CurrentAccount.id);
         if (restoredContent) {
             messageBar.textAreaObj.insertText(restoredContent);
