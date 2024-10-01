@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91fe9ac1_75a2d3eb",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 21
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-10-01T20:29:23Z",
+      "side": 1,
+      "message": "Should we specify the commit hash here like we do for qwindowkit? (Not that I expect this to really make a difference given how infrequently the repo is updated, but it doesn\u0027t cost much and seems like a good practice in general...?)",
+      "range": {
+        "startLine": 144,
+        "startChar": 4,
+        "endLine": 145,
+        "endChar": 3
+      },
+      "revId": "7e9e84b1dab28c851f5c1ca6def7d7c21745fcaa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "459bdf70_58f37306",
+        "filename": "src/app/crashreportclients/crashpad.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-10-01T20:29:23Z",
+      "side": 1,
+      "message": "This assumes that at least one of `OS_POSIX` and `OS_WIN` will always be defined. Do we know for sure that that\u0027s true? I think it\u0027d be worth adding a brief comment to make this explicit. (Or change the code to something like\n```\n#if defined(OS_WIN)\n...\n#else\n...\n#endif\n```\nwhich avoids the issue.)",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 6
+      },
+      "revId": "7e9e84b1dab28c851f5c1ca6def7d7c21745fcaa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f5f80bd_1533980b",
+        "filename": "src/app/crashreportclients/crashpad.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-10-01T20:29:23Z",
+      "side": 1,
+      "message": "Typo: directories -\u003e directory",
+      "range": {
+        "startLine": 63,
+        "startChar": 22,
+        "endLine": 63,
+        "endChar": 33
+      },
+      "revId": "7e9e84b1dab28c851f5c1ca6def7d7c21745fcaa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4a7e08a_688dbffb",
+        "filename": "src/app/crashreportclients/crashpad.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-10-01T20:29:23Z",
+      "side": 1,
+      "message": "Do we need error handling here in case `mkpath` fails to create the directory?",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 48
+      },
+      "revId": "7e9e84b1dab28c851f5c1ca6def7d7c21745fcaa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edfff09e_fab64575",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 21
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-10-01T20:29:23Z",
+      "side": 1,
+      "message": "Nit: I think it\u0027d make more sense to write \"the program\u0027s state at the time of the crash\".",
+      "range": {
+        "startLine": 60,
+        "startChar": 139,
+        "endLine": 60,
+        "endChar": 173
+      },
+      "revId": "7e9e84b1dab28c851f5c1ca6def7d7c21745fcaa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
