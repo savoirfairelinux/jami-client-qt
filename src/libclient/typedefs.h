@@ -39,6 +39,7 @@ Q_DECLARE_LOGGING_CATEGORY(libclientLog)
 
 // Typedefs (required to avoid '<' and '>' in the DBus XML)
 typedef QMap<QString, QString> MapStringString;
+typedef QMap<QString, QList<QString>> MapStringListString;
 typedef QMap<QString, int> MapStringInt;
 typedef QMap<QString, double> MapStringDouble;
 typedef QMap<QPair<QString, QString>, bool> MapPairStrStrBool;
