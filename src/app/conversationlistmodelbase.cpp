@@ -99,7 +99,7 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
     }
     case Role::Draft: {
         if (!item.uid.isEmpty())
-            return lrcInstance_->getContentDraft(item.uid, item.accountId);
+            return lrcInstance_->getContentDraft(item.uid, item.accountId)["text"];
         return {};
     }
     case Role::ActiveCallsCount: {
@@ -137,7 +137,7 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
                 auto bestName = interaction.authorUri == accInfo.profileInfo.uri
                                     ? accInfo.accountModel->bestNameForAccount(accInfo.id)
                                     : accInfo.contactModel->bestNameForContact(
-                                        interaction.authorUri);
+                                          interaction.authorUri);
                 lastInteractionBody
                     = interaction::getContactInteractionString(bestName,
                                                                interaction::to_action(
