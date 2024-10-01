@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed301c96_c425d9a3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2024-10-01T18:18:35Z",
+      "side": 1,
+      "message": "Should we add the latest git tag or the last commit date ?\nJami uses Date-based Versioning and it\u0027s useful for both users and developers to know approximately the release date of the Jami being used.",
+      "revId": "40183796943a1bda52a4e29565b1934a1fbbe0c3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
