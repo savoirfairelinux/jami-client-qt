@@ -46,6 +46,30 @@
       },
       "revId": "f563296eff4c5d29eb56c2978cac63af8ddeacd3",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cdcfed90_a1f4214e",
+        "filename": "INSTALL.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-10-02T18:57:21Z",
+      "side": 1,
+      "message": "Thanks for checking. I just uploaded a new patchset to fix a couple of typos; you can submit it if it looks good to you.",
+      "parentUuid": "e185cb6b_03d03aaf",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 165
+      },
+      "revId": "f563296eff4c5d29eb56c2978cac63af8ddeacd3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
