@@ -28,12 +28,6 @@ import SortFilterProxyModel 0.2
 JamiFlickable {
     id: root
 
-    property int maxWidth: 330
-    property bool tooMuch: {
-        if (maxWidth > 0)
-            return textArea.contentWidth > maxWidth;
-        return false;
-    }
     property alias text: textArea.text
     property var textAreaObj: textArea
     property alias placeholderText: textArea.placeholderText
@@ -42,15 +36,9 @@ JamiFlickable {
     property alias selectionEnd: textArea.selectionEnd
     property bool showPreview: false
     property bool isShowTypo: UtilsAdapter.getAppValue(Settings.Key.ShowMardownOption)
-
-    ScrollBar.vertical.visible: textArea.text
-    ScrollBar.horizontal.visible: textArea.text
+    property int textWidth: textArea.contentWidth
 
     signal sendMessagesRequired
-
-    function heightBinding() {
-        textArea.height = Qt.binding(() => textArea.lineCount === 1 ? 35 : textArea.paintedHeight);
-    }
 
     function selectText(start, end) {
         textArea.select(start, end);
@@ -60,16 +48,12 @@ JamiFlickable {
         textArea.insert(textArea.cursorPosition, text);
     }
 
-    function clearText() {
-        var multiLine = textArea.lineCount !== 1;
-        textArea.clear();
-        if (multiLine) {
-            heightBinding();
-        }
-    }
-
     function pasteText() {
         textArea.paste();
+    }
+
+    function clearText() {
+        textArea.clear();
     }
 
     LineEditContextMenu {
@@ -84,34 +68,34 @@ JamiFlickable {
         }
     }
 
+    ScrollBar.vertical.visible: text
+    ScrollBar.horizontal.visible: text
+
+    boundsMovement: Flickable.StopAtBounds
+    boundsBehavior: Flickable.DragOverBounds
     interactive: true
-    attachedFlickableMoving: textAreaPreview.height > height || textArea.height > height || root.moving
 
-    contentHeight: showPreview ? textAreaPreview.height : textArea.height
-
-    onShowPreviewChanged: {
-        if (showPreview) {
-            textAreaPreview.height = textArea.lineCount === 1 ? textArea.height : textAreaPreview.paintedHeight;
-        }
-        heightBinding();
-    }
+    contentHeight: showPreview ? textAreaPreview.paintedHeight : textArea.contentHeight
+    height: contentHeight
 
     TextArea {
         id: textAreaPreview
+        objectName: textAreaPreview
 
-        onWidthChanged: root.height = this.height
-
-        overwriteMode: false
         readOnly: true
-
-        height: textArea.lineCount === 1 ? textArea.height : this.paintedHeight
-        width: textArea.width
-
         visible: showPreview
         leftPadding: JamiTheme.scrollBarHandleSize
         rightPadding: JamiTheme.scrollBarHandleSize
-        topPadding: 0
-        bottomPadding: 0
+        width: textArea.width
+        height: textArea.height
+        verticalAlignment: TextEdit.AlignVCenter
+        horizontalAlignment: Text.AlignLeft
+        font.pointSize: JamiTheme.textFontSize + 2
+        font.hintingPreference: Font.PreferNoHinting
+        color: JamiTheme.textColor
+        wrapMode: TextEdit.Wrap
+        textFormat: TextEdit.RichText
+        placeholderTextColor: JamiTheme.messageBarPlaceholderTextColor
 
         Connections {
             target: textArea
@@ -129,17 +113,6 @@ JamiFlickable {
             }
         }
 
-        verticalAlignment: TextEdit.AlignVCenter
-
-        font.pointSize: JamiTheme.textFontSize + 2
-        font.hintingPreference: Font.PreferNoHinting
-
-        color: JamiTheme.textColor
-        wrapMode: TextEdit.Wrap
-        textFormat: TextEdit.RichText
-        placeholderTextColor: JamiTheme.messageBarPlaceholderTextColor
-        horizontalAlignment: Text.AlignLeft
-
         background: Rectangle {
             border.width: 0
             color: "transparent"
@@ -148,23 +121,16 @@ JamiFlickable {
 
     TextArea.flickable: TextArea {
         id: textArea
+        objectName: textArea
 
         visible: !showPreview
-
+        readOnly: showPreview
         leftPadding: JamiTheme.scrollBarHandleSize
         rightPadding: JamiTheme.scrollBarHandleSize
-        topPadding: 0
-        bottomPadding: 0
-
         persistentSelection: true
-
-        height: textArea.lineCount === 1 ? 35 : textArea.paintedHeight
-
         verticalAlignment: TextEdit.AlignVCenter
-
         font.pointSize: JamiTheme.textFontSize + 2
         font.hintingPreference: Font.PreferNoHinting
-
         color: JamiTheme.textColor
         wrapMode: TextEdit.Wrap
         selectByMouse: true

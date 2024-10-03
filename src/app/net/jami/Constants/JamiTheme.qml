@@ -513,6 +513,8 @@ Item {
     // MessageBar
     property int messageBarMarginSize: 10
     property int messageBarMinimumWidth: 438
+    property int showTypoSecondToggleWidth: 540
+    property int messageBarMaximumHeight: 150
 
     // InvitationView
     property real invitationViewAvatarSize: 112
