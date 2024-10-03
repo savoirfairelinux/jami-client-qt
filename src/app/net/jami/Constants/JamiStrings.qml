@@ -33,7 +33,7 @@ Item {
     property string endCall: qsTr("End call")
     property string incomingAudioCallFrom: qsTr("Incoming audio call from {}")
     property string incomingVideoCallFrom: qsTr("Incoming video call from {}")
-    property string startSwarm: qsTr("Start swarm")
+    property string startGroup: qsTr("Start group")
     property string invitations: qsTr("Invitations")
     property string description: qsTr("Jami is a universal communication platform, with privacy as its foundation, that relies on a free distributed network for everyone.")
     property string updateToSwarm: qsTr("Migrating to the Swarm technology will enable synchronizing this conversation across multiple devices and improve reliability. The legacy conversation history will be cleared in the process.")
@@ -537,7 +537,7 @@ Item {
     property string troubleshootText: qsTr("Get logs")
 
     property string experimentalCallSwarm: qsTr("(Experimental) Enable call support for swarm")
-    property string experimentalCallSwarmTooltip: qsTr("This feature will enable call buttons in swarms with multiple participants.")
+    property string experimentalCallSwarmTooltip: qsTr("This feature will enable the audio and video call buttons in group conversations.")
 
     // Recording Settings
     property string quality: qsTr("Quality")
@@ -780,8 +780,8 @@ Item {
     property string joinWithVideo: qsTr("Join with video")
     property string startedACall: qsTr("Started a call")
     property string wantToJoin: qsTr("A call is in progress. Do you want to join the call?")
-    property string needsHost: qsTr("Current host for this swarm seems unreachable. Do you want to host the call?")
-    property string selectHost: qsTr("Select dedicated device for hosting future calls in this swarm. If not set, the host will be the device starting a call.")
+    property string needsHost: qsTr("Current host for this group conversation seems unreachable. Do you want to host the call?")
+    property string selectHost: qsTr("Select dedicated device for hosting future calls in this group conversation. If not set, the host will be the device starting a call.")
     property string selectThisDevice: qsTr("Select this device")
     property string selectDevice: qsTr("Select device")
     property string removeCurrentDevice: qsTr("Remove current device")
@@ -797,10 +797,10 @@ Item {
     property string invitationViewAcceptedConversation: qsTr("You have accepted\nthe conversation invitation.")
     property string invitationViewWaitingForSync: qsTr("Waiting until %1\nconnects to synchronize the conversation.")
 
-    // SwarmDetailsPanel
+    // SwarmDetailsPanel (group conversation panel)
     property string members: qsTr("%1 Members")
     property string member: qsTr("Member")
-    property string swarmName: qsTr("Swarm name")
+    property string groupName: qsTr("Group name")
     property string contactName: qsTr("Contact name")
     property string addDescription: qsTr("Add description")
 
@@ -812,8 +812,8 @@ Item {
     property string typeOfSwarm: qsTr("Type")
     property string none: qsTr("None")
 
-    // NewSwarmPage
-    property string createSwarm: qsTr("Create swarm")
+    // NewSwarmPage (new group conversation page)
+    property string createGroup: qsTr("Create new group")
     property string goToConversation: qsTr("Go to conversation")
     property string kickMember: qsTr("Kick member")
     property string reinstateMember: qsTr("Reinstate member")
