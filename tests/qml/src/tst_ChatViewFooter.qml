@@ -53,19 +53,19 @@ ColumnLayout {
                 var sendMessageButton = findChild(uut, "sendMessageButton")
                 var messageBarTextArea = findChild(uut, "messageBarTextArea")
 
-                compare(sendMessageButton.visible, false)
+                compare(sendMessageButton.enabled, false)
 
                 // Text in messageBarTextArea will cause sendMessageButton to show
                 messageBarTextArea.insertText("test")
-                compare(sendMessageButton.visible, true)
+                compare(sendMessageButton.enabled, true)
 
                 // Text cleared in messageBarTextArea will cause sendMessageButton to hide
                 messageBarTextArea.clearText()
-                compare(sendMessageButton.visible, false)
+                compare(sendMessageButton.enabled, false)
 
                 // Both are cleared
                 messageBarTextArea.clearText()
-                compare(sendMessageButton.visible, false)
+                compare(sendMessageButton.enabled, false)
             }
         }
     }
