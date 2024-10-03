@@ -98,7 +98,6 @@ Page {
                 underlineColor: CurrentConversation.color
                 underlineColorHovered: CurrentConversation.color
 
-
                 down: researchTabBar.currentIndex === 1
                 labelText: JamiStrings.files
                 Layout.fillWidth: true
