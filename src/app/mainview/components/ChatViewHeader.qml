@@ -152,7 +152,7 @@ Rectangle {
             visible: interactionButtonsVisibility &&
                      (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
             source: JamiResources.place_audiocall_24dp_svg
-            toolTipText: JamiStrings.placeAudioCall
+            toolTipText: JamiStrings.startAudioCall
 
             onClicked: CallAdapter.placeAudioOnlyCall()
         }
@@ -164,7 +164,7 @@ Rectangle {
                      CurrentAccount.videoEnabled_Video &&
                      (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
             source: JamiResources.videocam_24dp_svg
-            toolTipText: JamiStrings.placeVideoCall
+            toolTipText: JamiStrings.startVideoCall
 
             onClicked: CallAdapter.placeCall()
         }

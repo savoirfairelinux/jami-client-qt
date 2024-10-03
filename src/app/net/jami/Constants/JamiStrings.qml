@@ -336,8 +336,6 @@ Item {
 
     // Chatview header
     property string hideChat: qsTr("Hide chat")
-    property string placeAudioCall: qsTr("Start audio call")
-    property string placeVideoCall: qsTr("Start video call")
     property string showExtensions: qsTr("Show available extensions")
     property string addToConversations: qsTr("Add to conversations")
     property string backendError: qsTr("A backend system error occurred: %0")
