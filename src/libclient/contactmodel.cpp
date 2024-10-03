@@ -1222,7 +1222,7 @@ ContactModelPimpl::slotUserSearchEnded(const QString& accountId,
         updateTemporaryMessage("");
         break;
     case 3: /* ERROR */
-        updateTemporaryMessage("could not find contact matching search");
+        updateTemporaryMessage("Unable to find contact matching search");
         break;
     default:
         break;

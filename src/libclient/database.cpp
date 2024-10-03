@@ -104,7 +104,7 @@ Database::load()
     // open the database.
     if (not db_.open()) {
         std::stringstream ss;
-        ss << "cannot open database: " << connectionName_.toStdString();
+        ss << "is unable to open database: " << connectionName_.toStdString();
         throw std::runtime_error(ss.str());
     }
 
@@ -116,7 +116,7 @@ Database::load()
             QSqlDatabase::database(connectionName_).commit();
         } catch (QueryError& e) {
             QSqlDatabase::database(connectionName_).rollback();
-            throw std::runtime_error("Could not correctly create the database");
+            throw std::runtime_error("An error occurred while creating the database.");
         }
     } else {
         migrateIfNeeded();
@@ -184,7 +184,7 @@ Database::migrateIfNeeded()
         QSqlDatabase::database().commit();
     } catch (QueryError& e) {
         QSqlDatabase::database().rollback();
-        throw std::runtime_error("Could not correctly migrate the database");
+        throw std::runtime_error("An error occurred while migrating the database");
     }
 }
 
@@ -193,7 +193,7 @@ Database::migrateFromVersion(const QString& currentVersion)
 {
     // If we ever have a new version, we can migrate the database here.
     LC_WARN << "Database migration from version " << currentVersion << " to " << version_
-            << " not implemented";
+            << " not implemented.";
 }
 
 void

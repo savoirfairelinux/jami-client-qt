@@ -80,7 +80,7 @@ setInterface(Ts... args)
         auto i = new I(args...);
         setInterfaceInternal(i);
     } catch (void* e) { // TODO define some kind of object for errors like this
-        qDebug() << "Interface could not be set";
+        qDebug() << "An error occurred while setting the interface.";
     }
 }
 

@@ -29,13 +29,13 @@ void
 DBusErrorHandler::errorCallback()
 {
     qDebug() << "Dring has possibly crashed, "
-                "or has been killed... will wait 2.5 seconds and try to reconnect";
+                "or has been killed... will wait 2.5 seconds before attempting to reconnect.";
 
     Q_EMIT showDaemonReconnectPopup(true);
 
     QTimer::singleShot(2500, this, [this]() {
         if ((!lrc::api::Lrc::isConnected()) || (!lrc::api::Lrc::dbusIsValid())) {
-            qDebug() << "Could not reconnect to the daemon";
+            qDebug() << "An error occurred while attempting to reconnect to the daemon.";
             Q_EMIT daemonReconnectFailed();
         } else {
             static_cast<DBusErrorHandler&>(GlobalInstances::dBusErrorHandler())
