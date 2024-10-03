@@ -214,7 +214,7 @@ SidePanelBase {
                     font.bold: true
                     font.pointSize: JamiTheme.contactEventPointSize
 
-                    text: JamiStrings.createSwarm
+                    text: JamiStrings.createGroup
                 }
 
                 PushButton {
@@ -288,7 +288,7 @@ SidePanelBase {
                     visible: !swarmMemberSearchList.visible && CurrentAccount.type !== Profile.Type.SIP
 
                     source: smartListLayout.visible ? JamiResources.create_swarm_svg : JamiResources.round_close_24dp_svg
-                    toolTipText: smartListLayout.visible ? JamiStrings.startSwarm : JamiStrings.cancel
+                    toolTipText: smartListLayout.visible ? JamiStrings.startGroup : JamiStrings.cancel
 
                     onClicked: toggleCreateSwarmView()
                 }
