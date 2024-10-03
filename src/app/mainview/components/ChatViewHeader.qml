@@ -23,7 +23,6 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
-
 import "../../commoncomponents"
 
 Rectangle {
@@ -61,9 +60,7 @@ Rectangle {
     }
 
     property bool addMemberVisibility: {
-        return swarmDetailsVisibility
-                && !CurrentConversation.isCoreDialog
-                && !CurrentConversation.isRequest;
+        return swarmDetailsVisibility && !CurrentConversation.isCoreDialog && !CurrentConversation.isRequest;
     }
 
     property bool swarmDetailsVisibility: {
@@ -81,8 +78,10 @@ Rectangle {
         anchors.rightMargin: 10 + layoutManager.qwkSystemButtonSpacing.right
         spacing: 16
 
-        JamiPushButton { QWKSetParentHitTestVisible {}
+        JamiPushButton {
             id: backToWelcomeViewButton
+            QWKSetParentHitTestVisible {
+            }
 
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
             Layout.leftMargin: 8
@@ -109,8 +108,10 @@ Rectangle {
 
             color: JamiTheme.transparentColor
 
-            ColumnLayout { QWKSetParentHitTestVisible {}
+            ColumnLayout {
                 id: userNameOrIdColumnLayout
+                QWKSetParentHitTestVisible {
+                }
                 objectName: "userNameOrIdColumnLayout"
 
                 height: parent.height
@@ -148,31 +149,34 @@ Rectangle {
             }
         }
 
-        JamiPushButton { QWKSetParentHitTestVisible {}
+        JamiPushButton {
             id: startAudioCallButton
+            QWKSetParentHitTestVisible {
+            }
 
-            visible: interactionButtonsVisibility &&
-                     (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
+            visible: interactionButtonsVisibility && (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
             source: JamiResources.place_audiocall_24dp_svg
             toolTipText: JamiStrings.placeAudioCall
 
             onClicked: CallAdapter.placeAudioOnlyCall()
         }
 
-        JamiPushButton { QWKSetParentHitTestVisible {}
+        JamiPushButton {
             id: startVideoCallButton
+            QWKSetParentHitTestVisible {
+            }
 
-            visible: interactionButtonsVisibility &&
-                     CurrentAccount.videoEnabled_Video &&
-                     (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
+            visible: interactionButtonsVisibility && CurrentAccount.videoEnabled_Video && (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
             source: JamiResources.videocam_24dp_svg
             toolTipText: JamiStrings.placeVideoCall
 
             onClicked: CallAdapter.placeCall()
         }
 
-        JamiPushButton { QWKSetParentHitTestVisible {}
+        JamiPushButton {
             id: inviteMembersButton
+            QWKSetParentHitTestVisible {
+            }
 
             checkable: true
             checked: extrasPanel.isOpen(ChatView.AddMemberPanel)
@@ -183,8 +187,10 @@ Rectangle {
             onClicked: extrasPanel.switchToPanel(ChatView.AddMemberPanel)
         }
 
-        JamiPushButton { QWKSetParentHitTestVisible {}
+        JamiPushButton {
             id: selectExtensionsButton
+            QWKSetParentHitTestVisible {
+            }
 
             visible: PluginAdapter.chatHandlersListCount && interactionButtonsVisibility
             source: JamiResources.plugins_24dp_svg
@@ -193,27 +199,29 @@ Rectangle {
             onClicked: pluginSelector()
         }
 
-        JamiPushButton { QWKSetParentHitTestVisible {}
+        JamiPushButton {
             id: sendContactRequestButton
+            QWKSetParentHitTestVisible {
+            }
             objectName: "sendContactRequestButton"
 
             visible: CurrentConversation.isTemporary || CurrentConversation.isBanned
             source: JamiResources.add_people_24dp_svg
             toolTipText: JamiStrings.addToConversations
 
-            onClicked: CurrentConversation.isBanned ?
-                           MessagesAdapter.unbanConversation(CurrentConversation.id) :
-                           MessagesAdapter.sendConversationRequest()
+            onClicked: CurrentConversation.isBanned ? MessagesAdapter.unbanConversation(CurrentConversation.id) : MessagesAdapter.sendConversationRequest()
         }
 
-        JamiPushButton { QWKSetParentHitTestVisible {}
+        JamiPushButton {
             id: searchMessagesButton
+            QWKSetParentHitTestVisible {
+            }
             objectName: "searchMessagesButton"
 
             checkable: true
             checked: extrasPanel.isOpen(ChatView.MessagesResearchPanel)
             visible: root.swarmDetailsVisibility
-            source:  JamiResources.ic_baseline_search_24dp_svg
+            source: JamiResources.ic_baseline_search_24dp_svg
             toolTipText: JamiStrings.search
 
             onClicked: extrasPanel.switchToPanel(ChatView.MessagesResearchPanel)
@@ -226,8 +234,10 @@ Rectangle {
             }
         }
 
-        JamiPushButton { QWKSetParentHitTestVisible {}
+        JamiPushButton {
             id: detailsButton
+            QWKSetParentHitTestVisible {
+            }
             objectName: "detailsButton"
 
             checkable: true
