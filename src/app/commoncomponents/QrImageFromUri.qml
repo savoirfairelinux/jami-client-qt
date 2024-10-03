@@ -1,3 +1,4 @@
+
 /*
  * Copyright (C) 2024 Savoir-faire Linux Inc.
  * Author: Fadi Shehadeh   <fadi.shehadeh@savoirfairelinux.com>
@@ -25,10 +26,9 @@ import net.jami.Enums 1.1
 import net.jami.Models 1.1
 import "../../commoncomponents"
 
-SettingsPageBase {
+Item {
     id: root
 
-    property bool isSIP: CurrentAccount.type === Profile.Type.SIP
     property int itemWidth: 250
     signal navigateToMainView
 
@@ -134,6 +134,7 @@ SettingsPageBase {
                 font.kerning: true
             }
 
+            // KESS this shows the qr code for the current account... maybe we can use this to display our custom qr code for the new device link process
             JamiIdentifier {
                 id: jamiIdentifier
 
@@ -175,7 +176,7 @@ SettingsPageBase {
                 Layout.alignment: Qt.AlignLeft
                 Layout.fillWidth: true
 
-                text: JamiStrings.newLinkTitle
+                text: "NEW: Link your Device via P2P Connection"//JamiStrings.linkTitle
                 color: JamiTheme.textColor
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
@@ -203,25 +204,26 @@ SettingsPageBase {
             }
 
             MaterialButton {
-                id: linkDeviceOldBtn
+                id: linkDeviceBtn
 
                 TextMetrics {
-                    id: linkDeviceOldBtnTextSize
+                    id: linkDeviceBtnTextSize
                     font.weight: Font.Bold
                     font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
-                    text: "linkDeviceBtn.text"// TODOlinkDeviceBtn.text
+                    text: "Link Device Demo"// linkDeviceBtn.text
                 }
 
-                preferredWidth: linkDeviceOldBtnTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
+                preferredWidth: linkDeviceBtnTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
 
                 primary: true
                 Layout.alignment: Qt.AlignLeft
 
                 toolTipText: JamiStrings.tipLinkNewDevice
-                text: "Old Device"//JamiStrings.linkNewDevice
+                text: JamiStrings.linkNewDevice
 
-                onClicked: viewCoordinator.presentDialog(appWindow, "settingsview/components/LinkScanner.qml")
+                onClicked: viewCoordinator.presentDialog(appWindow, "settingsview/components/LinkDeviceDialog.qml")
             }
+        }
 
         ColumnLayout {
             id: encryptAccount
@@ -372,6 +374,56 @@ SettingsPageBase {
                         });
                 }
             }
+
+
+            // MaterialButton {
+            //     id: btnLinkDevDemo
+            //
+            //     TextMetrics {
+            //         id: btnLinkDevDemoTextSize
+            //         font.weight: Font.Bold
+            //         font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
+            //         text: btnLinkDevDemo.text
+            //     }
+            //
+            //     // preferredWidth: btnLinkDevDemoTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
+            //     preferredWidth: btnExportAccountTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
+            //     primary: true
+            //     Layout.alignment: Qt.AlignLeft
+            //
+            //     toolTipText: JamiStrings.tipBackupAccount
+            //     text: JamiStrings.saveAccountTitle
+            //
+            //     onClicked: {
+            //         var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+            //                 "title": JamiStrings.backupAccountHere,
+            //                 "fileMode": FileDialog.SaveFile,
+            //                 "folder": StandardPaths.writableLocation(StandardPaths.DesktopLocation),
+            //                 "nameFilters": [JamiStrings.jamiArchiveFiles, JamiStrings.allFiles]
+            //             });
+            //         dlg.fileAccepted.connect(function (file) {
+            //                 // is there password? If so, go to password dialog, else, go to following directly
+            //                 var exportPath = UtilsAdapter.getAbsPath(file.toString());
+            //                 if (CurrentAccount.hasArchivePassword) {
+            //                     viewCoordinator.presentDialog(appWindow, "commoncomponents/PasswordDialog.qml", {
+            //                             "purpose": PasswordDialog.LinkDevDemo,
+            //                             "path": exportPath
+            //                         });
+            //                     return;
+            //                 } else if (exportPath.length > 0) {
+            //                     var success = AccountAdapter.model.exportToFile(LRCInstance.currentAccountId, exportPath);
+            //                     viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+            //                             "title": success ? JamiStrings.success : JamiStrings.error,
+            //                             "infoText": success ? JamiStrings.backupSuccessful : JamiStrings.backupFailed,
+            //                             "buttonTitles": [JamiStrings.optionOk],
+            //                             "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
+            //                             "buttonRoles": [DialogButtonBox.AcceptRole]
+            //                         });
+            //                 }
+            //             });
+            //     }
+            // }
+
         }
 
         ColumnLayout {
@@ -386,7 +438,7 @@ SettingsPageBase {
                 Layout.alignment: Qt.AlignLeft
                 Layout.preferredWidth: parent.width
 
-                text: JamiStrings.blockedContacts
+                text: JamiStrings.bannedContacts
                 color: JamiTheme.textColor
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
@@ -472,5 +524,4 @@ SettingsPageBase {
             }
         }
     }
-}
 }
