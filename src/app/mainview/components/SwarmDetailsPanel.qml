@@ -115,7 +115,7 @@ Rectangle {
                             titleLine.editMode = activeFocus;
                         }
 
-                        infoTipLineText: CurrentConversation.isCoreDialog ? JamiStrings.contactName : JamiStrings.swarmName
+                        infoTipLineText: CurrentConversation.isCoreDialog ? JamiStrings.contactName : JamiStrings.groupName
                     }
 
                     ModalTextEdit {
