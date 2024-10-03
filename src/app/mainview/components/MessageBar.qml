@@ -54,87 +54,16 @@ RowLayout {
     signal showMapClicked
     signal emojiButtonClicked
 
-    property real rectHeight: (showTypo || multiLine) ? messageBarTextArea.height + 25 + 4 * marginSize + 1 : textAreaObj.height + 1 * marginSize + 1
 
-    height: rectHeight + (dataTransferSendContainer.visible ?  dataTransferSendContainer.height + (!showTypo ? 40 : - marginSize) : 0 )
-
+    height: messageRow.height + formatRow.height + fileContainer.height + 2*marginSize 
+    Layout.preferredHeight : messageRow.height + formatRow.height + fileContainer.height + 2*marginSize
+    Layout.minimumHeight : 35 + formatRow.height + fileContainer.height + 2*marginSize
+    Layout.maximumHeight: JamiTheme.chatViewFooterTextAreaMaximumHeight 
     onShowTypoChanged: {
         messageBarTextArea.forceActiveFocus();
     }
 
-    Rectangle {
-        Layout.preferredHeight: parent.height
-        Layout.preferredWidth: childrenRect.width
-        visible: !CurrentConversation.isSip
-        color: JamiTheme.transparentColor
-        ComboBox {
-            id: showMoreButton
-            focus: true
-            width: JamiTheme.chatViewFooterButtonSize
-            height: JamiTheme.chatViewFooterButtonSize
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: marginSize / 2
-
-            // Used to choose the correct color for the button.
-            readonly property bool highlight: down || hovered
-
-            background: Rectangle {
-                implicitWidth: showMoreButton.width
-                implicitHeight: showMoreButton.height
-                radius: 5
-                color: showMoreButton.highlight ?
-                           JamiTheme.hoveredButtonColor :
-                           JamiTheme.transparentColor
-            }
-
-            MaterialToolTip {
-                id: toolTipMoreButton
-
-                parent: showMoreButton
-                visible: showMoreButton.hovered && (text.length > 0)
-                delay: Qt.styleHints.mousePressAndHoldInterval
-                text: showMoreButton.down ? JamiStrings.showLess : JamiStrings.showMore
-            }
-
-            indicator: ResponsiveImage {
-
-                width: 25
-                height: 25
-
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.horizontalCenter: parent.horizontalCenter
-
-                source: JamiResources.more_menu_black_24dp_svg
-
-                color: showMoreButton.highlight ?
-                           JamiTheme.chatViewFooterImgHoverColor :
-                           JamiTheme.chatViewFooterImgColor;
-            }
-
-            Component {
-                id: sharePopupComp
-                ShareMenu {
-                    id: sharePopup
-                    onAudioRecordMessageButtonClicked: root.audioRecordMessageButtonClicked()
-                    onVideoRecordMessageButtonClicked: root.videoRecordMessageButtonClicked()
-                    onShowMapClicked: root.showMapClicked()
-                    modelList: listViewMoreButton.menuMoreButton
-                    y: showMoreButton.y + 31
-                    x: showMoreButton.x - 3
-                }
-            }
-
-            popup: ShareMenu {
-                id: sharePopup
-                onAudioRecordMessageButtonClicked: root.audioRecordMessageButtonClicked()
-                onVideoRecordMessageButtonClicked: root.videoRecordMessageButtonClicked()
-                onShowMapClicked: root.showMapClicked()
-                modelList: listViewMoreButton.menuMoreButton
-                y: showMoreButton.y + 31
-                x: showMoreButton.x - 3
-            }
-        }
-    }
+   
 
     Rectangle {
         id: rectangle
@@ -155,828 +84,232 @@ RowLayout {
                 showTypoSecond = true;
             }
         }
+        
+        
 
-        GridLayout {
+
+        ColumnLayout {
             id: rowLayout
 
-            columns: 2
-            rows: 3
-            columnSpacing: 0
-            rowSpacing: 0
-
             anchors.fill: parent
+            anchors.margins: marginSize / 2
 
-
-            MessageBarTextArea {
-                id: messageBarTextArea
-
-                objectName: "messageBarTextArea"
-                maxWidth: rectangle.width - messageBarRowLayout.width - 35
-                Layout.row: 0
-                Layout.column: 0
-
-                // forward activeFocus to the actual text area object
-                onActiveFocusChanged: {
-                    if (activeFocus)
-                        textAreaObj.forceActiveFocus();
-                }
-
-                placeholderText: JamiStrings.writeTo.arg(CurrentConversation.title)
-
-                Layout.alignment: showTypo ? Qt.AlignLeft : Qt.AlignBottom
+            Rectangle {
+                id: messageRow
+                
                 Layout.fillWidth: true
-                Layout.margins: marginSize / 2
-                Layout.topMargin: 0
-                Layout.minimumHeight: JamiTheme.chatViewFooterPreferredHeight
-                Layout.preferredHeight: contentHeight
-                Layout.maximumHeight: JamiTheme.chatViewFooterTextAreaMaximumHeight - marginSize / 2
+                Layout.alignment: Qt.AlignTop
+                Layout.rightMargin: marginSize / 2
+                Layout.leftMargin: marginSize / 2
+                height: messageBarTextArea.height
+                Layout.maximumHeight: 150
+                
+                color: JamiTheme.transparentColor
+                MessageBarTextArea {
+                    id: messageBarTextArea
+                    objectName: "messageBarTextArea"
+                    
 
-                onSendMessagesRequired: {
-                    sendMessageButtonClicked();
-                }
-                onTextChanged: {
-                    if (!text) {
-                        messageBarTextArea.heightBinding();
+                    // forward activeFocus to the actual text area object
+                    onActiveFocusChanged: {
+                        if (activeFocus)
+                            textAreaObj.forceActiveFocus();
+                    }
+
+                    placeholderText: JamiStrings.writeTo.arg(CurrentConversation.title)
+
+                    Layout.margins: marginSize / 2
+                    Layout.minimumHeight: 35
+                    //Layout.maximumHeight: JamiTheme.chatViewFooterTextAreaMaximumHeight - marginSize / 2
+                    Layout.maximumHeight: 150
+                    height: messageBarTextArea.height
+                    width: parent.width - JamiTheme.chatViewFooterButtonSize - marginSize /2 
+                    onSendMessagesRequired: {
+                        sendMessageButtonClicked();
+                    }
+                    onTextChanged: {
+                        if (!text) {
+                            messageBarTextArea.heightBinding();
+                        }
+                        console.log(contentHeight);
+                        console.log(height);
+                    }
+                    property var markdownShortCut: {
+                        "Bold": function () {
+                            if (!showPreview) {
+                                listViewTypoFirst.itemAtIndex(0).action.triggered();
+                            }
+                        },
+                        "Italic": function () {
+                            if (!showPreview) {
+                                listViewTypoFirst.itemAtIndex(1).action.triggered();
+                            }
+                        },
+                        "Barre": function () {
+                            if (!showPreview) {
+                                listViewTypoFirst.itemAtIndex(2).action.triggered();
+                            }
+                        },
+                        "Heading": function () {
+                            if (!showPreview) {
+                                listViewTypoFirst.itemAtIndex(3).action.triggered();
+                            }
+                        },
+                        "Link": function () {
+                            if (!showPreview) {
+                                listViewTypoFirst.itemAtIndex(4).action.triggered();
+                            }
+                        },
+                        "Code": function () {
+                            if (!showPreview) {
+                                listViewTypoFirst.itemAtIndex(5).action.triggered();
+                            }
+                        },
+                        "Quote": function () {
+                            if (!showPreview) {
+                                listViewTypoSecond.itemAtIndex(0).action.triggered();
+                            }
+                        },
+                        "Unordered list": function () {
+                            if (!showPreview) {
+                                listViewTypoSecond.itemAtIndex(1).action.triggered();
+                            }
+                        },
+                        "Ordered list": function () {
+                            if (!showPreview) {
+                                listViewTypoSecond.itemAtIndex(2).action.triggered();
+                            }
+                        },
+                        "Enter is new line": function () {
+                            if (!showPreview) {
+                                listViewTypoSecond.itemAtIndex(3).action.triggered();
+                            }
+                        }
+                    }
+
+                    Shortcut {
+                        sequence: "Ctrl+B"
+                        context: Qt.ApplicationShortcut
+                        onActivated: messageBarTextArea.markdownShortCut["Bold"]()
+                    }
+
+                    Shortcut {
+                        sequence: "Ctrl+I"
+                        context: Qt.ApplicationShortcut
+                        onActivated: messageBarTextArea.markdownShortCut["Italic"]()
+                    }
+
+                    Shortcut {
+                        sequence: "Shift+Alt+X"
+                        context: Qt.ApplicationShortcut
+                        onActivated: messageBarTextArea.markdownShortCut["Barre"]()
+                    }
+
+                    Shortcut {
+                        sequence: "Ctrl+Alt+H"
+                        context: Qt.ApplicationShortcut
+                        onActivated: messageBarTextArea.markdownShortCut["Heading"]()
+                    }
+
+                    Shortcut {
+                        sequence: "Ctrl+Alt+K"
+                        context: Qt.ApplicationShortcut
+                        onActivated: messageBarTextArea.markdownShortCut["Link"]()
+                    }
+
+                    Shortcut {
+                        sequence: "Ctrl+Alt+C"
+                        context: Qt.ApplicationShortcut
+                        onActivated: messageBarTextArea.markdownShortCut["Code"]()
+                    }
+
+                    Shortcut {
+                        sequence: "Shift+Alt+9"
+                        context: Qt.ApplicationShortcut
+                        onActivated: messageBarTextArea.markdownShortCut["Quote"]()
+                    }
+
+                    Shortcut {
+                        sequence: "Shift+Alt+8"
+                        context: Qt.ApplicationShortcut
+                        onActivated: messageBarTextArea.markdownShortCut["Unordered list"]()
+                    }
+
+                    Shortcut {
+                        sequence: "Shift+Alt+7"
+                        context: Qt.ApplicationShortcut
+                        onActivated: messageBarTextArea.markdownShortCut["Ordered list"]()
+                    }
+
+                    Shortcut {
+                        sequence: "Shift+Alt+T"
+                        context: Qt.ApplicationShortcut
+                        onActivated: {
+                            showTypo = !showTypo;
+                            messageBarTextArea.isShowTypo = showTypo;
+                            UtilsAdapter.setAppValue(Settings.Key.ShowMardownOption, showTypo);
+                        }
+                    }
+
+                    Shortcut {
+                        sequence: "Shift+Alt+P"
+                        context: Qt.ApplicationShortcut
+                        onActivated: {
+                            showPreview = !showPreview;
+                            messageBarTextArea.showPreview = showPreview;
+                        }
                     }
                 }
-                property var markdownShortCut: {
-                    "Bold": function () {
-                        if (!showPreview) {
-                            listViewTypoFirst.itemAtIndex(0).action.triggered();
-                        }
-                    },
-                    "Italic": function () {
-                        if (!showPreview) {
-                            listViewTypoFirst.itemAtIndex(1).action.triggered();
-                        }
-                    },
-                    "Barre": function () {
-                        if (!showPreview) {
-                            listViewTypoFirst.itemAtIndex(2).action.triggered();
-                        }
-                    },
-                    "Heading": function () {
-                        if (!showPreview) {
-                            listViewTypoFirst.itemAtIndex(3).action.triggered();
-                        }
-                    },
-                    "Link": function () {
-                        if (!showPreview) {
-                            listViewTypoFirst.itemAtIndex(4).action.triggered();
-                        }
-                    },
-                    "Code": function () {
-                        if (!showPreview) {
-                            listViewTypoFirst.itemAtIndex(5).action.triggered();
-                        }
-                    },
-                    "Quote": function () {
-                        if (!showPreview) {
-                            listViewTypoSecond.itemAtIndex(0).action.triggered();
-                        }
-                    },
-                    "Unordered list": function () {
-                        if (!showPreview) {
-                            listViewTypoSecond.itemAtIndex(1).action.triggered();
-                        }
-                    },
-                    "Ordered list": function () {
-                        if (!showPreview) {
-                            listViewTypoSecond.itemAtIndex(2).action.triggered();
-                        }
-                    },
-                    "Enter is new line": function () {
-                        if (!showPreview) {
-                            listViewTypoSecond.itemAtIndex(3).action.triggered();
+                    PushButton {
+                        id: previewButton
+                        anchors.top: parent.top
+                        anchors.right: parent.right
+                        preferredSize: JamiTheme.chatViewFooterButtonSize
+                        radius: 5
+                        source: JamiResources.preview_black_24dp_svg
+                        normalColor: showPreview ? hoveredColor : JamiTheme.primaryBackgroundColor
+                        imageColor: (hovered || showPreview) ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor
+                        hoveredColor: JamiTheme.hoveredButtonColor
+                        pressedColor: hoveredColor
+                        toolTipText: showPreview ? JamiStrings.continueEditing : JamiStrings.showPreview
+
+
+                        onClicked: {
+                            showPreview = !showPreview;
+                            messageBarTextArea.showPreview = showPreview;
                         }
                     }
-                }
-
-                Shortcut {
-                    sequence: "Ctrl+B"
-                    context: Qt.ApplicationShortcut
-                    onActivated: messageBarTextArea.markdownShortCut["Bold"]()
-                }
-
-                Shortcut {
-                    sequence: "Ctrl+I"
-                    context: Qt.ApplicationShortcut
-                    onActivated: messageBarTextArea.markdownShortCut["Italic"]()
-                }
-
-                Shortcut {
-                    sequence: "Shift+Alt+X"
-                    context: Qt.ApplicationShortcut
-                    onActivated: messageBarTextArea.markdownShortCut["Barre"]()
-                }
-
-                Shortcut {
-                    sequence: "Ctrl+Alt+H"
-                    context: Qt.ApplicationShortcut
-                    onActivated: messageBarTextArea.markdownShortCut["Heading"]()
-                }
-
-                Shortcut {
-                    sequence: "Ctrl+Alt+K"
-                    context: Qt.ApplicationShortcut
-                    onActivated: messageBarTextArea.markdownShortCut["Link"]()
-                }
-
-                Shortcut {
-                    sequence: "Ctrl+Alt+C"
-                    context: Qt.ApplicationShortcut
-                    onActivated: messageBarTextArea.markdownShortCut["Code"]()
-                }
-
-                Shortcut {
-                    sequence: "Shift+Alt+9"
-                    context: Qt.ApplicationShortcut
-                    onActivated: messageBarTextArea.markdownShortCut["Quote"]()
-                }
-
-                Shortcut {
-                    sequence: "Shift+Alt+8"
-                    context: Qt.ApplicationShortcut
-                    onActivated: messageBarTextArea.markdownShortCut["Unordered list"]()
-                }
-
-                Shortcut {
-                    sequence: "Shift+Alt+7"
-                    context: Qt.ApplicationShortcut
-                    onActivated: messageBarTextArea.markdownShortCut["Ordered list"]()
-                }
-
-                Shortcut {
-                    sequence: "Shift+Alt+T"
-                    context: Qt.ApplicationShortcut
-                    onActivated: {
-                        showTypo = !showTypo;
-                        messageBarTextArea.isShowTypo = showTypo;
-                        UtilsAdapter.setAppValue(Settings.Key.ShowMardownOption, showTypo);
-                    }
-                }
-
-                Shortcut {
-                    sequence: "Shift+Alt+P"
-                    context: Qt.ApplicationShortcut
-                    onActivated: {
-                        showPreview = !showPreview;
-                        messageBarTextArea.showPreview = showPreview;
-                    }
-                }
             }
-
+           
             FilesToSendContainer {
                         id: dataTransferSendContainer
 
+
                         objectName: "dataTransferSendContainer"
                         visible: filesToSendCount > 0
-
-                        Layout.alignment: Qt.AlignCenter
-                        Layout.fillWidth: true
+                        height: visible ? JamiTheme.layoutWidthFileTransfer : 0
                         Layout.rightMargin: marginSize / 2
                         Layout.leftMargin: marginSize / 2
-                        Layout.row: 1
-                        Layout.column: 0
-                        Layout.columnSpan: 2
+                        Layout.fillWidth: true
+                        Layout.alignment: Qt.AlignBottom 
                         Layout.preferredHeight: filesToSendCount ? JamiTheme.layoutWidthFileTransfer : 0
                     }
 
-            Row {
-                id: messageBarRowLayout
-
-                Layout.row: dataTransferSendContainer.visible ? 3 : (showTypo || multiLine ? 2 : 0)
-                Layout.column: showTypo || multiLine ? 0 : 1
-                Layout.alignment: showTypo || multiLine ? Qt.AlignRight : Qt.AlignBottom
-                Layout.columnSpan: showTypo || multiLine ? 2 : 1
-                Layout.topMargin: dataTransferSendContainer.visible ? 0 : marginSize
-                Layout.rightMargin: 0
-
-                Row {
-                    anchors.bottom: parent.bottom
-                    anchors.bottomMargin: marginSize / 2
-
-                    Row {
-                        id: listViewTypo
-                        height: JamiTheme.chatViewFooterButtonSize
-
-                        ListView {
-                            id: listViewTypoFirst
-
-                            objectName: "listViewTypoFirst"
-
-                            visible: showTypo
-                            width: contentWidth + 2 * leftMargin
-
-                            Behavior on width  {
-                                NumberAnimation {
-                                    duration: JamiTheme.longFadeDuration / 2
-                                }
-                            }
-
-                            height: JamiTheme.chatViewFooterButtonSize
-                            orientation: ListView.Horizontal
-                            interactive: false
-                            spacing: 5
-
-                            property list<Action> menuTypoActionsFirst: [
-                                Action {
-                                    id: boldAction
-                                    property string iconSrc: JamiResources.bold_black_24dp_svg
-                                    property string shortcutText: JamiStrings.bold
-                                    property string shortcutKey: "Ctrl+B"
-                                    property bool isStyle: MDE.isStyle(messageBarTextArea, root.text, "**", "**")
-                                    onTriggered: MDE.addStyle(messageBarTextArea, root.text, "**", "**")
-                                },
-                                Action {
-                                    id: italicAction
-                                    property string iconSrc: JamiResources.italic_black_24dp_svg
-                                    property string shortcutText: JamiStrings.italic
-                                    property string shortcutKey: "Ctrl+I"
-                                    property bool isStyle: MDE.isStyle(messageBarTextArea, root.text, "*", "*")
-                                    onTriggered: MDE.addStyle(messageBarTextArea, root.text, "*", "*")
-                                },
-                                Action {
-                                    id: strikethroughAction
-                                    property string iconSrc: JamiResources.s_barre_black_24dp_svg
-                                    property string shortcutText: JamiStrings.strikethrough
-                                    property string shortcutKey: "Shift+Alt+X"
-                                    property bool isStyle: MDE.isStyle(messageBarTextArea, root.text, "~~", "~~")
-                                    onTriggered: MDE.addStyle(messageBarTextArea, root.text, "~~", "~~")
-                                },
-                                Action {
-                                    id: titleAction
-                                    property string iconSrc: JamiResources.title_black_24dp_svg
-                                    property string shortcutText: JamiStrings.heading
-                                    property string shortcutKey: "Ctrl+Alt+H"
-                                    property bool isStyle: MDE.isPrefixSyle(messageBarTextArea, root.text, "### ", false)
-                                    onTriggered: MDE.addPrefixStyle(messageBarTextArea, root.text, "### ", false)
-                                },
-                                Action {
-                                    id: linkAction
-                                    property string iconSrc: JamiResources.link_web_black_24dp_svg
-                                    property string shortcutText: JamiStrings.link
-                                    property string shortcutKey: "Ctrl+Alt+K"
-                                    property bool isStyle: MDE.isStyle(messageBarTextArea, root.text, "[", "](url)")
-                                    onTriggered: MDE.addStyle(messageBarTextArea, root.text, "[", "](url)")
-                                },
-                                Action {
-                                    id: codeAction
-                                    property string iconSrc: JamiResources.code_black_24dp_svg
-                                    property string shortcutText: JamiStrings.code
-                                    property string shortcutKey: "Ctrl+Alt+C"
-                                    property bool isStyle: MDE.isStyle(messageBarTextArea, root.text, "```", "```")
-                                    onTriggered: MDE.addStyle(messageBarTextArea, root.text, "```", "```")
-                                }
-                            ]
-
-                            model: menuTypoActionsFirst
-
-                            delegate: PushButton {
-                                anchors.verticalCenter: parent ? parent.verticalCenter : undefined
-                                preferredSize: JamiTheme.chatViewFooterRealButtonSize
-                                imageContainerWidth: 15
-                                imageContainerHeight: 15
-                                radius: 5
-
-                                hoverEnabled: !showPreview
-                                enabled: !showPreview
-
-                                toolTipText: modelData.shortcutText
-                                shortcutKey: modelData.shortcutKey
-                                hasShortcut: true
-
-                                source: modelData.iconSrc
-                                focusPolicy: Qt.TabFocus
-
-                                normalColor: {
-                                    if (showPreview) {
-                                        return JamiTheme.primaryBackgroundColor;
-                                    } else if (modelData.isStyle) {
-                                        return JamiTheme.hoveredButtonColor;
-                                    } else {
-                                        return JamiTheme.primaryBackgroundColor;
-                                    }
-                                }
-                                imageColor: {
-                                    if (showPreview) {
-                                        return JamiTheme.chatViewFooterImgDisableColor;
-                                    } else if (hovered) {
-                                        return JamiTheme.chatViewFooterImgHoverColor;
-                                    } else if (modelData.isStyle) {
-                                        return JamiTheme.chatViewFooterImgHoverColor;
-                                    } else {
-                                        return JamiTheme.chatViewFooterImgColor;
-                                    }
-                                }
-                                hoveredColor: JamiTheme.hoveredButtonColor
-                                pressedColor: hoveredColor
-
-                                action: modelData
-                            }
-                        }
-
-                        Rectangle {
-                            height: JamiTheme.chatViewFooterButtonSize
-                            color: JamiTheme.primaryBackgroundColor
-                            visible: showTypo && showTypoSecond
-                            width: 2
-
-                            Rectangle {
-                                anchors.verticalCenter: parent.verticalCenter
-                                width: 2
-                                height: JamiTheme.chatViewFooterButtonSize / 2
-                                color: showPreview ? JamiTheme.chatViewFooterImgDisableColor : JamiTheme.chatViewFooterSeparateLineColor
-                            }
-                        }
-
-                        Rectangle {
-                            z: -1
-                            radius: 0
-                            color: JamiTheme.primaryBackgroundColor
-                            width: JamiTheme.chatViewFooterButtonSize
-                            height: JamiTheme.chatViewFooterButtonSize
-
-                            visible: showTypo && !showTypoSecond
-
-                            ComboBox {
-                                id: showMoreTypoButton
-                                width: JamiTheme.chatViewFooterRealButtonSize
-                                height: width
-                                anchors.verticalCenter: parent.verticalCenter
-                                anchors.horizontalCenter: parent.horizontalCenter
-
-                                enabled: !showPreview
-                                hoverEnabled: !showPreview
-
-                                MaterialToolTip {
-                                    id: toolTip
-                                    parent: showMoreTypoButton
-                                    visible: showMoreTypoButton.hovered && (text.length > 0)
-                                    delay: Qt.styleHints.mousePressAndHoldInterval
-                                    text: markdownPopup.visible ? JamiStrings.showLess : JamiStrings.showMore
-                                }
-
-                                background: Rectangle {
-                                    implicitWidth: showMoreTypoButton.width
-                                    implicitHeight: showMoreTypoButton.height
-                                    radius: 5
-                                    color: showPreview ? JamiTheme.transparentColor : (parent && parent.hovered ? JamiTheme.hoveredButtonColor : JamiTheme.transparentColor)
-                                }
-
-                                indicator: ResponsiveImage {
-                                    containerHeight: 20
-                                    containerWidth: 20
-                                    width: 18
-                                    height: 18
-
-                                    anchors.verticalCenter: parent.verticalCenter
-                                    anchors.horizontalCenter: parent.horizontalCenter
-
-                                    source: JamiResources.more_vert_24dp_svg
-
-                                    color: showPreview ? JamiTheme.chatViewFooterImgDisableColor : (parent && parent.hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor)
-                                }
-
-                                popup: MarkdownPopup {
-                                    id: markdownPopup
-                                    y: 1.5 * parent.height
-                                    x: -parent.width * 2
-                                    width: 105
-                                    height: JamiTheme.chatViewFooterButtonSize
-
-                                    menuTypoActionsSecond: listViewTypoSecond.menuTypoActionsSecond
-                                }
-                            }
-                        }
-
-                        ListView {
-                            id: listViewTypoSecond
-                            visible: showTypo && showTypoSecond
-                            width: contentWidth + 2 * leftMargin
-
-                            height: JamiTheme.chatViewFooterButtonSize
-                            orientation: ListView.Horizontal
-                            interactive: false
-                            spacing: 10
-
-                            Rectangle {
-                                anchors.fill: parent
-                                color: JamiTheme.transparentColor
-                                z: -1
-                            }
-
-                            property list<Action> menuTypoActionsSecond: [
-                                Action {
-                                    id: quoteAction
-                                    property string iconSrc: JamiResources.quote_black_24dp_svg
-                                    property string shortcutText: JamiStrings.quote
-                                    property string shortcutKey: "Shift+Alt+9"
-                                    property bool isStyle: MDE.isPrefixSyle(messageBarTextArea, root.text, "> ", false)
-                                    onTriggered: MDE.addPrefixStyle(messageBarTextArea, root.text, "> ", false)
-                                },
-                                Action {
-                                    id: unorderedListAction
-                                    property string iconSrc: JamiResources.bullet_point_black_24dp_svg
-                                    property string shortcutText: JamiStrings.unorderedList
-                                    property string shortcutKey: "Shift+Alt+8"
-                                    property bool isStyle: MDE.isPrefixSyle(messageBarTextArea, root.text, "- ", false)
-                                    onTriggered: MDE.addPrefixStyle(messageBarTextArea, root.text, "- ", false)
-                                },
-                                Action {
-                                    id: orderedListAction
-                                    property string iconSrc: JamiResources.bullet_number_black_24dp_svg
-                                    property string shortcutText: JamiStrings.orderedList
-                                    property string shortcutKey: "Shift+Alt+7"
-                                    property bool isStyle: MDE.isPrefixSyle(messageBarTextArea, root.text, "", true)
-                                    onTriggered: MDE.addPrefixStyle(messageBarTextArea, root.text, "", true)
-                                }
-                            ]
-
-                            model: menuTypoActionsSecond
-
-                            delegate: PushButton {
-                                anchors.verticalCenter: parent ? parent.verticalCenter : undefined
-                                preferredSize: JamiTheme.chatViewFooterRealButtonSize
-                                imageContainerWidth: 20
-                                imageContainerHeight: 20
-                                radius: 5
-
-                                hoverEnabled: !showPreview
-                                enabled: !showPreview
-
-                                toolTipText: modelData.shortcutText
-                                shortcutKey: modelData.shortcutKey
-                                hasShortcut: modelData.hasShortcut ? true : false
-                                source: modelData.iconSrc
-                                focusPolicy: Qt.TabFocus
-
-                                normalColor: {
-                                    if (showPreview) {
-                                        return JamiTheme.primaryBackgroundColor;
-                                    } else if (modelData.normalColor) {
-                                        return modelData.normalColor;
-                                    } else if (modelData.isStyle) {
-                                        return JamiTheme.hoveredButtonColor;
-                                    } else {
-                                        return JamiTheme.primaryBackgroundColor;
-                                    }
-                                }
-                                imageColor: {
-                                    if (showPreview) {
-                                        return JamiTheme.chatViewFooterImgDisableColor;
-                                    } else if (hovered) {
-                                        return JamiTheme.chatViewFooterImgHoverColor;
-                                    } else if (modelData.isStyle) {
-                                        return JamiTheme.chatViewFooterImgHoverColor;
-                                    } else {
-                                        return JamiTheme.chatViewFooterImgColor;
-                                    }
-                                }
-                                hoveredColor: JamiTheme.hoveredButtonColor
-                                pressedColor: hoveredColor
-
-                                action: modelData
-                            }
-                        }
-                    }
-
-                    PushButton {
-                        id: typoButton
-
-                        preferredSize: JamiTheme.chatViewFooterButtonSize
-                        imageContainerWidth: 24
-                        imageContainerHeight: 24
-
-                        radius: JamiTheme.chatViewFooterButtonRadius
-
-                        hoverEnabled: !showPreview
-                        enabled: !showPreview
-
-                        toolTipText: showTypo ? JamiStrings.hideFormatting : JamiStrings.showFormatting
-                        source: JamiResources.text_edit_black_24dp_svg
-
-                        normalColor: showPreview ? JamiTheme.primaryBackgroundColor : (showTypo ? JamiTheme.hoveredButtonColor : JamiTheme.primaryBackgroundColor)
-                        imageColor: showPreview ? JamiTheme.chatViewFooterImgDisableColor : (hovered || showTypo ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor)
-                        hoveredColor: JamiTheme.hoveredButtonColor
-                        pressedColor: hoveredColor
-
-                        onClicked: {
-                            showTypo = !showTypo;
-                            messageBarTextArea.isShowTypo = showTypo;
-                            if (messageBar.width < messageBarLayoutMaximumWidth + sendMessageButton.width + 2 * JamiTheme.preferredMarginSize)
-                                showTypoSecond = false;
-                            if (!showDefault)
-                                showDefault = true;
-                            UtilsAdapter.setAppValue(Settings.Key.ShowMardownOption, showTypo);
-                            UtilsAdapter.setAppValue(Settings.Key.ShowSendOption, !showDefault);
-                        }
-                    }
-                }
-
-                Row {
-                    anchors.bottom: parent.bottom
-                    anchors.bottomMargin: marginSize / 2
-
-                    ListView {
-                        id: listViewAction
-
-                        width: contentWidth + 2 * leftMargin
-
-                        Behavior on width  {
-                            NumberAnimation {
-                                duration: JamiTheme.longFadeDuration / 2
-                            }
-                        }
-
-                        height: JamiTheme.chatViewFooterButtonSize
-                        orientation: ListView.Horizontal
-                        interactive: false
-
-                        leftMargin: 5
-                        rightMargin: 5
-                        spacing: 5
-
-                        property list<Action> menuActions: [
-                            Action {
-                                id: sendFile
-                                property string iconSrc: JamiResources.link_black_24dp_svg
-                                property string toolTip: JamiStrings.sendFile
-                                property bool show: true
-                                property bool needWebEngine: false
-                                property bool needVideoDevice: false
-                                property bool noSip: false
-                                onTriggered: function clickAction() {
-                                    sendFileButtonClicked();
-                                    textAreaObj.forceActiveFocus();
-                                }
-                            },
-                            Action {
-                                id: addEmoji
-                                property string iconSrc: JamiResources.emoji_black_24dp_svg
-                                property string toolTip: JamiStrings.addEmoji
-                                property bool show: true
-                                property bool needWebEngine: true
-                                property bool needVideoDevice: false
-                                property bool noSip: true
-                                onTriggered: function clickAction() {
-                                    emojiButtonClicked();
-                                }
-                            }
-                        ]
-
-                        ListModel {
-                            id: listActions
-                            Component.onCompleted: {
-                                for (var i = 0; i < listViewAction.menuActions.length; i++) {
-                                    append({
-                                            "menuAction": listViewAction.menuActions[i]
-                                        });
-                                }
-                            }
-                        }
-
-                        model: SortFilterProxyModel {
-                            sourceModel: listActions
-                            filters: [
-                                ExpressionFilter {
-                                    expression: menuAction.show === true
-                                    enabled: root.showDefault
-                                },
-                                ExpressionFilter {
-                                    expression: menuAction.needWebEngine === false
-                                    enabled: !WITH_WEBENGINE
-                                },
-                                ExpressionFilter {
-                                    expression: menuAction.noSip === true
-                                    enabled: CurrentConversation.isSip
-                                },
-                                ExpressionFilter {
-                                    expression: menuAction.needVideoDevice === false
-                                    enabled: VideoDevices.listSize === 0
-                                }
-                            ]
-                        }
-
-                        delegate: PushButton {
-                            id: buttonDelegate
-                            anchors.verticalCenter: parent ? parent.verticalCenter : undefined
-                            preferredSize: JamiTheme.chatViewFooterButtonSize
-                            imageContainerWidth: 25
-                            imageContainerHeight: 25
-                            radius: 5
-
-                            hoverEnabled: !showPreview
-                            enabled: !showPreview
-
-                            toolTipText: modelData.toolTip
-                            source: modelData.iconSrc
-
-                            normalColor: JamiTheme.primaryBackgroundColor
-                            imageColor: showPreview ? JamiTheme.chatViewFooterImgDisableColor : (hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor)
-                            hoveredColor: JamiTheme.hoveredButtonColor
-                            pressedColor: hoveredColor
-
-                            action: modelData
-                        }
-                    }
-
-                    ListView {
-                        id: listViewMoreButton
-
-                        width: 0
-                        Behavior on width  {
-                            NumberAnimation {
-                                duration: JamiTheme.longFadeDuration / 2
-                            }
-                        }
-
-                        height: JamiTheme.chatViewFooterButtonSize
-                        orientation: ListView.Horizontal
-                        interactive: false
-
-                        leftMargin: 10
-                        rightMargin: 10
-                        spacing: 10
-
-                        property list<Action> menuMoreButton: [
-                            Action {
-                                id: leaveAudioMessage
-                                property string iconSrc: JamiResources.message_audio_black_24dp_svg
-                                property string toolTip: JamiStrings.leaveAudioMessage
-                                property bool show: false
-                                property bool needWebEngine: false
-                                property bool needVideoDevice: false
-                                property bool noSip: false
-                                onTriggered: function clickAction() {
-                                    audioRecordMessageButtonClicked();
-                                }
-                            },
-                            Action {
-                                id: leaveVideoMessage
-                                property string iconSrc: JamiResources.message_video_black_24dp_svg
-                                property string toolTip: JamiStrings.leaveVideoMessage
-                                property bool show: false
-                                property bool needWebEngine: false
-                                property bool needVideoDevice: true
-                                property bool noSip: false
-                                onTriggered: function clickAction() {
-                                    videoRecordMessageButtonClicked();
-                                }
-                            },
-                            Action {
-                                id: shareLocation
-                                property string iconSrc: JamiResources.localisation_sharing_send_pin_svg
-                                property string toolTip: JamiStrings.shareLocation
-                                property bool show: false
-                                property bool needWebEngine: true
-                                property bool needVideoDevice: false
-                                property bool noSip: false
-                                onTriggered: function clickAction() {
-                                    showMapClicked();
-                                }
-                            }
-                        ]
-
-                        ListModel {
-                            id: listMoreButton
-                            Component.onCompleted: {
-                                for (var i = 0; i < listViewMoreButton.menuMoreButton.length; i++) {
-                                    append({
-                                            "menuAction": listViewMoreButton.menuMoreButton[i]
-                                        });
-                                }
-                            }
-                        }
-
-                        model: SortFilterProxyModel {
-                            sourceModel: listMoreButton
-                            filters: [
-                                ExpressionFilter {
-                                    expression: menuAction.show === true
-                                    enabled: showDefault
-                                },
-                                ExpressionFilter {
-                                    expression: menuAction.needWebEngine === false
-                                    enabled: !WITH_WEBENGINE
-                                },
-                                ExpressionFilter {
-                                    expression: menuAction.noSip === true
-                                    enabled: CurrentConversation.isSip
-                                },
-                                ExpressionFilter {
-                                    expression: menuAction.needVideoDevice === false
-                                    enabled: VideoDevices.listSize === 0
-                                }
-                            ]
-                        }
-
-                        delegate: PushButton {
-                            id: buttonDelegateMoreButton
-                            anchors.verticalCenter: parent ? parent.verticalCenter : undefined
-                            preferredSize: JamiTheme.chatViewFooterRealButtonSize
-                            imageContainerWidth: 20
-                            imageContainerHeight: 20
-                            radius: 5
-
-                            toolTipText: modelData.toolTip
-                            source: modelData.iconSrc
-
-                            normalColor: JamiTheme.chatViewFooterListColor
-                            imageColor: JamiTheme.chatViewFooterImgHoverColor
-                            hoveredColor: JamiTheme.hoveredButtonColor
-                            pressedColor: hoveredColor
-
-                            action: modelData
-                        }
-                    }
-                }
-            }
-
-            Rectangle {
-                color: JamiTheme.transparentColor
-                visible: showTypo
-                height: 50
-                width: previewButton.width + marginSize
-                Layout.row: showTypo ? 0 : 0
-                Layout.column: showTypo ? 1 : 1
-
-                PushButton {
-                    id: previewButton
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.right: parent.right
-                    anchors.rightMargin: marginSize
-                    preferredSize: JamiTheme.chatViewFooterButtonSize
-                    imageContainerWidth: 25
-                    imageContainerHeight: 25
-                    radius: 5
-                    source: JamiResources.preview_black_24dp_svg
-                    normalColor: showPreview ? hoveredColor : JamiTheme.primaryBackgroundColor
-                    imageColor: (hovered || showPreview) ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor
-                    hoveredColor: JamiTheme.hoveredButtonColor
-                    pressedColor: hoveredColor
-                    toolTipText: showPreview ? JamiStrings.continueEditing : JamiStrings.showPreview
-
-
-                    onClicked: {
-                        showPreview = !showPreview;
-                        messageBarTextArea.showPreview = showPreview;
-                    }
-                }
-            }
-        }
-    }
-
-    Rectangle {
-        Layout.preferredHeight: parent.height
-        Layout.preferredWidth: childrenRect.width
-        visible: sendButtonVisibility
-        color: JamiTheme.transparentColor
-        PushButton {
-            id: sendMessageButton
-
-            objectName: "sendMessageButton"
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: marginSize / 2
-
-            enabled: sendButtonVisibility
-            hoverEnabled: enabled
-
-            width: scale * JamiTheme.chatViewFooterButtonSize
-            height: JamiTheme.chatViewFooterButtonSize
-
-            radius: JamiTheme.chatViewFooterButtonRadius
-            preferredSize: JamiTheme.chatViewFooterButtonIconSize - 6
-            imageContainerWidth: 25
-            imageContainerHeight: 25
-
-            toolTipText: JamiStrings.send
-
-            mirror: UtilsAdapter.isRTL
-
-            source: JamiResources.send_black_24dp_svg
-
-            normalColor: enabled ? JamiTheme.chatViewFooterSendButtonColor : JamiTheme.chatViewFooterSendButtonDisableColor
-            imageColor: enabled ? JamiTheme.chatViewFooterSendButtonImgColor : JamiTheme.chatViewFooterSendButtonImgColorDisable
-            hoveredColor: JamiTheme.buttonTintedBlueHovered
-            pressedColor: hoveredColor
-
-            opacity: 1
-            scale: opacity
-
-            Behavior on opacity  {
-                enabled: animate
-                NumberAnimation {
-                    duration: JamiTheme.shortFadeDuration
-                    easing.type: Easing.InOutQuad
-                }
-            }
-
-            onClicked: {
-                root.showPreview = false;
-                sendMessageButtonClicked();
-                root.height = root.rectHeight;
-            }
+           MessageFormatBar {
+                id: formatRow
+                    color: JamiTheme.transparentColor
+                    Layout.alignment: Qt.AlignBottom
+                    Layout.fillWidth: true
+                    Layout.rightMargin: marginSize / 2
+                    Layout.leftMargin: marginSize / 2
+                    Layout.preferredHeight:  JamiTheme.chatViewFooterButtonSize
+    
+
+                    
+
+           } 
+            
+                      
         }
     }
 }
