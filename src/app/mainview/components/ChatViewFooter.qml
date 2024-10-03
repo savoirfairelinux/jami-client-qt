@@ -148,7 +148,7 @@ Rectangle {
 
             Layout.alignment: Qt.AlignHCenter
             Layout.preferredWidth: footerColumnLayout.width
-            Layout.leftMargin: 0
+            Layout.leftMargin: marginSize
             Layout.rightMargin: marginSize
             Layout.bottomMargin: marginSize
             Layout.preferredHeight: height
