@@ -139,7 +139,7 @@ CurrentConversation::updateData()
         set_isContact(isContact);
 
         if (convInfo.mode == conversation::Mode::ONE_TO_ONE) {
-            set_modeString(tr("Private"));
+            set_modeString(tr("1:1"));
         } else if (convInfo.mode == conversation::Mode::ADMIN_INVITES_ONLY) {
             set_modeString(tr("Private group (restricted invites)"));
         } else if (convInfo.mode == conversation::Mode::INVITES_ONLY) {
@@ -152,7 +152,7 @@ CurrentConversation::updateData()
         updateProfile(convId);
         updateActiveCalls(accountId, convId);
     } catch (...) {
-        qWarning() << "Can't update current conversation data for" << convId;
+        qWarning() << "An error occurred while updating current conversation data for" << convId;
     }
 }
 
