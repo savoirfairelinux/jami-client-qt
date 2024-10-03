@@ -162,7 +162,7 @@ public:
 
         // map frame data
         if (!remapShm()) {
-            qDebug() << "Could not resize shared memory";
+            qDebug() << "An error occurred resizing shared memory.";
             return false;
         }
 
@@ -191,7 +191,7 @@ public:
             shmUnlock();
 
             if (::munmap(shmArea, shmAreaLen)) {
-                qDebug() << "Could not unmap shared area: " << strerror(errno);
+                qDebug() << "An error occurred unmapping shared area: " << strerror(errno);
                 return false;
             }
 
@@ -199,7 +199,7 @@ public:
                 = (SHMHeader*) ::mmap(nullptr, mapSize, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
 
             if (shmArea == MAP_FAILED) {
-                qDebug() << "Could not remap shared area: " << strerror(errno);
+                qDebug() << "An error occurred remapping remap shared area: " << strerror(errno);
                 return false;
             }
 
@@ -261,8 +261,9 @@ ShmRenderer::startShm()
     pimpl_->fd = ::shm_open(pimpl_->path.toLatin1(), O_RDWR, 0);
 
     if (pimpl_->fd < 0) {
-        qWarning() << "could not open shm area" << pimpl_->path
-                   << ", shm_open failed:" << strerror(errno);
+        qWarning() << "An error occurred opening shm area"
+                   << pimpl_->path << ", shm_open failed:"
+                   << strerror(errno);
         return false;
     }
 
@@ -272,7 +273,7 @@ ShmRenderer::startShm()
         = (SHMHeader*) ::mmap(nullptr, mapSize, PROT_READ | PROT_WRITE, MAP_SHARED, pimpl_->fd, 0);
 
     if (pimpl_->shmArea == MAP_FAILED) {
-        qWarning() << "Could not remap shared area";
+        qWarning() << "An error occurred while remapping shared area.";
         return false;
     }
 

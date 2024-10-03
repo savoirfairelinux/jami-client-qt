@@ -85,7 +85,7 @@ ApplicationWindow {
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
                     Layout.topMargin: preferredMargin
 
-                    text: connectionFailed ? JamiStrings.reconnectWarn : JamiStrings.reconnectTry
+                    text: connectionFailed ? JamiStrings.reconnectWarn : JamiStrings.reconnectAttempt
                     font.pointSize: 11
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter

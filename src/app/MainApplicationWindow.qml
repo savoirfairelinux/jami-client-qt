@@ -362,7 +362,7 @@ ApplicationWindow {
 
         function onUpdateCheckReplyReceived(ok, found) {
             if (!ok) {
-                // Show an error dialog describing that we could not successfully check for an update.
+                // Show an error dialog describing that an update check failed.
                 presentUpdateInfoDialog(JamiStrings.updateCheckError);
                 return;
             }

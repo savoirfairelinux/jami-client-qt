@@ -241,7 +241,7 @@ VideoDevices::startDevice(const QString& id, bool force)
         return {};
     auto& avModel = lrcInstance_->avModel();
     if (avModel.hasRenderer(id)) {
-        // If the device is already started AND we're NOT trying to
+        // If the device is already started AND we're NOT attempting to
         // force a format change, we can do nothing and return the
         // renderer id.
         if (!force) {
@@ -263,7 +263,7 @@ VideoDevices::stopDevice(const QString& id)
     if (lrcInstance_->avModel().stopPreview(id)) {
         deviceOpen_ = false;
     } else {
-        C_DBG << "Failed to stop device" << id;
+        C_DBG << "An error occurred while attempting to stop device" << id;
     }
 }
 
@@ -364,7 +364,7 @@ VideoDevices::onVideoDeviceEvent()
     auto& avModel = lrcInstance_->avModel();
     QString callId = lrcInstance_->getCurrentCallId();
 
-    // Decide whether a device has plugged, unplugged, or nothing has changed.
+    // Decide whether a device has been plugged in, unplugged, or nothing has changed.
     auto deviceList = avModel.getDevices();
     auto currentDeviceListSize = deviceList.size();
     auto previousDeviceListSize = get_listSize();
