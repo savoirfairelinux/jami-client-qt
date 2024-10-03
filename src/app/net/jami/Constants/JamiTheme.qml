@@ -390,6 +390,7 @@ Item {
     property int mosaicButtonMaxWidth: 100
     property real avatarPresenceRatio: 0.26
     property int avatarReadReceiptSize: 15
+    property int showTypoSecondToggleWidth: 540
 
     property int menuItemsPreferredWidth: 220
     property int menuItemsPreferredHeight: 36
