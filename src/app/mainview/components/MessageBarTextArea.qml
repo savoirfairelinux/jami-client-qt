@@ -28,12 +28,6 @@ import SortFilterProxyModel 0.2
 JamiFlickable {
     id: root
 
-    property int maxWidth: 330
-    property bool tooMuch: {
-        if (maxWidth > 0)
-            return textArea.contentWidth > maxWidth;
-        return false;
-    }
     property alias text: textArea.text
     property var textAreaObj: textArea
     property alias placeholderText: textArea.placeholderText
@@ -42,15 +36,12 @@ JamiFlickable {
     property alias selectionEnd: textArea.selectionEnd
     property bool showPreview: false
     property bool isShowTypo: UtilsAdapter.getAppValue(Settings.Key.ShowMardownOption)
+    property int textWidth: textArea.contentWidth
 
-    ScrollBar.vertical.visible: textArea.text
-    ScrollBar.horizontal.visible: textArea.text
+    ScrollBar.vertical.visible: text
+    ScrollBar.horizontal.visible: text
 
     signal sendMessagesRequired
-
-    function heightBinding() {
-        textArea.height = Qt.binding(() => textArea.lineCount === 1 ? 35 : textArea.paintedHeight);
-    }
 
     function selectText(start, end) {
         textArea.select(start, end);
@@ -60,16 +51,12 @@ JamiFlickable {
         textArea.insert(textArea.cursorPosition, text);
     }
 
-    function clearText() {
-        var multiLine = textArea.lineCount !== 1;
-        textArea.clear();
-        if (multiLine) {
-            heightBinding();
-        }
-    }
-
     function pasteText() {
         textArea.paste();
+    }
+
+    function clearText() {
+        textArea.clear();
     }
 
     LineEditContextMenu {
@@ -84,8 +71,15 @@ JamiFlickable {
         }
     }
 
+    anchors {
+        left: parent.left
+        top: parent.top
+        bottom: parent.bottom
+    }
+
+    boundsMovement: Flickable.StopAtBounds
+    boundsBehavior: Flickable.DragOverBounds
     interactive: true
-    attachedFlickableMoving: textAreaPreview.height > height || textArea.height > height || root.moving
 
     contentHeight: showPreview ? textAreaPreview.height : textArea.height
 
@@ -93,25 +87,17 @@ JamiFlickable {
         if (showPreview) {
             textAreaPreview.height = textArea.lineCount === 1 ? textArea.height : textAreaPreview.paintedHeight;
         }
-        heightBinding();
     }
 
     TextArea {
         id: textAreaPreview
 
-        onWidthChanged: root.height = this.height
-
         overwriteMode: false
         readOnly: true
-
-        height: textArea.lineCount === 1 ? textArea.height : this.paintedHeight
-        width: textArea.width
-
+        anchors.left: parent.left
         visible: showPreview
         leftPadding: JamiTheme.scrollBarHandleSize
         rightPadding: JamiTheme.scrollBarHandleSize
-        topPadding: 0
-        bottomPadding: 0
 
         Connections {
             target: textArea
@@ -130,15 +116,13 @@ JamiFlickable {
         }
 
         verticalAlignment: TextEdit.AlignVCenter
-
+        horizontalAlignment: Text.AlignLeft
         font.pointSize: JamiTheme.textFontSize + 2
         font.hintingPreference: Font.PreferNoHinting
-
         color: JamiTheme.textColor
         wrapMode: TextEdit.Wrap
         textFormat: TextEdit.RichText
         placeholderTextColor: JamiTheme.messageBarPlaceholderTextColor
-        horizontalAlignment: Text.AlignLeft
 
         background: Rectangle {
             border.width: 0
@@ -153,13 +137,7 @@ JamiFlickable {
 
         leftPadding: JamiTheme.scrollBarHandleSize
         rightPadding: JamiTheme.scrollBarHandleSize
-        topPadding: 0
-        bottomPadding: 0
-
         persistentSelection: true
-
-        height: textArea.lineCount === 1 ? 35 : textArea.paintedHeight
-
         verticalAlignment: TextEdit.AlignVCenter
 
         font.pointSize: JamiTheme.textFontSize + 2
@@ -187,6 +165,7 @@ JamiFlickable {
             if (text != cacheText) {
                 cacheText = text;
                 MessagesAdapter.userIsComposing(text ? true : false);
+                root.height = contentHeight;
             }
         }
 
