@@ -150,7 +150,7 @@ DualPaneView {
                 Layout.preferredWidth: JamiTheme.preferredFieldWidth
 
                 staticText: ""
-                placeholderText: JamiStrings.swarmName
+                placeholderText: JamiStrings.groupName
 
                 textColor: {
                     if (UtilsAdapter.luma(root.color)) {
