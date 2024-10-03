@@ -145,7 +145,7 @@ QtObject {
                 if (!view.managed)
                     view.presented();
             }, props)) {
-            print("could not create view:", viewName);
+            print("An error occurred while creating view:", viewName);
         }
     }
 
@@ -184,7 +184,7 @@ QtObject {
             } else
                 view = rootView.pop(StackView.Immediate);
             if (!view) {
-                print("could not pop view:", obj.objectName);
+                print("An error occurred while attempting to pop view:", obj.objectName);
                 resolveStack();
                 return;
             }
@@ -194,7 +194,7 @@ QtObject {
             if (view.managed) {
                 var objectName = view ? view.objectName : obj.objectName;
                 if (!viewManager.destroyView(resources[objectName])) {
-                    print("could not destroy view:", objectName);
+                    print("An error occurred while attempting to destroy view:", objectName);
                 } else {
                     print("destroyed view:", objectName);
                 }
