@@ -26,6 +26,7 @@ import QtQuick.Layouts
 import SortFilterProxyModel 0.2
 
 JamiFlickable {
+
     id: root
 
     property int maxWidth: 330
@@ -49,7 +50,11 @@ JamiFlickable {
     signal sendMessagesRequired
 
     function heightBinding() {
-        textArea.height = Qt.binding(() => textArea.lineCount === 1 ? 35 : textArea.paintedHeight);
+        textArea.height = Qt.binding(() => textArea.lineCount === 1 ? 35 : textAreaPreview.paintedHeight);
+        if(contentHeight < 160) {
+            root.height = contentHeight;           
+        }
+        
     }
 
     function selectText(start, end) {
@@ -72,6 +77,7 @@ JamiFlickable {
         textArea.paste();
     }
 
+
     LineEditContextMenu {
         id: textAreaContextMenu
 
@@ -84,6 +90,7 @@ JamiFlickable {
         }
     }
 
+    width: parent.width
     interactive: true
     attachedFlickableMoving: textAreaPreview.height > height || textArea.height > height || root.moving
 
@@ -94,6 +101,7 @@ JamiFlickable {
             textAreaPreview.height = textArea.lineCount === 1 ? textArea.height : textAreaPreview.paintedHeight;
         }
         heightBinding();
+    
     }
 
     TextArea {
@@ -105,9 +113,9 @@ JamiFlickable {
         readOnly: true
 
         height: textArea.lineCount === 1 ? textArea.height : this.paintedHeight
-        width: textArea.width
 
-        visible: showPreview
+        width : parent.width
+        visible: showPreview 
         leftPadding: JamiTheme.scrollBarHandleSize
         rightPadding: JamiTheme.scrollBarHandleSize
         topPadding: 0
@@ -149,7 +157,7 @@ JamiFlickable {
     TextArea.flickable: TextArea {
         id: textArea
 
-        visible: !showPreview
+        visible: !showPreview 
 
         leftPadding: JamiTheme.scrollBarHandleSize
         rightPadding: JamiTheme.scrollBarHandleSize
@@ -157,9 +165,8 @@ JamiFlickable {
         bottomPadding: 0
 
         persistentSelection: true
-
+        width : parent.width
         height: textArea.lineCount === 1 ? 35 : textArea.paintedHeight
-
         verticalAlignment: TextEdit.AlignVCenter
 
         font.pointSize: JamiTheme.textFontSize + 2
@@ -187,6 +194,8 @@ JamiFlickable {
             if (text != cacheText) {
                 cacheText = text;
                 MessagesAdapter.userIsComposing(text ? true : false);
+                console.log(contentHeight);
+                root.height = contentHeight; 
             }
         }
 
