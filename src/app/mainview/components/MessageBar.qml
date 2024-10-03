@@ -63,80 +63,6 @@ RowLayout {
     }
 
     Rectangle {
-        Layout.preferredHeight: parent.height
-        Layout.preferredWidth: childrenRect.width
-        visible: !CurrentConversation.isSip
-        color: JamiTheme.transparentColor
-        ComboBox {
-            id: showMoreButton
-            focus: true
-            width: JamiTheme.chatViewFooterButtonSize
-            height: JamiTheme.chatViewFooterButtonSize
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: marginSize / 2
-
-            // Used to choose the correct color for the button.
-            readonly property bool highlight: down || hovered
-
-            background: Rectangle {
-                implicitWidth: showMoreButton.width
-                implicitHeight: showMoreButton.height
-                radius: 5
-                color: showMoreButton.highlight ?
-                           JamiTheme.hoveredButtonColor :
-                           JamiTheme.transparentColor
-            }
-
-            MaterialToolTip {
-                id: toolTipMoreButton
-
-                parent: showMoreButton
-                visible: showMoreButton.hovered && (text.length > 0)
-                delay: Qt.styleHints.mousePressAndHoldInterval
-                text: showMoreButton.down ? JamiStrings.showLess : JamiStrings.showMore
-            }
-
-            indicator: ResponsiveImage {
-
-                width: 25
-                height: 25
-
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.horizontalCenter: parent.horizontalCenter
-
-                source: JamiResources.more_menu_black_24dp_svg
-
-                color: showMoreButton.highlight ?
-                           JamiTheme.chatViewFooterImgHoverColor :
-                           JamiTheme.chatViewFooterImgColor;
-            }
-
-            Component {
-                id: sharePopupComp
-                ShareMenu {
-                    id: sharePopup
-                    onAudioRecordMessageButtonClicked: root.audioRecordMessageButtonClicked()
-                    onVideoRecordMessageButtonClicked: root.videoRecordMessageButtonClicked()
-                    onShowMapClicked: root.showMapClicked()
-                    modelList: listViewMoreButton.menuMoreButton
-                    y: showMoreButton.y + 31
-                    x: showMoreButton.x - 3
-                }
-            }
-
-            popup: ShareMenu {
-                id: sharePopup
-                onAudioRecordMessageButtonClicked: root.audioRecordMessageButtonClicked()
-                onVideoRecordMessageButtonClicked: root.videoRecordMessageButtonClicked()
-                onShowMapClicked: root.showMapClicked()
-                modelList: listViewMoreButton.menuMoreButton
-                y: showMoreButton.y + 31
-                x: showMoreButton.x - 3
-            }
-        }
-    }
-
-    Rectangle {
         id: rectangle
 
         Layout.fillWidth: true
@@ -159,7 +85,7 @@ RowLayout {
         GridLayout {
             id: rowLayout
 
-            columns: 2
+            columns: 3
             rows: 3
             columnSpacing: 0
             rowSpacing: 0
@@ -174,6 +100,9 @@ RowLayout {
                 maxWidth: rectangle.width - messageBarRowLayout.width - 35
                 Layout.row: 0
                 Layout.column: 0
+                Layout.columnSpan: 1
+                Layout.rowSpan: dataTransferSendContainer.visible ? 1 : 2
+                Layout.alignment: Qt.AlignLeft
 
                 // forward activeFocus to the actual text area object
                 onActiveFocusChanged: {
@@ -182,8 +111,6 @@ RowLayout {
                 }
 
                 placeholderText: JamiStrings.writeTo.arg(CurrentConversation.title)
-
-                Layout.alignment: showTypo ? Qt.AlignLeft : Qt.AlignBottom
                 Layout.fillWidth: true
                 Layout.margins: marginSize / 2
                 Layout.topMargin: 0
@@ -325,6 +252,41 @@ RowLayout {
                     }
                 }
             }
+            Rectangle {
+                color: JamiTheme.transparentColor
+                visible: showTypo
+                height: 50
+                width: JamiTheme.chatViewFooterButtonSize 
+                Layout.row: 0 
+                Layout.column: 1
+                Layout.columnSpan: 2
+                Layout.rowSpan: dataTransferSendContainer.visible ? 1 : 2
+                Layout.alignment: Qt.AlignRight
+
+                PushButton {
+                    id: previewButton
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.right: parent.right
+                    anchors.rightMargin: marginSize / 2 
+                    preferredSize: JamiTheme.chatViewFooterButtonSize
+                    imageContainerWidth: 25
+                    imageContainerHeight: 25
+                    radius: 5
+                    source: JamiResources.preview_black_24dp_svg
+                    normalColor: showPreview ? hoveredColor : JamiTheme.primaryBackgroundColor
+                    imageColor: (hovered || showPreview) ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor
+                    hoveredColor: JamiTheme.hoveredButtonColor
+                    pressedColor: hoveredColor
+                    toolTipText: showPreview ? JamiStrings.continueEditing : JamiStrings.showPreview
+
+
+                    onClicked: {
+                        showPreview = !showPreview;
+                        messageBarTextArea.showPreview = showPreview;
+                    }
+                }
+            }
+            
 
             FilesToSendContainer {
                         id: dataTransferSendContainer
@@ -338,19 +300,18 @@ RowLayout {
                         Layout.leftMargin: marginSize / 2
                         Layout.row: 1
                         Layout.column: 0
-                        Layout.columnSpan: 2
+                        Layout.columnSpan: 3
                         Layout.preferredHeight: filesToSendCount ? JamiTheme.layoutWidthFileTransfer : 0
                     }
 
+            
             Row {
                 id: messageBarRowLayout
 
-                Layout.row: dataTransferSendContainer.visible ? 3 : (showTypo || multiLine ? 2 : 0)
-                Layout.column: showTypo || multiLine ? 0 : 1
-                Layout.alignment: showTypo || multiLine ? Qt.AlignRight : Qt.AlignBottom
-                Layout.columnSpan: showTypo || multiLine ? 2 : 1
-                Layout.topMargin: dataTransferSendContainer.visible ? 0 : marginSize
-                Layout.rightMargin: 0
+                Layout.row: 2
+                Layout.column: 0
+                Layout.alignment: Qt.AlignLeft
+                Layout.leftMargin : marginSize / 2
 
                 Row {
                     anchors.bottom: parent.bottom
@@ -893,90 +854,145 @@ RowLayout {
                 }
             }
 
+            
             Rectangle {
+                visible: !CurrentConversation.isSip
                 color: JamiTheme.transparentColor
-                visible: showTypo
-                height: 50
-                width: previewButton.width + marginSize
-                Layout.row: showTypo ? 0 : 0
-                Layout.column: showTypo ? 1 : 1
+                Layout.row: 2
+                Layout.column: 1
+                height: JamiTheme.chatViewFooterButtonSize
+                width: JamiTheme.chatViewFooterButtonSize
+                Layout.alignment: Qt.AlignRight
+                ComboBox {
+                    id: showMoreButton
+                    focus: true
+                    width: JamiTheme.chatViewFooterButtonSize
+                    height: JamiTheme.chatViewFooterButtonSize
+                    anchors.bottom: parent.bottom
+                    anchors.bottomMargin: marginSize / 2
 
-                PushButton {
-                    id: previewButton
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.right: parent.right
-                    anchors.rightMargin: marginSize
-                    preferredSize: JamiTheme.chatViewFooterButtonSize
-                    imageContainerWidth: 25
-                    imageContainerHeight: 25
-                    radius: 5
-                    source: JamiResources.preview_black_24dp_svg
-                    normalColor: showPreview ? hoveredColor : JamiTheme.primaryBackgroundColor
-                    imageColor: (hovered || showPreview) ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor
-                    hoveredColor: JamiTheme.hoveredButtonColor
-                    pressedColor: hoveredColor
-                    toolTipText: showPreview ? JamiStrings.continueEditing : JamiStrings.showPreview
+                    // Used to choose the correct color for the button.
+                    readonly property bool highlight: down || hovered
 
+                    background: Rectangle {
+                        implicitWidth: showMoreButton.width
+                        implicitHeight: showMoreButton.height
+                        radius: 5
+                        color: showMoreButton.highlight ?
+                                JamiTheme.hoveredButtonColor :
+                                JamiTheme.transparentColor
+                    }
 
-                    onClicked: {
-                        showPreview = !showPreview;
-                        messageBarTextArea.showPreview = showPreview;
+                    MaterialToolTip {
+                        id: toolTipMoreButton
+
+                        parent: showMoreButton
+                        visible: showMoreButton.hovered && (text.length > 0)
+                        delay: Qt.styleHints.mousePressAndHoldInterval
+                        text: showMoreButton.down ? JamiStrings.showLess : JamiStrings.showMore
+                    }
+
+                    indicator: ResponsiveImage {
+
+                        width: 25
+                        height: 25
+
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.horizontalCenter: parent.horizontalCenter
+
+                        source: JamiResources.more_menu_black_24dp_svg
+
+                        color: showMoreButton.highlight ?
+                                JamiTheme.chatViewFooterImgHoverColor :
+                                JamiTheme.chatViewFooterImgColor;
+                    }
+
+                    Component {
+                        id: sharePopupComp
+                        ShareMenu {
+                            id: sharePopup
+                            onAudioRecordMessageButtonClicked: root.audioRecordMessageButtonClicked()
+                            onVideoRecordMessageButtonClicked: root.videoRecordMessageButtonClicked()
+                            onShowMapClicked: root.showMapClicked()
+                            modelList: listViewMoreButton.menuMoreButton
+                            y: showMoreButton.y + 31
+                            x: showMoreButton.x - 3
+                        }
+                    }
+
+                    popup: ShareMenu {
+                        id: sharePopup
+                        onAudioRecordMessageButtonClicked: root.audioRecordMessageButtonClicked()
+                        onVideoRecordMessageButtonClicked: root.videoRecordMessageButtonClicked()
+                        onShowMapClicked: root.showMapClicked()
+                        modelList: listViewMoreButton.menuMoreButton
+                        y: showMoreButton.y + 31
+                        x: showMoreButton.x - 3
                     }
                 }
             }
-        }
-    }
 
-    Rectangle {
-        Layout.preferredHeight: parent.height
-        Layout.preferredWidth: childrenRect.width
-        visible: sendButtonVisibility
-        color: JamiTheme.transparentColor
-        PushButton {
-            id: sendMessageButton
+            Rectangle {
 
-            objectName: "sendMessageButton"
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: marginSize / 2
+                visible: true
+                color: JamiTheme.transparentColor
+                Layout.row: 2
+                Layout.column: 2
+                Layout.alignment: Qt.AlignRight
+                height: JamiTheme.chatViewFooterButtonSize
+                width: JamiTheme.chatViewFooterButtonSize
+                Layout.rightMargin: marginSize / 2
+                PushButton {
+                    id: sendMessageButton
 
-            enabled: sendButtonVisibility
-            hoverEnabled: enabled
+                    objectName: "sendMessageButton"
+                    anchors.bottom: parent.bottom
+                    anchors.bottomMargin: marginSize / 2
 
-            width: scale * JamiTheme.chatViewFooterButtonSize
-            height: JamiTheme.chatViewFooterButtonSize
+                    enabled: sendButtonVisibility
+                    hoverEnabled: enabled
 
-            radius: JamiTheme.chatViewFooterButtonRadius
-            preferredSize: JamiTheme.chatViewFooterButtonIconSize - 6
-            imageContainerWidth: 25
-            imageContainerHeight: 25
+                    width: scale * JamiTheme.chatViewFooterButtonSize
+                    height: JamiTheme.chatViewFooterButtonSize
 
-            toolTipText: JamiStrings.send
+                    radius: JamiTheme.chatViewFooterButtonRadius
+                    preferredSize: JamiTheme.chatViewFooterButtonIconSize - 6
+                    imageContainerWidth: 25
+                    imageContainerHeight: 25
 
-            mirror: UtilsAdapter.isRTL
+                    toolTipText: JamiStrings.send
 
-            source: JamiResources.send_black_24dp_svg
+                    mirror: UtilsAdapter.isRTL
 
-            normalColor: enabled ? JamiTheme.chatViewFooterSendButtonColor : JamiTheme.chatViewFooterSendButtonDisableColor
-            imageColor: enabled ? JamiTheme.chatViewFooterSendButtonImgColor : JamiTheme.chatViewFooterSendButtonImgColorDisable
-            hoveredColor: JamiTheme.buttonTintedBlueHovered
-            pressedColor: hoveredColor
+                    source: JamiResources.send_black_24dp_svg
 
-            opacity: 1
-            scale: opacity
+                    normalColor: enabled ? JamiTheme.chatViewFooterSendButtonColor : JamiTheme.chatViewFooterSendButtonDisableColor
+                    imageColor: enabled ? JamiTheme.chatViewFooterSendButtonImgColor : JamiTheme.chatViewFooterSendButtonImgColorDisable
+                    hoveredColor: JamiTheme.buttonTintedBlueHovered
+                    pressedColor: hoveredColor
 
-            Behavior on opacity  {
-                enabled: animate
-                NumberAnimation {
-                    duration: JamiTheme.shortFadeDuration
-                    easing.type: Easing.InOutQuad
+                    opacity: 1
+                    scale: opacity
+
+                    Behavior on opacity  {
+                        enabled: animate
+                        NumberAnimation {
+                            duration: JamiTheme.shortFadeDuration
+                            easing.type: Easing.InOutQuad
+                        }
+                    }
+
+                    onClicked: {
+                        root.showPreview = false;
+                        sendMessageButtonClicked();
+                        root.height = root.rectHeight;
+                    }
                 }
             }
 
-            onClicked: {
-                root.showPreview = false;
-                sendMessageButtonClicked();
-                root.height = root.rectHeight;
-            }
+            
         }
     }
+
+  
 }
