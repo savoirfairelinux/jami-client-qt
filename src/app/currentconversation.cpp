@@ -152,7 +152,7 @@ CurrentConversation::updateData()
         updateProfile(convId);
         updateActiveCalls(accountId, convId);
     } catch (...) {
-        qWarning() << "Can't update current conversation data for" << convId;
+        qWarning() << "An error occurred while updating current conversation data for" << convId;
     }
 }
 
