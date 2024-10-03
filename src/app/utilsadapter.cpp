@@ -886,7 +886,7 @@ UtilsAdapter::createDummyImage() const
         qInfo() << "Dummy image created" << QDir::tempPath() + "/dummy.png";
         return QDir::tempPath() + "/dummy.png";
     } else {
-        C_WARN << "Could not create dummy image";
+        C_WARN << "An error occurred while creating dummy image.";
         return "";
     }
 }

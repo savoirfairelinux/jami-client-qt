@@ -159,7 +159,7 @@ NetworkManager::downloadFile(const QUrl& url,
     if (!file->open(QIODevice::WriteOnly)) {
         Q_EMIT errorOccurred(GetError::ACCESS_DENIED);
         files_.remove(uuid);
-        qWarning() << Q_FUNC_INFO << "Could not open file for writing";
+        qWarning() << Q_FUNC_INFO << "An error occurred while opening file for writing.";
         return 0;
     }
 
