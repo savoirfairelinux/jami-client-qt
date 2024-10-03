@@ -168,7 +168,7 @@ SystemTray::hideNotification(const QString& id)
     // Close
     GError* error = nullptr;
     if (!notify_notification_close(notification->second.nn.get(), &error)) {
-        C_WARN << QString("could not close notification: %1").arg(error->message);
+        C_WARN << QString("An error occurred while closing notification: %1").arg(error->message);
         g_clear_error(&error);
         return false;
     }
