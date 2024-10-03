@@ -40,8 +40,8 @@ Item {
     property string migrateConversation: qsTr("Migrate conversation")
 
     // DaemonReconnectWindow
-    property string reconnectWarn: qsTr("Could not re-connect to the Jami daemon (jamid).\nJami will now quit.")
-    property string reconnectTry: qsTr("Trying to reconnect to the Jami daemon (jamid)…")
+    property string reconnectWarn: qsTr("An error occurred while attempting to reconnect to the Jami daemon (jamid).\nJami will now quit.")
+    property string reconnectAttempt: qsTr("Attempting to reconnect to the Jami daemon (jamid)…")
 
     // AboutPopUp
     property string buildID: qsTr("Build ID")
@@ -338,8 +338,6 @@ Item {
 
     // Chatview header
     property string hideChat: qsTr("Hide chat")
-    property string placeAudioCall: qsTr("Start audio call")
-    property string placeVideoCall: qsTr("Start video call")
     property string showExtensions: qsTr("Show available extensions")
     property string addToConversations: qsTr("Add to conversations")
     property string backendError: qsTr("A backend system error occurred: %0")
@@ -416,11 +414,11 @@ Item {
     property string linkedOtherDevices: qsTr("Other linked devices")
 
     // CurrentAccountSettings && AdvancedSettings
-    property string backupSuccessful: qsTr("Backup successful")
+    property string backupSuccessful: qsTr("Backup completed successfully.")
     property string backupFailed: qsTr("An error occurred while backing up account.")
-    property string changePasswordSuccess: qsTr("Password changed successfully")
+    property string changePasswordSuccess: qsTr("Password changed successfully.")
     property string changePasswordFailed: qsTr("An error occurred while changing account password.")
-    property string setPasswordSuccess: qsTr("Password set successfully")
+    property string setPasswordSuccess: qsTr("Password set successfully.")
     property string setPasswordFailed: qsTr("An error occurred while setting account password.")
     property string changePassword: qsTr("Change password")
     property string setPassword: qsTr("Encrypt account")
