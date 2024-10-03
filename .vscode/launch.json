@@ -1,31 +1,13 @@
 {
     "version": "0.2.0",
     "configurations": [
+
         {
             "name": "Jami-Client-Debug",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "",
-            "linux":{
-                "MIMode": "gdb",
-                "program": "${workspaceFolder}/build/jami",
-                "args": [
-                    "-d",
-                ],
-            },
-            "osx": {
-                "MIMode": "lldb",
-                "program": "${workspaceFolder}/build/Jami.app/Contents/MacOS/Jami",
-                "environment": [
-                    {
-                        "name": "NO_COLOR",
-                        "value": "true",
-                    }
-                ],
-            },
-            "cwd": "${workspaceFolder}",
-            "preLaunchTask": "cmake-build",
-            "externalConsole": false, // A macOS dev may want to set this to true.
+            "type": "lldb",
+            "request": "attach",
+            "program": "${workspaceFolder}/build/jami"
+         
         },
         {
             // Using this configuration will require manually reconfiguring the project using
