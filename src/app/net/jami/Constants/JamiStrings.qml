@@ -33,7 +33,7 @@ Item {
     property string endCall: qsTr("End call")
     property string incomingAudioCallFrom: qsTr("Incoming audio call from {}")
     property string incomingVideoCallFrom: qsTr("Incoming video call from {}")
-    property string startSwarm: qsTr("Start swarm")
+    property string startGroup: qsTr("Start group")
     property string invitations: qsTr("Invitations")
     property string description: qsTr("Jami is a universal communication platform, with privacy as its foundation, that relies on a free distributed network for everyone.")
     property string updateToSwarm: qsTr("Migrating to the Swarm technology will enable synchronizing this conversation across multiple devices and improve reliability. The legacy conversation history will be cleared in the process.")
