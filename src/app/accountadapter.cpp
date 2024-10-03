@@ -28,6 +28,8 @@
 
 #include <QtConcurrent/QtConcurrent>
 
+// #include <string_view>
+
 AccountAdapter::AccountAdapter(AppSettingsManager* settingsManager,
                                SystemTray* systemTray,
                                LRCInstance* instance,
@@ -45,6 +47,11 @@ AccountAdapter::AccountAdapter(AppSettingsManager* settingsManager,
             &AccountModel::profileUpdated,
             this,
             &AccountAdapter::accountStatusChanged);
+
+    connect(&lrcInstance_->accountModel(),
+            &AccountModel::deviceAuthStateChanged,
+            this,
+            &AccountAdapter::deviceAuthStateChanged);
 
     connect(systemTray_,
             &SystemTray::countChanged,
@@ -170,6 +177,12 @@ AccountAdapter::createJamiAccount(const QVariantMap& settings)
                                                       settings["archivePin"].toString(),
                                                       "");
     });
+}
+
+void
+AccountAdapter::startLinkDevice()
+{
+    pendingLinkDeviceAccountId_ = lrcInstance_->accountModel().startLinkDevice();
 }
 
 void
@@ -334,6 +347,27 @@ QStringList
 AccountAdapter::getDefaultModerators(const QString& accountId)
 {
     return lrcInstance_->accountModel().getDefaultModerators(accountId);
+}
+
+bool
+AccountAdapter::exportToPeer(const QString& accountId, const QString& uri)
+{
+    return lrcInstance_->accountModel().exportToPeer(accountId, uri);
+}
+
+void
+AccountAdapter::provideAccountAuthentication(const QString& credentialsFromUser)
+{
+    // auto scheme = std::string_view("password");
+    qWarning() << "[LinkDevice] accountadapter.cpp: providing account auth";
+    qWarning() << "[LinkDevice] accountadapter.cpp: providing account auth with pw = "
+               << credentialsFromUser;
+    lrcInstance_->accountModel().provideAccountAuthentication(pendingLinkDeviceAccountId_,
+                                                              credentialsFromUser); //, scheme);
+    // lrcInstance_->accountModel().provideAccountAuthentication(accountId,
+    // credentialsFromUser.toStdString()); //, scheme);
+    // lrcInstance_->accountModel().provideAccountAuthentication(credentialsFromUser);
+    // TODO credentialsFromUser + .toString ??
 }
 
 bool

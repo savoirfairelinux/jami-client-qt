@@ -115,13 +115,31 @@ public:
     Q_INVOKABLE bool exportToFile(const QString& accountId,
                                   const QString& path,
                                   const QString& password = {}) const;
+
     /**
-     * Call exportOnRing from the daemon
      * @param accountId
      * @param password
      * @return if the export is initialized
      */
-    Q_INVOKABLE bool exportOnRing(const QString& accountId, const QString& password) const;
+    Q_INVOKABLE bool exportToPeer(const QString& accountId, const QString& uri);
+
+    /**
+     * @param accountId
+     * @param password
+     * @return if the export is initialized
+     */
+    Q_INVOKABLE void provideAccountAuthentication(const QString& accountId,
+                                                  const QString& credentialsFromUser);
+
+    /**
+     * Call DeviceAuthStateChanged from the daemon
+     * @param accountId
+     * @param state
+     * @param detail
+     */
+    // void slotDeviceAuthStateChanged(const QString& accountId,
+    // void deviceAuthStateChanged(const QString& accountId, int state, const QString& detail);
+
     /**
      * Call removeAccount from the daemon
      * @param accountId to remove
@@ -193,6 +211,16 @@ public:
                                     const QString& pin = "",
                                     const QString& uri = "",
                                     const MapStringString& config = MapStringString());
+
+    /**
+     * Create a new tempAccount from the qt client
+     * @param type unused
+     * @param archiveUrl should be jami-auth
+     * @param config
+     * @return the created account
+     */
+    static QString startLinkDevice();
+
     /**
      * Set an account to the first position
      */
@@ -264,6 +292,13 @@ public:
 
 Q_SIGNALS:
     /**
+     * receive DeviceAuthStateChanged in the client
+     * @param accountId
+     * @param state
+     * @param detail
+     */
+    void deviceAuthStateChanged(const QString& accountId, int state, const QString& detail);
+    /**
      * Connect this signal to know when an invalid account is here
      * @param accountID
      */
@@ -297,16 +332,6 @@ Q_SIGNALS:
      * @param accountID
      */
     void profileUpdated(const QString& accountID);
-
-    /**
-     * Connect this signal to know when an account is exported on the DHT
-     * @param accountID
-     * @param status
-     * @param pin
-     */
-    void exportOnRingEnded(const QString& accountID,
-                           account::ExportOnRingStatus status,
-                           const QString& pin);
 
     /**
      * Name registration has ended

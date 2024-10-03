@@ -56,10 +56,13 @@ BaseView {
         function onCreateAccountRequested(creationOption) {
             switch (creationOption) {
             case WizardViewStepModel.AccountCreationOption.CreateJamiAccount:
+                AccountAdapter.createJamiAccount(WizardViewStepModel.accountCreationInfo);
+                break;
             case WizardViewStepModel.AccountCreationOption.CreateRendezVous:
             case WizardViewStepModel.AccountCreationOption.ImportFromBackup:
             case WizardViewStepModel.AccountCreationOption.ImportFromDevice:
-                AccountAdapter.createJamiAccount(WizardViewStepModel.accountCreationInfo);
+                // console.info("[LinkDevice] Requesting P2P account client-side.");
+                // AccountAdapter.startLinkDevice();
                 break;
             case WizardViewStepModel.AccountCreationOption.ConnectToAccountManager:
                 AccountAdapter.createJAMSAccount(WizardViewStepModel.accountCreationInfo);
@@ -70,6 +73,39 @@ BaseView {
             default:
                 print("Bad account creation option: " + creationOption);
                 WizardViewStepModel.closeWizardView();
+                break;
+            }
+        }
+
+        function onLinkStateChanged(linkOption) {
+            console.info("[LinkDevice] WizardView page: onLinkStateChanged: ", linkOption)
+            switch (linkOption) {
+            case WizardViewStepModel.LinkDeviceStep.OutOfBand:
+              console.warn("[LinkDevice] WizardView page: onLinkStateChanged: PG => OutOfBand");
+                controlPanelStackView.setPage(
+                    importFromDevicePage
+                );
+                break;
+            case WizardViewStepModel.LinkDeviceStep.Waiting:
+              console.warn("[LinkDevice] WizardView page: onLinkStateChanged: PG => Waiting");
+                // controlPanelStackView.setPage(
+                //     linkDeviceLoadingPage
+                // );
+                break;
+            case WizardViewStepModel.LinkDeviceStep.Scannable:
+              console.warn("[LinkDevice] WizardView page: onLinkStateChanged: PG => Scannable");
+                controlPanelStackView.setPage(
+                    linkDeviceQrPage
+                );
+                break;
+                // TODO add another waiting phase
+            case WizardViewStepModel.LinkDeviceStep.Auth:
+              console.warn("[LinkDevice] WizardView page: onLinkStateChanged: PG => Auth");
+                controlPanelStackView.setPage(
+                    linkDeviceAuthPage
+                );
+                break;
+            default:
                 break;
             }
         }
@@ -138,6 +174,7 @@ BaseView {
                 onShowThisPage: controlPanelStackView.setPage(this)
             }
 
+            // Link Device Pages
             ImportFromBackupPage {
                 id: importFromBackupPage
 
@@ -145,6 +182,31 @@ BaseView {
 
                 onShowThisPage: controlPanelStackView.setPage(this)
             }
+
+            LinkDeviceLoadingPage {
+                id: linkDeviceLoadingPage
+
+                objectName: "linkDeviceLoadingPage"
+
+                onShowThisPage: controlPanelStackView.setPage(this)
+            }
+
+            LinkDeviceQrPage {
+                id: linkDeviceQrPage
+
+                objectName: "linkDeviceQrPage"
+
+                onShowThisPage: controlPanelStackView.setPage(this)
+            }
+
+            LinkDeviceAuthPage {
+                id: linkDeviceAuthPage
+
+                objectName: "linkDeviceAuthPage"
+
+                onShowThisPage: controlPanelStackView.setPage(this)
+            }
+            // END link device pages
 
             ConnectToAccountManagerPage {
                 id: connectToAccountManagerPage
@@ -165,9 +227,9 @@ BaseView {
             Component.onCompleted: {
                 // avoid binding loop
                 height = Qt.binding(function () {
-                        var index = currentIndex === WizardViewStepModel.MainSteps.CreateRendezVous ? WizardViewStepModel.MainSteps.CreateJamiAccount : currentIndex;
-                        return Math.max(controlPanelStackView.itemAt(index).preferredHeight, wizardViewScrollView.height);
-                    });
+                    var index = currentIndex === WizardViewStepModel.MainSteps.CreateRendezVous ? WizardViewStepModel.MainSteps.CreateJamiAccount : currentIndex;
+                    return Math.max(controlPanelStackView.itemAt(index).preferredHeight, wizardViewScrollView.height);
+                });
             }
         }
     }

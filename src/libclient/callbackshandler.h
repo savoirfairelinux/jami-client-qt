@@ -51,6 +51,11 @@ public:
     void subscribeToDebugReceived();
 
 Q_SIGNALS:
+
+    /* KESS show qr among other things
+     *
+     */
+    void deviceAuthStateChanged(const QString& accountId, int state, const QString& detail);
     /**
      * Connect this signal to get incoming text interaction from the DHT.
      * @param accountId interaction receiver.
@@ -173,7 +178,9 @@ Q_SIGNALS:
      * Connect this signal to know when a new conference is created
      * @param callId of the conference
      */
-    void conferenceCreated(const QString& accountId, const QString& conversationId, const QString& callId);
+    void conferenceCreated(const QString& accountId,
+                           const QString& conversationId,
+                           const QString& callId);
     void conferenceChanged(const QString& accountId, const QString& confId, const QString& state);
     /**
      * Connect this signal to know when a conference is removed
@@ -235,14 +242,6 @@ Q_SIGNALS:
     void accountProfileReceived(const QString& accountId,
                                 const QString& displayName,
                                 const QString& userPhoto);
-
-    /**
-     * Emit exportOnRingEnded
-     * @param accountId
-     * @param status SUCCESS = 0, WRONG_PASSWORD = 1, NETWORK_ERROR = 2
-     * @param pin
-     */
-    void exportOnRingEnded(const QString& accountId, int status, const QString& pin);
 
     /**
      * Name registration has ended
@@ -392,6 +391,12 @@ Q_SIGNALS:
                      const uint64_t& timestamp,
                      const QString& daemonId) const;
 private Q_SLOTS:
+
+    /** KESS show qr among other things LINKDEV
+     *
+     */
+    void slotDeviceAuthStateChanged(const QString& accountId, int state, const QString& detail);
+
     /**
      * Emit newAccountMessage
      * @param accountId
@@ -503,7 +508,9 @@ private Q_SLOTS:
      * @param callId         of the conference
      * @param conversationId of the conference
      */
-    void slotConferenceCreated(const QString& accountId, const QString& conversationId, const QString& callId);
+    void slotConferenceCreated(const QString& accountId,
+                               const QString& conversationId,
+                               const QString& callId);
     /**
      * Emit conferenceRemove
      * @param accountId
@@ -571,14 +578,6 @@ private Q_SLOTS:
     void slotAccountProfileReceived(const QString& accountId,
                                     const QString& displayName,
                                     const QString& userPhoto);
-
-    /**
-     * Emit exportOnRingEnded
-     * @param accountId
-     * @param status SUCCESS = 0, WRONG_PASSWORD = 1, NETWORK_ERROR = 2
-     * @param pin
-     */
-    void slotExportOnRingEnded(const QString& accountId, int status, const QString& pin);
 
     /**
      * Emit nameRegistrationEnded
