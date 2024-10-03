@@ -170,7 +170,8 @@ Utils::CreateStartupLink(const std::wstring& wstrAppName)
 #endif
 
     if (desktopPath.isEmpty() || !(QFile::exists(desktopPath))) {
-        qDebug() << "Could not locate .desktop file at" << desktopPath;
+        qDebug() << "An error occurred while attempting to locate .desktop file at "
+                 << desktopPath;
         return false;
     }
 
@@ -197,7 +198,8 @@ Utils::CreateStartupLink(const std::wstring& wstrAppName)
             if (QDir().mkdir(autoStartDir)) {
                 qDebug() << "Created autostart directory:" << autoStartDir;
             } else {
-                qWarning() << "Could not create autostart directory:" << autoStartDir;
+                qWarning() << "An error occurred while creating autostart directory: "
+                           << autoStartDir;
                 return false;
             }
         }
@@ -207,7 +209,7 @@ Utils::CreateStartupLink(const std::wstring& wstrAppName)
     QFile srcFile(desktopPath);
     bool result = srcFile.link(desktopFile);
     qDebug() << desktopFile
-             << (result ? "-> " + desktopPath + " successfully created" : "could not be created");
+             << (result ? "-> " + desktopPath + " created successfully" : "unable to be created");
     return result;
 #endif
 }
@@ -265,7 +267,7 @@ Utils::DeleteStartupLink(const std::wstring& wstrAppName)
             QFile::remove(desktopFile);
             qDebug() << "Autostart disabled," << desktopFile << "removed";
         } catch (...) {
-            qDebug() << "Could not remove" << desktopFile;
+            qDebug() << "Unable to be remove" << desktopFile;
         }
     } else {
         qDebug() << desktopFile << "does not exist";

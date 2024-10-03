@@ -454,7 +454,7 @@ ScreenCastPortal::getPipewireFd()
 
     g_main_loop_run(glib_main_loop);
     // The main loop will run until it's stopped by openPipewireRemote (if
-    // all DBus method calls were successfully), abort (in case of error) or
+    // all DBus method calls were successful), abort (in case of error) or
     // on_cancelled_callback (if a DBus request is cancelled).
     // In the latter two cases, pw_ctx->portal_error gets set to a nonzero value.
     if (portal_error)
@@ -512,9 +512,10 @@ ScreenCastPortal::~ScreenCastPortal()
     // file descriptor needs to be closed by the client.
     if (close(pipewireFd) != 0) {
         int err = errno;
-        qWarning() << "Error while attempting to close PipeWire file descriptor: errno =" << err;
+        qWarning() << "An error occurred while attempting to close PipeWire file descriptor: errno ="
+                   << err;
     } else {
-        qInfo() << "Successfully closed PipeWire file descriptor";
+        qInfo() << "PipeWire file descriptor closed successfully.";
     }
 #endif
 }
