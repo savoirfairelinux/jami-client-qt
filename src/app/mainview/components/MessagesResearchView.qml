@@ -30,6 +30,9 @@ ListView {
     id: root
 
     spacing: 10
+
+    boundsMovement: Flickable.StopAtBounds
+    boundsBehavior: Flickable.DragOverBounds
     model: SortFilterProxyModel {
         id: proxyModel
 

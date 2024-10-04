@@ -39,6 +39,8 @@ Flickable {
         attachedFlickableMoving: root.attachedFlickableMoving
         orientation: Qt.Horizontal
     }
+    boundsMovement: Flickable.StopAtBounds
+    boundsBehavior: Flickable.DragOverBounds
 
     Keys.onLeftPressed: horizontalScrollBar.decrease()
     Keys.onRightPressed: horizontalScrollBar.increase()

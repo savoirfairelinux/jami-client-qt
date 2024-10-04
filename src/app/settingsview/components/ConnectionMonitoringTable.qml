@@ -37,6 +37,9 @@ ListView {
     spacing: 5
     cacheBuffer: 10
 
+    boundsMovement: Flickable.StopAtBounds
+    boundsBehavior: Flickable.DragOverBounds
+
     property int rota: 0
 
     header: Rectangle {
@@ -140,6 +143,9 @@ ListView {
             spacing: 0
 
             model: Count
+
+            boundsMovement: Flickable.StopAtBounds
+            boundsBehavior: Flickable.DragOverBounds
 
             delegate: RowLayout {
                 id: rowLayoutDelegate
