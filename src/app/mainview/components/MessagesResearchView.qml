@@ -85,7 +85,7 @@ ListView {
                 id: contentRow
 
                 property bool isMe: Author === CurrentAccount.uri
-
+                layoutDirection: contentRow.isMe ? Qt.RightToLeft : Qt.LeftToRight
                 Avatar {
                     id: avatar
 
@@ -99,6 +99,7 @@ ListView {
 
                 ColumnLayout {
 
+                    Layout.alignment: contentRow.isMe ? Qt.AlignRight : Qt.AlignLeft
                     Text {
                         text: contentRow.isMe ? CurrentAccount.bestName : UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author) + " :"
                         Layout.preferredWidth: myText.width
@@ -107,6 +108,7 @@ ListView {
                         font.pixelSize: 0
                         color: JamiTheme.chatviewSecondaryInformationColor
                         font.bold: true
+                        horizontalAlignment: contentRow.isMe ? Text.AlignRight : Text.AlignLeft
                     }
 
                     Text {
@@ -119,7 +121,8 @@ ListView {
                         Layout.rightMargin: 10
                         Layout.leftMargin: 10
                         font.pixelSize: IsEmojiOnly ? JamiTheme.chatviewEmojiSize : JamiTheme.chatviewFontSize
-                        Layout.alignment: Qt.AlignHCenter
+                        Layout.alignment: Qt.AlignLeft
+                        horizontalAlignment: contentRow.isMe ? Text.AlignRight : Text.AlignLeft
                     }
                 }
             }
