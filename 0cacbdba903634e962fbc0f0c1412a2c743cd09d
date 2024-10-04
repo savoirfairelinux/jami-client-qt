@@ -1,4 +1,22 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bde0fa09_8aa669e0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2024-10-04T14:37:31Z",
+      "side": 1,
+      "message": "Closed - duplicate commit",
+      "revId": "0cacbdba903634e962fbc0f0c1412a2c743cd09d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ],
   "submitRequirementResults": []
 }
