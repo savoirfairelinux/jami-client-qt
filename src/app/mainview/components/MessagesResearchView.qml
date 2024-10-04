@@ -99,6 +99,10 @@ ListView {
 
                 ColumnLayout {
 
+<<<<<<< PATCH SET (968c90 message_searchbar:fix issue with message alignment)
+                    Layout.alignment: contentRow.isMe ? Qt.AlignRight : Qt.AlignLeft
+=======
+>>>>>>> BASE      (9e1d8e messagebar: move js into js file, simplify markdown editing)
                     Text {
                         text: contentRow.isMe ? CurrentAccount.bestName : UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author) + " :"
                         Layout.preferredWidth: myText.width
