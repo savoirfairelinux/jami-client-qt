@@ -280,7 +280,8 @@ SidePanelBase {
             height: page.height
             clip: true
             contentHeight: contentItem.childrenRect.height
-
+            boundsMovement: Flickable.StopAtBounds 
+            boundsBehavior: Flickable.DragOverBounds
             model: getHeaders()
             delegate: ColumnLayout {
                 id: col
@@ -328,6 +329,8 @@ SidePanelBase {
                     height: childrenRect.height
                     clip: true
                     visible: isChildSelected
+                    boundsMovement: Flickable.StopAtBounds 
+                    boundsBehavior: Flickable.DragOverBounds
 
                     model: modelData.children
                     delegate: ColumnLayout {
