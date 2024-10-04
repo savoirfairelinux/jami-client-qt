@@ -98,7 +98,7 @@ ListView {
                 }
 
                 ColumnLayout {
-                    
+
                     Layout.alignment: contentRow.isMe ? Qt.AlignRight : Qt.AlignLeft
                     Text {
                         text: contentRow.isMe ? CurrentAccount.bestName : UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author) + " :"
