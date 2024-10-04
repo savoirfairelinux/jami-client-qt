@@ -30,6 +30,10 @@ ListView {
     id: root
 
     spacing: 10
+
+    // HACK: remove after migration to Qt 6.7+
+    boundsBehavior: Flickable.StopAtBounds
+
     model: SortFilterProxyModel {
         id: proxyModel
 
