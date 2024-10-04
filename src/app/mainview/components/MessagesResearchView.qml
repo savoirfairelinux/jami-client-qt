@@ -30,6 +30,9 @@ ListView {
     id: root
 
     spacing: 10
+
+    boundsMovement: Flickable.StopAtBounds
+    boundsBehavior: Flickable.DragOverBounds
     model: SortFilterProxyModel {
         id: proxyModel
 
@@ -84,7 +87,11 @@ ListView {
                 id: contentRow
 
                 property bool isMe: Author === CurrentAccount.uri
+<<<<<<< PATCH SET (7da674 UX: fix behavior with lists scrolling offscreen)
+                layoutDirection: contentRow.isMe ? Qt.RightToLeft : Qt.LeftToRight
+=======
 
+>>>>>>> BASE      (73258e i18n: automatic bump)
                 Avatar {
                     id: avatar
 
@@ -98,6 +105,10 @@ ListView {
 
                 ColumnLayout {
 
+<<<<<<< PATCH SET (7da674 UX: fix behavior with lists scrolling offscreen)
+                    Layout.alignment: contentRow.isMe ? Qt.AlignRight : Qt.AlignLeft
+=======
+>>>>>>> BASE      (73258e i18n: automatic bump)
                     Text {
                         text: contentRow.isMe ? CurrentAccount.bestName : UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author) + " :"
                         Layout.preferredWidth: myText.width
@@ -106,6 +117,10 @@ ListView {
                         font.pixelSize: 0
                         color: JamiTheme.chatviewSecondaryInformationColor
                         font.bold: true
+<<<<<<< PATCH SET (7da674 UX: fix behavior with lists scrolling offscreen)
+                        horizontalAlignment: contentRow.isMe ? Text.AlignRight : Text.AlignLeft
+=======
+>>>>>>> BASE      (73258e i18n: automatic bump)
                     }
 
                     Text {

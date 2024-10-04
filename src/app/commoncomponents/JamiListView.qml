@@ -33,7 +33,8 @@ ListView {
 
         attachedFlickableMoving: root.moving
     }
-
+    boundsMovement: Flickable.StopAtBounds
+    boundsBehavior: Flickable.DragOverBounds
     Keys.onUpPressed: verticalScrollBar.decrease()
     Keys.onDownPressed: verticalScrollBar.increase()
 }

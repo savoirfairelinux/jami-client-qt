@@ -190,7 +190,7 @@ SidePanelBase {
     function updateModel() {
         if (visible) {
             listView.model = getHeaders();
-            root.updated()
+            root.updated();
         }
     }
 
@@ -201,7 +201,7 @@ SidePanelBase {
         repeat: false
 
         onTriggered: {
-            updateModel()
+            updateModel();
         }
     }
 
@@ -221,7 +221,7 @@ SidePanelBase {
             // For some reason, under Qt 6.5.3, even if locale is changed before
             // model is not computer correctly.
             // Delaying the update works
-            timerTranslate.restart()
+            timerTranslate.restart();
         }
     }
 
@@ -263,8 +263,10 @@ SidePanelBase {
 
         background: null
 
-        header: AccountComboBox { QWKSetParentHitTestVisible {}
+        header: AccountComboBox {
             id: accountComboBox
+            QWKSetParentHitTestVisible {
+            }
             Shortcut {
                 sequence: "Ctrl+J"
                 context: Qt.ApplicationShortcut
@@ -280,7 +282,8 @@ SidePanelBase {
             height: page.height
             clip: true
             contentHeight: contentItem.childrenRect.height
-
+            boundsMovement: Flickable.StopAtBounds
+            boundsBehavior: Flickable.DragOverBounds
             model: getHeaders()
             delegate: ColumnLayout {
                 id: col
@@ -328,6 +331,8 @@ SidePanelBase {
                     height: childrenRect.height
                     clip: true
                     visible: isChildSelected
+                    boundsMovement: Flickable.StopAtBounds
+                    boundsBehavior: Flickable.DragOverBounds
 
                     model: modelData.children
                     delegate: ColumnLayout {
