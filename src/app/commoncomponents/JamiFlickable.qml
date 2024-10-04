@@ -40,6 +40,9 @@ Flickable {
         orientation: Qt.Horizontal
     }
 
+    // HACK: remove after migration to Qt 6.7+
+    boundsBehavior: Flickable.StopAtBounds
+
     Keys.onLeftPressed: horizontalScrollBar.decrease()
     Keys.onRightPressed: horizontalScrollBar.increase()
     Keys.onUpPressed: verticalScrollBar.decrease()

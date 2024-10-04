@@ -34,6 +34,9 @@ ListView {
         attachedFlickableMoving: root.moving
     }
 
+    // HACK: remove after migration to Qt 6.7+
+    boundsBehavior: Flickable.StopAtBounds
+
     Keys.onUpPressed: verticalScrollBar.decrease()
     Keys.onDownPressed: verticalScrollBar.increase()
 }

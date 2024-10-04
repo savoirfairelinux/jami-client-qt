@@ -281,6 +281,9 @@ SidePanelBase {
             clip: true
             contentHeight: contentItem.childrenRect.height
 
+            // HACK: remove after migration to Qt 6.7+
+            boundsBehavior: Flickable.StopAtBounds
+
             model: getHeaders()
             delegate: ColumnLayout {
                 id: col
@@ -328,6 +331,9 @@ SidePanelBase {
                     height: childrenRect.height
                     clip: true
                     visible: isChildSelected
+
+                    // HACK: remove after migration to Qt 6.7+
+                    boundsBehavior: Flickable.StopAtBounds
 
                     model: modelData.children
                     delegate: ColumnLayout {

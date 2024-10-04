@@ -82,8 +82,9 @@ JamiFlickable {
     ScrollBar.vertical.visible: text
     ScrollBar.horizontal.visible: text
 
-    boundsMovement: Flickable.StopAtBounds
-    boundsBehavior: Flickable.DragOverBounds
+    // HACK: remove after migration to Qt 6.7+
+    boundsBehavior: Flickable.StopAtBounds
+
     interactive: true
 
     function resetEditableText() {

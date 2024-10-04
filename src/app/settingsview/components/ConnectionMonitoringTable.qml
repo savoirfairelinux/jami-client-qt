@@ -37,6 +37,9 @@ ListView {
     spacing: 5
     cacheBuffer: 10
 
+    // HACK: remove after migration to Qt 6.7+
+    boundsBehavior: Flickable.StopAtBounds
+
     property int rota: 0
 
     header: Rectangle {
@@ -140,6 +143,9 @@ ListView {
             spacing: 0
 
             model: Count
+
+            // HACK: remove after migration to Qt 6.7+
+            boundsBehavior: Flickable.StopAtBounds
 
             delegate: RowLayout {
                 id: rowLayoutDelegate
