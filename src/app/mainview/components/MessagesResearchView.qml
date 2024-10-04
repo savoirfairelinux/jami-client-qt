@@ -31,6 +31,9 @@ ListView {
     id: root
 
     spacing: 10
+
+    boundsMovement: Flickable.StopAtBounds
+    boundsBehavior: Flickable.DragOverBounds
     model: SortFilterProxyModel {
         id: proxyModel
 
@@ -85,7 +88,7 @@ ListView {
                 id: contentRow
 
                 property bool isMe: Author === CurrentAccount.uri
-                layoutDirection: contentRow.isMe ? Qt.RightToLeft: Qt.LeftToRight
+                layoutDirection: contentRow.isMe ? Qt.RightToLeft : Qt.LeftToRight
                 Avatar {
                     id: avatar
 
@@ -98,7 +101,7 @@ ListView {
                 }
 
                 ColumnLayout {
-                    
+
                     Layout.alignment: contentRow.isMe ? Qt.AlignRight : Qt.AlignLeft
                     Text {
                         text: contentRow.isMe ? CurrentAccount.bestName : UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author) + " :"
@@ -109,7 +112,6 @@ ListView {
                         color: JamiTheme.chatviewSecondaryInformationColor
                         font.bold: true
                         horizontalAlignment: contentRow.isMe ? Text.AlignRight : Text.AlignLeft
- 
                     }
 
                     Text {
