@@ -16,6 +16,24 @@
       "message": "Can we have a dialog box that shows all the logs / data that will be sent?\nLike that (of Steam): https://hardforum.com/data/attachment-files/2021/07/473222_222.jpg",
       "revId": "399fc0541b5d6ba57024f2c4f309b15179bf06ef",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a29b2dc_b8de4e80",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-10-07T19:56:52Z",
+      "side": 1,
+      "message": "Even though the metadata is not as granular as that collected by Valve (the only host-specific information is the OS platform string), this will likely be added in a subsequent commit.",
+      "parentUuid": "d6c907c3_c3dd7e42",
+      "revId": "399fc0541b5d6ba57024f2c4f309b15179bf06ef",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
