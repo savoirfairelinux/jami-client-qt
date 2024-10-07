@@ -240,7 +240,8 @@ ContactModel::ContactModel(const account::Info& owner,
 ContactModel::~ContactModel() {}
 
 void
-ContactModel::initContacts() {
+ContactModel::initContacts()
+{
     pimpl_->fillWithJamiContacts();
 }
 
@@ -434,6 +435,7 @@ ContactModel::getSearchResults() const
 void
 ContactModel::searchContact(const QString& query)
 {
+    qInfo() << "query: " << query;
     LC_DBG << "query! " << query;
     // always reset temporary contact
     pimpl_->searchResult.clear();
@@ -944,20 +946,21 @@ ContactModelPimpl::slotRegisteredNameFound(const QString& accountId,
         return;
 
     if (status == 0 /* SUCCESS */) {
+        QString foundName = registeredName.toLower();
         std::lock_guard<std::mutex> lk(contactsMtx_);
         if (contacts.find(uri) != contacts.end()) {
             // update contact and remove temporary item
-            contacts[uri].registeredName = registeredName;
+            contacts[uri].registeredName = foundName;
             searchResult.clear();
         } else {
-            nonContactLookup_[uri] = registeredName;
+            nonContactLookup_[uri] = foundName;
             if ((searchQuery != uri && searchQuery != registeredName) || searchQuery.isEmpty()) {
                 // we are notified that a previous lookup ended
                 return;
             }
             // Update the temporary item
             lrc::api::profile::Info profileInfo = {uri, "", "", profile::Type::TEMPORARY};
-            searchResult[uri] = {profileInfo, registeredName, false, false};
+            searchResult[uri] = {profileInfo, foundName, false, false};
         }
     } else {
         {
