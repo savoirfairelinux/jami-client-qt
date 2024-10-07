@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54284222_dd22aadc",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2024-10-07T13:25:59Z",
+      "side": 1,
+      "message": "If we are to change the names of these strings in the qml and cpp files the corresponding jamistrings should also be edited as well as any instance where they are called in the codebase. [see daemonReconnectWindow.qml, chatviewheader.qml] Other edits made to qstrs and debug/log info look good.",
+      "revId": "01e37a28ed41fdef335ff5c7ce3eae2ac8b38174",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
