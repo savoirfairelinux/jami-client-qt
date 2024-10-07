@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66dd5649_b52ece66",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-10-07T18:45:57Z",
+      "side": 0,
+      "message": "maybe don\u0027t remove?",
+      "range": {
+        "startLine": 213,
+        "startChar": 4,
+        "endLine": 221,
+        "endChar": 5
+      },
+      "revId": "c55486988f278da52cf1b3c6308c293743f475a0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}

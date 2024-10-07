@@ -109,6 +109,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a50ac3b8_e199d5aa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-10-07T18:45:57Z",
+      "side": 1,
+      "message": "It\u0027s great to note these details. Put this in a Gitlab ticket.",
+      "parentUuid": "893dacff_b933bcd5",
+      "revId": "e7b7c27053f9f02fd4fadc4bd778ab2389b3a957",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "673381af_b994bd66",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
