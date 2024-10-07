@@ -135,6 +135,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef5975a3_8dc46e91",
+        "filename": "src/app/commoncomponents/ShareMessageMenu.qml",
+        "patchSetId": 17
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1106
+      },
+      "writtenOn": "2024-10-07T20:38:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "276bebd8_7e7e66e3",
+      "range": {
+        "startLine": 141,
+        "startChar": 16,
+        "endLine": 162,
+        "endChar": 17
+      },
+      "revId": "d05a48f917ba2a727d32f658194225982c14b6dd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "02f8a940_2d922f08",
