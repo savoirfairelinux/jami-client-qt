@@ -1135,7 +1135,7 @@ A névjegy bármikor módosítható a Fiókbeállításaiból.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="885"/>
         <source>Contact</source>
-        <translation>Kapcsolatok</translation>
+        <translation>Kapcsolattartó</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="886"/>
@@ -1298,12 +1298,12 @@ Kíván most frissíteni?</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="36"/>
         <source>Start swarm</source>
-        <translation>Rajcsoport indítása</translation>
+        <translation>Új csoport létrehozása</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="37"/>
         <source>Create swarm</source>
-        <translation>Rajcsoport létrehozása</translation>
+        <translation>Új csoport létrehozása</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="180"/>
@@ -1628,12 +1628,12 @@ Kíván most frissíteni?</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="268"/>
         <source>Remove contact</source>
-        <translation>Kapcsolat eltávolítása</translation>
+        <translation>Kapcsolattartó eltávolítása</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="269"/>
         <source>Block contact</source>
-        <translation>Kapcsolat letiltása</translation>
+        <translation>Kapcsolattartó letiltása</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="270"/>
@@ -1643,7 +1643,7 @@ Kíván most frissíteni?</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="271"/>
         <source>Contact details</source>
-        <translation>Elérhetőségei</translation>
+        <translation>Kapcsolattartó adatok</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="274"/>
@@ -2521,7 +2521,7 @@ Kérjük, hogy próbálja újra később.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="459"/>
         <source>Banned contacts</source>
-        <translation>Letiltott kapcsolatok</translation>
+        <translation>Letiltott kapcsolattartók</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="470"/>
@@ -2698,12 +2698,12 @@ Kérjük, hogy próbálja újra később.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="538"/>
         <source>(Experimental) Enable call support for swarm</source>
-        <translation>(Kísérleti) Hívástámogatás engedélyezése a rajcsoportok számára</translation>
+        <translation>(Kísérleti) Csoporthívás támogatásának engedélyezése a rajcsoportokban</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="539"/>
         <source>This feature will enable call buttons in swarms with multiple participants.</source>
-        <translation>Hívás gombok megjelenítése több résztvevős rajcsoportokban.</translation>
+        <translation>Hívás gombok megjelenítése a csoportos beszélgetésekben.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="542"/>
@@ -2824,7 +2824,7 @@ Kérjük, hogy próbálja újra később.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="801"/>
         <source>Contact&apos;s name</source>
-        <translation>Névjegy név</translation>
+        <translation>Kapcsolattartó neve</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="816"/>
@@ -3390,7 +3390,7 @@ csatlakozzon a beszélgetés összehangolásához.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="800"/>
         <source>Swarm&apos;s name</source>
-        <translation>Rajcsoport neve</translation>
+        <translation>Csoport neve</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="802"/>
@@ -3415,12 +3415,12 @@ csatlakozzon a beszélgetés összehangolásához.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="809"/>
         <source>Type of swarm</source>
-        <translation>Rajcsoporttípus</translation>
+        <translation>Típus</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="813"/>
         <source>Create the swarm</source>
-        <translation>Rajcsoport létrehozása</translation>
+        <translation>Új csoport létrehozása</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="814"/>
@@ -3543,7 +3543,7 @@ csatlakozzon a beszélgetés összehangolásához.</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="101"/>
         <source>Block contact</source>
-        <translation>Kapcsolat letiltása</translation>
+        <translation>Kapcsolattartó letiltása</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="105"/>
@@ -3793,7 +3793,7 @@ csatlakozzon a beszélgetés összehangolásához.</translation>
         <location filename="../src/libclient/api/interaction.h" line="273"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="451"/>
         <source>Contact added</source>
-        <translation>Kapcsolat hozzáadva</translation>
+        <translation>Kapcsolattartó hozzáadva</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="261"/>
@@ -3828,7 +3828,7 @@ csatlakozzon a beszélgetés összehangolásához.</translation>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="428"/>
         <source>Swarm created</source>
-        <translation>Rajcsoport létrehozva</translation>
+        <translation>Új csoport létrehozva</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="508"/>
@@ -4256,7 +4256,7 @@ csatlakozzon a beszélgetés összehangolásához.</translation>
         <location filename="../src/app/smartlistmodel.cpp" line="193"/>
         <location filename="../src/app/smartlistmodel.cpp" line="194"/>
         <source>Contacts</source>
-        <translation>Kapcsolatok</translation>
+        <translation>Kapcsolattartók</translation>
     </message>
 </context>
 <context>

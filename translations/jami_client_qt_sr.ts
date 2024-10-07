@@ -4394,7 +4394,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="143"/>
         <source>In Account Settings, a button is available to create a backup your account.</source>
-        <translation>У подешавањама рачуна, доступен је дугме за креирање резервне копије вашег рачуна.</translation>
+        <translation>U podešavanjima naloga dostupno je dugme za pravljenje rezervne kopije naloga.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="147"/>
