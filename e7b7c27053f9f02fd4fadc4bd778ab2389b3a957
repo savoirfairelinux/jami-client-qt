@@ -72,6 +72,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d375b619_f8c5c545",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1106
+      },
+      "writtenOn": "2024-10-07T15:50:09Z",
+      "side": 1,
+      "message": "Done\nsearchbar fixed\nno preview anymore\nshare icon found\nDon\u0027t send when return is pressed to avoid missclick\nNo dialog bubble for now",
+      "parentUuid": "dfe540ab_566145ba",
+      "revId": "e7b7c27053f9f02fd4fadc4bd778ab2389b3a957",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "893dacff_b933bcd5",
