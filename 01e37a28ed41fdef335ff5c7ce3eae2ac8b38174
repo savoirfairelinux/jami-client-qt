@@ -16,6 +16,24 @@
       "message": "If we are to change the names of these strings in the qml and cpp files the corresponding jamistrings should also be edited as well as any instance where they are called in the codebase. [see daemonReconnectWindow.qml, chatviewheader.qml] Other edits made to qstrs and debug/log info look good.",
       "revId": "01e37a28ed41fdef335ff5c7ce3eae2ac8b38174",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b9a6650_5ad4d6a2",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-10-07T21:26:45Z",
+      "side": 1,
+      "message": "Good catch. Done.\n\nThank you for the code pointer to DaemonReconnectWindow.qml\n\nSorry, unable to see what is required in ChatViewHeader.qml\n\nThank you",
+      "parentUuid": "54284222_dd22aadc",
+      "revId": "01e37a28ed41fdef335ff5c7ce3eae2ac8b38174",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
