@@ -133,6 +133,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e65a016b_1a26b49d",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1106
+      },
+      "writtenOn": "2024-10-07T20:04:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "504b94fd_eda6f43c",
+      "range": {
+        "startLine": 161,
+        "startChar": 4,
+        "endLine": 162,
+        "endChar": 91
+      },
+      "revId": "d05a48f917ba2a727d32f658194225982c14b6dd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "35e5dc0f_fdb88a48",
@@ -146,6 +170,24 @@
       "writtenOn": "2024-10-07T18:45:57Z",
       "side": 1,
       "message": "line",
+      "revId": "d05a48f917ba2a727d32f658194225982c14b6dd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ccb3fc5_5da39bf3",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1106
+      },
+      "writtenOn": "2024-10-07T20:04:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35e5dc0f_fdb88a48",
       "revId": "d05a48f917ba2a727d32f658194225982c14b6dd",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
