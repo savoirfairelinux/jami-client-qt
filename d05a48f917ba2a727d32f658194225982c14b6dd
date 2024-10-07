@@ -158,6 +158,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "013e9894_1264bdb4",
+        "filename": "src/app/mainview/components/ConversationPickerItemDelegate.qml",
+        "patchSetId": 17
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1106
+      },
+      "writtenOn": "2024-10-07T20:29:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "02f8a940_2d922f08",
+      "range": {
+        "startLine": 138,
+        "startChar": 4,
+        "endLine": 148,
+        "endChar": 5
+      },
+      "revId": "d05a48f917ba2a727d32f658194225982c14b6dd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "504b94fd_eda6f43c",
