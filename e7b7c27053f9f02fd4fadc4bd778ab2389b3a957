@@ -125,6 +125,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "def91d48_f2294714",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1106
+      },
+      "writtenOn": "2024-10-08T14:06:43Z",
+      "side": 1,
+      "message": "Done\n#Gitlab 1854",
+      "parentUuid": "a50ac3b8_e199d5aa",
+      "revId": "e7b7c27053f9f02fd4fadc4bd778ab2389b3a957",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "673381af_b994bd66",
