@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d978bab6_ee5d8cde",
+        "filename": "src/app/crashreportclients/example_submission_servers/requirements.txt",
+        "patchSetId": 24
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-10-08T20:32:42Z",
+      "side": 1,
+      "message": "I got an error while following the instructions in the README because the version of jinja installed is too recent to be compatible with Flask 1.1.2:\n```\n(venv) fsimon@strix670:~/jami-client-qt/src/app/crashreportclients/example_submission_servers$ python crashpad.py \nTraceback (most recent call last):\n  File \"/home/fsimon/jami-client-qt/src/app/crashreportclients/example_submission_servers/crashpad.py\", line 4, in \u003cmodule\u003e\n    from flask import Flask, request\n  File \"/home/fsimon/jami-client-qt/src/app/crashreportclients/example_submission_servers/venv/lib/python3.10/site-packages/flask/__init__.py\", line 14, in \u003cmodule\u003e\n    from jinja2 import escape\nImportError: cannot import name \u0027escape\u0027 from \u0027jinja2\u0027 (/home/fsimon/jami-client-qt/src/app/crashreportclients/example_submission_servers/venv/lib/python3.10/site-packages/jinja2/__init__.py)\n```\nHowever everything seems to work fine when using a more recent version of Flask:\n```\nFlask\u003d\u003d3.0.3\nrequests\u003d\u003d2.24.0\nmarkupsafe\u003d\u003d2.1.1\nitsdangerous\u003d\u003d2.1.2\nwerkzeug\u003d\u003d3.0.0\n```",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 12
+      },
+      "revId": "54169ed71749f93d7be47f0b8ae7955987a5c330",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
