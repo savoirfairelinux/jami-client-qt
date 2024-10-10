@@ -27,6 +27,14 @@ import "../js/pluginhandlerpickercreation.js" as PluginHandlerPickerCreation
 Rectangle {
     id: root
 
+    // Added to capture the mouse when the layouts start stacking. The header
+    //and footer we're unable to be interacted with otherwise.
+    MouseArea {
+        anchors.fill: parent
+        propagateComposedEvents: false
+        enabled: viewCoordinator.isInSinglePaneMode 
+    }
+
     // An enum to make the details panels more readable.
     enum ExtrasPanel {
         SwarmDetailsPanel,
