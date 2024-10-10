@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "302a45ff_06182be3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-10-10T21:06:36Z",
+      "side": 1,
+      "message": "Should a `Forum` link to https://forum.jami.net/ be added?\n\nIt may help people find discussions in the community.\n\nThank you\n\nhttps://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/1449#note_53475",
+      "revId": "095d13e0a3bdad7189872d9d34de28e26c9f9025",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aea7ffed_e38bf044",
