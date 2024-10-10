@@ -27,6 +27,13 @@ import "../js/pluginhandlerpickercreation.js" as PluginHandlerPickerCreation
 Rectangle {
     id: root
 
+    MouseArea {
+        anchors.fill: parent
+        propagateComposedEvents: false
+        enabled: root.width < JamiTheme.mainViewPaneMinWidth 
+    }
+
+    //
     // An enum to make the details panels more readable.
     enum ExtrasPanel {
         SwarmDetailsPanel,
