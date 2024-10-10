@@ -113,7 +113,7 @@ SBSMessageBase {
 
             }
 
-            TextEdit {
+            Text {
                 id: callLabel
                 objectName: "callLabel"
 
