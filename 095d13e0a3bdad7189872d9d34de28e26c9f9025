@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aea7ffed_e38bf044",
+        "filename": "src/app/mainview/components/AboutPopUp.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-10-10T21:03:55Z",
+      "side": 1,
+      "message": "Should the email address be `contact@jami.net`?",
+      "range": {
+        "startLine": 43,
+        "startChar": 37,
+        "endLine": 43,
+        "endChar": 49
+      },
+      "revId": "095d13e0a3bdad7189872d9d34de28e26c9f9025",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
