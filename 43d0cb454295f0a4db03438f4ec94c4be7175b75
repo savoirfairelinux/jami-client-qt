@@ -22,6 +22,30 @@
       },
       "revId": "43d0cb454295f0a4db03438f4ec94c4be7175b75",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11cc42bd_a2c08eb5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2024-10-11T13:04:57Z",
+      "side": 1,
+      "message": "Yes! All RTL functionalities should remain untouched. The goal is just to make the layout on the QT client look and behave more coherently",
+      "parentUuid": "6bc4d1c7_6db6165b",
+      "range": {
+        "startLine": 15,
+        "startChar": 1,
+        "endLine": 15,
+        "endChar": 32
+      },
+      "revId": "43d0cb454295f0a4db03438f4ec94c4be7175b75",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
