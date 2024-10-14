@@ -173,6 +173,7 @@ DISTRIBUTIONS := \
 	fedora_38 \
 	fedora_39 \
 	fedora_40 \
+	fedora_41 \
 	alma_9 \
 	opensuse-leap_15.4 \
 	opensuse-leap_15.5 \
