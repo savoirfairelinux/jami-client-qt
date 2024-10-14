@@ -139,7 +139,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="34"/>
         <source>Incoming audio call from {}</source>
-        <translation>L&apos;audio de trucada de l&apos;entorn</translation>
+        <translation>Trucada entrant de {}</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="35"/>
@@ -692,7 +692,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="213"/>
         <source>Back up account here</source>
-        <translation>Recupera la compte aquí</translation>
+        <translation>Recupera el compte aquí</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="214"/>
@@ -803,13 +803,13 @@ The account will be lost if this device is lost or the application is uninstalle
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="427"/>
         <source>Back up account to a .gz file</source>
-        <translation>Recupera la compte en un fitxer.gz</translation>
+        <translation>Recupera el compte en un fitxer.gz</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="433"/>
         <source>This profile is only shared with this account's contacts.
 The profile can be changed at all times from the account&apos;s settings.</source>
-        <translation>Aquest perfil només es comparteix amb els contactes d&apos;aquesta compte. El perfil pot ser canviat en qualsevol moment des de les configuracions de la compte.</translation>
+        <translation>Aquest perfil només es comparteix amb els contactes d&apos;aquesta compte. El perfil pot ser canviat en qualsevol moment des de les configuracions del compte.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="434"/>
@@ -839,12 +839,12 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="474"/>
         <source>Dark</source>
-        <translation>Escura</translation>
+        <translation>Fosc</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="475"/>
         <source>Light</source>
-        <translation>Llum</translation>
+        <translation>Clar</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="480"/>
@@ -879,7 +879,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="512"/>
         <source>Delete file from device</source>
-        <translation type="unfinished"/>
+        <translation>Eliminar fitxer del dispositiu</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="529"/>
@@ -1049,7 +1049,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="848"/>
         <source>Appearance</source>
-        <translation>Aparició</translation>
+        <translation>Aspecte</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="868"/>
@@ -1938,7 +1938,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="345"/>
         <source>The account is disabled</source>
-        <translation>La compte està desactivat</translation>
+        <translation>El compte està desactivat</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="346"/>
@@ -2389,7 +2389,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="841"/>
         <source>Enabling your account allows you to be contacted on Jami</source>
-        <translation>Abilitar el teu compte permet contactar amb Jami</translation>
+        <translation>Habilitar el teu compte permet que et contactin per Jami</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="851"/>
@@ -2414,7 +2414,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="863"/>
         <source>Theme</source>
-        <translation>Temàtica</translation>
+        <translation>Tema</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="864"/>
