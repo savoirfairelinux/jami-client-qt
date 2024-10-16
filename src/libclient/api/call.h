@@ -172,7 +172,7 @@ struct Info
                         callInfo["is_sharing"] = false;
                     } else {
                         callInfo["is_sharing"] = true;
-                        callInfo["preview_id"] = media[MediaAttributeKey::SOURCE];
+                        previewId = media[MediaAttributeKey::SOURCE];
                     }
                 }
                 if (media[MediaAttributeKey::ENABLED] == TRUE_STR
