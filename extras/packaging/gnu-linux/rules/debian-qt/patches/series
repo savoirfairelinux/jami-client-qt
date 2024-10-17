@@ -4,3 +4,4 @@
 0004-qtbase-fix-CMake-error.patch
 0005-qtwebengine-add-missing-chromium-dependencies.patch
 0006-qtwebengine-fix-libxml2-build-error.patch
+0007-qtwebengine-fix-v8-build-error.patch
