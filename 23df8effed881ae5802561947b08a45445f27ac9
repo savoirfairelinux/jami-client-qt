@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c735e914_1d5eae7e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-10-19T03:36:22Z",
+      "side": 1,
+      "message": "Add GitLab issues?\n\nhttps://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/575\nhttps://git.jami.net/savoirfairelinux/jami-project/-/issues/1429\n\nShould https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/575 issue be reopened?\n\nThank you",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 52
+      },
+      "revId": "23df8effed881ae5802561947b08a45445f27ac9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
