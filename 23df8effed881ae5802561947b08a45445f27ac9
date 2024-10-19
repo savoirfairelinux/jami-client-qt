@@ -46,6 +46,30 @@
       },
       "revId": "23df8effed881ae5802561947b08a45445f27ac9",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c97bae1_bcec0f2d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-10-19T14:47:06Z",
+      "side": 1,
+      "message": "Not adding these issues to the commit message as they\u0027re not related to the patch.\n\nI answered the second question on GitLab.",
+      "parentUuid": "24165e04_89762c83",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 52
+      },
+      "revId": "23df8effed881ae5802561947b08a45445f27ac9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
