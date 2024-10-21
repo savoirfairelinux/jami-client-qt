@@ -119,7 +119,8 @@ Item {
                             "title": JamiStrings.backupAccountHere,
                             "fileMode": JamiFileDialog.SaveFile,
                             "folder": StandardPaths.writableLocation(StandardPaths.HomeLocation) + "/Desktop",
-                            "nameFilters": [JamiStrings.jamiArchiveFiles, JamiStrings.allFiles]
+                            "nameFilters": [JamiStrings.jamiAccountFiles, JamiStrings.allFiles],
+                            "defaultSuffix": ".jac"
                         });
                     dlg.fileAccepted.connect(function (file) {
                             // Is there password? If so, go to password dialog, else, go to following directly

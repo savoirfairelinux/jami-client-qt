@@ -133,7 +133,7 @@ Rectangle {
                         "title": JamiStrings.openFile,
                         "fileMode": JamiFileDialog.OpenFile,
                         "folder": StandardPaths.writableLocation(StandardPaths.HomeLocation) + "/Desktop",
-                        "nameFilters": [JamiStrings.jamiArchiveFiles, JamiStrings.allFiles]
+                        "nameFilters": [JamiStrings.jamiAccountFiles, JamiStrings.allFiles]
                     });
                 dlg.fileAccepted.connect(function (file) {
                         filePath = file;
