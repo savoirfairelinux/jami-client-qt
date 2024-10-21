@@ -216,7 +216,7 @@ Item {
     property string backupAccountBtn: qsTr("Back up account")
     property string success: qsTr("Success")
     property string error: qsTr("Error")
-    property string jamiArchiveFiles: qsTr("Jami archive files (*.gz)")
+    property string jamiArchiveFiles: qsTr("Jami account (*.jac)")
     property string allFiles: qsTr("All files (*)")
 
     // ContactItemDelegate
