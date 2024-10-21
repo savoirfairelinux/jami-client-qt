@@ -349,7 +349,8 @@ SettingsPageBase {
                             "title": JamiStrings.backupAccountHere,
                             "fileMode": FileDialog.SaveFile,
                             "folder": StandardPaths.writableLocation(StandardPaths.DesktopLocation),
-                            "nameFilters": [JamiStrings.jamiArchiveFiles, JamiStrings.allFiles]
+                            "nameFilters": [JamiStrings.jamiArchiveFiles, JamiStrings.allFiles],
+                            "defaultSuffix": ".jami"
                         });
                     dlg.fileAccepted.connect(function (file) {
                             // is there password? If so, go to password dialog, else, go to following directly
