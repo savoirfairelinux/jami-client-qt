@@ -1643,7 +1643,7 @@ Kíván most frissíteni?</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="271"/>
         <source>Contact details</source>
-        <translation>Kapcsolattartó adatok</translation>
+        <translation>Kapcsolattartó részletei</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="274"/>
