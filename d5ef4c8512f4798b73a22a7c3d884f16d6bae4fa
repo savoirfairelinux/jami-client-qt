@@ -69,6 +69,30 @@
       },
       "revId": "d5ef4c8512f4798b73a22a7c3d884f16d6bae4fa",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3038ae6_0e502339",
+        "filename": "INSTALL.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 989
+      },
+      "writtenOn": "2024-10-22T18:20:48Z",
+      "side": 1,
+      "message": "Will do 👍",
+      "parentUuid": "d66c3d4b_61021218",
+      "range": {
+        "startLine": 348,
+        "startChar": 51,
+        "endLine": 348,
+        "endChar": 64
+      },
+      "revId": "d5ef4c8512f4798b73a22a7c3d884f16d6bae4fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
