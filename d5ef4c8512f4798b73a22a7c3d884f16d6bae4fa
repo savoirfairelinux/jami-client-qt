@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d66c3d4b_61021218",
+        "filename": "INSTALL.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-10-22T17:11:16Z",
+      "side": 1,
+      "message": "A person who\u0027s new to Jami probably won\u0027t know what \"contribution\" means in this context. I\u0027d suggest either adding a short explanation of the contrib system, or simply not using the word at all.",
+      "range": {
+        "startLine": 348,
+        "startChar": 51,
+        "endLine": 348,
+        "endChar": 64
+      },
+      "revId": "d5ef4c8512f4798b73a22a7c3d884f16d6bae4fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "156064b4_1b6b4c1a",
+        "filename": "INSTALL.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-10-22T17:11:16Z",
+      "side": 1,
+      "message": "Did you have a specific error (or type of error) in mind when writing this patch? Not all build issues can be solved by restarting from scratch, so I think it\u0027d be helpful to include more details here if possible.",
+      "range": {
+        "startLine": 348,
+        "startChar": 0,
+        "endLine": 348,
+        "endChar": 24
+      },
+      "revId": "d5ef4c8512f4798b73a22a7c3d884f16d6bae4fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
