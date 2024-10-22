@@ -236,6 +236,7 @@ parts:
     stage-packages:
       - libasound2
       - libasound2-plugins
+      - libproxy1v5
       - yad
 
   jami:
@@ -325,6 +326,12 @@ parts:
     - libgnutls28-dev # TLS
     - gnutls-bin
     - libssl-dev
+    - git            # PipeWire build dependencies
+    - libasound2-dev #
+    - libdbus-1-dev  # These packages are needed by the
+    - libglib2.0-dev # install-pipewire-from-source.sh
+    - ninja-build    # script in order to build PipeWire
+    - pkg-config     # from source.
     stage-packages:
     - libgnutls30
     - libavutil56
@@ -333,6 +340,7 @@ parts:
     - libgbm1
     - libgudev-1.0-0
     - libjsoncpp1
+    - libldap-2.4-2
     - libllvm12
     - libminizip1
     - libnm0
