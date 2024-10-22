@@ -16,6 +16,24 @@
       "message": "Changing this test to checking enabled status because in this change the message button visibility is always true.",
       "revId": "861da4a473075122d42a747abc82afb19439562e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf470ec1_a8224d4f",
+        "filename": "tests/qml/src/tst_ChatViewFooter.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2024-10-22T16:15:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "637304ba_63820f19",
+      "revId": "861da4a473075122d42a747abc82afb19439562e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
