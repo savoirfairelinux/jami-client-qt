@@ -45,6 +45,30 @@
       },
       "revId": "d5ef4c8512f4798b73a22a7c3d884f16d6bae4fa",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de4276a5_5020698c",
+        "filename": "INSTALL.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 989
+      },
+      "writtenOn": "2024-10-22T18:18:24Z",
+      "side": 1,
+      "message": "I had pain this morning trying to build qt client. I don\u0027t know what was exactly the issue but @andreas.hatziiliou@savoirfairelinux.com came with `./build.py --clean` and it worked instantly after that.\n\nSome infos:\n- I am on client:master and daemon:master (all submodules untouched)\n- It was building few months ago without any problems\n- Errors where related to contribs unknown type name (see below)\n- I tried `git clean -xdf` but no ameliorations.\n\n```\nIn file included from ../src/pj/ioqueue_epoll.c:80:\n../src/pj/ioqueue_common_abs.h:123:5: error: unknown type name ‘pj_ioqueue_cfg’\n  123 |     pj_ioqueue_cfg      cfg;\n      |     ^~~~~~~~~~~~~~\n```",
+      "parentUuid": "156064b4_1b6b4c1a",
+      "range": {
+        "startLine": 348,
+        "startChar": 0,
+        "endLine": 348,
+        "endChar": 24
+      },
+      "revId": "d5ef4c8512f4798b73a22a7c3d884f16d6bae4fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
