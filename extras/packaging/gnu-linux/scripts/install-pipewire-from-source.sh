@@ -9,7 +9,7 @@ OLD_WD=$(pwd)
 cd /tmp
 
 # Install PipeWire's build dependencies
-apt-get install --yes gcc git libasound2-dev libdbus-1-dev libglib2.0-dev ninja-build pkg-config
+# apt-get install --yes gcc git libasound2-dev libdbus-1-dev libglib2.0-dev ninja-build pkg-config
 
 # Get a version of Meson that's recent enough to build PipeWire 1.0.5 (the one available via apt is too old)
 wget -q https://github.com/mesonbuild/meson/releases/download/0.61.1/meson-0.61.1.tar.gz

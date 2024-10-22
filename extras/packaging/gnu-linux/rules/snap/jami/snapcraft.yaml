@@ -325,6 +325,12 @@ parts:
     - libgnutls28-dev # TLS
     - gnutls-bin
     - libssl-dev
+    - git # PipeWire
+    - libasound2-dev
+    - libdbus-1-dev
+    - libglib2.0-dev
+    - ninja-build
+    - pkg-config
     stage-packages:
     - libgnutls30
     - libavutil56
