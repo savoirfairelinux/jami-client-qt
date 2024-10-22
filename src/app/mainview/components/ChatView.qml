@@ -133,6 +133,10 @@ Rectangle {
                 target: CurrentConversation
 
                 function onIdChanged() {
+                    console.log(CurrentConversation.id);
+                    if (width < JamiTheme.mainViewMinWidth + extrasPanel.width) {
+                        extrasPanel.visible = false;
+                    }
                     if (!chatViewHeader.interactionButtonsVisibility)
                         extrasPanel.closePanel();
                 }
