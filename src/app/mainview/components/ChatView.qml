@@ -48,6 +48,7 @@ Rectangle {
     // state to restore it when leaving the call view.
     property int chatExtrasPanelIndex: extrasPanel.currentIndex
     onInCallViewChanged: {
+        console.log("call");
         if (inCallView) {
             chatExtrasPanelIndex = extrasPanel.currentIndex;
             extrasPanel.closePanel();
@@ -133,6 +134,10 @@ Rectangle {
                 target: CurrentConversation
 
                 function onIdChanged() {
+                    console.log(CurrentConversation.id);
+                    if (width < JamiTheme.mainViewMinWidth + extrasPanel.width) {
+                        extrasPanel.visible = false;
+                    }
                     if (!chatViewHeader.interactionButtonsVisibility)
                         extrasPanel.closePanel();
                 }
