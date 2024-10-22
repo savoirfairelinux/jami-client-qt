@@ -325,6 +325,12 @@ parts:
     - libgnutls28-dev # TLS
     - gnutls-bin
     - libssl-dev
+    - git            # PipeWire build dependencies
+    - libasound2-dev #
+    - libdbus-1-dev  # These packages are needed by the
+    - libglib2.0-dev # install-pipewire-from-source.sh
+    - ninja-build    # script in order to build PipeWire
+    - pkg-config     # from source.
     stage-packages:
     - libgnutls30
     - libavutil56
