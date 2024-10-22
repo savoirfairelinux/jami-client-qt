@@ -343,6 +343,15 @@ Built client could be find in `build/Jami`
 
 - These environment variables will be temporarily set when using build-windows.py to run tests.
 
+## Troubleshooting
+
+For some reasons, errors can happens when building contributions. Clean and restart the installation.
+
+```bash
+./build.py --clean
+./build.py --install
+```
+
 ## Debugging
 
 Compile the client with with `-DCMAKE_BUILD_TYPE=Debug`.
