@@ -343,9 +343,25 @@ Built client could be find in `build/Jami`
 
 - These environment variables will be temporarily set when using build-windows.py to run tests.
 
+## Troubleshooting
+
+Build errors may occur if daemon dependencies have been updated since the last build, as the script may not fully detect or rebuild them in the correct order. Separately, you may also occasionally encounter linker errors. 
+
+To resolve this, clean and restart the installation to ensure a fresh rebuild of all components:
+
+```bash
+./build.py --clean # call `git clean -xfd` in the main repo + all the submodules
+./build.py --install
+```
+
 ## Debugging
 
 Compile the client with with `-DCMAKE_BUILD_TYPE=Debug`.
 
-Then, if you want to enable logging when running `jami`, launch it
-with `-d` or `--debug`.
+Then, if you want to enable logging when running `jami`, launch it with `-d` or `--debug`.
+
+To diagnose crash, use GDB:
+
+```sh
+gdb --args ./jami -d
+```
