@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "380ccccb_2ee81a94",
+        "filename": "src/libclient/api/account.h",
+        "patchSetId": 55
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 989
+      },
+      "writtenOn": "2024-10-23T17:34:28Z",
+      "side": 1,
+      "message": "imo `initial` would be more appropriate",
+      "range": {
+        "startLine": 194,
+        "startChar": 0,
+        "endLine": 194,
+        "endChar": 2
+      },
+      "revId": "5bb90dca284a3b9c58c3b700088fdff2089866ff",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ede92ce_5a537e7d",
+        "filename": "src/libclient/api/account.h",
+        "patchSetId": 55
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 989
+      },
+      "writtenOn": "2024-10-23T17:34:28Z",
+      "side": 1,
+      "message": "imo full name will make more sense",
+      "range": {
+        "startLine": 195,
+        "startChar": 0,
+        "endLine": 195,
+        "endChar": 2
+      },
+      "revId": "5bb90dca284a3b9c58c3b700088fdff2089866ff",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
