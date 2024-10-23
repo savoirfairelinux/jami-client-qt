@@ -230,6 +230,12 @@ Control {
         RowLayout {
             id: msgRowlayout
 
+            HoverHandler {
+                id: parenthandler
+            }
+
+            property bool msgHovered: CurrentAccount.type !== Profile.Type.SIP && root.type !== Interaction.Type.CALL && Body !== "" && (bubbleArea.bubbleHovered || hovered || more.hovered || share.hovered || parenthandler.hovered)
+
             Layout.preferredHeight: {
                 var h = innerContent.height + root.extraHeight;
                 if (emojiReactions.emojis !== "")
@@ -282,10 +288,6 @@ Control {
                     height: JamiTheme.emojiPushButtonSize
                     anchors.verticalCenter: bubble.verticalCenter
 
-                    HoverHandler {
-                        id: bgHandler
-                    }
-
                     PushButton {
                         id: more
                         objectName: "more"
@@ -299,7 +301,7 @@ Control {
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.right: isOutgoing ? optionButtonItem.right : undefined
                         anchors.left: !isOutgoing ? optionButtonItem.left : undefined
-                        visible: CurrentAccount.type !== Profile.Type.SIP && root.type !== Interaction.Type.CALL && Body !== "" && (bubbleArea.bubbleHovered || hovered || reply.hovered || share.hovered || bgHandler.hovered)
+                        visible: msgRowlayout.msgHovered
                         source: JamiResources.more_vert_24dp_svg
                         width: optionButtonItem.width / 4
                         height: optionButtonItem.height
@@ -309,7 +311,7 @@ Control {
 
                         function setBindings() {
                             more.isOpen = false;
-                            visible = Qt.binding(() => CurrentAccount.type !== Profile.Type.SIP && root.type !== Interaction.Type.CALL && Body !== "" && (bubbleArea.bubbleHovered || hovered || reply.hovered || share.hovered || bgHandler.hovered));
+                            visible = Qt.binding(() => msgRowlayout.msgHovered);
                             imageColor = Qt.binding(() => hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor);
                             normalColor = Qt.binding(() => JamiTheme.primaryBackgroundColor);
                         }
@@ -354,7 +356,7 @@ Control {
                         anchors.rightMargin: 5
                         anchors.right: isOutgoing ? more.left : undefined
                         anchors.left: !isOutgoing ? more.right : undefined
-                        visible: CurrentAccount.type !== Profile.Type.SIP && root.type !== Interaction.Type.CALL && Body !== "" && (bubbleArea.bubbleHovered || hovered || more.hovered || share.hovered || bgHandler.hovered)
+                        visible: msgRowlayout.msgHovered
 
                         onClicked: {
                             MessagesAdapter.editId = "";
@@ -378,13 +380,13 @@ Control {
                         anchors.rightMargin: 5
                         anchors.right: isOutgoing ? reply.left : undefined
                         anchors.left: !isOutgoing ? reply.right : undefined
-                        visible: CurrentAccount.type !== Profile.Type.SIP && root.type !== Interaction.Type.CALL && Body !== "" && (bubbleArea.bubbleHovered || hovered || reply.hovered || more.hovered || bgHandler.hovered)
+                        visible: msgRowlayout.msgHovered
                         property bool isOpen: false
                         property var obj: undefined
 
                         function setBindings() { // when the popup is closed, setBindings is called to reset the icon's visual settings
                             share.isOpen = false;
-                            visible = Qt.binding(() => CurrentAccount.type !== Profile.Type.SIP && root.type !== Interaction.Type.CALL && Body !== "" && (bubbleArea.bubbleHovered || hovered || reply.hovered || more.hovered || bgHandler.hovered));
+                            visible = Qt.binding(() => msgRowlayout.msgHovered);
                             imageColor = Qt.binding(() => hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor);
                             normalColor = Qt.binding(() => JamiTheme.primaryBackgroundColor);
                         }
