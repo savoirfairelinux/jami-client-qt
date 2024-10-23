@@ -231,7 +231,9 @@ public Q_SLOTS:
      * Listen from CallbacksHandler when a conference is created.
      * @param callId
      */
-    void slotConferenceCreated(const QString& accountId, const QString& conversationId, const QString& callId);
+    void slotConferenceCreated(const QString& accountId,
+                               const QString& conversationId,
+                               const QString& callId);
     void slotConferenceChanged(const QString& accountId,
                                const QString& callId,
                                const QString& state);
@@ -372,11 +374,14 @@ initializeMediaList(VectorMapStringString& mediaList, bool audioOnly)
                          {MediaAttributeKey::LABEL, "audio_0"}});
     if (audioOnly)
         return;
+    const auto defaultCamera = VideoManager::instance().getDefaultDevice();
+    QString cameraMRL = "camera://" + defaultCamera;
     mediaList.push_back({{MediaAttributeKey::MEDIA_TYPE, MediaAttributeValue::VIDEO},
                          {MediaAttributeKey::ENABLED, TRUE_STR},
                          {MediaAttributeKey::MUTED, FALSE_STR},
-                         {MediaAttributeKey::SOURCE, ""},
+                         {MediaAttributeKey::SOURCE, cameraMRL},
                          {MediaAttributeKey::LABEL, "video_0"}});
+    return;
 }
 
 QString
@@ -397,7 +402,8 @@ CallModel::createCall(const QString& uri, bool isAudioOnly, VectorMapStringStrin
             pimpl_->waitForConference_ = uri;
             return {};
         }
-        qWarning() << "no call placed between (account: " << owner.id << ", contact: " << uri << ")";
+        qWarning() << "no call placed between (account: " << owner.id << ", contact: " << uri
+                   << ")";
         return "";
     }
 
@@ -1708,7 +1714,9 @@ CallModel::hasCall(const QString& callId) const
 }
 
 void
-CallModelPimpl::slotConferenceCreated(const QString& accountId, const QString& conversationId, const QString& confId)
+CallModelPimpl::slotConferenceCreated(const QString& accountId,
+                                      const QString& conversationId,
+                                      const QString& confId)
 {
     if (accountId != linked.owner.id)
         return;
