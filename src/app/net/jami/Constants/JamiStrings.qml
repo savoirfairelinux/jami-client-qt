@@ -218,6 +218,7 @@ Item {
     property string error: qsTr("Error")
     property string jamiArchiveFiles: qsTr("Jami archive files (*.gz)")
     property string allFiles: qsTr("All files (*)")
+    property string JamiArchiveSuffix: "gz"
 
     // ContactItemDelegate
     property string name: qsTr("name")
