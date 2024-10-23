@@ -22,6 +22,30 @@
       },
       "revId": "f62599e47fd9fccf47f3d112455fc229461ce128",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "836e3047_490dc5e0",
+        "filename": "src/app/mainview/components/BackupTipBox.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2024-10-23T14:51:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0030763_a3b7d0bc",
+      "range": {
+        "startLine": 123,
+        "startChar": 52,
+        "endLine": 123,
+        "endChar": 53
+      },
+      "revId": "f62599e47fd9fccf47f3d112455fc229461ce128",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
