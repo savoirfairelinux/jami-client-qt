@@ -93,6 +93,30 @@
       },
       "revId": "d5ef4c8512f4798b73a22a7c3d884f16d6bae4fa",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5b3ce23_a6a45c35",
+        "filename": "INSTALL.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-10-23T15:12:43Z",
+      "side": 1,
+      "message": "I\u0027ve seen similar errors in the past. I don\u0027t know exactly in what conditions they occur but I think it\u0027s more likely to happen if you haven\u0027t built Jami in a while and some of the contribs have been updated in the meantime; it seems that the build script sometimes fails to detect everything that should be rebuilt (or maybe doesn\u0027t rebuild them in the right order, I\u0027m not sure). Sometimes I get a linker error instead of an unknown type name error; in either case doing a clean build generally solves the issue.\n\nI\u0027m guessing you did the `git clean -xfd` in the `jami-client-qt` folder, which doesn\u0027t help because `git clean` doesn\u0027t apply recursively to git submodules. You need to do `git clean -xfd` from the `daemon` subfolder if you want to clean the contribs (all `./build.py --clean` does is call `git clean -xfd` in the main repo + all the submodules).",
+      "parentUuid": "de4276a5_5020698c",
+      "range": {
+        "startLine": 348,
+        "startChar": 0,
+        "endLine": 348,
+        "endChar": 24
+      },
+      "revId": "d5ef4c8512f4798b73a22a7c3d884f16d6bae4fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
