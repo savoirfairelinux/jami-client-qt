@@ -89,8 +89,10 @@ BaseContextMenu {
         emojiPicker.emojiIsPicked.connect(function (content) {
                 if (emojiReplied.includes(content)) {
                     MessagesAdapter.removeEmojiReaction(CurrentConversation.id, content, msgId);
+                    parent.setBindings();
                 } else {
                     MessagesAdapter.addEmojiReaction(CurrentConversation.id, content, msgId);
+                    parent.setBindings();
                 }
             });
         if (emojiPicker !== null) {
@@ -107,8 +109,12 @@ BaseContextMenu {
     property bool isScrolling: listView.verticalScrollBar.active
 
     onOpened: root.closeWithoutAnimation = false
-    onClosed: if (emojiPicker)
-        emojiPicker.closeEmojiPicker()
+    onClosed: {
+        if (emojiPicker) {
+            emojiPicker.closeEmojiPicker();
+        }
+    } 
+   
 
     function getQuickEmojiListModel() {
         const defaultModel = ["👍", "👎", "😂"];
