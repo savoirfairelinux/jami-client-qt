@@ -646,6 +646,7 @@ Control {
                 id: status
                 Layout.alignment: Qt.AlignBottom
                 width: JamiTheme.avatarReadReceiptSize
+                property bool isAlone: CurrentConversation.members.count === 1
 
                 Rectangle {
                     id: sending
@@ -656,7 +657,7 @@ Control {
                     border.color: JamiTheme.sending
                     border.width: 1
                     color: JamiTheme.transparentColor
-                    visible: isOutgoing && Status === Interaction.Status.SENDING
+                    visible: isOutgoing && Status === Interaction.Status.SENDING && !status.isAlone
 
                     anchors.bottom: parent.bottom
                 }
@@ -686,6 +687,24 @@ Control {
 
                     anchors.bottom: parent.bottom
                     readers: root.readers
+                }
+
+               Component {
+                    id: selfReadIconComp
+                    Avatar {
+                        width: JamiTheme.avatarReadReceiptSize
+                        height: JamiTheme.avatarReadReceiptSize
+                        mode: Avatar.Mode.Account
+                        imageId: CurrentAccount.id
+                        showPresenceIndicator: false
+                        Component.onCompleted: console.warn("+selfReadIconComp")
+                        Component.onDestruction: console.warn("-selfReadIconComp")
+                    }
+                }
+                Loader {
+                    active: status.isAlone && CurrentConversation.lastSelfMessageId === Id
+                    sourceComponent: selfReadIconComp
+                    anchors.bottom: parent.bottom
                 }
             }
         }
