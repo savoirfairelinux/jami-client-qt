@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23da1074_1da07fc4",
+        "filename": "src/app/crashreportclients/crashpad.cpp",
+        "patchSetId": 25
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-10-28T15:56:29Z",
+      "side": 1,
+      "message": "GetPendingReports -\u003e GetCompletedReports",
+      "range": {
+        "startLine": 224,
+        "startChar": 37,
+        "endLine": 224,
+        "endChar": 54
+      },
+      "revId": "afb2353a1650ca2e7839ccba65496b4a580bebee",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1e5fc47_8f7a1557",
+        "filename": "src/app/crashreportclients/crashpad.cpp",
+        "patchSetId": 25
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-10-28T15:56:29Z",
+      "side": 1,
+      "message": "I think there\u0027s a race condition here. When `RequestUpload` is called, the report is put in the \"pending\" state. After `startHandler` is called, the report is eventually uploaded and put back in the \"completed\" state. However, it\u0027s possible for the report to still be in the \"pending\" state when `GetCompletedReports` is called by `clearAllReports`, which means the report won\u0027t be in the list returned by `GetCompletedReports` and therefore won\u0027t get deleted.",
+      "range": {
+        "startLine": 249,
+        "startChar": 4,
+        "endLine": 249,
+        "endChar": 38
+      },
+      "revId": "afb2353a1650ca2e7839ccba65496b4a580bebee",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
