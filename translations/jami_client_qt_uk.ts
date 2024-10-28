@@ -159,7 +159,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="40"/>
         <source>Migrating to the Swarm technology will enable synchronizing this conversation across multiple devices and improve reliability. The legacy conversation history will be cleared in the process.</source>
-        <translation>Перехід до технології Swarm дозволить синхронізувати цю розмову на декількох пристроях і поліпшити надійність.</translation>
+        <translation>Перехід на технологію Swarm дозволить синхронізувати історію спілкування на різних пристроях і підвищити надійність. При цьому стару історію буде видалено.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="44"/>
@@ -728,7 +728,7 @@ Jami зараз завершить роботу.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="348"/>
         <source>Back to Call</source>
-        <translation>Повертаюся до телефону</translation>
+        <translation>Повернутися до дзвінка</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="374"/>
@@ -753,7 +753,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="388"/>
         <source>Your account will be created and stored locally.</source>
-        <translation>Ваш рахунок буде створений і зберігається місцево.</translation>
+        <translation>Ваш обліковий запис буде створено та збережено локально.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="389"/>
@@ -802,7 +802,7 @@ The account will be lost if this device is lost or the application is uninstalle
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="424"/>
         <source>Encrypt account</source>
-        <translation>Зашифрований рахунок</translation>
+        <translation>Зашифрувати обліковий запис</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="427"/>
@@ -813,7 +813,8 @@ The account will be lost if this device is lost or the application is uninstalle
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="433"/>
         <source>This profile is only shared with this account's contacts.
 The profile can be changed at all times from the account&apos;s settings.</source>
-        <translation>Цей профіль ділиться лише з контактами цього рахунку. Профіль можна змінювати в будь-який час з налаштувань рахунку.</translation>
+        <translation>Цей профіль доступний лише контактам цього акаунта.
+Профіль можна будь-коли змінити в налаштуваннях акаунта.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="434"/>
@@ -823,7 +824,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="435"/>
         <source>A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected by a password.</source>
-        <translation>Обліковий запис Jami створено та жбережено локально лише на цьому пристрої у вигляді архіву, що містить ключі вашого облікового запису. Доступ до цього архіву може бути захищений паролем за бажанням.</translation>
+        <translation>Обліковий запис Jami створюється і зберігається локально тільки на цьому пристрої у вигляді архіву з ключами вашого облікового запису. Доступ до цього архіву можна додатково захистити паролем.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="436"/>
@@ -863,7 +864,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="485"/>
         <source>Default settings</source>
-        <translation>Позадумовні налаштування</translation>
+        <translation>Параметри за замовчуванням</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="488"/>
@@ -898,7 +899,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="593"/>
         <source>Enter account password</source>
-        <translation>Введіть пароль рахунку</translation>
+        <translation>Введіть пароль облікового запису</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="594"/>
@@ -923,7 +924,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="599"/>
         <source>Link new device</source>
-        <translation>Зв&apos;язок нового пристрою</translation>
+        <translation>Підключити новий пристрій</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="600"/>
@@ -1063,7 +1064,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="869"/>
         <source>If you enjoy using Jami and believe in our mission, would you make a donation?</source>
-        <translation>Якщо вам подобається Jami і ви вірите в нашу місію, чи не зробили б ви пожертву?</translation>
+        <translation>Якщо вам подобається користуватися Jami і ви вірите в нашу місію, чи не могли б ви зробити пожертву?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="870"/>
@@ -1073,7 +1074,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="871"/>
         <source>Enable donation campaign</source>
-        <translation>Увімкнути кампанію збору пожертв</translation>
+        <translation>Увімкнути кампанію по збору пожертв</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="874"/>
@@ -1245,12 +1246,12 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="780"/>
         <source>Current host for this swarm seems unreachable. Do you want to host the call?</source>
-        <translation>Теперішній хост для цього рога здається недосяжним.</translation>
+        <translation>Поточний хост для цього рою здається недоступним. Бажаєте прийняти виклик?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="784"/>
         <source>Remove current device</source>
-        <translation>Виведіть поточне пристрої</translation>
+        <translation>Видалити поточний пристрій</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="785"/>
@@ -1275,7 +1276,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="807"/>
         <source>Default host (calls)</source>
-        <translation>Позавтовий хост (званки)</translation>
+        <translation>Хост за замовчуванням (дзвінки)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="810"/>
@@ -2133,7 +2134,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="410"/>
         <source>Delete your account</source>
-        <translation>Збийте свій рахунок</translation>
+        <translation>Видаліть свій обліковий запис</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="411"/>
