@@ -117,6 +117,54 @@
       },
       "revId": "d5ef4c8512f4798b73a22a7c3d884f16d6bae4fa",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94e18130_f1ce85e4",
+        "filename": "INSTALL.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 989
+      },
+      "writtenOn": "2024-10-29T14:32:37Z",
+      "side": 1,
+      "message": "I updated the sentence to talk about `daemon dependencies` instead of `contribs`.",
+      "parentUuid": "c3038ae6_0e502339",
+      "range": {
+        "startLine": 348,
+        "startChar": 51,
+        "endLine": 348,
+        "endChar": 64
+      },
+      "revId": "d5ef4c8512f4798b73a22a7c3d884f16d6bae4fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88660c65_9a4a5f56",
+        "filename": "INSTALL.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 989
+      },
+      "writtenOn": "2024-10-29T14:32:37Z",
+      "side": 1,
+      "message": "I updated the sentence to be more clear on:\n\n- linker error\n- fact that the build error may be related to the fact that the contribs have been updated",
+      "parentUuid": "a5b3ce23_a6a45c35",
+      "range": {
+        "startLine": 348,
+        "startChar": 0,
+        "endLine": 348,
+        "endChar": 24
+      },
+      "revId": "d5ef4c8512f4798b73a22a7c3d884f16d6bae4fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
