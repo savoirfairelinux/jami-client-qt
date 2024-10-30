@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0d7b8385_a1490142",
+        "filename": "src/app/mainview/components/MessageBar.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2024-10-30T21:11:18Z",
+      "side": 1,
+      "message": "The sole reason for the existence of this ugly property is to deal with the case where the messagebar is in minimized state and then needs to become maximized(take up its own entire row and not be aligned beside the right part of the format bar)\nThe problem is that both the conditions to be maximized remain false and if we force set that value it causes a loop. Please lmk if you can think of a better way to do this.",
+      "parentUuid": "3f4fbc55_ae409598",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 159
+      },
+      "revId": "1a15b54f52a1755aa375f5fbe32b9d50ad936539",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "19aa60fd_678ef424",
         "filename": "src/app/mainview/components/MessageBar.qml",
         "patchSetId": 18
@@ -37,6 +61,30 @@
       "writtenOn": "2024-10-30T20:15:40Z",
       "side": 1,
       "message": "how do you know this is the default height?",
+      "range": {
+        "startLine": 58,
+        "startChar": 8,
+        "endLine": 58,
+        "endChar": 92
+      },
+      "revId": "1a15b54f52a1755aa375f5fbe32b9d50ad936539",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a44d6cd_5d20f33d",
+        "filename": "src/app/mainview/components/MessageBar.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2024-10-30T21:11:18Z",
+      "side": 1,
+      "message": "This is the default height of 2 lines, should I either set a constant or make it be the same as say the button height?",
+      "parentUuid": "19aa60fd_678ef424",
       "range": {
         "startLine": 58,
         "startChar": 8,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "80a34d32_0e9841f7",
+        "filename": "src/app/mainview/components/MessageBar.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2024-10-30T21:11:18Z",
+      "side": 1,
+      "message": "Its the sum of the lengths of the two components in the messageformatbar (first and second row). This used to be dealt with via some constant that no longer works. This will break if we change the lengths of the components in the format row. I can make a property which will abstract this constant.",
+      "parentUuid": "2aa0fc8a_0a9ac037",
+      "range": {
+        "startLine": 76,
+        "startChar": 20,
+        "endLine": 76,
+        "endChar": 23
+      },
+      "revId": "1a15b54f52a1755aa375f5fbe32b9d50ad936539",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "afa1aaac_e7d808f1",
         "filename": "src/app/mainview/components/MessageBar.qml",
         "patchSetId": 18
@@ -83,6 +155,30 @@
       "writtenOn": "2024-10-30T20:15:40Z",
       "side": 1,
       "message": "QML format",
+      "range": {
+        "startLine": 285,
+        "startChar": 8,
+        "endLine": 312,
+        "endChar": 9
+      },
+      "revId": "1a15b54f52a1755aa375f5fbe32b9d50ad936539",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae6d2ccf_ea7df06a",
+        "filename": "src/app/mainview/components/MessageBar.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2024-10-30T21:11:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "afa1aaac_e7d808f1",
       "range": {
         "startLine": 285,
         "startChar": 8,
@@ -110,6 +206,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f664f37_be9f1421",
+        "filename": "src/app/mainview/components/MessageFormatBar.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2024-10-30T21:11:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ced5b8a_3be0a869",
+      "revId": "1a15b54f52a1755aa375f5fbe32b9d50ad936539",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "20904427_0fbf03d8",
@@ -123,6 +237,30 @@
       "writtenOn": "2024-10-30T20:15:40Z",
       "side": 1,
       "message": "I would consider this unrelated to the message format.",
+      "range": {
+        "startLine": 478,
+        "startChar": 12,
+        "endLine": 545,
+        "endChar": 13
+      },
+      "revId": "1a15b54f52a1755aa375f5fbe32b9d50ad936539",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd757dcb_6ef47f58",
+        "filename": "src/app/mainview/components/MessageFormatBar.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2024-10-30T21:11:18Z",
+      "side": 1,
+      "message": "Should I update the name to be something else? Also should I further factor out components such as the show more button?",
+      "parentUuid": "20904427_0fbf03d8",
       "range": {
         "startLine": 478,
         "startChar": 12,
