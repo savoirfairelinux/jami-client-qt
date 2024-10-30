@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9f2bde6_2ed3ca3b",
+        "filename": "src/app/conversationlistmodelbase.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2024-10-30T21:21:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "866dc00b_22faa856",
+      "revId": "f18c91e440cd27eea799b54ef8c82f75ce1c2010",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "97d94a9d_5a470314",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-10-30T20:20:14Z",
       "side": 1,
       "message": "clang-format",
+      "range": {
+        "startLine": 383,
+        "startChar": 41,
+        "endLine": 383,
+        "endChar": 44
+      },
+      "revId": "f18c91e440cd27eea799b54ef8c82f75ce1c2010",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6719932b_06c94690",
+        "filename": "src/app/lrcinstance.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2024-10-30T21:21:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97d94a9d_5a470314",
       "range": {
         "startLine": 383,
         "startChar": 41,
