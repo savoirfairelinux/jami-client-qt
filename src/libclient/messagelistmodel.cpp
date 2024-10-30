@@ -223,7 +223,7 @@ MessageListModel::updateStatus(const QString& id,
         return false;
     }
     VectorInt roles;
-    if (it->second.status == newStatus) {
+    if (it->second.status >= newStatus) {
         return false;
     }
     it->second.status = newStatus;
