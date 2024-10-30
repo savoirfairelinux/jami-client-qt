@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "866dc00b_22faa856",
+        "filename": "src/app/conversationlistmodelbase.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-10-30T20:20:14Z",
+      "side": 1,
+      "message": "clang-format + avoid introducing unrelated whitespace/newlines into the code when working",
+      "revId": "f18c91e440cd27eea799b54ef8c82f75ce1c2010",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97d94a9d_5a470314",
+        "filename": "src/app/lrcinstance.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-10-30T20:20:14Z",
+      "side": 1,
+      "message": "clang-format",
+      "range": {
+        "startLine": 383,
+        "startChar": 41,
+        "endLine": 383,
+        "endChar": 44
+      },
+      "revId": "f18c91e440cd27eea799b54ef8c82f75ce1c2010",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
