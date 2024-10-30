@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c1a6b7f_4bdb137c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-10-30T22:32:34Z",
+      "side": 1,
+      "message": "Thank you @andreas.hatziiliou@savoirfairelinux.com for your `+1` review.\n\nIf the `Rebase` button is pressed, does your `+1` disappear?\n\nDo you know when this patch can be merged?\n\nThank you",
+      "revId": "b6bd692b09990888781e5eac3c7a3cb23a4f5ff3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
