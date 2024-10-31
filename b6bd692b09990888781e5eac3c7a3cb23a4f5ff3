@@ -34,6 +34,24 @@
       "parentUuid": "9c1a6b7f_4bdb137c",
       "revId": "b6bd692b09990888781e5eac3c7a3cb23a4f5ff3",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "627a9aae_83f3cd13",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-10-31T20:05:06Z",
+      "side": 1,
+      "message": "Pressed `Rebase` and unfortunately your `+1` was removed even though there were no changes to code or commit msg. Thank you for advising you will go over this patch with one of your colleagues soon.",
+      "parentUuid": "ec164275_d73a39b0",
+      "revId": "b6bd692b09990888781e5eac3c7a3cb23a4f5ff3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
