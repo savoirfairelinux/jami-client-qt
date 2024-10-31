@@ -104,8 +104,20 @@ BaseModalDialog {
                                 font.pixelSize: JamiTheme.textFontSize
                                 padding: 0
                                 readonly property bool isBeta: AppVersionManager.isCurrentVersionBeta()
-                                text: JamiStrings.buildID + ": " + UtilsAdapter.getBuildIDStr() + "\n" +
-                                      JamiStrings.version + ": " + (isBeta ? "(Beta) " : "") + UtilsAdapter.getVersionStr()
+                                text: {
+                                    // HACK: Only display the version string if it has been constructed properly.
+                                    // This is a workaround for an issue that occurs due to the way Linux
+                                    // packaging is done, where the git repository is not available in the
+                                    // build source at configure time, which is when the version files are
+                                    // generated, so we prevent a "." from being displayed if the version
+                                    // string is not available.
+                                    var contentStr = JamiStrings.buildID + ": " + UtilsAdapter.getBuildIDStr();
+                                    const versionStr = UtilsAdapter.getVersionStr()
+                                    if (versionStr.length > 1) {
+                                        contentStr += "\n" + JamiStrings.version + ": " + (isBeta ? "(Beta) " : "") + versionStr
+                                    }
+                                    return contentStr
+                                }
 
                                 selectByMouse: true
                                 readOnly: true
