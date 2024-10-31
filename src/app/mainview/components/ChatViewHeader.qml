@@ -46,6 +46,8 @@ Rectangle {
         }
     }
 
+    property bool detailsButtonVisibility: detailsButton.visible
+
     readonly property bool interactionButtonsVisibility: {
         if (CurrentConversation.inCall)
             return false;
