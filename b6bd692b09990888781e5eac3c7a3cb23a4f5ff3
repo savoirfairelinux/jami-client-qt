@@ -16,6 +16,24 @@
       "message": "Thank you @andreas.hatziiliou@savoirfairelinux.com for your `+1` review.\n\nIf the `Rebase` button is pressed, does your `+1` disappear?\n\nDo you know when this patch can be merged?\n\nThank you",
       "revId": "b6bd692b09990888781e5eac3c7a3cb23a4f5ff3",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec164275_d73a39b0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2024-10-31T13:39:58Z",
+      "side": 1,
+      "message": "I think the +1 will be preserved if its considered a \"trivial\" rebase (i.e. no changes to code or commit msg). For merging I\u0027ll go over it with one of my colleagues soon and then we will go ahead.",
+      "parentUuid": "9c1a6b7f_4bdb137c",
+      "revId": "b6bd692b09990888781e5eac3c7a3cb23a4f5ff3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
