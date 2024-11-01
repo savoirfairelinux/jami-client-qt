@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa3acd8e_3f611321",
+        "filename": "src/app/utils.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-11-01T19:33:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b62fddf3_21b9893a",
+      "range": {
+        "startLine": 173,
+        "startChar": 82,
+        "endLine": 173,
+        "endChar": 83
+      },
+      "revId": "9d885c1e7cd6e2f7fe63ce55af4d98984942836a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ebc94fa0_cfa2d047",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-11-01T14:36:03Z",
       "side": 1,
       "message": "Remove extra space",
+      "range": {
+        "startLine": 201,
+        "startChar": 84,
+        "endLine": 201,
+        "endChar": 85
+      },
+      "revId": "9d885c1e7cd6e2f7fe63ce55af4d98984942836a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b431aec7_1ee8b587",
+        "filename": "src/app/utils.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-11-01T19:33:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ebc94fa0_cfa2d047",
       "range": {
         "startLine": 201,
         "startChar": 84,
@@ -70,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b282d05b_aa3add02",
+        "filename": "src/app/utils.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-11-01T19:33:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06d18ceb_b931c740",
+      "range": {
+        "startLine": 270,
+        "startChar": 25,
+        "endLine": 270,
+        "endChar": 44
+      },
+      "revId": "9d885c1e7cd6e2f7fe63ce55af4d98984942836a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bb9fef65_765281aa",
@@ -93,6 +165,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "69b14282_0d7530b6",
+        "filename": "src/libclient/database.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-11-01T19:33:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb9fef65_765281aa",
+      "range": {
+        "startLine": 107,
+        "startChar": 15,
+        "endLine": 107,
+        "endChar": 27
+      },
+      "revId": "9d885c1e7cd6e2f7fe63ce55af4d98984942836a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9f6b6c6a_7001d879",
@@ -106,6 +202,30 @@
       "writtenOn": "2024-11-01T14:12:13Z",
       "side": 1,
       "message": "`remapping shared`",
+      "range": {
+        "startLine": 202,
+        "startChar": 47,
+        "endLine": 202,
+        "endChar": 69
+      },
+      "revId": "9d885c1e7cd6e2f7fe63ce55af4d98984942836a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aab55d44_969c38fb",
+        "filename": "src/libclient/shmrenderer.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-11-01T19:33:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f6b6c6a_7001d879",
       "range": {
         "startLine": 202,
         "startChar": 47,
