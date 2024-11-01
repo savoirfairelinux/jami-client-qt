@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ede1510_84db4892",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2024-11-01T13:34:30Z",
+      "side": 1,
+      "message": "I second this, perhaps having some way to connect people to the forum if they have question, and changing the feedback to feedback/bugs and pointing it to gitlab?",
+      "parentUuid": "302a45ff_06182be3",
+      "revId": "095d13e0a3bdad7189872d9d34de28e26c9f9025",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aea7ffed_e38bf044",
