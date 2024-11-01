@@ -3,6 +3,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b62fddf3_21b9893a",
+        "filename": "src/app/utils.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-11-01T14:36:03Z",
+      "side": 1,
+      "message": "Remove extra space (`qDebug` will automatically insert a space before printing `desktopPath`).",
+      "range": {
+        "startLine": 173,
+        "startChar": 82,
+        "endLine": 173,
+        "endChar": 83
+      },
+      "revId": "9d885c1e7cd6e2f7fe63ce55af4d98984942836a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebc94fa0_cfa2d047",
+        "filename": "src/app/utils.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-11-01T14:36:03Z",
+      "side": 1,
+      "message": "Remove extra space",
+      "range": {
+        "startLine": 201,
+        "startChar": 84,
+        "endLine": 201,
+        "endChar": 85
+      },
+      "revId": "9d885c1e7cd6e2f7fe63ce55af4d98984942836a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06d18ceb_b931c740",
+        "filename": "src/app/utils.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-11-01T14:36:03Z",
+      "side": 1,
+      "message": "`Unable to remove`",
+      "range": {
+        "startLine": 270,
+        "startChar": 25,
+        "endLine": 270,
+        "endChar": 44
+      },
+      "revId": "9d885c1e7cd6e2f7fe63ce55af4d98984942836a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bb9fef65_765281aa",
         "filename": "src/libclient/database.cpp",
         "patchSetId": 12
