@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb9fef65_765281aa",
+        "filename": "src/libclient/database.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-11-01T14:12:13Z",
+      "side": 1,
+      "message": "`Unable to`",
+      "range": {
+        "startLine": 107,
+        "startChar": 15,
+        "endLine": 107,
+        "endChar": 27
+      },
+      "revId": "9d885c1e7cd6e2f7fe63ce55af4d98984942836a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f6b6c6a_7001d879",
+        "filename": "src/libclient/shmrenderer.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-11-01T14:12:13Z",
+      "side": 1,
+      "message": "`remapping shared`",
+      "range": {
+        "startLine": 202,
+        "startChar": 47,
+        "endLine": 202,
+        "endChar": 69
+      },
+      "revId": "9d885c1e7cd6e2f7fe63ce55af4d98984942836a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
