@@ -81,7 +81,7 @@ SelectableListProxyModel::dataForRow(int row, int role) const
 void
 SelectableListProxyModel::selectSourceRow(int row)
 {
-    // note: the convId <-> index binding loop present
+    // note: the convId ↔ index binding loop present
     // is broken here
     if (row == -1 || selectedSourceIndex_.row() == row)
         return;

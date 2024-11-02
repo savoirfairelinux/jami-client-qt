@@ -130,7 +130,7 @@ Window {
             }
             ListElement {
                 shortcut: "Ctrl+Shift+D"
-                description: qsTr("Decline call request")
+                description: qsTr("Decline call")
             }
             ListElement {
                 shortcut: "M"
