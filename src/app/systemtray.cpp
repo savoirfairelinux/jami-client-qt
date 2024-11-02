@@ -222,13 +222,13 @@ SystemTray::showNotification(const QString& id,
 
     if (pimpl_->actions) {
         if (type == NotificationType::CALL) {
-            pimpl_->addNotificationAction(n, tr("Answer"), (void*) answerCall);
-            pimpl_->addNotificationAction(n, tr("Decline"), (void*) declineCall);
+            pimpl_->addNotificationAction(n, tr("Answer call"), (void*) answerCall);
+            pimpl_->addNotificationAction(n, tr("Decline call"), (void*) declineCall);
         } else {
             pimpl_->addNotificationAction(n, tr("Open conversation"), (void*) openConversation);
             if (type != NotificationType::CHAT) {
-                pimpl_->addNotificationAction(n, tr("Accept"), (void*) acceptPending);
-                pimpl_->addNotificationAction(n, tr("Refuse"), (void*) refusePending);
+                pimpl_->addNotificationAction(n, tr("Accept invitation"), (void*) acceptPending);
+                pimpl_->addNotificationAction(n, tr("Decline invitation"), (void*) refusePending);
             }
         }
     }
