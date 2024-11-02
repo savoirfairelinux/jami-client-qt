@@ -672,7 +672,7 @@ MessagesAdapter::getFormattedTime(const quint64 timestamp)
         timeLocale = curLocal.toString(curTime, curLocal.ShortFormat).toLower();
         return timeLocale;
     }
-    return QObject::tr("just now");
+    return QObject::tr("Just now");
 }
 
 QString
