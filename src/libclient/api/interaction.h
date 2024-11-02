@@ -283,15 +283,15 @@ getContactInteractionString(const QString& authorUri, const ContactAction& actio
         if (authorUri.isEmpty()) {
             return QObject::tr("Contact added");
         }
-        return QObject::tr("%1 was invited to join").arg(authorUri);
+        return QObject::tr("%1 was invited to join the conversation.").arg(authorUri);
     case ContactAction::JOIN:
-        return QObject::tr("%1 joined").arg(authorUri);
+        return QObject::tr("%1 joined the conversation.").arg(authorUri);
     case ContactAction::LEAVE:
-        return QObject::tr("%1 left").arg(authorUri);
+        return QObject::tr("%1 left the conversation.").arg(authorUri);
     case ContactAction::BANNED:
-        return QObject::tr("%1 was kicked").arg(authorUri);
+        return QObject::tr("%1 was kicked from the conversation.").arg(authorUri);
     case ContactAction::UNBANNED:
-        return QObject::tr("%1 was re-added").arg(authorUri);
+        return QObject::tr("%1 rejoined the conversation.").arg(authorUri);
     case ContactAction::INVALID:
         return QObject::tr("Contact added");
     }
@@ -332,11 +332,11 @@ getCallInteractionStringNonSwarm(bool isSelf,
                                  const QString& reason = "")
 {
     if (reason == "busy") {
-        return QObject::tr("User busy");
+        return QObject::tr("Busy.");
     } else if (reason == "declined") {
-        return QObject::tr("User declined");
+        return QObject::tr("Call declined.");
     } else if (reason == "no_device") {
-        return QObject::tr("User offline");
+        return QObject::tr("Unreachable peer.");
     }
 
     if (duration < 0) {
@@ -478,7 +478,7 @@ static inline QString
 getProfileUpdatedString()
 {
     // Perhaps one day this will be more detailed.
-    return QObject::tr("(profile updated)");
+    return QObject::tr("(Profile updated)");
 }
 
 } // namespace interaction
