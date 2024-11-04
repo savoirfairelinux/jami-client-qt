@@ -37,7 +37,7 @@
     <message>
         <location filename="../src/app/conversationlistmodelbase.cpp" line="140"/>
         <source>(deleted message)</source>
-        <translation type="unfinished"/>
+        <translation>(διαγραμμένο μήνυμα)</translation>
     </message>
 </context>
 <context>
@@ -86,7 +86,7 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="327"/>
         <source>An error occurred while fetching this repository</source>
-        <translation>Έγινε λάθος κατά την παραγωγή αυτού του αποθεματολογίου</translation>
+        <translation>Έγινε λάθος κατά την παραγωγή αυτού του αποθετηρίου</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="329"/>
@@ -166,13 +166,14 @@
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="738"/>
         <source>Could not re-connect to the Jami daemon (jamid).
 Jami will now quit.</source>
-        <translation>Δεν μπορούσα να ξανασυνδεθώ με τον Τζάμι δαίμονα.</translation>
+        <translation>Δεν μπορούσα να ξανασυνδεθώ με τον Jami δαίμονα.
+Το Jami θα τερματίσει.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="45"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="737"/>
         <source>Trying to reconnect to the Jami daemon (jamid)…</source>
-        <translation>Προσπαθώ να συνδεθώ με τον Τζάμι δαίμονα...</translation>
+        <translation>Προσπαθώ να συνδεθώ με τον Jami δαίμονα...</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="48"/>
@@ -317,17 +318,17 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="92"/>
         <source>Keyboard shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Συντόμευση πληκτρολογίου</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="93"/>
         <source>Change keyboard shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Αλλαγή συντόμευσης πληκτρολογίου</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="96"/>
         <source>Change shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Αλλαγή συντόμευσης</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="97"/>
@@ -337,7 +338,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="98"/>
         <source>Assign</source>
-        <translation type="unfinished"/>
+        <translation>Ανάθεση</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="101"/>
@@ -722,7 +723,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="347"/>
         <source>deleted a message</source>
-        <translation type="unfinished"/>
+        <translation>διαγράφτηκε ένα μήνυμα</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="348"/>
@@ -848,7 +849,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="475"/>
         <source>Light</source>
-        <translation>Φως</translation>
+        <translation>Φωτεινό</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="480"/>
@@ -1058,7 +1059,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="868"/>
         <source>Donate</source>
-        <translation type="unfinished"/>
+        <translation>Δωρεά</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="869"/>
@@ -2263,47 +2264,47 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="632"/>
         <source>Installation failed</source>
-        <translation type="unfinished"/>
+        <translation>Η εγκατάσταση απέτυχε</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="633"/>
         <source>The installation of the plugin failed</source>
-        <translation type="unfinished"/>
+        <translation>Η εγκατάσταση του προσθέτου απέτυχε</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="651"/>
         <source>Version %1</source>
-        <translation type="unfinished"/>
+        <translation>Έκδοση %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="652"/>
         <source>Last update %1</source>
-        <translation type="unfinished"/>
+        <translation>Τελευταία ενημέρωση %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="653"/>
         <source>By %1</source>
-        <translation type="unfinished"/>
+        <translation>Από %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="654"/>
         <source>Proposed by %1</source>
-        <translation type="unfinished"/>
+        <translation>Προτάθηκε από %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="657"/>
         <source>More information</source>
-        <translation type="unfinished"/>
+        <translation>Περισσότερες πληροφορίες</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="744"/>
         <source>Audio message</source>
-        <translation type="unfinished"/>
+        <translation>Μήνυμα ήχου</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="745"/>
         <source>Video message</source>
-        <translation type="unfinished"/>
+        <translation>Μήνυμα βίντεο</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="747"/>
@@ -2348,27 +2349,27 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="762"/>
         <source>Show formatting</source>
-        <translation type="unfinished"/>
+        <translation>Εμφάνιση μορφοποίησης</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="763"/>
         <source>Hide formatting</source>
-        <translation type="unfinished"/>
+        <translation>Απόκρυψη μορφοποίησης</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="776"/>
         <source>Join in audio</source>
-        <translation type="unfinished"/>
+        <translation>Είσοδος με ήχο</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="777"/>
         <source>Join in video</source>
-        <translation type="unfinished"/>
+        <translation>Είσοδος με βίντεο</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="778"/>
         <source>Started a call</source>
-        <translation type="unfinished"/>
+        <translation>Ξεκίνησε μία κλήση</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="835"/>
@@ -3663,7 +3664,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="218"/>
         <source>Show formatting</source>
-        <translation type="unfinished"/>
+        <translation>Εμφάνιση μορφοποίησης</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="222"/>
@@ -4223,7 +4224,7 @@ connects to synchronize the conversation.</source>
         <location filename="../src/libclient/conversationmodel.cpp" line="1182"/>
         <location filename="../src/libclient/conversationmodel.cpp" line="1195"/>
         <source>%1 (you)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (εσείς)</translation>
     </message>
 </context>
 <context>
@@ -4302,7 +4303,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="81"/>
         <source>Donate</source>
-        <translation type="unfinished"/>
+        <translation>Δωρεά</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="86"/>

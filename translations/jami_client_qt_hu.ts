@@ -1822,7 +1822,7 @@ A többi résztvevő tartózkodási helye továbbra is megkapható.</translation
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="313"/>
         <source>Your precise location could not be determined. Please check your Internet connection.</source>
-        <translation>A pontos tartózkodási helyét nem sikerült meghatározni. Kérjük, ellenőrizze internetkapcsolatát.</translation>
+        <translation>A pontos tartózkodási helyét nem sikerült meghatározni. Kérjük, ellenőrizze az internetkapcsolatát.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="314"/>
@@ -2374,7 +2374,7 @@ Képe és beceneve bármikor megváltoztatható fiókja beállításaiban.</tran
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="778"/>
         <source>Started a call</source>
-        <translation>Hívás elindult</translation>
+        <translation>Hívás elindítva</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="835"/>
@@ -4207,7 +4207,7 @@ csatlakozzon a beszélgetés összehangolásához.</translation>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="687"/>
         <source>just now</source>
-        <translation>most</translation>
+        <translation>Éppen most</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="345"/>
