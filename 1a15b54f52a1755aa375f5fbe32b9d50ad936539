@@ -121,6 +121,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ac0ff481_ca3f2c6f",
+        "filename": "src/app/mainview/components/MessageBar.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-11-05T21:11:22Z",
+      "side": 1,
+      "message": "Ideally, this should be functionally resolved based on the declared bindings used by the components. So I would look to see if this truly can\u0027t be done simply in a declarative manner and if not, try to use a named read-only property to represent the default height.",
+      "parentUuid": "9a44d6cd_5d20f33d",
+      "range": {
+        "startLine": 58,
+        "startChar": 8,
+        "endLine": 58,
+        "endChar": 92
+      },
+      "revId": "1a15b54f52a1755aa375f5fbe32b9d50ad936539",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2aa0fc8a_0a9ac037",
         "filename": "src/app/mainview/components/MessageBar.qml",
         "patchSetId": 18
