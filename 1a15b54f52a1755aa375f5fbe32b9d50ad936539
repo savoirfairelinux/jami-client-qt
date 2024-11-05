@@ -48,6 +48,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba9ef3ea_5c54c805",
+        "filename": "src/app/mainview/components/MessageBar.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2024-11-05T19:11:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d7b8385_a1490142",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 159
+      },
+      "revId": "1a15b54f52a1755aa375f5fbe32b9d50ad936539",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "19aa60fd_678ef424",
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "Its the sum of the lengths of the two components in the messageformatbar (first and second row). This used to be dealt with via some constant that no longer works. This will break if we change the lengths of the components in the format row. I can make a property which will abstract this constant.",
       "parentUuid": "2aa0fc8a_0a9ac037",
+      "range": {
+        "startLine": 76,
+        "startChar": 20,
+        "endLine": 76,
+        "endChar": 23
+      },
+      "revId": "1a15b54f52a1755aa375f5fbe32b9d50ad936539",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd04a35b_b3758489",
+        "filename": "src/app/mainview/components/MessageBar.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2024-11-05T19:11:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80a34d32_0e9841f7",
       "range": {
         "startLine": 76,
         "startChar": 20,
