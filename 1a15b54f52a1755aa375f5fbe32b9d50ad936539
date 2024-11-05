@@ -341,6 +341,30 @@
       },
       "revId": "1a15b54f52a1755aa375f5fbe32b9d50ad936539",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90550b2b_a465a410",
+        "filename": "src/app/mainview/components/MessageFormatBar.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-11-05T21:13:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd757dcb_6ef47f58",
+      "range": {
+        "startLine": 478,
+        "startChar": 12,
+        "endLine": 545,
+        "endChar": 13
+      },
+      "revId": "1a15b54f52a1755aa375f5fbe32b9d50ad936539",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
