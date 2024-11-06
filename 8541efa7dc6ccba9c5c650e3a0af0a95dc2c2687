@@ -118,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "143e35da_06522635",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2024-11-06T22:19:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c6cb9a6_ba9e5041",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 5
+      },
+      "revId": "8541efa7dc6ccba9c5c650e3a0af0a95dc2c2687",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "94411f45_4cfb5615",
@@ -131,6 +155,30 @@
       "writtenOn": "2024-11-06T20:59:12Z",
       "side": 1,
       "message": "`stopping/starting camera`",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 21
+      },
+      "revId": "8541efa7dc6ccba9c5c650e3a0af0a95dc2c2687",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23507cb1_91a7a4dd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2024-11-06T22:19:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94411f45_4cfb5615",
       "range": {
         "startLine": 11,
         "startChar": 0,
