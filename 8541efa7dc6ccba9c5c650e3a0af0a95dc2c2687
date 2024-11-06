@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6843645_4638f1ad",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-11-06T19:27:32Z",
+      "side": 1,
+      "message": "typo: butter -\u003e button",
+      "range": {
+        "startLine": 10,
+        "startChar": 28,
+        "endLine": 10,
+        "endChar": 34
+      },
+      "revId": "8541efa7dc6ccba9c5c650e3a0af0a95dc2c2687",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f3a4a29_ec82e334",
+        "filename": "src/libclient/callmodel.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2024-11-06T19:27:32Z",
+      "side": 1,
+      "message": "This expression will always evaluate to `FALSE_STR` because we return early on line 376 if `audioOnly` is true. Did you mean to change that?",
+      "range": {
+        "startLine": 381,
+        "startChar": 52,
+        "endLine": 381,
+        "endChar": 84
+      },
+      "revId": "8541efa7dc6ccba9c5c650e3a0af0a95dc2c2687",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
