@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7efbdebb_87af6b66",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2024-11-06T21:45:01Z",
+      "side": 1,
+      "message": "just \u0027microphone\u0027 ?\nmaybe\nparticipant\u0027s microphone ?\nDevice microphone feels a bit too long and convoluted",
+      "range": {
+        "startLine": 241,
+        "startChar": 54,
+        "endLine": 241,
+        "endChar": 71
+      },
+      "revId": "cedb03819773989545f0031ef08462103ba84673",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
