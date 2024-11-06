@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e95f4b8_68ecaa50",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 29
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-11-06T17:03:03Z",
+      "side": 1,
+      "message": "LGTM but to-fix: show preview height diff",
+      "revId": "8fcdf07dbf10948d89fff0cf132572cb423a4681",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
