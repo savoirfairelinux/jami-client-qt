@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1e2c67c_05641b62",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 704,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-11-06T16:49:23Z",
+      "side": 1,
+      "message": "```suggestion\n                Component {\n                    id: selfReadIconComp\n\n                    Avatar {\n                        width: JamiTheme.avatarReadReceiptSize\n                        height: JamiTheme.avatarReadReceiptSize\n\n                        mode: Avatar.Mode.Account\n                        imageId: CurrentAccount.id\n                        showPresenceIndicator: false\n\n                        Component.onCompleted: console.warn(\"+selfReadIconComp\")\n                        Component.onDestruction: console.warn(\"-selfReadIconComp\")\n                    }\n                }\n\n                Loader {\n                    active: status.isAlone \u0026\u0026 CurrentConversation.lastSelfMessageId \u003d\u003d\u003d Id\n                    sourceComponent: selfReadIconComp\n                    anchors.bottom: parent.bottom\n                }\n```",
+      "range": {
+        "startLine": 692,
+        "startChar": 16,
+        "endLine": 704,
+        "endChar": 17
+      },
+      "revId": "f778dfc90826a29cac880fdd20df661df8e8152a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
