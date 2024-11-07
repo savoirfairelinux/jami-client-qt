@@ -189,10 +189,4 @@ Label {
             }
         }
     }
-
-    Shortcut {
-        sequence: "Ctrl+,"
-        context: Qt.ApplicationShortcut
-        onActivated: settingBtnClicked()
-    }
 }
