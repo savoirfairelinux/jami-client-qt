@@ -22,6 +22,30 @@
       },
       "revId": "f778dfc90826a29cac880fdd20df661df8e8152a",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7472d748_c6caeb05",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 704,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2024-11-07T14:21:36Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "c1e2c67c_05641b62",
+      "range": {
+        "startLine": 692,
+        "startChar": 16,
+        "endLine": 704,
+        "endChar": 17
+      },
+      "revId": "f778dfc90826a29cac880fdd20df661df8e8152a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
