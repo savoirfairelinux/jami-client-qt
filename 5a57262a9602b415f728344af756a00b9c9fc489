@@ -16,6 +16,24 @@
       "message": "Will this patch also fix this issue?\nhttps://git.jami.net/savoirfairelinux/jami-daemon/-/issues/1017",
       "revId": "5a57262a9602b415f728344af756a00b9c9fc489",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1529c9c2_f1579ee9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2024-11-07T18:01:09Z",
+      "side": 1,
+      "message": "Indeed! This was the intended use-case. If you\u0027re using the conversation with yourself as a notepad or for whatever other reason you should see your read receipts.",
+      "parentUuid": "8df7739a_d7950b7c",
+      "revId": "5a57262a9602b415f728344af756a00b9c9fc489",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
