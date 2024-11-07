@@ -34,6 +34,24 @@
       "parentUuid": "8df7739a_d7950b7c",
       "revId": "5a57262a9602b415f728344af756a00b9c9fc489",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39383eb1_56835aec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2024-11-07T18:03:19Z",
+      "side": 1,
+      "message": "And also this issue (if you can reproduce)?\nhttps://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/1797",
+      "parentUuid": "1529c9c2_f1579ee9",
+      "revId": "5a57262a9602b415f728344af756a00b9c9fc489",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
