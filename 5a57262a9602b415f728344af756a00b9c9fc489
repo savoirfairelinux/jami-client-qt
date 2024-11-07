@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8df7739a_d7950b7c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2024-11-07T15:40:10Z",
+      "side": 1,
+      "message": "Will this patch also fix this issue?\nhttps://git.jami.net/savoirfairelinux/jami-daemon/-/issues/1017",
+      "revId": "5a57262a9602b415f728344af756a00b9c9fc489",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
