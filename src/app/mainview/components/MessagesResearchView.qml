@@ -57,6 +57,26 @@ ListView {
         }
     }
 
+    function formatMessage(searchTerm, message, numChars) {
+        var index = message.toLowerCase().indexOf(searchTerm.toLowerCase());
+        if (index === -1) return message;
+
+        var prefix = message.substring(Math.max(0, index - numChars), index);
+        var suffix = message.substring(index + searchTerm.length, Math.min(index + searchTerm.length + numChars, message.length));
+
+        var before = (Math.max(0, index - numChars) === 0);
+        var after = (Math.min(index + searchTerm.length + numChars, message.length) === message.length);
+
+        var highlightedTerm = "<b>" + message.substring(index, index + searchTerm.length) + "</b>";
+
+        var result = "";
+        if (!before) result += "...";
+        result += prefix + highlightedTerm + suffix;
+        if (!after) result += "...";
+
+        return result;
+    }
+
     delegate: Item {
         width: root.width
         height: msgLayout.height
@@ -76,7 +96,7 @@ ListView {
                 id: timestampItem
 
                 showDay: true
-                showTime: true
+               // showTime: true
                 formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
                 formattedDay: MessagesAdapter.getFormattedDay(Timestamp)
             }
@@ -95,6 +115,7 @@ ListView {
                     showPresenceIndicator: false
                     mode: contentRow.isMe ? Avatar.Mode.Account : Avatar.Mode.Contact
                     Layout.leftMargin: 10
+                    Layout.alignment: Qt.AlignTop
                 }
 
                 ColumnLayout {
@@ -106,50 +127,58 @@ ListView {
                         Layout.leftMargin: 10
                         font.pixelSize: 0
                         color: JamiTheme.chatviewSecondaryInformationColor
-                        font.bold: true
                     }
 
-                    Text {
+                    TextArea {
                         id: myText
 
-                        text: Body
+                        text: formatMessage(prompt, Body,100)
+                        readOnly: true
+
+                        background: Rectangle {
+                            radius: 5
+                            color: JamiTheme.messageInBgColor
+                        }
                         color: JamiTheme.textColor
-                        Layout.preferredWidth: msgLayout.width - avatar.width - 30 - 10
-                        elide: Text.ElideRight
+                        Layout.maximumWidth: msgLayout.width - avatar.width - 30 - 10
+                        Layout.fillWidth : true
+                        wrapMode: Text.Wrap
+                        //Layout.maximumHeight: 59
                         Layout.rightMargin: 10
                         Layout.leftMargin: 10
+                        textFormat: TextEdit.MarkdownText
                         font.pixelSize: IsEmojiOnly ? JamiTheme.chatviewEmojiSize : JamiTheme.chatviewFontSize
-                        Layout.alignment: Qt.AlignHCenter
+                        Layout.alignment: Qt.AlignLeft
                     }
                 }
             }
         }
 
-        Button {
-            id: buttonJumpTo
+      //  Button {
+      //      id: buttonJumpTo
 
-            visible: msgHover.hovered || hovered
-            anchors.top: msgLayout.top
-            anchors.right: msgLayout.right
-            anchors.rightMargin: 20
-            anchors.topMargin: timestampItem.height - 20
-            width: buttonJumpText.width + 10
-            height: buttonJumpText.height + 10
-            background.visible: false
+      //      visible: msgHover.hovered || hovered
+      //      anchors.top: msgLayout.top
+      //      anchors.right: msgLayout.right
+      //      anchors.rightMargin: 20
+      //      anchors.topMargin: timestampItem.height - 20
+      //      width: buttonJumpText.width + 10
+      //      height: buttonJumpText.height + 10
+      //      background.visible: false
 
-            onClicked: {
-                CurrentConversation.scrollToMsg(Id);
-            }
+      //      onClicked: {
+      //          CurrentConversation.scrollToMsg(Id);
+      //      }
 
-            Text {
-                id: buttonJumpText
+      //      Text {
+      //          id: buttonJumpText
 
-                text: JamiStrings.jumpTo
-                color: buttonJumpTo.hovered ? JamiTheme.blueLinkColor : JamiTheme.chatviewSecondaryInformationColor
-                font.underline: buttonJumpTo.hovered
-                anchors.centerIn: parent
-                font.pointSize: JamiTheme.jumpToFontSize
-            }
-        }
+      //          text: JamiStrings.jumpTo
+      //          color: buttonJumpTo.hovered ? JamiTheme.blueLinkColor : JamiTheme.chatviewSecondaryInformationColor
+      //          font.underline: buttonJumpTo.hovered
+      //          anchors.centerIn: parent
+      //          font.pointSize: JamiTheme.jumpToFontSize
+      //      }
+      //  }
     }
 }
