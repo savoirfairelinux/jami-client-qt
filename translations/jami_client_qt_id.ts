@@ -1068,7 +1068,7 @@ Profil dapat diubah setiap saat dari pengaturan akun.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="870"/>
         <source>Not now</source>
-        <translation type="unfinished"/>
+        <translation>Tidak sekarang</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="871"/>

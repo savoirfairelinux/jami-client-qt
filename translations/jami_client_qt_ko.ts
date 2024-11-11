@@ -1064,7 +1064,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="870"/>
         <source>Not now</source>
-        <translation type="unfinished"/>
+        <translation>나중에</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="871"/>
@@ -4193,7 +4193,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="687"/>
         <source>just now</source>
-        <translation>지금</translation>
+        <translation>지금 당장</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="345"/>

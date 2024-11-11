@@ -4208,7 +4208,7 @@ să se conecteze pentru a sincroniza conversația.</translation>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="687"/>
         <source>just now</source>
-        <translation>chiar acum</translation>
+        <translation>Chiar acum</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="345"/>

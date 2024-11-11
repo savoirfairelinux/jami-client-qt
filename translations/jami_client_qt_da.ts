@@ -1064,7 +1064,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="870"/>
         <source>Not now</source>
-        <translation type="unfinished"/>
+        <translation>Ikke nu</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="871"/>
@@ -4193,7 +4193,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="687"/>
         <source>just now</source>
-        <translation>- Jeg er ikke klar.</translation>
+        <translation>Lige nu</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="345"/>

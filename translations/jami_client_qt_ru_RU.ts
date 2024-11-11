@@ -4202,7 +4202,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="687"/>
         <source>just now</source>
-        <translation>только что</translation>
+        <translation>Только что</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="345"/>

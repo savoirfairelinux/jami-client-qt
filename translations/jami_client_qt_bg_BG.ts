@@ -4193,7 +4193,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="687"/>
         <source>just now</source>
-        <translation>Точно сега.</translation>
+        <translation>Току-що</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="345"/>

@@ -4209,7 +4209,7 @@ si connetta per sincronizzare la conversazione.</translation>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="687"/>
         <source>just now</source>
-        <translation>ora</translation>
+        <translation>Proprio ora</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="345"/>

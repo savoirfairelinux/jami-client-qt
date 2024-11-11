@@ -71,12 +71,12 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="142"/>
         <source>Private group (restricted invites)</source>
-        <translation>Személyes csoport (korlátozott meghívók)</translation>
+        <translation>Magánjellegű csoport (korlátozott meghívók)</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="144"/>
         <source>Private group</source>
-        <translation>Személyes csoport</translation>
+        <translation>Magánjellegű csoport</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="146"/>
@@ -278,7 +278,7 @@ A Jami most kilép.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="84"/>
         <source>Automatically answer calls</source>
-        <translation>Önműködő hívásfogadása</translation>
+        <translation>Önműködő bejövő hívásfogadása</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="85"/>
@@ -3823,7 +3823,7 @@ csatlakozzon a beszélgetés összehangolásához.</translation>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="426"/>
         <source>Private conversation created</source>
-        <translation>Magánbeszélgetés létrehozva</translation>
+        <translation>Magánjellegű beszélgetés létrehozva</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="428"/>

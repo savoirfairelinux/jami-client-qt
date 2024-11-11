@@ -4209,7 +4209,7 @@ poveže, da sinhroniziramo pogovor.</translation>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="687"/>
         <source>just now</source>
-        <translation>ravnokar</translation>
+        <translation>Ravnokar</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="345"/>

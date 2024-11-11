@@ -4208,7 +4208,7 @@ synkronoi keskustelun.</translation>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="687"/>
         <source>just now</source>
-        <translation>juuri nyt</translation>
+        <translation>Juuri nyt</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="345"/>

@@ -1065,7 +1065,7 @@ Profilis bet kuriuo metu gali būti taisomas paskyros nustatymuose.</translation
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="870"/>
         <source>Not now</source>
-        <translation type="unfinished"/>
+        <translation>Ne dabar</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="871"/>
@@ -4198,7 +4198,7 @@ prisijungs, kad būtų sinchronizuotas pokalbis.</translation>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="687"/>
         <source>just now</source>
-        <translation>ką tik</translation>
+        <translation>Ką tik</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="345"/>
