@@ -50,11 +50,38 @@ ListView {
         MessagesAdapter.startSearch(prompt, false);
     }
 
+    onVisibleChanged: {
+        if (visible) {
+            MessagesAdapter.startSearch(prompt, true);
+        }
+    }
+
     Connections {
         target: researchTabBar
         function onFilterTabChange() {
             MessagesAdapter.startSearch(prompt, false);
         }
+    }
+
+    // This function will take a filtered message and further format it to fit
+    // into the research panel in a coherent way. Find the first occurence of the serach term in the message
+    // highlight it and wrap it with numChars characters on either side. 
+    function formatMessage(searchTerm, message, numChars) {
+        var index = message.toLowerCase().indexOf(searchTerm.toLowerCase());
+        if (index === -1)
+            return message;
+        var prefix = message.substring(Math.max(0, index - numChars), index);
+        var suffix = message.substring(index + searchTerm.length, Math.min(index + searchTerm.length + numChars, message.length));
+        var before = (Math.max(0, index - numChars) === 0);
+        var after = (Math.min(index + searchTerm.length + numChars, message.length) === message.length);
+        var highlightedTerm = '<span style="background-color: #48ffff00">' + message.substring(index, index + searchTerm.length) + "</span>";
+        var result = "";
+        if (!before)
+            result += "... ";
+        result += prefix + highlightedTerm + suffix;
+        if (!after)
+            result += " ...";
+        return result;
     }
 
     delegate: Item {
@@ -76,7 +103,6 @@ ListView {
                 id: timestampItem
 
                 showDay: true
-                showTime: true
                 formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
                 formattedDay: MessagesAdapter.getFormattedDay(Timestamp)
             }
@@ -95,60 +121,39 @@ ListView {
                     showPresenceIndicator: false
                     mode: contentRow.isMe ? Avatar.Mode.Account : Avatar.Mode.Contact
                     Layout.leftMargin: 10
+                    Layout.alignment: Qt.AlignTop
                 }
 
                 ColumnLayout {
 
                     Text {
                         text: contentRow.isMe ? CurrentAccount.bestName : UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author) + " :"
-                        Layout.preferredWidth: myText.width
                         Layout.rightMargin: 10
                         Layout.leftMargin: 10
                         font.pixelSize: 0
                         color: JamiTheme.chatviewSecondaryInformationColor
-                        font.bold: true
                     }
 
-                    Text {
+                    TextArea {
                         id: myText
 
-                        text: Body
+                        text: formatMessage(prompt, Body, 100)
+                        readOnly: true
+
+                        background: Rectangle {
+                            radius: 5
+                            color: JamiTheme.messageInBgColor
+                        }
                         color: JamiTheme.textColor
-                        Layout.preferredWidth: msgLayout.width - avatar.width - 30 - 10
-                        elide: Text.ElideRight
+                        Layout.fillWidth: true
+                        wrapMode: Text.Wrap
                         Layout.rightMargin: 10
                         Layout.leftMargin: 10
+                        textFormat: TextEdit.MarkdownText
                         font.pixelSize: IsEmojiOnly ? JamiTheme.chatviewEmojiSize : JamiTheme.chatviewFontSize
-                        Layout.alignment: Qt.AlignHCenter
+                        Layout.alignment: Qt.AlignLeft
                     }
                 }
-            }
-        }
-
-        Button {
-            id: buttonJumpTo
-
-            visible: msgHover.hovered || hovered
-            anchors.top: msgLayout.top
-            anchors.right: msgLayout.right
-            anchors.rightMargin: 20
-            anchors.topMargin: timestampItem.height - 20
-            width: buttonJumpText.width + 10
-            height: buttonJumpText.height + 10
-            background.visible: false
-
-            onClicked: {
-                CurrentConversation.scrollToMsg(Id);
-            }
-
-            Text {
-                id: buttonJumpText
-
-                text: JamiStrings.jumpTo
-                color: buttonJumpTo.hovered ? JamiTheme.blueLinkColor : JamiTheme.chatviewSecondaryInformationColor
-                font.underline: buttonJumpTo.hovered
-                anchors.centerIn: parent
-                font.pointSize: JamiTheme.jumpToFontSize
             }
         }
     }
