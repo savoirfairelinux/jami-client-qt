@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6165eba_92187c7a",
+        "filename": "src/libclient/api/interaction.h",
+        "patchSetId": 18
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-11-12T10:56:02Z",
+      "side": 1,
+      "message": "If the action is INVALID, should the message be \"Contact added\"? Thank you",
+      "range": {
+        "startLine": 296,
+        "startChar": 28,
+        "endLine": 296,
+        "endChar": 41
+      },
+      "revId": "c2e49fd8cac32c3eb7fe26c407a088c093f659e4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
