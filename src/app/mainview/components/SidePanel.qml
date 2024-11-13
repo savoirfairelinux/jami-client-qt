@@ -173,8 +173,10 @@ SidePanelBase {
             color: JamiTheme.backgroundColor
         }
 
-        header: AccountComboBox { QWKSetParentHitTestVisible {}
+        header: AccountComboBox {
             id: accountComboBox
+            QWKSetParentHitTestVisible {
+            }
             Shortcut {
                 sequence: "Ctrl+J"
                 context: Qt.ApplicationShortcut
@@ -258,6 +260,13 @@ SidePanelBase {
                     height: parent.height
                     Layout.fillWidth: true
 
+                    Behavior on width {
+                        NumberAnimation {
+                            duration: 1000
+                            easing.type: Easing.InOutQuad
+                        }
+                    }
+
                     onSearchBarTextChanged: function (text) {
                         // not calling positionViewAtBeginning will cause
                         // sort animation visual bugs
@@ -285,7 +294,7 @@ SidePanelBase {
 
                     preferredSize: startBar.height
 
-                    visible: !swarmMemberSearchList.visible && CurrentAccount.type !== Profile.Type.SIP
+                    visible: !swarmMemberSearchList.visible && CurrentAccount.type !== Profile.Type.SIP && !contactSearchBar.textContent
 
                     source: smartListLayout.visible ? JamiResources.create_swarm_svg : JamiResources.round_close_24dp_svg
                     toolTipText: smartListLayout.visible ? JamiStrings.newGroup : JamiStrings.cancel
@@ -297,9 +306,7 @@ SidePanelBase {
             SidePanelTabBar {
                 id: sidePanelTabBar
 
-                visible: ConversationsAdapter.pendingRequestCount &&
-                         !contactSearchBar.textContent &&
-                         smartListLayout.visible
+                visible: ConversationsAdapter.pendingRequestCount && !contactSearchBar.textContent && smartListLayout.visible
 
                 contentHeight: childrenRect.height
                 width: page.width
@@ -379,6 +386,32 @@ SidePanelBase {
                     }
 
                     model: ConversationsAdapter.searchListProxyModel
+
+                    delegate: SmartListItemDelegate {
+                        JamiPushButton {
+                            id: sendContactRequestButton
+                            QWKSetParentHitTestVisible {
+                            }
+
+                            anchors.right: parent.right
+                            anchors.verticalCenter: parent.verticalCenter
+                            anchors.rightMargin: 20
+                            visible: isTemporary || isBanned
+                            source: JamiResources.add_people_24dp_svg
+                            toolTipText: JamiStrings.addToConversations
+
+                            onClicked: {
+                                console.log(isBanned);
+                                if (isBanned) {
+                                    LRCInstance.selectConversation(UID);
+                                    MessagesAdapter.unbanConversation(CurrentConversation.id);
+                                } else {
+                                    LRCInstance.selectConversation(UID);
+                                    MessagesAdapter.sendConversationRequest();
+                                }
+                            }
+                        }
+                    }
                     headerLabel: JamiStrings.searchResults
                     headerVisible: true
                 }

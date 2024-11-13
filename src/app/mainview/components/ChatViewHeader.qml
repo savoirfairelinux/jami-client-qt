@@ -200,19 +200,6 @@ Rectangle {
         }
 
         JamiPushButton {
-            id: sendContactRequestButton
-            QWKSetParentHitTestVisible {
-            }
-            objectName: "sendContactRequestButton"
-
-            visible: CurrentConversation.isTemporary || CurrentConversation.isBanned
-            source: JamiResources.add_people_24dp_svg
-            toolTipText: JamiStrings.addToConversations
-
-            onClicked: CurrentConversation.isBanned ? MessagesAdapter.unbanConversation(CurrentConversation.id) : MessagesAdapter.sendConversationRequest()
-        }
-
-        JamiPushButton {
             id: searchMessagesButton
             QWKSetParentHitTestVisible {
             }
