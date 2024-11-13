@@ -284,20 +284,25 @@ AccountModel::setAlias(const QString& accountId, const QString& alias, bool save
     accountInfo.profileInfo.alias = alias;
 
     if (save)
-        storage::vcard::setProfile(accountInfo.id, accountInfo.profileInfo);
+        ConfigurationManager::instance().updateProfile(accountId,
+                                                       alias,
+                                                       "",
+                                                       5);// flag out of range to avoid updating avatar
     Q_EMIT profileUpdated(accountId);
 }
 
 void
-AccountModel::setAvatar(const QString& accountId, const QString& avatar, bool save)
+AccountModel::setAvatar(const QString& accountId, const QString& avatar, bool save, int flag)
 {
     auto& accountInfo = pimpl_->getAccountInfo(accountId);
     if (accountInfo.profileInfo.avatar == avatar)
         return;
     accountInfo.profileInfo.avatar = avatar;
-
     if (save)
-        storage::vcard::setProfile(accountInfo.id, accountInfo.profileInfo);
+        ConfigurationManager::instance().updateProfile(accountId,
+                                                       accountInfo.profileInfo.alias,
+                                                       avatar,
+                                                       flag);
     Q_EMIT profileUpdated(accountId);
 }
 
