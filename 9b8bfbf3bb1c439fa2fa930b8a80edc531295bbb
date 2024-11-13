@@ -45,6 +45,30 @@
       },
       "revId": "9b8bfbf3bb1c439fa2fa930b8a80edc531295bbb",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4a790cd_c1916506",
+        "filename": "src/libclient/api/interaction.h",
+        "patchSetId": 21
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2024-11-13T13:57:45Z",
+      "side": 1,
+      "message": "I would suggest \"User cannot be reached\"\nSkype for example already uses that string: https://support.microsoft.com/en-us/topic/-user-cannot-be-reached-error-when-you-add-a-user-through-skype-call-in-an-acp-conference-in-skype-for-business-2016-ca4e534c-6842-b01f-3688-d4655ba942dd",
+      "parentUuid": "07880177_4e49879a",
+      "range": {
+        "startLine": 339,
+        "startChar": 28,
+        "endLine": 339,
+        "endChar": 47
+      },
+      "revId": "9b8bfbf3bb1c439fa2fa930b8a80edc531295bbb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
