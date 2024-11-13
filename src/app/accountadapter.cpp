@@ -114,7 +114,7 @@ AccountAdapter::createJamiAccount(const QVariantMap& settings)
         &lrcInstance_->accountModel(),
         &lrc::api::AccountModel::accountAdded,
         [this, registeredName, settings](const QString& accountId) {
-            lrcInstance_->accountModel().setAvatar(accountId, settings["avatar"].toString());
+            lrcInstance_->accountModel().setAvatar(accountId, settings["avatar"].toString(), true,1);
             Utils::oneShotConnect(&lrcInstance_->accountModel(),
                                   &lrc::api::AccountModel::accountDetailsChanged,
                                   [this](const QString& accountId) {
@@ -303,13 +303,8 @@ AccountAdapter::setCurrentAccountAvatarFile(const QString& source)
             return;
         }
 
-        QByteArray ba;
-        QBuffer bu(&ba);
-        bu.open(QIODevice::WriteOnly);
-        image.save(&bu, "PNG");
-        auto str = QString::fromLocal8Bit(ba.toBase64());
         auto accountId = lrcInstance_->get_currentAccountId();
-        lrcInstance_->accountModel().setAvatar(accountId, str);
+        lrcInstance_->accountModel().setAvatar(accountId, source);
     });
 }
 
@@ -318,7 +313,7 @@ AccountAdapter::setCurrentAccountAvatarBase64(const QString& data)
 {
     auto futureResult = QtConcurrent::run([this, data]() {
         auto accountId = lrcInstance_->get_currentAccountId();
-        lrcInstance_->accountModel().setAvatar(accountId, data);
+        lrcInstance_->accountModel().setAvatar(accountId, data, true, 1);
     });
 }
 
