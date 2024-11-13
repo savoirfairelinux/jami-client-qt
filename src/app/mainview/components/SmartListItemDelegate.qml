@@ -38,6 +38,8 @@ ItemDelegate {
 
     highlighted: ListView.isCurrentItem
     property bool interactive: true
+    property bool isTemporary: false
+    property bool isBanned: false
 
     property int lastInteractionTimeStamp: LastInteractionTimeStamp
     property string lastInteractionFormattedDate: MessagesAdapter.getBestFormattedDate(lastInteractionTimeStamp)
@@ -66,6 +68,8 @@ ItemDelegate {
         // Store to avoid undefined at the end
         root.accountId = Qt.binding(() => CurrentAccount.id);
         root.convId = UID;
+        root.isTemporary = ContactType == Profile.Type.TEMPORARY;
+        root.isBanned = isBanned;
     }
 
     RowLayout {
