@@ -16,6 +16,24 @@
       "message": "I would still use \"User busy\" - it\u0027s also used on an iPhone: https://www.wikihow.com/User-Busy-iPhone\n\n\nWhen it comes to offline - not sure if it\u0027s generally the correct string:\n1) I would use \"User offline\" or \"User is offline\". Teams uses \"The user is unavailable or offline. We’ve sent an email instead\" see https://neroblanco.co.uk/2020/09/teams-coexistence-pitfalls/\n2) But this is a bit misleading since Jami should allow offline communication / without any Internet connection?  https://docs.jami.net/en_US/user/lan-only.html\nSo maybe \"unavailable\" or \"not reachable\" would be better?",
       "revId": "383da4f9266041399828632ee26be30ab042dc32",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "852b9feb_889f7ac2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-11-13T00:08:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "91690378_18e8bb17",
+      "revId": "383da4f9266041399828632ee26be30ab042dc32",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
