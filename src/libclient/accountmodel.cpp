@@ -295,9 +295,10 @@ AccountModel::setAvatar(const QString& accountId, const QString& avatar, bool sa
     if (accountInfo.profileInfo.avatar == avatar)
         return;
     accountInfo.profileInfo.avatar = avatar;
-
     if (save)
-        storage::vcard::setProfile(accountInfo.id, accountInfo.profileInfo);
+        ConfigurationManager::instance().updateProfile(accountId,
+                                                       accountInfo.profileInfo.alias,
+                                                       avatar);
     Q_EMIT profileUpdated(accountId);
 }
 
