@@ -469,7 +469,10 @@ public Q_SLOTS: // METHODS
                                       address.toStdString());
     }
 
-    bool registerName(const QString& accountId, const QString& name, const QString& scheme, const QString& password)
+    bool registerName(const QString& accountId,
+                      const QString& name,
+                      const QString& scheme,
+                      const QString& password)
     {
         return libjami::registerName(accountId.toStdString(),
                                      name.toStdString(),
@@ -481,6 +484,18 @@ public Q_SLOTS: // METHODS
     {
         MapStringString temp = convertMap(libjami::getAccountDetails(accountId.toStdString()));
         return temp;
+    }
+
+    void updateProfile(const QString& accountId,
+                       const QString& displayName,
+                       const QString& avatarPath,
+                       int flag)
+    {
+        libjami::updateProfile(accountId.toStdString(),
+                               displayName.toStdString(),
+                               avatarPath.toStdString(),
+                               flag
+                               );
     }
 
     QStringList getAccountList()
@@ -835,7 +850,10 @@ public Q_SLOTS: // METHODS
         libjami::removeContact(accountId.toStdString(), uri.toStdString(), ban);
     }
 
-    void revokeDevice(const QString& accountId, const QString& deviceId, const QString& scheme, const QString& password)
+    void revokeDevice(const QString& accountId,
+                      const QString& deviceId,
+                      const QString& scheme,
+                      const QString& password)
     {
         libjami::revokeDevice(accountId.toStdString(),
                               deviceId.toStdString(),
