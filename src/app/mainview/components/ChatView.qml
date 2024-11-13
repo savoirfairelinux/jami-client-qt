@@ -35,6 +35,32 @@ Rectangle {
         enabled: viewCoordinator.isInSinglePaneMode
     }
 
+    Rectangle {
+        id: contactnotaddedoverlay
+        anchors.fill: parent
+        visible: CurrentConversation.isTemporary
+        color: "#80000000"
+        z: 2
+
+        Rectangle {
+            width: parent.width * 0.6
+            height: parent.height * 0.3
+            color: "#FFCDD2"
+            z: 3
+            anchors.centerIn: parent
+            radius: 10 
+
+            Text {
+                anchors.centerIn: parent
+                text: "Please add a user to start a conversation!"
+                font.pixelSize: 20
+                color: "#880E4F" 
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+            }
+        }
+    }
+
     // An enum to make the details panels more readable.
     enum ExtrasPanel {
         SwarmDetailsPanel,
@@ -108,6 +134,7 @@ Rectangle {
             MessagesAdapter.loadMoreMessages();
         }
     }
+
 
     onVisibleChanged: {
         if (visible) {
