@@ -35,6 +35,48 @@ Rectangle {
         enabled: viewCoordinator.isInSinglePaneMode
     }
 
+    Rectangle {
+        id: contactnotaddedoverlay
+        anchors.fill: parent
+        visible: CurrentConversation.isTemporary
+        color: "#80000000"
+        z: 2
+
+        Component.onCompleted: {
+            forceActiveFocus();
+        }
+
+        MouseArea {
+            anchors.fill: parent
+            propagateComposedEvents: false
+            preventStealing: true
+            hoverEnabled: true 
+        }
+                       
+        Rectangle {
+            width: parent.width * 0.6
+            height: parent.height * 0.1
+            color: "#4d313031"
+            z: 3
+            anchors.centerIn: parent
+            radius: 10
+            border.width: 1
+            border.color: "#616161"
+
+            Text {
+                anchors.centerIn: parent
+                width: parent.width * 0.75
+                text: "Please add " + CurrentConversation.title +  " to start a conversation!"
+                elide: Text.ElideRight
+                wrapMode: Text.Wrap
+                font.pixelSize: 20
+                color: JamiTheme.textColor
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+            }
+        }
+    }
+
     // An enum to make the details panels more readable.
     enum ExtrasPanel {
         SwarmDetailsPanel,
