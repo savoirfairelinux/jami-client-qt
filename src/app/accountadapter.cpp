@@ -303,13 +303,8 @@ AccountAdapter::setCurrentAccountAvatarFile(const QString& source)
             return;
         }
 
-        QByteArray ba;
-        QBuffer bu(&ba);
-        bu.open(QIODevice::WriteOnly);
-        image.save(&bu, "PNG");
-        auto str = QString::fromLocal8Bit(ba.toBase64());
         auto accountId = lrcInstance_->get_currentAccountId();
-        lrcInstance_->accountModel().setAvatar(accountId, str);
+        lrcInstance_->accountModel().setAvatar(accountId, source);
     });
 }
 
