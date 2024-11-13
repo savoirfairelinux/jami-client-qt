@@ -289,15 +289,17 @@ AccountModel::setAlias(const QString& accountId, const QString& alias, bool save
 }
 
 void
-AccountModel::setAvatar(const QString& accountId, const QString& avatar, bool save)
+AccountModel::setAvatar(const QString& accountId, const QString& avatar, bool save, int flag)
 {
     auto& accountInfo = pimpl_->getAccountInfo(accountId);
     if (accountInfo.profileInfo.avatar == avatar)
         return;
     accountInfo.profileInfo.avatar = avatar;
-
     if (save)
-        storage::vcard::setProfile(accountInfo.id, accountInfo.profileInfo);
+        ConfigurationManager::instance().updateProfile(accountId,
+                                                       accountInfo.profileInfo.alias,
+                                                       avatar,
+                                                       flag);
     Q_EMIT profileUpdated(accountId);
 }
 
