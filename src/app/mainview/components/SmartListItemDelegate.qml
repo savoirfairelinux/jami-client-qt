@@ -33,11 +33,15 @@ ItemDelegate {
     width: ListView.view.width
     height: JamiTheme.smartListItemHeight
 
+    property alias extraButtons: extraButtons
+
     property string accountId: ""
     property string convId: ""
 
     highlighted: ListView.isCurrentItem
     property bool interactive: true
+    property bool isTemporary: false
+    property bool isBanned: false
 
     property int lastInteractionTimeStamp: LastInteractionTimeStamp
     property string lastInteractionFormattedDate: MessagesAdapter.getBestFormattedDate(lastInteractionTimeStamp)
@@ -66,6 +70,8 @@ ItemDelegate {
         // Store to avoid undefined at the end
         root.accountId = Qt.binding(() => CurrentAccount.id);
         root.convId = UID;
+        root.isTemporary = ContactType == Profile.Type.TEMPORARY;
+        root.isBanned = isBanned;
     }
 
     RowLayout {
@@ -84,6 +90,7 @@ ItemDelegate {
 
             Layout.preferredWidth: JamiTheme.smartListAvatarSize
             Layout.preferredHeight: JamiTheme.smartListAvatarSize
+
 
             Rectangle {
                 id: overlayHighlighted
@@ -237,6 +244,10 @@ ItemDelegate {
                     radius: 3
                 }
             }
+        }
+
+        Control {
+            id: extraButtons
         }
 
         Accessible.role: Accessible.Button
