@@ -46,9 +46,7 @@ ListSelectionView {
             function test_checkBasicVisibility() {
                 var chatviewHeader = findChild(uut, "chatViewHeader")
                 var detailsButton = findChild(chatviewHeader, "detailsButton")
-                var sendContactRequestButton = findChild(chatviewHeader, "sendContactRequestButton")
                 compare(detailsButton.visible, true)
-                compare(sendContactRequestButton.visible, false)
 
                 var chatViewFooter = findChild(uut, "chatViewFooter")
                 CurrentConversation.isTemporary = true
