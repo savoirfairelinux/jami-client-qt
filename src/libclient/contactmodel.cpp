@@ -571,6 +571,16 @@ ContactModel::bestNameForContact(const QString& contactUri) const
             return *itContact;
         } else {
             // This is not a contact, but we should get the registered name
+            //
+            // NOTE: bestNameForContact is used by ConversationListModelBase::dataForItem,
+            // which means that it sometimes gets called multiple times within a short amount
+            // of time (less than a second), and can easily get called dozens or even hundreds
+            // of times in total after using Jami for a couple of hours. We don't want to send
+            // this many requests to the name server, so we store the peer's URI in nonContactLookup_.
+            // If the call to lookupAddress below succeeds, then the URI will be replaced by the
+            // peer's registered name, but in any case, this ensures that we don't do more than one
+            // lookup for a given peer, regardless of how many times bestNameForContact is called.
+            pimpl_->nonContactLookup_[contactUri] = contactUri;
             ConfigurationManager::instance().lookupAddress(owner.id, "", contactUri);
         }
     }
