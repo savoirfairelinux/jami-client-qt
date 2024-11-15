@@ -56,11 +56,15 @@ AvatarRegistry::addOrUpdateImage(const QString& id)
     }
     return uid;
 }
-
+// HACK: There is still a timing issue with when this function is called.
+// The reason that avatar duplication was happening is that when the LRC account id is changed via
+// the account combobox, the ui updates itself and calls getUID for the avatars that it needs to
+// load, although by this point, the cache has not yet been cleared here. This ends up executing
+// after the getUID calls.
 void
 AvatarRegistry::connectAccount()
 {
-    uidMap_.clear();
+    clearCache();
     connect(lrcInstance_->getCurrentContactModel(),
             &ContactModel::profileUpdated,
             this,
@@ -92,4 +96,10 @@ AvatarRegistry::getUid(const QString& id)
         return addOrUpdateImage(id);
     }
     return it.value();
+}
+
+void
+AvatarRegistry::clearCache()
+{
+    uidMap_.clear();
 }

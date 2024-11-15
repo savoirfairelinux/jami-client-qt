@@ -45,6 +45,8 @@ public:
     // add or update a specific image in the cache
     Q_SLOT QString addOrUpdateImage(const QString& id);
 
+    Q_INVOKABLE void clearCache();
+
 Q_SIGNALS:
     void avatarUidChanged(const QString& id);
 
