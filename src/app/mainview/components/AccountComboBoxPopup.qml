@@ -24,6 +24,7 @@ import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
+import net.jami.Helpers 1.1
 import "../../commoncomponents"
 
 Popup {
@@ -224,8 +225,14 @@ Popup {
             delegate: AccountItemDelegate {
                 height: JamiTheme.accountListItemHeight
                 width: root.width
+
+                 Connections {
+                    target: AvatarRegistry
+                }
+
                 onClicked: {
                     root.close();
+                    AvatarRegistry.clearCache();
                     LRCInstance.currentAccountId = ID;
                 }
             }
