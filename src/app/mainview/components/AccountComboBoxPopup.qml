@@ -24,6 +24,7 @@ import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
+import net.jami.Helpers 1.1
 import "../../commoncomponents"
 
 Popup {
@@ -35,7 +36,7 @@ Popup {
 
     // limit the number of accounts shown at once
     implicitHeight: {
-        return visible ? Math.min(JamiTheme.accountListItemHeight * Math.min(6, listView.model.count + 1) + 96, appWindow.height - parent.height) : 0;
+        return visible ? Math.min(JamiTheme.accountListItemHeight * Math.min(6, listView.model.count + 1) + 91, appWindow.height - parent.height) : 0;
     }
     padding: 0
     modal: true
@@ -224,8 +225,12 @@ Popup {
             delegate: AccountItemDelegate {
                 height: JamiTheme.accountListItemHeight
                 width: root.width
+
                 onClicked: {
                     root.close();
+                    // This is a workaround for the synchronicity issue
+                    // in AvatarRegistry::connectAccount()
+                    AvatarRegistry.clearCache();
                     LRCInstance.currentAccountId = ID;
                 }
             }
