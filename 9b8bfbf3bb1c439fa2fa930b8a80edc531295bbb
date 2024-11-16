@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ae37f86_cc9b9c47",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-11-16T03:14:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8410bb4_44e9cd3c",
+      "revId": "9b8bfbf3bb1c439fa2fa930b8a80edc531295bbb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "768773f5_7839fb81",
@@ -65,6 +83,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f539a87_45ae124d",
+        "filename": "src/libclient/api/interaction.h",
+        "patchSetId": 21
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-11-16T03:14:34Z",
+      "side": 1,
+      "message": "Done. Unfortunately, not sure what the string is exactly meant to represent.",
+      "parentUuid": "df9b3f66_669dde85",
+      "range": {
+        "startLine": 335,
+        "startChar": 28,
+        "endLine": 335,
+        "endChar": 41
+      },
+      "revId": "9b8bfbf3bb1c439fa2fa930b8a80edc531295bbb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "07880177_4e49879a",
@@ -102,6 +144,30 @@
       "side": 1,
       "message": "I would suggest \"User cannot be reached\"\nSkype for example already uses that string: https://support.microsoft.com/en-us/topic/-user-cannot-be-reached-error-when-you-add-a-user-through-skype-call-in-an-acp-conference-in-skype-for-business-2016-ca4e534c-6842-b01f-3688-d4655ba942dd",
       "parentUuid": "07880177_4e49879a",
+      "range": {
+        "startLine": 339,
+        "startChar": 28,
+        "endLine": 339,
+        "endChar": 47
+      },
+      "revId": "9b8bfbf3bb1c439fa2fa930b8a80edc531295bbb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d19f4095_2aaa12ff",
+        "filename": "src/libclient/api/interaction.h",
+        "patchSetId": 21
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-11-16T03:14:34Z",
+      "side": 1,
+      "message": "Done. It talks about \"device\", not \"user\". You could be calling a device that has auto answer enabled. Perhaps it is a Jami instance with video to the front door of your home.",
+      "parentUuid": "d4a790cd_c1916506",
       "range": {
         "startLine": 339,
         "startChar": 28,
