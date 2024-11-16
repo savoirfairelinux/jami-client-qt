@@ -36,6 +36,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "12f0d28e_28147d07",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-11-16T03:16:54Z",
+      "side": 1,
+      "message": "Could this also mean `Invitation declined`?",
+      "parentUuid": "3ae37f86_cc9b9c47",
+      "revId": "9b8bfbf3bb1c439fa2fa930b8a80edc531295bbb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "768773f5_7839fb81",
