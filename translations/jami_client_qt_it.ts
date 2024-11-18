@@ -693,7 +693,7 @@ Jami ora si chiuderà.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="213"/>
         <source>Back up account here</source>
-        <translation>Fai qui il backup dell&apos;account</translation>
+        <translation>Salva qui l&apos;account</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="214"/>

@@ -880,7 +880,7 @@ Profilis bet kuriuo metu gali būti taisomas paskyros nustatymuose.</translation
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="512"/>
         <source>Delete file from device</source>
-        <translation type="unfinished"/>
+        <translation>Ištrinti failą iš įrenginio</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="529"/>
