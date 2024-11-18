@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aade443f_98c28f00",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-11-18T14:38:26Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "ca4e3a141355fc2fbdacfee4a8d96adb3164abfd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7ef3cf6_2510873e",
+        "filename": "src/libclient/contactmodel.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 577,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-11-18T14:38:26Z",
+      "side": 1,
+      "message": "```suggestion\n            // of time (less than a second), and can easily get called dozens or even hundreds\n```",
+      "range": {
+        "startLine": 577,
+        "startChar": 71,
+        "endLine": 577,
+        "endChar": 94
+      },
+      "revId": "ca4e3a141355fc2fbdacfee4a8d96adb3164abfd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4c289f8_e156e77e",
+        "filename": "src/libclient/contactmodel.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-11-18T14:38:26Z",
+      "side": 1,
+      "message": "```suggestion\n            // of times in total after using Jami for a couple of hours. We don\u0027t want to send\n```",
+      "range": {
+        "startLine": 578,
+        "startChar": 18,
+        "endLine": 578,
+        "endChar": 22
+      },
+      "revId": "ca4e3a141355fc2fbdacfee4a8d96adb3164abfd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
