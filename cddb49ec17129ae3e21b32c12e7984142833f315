@@ -16,6 +16,23 @@
       "message": "DBUS build appears to be broken; I\u0027m currently investigating the issue.",
       "revId": "cddb49ec17129ae3e21b32c12e7984142833f315",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ceb751c_ea8feace",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1105
+      },
+      "writtenOn": "2024-11-18T18:10:21Z",
+      "side": 1,
+      "message": "Resolved in the last patch : https://review.jami.net/c/jami-daemon/+/29579",
+      "revId": "cddb49ec17129ae3e21b32c12e7984142833f315",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
