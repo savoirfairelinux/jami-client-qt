@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9975e76f_47dd3bda",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-11-19T21:03:00Z",
+      "side": 0,
+      "message": "`Jami account (.jac)`",
+      "range": {
+        "startLine": 219,
+        "startChar": 44,
+        "endLine": 219,
+        "endChar": 69
+      },
+      "revId": "7e926a3e2397e3f886d3fd221b2a8df41c564048",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
