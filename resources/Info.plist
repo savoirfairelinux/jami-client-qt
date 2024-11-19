@@ -28,6 +28,8 @@
 	<string>${SPARKLE_PUBLIC_KEY}</string>
 	<key>SUFeedURL</key>
 	<string>${SPARKLE_URL}</string>
+	<key>SUEnableInstallerLauncherService</key>
+	<true/>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>NSCameraUsageDescription</key>
@@ -38,5 +40,7 @@
 	<true/>
     <key>NSAppleEventsUsageDescription</key>
     <string>Jami requires to monitor global key events for push-to-talk functionality.</string>
+	<key>NSDownloadsFolderUsageDescription</key>
+	<string>Jami requires to access your downloads folder to save file</string>
 </dict>
 </plist>
