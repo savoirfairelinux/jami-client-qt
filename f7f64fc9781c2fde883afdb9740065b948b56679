@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3da8a63d_753424ab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 24
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2024-11-19T21:38:16Z",
+      "side": 1,
+      "message": "I would delete the point after \"Busy\", Call declined.\" and\"Unreachable peer.\"",
+      "revId": "f7f64fc9781c2fde883afdb9740065b948b56679",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
