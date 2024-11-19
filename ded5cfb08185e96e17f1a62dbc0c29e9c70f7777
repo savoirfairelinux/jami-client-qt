@@ -16,6 +16,24 @@
       "message": "this will break SIP avatars. Is that intended?",
       "revId": "ded5cfb08185e96e17f1a62dbc0c29e9c70f7777",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96b862f3_e6de9a0d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1105
+      },
+      "writtenOn": "2024-11-19T14:45:15Z",
+      "side": 1,
+      "message": "This has been updated, but note that additional work might be required for the SIP account on the client side. The avatar loads upon client restart rather than instantly with the SIP account for some reason.",
+      "parentUuid": "6547dd20_aa00d05d",
+      "revId": "ded5cfb08185e96e17f1a62dbc0c29e9c70f7777",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
