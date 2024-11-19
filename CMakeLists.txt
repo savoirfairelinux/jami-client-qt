@@ -993,7 +993,7 @@ else()
           MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/resources/Info.plist"
           MACOSX_BUNDLE_EXECUTABLE_NAME "${PROJ_NAME}"
           MACOSX_BUNDLE_ICON_FILE "jami.icns"
-          MACOSX_BUNDLE_GUI_IDENTIFIER "${BUNDLE_ID}"
+          MACOSX_BUNDLE_GUI_IDENTIFIER "cx.ring"
           MACOSX_BUNDLE_SHORT_VERSION_STRING "${JAMI_VERSION}"
           MACOSX_BUNDLE_BUNDLE_VERSION "${JAMI_BUILD}"
           MACOSX_BUNDLE_COPYRIGHT "${PROJ_COPYRIGHT}")
@@ -1002,6 +1002,15 @@ else()
     set_target_properties(${PROJECT_NAME} PROPERTIES
           XCODE_ATTRIBUTE_CODE_SIGN_ENTITLEMENTS "${CMAKE_CURRENT_SOURCE_DIR}/resources/entitlements/appstore/Jami.entitlements")
   else()
+    message("******** adding migration")
+    # Include container-migration.plist in the Resources directory of the app bundle
+    set_source_files_properties("${CMAKE_CURRENT_SOURCE_DIR}/resources/container-migration.plist" PROPERTIES
+      MACOSX_PACKAGE_LOCATION "Resources"
+    )
+    # Add container-migration.plist to the target
+    target_sources(${PROJECT_NAME} PRIVATE
+      "${CMAKE_CURRENT_SOURCE_DIR}/resources/container-migration.plist"
+    )
     set_target_properties(${PROJECT_NAME} PROPERTIES
           SPARKLE_URL "${SPARKLE_URL}"
           SPARKLE_PUBLIC_KEY "${SPARKLE_PUBLIC_KEY}"
