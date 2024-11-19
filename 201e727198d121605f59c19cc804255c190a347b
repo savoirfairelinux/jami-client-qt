@@ -16,6 +16,47 @@
       "message": "There is still a timing issue with when this function is called. The reason that this entire problem was occuring is that when the LRC account id is changed via the account combobox, the ui updates itself and calls getUID for the avatars that it needs to load, although by this point, the cache has not yet been cleared here. This ends up executing after the getUID calls.",
       "revId": "201e727198d121605f59c19cc804255c190a347b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68930c2f_055286cf",
+        "filename": "src/app/avatarregistry.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-11-19T18:09:34Z",
+      "side": 1,
+      "message": "put this comment in the code with a HACK: prefix",
+      "parentUuid": "c5f4b385_ecd2ca11",
+      "revId": "201e727198d121605f59c19cc804255c190a347b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f8a6568_8adbe1d0",
+        "filename": "src/app/mainview/components/AccountComboBoxPopup.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-11-19T18:09:34Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 229,
+        "startChar": 16,
+        "endLine": 231,
+        "endChar": 17
+      },
+      "revId": "201e727198d121605f59c19cc804255c190a347b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
