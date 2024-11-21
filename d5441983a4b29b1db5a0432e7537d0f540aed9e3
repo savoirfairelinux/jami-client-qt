@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9729512_3d62420d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1105
+      },
+      "writtenOn": "2024-11-21T20:41:10Z",
+      "side": 1,
+      "message": "Note : do not merge this patch if the feature is not updated in the daemon\nhttps://review.jami.net/c/jami-daemon/+/29623",
+      "revId": "d5441983a4b29b1db5a0432e7537d0f540aed9e3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
