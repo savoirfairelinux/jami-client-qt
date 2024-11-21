@@ -1188,7 +1188,8 @@ ContactModelPimpl::slotProfileReceived(const QString& accountId,
     if (accountId != linked.owner.id)
         return;
 
-    if (linked.owner.profileInfo.uri == peer) {
+    if (linked.owner.profileInfo.uri == peer || accountId == peer) { 
+        // as SIP account don't have a uri, we emit a signal with the accountId in the peer parameter
         const auto newProfileInfo = storage::getProfileData(accountId, "");
         linked.owner.accountModel->setAlias(accountId, newProfileInfo["alias"], false);
         linked.owner.accountModel->setAvatar(accountId, newProfileInfo["avatar"], false);
