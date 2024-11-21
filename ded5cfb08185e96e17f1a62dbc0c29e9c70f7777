@@ -34,6 +34,24 @@
       "parentUuid": "6547dd20_aa00d05d",
       "revId": "ded5cfb08185e96e17f1a62dbc0c29e9c70f7777",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7326e393_53d19781",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-11-21T18:41:35Z",
+      "side": 1,
+      "message": "Best to leave a note about that around https://review.jami.net/c/jami-client-qt/+/29547/5/src/libclient/accountmodel.cpp#299",
+      "parentUuid": "96b862f3_e6de9a0d",
+      "revId": "ded5cfb08185e96e17f1a62dbc0c29e9c70f7777",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
