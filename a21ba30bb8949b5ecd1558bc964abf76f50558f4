@@ -16,6 +16,23 @@
       "message": "Just tried out and the word \"busy\" is actually wrong. The desktop version shows this string if you make a call and the other user does not answer or decline this call (for example after 30 seconds you get this message).\n\nI recommend using a string like \"user does not respond\" / \"user did not respond\" or \"Peer is not responding\"\n(You would generally use \"busy\" if there\u0027s already another ongoing call and you can\u0027t receive this call because of the other call)",
       "revId": "a21ba30bb8949b5ecd1558bc964abf76f50558f4",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f435d245_7fb68763",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 27
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2024-11-23T14:59:12Z",
+      "side": 1,
+      "message": "Not sure if \"Unreachable peer\" is the best / right string. I would use \"Unavailable\" - it\u0027s also the string of SIP response codes: https://en.wikipedia.org/wiki/List_of_SIP_response_codes",
+      "revId": "a21ba30bb8949b5ecd1558bc964abf76f50558f4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
