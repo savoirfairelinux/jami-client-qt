@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0be48bf2_b61ace22",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-11-25T10:17:51Z",
+      "side": 1,
+      "message": "Sorry for previously not explicitly stating the suggestion.\n\n1. Should the asterisk (`*`) be removed? Inspiration from LibreOffice, Menu Bar, File, Save As… and the drop-down in the bottom right has `ODF Text Document (.odt)`\n2. Should `files` be removed as they are all files?\n3. Should `archive` be changed to `account` as it refers to backing up/opening an account?\n\nShould\n`Jami archive files (*.jac)`\nbe changed to\n`Jami account (.jac)`\n\nThank you",
+      "range": {
+        "startLine": 219,
+        "startChar": 44,
+        "endLine": 219,
+        "endChar": 70
+      },
+      "revId": "319d2e5bc5c7ae2362ef0c013d674fc21e3d59fd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
