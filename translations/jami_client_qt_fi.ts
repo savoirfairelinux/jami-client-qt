@@ -2290,12 +2290,12 @@ Sinun kuvaa ja lempinimeä voidaan muuttaa milloin tahansa tilin asetuksista.</t
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="653"/>
         <source>By %1</source>
-        <translation type="unfinished"/>
+        <translation>%1:lta</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="654"/>
         <source>Proposed by %1</source>
-        <translation type="unfinished"/>
+        <translation>Ehdottaja %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="657"/>
@@ -3451,7 +3451,7 @@ synkronoi keskustelun.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="820"/>
         <source>To:</source>
-        <translation type="unfinished"/>
+        <translation>Vastaanottaja:</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="823"/>

@@ -3815,7 +3815,7 @@ eine Verbindung herstellt, um die Unterhaltung zu synchronisieren.</translation>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="267"/>
         <source>%1 was kicked</source>
-        <translation>%1 wurde entfernt</translation>
+        <translation>%1 wurde hinausgeworfen</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="269"/>
