@@ -37,7 +37,7 @@ for ARCH in "${ARCHS[@]}"; do
   make clean
   ./autogen.sh
   ./configure --host="$ARCH" --without-png --prefix="${QRENCODEDIR}/${BUILDDIR}" CFLAGS=" -arch $ARCH $CFLAGS"
-  make -j"$NPROC"
+  make
   make install
 done
 mkdir -p "$QRENCODEDIR"/lib
