@@ -1,61 +1,89 @@
 #!/usr/bin/env bash
+set -e
 
-# Flags:
+# Usage:
+# ./build_qrencode.sh -a <architecture>
+# Accepted architectures: arm64, x86_64, unified
+# If no architecture is specified, the script builds for the host architecture.
 
-# -a: architecture to build. Accepted values arm64, x86_64, unified
-
+# Initialize variables
 arch=''
 while getopts "a:" OPT; do
   case "$OPT" in
-  a)
-    arch="${OPTARG}"
-    ;;
-  \?)
-    exit 1
-    ;;
+    a)
+      arch="${OPTARG}"
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      echo "Usage: $0 [-a architecture]"
+      echo "Accepted architectures: arm64, x86_64, unified"
+      exit 1
+      ;;
   esac
 done
 
+# Determine architectures to build
 if [[ "$arch" == 'unified' ]]; then
   ARCHS=("arm64" "x86_64")
 elif [[ "$arch" == '' ]]; then
-  ARCHS=("arm64")
+  # Detect host architecture
+  HOST_ARCH=$(uname -m)
+  case "$HOST_ARCH" in
+    x86_64|arm64)
+      ARCHS=("$HOST_ARCH")
+      ;;
+    *)
+      echo "Unsupported host architecture: $HOST_ARCH"
+      echo "Supported architectures are: arm64, x86_64, unified"
+      exit 1
+      ;;
+  esac
 else
-  ARCHS=("$arch")
+  # Validate specified architecture
+  case "$arch" in
+    x86_64|arm64)
+      ARCHS=("$arch")
+      ;;
+    *)
+      echo "Invalid architecture specified: $arch"
+      echo "Accepted architectures are: arm64, x86_64, unified"
+      exit 1
+      ;;
+  esac
 fi
 
 TOP="$(pwd)"
 QRENCODEDIR="${TOP}/3rdparty/libqrencode"
-if [ -z "$NPROC" ]; then
-  NPROC=$(sysctl -n hw.ncpu || echo -n 1)
-fi
+BUILDDIR="${TOP}/build-libqrencode"
+LIBDIR="${QRENCODEDIR}/lib"
+INCLUDEDIR="${QRENCODEDIR}/include"
 
-for ARCH in "${ARCHS[@]}"; do
-  cd "$QRENCODEDIR" || exit 1
-  BUILDDIR="$ARCH-libqrencode"
-  mkdir "$BUILDDIR"
-  make clean
-  ./autogen.sh
-  ./configure --host="$ARCH" --without-png --prefix="${QRENCODEDIR}/${BUILDDIR}" CFLAGS=" -arch $ARCH $CFLAGS"
-  make -j"$NPROC"
-  make install
-done
-mkdir -p "$QRENCODEDIR"/lib
-mkdir -p "$QRENCODEDIR"/include
+# Clean up build directory
+echo "Preparing clean build directory..."
+rm -rf "$BUILDDIR"
+mkdir -p "$BUILDDIR"
 
-if ((${#ARCHS[@]} == "2")); then
-  echo "Making fat lib for ${ARCHS[0]} and ${ARCHS[1]}"
-  LIBFILES="$QRENCODEDIR/${ARCHS[0]}-libqrencode/lib/*.a"
-  for f in $LIBFILES; do
-    libFile=${f##*/}
-    echo "$libFile"
-    lipo -create "$QRENCODEDIR/${ARCHS[0]}-libqrencode/lib/$libFile" \
-      "$QRENCODEDIR/${ARCHS[1]}-libqrencode/lib/$libFile" \
-      -output "${QRENCODEDIR}/lib/$libFile"
-  done
-else
-  echo "No need for fat lib"
-  rsync -ar --delete "$QRENCODEDIR/${ARCHS[0]}-libqrencode/lib/"*.a "${QRENCODEDIR}/lib/"
-fi
+# Clean output directories
+rm -rf "$LIBDIR" "$INCLUDEDIR"
+mkdir -p "$LIBDIR"
+mkdir -p "$INCLUDEDIR"
 
-rsync -ar --delete "$QRENCODEDIR/${ARCHS[0]}-libqrencode/include/"* "${QRENCODEDIR}/include/"
+# Convert architectures to semicolon-separated format for cmake
+ARCHS_SEMICOLON_SEPARATED=$(IFS=";"; echo "${ARCHS[*]}")
+
+echo "Configuring CMake for architectures: ${ARCHS[*]}..."
+cd "$BUILDDIR"
+cmake "$QRENCODEDIR" \
+  -DCMAKE_OSX_ARCHITECTURES="$ARCHS_SEMICOLON_SEPARATED" \
+  -DCMAKE_INSTALL_PREFIX="$QRENCODEDIR" \
+  -DWITHOUT_PNG=ON \
+  -DBUILD_SHARED_LIBS=OFF \
+  -G "Xcode"
+
+echo "Building libqrencode for architectures: ${ARCHS[*]}..."
+cmake --build "$BUILDDIR" --config Release
+
+echo "Installing libqrencode to $LIBDIR and $INCLUDEDIR..."
+cmake --install "$BUILDDIR" --config Release
+
+echo "Build and installation completed successfully, with outputs in $LIBDIR and $INCLUDEDIR."
