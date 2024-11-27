@@ -246,8 +246,8 @@ ConversationsAdapter::onNewTrustRequest(const QString& accountId,
             auto contactPhoto = Utils::contactPhoto(lrcInstance_, peerUri, QSize(50, 50), accountId);
             auto notifId = QString("%1;%2").arg(accountId, conv);
             systemTray_->showNotification(notifId,
-                                          tr("%1 received a new trust request").arg(to),
-                                          "New request from " + peerBestName,
+                                          tr("%1 received a new Jami conversation invitation").arg(to),
+                                          "New invitation from " + peerBestName,
                                           SystemTray::NotificationType::REQUEST,
                                           Utils::QImageToByteArray(contactPhoto));
         };
