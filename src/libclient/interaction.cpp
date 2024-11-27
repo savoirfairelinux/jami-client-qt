@@ -87,7 +87,7 @@ Info::init(const MapStringString& message,
         if (message["mode"] == "0") {
             body = QObject::tr("Private conversation created");
         } else {
-            body = QObject::tr("Swarm created");
+            body = QObject::tr("Group conversation created");
         }
     } else if (type == Type::CALL) {
         duration = message["duration"].toInt() / 1000;
