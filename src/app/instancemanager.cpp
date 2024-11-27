@@ -141,14 +141,14 @@ private Q_SLOTS:
         connection_ = server_->nextPendingConnection();
         connect(connection_, &QLocalSocket::readyRead, this, [this] {
             QLocalSocket* clientSocket = (QLocalSocket*) sender();
-            QByteArray recievedData;
-            recievedData = clientSocket->readAll();
-            if (recievedData == terminateSeq_) {
+            QByteArray receivedData;
+            receivedData = clientSocket->readAll();
+            if (receivedData == terminateSeq_) {
                 qWarning() << "Received terminate signal.";
                 mainAppInstance_->quit();
             } else {
-                qDebug() << "Received start URI:" << recievedData;
-                auto startUri = QString::fromLatin1(recievedData);
+                qDebug() << "Received start URI:" << receivedData;
+                auto startUri = QString::fromLatin1(receivedData);
                 mainAppInstance_->handleUriAction(startUri);
             }
         });
