@@ -16,6 +16,52 @@
       "message": "!build",
       "revId": "de31c6adbf6536aceb83b24f386018cef7939ede",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e1ae581_0a1fba8a",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2024-11-29T16:05:41Z",
+      "side": 1,
+      "message": "invitation",
+      "range": {
+        "startLine": 249,
+        "startChar": 64,
+        "endLine": 249,
+        "endChar": 92
+      },
+      "revId": "de31c6adbf6536aceb83b24f386018cef7939ede",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf5f83c1_91802def",
+        "filename": "src/libclient/interaction.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2024-11-29T16:05:41Z",
+      "side": 1,
+      "message": "Maybe simply \"Group created\" or \"Private group created\" ?",
+      "range": {
+        "startLine": 90,
+        "startChar": 32,
+        "endLine": 90,
+        "endChar": 39
+      },
+      "revId": "de31c6adbf6536aceb83b24f386018cef7939ede",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
