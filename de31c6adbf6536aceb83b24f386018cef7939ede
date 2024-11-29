@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "847e834f_112e020a",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-11-29T20:36:13Z",
+      "side": 1,
+      "message": "Thank you for your review.\n\nCould you get an invitation from a different/alternative/similar program to Jami; hence, \"Jami\"\n\nhttps://www.template.net/graphic-design/design-invitations/\nmeeting invitation, wedding invitation, birthday invitation, etc; hence, \"conversation\"\n\nAs you are the developer, if you prefer to replace \"Jami conversation invitation\" with \"invitation\" feel free to confirm, and an update to this patch will be done.\n\nThank you once again.",
+      "parentUuid": "3e1ae581_0a1fba8a",
+      "range": {
+        "startLine": 249,
+        "startChar": 64,
+        "endLine": 249,
+        "endChar": 92
+      },
+      "revId": "de31c6adbf6536aceb83b24f386018cef7939ede",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cf5f83c1_91802def",
         "filename": "src/libclient/interaction.cpp",
         "patchSetId": 6
@@ -54,6 +78,30 @@
       "writtenOn": "2024-11-29T16:05:41Z",
       "side": 1,
       "message": "Maybe simply \"Group created\" or \"Private group created\" ?",
+      "range": {
+        "startLine": 90,
+        "startChar": 32,
+        "endLine": 90,
+        "endChar": 39
+      },
+      "revId": "de31c6adbf6536aceb83b24f386018cef7939ede",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7401e316_057a1648",
+        "filename": "src/libclient/interaction.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-11-29T20:36:13Z",
+      "side": 1,
+      "message": "\"conversation\" is in the string to be consistent with 2 lines above that states \"Private conversation created\".\n\n\"Private group\" is in the string to be consistent with Jami app, Detail, Settings, Conversation type \u003d \"Private group\"\n\nMight the if...then...else be changed in the future to a case statement to include \"Public group conversation\" too?\n\nPlease advise if you would like screenshots to better explain what is written above.\n\nAs you are the developer, if you prefer to replace \"Private group conversation created\" with any other string, please feel free to confirm the exact string, and an update to this patch will be done.\n\nThank you",
+      "parentUuid": "cf5f83c1_91802def",
       "range": {
         "startLine": 90,
         "startChar": 32,
