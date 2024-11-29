@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020-2025 Savoir-faire Linux Inc.
+ * Copyright (C) 2020-2024 Savoir-faire Linux Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -123,6 +123,7 @@ Rectangle {
         ChatViewHeader {
             id: chatViewHeader
             objectName: "chatViewHeader"
+            z: 3
 
             Layout.alignment: Qt.AlignHCenter
             Layout.fillWidth: true
@@ -167,6 +168,13 @@ Rectangle {
             target: CurrentConversation
             enabled: true
 
+            function onActiveCallsChanged() {
+                if (CurrentConversation.activeCalls.length > 0)
+                // temp update calldropdownmenu
+                {
+                }
+            }
+
             function onErrorsChanged() {
                 if (CurrentConversation.errors.length > 0) {
                     errorRect.errorLabel.text = CurrentConversation.errors[0];
@@ -194,13 +202,6 @@ Rectangle {
             Layout.fillWidth: true
             Layout.preferredHeight: JamiTheme.qwkTitleBarHeight
             visible: false
-        }
-
-        NotificationArea {
-            id: notificationArea
-            Layout.fillWidth: true
-            Layout.preferredHeight: JamiTheme.qwkTitleBarHeight
-            visible: CurrentConversation.activeCalls.length > 0 && !root.inCallView
         }
 
         JamiSplitView {
