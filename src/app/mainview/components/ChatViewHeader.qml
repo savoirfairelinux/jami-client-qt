@@ -184,7 +184,6 @@ Rectangle {
             QWKSetParentHitTestVisible {
             }
             Layout.preferredHeight: 36
-            //Layout.preferredWidth: 80
             Layout.alignment: Qt.AlignVCenter
             visible: CurrentConversation.activeCalls.length > 0 && interactionButtonsVisibility && (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
         }
