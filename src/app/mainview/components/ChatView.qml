@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -169,6 +170,7 @@ Rectangle {
         ChatViewHeader {
             id: chatViewHeader
             objectName: "chatViewHeader"
+            z: 3
 
             Layout.alignment: Qt.AlignHCenter
             Layout.fillWidth: true
@@ -212,6 +214,13 @@ Rectangle {
         Connections {
             target: CurrentConversation
             enabled: true
+
+            function onActiveCallsChanged() {
+                if (CurrentConversation.activeCalls.length > 0)
+                // temp update calldropdownmenu
+                {
+                }
+            }
 
             function onErrorsChanged() {
                 if (CurrentConversation.errors.length > 0) {
@@ -263,13 +272,6 @@ Rectangle {
                     Layout.fillWidth: true
                 }
             }
-        }
-
-        NotificationArea {
-            id: notificationArea
-            Layout.fillWidth: true
-            Layout.preferredHeight: JamiTheme.qwkTitleBarHeight
-            visible: CurrentConversation.activeCalls.length > 0 && !root.inCallView
         }
 
         JamiSplitView {
