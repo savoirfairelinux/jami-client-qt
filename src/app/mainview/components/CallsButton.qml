@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020-2024 Savoir-faire Linux Inc.
+ * Copyright (C) 2020-2025 Savoir-faire Linux Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,13 +32,15 @@ Rectangle {
 
     property bool darkTheme: UtilsAdapter.useApplicationTheme()
     property bool isDropDownOpen: false
-    property bool activeCalls: CurrentConversation.activeCalls.length > 0
+    property bool uniqueActiveCall: CurrentConversation.activeCalls.length === 1
+    property bool activeCalls: CurrentConversation.activeCalls.length > 1
 
     RowLayout {
 
         anchors.fill: parent
         Layout.fillWidth: false
         spacing: 0
+        visible: uniqueActiveCall
 
         Item {
 
@@ -47,18 +49,18 @@ Rectangle {
             JamiPushButton {
                 id: callButton
                 source: JamiResources.place_audiocall_24dp_svg
-                normalColor: "#20c68d"
-                hoveredColor: "#00796B"
-                imageColor: hovered ? "#20c68d" : "black"
+                normalColor: JamiTheme.buttonCallLightGreen
+                hoveredColor: JamiTheme.buttonCallDarkGreen
+                imageColor: hovered ? JamiTheme.buttonCallLightGreen : JamiTheme.blackColor
                 radius: 35
                 preferredSize: 36
                 anchors.verticalCenter: parent.verticalCenter
-                onClicked: CallAdapter.placeCall()
+                onClicked: CallAdapter.placeAudioOnlyCall()
+
             }
 
             Loader {
                 id: spinnerLoader
-                active: CurrentConversation.activeCalls.length > 0
                 sourceComponent: spinner
                 anchors.centerIn: callButton
             }
@@ -115,20 +117,16 @@ Rectangle {
         JamiPushButton {
             id: expandArrow
             visible: activeCalls
-
-            source: dropdownPopup.visible ? JamiResources.expand_more_24dp_svg : JamiResources.expand_less_24dp_svg
-            normalColor: "#00ffffff"
+            enabled: !dropdownPopup.visible
+            source: dropdownPopup.visible ? JamiResources.expand_less_24dp_svg : JamiResources.expand_more_24dp_svg
+            normalColor: JamiTheme.transparentColor
             imageColor: !darkTheme ? JamiTheme.blackColor : JamiTheme.whiteColor
             preferredSize: 20
             hoveredColor: normalColor
             Layout.rightMargin: 5
 
             onClicked: {
-                if (dropdownPopup.visible) {
-                    dropdownPopup.close();
-                } else {
-                    dropdownPopup.open();
-                }
+                dropdownPopup.open()
             }
         }
     }
@@ -161,12 +159,12 @@ Rectangle {
 
                 width: listView.width
                 height: 50
-                color: "transparent"
+                color: JamiTheme.transparentColor
                 property bool isHovered: false
 
                 Rectangle {
                     anchors.fill: parent
-                    color: isHovered ? (darkTheme ? Qt.lighter(JamiTheme.darkGreyColor, 1.2) : Qt.darker(JamiTheme.lightGrey_, 1.1)) : "transparent"
+                    color: isHovered ? (darkTheme ? Qt.lighter(JamiTheme.darkGreyColor, 1.2) : Qt.darker(JamiTheme.lightGrey_, 1.1)) : JamiTheme.transparentColor
                     radius: 5
                 }
 
@@ -183,20 +181,14 @@ Rectangle {
                             width: parent.width
                             text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, modelData.uri) + "'s call"
                             color: darkTheme ? JamiTheme.whiteColor : JamiTheme.blackColor
-                            font.pixelSize: 14
+                            font.pixelSize: JamiTheme.headerFontSize
                             font.bold: true
                             elide: Text.ElideRight
                         }
 
                         Text {
                             width: parent.width
-                            text: {
-                                "text";
-
-                                //console.info(modelData.id)
-                                //console.info(CallAdapter.getCallDurationTime(currentAccountId, modelData.id)) //currentAccountId
-
-                            }
+                            text: modelData.uri
                             color: darkTheme ? JamiTheme.whiteColor : JamiTheme.blackColor
                             font.pixelSize: 12
                             elide: Text.ElideRight
@@ -207,15 +199,11 @@ Rectangle {
                         Layout.preferredWidth: 35
                         Layout.preferredHeight: 35
                         source: CurrentCall.isAudioOnly ? JamiResources.place_audiocall_24dp_svg : JamiResources.videocam_24dp_svg
-                        normalColor: "#20c68d"
-                        imageColor: "black"
+                        normalColor: JamiTheme.buttonCallLightGreen
+                        imageColor: JamiTheme.blackColor
                         radius: 35
-                        hoveredColor: "pink"
+                        onClicked: MessagesAdapter.joinCall(modelData.uri, modelData.device, modelData.id, true); //CurrentCall.isAudioOnly
 
-                        onClicked: {
-                            console.info("Call button clicked for ID:", modelData.uri);
-                            MessagesAdapter.joinCall(modalData.ActionUri, modalData.DeviceId, CurrentConversation.confId, CurrentCall.isAudioOnly);
-                        }
                     }
                 }
 
