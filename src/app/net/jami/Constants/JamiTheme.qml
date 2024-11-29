@@ -146,6 +146,10 @@ Item {
 
     property color editButtonBorderColor: darkTheme ? "#333333" : "#F0EFEF"
 
+    // Calls button
+    property color buttonCallLightGreen: "#20C68D"
+    property color buttonCallDarkGreen: "#00796B"
+
     // Jami switch
     property color switchBackgroundCheckedColor: "#8dbaea"
     property color switchBackgroundColor: darkTheme ? "#626262" : "#E5EEF5"
