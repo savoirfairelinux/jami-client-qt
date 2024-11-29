@@ -155,22 +155,26 @@ SBSMessageBase {
             JoinCallButton {
                 id: joinCallWithAudio
                 objectName: "joinCallWithAudio"
-                Layout.topMargin: 4
-                Layout.bottomMargin: 4
+                source: JamiResources.place_audiocall_24dp_svg
+                Layout.leftMargin: 10
+                onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, root.confId, true)
 
-                text: JamiStrings.joinWithAudio
-                onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, rootDelegate.confId, true)
-            }
+                width: 40
+                height: 40
 
-            JoinCallButton {
-                id: joinCallWithVideo
-                objectName: "joinCallWithVideo"
-                text: JamiStrings.joinWithVideo
-                Layout.topMargin: 4
-                Layout.bottomMargin: 4
-
-                onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, rootDelegate.confId)
-                Layout.rightMargin: 4
+                layer.enabled: true
+                layer.effect: OpacityMask {
+                    source: joinCallWithAudio
+                    maskSource: Rectangle {
+                        radius: 10
+                        width: joinCallWithAudio.width
+                        height: joinCallWithAudio.height
+                        Rectangle {
+                            width: parent.width / 2
+                            height: parent.height
+                        }
+                    }
+                }
             }
         }
     ]
