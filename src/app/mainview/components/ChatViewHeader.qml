@@ -149,29 +149,16 @@ Rectangle {
             }
         }
 
-        JamiPushButton {
-            id: startAudioCallButton
+
+        CallsButton {
             QWKSetParentHitTestVisible {
             }
-
+            Layout.preferredHeight: 35
+            Layout.preferredWidth: 80
+            Layout.alignment: Qt.AlignVCenter
             visible: interactionButtonsVisibility && (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
-            source: JamiResources.place_audiocall_24dp_svg
-            toolTipText: JamiStrings.startAudioCall
-
-            onClicked: CallAdapter.placeAudioOnlyCall()
         }
-
-        JamiPushButton {
-            id: startVideoCallButton
-            QWKSetParentHitTestVisible {
-            }
-
-            visible: interactionButtonsVisibility && CurrentAccount.videoEnabled_Video && (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
-            source: JamiResources.videocam_24dp_svg
-            toolTipText: JamiStrings.startVideoCall
-
-            onClicked: CallAdapter.placeCall()
-        }
+       
 
         JamiPushButton {
             id: inviteMembersButton

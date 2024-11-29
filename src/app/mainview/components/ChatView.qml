@@ -123,6 +123,7 @@ Rectangle {
         ChatViewHeader {
             id: chatViewHeader
             objectName: "chatViewHeader"
+            z:3
 
             Layout.alignment: Qt.AlignHCenter
             Layout.fillWidth: true
@@ -169,11 +170,8 @@ Rectangle {
 
             function onActiveCallsChanged() {
                 if (CurrentConversation.activeCalls.length > 0) {
-                    notificationArea.id = CurrentConversation.activeCalls[0]["id"];
-                    notificationArea.uri = CurrentConversation.activeCalls[0]["uri"];
-                    notificationArea.device = CurrentConversation.activeCalls[0]["device"];
+                  // temp update calldropdownmenu
                 }
-                notificationArea.visible = CurrentConversation.activeCalls.length > 0 && !root.inCallView;
             }
 
             function onErrorsChanged() {
@@ -203,13 +201,6 @@ Rectangle {
             Layout.fillWidth: true
             Layout.preferredHeight: JamiTheme.qwkTitleBarHeight
             visible: false
-        }
-
-        NotificationArea {
-            id: notificationArea
-            Layout.fillWidth: true
-            Layout.preferredHeight: JamiTheme.qwkTitleBarHeight
-            visible: CurrentConversation.activeCalls.length > 0 && !root.inCallView
         }
 
         JamiSplitView {
