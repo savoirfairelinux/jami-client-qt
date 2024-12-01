@@ -264,8 +264,8 @@ Item {
     property string clearConversation: qsTr("Clear conversation")
     property string confirmAction: qsTr("Confirm action")
     property string removeConversation: qsTr("Leave conversation")
-    property string confirmRmConversation: qsTr("Do you really want to leave this conversation?")
-    property string confirmBlockConversation: qsTr("Do you really want to block this conversation?")
+    property string confirmLeaveConversation: qsTr("Do you want to leave this conversation? To continue, click Leave.")
+    property string confirmBlockConversation: qsTr("Do you want to block this conversation? To continue, click Block.")
     property string removeContact: qsTr("Remove contact")
     property string blockContact: qsTr("Block contact")
     property string convDetails: qsTr("Conversation details")
@@ -378,7 +378,7 @@ Item {
     property string invalidUsername: qsTr("Invalid username")
     property string nameAlreadyTaken: qsTr("Name already taken")
     property string usernameAlreadyTaken: qsTr("Username already taken")
-    property string joinJamiNoPassword: qsTr("Do you really want to join Jami without a username?\nIf yes, only a randomly generated 40-character identifier will be assigned to this account.")
+    property string joinJamiNoPassword: qsTr("Do you want to join Jami without a username?\nIf yes, only a randomly generated 40-character identifier will be assigned to this account.")
     property string usernameToolTip: qsTr("- 32 characters maximum\n- Alphabetical characters (A to Z and a to z)\n- Numeric characters (0 to 9)\n- Special characters allowed: dash (-)")
 
     // Good to know
@@ -404,7 +404,7 @@ Item {
     // accountSettingsPages
     property string customizeAccountDescription: qsTr("Your profile is only shared with your contacts.\nYour picture and your nickname can be changed at all time in the settings of your account.")
     property string usernameAccountDescription: qsTr("A chosen username can help to be found more easily on Jami.\nIf a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.")
-    property string encryptAccountDescription: qsTr("Your Jami account is registered only on this device as an archive containing the keys of your account. Access to this archive can be protected by a password.")
+    property string encryptAccountDescription: qsTr("Your Jami account is registered only on this device as an archive containing the keys of your account. Access to this archive can be protected with a password.")
     property string saveAccountTitle: qsTr("Backup account")
     property string saveAccountDescription: qsTr("This Jami account exists only on this device. The account will be lost if this device is lost or the application is uninstalled. It is recommended to make a backup of this account.")
     property string deleteAccountTitle: qsTr("Delete account")
@@ -432,7 +432,7 @@ Item {
     property string customizeProfile: qsTr("Customize profile")
     property string customizeProfileDescription: qsTr("This profile is only shared with account contacts.\nThe profile can be changed in account settings.")
     property string encryptTitle: qsTr("Encrypt account with password")
-    property string encryptDescription: qsTr("A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected by a password.")
+    property string encryptDescription: qsTr("A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected with a password.")
     property string encryptWarning: qsTr("Please note that if you lose your password, it CANNOT be recovered!")
     property string enterNickname: qsTr("Enter a nickname, surname…")
     property string linkTitle: qsTr("Use this account on other devices")
@@ -450,7 +450,7 @@ Item {
     property string tipLinkNewDevice: qsTr("Link a new device to this account")
     property string linkDevice: qsTr("Exporting account…")
     property string removeDevice: qsTr("Remove device")
-    property string confirmRemoveDevice: qsTr("Do you really want to unlink selected device? To continue, enter account password and click Unlink.")
+    property string confirmRemoveDevice: qsTr("Do you want to unlink the selected device? To continue, enter account password and click Unlink.")
     property string yourPinIs: qsTr("Account PIN code is:")
     property string linkDeviceNetWorkError: qsTr("A network error occurred while linking device.\nPlease try again later.")
 
@@ -460,7 +460,7 @@ Item {
     property string blockedContacts: qsTr("Blocked contacts")
 
     // DeleteAccountDialog
-    property string confirmDeleteAccount: qsTr("Do you really want to delete this account? To continue, click Delete.")
+    property string confirmDeleteAccount: qsTr("Do you want to delete this account? To continue, click Delete.")
     property string deleteAccountInfos: qsTr("If your account has not been backed up or added to another device, your account and registered username will be IRREVOCABLY LOST.")
 
     // DeviceItemDelegate
@@ -634,11 +634,11 @@ Item {
     property string extensionInstallationFailed: qsTr("An error occurred while installing the extension.")
     property string reset: qsTr("Reset")
     property string uninstall: qsTr("Uninstall")
-    property string resetPreferences: qsTr("Reset Preferences")
+    property string resetPreferences: qsTr("Reset preferences")
     property string selectExtensionInstall: qsTr("Select extension to install")
     property string uninstallExtension: qsTr("Uninstall extension")
-    property string confirmExtensionReset: qsTr("Do you really want to reset the preferences for the %1 extension?")
-    property string confirmExtensionUninstall: qsTr("Do you really want to uninstall the %1 extension?")
+    property string confirmExtensionReset: qsTr("Do you want to reset the preferences for the %1 extension? To continue, click Reset.")
+    property string confirmExtensionUninstall: qsTr("Do you want to uninstall the %1 extension? To continue, click Uninstall.")
     property string goBackToExtensionsList: qsTr("Go back to extensions list")
     property string selectFile: qsTr("Select file")
     property string select: qsTr("Select")
@@ -717,6 +717,8 @@ Item {
     property string optionLeave: qsTr("Leave")
     property string optionBlock: qsTr("Block")
     property string optionUnblock: qsTr("Unblock")
+    property string optionReset: qsTr("Reset")
+    property string optionUninstall: qsTr("Uninstall")
 
     // Conference moderation
     property string setModerator: qsTr("Set moderator")
