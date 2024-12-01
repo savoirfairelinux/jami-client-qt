@@ -264,8 +264,8 @@ Item {
     property string clearConversation: qsTr("Clear conversation")
     property string confirmAction: qsTr("Confirm action")
     property string removeConversation: qsTr("Leave conversation")
-    property string confirmRmConversation: qsTr("Do you really want to leave this conversation?")
-    property string confirmBlockConversation: qsTr("Do you really want to block this conversation?")
+    property string confirmRmConversation: qsTr("Do you want to leave this conversation?")
+    property string confirmBlockConversation: qsTr("Do you want to block this conversation?")
     property string removeContact: qsTr("Remove contact")
     property string blockContact: qsTr("Block contact")
     property string convDetails: qsTr("Conversation details")
@@ -378,7 +378,7 @@ Item {
     property string invalidUsername: qsTr("Invalid username")
     property string nameAlreadyTaken: qsTr("Name already taken")
     property string usernameAlreadyTaken: qsTr("Username already taken")
-    property string joinJamiNoPassword: qsTr("Do you really want to join Jami without a username?\nIf yes, only a randomly generated 40-character identifier will be assigned to this account.")
+    property string joinJamiNoPassword: qsTr("Do you want to join Jami without a username?\nIf yes, only a randomly generated 40-character identifier will be assigned to this account.")
     property string usernameToolTip: qsTr("- 32 characters maximum\n- Alphabetical characters (A to Z and a to z)\n- Numeric characters (0 to 9)\n- Special characters allowed: dash (-)")
 
     // Good to know
@@ -450,7 +450,7 @@ Item {
     property string tipLinkNewDevice: qsTr("Link a new device to this account")
     property string linkDevice: qsTr("Exporting account…")
     property string removeDevice: qsTr("Remove device")
-    property string confirmRemoveDevice: qsTr("Do you really want to unlink selected device? To continue, enter account password and click Unlink.")
+    property string confirmRemoveDevice: qsTr("Do you want to unlink the selected device? To continue, enter account password and click Unlink.")
     property string yourPinIs: qsTr("Account PIN code is:")
     property string linkDeviceNetWorkError: qsTr("A network error occurred while linking device.\nPlease try again later.")
 
@@ -460,7 +460,7 @@ Item {
     property string blockedContacts: qsTr("Blocked contacts")
 
     // DeleteAccountDialog
-    property string confirmDeleteAccount: qsTr("Do you really want to delete this account? To continue, click Delete.")
+    property string confirmDeleteAccount: qsTr("Do you want to delete this account? To continue, click Delete.")
     property string deleteAccountInfos: qsTr("If your account has not been backed up or added to another device, your account and registered username will be IRREVOCABLY LOST.")
 
     // DeviceItemDelegate
@@ -637,8 +637,8 @@ Item {
     property string resetPreferences: qsTr("Reset Preferences")
     property string selectExtensionInstall: qsTr("Select extension to install")
     property string uninstallExtension: qsTr("Uninstall extension")
-    property string confirmExtensionReset: qsTr("Do you really want to reset the preferences for the %1 extension?")
-    property string confirmExtensionUninstall: qsTr("Do you really want to uninstall the %1 extension?")
+    property string confirmExtensionReset: qsTr("Do you want to reset the preferences for the %1 extension?")
+    property string confirmExtensionUninstall: qsTr("Do you want to uninstall the %1 extension?")
     property string goBackToExtensionsList: qsTr("Go back to extensions list")
     property string selectFile: qsTr("Select file")
     property string select: qsTr("Select")
