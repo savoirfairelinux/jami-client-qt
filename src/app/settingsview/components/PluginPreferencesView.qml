@@ -280,7 +280,7 @@ Item {
                         onClicked: viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
                                 "title": JamiStrings.uninstallExtension,
                                 "infoText": JamiStrings.confirmExtensionUninstall.arg(PluginName),
-                                "buttonTitles": [JamiStrings.optionOk, JamiStrings.optionCancel],
+                                "buttonTitles": [JamiStrings.optionUninstall, JamiStrings.optionCancel],
                                 "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue, SimpleMessageDialog.ButtonStyle.TintedBlack],
                                 "buttonCallBacks": [function () {
                                         PluginListModel.setVersionStatus(Id, PluginStatus.INSTALLABLE);
