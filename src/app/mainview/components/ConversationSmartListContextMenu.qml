@@ -87,8 +87,8 @@ ContextMenuAutoLoader {
             onClicked: {
                 var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
                         "title": JamiStrings.confirmAction,
-                        "textLabel": JamiStrings.confirmRmConversation,
-                        "confirmLabel": JamiStrings.optionRemove
+                        "textLabel": JamiStrings.confirmLeaveConversation,
+                        "confirmLabel": JamiStrings.optionLeave
                     });
                 dlg.accepted.connect(function () {
                         if (mode !== Conversation.Mode.NON_SWARM)
