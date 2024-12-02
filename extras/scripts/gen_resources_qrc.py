@@ -64,7 +64,7 @@ def gen_resources_qrc(with_webengine):
         qrc.write('<RCC>\n')
         qml.write('pragma Singleton\nimport QtQuick\nQtObject {\n')
         for root, _, files in os.walk(resdir):
-            # Skip the webengine directory if we can't use webengine
+            # Skip the WebEngine directory if WebEngine is unable to used
             if not with_webengine and path_contains_dir(root, 'webengine'):
                 continue
             prefix = root.rsplit(os.sep, 1)[-1]
@@ -90,10 +90,10 @@ def gen_resources_qrc(with_webengine):
 
 
 if __name__ == '__main__':
-    # We can't use webengine if we're building for macOS app store
+    # WebEngine is unable to be used if building for macOS App Store
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument('--with-webengine', action='store_true',
-                        default=False, help='Include webengine resources')
+                        default=False, help='Include WebEngine resources')
     args = parser.parse_args()
     gen_resources_qrc(args.with_webengine)

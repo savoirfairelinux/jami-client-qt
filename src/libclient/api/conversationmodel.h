@@ -73,7 +73,7 @@ struct AccountConversation
 typedef QVector<QVector<AccountConversation>> ConferenceableValue;
 
 /**
- *  @brief Class that manages conversation informations.
+ *  @brief Class that manages conversation information.
  */
 class LIB_EXPORT ConversationModel : public QObject
 {
