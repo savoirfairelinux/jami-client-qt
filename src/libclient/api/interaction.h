@@ -289,9 +289,9 @@ getContactInteractionString(const QString& authorUri, const ContactAction& actio
     case ContactAction::LEAVE:
         return QObject::tr("%1 left the conversation.").arg(authorUri);
     case ContactAction::BANNED:
-        return QObject::tr("%1 was kicked from the conversation.").arg(authorUri);
+        return QObject::tr("%1 was blocked from the conversation.").arg(authorUri);
     case ContactAction::UNBANNED:
-        return QObject::tr("%1 rejoined the conversation.").arg(authorUri);
+        return QObject::tr("%1 was unblocked from the conversation.").arg(authorUri);
     case ContactAction::INVALID:
         return QObject::tr("Contact added");
     }
