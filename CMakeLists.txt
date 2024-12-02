@@ -233,7 +233,7 @@ list(APPEND CLIENT_INCLUDE_DIRS ${VERSION_INFO_DIR})
 # QML and related code files
 # Check files in the app's src directory and force a reconfigure if it
 # changes.
-# Only include webengine resources if specified.
+# Only include WebEngine resources if specified.
 if(WITH_WEBENGINE)
   set(GEN_QRC_ARGS "--with-webengine")
 endif()

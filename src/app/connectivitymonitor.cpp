@@ -173,10 +173,10 @@ static void
 logConnectionInfo(NMActiveConnection* connection)
 {
     if (connection) {
-        C_INFO << "primary network connection:" << nm_active_connection_get_uuid(connection)
-               << "default: " << (nm_active_connection_get_default(connection) ? "yes" : "no");
+        C_INFO << "Primary network connection:" << nm_active_connection_get_uuid(connection)
+               << "default:" << (nm_active_connection_get_default(connection) ? "yes" : "no");
     } else {
-        C_WARN << "no primary network connection detected, check network settings";
+        C_WARN << "No primary network connection detected, check network settings";
     }
 }
 
@@ -193,7 +193,7 @@ nmClientCallback(G_GNUC_UNUSED GObject* source_object, GAsyncResult* result, Con
 {
     GError* error = nullptr;
     if (auto nm_client = nm_client_new_finish(result, &error)) {
-        C_INFO << "NetworkManager client initialized, version: " << nm_client_get_version(nm_client)
+        C_INFO << "NetworkManager client initialized, version:" << nm_client_get_version(nm_client)
                << ", daemon running:" << (nm_client_get_nm_running(nm_client) ? "yes" : "no")
                << ", networking enabled:"
                << (nm_client_networking_get_enabled(nm_client) ? "yes" : "no");
@@ -206,7 +206,7 @@ nmClientCallback(G_GNUC_UNUSED GObject* source_object, GAsyncResult* result, Con
                          cm);
 
     } else {
-        C_WARN << "error initializing NetworkManager client: " << error->message;
+        C_WARN << "Error initializing NetworkManager client:" << error->message;
         g_clear_error(&error);
     }
 }

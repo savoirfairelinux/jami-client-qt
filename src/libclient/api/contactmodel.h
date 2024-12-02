@@ -79,7 +79,7 @@ public:
      * get contact information.
      * @param  contactUri
      * @return the contact::Info structure for a contact
-     * @throws out_of_range exception if can't find the contact
+     * @throws out_of_range exception if it is unable to find the contact
      */
     const contact::Info getContact(const QString& contactUri) const;
     ContactInfoMap getSearchResults() const;
