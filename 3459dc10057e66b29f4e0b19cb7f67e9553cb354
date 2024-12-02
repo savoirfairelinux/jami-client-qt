@@ -48,6 +48,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4493d62f_86d09400",
+        "filename": "extras/scripts/build_qrencode.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2024-12-02T19:33:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b075f0e6_324f2205",
+      "range": {
+        "startLine": 62,
+        "startChar": 37,
+        "endLine": 62,
+        "endChar": 40
+      },
+      "revId": "3459dc10057e66b29f4e0b19cb7f67e9553cb354",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dca205bf_f9a54b00",
@@ -84,6 +108,30 @@
       "writtenOn": "2024-12-02T19:21:56Z",
       "side": 1,
       "message": "Acknowledged",
+      "parentUuid": "dca205bf_f9a54b00",
+      "range": {
+        "startLine": 74,
+        "startChar": 54,
+        "endLine": 74,
+        "endChar": 57
+      },
+      "revId": "3459dc10057e66b29f4e0b19cb7f67e9553cb354",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b18af93_e0c199ed",
+        "filename": "extras/scripts/build_qrencode.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2024-12-02T19:33:02Z",
+      "side": 1,
+      "message": "Done",
       "parentUuid": "dca205bf_f9a54b00",
       "range": {
         "startLine": 74,
@@ -142,6 +190,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc3a89bf_b644ddd5",
+        "filename": "extras/scripts/build_qrencode.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2024-12-02T19:33:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15ae2909_d0a8b433",
+      "range": {
+        "startLine": 83,
+        "startChar": 57,
+        "endLine": 83,
+        "endChar": 60
+      },
+      "revId": "3459dc10057e66b29f4e0b19cb7f67e9553cb354",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f6761649_cd0cf7ed",
@@ -178,6 +250,30 @@
       "writtenOn": "2024-12-02T19:21:56Z",
       "side": 1,
       "message": "Acknowledged",
+      "parentUuid": "f6761649_cd0cf7ed",
+      "range": {
+        "startLine": 86,
+        "startChar": 55,
+        "endLine": 86,
+        "endChar": 58
+      },
+      "revId": "3459dc10057e66b29f4e0b19cb7f67e9553cb354",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbe2e0f3_911ea673",
+        "filename": "extras/scripts/build_qrencode.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2024-12-02T19:33:02Z",
+      "side": 1,
+      "message": "Done",
       "parentUuid": "f6761649_cd0cf7ed",
       "range": {
         "startLine": 86,
