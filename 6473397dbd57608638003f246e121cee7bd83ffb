@@ -49,6 +49,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4a138c49_280ab531",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-12-02T18:43:08Z",
+      "side": 1,
+      "message": "Will this be in another patch? Thank you",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 50
+      },
+      "revId": "6473397dbd57608638003f246e121cee7bd83ffb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "220e3dcd_6a257570",
         "filename": "src/app/net/jami/Constants/JamiStrings.qml",
         "patchSetId": 11
