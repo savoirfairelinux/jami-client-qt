@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52a695a6_c55bf321",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2024-12-02T09:47:44Z",
+      "side": 1,
+      "message": "Is it really correct if we change kicked to block?\nIf you get kicked you can rejoin as many times as you like.\nIf you get blocked any communication won\u0027t be possible anymore - and therefore you can\u0027t rejoin.\n\nMaybe we should have a look at the source code first - what \"kick\" means when it comes to Jami.",
+      "revId": "fa1de8a39f739caaf1a1324be91bfda2f281daac",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
