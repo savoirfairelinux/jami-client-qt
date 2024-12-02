@@ -105,7 +105,7 @@ public:
     void updateAccountDetails(account::Info& account);
 
     /**
-     * get a modifiable account informations associated to an accountId.
+     * get a modifiable account information associated to an accountId.
      * @param accountId.
      * @return a account::Info& structure.
      */
@@ -350,7 +350,7 @@ AccountModel::getAccountInfo(const QString& accountId) const
 {
     auto accountInfo = pimpl_->accounts.find(accountId);
     if (accountInfo == pimpl_->accounts.end())
-        throw std::out_of_range("AccountModel::getAccountInfo, can't find account "
+        throw std::out_of_range("AccountModel::getAccountInfo, unable to find account "
                                 + accountId.toStdString());
 
     return accountInfo->second.first;
@@ -499,7 +499,7 @@ AccountModelPimpl::getAccountInfo(const QString& accountId)
 {
     auto account = accounts.find(accountId);
     if (account == accounts.end()) {
-        throw std::out_of_range("AccountModelPimpl::getAccountInfo, can't find "
+        throw std::out_of_range("AccountModelPimpl::getAccountInfo, unable to find "
                                 + accountId.toStdString());
     }
     return account->second.first;
@@ -550,7 +550,7 @@ AccountModelPimpl::slotAccountDetailsChanged(const QString& accountId,
 {
     auto account = accounts.find(accountId);
     if (account == accounts.end()) {
-        qWarning() << Q_FUNC_INFO << ": can't find " << accountId;
+        qWarning() << Q_FUNC_INFO << ": unable to find " << accountId;
         return;
     }
     auto& accountInfo = account->second.first;
@@ -571,7 +571,7 @@ AccountModelPimpl::slotVolatileAccountDetailsChanged(const QString& accountId,
 {
     auto account = accounts.find(accountId);
     if (account == accounts.end()) {
-        LC_DBG << Q_FUNC_INFO << ": can't find " << accountId;
+        LC_DBG << Q_FUNC_INFO << ": unable to find " << accountId;
         return;
     }
     auto& accountInfo = account->second.first;
@@ -706,7 +706,7 @@ AccountModelPimpl::slotAccountProfileReceived(const QString& accountId,
     if (account == accounts.end() || userPhoto.isEmpty())
         return;
     // NOTE: This signal is still used for JAMS account where the avatar is
-    // retrieven from the server. In this case we MUST save it.
+    // retrieved from the server. In this case we MUST save it.
     auto& accountInfo = account->second.first;
     accountInfo.profileInfo.avatar = userPhoto;
     accountInfo.profileInfo.alias = displayName;
@@ -737,7 +737,7 @@ AccountModelPimpl::addToAccounts(const QString& accountId)
 
     auto it = accounts.emplace(accountId, std::make_pair(account::Info(), db));
     if (!it.second) {
-        LC_WARN << "failed to add new account: id already present in map";
+        LC_WARN << "Failed to add new account: id already present in map";
         return;
     }
 
@@ -1116,7 +1116,7 @@ AccountModel::accountVCard(const QString& accountId, bool compressImage) const
 const QString
 AccountModel::bestNameForAccount(const QString& accountID)
 {
-    // Order: Alias, registeredName, uri
+    // Order: alias, registeredName, uri
     auto& accountInfo = getAccountInfo(accountID);
 
     auto alias = accountInfo.profileInfo.alias.simplified();
@@ -1135,7 +1135,7 @@ AccountModel::bestNameForAccount(const QString& accountID)
 const QString
 AccountModel::bestIdForAccount(const QString& accountID)
 {
-    // Order: RegisteredName, uri after best name
+    // Order: registeredName, uri after best name
     //        return empty string if duplicated with best name
     auto& accountInfo = getAccountInfo(accountID);
 
