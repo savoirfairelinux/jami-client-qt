@@ -210,7 +210,7 @@ PTTListener::Impl::qtKeyToVKey(Qt::Key key)
         return VK_MEDIA_PLAY_PAUSE;
     case Qt::Key_MediaStop:
         return VK_MEDIA_STOP;
-        // couldn't find those in VK_*
+        // unable to find those in VK_*
         // case Qt::Key_MediaLast:
         // case Qt::Key_MediaRecord:
     case Qt::Key_VolumeDown:

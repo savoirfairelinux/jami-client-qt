@@ -150,7 +150,7 @@ ScreenCastPortal::onStartResponseReceivedCallback(GDBusConnection* connection,
 
     if (response) {
         g_variant_unref(result);
-        portal->abort(EACCES, "Failed to start screencast, denied or cancelled by user");
+        portal->abort(EACCES, "Failed to start screencast, denied or canceled by user");
         return;
     }
 
@@ -204,7 +204,7 @@ ScreenCastPortal::start()
     request_token = "pipewiregrabStart";
     request_path = g_strdup_printf(REQUEST_PATH, sender_name, request_token);
 
-    qInfo() << "Asking for monitor...";
+    qInfo() << "Asking for monitor…";
 
     ptr_dbus_call_data = subscribeToSignal(request_path, onStartResponseReceivedCallback);
     if (!ptr_dbus_call_data) {
@@ -240,7 +240,7 @@ ScreenCastPortal::onSelectSourcesResponseReceivedCallback(GDBusConnection* conne
     g_variant_get(parameters, "(u@a{sv})", &response, &ret);
     g_variant_unref(ret);
     if (response) {
-        portal->abort(EACCES, "Failed to select screencast sources, denied or cancelled by user");
+        portal->abort(EACCES, "Failed to select screencast sources, denied or canceled by user");
         return;
     }
 
@@ -308,7 +308,7 @@ ScreenCastPortal::onCreateSessionResponseReceivedCallback(GDBusConnection* conne
 
     if (response != 0) {
         g_variant_unref(result);
-        portal->abort(EACCES, "Failed to create screencast session, denied or cancelled by user");
+        portal->abort(EACCES, "Failed to create screencast session, denied or canceled by user");
         return;
     }
 
@@ -455,7 +455,7 @@ ScreenCastPortal::getPipewireFd()
     g_main_loop_run(glib_main_loop);
     // The main loop will run until it's stopped by openPipewireRemote (if
     // all DBus method calls were successful), abort (in case of error) or
-    // on_cancelled_callback (if a DBus request is cancelled).
+    // on_cancelled_callback (if a DBus request is canceled).
     // In the latter two cases, pw_ctx->portal_error gets set to a nonzero value.
     if (portal_error)
         ret = portal_error;
@@ -506,13 +506,13 @@ ScreenCastPortal::~ScreenCastPortal()
     g_clear_pointer(&sender_name, g_free);
 
 #ifndef ENABLE_LIBWRAP
-    // If the daemon is running as a separate process, then it can't directly use the
+    // If the daemon is running as a separate process, then it is unable to directly use the
     // PipeWire file descriptor opened by the client, so it will have to duplicate it.
     // The duplicated file descriptor will be closed by the daemon, but the original
     // file descriptor needs to be closed by the client.
     if (close(pipewireFd) != 0) {
         int err = errno;
-        qWarning() << "An error occurred while attempting to close PipeWire file descriptor: errno ="
+        qWarning() << "Error while attempting to close PipeWire file descriptor: errno ="
                    << err;
     } else {
         qInfo() << "PipeWire file descriptor closed successfully.";
