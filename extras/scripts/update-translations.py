@@ -3,9 +3,6 @@
 ##
 ##  Copyright (C) 2016-2024 Savoir-faire Linux Inc.
 ##
-##  Author: Edric Milaret <edric.ladent-milaret@savoirfairelinux.com>
-##  Author: Guillaume Roguez <guillaume.roguez@savoirfairelinux.com>
-##
 ##  This program is free software; you can redistribute it and/or modify
 ##  it under the terms of the GNU General Public License as published by
 ##  the Free Software Foundation; either version 3 of the License, or
@@ -26,9 +23,9 @@ import shutil
 
 print("== Updating from sources")
 if os.system("lupdate jami.pro -no-obsolete"):
-    print("trying with 'lupdate-qt5'")
+    print("Attempting with 'lupdate-qt5'")
     if os.system("lupdate-qt5 jami.pro -no-obsolete"):
-        raise RuntimeError("unable to find any suitable lupdate Qt tool on this system. Stopping")
+        raise RuntimeError("Unable to find any suitable lupdate Qt tool on this system. Stopping…")
 
 print("== Pushing sources")
 os.system("tx push -s")

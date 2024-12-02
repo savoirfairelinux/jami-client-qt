@@ -53,7 +53,7 @@ class AccountModel;
 class CallParticipants;
 
 /**
- *  @brief Class that manages call informations.
+ *  @brief Class that manages call information.
  */
 class LIB_EXPORT CallModel : public QObject
 {
@@ -78,7 +78,7 @@ public:
      * Create a new call with a contact
      * @param  uri of the contact to call
      * @param  isAudioOnly, set to false by default
-     * @return the call uid created. Empty string is returned if call couldn't be created.
+     * @return the call uid created. Empty string is returned if call is unable to be created.
      */
     QString createCall(const QString& uri,
                        bool isAudioOnly = false,
@@ -387,7 +387,7 @@ public:
     const QList<call::PendingConferenceeInfo>& getPendingConferencees();
 
     /**
-     * Get informations on the rendered device
+     * Get information on the rendered device
      * @param call_id linked call to the renderer
      * @return the device rendered
      */

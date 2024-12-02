@@ -139,14 +139,14 @@ def main():
 
     if args.type in ["cpp", "both"]:
         if command_exists("clang-format-" + CFVERSION):
-            CLANGFORMAT = "clang-format-" + CFVERSION   
+            CLANGFORMAT = "clang-format-" + CFVERSION
         elif command_exists("clang-format"):
-            CLANGFORMAT = "clang-format"     
+            CLANGFORMAT = "clang-format"
 
     if CLANGFORMAT is not None:
         print("Using source formatter: " + CLANGFORMAT)
     else:
-        print("clang-format not found. can't format source files")
+        print("clang-format not found, unable to format source files")
 
     if args.qt is not None and args.type in ["qml", "both"]:
         global QMLFORMAT  # pylint: disable=global-statement
@@ -154,7 +154,7 @@ def main():
         if QMLFORMAT is not None:
             print("Using qmlformatter: " + QMLFORMAT)
         else:
-            print("qmlformat not found, can't format QML files")
+            print("qmlformat not found, unable to format QML files")
 
     if args.install:
         if CLANGFORMAT is not None or QMLFORMAT is not None:
@@ -171,10 +171,10 @@ def main():
         exit_if_no_files()
     else:
         if src_files and args.type in ["cpp", "both"] and CLANGFORMAT:
-            print("Formatting source files...")
+            print("Formatting source files…")
             clang_format_files(src_files)
         if qml_files and args.type in ["qml", "both"] and QMLFORMAT:
-            print("Formatting QML files...")
+            print("Formatting QML files…")
             qml_format_files(qml_files)
 
 

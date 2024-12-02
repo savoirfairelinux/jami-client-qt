@@ -50,14 +50,14 @@ def posix_path(path):
 
 def gen_qml_qrc(with_webengine):
     """ Generate the qml.qrc file. """
-    print("Generating qml.qrc file ...")
+    print("Generating qml.qrc file…")
     with open(resfile, 'w', encoding='utf-8') as qrc:
         qrc.write('<RCC>\n')
         for root, _, files in os.walk(app_src_dir):
-            # Skip the nowebengine directory if we can use webengine
+            # Skip the nowebengine directory if we can use WebEngine
             if with_webengine and path_contains_dir(root, 'nowebengine'):
                 continue
-            # Skip the webengine directory if we can't use webengine
+            # Skip the webengine directory if WebEngine is unable to be used
             if not with_webengine and path_contains_dir(root, 'webengine'):
                 continue
             filtered = [k for k in files if k.endswith('.qml') or
@@ -83,10 +83,10 @@ def gen_qml_qrc(with_webengine):
 
 
 if __name__ == '__main__':
-    # We can't use webengine if we're building for macOS app store
+    # WebEngine is unable to be used if building for macOS App Store
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument('--with-webengine', action='store_true',
-                        default=False, help='Include webengine resources')
+                        default=False, help='Include WebEngine resources')
     args = parser.parse_args()
     gen_qml_qrc(args.with_webengine)

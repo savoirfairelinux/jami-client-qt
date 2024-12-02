@@ -280,7 +280,7 @@ CallModel::~CallModel() {}
 const call::Info&
 CallModel::getCallFromURI(const QString& uri, bool notOver) const
 {
-    // For a NON SIP account the scheme can be ring:. Sometimes it can miss, and will be certainly
+    // For a non-SIP account the scheme can be ring:. Sometimes it can miss, and will be certainly
     // replaced by jami://.
     // Just make the comparaison ignoring the scheme and check the rest.
     auto uriObj = URI(uri);
@@ -402,7 +402,7 @@ CallModel::createCall(const QString& uri, bool isAudioOnly, VectorMapStringStrin
             pimpl_->waitForConference_ = uri;
             return {};
         }
-        qWarning() << "no call placed between (account: " << owner.id << ", contact: " << uri
+        qWarning() << "No call placed between (account: " << owner.id << ", contact: " << uri
                    << ")";
         return "";
     }
@@ -805,7 +805,7 @@ CallModel::transferToCall(const QString& callId, const QString& callIdDest) cons
 void
 CallModel::joinCalls(const QString& callIdA, const QString& callIdB) const
 {
-    // Get call informations
+    // Get call information
     call::Info call1, call2;
     QString accountIdCall1 = {}, accountIdCall2 = {};
     for (const auto& account_id : owner.accountModel->getAccountList()) {
@@ -825,7 +825,7 @@ CallModel::joinCalls(const QString& callIdA, const QString& callIdB) const
         }
     }
     if (accountIdCall1.isEmpty() || accountIdCall2.isEmpty()) {
-        qWarning() << "Can't join inexistent calls.";
+        qWarning() << "Unable to join nonexistent calls.";
         return;
     }
 
@@ -836,7 +836,7 @@ CallModel::joinCalls(const QString& callIdA, const QString& callIdB) const
                                                              callIdB);
 
         if (!joined) {
-            qWarning() << "Conference: " << callIdA << " couldn't join conference " << callIdB;
+            qWarning() << "Conference: " << callIdA << " is unable to join conference " << callIdB;
             return;
         }
         if (accountIdCall1 != owner.id) {
@@ -860,7 +860,7 @@ CallModel::joinCalls(const QString& callIdA, const QString& callIdB) const
 
         bool joined = CallManager::instance().addParticipant(accountCall, call, accountCall, conf);
         if (!joined) {
-            qWarning() << "Call: " << call << " couldn't join conference " << conf;
+            qWarning() << "Call: " << call << " is unable to join conference " << conf;
             return;
         }
         if (accountCall != owner.id) {
@@ -1067,7 +1067,7 @@ CallModelPimpl::CallModelPimpl(const CallModel& linked,
             &CallModelPimpl::onRecordingStateChanged);
 
 #ifndef ENABLE_LIBWRAP
-    // Only necessary with dbus since the daemon runs separately
+    // Only necessary with D-Bus since the daemon runs separately
     initCallFromDaemon();
     initConferencesFromDaemon();
 #endif
@@ -1139,8 +1139,8 @@ CallModelPimpl::initCallFromDaemon()
         callInfo->layout = participantsPtr->getLayout();
         participantsModel.emplace(callId, std::move(participantsPtr));
         calls.emplace(callId, std::move(callInfo));
-        // NOTE/BUG: the videorenderer can't know that the client has restarted
-        // So, for now, a user will have to manually restart the medias until
+        // NOTE/BUG: the videorenderer is unable to know that the client has restarted
+        // So, for now, a user will have to manually restart the media until
         // this renderer is not redesigned.
     }
 }
