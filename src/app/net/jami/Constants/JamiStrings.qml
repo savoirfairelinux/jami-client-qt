@@ -455,7 +455,7 @@ Item {
     property string linkDeviceNetWorkError: qsTr("A network error occurred while linking device.\nPlease try again later.")
 
     // BannedContacts
-    property string reinstateContact: qsTr("Reinstate as contact")
+    property string reinstateContact: qsTr("Unblock contact")
     property string blocked: qsTr("Blocked")
     property string blockedContacts: qsTr("Blocked contacts")
 
@@ -814,8 +814,8 @@ Item {
 
     // NewSwarmPage (new group conversation page)
     property string goToConversation: qsTr("Go to conversation")
-    property string kickMember: qsTr("Kick member")
-    property string reinstateMember: qsTr("Reinstate member")
+    property string kickMember: qsTr("Block member")
+    property string reinstateMember: qsTr("Unblock member")
     property string administrator: qsTr("Administrator")
     property string invited: qsTr("Invited")
     property string removeMember: qsTr("Remove member")
