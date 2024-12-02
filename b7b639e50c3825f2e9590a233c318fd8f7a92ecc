@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "50af143a_6915d43a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-12-02T00:05:45Z",
+      "side": 1,
+      "message": "Should this patch be abandoned? Thank you\n\nCf. https://review.jami.net/c/jami-client-qt/+/29696",
+      "revId": "b7b639e50c3825f2e9590a233c318fd8f7a92ecc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec5ae662_385bdbe8",
@@ -19,6 +36,29 @@
         "startChar": 3,
         "endLine": 72,
         "endChar": 8
+      },
+      "revId": "b7b639e50c3825f2e9590a233c318fd8f7a92ecc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a55f3f18_9f6a831b",
+        "filename": "src/app/utils.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 617,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-12-02T00:05:45Z",
+      "side": 1,
+      "message": "`want`",
+      "range": {
+        "startLine": 617,
+        "startChar": 86,
+        "endLine": 617,
+        "endChar": 90
       },
       "revId": "b7b639e50c3825f2e9590a233c318fd8f7a92ecc",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
