@@ -95,12 +95,12 @@ public:
     void searchSipContact(const URI& query);
 
     /**
-     * Update temporary item to display a given message about a given uri.
+     * Update temporary item to display a given message about a given URI.
      */
     void updateTemporaryMessage(const QString& mes);
 
     /**
-     * Check if equivalent uri exist in contact
+     * Check if equivalent URI exist in contact
      */
     QString sipUriReceivedFilter(const QString& uri);
 
@@ -446,7 +446,7 @@ ContactModel::searchContact(const QString& query)
 
     auto uriScheme = uri.schemeType();
     if (static_cast<int>(uriScheme) > 2 && owner.profileInfo.type == profile::Type::SIP) {
-        // sip account do not care if schemeType is NONE, or UNRECOGNIZED (enum value > 2)
+        // SIP account do not care if schemeType is NONE, or UNRECOGNIZED (enum value > 2)
         uriScheme = URI::SchemeType::SIP;
     } else if (uriScheme == URI::SchemeType::NONE && owner.profileInfo.type == profile::Type::JAMI) {
         uriScheme = URI::SchemeType::RING;
@@ -485,7 +485,7 @@ ContactModelPimpl::searchContact(const URI& query)
 
     if (query.protocolHint() == URI::ProtocolHint::RING) {
         updateTemporaryMessage("");
-        // no lookup, this is a ring infoHash
+        // No lookup, this is a ring infoHash
         for (auto& i : contacts)
             if (i.profileInfo.uri == uriId)
                 return;
@@ -991,7 +991,7 @@ ContactModelPimpl::slotRegisteredNameFound(const QString& accountId,
             updateTemporaryMessage(tr("Username not found"));
             break;
         case 3 /* ERROR */:
-            updateTemporaryMessage(tr("Couldn't lookup…"));
+            updateTemporaryMessage(tr("Unable to lookup…"));
             break;
         }
         return;
@@ -1069,7 +1069,7 @@ ContactModelPimpl::slotNewAccountMessage(const QString& accountId,
             if (potentialContact.isEmpty()) {
                 addToContacts(peerId, profile::Type::SIP, "", false);
             } else {
-                // equivalent uri exist, use that uri
+                // equivalent URI exist, use that URI
                 peerId2 = potentialContact;
             }
         } else {
@@ -1084,8 +1084,8 @@ ContactModelPimpl::slotNewAccountMessage(const QString& accountId,
 QString
 ContactModelPimpl::sipUriReceivedFilter(const QString& uri)
 {
-    // this function serves when the uri is not found in the contact list
-    // return "" means need to add new contact, else means equivalent uri exist
+    // this function serves when the URI is not found in the contact list
+    // return "" means need to add new contact, else means equivalent URI exist
     std::string uriCopy = uri.toStdString();
 
     auto pos = uriCopy.find("@");
@@ -1132,7 +1132,7 @@ ContactModelPimpl::sipUriReceivedFilter(const QString& uri)
         // no need to check country dial-in codes
         return "";
     }
-    // "@" is not found -> not possible since all response uri has one
+    // "@" is not found → impossible since all response URI has one
     return "";
 }
 
@@ -1189,7 +1189,7 @@ ContactModelPimpl::slotProfileReceived(const QString& accountId,
         return;
 
     if (linked.owner.profileInfo.uri == peer || peer == "") {
-        // as SIP account doesn't have a uri, we emit a signal with the accountId in the peer parameter
+        // as SIP account doesn't have a URI, we emit a signal with the accountId in the peer parameter
         const auto newProfileInfo = storage::getProfileData(accountId, "");
         linked.owner.accountModel->setAlias(accountId, newProfileInfo["alias"], false);
         linked.owner.accountModel->setAvatar(accountId, newProfileInfo["avatar"], false);
