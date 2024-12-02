@@ -16,6 +16,24 @@
       "message": "Is it really correct if we change kicked to block?\nIf you get kicked you can rejoin as many times as you like.\nIf you get blocked any communication won\u0027t be possible anymore - and therefore you can\u0027t rejoin.\n\nMaybe we should have a look at the source code first - what \"kick\" means when it comes to Jami.",
       "revId": "fa1de8a39f739caaf1a1324be91bfda2f281daac",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d217a3cc_772c0fbe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-12-02T10:32:55Z",
+      "side": 1,
+      "message": "It is understood that:\n\n1. There is no limited as to how many times you can be blocked and unblocked.\n\n1. `Block contact` blocks that contact from communicating with you on Jami.\n\n1. `Block member` blocks that contact from communicating in **one** particular group conversation. The are still able to be in a 1:1 conversation with you and other group conversations which they are not blocked; however, they are blocked from one particular group conversation.\n\n1. If you get kicked (i.e. blocked), you are **unable** to rejoin (i.e. unblocked) as many times as you like. The person who kicked (i.e. blocked) you needs to reinstate (i.e. unblock) you.\n\nUnable to write the behavior when a contact is in a group conversation and are not a `Block member` and are a `Block contact` with you. Perhaps the developers can provide the logic on this one?\n\nUsing `block` and `unblock` can help:\n\n1. Unify the terminology throughout Jami.\n\n1. Help translators in making better translations, and hopefully not have culturally inappropriate translations. It is possible that `kick` could be translated poorly leaving a bad taste in people’s mouths.",
+      "parentUuid": "52a695a6_c55bf321",
+      "revId": "fa1de8a39f739caaf1a1324be91bfda2f281daac",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
