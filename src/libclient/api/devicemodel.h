@@ -86,7 +86,7 @@ public:
      * Change the name of the current device
      * @param newName
      * @note will emit deviceUpdated when finished
-     * @note ring can't change the name of another device
+     * @note ring is unable to change the name of another device
      */
     void setCurrentDeviceName(const QString& newName);
 
