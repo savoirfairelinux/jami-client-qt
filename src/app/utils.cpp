@@ -76,7 +76,7 @@ Utils::remove_argument(char** argv,
         }
     });
 
-    // If any occurrences were removed...
+    // If any occurrences were removed…
     if (new_end != argv + argc) {
         // Adjust the argument count.
         argc = std::distance(argv, new_end);
@@ -87,7 +87,7 @@ void
 Utils::testVulkanSupport()
 {
 #if defined(Q_OS_WIN)
-    // Checks Vulkan support using the vulkan functions loaded directly
+    // Checks Vulkan support using the Vulkan functions loaded directly
     // from vulkan-1.dll.
     struct DllLoader
     {
@@ -95,7 +95,7 @@ Utils::testVulkanSupport()
             : module(LoadLibraryA(filename.c_str()))
         {
             if (module == nullptr) {
-                throw std::runtime_error("Can't load module.");
+                throw std::runtime_error("Unable to load module.");
             }
         }
         ~DllLoader()
@@ -123,7 +123,7 @@ Utils::testVulkanSupport()
     int VkInstanceCreateInfo[16] = {1};
     auto result = vkCreateInstance(VkInstanceCreateInfo, 0, &instance);
     if (!instance || result != 0) {
-        throw std::runtime_error("Can't create Vulkan instance.");
+        throw std::runtime_error("Unable to create Vulkan instance.");
     }
 #endif
 }
@@ -170,7 +170,7 @@ Utils::CreateStartupLink(const std::wstring& wstrAppName)
 #endif
 
     if (desktopPath.isEmpty() || !(QFile::exists(desktopPath))) {
-        qDebug() << "An error occurred while attempting to locate .desktop file at"
+        qDebug() << "Error while attempting to locate .desktop file at"
                  << desktopPath;
         return false;
     }
@@ -198,7 +198,7 @@ Utils::CreateStartupLink(const std::wstring& wstrAppName)
             if (QDir().mkdir(autoStartDir)) {
                 qDebug() << "Created autostart directory:" << autoStartDir;
             } else {
-                qWarning() << "An error occurred while creating autostart directory:"
+                qWarning() << "Error while creating autostart directory:"
                            << autoStartDir;
                 return false;
             }
@@ -302,7 +302,7 @@ Utils::removeOldVersions()
      * remove 1. the configuration reg keys for Ring-x64, 2. the startup links for Ring,
      * 3. the winsparkle reg keys. The NSIS uninstall reg keys for Jami-x64 are removed
      * by the MSI installer.
-     * Uninstallation of Ring, either 32 or 64 bit, is left to the user.
+     * Uninstallation of Ring, either 32-bit or 64-bit, is left to the user.
      * The current version of Jami will attempt to kill Ring.exe upon start if a startup
      * link is found.
      */
@@ -467,7 +467,7 @@ Utils::conversationAvatar(LRCInstance* instance,
             if (!photo.isNull()) {
                 return scaleAndFrame(photo, size);
             }
-            qWarning() << "Couldn't load image from base 64 data for conversation " << convId;
+            qWarning() << "Unable to load image from Base64 data for conversation " << convId;
         }
         // Else, generate an avatar
         auto members = convModel->peersForConversation(convId);
@@ -625,7 +625,7 @@ Utils::getProjectCredits()
         QObject::tr("We would like to thank our contributors, whose efforts over many years have made this software what it is."),
         QObject::tr("Developers"), QObject::tr("Media"), QObject::tr("Community Management"), QObject::tr("Special thanks to"),
         QObject::tr("This is a list of people who have made a significant investment of time,\
-        with useful results, into Jami. Any such contributors who wish to be added to the list \
+        with useful results, into Jami. Any such contributors who want to be added to the list \
         should contact us."));
 }
 
@@ -866,7 +866,7 @@ Utils::QByteArrayFromFile(const QString& filename)
     if (file.open(QIODevice::ReadOnly)) {
         return file.readAll();
     }
-    qDebug() << "QByteArrayFromFile: can't open file" << filename;
+    qDebug() << "QByteArrayFromFile: unable to open file" << filename;
     return {};
 }
 

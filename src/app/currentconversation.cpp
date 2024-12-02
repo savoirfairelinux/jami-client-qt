@@ -152,7 +152,7 @@ CurrentConversation::updateData()
         updateProfile(convId);
         updateActiveCalls(accountId, convId);
     } catch (...) {
-        qWarning() << "An error occurred while updating current conversation data for" << convId;
+        qWarning() << "Error while updating current conversation data for" << convId;
     }
 }
 
@@ -227,7 +227,7 @@ CurrentConversation::updateProfile(const QString& convId)
     try {
         if (auto optConv = convModel->getConversationForUid(convId)) {
             auto& convInfo = optConv->get();
-            // Now, update call informations (rdvAccount/device)
+            // Now, update call information (rdvAccount/device)
             if (convInfo.infos.contains("rdvAccount")) {
                 set_rdvAccount(convInfo.infos["rdvAccount"]);
             } else {
@@ -270,7 +270,7 @@ CurrentConversation::connectModel()
     auto currentConversationModel = lrcInstance_->getCurrentConversationModel();
     auto currentCallModel = lrcInstance_->getCurrentCallModel();
     if (!currentConversationModel || !currentCallModel) {
-        C_DBG << "CurrentConversation: can't connect to unavailable models";
+        C_DBG << "CurrentConversation: unable to connect to unavailable models";
         return;
     }
 
@@ -320,7 +320,7 @@ CurrentConversation::updateErrors(const QString& convId)
                 } else if (code == 3) {
                     newErrors.append(tr("An invalid message was detected"));
                 } else if (code == 4) {
-                    newErrors.append(tr("Not authorized to update conversation information"));
+                    newErrors.append(tr("Insufficient permission to update conversation information"));
                 } else if (code == 5) {
                     newErrors.append(tr("An error occurred while committing a new message"));
                 } else {

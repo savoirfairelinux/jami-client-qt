@@ -168,7 +168,7 @@ public:
 
     /**
      * @param index participant index
-     * @return informations of the participant in index
+     * @return information of the participant in index
      */
     QJsonObject toQJsonObject(uint index) const;
 

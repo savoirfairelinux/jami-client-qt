@@ -189,7 +189,7 @@ bool
 MainApplication::init()
 {
     // This 2-phase initialisation prevents ephemeral instances from
-    // performing unnecessary tasks, like initializing the webengine.
+    // performing unnecessary tasks, like initializing the WebEngine.
     engine_.reset(new QQmlApplicationEngine(this));
 
     QWK::registerTypes(engine_.get());
