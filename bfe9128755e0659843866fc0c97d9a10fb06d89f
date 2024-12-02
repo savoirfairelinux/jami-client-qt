@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64bb4b5e_6d91af23",
+        "filename": "src/app/utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-12-02T00:16:10Z",
+      "side": 0,
+      "message": "who - SFL, Jami? how - email, GitLab, Forum?",
+      "range": {
+        "startLine": 629,
+        "startChar": 23,
+        "endLine": 629,
+        "endChar": 25
+      },
+      "revId": "bfe9128755e0659843866fc0c97d9a10fb06d89f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
