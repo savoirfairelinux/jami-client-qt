@@ -355,7 +355,7 @@ AVModel::getDeviceIdFromName(const QString& deviceName) const
         return settings.name == deviceName;
     });
     if (iter == devices.end()) {
-        LC_WARN << "Couldn't find device: " << deviceName;
+        LC_WARN << "Unable to find device: " << deviceName;
         return {};
     }
     return *iter;
@@ -489,7 +489,7 @@ void
 AVModel::stopLocalRecorder(const QString& path) const
 {
     if (path.isEmpty()) {
-        LC_WARN << "stopLocalRecorder: can't stop non existing recording";
+        LC_WARN << "stopLocalRecorder: unable to stop non existing recording";
         return;
     }
 
@@ -1058,7 +1058,7 @@ AVModelPimpl::removeRenderer(const QString& id)
     QWriteLocker lk(&renderersMutex_);
     auto it = renderers_.find(id);
     if (it == renderers_.end()) {
-        LC_DBG << "Cannot remove renderer. " << id << " not found";
+        LC_DBG << "Unable to remove renderer. " << id << " not found";
         return {};
     }
     auto removed = std::move(it->second);

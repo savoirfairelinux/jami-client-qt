@@ -66,7 +66,7 @@ public:
     Q_INVOKABLE size_t getAccountCount() const;
 
     /**
-     * get account informations associated to an accountId.
+     * get account information associated to an accountId.
      * @param accountId.
      * @return a const account::Info& structure.
      */
