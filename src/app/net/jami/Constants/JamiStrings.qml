@@ -455,7 +455,7 @@ Item {
     property string linkDeviceNetWorkError: qsTr("A network error occurred while linking device.\nPlease try again later.")
 
     // BannedContacts
-    property string reinstateContact: qsTr("Reinstate as contact")
+    property string reinstateContact: qsTr("Unblock contact")
     property string blocked: qsTr("Blocked")
     property string blockedContacts: qsTr("Blocked contacts")
 
@@ -793,9 +793,9 @@ Item {
 
     // Invitation View
     property string invitationViewSentRequest: qsTr("%1 sent you a conversation invitation.")
-    property string invitationViewJoinConversation: qsTr("Hello,\nDo you want to join this conversation?")
+    property string invitationViewJoinConversation: qsTr("Hello,\nDo you want to join the conversation?")
     property string invitationViewAcceptedConversation: qsTr("You have accepted\nthe conversation invitation.")
-    property string invitationViewWaitingForSync: qsTr("Waiting until %1\nconnects to synchronize the conversation.")
+    property string invitationViewWaitingForSync: qsTr("Waiting for %1\nto connect to synchronize the conversation…")
 
     // SwarmDetailsPanel (group conversation panel)
     property string members: qsTr("%1 Members")
@@ -814,8 +814,8 @@ Item {
 
     // NewSwarmPage (new group conversation page)
     property string goToConversation: qsTr("Go to conversation")
-    property string kickMember: qsTr("Kick member")
-    property string reinstateMember: qsTr("Reinstate member")
+    property string kickMember: qsTr("Block member")
+    property string reinstateMember: qsTr("Unblock member")
     property string administrator: qsTr("Administrator")
     property string invited: qsTr("Invited")
     property string removeMember: qsTr("Remove member")
