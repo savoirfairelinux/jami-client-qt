@@ -165,7 +165,7 @@ AvAdapter::shareWayland(bool entireScreen)
 
     int err = portal->getPipewireFd();
     if (err == EACCES) {
-        qInfo() << "Can't share screen: permission denied";
+        qInfo() << "Unable to share screen: permission denied";
         return;
     } else if (err != 0) {
         qWarning() << "Failed to get PipeWire fd. Error code:" << err;
@@ -178,7 +178,7 @@ AvAdapter::shareWayland(bool entireScreen)
                            .arg(portal->pipewireFd)
                            .arg(portal->pipewireNode);
 #ifndef ENABLE_LIBWRAP
-    // If the daemon is running as a separate process, then it can't directly use the
+    // If the daemon is running as a separate process, then it is unable to directly use the
     // PipeWire file descriptor opened by the client, so it will attempt to duplicate
     // it using the pidfd_getfd system call. This requires the daemon process to have
     // ptrace permission on the client process. On some systems, this will be true by

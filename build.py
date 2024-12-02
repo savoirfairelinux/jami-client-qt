@@ -299,7 +299,7 @@ def run_dependencies(args):
         print("The win32 version does not install dependencies with this script.\nPlease continue with the --install instruction.")
         sys.exit(1)
     elif args.distribution == 'guix':
-        print(f"Building the profile defined in '{GUIX_MANIFEST}'...")
+        print(f"Building the profile defined in '{GUIX_MANIFEST}'…")
         execute_script([f'guix shell --manifest={GUIX_MANIFEST} -- true'])
 
     else:
@@ -316,7 +316,7 @@ def run_init(args):
     client_hooks_dir = '.git/hooks'
     daemon_hooks_dir = '.git/modules/daemon/hooks'
 
-    print("Installing commit-msg hooks...")
+    print("Installing commit-msg hooks…")
     # Copy the commit-msg hook to all modules in the same way.
     for hooks_dir in [client_hooks_dir, daemon_hooks_dir]:
         if not os.path.exists(hooks_dir):
@@ -324,7 +324,7 @@ def run_init(args):
         copy_file("./extras/scripts/commit-msg",
                   os.path.join(hooks_dir, "commit-msg"))
 
-    print("Installing pre-commit hooks...")
+    print("Installing pre-commit hooks…")
     format_script = "./extras/scripts/format.py"
     # Prepend with the python executable if on Windows (not WSL).
     if sys.platform == 'win32':
@@ -604,7 +604,7 @@ def run_run(args):
             client_process.wait()
 
     except KeyboardInterrupt:
-        print("\nCaught KeyboardInterrupt...")
+        print("\nCaught KeyboardInterrupt…")
 
     finally:
         if args.debug:
@@ -614,7 +614,7 @@ def run_run(args):
             try:
                 # Only kill the processes if they are running, as they
                 # could have been closed by the user.
-                print("Killing processes...")
+                print("Killing processes…")
                 if args.no_libwrap:
                     jamid_log.close()
                     if jamid_process.poll() is None:
