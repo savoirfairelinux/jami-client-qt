@@ -124,7 +124,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="31"/>
         <source>Accept in video</source>
-        <translation>Răspunde cu video</translation>
+        <translation>Răspunde video</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="32"/>

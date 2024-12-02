@@ -119,12 +119,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="30"/>
         <source>Accept in audio</source>
-        <translation>Solo audio</translation>
+        <translation>Rispondi con audio</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="31"/>
         <source>Accept in video</source>
-        <translation>Accetta video</translation>
+        <translation>Rispondi con video</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="32"/>
@@ -693,7 +693,7 @@ Jami ora si chiuderà.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="213"/>
         <source>Back up account here</source>
-        <translation>Fai qui il backup dell&apos;account</translation>
+        <translation>Salva qui l&apos;account</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="214"/>
@@ -2136,7 +2136,7 @@ La foto e il soprannome possono essere cambiate nelle impostazioni dell&apos;acc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="408"/>
         <source>Backup account</source>
-        <translation>Fai il backup dell&apos;account</translation>
+        <translation>Salva l&apos;account</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="410"/>
@@ -4319,7 +4319,7 @@ si connetta per sincronizzare la conversazione.</translation>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="86"/>
         <source>Backup account</source>
-        <translation>Fai il backup dell&apos;account</translation>
+        <translation>Salva l&apos;account</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="96"/>

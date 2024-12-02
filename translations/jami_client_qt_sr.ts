@@ -71,17 +71,17 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="142"/>
         <source>Private group (restricted invites)</source>
-        <translation>Приватна група (узвани ограничени)</translation>
+        <translation>Privatna grupa (ograničeni pozivi)</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="144"/>
         <source>Private group</source>
-        <translation>Приватна група</translation>
+        <translation>Privatna grupa</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="146"/>
         <source>Public group</source>
-        <translation>Јавна група</translation>
+        <translation>Javna grupa</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="327"/>
@@ -267,7 +267,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="82"/>
         <source>Allow incoming calls from unknown contacts</source>
-        <translation>Omogućite dolazne pozive nepoznatih kontakata</translation>
+        <translation>Dozvolite dolazne pozive od nepoznatih kontakata</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="83"/>
@@ -810,7 +810,8 @@ Nalog će biti izgubljen ako se ovaj uređaj izgubi ili se aplikacija deinstali
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="433"/>
         <source>This profile is only shared with this account's contacts.
 The profile can be changed at all times from the account&apos;s settings.</source>
-        <translation>Овај профил се дели само са контактима овог рачуна. Профил се може променити у сваком тренутку из подешавања рачуна.</translation>
+        <translation>Ovaj profil se deli samo sa kontaktima ovog naloga. 
+Profil se može promeniti u svakom trenutku iz podešavanja naloga.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="434"/>
@@ -2115,7 +2116,8 @@ Other participants&apos; location can still be received.</source>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="405"/>
         <source>Your profile is only shared with your contacts.
 Your picture and your nickname can be changed at all time in the settings of your account.</source>
-        <translation>Ваш профил се дели само са вашим контактима.</translation>
+        <translation>Vaš profil se deli samo sa vašim kontaktima.
+Vaša slika i nadimak se mogu promeniti u svakom trenutku u podešavanjima vašeg naloga.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="407"/>
@@ -2511,7 +2513,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="459"/>
         <source>Banned contacts</source>
-        <translation>Забрањени контакти</translation>
+        <translation>Zabranjeni kontakti</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="470"/>
@@ -3452,7 +3454,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="827"/>
         <source>Your profile is only shared with your contacts</source>
-        <translation>Vaš profile je podeljen samo sa Vašim kontaktima</translation>
+        <translation>Vaš profil se deli samo sa vašim kontaktima</translation>
     </message>
 </context>
 <context>
@@ -4174,32 +4176,32 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="706"/>
         <source>Today</source>
-        <translation>Данас</translation>
+        <translation>Danas</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="708"/>
         <source>Yesterday</source>
-        <translation>Учерашњи</translation>
+        <translation>Juče</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="353"/>
         <source>Canceled</source>
-        <translation>Otkazan</translation>
+        <translation>Otkazano</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="358"/>
         <source>Ongoing</source>
-        <translation>Процес у току</translation>
+        <translation>U toku</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="687"/>
         <source>just now</source>
-        <translation>Upravo sada</translation>
+        <translation>upravo sada</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="345"/>
         <source>Failure</source>
-        <translation>Недостатак</translation>
+        <translation>Neuspeh</translation>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="109"/>
@@ -4324,27 +4326,27 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="109"/>
         <source>Can I make a conference call?</source>
-        <translation>Могу ли да се обадим на конференцију?</translation>
+        <translation>Mogu li da obavim konferencijski poziv?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="114"/>
         <source>What is a Jami account?</source>
-        <translation>Шта је рачун Џами?</translation>
+        <translation>Šta je Jami nalog?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="116"/>
         <source>A Jami account is an asymmetric encryption key. Your account is identified by a Jami ID, which is a fingerprint of your public key.</source>
-        <translation>Урач Џами је асиметричан кључ шифровања.</translation>
+        <translation>Jami nalog je asimetrični ključ za šifrovanje. Vaš nalog je identifikovan Jami ID-om, koji je otisak vašeg javnog ključa.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="120"/>
         <source>What information do I need to provide to create a Jami account?</source>
-        <translation>Које информације треба да пружим да би створио рачун Џами?</translation>
+        <translation>Koje informacije treba da pružim da bih napravio Jami nalog?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="122"/>
         <source>When you create a new Jami account, you do not have to provide any private information like an email, address, or phone number.</source>
-        <translation>Када креирате нови рачун Џами, не морате да дајете личне информације као што су електронска пошта, адреса или телефонски број.</translation>
+        <translation>Kada kreirate novi Jami nalog, ne morate da dajete nikakve privatne informacije poput e-pošte, adrese ili broja telefona.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="129"/>
@@ -4359,37 +4361,37 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="153"/>
         <source>Can I use my account on multiple devices?</source>
-        <translation>Могу ли користити свој рачун на више уређаја?</translation>
+        <translation>Mogu li da koristim svoj nalog na više uređaja?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="155"/>
         <source>Yes, you can link your account from the settings, or you can import your backup on another device.</source>
-        <translation>Да, можете повезати свој рачун из подешавања или можете импортовати резервну копију на друго уређај.</translation>
+        <translation>Da, možete da povežete svoj nalog iz podešavanja ili možete da uvezete rezervnu kopiju na drugi uređaj.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="127"/>
         <source>Why don&apos;t I have to use a password?</source>
-        <translation>Зашто не морам да користим лозинку?</translation>
+        <translation>Zašto ne moram da koristim lozinku?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="111"/>
         <source>In a call, you can click on &quot;Add participants&quot; to add a contact to a call.</source>
-        <translation>У позиву можете кликнути на &quot;Додајте учеснике&quot; да бисте додали контакт на позив.</translation>
+        <translation>U pozivu možete da kliknete na „Dodaj učesnike“ da dodate kontakt u poziv.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="135"/>
         <source>Why don&apos;t I have to register a username?</source>
-        <translation>Зашто не морам да региструјем корисничко име?</translation>
+        <translation>Zašto ne moram da registrujem korisničko ime?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="137"/>
         <source>The most permanent, secure identifier is your Jami ID, but since these are difficult to use for some people, you also have the option of registering a username.</source>
-        <translation>Најтрајнији, најсигурнији идентификатор је ваш идентификатор Џами, али пошто је за неке људе тешко користити, имате могућност да региструјете корисничко име.</translation>
+        <translation>Najtrajniji i najsigurniji identifikator je vaš Jami ID, ali pošto ih je nekim ljudima teško koristiti, takođe imate mogućnost da registrujete korisničko ime.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="142"/>
         <source>How can I back up my account?</source>
-        <translation>Како могу да се задржим на свом рачуну?</translation>
+        <translation>Kako mogu napraviti rezervnu kopiju svog naloga?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="143"/>
