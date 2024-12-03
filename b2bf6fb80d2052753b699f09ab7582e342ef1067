@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38178a63_ccda3926",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2024-12-03T11:43:12Z",
+      "side": 1,
+      "message": "Still not sure if \"block\" is the correct string:\nFor example you can block / kick a Jami user from a group chat but the user won\u0027t be blocked for all type of conversations?\n\nFor example 1:1 chats / calls are still possible? https://git.jami.net/savoirfairelinux/jami-docs/-/issues/7#note_39681",
+      "revId": "b2bf6fb80d2052753b699f09ab7582e342ef1067",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
