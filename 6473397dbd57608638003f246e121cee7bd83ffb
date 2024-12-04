@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "408b88ff_361ffa62",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2024-12-04T20:46:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "789b313b_df7d6f43",
+      "range": {
+        "startLine": 11,
+        "startChar": 50,
+        "endLine": 11,
+        "endChar": 55
+      },
+      "revId": "6473397dbd57608638003f246e121cee7bd83ffb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a6c9fe90_f148221f",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-12-02T18:32:16Z",
       "side": 1,
       "message": "`for account archives`",
+      "range": {
+        "startLine": 12,
+        "startChar": 15,
+        "endLine": 12,
+        "endChar": 27
+      },
+      "revId": "6473397dbd57608638003f246e121cee7bd83ffb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d2a55f8_81eeaa04",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2024-12-04T20:46:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6c9fe90_f148221f",
       "range": {
         "startLine": 12,
         "startChar": 15,
@@ -70,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ecaf568_1266d551",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2024-12-04T20:46:30Z",
+      "side": 1,
+      "message": "Yes, this would be done in a later patch for all platforms at once.",
+      "parentUuid": "4a138c49_280ab531",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 50
+      },
+      "revId": "6473397dbd57608638003f246e121cee7bd83ffb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "220e3dcd_6a257570",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-12-02T18:32:16Z",
       "side": 1,
       "message": "`jamiAccount` or `jamiAccountFiles`",
+      "range": {
+        "startLine": 219,
+        "startChar": 20,
+        "endLine": 219,
+        "endChar": 36
+      },
+      "revId": "6473397dbd57608638003f246e121cee7bd83ffb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9291b8b0_f1e651ad",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2024-12-04T20:46:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "220e3dcd_6a257570",
       "range": {
         "startLine": 219,
         "startChar": 20,
