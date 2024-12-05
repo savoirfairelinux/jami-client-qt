@@ -34,6 +34,24 @@
       "parentUuid": "38178a63_ccda3926",
       "revId": "b2bf6fb80d2052753b699f09ab7582e342ef1067",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "835edd06_d8a8631b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2024-12-05T11:33:35Z",
+      "side": 1,
+      "message": "Can a \"kicked\" member join the (same) group again? If yes - it should stay \"kicked\" - if no I guess \"block\" is the correct string.\n\nHowever if a kicked / blocked member can still contact the admin using the 1:1 chat / audio /video call there should be \n1) a notification that the blocked member can still reach others / you using the 1:1 chat and/or 1:1 audio video call option or if you have multiple groups can the kicked / blocked user still join another group / or will automatically be removed from the group too?\n2) maybe the strings should be changed to \"block user in this group\" and/ or a dialog that shows \"This member will be justed blocked in this group. Communication like 1:1 or other groups (?) is still possible\"- if this is true",
+      "parentUuid": "1b7b0d8f_08ed70f1",
+      "revId": "b2bf6fb80d2052753b699f09ab7582e342ef1067",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
