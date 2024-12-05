@@ -22,6 +22,30 @@
       },
       "revId": "5b085f9a966e12c1358af72ef16f699f90488b78",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd62a848_bfe9bf9a",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-12-05T02:27:54Z",
+      "side": 1,
+      "message": "Should an `s` be added to the end to become `Languages`? With Firefox in GitLab comments, right-click and the contextual menu has (if English (United States) and Hungarian dictionaries are installed):\n```\n□ Check spelling\n  _Languages \u003e    English (United States)\n                  Hungarian\n                  -----------------------\n                  _Add dictionaries…\n```\n\nIf you can please add the GitLab ticket to this patch to which this relates, a screenshot will be added.\n\nThank you",
+      "parentUuid": "4784a68d_adb0abbc",
+      "range": {
+        "startLine": 260,
+        "startChar": 36,
+        "endLine": 260,
+        "endChar": 44
+      },
+      "revId": "5b085f9a966e12c1358af72ef16f699f90488b78",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
