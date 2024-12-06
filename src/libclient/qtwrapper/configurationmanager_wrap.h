@@ -489,6 +489,7 @@ public Q_SLOTS: // METHODS
     void updateProfile(const QString& accountId,
                        const QString& displayName,
                        const QString& avatarPath,
+                       const QString& fileType,
                        int flag)
     {
         // file type is set to PNG by default
@@ -496,7 +497,7 @@ public Q_SLOTS: // METHODS
         libjami::updateProfile(accountId.toStdString(),
                                displayName.toStdString(),
                                avatarPath.toStdString(),
-                               "PNG",
+                               fileType.toStdString(),
                                flag
                                );
     }

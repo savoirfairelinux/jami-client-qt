@@ -287,6 +287,7 @@ AccountModel::setAlias(const QString& accountId, const QString& alias, bool save
         ConfigurationManager::instance().updateProfile(accountId,
                                                        alias,
                                                        "",
+                                                       "",
                                                        5);// flag out of range to avoid updating avatar
     Q_EMIT profileUpdated(accountId);
 }
@@ -302,6 +303,7 @@ AccountModel::setAvatar(const QString& accountId, const QString& avatar, bool sa
         ConfigurationManager::instance().updateProfile(accountId,
                                                        accountInfo.profileInfo.alias,
                                                        avatar,
+                                                       "PNG",
                                                        flag);
     Q_EMIT profileUpdated(accountId);
 }
