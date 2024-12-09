@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8bed54f8_5e78f36d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-12-09T22:15:51Z",
+      "side": 1,
+      "message": "There seems to be an inconsistency with the script used throughout this locale.",
+      "revId": "aeda3f301f5a8b1866a987af4ff98632bbaa9c8b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
