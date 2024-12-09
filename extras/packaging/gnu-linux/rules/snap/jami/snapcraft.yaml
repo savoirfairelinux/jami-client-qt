@@ -51,37 +51,53 @@ icon: common/icons/jami.svg
 license: GPL-3.0+
 summary: 'Privacy-oriented voice, video, chat, and conference platform and SIP phone'
 description: |
-  Jami is free software for universal communication that respects the
-  freedom and privacy of its users.
+  Jami, a GNU package, is software for universal and distributed peer-to-peer communication that respects the freedom and privacy of its users.
 
-  Jami is an end-to-end encrypted secure and distributed voice, video,
-  and chat communication platform.  Jami requires no central server
-  for these communications and leaves the power of privacy and freedom
-  in the hands of users.
+  Jami is the simplest and easiest way to connect with people (and devices) with instant messaging, audio and video calls over the Internet and LAN/WAN intranets.
 
-  Jami provides the following key features to its users:
+  Jami is a free/libre, end-to-end encrypted, and private communication platform.
 
-  * Synchronized and enriched one-to-one conversations
-  * Group conversations (Beta)
-  * Audio/video calls and conferences
-  * Screen sharing in video calls and conferences
-  * Unlimited peer-to-peer file sharing
-  * Recording and sending audio/video messages
-  * Jami plugins SDK for additional functionality (green screen,
-    watermark, audio filters, and more)
-  * Use Jami as your SIP phone with a variety of media codecs
-    and VoIP providers
+  Jami – which used to be known as Ring – is also an open-source alternative (to Facebook Messenger, Signal, Skype, Teams, Telegram, TikTok, Viber, WhatsApp, Zoom) that prioritizes the privacy of its users.
 
-  Client applications for GNU/Linux, Windows, macOS, iOS, Android,
-  and Android TV are available, making Jami an interoperable and
-  cross-platform communication framework.
+  Jami has a professional-looking design and is available for a wide range of platforms. Unlike the alternatives, calls using Jami are directly between users as it does not use servers to handle calls.
 
-  Seamlessly deploy Jami in your organization using
-  Jami Account Management Server (JAMS).   With JAMS, you can enable
-  your users to connect using their LDAP/ActiveDirectory credentials
-  or create local accounts, enabling you to manage your own
-  Jami community while taking advantage of Jami's distributed network
-  architecture.  For more information, please visit https://jami.biz.
+  This gives the greatest privacy as the distributed nature of Jami means your calls are only between participants.
+
+  One-to-one and group conversations with Jami are enhanced with: instant messaging; audio and video calling; recording and sending audio and video messages; file transfers; screen sharing; and, location sharing.
+
+  Jami can also function as a SIP client.
+
+  Jami has multiple extensions available: Audio Filter; Auto Answer; Green Screen; Watermark; and, Whisper Transcript.
+
+  Jami can be easily deployed in organizations with the “Jami Account Management Server” (JAMS), allowing users to connect with their corporate credentials or create local accounts. JAMS allows you to manage your own Jami community while taking advantage of Jami’s distributed network architecture.
+
+  Jami is available for GNU/Linux, Windows, macOS, iOS, Android, and Android TV, making Jami an interoperable and cross-platform communication framework.
+
+  Manage multiple SIP accounts, Jami accounts and JAMS accounts with the Jami client installed on one or multiple devices.
+
+  Jami is free, unlimited, private, advertising free, compatible, fast, autonomous, and anonymous.
+
+  Learn more about:
+  Jami: https://jami.net/
+  Jami extensions: https://jami.net/extensions/
+  “Jami Account Management Server” (JAMS): https://jami.biz/
+  Jami documentation: https://docs.jami.net/
+
+  Follow us for more:
+  Mastodon: https://mstdn.io/@Jami
+  X: https://x.com/jami_social
+  YouTube: https://www.youtube.com/@jami9311
+
+  We’d love to hear from you! Join the Jami community:
+  Contribute: https://jami.net/contribute/
+  Forum: https://forum.jami.net/
+
+  Build with Jami on your IoT project: re-use the universal communications technology of Jami with its portable library on your system of choice.
+
+  Jami for Android TV is tested on NVIDIA SHIELD TV with Logitech cameras.
+
+  Jami is published under the GPL license, version 3 or higher.
+  Copyright © Savoir-faire Linux Inc.
 
 confinement: strict
 grade: stable
