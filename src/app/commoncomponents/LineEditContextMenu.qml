@@ -31,45 +31,53 @@ ContextMenuAutoLoader {
 
     signal contextMenuRequirePaste
 
-    property list<GeneralMenuItem> menuItems: [
-        GeneralMenuItem {
-            id: copy
+    property list<GeneralMenuItem> menuItems
+    property var copyItem
+    property var cutItem
+    property var pasteItem
 
-            canTrigger: true
-            isActif: lineEditObj.selectedText.length
-            itemName: JamiStrings.copy
-            hasIcon: false
-            onClicked: {
-                lineEditObj.copy();
-            }
-        },
-        GeneralMenuItem {
-            id: cut
-
-            canTrigger: true
-            isActif: lineEditObj.selectedText.length && !selectOnly
-            itemName: JamiStrings.cut
-            hasIcon: false
-            onClicked: {
-                lineEditObj.cut();
-            }
-        },
-        GeneralMenuItem {
-            id: paste
-
-            canTrigger: !selectOnly
-            itemName: JamiStrings.paste
-            hasIcon: false
-            onClicked: {
-                if (customizePaste)
-                    root.contextMenuRequirePaste();
-                else
-                    lineEditObj.paste();
-            }
+    function newMenuItems() {
+        var component = Qt.createComponent("contextmenu/GeneralMenuItem.qml");
+        menuItems = [];
+        copyItem = component.createObject(root, {
+            "canTrigger": true,
+            "hasIcon": false,
+            "isActif": lineEditObj.selectedText.length,
+            "itemName": JamiStrings.copy
+        });
+        if (copyItem == null) {
+            console.warn("Error creating GeneralMenuItem object");
+        } else {
+            copyItem.clicked.connect(lineEditObj.copy);
+            menuItems.push(copyItem);
         }
-    ]
+        cutItem = component.createObject(root, {
+            "canTrigger": true,
+            "hasIcon": false,
+            "isActif": lineEditObj.selectedText.length && !selectOnly,
+            "itemName": JamiStrings.cut
+        });
+        if (cutItem == null) {
+            console.warn("Error creating GeneralMenuItem object");
+        } else {
+            cutItem.clicked.connect(lineEditObj.cut);
+            menuItems.push(cutItem);
+        }
+        pasteItem = component.createObject(root, {
+            "canTrigger": !selectOnly,
+            "hasIcon": false,
+            "itemName": JamiStrings.paste
+        });
+        if (pasteItem == null) {
+            console.warn("Error creating GeneralMenuItem object");
+        } else {
+            pasteItem.clicked.connect(customizePaste ? root.contextMenuRequirePaste : lineEditObj.paste);
+            menuItems.push(pasteItem);
+        }
+    }
 
     function openMenuAt(mouseEvent) {
+        root.newMenuItems();
         if (lineEditObj.selectedText.length === 0 && selectOnly)
             return;
         x = mouseEvent.x;
