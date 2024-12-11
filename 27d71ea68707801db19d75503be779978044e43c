@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30b5d43d_0f6bd26b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-12-11T18:04:22Z",
+      "side": 1,
+      "message": "use Gitlab instead of SFL",
+      "revId": "27d71ea68707801db19d75503be779978044e43c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f6de19e_2e622665",
+        "filename": "src/app/commoncomponents/LineEditContextMenu.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-12-11T18:04:22Z",
+      "side": 1,
+      "message": "why are these static properties if they are being pushed into the list? they don\u0027t seem to be referenced anywhere afterward",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 37,
+        "endChar": 26
+      },
+      "revId": "27d71ea68707801db19d75503be779978044e43c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f3bb0b5_ba814979",
+        "filename": "src/app/commoncomponents/LineEditContextMenu.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-12-11T18:04:22Z",
+      "side": 1,
+      "message": "the function name should describe what it\u0027s doing. `newMenuItems` sounds like an object; how about `setupContextMenu` or `createMenuItems`?",
+      "range": {
+        "startLine": 39,
+        "startChar": 13,
+        "endLine": 39,
+        "endChar": 25
+      },
+      "revId": "27d71ea68707801db19d75503be779978044e43c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a546010_1a31e90e",
+        "filename": "src/app/commoncomponents/LineEditContextMenu.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-12-11T18:04:22Z",
+      "side": 1,
+      "message": "It\u0027s not a part of this patch, but this is franglais",
+      "range": {
+        "startLine": 45,
+        "startChar": 13,
+        "endLine": 45,
+        "endChar": 20
+      },
+      "revId": "27d71ea68707801db19d75503be779978044e43c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2447ed9c_5c03d8d1",
+        "filename": "src/app/commoncomponents/LineEditContextMenu.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-12-11T18:04:22Z",
+      "side": 1,
+      "message": "a bit of repitition thoughout here; perhaps a function to create a menu item? e.g.:\n```\nfunction createMenuItem(itemName, canTrigger, isActive, clickHandler) {\n    var component \u003d Qt.createComponent(\"contextmenu/GeneralMenuItem.qml\");\n    var item \u003d component.createObject(root, {\n        \"canTrigger\": canTrigger,\n        \"hasIcon\": false,\n        \"isActif\": isActive,\n        \"itemName\": itemName\n    });\n    if (item \u003d\u003d null) {\n        console.warn(\"Error creating GeneralMenuItem object\");\n        return null;\n    }\n    item.clicked.connect(clickHandler);\n    return item;\n}\n```",
+      "range": {
+        "startLine": 48,
+        "startChar": 8,
+        "endLine": 49,
+        "endChar": 66
+      },
+      "revId": "27d71ea68707801db19d75503be779978044e43c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9ba205a_7088299e",
+        "filename": "src/app/commoncomponents/LineEditContextMenu.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2024-12-11T18:04:22Z",
+      "side": 1,
+      "message": "Also not a part of this patch, but is `canTrigger` just like `enabled`?",
+      "range": {
+        "startLine": 55,
+        "startChar": 13,
+        "endLine": 55,
+        "endChar": 23
+      },
+      "revId": "27d71ea68707801db19d75503be779978044e43c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
