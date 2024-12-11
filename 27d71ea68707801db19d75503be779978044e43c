@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4cec5aff_f0a1ff36",
+        "filename": "src/app/commoncomponents/LineEditContextMenu.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1102
+      },
+      "writtenOn": "2024-12-11T18:35:34Z",
+      "side": 1,
+      "message": "I wasn\u0027t sure about the lifetime of an object created within a function in qml. Looks like objects created in functions still persist past the end of the function?",
+      "parentUuid": "6f6de19e_2e622665",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 37,
+        "endChar": 26
+      },
+      "revId": "27d71ea68707801db19d75503be779978044e43c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5f3bb0b5_ba814979",
         "filename": "src/app/commoncomponents/LineEditContextMenu.qml",
         "patchSetId": 1
