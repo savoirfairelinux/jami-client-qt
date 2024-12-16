@@ -382,7 +382,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="113"/>
         <source>User certificate</source>
-        <translation>Употребичајски сертификат</translation>
+        <translation>Sertifikat korisnika</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="114"/>
@@ -417,7 +417,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="121"/>
         <source>Select a user certificate</source>
-        <translation>Изаберете корисничко сертификат</translation>
+        <translation>Izaberite korisnički sertifikat</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="122"/>
@@ -482,7 +482,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="137"/>
         <source>Use STUN</source>
-        <translation>Користете СТУН</translation>
+        <translation>Koristite STUN</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="138"/>
@@ -502,7 +502,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="143"/>
         <source>Use custom address and port</source>
-        <translation>Користити прилагођену адресу и порт</translation>
+        <translation>Koristite prilagođenu adresu i port</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="144"/>
@@ -532,7 +532,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="158"/>
         <source>Only used during negotiation in case ICE is not supported</source>
-        <translation>Употребљен само током преговора у случају да ИЦЕ није поддржаван</translation>
+        <translation>Koristi se samo tokom pregovora u slučaju da ICE nije podržan</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="159"/>
@@ -732,7 +732,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="374"/>
         <source>You can choose a username to help others more easily find and reach you on Jami.</source>
-        <translation>Можете изабрати корисничко име да бисте помогли другима да вас лакше пронађу и дођу до вас на Џами.</translation>
+        <translation>Možete da izaberete korisničko ime da biste pomogli drugima da vas lakše pronađu i dođu do vas na Jami.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="381"/>
@@ -751,7 +751,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="388"/>
         <source>Your account will be created and stored locally.</source>
-        <translation>Ваш рачун ће бити креиран и чуван локално.</translation>
+        <translation>Vaš nalog će biti kreiran i uskladišten lokalno.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="389"/>
@@ -1298,7 +1298,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="37"/>
         <source>Create swarm</source>
-        <translation>Стварити рогу</translation>
+        <translation>Napravite roj</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="180"/>
@@ -1400,7 +1400,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="230"/>
         <source>Pause call</source>
-        <translation>Позив паузе</translation>
+        <translation>Pauzirajte poziv</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="231"/>
@@ -2202,7 +2202,7 @@ Vaša slika i nadimak se mogu promeniti u svakom trenutku u podešavanjima vaše
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="439"/>
         <source>This account is created and stored locally, if you want to use it on another device you have to link the new device to this account.</source>
-        <translation type="unfinished"/>
+        <translation>Ovaj nalog se kreira i čuva lokalno, ako želite da ga koristite na drugom uređaju morate da povežete novi uređaj sa ovim nalogom.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="468"/>
@@ -2660,7 +2660,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="525"/>
         <source>Installer download canceled</source>
-        <translation>Инсталирач је преузета</translation>
+        <translation>Preuzimanje instalatera je otkazano</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="527"/>
@@ -3113,7 +3113,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="682"/>
         <source>Create account from Jami Account Management Server (JAMS)</source>
-        <translation>Стварити рачун из сервера за управљање рачун Џами (JAMS)</translation>
+        <translation>Kreirajte nalog sa Jami Account Management Server (JAMS)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="683"/>
@@ -3128,7 +3128,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="685"/>
         <source>Create a rendezvous point</source>
-        <translation>Стварити место састанака</translation>
+        <translation>Napravite tačku sastanka</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="686"/>
@@ -3138,12 +3138,12 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="687"/>
         <source>Create new Jami account</source>
-        <translation>Стварити нови рачун Jami</translation>
+        <translation>Kreirajte novi Jami nalog</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="688"/>
         <source>Create new SIP account</source>
-        <translation>Стварити нови СИП рачун</translation>
+        <translation>Kreirajte novi SIP nalog</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="689"/>
@@ -3326,7 +3326,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="568"/>
         <source>Create account from backup</source>
-        <translation>Стварити рачун из резервне копије</translation>
+        <translation>Kreirajte nalog iz rezervne kopije</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="569"/>
@@ -3409,7 +3409,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="813"/>
         <source>Create the swarm</source>
-        <translation>Стварити рогу</translation>
+        <translation>Napravite roj</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="814"/>
@@ -3812,12 +3812,12 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="426"/>
         <source>Private conversation created</source>
-        <translation>Приватна конверзација је направљена</translation>
+        <translation>Privatna konverzacija je napravljena</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="428"/>
         <source>Swarm created</source>
-        <translation>Стварено је пало</translation>
+        <translation>Roj stvoren</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="508"/>
@@ -3920,7 +3920,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="83"/>
         <source>Use Proxy</source>
-        <translation>Користете прокси</translation>
+        <translation>Koristi proki</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="84"/>
@@ -4126,7 +4126,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="125"/>
         <source>Call Refused</source>
-        <translation>Позив одбијен</translation>
+        <translation>Odbijen poziv</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="126"/>
@@ -4311,7 +4311,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="96"/>
         <source>A red dot means that your account is disconnected from the network; it turns green when it&apos;s connected.</source>
-        <translation>Црвена тачка значи да је ваш рачун искључен од мреже; постаје зелен када је повезан.</translation>
+        <translation>Crvena tačka znači da je vaš nalog isključen sa mreže; postaje zeleno kada je povezan.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="101"/>
