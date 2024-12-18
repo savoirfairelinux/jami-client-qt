@@ -297,7 +297,7 @@ URIPimpl::checkIp(const QString& str, bool& isHash, const URI::SchemeType& schem
             isHash = false;
             sc++;
             // No break
-            [[clang::fallthrough]];
+            [[fallthrough]];
         case 'A':
         case 'B':
         case 'C':
