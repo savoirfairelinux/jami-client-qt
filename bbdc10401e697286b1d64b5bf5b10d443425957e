@@ -16,6 +16,24 @@
       "message": "It would be appreciated if you would please advise which file contains the string in the \"Screenshots\" section of https://apps.apple.com/ca/app/jami/id1306951055\n\nThank you",
       "revId": "bbdc10401e697286b1d64b5bf5b10d443425957e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "abfd4d08_baf4c6da",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2024-12-19T21:04:01Z",
+      "side": 1,
+      "message": "AFAIK, they are not translated using any versioned file, unfortunately. We would still appreciate your feedback if you think they should be updated.",
+      "parentUuid": "41116441_01f4c095",
+      "revId": "bbdc10401e697286b1d64b5bf5b10d443425957e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
