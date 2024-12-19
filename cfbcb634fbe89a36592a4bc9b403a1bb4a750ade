@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3acce71b_3a09702f",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-12-19T21:52:43Z",
+      "side": 1,
+      "message": "Done. Thank you for your comment with hyperlinks.",
+      "parentUuid": "0fe8f4b6_38e15418",
+      "range": {
+        "startLine": 267,
+        "startChar": 91,
+        "endLine": 267,
+        "endChar": 117
+      },
+      "revId": "cfbcb634fbe89a36592a4bc9b403a1bb4a750ade",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2bc69981_71187c26",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-12-19T21:45:29Z",
       "side": 1,
       "message": "same",
+      "range": {
+        "startLine": 268,
+        "startChar": 91,
+        "endLine": 268,
+        "endChar": 117
+      },
+      "revId": "cfbcb634fbe89a36592a4bc9b403a1bb4a750ade",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "366fa011_391a035e",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-12-19T21:52:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2bc69981_71187c26",
       "range": {
         "startLine": 268,
         "startChar": 91,
