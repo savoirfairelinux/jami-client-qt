@@ -89,6 +89,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a8d79ea_daccf828",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-12-19T21:04:50Z",
+      "side": 1,
+      "message": "Good catch. Done. Thank you",
+      "parentUuid": "daa24360_a7b50aa1",
+      "range": {
+        "startLine": 249,
+        "startChar": 64,
+        "endLine": 249,
+        "endChar": 92
+      },
+      "revId": "de31c6adbf6536aceb83b24f386018cef7939ede",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cf5f83c1_91802def",
