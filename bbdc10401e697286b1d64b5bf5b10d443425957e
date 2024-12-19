@@ -34,6 +34,24 @@
       "parentUuid": "41116441_01f4c095",
       "revId": "bbdc10401e697286b1d64b5bf5b10d443425957e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3a052a8_a83db4f4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-12-19T21:18:42Z",
+      "side": 1,
+      "message": "It would be appreciated if the description under \"Screenshots\" could be translated. https://apps.apple.com/hu/app/jami/id1306951055?l\u003dhu",
+      "parentUuid": "abfd4d08_baf4c6da",
+      "revId": "bbdc10401e697286b1d64b5bf5b10d443425957e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
