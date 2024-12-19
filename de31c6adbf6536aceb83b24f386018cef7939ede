@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "daa24360_a7b50aa1",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2024-12-19T21:00:40Z",
+      "side": 1,
+      "message": "We try to minimize occurrences of the product name in strings. In the future, we may allow people or organizations to customize Jami and maybe have their own fork with a different name (for instance Firefox can get packaged under different names like Iceweasel). We already changed our name twice over the history of the project.\n\nAlso, most notification systems already include the name of the program emitting the notification.",
+      "parentUuid": "847e834f_112e020a",
+      "range": {
+        "startLine": 249,
+        "startChar": 64,
+        "endLine": 249,
+        "endChar": 92
+      },
+      "revId": "de31c6adbf6536aceb83b24f386018cef7939ede",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cf5f83c1_91802def",
         "filename": "src/libclient/interaction.cpp",
         "patchSetId": 6
