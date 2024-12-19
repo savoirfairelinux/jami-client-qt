@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fe8f4b6_38e15418",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2024-12-19T21:45:29Z",
+      "side": 1,
+      "message": "If the button labels are \u0027cancel/leave\u0027, that additional sentence seems redundant with the button label.\nThis also seems to be matching Microsoft and Google UX recommendations:\nhttps://learn.microsoft.com/en-us/style-guide/procedures-instructions/formatting-text-in-instructions#in-the-ui-and-general-content\nhttps://m3.material.io/components/dialogs/guidelines",
+      "range": {
+        "startLine": 267,
+        "startChar": 91,
+        "endLine": 267,
+        "endChar": 117
+      },
+      "revId": "cfbcb634fbe89a36592a4bc9b403a1bb4a750ade",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bc69981_71187c26",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2024-12-19T21:45:29Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 268,
+        "startChar": 91,
+        "endLine": 268,
+        "endChar": 117
+      },
+      "revId": "cfbcb634fbe89a36592a4bc9b403a1bb4a750ade",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
