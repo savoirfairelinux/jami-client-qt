@@ -16,6 +16,24 @@
       "message": "Theres still a slight issue where if you search for a file with a given query string, then switch to the message search tab, the search results will not be updated.",
       "revId": "16552d3a74216a83a19d5737443b46a39f788431",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38f9e4fa_2bbe08b8",
+        "filename": "src/app/mainview/components/MessagesResearchView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2024-12-23T20:33:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af193f81_44d1ee8e",
+      "revId": "16552d3a74216a83a19d5737443b46a39f788431",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
