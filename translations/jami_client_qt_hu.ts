@@ -835,7 +835,7 @@ A névjegy bármikor módosítható a Fiókbeállításaiból.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="462"/>
         <source>Would you really like to delete this account?</source>
-        <translation>Valóban törölni szeretné ezt a fiókot?</translation>
+        <translation>Valóban törölni szeretne ezt a fiókot?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="463"/>
@@ -1243,7 +1243,7 @@ Kíván most frissíteni?</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="779"/>
         <source>A call is in progress. Do you want to join the call?</source>
-        <translation>Hívás folyamatban. Szeretnél csatlakozni a híváshoz?</translation>
+        <translation>Hívás folyamatban. Szeretne csatlakozni a híváshoz?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="780"/>
@@ -1618,12 +1618,12 @@ Kíván most frissíteni?</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="266"/>
         <source>Would you really like to remove this conversation?</source>
-        <translation>Valóban szeretné eltávolítani ezt a beszélgetést?</translation>
+        <translation>Valóban szeretne eltávolítani ezt a beszélgetést?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="267"/>
         <source>Would you really like to block this conversation?</source>
-        <translation>Valóban szeretné letiltani ezt a beszélgetést?</translation>
+        <translation>Valóban szeretne letiltani ezt a beszélgetést?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="268"/>
@@ -2209,7 +2209,7 @@ Képe és beceneve bármikor megváltoztatható fiókja beállításaiban.</tran
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="439"/>
         <source>This account is created and stored locally, if you want to use it on another device you have to link the new device to this account.</source>
-        <translation>Ez a fiók helyileg van létrehozva és tárolva. Ha egy másik eszközön szeretné használni az új eszközt ehhez a fiókhoz kell összekapcsolnia.</translation>
+        <translation>Ez a fiók helyileg van létrehozva és tárolva. Ha egy másik eszközön szeretne használni az új eszközt ehhez a fiókhoz kell összekapcsolnia.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="468"/>
@@ -2975,7 +2975,7 @@ Kérjük, hogy próbálja újra később.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="639"/>
         <source>Are you sure you wish to reset %1 preferences?</source>
-        <translation>Biztosan vissza szeretné állítani a(z) %1 beépülő modul beállításait?</translation>
+        <translation>Biztosan vissza szeretne állítani a(z) %1 beépülő modul beállításait?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="640"/>
