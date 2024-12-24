@@ -22,7 +22,6 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
@@ -44,12 +43,12 @@ Loader {
     property int transferStatus: TransferStatus
     onTidChanged: {
         if (tid === "") {
-            sourceComponent = deletedMsgComp
+            sourceComponent = deletedMsgComp;
         }
     }
     onTransferStatusChanged: {
         if (tid === "") {
-            sourceComponent = deletedMsgComp
+            sourceComponent = deletedMsgComp;
             return;
         } else if (transferStatus === Interaction.TransferStatus.TRANSFER_FINISHED) {
             mediaInfo = MessagesAdapter.getMediaInfo(root.body);
@@ -64,7 +63,11 @@ Loader {
     width: ListView.view ? ListView.view.width : 0
 
     opacity: 0
-    Behavior on opacity { NumberAnimation { duration: 100 } }
+    Behavior on opacity {
+        NumberAnimation {
+            duration: 100
+        }
+    }
     onLoaded: opacity = 1
 
     Component {
@@ -93,9 +96,9 @@ Loader {
                     bottomPadding: 6
                     topPadding: 6
                     leftPadding: 10
-                    text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author) + " " + JamiStrings.deletedMedia ;
+                    text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author) + " " + JamiStrings.deletedMedia
                     horizontalAlignment: Text.AlignLeft
-                    width:  Math.min((2 / 3) * parent.width, implicitWidth + 18, innerContent.width - senderMargin + 18)
+                    width: Math.min((2 / 3) * parent.width, implicitWidth + 18, innerContent.width - senderMargin + 18)
 
                     font.pointSize: JamiTheme.smallFontSize
                     font.hintingPreference: Font.PreferNoHinting
@@ -107,8 +110,8 @@ Loader {
                     opacity: 0.5
 
                     function getBaseColor() {
-                        bubble.isDeleted = true
-                        return UtilsAdapter.luma(bubble.color) ? "white" : "dark"
+                        bubble.isDeleted = true;
+                        return UtilsAdapter.luma(bubble.color) ? "white" : "dark";
                     }
                 }
             ]
@@ -124,9 +127,7 @@ Loader {
             transferId: Id
             property var transferStats: MessagesAdapter.getTransferStats(transferId, root.transferStatus)
             property bool canOpen: root.transferStatus === Interaction.TransferStatus.TRANSFER_FINISHED || isOutgoing
-            property real maxMsgWidth: root.width - senderMargin -
-                                       2 * hPadding - avatarBlockWidth
-                                       - buttonsLoader.width - 24 - 6 - 24
+            property real maxMsgWidth: root.width - senderMargin - 2 * hPadding - avatarBlockWidth - buttonsLoader.width - 24 - 6 - 24
 
             isOutgoing: Author === CurrentAccount.uri
             showTime: root.showTime
@@ -150,14 +151,12 @@ Loader {
                         enabled: canOpen
                         onHoveredChanged: {
                             if (enabled && hovered) {
-                                dataTransferItem.hoveredLink = UtilsAdapter.urlFromLocalPath(location)
+                                dataTransferItem.hoveredLink = UtilsAdapter.urlFromLocalPath(location);
                             } else {
-                                dataTransferItem.hoveredLink = ""
+                                dataTransferItem.hoveredLink = "";
                             }
                         }
-                        cursorShape: enabled ?
-                                         Qt.PointingHandCursor :
-                                         Qt.ArrowCursor
+                        cursorShape: enabled ? Qt.PointingHandCursor : Qt.ArrowCursor
                     }
                     Loader {
                         id: buttonsLoader
@@ -171,21 +170,21 @@ Loader {
                             switch (root.transferStatus) {
                             case Interaction.TransferStatus.TRANSFER_CREATED:
                             case Interaction.TransferStatus.TRANSFER_FINISHED:
-                                iconSource = JamiResources.link_black_24dp_svg
-                                return terminatedComp
+                                iconSource = JamiResources.link_black_24dp_svg;
+                                return terminatedComp;
                             case Interaction.TransferStatus.TRANSFER_CANCELED:
                             case Interaction.TransferStatus.TRANSFER_ERROR:
                             case Interaction.TransferStatus.TRANSFER_UNJOINABLE_PEER:
                             case Interaction.TransferStatus.TRANSFER_TIMEOUT_EXPIRED:
                             case Interaction.TransferStatus.TRANSFER_AWAITING_HOST:
-                                iconSource = JamiResources.download_black_24dp_svg
-                                return optionsComp
+                                iconSource = JamiResources.download_black_24dp_svg;
+                                return optionsComp;
                             case Interaction.TransferStatus.TRANSFER_ONGOING:
-                                iconSource = JamiResources.close_black_24dp_svg
-                                return optionsComp
+                                iconSource = JamiResources.close_black_24dp_svg;
+                                return optionsComp;
                             default:
-                                iconSource = JamiResources.error_outline_black_24dp_svg
-                                return terminatedComp
+                                iconSource = JamiResources.error_outline_black_24dp_svg;
+                                return terminatedComp;
                             }
                         }
                         Component {
@@ -216,9 +215,9 @@ Loader {
                                 imageColor: JamiTheme.chatviewButtonColor
                                 onClicked: {
                                     if (root.transferStatus === Interaction.TransferStatus.TRANSFER_ONGOING) {
-                                        return MessagesAdapter.cancelFile(transferId)
+                                        return MessagesAdapter.cancelFile(transferId);
                                     } else {
-                                        return MessagesAdapter.acceptFile(transferId)
+                                        return MessagesAdapter.acceptFile(transferId);
                                     }
                                 }
                             }
@@ -230,27 +229,21 @@ Loader {
                         TextEdit {
                             width: Math.min(implicitWidth, maxMsgWidth)
                             topPadding: 10
-                            text: CurrentConversation.isSwarm ?
-                                      transferName :
-                                      location
+                            text: CurrentConversation.isSwarm ? transferName : location
                             wrapMode: Label.WrapAtWordBoundaryOrAnywhere
                             font.pointSize: 11
                             renderType: Text.NativeRendering
                             readOnly: true
-                            color: UtilsAdapter.luma(bubble.color)
-                                   ? JamiTheme.chatviewTextColorLight
-                                   : JamiTheme.chatviewTextColorDark
+                            color: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
                             MouseArea {
                                 anchors.fill: parent
-                                cursorShape: canOpen ?
-                                                 Qt.PointingHandCursor :
-                                                 Qt.ArrowCursor
+                                cursorShape: canOpen ? Qt.PointingHandCursor : Qt.ArrowCursor
                                 onClicked: function (mouse) {
                                     if (canOpen) {
-                                        dataTransferItem.hoveredLink = UtilsAdapter.urlFromLocalPath(location)
-                                        Qt.openUrlExternally(new URL(dataTransferItem.hoveredLink))
+                                        dataTransferItem.hoveredLink = UtilsAdapter.urlFromLocalPath(location);
+                                        Qt.openUrlExternally(new URL(dataTransferItem.hoveredLink));
                                     } else {
-                                        dataTransferItem.hoveredLink = ""
+                                        dataTransferItem.hoveredLink = "";
                                     }
                                 }
                             }
@@ -261,23 +254,20 @@ Loader {
                             width: Math.min(implicitWidth, maxMsgWidth)
                             bottomPadding: 10
                             text: {
-                                var res = ""
+                                var res = "";
                                 if (transferStats.totalSize !== undefined) {
-                                    if (transferStats.progress !== 0 &&
-                                            transferStats.progress !== transferStats.totalSize) {
-                                        res += UtilsAdapter.humanFileSize(transferStats.progress) + " / "
+                                    if (transferStats.progress !== 0 && transferStats.progress !== transferStats.totalSize) {
+                                        res += UtilsAdapter.humanFileSize(transferStats.progress) + " / ";
                                     }
-                                    var totalSize = transferStats.totalSize !== 0 ? transferStats.totalSize : TotalSize
-                                    res += UtilsAdapter.humanFileSize(totalSize)
+                                    var totalSize = transferStats.totalSize !== 0 ? transferStats.totalSize : TotalSize;
+                                    res += UtilsAdapter.humanFileSize(totalSize);
                                 }
-                                return res
+                                return res;
                             }
                             wrapMode: Label.WrapAtWordBoundaryOrAnywhere
                             font.pointSize: 10
                             renderType: Text.NativeRendering
-                            color: UtilsAdapter.luma(bubble.color)
-                                   ? JamiTheme.chatviewTextColorLight
-                                   : JamiTheme.chatviewTextColorDark
+                            color: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
                         }
                     }
                 },
@@ -314,25 +304,28 @@ Loader {
 
             property real contentWidth
 
+            onWidthChanged: {
+            } 
+
             Component.onCompleted: {
                 if (transferStats.totalSize !== undefined) {
-                    var totalSize = transferStats.totalSize !== 0 ? transferStats.totalSize : TotalSize
-                    var txt = UtilsAdapter.humanFileSize(totalSize)
+                    var totalSize = transferStats.totalSize !== 0 ? transferStats.totalSize : TotalSize;
+                    var txt = UtilsAdapter.humanFileSize(totalSize);
                 }
-                bubble.timestampItem.timeLabel.text += " - " + txt
-                bubble.color = "transparent"
+                bubble.timestampItem.timeLabel.text += " - " + txt;
+                bubble.color = "transparent";
                 if (mediaInfo.isImage)
-                    bubble.z = 1
+                    bubble.z = 1;
                 else
-                    timeUnderBubble = true
+                    timeUnderBubble = true;
             }
 
             onContentWidthChanged: {
                 if (bubble.timestampItem.timeLabel.width > contentWidth)
-                    timeUnderBubble = true
+                    timeUnderBubble = true;
                 else {
-                    bubble.timestampItem.timeColor = JamiTheme.whiteColor
-                    bubble.timestampItem.timeLabel.opacity = 1
+                    bubble.timestampItem.timeColor = JamiTheme.whiteColor;
+                    bubble.timestampItem.timeLabel.opacity = 1;
                 }
             }
 
@@ -346,10 +339,10 @@ Loader {
                     height: sourceComponent.height
                     sourceComponent: {
                         if (mediaInfo.isImage)
-                            return imageComp
+                            return imageComp;
                         if (mediaInfo.isAnimatedImage)
-                            return animatedImageComp
-                        return avComp
+                            return animatedImageComp;
+                        return avComp;
                     }
 
                     Component {
@@ -357,10 +350,11 @@ Loader {
 
                         Loader {
                             Component.onCompleted: {
-                                var qml = WITH_WEBENGINE ?
-                                            "qrc:/webengine/MediaPreviewBase.qml" :
-                                            "qrc:/nowebengine/MediaPreviewBase.qml"
-                                setSource( qml, { isVideo: mediaInfo.isVideo, html: mediaInfo.html } )
+                                var qml = WITH_WEBENGINE ? "qrc:/webengine/MediaPreviewBase.qml" : "qrc:/nowebengine/MediaPreviewBase.qml";
+                                setSource(qml, {
+                                        isVideo: mediaInfo.isVideo,
+                                        html: mediaInfo.html
+                                    });
                             }
                         }
                     }
@@ -381,9 +375,7 @@ Loader {
                             asynchronous: true
                             source: UtilsAdapter.urlFromLocalPath(Body)
                             property real aspectRatio: implicitWidth / implicitHeight
-                            property real adjustedWidth: Math.min(maxSize,
-                                                                  Math.max(minSize,
-                                                                           innerContent.width - senderMargin))
+                            property real adjustedWidth: Math.min(maxSize, Math.max(minSize, innerContent.width - senderMargin))
                             width: adjustedWidth
                             height: Math.ceil(adjustedWidth / aspectRatio)
                             Rectangle {
@@ -403,7 +395,7 @@ Loader {
                             }
 
                             onWidthChanged: {
-                                localMediaMsgItem.contentWidth = width
+                                localMediaMsgItem.contentWidth = width;
                             }
 
                             Component.onCompleted: localMediaMsgItem.bubble.imgSource = source
@@ -445,32 +437,57 @@ Loader {
                                 localMediaMsgItem.bubble.imgSource = source;
                             }
 
-                            // The sourceSize represents the maximum source dimensions.
-                            // This should not be a dynamic binding, as property changes
-                            // (resizing the chat view) here will trigger a reload of the image.
-                            sourceSize: Qt.size(256, 256)
-
-                            // Now we setup bindings for the destination image component size.
-                            // This based on the width available (width of the chat view), and
-                            // a restriction on the height.
                             readonly property real aspectRatio: paintedWidth / paintedHeight
                             readonly property real idealWidth: innerContent.width - senderMargin
+                            property bool useBox: false
+                            property real maxWidth: localMediaMsgItem.width - 150
+                            property bool xOverflow: false
+                            property bool yOverflow: false
+
                             onStatusChanged: {
-                                if (img.status == Image.Ready && aspectRatio) {
-                                    height = Qt.binding(() => JamiQmlUtils.clamp(idealWidth / aspectRatio, 64, 256))
-                                    width = Qt.binding(() => height * aspectRatio)
+                                recomputeImageSize();
+                            }
+
+                            Connections {
+                                target: localMediaMsgItem
+                                onWidthChanged: {
+                                    recomputeImageSize();
                                 }
                             }
 
+                            // This function serves to dynamically resize images in the chatview
+                            // given the size of the window as well as a predetermined max height.
+                            // If an image has a really large or small aspect ratio it will surround
+                            // it with a rectangular border.
+                            function recomputeImageSize() {
+                                if (img.status == Image.Ready) {
+                                    useBox = (sourceSize.width < 50 && sourceSize.height < 375) || (sourceSize.height < 50 && sourceSize.width < 375);
+                                    if (useBox) {
+                                        parent.height = Math.max(sourceSize.height, 50) + 5;
+                                        parent.width = Math.max(sourceSize.width, 50) + 5;
+                                    }
+                                    xOverflow = sourceSize.width > maxWidth;
+                                    yOverflow = sourceSize.height > JamiTheme.maxImageHeight;
+                                    if (xOverflow || yOverflow) {
+                                        var scaleFactor = Math.min(maxWidth / sourceSize.width, JamiTheme.maxImageHeight / sourceSize.height);
+                                        parent.width = sourceSize.width * scaleFactor;
+                                        parent.height = sourceSize.height * scaleFactor;
+                                    }
+                                }
+                            }
                             onWidthChanged: {
-                                localMediaMsgItem.contentWidth = width
+                                localMediaMsgItem.contentWidth = width;
                             }
 
                             Rectangle {
-                                color: JamiTheme.previewImageBackgroundColor
-                                z: -1
+                                border.color: useBox ? "white" : JamiTheme.transparentColor
+                                color: JamiTheme.transparentColor
+                                z: 3
                                 anchors.fill: parent
+                                border.width: 1
+                                radius: msgRadius
                             }
+
                             layer.enabled: true
                             layer.effect: OpacityMask {
                                 maskSource: MessageBubble {
@@ -479,22 +496,6 @@ Loader {
                                     width: img.width
                                     height: img.height
                                     radius: msgRadius
-                                }
-                            }
-
-                            LinearGradient {
-                                id: gradient
-                                anchors.fill: parent
-                                start: Qt.point(0, height / 3)
-                                gradient: Gradient {
-                                    GradientStop {
-                                        position: 0.0
-                                        color: JamiTheme.transparentColor
-                                    }
-                                    GradientStop {
-                                        position: 1.0
-                                        color: JamiTheme.darkGreyColorOpacityFade
-                                    }
                                 }
                             }
                         }
