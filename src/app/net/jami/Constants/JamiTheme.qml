@@ -255,6 +255,7 @@ Item {
     property color messageWebViewFooterButtonImageColor: darkTheme ? "#838383" : "#656565"
     property color chatviewSecondaryInformationColor: "#A7A7A7"
     property color draftIconColor: "#707070"
+    property real maxImageHeight: 375
 
     // ChatView Footer
     property color chatViewFooterListColor: darkTheme ? blackColor : "#E5E5E5"
