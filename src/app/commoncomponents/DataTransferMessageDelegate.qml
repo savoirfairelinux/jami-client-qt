@@ -448,17 +448,34 @@ Loader {
                             // The sourceSize represents the maximum source dimensions.
                             // This should not be a dynamic binding, as property changes
                             // (resizing the chat view) here will trigger a reload of the image.
-                            sourceSize: Qt.size(256, 256)
 
                             // Now we setup bindings for the destination image component size.
                             // This based on the width available (width of the chat view), and
                             // a restriction on the height.
                             readonly property real aspectRatio: paintedWidth / paintedHeight
                             readonly property real idealWidth: innerContent.width - senderMargin
+                            property bool useBox: false
+                            property real boxWidth: 375
+                            property real boxHeight: 375
+
                             onStatusChanged: {
-                                if (img.status == Image.Ready && aspectRatio) {
-                                    height = Qt.binding(() => JamiQmlUtils.clamp(idealWidth / aspectRatio, 64, 256))
-                                    width = Qt.binding(() => height * aspectRatio)
+                                if (img.status == Image.Ready) {
+                                    console.log(source);
+                                    console.log(sourceSize.width);
+                                    console.log(sourceSize.height);
+                                    
+                                    
+                                    // Check if we need to use a box
+                                    useBox = (sourceSize.width < 50 && sourceSize.height < 375) || (sourceSize.height < 50 && sourceSize.width < 375)
+                                    console.log(useBox); 
+                                    if (useBox) {
+                                        console.log(source);
+                                        console.log("ok");
+                                        boxWidth = Math.max(sourceSize.width, 50)
+                                        boxHeight = Math.max(sourceSize.height, 50)
+                                        parent.height = boxHeight + 5;
+                                        parent.width = boxWidth + 5;
+                                    }
                                 }
                             }
 
@@ -467,11 +484,15 @@ Loader {
                             }
 
                             Rectangle {
-                                color: JamiTheme.previewImageBackgroundColor
-                                z: -1
+                                border.color: useBox ? "white" : JamiTheme.transparentColor  
+                                color: JamiTheme.transparentColor
+                                z: 3
                                 anchors.fill: parent
+                                border.width: 1
+                                radius : msgRadius
                             }
-                            layer.enabled: true
+
+                            layer.enabled: true 
                             layer.effect: OpacityMask {
                                 maskSource: MessageBubble {
                                     out: isOutgoing
@@ -479,22 +500,6 @@ Loader {
                                     width: img.width
                                     height: img.height
                                     radius: msgRadius
-                                }
-                            }
-
-                            LinearGradient {
-                                id: gradient
-                                anchors.fill: parent
-                                start: Qt.point(0, height / 3)
-                                gradient: Gradient {
-                                    GradientStop {
-                                        position: 0.0
-                                        color: JamiTheme.transparentColor
-                                    }
-                                    GradientStop {
-                                        position: 1.0
-                                        color: JamiTheme.darkGreyColorOpacityFade
-                                    }
                                 }
                             }
                         }
