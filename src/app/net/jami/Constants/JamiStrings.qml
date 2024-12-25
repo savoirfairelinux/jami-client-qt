@@ -265,7 +265,7 @@ Item {
     // ConversationContextMenu
     property string startAudioCall: qsTr("Start audio call")
     property string startVideoCall: qsTr("Start video call")
-    property string clearConversation: qsTr("Clear conversation")
+    property string deleteConversation: qsTr("Delete conversation")
     property string confirmAction: qsTr("Confirm action")
     property string removeConversation: qsTr("Leave conversation")
     property string confirmLeaveConversation: qsTr("Do you want to leave this conversation?")
