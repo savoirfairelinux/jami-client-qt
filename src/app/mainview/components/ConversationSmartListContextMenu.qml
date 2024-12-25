@@ -66,10 +66,10 @@ ContextMenuAutoLoader {
             }
         },
         GeneralMenuItem {
-            id: clearConversation
+            id: deleteConversation
 
             canTrigger: mode === Conversation.Mode.NON_SWARM && !hasCall && !root.isBanned
-            itemName: JamiStrings.clearConversation
+            itemName: JamiStrings.deleteConversation
             iconSource: JamiResources.ic_clear_24dp_svg
             onClicked: MessagesAdapter.clearConversationHistory(responsibleAccountId, responsibleConvUid)
         },
