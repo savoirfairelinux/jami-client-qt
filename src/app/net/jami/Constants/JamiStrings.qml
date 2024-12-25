@@ -264,7 +264,7 @@ Item {
     // ConversationContextMenu
     property string startAudioCall: qsTr("Start audio call")
     property string startVideoCall: qsTr("Start video call")
-    property string clearConversation: qsTr("Clear conversation")
+    property string deleteConversation: qsTr("Delete conversation")
     property string confirmAction: qsTr("Confirm action")
     property string removeConversation: qsTr("Leave conversation")
     property string confirmLeaveConversation: qsTr("Do you want to leave this conversation?")
@@ -741,7 +741,7 @@ Item {
     property string removeDefaultModerator: qsTr("Remove default moderator")
 
     // Daemon reconnection
-    property string reconnectDaemon: qsTr("Reconnection of the Jami daemon (jamid) is in progress. Please wait…")
+    property string reconnectDaemon: qsTr("Jami daemon (jamid) reconnection is in progress. Please wait…")
     property string reconnectionFailed: qsTr("An error occurred while reconnecting to the Jami daemon (jamid).\nThe application will now exit.")
 
     // Message view
