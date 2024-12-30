@@ -2200,7 +2200,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="439"/>
         <source>This account is created and stored locally, if you want to use it on another device you have to link the new device to this account.</source>
-        <translation type="unfinished"/>
+        <translation>Ovaj nalog se kreira i čuva lokalno, ako želite da ga koristite na drugom uređaju morate da povežete novi uređaj sa ovim nalogom.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="468"/>
@@ -2659,7 +2659,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="525"/>
         <source>Installer download canceled</source>
-        <translation>Инсталирач је преузета</translation>
+        <translation>Преузимање инсталатера је отказано</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="527"/>
@@ -2750,7 +2750,7 @@ Please try again later.</source>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="561"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="710"/>
         <source>Cancel</source>
-        <translation>Otkaži</translation>
+        <translation>Откажи</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="562"/>
@@ -3551,7 +3551,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="117"/>
         <source>Cancel message edition</source>
-        <translation>Убриши издање поруке</translation>
+        <translation>Откажи измену поруке</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="125"/>
@@ -4185,7 +4185,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="353"/>
         <source>Canceled</source>
-        <translation>Otkazan</translation>
+        <translation>Отказано</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="358"/>
