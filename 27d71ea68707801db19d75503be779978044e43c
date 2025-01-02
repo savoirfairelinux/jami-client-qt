@@ -35,6 +35,23 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf58f155_37cd8d01",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1102
+      },
+      "writtenOn": "2025-01-02T20:43:27Z",
+      "side": 1,
+      "message": "This seems to be an issue associated with an older Qt. Using a modern Qt version, fixes this",
+      "revId": "27d71ea68707801db19d75503be779978044e43c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6f6de19e_2e622665",
