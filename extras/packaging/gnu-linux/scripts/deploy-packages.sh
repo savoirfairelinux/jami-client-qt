@@ -187,6 +187,9 @@ EOF
     # Create the repo
     createrepo_c --update ${DISTRIBUTION_REPOSITORY_FOLDER}
 
+    # Add AppStream catalog metadata to the repo
+    modifyrepo_c --no-compress --simple-md-filenames ./extras/data/appstream.xml ${DISTRIBUTION_REPOSITORY_FOLDER}/repodata/
+
     #######################################
     ## create the manual download folder ##
     #######################################

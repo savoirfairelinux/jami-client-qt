@@ -253,10 +253,10 @@ GUIX_PACK_FORMATS = deb rpm
 define guix-pack-command
 guix pack -C xz -f $(1) -m $(CURDIR)/extras/packaging/gnu-linux/guix/guix-pack-manifest.scm -v3 \
   -S /usr/bin/jami=bin/jami \
-  -S /usr/share/applications/jami.desktop=share/applications/jami.desktop \
+  -S /usr/share/applications/net.jami.Jami.desktop=share/applications/net.jami.Jami.desktop \
   -S /usr/share/icons/hicolor/scalable/apps/jami.svg=share/icons/hicolor/scalable/apps/jami.svg \
   -S /usr/share/icons/hicolor/48x48/apps/jami.png=share/icons/hicolor/48x48/apps/jami.png \
-  -S /usr/share/metainfo/jami.appdata.xml=share/metainfo/jami.appdata.xml \
+  -S /usr/share/metainfo/net.jami.Jami.metainfo.xml=share/metainfo/net.jami.Jami.metainfo.xml \
   $(and $(findstring deb,$(1)), \
     --postinst-file=$(CURDIR)/extras/packaging/gnu-linux/guix/guix-pack-deb.postinst)
 endef
