@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83a87711_4a0bce21",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2025-01-07T15:07:33Z",
+      "side": 1,
+      "message": "Can you create something similar for video previews / playback within the chat view (if necessary / useful)?\n\nAlso if the video aspect ratio of one (the same) video is different? Example: https://www.youtube.com/watch?v\u003dE-dUveGINTg",
+      "revId": "5d9f645409b21c7a6051fba84cdcccf349421a04",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
