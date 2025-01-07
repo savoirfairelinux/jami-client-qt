@@ -155,9 +155,9 @@ Utils::CreateStartupLink(const std::wstring& wstrAppName)
 
 #ifdef JAMI_INSTALL_PREFIX
     desktopPath = JAMI_INSTALL_PREFIX;
-    desktopPath += "/jami/jami.desktop";
+    desktopPath += "/jami/net.jami.Jami.desktop";
 #else
-    desktopPath = "share/jami/jami.desktop";
+    desktopPath = "share/jami/net.jami.Jami.desktop";
     QStringList paths = {"/usr/" + desktopPath,
                          "/usr/local/" + desktopPath,
                          QDir::currentPath() + "/../../install/client-qt/" + desktopPath};
@@ -178,7 +178,7 @@ Utils::CreateStartupLink(const std::wstring& wstrAppName)
     qDebug() << "Linking autostart file from" << desktopPath;
 
     QString desktopFile = QStandardPaths::locate(QStandardPaths::ConfigLocation,
-                                                 "autostart/jami.desktop");
+                                                 "autostart/net.jami.Jami.desktop");
     if (!desktopFile.isEmpty()) {
         QFileInfo symlinkInfo(desktopFile);
         if (symlinkInfo.isSymLink()) {
@@ -203,7 +203,7 @@ Utils::CreateStartupLink(const std::wstring& wstrAppName)
                 return false;
             }
         }
-        desktopFile = autoStartDir + "/jami.desktop";
+        desktopFile = autoStartDir + "/net.jami.Jami.desktop";
     }
 
     QFile srcFile(desktopPath);
@@ -261,7 +261,7 @@ Utils::DeleteStartupLink(const std::wstring& wstrAppName)
 #else
     Q_UNUSED(wstrAppName)
     QString desktopFile = QStandardPaths::locate(QStandardPaths::ConfigLocation,
-                                                 "autostart/jami.desktop");
+                                                 "autostart/net.jami.Jami.desktop");
     if (!desktopFile.isEmpty()) {
         try {
             QFile::remove(desktopFile);
@@ -288,7 +288,7 @@ Utils::CheckStartupLink(const std::wstring& wstrAppName)
 #else
     Q_UNUSED(wstrAppName)
     return (
-        !QStandardPaths::locate(QStandardPaths::ConfigLocation, "autostart/jami.desktop").isEmpty());
+        !QStandardPaths::locate(QStandardPaths::ConfigLocation, "autostart/net.jami.Jami.desktop").isEmpty());
 #endif
 }
 
