@@ -715,13 +715,13 @@ elseif (NOT APPLE)
   # Install .desktop in XDG desktop direcory so that it is recognized
   # by the system.
   install(
-    FILES ${DATA_DIR}/jami.desktop
+    FILES ${DATA_DIR}/net.jami.Jami.desktop
     DESTINATION ${JAMI_DATA_PREFIX}/applications)
 
   # Install .desktop in the jami data directory, so that it can be
   # copied to the autostart directory by the client.
   install(
-    FILES ${DATA_DIR}/jami.desktop
+    FILES ${DATA_DIR}/net.jami.Jami.desktop
     DESTINATION "${JAMI_DATA_PREFIX}/${PROJECT_NAME}"
     PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ) # 644
 
@@ -757,7 +757,7 @@ elseif (NOT APPLE)
     RENAME jami.xpm)
 
   install(
-    FILES ${DATA_DIR}/jami.appdata.xml
+    FILES ${DATA_DIR}/net.jami.Jami.metainfo.xml
     DESTINATION ${CMAKE_INSTALL_PREFIX}/share/metainfo)
 
   # man page
