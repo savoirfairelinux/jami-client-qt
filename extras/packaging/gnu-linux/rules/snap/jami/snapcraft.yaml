@@ -151,9 +151,9 @@ apps:
     - bin/desktop-launch
     - snap/command-chain/alsa-launch
     - bin/jami-wrapper
-    autostart: jami.desktop
+    autostart: net.jami.Jami.desktop
     common-id: net.jami.Jami
-    desktop: usr/share/applications/jami.desktop
+    desktop: usr/share/applications/net.jami.Jami.desktop
     environment:
       PIPEWIRE_CONFIG_NAME: "$SNAP/usr/share/pipewire/pipewire.conf"
       PIPEWIRE_MODULE_DIR: "$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/pipewire-0.3"
@@ -258,7 +258,7 @@ parts:
     after: [alsa-mixin]
     source: .
     plugin: nil
-    parse-info: [usr/share/metainfo/jami.appdata.xml]
+    parse-info: [usr/share/metainfo/net.jami.Jami.appdata.xml]
     stage:
       - -usr/lib/x86_64-linux-gnu/liblber-2.4.so*
       - -usr/lib/x86_64-linux-gnu/libldap_r-2.4.so*
@@ -273,7 +273,7 @@ parts:
       ls
       snapcraftctl pull
       sed -i -E 's|(tmpName) << (PACKAGE_NAME << "_shm_")|\1 << "snap.jami." << \2|' ./daemon/src/media/video/sinkclient.cpp
-      sed -i -E 's|^Icon=.*|Icon=${SNAP}/usr/share/icons/hicolor/scalable/apps/jami.svg|' extras/data/jami.desktop
+      sed -i -E 's|^Icon=.*|Icon=${SNAP}/usr/share/icons/hicolor/scalable/apps/jami.svg|' extras/data/net.jami.Jami.desktop
     override-build: |
       $SNAPCRAFT_PART_BUILD/extras/packaging/gnu-linux/scripts/install-pipewire-from-source.sh
 
