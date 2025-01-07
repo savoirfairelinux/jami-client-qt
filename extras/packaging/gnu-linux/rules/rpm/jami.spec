@@ -2,6 +2,18 @@
 %define version     RELEASE_VERSION
 %define release     0
 
+%if 0%{?fedora}
+%define appstream_metainfo_dir %{_metainfodir}
+%else
+%define appstream_metainfo_dir /usr/share/metainfo
+%endif
+
+%if 0%{?suse_version}
+%define appstream_catalog_dir /usr/share/app-info/xmls
+%else
+%define appstream_catalog_dir /usr/share/swcatalog/xml
+%endif
+
 # Exclude vendored Qt6 from dependency generator
 %define __requires_exclude ^libQt6.*$
 
@@ -80,11 +92,12 @@ DESTDIR=%{buildroot} make -C %{_builddir}/jami-%{version}/build install V=2
 %files
 %defattr(-,root,root,-)
 %{_bindir}/jami
-%{_datadir}/applications/jami.desktop
-%{_datadir}/jami/jami.desktop
+%{_datadir}/applications/net.jami.Jami.desktop
+%{_datadir}/jami/net.jami.Jami.desktop
 %{_datadir}/icons/hicolor/scalable/apps/jami.svg
 %{_datadir}/icons/hicolor/48x48/apps/jami.png
 %{_datadir}/pixmaps/jami.xpm
-%{_datadir}/metainfo/jami.appdata.xml
+%{appstream_metainfo_dir}/net.jami.Jami.metainfo.xml
+%{appstream_catalog_dir}/jami.xml
 %{_datadir}/jami/translations/*
 %doc %{_mandir}/man1/jami*
