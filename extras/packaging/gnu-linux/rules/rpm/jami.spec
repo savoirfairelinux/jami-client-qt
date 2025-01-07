@@ -2,6 +2,16 @@
 %define version     RELEASE_VERSION
 %define release     0
 
+# The AppStream 1.0 spec says that the catalog file must be put in /usr/share/swcatalog/xml
+# (see https://www.freedesktop.org/software/appstream/docs/chap-CatalogData.html).
+#
+# However, openSUSE Leap still uses the legacy path /usr/share/app-info/xmls as of version 15.5.
+%if 0%{?sle_version} &&  0%{?sle_version} <= 150500
+%define appstream_catalog_dir /share/app-info/xmls
+%else
+%define appstream_catalog_dir /share/swcatalog/xml
+%endif
+
 # Exclude vendored Qt6 from dependency generator
 %define __requires_exclude ^libQt6.*$
 
@@ -69,6 +79,7 @@ cd %{_builddir}/jami-%{version} && \
           -DLIBJAMI_BUILD_DIR=%{_builddir}/jami-%{version}/daemon/src \
           -DCMAKE_INSTALL_PREFIX=%{_prefix} \
           -DCMAKE_INSTALL_LIBDIR=%{_libdir} \
+          -DAPPSTREAM_CATALOG_DIR=%{appstream_catalog_dir} \
           -DWITH_DAEMON_SUBMODULE=true \
           -DCMAKE_BUILD_TYPE=Release \
           ..
@@ -80,11 +91,12 @@ DESTDIR=%{buildroot} make -C %{_builddir}/jami-%{version}/build install V=2
 %files
 %defattr(-,root,root,-)
 %{_bindir}/jami
-%{_datadir}/applications/jami.desktop
-%{_datadir}/jami/jami.desktop
+%{_datadir}/applications/net.jami.Jami.desktop
+%{_datadir}/jami/net.jami.Jami.desktop
 %{_datadir}/icons/hicolor/scalable/apps/jami.svg
 %{_datadir}/icons/hicolor/48x48/apps/jami.png
 %{_datadir}/pixmaps/jami.xpm
-%{_datadir}/metainfo/jami.appdata.xml
+%{_datadir}/metainfo/net.jami.Jami.metainfo.xml
+%{_prefix}%{appstream_catalog_dir}/jami.xml
 %{_datadir}/jami/translations/*
 %doc %{_mandir}/man1/jami*
