@@ -63,6 +63,30 @@
       },
       "revId": "a96f78890d372f09f912702ac81015804e874a62",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f03e2ef6_fefaa2c6",
+        "filename": "extras/data/appstream.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-01-09T23:15:07Z",
+      "side": 1,
+      "message": "There was (perhaps still is) an issue with https://flathub.org/ that if the `\u003ccaption\u003e` tag was written before the `\u003cimage\u003e` tag then the caption would not show. This was the reason for the original comment.",
+      "parentUuid": "122ea453_71e4e307",
+      "range": {
+        "startLine": 115,
+        "startChar": 8,
+        "endLine": 117,
+        "endChar": 65
+      },
+      "revId": "a96f78890d372f09f912702ac81015804e874a62",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
