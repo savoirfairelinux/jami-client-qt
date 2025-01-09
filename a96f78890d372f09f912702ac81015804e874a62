@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70c03df0_db47d66b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-01-09T00:50:18Z",
+      "side": 1,
+      "message": "Should the topic be set to `appdata`?\n\nhttps://review.jami.net/q/topic:%22appdata%22",
+      "revId": "a96f78890d372f09f912702ac81015804e874a62",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
