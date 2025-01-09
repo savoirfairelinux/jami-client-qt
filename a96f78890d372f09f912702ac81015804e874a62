@@ -39,6 +39,30 @@
       },
       "revId": "a96f78890d372f09f912702ac81015804e874a62",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "122ea453_71e4e307",
+        "filename": "extras/data/appstream.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-01-09T17:15:24Z",
+      "side": 1,
+      "message": "Most of this file was generated automatically by the `appstreamcli` tool using the information in the `jami.appdata.xml` file. That\u0027s why almost all of the content is the same, but the formatting (including the order in which the tags appear) is different.",
+      "parentUuid": "099ef50d_f754484b",
+      "range": {
+        "startLine": 115,
+        "startChar": 8,
+        "endLine": 117,
+        "endChar": 65
+      },
+      "revId": "a96f78890d372f09f912702ac81015804e874a62",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
