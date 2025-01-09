@@ -16,6 +16,29 @@
       "message": "Should the topic be set to `appdata`?\n\nhttps://review.jami.net/q/topic:%22appdata%22",
       "revId": "a96f78890d372f09f912702ac81015804e874a62",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "099ef50d_f754484b",
+        "filename": "extras/data/appstream.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-01-09T00:54:39Z",
+      "side": 1,
+      "message": "Was this copied from the latest updated?\nhttps://review.jami.net/c/jami-client-qt/+/29747\n\nDo the `\u003ccaption\u003e` tags need to be after the `\u003cimage\u003e` tag to which it relates?\nextras/data/jami.appdata.xml\n\nThank you",
+      "range": {
+        "startLine": 115,
+        "startChar": 8,
+        "endLine": 117,
+        "endChar": 65
+      },
+      "revId": "a96f78890d372f09f912702ac81015804e874a62",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
