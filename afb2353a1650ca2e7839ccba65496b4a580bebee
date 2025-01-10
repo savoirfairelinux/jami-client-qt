@@ -48,6 +48,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "86d7b5f8_ad106998",
+        "filename": "src/app/crashreportclients/crashpad.cpp",
+        "patchSetId": 25
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-01-10T23:33:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "398661c1_9135b3e6",
+      "range": {
+        "startLine": 224,
+        "startChar": 37,
+        "endLine": 224,
+        "endChar": 54
+      },
+      "revId": "afb2353a1650ca2e7839ccba65496b4a580bebee",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e1e5fc47_8f7a1557",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "Acknowledged",
       "parentUuid": "e1e5fc47_8f7a1557",
+      "range": {
+        "startLine": 249,
+        "startChar": 4,
+        "endLine": 249,
+        "endChar": 38
+      },
+      "revId": "afb2353a1650ca2e7839ccba65496b4a580bebee",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27f0a4b1_801cfa56",
+        "filename": "src/app/crashreportclients/crashpad.cpp",
+        "patchSetId": 25
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-01-10T23:33:23Z",
+      "side": 1,
+      "message": "Proposed solution: wait some time for the report to be uploaded by checking either completed or pending reports for the UUID and verifying `report.uploaded` in a busy-wait loop for up to 1 second.",
+      "parentUuid": "aae33b6e_dc0cc2d8",
       "range": {
         "startLine": 249,
         "startChar": 4,
