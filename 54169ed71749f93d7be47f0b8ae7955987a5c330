@@ -22,6 +22,30 @@
       },
       "revId": "54169ed71749f93d7be47f0b8ae7955987a5c330",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c18cc709_7ba3b5bb",
+        "filename": "src/app/crashreportclients/example_submission_servers/requirements.txt",
+        "patchSetId": 24
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-01-10T16:52:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d978bab6_ee5d8cde",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 12
+      },
+      "revId": "54169ed71749f93d7be47f0b8ae7955987a5c330",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
