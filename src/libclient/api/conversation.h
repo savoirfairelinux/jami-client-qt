@@ -95,12 +95,11 @@ struct Info
     MapStringString infos {};
     MapStringString preferences {};
 
-    int indexOfActiveCall(const MapStringString& commit)
+    int indexOfActiveCall(const QString& confId, const QString& uri, const QString& deviceId)
     {
         for (auto idx = 0; idx != activeCalls.size(); ++idx) {
             const auto& call = activeCalls[idx];
-            if (call["id"] == commit["confId"] && call["uri"] == commit["uri"]
-                && call["device"] == commit["device"]) {
+            if (call["id"] == confId && call["uri"] == uri && call["device"] == deviceId) {
                 return idx;
             }
         }
