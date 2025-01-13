@@ -2,7 +2,9 @@
 
 ## Overview
 
-This directory contains examples of crash report submission servers. These servers are responsible for receiving crash reports from clients and storing them. The examples are written in Python and use the Flask web framework.
+This directory contains an example of a crash report submission server. This server is responsible for receiving crash reports from clients and storing them. The example is written in Python and uses the Flask web framework with Waitress as the WSGI server. It exposes one endpoint for submitting crash reports on the `/submit` path using the POST method on port `8080`.
+
+It also contains an example of a crash report access server. This server is responsible for displaying the crash reports. It uses port `8081` and provides a simple HTML page that lists crash reports by page.
 
 ## Running the examples
 
@@ -11,14 +13,27 @@ To run the examples, you need to have Python 3 installed. You can just use the v
 ```
 python3 -m venv venv
 source venv/bin/activate
-pip install -r requirements.txt
+python3 -m pip install -r requirements.txt
 ```
 
-After activating the virtual environment, you can should be able to execute the example submission servers. To run the example submission server that uses the Crashpad format, run the following command:
+
+> ⚠️ On Windows, you need to use `venv\Scripts\activate` instead of `source venv/bin/activate`.
+
+After activating the virtual environment, you can should be able to execute the example submission server. To run the example submission server that uses the Crashpad format, run the following command:
 
 ```
-python crashpad.py
+python3 crashpad_submit_server.py
 ```
+
+To run a server that displays the crash reports, run the following command:
+
+```
+python3 report_access_server.py
+```
+
+> ⚠️ It is recommended to run the report access server in a way that is not publicly accessible.
+
+Either server can be run on the same machine or on different machines, and each can be run using the `--debug` flag to enable debugging.
 
 ## Metadata
 

@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 
 import os
-from flask import Flask, request
+from flask import Flask, request, jsonify
 import json
+import argparse
 
 app = Flask(__name__)
+BASE_PATH = 'crash_reports'
 
 @app.route('/submit', methods=['POST'])
 def submit():
@@ -16,11 +18,10 @@ def submit():
             dump_id = file_storage.filename
 
             # Create a directory to store the crash reports if it doesn't exist
-            base_path = 'crash_reports'
-            if not os.path.exists(base_path):
-                os.makedirs(base_path)
+            if not os.path.exists(BASE_PATH):
+                os.makedirs(BASE_PATH)
 
-            filepath = os.path.join(base_path, dump_id)
+            filepath = os.path.join(BASE_PATH, dump_id)
 
             # Attempt to write the file, fail gracefully if it already exists
             if os.path.exists(filepath):
@@ -31,8 +32,7 @@ def submit():
             print(f"File saved successfully at {filepath}")
 
             # Now save the metadata in {request.form} as separate filename <UID>.info.
-            # We assume the data is a JSON string.
-            metadata_filepath = os.path.join(base_path, f"{dump_id}.info")
+            metadata_filepath = os.path.join(BASE_PATH, f"{dump_id}.info")
             with open(metadata_filepath, 'w') as f:
                 f.write(str(json.dumps(dict(request.form), indent=4)))
         else:
@@ -48,4 +48,13 @@ def submit():
         return 'Internal Server Error', 500
 
 if __name__ == '__main__':
-    app.run(port=8080, debug=True)
+    parser = argparse.ArgumentParser(description='Crash report submission server')
+    parser.add_argument('--debug', action='store_true', help='Run in debug mode')
+    args = parser.parse_args()
+
+    if args.debug:
+        app.run(port=8080, debug=True)
+    else:
+        from waitress import serve
+        print("Starting production server on port 8080...")
+        serve(app, host='0.0.0.0', port=8080)
