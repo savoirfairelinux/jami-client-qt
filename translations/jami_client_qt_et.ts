@@ -3128,7 +3128,7 @@ Palun proovi hiljem uuesti.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="683"/>
         <source>Configure a SIP account</source>
-        <translation>Seadista SIP-konto</translation>
+        <translation>Seadista SIP-kontot</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="684"/>
