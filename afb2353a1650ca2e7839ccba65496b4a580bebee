@@ -141,6 +141,30 @@
       },
       "revId": "afb2353a1650ca2e7839ccba65496b4a580bebee",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d52edc8d_5fefa0c1",
+        "filename": "src/app/crashreportclients/crashpad.cpp",
+        "patchSetId": 25
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-01-13T19:28:46Z",
+      "side": 1,
+      "message": "bumped it to 3 seconds (based on Windows testing) and simplified",
+      "parentUuid": "27f0a4b1_801cfa56",
+      "range": {
+        "startLine": 249,
+        "startChar": 4,
+        "endLine": 249,
+        "endChar": 38
+      },
+      "revId": "afb2353a1650ca2e7839ccba65496b4a580bebee",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
