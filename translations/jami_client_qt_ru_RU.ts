@@ -58,7 +58,7 @@
     <message>
         <location filename="../src/app/currentcall.cpp" line="185"/>
         <source>Me</source>
-        <translation>Мне</translation>
+        <translation>Я</translation>
     </message>
 </context>
 <context>
@@ -106,7 +106,7 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="331"/>
         <source>An invalid message was detected</source>
-        <translation>Обнаружено невалидное сообщение</translation>
+        <translation>Обнаружено недопустимое сообщение</translation>
     </message>
 </context>
 <context>
@@ -166,14 +166,14 @@
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="738"/>
         <source>Could not re-connect to the Jami daemon (jamid).
 Jami will now quit.</source>
-        <translation>Не удалось повторно подключиться к демону Jami (jamid).
+        <translation>Не удалось повторно подключиться к процессу Jami (jamid).
 Jami сейчас завершит работу.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="45"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="737"/>
         <source>Trying to reconnect to the Jami daemon (jamid)…</source>
-        <translation>Попытка повторного подключения к демону Jami (jamid)...</translation>
+        <translation>Попытка повторного подключения к процессу Jami (jamid)...</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="48"/>
@@ -839,7 +839,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="463"/>
         <source>If your account has not been backed up or added to another device, your account and registered username will be IRREVOCABLY LOST.</source>
-        <translation>Если ваша учетная запись не была зафиксирована или добавлена на другое устройство, ваша учетная запись и зарегистрированное имя пользователя будут ИРЕВОКБЛИЧНО УТРАНЕНИ.</translation>
+        <translation>Если для вашего аккаунта не создана резервная копия или аккаунт не добавлен на другое устройство, то он и зарегистрированное имя будут БЕЗВОЗВРАТНО УТРАЧЕНЫ.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="474"/>
@@ -1064,7 +1064,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="869"/>
         <source>If you enjoy using Jami and believe in our mission, would you make a donation?</source>
-        <translation>Если Вам нравится использовать Jami и Вы верите в нашу миссию, Вы бы сделали пожертвование?</translation>
+        <translation>Если вам нравится использовать Jami и вы верите в нашу миссию, вы бы сделали пожертвование?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="870"/>
@@ -1181,12 +1181,12 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="586"/>
         <source>Select &quot;Link another device&quot;</source>
-        <translation>Выберите «Привязать другое устройство»</translation>
+        <translation>Выберите &quot;Привязать другое устройство&quot;</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="690"/>
         <source>Share freely and privately with Jami</source>
-        <translation>Поделитесь свободно и в частном порядке с Джами</translation>
+        <translation>Поделитесь свободно и в частном порядке с Jami</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="716"/>
@@ -1491,7 +1491,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="212"/>
         <source>Your account only exists on this device. If you lose your device or uninstall the application, your account will be deleted and CANNOT be recovered. You can &lt;a href=&apos;blank&apos;&gt; back up your account &lt;/a&gt; now or later (in the Account Settings).</source>
-        <translation>Ваша учётная запись существует только на этом устройстве. Она будет безвозвратно потеряна в случае утери этого устройства или удаления приложения. Рекомендуется &lt;a href=&apos;blank&apos;&gt; сделать резервную копию вашей учётной записи &lt;/a&gt; сейчас или позднее (в «Настройках аккаунта»).</translation>
+        <translation>Ваша учётная запись существует только на этом устройстве. Она будет безвозвратно потеряна в случае утери этого устройства или удаления приложения. Рекомендуется &lt;a href=&apos;blank&apos;&gt; сделать резервную копию вашей учётной записи &lt;/a&gt; сейчас или позднее (в Настройках аккаунта).</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="238"/>
@@ -1797,7 +1797,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="307"/>
         <source>Fps</source>
-        <translation>ПВП</translation>
+        <translation>К/с</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="310"/>
@@ -1849,7 +1849,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="322"/>
         <source>Reduce</source>
-        <translation>скрыть</translation>
+        <translation>Уменьшить</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="323"/>
@@ -2140,7 +2140,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="411"/>
         <source>If your account has not been backed up or added to another device, your account and registered name will be irrevocably lost.</source>
-        <translation>Если для вашей учётной записи не создана резервная копия, или эта учётная запись не добавлена на другое устройство, то она, вместе с регистрационным именем, будет безвозвратно потеряна.</translation>
+        <translation>Если для вашего аккаунта не создана резервная копия или аккаунт не добавлен на другое устройство, то он и зарегистрированное имя будут безвозвратно утрачены.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="412"/>
@@ -2215,7 +2215,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="554"/>
         <source>Markdown</source>
-        <translation>Маркадоун</translation>
+        <translation>Markdown</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="621"/>
@@ -2380,7 +2380,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="836"/>
         <source>Jami identity</source>
-        <translation>Идентичность Джами</translation>
+        <translation>Идентификация в Jami</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="837"/>
@@ -2475,7 +2475,7 @@ Your picture and your nickname can be changed at all time in the settings of you
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="447"/>
         <source>Identity</source>
-        <translation>Идентичность</translation>
+        <translation>Идентификация</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="450"/>
@@ -2522,7 +2522,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="470"/>
         <source>Device Id</source>
-        <translation>Id Устройства</translation>
+        <translation>ID устройства</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="473"/>
@@ -2619,7 +2619,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="770"/>
         <source>Me</source>
-        <translation>Мне</translation>
+        <translation>Я</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="515"/>
@@ -2694,7 +2694,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="538"/>
         <source>(Experimental) Enable call support for swarm</source>
-        <translation>(Экспериментальая) Включить поддержку звонков для роя</translation>
+        <translation>(Экспериментально) Включить поддержку звонков для роя</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="539"/>
@@ -3012,7 +3012,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="647"/>
         <source>Select An Image to %1</source>
-        <translation>Выберите изображение в % 1</translation>
+        <translation>Выберите изображение в %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="648"/>
@@ -3077,7 +3077,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="672"/>
         <source>QR code</source>
-        <translation>QR код</translation>
+        <translation>QR-код</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="675"/>
@@ -3127,7 +3127,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="684"/>
         <source>Error while creating your account. Check your credentials.</source>
-        <translation>Ошибка при создании учетной записи. Проверьте свои учетные данные.</translation>
+        <translation>Ошибка при создании аккаунта. Проверьте свои учётные данные.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="685"/>
@@ -3712,7 +3712,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="458"/>
         <source>Me</source>
-        <translation>Мне</translation>
+        <translation>Я</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="62"/>
@@ -3793,7 +3793,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="261"/>
         <source>%1 was invited to join</source>
-        <translation>%1 был приглашен присоединиться</translation>
+        <translation>%1 приглашен(а) присоединиться</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="263"/>
@@ -3803,17 +3803,17 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="265"/>
         <source>%1 left</source>
-        <translation>%1 вышел</translation>
+        <translation>%1 выходит</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="267"/>
         <source>%1 was kicked</source>
-        <translation>% 1 был выгнан</translation>
+        <translation>%1 выгнан(а)</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="269"/>
         <source>%1 was re-added</source>
-        <translation>%1 был повторно добавлен</translation>
+        <translation>%1 повторно добавлен(а)</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="426"/>
@@ -3866,7 +3866,7 @@ connects to synchronize the conversation.</source>
         <location filename="../src/libclient/avmodel.cpp" line="391"/>
         <location filename="../src/libclient/avmodel.cpp" line="410"/>
         <source>default</source>
-        <translation>по-умолчанию</translation>
+        <translation>по умолчанию</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="72"/>
@@ -4142,7 +4142,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="127"/>
         <source>Not Acceptable Anywhere</source>
-        <translation>Не приемлемо нигде</translation>
+        <translation>Неприемлемо нигде</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="351"/>
@@ -4202,7 +4202,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="687"/>
         <source>just now</source>
-        <translation>Только что</translation>
+        <translation>только что</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="345"/>
@@ -4212,17 +4212,17 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/positioning.cpp" line="109"/>
         <source>locationServicesError</source>
-        <translation>местоположениеServicesОшибка</translation>
+        <translation>locationServicesError</translation>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="112"/>
         <source>locationServicesClosedError</source>
-        <translation>местоположениеСлужбы ЗакрытоОшибка</translation>
+        <translation>locationServicesClosedError</translation>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="114"/>
         <source>locationServicesUnknownError</source>
-        <translation>местоположениеСлужбыНеизвестнаяОшибка</translation>
+        <translation>locationServicesUnknownError</translation>
     </message>
     <message>
         <location filename="../src/libclient/conversationmodel.cpp" line="1182"/>
@@ -4302,7 +4302,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="90"/>
         <source>The choice of the name Jami was inspired by the Swahili word &apos;jamii&apos;, which means &apos;community&apos; as a noun and &apos;together&apos; as an adverb.</source>
-        <translation>Выбор имени Джами был вдохновлен словом &quot;джами&quot; на суахили, что означает &quot;сообщество&quot; как существительное и &quot;вместе&quot; как прилагательное.</translation>
+        <translation>Выбор имени Jami был вдохновлен словом &quot;джами&quot; на суахили, что означает &quot;сообщество&quot; как существительное и &quot;вместе&quot; как прилагательное.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="81"/>
@@ -4322,12 +4322,12 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="101"/>
         <source>Why should I back up my account?</source>
-        <translation>Зачем мне подкреплять свой счет?</translation>
+        <translation>Зачем мне делать резервную копию своего аккаунта?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="103"/>
         <source>Jami is distributed and your account is only stored locally on your device. If you lose your password or your local account data, you WILL NOT be able to recover your account if you did not back it up earlier.</source>
-        <translation>Jami распространяется, и ваш аккаунт хранится только локально на вашем устройстве. Если вы потеряете пароль или данные локальной учетной записи, вы НЕ сможете восстановить свою учетную запись, если вы не сделали ее резервным копием ранее.</translation>
+        <translation>Jami – распределённая сеть, а ваш аккаунт хранится только локально на вашем устройстве. Если вы потеряете свой пароль или данные локальной учетной записи, вы НЕ сможете восстановить свой аккаунт, если ранее вы не сделали резервную копию.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="109"/>
@@ -4342,7 +4342,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="116"/>
         <source>A Jami account is an asymmetric encryption key. Your account is identified by a Jami ID, which is a fingerprint of your public key.</source>
-        <translation>Аккаунт Jami — это асимметричный ключ шифрования. Ваш аккаунт идентифицируется Jami ID, который является отпечатком вашего открытого ключа.</translation>
+        <translation>Аккаунт Jami — это асимметричный ключ шифрования. Ваш аккаунт идентифицируется по Jami ID, который является отпечатком вашего открытого ключа.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="120"/>
@@ -4392,7 +4392,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="137"/>
         <source>The most permanent, secure identifier is your Jami ID, but since these are difficult to use for some people, you also have the option of registering a username.</source>
-        <translation>Самый постоянный и безопасный идентификатор - это идентификатор Jami, но поскольку для некоторых людей это трудно использовать, у вас также есть возможность зарегистрировать имя пользователя.</translation>
+        <translation>Самый постоянный и безопасный идентификатор – это идентификатор Jami, но поскольку для некоторых людей его трудно использовать, у вас также есть возможность зарегистрировать имя пользователя.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="142"/>
