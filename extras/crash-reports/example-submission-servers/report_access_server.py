@@ -5,10 +5,15 @@ from flask import Flask, request, jsonify, render_template_string, send_file
 import json
 from datetime import datetime
 import argparse
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 app = Flask(__name__)
-BASE_PATH = 'crash_reports'
+BASE_PATH = os.getenv('CRASH_REPORTS_DIR', 'crash_reports')
 PAGE_TITLE = "Jami Desktop Crash Reports"  # Default title
+REPORTS_PORT = int(os.getenv('REPORTS_SERVER_PORT', 8081))
 
 @app.route('/', methods=['GET'])
 def list_reports():
@@ -254,15 +259,14 @@ def download_report_bundle(dump_file, info_file, download_name):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Crash reports viewing server')
     parser.add_argument('--debug', action='store_true', help='Run in debug mode')
-    parser.add_argument('--title', default=PAGE_TITLE, help='Page title (default: %(default)s)')
     args = parser.parse_args()
 
-    # Set the page title from command line argument
-    PAGE_TITLE = args.title
+    print(f"Using crash reports directory: {BASE_PATH}")
+    print(f"Server will listen on port: {REPORTS_PORT}")
 
     if args.debug:
-        app.run(port=8081, debug=True)
+        app.run(port=REPORTS_PORT, debug=True)
     else:
         from waitress import serve
-        print("Starting production server on port 8081...")
-        serve(app, host='0.0.0.0', port=8081)
+        print("Starting production server...")
+        serve(app, host='0.0.0.0', port=REPORTS_PORT)

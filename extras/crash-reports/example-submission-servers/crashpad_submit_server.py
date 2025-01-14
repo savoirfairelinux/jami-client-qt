@@ -8,8 +8,15 @@ from datetime import datetime
 from threading import Thread
 from queue import Queue
 import time
+from dotenv import load_dotenv
 
-DEFAULT_MAX_SIZE_MB = 5 * 1024  # 5GB in MB
+# Load environment variables
+load_dotenv()
+
+app = Flask(__name__)
+BASE_PATH = os.getenv('CRASH_REPORTS_DIR', 'crash_reports')
+DEFAULT_MAX_SIZE_MB = int(os.getenv('MAX_REPORTS_SIZE_MB', 5120))  # Default 5GB
+SUBMIT_PORT = int(os.getenv('SUBMIT_SERVER_PORT', 8080))
 
 # Queue for background processing
 task_queue = Queue()
@@ -130,9 +137,6 @@ def enforce_size_limit(max_size_bytes):
         final_size = get_dir_size(BASE_PATH)
         print(f"Final directory size: {final_size} bytes")
 
-app = Flask(__name__)
-BASE_PATH = 'crash_reports'
-
 @app.route('/submit', methods=['POST'])
 def submit():
     try:
@@ -159,14 +163,12 @@ def submit():
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Crash report submission server')
     parser.add_argument('--debug', action='store_true', help='Run in debug mode')
-    parser.add_argument('--max-size', type=int, default=DEFAULT_MAX_SIZE_MB,
-                       help='Maximum size of the crash report directory in megabytes (default: %(default)s MB)')
     args = parser.parse_args()
 
-    # Convert MB to bytes
-    max_size_bytes = args.max_size * 1024 * 1024
-
-    print(f"Starting server with max directory size: {args.max_size} MB ({max_size_bytes:,} bytes)")
+    max_size_bytes = DEFAULT_MAX_SIZE_MB * 1024 * 1024
+    print(f"Starting server with max directory size: {DEFAULT_MAX_SIZE_MB} MB ({max_size_bytes:,} bytes)")
+    print(f"Using crash reports directory: {BASE_PATH}")
+    print(f"Server will listen on port: {SUBMIT_PORT}")
 
     # Start background worker thread with max_size parameter
     background_thread = Thread(target=process_background_tasks, args=(max_size_bytes,), daemon=True)
@@ -176,11 +178,11 @@ if __name__ == '__main__':
     enforce_size_limit(max_size_bytes)
 
     if args.debug:
-        app.run(port=8080, debug=True)
+        app.run(port=SUBMIT_PORT, debug=True)
     else:
         from waitress import serve
-        print("Starting production server on port 8080...")
-        serve(app, host='0.0.0.0', port=8080)
+        print("Starting production server...")
+        serve(app, host='0.0.0.0', port=SUBMIT_PORT)
 
     # Clean shutdown of background thread
     task_queue.put(None)  # Send poison pill
