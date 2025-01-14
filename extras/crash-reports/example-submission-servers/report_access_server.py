@@ -8,6 +8,7 @@ import argparse
 
 app = Flask(__name__)
 BASE_PATH = 'crash_reports'
+PAGE_TITLE = "Jami Desktop Crash Reports"  # Default title
 
 @app.route('/', methods=['GET'])
 def list_reports():
@@ -22,9 +23,9 @@ def list_reports():
         reports = os.listdir(BASE_PATH)
         if not reports:
             return render_template_string("""
-                <h1>Crash Reports</h1>
+                <h1>{{ title }}</h1>
                 <p>No crash reports found.</p>
-            """)
+            """, title=PAGE_TITLE)
 
         # Build report pairs with metadata
         report_pairs = []
@@ -36,16 +37,20 @@ def list_reports():
                         dump_path = os.path.join(BASE_PATH, report)
                         timestamp = os.path.getctime(dump_path)
                         upload_time = datetime.fromtimestamp(timestamp)
+                        dump_size = os.path.getsize(dump_path)  # Get the dump file size
 
                         with open(os.path.join(BASE_PATH, info_file), 'r') as f:
                             metadata = json.load(f)
+                            report_id = os.path.splitext(report)[0]  # Get filename without extension
                             report_pairs.append({
                                 'dump_file': report,
+                                'report_id': report_id,
                                 'info_file': info_file,
                                 'metadata': metadata,
                                 'sort_key': f"{metadata.get('client_sha', '')}-{metadata.get('jamicore_sha', '')}",
-                                'download_name': f"{metadata.get('client_sha', 'unknown')}-{metadata.get('jamicore_sha', 'unknown')}-{metadata.get('platform', 'unknown').replace(' ', '_')}",
-                                'upload_time': upload_time
+                                'download_name': report_id,  # Use report_id as download name
+                                'upload_time': upload_time,
+                                'dump_size': dump_size
                             })
                     except json.JSONDecodeError:
                         print(f"Error parsing metadata file: {info_file}")
@@ -69,7 +74,7 @@ def list_reports():
             <html lang="en">
             <head>
                 <meta charset="UTF-8">
-                <title>Crash Reports</title>
+                <title>{{ title }}</title>
                 <style>
                     body { font-family: Arial, sans-serif; margin: 2em; }
                     .header {
@@ -108,6 +113,11 @@ def list_reports():
                         font-size: 0.9em;
                         margin-bottom: 8px;
                     }
+                    .file-size {
+                        color: #666;
+                        font-size: 0.9em;
+                        margin-left: 1em;
+                    }
                     .pagination {
                         margin: 1em 0;
                         text-align: center;
@@ -138,7 +148,7 @@ def list_reports():
             </head>
             <body>
                 <div class="header">
-                    <h1>Crash Reports</h1>
+                    <h1>{{ title }}</h1>
                     <div class="pagination-info">
                         Showing {{ start_idx + 1 }}-{{ [end_idx, total_reports] | min }} of {{ total_reports }} reports
                     </div>
@@ -166,9 +176,10 @@ def list_reports():
                 <div class="report-list">
                 {% for report in reports %}
                     <div class="report-item">
-                        <h3>Report: {{ report['sort_key'] }}</h3>
+                        <h3>Report ID: {{ report['report_id'] }}</h3>
                         <div class="upload-time">
                             Uploaded: {{ report['upload_time'].strftime('%Y-%m-%d %H:%M:%S') }}
+                            <span class="file-size">Size: {{ '{:,.0f}'.format(report['dump_size'] / 1024) }} KB</span>
                         </div>
                         <table class="metadata-table">
                             <tr>
@@ -201,7 +212,8 @@ def list_reports():
             </body>
             </html>
         """, reports=current_page_reports, page=page, total_pages=total_pages,
-             start_idx=start_idx, end_idx=end_idx, total_reports=total_reports)
+             start_idx=start_idx, end_idx=end_idx, total_reports=total_reports,
+             title=PAGE_TITLE)
 
     except Exception as e:
         print(f"Error listing reports: {e}")
@@ -242,7 +254,11 @@ def download_report_bundle(dump_file, info_file, download_name):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Crash reports viewing server')
     parser.add_argument('--debug', action='store_true', help='Run in debug mode')
+    parser.add_argument('--title', default=PAGE_TITLE, help='Page title (default: %(default)s)')
     args = parser.parse_args()
+
+    # Set the page title from command line argument
+    PAGE_TITLE = args.title
 
     if args.debug:
         app.run(port=8081, debug=True)
