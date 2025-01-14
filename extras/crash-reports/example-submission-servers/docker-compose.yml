@@ -1,0 +1,27 @@
+name: crash-report-server
+services:
+  submit:
+    build: .
+    command: python3 -u crashpad_submit_server.py
+    ports:
+      - "${SUBMIT_SERVER_PORT}:${SUBMIT_SERVER_PORT}"
+    volumes:
+      - "${CRASH_REPORTS_DIR}:/app/crash_reports"
+    env_file:
+      - .env
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
+
+  reports:
+    build: .
+    command: python3 -u report_access_server.py
+    ports:
+      - "${REPORTS_SERVER_PORT}:${REPORTS_SERVER_PORT}"
+    volumes:
+      - "${CRASH_REPORTS_DIR}:/app/crash_reports"
+    env_file:
+      - .env
+    restart: unless-stopped
+    tty: true
+    stdin_open: true

@@ -14,7 +14,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
-BASE_PATH = os.getenv('CRASH_REPORTS_DIR', 'crash_reports')
+BASE_PATH = 'crash_reports'  # Fixed path inside container
 DEFAULT_MAX_SIZE_MB = int(os.getenv('MAX_REPORTS_SIZE_MB', 5120))  # Default 5GB
 SUBMIT_PORT = int(os.getenv('SUBMIT_SERVER_PORT', 8080))
 
@@ -154,7 +154,6 @@ def submit():
         # Queue the task for background processing
         task_queue.put((dump_content, metadata, dump_id))
 
-        print("Crash report received; responding with 200")
         return 'Crash report received', 200
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
