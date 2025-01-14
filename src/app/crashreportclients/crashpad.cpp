@@ -281,10 +281,12 @@ CrashPadClient::uploadLastReport()
             return;
         }
 
-        // Wait up to 3 seconds (~1.5s observed on Windows) for the report to be uploaded.
-        const int maxAttempts = 20;
+        // Wait up to 10 seconds for the report to be uploaded.
+        // Around 5s has been observed running the submission server locally when the client
+        // is on Windows.
+        const int maxAttempts = 40;
         int attempts = 0;
-        auto timeout = std::chrono::milliseconds(150);
+        auto timeout = std::chrono::milliseconds(250);
 
         C_INFO << "Waiting for report to be uploaded";
         while (attempts++ < maxAttempts) {
