@@ -11,9 +11,13 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
-BASE_PATH = os.getenv('CRASH_REPORTS_DIR', 'crash_reports')
-PAGE_TITLE = "Jami Desktop Crash Reports"  # Default title
+BASE_PATH = 'crash_reports'  # Fixed path inside container
+PAGE_TITLE = "Jami Desktop Crash Reports"
 REPORTS_PORT = int(os.getenv('REPORTS_SERVER_PORT', 8081))
+
+if not os.path.exists(BASE_PATH):
+    print(f"Error: Crash reports directory not found at {BASE_PATH}")
+    exit(1)
 
 @app.route('/', methods=['GET'])
 def list_reports():

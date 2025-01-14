@@ -1,44 +1,99 @@
-# Crash report submission server examples
+# Crash Report Server Examples
 
 ## Overview
 
-This directory contains an example of a crash report submission server. This server is responsible for receiving crash reports from clients and storing them. The example is written in Python and uses the Flask web framework with Waitress as the WSGI server. It exposes one endpoint for submitting crash reports on the `/submit` path using the POST method on port `8080`.
+This directory contains two servers:
+1. A crash report submission server that receives and stores crash reports (port 8080)
+2. A crash report access server that provides a web interface to view reports (port 8081)
 
-It also contains an example of a crash report access server. This server is responsible for displaying the crash reports. It uses port `8081` and provides a simple HTML page that lists crash reports by page.
+Both servers are written in Python using Flask with Waitress as the WSGI server.
 
-## Running the examples
+## Setup Options
 
-To run the examples, you need to have Python 3 installed. You can just use the virtual environment provided in this directory. To activate the virtual environment, run the following commands:
+### Using Docker (Recommended)
 
+#### Prerequisites
+- Docker
+- Docker Compose
+
+#### Configuration
+
+1. Create a `.env` file with your configuration:
 ```
+# Directory for crash reports storage (host path)
+CRASH_REPORTS_DIR="C:/Users/your_user/path/to/crash_reports"
+
+# Server ports
+SUBMIT_SERVER_PORT=8080
+REPORTS_SERVER_PORT=8081
+
+# Maximum size for reports directory in MB
+MAX_REPORTS_SIZE_MB=5120  # 5GB
+```
+
+2. Optionally create the crash reports directory on your host machine:
+```powershell
+# Windows (PowerShell)
+New-Item -ItemType Directory -Force -Path "C:\Users\your_user\path\to\crash_reports"
+
+# Linux/WSL
+mkdir -p /path/to/crash_reports
+```
+
+Note: When using WSL with Docker Desktop, use Windows-style paths (C:/Users/...) in the `.env` file.
+
+#### Running the Services
+
+Start both servers and follow their logs:
+```bash
+docker-compose up -d && docker-compose logs -f
+```
+
+The `-d` flag runs the services in detached mode (background), and `logs -f` follows the log output.
+
+#### Managing Services
+
+```bash
+# Start services
+docker-compose up -d
+
+# View logs
+docker-compose logs -f                    # Follow all logs
+docker-compose logs -f submit            # Follow submit server logs
+docker-compose logs -f reports           # Follow reports server logs
+docker-compose logs -f --tail=100        # Show last 100 lines and follow
+
+# Stop services
+docker-compose down
+
+# Rebuild (after code changes)
+docker-compose build && docker-compose up -d
+```
+
+### Local Development Setup
+
+1. Create a Python virtual environment:
+```bash
 python3 -m venv venv
-source venv/bin/activate
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 python3 -m pip install -r requirements.txt
 ```
 
-
-> ⚠️ On Windows, you need to use `venv\Scripts\activate` instead of `source venv/bin/activate`.
-
-After activating the virtual environment, you can should be able to execute the example submission server. To run the example submission server that uses the Crashpad format, run the following command:
-
-```
-python3 crashpad_submit_server.py
+2. Run the servers (in separate terminals):
+```bash
+python3 crashpad_submit_server.py --debug
+python3 report_access_server.py --debug
 ```
 
-To run a server that displays the crash reports, run the following command:
+## Accessing the Services
 
-```
-python3 report_access_server.py
-```
+- Submit Server: http://localhost:8080/submit (POST endpoint)
+- Reports Interface: http://localhost:8081
 
-> ⚠️ It is recommended to run the report access server in a way that is not publicly accessible.
+## Crash Report Metadata
 
-Either server can be run on the same machine or on different machines, and each can be run using the `--debug` flag to enable debugging.
-
-## Metadata
-
-The crash report submission servers expect the crash reports to contain a JSON object. The JSON object should contain the following basic metadata:
-```
+The submission server expects crash reports to contain a JSON object with the following metadata:
+```json
 {
     "build_id": "202410021437",
     "client_sha": "77149ebd62",
@@ -48,4 +103,19 @@ The crash report submission servers expect the crash reports to contain a JSON o
 }
 ```
 
-The `build_id` field is the build identifier of the client application. The `client_sha` field is the SHA-1 hash of the client application. The `guid` field is a unique identifier for the crash report. The `jamicore_sha` field is the SHA-1 hash of the Jami core library. The `platform` field is the platform on which the client application is running.
+Fields:
+- `build_id`: Build identifier of the client application
+- `client_sha`: SHA-1 hash of the client application
+- `guid`: Unique identifier for the crash report
+- `jamicore_sha`: SHA-1 hash of the Jami core library
+- `platform`: Platform identifier
+
+## Directory Management
+
+The crash reports directory:
+- Is mounted into both containers when using Docker
+- Will be created automatically if it doesn't exist
+- Is limited to the size specified in `MAX_REPORTS_SIZE_MB`
+- Automatically prunes oldest reports when the size limit is reached
+
+> ⚠️ It is recommended to run the report access server in a way that is not publicly accessible.
