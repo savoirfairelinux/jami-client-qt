@@ -20,6 +20,7 @@
 
 #include "appsettingsmanager.h"
 #include "lrcinstance.h"
+#include "global.h"
 
 #include "api/accountmodel.h"
 
@@ -47,17 +48,59 @@ WizardViewStepModel::WizardViewStepModel(LRCInstance* lrcInstance,
 
                 Q_EMIT accountIsReady(accountId);
             });
+
+    // DEBUG: log changes to the mainStep
+    connect(this, &WizardViewStepModel::mainStepChanged, this, [this]() {
+        C_INFO << "mainStep changed to" << get_mainStep();
+    });
+
+    // Connect to account model signals to track import progress
+    connect(&lrcInstance_->accountModel(),
+            &AccountModel::deviceAuthStateChanged,
+            this,
+            [this](const QString& accountID, int state, const MapStringString& details) {
+                C_INFO << "Device auth state changed: " << accountID << " " << state << " "
+                       << details;
+                // Update device auth state based on status
+                switch (state) {
+                case 0: // TokenAvailable
+                    set_deviceAuthState(WizardViewStepModel::DeviceAuthState::TokenAvailable);
+                    set_deviceLinkDetails({{"token", details["token"]}});
+                    break;
+                case 1: // Authenticating
+                    set_deviceAuthState(WizardViewStepModel::DeviceAuthState::Authenticating);
+                    break;
+                case 2: // InProgress
+                    set_deviceAuthState(WizardViewStepModel::DeviceAuthState::InProgress);
+                    break;
+                case 3: // Done
+                    set_deviceAuthState(WizardViewStepModel::DeviceAuthState::Done);
+                    set_deviceLinkDetails({{"error", details["error"]}});
+                    break;
+                case 4: // Error
+                    set_deviceAuthState(WizardViewStepModel::DeviceAuthState::Error);
+                    set_deviceLinkDetails({{"error", details["error"]}});
+                    break;
+                }
+            });
 }
 
 void
 WizardViewStepModel::startAccountCreationFlow(AccountCreationOption accountCreationOption)
 {
+    using namespace lrc::api::account;
     set_accountCreationOption(accountCreationOption);
-    if (accountCreationOption == AccountCreationOption::CreateJamiAccount
-        || accountCreationOption == AccountCreationOption::CreateRendezVous)
+    if (accountCreationOption == AccountCreationOption::ImportFromDevice) {
+        set_mainStep(MainSteps::DeviceAuthorization);
+        set_deviceAuthState(DeviceAuthState::Init);
+        // Start the import process via AccountAdapter
+        Q_EMIT createAccountRequested(accountCreationOption);
+    } else if (accountCreationOption == AccountCreationOption::CreateJamiAccount
+               || accountCreationOption == AccountCreationOption::CreateRendezVous) {
         set_mainStep(MainSteps::NameRegistration);
-    else
+    } else {
         set_mainStep(MainSteps::AccountCreation);
+    }
 }
 
 void
@@ -81,6 +124,10 @@ WizardViewStepModel::previousStep()
         reset();
         break;
     }
+    case MainSteps::DeviceAuthorization: {
+        reset();
+        break;
+    }
     }
 }
 
@@ -89,4 +136,6 @@ WizardViewStepModel::reset()
 {
     set_accountCreationOption(AccountCreationOption::None);
     set_mainStep(MainSteps::Initial);
+    set_deviceAuthState(DeviceAuthState::Init);
+    set_deviceLinkDetails({});
 }

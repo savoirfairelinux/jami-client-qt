@@ -36,21 +36,45 @@ Rectangle {
     }
 
     function clearAllTextFields() {
-        connectBtn.spinnerTriggered = false;
+        passwordFromDevice.text = ""
+        errorText = ""
     }
 
     function errorOccurred(errorMessage) {
-        errorText = errorMessage;
-        connectBtn.spinnerTriggered = false;
+        errorText = errorMessage
     }
 
     Connections {
         target: WizardViewStepModel
 
         function onMainStepChanged() {
-            if (WizardViewStepModel.mainStep === WizardViewStepModel.MainSteps.AccountCreation && WizardViewStepModel.accountCreationOption === WizardViewStepModel.AccountCreationOption.ImportFromDevice) {
+            if (WizardViewStepModel.mainStep === WizardViewStepModel.MainSteps.DeviceLinking) {
                 clearAllTextFields();
                 root.showThisPage();
+            }
+        }
+
+        function onDeviceAuthStateChanged() {
+            switch(WizardViewStepModel.deviceAuthState) {
+                case WizardViewStepModel.DeviceAuthState.TokenAvailable:
+                    pinDisplay.text = WizardViewStepModel.deviceLinkDetails["token"]
+                    break
+                case WizardViewStepModel.DeviceAuthState.Authenticating:
+                    if (WizardViewStepModel.deviceLinkDetails["auth_error"] === "bad_password") {
+                        errorOccurred(JamiStrings.invalidPassword)
+                    }
+                    break
+                case WizardViewStepModel.DeviceAuthState.Done:
+                    if (WizardViewStepModel.deviceLinkDetails["error"]) {
+                        errorOccurred(JamiStrings.errorCreateAccount)
+                    } else {
+                        // Success - account imported
+                        WizardViewStepModel.nextStep()
+                    }
+                    break
+                case WizardViewStepModel.DeviceAuthState.Error:
+                    errorOccurred(JamiStrings.errorCreateAccount)
+                    break
             }
         }
     }
@@ -95,80 +119,33 @@ Rectangle {
             lineHeight: JamiTheme.wizardViewTextLineHeight
         }
 
-        Flow {
-            spacing: 30
-            Layout.alignment: Qt.AlignHCenter
-            Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
-            Layout.preferredWidth: Math.min(step1.width * 2 + spacing, root.width - JamiTheme.preferredMarginSize * 2)
-
-            InfoBox {
-                id: step1
-                icoSource: JamiResources.settings_24dp_svg
-                title: JamiStrings.importStep1
-                description: JamiStrings.importStep1Desc
-                icoColor: JamiTheme.buttonTintedBlue
-            }
-
-            InfoBox {
-                id: step2
-                icoSource: JamiResources.person_24dp_svg
-                title: JamiStrings.importStep2
-                description: JamiStrings.importStep2Desc
-                icoColor: JamiTheme.buttonTintedBlue
-            }
-
-            InfoBox {
-                id: step3
-                icoSource: JamiResources.finger_select_svg
-                title: JamiStrings.importStep3
-                description: JamiStrings.importStep3Desc
-                icoColor: JamiTheme.buttonTintedBlue
-            }
-
-            InfoBox {
-                id: step4
-                icoSource: JamiResources.time_clock_svg
-                title: JamiStrings.importStep4
-                description: JamiStrings.importStep4Desc
-                icoColor: JamiTheme.buttonTintedBlue
-            }
-        }
-
-        ModalTextEdit {
-            id: pinFromDevice
-
-            objectName: "pinFromDevice"
+        // Show PIN/token when available
+        Rectangle {
+            id: pinDisplay
+            visible: WizardViewStepModel.deviceAuthState === WizardViewStepModel.DeviceAuthState.TokenAvailable
 
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: Math.min(410, root.width - JamiTheme.preferredMarginSize * 2)
             Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
 
-            focus: visible
+            height: 40
+            color: JamiTheme.backgroundColor
+            border.color: JamiTheme.greyBorderColor
+            radius: 5
 
-            placeholderText: JamiStrings.pin
-            staticText: ""
-
-            KeyNavigation.up: backButton
-            KeyNavigation.down: passwordFromDevice
-            KeyNavigation.tab: KeyNavigation.down
-
-            onAccepted: passwordFromDevice.forceActiveFocus()
+            Text {
+                anchors.centerIn: parent
+                text: ""  // Will be set when token is available
+                font.pixelSize: JamiTheme.textFontSize
+                color: JamiTheme.textColor
+                horizontalAlignment: Text.AlignHCenter
+            }
         }
 
-        Text {
-
-            Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
-
-            color: JamiTheme.textColor
-            wrapMode: Text.WordWrap
-            text: JamiStrings.importPasswordDesc
-            font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
-            font.weight: Font.Medium
-        }
-
+        // Password input - only show during authentication
         PasswordTextEdit {
             id: passwordFromDevice
+            visible: WizardViewStepModel.deviceAuthState === WizardViewStepModel.DeviceAuthState.Authenticating
 
             objectName: "passwordFromDevice"
             Layout.alignment: Qt.AlignCenter
@@ -177,87 +154,71 @@ Rectangle {
 
             placeholderText: JamiStrings.enterPassword
 
-            KeyNavigation.up: pinFromDevice
-            KeyNavigation.down: {
-                if (connectBtn.enabled)
-                    return connectBtn;
-                else if (connectBtn.spinnerTriggered)
-                    return passwordFromDevice;
-                return backButton;
+            onAccepted: {
+                if (text.length > 0) {
+                    AccountAdapter.provideDevicePassword(text)
+                }
             }
-            KeyNavigation.tab: KeyNavigation.down
-
-            onAccepted: pinFromDevice.forceActiveFocus()
         }
 
-        SpinnerButton {
-            id: connectBtn
-
-            TextMetrics {
-                id: textSize
-                font.weight: Font.Bold
-                font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
-                text: connectBtn.normalText
-            }
-
-            objectName: "importFromDevicePageConnectBtn"
+        // Progress indicator
+        BusyIndicator {
+            visible: WizardViewStepModel.deviceAuthState === WizardViewStepModel.DeviceAuthState.Connecting ||
+                    WizardViewStepModel.deviceAuthState === WizardViewStepModel.DeviceAuthState.InProgress
 
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
-            Layout.bottomMargin: errorLabel.visible ? 0 : JamiTheme.wizardViewPageBackButtonMargins
 
-            preferredWidth: textSize.width + 2 * JamiTheme.buttontextWizzardPadding + 1
-            primary: true
-
-            spinnerTriggeredtext: JamiStrings.generatingAccount
-            normalText: JamiStrings.importButton
-
-            enabled: pinFromDevice.dynamicText.length !== 0 && !spinnerTriggered
-
-            KeyNavigation.tab: backButton
-            KeyNavigation.up: passwordFromDevice
-            KeyNavigation.down: backButton
-
-            onClicked: {
-                spinnerTriggered = true;
-                WizardViewStepModel.accountCreationInfo = JamiQmlUtils.setUpAccountCreationInputPara({
-                        "archivePin": pinFromDevice.dynamicText,
-                        "password": passwordFromDevice.dynamicText
-                    });
-                WizardViewStepModel.nextStep();
-            }
+            running: visible
         }
 
+        // Status text
+        Text {
+            Layout.alignment: Qt.AlignCenter
+            Layout.topMargin: JamiTheme.wizardViewMarginSize
+
+            text: {
+                switch(WizardViewStepModel.deviceAuthState) {
+                    case WizardViewStepModel.DeviceAuthState.Connecting:
+                        return JamiStrings.connecting
+                    case WizardViewStepModel.DeviceAuthState.InProgress:
+                        return JamiStrings.transferringAccount
+                    default:
+                        return ""
+                }
+            }
+            visible: text !== ""
+            color: JamiTheme.textColor
+            font.pixelSize: JamiTheme.textFontSize
+        }
+
+        // Error label
         Label {
             id: errorLabel
-
             Layout.alignment: Qt.AlignCenter
             Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins
-
             visible: errorText.length !== 0
-
             text: errorText
-
             font.pixelSize: JamiTheme.textEditError
             color: JamiTheme.redColor
         }
     }
 
+    // Back button
     BackButton {
         id: backButton
-
         objectName: "importFromDevicePageBackButton"
-
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.margins: JamiTheme.wizardViewPageBackButtonMargins
 
-        visible: !connectBtn.spinnerTriggered
+        visible: WizardViewStepModel.deviceAuthState !== WizardViewStepModel.DeviceAuthState.InProgress
 
-        KeyNavigation.tab: pinFromDevice
-        KeyNavigation.up: connectBtn.enabled ? connectBtn : passwordFromDevice
-        KeyNavigation.down: pinFromDevice
-
-        onClicked: WizardViewStepModel.previousStep()
+        onClicked: {
+            if (WizardViewStepModel.deviceAuthState !== WizardViewStepModel.DeviceAuthState.Init) {
+                AccountAdapter.cancelDeviceLinking()
+            }
+            WizardViewStepModel.previousStep()
+        }
     }
 }
