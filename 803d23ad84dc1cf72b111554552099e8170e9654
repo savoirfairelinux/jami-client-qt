@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "356ac0d9_f0a0586e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-01-16T15:51:28Z",
+      "side": 1,
+      "message": "rebase issue https://review.jami.net/c/jami-client-qt/+/29192/4..5",
+      "revId": "803d23ad84dc1cf72b111554552099e8170e9654",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
