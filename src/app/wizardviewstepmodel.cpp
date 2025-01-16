@@ -20,8 +20,20 @@
 
 #include "appsettingsmanager.h"
 #include "lrcinstance.h"
+#include "global.h"
 
 #include "api/accountmodel.h"
+
+// Convert a MapStringString to a QVariantMap
+inline QVariantMap
+mapStringStringToVariantMap(const MapStringString& map)
+{
+    QVariantMap variantMap;
+    for (auto it = map.constBegin(); it != map.constEnd(); ++it) {
+        variantMap.insert(it.key(), it.value());
+    }
+    return variantMap;
+}
 
 WizardViewStepModel::WizardViewStepModel(LRCInstance* lrcInstance,
                                          AppSettingsManager* appSettingsManager,
@@ -47,17 +59,37 @@ WizardViewStepModel::WizardViewStepModel(LRCInstance* lrcInstance,
 
                 Q_EMIT accountIsReady(accountId);
             });
+
+    // DEBUG: log changes to the mainStep
+    connect(this, &WizardViewStepModel::mainStepChanged, this, [this]() {
+        C_INFO << "mainStep changed to" << get_mainStep();
+    });
+
+    // Connect to account model signals to track import progress
+    connect(&lrcInstance_->accountModel(),
+            &AccountModel::deviceAuthStateChanged,
+            this,
+            [this](const QString& accountID, int state, const MapStringString& details) {
+                C_INFO << "deviceAuthStateChanged: " << accountID << " " << state << " " << details;
+                set_deviceLinkDetails(mapStringStringToVariantMap(details));
+                set_deviceAuthState(static_cast<DeviceAuthState>(state));
+            });
 }
 
 void
 WizardViewStepModel::startAccountCreationFlow(AccountCreationOption accountCreationOption)
 {
+    using namespace lrc::api::account;
     set_accountCreationOption(accountCreationOption);
-    if (accountCreationOption == AccountCreationOption::CreateJamiAccount
-        || accountCreationOption == AccountCreationOption::CreateRendezVous)
+    if (accountCreationOption == AccountCreationOption::ImportFromDevice) {
+        set_mainStep(MainSteps::DeviceAuthorization);
+        Q_EMIT createAccountRequested(accountCreationOption);
+    } else if (accountCreationOption == AccountCreationOption::CreateJamiAccount
+               || accountCreationOption == AccountCreationOption::CreateRendezVous) {
         set_mainStep(MainSteps::NameRegistration);
-    else
+    } else {
         set_mainStep(MainSteps::AccountCreation);
+    }
 }
 
 void
@@ -81,6 +113,10 @@ WizardViewStepModel::previousStep()
         reset();
         break;
     }
+    case MainSteps::DeviceAuthorization: {
+        reset();
+        break;
+    }
     }
 }
 
@@ -89,4 +125,6 @@ WizardViewStepModel::reset()
 {
     set_accountCreationOption(AccountCreationOption::None);
     set_mainStep(MainSteps::Initial);
+    set_deviceAuthState(DeviceAuthState::Init);
+    set_deviceLinkDetails({});
 }
