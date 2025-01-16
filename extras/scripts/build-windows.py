@@ -9,14 +9,15 @@ and package the project for Windows.
 usage: build.py [-q] [-h] [-a ARCH] [-c CONFIG] [-t] [-i] [-v] {pack} ...
 
 optional arguments:
-  -q, --qt PATH         Sets the Qt installation path
-  -a ARCH, --arch ARCH  Sets the build architecture
+  -q, --qt PATH             Sets the Qt installation path
+  -a ARCH, --arch ARCH      Sets the build architecture
   -c CONFIG, --config CONFIG
-                        Sets the build configuration type
-  -t, --tests           Build and run tests
-  -i, --init            Initialize submodules
-  -v, --version         Show the version number and exit
-  -s, --skip-build      Only do packaging or run tests, skip building
+                            Sets the build configuration type
+  -t, --tests               Build and run tests
+  -i, --init                Initialize submodules
+  -v, --version             Show the version number and exit
+  -s, --skip-build          Only do packaging or run tests, skip building
+  --enable-crash-reports    Enable crash reports
 
 positional arguments:
   {pack}
@@ -260,7 +261,7 @@ def cmake_build(config_str, env_vars, cmake_build_dir):
     return True
 
 
-def build(config_str, qt_dir, tests):
+def build(config_str, qt_dir, tests, enable_crash_reports):
     """Use cmake to build the project."""
     print("Building with Qt at " + qt_dir)
 
@@ -283,6 +284,11 @@ def build(config_str, qt_dir, tests):
         "-DBUILD_TESTING=" + str(tests).lower(),
         "-DBETA=" + str((0, 1)[config_str == "Beta"]),
     ]
+
+    if enable_crash_reports:
+        cmake_options.append("-DENABLE_CRASHREPORTS=ON")
+    else:
+        cmake_options.append("-DENABLE_CRASHREPORTS=OFF")
 
     # Make sure the build directory exists.
     if not os.path.exists(build_dir):
@@ -471,17 +477,20 @@ def parse_args():
     parser.add_argument(
         "-i", "--init", action="store_true", help="Initialize submodules")
     parser.add_argument(
-        '-sd',
         '--skip-deploy',
         action='store_true',
         default=False,
         help='Force skip deployment of runtime files needed for packaging')
     parser.add_argument(
-        "-sb",
         "--skip-build",
         action="store_true",
         default=False,
         help="Only do packaging or run tests, skip build step")
+    parser.add_argument(
+        '--enable-crash-reports',
+        action='store_true',
+        default=False,
+        help='Enable crash reporting')
 
     pack_arg_parser = subparsers.add_parser("pack")
     pack_group = pack_arg_parser.add_mutually_exclusive_group(required=True)
@@ -534,7 +543,7 @@ def main():
 
     def do_build(do_tests):
         if not parsed_args.skip_build:
-            build(config_str, parsed_args.qt, do_tests)
+            build(config_str, parsed_args.qt, do_tests, parsed_args.enable_crash_reports)
         if not parsed_args.skip_deploy:
             deploy_runtimes(config_str, parsed_args.qt)
 
