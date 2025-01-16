@@ -173,7 +173,9 @@ Q_SIGNALS:
      * Connect this signal to know when a new conference is created
      * @param callId of the conference
      */
-    void conferenceCreated(const QString& accountId, const QString& conversationId, const QString& callId);
+    void conferenceCreated(const QString& accountId,
+                           const QString& conversationId,
+                           const QString& callId);
     void conferenceChanged(const QString& accountId, const QString& confId, const QString& state);
     /**
      * Connect this signal to know when a conference is removed
@@ -237,12 +239,12 @@ Q_SIGNALS:
                                 const QString& userPhoto);
 
     /**
-     * Emit exportOnRingEnded
+     * Device authentication state has changed
      * @param accountId
-     * @param status SUCCESS = 0, WRONG_PASSWORD = 1, NETWORK_ERROR = 2
-     * @param pin
+     * @param state
+     * @param details map
      */
-    void exportOnRingEnded(const QString& accountId, int status, const QString& pin);
+    void deviceAuthStateChanged(const QString& accountId, int state, const MapStringString& details);
 
     /**
      * Name registration has ended
@@ -503,7 +505,9 @@ private Q_SLOTS:
      * @param callId         of the conference
      * @param conversationId of the conference
      */
-    void slotConferenceCreated(const QString& accountId, const QString& conversationId, const QString& callId);
+    void slotConferenceCreated(const QString& accountId,
+                               const QString& conversationId,
+                               const QString& callId);
     /**
      * Emit conferenceRemove
      * @param accountId
@@ -573,12 +577,14 @@ private Q_SLOTS:
                                     const QString& userPhoto);
 
     /**
-     * Emit exportOnRingEnded
+     * Device authentication state has changed
      * @param accountId
-     * @param status SUCCESS = 0, WRONG_PASSWORD = 1, NETWORK_ERROR = 2
-     * @param pin
+     * @param state
+     * @param details map
      */
-    void slotExportOnRingEnded(const QString& accountId, int status, const QString& pin);
+    void slotDeviceAuthStateChanged(const QString& accountId,
+                                    int state,
+                                    const MapStringString& details);
 
     /**
      * Emit nameRegistrationEnded
