@@ -26,7 +26,7 @@
 #include "lrcinstance.h"
 #include "accountlistmodel.h"
 
-#include <QtConcurrent/QtConcurrent>
+#include <QThreadPool>
 
 AccountAdapter::AccountAdapter(AppSettingsManager* settingsManager,
                                SystemTray* systemTray,
@@ -114,7 +114,10 @@ AccountAdapter::createJamiAccount(const QVariantMap& settings)
         &lrcInstance_->accountModel(),
         &lrc::api::AccountModel::accountAdded,
         [this, registeredName, settings](const QString& accountId) {
-            lrcInstance_->accountModel().setAvatar(accountId, settings["avatar"].toString(), true,1);
+            lrcInstance_->accountModel().setAvatar(accountId,
+                                                   settings["avatar"].toString(),
+                                                   true,
+                                                   1);
             Utils::oneShotConnect(&lrcInstance_->accountModel(),
                                   &lrc::api::AccountModel::accountDetailsChanged,
                                   [this](const QString& accountId) {
@@ -162,13 +165,14 @@ AccountAdapter::createJamiAccount(const QVariantMap& settings)
 
     connectFailure();
 
-    auto futureResult = QtConcurrent::run([this, settings] {
+    QThreadPool::globalInstance()->start([this, settings] {
         lrcInstance_->accountModel().createNewAccount(lrc::api::profile::Type::JAMI,
                                                       settings["alias"].toString(),
                                                       settings["archivePath"].toString(),
                                                       settings["password"].toString(),
                                                       settings["archivePin"].toString(),
-                                                      "");
+                                                      "",
+                                                      {});
     });
 }
 
@@ -209,7 +213,7 @@ AccountAdapter::createSIPAccount(const QVariantMap& settings)
 
     connectFailure();
 
-    auto futureResult = QtConcurrent::run([this, settings] {
+    QThreadPool::globalInstance()->start([this, settings] {
         lrcInstance_->accountModel().createNewAccount(lrc::api::profile::Type::SIP,
                                                       settings["alias"].toString(),
                                                       settings["archivePath"].toString(),
@@ -253,7 +257,7 @@ AccountAdapter::createJAMSAccount(const QVariantMap& settings)
 
     connectFailure();
 
-    auto futureResult = QtConcurrent::run([this, settings] {
+    QThreadPool::globalInstance()->start([this, settings] {
         lrcInstance_->accountModel().connectToAccountManager(settings["username"].toString(),
                                                              settings["password"].toString(),
                                                              settings["manager"].toString());
@@ -296,7 +300,7 @@ AccountAdapter::setCurrAccDisplayName(const QString& text)
 void
 AccountAdapter::setCurrentAccountAvatarFile(const QString& source)
 {
-    auto futureResult = QtConcurrent::run([this, source]() {
+    QThreadPool::globalInstance()->start([this, source]() {
         QPixmap image;
         if (!image.load(source)) {
             qWarning() << "Not a valid image file";
@@ -311,7 +315,7 @@ AccountAdapter::setCurrentAccountAvatarFile(const QString& source)
 void
 AccountAdapter::setCurrentAccountAvatarBase64(const QString& data)
 {
-    auto futureResult = QtConcurrent::run([this, data]() {
+    QThreadPool::globalInstance()->start([this, data]() {
         auto accountId = lrcInstance_->get_currentAccountId();
         lrcInstance_->accountModel().setAvatar(accountId, data, true, 1);
     });
@@ -342,9 +346,43 @@ AccountAdapter::exportToFile(const QString& accountId,
 void
 AccountAdapter::setArchivePasswordAsync(const QString& accountID, const QString& password)
 {
-    auto futureResult = QtConcurrent::run([this, accountID, password] {
+    QThreadPool::globalInstance()->start([this, accountID, password] {
         auto config = lrcInstance_->accountModel().getAccountConfig(accountID);
         config.archivePassword = password;
         lrcInstance_->accountModel().setAccountConfig(accountID, config);
     });
+}
+
+void
+AccountAdapter::linkDevice()
+{
+    Utils::oneShotConnect(
+        &lrcInstance_->accountModel(),
+        &lrc::api::AccountModel::accountAdded,
+        [this](const QString& accountId) {
+            LC_INFO << "Device import account added: " << accountId;
+        },
+        this,
+        &AccountAdapter::accountCreationFailed);
+
+    connectFailure();
+
+    // Start the device linking process
+    QThreadPool::globalInstance()->start([this] {
+        lrcInstance_->accountModel().createDeviceImportAccount();
+    });
+}
+
+void
+AccountAdapter::provideDevicePassword(const QString& password)
+{
+    auto accountId = lrcInstance_->get_currentAccountId();
+    lrcInstance_->accountModel().provideAccountAuthentication(accountId, password);
+}
+
+void
+AccountAdapter::cancelDeviceLinking()
+{
+    auto accountId = lrcInstance_->get_currentAccountId();
+    lrcInstance_->accountModel().removeAccount(accountId);
 }

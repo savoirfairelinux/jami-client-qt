@@ -190,9 +190,38 @@ struct ConfProperties_t
     MapStringString toDetails() const;
 };
 
-// Possible account export status
-enum class ExportOnRingStatus { SUCCESS = 0, WRONG_PASSWORD = 1, NETWORK_ERROR = 2, INVALID };
-Q_ENUM_NS(ExportOnRingStatus)
+// The following statuses are used to track the status of
+// device-linking and device-import
+enum class DeviceImportStatus {
+    INIT = 0,
+    TOKEN_AVAILABLE = 1,
+    CONNECTING = 2,
+    AUTHENTICATING = 3,
+    IN_PROGRESS = 4,
+    DONE = 5,
+    ERROR = 6
+};
+Q_ENUM_NS(DeviceImportStatus)
+
+enum class DeviceExportStatus {
+    INIT = 0,
+    CONNECTING = 1,
+    AUTHENTICATING = 2,
+    IN_PROGRESS = 3,
+    DONE = 4,
+    ERROR = 5
+};
+Q_ENUM_NS(DeviceExportStatus)
+
+enum class DeviceLinkError {
+    BAD_PASSWORD = 0,
+    INVALID_TOKEN = 1,
+    AUTH_FAILED = 2,
+    CONNECTION_FAILED = 3,
+    TRANSFER_FAILED = 4,
+    INVALID = 5
+};
+Q_ENUM_NS(DeviceLinkError)
 
 enum class RegisterNameStatus {
     SUCCESS = 0,

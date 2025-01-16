@@ -53,11 +53,15 @@ void
 WizardViewStepModel::startAccountCreationFlow(AccountCreationOption accountCreationOption)
 {
     set_accountCreationOption(accountCreationOption);
-    if (accountCreationOption == AccountCreationOption::CreateJamiAccount
-        || accountCreationOption == AccountCreationOption::CreateRendezVous)
+    if (accountCreationOption == AccountCreationOption::ImportFromDevice) {
+        set_mainStep(MainSteps::DeviceLinking);
+        set_deviceLinkState(DeviceLinkState::Init);
+    } else if (accountCreationOption == AccountCreationOption::CreateJamiAccount
+               || accountCreationOption == AccountCreationOption::CreateRendezVous) {
         set_mainStep(MainSteps::NameRegistration);
-    else
+    } else {
         set_mainStep(MainSteps::AccountCreation);
+    }
 }
 
 void
@@ -89,4 +93,20 @@ WizardViewStepModel::reset()
 {
     set_accountCreationOption(AccountCreationOption::None);
     set_mainStep(MainSteps::Initial);
+    set_deviceLinkState(DeviceLinkState::Init);
+    set_deviceLinkDetails({});
+}
+
+void
+WizardViewStepModel::onDeviceLinkStateChanged(int state, const QVariantMap& details)
+{
+    set_deviceLinkState(static_cast<DeviceLinkState>(state));
+    set_deviceLinkDetails(details);
+
+    if (state == static_cast<int>(DeviceLinkState::Done)) {
+        if (!details["error"].toString().isEmpty()) {
+            // Handle error case
+            reset();
+        }
+    }
 }
