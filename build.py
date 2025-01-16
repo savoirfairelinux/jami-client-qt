@@ -366,13 +366,27 @@ def cwd(path):
 def run_install(args):
     # Platforms with special compilation scripts
     if args.distribution == WIN32_DISTRIBUTION_NAME:
+        # Build daemon if not using pywinmake
         if not args.pywinmake:
             with cwd('daemon/compat/msvc'):
                 execute_script([f'python winmake.py -iv -s {args.sdk} -b daemon'])
 
+        # Prepare the build-windows.py script call
         build_windows = 'extras/scripts/build-windows.py'
+        # Initialize build environment
         execute_script([f'python {build_windows} --init'])
-        execute_script([f'python {build_windows} --qt={args.qt}'])
+
+        # Construct build command with options
+        build_cmd = [
+            'python',
+            build_windows,
+            f'--qt={args.qt}'
+        ]
+
+        if args.enable_crash_reports:
+            build_cmd.append('--enable-crash-reports')
+
+        execute_script([' '.join(build_cmd)])
         return True
 
     # Unix-like platforms
@@ -401,6 +415,8 @@ def run_install(args):
         install_args += ('-a', args.arch)
     if args.extra_cmake_flags:
         install_args += ('-D', args.extra_cmake_flags)
+    if args.enable_crash_reports:
+        install_args.append('-C')
 
     if args.distribution == OSX_DISTRIBUTION_NAME:
         # The `universal_newlines` parameter has been renamed to `text` in
@@ -750,6 +766,9 @@ def parse_args():
     # Allow supplying extra congifure flags to the client cmake.
     ap.add_argument('--extra-cmake-flags', type=str,
                     help='Extra flags to pass to the client cmake')
+    ap.add_argument('--enable-crash-reports',
+                    action='store_true', default=False,
+                    help='Enable crash reporting')
 
     dist = choose_distribution()
 
