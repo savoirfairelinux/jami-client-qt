@@ -70,6 +70,21 @@ Item {
     property string transferThisCall: qsTr("Transfer this call")
     property string transferTo: qsTr("Transfer to")
 
+    // Device import/linking
+    property string scanToImportAccount: qsTr("Scan this QR code on your other device to proceed with importing your account.")
+    property string waitingForToken: qsTr("Please wait…")
+    property string scanQRCode: qsTr("Scan QR code")
+    property string connectingToDevice: qsTr("Action required.\nPlease confirm account on your old device.")
+    property string confirmAccountImport: qsTr("Authenticating device")
+    property string transferringAccount: qsTr("Transferring account…")
+    property string cantScanQRCode: qsTr("If you are unable to scan the QR code, enter this token on your other device to proceed.")
+    property string invalidPassword: qsTr("Invalid password")
+    property string timeoutError: qsTr("Timeout error")
+    property string operationCanceled: qsTr("Operation canceled")
+    property string optionConfirm: qsTr("Confirm")
+    property string optionTryAgain: qsTr("Try again")
+    property string importFailed: qsTr("Import failed")
+
     // AccountMigrationDialog
     property string authenticationRequired: qsTr("Authentication required")
     property string migrationReason: qsTr("Your session has expired or been revoked on this device. Please enter your password.")
@@ -580,6 +595,9 @@ Item {
     property string importButton: qsTr("Import")
     property string pin: qsTr("Enter the PIN code")
     property string importFromDeviceDescription: qsTr("A PIN code is required to use an existing Jami account on this device.")
+    property string importFromAnotherAccount: qsTr("Import from another account")
+    property string connectToAccount: qsTr("Connect to account")
+    property string authenticationError: qsTr("An authentication error occurred. Please verify your password.")
     property string importStep1: qsTr("Step 1")
     property string importStep2: qsTr("Step 2")
     property string importStep3: qsTr("Step 3")
