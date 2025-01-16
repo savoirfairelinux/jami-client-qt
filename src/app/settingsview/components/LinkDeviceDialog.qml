@@ -77,18 +77,16 @@ BaseModalDialog {
             repeat: false
             interval: 200
 
-            onTriggered: {
-                AccountAdapter.model.exportOnRing(LRCInstance.currentAccountId, passwordEdit.dynamicText);
-            }
+            // onTriggered: AccountAdapter.model.exportOnRing(LRCInstance.currentAccountId, passwordEdit.dynamicText);
         }
 
-        Connections {
-            target: NameDirectory
+        // Connections {
+        //     target: NameDirectory
 
-            function onExportOnRingEnded(status, pin) {
-                stackedWidget.setExportPage(status, pin);
-            }
-        }
+        //     function onExportOnRingEnded(status, pin) {
+        //         stackedWidget.setExportPage(status, pin);
+        //     }
+        // }
 
         onVisibleChanged: {
             if (visible) {

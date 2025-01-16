@@ -52,12 +52,17 @@ WizardViewStepModel::WizardViewStepModel(LRCInstance* lrcInstance,
 void
 WizardViewStepModel::startAccountCreationFlow(AccountCreationOption accountCreationOption)
 {
+    using namespace lrc::api::account;
     set_accountCreationOption(accountCreationOption);
-    if (accountCreationOption == AccountCreationOption::CreateJamiAccount
-        || accountCreationOption == AccountCreationOption::CreateRendezVous)
+    if (accountCreationOption == AccountCreationOption::ImportFromDevice) {
+        set_mainStep(MainSteps::DeviceAuthorization);
+        set_deviceLinkState(DeviceAuthState::Init);
+    } else if (accountCreationOption == AccountCreationOption::CreateJamiAccount
+               || accountCreationOption == AccountCreationOption::CreateRendezVous) {
         set_mainStep(MainSteps::NameRegistration);
-    else
+    } else {
         set_mainStep(MainSteps::AccountCreation);
+    }
 }
 
 void
@@ -81,6 +86,10 @@ WizardViewStepModel::previousStep()
         reset();
         break;
     }
+    case MainSteps::DeviceAuthorization: {
+        reset();
+        break;
+    }
     }
 }
 
@@ -89,4 +98,6 @@ WizardViewStepModel::reset()
 {
     set_accountCreationOption(AccountCreationOption::None);
     set_mainStep(MainSteps::Initial);
+    set_deviceLinkState(DeviceAuthState::Init);
+    set_deviceLinkDetails({});
 }
