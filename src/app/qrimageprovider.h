@@ -18,7 +18,8 @@
 #pragma once
 
 #include "quickimageproviderbase.h"
-#include "accountlistmodel.h"
+
+#include "lrcinstance.h"
 
 #include <QPair>
 #include <QString>
