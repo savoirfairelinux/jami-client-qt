@@ -244,9 +244,9 @@ CallbacksHandler::CallbacksHandler(const Lrc& parent)
             Qt::QueuedConnection);
 
     connect(&ConfigurationManager::instance(),
-            &ConfigurationManagerInterface::exportOnRingEnded,
+            &ConfigurationManagerInterface::deviceAuthStateChanged,
             this,
-            &CallbacksHandler::slotExportOnRingEnded,
+            &CallbacksHandler::slotDeviceAuthStateChanged,
             Qt::QueuedConnection);
 
     connect(&ConfigurationManager::instance(),
@@ -548,7 +548,9 @@ CallbacksHandler::slotIncomingMessage(const QString& accountId,
 }
 
 void
-CallbacksHandler::slotConferenceCreated(const QString& accountId, const QString& convId, const QString& callId)
+CallbacksHandler::slotConferenceCreated(const QString& accountId,
+                                        const QString& convId,
+                                        const QString& callId)
 {
     Q_EMIT conferenceCreated(accountId, convId, callId);
 }
@@ -680,9 +682,11 @@ CallbacksHandler::slotDeviceRevokationEnded(const QString& accountId,
 }
 
 void
-CallbacksHandler::slotExportOnRingEnded(const QString& accountId, int status, const QString& pin)
+CallbacksHandler::slotDeviceAuthStateChanged(const QString& accountId,
+                                             int state,
+                                             const MapStringString& details)
 {
-    Q_EMIT exportOnRingEnded(accountId, status, pin);
+    Q_EMIT deviceAuthStateChanged(accountId, state, details);
 }
 
 void

@@ -152,11 +152,25 @@ public:
                                                         QString(displayName.c_str()),
                                                         QString(userPhoto.c_str()));
                 }),
-            exportable_callback<ConfigurationSignal::ExportOnRingEnded>(
-                [this](const std::string& accountId, int status, const std::string& pin) {
-                    Q_EMIT this->exportOnRingEnded(QString(accountId.c_str()),
-                                                   status,
-                                                   QString(pin.c_str()));
+            exportable_callback<ConfigurationSignal::AddDeviceStateChanged>(
+                [this](const std::string& accountId,
+                       uint32_t operationId,
+                       int state,
+                       const std::map<std::string, std::string>& details) {
+                    Q_EMIT this->addDeviceStateChanged(QString(accountId.c_str()),
+                                                       operationId,
+                                                       state,
+                                                       convertMap(details));
+                }),
+            exportable_callback<ConfigurationSignal::DeviceAuthStateChanged>(
+                [this](const std::string& accountId,
+                       int state,
+                       const std::map<std::string, std::string>& details) {
+                    qInfo() << "Device auth state changed: " << accountId.c_str() << " " << state
+                            << " " << details;
+                    Q_EMIT this->deviceAuthStateChanged(QString(accountId.c_str()),
+                                                        state,
+                                                        convertMap(details));
                 }),
             exportable_callback<ConfigurationSignal::NameRegistrationEnded>(
                 [this](const std::string& accountId, int status, const std::string& name) {
@@ -431,9 +445,28 @@ public Q_SLOTS: // METHODS
                               path.toStdString());
     }
 
-    bool exportOnRing(const QString& accountId, const QString& password)
+    bool provideAccountAuthentication(const QString& accountId,
+                                      const QString& credentialsFromUser,
+                                      const QString scheme = "password")
     {
-        return libjami::exportOnRing(accountId.toStdString(), password.toStdString());
+        return libjami::provideAccountAuthentication(accountId.toStdString(),
+                                                     credentialsFromUser.toStdString(),
+                                                     scheme.toStdString());
+    }
+
+    uint32_t addDevice(const QString& accountId, const QString& token)
+    {
+        return libjami::addDevice(accountId.toStdString(), token.toStdString());
+    }
+
+    void confirmAddDevice(const QString& accountId, uint32_t operationId)
+    {
+        libjami::confirmAddDevice(accountId.toStdString(), operationId);
+    }
+
+    void cancelAddDevice(const QString& accountId, uint32_t operationId)
+    {
+        libjami::cancelAddDevice(accountId.toStdString(), operationId);
     }
 
     bool exportToFile(const QString& accountId,
@@ -498,8 +531,7 @@ public Q_SLOTS: // METHODS
                                displayName.toStdString(),
                                avatarPath.toStdString(),
                                fileType.toStdString(),
-                               flag
-                               );
+                               flag);
     }
 
     QStringList getAccountList()
@@ -1197,7 +1229,11 @@ Q_SIGNALS: // SIGNALS
                                  const QString& certId,
                                  const QString& status);
     void knownDevicesChanged(const QString& accountId, const MapStringString& devices);
-    void exportOnRingEnded(const QString& accountId, int status, const QString& pin);
+    void addDeviceStateChanged(const QString& accountId,
+                               uint32_t operationId,
+                               int state,
+                               const MapStringString& details);
+    void deviceAuthStateChanged(const QString& accountId, int state, const MapStringString& details);
     void incomingAccountMessage(const QString& accountId,
                                 const QString& from,
                                 const QString msgId,

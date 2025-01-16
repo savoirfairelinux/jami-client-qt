@@ -38,9 +38,10 @@ class WizardViewStepModel : public QObject
 
 public:
     enum class MainSteps {
-        Initial,          // Initial welcome step.
-        AccountCreation,  // General account creation step.
-        NameRegistration, // Name registration step : CreateJamiAccount, CreateRendezVous
+        Initial,            // Initial welcome step.
+        AccountCreation,    // General account creation step.
+        NameRegistration,   // Name registration step : CreateJamiAccount, CreateRendezVous
+        DeviceAuthorization // Add new step for device authorization.
     };
     Q_ENUM(MainSteps)
 
@@ -55,9 +56,22 @@ public:
     };
     Q_ENUM(AccountCreationOption)
 
+    enum class DeviceAuthState {
+        Init = 0,
+        TokenAvailable = 1,
+        Connecting = 2,
+        Authenticating = 3,
+        InProgress = 4,
+        Done = 5,
+        Error = 6
+    };
+    Q_ENUM(DeviceAuthState)
+
     QML_PROPERTY(MainSteps, mainStep)
     QML_PROPERTY(AccountCreationOption, accountCreationOption)
     QML_PROPERTY(QVariantMap, accountCreationInfo)
+    QML_PROPERTY(DeviceAuthState, deviceAuthState)
+    QML_PROPERTY(QVariantMap, deviceLinkDetails)
 
 public:
     static WizardViewStepModel* create(QQmlEngine*, QJSEngine*)

@@ -71,6 +71,18 @@ Item {
     property string transferThisCall: qsTr("Transfer this call")
     property string transferTo: qsTr("Transfer to")
 
+    // Device import/linking
+    property string scanToImportAccount: qsTr("Scan this QR code on your other device to proceed with importing your account.")
+    property string waitingForToken: qsTr("Please wait…")
+    property string scanQRCode: qsTr("Scan QR code")
+    property string connectingToDevice: qsTr("Connecting to device…")
+    property string authenticatingDevice: qsTr("Authenticating device…")
+    property string transferringAccount: qsTr("Transferring account…")
+    property string cantScanQRCode: qsTr("If you are unable to scan the QR code, enter this token on your other device to proceed.")
+    property string invalidPassword: qsTr("Invalid password")
+    property string timeoutError: qsTr("Timeout error")
+    property string operationCanceled: qsTr("Operation canceled")
+
     // AccountMigrationDialog
     property string authenticationRequired: qsTr("Authentication required")
     property string migrationReason: qsTr("Your session has expired or been revoked on this device. Please enter your password.")
