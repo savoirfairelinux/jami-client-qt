@@ -951,3 +951,13 @@ Utils::getTempSwarmAvatarPath()
     return QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QDir::separator()
            + "tmpSwarmImage";
 }
+
+QVariantMap
+Utils::mapStringStringToVariantMap(const MapStringString& map)
+{
+    QVariantMap variantMap;
+    for (auto it = map.constBegin(); it != map.constEnd(); ++it) {
+        variantMap.insert(it.key(), it.value());
+    }
+    return variantMap;
+}
