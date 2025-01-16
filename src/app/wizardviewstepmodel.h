@@ -41,6 +41,7 @@ public:
         Initial,          // Initial welcome step.
         AccountCreation,  // General account creation step.
         NameRegistration, // Name registration step : CreateJamiAccount, CreateRendezVous
+        DeviceLinking    // Add new step for device linking
     };
     Q_ENUM(MainSteps)
 
@@ -55,9 +56,22 @@ public:
     };
     Q_ENUM(AccountCreationOption)
 
+    enum class DeviceLinkState {
+        Init = 0,
+        TokenAvailable = 1,
+        Connecting = 2,
+        Authenticating = 3,
+        InProgress = 4,
+        Done = 5,
+        Error = 6
+    };
+    Q_ENUM(DeviceLinkState)
+
     QML_PROPERTY(MainSteps, mainStep)
     QML_PROPERTY(AccountCreationOption, accountCreationOption)
     QML_PROPERTY(QVariantMap, accountCreationInfo)
+    QML_PROPERTY(DeviceLinkState, deviceLinkState)
+    QML_PROPERTY(QVariantMap, deviceLinkDetails)
 
 public:
     static WizardViewStepModel* create(QQmlEngine*, QJSEngine*)

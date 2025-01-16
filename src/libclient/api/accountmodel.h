@@ -162,18 +162,7 @@ public:
     Q_INVOKABLE bool registerName(const QString& accountId,
                                   const QString& password,
                                   const QString& username);
-    /**
-     * Connect to JAMS to retrieve the account
-     * @param username
-     * @param password
-     * @param serverUri
-     * @param config
-     * @return the account id
-     */
-    static QString connectToAccountManager(const QString& username,
-                                           const QString& password,
-                                           const QString& serverUri,
-                                           const MapStringString& config = MapStringString());
+
     /**
      * Create a new Ring or SIP account
      * @param type determine if the new account will be a Ring account or a SIP one
@@ -187,12 +176,32 @@ public:
      * @return the created account
      */
     static QString createNewAccount(profile::Type type,
+                                    const MapStringString& config = MapStringString(),
                                     const QString& displayName = "",
                                     const QString& archivePath = "",
                                     const QString& password = "",
                                     const QString& pin = "",
-                                    const QString& uri = "",
-                                    const MapStringString& config = MapStringString());
+                                    const QString& uri = "");
+
+    /**
+     * Connect to JAMS to retrieve the account
+     * @param username
+     * @param password
+     * @param serverUri
+     * @param config
+     * @return the account id
+     */
+    static QString connectToAccountManager(const QString& username,
+                                           const QString& password,
+                                           const QString& serverUri,
+                                           const MapStringString& config = MapStringString());
+
+    /**
+     * Create a simple ephemeral account from a device import
+     * @return the account id of the created account
+     */
+    static QString createDeviceImportAccount();
+
     /**
      * Set an account to the first position
      */
