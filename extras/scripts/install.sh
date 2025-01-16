@@ -31,6 +31,7 @@ export OSTYPE
   # -a: arch to build
   # -A: enable AddressSanitizer
   # -D: extra CMake flags for the client
+  # -C: enable crash reporting
 
 set -ex
 
@@ -49,8 +50,9 @@ asan=
 extra_cmake_flags=''
 arch=''
 enable_testing=false
+enable_crashreports=false
 
-while getopts gsc:dQ:P:p:uWwa:AtD: OPT; do
+while getopts gsc:dQ:P:p:uWwa:AtD:C OPT; do
   case "$OPT" in
     g)
       global='true'
@@ -90,6 +92,9 @@ while getopts gsc:dQ:P:p:uWwa:AtD: OPT; do
     ;;
     D)
       extra_cmake_flags="${OPTARG}"
+    ;;
+    C)
+      enable_crashreports='true'
     ;;
     \?)
       exit 1
@@ -210,6 +215,10 @@ if [ "${enable_testing}" = "true" ]; then
     client_cmake_flags+=(-DBUILD_TESTING=On)
 else
     client_cmake_flags+=(-DBUILD_TESTING=Off)
+fi
+
+if [ "${enable_crashreports}" = "true" ]; then
+    client_cmake_flags+=(-DENABLE_CRASHREPORTS=On)
 fi
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
