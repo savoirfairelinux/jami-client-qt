@@ -284,11 +284,12 @@ AccountModel::setAlias(const QString& accountId, const QString& alias, bool save
     accountInfo.profileInfo.alias = alias;
 
     if (save)
-        ConfigurationManager::instance().updateProfile(accountId,
-                                                       alias,
-                                                       "",
-                                                       "",
-                                                       5);// flag out of range to avoid updating avatar
+        ConfigurationManager::instance()
+            .updateProfile(accountId,
+                           alias,
+                           "",
+                           "",
+                           5); // flag out of range to avoid updating avatar
     Q_EMIT profileUpdated(accountId);
 }
 
@@ -1042,32 +1043,47 @@ account::ConfProperties_t::toDetails() const
 
 QString
 AccountModel::createNewAccount(profile::Type type,
+                               const MapStringString& config,
                                const QString& displayName,
                                const QString& archivePath,
                                const QString& password,
                                const QString& pin,
-                               const QString& uri,
-                               const MapStringString& config)
+                               const QString& uri)
 {
+    // Get the template for the account type to prefill the details
     MapStringString details = type == profile::Type::SIP
                                   ? ConfigurationManager::instance().getAccountTemplate("SIP")
                                   : ConfigurationManager::instance().getAccountTemplate("RING");
-    using namespace libjami::Account;
-    details[ConfProperties::TYPE] = type == profile::Type::SIP ? "SIP" : "RING";
-    details[ConfProperties::DISPLAYNAME] = displayName;
-    details[ConfProperties::ALIAS] = displayName;
-    details[ConfProperties::UPNP_ENABLED] = "true";
-    details[ConfProperties::ARCHIVE_PASSWORD] = password;
-    details[ConfProperties::ARCHIVE_PIN] = pin;
-    details[ConfProperties::ARCHIVE_PATH] = archivePath;
-    if (type == profile::Type::SIP)
-        details[ConfProperties::USERNAME] = uri;
+
+    // Add the supplied config to the details
     if (!config.isEmpty()) {
         for (MapStringString::const_iterator it = config.begin(); it != config.end(); it++) {
             details[it.key()] = it.value();
         }
     }
 
+    using namespace libjami::Account;
+
+    // Add the rest of the details if we are not creating an ephemeral account for linking
+    // in which case the ARCHIVE_URL was set to "jami-auth" or the MANAGER_URI was set to
+    // the account manager URI in the case of a remote account manager connection
+    if (details[ConfProperties::ARCHIVE_URL].isEmpty() &&
+        details[ConfProperties::MANAGER_URI].isEmpty()) {
+        details[ConfProperties::TYPE] = type == profile::Type::SIP ? "SIP" : "RING";
+        details[ConfProperties::DISPLAYNAME] = displayName;
+        details[ConfProperties::ALIAS] = displayName;
+        details[ConfProperties::UPNP_ENABLED] = "true";
+        details[ConfProperties::ARCHIVE_PASSWORD] = password;
+        details[ConfProperties::ARCHIVE_PIN] = pin;
+        details[ConfProperties::ARCHIVE_PATH] = archivePath;
+
+        // Override the username with the provided URI if it's a SIP account
+        if (type == profile::Type::SIP) {
+            details[ConfProperties::USERNAME] = uri;
+        }
+    }
+
+    // Actually add the account and return the account ID
     QString accountId = ConfigurationManager::instance().addAccount(details);
     return accountId;
 }
@@ -1078,20 +1094,13 @@ AccountModel::connectToAccountManager(const QString& username,
                                       const QString& serverUri,
                                       const MapStringString& config)
 {
-    MapStringString details = ConfigurationManager::instance().getAccountTemplate("RING");
+    MapStringString details = config;
     using namespace libjami::Account;
     details[ConfProperties::TYPE] = "RING";
     details[ConfProperties::MANAGER_URI] = serverUri;
     details[ConfProperties::MANAGER_USERNAME] = username;
     details[ConfProperties::ARCHIVE_PASSWORD] = password;
-    if (!config.isEmpty()) {
-        for (MapStringString::const_iterator it = config.begin(); it != config.end(); it++) {
-            details[it.key()] = it.value();
-        }
-    }
-
-    QString accountId = ConfigurationManager::instance().addAccount(details);
-    return accountId;
+    return createNewAccount(profile::Type::JAMI, details);
 }
 
 void
