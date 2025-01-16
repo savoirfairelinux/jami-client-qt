@@ -179,6 +179,12 @@ registerTypes(QQmlEngine* engine,
     QQmlEngine::setObjectOwnership(pluginStoreListModel, QQmlEngine::CppOwnership);
     REG_QML_SINGLETON<PluginStoreListModel>(REG_MODEL, "PluginStoreListModel", CREATE(pluginStoreListModel));
 
+    // WizardViewStepModel
+    auto wizardViewStepModel = new WizardViewStepModel(lrcInstance, settingsManager, app);
+    qApp->setProperty("WizardViewStepModel", QVariant::fromValue(wizardViewStepModel));
+    QQmlEngine::setObjectOwnership(wizardViewStepModel, QQmlEngine::CppOwnership);
+    REG_QML_SINGLETON<WizardViewStepModel>(REG_MODEL, "WizardViewStepModel", CREATE(wizardViewStepModel));
+
     // Register app-level objects that are used by QML created objects.
     // These MUST be set prior to loading the initial QML file, in order to
     // be available to the QML adapter class factory creation methods.
@@ -205,7 +211,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, TipsModel);
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, VideoDevices);
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, CurrentAccountToMigrate);
-    QML_REGISTERSINGLETON_TYPE(NS_MODELS, WizardViewStepModel);
+    // QML_REGISTERSINGLETON_TYPE(NS_MODELS, WizardViewStepModel);
     QML_REGISTERSINGLETON_TYPE(NS_HELPERS, ImageDownloader);
 
     // TODO: remove these
@@ -263,7 +269,7 @@ registerTypes(QQmlEngine* engine,
     // Enums
     QML_REGISTERUNCREATABLE(NS_ENUMS, Settings)
     QML_REGISTERUNCREATABLE(NS_ENUMS, NetworkManager)
-    QML_REGISTERUNCREATABLE(NS_ENUMS, WizardViewStepModel)
+    // QML_REGISTERUNCREATABLE(NS_ENUMS, WizardViewStepModel)
     QML_REGISTERUNCREATABLE(NS_ENUMS, DeviceItemListModel)
     QML_REGISTERUNCREATABLE(NS_ENUMS, ModeratorListModel)
     QML_REGISTERUNCREATABLE(NS_ENUMS, VideoInputDeviceModel)

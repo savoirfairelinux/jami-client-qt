@@ -188,9 +188,63 @@ struct ConfProperties_t
     MapStringString toDetails() const;
 };
 
-// Possible account export status
-enum class ExportOnRingStatus { SUCCESS = 0, WRONG_PASSWORD = 1, NETWORK_ERROR = 2, INVALID };
-Q_ENUM_NS(ExportOnRingStatus)
+// The following statuses are used to track the status of
+// device-linking and account-import
+enum class DeviceAuthState {
+    INIT = 0,
+    TOKEN_AVAILABLE = 1,
+    CONNECTING = 2,
+    AUTHENTICATING = 3,
+    IN_PROGRESS = 4,
+    DONE = 5,
+    ERROR = 6
+};
+Q_ENUM_NS(DeviceAuthState)
+
+enum class DeviceLinkError {
+    WRONG_PASSWORD,    // auth_error, invalid_credentials
+    NETWORK,          // network
+    TIMEOUT,          // timeout
+    STATE,           // state
+    CANCELED,        // canceled
+    UNKNOWN          // fallback
+};
+
+Q_ENUM_NS(DeviceLinkError)
+
+inline DeviceLinkError mapLinkDeviceError(const std::string& error)
+{
+    if (error == "auth_error" || error == "invalid_credentials")
+        return DeviceLinkError::WRONG_PASSWORD;
+    if (error == "network")
+        return DeviceLinkError::NETWORK;
+    if (error == "timeout")
+        return DeviceLinkError::TIMEOUT;
+    if (error == "state")
+        return DeviceLinkError::STATE;
+    if (error == "canceled")
+        return DeviceLinkError::CANCELED;
+    return DeviceLinkError::UNKNOWN;
+}
+
+inline QString getLinkDeviceString(DeviceLinkError error)
+{
+    switch (error) {
+    case DeviceLinkError::WRONG_PASSWORD:
+        return QObject::tr("An authentication error occurred.\nPlease verify your password.");
+    case DeviceLinkError::NETWORK:
+        return QObject::tr("A network error occurred.\nPlease verify your connection.");
+    case DeviceLinkError::TIMEOUT:
+        return QObject::tr("The operation has timed out.\nPlease try again.");
+    case DeviceLinkError::STATE:
+        return QObject::tr("An error occurred while exporting the account.\nPlease try again.");
+    case DeviceLinkError::CANCELED:
+        return QObject::tr("Operation was canceled.");
+    case DeviceLinkError::UNKNOWN:
+    default:
+        return QObject::tr("An unexpected error occurred.\nPlease try again.");
+    }
+}
 
 enum class RegisterNameStatus {
     SUCCESS = 0,
