@@ -37,5 +37,4 @@ public Q_SLOTS:
                                  int status,
                                  const QString& address,
                                  const QString& name);
-    void slotExportOnRingEnded(const QString& accountId, int status, const QString& pin);
 };

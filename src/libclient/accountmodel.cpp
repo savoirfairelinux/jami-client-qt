@@ -121,12 +121,14 @@ public Q_SLOTS:
     void slotAccountStatusChanged(const QString& accountID, const api::account::Status status);
 
     /**
-     * Emit exportOnRingEnded.
+     * Emit deviceAuthStateChanged.
      * @param accountId
-     * @param status
-     * @param pin
+     * @param state
+     * @param details map
      */
-    void slotExportOnRingEnded(const QString& accountID, int status, const QString& pin);
+    void slotDeviceAuthStateChanged(const QString& accountID,
+                                    int state,
+                                    const MapStringString& details);
 
     /**
      * @param accountId
@@ -284,11 +286,12 @@ AccountModel::setAlias(const QString& accountId, const QString& alias, bool save
     accountInfo.profileInfo.alias = alias;
 
     if (save)
-        ConfigurationManager::instance().updateProfile(accountId,
-                                                       alias,
-                                                       "",
-                                                       "",
-                                                       5);// flag out of range to avoid updating avatar
+        ConfigurationManager::instance()
+            .updateProfile(accountId,
+                           alias,
+                           "",
+                           "",
+                           5); // flag out of range to avoid updating avatar
     Q_EMIT profileUpdated(accountId);
 }
 
@@ -325,9 +328,30 @@ AccountModel::exportToFile(const QString& accountId,
 }
 
 bool
-AccountModel::exportOnRing(const QString& accountId, const QString& password) const
+AccountModel::provideAccountAuthentication(const QString& accountId,
+                                           const QString& credentialsFromUser) const
 {
-    return ConfigurationManager::instance().exportOnRing(accountId, password);
+    return ConfigurationManager::instance().provideAccountAuthentication(accountId,
+                                                                         credentialsFromUser,
+                                                                         "password");
+}
+
+int32_t
+AccountModel::addDevice(const QString& accountId, const QString& token) const
+{
+    return ConfigurationManager::instance().addDevice(accountId, token);
+}
+
+bool
+AccountModel::confirmAddDevice(const QString& accountId, uint32_t operationId) const
+{
+    return ConfigurationManager::instance().confirmAddDevice(accountId, operationId);
+}
+
+bool
+AccountModel::cancelAddDevice(const QString& accountId, uint32_t operationId) const
+{
+    return ConfigurationManager::instance().cancelAddDevice(accountId, operationId);
 }
 
 void
@@ -405,9 +429,9 @@ AccountModelPimpl::AccountModelPimpl(AccountModel& linked,
             this,
             &AccountModelPimpl::slotVolatileAccountDetailsChanged);
     connect(&callbacksHandler,
-            &CallbacksHandler::exportOnRingEnded,
-            this,
-            &AccountModelPimpl::slotExportOnRingEnded);
+            &CallbacksHandler::deviceAuthStateChanged,
+            &linked,
+            &AccountModel::deviceAuthStateChanged);
     connect(&callbacksHandler,
             &CallbacksHandler::nameRegistrationEnded,
             this,
@@ -596,23 +620,13 @@ AccountModelPimpl::slotVolatileAccountDetailsChanged(const QString& accountId,
 }
 
 void
-AccountModelPimpl::slotExportOnRingEnded(const QString& accountID, int status, const QString& pin)
+AccountModelPimpl::slotDeviceAuthStateChanged(const QString& accountId,
+                                              int state,
+                                              const MapStringString& details)
 {
-    account::ExportOnRingStatus convertedStatus = account::ExportOnRingStatus::INVALID;
-    switch (status) {
-    case 0:
-        convertedStatus = account::ExportOnRingStatus::SUCCESS;
-        break;
-    case 1:
-        convertedStatus = account::ExportOnRingStatus::WRONG_PASSWORD;
-        break;
-    case 2:
-        convertedStatus = account::ExportOnRingStatus::NETWORK_ERROR;
-        break;
-    default:
-        break;
-    }
-    Q_EMIT linked.exportOnRingEnded(accountID, convertedStatus, pin);
+    // implement business logic here
+    // can be bypassed with a signal to signal
+    Q_EMIT linked.deviceAuthStateChanged(accountId, state, details);
 }
 
 void
@@ -1042,32 +1056,47 @@ account::ConfProperties_t::toDetails() const
 
 QString
 AccountModel::createNewAccount(profile::Type type,
+                               const MapStringString& config,
                                const QString& displayName,
                                const QString& archivePath,
                                const QString& password,
                                const QString& pin,
-                               const QString& uri,
-                               const MapStringString& config)
+                               const QString& uri)
 {
+    // Get the template for the account type to prefill the details
     MapStringString details = type == profile::Type::SIP
                                   ? ConfigurationManager::instance().getAccountTemplate("SIP")
                                   : ConfigurationManager::instance().getAccountTemplate("RING");
-    using namespace libjami::Account;
-    details[ConfProperties::TYPE] = type == profile::Type::SIP ? "SIP" : "RING";
-    details[ConfProperties::DISPLAYNAME] = displayName;
-    details[ConfProperties::ALIAS] = displayName;
-    details[ConfProperties::UPNP_ENABLED] = "true";
-    details[ConfProperties::ARCHIVE_PASSWORD] = password;
-    details[ConfProperties::ARCHIVE_PIN] = pin;
-    details[ConfProperties::ARCHIVE_PATH] = archivePath;
-    if (type == profile::Type::SIP)
-        details[ConfProperties::USERNAME] = uri;
+
+    // Add the supplied config to the details
     if (!config.isEmpty()) {
         for (MapStringString::const_iterator it = config.begin(); it != config.end(); it++) {
             details[it.key()] = it.value();
         }
     }
 
+    using namespace libjami::Account;
+
+    // Add the rest of the details if we are not creating an ephemeral account for linking
+    // in which case the ARCHIVE_URL was set to "jami-auth" or the MANAGER_URI was set to
+    // the account manager URI in the case of a remote account manager connection
+    if (details[ConfProperties::ARCHIVE_URL].isEmpty()
+        && details[ConfProperties::MANAGER_URI].isEmpty()) {
+        details[ConfProperties::TYPE] = type == profile::Type::SIP ? "SIP" : "RING";
+        details[ConfProperties::DISPLAYNAME] = displayName;
+        details[ConfProperties::ALIAS] = displayName;
+        details[ConfProperties::UPNP_ENABLED] = "true";
+        details[ConfProperties::ARCHIVE_PASSWORD] = password;
+        details[ConfProperties::ARCHIVE_PIN] = pin;
+        details[ConfProperties::ARCHIVE_PATH] = archivePath;
+
+        // Override the username with the provided URI if it's a SIP account
+        if (type == profile::Type::SIP) {
+            details[ConfProperties::USERNAME] = uri;
+        }
+    }
+
+    // Actually add the account and return the account ID
     QString accountId = ConfigurationManager::instance().addAccount(details);
     return accountId;
 }
@@ -1078,20 +1107,24 @@ AccountModel::connectToAccountManager(const QString& username,
                                       const QString& serverUri,
                                       const MapStringString& config)
 {
-    MapStringString details = ConfigurationManager::instance().getAccountTemplate("RING");
+    MapStringString details = config;
     using namespace libjami::Account;
     details[ConfProperties::TYPE] = "RING";
     details[ConfProperties::MANAGER_URI] = serverUri;
     details[ConfProperties::MANAGER_USERNAME] = username;
     details[ConfProperties::ARCHIVE_PASSWORD] = password;
-    if (!config.isEmpty()) {
-        for (MapStringString::const_iterator it = config.begin(); it != config.end(); it++) {
-            details[it.key()] = it.value();
-        }
-    }
+    return createNewAccount(profile::Type::JAMI, details);
+}
 
-    QString accountId = ConfigurationManager::instance().addAccount(details);
-    return accountId;
+QString
+AccountModel::createDeviceImportAccount()
+{
+    // auto details = ConfigurationManager::instance().getAccountTemplate("RING");
+    MapStringString details;
+    using namespace libjami::Account;
+    details[ConfProperties::TYPE] = "RING";
+    details[ConfProperties::ARCHIVE_URL] = "jami-auth";
+    return createNewAccount(profile::Type::JAMI, details);
 }
 
 void
