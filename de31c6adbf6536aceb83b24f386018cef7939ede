@@ -182,6 +182,30 @@
       },
       "revId": "de31c6adbf6536aceb83b24f386018cef7939ede",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28fb28af_fffab12d",
+        "filename": "src/libclient/interaction.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-01-17T17:21:19Z",
+      "side": 1,
+      "message": "I changed it to \"Group conversation created\" for now. \"Private group conversation created\" is a bit long and potentially confusing given that it\u0027s not possible to create public conversations yet. Even if it were possible, it\u0027s not clear that the distinction between private and public group is really relevant in the context of this message, whose main purpose is to indicate that the conversation was successfully created (but we could revisit this point in the future once the feature is implemented).",
+      "parentUuid": "7401e316_057a1648",
+      "range": {
+        "startLine": 90,
+        "startChar": 32,
+        "endLine": 90,
+        "endChar": 39
+      },
+      "revId": "de31c6adbf6536aceb83b24f386018cef7939ede",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
