@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fced9df_1b7fd84e",
+        "filename": "extras/scripts/install.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-01-17T19:19:18Z",
+      "side": 1,
+      "message": "What\u0027s the expected behavior if we build (via `build.py`) with the `--enable-crash-reports` option and then rebuild without? If we want the second build to not have crash reports enabled, then I think we need to set `-DENABLE_CRASHREPORTS\u003dOFF` here when `enable_crashreports` is false (and similarly in `build-windows.py`).",
+      "range": {
+        "startLine": 221,
+        "startChar": 25,
+        "endLine": 221,
+        "endChar": 49
+      },
+      "revId": "01562703919da6f5fe9a2634a338b22dc09a9968",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
