@@ -260,10 +260,11 @@ ConversationsAdapter::onNewTrustRequest(const QString& accountId,
                               this,
                               [this, accountId, peerUri, cb](NameDirectory::LookupStatus status,
                                                              const QString& address,
-                                                             const QString& name) {
+                                                             const QString& registeredName,
+                                                             const QString& requestedName) {
                                   if (address == peerUri) {
                                       if (status == NameDirectory::LookupStatus::SUCCESS)
-                                          cb(name);
+                                          cb(registeredName);
                                       else {
                                           auto& accInfo = lrcInstance_->getAccountInfo(accountId);
                                           cb(accInfo.contactModel->bestNameForContact(peerUri));

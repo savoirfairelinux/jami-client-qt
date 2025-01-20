@@ -151,14 +151,16 @@ public Q_SLOTS:
     /**
      * Emit registeredNameFound
      * @param accountId
+     * @param requestedName the name requested
      * @param status
      * @param address
-     * @param name
+     * @param registeredName the name found, have same normalized form as requestedName
      */
     void slotRegisteredNameFound(const QString& accountId,
+                                 const QString& requestedName,
                                  int status,
                                  const QString& address,
-                                 const QString& name);
+                                 const QString& registeredName);
 
     /**
      * Emit migrationEnded
@@ -653,9 +655,10 @@ AccountModelPimpl::slotNameRegistrationEnded(const QString& accountId,
 
 void
 AccountModelPimpl::slotRegisteredNameFound(const QString& accountId,
+                                           const QString& requestedName,
                                            int status,
                                            const QString& address,
-                                           const QString& name)
+                                           const QString& registeredName)
 {
     account::LookupStatus convertedStatus = account::LookupStatus::INVALID;
     switch (status) {
@@ -674,7 +677,7 @@ AccountModelPimpl::slotRegisteredNameFound(const QString& accountId,
     default:
         break;
     }
-    Q_EMIT linked.registeredNameFound(accountId, convertedStatus, address, name);
+    Q_EMIT linked.registeredNameFound(accountId, requestedName, convertedStatus, address, registeredName);
 }
 
 void
