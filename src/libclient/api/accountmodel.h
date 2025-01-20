@@ -321,13 +321,15 @@ Q_SIGNALS:
     /**
      * Name registration has been found
      * @param accountId
+     * @param requestedName the name requested
      * @param status
-     * @param name
+     * @param registeredName the name found, have same normalized form as requestedName
      */
     void registeredNameFound(const QString& accountId,
+                             const QString& requestedName,
                              account::LookupStatus status,
                              const QString& address,
-                             const QString& name);
+                             const QString& registeredName);
 
     /**
      * Migration has finished

@@ -45,9 +45,6 @@ Loader {
     property bool fontBold: false
 
     property int echoMode: TextInput.Normal
-    property QtObject textValidator: RegularExpressionValidator {
-        id: defaultValidator
-    }
 
     property var icon
     property bool isSettings
@@ -55,6 +52,10 @@ Loader {
 
     property bool readOnly: false
     property bool isEditing: false
+
+    property QtObject textValidator: RegularExpressionValidator {
+        id: defaultValidator
+    }
 
     onStatusChanged: {
         if (status == Loader.Ready && icon)

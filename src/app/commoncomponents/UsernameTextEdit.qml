@@ -58,10 +58,6 @@ ModalTextEdit {
     infoTipText: JamiStrings.usernameToolTip
     placeholderText: JamiStrings.chooseAUsername
 
-    textValidator: RegularExpressionValidator {
-        regularExpression: /[A-Za-z0-9-]{0,32}/
-    }
-
     enum NameRegistrationState {
         BLANK,
         INVALID,
@@ -72,6 +68,11 @@ ModalTextEdit {
     property int nameRegistrationState: UsernameTextEdit.NameRegistrationState.BLANK
 
     inputIsValid: dynamicText.length === 0 || nameRegistrationState === UsernameTextEdit.NameRegistrationState.FREE
+
+    textValidator: RegularExpressionValidator {
+        // up to 32 unicode code points
+        regularExpression: /^.{0,32}$/
+    }
 
     onActiveChanged: function (active) {
         root.isActive = active;
@@ -91,8 +92,8 @@ ModalTextEdit {
         target: NameDirectory
         enabled: dynamicText.length !== 0
 
-        function onRegisteredNameFound(status, address, name) {
-            if (dynamicText === name) {
+        function onRegisteredNameFound(status, address, registeredName, requestedName) {
+            if (dynamicText === requestedName) {
                 switch (status) {
                 case NameDirectory.LookupStatus.NOT_FOUND:
                     nameRegistrationState = UsernameTextEdit.NameRegistrationState.FREE;

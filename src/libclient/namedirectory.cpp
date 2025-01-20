@@ -73,21 +73,22 @@ NameDirectoryPrivate::slotNameRegistrationEnded(const QString& accountId,
 // Registered Name found
 void
 NameDirectoryPrivate::slotRegisteredNameFound(const QString& accountId,
+                                              const QString& requestedName,
                                               int status,
                                               const QString& address,
-                                              const QString& name)
+                                              const QString& registeredName)
 {
     switch (static_cast<NameDirectory::LookupStatus>(status)) {
     case NameDirectory::LookupStatus::INVALID_NAME:
-        LC_DBG << "lookup name is INVALID: address: " << address << " name: " << name
+        LC_DBG << "lookup name is INVALID: address: " << address << " name: " << requestedName
                << " accountId: " << accountId;
         break;
     case NameDirectory::LookupStatus::NOT_FOUND:
-        LC_DBG << "lookup name NOT FOUND: address: " << address << " name: " << name
+        LC_DBG << "lookup name NOT FOUND: address: " << address << " name: " << requestedName
                << " accountId: " << accountId;
         break;
     case NameDirectory::LookupStatus::ERROR:
-        LC_DBG << "lookup name ERROR: address: " << address << " name: " << name
+        LC_DBG << "lookup name ERROR: address: " << address << " name: " << requestedName
                << " accountId: " << accountId;
         break;
     case NameDirectory::LookupStatus::SUCCESS:
@@ -96,7 +97,8 @@ NameDirectoryPrivate::slotRegisteredNameFound(const QString& accountId,
 
     Q_EMIT q_ptr->registeredNameFound(static_cast<NameDirectory::LookupStatus>(status),
                                       address,
-                                      name);
+                                      registeredName,
+                                      requestedName);
 }
 
 // Export account has ended with pin generated
