@@ -87,9 +87,9 @@ Item {
                 target: NameDirectory
                 enabled: bestName_ === uri_
 
-                function onRegisteredNameFound(status, address, name) {
+                function onRegisteredNameFound(status, address, registeredName, requestedName) {
                     if (address === uri_ && status === NameDirectory.LookupStatus.SUCCESS) {
-                        bestName_ = name;
+                        bestName_ = registeredName;
                     }
                 }
             }

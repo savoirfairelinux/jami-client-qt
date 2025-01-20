@@ -64,10 +64,6 @@ Item {
 
     property string dynamicText
 
-    property QtObject textValidator: RegularExpressionValidator {
-        regularExpression: /[A-Za-z0-9-]{0,32}/
-    }
-
     enum NameRegistrationState {
         BLANK,
         INVALID,
@@ -97,8 +93,8 @@ Item {
         target: NameDirectory
         enabled: dynamicText.length !== 0
 
-        function onRegisteredNameFound(status, address, name) {
-            if (dynamicText === name) {
+        function onRegisteredNameFound(status, address, registeredName, requestedName) {
+            if (dynamicText === requestedName) {
                 switch (status) {
                 case NameDirectory.LookupStatus.NOT_FOUND:
                     nameRegistrationState = UsernameTextEdit.NameRegistrationState.FREE;
@@ -187,7 +183,6 @@ Item {
             activeChanged(root.editMode);
         }
         onIsActiveChanged: activeChanged(isActive)
-        validator: root.textValidator
         readOnly: !root.editMode
     }
 }

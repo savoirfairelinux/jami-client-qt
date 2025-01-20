@@ -45,9 +45,6 @@ Loader {
     property bool fontBold: false
 
     property int echoMode: TextInput.Normal
-    property QtObject textValidator: RegularExpressionValidator {
-        id: defaultValidator
-    }
 
     property var icon
     property bool isSettings
@@ -140,7 +137,6 @@ Loader {
                 activeChanged(root.editMode);
             }
             onIsActiveChanged: activeChanged(isActive)
-            validator: root.textValidator
             isSettings: root.isSettings
             isSwarmDetail: root.isSwarmDetail
             readOnly: root.readOnly

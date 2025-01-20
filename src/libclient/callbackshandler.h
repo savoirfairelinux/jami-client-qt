@@ -255,13 +255,16 @@ Q_SIGNALS:
     /**
      * Name registration has been found
      * @param accountId
+     * @param requestedName the name requested
      * @param status
-     * @param name
+     * @param address
+     * @param registeredName the name found, have same normalized form as requestedName
      */
     void registeredNameFound(const QString& accountId,
+                             const QString& requestedName,
                              int status,
                              const QString& address,
-                             const QString& name);
+                             const QString& registeredName);
 
     /**
      * Migration ended
@@ -591,13 +594,16 @@ private Q_SLOTS:
     /**
      * Emit registeredNameFound
      * @param accountId
+     * @param requestedName requested name
      * @param status
-     * @param name
+     * @param address
+     * @param registeredName found name, have same normalized form as requestedName
      */
     void slotRegisteredNameFound(const QString& accountId,
+                                 const QString& requestedName,
                                  int status,
                                  const QString& address,
-                                 const QString& name);
+                                 const QString& registeredName);
 
     /**
      * emit migrationEnded
