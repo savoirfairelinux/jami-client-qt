@@ -16,6 +16,29 @@
       "message": "Can you create something similar for video previews / playback within the chat view (if necessary / useful)?\n\nAlso if the video aspect ratio of one (the same) video is different? Example: https://www.youtube.com/watch?v\u003dE-dUveGINTg",
       "revId": "5d9f645409b21c7a6051fba84cdcccf349421a04",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7d3a249_30999c61",
+        "filename": "src/app/commoncomponents/DataTransferMessageDelegate.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-01-20T18:58:22Z",
+      "side": 1,
+      "message": "Can this be deleted?",
+      "range": {
+        "startLine": 307,
+        "startChar": 12,
+        "endLine": 308,
+        "endChar": 13
+      },
+      "revId": "5d9f645409b21c7a6051fba84cdcccf349421a04",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }

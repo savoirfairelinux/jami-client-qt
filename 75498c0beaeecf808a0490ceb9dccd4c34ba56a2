@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a316c3b_279e615f",
+        "filename": "src/app/commoncomponents/DataTransferMessageDelegate.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-01-20T18:58:22Z",
+      "side": 1,
+      "message": "The color of the box should probably depend on whether we\u0027re using dark or light theme (Settings \u003e General \u003e Appearance \u003e Theme). A white box isn\u0027t visible when using the latter.",
+      "range": {
+        "startLine": 425,
+        "startChar": 28,
+        "endLine": 425,
+        "endChar": 91
+      },
+      "revId": "75498c0beaeecf808a0490ceb9dccd4c34ba56a2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
