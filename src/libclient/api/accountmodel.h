@@ -321,10 +321,12 @@ Q_SIGNALS:
     /**
      * Name registration has been found
      * @param accountId
+     * @param requestedName
      * @param status
      * @param name
      */
     void registeredNameFound(const QString& accountId,
+                             const QString& requestedName,
                              account::LookupStatus status,
                              const QString& address,
                              const QString& name);

@@ -151,11 +151,13 @@ public Q_SLOTS:
     /**
      * Emit registeredNameFound
      * @param accountId
+     * @param requestedName
      * @param status
      * @param address
      * @param name
      */
     void slotRegisteredNameFound(const QString& accountId,
+                                 const QString& requestedName,
                                  int status,
                                  const QString& address,
                                  const QString& name);
@@ -653,6 +655,7 @@ AccountModelPimpl::slotNameRegistrationEnded(const QString& accountId,
 
 void
 AccountModelPimpl::slotRegisteredNameFound(const QString& accountId,
+                                           const QString& requestedName,
                                            int status,
                                            const QString& address,
                                            const QString& name)
@@ -674,7 +677,7 @@ AccountModelPimpl::slotRegisteredNameFound(const QString& accountId,
     default:
         break;
     }
-    Q_EMIT linked.registeredNameFound(accountId, convertedStatus, address, name);
+    Q_EMIT linked.registeredNameFound(accountId, requestedName, convertedStatus, address, name);
 }
 
 void

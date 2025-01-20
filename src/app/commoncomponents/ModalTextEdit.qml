@@ -140,7 +140,6 @@ Loader {
                 activeChanged(root.editMode);
             }
             onIsActiveChanged: activeChanged(isActive)
-            validator: root.textValidator
             isSettings: root.isSettings
             isSwarmDetail: root.isSwarmDetail
             readOnly: root.readOnly

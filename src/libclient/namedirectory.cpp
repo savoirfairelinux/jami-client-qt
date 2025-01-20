@@ -73,6 +73,7 @@ NameDirectoryPrivate::slotNameRegistrationEnded(const QString& accountId,
 // Registered Name found
 void
 NameDirectoryPrivate::slotRegisteredNameFound(const QString& accountId,
+                                              const QString& requestedName,
                                               int status,
                                               const QString& address,
                                               const QString& name)
@@ -96,7 +97,8 @@ NameDirectoryPrivate::slotRegisteredNameFound(const QString& accountId,
 
     Q_EMIT q_ptr->registeredNameFound(static_cast<NameDirectory::LookupStatus>(status),
                                       address,
-                                      name);
+                                      name,
+                                      requestedName);
 }
 
 // Export account has ended with pin generated
