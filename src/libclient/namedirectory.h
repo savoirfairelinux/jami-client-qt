@@ -68,7 +68,8 @@ Q_SIGNALS:
     /// Name or address lookup has completed
     void registeredNameFound(NameDirectory::LookupStatus status,
                              const QString& address,
-                             const QString& name);
+                             const QString& name,
+                             const QString& requestedName);
 
     // Export account has ended with pin generated
     void exportOnRingEnded(NameDirectory::ExportOnRingStatus status, const QString& pin);

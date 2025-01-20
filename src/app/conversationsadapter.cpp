@@ -260,7 +260,8 @@ ConversationsAdapter::onNewTrustRequest(const QString& accountId,
                               this,
                               [this, accountId, peerUri, cb](NameDirectory::LookupStatus status,
                                                              const QString& address,
-                                                             const QString& name) {
+                                                             const QString& name,
+                                                             const QString& requestedName) {
                                   if (address == peerUri) {
                                       if (status == NameDirectory::LookupStatus::SUCCESS)
                                           cb(name);

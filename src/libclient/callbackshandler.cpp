@@ -695,11 +695,12 @@ CallbacksHandler::slotNameRegistrationEnded(const QString& accountId,
 
 void
 CallbacksHandler::slotRegisteredNameFound(const QString& accountId,
+                                          const QString& requestedName,
                                           int status,
                                           const QString& address,
                                           const QString& name)
 {
-    Q_EMIT registeredNameFound(accountId, status, address, name);
+    Q_EMIT registeredNameFound(accountId, requestedName, status, address, name);
 }
 
 void

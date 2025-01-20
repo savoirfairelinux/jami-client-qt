@@ -34,6 +34,7 @@ public:
 public Q_SLOTS:
     void slotNameRegistrationEnded(const QString& accountId, int status, const QString& name);
     void slotRegisteredNameFound(const QString& accountId,
+                                 const QString& requestedName,
                                  int status,
                                  const QString& address,
                                  const QString& name);
