@@ -166,10 +166,12 @@ public:
                 }),
             exportable_callback<ConfigurationSignal::RegisteredNameFound>(
                 [this](const std::string& accountId,
+                       const std::string& requested_name,
                        int status,
                        const std::string& address,
                        const std::string& name) {
                     Q_EMIT this->registeredNameFound(QString(accountId.c_str()),
+                                                     QString(requested_name.c_str()),
                                                      status,
                                                      QString(address.c_str()),
                                                      QString(name.c_str()));
@@ -1213,6 +1215,7 @@ Q_SIGNALS: // SIGNALS
     void needsHost(const QString& accountId, const QString& conversationId);
     void nameRegistrationEnded(const QString& accountId, int status, const QString& name);
     void registeredNameFound(const QString& accountId,
+                             const QString& requestedName,
                              int status,
                              const QString& address,
                              const QString& name);

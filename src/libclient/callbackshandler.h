@@ -255,10 +255,12 @@ Q_SIGNALS:
     /**
      * Name registration has been found
      * @param accountId
+     * @param requestedName
      * @param status
      * @param name
      */
     void registeredNameFound(const QString& accountId,
+                             const QString& requestedName,
                              int status,
                              const QString& address,
                              const QString& name);
@@ -591,10 +593,12 @@ private Q_SLOTS:
     /**
      * Emit registeredNameFound
      * @param accountId
+     * @param rwquestedName
      * @param status
      * @param name
      */
     void slotRegisteredNameFound(const QString& accountId,
+                                 const QString& requestedName,
                                  int status,
                                  const QString& address,
                                  const QString& name);

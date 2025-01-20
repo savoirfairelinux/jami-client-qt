@@ -164,11 +164,13 @@ public Q_SLOTS:
     /**
      * Listen CallbacksHandler when a registeredName is found
      * @param accountId account linked
+     * @param requested_name
      * @param status (0 = SUCCESS, 1 = Not found, 2 = Network error)
      * @param uri of the contact found
      * @param registeredName of the contact found
      */
     void slotRegisteredNameFound(const QString& accountId,
+                                 const QString& requested_name,
                                  int status,
                                  const QString& uri,
                                  const QString& registeredName);
@@ -947,6 +949,7 @@ ContactModelPimpl::addToContacts(const QString& contactUri,
 
 void
 ContactModelPimpl::slotRegisteredNameFound(const QString& accountId,
+                                           const QString& requestedName,
                                            int status,
                                            const QString& uri,
                                            const QString& registeredName)
@@ -963,7 +966,7 @@ ContactModelPimpl::slotRegisteredNameFound(const QString& accountId,
             searchResult.clear();
         } else {
             nonContactLookup_[uri] = foundName;
-            if ((searchQuery != uri && searchQuery != registeredName) || searchQuery.isEmpty()) {
+            if ((searchQuery != uri && searchQuery != requestedName) || searchQuery.isEmpty()) {
                 // we are notified that a previous lookup ended
                 return;
             }
@@ -979,7 +982,7 @@ ContactModelPimpl::slotRegisteredNameFound(const QString& accountId,
                 return;
             }
         }
-        if ((searchQuery != uri && searchQuery != registeredName) || searchQuery.isEmpty()) {
+        if ((searchQuery != uri && searchQuery != requestedName) || searchQuery.isEmpty()) {
             // we are notified that a previous lookup ended
             return;
         }
