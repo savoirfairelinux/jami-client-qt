@@ -97,8 +97,8 @@ Item {
         target: NameDirectory
         enabled: dynamicText.length !== 0
 
-        function onRegisteredNameFound(status, address, name) {
-            if (dynamicText === name) {
+        function onRegisteredNameFound(status, address, name, requestedName) {
+            if (dynamicText === requestedName) {
                 switch (status) {
                 case NameDirectory.LookupStatus.NOT_FOUND:
                     nameRegistrationState = UsernameTextEdit.NameRegistrationState.FREE;
