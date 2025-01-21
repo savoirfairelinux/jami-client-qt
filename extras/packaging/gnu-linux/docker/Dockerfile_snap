@@ -44,12 +44,6 @@ RUN curl -L $(curl -H 'X-Ubuntu-Series: 16' 'https://api.snapcraft.io/api/v1/sna
 RUN mkdir -p /snap/snapcraft
 RUN unsquashfs -d /snap/snapcraft/current snapcraft.snap
 
-# Fix Python3 installation: Make sure we use the interpreter from
-# the snapcraft snap:
-RUN unlink /snap/snapcraft/current/usr/bin/python3
-RUN ln -s /snap/snapcraft/current/usr/bin/python3.* /snap/snapcraft/current/usr/bin/python3
-RUN echo /snap/snapcraft/current/lib/python3.*/site-packages >> /snap/snapcraft/current/usr/lib/python3/dist-packages/site-packages.pth
-
 # Create a snapcraft runner (TODO: move version detection to the core of
 # snapcraft).
 RUN mkdir -p /snap/bin
