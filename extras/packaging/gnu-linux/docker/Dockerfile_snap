@@ -1,10 +1,12 @@
-ARG RISK=edge
+# This file is based on the examples at the following links:
+#   https://snapcraft.io/docs/build-on-docker
+#   https://github.com/canonical/snapcraft/issues/5079#issuecomment-2414199613
+
 ARG UBUNTU=focal
 
-FROM ubuntu:$UBUNTU as builder
-ARG RISK
+FROM ubuntu:$UBUNTU AS builder
 ARG UBUNTU
-RUN echo "Building snapcraft:$RISK in ubuntu:$UBUNTU"
+RUN echo "Building snapcraft in ubuntu:$UBUNTU"
 
 # Grab dependencies
 RUN apt-get update
@@ -14,33 +16,23 @@ RUN apt-get install --yes \
       jq \
       squashfs-tools
 
-# Grab the core snap (for backwards compatibility) from the stable channel and
-# unpack it in the proper place.
-RUN curl -L $(curl -H 'X-Ubuntu-Series: 16' 'https://api.snapcraft.io/api/v1/snaps/details/core' | jq '.download_url' -r) --output core.snap
-RUN mkdir -p /snap/core
-RUN unsquashfs -d /snap/core/current core.snap
-
-# Grab the core22 snap (which snapcraft uses as a base) from the stable channel
-# and unpack it in the proper place.
-RUN curl -L $(curl -H 'X-Ubuntu-Series: 16' 'https://api.snapcraft.io/api/v1/snaps/details/core22?channel='$RISK | jq '.download_url' -r) --output core22.snap
+# Download and unpack the core22 snap
+RUN curl -L $(curl -H 'X-Ubuntu-Series: 16' 'https://api.snapcraft.io/api/v1/snaps/details/core22' | jq '.download_url' -r) --output core22.snap
 RUN mkdir -p /snap/core22
 RUN unsquashfs -d /snap/core22/current core22.snap
 
-# Grab the core20 snap (which snapcraft uses as a base) from the stable channel
-# and unpack it in the proper place.
+# Download and unpack the core20 snap
 RUN curl -L $(curl -H 'X-Ubuntu-Series: 16' 'https://api.snapcraft.io/api/v1/snaps/details/core20' | jq '.download_url' -r) --output core20.snap
 RUN mkdir -p /snap/core20
 RUN unsquashfs -d /snap/core20/current core20.snap
 
-# Grab the core20 snap (which snapcraft uses as a base) from the stable channel
-# and unpack it in the proper place.
-RUN curl -L $(curl -H 'X-Ubuntu-Series: 16' 'https://api.snapcraft.io/api/v1/snaps/details/lxd' | jq '.download_url' -r) --output lxd.snap
-RUN mkdir -p /snap/lxd
-RUN unsquashfs -d /snap/lxd/current lxd.snap
+# Download and unpack the core24 snap
+RUN curl -L $(curl -H 'X-Ubuntu-Series: 16' 'https://api.snapcraft.io/api/v1/snaps/details/core24' | jq '.download_url' -r) --output core24.snap
+RUN mkdir -p /snap/core24
+RUN unsquashfs -d /snap/core24/current core24.snap
 
-# Grab the snapcraft snap from the $RISK channel and unpack it in the proper
-# place.
-RUN curl -L $(curl -H 'X-Ubuntu-Series: 16' 'https://api.snapcraft.io/api/v1/snaps/details/snapcraft?channel='$RISK | jq '.download_url' -r) --output snapcraft.snap
+# Download and unpack snapcraft
+RUN curl -L $(curl -H 'X-Ubuntu-Series: 16' 'https://api.snapcraft.io/api/v1/snaps/details/snapcraft' | jq '.download_url' -r) --output snapcraft.snap
 RUN mkdir -p /snap/snapcraft
 RUN unsquashfs -d /snap/snapcraft/current snapcraft.snap
 
@@ -50,21 +42,21 @@ RUN unlink /snap/snapcraft/current/usr/bin/python3
 RUN ln -s /snap/snapcraft/current/usr/bin/python3.* /snap/snapcraft/current/usr/bin/python3
 RUN echo /snap/snapcraft/current/lib/python3.*/site-packages >> /snap/snapcraft/current/usr/lib/python3/dist-packages/site-packages.pth
 
-# Create a snapcraft runner (TODO: move version detection to the core of
-# snapcraft).
+# Create a snapcraft runner
 RUN mkdir -p /snap/bin
 RUN echo "#!/bin/sh" > /snap/bin/snapcraft
 RUN snap_version="$(awk '/^version:/{print $2}' /snap/snapcraft/current/meta/snap.yaml | tr -d \')" && echo "export SNAP_VERSION=\"$snap_version\"" >> /snap/bin/snapcraft
-RUN echo 'exec "$SNAP/usr/bin/python3" "$SNAP/bin/snapcraft" "$@"' >> /snap/bin/snapcraft
+RUN echo 'exec "/snap/snapcraft/current/bin/python3" -m snapcraft "$@"' >> /snap/bin/snapcraft
 RUN chmod +x /snap/bin/snapcraft
+
 
 # Multi-stage build, only need the snaps from the builder. Copy them one at a
 # time so they can be cached.
 FROM ubuntu:$UBUNTU
-COPY --from=builder /snap/core /snap/core
-COPY --from=builder /snap/core22 /snap/core22
+
 COPY --from=builder /snap/core20 /snap/core20
-COPY --from=builder /snap/lxd /snap/lxd
+COPY --from=builder /snap/core22 /snap/core22
+COPY --from=builder /snap/core24 /snap/core24
 COPY --from=builder /snap/snapcraft /snap/snapcraft
 COPY --from=builder /snap/bin/snapcraft /snap/bin/snapcraft
 
