@@ -41,7 +41,7 @@ BaseModalDialog {
 
     button1.text: JamiStrings.chooseAUsername
     button1Role: DialogButtonBox.NoRole
-    button2.text: JamiStrings.joinJami
+    button2.text: JamiStrings.joinJami.replace("{}", JamiStrings.appTitle)
     button2Role: DialogButtonBox.YesRole
     button2.objectName: "joinButton"
     button2.onClicked: {

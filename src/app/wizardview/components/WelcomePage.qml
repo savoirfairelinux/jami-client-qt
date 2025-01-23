@@ -168,7 +168,7 @@ Rectangle {
             Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
             preferredWidth: root.buttonSize
 
-            text: JamiStrings.joinJami
+            text: JamiStrings.joinJami.replace("{}", JamiStrings.appTitle)
             toolTipText: JamiStrings.createNewJamiAccount
 
             KeyNavigation.tab: alreadyHaveAccount
