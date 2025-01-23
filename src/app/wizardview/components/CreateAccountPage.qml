@@ -107,7 +107,7 @@ Rectangle {
                 Text {
                     id: joinJami
 
-                    text: root.isRendezVous ? JamiStrings.createNewRV : JamiStrings.joinJami
+                    text: root.isRendezVous ? JamiStrings.createNewRV : JamiStrings.joinJami.replace("{}", JamiStrings.appTitle)
                     Layout.alignment: Qt.AlignCenter
                     Layout.topMargin: JamiTheme.preferredMarginSize
                     Layout.preferredWidth: Math.min(360, root.width - JamiTheme.preferredMarginSize * 2)
@@ -286,7 +286,7 @@ Rectangle {
 
                     font.capitalization: Font.AllUppercase
                     color: enabled ? JamiTheme.buttonTintedBlue : JamiTheme.buttonTintedGrey
-                    text: !enabled ? JamiStrings.creatingAccount : root.isRendezVous ? JamiStrings.chooseName : JamiStrings.joinJami
+                    text: !enabled ? JamiStrings.creatingAccount : root.isRendezVous ? JamiStrings.chooseName : JamiStrings.joinJami.replace("{}", JamiStrings.appTitle)
                     enabled: usernameEdit.nameRegistrationState === UsernameTextEdit.NameRegistrationState.FREE || usernameEdit.nameRegistrationState === UsernameTextEdit.NameRegistrationState.BLANK
 
                     KeyNavigation.tab: encryptButton
