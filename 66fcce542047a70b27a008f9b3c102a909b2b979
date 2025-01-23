@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2eeb957a_ffdac795",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1105
+      },
+      "writtenOn": "2025-01-23T02:59:58Z",
+      "side": 1,
+      "message": "This should be discussed with the project team, as I\u0027m not certain if these strings were collectively chosen by the entire project team on Jami Web during their initial implementation. They appear to be consistent across all other clients.",
+      "revId": "66fcce542047a70b27a008f9b3c102a909b2b979",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
