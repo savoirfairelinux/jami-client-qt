@@ -382,7 +382,7 @@ Item {
     property string invalidUsername: qsTr("Invalid username")
     property string nameAlreadyTaken: qsTr("Name already taken")
     property string usernameAlreadyTaken: qsTr("Username already taken")
-    property string joinJamiNoPassword: qsTr("Do you want to join Jami without a username?\nIf yes, only a randomly generated 40-character identifier will be assigned to this account.")
+    property string joinJamiNoPassword: qsTr("Do you want to create an account without a username?\nIf yes, only a randomly generated 40-character identifier will be assigned to this account.")
     property string usernameToolTip: qsTr("- 32 characters maximum\n- Alphabetical characters (A to Z and a to z)\n- Numeric characters (0 to 9)\n- Special characters allowed: dash (-)")
 
     // Good to know
@@ -689,12 +689,12 @@ Item {
     property string addSIPAccount: qsTr("Configure a SIP account")
     property string errorCreateAccount: qsTr("An error occurred while creating the account. Check credentials and try again.")
     property string createNewRV: qsTr("Create a rendezvous point")
-    property string joinJami: qsTr("Join Jami")
+    property string joinJami: qsTr("Need an account?")
     property string createNewJamiAccount: qsTr("Create new Jami account")
     property string createNewSipAccount: qsTr("Create new SIP account")
     property string aboutJami: qsTr("About Jami")
     property string introductionJami: qsTr("Share freely and privately with Jami")
-    property string alreadyHaveAccount: qsTr("I already have an account")
+    property string alreadyHaveAccount: qsTr("Already have an account?")
     property string useExistingAccount: qsTr("Use existing Jami account")
     property string welcomeToJami: qsTr("Welcome to Jami")
 
