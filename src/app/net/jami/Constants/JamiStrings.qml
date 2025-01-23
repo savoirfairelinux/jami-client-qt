@@ -39,8 +39,8 @@ Item {
     property string migrateConversation: qsTr("Migrate conversation")
 
     // DaemonReconnectWindow
-    property string reconnectWarn: qsTr("An error occurred while attempting to reconnect to the Jami daemon (jamid).\nJami will now quit.")
-    property string reconnectAttempt: qsTr("Attempting to reconnect to the Jami daemon (jamid)…")
+    property string reconnectWarn: qsTr("An error occurred while reconnecting to the Jami daemon (jamid).\nThe application will now exit.")
+    property string reconnectAttempt: qsTr("Reconnection of the Jami daemon (jamid) is in progress. Please wait…")
 
     // AboutPopUp
     property string buildID: qsTr("Build ID")
@@ -381,7 +381,7 @@ Item {
     property string invalidUsername: qsTr("Invalid username")
     property string nameAlreadyTaken: qsTr("Name already taken")
     property string usernameAlreadyTaken: qsTr("Username already taken")
-    property string joinJamiNoPassword: qsTr("Do you want to join Jami without a username?\nIf yes, only a randomly generated 40-character identifier will be assigned to this account.")
+    property string joinJamiNoPassword: qsTr("Do you want to create a Jami account without a username?\nIf yes, only a randomly generated 40-character identifier will be assigned to the account.")
     property string usernameToolTip: qsTr("- 32 characters maximum\n- Alphabetical characters (A to Z and a to z)\n- Numeric characters (0 to 9)\n- Special characters allowed: dash (-)")
 
     // Good to know
@@ -455,7 +455,7 @@ Item {
     property string removeDevice: qsTr("Remove device")
     property string confirmRemoveDevice: qsTr("Do you want to unlink the selected device? To continue, enter account password and click Unlink.")
     property string yourPinIs: qsTr("Account PIN code is:")
-    property string linkDeviceNetWorkError: qsTr("A network error occurred while linking device.\nPlease try again later.")
+    property string linkDeviceNetWorkError: qsTr("A network error occurred while linking the device.\nPlease try again later.")
 
     // BannedContacts
     property string reinstateContact: qsTr("Unblock contact")
@@ -463,8 +463,8 @@ Item {
     property string blockedContacts: qsTr("Blocked contacts")
 
     // DeleteAccountDialog
-    property string confirmDeleteAccount: qsTr("Do you want to delete this account? To continue, click Delete.")
-    property string deleteAccountInfos: qsTr("If your account has not been backed up or added to another device, your account and registered username will be IRREVOCABLY LOST.")
+    property string confirmDeleteAccount: qsTr("Do you want to delete the account? To continue, click Delete.")
+    property string deleteAccountInfos: qsTr("If the account has not been backed up or added to another device, the account and registered username will be IRREVOCABLY LOST.")
 
     // DeviceItemDelegate
     property string saveNewDeviceName: qsTr("Save")
@@ -521,7 +521,7 @@ Item {
     property string enableAutoUpdates: qsTr("Enable/Disable automatic updates")
     property string updatesTitle: qsTr("Updates")
     property string updateDialogTitle: qsTr("Update")
-    property string updateFound: qsTr("A new version of Jami was found.\nDo you want to update Jami now?\nTo continue, click Update.")
+    property string updateFound: qsTr("A new version of Jami is available.\nDo you want to update Jami now?\nTo continue, click Update.")
     property string updateNotFound: qsTr("No new version of Jami was found")
     property string updateCheckError: qsTr("An error occurred while checking for a new version.")
     property string updateNetworkError: qsTr("A network error occurred.")
@@ -592,7 +592,7 @@ Item {
     property string importPasswordDesc: qsTr("Fill if the account is password-encrypted.")
 
     // LinkDevicesDialog
-    property string pinTimerInfos: qsTr("The PIN code and the account password should be entered in your device within 10 minutes.")
+    property string pinTimerInfos: qsTr("The PIN code and the account password should be entered in the device within 10 minutes.")
     property string close: qsTr("Close")
     property string enterAccountPassword: qsTr("Enter account password")
     property string enterPasswordPinCode: qsTr("This account is password encrypted, enter the password to generate a PIN code.")
@@ -630,8 +630,8 @@ Item {
     property string installManually: qsTr("Install manually")
     property string installMannuallyDescription: qsTr("Install an extension directly from your device.")
     property string extensionStoreTitle: qsTr("Available")
-    property string extensionStoreNotAvailable: qsTr("The Jami Extension Store is not currently available. Please try again later.")
-    property string storeNotSupportedPlatform: qsTr("There are no extensions currently available in the Jami Extension Store for the platform in use. Please check again later.")
+    property string extensionStoreNotAvailable: qsTr("The Jami Extension Store is currently unavailable. Please try again later.")
+    property string storeNotSupportedPlatform: qsTr("There are no extensions for the platform to display in the Jami Extension Store. Please check again later.")
     property string extensionPreferences: qsTr("Preferences")
     property string installationFailed: qsTr("Installation error")
     property string extensionInstallationFailed: qsTr("An error occurred while installing the extension.")
@@ -688,7 +688,7 @@ Item {
     property string addSIPAccount: qsTr("Configure a SIP account")
     property string errorCreateAccount: qsTr("An error occurred while creating the account. Check credentials and try again.")
     property string createNewRV: qsTr("Create a rendezvous point")
-    property string joinJami: qsTr("Join Jami")
+    property string joinJami: qsTr("Create Jami account")
     property string createNewJamiAccount: qsTr("Create new Jami account")
     property string createNewSipAccount: qsTr("Create new SIP account")
     property string aboutJami: qsTr("About Jami")
@@ -742,7 +742,7 @@ Item {
     property string removeDefaultModerator: qsTr("Remove default moderator")
 
     // Daemon reconnection
-    property string reconnectDaemon: qsTr("Attempting to reconnect to the Jami daemon (jamid)…")
+    property string reconnectDaemon: qsTr("Reconnection of the Jami daemon (jamid) is in progress. Please wait…")
     property string reconnectionFailed: qsTr("An error occurred while reconnecting to the Jami daemon (jamid).\nThe application will now exit.")
 
     // Message view
@@ -875,7 +875,7 @@ Item {
     // Donation campaign
     property string donationTipBoxText: qsTr("Free and private sharing. <a href=\"https://jami.net/whydonate/\">Donate</a> to expand it.")
     property string donation: qsTr("Donate")
-    property string donationText: qsTr("If you enjoy using Jami and believe in our mission, would you make a donation?")
+    property string donationText: qsTr("If you enjoy using Jami and believe in our mission, do you want to make a donation?")
     property string notNow: qsTr("Not now")
     property string enableDonation: qsTr("Enable donation campaign")
 
