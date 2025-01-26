@@ -193,6 +193,7 @@ JamiListView {
     verticalLayoutDirection: ListView.BottomToTop
     boundsBehavior: Flickable.StopAtBounds
     currentIndex: -1
+    flickDeceleration: 0.1
 
     model: MessagesAdapter.messageListModel
     delegate: DelegateChooser {
