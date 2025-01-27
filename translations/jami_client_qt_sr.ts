@@ -66,7 +66,7 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="140"/>
         <source>Private</source>
-        <translation>Приватни</translation>
+        <translation>Privatno</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="142"/>
@@ -387,12 +387,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="114"/>
         <source>Private key</source>
-        <translation>Приватни кључ</translation>
+        <translation>Privatni ključ</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="115"/>
         <source>Private key password</source>
-        <translation>Лозинка са приватном кључем</translation>
+        <translation>Lozinka privatnog ključa</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="116"/>
@@ -412,7 +412,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="120"/>
         <source>Select a private key</source>
-        <translation>Изаберете приватни кључ</translation>
+        <translation>Izaberite privatni ključ</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="121"/>
@@ -961,7 +961,7 @@ Profil se može promeniti u svakom trenutku iz podešavanja naloga.</translation
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="618"/>
         <source>Image Files (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)</source>
-        <translation type="unfinished"/>
+        <translation>Datoteke slika (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="630"/>
@@ -1182,7 +1182,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="690"/>
         <source>Share freely and privately with Jami</source>
-        <translation>Раделите слободно и приватно са Џамијем</translation>
+        <translation>Delite slobodno i privatno sa Jamijem</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="716"/>
@@ -1268,7 +1268,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="804"/>
         <source>Mute conversation</source>
-        <translation>Умоли разговор</translation>
+        <translation>Utišaj razgovor</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="807"/>
@@ -1353,12 +1353,12 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="217"/>
         <source>Jami archive files (*.gz)</source>
-        <translation>ДАКИВИ ДАКИВИЈА</translation>
+        <translation>Jami arhivske datoteke (*.gz)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="218"/>
         <source>All files (*)</source>
-        <translation>Сви датотеки (*)</translation>
+        <translation>Sve datoteke (*)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="221"/>
@@ -1430,7 +1430,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="236"/>
         <source>Details</source>
-        <translation>Детали</translation>
+        <translation>Detalji</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="181"/>
@@ -1633,7 +1633,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="270"/>
         <source>Conversation details</source>
-        <translation>Детаљи разговора</translation>
+        <translation>Detalji razgovora</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="271"/>
@@ -1960,7 +1960,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="353"/>
         <source>Files</source>
-        <translation>Файлови</translation>
+        <translation>Datoteke</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="354"/>
@@ -2573,7 +2573,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="499"/>
         <source>Automatically accept incoming files</source>
-        <translation>Автоматски прихватају долазне датотеке</translation>
+        <translation>Automatski prihvati dolazne datoteke</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="501"/>
@@ -2998,7 +2998,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="645"/>
         <source>Plugin Files (*.jpl)</source>
-        <translation>Плускине Файлови (*.jpl)</translation>
+        <translation>Datoteke dodataka (*.jpl)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="646"/>
@@ -3527,7 +3527,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="97"/>
         <source>Search messages/files</source>
-        <translation>Пошуке порука/файлове</translation>
+        <translation>Pretražite poruke/datoteke</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="101"/>

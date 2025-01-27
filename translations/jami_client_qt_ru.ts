@@ -3805,7 +3805,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="265"/>
         <source>%1 left</source>
-        <translation>%1 выходит</translation>
+        <translation>%1 покидает беседу</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="267"/>
@@ -4374,7 +4374,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="155"/>
         <source>Yes, you can link your account from the settings, or you can import your backup on another device.</source>
-        <translation>Да, вы можете сключить свой аккаунт с настроек, или вы можете импортировать резервную копию на другое устройство.</translation>
+        <translation>Да, вы можете привязать свой аккаунт в настройках или импортировать резервную копию на другое устройство.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="127"/>

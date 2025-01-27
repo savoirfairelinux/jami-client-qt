@@ -3421,7 +3421,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="817"/>
         <source>Administrator</source>
-        <translation type="unfinished"/>
+        <translation>管理員</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="818"/>

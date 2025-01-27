@@ -840,7 +840,7 @@ A névjegy bármikor módosítható a Fiókbeállításaiból.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="463"/>
         <source>If your account has not been backed up or added to another device, your account and registered username will be IRREVOCABLY LOST.</source>
-        <translation>Ha fiókjáról nem készített biztonsági másolatot, vagy nem adta hozzá egy másik eszközhöz, akkor fiókját és regisztrált felhasználónevét visszavonhatatlanul elveszíti.</translation>
+        <translation>Ha fiókjáról nem készített biztonsági másolatot, vagy nem adta hozzá egy másik eszközhöz, akkor fiókját és bejegyzett felhasználónevét visszavonhatatlanul elveszíti.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="474"/>
@@ -1698,7 +1698,7 @@ Kíván most frissíteni?</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="284"/>
         <source>Select sharing method</source>
-        <translation>Megosztási módszer kijelölése</translation>
+        <translation>Megosztási eljárás kijelölése</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="285"/>
@@ -2164,7 +2164,7 @@ Képe és beceneve bármikor megváltoztatható fiókja beállításaiban.</tran
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="417"/>
         <source>Backup successful</source>
-        <translation>Biztonsági mentés sikeres</translation>
+        <translation>A biztonsági mentés sikerült.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="418"/>
@@ -2174,7 +2174,7 @@ Képe és beceneve bármikor megváltoztatható fiókja beállításaiban.</tran
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="419"/>
         <source>Password changed successfully</source>
-        <translation>Jelszó sikeresen megváltoztatva.</translation>
+        <translation>A jelszó megváltozása sikerült.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="420"/>
@@ -2184,7 +2184,7 @@ Képe és beceneve bármikor megváltoztatható fiókja beállításaiban.</tran
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="421"/>
         <source>Password set successfully</source>
-        <translation>Jelszó sikeresen beállítva.</translation>
+        <translation>A jelszó beállítása sikerült.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="422"/>
@@ -2764,7 +2764,7 @@ Kérjük, hogy próbálja újra később.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="562"/>
         <source>Copied to clipboard!</source>
-        <translation>Vágólapra másolva!</translation>
+        <translation>A vágólapra másolva.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="563"/>
@@ -3036,7 +3036,7 @@ Kérjük, hogy próbálja újra később.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="656"/>
         <source>Information</source>
-        <translation>Kapcsolattartó adatai</translation>
+        <translation>Tájékoztatás</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="658"/>
@@ -3349,7 +3349,7 @@ Kérjük, hogy próbálja újra később.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="772"/>
         <source>Write to %1</source>
-        <translation>Írj a következő(k)nek: %1</translation>
+        <translation>Írás a következő(k)nek: %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="792"/>
@@ -3966,7 +3966,7 @@ csatlakozzon a beszélgetés összehangolásához.</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="90"/>
         <source>Method Not Allowed</source>
-        <translation>Nem megengedett módszer</translation>
+        <translation>Nem megengedett eljárás</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="91"/>
