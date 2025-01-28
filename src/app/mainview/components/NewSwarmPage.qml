@@ -91,9 +91,9 @@ DualPaneView {
 
                             PushButton {
                                 id: removeUserBtn
+                                QWKSetParentHitTestVisible{}
 
                                 preferredSize: 24
-
                                 source: JamiResources.round_close_24dp_svg
                                 toolTipText: JamiStrings.removeMember
 
