@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab0c9a8a_fc8c50fe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2025-01-28T21:12:03Z",
+      "side": 1,
+      "message": "1)If you accept calls from an unknown contact he will be (automatically) visible in the contact list? Do you still need to confirm the contact addition?\n\n2)So this patch will work for 1: 1 chat and group chat?",
+      "revId": "d519a4bd0ed1a8227105364e2c6ddeab57e13a48",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
