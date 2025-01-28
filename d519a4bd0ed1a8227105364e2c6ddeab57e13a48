@@ -16,6 +16,24 @@
       "message": "1)If you accept calls from an unknown contact he will be (automatically) visible in the contact list? Do you still need to confirm the contact addition?\n\n2)So this patch will work for 1: 1 chat and group chat?",
       "revId": "d519a4bd0ed1a8227105364e2c6ddeab57e13a48",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74f2ec31_15c0bc86",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2025-01-28T21:16:15Z",
+      "side": 1,
+      "message": "This patch only affects sending a contact request to an individual. It does not change the behavior for receiving contact requests or calls, nor does it change the interface regarding swarm chats.",
+      "parentUuid": "ab0c9a8a_fc8c50fe",
+      "revId": "d519a4bd0ed1a8227105364e2c6ddeab57e13a48",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
