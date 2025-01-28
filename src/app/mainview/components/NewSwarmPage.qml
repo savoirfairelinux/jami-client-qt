@@ -50,7 +50,7 @@ DualPaneView {
 
         anchors.fill: parent
 
-        RowLayout {
+        RowLayout { 
             id: labelsMember
             Layout.topMargin: 16
             Layout.preferredWidth: root.width
@@ -80,7 +80,7 @@ DualPaneView {
                         width: label.width + 36
                         height: label.height + 12
 
-                        RowLayout {
+                        RowLayout { 
                             anchors.centerIn: parent
 
                             Label {
@@ -90,7 +90,7 @@ DualPaneView {
                                 Layout.leftMargin: 8
                             }
 
-                            PushButton {
+                            PushButton { QWKSetParentHitTestVisible{}
                                 id: removeUserBtn
 
                                 preferredSize: 24
