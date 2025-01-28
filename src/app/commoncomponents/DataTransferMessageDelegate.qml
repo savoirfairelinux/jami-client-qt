@@ -248,8 +248,9 @@ Loader {
                         Label {
                             id: transferInfo
 
-                            width: Math.min(implicitWidth, maxMsgWidth)
                             bottomPadding: 10
+                            rightPadding: dataTransferItem.bubble.timestampItem.width
+
                             text: {
                                 var res = "";
                                 if (transferStats.totalSize !== undefined) {
