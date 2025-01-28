@@ -273,7 +273,9 @@ Rectangle {
                 }
 
                 onSendMessagesRequired: {
-                    sendMessageButtonClicked();
+                    if (text.trim()){
+                        sendMessageButtonClicked();
+                    }
                 }
 
                 property var markdownShortCut: {
