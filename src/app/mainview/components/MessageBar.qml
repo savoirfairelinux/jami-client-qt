@@ -77,6 +77,10 @@ Rectangle {
         }
     }
 
+    function isOnlyWhitespace(str) {
+       return /^\s*$/.test(str);
+    }
+
     GridLayout {
         id: colLayout
         columns: 2
@@ -273,7 +277,9 @@ Rectangle {
                 }
 
                 onSendMessagesRequired: {
-                    sendMessageButtonClicked();
+                    if (!isOnlyWhitespace(text)){
+                        sendMessageButtonClicked();
+                    }
                 }
 
                 property var markdownShortCut: {
