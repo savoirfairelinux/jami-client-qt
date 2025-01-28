@@ -388,10 +388,9 @@ SidePanelBase {
                     model: ConversationsAdapter.searchListProxyModel
 
                     delegate: SmartListItemDelegate {
-                        extraButtons.contentItem:  JamiPushButton {
+                        extraButtons.contentItem: JamiPushButton {
                             id: sendContactRequestButton
-                            QWKSetParentHitTestVisible {
-                            }
+                            QWKSetParentHitTestVisible {}
 
                             anchors.right: parent.right
                             anchors.verticalCenter: parent.verticalCenter
@@ -400,7 +399,27 @@ SidePanelBase {
                             toolTipText: JamiStrings.addToConversations
 
                             onClicked: {
-                                console.log(isBanned);
+                                confirmationDialog.contactName = UtilsAdapter.getBestNameForUri(CurrentAccount.id,UID) || UID;
+                                confirmationDialog.contactId = UID; 
+                                confirmationDialog.open();
+                            }
+                        }
+                        extraButtons.height: sendContactRequestButton.height;
+                        extraButtons.width: sendContactRequestButton.width;
+
+                        // Confirmation Dialog when adding a contact. 
+                        // TODO: modify the dialog when it detects that a contact is banned
+                        // and display something different. 
+                        BaseModalDialog {
+                            id: confirmationDialog
+                            title: JamiStrings.confirmAddition
+                            closeButtonVisible: false
+                            
+                            property string contactName: ""
+                            property string contactId: ""
+
+                            button1.text: JamiStrings.optionAdd
+                            button1.onClicked: {
                                 if (isBanned) {
                                     LRCInstance.selectConversation(UID);
                                     MessagesAdapter.unbanConversation(CurrentConversation.id);
@@ -408,10 +427,109 @@ SidePanelBase {
                                     LRCInstance.selectConversation(UID);
                                     MessagesAdapter.sendConversationRequest();
                                 }
+                                confirmationDialog.close();
+                            }
+
+                            button2.text: JamiStrings.optionCancel
+                            button2.onClicked: confirmationDialog.close();
+
+                            popupContent: ColumnLayout {
+                                spacing: 10
+
+                                Label {
+                                    Layout.alignment: Qt.AlignLeft
+                                    Layout.maximumWidth: confirmationDialog.width - 4*JamiTheme.preferredMarginSize
+                                    color: JamiTheme.textColor
+                                    text: JamiStrings.confirmAddUser.arg(confirmationDialog.contactName)
+                                    font.pointSize: JamiTheme.textFontSize
+                                    wrapMode: Text.Wrap
+                                }
+
+                                Rectangle {
+                                    color: JamiTheme.backgroundRectangleColor
+                                    Layout.preferredWidth: useridlabel.width + 100 
+                                    Layout.preferredHeight: contactInfoLayout.height
+                                    Layout.maximumWidth: confirmationDialog.width - 80
+                                    radius: 5
+
+                                    ColumnLayout {
+                                        id: contactInfoLayout
+                                        anchors.centerIn: parent
+                                        width: parent.width
+                                        spacing: 10
+
+                                        RowLayout {
+                                            Layout.margins: 10
+                                            spacing: 10
+
+                                            Avatar {
+                                                Layout.preferredWidth: 56
+                                                Layout.preferredHeight: 56
+                                                imageId: confirmationDialog.contactId
+                                                showPresenceIndicator: false
+                                                mode: Avatar.Mode.Contact
+                                            }
+
+                                            ColumnLayout {
+                                                spacing: 5
+                                                Layout.alignment: Qt.AlignLeft
+
+                                                Label {
+                                                    text: confirmationDialog.contactName
+                                                    font.pointSize: JamiTheme.settingsFontSize
+                                                    color: JamiTheme.textColor
+                                                    elide: Text.ElideRight
+                                                }
+
+                                                Label {
+                                                    id: useridlabel
+                                                    text: confirmationDialog.contactId
+                                                    font.pointSize: JamiTheme.textFontSize
+                                                    color: JamiTheme.faddedFontColor
+                                                    elide: Text.ElideRight
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                                Rectangle {
+                                    color: JamiTheme.warningBackground
+                                    Layout.preferredWidth: parent.width
+                                    Layout.preferredHeight: warningLayout.height + 20
+                                    Layout.maximumWidth: confirmationDialog.width - 80
+                                    radius: 5
+                                    border.color: JamiTheme.warningBorder
+                                    border.width: 1
+
+                                    RowLayout {
+                                        id: warningLayout
+                                        anchors.centerIn: parent
+                                        anchors.margins: 15
+                                        width: parent.width - 30
+                                        spacing: 10
+
+                                        Image {
+                                            source: JamiResources.hand_black_24dp_svg  // Changed to a more visible icon
+                                            fillMode: Image.PreserveAspectFit
+                                            Layout.preferredWidth: 24
+                                            Layout.preferredHeight: 24
+                                            Layout.alignment: Qt.AlignTop
+                                            sourceSize.width: 24
+                                            sourceSize.height: 24
+                                        }
+
+                                        Label {
+                                            text: JamiStrings.addContactWarning
+                                            font.pointSize: JamiTheme.textFontSize
+                                            color: JamiTheme.warningTextColor
+                                            wrapMode: Text.Wrap
+                                            Layout.fillWidth: true
+                                        }
+                                    }
+                                }
                             }
                         }
-                        extraButtons.height: sendContactRequestButton.height;
-                        extraButtons.width: sendContactRequestButton.width;
                     }
                     headerLabel: JamiStrings.searchResults
                     headerVisible: true
