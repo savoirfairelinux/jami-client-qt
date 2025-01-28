@@ -713,6 +713,8 @@ Item {
     // SmartList context menu
     property string declineContactRequest: qsTr("Decline invitation")
     property string acceptContactRequest: qsTr("Accept invitation")
+    property string addContactWarning: qsTr("Only add contacts you know and trust. You'll need to wait for them to accept your request.")
+    property string optionAdd: qsTr("Add")
 
     // Update settings
     property string update: qsTr("Automatically check for updates")
@@ -811,6 +813,8 @@ Item {
     property string invitationViewJoinConversation: qsTr("Hello,\nDo you want to join the conversation?")
     property string invitationViewAcceptedConversation: qsTr("You have accepted\nthe conversation invitation.")
     property string invitationViewWaitingForSync: qsTr("Waiting for %1\nto connect to synchronize the conversation…")
+    property string confirmAddition: qsTr("Add Contact")
+    property string confirmAddUser: qsTr("Are you sure you want to add %1 as a contact?")
 
     // SwarmDetailsPanel (group conversation panel)
     property string members: qsTr("%1 Members")

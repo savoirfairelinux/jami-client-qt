@@ -61,7 +61,9 @@ Rectangle {
         // restore the draft state of contents for a specific conversation
         var restoredContent = LRCInstance.getContentDraft(CurrentConversation.id, CurrentAccount.id);
         if (restoredContent) {
-            messageBar.textAreaObj.insertText(restoredContent["text"]);
+            if(restoredContent["text"].trim()) {
+                messageBar.textAreaObj.insertText(restoredContent["text"]);
+            }
             for (var i = 0; i < restoredContent["files"].length; ++i) {
                 messageBar.fileContainer.filesToSendListModel.addToPending(restoredContent["files"][i]);
             }
@@ -218,24 +220,52 @@ Rectangle {
 
             onSendMessageButtonClicked: {
                 // Send file messages
-                var fileCounts = messageBar.fileContainer.filesToSendListModel.rowCount();
-                for (var i = 0; i < fileCounts; i++) {
-                    var currentIndex = messageBar.fileContainer.filesToSendListModel.index(i, 0);
-                    var filePath = messageBar.fileContainer.filesToSendListModel.data(currentIndex, FilesToSend.FilePath);
-                    MessagesAdapter.sendFile(filePath);
+
+                if(CurrentConversation.isTemporary) {
+                    confirmDialogLoader.setSource("qrc:/mainview/components/ConfirmAddUserDialog.qml", {
+                                    "contactName": UtilsAdapter.getBestNameForUri(CurrentAccount.id, CurrentConversation.id) || CurrentConversation.id,
+                                    "contactId": CurrentConversation.id,
+                                    "isBanned": CurrentConversation.isBanned
+                                })
+                    confirmDialogLoader.item.open()
                 }
-                messageBar.fileContainer.filesToSendListModel.flush();
-                // Send text message
-                if (messageBar.text) {
-                    if (MessagesAdapter.editId !== "") {
-                        MessagesAdapter.editMessage(CurrentConversation.id, messageBar.text);
-                    } else {
-                        MessagesAdapter.sendMessage(messageBar.text);
+                else {
+                    var fileCounts = messageBar.fileContainer.filesToSendListModel.rowCount();
+                    for (var i = 0; i < fileCounts; i++) {
+                        var currentIndex = messageBar.fileContainer.filesToSendListModel.index(i, 0);
+                        var filePath = messageBar.fileContainer.filesToSendListModel.data(currentIndex, FilesToSend.FilePath);
+                        MessagesAdapter.sendFile(filePath);
                     }
+                    messageBar.fileContainer.filesToSendListModel.flush();
+                    // Send text message
+                    if (messageBar.text) {
+                        if (MessagesAdapter.editId !== "") {
+                            MessagesAdapter.editMessage(CurrentConversation.id, messageBar.text);
+                        } else {
+                            MessagesAdapter.sendMessage(messageBar.text);
+                        }
+                    }
+                    messageBar.textAreaObj.clearText();
+                    MessagesAdapter.replyToId = "";
                 }
-                messageBar.textAreaObj.clearText();
-                MessagesAdapter.replyToId = "";
+                
             }
+
+            Loader {
+                id: confirmDialogLoader
+                
+                onLoaded: {
+                    item.addContact.connect(function(contactId, isBanned) {
+                        LRCInstance.selectConversation(contactId);
+                        MessagesAdapter.sendConversationRequest();
+                        //LRCInstance.setContentDraft(previousConvId, previousAccountId, messageBar.text, filePathDraft);
+                    })
+                    
+                    item.dialogClosed.connect(function() {
+                        confirmDialogLoader.source = ""  // Unload the component when dialog is closed
+                    })
+                }
+            }         
 
             Keys.onShortcutOverride: function (keyEvent) {
                 if (keyEvent.key === Qt.Key_Escape) {

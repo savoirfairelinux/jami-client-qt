@@ -67,20 +67,20 @@ SidePanelBase {
             viewCoordinator.present("NewSwarmPage");
             const newSwarmPage = viewCoordinator.getView("NewSwarmPage");
             newSwarmPage.removeMember.connect((convId, member) => {
-                    removeMember(convId, member);
-                });
+                removeMember(convId, member);
+            });
             newSwarmPage.createSwarmClicked.connect((title, description, avatar) => {
-                    var uris = [];
-                    for (var idx in newSwarmPage.members) {
-                        var uri = newSwarmPage.members[idx].uri;
-                        if (uris.indexOf(uri) === -1) {
-                            uris.push(uri);
-                        }
+                var uris = [];
+                for (var idx in newSwarmPage.members) {
+                    var uri = newSwarmPage.members[idx].uri;
+                    if (uris.indexOf(uri) === -1) {
+                        uris.push(uri);
                     }
-                    let convuid = ConversationsAdapter.createSwarm(title, description, avatar, uris);
-                    viewCoordinator.dismiss("NewSwarmPage");
-                    LRCInstance.selectConversation(convuid);
-                });
+                }
+                let convuid = ConversationsAdapter.createSwarm(title, description, avatar, uris);
+                viewCoordinator.dismiss("NewSwarmPage");
+                LRCInstance.selectConversation(convuid);
+            });
         } else {
             viewCoordinator.dismiss("NewSwarmPage");
         }
@@ -115,9 +115,9 @@ SidePanelBase {
                 var uri = item.uris[idx];
                 if (!Array.from(newHm).find(r => r.uri === uri) && uri !== CurrentAccount.uri) {
                     newHm.push({
-                            "uri": uri,
-                            "convId": convId
-                        });
+                        "uri": uri,
+                        "convId": convId
+                    });
                     added = true;
                 }
             }
@@ -173,8 +173,7 @@ SidePanelBase {
 
         header: AccountComboBox {
             id: accountComboBox
-            QWKSetParentHitTestVisible {
-            }
+            QWKSetParentHitTestVisible {}
             Shortcut {
                 sequence: "Ctrl+J"
                 context: Qt.ApplicationShortcut
@@ -386,10 +385,9 @@ SidePanelBase {
                     model: ConversationsAdapter.searchListProxyModel
 
                     delegate: SmartListItemDelegate {
-                        extraButtons.contentItem:  JamiPushButton {
+                        extraButtons.contentItem: JamiPushButton {
                             id: sendContactRequestButton
-                            QWKSetParentHitTestVisible {
-                            }
+                            QWKSetParentHitTestVisible {}
 
                             anchors.right: parent.right
                             anchors.verticalCenter: parent.verticalCenter
@@ -398,18 +396,31 @@ SidePanelBase {
                             toolTipText: JamiStrings.addToConversations
 
                             onClicked: {
-                                console.log(isBanned);
-                                if (isBanned) {
-                                    LRCInstance.selectConversation(UID);
-                                    MessagesAdapter.unbanConversation(CurrentConversation.id);
-                                } else {
-                                    LRCInstance.selectConversation(UID);
-                                    MessagesAdapter.sendConversationRequest();
-                                }
+                                confirmDialogLoader.setSource("qrc:/mainview/components/ConfirmAddUserDialog.qml", {
+                                    "contactName": UtilsAdapter.getBestNameForUri(CurrentAccount.id, UID) || UID,
+                                    "contactId": UID,
+                                    "isBanned": isBanned
+                                })
+                                confirmDialogLoader.item.open()
                             }
                         }
-                        extraButtons.height: sendContactRequestButton.height;
-                        extraButtons.width: sendContactRequestButton.width;
+                        extraButtons.height: sendContactRequestButton.height
+                        extraButtons.width: sendContactRequestButton.width
+
+                        Loader {
+                            id: confirmDialogLoader
+                            
+                            onLoaded: {
+                                item.addContact.connect(function(contactId, isBanned) { 
+                                        LRCInstance.selectConversation(contactId);
+                                        MessagesAdapter.sendConversationRequest();
+                                })
+                                
+                                item.dialogClosed.connect(function() {
+                                    confirmDialogLoader.source = ""  // Unload the component when dialog is closed
+                                })
+                            }
+                        }              
                     }
                     headerLabel: JamiStrings.searchResults
                     headerVisible: true
