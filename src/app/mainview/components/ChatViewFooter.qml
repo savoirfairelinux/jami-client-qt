@@ -156,7 +156,7 @@ Rectangle {
             return -JamiTheme.emojiPickerHeight;
         }
 
-        sendButtonVisibility: text || messageBar.fileContainer.filesToSendCount
+        sendButtonVisibility: !isOnlyWhitespace(showPreview ? textAreaObj.cachedText : text ) || messageBar.fileContainer.filesToSendCount
 
         onEmojiButtonClicked: {
             if (emojiPicker && emojiPicker.opened) {
