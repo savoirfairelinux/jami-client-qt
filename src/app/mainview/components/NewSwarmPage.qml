@@ -89,7 +89,7 @@ DualPaneView {
                                 Layout.leftMargin: 8
                             }
 
-                            PushButton {
+                            PushButton { QWKSetParentHitTestVisible{}
                                 id: removeUserBtn
 
                                 preferredSize: 24
