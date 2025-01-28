@@ -99,6 +99,9 @@ Item {
     property color selectedTabColor: primaryForegroundColor
     property color filterBadgeColor: "#eed4d8"
     property color filterBadgeTextColor: "#cc0022"
+    property color warningBackground: "#fff3cd"  // Light orange background
+    property color warningBorder: "#ffeeba"     // Slightly darker border
+    property color warningTextColor: "#856404"  // Dark orange text
 
     // General buttons
     property color pressedButtonColor: darkTheme ? pressColor : "#a0a0a0"
