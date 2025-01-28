@@ -248,12 +248,12 @@ Loader {
                                 }
                             }
                         }
-                        Label { 
+                        Label {
                             id: transferInfo
 
                             bottomPadding: 10
                             rightPadding: dataTransferItem.bubble.timestampItem.width
-             
+
                             text: {
                                 var res = "";
                                 if (transferStats.totalSize !== undefined) {
