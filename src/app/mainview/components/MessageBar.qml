@@ -111,7 +111,7 @@ Rectangle {
                 id: messageBarTextArea
                 objectName: "messageBarTextArea"
 
-                placeholderText: JamiStrings.writeTo.arg(CurrentConversation.title)
+                placeholderText: CurrentConversation.isTemporary ? JamiStrings.writeToNewContact.arg(CurrentConversation.title) : JamiStrings.writeTo.arg(CurrentConversation.title)
 
                 anchors {
                     right: (showTypo) ? previewButton.left : messageRow.right
