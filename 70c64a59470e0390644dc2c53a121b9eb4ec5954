@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d867d69_03863696",
+        "filename": "src/app/commoncomponents/ModalTextEdit.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-01-30T17:57:09Z",
+      "side": 0,
+      "message": "is this property still used? if not, remove it",
+      "range": {
+        "startLine": 48,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 5
+      },
+      "revId": "70c64a59470e0390644dc2c53a121b9eb4ec5954",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc822128_c41c98fa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-01-30T17:57:09Z",
+      "side": 1,
+      "message": "a short description / Gitlab issue #",
+      "revId": "49d32ee06ea9618979f194a88345013bb527b2ab",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58eacbdc_a4cec58b",
+        "filename": "src/libclient/namedirectory.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-01-30T17:57:09Z",
+      "side": 1,
+      "message": "please clarify the difference between `requestedName` and `name` or rename `name`",
+      "range": {
+        "startLine": 71,
+        "startChar": 29,
+        "endLine": 72,
+        "endChar": 57
+      },
+      "revId": "49d32ee06ea9618979f194a88345013bb527b2ab",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d90b3a18_88d426b7",
+        "filename": "src/libclient/qtwrapper/configurationmanager_wrap.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-01-30T17:57:09Z",
+      "side": 1,
+      "message": "why snake_case?",
+      "range": {
+        "startLine": 169,
+        "startChar": 42,
+        "endLine": 169,
+        "endChar": 56
+      },
+      "revId": "49d32ee06ea9618979f194a88345013bb527b2ab",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
