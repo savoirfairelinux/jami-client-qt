@@ -22,6 +22,54 @@
       },
       "revId": "70c64a59470e0390644dc2c53a121b9eb4ec5954",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2bdee552_e6aec98f",
+        "filename": "src/app/commoncomponents/ModalTextEdit.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2025-01-30T19:44:57Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "2d867d69_03863696",
+      "range": {
+        "startLine": 48,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 5
+      },
+      "revId": "70c64a59470e0390644dc2c53a121b9eb4ec5954",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01542f3a_e2cd9d67",
+        "filename": "src/app/commoncomponents/ModalTextEdit.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2025-01-30T19:44:57Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "2d867d69_03863696",
+      "range": {
+        "startLine": 48,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 5
+      },
+      "revId": "70c64a59470e0390644dc2c53a121b9eb4ec5954",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
