@@ -261,7 +261,7 @@ def cmake_build(config_str, env_vars, cmake_build_dir):
     return True
 
 
-def build(config_str, qt_dir, tests, enable_crash_reports):
+def build(config_str, qt_dir, tests, enable_crash_reports, crash_report_url=None):
     """Use cmake to build the project."""
     print("Building with Qt at " + qt_dir)
 
@@ -287,6 +287,8 @@ def build(config_str, qt_dir, tests, enable_crash_reports):
 
     if enable_crash_reports:
         cmake_options.append("-DENABLE_CRASHREPORTS=ON")
+        if crash_report_url:
+            cmake_options.append(f"-DCRASH_REPORT_URL={crash_report_url}")
     else:
         cmake_options.append("-DENABLE_CRASHREPORTS=OFF")
 
@@ -347,8 +349,8 @@ def deploy_runtimes(config_str, qt_dir):
     install_file("resources/images/jami.ico", repo_root_dir)
 
     # windeployqt
-    print("Running windeployqt (this may take a while)...")
     win_deploy_qt = os.path.join(qt_dir, "bin", "windeployqt.exe")
+    print(f"Running windeployqt ({win_deploy_qt}) (this may take a while)...")
     qml_src_dir = os.path.join(repo_root_dir, "src", "app")
     installation_dir = get_vs_prop("installationPath")
     if not installation_dir:
@@ -491,6 +493,10 @@ def parse_args():
         action='store_true',
         default=False,
         help='Enable crash reporting')
+    parser.add_argument(
+        '--crash-report-url',
+        help='Override the crash report submission URL',
+        default=None)
 
     pack_arg_parser = subparsers.add_parser("pack")
     pack_group = pack_arg_parser.add_mutually_exclusive_group(required=True)
@@ -543,7 +549,9 @@ def main():
 
     def do_build(do_tests):
         if not parsed_args.skip_build:
-            build(config_str, parsed_args.qt, do_tests, parsed_args.enable_crash_reports)
+            build(config_str, parsed_args.qt, do_tests,
+                  parsed_args.enable_crash_reports,
+                  parsed_args.crash_report_url)
         if not parsed_args.skip_deploy:
             deploy_runtimes(config_str, parsed_args.qt)
 
