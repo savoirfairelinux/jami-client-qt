@@ -313,7 +313,7 @@ Jami tani do të mbyllet.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="91"/>
         <source>Enable push-to-talk</source>
-        <translation>Aktiviz “push-to-talk”</translation>
+        <translation>Aktivizo “push-to-talk”</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="92"/>

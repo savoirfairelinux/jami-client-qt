@@ -960,7 +960,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="618"/>
         <source>Image Files (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)</source>
-        <translation type="unfinished"/>
+        <translation>Datoteke slika (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="630"/>

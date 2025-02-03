@@ -4114,7 +4114,7 @@ se conecte para sincronizar a conversa.</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="120"/>
         <source>Server Timeout</source>
-        <translation>Tempo de resposta do servidor excedido</translation>
+        <translation>Tempo limite do servidor</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="121"/>

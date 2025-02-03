@@ -37,7 +37,7 @@
     <message>
         <location filename="../src/app/conversationlistmodelbase.cpp" line="140"/>
         <source>(deleted message)</source>
-        <translation type="unfinished"/>
+        <translation>(silinmiş mesaj)</translation>
     </message>
 </context>
 <context>
@@ -578,7 +578,7 @@ Jami şimdi kapatılacak.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="170"/>
         <source>Bootstrap</source>
-        <translation type="unfinished"/>
+        <translation>Bootstrap</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="173"/>
@@ -723,7 +723,7 @@ Jami şimdi kapatılacak.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="347"/>
         <source>deleted a message</source>
-        <translation type="unfinished"/>
+        <translation>bir mesajı sildi</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="348"/>
@@ -857,7 +857,7 @@ Profil, hesap ayarlarından her zaman değiştirilebilir.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="480"/>
         <source>Use native window frame (requires restart)</source>
-        <translation type="unfinished"/>
+        <translation>Yerel pencere çerçevesi kullan (yeniden başlatma gerektirir)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="484"/>
@@ -977,7 +977,7 @@ Profil, hesap ayarlarından her zaman değiştirilebilir.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="746"/>
         <source>Discard and restart</source>
-        <translation type="unfinished"/>
+        <translation>İptal et ve yeniden başlatın</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="748"/>
@@ -1022,7 +1022,7 @@ Profil, hesap ayarlarından her zaman değiştirilebilir.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="781"/>
         <source>Select dedicated device for hosting future calls in this swarm. If not set, the host will be the device starting a call.</source>
-        <translation type="unfinished"/>
+        <translation>Bu sürüde gelecek çağrıları barındırmak için ayrılmış cihazı seçin. Ayarlanmazsa, ana cihaz bir çağrı başlatan cihaz olacaktır.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="782"/>
@@ -1037,12 +1037,12 @@ Profil, hesap ayarlarından her zaman değiştirilebilir.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="788"/>
         <source>Show local video</source>
-        <translation type="unfinished"/>
+        <translation>Yerel video göster</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="789"/>
         <source>Hide local video</source>
-        <translation type="unfinished"/>
+        <translation>Yerel videoyu gizle</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="844"/>
@@ -1735,7 +1735,7 @@ Would you like to update now?</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="292"/>
         <source>Take tile screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Ekran görüntüsü alın</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="293"/>
@@ -2366,17 +2366,17 @@ Görselini ve rumuzunu, hesap ayarlarından istediğin zaman değiştirilebilirs
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="776"/>
         <source>Join in audio</source>
-        <translation type="unfinished"/>
+        <translation>Sese katılın</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="777"/>
         <source>Join in video</source>
-        <translation type="unfinished"/>
+        <translation>Videoya katılın</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="778"/>
         <source>Started a call</source>
-        <translation type="unfinished"/>
+        <translation>Bir arama başlattı</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="835"/>
@@ -3625,7 +3625,7 @@ bağlanması bekleniyor.</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="174"/>
         <source>Take tile screenshot</source>
-        <translation type="unfinished"/>
+        <translation>Ekran görüntüsü alın</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="182"/>
@@ -3835,7 +3835,7 @@ bağlanması bekleniyor.</translation>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="508"/>
         <source>(profile updated)</source>
-        <translation type="unfinished"/>
+        <translation>(profil güncellendi)</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="309"/>
