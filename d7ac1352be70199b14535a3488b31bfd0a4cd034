@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7033af3_8af7bccc",
+        "filename": "src/app/mainview/components/MessagesResearchView.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-02-05T22:18:41Z",
+      "side": 1,
+      "message": "Typo: serach -\u003e search",
+      "range": {
+        "startLine": 67,
+        "startChar": 82,
+        "endLine": 67,
+        "endChar": 88
+      },
+      "revId": "d7ac1352be70199b14535a3488b31bfd0a4cd034",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}

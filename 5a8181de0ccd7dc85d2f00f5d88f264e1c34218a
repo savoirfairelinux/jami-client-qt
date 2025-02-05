@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d199e19_953aa0bf",
+        "filename": "src/app/mainview/components/MessagesResearchView.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-02-05T22:18:41Z",
+      "side": 0,
+      "message": "What\u0027s the reason for removing the \"Jump to\" functionality?",
+      "range": {
+        "startLine": 129,
+        "startChar": 12,
+        "endLine": 145,
+        "endChar": 34
+      },
+      "revId": "5a8181de0ccd7dc85d2f00f5d88f264e1c34218a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
