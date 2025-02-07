@@ -1,7 +1,6 @@
 /*
- * Copyright (C) 2024 Savoir-faire Linux Inc.
- * Author: Nicolas Vengeon <Nicolas.vengeon@savoirfairelinux.com>
-
+ * Copyright (C) 2024-2025 Savoir-faire Linux Inc.
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 3 of the License, or

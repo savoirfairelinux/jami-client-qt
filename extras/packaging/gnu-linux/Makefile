@@ -1,7 +1,5 @@
 # -*- mode: makefile; -*-
-# Copyright (C) 2016-2024 Savoir-faire Linux Inc.
-#
-# Author: Maxim Cournoyer <maxim.cournoyer@savoirfairelinux.com>
+# Copyright (C) 2016-2025 Savoir-faire Linux Inc.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
