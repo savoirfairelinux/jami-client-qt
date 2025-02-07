@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2020-2024 Savoir-faire Linux Inc.
- * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
+ * Copyright (C) 2020-2025 Savoir-faire Linux Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -219,7 +218,7 @@ BaseModalDialog {
                     TextMetrics {
                         id: textMetricsYears
                         font: jamiDeclarationHyperText.font
-                        text: JamiStrings.declarationYear + " " + '<a href="https://savoirfairelinux.com" style="color: ' + JamiTheme.buttonTintedBlue + '">Savoir-faire Linux</a><br>'
+                        text: JamiStrings.declarationYear + " " + '<a href="https://savoirfairelinux.com/" style="color: ' + JamiTheme.buttonTintedBlue + '">Savoir-faire Linux Inc.</a><br>'
                     }
 
                     MouseArea {
