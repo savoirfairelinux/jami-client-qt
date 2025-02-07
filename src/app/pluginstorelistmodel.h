@@ -1,6 +1,5 @@
 /**
- * Copyright (C) 2019-2024 Savoir-faire Linux Inc.
- * Author: Xavier Jouslin de Noray   <xavier.jouslindenoray@savoirfairelinux.com>
+ * Copyright (C) 2019-2025 Savoir-faire Linux Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

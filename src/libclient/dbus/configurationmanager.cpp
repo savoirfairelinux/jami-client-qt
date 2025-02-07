@@ -1,7 +1,5 @@
 /****************************************************************************
- *    Copyright (C) 2009-2024 Savoir-faire Linux Inc.                       *
- *   Author : Jérémy Quentin <jeremy.quentin@savoirfairelinux.com>          *
- *            Emmanuel Lepage Vallee <emmanuel.lepage@savoirfairelinux.com> *
+ *   Copyright (C) 2009-2025 Savoir-faire Linux Inc.                        *
  *                                                                          *
  *   This library is free software; you can redistribute it and/or          *
  *   modify it under the terms of the GNU Lesser General Public             *
@@ -34,12 +32,12 @@ ConfigurationManager::instance()
                                                               QDBusConnection::sessionBus());
     if (!interface->connection().isConnected()) {
         GlobalInstances::dBusErrorHandler().connectionError(
-            "Error : jamid not connected. Service " + interface->service()
-            + " not connected. From configuration manager interface.");
+            "Error: jamid not connected. Service " + interface->service()
+            + " is not connected. From configuration manager interface.");
     }
     if (!interface->isValid()) {
         GlobalInstances::dBusErrorHandler().invalidInterfaceError(
-            "Error : jamid is not available, make sure it is running");
+            "Error: jamid is unavailable, make sure it is running");
     }
 #endif
     return *interface;

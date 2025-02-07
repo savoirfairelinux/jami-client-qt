@@ -1,8 +1,5 @@
 /*
- *  Copyright (C) 2012-2024 Savoir-faire Linux Inc.
- *  Author: Alexandre Lision <alexandre.lision@savoirfairelinux.com>
- *  Author: Guillaume Roguez <guillaume.roguez@savoirfairelinux.com>
- *  Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
+ *  Copyright (C) 2012-2025 Savoir-faire Linux Inc.
  *
  *  This library is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU Lesser General Public
