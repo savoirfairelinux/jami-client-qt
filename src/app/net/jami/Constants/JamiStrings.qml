@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2020-2024 Savoir-faire Linux Inc.
- * Author: Aline Gondim Santos <aline.gondimsantos@savoirfairelinux.com>
+ * Copyright (C) 2020-2025 Savoir-faire Linux Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -46,7 +45,7 @@ Item {
     // AboutPopUp
     property string buildID: qsTr("Build ID")
     property string version: qsTr("Version")
-    property string declarationYear: "© 2015-2024"
+    property string declarationYear: "© 2015-2025"
     property string slogan: "Astarte"
     property string declaration: qsTr('Jami, a GNU package, is software for universal and distributed peer-to-peer communication that respects the freedom and privacy of its users. Visit <a href="https://jami.net" style="color: ' + JamiTheme.buttonTintedBlue + '">jami.net</a>' + ' to learn more.')
     property string noWarranty: qsTr('This program comes with absolutely no warranty. See the <a href="https://www.gnu.org/licenses/gpl-3.0.html" style="color: ' + JamiTheme.buttonTintedBlue + '">GNU General Public License</a>, version 3 or later for details.')
@@ -78,7 +77,7 @@ Item {
     property string authenticate: qsTr("Authenticate")
     property string deleteAccount: qsTr("Delete account")
     property string inProgress: qsTr("In progress…")
-    property string authenticationFailed: qsTr("An error occurred while authenticating account.")
+    property string authenticationFailed: qsTr("An error occurred while authenticating the account.")
     property string password: qsTr("Password")
     property string username: qsTr("Username")
     property string alias: qsTr("Alias")
@@ -314,8 +313,8 @@ Item {
     // Share location/position
     property string shareLocation: qsTr("Share location")
     property string stopSharingLocation: qsTr("Stop sharing")
-    property string locationServicesError: qsTr("An error occurred while sharing device location.\nEnable “Location Services” in device settings in order to use this feature.\nThe location of other members can still be received.")
-    property string locationServicesClosedError: qsTr("An error occurred while sharing device location. Please check your Internet connection and try again.")
+    property string locationServicesError: qsTr("An error occurred while sharing the device location.\nEnable “Location Services” in device settings in order to use this feature.\nThe location of other members can still be received.")
+    property string locationServicesClosedError: qsTr("An error occurred while sharing the device location. Please check your Internet connection and try again.")
     property string stopAllSharings: qsTr("Turn off location sharing")
     property string shortStopAllSharings: qsTr("Turn off sharing")
     property string stopConvSharing: qsTr("Stop location sharing in this conversation (%1)")
@@ -419,11 +418,11 @@ Item {
 
     // CurrentAccountSettings && AdvancedSettings
     property string backupSuccessful: qsTr("Backup completed successfully.")
-    property string backupFailed: qsTr("An error occurred while backing up account.")
+    property string backupFailed: qsTr("An error occurred while backing up the account.")
     property string changePasswordSuccess: qsTr("Password changed successfully.")
-    property string changePasswordFailed: qsTr("An error occurred while changing account password.")
+    property string changePasswordFailed: qsTr("An error occurred while changing the account password.")
     property string setPasswordSuccess: qsTr("Password set successfully.")
-    property string setPasswordFailed: qsTr("An error occurred while setting account password.")
+    property string setPasswordFailed: qsTr("An error occurred while setting the account password.")
     property string changePassword: qsTr("Change password")
     property string setPassword: qsTr("Encrypt account")
     property string setAPassword: qsTr("Set a password")
@@ -531,7 +530,7 @@ Item {
     property string updateDownloading: "Downloading"
     property string confirmBeta: qsTr("This will replace the Release version with the Beta version on this device. The latest Release version can always be downloaded from the Jami website.")
     property string networkDisconnected: qsTr("Network disconnected")
-    property string accessError: qsTr("An error occurred while accessing contents.")
+    property string accessError: qsTr("An error occurred while accessing the contents.")
     property string contentNotFoundError: qsTr("Content not found.")
     property string genericError: qsTr("An unexpected error occurred.")
 
