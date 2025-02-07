@@ -1,6 +1,4 @@
-;;; Copyright (C) 2021-2024 Savoir-faire Linux Inc.
-;;;
-;;; Author: Maxim Cournoyer <maxim.cournoyer@savoirfairelinux.com>
+;;; Copyright (C) 2021-2025 Savoir-faire Linux Inc.
 ;;;
 ;;; This program is free software: you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
