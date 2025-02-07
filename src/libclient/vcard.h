@@ -1,7 +1,5 @@
 /****************************************************************************
- *    Copyright (C) 2017-2024 Savoir-faire Linux Inc.                       *
- *   Author: Sébastien Blin <sebastien.blin@savoirfairelinux.com>           *
- *   Author : Alexandre Lision <alexandre.lision@savoirfairelinux.com>      *
+ *   Copyright (C) 2017-2025 Savoir-faire Linux Inc.                        *
  *                                                                          *
  *   This library is free software; you can redistribute it and/or          *
  *   modify it under the terms of the GNU Lesser General Public             *

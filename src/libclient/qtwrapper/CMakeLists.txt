@@ -1,11 +1,4 @@
-# Copyright (C) 2015-2024 Savoir-faire Linux Inc.
-#
-# Author: Emmanuel Lepage Vallee <emmanuel.lepage@savoirfairelinux.com>
-# Author: Alexandre Lision <alexandre.lision@savoirfairelinux.com>
-# Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
-# Author: Aline Gondim Santos <aline.gondimsantos@savoirfairelinux.com>
-# Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
-# Author: Amin Bandali <amin.bandali@savoirfairelinux.com>
+# Copyright (C) 2015-2025 Savoir-faire Linux Inc.
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
