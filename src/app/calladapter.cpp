@@ -1,13 +1,5 @@
 /*
- * Copyright (C) 2020-2024 Savoir-faire Linux Inc.
- * Author: Edric Ladent Milaret <edric.ladent-milaret@savoirfairelinux.com>
- * Author: Anthony Léonard <anthony.leonard@savoirfairelinux.com>
- * Author: Olivier Soldano <olivier.soldano@savoirfairelinux.com>
- * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
- * Author: Isa Nanic <isa.nanic@savoirfairelinux.com>
- * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
- * Author: Sébastien Blin <sebastien.blin@savoirfairelinux.com>
- * Author: Capucine Berthet <capucine.berthet@savoirfairelinux.com>
+ * Copyright (C) 2020-2025 Savoir-faire Linux Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
