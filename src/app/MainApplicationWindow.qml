@@ -1,10 +1,5 @@
 /*
- * Copyright (C) 2020-2024 Savoir-faire Linux Inc.
- * Author: Aline Gondim Santos <aline.gondimsantos@savoirfairelinux.com>
- * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
- * Author: Albert Babí <albert.babi@savoirfairelinux.com>
- * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
- * Author: Yang Wang   <yang.wang@savoirfairelinux.com>
+ * Copyright (C) 2020-2025 Savoir-faire Linux Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

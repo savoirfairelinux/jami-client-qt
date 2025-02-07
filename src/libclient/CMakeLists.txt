@@ -1,18 +1,4 @@
-# Copyright (C) 2015-2024 Savoir-faire Linux Inc.
-#
-# Author: Emmanuel Lepage Vallee <emmanuel.lepage@savoirfairelinux.com>
-# Author: Alexandre Lision <alexandre.lision@savoirfairelinux.com>
-# Author: Guillaume Roguez <guillaume.roguez@savoirfairelinux.com>
-# Author: Stepan Salenikovich <stepan.salenikovich@savoirfairelinux.com>
-# Author: Alexandre Viau <alexandre.viau@savoirfairelinux.com>
-# Author: Sébastien Blin <sebastien.blin@savoirfairelinux.com>
-# Author: Nicolas Jager <nicolas.jager@savoirfairelinux.com>
-# Author: Hugo Lefeuvre <hugo.lefeuvre@savoirfairelinux.com>
-# Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
-# Author: Albert Babí <albert.babi@savoirfairelinux.com>
-# Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
-# Author: Kateryna Kostiuk <kateryna.kostiuk@savoirfairelinux.com>
-# Author: Amin Bandali <amin.bandali@savoirfairelinux.com>
+# Copyright (C) 2015-2025 Savoir-faire Linux Inc.
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
