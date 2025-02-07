@@ -1,7 +1,5 @@
 /*
- *  Copyright (C) 2018-2024 Savoir-faire Linux Inc.
- *  Author: Hugo Lefeuvre <hugo.lefeuvre@savoirfairelinux.com>
- *  Author: Sébastien Blin <sebastien.blin@savoirfairelinux.com>
+ *  Copyright (C) 2018-2025 Savoir-faire Linux Inc.
  *
  *  This library is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU Lesser General Public
