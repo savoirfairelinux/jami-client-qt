@@ -113,7 +113,7 @@ sudo ./build.py --dependencies
 Then, you can build daemon and the client using:
 
 ```bash
-./build.py --install
+./build.py --install [--qt=<path/to/qt> (this needs to be the same as in the previous ./build.py --init)]
 ```
 
 If you use a Qt version that is not system-wide installed, you need to
