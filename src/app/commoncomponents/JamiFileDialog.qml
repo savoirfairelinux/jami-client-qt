@@ -21,6 +21,7 @@ import net.jami.Constants 1.1
 
 FileDialog {
     id: root
+    modality: Qt.NonModal
 
     // Use enum to avoid importing Qt.labs.platform when using JamiFileDialog.
     property int mode: JamiFileDialog.Mode.OpenFile
