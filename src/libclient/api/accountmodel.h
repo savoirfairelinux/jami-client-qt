@@ -340,6 +340,18 @@ Q_SIGNALS:
     void deviceAuthStateChanged(const QString& accountID, int state, const MapStringString& details);
 
     /**
+     * Add device state has changed
+     * @param accountID
+     * @param operationId
+     * @param state
+     * @param details map
+     */
+    void addDeviceStateChanged(const QString& accountID,
+                          uint32_t operationId,
+                          int state,
+                          const MapStringString& details);
+
+    /**
      * Name registration has ended
      * @param accountId
      * @param status

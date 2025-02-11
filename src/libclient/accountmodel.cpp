@@ -131,6 +131,18 @@ public Q_SLOTS:
                                     const MapStringString& details);
 
     /**
+     * Emit addDeviceStateChanged.
+     * @param accountId
+     * @param operationId
+     * @param state
+     * @param details
+     */
+    void slotAddDeviceStateChanged(const QString& accountID,
+                                   uint32_t operationId,
+                                   int state,
+                                   const MapStringString& details);
+
+    /**
      * @param accountId
      * @param details
      */
@@ -435,6 +447,10 @@ AccountModelPimpl::AccountModelPimpl(AccountModel& linked,
             &linked,
             &AccountModel::deviceAuthStateChanged);
     connect(&callbacksHandler,
+            &CallbacksHandler::addDeviceStateChanged,
+            &linked,
+            &AccountModel::addDeviceStateChanged);
+    connect(&callbacksHandler,
             &CallbacksHandler::nameRegistrationEnded,
             this,
             &AccountModelPimpl::slotNameRegistrationEnded);
@@ -629,6 +645,15 @@ AccountModelPimpl::slotDeviceAuthStateChanged(const QString& accountId,
     // implement business logic here
     // can be bypassed with a signal to signal
     Q_EMIT linked.deviceAuthStateChanged(accountId, state, details);
+}
+
+void
+AccountModelPimpl::slotAddDeviceStateChanged(const QString& accountId,
+                                                  uint32_t operationId,
+                                                  int state,
+                                                  const MapStringString& details)
+{
+    Q_EMIT linked.addDeviceStateChanged(accountId, operationId, state, details);
 }
 
 void
