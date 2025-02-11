@@ -29,6 +29,7 @@ Rectangle {
     property string previousConvId
     property string previousAccountId
     property bool showTypo: messageBar.showTypo
+    property var currentFileDialog: null
 
     function setFilePathsToSend(filePaths) {
         for (var index = 0; index < filePaths.length; ++index) {
@@ -44,7 +45,7 @@ Rectangle {
     function updateMessageDraft() {
         // Store the current files that have not been sent, if any. Do the same for the message draft.
         var filePathDraft = [];
-        while(messageBar.fileContainer.filesToSendCount > 0) {
+        while (messageBar.fileContainer.filesToSendCount > 0) {
             var currentIndex = messageBar.fileContainer.filesToSendListModel.index(0, 0);
             var filePath = messageBar.fileContainer.filesToSendListModel.data(currentIndex, FilesToSend.FilePath);
             filePathDraft.push(filePath);
@@ -66,7 +67,6 @@ Rectangle {
                 messageBar.fileContainer.filesToSendListModel.addToPending(restoredContent["files"][i]);
             }
         }
-
     }
 
     Connections {
@@ -74,6 +74,9 @@ Rectangle {
 
         function onIdChanged() {
             messageBar.animate = true;
+            if (currentFileDialog !== null) {
+                currentFileDialog.close();
+            }
         }
     }
 
@@ -200,13 +203,17 @@ Rectangle {
             }
 
             onSendFileButtonClicked: {
-                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
-                        "fileMode": JamiFileDialog.OpenFiles,
-                        "nameFilters": [JamiStrings.allFiles]
-                    });
-                dlg.filesAccepted.connect(function (files) {
-                        setFilePathsToSend(files);
-                    });
+                if (currentFileDialog === null) {
+                    currentFileDialog = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+                            "fileMode": JamiFileDialog.OpenFiles,
+                            "nameFilters": [JamiStrings.allFiles]
+                        });
+                    currentFileDialog.filesAccepted.connect(function (files) {
+                            setFilePathsToSend(files);
+                        });
+                } else {
+                    currentFileDialog.open();
+                }
             }
 
             onVideoRecordMessageButtonClicked: {
