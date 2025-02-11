@@ -154,6 +154,7 @@ Rectangle {
             Layout.preferredHeight: height
 
             property var emojiPicker
+            property var currentFileDialog : null
 
             Connections {
                 target: messageBar.emojiPicker ? messageBar.emojiPicker : null
@@ -201,13 +202,17 @@ Rectangle {
             }
 
             onSendFileButtonClicked: {
-                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
-                        "fileMode": JamiFileDialog.OpenFiles,
-                        "nameFilters": [JamiStrings.allFiles]
-                    });
-                dlg.filesAccepted.connect(function (files) {
+                if (currentFileDialog === null) {
+                    currentFileDialog = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+                            "fileMode": JamiFileDialog.OpenFiles,
+                            "nameFilters": [JamiStrings.allFiles]
+                        });
+                    currentFileDialog.filesAccepted.connect(function (files) {
                         setFilePathsToSend(files);
                     });
+                } else {
+                    currentFileDialog.open();
+                }
             }
 
             onVideoRecordMessageButtonClicked: {
