@@ -617,6 +617,16 @@ Item {
     property string linkNewDevice: qsTr("Link new device")
     property string linkingInstructions: qsTr("In Jami, scan QR code or manually enter PIN code.")
     property string pinValidity: qsTr("The PIN code will expire in: ")
+    property string linkDeviceConnecting: qsTr("Connecting to your new device…")
+    property string linkDeviceInProgress: qsTr("Your account is exporting to your new device.\nPlease confirm import on the new device.")
+    property string linkDeviceScanQR: qsTr("On the new device, initiate a new account.\nSelect Add account -> Connect from another device.\nWhen ready, scan the QR Code.")
+    property string linkDeviceEnterManually: qsTr("Alternatively you could enter a code manually.")
+    property string linkDeviceEnterCodePlaceholder: qsTr("Enter a code")
+    property string linkDeviceAllSet: qsTr("You are all set!\nYour account is successfully imported on the new device!")
+    property string linkDeviceFoundAddress: qsTr("New device found at address below. Is that you?\nClicking on confirm will continue transfering account.")
+    property string linkDeviceNewDeviceIP: qsTr("New device IP: %1")
+    property string linkDeviceCloseWarningTitle: qsTr("Are you sure you want to exit?")
+    property string linkDeviceCloseWarningMessage: qsTr("Exiting now will cancel the account importation process.")
 
     // PasswordDialog
     property string enterPassword: qsTr("Enter password")
