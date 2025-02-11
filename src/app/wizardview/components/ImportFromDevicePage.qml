@@ -22,6 +22,7 @@ import QtQuick.Controls
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
+import net.jami.Enums 1.1
 import "../../commoncomponents"
 import "../../mainview/components"
 
@@ -61,15 +62,15 @@ Rectangle {
 
         function onDeviceAuthStateChanged() {
             switch (WizardViewStepModel.deviceAuthState) {
-            case WizardViewStepModel.DeviceAuthState.TokenAvailable:
+            case DeviceAuthStateEnum.TOKEN_AVAILABLE:
                 // Token is available and displayed as QR code
                 clearAllTextFields();
                 break;
-            case WizardViewStepModel.DeviceAuthState.Connecting:
+            case DeviceAuthStateEnum.CONNECTING:
                 // P2P connection being established
                 clearAllTextFields();
                 break;
-            case WizardViewStepModel.DeviceAuthState.Authenticating:
+            case DeviceAuthStateEnum.AUTHENTICATING:
                 peerId = WizardViewStepModel.deviceLinkDetails["peer_id"] || "";
                 // Try to get display name for the peer ID
                 if (peerId) {
@@ -77,11 +78,11 @@ Rectangle {
                     peerDisplayName = peerId;
                 }
                 break;
-            case WizardViewStepModel.DeviceAuthState.InProgress:
+            case DeviceAuthStateEnum.IN_PROGRESS:
                 // Account archive is being transferred
                 clearAllTextFields();
                 break;
-            case WizardViewStepModel.DeviceAuthState.Done:
+            case DeviceAuthStateEnum.DONE:
                 // Final state - check for specific errors
                 const error = WizardViewStepModel.deviceLinkDetails["error"];
                 if (error) {
@@ -129,15 +130,15 @@ Rectangle {
             font.pointSize: JamiTheme.headerFontSize
             text: {
                 switch (WizardViewStepModel.deviceAuthState) {
-                case WizardViewStepModel.DeviceAuthState.Init:
+                case DeviceAuthStateEnum.INIT:
                     return JamiStrings.waitingForToken;
-                case WizardViewStepModel.DeviceAuthState.TokenAvailable:
+                case DeviceAuthStateEnum.TOKEN_AVAILABLE:
                     return JamiStrings.scanToImportAccount;
-                case WizardViewStepModel.DeviceAuthState.Connecting:
+                case DeviceAuthStateEnum.CONNECTING:
                     return JamiStrings.connectingToDevice;
-                case WizardViewStepModel.DeviceAuthState.Authenticating:
+                case DeviceAuthStateEnum.AUTHENTICATING:
                     return JamiStrings.confirmAccountImport;
-                case WizardViewStepModel.DeviceAuthState.InProgress:
+                case DeviceAuthStateEnum.IN_PROGRESS:
                     return JamiStrings.transferringAccount;
                 default:
                     return "";
@@ -151,7 +152,7 @@ Rectangle {
         ColumnLayout {
             Layout.alignment: Qt.AlignHCenter
             Layout.maximumWidth: Math.min(parent.width - 40, 400)
-            visible: WizardViewStepModel.deviceAuthState === WizardViewStepModel.DeviceAuthState.Authenticating
+            visible: WizardViewStepModel.deviceAuthState === DeviceAuthStateEnum.AUTHENTICATING
             spacing: 16
 
             Text {
@@ -246,7 +247,7 @@ Rectangle {
         // Show busy indicator when waiting for token
         BusyIndicator {
             Layout.alignment: Qt.AlignHCenter
-            visible: WizardViewStepModel.deviceAuthState === WizardViewStepModel.DeviceAuthState.Init
+            visible: WizardViewStepModel.deviceAuthState === DeviceAuthStateEnum.INIT
             Layout.preferredWidth: 50
             Layout.preferredHeight: 50
             running: visible
@@ -257,7 +258,7 @@ Rectangle {
             Layout.alignment: Qt.AlignHCenter
             Layout.preferredWidth: qrLoader.Layout.preferredWidth + 40
             Layout.preferredHeight: qrLoader.Layout.preferredHeight + 40
-            visible: WizardViewStepModel.deviceAuthState === WizardViewStepModel.DeviceAuthState.TokenAvailable
+            visible: WizardViewStepModel.deviceAuthState === DeviceAuthStateEnum.TOKEN_AVAILABLE
             color: JamiTheme.primaryBackgroundColor
             radius: 8
             border.width: 1
@@ -266,7 +267,7 @@ Rectangle {
             Loader {
                 id: qrLoader
                 anchors.centerIn: parent
-                active: WizardViewStepModel.deviceAuthState === WizardViewStepModel.DeviceAuthState.TokenAvailable
+                active: WizardViewStepModel.deviceAuthState === DeviceAuthStateEnum.TOKEN_AVAILABLE
                 Layout.preferredWidth: Math.min(parent.parent.width - 60, 300)
                 Layout.preferredHeight: Layout.preferredWidth
 
@@ -344,10 +345,10 @@ Rectangle {
         imageContainerWidth: 20
         source: JamiResources.ic_arrow_back_24dp_svg
 
-        visible: WizardViewStepModel.deviceAuthState !== WizardViewStepModel.DeviceAuthState.InProgress
+        visible: WizardViewStepModel.deviceAuthState !== DeviceAuthStateEnum.IN_PROGRESS
 
         onClicked: {
-            if (WizardViewStepModel.deviceAuthState !== WizardViewStepModel.DeviceAuthState.Init) {
+            if (WizardViewStepModel.deviceAuthState !== DeviceAuthStateEnum.INIT) {
                 AccountAdapter.cancelImportAccount();
             }
             WizardViewStepModel.previousStep();
@@ -384,7 +385,7 @@ Rectangle {
                 model: ["Init", "TokenAvailable", "Connecting", "Authenticating", "InProgress", "Done"]
                 onActivated: {
                     // Force the state
-                    WizardViewStepModel.deviceAuthState = WizardViewStepModel.DeviceAuthState[currentText];
+                    WizardViewStepModel.deviceAuthState = DeviceAuthStateEnum[currentText.toUpperCase()];
 
                     // Set appropriate device details for testing
                     var details = {};
