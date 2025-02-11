@@ -20,6 +20,7 @@
 #pragma once
 
 #include "abstractlistmodelbase.h"
+#include "lrcinstance.h"
 
 class DeviceItemListModel final : public AbstractListModelBase
 {
