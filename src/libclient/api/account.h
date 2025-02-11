@@ -204,14 +204,49 @@ enum class DeviceAuthState {
 Q_ENUM_NS(DeviceAuthState)
 
 enum class DeviceLinkError {
-    BAD_PASSWORD = 0,
-    INVALID_TOKEN = 1,
-    AUTH_FAILED = 2,
-    CONNECTION_FAILED = 3,
-    TRANSFER_FAILED = 4,
-    INVALID = 5
+    WRONG_PASSWORD,    // auth_error, invalid_credentials
+    NETWORK,          // network
+    TIMEOUT,          // timeout
+    STATE,           // state
+    CANCELED,        // canceled
+    UNKNOWN          // fallback
 };
+
 Q_ENUM_NS(DeviceLinkError)
+
+inline DeviceLinkError mapLinkDeviceError(const std::string& error)
+{
+    if (error == "auth_error" || error == "invalid_credentials")
+        return DeviceLinkError::WRONG_PASSWORD;
+    if (error == "network")
+        return DeviceLinkError::NETWORK;
+    if (error == "timeout")
+        return DeviceLinkError::TIMEOUT;
+    if (error == "state")
+        return DeviceLinkError::STATE;
+    if (error == "canceled")
+        return DeviceLinkError::CANCELED;
+    return DeviceLinkError::UNKNOWN;
+}
+
+inline std::string getLinkDeviceString(DeviceLinkError error)
+{
+    switch (error) {
+    case DeviceLinkError::WRONG_PASSWORD:
+        return "An authentication error occurred.\nPlease verify your password.";
+    case DeviceLinkError::NETWORK:
+        return "A network error occurred.\nPlease verify your connection.";
+    case DeviceLinkError::TIMEOUT:
+        return "The operation has timed out.\nPlease try again.";
+    case DeviceLinkError::STATE:
+        return "An error occurred while exporting the account.\nPlease try again.";
+    case DeviceLinkError::CANCELED:
+        return "Operation was canceled.";
+    case DeviceLinkError::UNKNOWN:
+    default:
+        return "An unexpected error occurred.\nPlease try again.";
+    }
+}
 
 enum class RegisterNameStatus {
     SUCCESS = 0,
