@@ -19,6 +19,7 @@
 #pragma once
 
 #include "qtutils.h"
+#include "api/account.h"  // Include for DeviceAuthState
 
 #include <QObject>
 #include <QVariant>
@@ -56,21 +57,10 @@ public:
     };
     Q_ENUM(AccountCreationOption)
 
-    enum class DeviceAuthState {
-        Init = 0,
-        TokenAvailable = 1,
-        Connecting = 2,
-        Authenticating = 3,
-        InProgress = 4,
-        Done = 5,
-        Error = 6
-    };
-    Q_ENUM(DeviceAuthState)
-
     QML_PROPERTY(MainSteps, mainStep)
     QML_PROPERTY(AccountCreationOption, accountCreationOption)
     QML_PROPERTY(QVariantMap, accountCreationInfo)
-    QML_PROPERTY(DeviceAuthState, deviceAuthState)
+    QML_PROPERTY(lrc::api::account::DeviceAuthState, deviceAuthState)
     QML_PROPERTY(QVariantMap, deviceLinkDetails)
 
 public:

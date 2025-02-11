@@ -250,6 +250,12 @@ CallbacksHandler::CallbacksHandler(const Lrc& parent)
             Qt::QueuedConnection);
 
     connect(&ConfigurationManager::instance(),
+            &ConfigurationManagerInterface::addDeviceStateChanged,
+            this,
+            &CallbacksHandler::slotAddDeviceStateChanged,
+            Qt::QueuedConnection);
+
+    connect(&ConfigurationManager::instance(),
             &ConfigurationManagerInterface::nameRegistrationEnded,
             this,
             &CallbacksHandler::slotNameRegistrationEnded,
@@ -687,6 +693,15 @@ CallbacksHandler::slotDeviceAuthStateChanged(const QString& accountId,
                                              const MapStringString& details)
 {
     Q_EMIT deviceAuthStateChanged(accountId, state, details);
+}
+
+void
+CallbacksHandler::slotAddDeviceStateChanged(const QString& accountId,
+                                            uint32_t operationId,
+                                            int state,
+                                            const MapStringString& details)
+{
+    Q_EMIT addDeviceStateChanged(accountId, operationId, state, details);
 }
 
 void

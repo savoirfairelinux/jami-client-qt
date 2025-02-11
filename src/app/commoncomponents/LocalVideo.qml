@@ -31,12 +31,15 @@ VideoView {
     Component.onDestruction: VideoDevices.stopDevice(rendererId);
 
     function startWithId(id, force = false) {
+        console.log("****** startWithId");
         if (id !== undefined && id.length === 0) {
             stop();
+            console.log("****** startWithId no id");
             return;
         }
         const forceRestart = rendererId === id || force;
         if (!forceRestart) {
+            console.log("****** startWithId no forceRestart")
             // Stop previous device
             VideoDevices.stopDevice(rendererId);
         }
