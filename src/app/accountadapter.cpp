@@ -27,6 +27,7 @@
 #include "accountlistmodel.h"
 #include "wizardviewstepmodel.h"
 #include "global.h"
+#include "api/account.h"
 
 #include <QThreadPool>
 
@@ -360,7 +361,7 @@ void
 AccountAdapter::startImportAccount()
 {
     auto wizardModel = qApp->property("WizardViewStepModel").value<WizardViewStepModel*>();
-    wizardModel->set_deviceAuthState(WizardViewStepModel::DeviceAuthState::Init);
+    wizardModel->set_deviceAuthState(lrc::api::account::DeviceAuthState::INIT);
     wizardModel->set_deviceLinkDetails({});
 
     // This will create an account with the ARCHIVE_URL configured to start the import process.
@@ -376,7 +377,7 @@ AccountAdapter::provideAccountAuthentication(const QString& password)
     }
 
     auto wizardModel = qApp->property("WizardViewStepModel").value<WizardViewStepModel*>();
-    wizardModel->set_deviceAuthState(WizardViewStepModel::DeviceAuthState::InProgress);
+    wizardModel->set_deviceAuthState(lrc::api::account::DeviceAuthState::IN_PROGRESS);
 
     lrcInstance_->accountModel().provideAccountAuthentication(importAccountId_, password);
 }
@@ -385,7 +386,7 @@ void
 AccountAdapter::cancelImportAccount()
 {
     auto wizardModel = qApp->property("WizardViewStepModel").value<WizardViewStepModel*>();
-    wizardModel->set_deviceAuthState(WizardViewStepModel::DeviceAuthState::Init);
+    wizardModel->set_deviceAuthState(lrc::api::account::DeviceAuthState::INIT);
     wizardModel->set_deviceLinkDetails({});
 
     // Remove the account if it was created
