@@ -72,7 +72,7 @@ WizardViewStepModel::WizardViewStepModel(LRCInstance* lrcInstance,
             [this](const QString& accountID, int state, const MapStringString& details) {
                 C_INFO << "deviceAuthStateChanged: " << accountID << " " << state << " " << details;
                 set_deviceLinkDetails(mapStringStringToVariantMap(details));
-                set_deviceAuthState(static_cast<DeviceAuthState>(state));
+                set_deviceAuthState(static_cast<lrc::api::account::DeviceAuthState>(state));
             });
 }
 
@@ -125,6 +125,6 @@ WizardViewStepModel::reset()
 {
     set_accountCreationOption(AccountCreationOption::None);
     set_mainStep(MainSteps::Initial);
-    set_deviceAuthState(DeviceAuthState::Init);
+    set_deviceAuthState(lrc::api::account::DeviceAuthState::INIT);
     set_deviceLinkDetails({});
 }
