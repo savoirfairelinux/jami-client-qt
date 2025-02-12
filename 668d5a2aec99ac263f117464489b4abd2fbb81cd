@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "802c81eb_7228c6b3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2025-02-12T15:46:30Z",
+      "side": 1,
+      "message": "Blocked because it removes an important feature.\nIt can be merged when the patch or another one is available to fix or restore the feature.",
+      "revId": "668d5a2aec99ac263f117464489b4abd2fbb81cd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
