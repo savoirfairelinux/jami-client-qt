@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6a08bba_95f36e72",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2025-02-12T17:44:35Z",
+      "side": 1,
+      "message": "You already have the option to block a contact / contact request so that the same contact will never been able to send an invitation as long as the peer is blocked?\n\nIf no should we also add the option \"Block this contact\" to the dialog?",
+      "revId": "2f8369b63ba4d8eb556ad42a5eaf256a8c623df8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
