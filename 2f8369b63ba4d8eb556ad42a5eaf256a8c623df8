@@ -16,6 +16,24 @@
       "message": "You already have the option to block a contact / contact request so that the same contact will never been able to send an invitation as long as the peer is blocked?\n\nIf no should we also add the option \"Block this contact\" to the dialog?",
       "revId": "2f8369b63ba4d8eb556ad42a5eaf256a8c623df8",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef60bf38_657c33aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2025-02-12T18:17:33Z",
+      "side": 1,
+      "message": "Currently this dialog is made to appear only when a user presses the \"add\" button or sends a message to a user who isn\u0027t in their contacts already. As I see it the block functionality shouldn\u0027t appear in this dialog as it isn\u0027t related to adding someone. Moreover its a functionality which is used less frequently then adding a contact so I think that for the time being it should be dealt with in a separate manner.",
+      "parentUuid": "b6a08bba_95f36e72",
+      "revId": "2f8369b63ba4d8eb556ad42a5eaf256a8c623df8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
