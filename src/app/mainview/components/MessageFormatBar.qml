@@ -496,8 +496,9 @@ Rectangle {
                     parent: showMoreButton
                     visible: showMoreButton.hovered && (text.length > 0)
                     delay: Qt.styleHints.mousePressAndHoldInterval
-                    text: showMoreButton.down ? JamiStrings.showLess : JamiStrings.showMore
+                    text: showMoreButton.popup.visible ? JamiStrings.showLess : JamiStrings.showMore
                 }
+
 
                 indicator: ResponsiveImage {
 
