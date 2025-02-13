@@ -58,7 +58,9 @@ MessageParser::parseMessage(const QString& messageId,
     threadPool_->start(
         [this, messageId, md = msg, previewLinks, linkColor, backgroundColor]() mutable -> void {
             preprocessMarkdown(md);
+            qInfo() << "Preprocessed markdown: " << md.toStdString();
             auto html = markdownToHtml(md.toUtf8().constData());
+            qInfo() << "HTML: " << html.toStdString();
 
             // Now that we have the HTML, we can parse it to get a list of tags and their values.
             // We are only interested in the <a> and <pre> tags.
@@ -167,17 +169,53 @@ MessageParser::preprocessMarkdown(QString& markdown)
         markdown += block.second;
     }
 }
+QByteArray
+MessageParser::postprocessHTML(const QByteArray& html)
+{
+    // We need to check for any links that haven't been properly detected by md4c.
+    // We can do this by checking for any text that starts with "http" or "www".
+    // If we find any that isn't already in a <a> tag, we can wrap them in one.
+    static const QRegularExpression linkRe(R"((https?://\S+|www\.\S+)(?!</p>))");
+    static const QRegularExpression anchorTagRe(R"(<a\s+(?:[^>]*?\s+)?href=(["'])(.*?)\1>)");
+    QByteArray htmlCopy = html;
+    auto match = linkRe.globalMatch(htmlCopy);
+    while (match.hasNext()) {
+        auto m = match.next();
+        auto link = m.captured(0);
+
+        // Check if the link is already inside an <a> tag
+        auto anchorMatch = anchorTagRe.match(htmlCopy, m.capturedStart() - 1);
+        if (anchorMatch.hasMatch() && anchorMatch.capturedStart() < m.capturedStart()
+            && anchorMatch.capturedEnd() > m.capturedEnd()) {
+            continue;
+        }
+
+        if (!link.startsWith("http")) {
+            link.prepend("http://");
+        }
+
+        // Replace only the matched link with an <a> tag
+        htmlCopy.replace(m.capturedStart(),
+                         m.capturedLength(),
+                         QString("<a href=\"%1\">%1</a>").arg(link).toUtf8());
+    }
+    return htmlCopy;
+}
 
 QString
 MessageParser::markdownToHtml(const char* markdown)
 {
     static auto md_flags = MD_FLAG_PERMISSIVEAUTOLINKS | MD_FLAG_NOINDENTEDCODEBLOCKS
-                           | MD_FLAG_TASKLISTS | MD_FLAG_STRIKETHROUGH | MD_FLAG_UNDERLINE;
+                           | MD_FLAG_TASKLISTS | MD_FLAG_STRIKETHROUGH | MD_FLAG_UNDERLINE
+                           | MD_FLAG_PERMISSIVEURLAUTOLINKS;
     const size_t data_len = strlen(markdown);
     if (data_len <= 0) {
         return QString();
     }
     QByteArray array;
     const int result = md_html(markdown, MD_SIZE(data_len), &htmlChunkCb, &array, md_flags, 0);
+    qInfo() << "result: " << result << " array: " << array;
+    array = postprocessHTML(array);
+    qInfo() << "result: " << result << " array: " << array;
     return result == 0 ? QString::fromUtf8(array) : QString();
 }
