@@ -16,6 +16,24 @@
       "message": "Blocked because it removes an important feature.\nIt can be merged when the patch or another one is available to fix or restore the feature.",
       "revId": "668d5a2aec99ac263f117464489b4abd2fbb81cd",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d36adefe_c0879c46",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2025-02-13T01:47:03Z",
+      "side": 1,
+      "message": "I\u0027ve restored the feature in order for us to be able to merge this patch. That being said, in its current state the \"Jump to\" feature is quite broken. It basically never works (only works for messages that have already been loaded by the daemon). I\u0027m working towards a fix of this feature but it will require some time.",
+      "parentUuid": "802c81eb_7228c6b3",
+      "revId": "668d5a2aec99ac263f117464489b4abd2fbb81cd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
