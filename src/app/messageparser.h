@@ -63,6 +63,9 @@ private:
     // Transform markdown syntax into HTML.
     QString markdownToHtml(const char* markdown);
 
+    // Postprocess the HTML message to account to links that haven't been properly detetcted by md4c.
+    QByteArray postprocessHTML(const QByteArray& html);
+
     // Generate a preview for the given link, then emit the messageParsed signal.
     void generatePreview(const QString& msgId, const QString& link);
 
