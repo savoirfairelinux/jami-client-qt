@@ -53,6 +53,9 @@ public:
     // Emitted when the message is ready to be displayed.
     Q_SIGNAL void messageParsed(const QString& msgId, const QString& msg);
 
+    // postprocess HTML to account for issues in md4c
+    QByteArray postprocessHTML(const QByteArray& html);
+
     // Emitted when the message preview is ready to be displayed.
     Q_SIGNAL void linkInfoReady(const QString& msgId, const QVariantMap& info);
 
