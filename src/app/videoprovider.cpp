@@ -134,11 +134,15 @@ VideoProvider::captureRawVideoFrame(const QString& id)
         if (videoFrame.map(QVideoFrame::ReadOnly)) {
             auto imageFormat = QVideoFrameFormat::imageFormatFromPixelFormat(
                 QVideoFrameFormat::Format_RGBA8888);
-            img = QImage(videoFrame.bits(0),
-                         videoFrame.width(),
-                         videoFrame.height(),
-                         videoFrame.bytesPerLine(0),
-                         imageFormat);
+            // Create a temporary QImage that wraps the video frame data
+            QImage tempImage(videoFrame.bits(0),
+                             videoFrame.width(),
+                             videoFrame.height(),
+                             videoFrame.bytesPerLine(0),
+                             imageFormat);
+            // Make a deep copy so that the image owns its data
+            img = tempImage.copy();
+            videoFrame.unmap();
         }
     }
     return img;
