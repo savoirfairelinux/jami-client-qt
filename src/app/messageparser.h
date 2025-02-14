@@ -60,6 +60,9 @@ private:
     // Preprocess the markdown message (e.g. handle line breaks).
     void preprocessMarkdown(QString& markdown);
 
+    // postprocess HTML to account for issues in md4c
+    QByteArray postprocessHTML(const QByteArray& html);
+
     // Transform markdown syntax into HTML.
     QString markdownToHtml(const char* markdown);
 
