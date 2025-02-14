@@ -71,7 +71,7 @@ ListSelectionView {
 
     onDismissed: {
         // Trigger an update to messages if needed.
-        // Currently needed when changing the show link preview setting.
+        // Currently needed when changing the "Web link previews" setting.
         CurrentConversation.reloadInteractions();
     }
 
