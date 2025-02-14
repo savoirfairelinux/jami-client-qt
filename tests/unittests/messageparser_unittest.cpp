@@ -108,6 +108,41 @@ TEST_F(MessageParserFixture, ALinkIsParsedCorrectly)
 }
 
 /*!
+ * WHEN  We parse a text body with a link and a + or a -.
+ * THEN  The HTML body should be returned correctly including the link even if MD4C doesn't detect it.
+ */
+TEST_F(MessageParserFixture, AComplexLinkIsParsedCorrectly)
+{
+    auto linkColor = QColor::fromRgb(0, 0, 255);
+    auto backgroundColor = QColor::fromRgb(0, 0, 255);
+
+    QSignalSpy messageParsedSpy(globalEnv.messageParser.data(), &MessageParser::messageParsed);
+    QSignalSpy linkInfoReadySpy(globalEnv.messageParser.data(), &MessageParser::linkInfoReady);
+
+    // Parse a message with a link containing a + or a -.
+    globalEnv.messageParser->parseMessage("msgId_03",
+                                          "https://review.jami.net/q/status:open+-is:wip",
+                                          false,
+                                          linkColor,
+                                          backgroundColor);
+
+    // Wait for the messageParsed signal which should be emitted once.
+    messageParsedSpy.wait();
+    EXPECT_EQ(messageParsedSpy.count(), 1);
+
+    QList<QVariant> messageParserArguments = messageParsedSpy.takeFirst();
+    EXPECT_TRUE(messageParserArguments.at(0).typeId() == qMetaTypeId<QString>());
+    EXPECT_EQ(messageParserArguments.at(0).toString(), "msgId_03");
+    EXPECT_TRUE(messageParserArguments.at(1).typeId() == qMetaTypeId<QString>());
+    EXPECT_EQ(messageParserArguments.at(1).toString(),
+              "<style>a{color:#0000ff;}</style><p><a "
+              "href=\"https://review.jami.net/q/status:open+-is:wip\">https://review.jami.net/q/"
+              "status:open+-is:wip</a></p>\n");
+
+    // The rest of the link info is not tested here.
+}
+
+/*!
  * WHEN  We parse a text body with end of line characters.
  * THEN  The HTML body should be returned correctly with the end of line characters.
  */
