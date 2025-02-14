@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57a8a649_57d07300",
+        "filename": "src/app/mainview/components/NewSwarmPage.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-02-14T18:22:30Z",
+      "side": 1,
+      "message": "Nit: There are currently two different formatting conventions used in the codebase for `QWKSetParentHitTestVisible`, but the most common one is to put it on its own line below the `id`, and that\u0027s also what `qmlformat` does, so I\u0027d suggest doing that here too.",
+      "range": {
+        "startLine": 92,
+        "startChar": 41,
+        "endLine": 92,
+        "endChar": 69
+      },
+      "revId": "8851bb2d13d3af3dd0f0087056bc3644ecb4f658",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
