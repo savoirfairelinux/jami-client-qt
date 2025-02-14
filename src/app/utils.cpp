@@ -618,10 +618,12 @@ Utils::getProjectCredits()
     QTextStream in(&projectCreditsFile);
     return in.readAll().arg(
         QObject::tr("We would like to thank our contributors, whose efforts over many years have made this software what it is."),
-        QObject::tr("Developers"), QObject::tr("Media"), QObject::tr("Community Management"), QObject::tr("Special thanks to"),
-        QObject::tr("This is a list of people who have made a significant investment of time,\
-        with useful results, into Jami. Any such contributors who want to be added to the list \
-        should contact us."));
+        QObject::tr("Developers"),
+        QObject::tr("Media"),
+        QObject::tr("Community Management"),
+        QObject::tr("Special thanks to"),
+        QObject::tr("This is a list of people who have made a significant investment of time, with useful results, into Jami. Any such contributors who want to be added to the list should contact us.")
+      );
 }
 
 inline QString
