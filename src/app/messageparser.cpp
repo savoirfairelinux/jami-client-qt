@@ -167,6 +167,41 @@ MessageParser::preprocessMarkdown(QString& markdown)
         markdown += block.second;
     }
 }
+const QRegularExpression linkRegex(R"((http[s]?://[^\s]*[\+\-][^\s]*|www\.[^\s]*[\+\-][^\s]*))");
+const QRegularExpression pTagRe("</p>");
+const QString anchorTagTemplate("<a href=\"%1\">%1</a>");
+
+QByteArray
+MessageParser::postprocessHTML(const QByteArray& html)
+{
+    // HACK : https://github.com/mity/md4c/issues/251
+    // Check for any links that haven't been properly detected by md4c.
+    // We can do this by checking for any text that starts with "http" or "www" and contains a + or
+    // a -. If we find any, we insert a <a> tag around the link.
+    // This function could become obsolete if the md4c library fixs the issue it's adressing.
+
+    QByteArray processedHtml = html;
+    QRegularExpressionMatchIterator it = linkRegex.globalMatch(html);
+
+    // We need to remove the </p> from the captured link to get the correct one
+    int offset = 0;
+    while (it.hasNext()) {
+        QRegularExpressionMatch match = it.next();
+        QString link = match.captured(0);
+        QRegularExpressionMatch haveRe = pTagRe.match(link);
+        link = link.left(link.indexOf("</p>"));
+        QString anchorTag = anchorTagTemplate.arg(link);
+        if (haveRe.hasMatch()) {
+            anchorTag += "</p>";
+        }
+        processedHtml.replace(match.capturedStart(0) + offset,
+                              match.capturedLength(0),
+                              anchorTag.toUtf8());
+        offset += anchorTag.toUtf8().length() - match.capturedLength(0);
+    }
+
+    return processedHtml;
+}
 
 QString
 MessageParser::markdownToHtml(const char* markdown)
@@ -179,5 +214,6 @@ MessageParser::markdownToHtml(const char* markdown)
     }
     QByteArray array;
     const int result = md_html(markdown, MD_SIZE(data_len), &htmlChunkCb, &array, md_flags, 0);
+    array = postprocessHTML(array);
     return result == 0 ? QString::fromUtf8(array) : QString();
 }
