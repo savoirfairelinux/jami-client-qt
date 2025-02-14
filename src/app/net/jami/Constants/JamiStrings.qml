@@ -491,7 +491,7 @@ Item {
     // ChatviewSettings
     property string enableTypingIndicator: qsTr("Enable typing indicators")
     property string enableTypingIndicatorDescription: qsTr("Send and receive typing indicators showing that a message is being typed.")
-    property string displayHyperlinkPreviews: qsTr("Show link preview in conversations")
+    property string displayHyperlinkPreviews: qsTr("Web link previews")
     property string displayHyperlinkPreviewsDescription: qsTr("Preview requires downloading content from third-party servers.")
 
     property string language: qsTr("User interface language")
