@@ -58,9 +58,8 @@ MessageParser::parseMessage(const QString& messageId,
     threadPool_->start(
         [this, messageId, md = msg, previewLinks, linkColor, backgroundColor]() mutable -> void {
             preprocessMarkdown(md);
-            qInfo() << "Preprocessed markdown: " << md.toStdString();
             auto html = markdownToHtml(md.toUtf8().constData());
-            qInfo() << "HTML: " << html.toStdString();
+            qInfo() << "HTML: " << html;
 
             // Now that we have the HTML, we can parse it to get a list of tags and their values.
             // We are only interested in the <a> and <pre> tags.
@@ -172,34 +171,34 @@ MessageParser::preprocessMarkdown(QString& markdown)
 QByteArray
 MessageParser::postprocessHTML(const QByteArray& html)
 {
-    // We need to check for any links that haven't been properly detected by md4c.
-    // We can do this by checking for any text that starts with "http" or "www".
-    // If we find any that isn't already in a <a> tag, we can wrap them in one.
-    static const QRegularExpression linkRe(R"((https?://\S+|www\.\S+)(?!</p>))");
-    static const QRegularExpression anchorTagRe(R"(<a\s+(?:[^>]*?\s+)?href=(["'])(.*?)\1>)");
-    QByteArray htmlCopy = html;
-    auto match = linkRe.globalMatch(htmlCopy);
-    while (match.hasNext()) {
-        auto m = match.next();
-        auto link = m.captured(0);
+    // Check for any links that haven't been properly detected by md4c.
+    // We can do this by checking for any text that starts with "http" or "www" and contains a + or
+    // a -. If we find any, we insert a <a> tag around the link.
+    // This function could cause problems if the md4c library fixs the issue it's adressing.
 
-        // Check if the link is already inside an <a> tag
-        auto anchorMatch = anchorTagRe.match(htmlCopy, m.capturedStart() - 1);
-        if (anchorMatch.hasMatch() && anchorMatch.capturedStart() < m.capturedStart()
-            && anchorMatch.capturedEnd() > m.capturedEnd()) {
-            continue;
+    QByteArray processedHtml = html;
+    QRegularExpression linkRegex(R"((http[s]?://[^\s]*[\+\-][^\s]*|www\.[^\s]*[\+\-][^\s]*))");
+    QRegularExpression pTagRe("</p>");
+    QRegularExpressionMatchIterator it = linkRegex.globalMatch(html);
+
+    // We need to remove the </p> from the captured link to get the correct one
+    int offset = 0;
+    while (it.hasNext()) {
+        QRegularExpressionMatch match = it.next();
+        QString link = match.captured(0);
+        QRegularExpressionMatch haveRe = pTagRe.match(link);
+        link = link.left(link.indexOf("</p>"));
+        QString anchorTag = QString("<a href=\"%1\">%1</a>").arg(link);
+        if (haveRe.hasMatch()) {
+            anchorTag += "</p>";
         }
-
-        if (!link.startsWith("http")) {
-            link.prepend("http://");
-        }
-
-        // Replace only the matched link with an <a> tag
-        htmlCopy.replace(m.capturedStart(),
-                         m.capturedLength(),
-                         QString("<a href=\"%1\">%1</a>").arg(link).toUtf8());
+        processedHtml.replace(match.capturedStart(0) + offset,
+                              match.capturedLength(0),
+                              anchorTag.toUtf8());
+        offset += anchorTag.toUtf8().length() - match.capturedLength(0);
     }
-    return htmlCopy;
+
+    return processedHtml;
 }
 
 QString
@@ -214,8 +213,6 @@ MessageParser::markdownToHtml(const char* markdown)
     }
     QByteArray array;
     const int result = md_html(markdown, MD_SIZE(data_len), &htmlChunkCb, &array, md_flags, 0);
-    qInfo() << "result: " << result << " array: " << array;
     array = postprocessHTML(array);
-    qInfo() << "result: " << result << " array: " << array;
     return result == 0 ? QString::fromUtf8(array) : QString();
 }
