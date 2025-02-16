@@ -51,6 +51,7 @@ Item {
     property string noWarranty: qsTr('This program comes with absolutely no warranty. See the <a href="https://www.gnu.org/licenses/gpl-3.0.html" style="color: ' + JamiTheme.buttonTintedBlue + '">GNU General Public License</a>, version 3 or later for details.')
     property string contribute: qsTr('Contribute')
     property string feedback: qsTr('Feedback')
+    property string copyVersionInfo: qsTr("Copy all version information")
 
     // Crash report popup
     property string crashReportTitle: qsTr("Application Recovery")
