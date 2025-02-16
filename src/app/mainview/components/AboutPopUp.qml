@@ -75,31 +75,68 @@ BaseModalDialog {
                         padding: 10
                         contentItem: ColumnLayout {
                             spacing: 4
-                            TextEdit {
-                                id: jamiSlogansText
-                                Layout.alignment: Qt.AlignLeft
+                            RowLayout {
+                                Layout.fillWidth: true
+                                TextEdit {
+                                    id: jamiSlogansText
+                                    Layout.fillWidth: true
+                                    Layout.alignment: Qt.AlignLeft
 
-                                wrapMode: Text.WordWrap
-                                font.pixelSize: JamiTheme.menuFontSize
-                                font.bold: true
+                                    wrapMode: Text.WordWrap
+                                    font.pixelSize: JamiTheme.menuFontSize
+                                    font.bold: true
 
-                                horizontalAlignment: Text.AlignHCenter
-                                verticalAlignment: Text.AlignVCenter
+                                    verticalAlignment: Text.AlignVCenter
 
-                                text: textMetricsjamiSlogansText.text
-                                selectByMouse: true
-                                readOnly: true
-                                color: JamiTheme.textColor
+                                    text: textMetricsjamiSlogansText.text
+                                    selectByMouse: true
+                                    readOnly: true
+                                    color: JamiTheme.textColor
 
-                                TextMetrics {
-                                    id: textMetricsjamiSlogansText
-                                    font: jamiSlogansText.font
-                                    text: JamiStrings.slogan
+                                    TextMetrics {
+                                        id: textMetricsjamiSlogansText
+                                        font: jamiSlogansText.font
+                                        text: JamiStrings.slogan
+                                    }
+                                }
+                                
+                                JamiPushButton {
+                                    id: copyBtn
+
+                                    Layout.preferredHeight: 20
+                                    Layout.preferredWidth: 20
+                                    preferredSize: 20
+
+                                    imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
+                                    normalColor: "transparent"
+                                    toolTipText: JamiStrings.copyVersionInfo
+                                    source: JamiResources.copy_svg
+                                
+                                    onClicked: {
+                                        var versionStr = UtilsAdapter.getVersionStr();
+                                        var isBeta = AppVersionManager.isCurrentVersionBeta();
+                                        var buildIDStr = UtilsAdapter.getBuildIDStr();
+                                        
+                                        var versionLine = "";
+                                        if (versionStr.length > 1) {
+                                            versionLine = JamiStrings.version + ": " + (isBeta ? "(Beta) " : "") + versionStr;
+                                        }
+                                        var buildIDLine = JamiStrings.buildID + ": " + buildIDStr;
+                                        
+                                        var copyText = "";
+                                        if (versionLine !== "") {
+                                            copyText += "\n" + versionLine;
+                                        }
+                                        copyText += "\n" + buildIDLine;
+                                        
+                                        UtilsAdapter.setClipboardText(copyText);
+                                    }
                                 }
                             }
-                            TextEdit {
-                                Layout.alignment: Qt.AlignLeft
 
+                            TextEdit {
+                                // Existing version/build ID TextEdit content remains unchanged
+                                Layout.alignment: Qt.AlignLeft
                                 font.pixelSize: JamiTheme.textFontSize
                                 padding: 0
                                 readonly property bool isBeta: AppVersionManager.isCurrentVersionBeta()
@@ -117,10 +154,8 @@ BaseModalDialog {
                                     }
                                     return contentStr
                                 }
-
                                 selectByMouse: true
                                 readOnly: true
-
                                 color: JamiTheme.faddedFontColor
                             }
                         }
