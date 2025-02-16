@@ -618,7 +618,8 @@ Rectangle {
                             width: JamiTheme.smartListAvatarSize
                             height: JamiTheme.smartListAvatarSize
                             Layout.leftMargin: JamiTheme.preferredMarginSize
-                            Layout.topMargin: JamiTheme.preferredMarginSize / 2
+                            Layout.topMargin: JamiTheme.preferredMarginSize / 4
+                            Layout.bottomMargin: JamiTheme.preferredMarginSize / 4
                             z: -index
                             opacity: (MemberRole === Member.Role.INVITED || MemberRole === Member.Role.BANNED) ? 0.5 : 1
 
@@ -632,7 +633,8 @@ Rectangle {
                             id: nameTextEdit
 
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                            Layout.topMargin: JamiTheme.preferredMarginSize / 2
+                            Layout.topMargin: JamiTheme.preferredMarginSize / 4
+                            Layout.bottomMargin: JamiTheme.preferredMarginSize / 4
                             Layout.fillWidth: true
 
                             eText: UtilsAdapter.getContactBestName(CurrentAccount.id, MemberUri)
@@ -654,8 +656,9 @@ Rectangle {
                             id: roleLabel
 
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                            Layout.topMargin: JamiTheme.preferredMarginSize / 2
-
+                            Layout.topMargin: JamiTheme.preferredMarginSize / 4
+                            Layout.bottomMargin: JamiTheme.preferredMarginSize / 4
+                            
                             eText: {
                                 if (MemberRole === Member.Role.ADMIN)
                                     return JamiStrings.administrator;
