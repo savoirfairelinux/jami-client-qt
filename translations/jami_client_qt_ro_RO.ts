@@ -37,7 +37,7 @@
     <message>
         <location filename="../src/app/conversationlistmodelbase.cpp" line="127"/>
         <source>Deleted media</source>
-        <translation type="unfinished"/>
+        <translation>Fișier șters</translation>
     </message>
     <message>
         <location filename="../src/app/conversationlistmodelbase.cpp" line="144"/>
@@ -55,7 +55,7 @@
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="247"/>
         <source>%1 received a new invitation</source>
-        <translation type="unfinished"/>
+        <translation>%1 a primit o invitație nouă</translation>
     </message>
 </context>
 <context>
@@ -101,7 +101,7 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="322"/>
         <source>Insufficient permission to update conversation information</source>
-        <translation type="unfinished"/>
+        <translation>Nu există permisiunea de a actualiza informațiile despre conversație</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="324"/>
@@ -767,11 +767,6 @@ Dacă nu se alege un nume de utilizator, un identificator de 40 de caractere gen
         <translation>Trimite și primește indicatoare de scriere care arată că se scrie un mesaj.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="494"/>
-        <source>Show link preview in conversations</source>
-        <translation>Arată adresele web în discuții</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="516"/>
         <source>Delete file from device</source>
         <translation>Șterge fișierul din aparat</translation>
@@ -852,104 +847,104 @@ Dacă nu se alege un nume de utilizator, un identificator de 40 de caractere gen
         <translation>Apasă Enter pentru a introduce un rând nou</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="791"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="792"/>
         <source>Select this device</source>
         <translation>Alege acest aparat</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="792"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="793"/>
         <source>Select device</source>
         <translation>Alege aparatul</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="797"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="798"/>
         <source>Show local video</source>
         <translation>Arată video local</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="798"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="799"/>
         <source>Hide local video</source>
         <translation>Ascunde video</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="852"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="853"/>
         <source>Encrypt your account with a password</source>
         <translation>Cifrează contul cu o parolă</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="853"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="854"/>
         <source>Customize your profile</source>
         <translation>Personalizează-ți profilul</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="856"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="857"/>
         <source>Appearance</source>
         <translation>Aspect</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="876"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="877"/>
         <source>Donate</source>
         <translation>Donează</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="877"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="878"/>
         <source>If you enjoy using Jami and believe in our mission, would you make a donation?</source>
         <translation>Dacă îți place să folosești Jami și crezi că misiunea noastră este importantă, poți face o donație?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="878"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="879"/>
         <source>Not now</source>
         <translation>Nu acum</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="879"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="880"/>
         <source>Enable donation campaign</source>
         <translation>Activează campania de donare</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="882"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="883"/>
         <source>Enter</source>
         <translation>Enter</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="883"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="884"/>
         <source>Shift+Enter</source>
         <translation>Shift+Enter</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="884"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="885"/>
         <source>Enter or Shift+Enter to insert a new line</source>
         <translation>Enter sau Shift+Enter pentru a introduce un rând nou</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="898"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="899"/>
         <source>View</source>
         <translation>Vizualizare</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="885"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="886"/>
         <source>Text formatting</source>
         <translation>Formatarea textului</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="633"/>
         <source>The Jami Extension Store is not currently available. Please try again later.</source>
-        <translation type="unfinished"/>
+        <translation>Magazinul de extensii Jami nu este disponibil momentan. Încearcă din nou mai târziu.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="634"/>
         <source>There are no extensions currently available in the Jami Extension Store for the platform in use. Please check again later.</source>
-        <translation type="unfinished"/>
+        <translation>Magazinul de extensii Jami nu are în prezent nicio extensie disponibilă pentru platforma utilizată. Verifică din nou mai târziu!</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="636"/>
         <source>Installation error</source>
-        <translation type="unfinished"/>
+        <translation>Instalarea nu a reușit</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="637"/>
         <source>An error occurred while installing the extension.</source>
-        <translation type="unfinished"/>
+        <translation>A apărut o eroare la instalarea extensiei.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="640"/>
@@ -959,27 +954,27 @@ Dacă nu se alege un nume de utilizator, un identificator de 40 de caractere gen
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="641"/>
         <source>Select extension to install</source>
-        <translation type="unfinished"/>
+        <translation>Alege o extensie de instalat</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="642"/>
         <source>Uninstall extension</source>
-        <translation type="unfinished"/>
+        <translation>Dezinstalează extensia</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="643"/>
         <source>Do you want to reset the preferences for the %1 extension? To continue, click Reset.</source>
-        <translation type="unfinished"/>
+        <translation>Vrei să restabilești reglările inițiale ale extensiei %1? Apasă pe Restabilește, pentru a continua.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="644"/>
         <source>Do you want to uninstall the %1 extension? To continue, click Uninstall.</source>
-        <translation type="unfinished"/>
+        <translation>Vrei să dezinstalezi extensia %1? Apasă pe Dezinstalează, pentru a continua.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="645"/>
         <source>Go back to extensions list</source>
-        <translation type="unfinished"/>
+        <translation>Înapoi la lista cu extensii</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="646"/>
@@ -989,42 +984,42 @@ Dacă nu se alege un nume de utilizator, un identificator de 40 de caractere gen
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="649"/>
         <source>Extension files (*.jpl)</source>
-        <translation type="unfinished"/>
+        <translation>Fișiere Extensie (*.jpl)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="654"/>
         <source>Choose extension</source>
-        <translation type="unfinished"/>
+        <translation>Alege extensia</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="669"/>
         <source>Select screen to share</source>
-        <translation type="unfinished"/>
+        <translation>Alege ecranul de distribuit</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="670"/>
         <source>Select window to share</source>
-        <translation type="unfinished"/>
+        <translation>Alege fereastra de distribuit</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="671"/>
         <source>All screens</source>
-        <translation type="unfinished"/>
+        <translation>Toate ecranele</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="689"/>
         <source>An error occurred while creating the account. Check credentials and try again.</source>
-        <translation type="unfinished"/>
+        <translation>A apărut o eroare în timpul creării contului. Verifică datele și încearcă din nou.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="701"/>
         <source>Clear text</source>
-        <translation type="unfinished"/>
+        <translation>Șterge textul</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="703"/>
         <source>Search results</source>
-        <translation type="unfinished"/>
+        <translation>Rezultatele căutării</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="706"/>
@@ -1054,154 +1049,156 @@ Dacă nu se alege un nume de utilizator, un identificator de 40 de caractere gen
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="729"/>
         <source>Mute participant</source>
-        <translation type="unfinished"/>
+        <translation>Oprește microfonul</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="730"/>
         <source>Unmute participant</source>
-        <translation type="unfinished"/>
+        <translation>Pornește microfonul</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="746"/>
         <source>An error occurred while reconnecting to the Jami daemon (jamid).
 The application will now exit.</source>
-        <translation type="unfinished"/>
+        <translation>Eroare în timpul reconectării la serviciul Jami (jamid).
+Aplicația se va închide acum.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="775"/>
         <source>Don&apos;t send</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="785"/>
-        <source>Join with audio</source>
-        <translation type="unfinished"/>
+        <translation>Nu trimite</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="786"/>
-        <source>Join with video</source>
-        <translation type="unfinished"/>
+        <source>Join with audio</source>
+        <translation>Participă vocal</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="789"/>
-        <source>Current host for this group conversation seems unreachable. Do you want to host the call?</source>
-        <translation type="unfinished"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="787"/>
+        <source>Join with video</source>
+        <translation>Participă cu video</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="790"/>
-        <source>Select dedicated device for hosting future calls in this group conversation. If not set, the host will be the device starting a call.</source>
-        <translation type="unfinished"/>
+        <source>Current host for this group conversation seems unreachable. Do you want to host the call?</source>
+        <translation>Gazda actuală a acestui grup pare a fi inaccesibilă. Vrei să găzduiești convorbirea?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="801"/>
-        <source>%1 sent you a conversation invitation.</source>
-        <translation type="unfinished"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="791"/>
+        <source>Select dedicated device for hosting future calls in this group conversation. If not set, the host will be the device starting a call.</source>
+        <translation>Alege un aparat pentru găzduirea viitoarelor convorbiri din acest grup. Dacă nu este ales, aparatul care începe convorbirea o va găzdui.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="802"/>
+        <source>%1 sent you a conversation invitation.</source>
+        <translation>%1 ți-a trimis o invitație la conversație.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="803"/>
         <source>Hello,
 Do you want to join the conversation?</source>
         <translation>Vrei să participi la conversație?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="803"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="804"/>
         <source>You have accepted
 the conversation invitation.</source>
-        <translation type="unfinished"/>
+        <translation>Ai acceptat invitația
+la conversație.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="804"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="805"/>
         <source>Waiting for %1
 to connect to synchronize the conversation…</source>
-        <translation type="unfinished"/>
+        <translation>Se așteaptă ca %1 să se conecteze pentru a sincroniza conversația…</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="809"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="810"/>
         <source>Group name</source>
         <translation>Numele grupului</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="810"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="811"/>
         <source>Contact name</source>
         <translation>Numele contactului</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="811"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="812"/>
         <source>Add description</source>
         <translation>Adaugă o descriere</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="815"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="816"/>
         <source>Color</source>
         <translation>Culoare</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="818"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="819"/>
         <source>Conversation type</source>
         <translation>Tipul conversației</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="823"/>
-        <source>Block member</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="824"/>
-        <source>Unblock member</source>
-        <translation type="unfinished"/>
+        <source>Block member</source>
+        <translation>Blochează membrul</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="875"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="825"/>
+        <source>Unblock member</source>
+        <translation>Deblochează membrul</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="876"/>
         <source>Free and private sharing. &lt;a href=&quot;https://jami.net/whydonate/&quot;&gt;Donate&lt;/a&gt; to expand it.</source>
         <translation>Distribuire gratuită și privată. &lt;a href=&quot;https://jami.net/whydonate/&quot;&gt;Donează&lt;/a&gt; pentru a o extinde.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="888"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="889"/>
         <source>Connected</source>
         <translation>Conectat</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="889"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="890"/>
         <source>Connecting TLS</source>
         <translation>Conectare TLS</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="890"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="891"/>
         <source>Connecting ICE</source>
         <translation>Conectare ICE</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="891"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="892"/>
         <source>Connecting</source>
         <translation>Se conectează</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="892"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="893"/>
         <source>Waiting</source>
         <translation>Se așteaptă</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="893"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="894"/>
         <source>Contact</source>
         <translation>Contact</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="894"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="895"/>
         <source>Connection</source>
         <translation>Conectare</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="895"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="896"/>
         <source>Channels</source>
         <translation>Canale</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="896"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="897"/>
         <source>Copy all data</source>
         <translation>Copiază toate datele</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="897"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="898"/>
         <source>Remote: </source>
         <translation>La distanță: </translation>
     </message>
@@ -1252,67 +1249,67 @@ to connect to synchronize the conversation…</source>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="471"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="782"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="783"/>
         <source>Edit</source>
         <translation>Modifică</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="783"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="784"/>
         <source>Edited</source>
         <translation>Modificat</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="784"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="785"/>
         <source>Join call</source>
         <translation>Participă la convorbire</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="788"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="789"/>
         <source>A call is in progress. Do you want to join the call?</source>
         <translation>O convorbire este în curs. Vrei să participi la convorbire?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="793"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="794"/>
         <source>Remove current device</source>
         <translation>Elimină aparatul actual</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="794"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="795"/>
         <source>Host only this call</source>
         <translation>Găzduiește doar această convorbire</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="795"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="796"/>
         <source>Host this call</source>
         <translation>Găzduiește această convorbire</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="796"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="797"/>
         <source>Make me the default host for future calls</source>
         <translation>Fă-mă gazdă prestabilită pentru convorbirile viitoare</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="813"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="814"/>
         <source>Mute conversation</source>
         <translation>Dezactivează notificările</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="816"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="817"/>
         <source>Default host (calls)</source>
         <translation>Gazdă prestabilită (convorbiri)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="819"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="820"/>
         <source>None</source>
         <translation>Nimic</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="832"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="833"/>
         <source>Tip</source>
         <translation>Sfat</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="834"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="835"/>
         <source>Add a profile picture and nickname to complete your profile</source>
         <translation>Adaugă o poză și un pseudonim pentru a-ți completa profilul</translation>
     </message>
@@ -1932,7 +1929,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="400"/>
         <source>Configure existing SIP account</source>
-        <translation type="unfinished"/>
+        <translation>Configurează un cont SIP existent</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="405"/>
@@ -1942,47 +1939,47 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="410"/>
         <source>Your Jami account is registered only on this device as an archive containing the keys of your account. Access to this archive can be protected with a password.</source>
-        <translation type="unfinished"/>
+        <translation>Contul tău Jami este înregistrat doar în acest aparat ca o arhivă care conține cheile contului tău. Accesul la această arhivă poate fi protejat cu o parolă.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="412"/>
         <source>This Jami account exists only on this device. The account will be lost if this device is lost or the application is uninstalled. It is recommended to make a backup of this account.</source>
-        <translation type="unfinished"/>
+        <translation>Acest cont Jami există doar în acest aparat. Contul va fi pierdut dacă acest aparat este pierdut sau dacă aplicația este dezinstalată. Se recomandă efectuarea unei copii de rezervă a acestui cont.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="414"/>
         <source>If this account has not been backed up or added to another device, this account and registered name will be irrevocably lost.</source>
-        <translation type="unfinished"/>
+        <translation>Dacă acest cont nu a fost asociat cu alt aparat și nu ai o copie de rezervă, va fi pierdut definitiv împreună cu numele înscris.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="420"/>
         <source>Backup completed successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Copie de rezervă reușită.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="421"/>
         <source>An error occurred while backing up the account.</source>
-        <translation type="unfinished"/>
+        <translation>A apărut o eroare la crearea copiei de rezervă.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="422"/>
         <source>Password changed successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Parolă schimbată cu succes.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="423"/>
         <source>An error occurred while changing the account password.</source>
-        <translation type="unfinished"/>
+        <translation>A apărut o eroare la schimbarea parolei contului.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="424"/>
         <source>Password set successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Parolă pusă cu succes.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="425"/>
         <source>An error occurred while setting the account password.</source>
-        <translation type="unfinished"/>
+        <translation>A apărut o eroare la activarea parolei contului.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="434"/>
@@ -2019,73 +2016,74 @@ to connect to synchronize the conversation…</source>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="42"/>
         <source>An error occurred while attempting to reconnect to the Jami daemon (jamid).
 Jami will now quit.</source>
-        <translation type="unfinished"/>
+        <translation>Eroare în timpul reconectării la serviciul Jami (jamid).
+Jami se va închide acum.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="43"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="745"/>
         <source>Attempting to reconnect to the Jami daemon (jamid)…</source>
-        <translation type="unfinished"/>
+        <translation>Reconectare la serviciul Jami (jamid)…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="46"/>
         <source>Build ID</source>
-        <translation type="unfinished"/>
+        <translation>Generează ID</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="56"/>
         <source>Application Recovery</source>
-        <translation type="unfinished"/>
+        <translation>Redresarea aplicației</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="57"/>
         <source>Jami has recovered from a crash. Would you like to send a crash report to help us fix the issue?</source>
-        <translation type="unfinished"/>
+        <translation>Jami și-a revenit după un blocaj. Vrei să trimiți un raport pentru a ne ajuta să rezolvăm problema?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="58"/>
         <source>Only essential data, including the app version, platform information, and a snapshot of the program&apos;s state at the time of the crash, will be shared.</source>
-        <translation type="unfinished"/>
+        <translation>Vor fi transmise doar datele esențiale, cum ar fi versiunea aplicației, informațiile despre platformă și un instantaneu al stării aplicației în momentul defectării.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="80"/>
         <source>An error occurred while authenticating the account.</source>
-        <translation type="unfinished"/>
+        <translation>A apărut o eroare la autentificarea contului.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="88"/>
         <source>Automatically answer incoming calls</source>
-        <translation type="unfinished"/>
+        <translation>Răspuns automat la apeluri</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="92"/>
         <source>Certificate file (*.crt)</source>
-        <translation type="unfinished"/>
+        <translation>Fișierul certificatului (*.crt)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="93"/>
         <source>Audio file (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)</source>
-        <translation type="unfinished"/>
+        <translation>Fișier audio (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="124"/>
         <source>Select private key</source>
-        <translation type="unfinished"/>
+        <translation>Alege cheia privată</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="125"/>
         <source>Select user certificate</source>
-        <translation type="unfinished"/>
+        <translation>Alege certificatul de utilizator</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="126"/>
         <source>Select CA certificate</source>
-        <translation type="unfinished"/>
+        <translation>Alege certificatul CA</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="128"/>
         <source>Key file (*.key)</source>
-        <translation type="unfinished"/>
+        <translation>Fișierul cheii (*.key)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="140"/>
@@ -2095,12 +2093,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="213"/>
         <source>No camera available</source>
-        <translation type="unfinished"/>
+        <translation>Nicio cameră detectată</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="222"/>
         <source>Jami account (*.jac)</source>
-        <translation type="unfinished"/>
+        <translation>Cont Jami (*.jac)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="232"/>
@@ -2120,12 +2118,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="237"/>
         <source>Start camera</source>
-        <translation type="unfinished"/>
+        <translation>Pornește camera</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="238"/>
         <source>Invite member</source>
-        <translation type="unfinished"/>
+        <translation>Invită membrul</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="239"/>
@@ -2135,12 +2133,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="244"/>
         <source>Participant microphone is still muted.</source>
-        <translation type="unfinished"/>
+        <translation>Microfonul participantului este oprit.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="245"/>
         <source>Device microphone is still muted.</source>
-        <translation type="unfinished"/>
+        <translation>Microfonul aparatului este oprit.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="270"/>
@@ -2150,44 +2148,46 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="271"/>
         <source>Do you want to block this conversation?</source>
-        <translation type="unfinished"/>
+        <translation>Vrei să blochezi această conversație?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="278"/>
         <source>DTMF input panel</source>
-        <translation type="unfinished"/>
+        <translation>Tonuri DTMF</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="289"/>
         <source>View extension</source>
-        <translation type="unfinished"/>
+        <translation>Arată extensia</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="316"/>
         <source>An error occurred while sharing the device location.
 Enable “Location Services” in device settings in order to use this feature.
 The location of other members can still be received.</source>
-        <translation type="unfinished"/>
+        <translation>A apărut o eroare în timpul distribuirii poziției aparatului.
+Activează „Servicii de localizare” pentru a utiliza această caracteristică.
+Poziția altor membri poate fi primită în continuare.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="317"/>
         <source>An error occurred while sharing the device location. Please check your Internet connection and try again.</source>
-        <translation type="unfinished"/>
+        <translation>A apărut o eroare în timpul distribuirii poziției aparatului. Verifică conectarea la internet și încearcă din nou.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="344"/>
         <source>Show available extensions</source>
-        <translation type="unfinished"/>
+        <translation>Arată extensiile disponibile</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="346"/>
         <source>A backend system error occurred: %0</source>
-        <translation type="unfinished"/>
+        <translation>A apărut o eroare de sistem: %0</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="350"/>
         <source>deleted a media</source>
-        <translation type="unfinished"/>
+        <translation>a șters un fișier</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="351"/>
@@ -2228,7 +2228,8 @@ The location of other members can still be received.</source>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="384"/>
         <source>Do you want to join Jami without a username?
 If yes, only a randomly generated 40-character identifier will be assigned to this account.</source>
-        <translation type="unfinished"/>
+        <translation>Vrei să te înscrii în Jami fără nume de utilizator?
+Dacă da, acestui cont îi va fi atribuit doar un identificator de 40 de caractere generat aleatoriu.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="388"/>
@@ -2306,12 +2307,13 @@ Poza și pseudonimul tău pot fi schimbate din reglările contului tău.</transl
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="436"/>
         <source>This profile is only shared with account contacts.
 The profile can be changed in account settings.</source>
-        <translation type="unfinished"/>
+        <translation>Acest profil este împărtășit doar cu contactele contului.
+Profilul poate fi modificat în reglările contului.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="438"/>
         <source>A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected with a password.</source>
-        <translation type="unfinished"/>
+        <translation>Un cont Jami este creat și stocat local numai în acest aparat, sub forma unei arhive care conține cheile contului tău. Accesul la această arhivă poate fi protejat facultativ cu o parolă.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="440"/>
@@ -2336,18 +2338,19 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="456"/>
         <source>Do you want to unlink the selected device? To continue, enter account password and click Unlink.</source>
-        <translation type="unfinished"/>
+        <translation>Vrei să elimini aparatul ales? Introdu parola contului și apasă pe Elimină, pentru a continua.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="457"/>
         <source>Account PIN code is:</source>
-        <translation type="unfinished"/>
+        <translation>PIN-ul contului este:</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="458"/>
         <source>A network error occurred while linking device.
 Please try again later.</source>
-        <translation type="unfinished"/>
+        <translation>Eroare de rețea în timpul asocierii aparatului.
+Încearcă din nou mai târziu.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="461"/>
@@ -2367,7 +2370,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="466"/>
         <source>Do you want to delete this account? To continue, click Delete.</source>
-        <translation type="unfinished"/>
+        <translation>Vrei să ștergi acest cont? Apasă pe Șterge, pentru a continua.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="472"/>
@@ -2375,14 +2378,19 @@ Please try again later.</source>
         <translation>Numele aparatului:</translation>
     </message>
     <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="494"/>
+        <source>Web link previews</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="504"/>
         <source>Accept transfer limit (Mb)</source>
-        <translation type="unfinished"/>
+        <translation>Limita fișierului acceptat (MB)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="505"/>
         <source>MB, 0 = unlimited</source>
-        <translation type="unfinished"/>
+        <translation>MB, 0 = nelimitat</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="509"/>
@@ -2393,66 +2401,68 @@ Please try again later.</source>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="510"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="527"/>
         <source>A network error occurred.</source>
-        <translation type="unfinished"/>
+        <translation>A apărut o eroare de rețea.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="511"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="535"/>
         <source>An unexpected error occurred.</source>
-        <translation type="unfinished"/>
+        <translation>A apărut o eroare neașteptată.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="524"/>
         <source>A new version of Jami was found.
 Do you want to update Jami now?
 To continue, click Update.</source>
-        <translation type="unfinished"/>
+        <translation>Jami are o versiune nouă.
+Vrei să actualizezi acum?
+Apasă pe Actualizare, pentru a contiua.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="526"/>
         <source>An error occurred while checking for a new version.</source>
-        <translation type="unfinished"/>
+        <translation>A apărut o eroare la căutarea unei noi versiuni.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="528"/>
         <source>An SSL error occurred.</source>
-        <translation type="unfinished"/>
+        <translation>A apărut o eroare SSL.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="529"/>
         <source>Installer download was canceled by user.</source>
-        <translation type="unfinished"/>
+        <translation>Descărcarea programului a fost anulată de utilizator.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="531"/>
         <source>This will replace the Release version with the Beta version on this device. The latest Release version can always be downloaded from the Jami website.</source>
-        <translation type="unfinished"/>
+        <translation>Aceasta va înlocui versiunea Release cu versiunea Beta. Cea mai recentă versiune Release poate fi descărcată de pe situl web Jami.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="533"/>
         <source>An error occurred while accessing the contents.</source>
-        <translation type="unfinished"/>
+        <translation>A apărut o eroare în timpul accesării conținutului.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="534"/>
         <source>Content not found.</source>
-        <translation type="unfinished"/>
+        <translation>Nu s-a găsit conținutul.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="542"/>
         <source>(Experimental) Enable call support for groups</source>
-        <translation type="unfinished"/>
+        <translation>(Experimental) Activează convorbirile în grup</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="543"/>
         <source>This feature will enable the audio and video call buttons in group conversations.</source>
-        <translation type="unfinished"/>
+        <translation>Această caracteristică va activa butoanele de apel audio și video în conversațiile de grup.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="553"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="554"/>
         <source>Keyboard shortcuts</source>
-        <translation type="unfinished"/>
+        <translation>Taste rapide</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="558"/>
@@ -2472,7 +2482,7 @@ To continue, click Update.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="567"/>
         <source>View logs</source>
-        <translation type="unfinished"/>
+        <translation>Arată jurnalul</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="583"/>
@@ -2502,72 +2512,72 @@ To continue, click Update.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="588"/>
         <source>Go to the account management settings of a previous device.</source>
-        <translation type="unfinished"/>
+        <translation>Du-te la „Reglările contului” din aparatul care deține acest cont.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="589"/>
         <source>Choose the account to link.</source>
-        <translation type="unfinished"/>
+        <translation>Alege contul de asociat.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="590"/>
         <source>Select “Link another device.”</source>
-        <translation type="unfinished"/>
+        <translation>Alege „Asociază alt aparat”.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="591"/>
         <source>The PIN code will expire in 10 minutes.</source>
-        <translation type="unfinished"/>
+        <translation>Codul PIN va fi valabil timp de 10 minute.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="595"/>
         <source>The PIN code and the account password should be entered in your device within 10 minutes.</source>
-        <translation type="unfinished"/>
+        <translation>Codul PIN și parola contului trebuie introduse în aparatul tău în 10 minute.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="600"/>
         <source>PIN code has expired.</source>
-        <translation type="unfinished"/>
+        <translation>Codul PIN a expirat.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="602"/>
         <source>Install and launch Jami, select “Import from another device” and scan the QR code.</source>
-        <translation type="unfinished"/>
+        <translation>Instalează și pornește Jami, alege „Importă din alt aparat” și scanează codul QR.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="604"/>
         <source>In Jami, scan QR code or manually enter PIN code.</source>
-        <translation type="unfinished"/>
+        <translation>În Jami, scanează codul QR sau introdu manual codul PIN.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="605"/>
         <source>The PIN code will expire in: </source>
-        <translation type="unfinished"/>
+        <translation>Codul PIN va fi valabil: </translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="617"/>
         <source>Select image as profile picture</source>
-        <translation type="unfinished"/>
+        <translation>Alege o poză de profil</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="618"/>
         <source>How do you want to set the profile picture?</source>
-        <translation type="unfinished"/>
+        <translation>Cum vrei să pui poza de profil?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="619"/>
         <source>Import profile picture from image file</source>
-        <translation type="unfinished"/>
+        <translation>Importă poza de profil</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="620"/>
         <source>Remove profile picture</source>
-        <translation type="unfinished"/>
+        <translation>Elimină poza de profil</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="622"/>
         <source>Image files (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)</source>
-        <translation type="unfinished"/>
+        <translation>Fișiere imagine (*.jpeg *.jpg *.png *.JPEG *.JPG *.PNG)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="625"/>
@@ -2695,62 +2705,67 @@ To continue, click Update.</source>
         <translation>Ascunde formatarea</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="787"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="782"/>
+        <source>Send a message to %1 in order to add them as a contact</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="788"/>
         <source>Started a call</source>
         <translation>A început un apel</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="843"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="844"/>
         <source>Share your Jami identifier in order to be contacted more easily!</source>
         <translation>Împărtășește identificatorul tău Jami pentru a fi contactat mai ușor!</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="844"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="845"/>
         <source>Jami identity</source>
         <translation>Identitate Jami</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="845"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="846"/>
         <source>Show fingerprint</source>
         <translation>Arată amprenta</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="846"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="847"/>
         <source>Show registered name</source>
         <translation>Arată numele înscris</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="849"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="850"/>
         <source>Enabling your account allows you to be contacted on Jami</source>
         <translation>Activarea contului tău îți permite să fii contactat pe Jami</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="859"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="860"/>
         <source>Experimental</source>
         <translation>Experimental</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="862"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="863"/>
         <source>Ringtone</source>
         <translation>Sonerie</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="865"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="866"/>
         <source>Rendezvous point</source>
         <translation>Loc de conferință</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="868"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="869"/>
         <source>Moderation</source>
         <translation>Moderare</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="871"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="872"/>
         <source>Theme</source>
         <translation>Aspect</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="872"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="873"/>
         <source>Text zoom level</source>
         <translation>Zoom text</translation>
     </message>
@@ -3021,17 +3036,17 @@ To continue, click Update.</source>
         <translation>Importă</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="838"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="839"/>
         <source>Delete message</source>
         <translation>Șterge mesajul</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="839"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="840"/>
         <source>*(Deleted Message)*</source>
         <translation>*(Mesaj șters)*</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="840"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="841"/>
         <source>Edit message</source>
         <translation>Modifică mesajul</translation>
     </message>
@@ -3418,63 +3433,63 @@ To continue, click Update.</source>
         <translation>Scrie pentru %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="807"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="808"/>
         <source>%1 Members</source>
         <translation>%1 Membri</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="808"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="809"/>
         <source>Member</source>
         <translation>Membru</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="814"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="815"/>
         <source>Ignore all notifications from this conversation</source>
         <translation>Ignoră toate notificările de la această conversație</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="269"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="817"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="818"/>
         <source>Leave conversation</source>
         <translation>Termină conversația</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="822"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="823"/>
         <source>Go to conversation</source>
         <translation>Du-te la conversație</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="825"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="826"/>
         <source>Administrator</source>
         <translation>Administrator</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="826"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="827"/>
         <source>Invited</source>
         <translation>Invitat</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="827"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="828"/>
         <source>Remove member</source>
         <translation>Elimină membrul</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="828"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="829"/>
         <source>To:</source>
         <translation>Pentru:</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="831"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="832"/>
         <source>Customize</source>
         <translation>Personalizează</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="833"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="834"/>
         <source>Dismiss</source>
         <translation>Ignoră</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="835"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="836"/>
         <source>Your profile is only shared with your contacts</source>
         <translation>Profilul tău este distribuit doar contactelor tale</translation>
     </message>
@@ -3589,7 +3604,7 @@ To continue, click Update.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="124"/>
         <source>Answer incoming call</source>
-        <translation type="unfinished"/>
+        <translation>Răspunde la apel</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="132"/>
@@ -3659,12 +3674,12 @@ To continue, click Update.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="188"/>
         <source>Show/hide formatting</source>
-        <translation type="unfinished"/>
+        <translation>Arată/Ascunde formatarea</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="192"/>
         <source>Show preview/Continue editing</source>
-        <translation type="unfinished"/>
+        <translation>Previzualizare/Continuă modificarea</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="200"/>
@@ -3684,12 +3699,12 @@ To continue, click Update.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="212"/>
         <source>Open extensions settings</source>
-        <translation type="unfinished"/>
+        <translation>Deschide „Reglări Extensii”</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="221"/>
         <source>View keyboard shortcuts</source>
-        <translation type="unfinished"/>
+        <translation>Arată tastele rapide</translation>
     </message>
 </context>
 <context>
@@ -3825,12 +3840,12 @@ To continue, click Update.</source>
     <message>
         <location filename="../src/libclient/interaction.cpp" line="90"/>
         <source>Group conversation created</source>
-        <translation type="unfinished"/>
+        <translation>Conversație în grup creată</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="284"/>
         <source>%1 was invited to join the conversation.</source>
-        <translation type="unfinished"/>
+        <translation>%1 a fost invitat să participe la conversație.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="287"/>
@@ -3840,32 +3855,32 @@ To continue, click Update.</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="289"/>
         <source>%1 joined the conversation.</source>
-        <translation type="unfinished"/>
+        <translation>%1 participă la conversație.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="291"/>
         <source>%1 left the conversation.</source>
-        <translation type="unfinished"/>
+        <translation>%1 a părăsit conversația.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="293"/>
         <source>%1 was blocked from the conversation.</source>
-        <translation type="unfinished"/>
+        <translation>%1 a fost blocat din conversație.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="295"/>
         <source>%1 was unblocked from the conversation.</source>
-        <translation type="unfinished"/>
+        <translation>%1 a fost deblocat din conversație.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="338"/>
         <source>Call declined</source>
-        <translation type="unfinished"/>
+        <translation>Apel refuzat</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="340"/>
         <source>Unreachable peer</source>
-        <translation type="unfinished"/>
+        <translation>Utilizator inaccesibil</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="345"/>
@@ -3897,7 +3912,7 @@ To continue, click Update.</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="482"/>
         <source>(Profile updated)</source>
-        <translation type="unfinished"/>
+        <translation>(Profil actualizat)</translation>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="496"/>
@@ -4251,7 +4266,7 @@ To continue, click Update.</source>
     <message>
         <location filename="../src/app/utils.cpp" line="622"/>
         <source>This is a list of people who have made a significant investment of time,        with useful results, into Jami. Any such contributors who want to be added to the list         should contact us.</source>
-        <translation type="unfinished"/>
+        <translation>Aceasta este o listă de oameni care au făcut o investiție semnificativă de timp, cu rezultate utile, în Jami. Orice astfel de colaboratori care doresc să fie adăugați pe listă trebuie să ne contacteze.</translation>
     </message>
 </context>
 <context>
@@ -4282,7 +4297,7 @@ To continue, click Update.</source>
     <message>
         <location filename="../src/app/systemtray.cpp" line="224"/>
         <source>Answer call</source>
-        <translation type="unfinished"/>
+        <translation>Răspunde la apel</translation>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="225"/>
@@ -4320,7 +4335,7 @@ To continue, click Update.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="89"/>
         <source>The choice of the name Jami was inspired by the Swahili word “jamii”, which means “community” as a noun and “together” as an adverb.</source>
-        <translation type="unfinished"/>
+        <translation>Alegerea numelui Jami a fost inspirată de cuvântul Swahili „jamii”, care înseamnă „comunitate” ca substantiv și „împreună” ca adverb.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="93"/>
@@ -4340,7 +4355,7 @@ To continue, click Update.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="95"/>
         <source>A red dot means that your account is disconnected from the network; it turns green when it’s connected.</source>
-        <translation type="unfinished"/>
+        <translation>Un punct roșu înseamnă că acest cont este deconectat de la rețea, iar dacă este conectat devine verde.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="100"/>
@@ -4360,7 +4375,7 @@ To continue, click Update.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="110"/>
         <source>In a call, you can click on “Invite members” to add a contact to a call.</source>
-        <translation type="unfinished"/>
+        <translation>În timpul unui apel, poți face clic pe „Adaugă participanți” pentru a adăuga un contact la apel.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="113"/>
@@ -4385,7 +4400,7 @@ To continue, click Update.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="126"/>
         <source>Why don’t I have to use a password?</source>
-        <translation type="unfinished"/>
+        <translation>De ce nu trebuie să folosesc o parolă?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="128"/>
@@ -4395,7 +4410,7 @@ To continue, click Update.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="134"/>
         <source>Why don’t I have to register a username?</source>
-        <translation type="unfinished"/>
+        <translation>De ce nu trebuie să înscriu un nume de utilizator?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="148"/>
@@ -4438,12 +4453,12 @@ To continue, click Update.</source>
     <message>
         <location filename="../src/app/settingsview/components/TroubleshootSettingsPage.qml" line="59"/>
         <source>Enable crash reports</source>
-        <translation type="unfinished"/>
+        <translation>Activează raportarea defecțiunilor</translation>
     </message>
     <message>
         <location filename="../src/app/settingsview/components/TroubleshootSettingsPage.qml" line="73"/>
         <source>Automatically send crash reports</source>
-        <translation type="unfinished"/>
+        <translation>Raportează automat defecțiunile</translation>
     </message>
 </context>
 <context>
@@ -4484,7 +4499,7 @@ To continue, click Update.</source>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="991"/>
         <source>Unable to lookup…</source>
-        <translation type="unfinished"/>
+        <translation>Nu se poate căuta…</translation>
     </message>
 </context>
 <context>
