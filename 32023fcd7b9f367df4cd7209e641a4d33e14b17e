@@ -47,6 +47,54 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a580a2ad_5aa2019d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-02-17T14:30:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e43f416_179711cb",
+      "range": {
+        "startLine": 7,
+        "startChar": 31,
+        "endLine": 7,
+        "endChar": 44
+      },
+      "revId": "32023fcd7b9f367df4cd7209e641a4d33e14b17e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7a2db4d_d611bb9c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-02-17T14:30:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "258c0568_38fc3839",
+      "range": {
+        "startLine": 7,
+        "startChar": 13,
+        "endLine": 7,
+        "endChar": 16
+      },
+      "revId": "32023fcd7b9f367df4cd7209e641a4d33e14b17e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "595ac951_0b92d851",
@@ -70,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ab2b036_f7e0ec73",
+        "filename": "src/app/mainview/components/ChatViewFooter.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-02-17T14:30:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "595ac951_0b92d851",
+      "range": {
+        "startLine": 159,
+        "startChar": 0,
+        "endLine": 159,
+        "endChar": 12
+      },
+      "revId": "32023fcd7b9f367df4cd7209e641a4d33e14b17e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "37a64760_87b2b299",
@@ -83,6 +155,30 @@
       "writtenOn": "2025-02-14T21:22:31Z",
       "side": 1,
       "message": "Is this line necessary? Removing it doesn\u0027t seem to change anything for me.",
+      "range": {
+        "startLine": 216,
+        "startChar": 20,
+        "endLine": 216,
+        "endChar": 45
+      },
+      "revId": "32023fcd7b9f367df4cd7209e641a4d33e14b17e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1dcdc461_76a23754",
+        "filename": "src/app/mainview/components/ChatViewFooter.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-02-17T14:30:47Z",
+      "side": 1,
+      "message": "I think that without it, if you go in a discussion, open the file explorer and then switch to another discussion, closing the file explorer automatically, you cannot open it anymore (at least on my end)",
+      "parentUuid": "37a64760_87b2b299",
       "range": {
         "startLine": 216,
         "startChar": 20,
