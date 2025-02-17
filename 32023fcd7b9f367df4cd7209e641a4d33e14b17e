@@ -187,6 +187,30 @@
       },
       "revId": "32023fcd7b9f367df4cd7209e641a4d33e14b17e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eae87300_15a05a56",
+        "filename": "src/app/mainview/components/ChatViewFooter.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-02-17T19:43:26Z",
+      "side": 1,
+      "message": "Thanks. I do get the same behavior, which makes sense because `currentFileDialog` is never reset to null.",
+      "parentUuid": "1dcdc461_76a23754",
+      "range": {
+        "startLine": 216,
+        "startChar": 20,
+        "endLine": 216,
+        "endChar": 45
+      },
+      "revId": "32023fcd7b9f367df4cd7209e641a4d33e14b17e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
