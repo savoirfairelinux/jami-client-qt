@@ -20,40 +20,53 @@
 
 import os
 import shutil
+import subprocess
+import glob
 
-print("== Updating from sources")
-if os.system("lupdate jami.pro -no-obsolete"):
-    print("Attempting with 'lupdate-qt5'")
-    if os.system("lupdate-qt5 jami.pro -no-obsolete"):
-        raise RuntimeError("Unable to find any suitable lupdate Qt tool on this system. Stopping…")
+def get_qt_dir(qtver):
+    if os.name == 'nt':  # Windows
+        qt_dir = f"C:/Qt/{qtver}/msvc2019_64"
+        if not os.path.exists(qt_dir):
+            qt_dir = f"C:/Qt/{qtver}/msvc2017_64"
+    else:  # Linux or other Unix-like systems
+        qt_dir = f"/usr/lib/qt6"
+        if not os.path.exists(qt_dir):
+            qt_dir = f"/usr/local/Qt-{qtver}"
+    return qt_dir
 
-print("== Pushing sources")
-os.system("tx push -s")
+def main(qtver="6.6"):
+    script_dir = os.getcwd()
+    os.chdir('../..')
+    client_dir = os.getcwd()
+    print(f"== script used at {script_dir}")
+    print(f"== Updating translations for {client_dir}")
+    qt_dir = get_qt_dir(qtver)
+    print(f"== Using Qt from {qt_dir}")
+    lupdate = os.path.join(qt_dir, "bin", "lupdate")
+    print(f"== Using lupdate from {lupdate}")
 
-print("== Pulling translations")
-os.system("tx pull -af --minimum-perc=1")
+    if not os.path.exists(lupdate):
+        raise RuntimeError(f"lupdate tool not found at {lupdate}")
 
-print("Updating .pro file")
+    #We need to go back two times in the file hierarchy before finding the translations folder
+    ts_file_names = glob.glob(os.path.join(client_dir, "translations", "**", "*.ts"), recursive=True)
+    if not ts_file_names:
+        raise RuntimeError("No translation files found")
 
-translationFiles = []
+    ts_file_names_str = " ".join(ts_file_names)
 
-for filename in os.listdir('./translations'):
-    translationFiles.append("translations/{0}".format(filename))
+    lupdate_command = f"{lupdate} -extensions cpp,h,qml {client_dir}/src -ts {ts_file_names_str} -no-obsolete"
+    print("== Updating from sources")
+    try:
+        subprocess.run(lupdate_command, shell=True, check=True)
+    except subprocess.CalledProcessError:
+        print("Attempting with 'lupdate-qt5'")
+        lupdate = lupdate.replace("lupdate.exe", "lupdate-qt5.exe")
+        lupdate_command = f"{lupdate} -extensions cpp,h,qml {client_dir}/src -ts {ts_file_names_str} -no-obsolete"
+        subprocess.run(lupdate_command, shell=True, check=True)
 
-proFile = "jami.pro"
-shutil.move(proFile, proFile + "~")
 
-destination = open(proFile, "w")
-source = open(proFile + "~", "r")
-for line in source:
-    if not ".ts" in line:
-        destination.write(line)
-    if "TRANSLATIONS = " in line:
-        for filename in translationFiles:
-            destination.write("    {0} \\\n".format(filename))
+    print("== All done you can commit now")
 
-source.close()
-destination.close()
-os.remove(proFile + "~")
-
-print("== All done you can commit now")
+if __name__ == "__main__":
+    main()
