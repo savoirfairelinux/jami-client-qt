@@ -19,19 +19,17 @@ import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 import net.jami.Helpers 1.1
 import net.jami.Constants 1.1
-
 import "mainview"
 import "mainview/components"
 import "wizardview"
 import "commoncomponents"
-
 import QWindowKit
+import QtQuick.Dialogs
 
 ApplicationWindow {
     id: appWindow
@@ -42,6 +40,7 @@ ApplicationWindow {
     LayoutMirroring.childrenInherit: isRTL
 
     onActiveFocusItemChanged: {
+        // console.warn("Active focus item changed", activeFocusItem);
         focusOverlay.margin = -5;
         if (activeFocusItem && ((activeFocusItem.focusReason === Qt.TabFocusReason) || (activeFocusItem.focusReason === Qt.BacktabFocusReason))) {
             if (activeFocusItem.focusOnChild) {
@@ -63,7 +62,7 @@ ApplicationWindow {
         sourceComponent: GenericErrorsRow {
             id: genericError
             text: CurrentAccount.enabled ? JamiStrings.noNetworkConnectivity : JamiStrings.disabledAccount
-            height: visible? JamiTheme.qwkTitleBarHeight : 0
+            height: visible ? JamiTheme.qwkTitleBarHeight : 0
         }
     }
 
@@ -87,9 +86,11 @@ ApplicationWindow {
         appContainer: fullscreenContainer
     }
     // Used to manage dynamic view loading and unloading.
-    property ViewManager viewManager: ViewManager {}
+    property ViewManager viewManager: ViewManager {
+    }
     // Used to manage the view stack and the current view.
-    property ViewCoordinator viewCoordinator: ViewCoordinator {}
+    property ViewCoordinator viewCoordinator: ViewCoordinator {
+    }
 
     // Used to prevent the window from being visible until the
     // window geometry has been restored and the view stack has
@@ -199,7 +200,6 @@ ApplicationWindow {
         if (useFrameless) {
             windowAgent.setup(appWindow);
         }
-
         mainViewLoader.active = true;
 
         // Dbus error handler for Linux.
@@ -216,10 +216,14 @@ ApplicationWindow {
                     "confirmLabel": JamiStrings.send,
                     "rejectLabel": JamiStrings.dontSend,
                     "textHAlign": Text.AlignLeft,
-                    "textMaxWidth": 400,
+                    "textMaxWidth": 400
                 });
-            dlg.accepted.connect(function () { crashReporter.uploadLastReport(); });
-            dlg.rejected.connect(function () { crashReporter.clearReports(); });
+            dlg.accepted.connect(function () {
+                    crashReporter.uploadLastReport();
+                });
+            dlg.rejected.connect(function () {
+                    crashReporter.clearReports();
+                });
         }
     }
 
@@ -293,7 +297,7 @@ ApplicationWindow {
         target: MainApplication
 
         function onAboutToQuit() {
-            cleanupMainView()
+            cleanupMainView();
         }
 
         function onCloseRequested() {
@@ -331,7 +335,7 @@ ApplicationWindow {
             });
     }
 
-    function presentUpdateConfirmInstallDialog(switchToBeta=false) {
+    function presentUpdateConfirmInstallDialog(switchToBeta = false) {
         return viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
                 "title": JamiStrings.updateDialogTitle,
                 "infoText": switchToBeta ? JamiStrings.confirmBeta : JamiStrings.updateFound,
@@ -382,7 +386,7 @@ ApplicationWindow {
                 presentUpdateInfoDialog(JamiStrings.updateNotFound);
             } else {
                 // Show a dialog describing that an update were found, and offering to install it.
-                presentUpdateConfirmInstallDialog()
+                presentUpdateConfirmInstallDialog();
             }
         }
 
@@ -393,4 +397,19 @@ ApplicationWindow {
     }
 
     onClosing: appWindow.close()
+
+    // Capture the inputs to the main window while the File Dialog is open
+    Loader {
+        active: JamiQmlUtils.openFileDialogCount > 0
+        sourceComponent: Popup {
+            modal: true
+            visible: true
+            closePolicy: Popup.NoAutoClose
+            width: appWindow.width
+            height: appWindow.height
+            background: Rectangle {
+                color: "#80808080"  // Semi-transparent grey
+            }
+        }
+    }
 }
