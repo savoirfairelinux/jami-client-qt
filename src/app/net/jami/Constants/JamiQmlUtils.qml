@@ -22,6 +22,7 @@ import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 
 Item {
+    id: root
     property string qmlFilePrefix: "file:/"
     readonly property string base64StringTitle: "data:image/png;base64,"
 
@@ -83,7 +84,8 @@ Item {
         function onDonationCampaignSettingsChanged() {
             // Changing any of the donation campaign settings will trigger a recompute
             // of the banner visibility.
-            updateIsDonationBannerVisible(); }
+            updateIsDonationBannerVisible();
+        }
     }
 
     function updateIsDonationBannerVisible() {
@@ -99,4 +101,7 @@ Item {
         const now = new Date();
         return isVisible && now < endDate && now >= startDate;
     }
+
+    // Track if a fileDialog is opened. Is int to account for eventual futur features including multiple FileDialog
+    property int openFileDialogCount: 0
 }
