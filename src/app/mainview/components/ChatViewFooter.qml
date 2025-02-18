@@ -44,7 +44,7 @@ Rectangle {
     function updateMessageDraft() {
         // Store the current files that have not been sent, if any. Do the same for the message draft.
         var filePathDraft = [];
-        while(messageBar.fileContainer.filesToSendCount > 0) {
+        while (messageBar.fileContainer.filesToSendCount > 0) {
             var currentIndex = messageBar.fileContainer.filesToSendListModel.index(0, 0);
             var filePath = messageBar.fileContainer.filesToSendListModel.data(currentIndex, FilesToSend.FilePath);
             filePathDraft.push(filePath);
@@ -66,7 +66,6 @@ Rectangle {
                 messageBar.fileContainer.filesToSendListModel.addToPending(restoredContent["files"][i]);
             }
         }
-
     }
 
     Connections {
@@ -203,7 +202,7 @@ Rectangle {
                 var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
                         "fileMode": JamiFileDialog.OpenFiles,
                         "nameFilters": [JamiStrings.allFiles]
-                    });
+                    }, true); // is a single instance
                 dlg.filesAccepted.connect(function (files) {
                         setFilePathsToSend(files);
                     });
