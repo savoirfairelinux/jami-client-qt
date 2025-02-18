@@ -27,6 +27,23 @@ FileDialog {
     signal fileAccepted(string file)
     signal filesAccepted(var files)
 
+    Component.onCompleted: {
+        JamiQmlUtils.openFileDialogCount++;
+        // Try multiple logging approaches
+        console.log("Dialog opened");
+        console.warn("Dialog count:", JamiQmlUtils.openFileDialogCount);
+    }
+
+    Component.onDestruction: {
+        JamiQmlUtils.openFileDialogCount--;
+        console.log("Dialog closed");
+        console.warn("Dialog count:", JamiQmlUtils.openFileDialogCount);
+    }
+
+    onVisibleChanged: {
+        console.warn("Dialog visibility changed:", visible);
+    }
+
     onAccepted: {
         switch (fileMode) {
         case FileDialog.OpenFile:
