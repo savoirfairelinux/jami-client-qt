@@ -49,13 +49,13 @@ QtObject {
     // right side when not in RTL and should represent the main or content-type view.
     readonly property var visibleViews: {
         if (!currentView)
-            return []
+            return [];
         if (isDualPane) {
             if (isInSinglePaneMode)
-                return [currentView.rightPaneItem]
-            return [currentView.leftPaneItem, currentView.rightPaneItem]
+                return [currentView.rightPaneItem];
+            return [currentView.leftPaneItem, currentView.rightPaneItem];
         }
-        return [currentView]
+        return [currentView];
     }
     // Aggregate this info and expose it as a single string for convenience.
     // JSON indented by 2 spaces.
@@ -64,12 +64,12 @@ QtObject {
             currentViewName: currentViewName,
             isDualPane: isDualPane,
             isInSinglePaneMode: isInSinglePaneMode,
-            visibleViews: visibleViews.map(function(view) {
-                return view && view.objectName || null;
-            }),
-            visibleViewWidths: visibleViews.map(function(view) {
-                return view && view.width || null;
-            }),
+            visibleViews: visibleViews.map(function (view) {
+                    return view && view.objectName || null;
+                }),
+            visibleViewWidths: visibleViews.map(function (view) {
+                    return view && view.width || null;
+                })
         };
         return JSON.stringify(info, null, 2);
     }
@@ -96,9 +96,10 @@ QtObject {
     }
 
     // Create, present, and return a dialog object.
-    function presentDialog(parent, path, props = {}) {
+    function presentDialog(parent, path, props = {}, singleInstance = false) {
         // Open the dialog once the object is created
-        return viewManager.createUniqueView(path, parent, function (obj) {
+        let createFunc = singleInstance ? viewManager.createView : viewManager.createUniqueView;
+        return createFunc(path, parent, function (obj) {
                 const doneCb = function () {
                     viewManager.destroyView(path);
                 };
