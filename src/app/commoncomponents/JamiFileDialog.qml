@@ -27,6 +27,14 @@ FileDialog {
     signal fileAccepted(string file)
     signal filesAccepted(var files)
 
+    Component.onCompleted: {
+        JamiQmlUtils.openFileDialogCount++;
+    }
+
+    Component.onDestruction: {
+        JamiQmlUtils.openFileDialogCount--;
+    }
+
     onAccepted: {
         switch (fileMode) {
         case FileDialog.OpenFile:
