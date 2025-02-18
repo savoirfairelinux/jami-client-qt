@@ -1,5 +1,6 @@
 /*
- * Copyright (C) 2020-2025 Savoir-faire Linux Inc.
+ * Copyright (C) 2020-2024 Savoir-faire Linux Inc.
+ * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,6 +27,14 @@ FileDialog {
 
     signal fileAccepted(string file)
     signal filesAccepted(var files)
+
+    Component.onCompleted: {
+        JamiQmlUtils.openFileDialogCount++;
+    }
+
+    Component.onDestruction: {
+        JamiQmlUtils.openFileDialogCount--;
+    }
 
     onAccepted: {
         switch (fileMode) {
