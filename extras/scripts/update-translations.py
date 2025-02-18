@@ -20,40 +20,58 @@
 
 import os
 import shutil
+import subprocess
+import glob
 
-print("== Updating from sources")
-if os.system("lupdate jami.pro -no-obsolete"):
-    print("Attempting with 'lupdate-qt5'")
-    if os.system("lupdate-qt5 jami.pro -no-obsolete"):
-        raise RuntimeError("Unable to find any suitable lupdate Qt tool on this system. Stopping…")
+def get_qt_dir(qtver="6.6.2"):
+    qt_dir = f"/usr/lib/qt6"
+    if not os.path.exists(qt_dir):
+        qt_dir = f"/usr/local/Qt-{qtver}"
+    return qt_dir
 
-print("== Pushing sources")
-os.system("tx push -s")
+def main():
+    os.chdir('../..')
+    client_dir = os.getcwd()
+    print(f"== Updating translations for {client_dir}")
 
-print("== Pulling translations")
-os.system("tx pull -af --minimum-perc=1")
+    ts_file_names = glob.glob(os.path.join(client_dir, "translations", "**", "*.ts"), recursive=True)
+    if not ts_file_names:
+        raise RuntimeError("No translation files found")
 
-print("Updating .pro file")
+    ts_file_names_str = " ".join(ts_file_names)
+    if os.name == 'nt':  # Windows
+        lupdate_command = f"lupdate -extensions cpp,h,qml {client_dir}/src -ts {ts_file_names_str} -no-obsolete"
+        try:
+            process=subprocess.Popen("cmd", stdin=subprocess.PIPE, shell=True)
+            process.communicate(lupdate_command.encode())
+        except subprocess.CalledProcessError:
+            print("Lupdate failure")
+    else : # Linux
+        qt_dir = get_qt_dir()
+        print(f"== Using Qt from {qt_dir}")
+        lupdate = os.path.join(qt_dir, "bin", "lupdate")
+        print(f"== Using lupdate from {lupdate}")
+        lupdate_command = f"{lupdate} -extensions cpp,h,qml {client_dir}/src -ts {ts_file_names_str} -no-obsolete"
+        print("== Updating from sources")
+        try:
+            subprocess.run(lupdate_command, shell=True, check=True)
+        except subprocess.CalledProcessError:
+            print("Lupdate failure")
 
-translationFiles = []
 
-for filename in os.listdir('./translations'):
-    translationFiles.append("translations/{0}".format(filename))
 
-proFile = "jami.pro"
-shutil.move(proFile, proFile + "~")
+    print("== Pushing sources")
+    os.system("tx push -s")
 
-destination = open(proFile, "w")
-source = open(proFile + "~", "r")
-for line in source:
-    if not ".ts" in line:
-        destination.write(line)
-    if "TRANSLATIONS = " in line:
-        for filename in translationFiles:
-            destination.write("    {0} \\\n".format(filename))
+    print("== Pulling translations")
+    os.system("tx pull -af --minimum-perc=1")
 
-source.close()
-destination.close()
-os.remove(proFile + "~")
+    translationFiles = []
 
-print("== All done you can commit now")
+    for filename in os.listdir('./translations'):
+        translationFiles.append("translations/{0}".format(filename))
+
+    print("== All done you can commit now")
+
+if __name__ == "__main__":
+    main()
