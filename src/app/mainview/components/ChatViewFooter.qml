@@ -202,7 +202,8 @@ Rectangle {
             onSendFileButtonClicked: {
                 var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
                         "fileMode": JamiFileDialog.OpenFiles,
-                        "nameFilters": [JamiStrings.allFiles]
+                        "nameFilters": [JamiStrings.allFiles],
+                        "singleInstance": true
                     });
                 dlg.filesAccepted.connect(function (files) {
                         setFilePathsToSend(files);
