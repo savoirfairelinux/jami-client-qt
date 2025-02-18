@@ -15,17 +15,26 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import QtQuick
-import Qt.labs.platform
+import QtQuick.Dialogs
 import net.jami.Constants 1.1
 
 FileDialog {
     id: root
+    modality: Qt.NonModal
 
     // Use enum to avoid importing Qt.labs.platform when using JamiFileDialog.
     property int mode: JamiFileDialog.Mode.OpenFile
 
     signal fileAccepted(string file)
     signal filesAccepted(var files)
+
+    Component.onCompleted: {
+        JamiQmlUtils.openFileDialogCount++;
+    }
+
+    Component.onDestruction: {
+        JamiQmlUtils.openFileDialogCount--;
+    }
 
     onAccepted: {
         switch (fileMode) {
@@ -37,6 +46,11 @@ FileDialog {
             break;
         default:
             fileAccepted(file);
+        }
+    }
+
+    onVisibleChanged: {
+        if (visible) {
         }
     }
 
