@@ -27,6 +27,16 @@ FileDialog {
     signal fileAccepted(string file)
     signal filesAccepted(var files)
 
+    Component.onCompleted: {
+        JamiQmlUtils.openFileDialogCount++;
+        // Request focus when dialog opens
+        root.forceActiveFocus();
+    }
+
+    Component.onDestruction: {
+        JamiQmlUtils.openFileDialogCount--;
+    }
+
     onAccepted: {
         switch (fileMode) {
         case FileDialog.OpenFile:
@@ -37,6 +47,13 @@ FileDialog {
             break;
         default:
             fileAccepted(file);
+        }
+    }
+
+    onVisibleChanged: {
+        if (visible) {
+            // Request focus when dialog becomes visible
+            root.forceActiveFocus();
         }
     }
 
