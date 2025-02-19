@@ -382,6 +382,18 @@ AccountAdapter::provideAccountAuthentication(const QString& password)
     lrcInstance_->accountModel().provideAccountAuthentication(importAccountId_, password);
 }
 
+QString
+AccountAdapter::getImportErrorMessage(QVariantMap details)
+{
+    QString errorString = details.value("error").toString();
+    if (!errorString.isEmpty() && errorString != "none") {
+        auto error = lrc::api::account::mapLinkDeviceError(errorString.toStdString());
+        return lrc::api::account::getLinkDeviceString(error);
+    }
+
+    return "";
+}
+
 void
 AccountAdapter::cancelImportAccount()
 {
