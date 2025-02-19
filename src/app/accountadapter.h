@@ -86,6 +86,7 @@ public:
     // import:  (note: Listen for: DeviceAuthStateChanged)
     Q_INVOKABLE void startImportAccount();
     Q_INVOKABLE void provideAccountAuthentication(const QString& password = {});
+    Q_INVOKABLE QString getImportErrorMessage(QVariantMap details);
     Q_INVOKABLE void cancelImportAccount();
     // link: (note: Listen for: AddDeviceStateChanged)
     Q_INVOKABLE void startLinkDevice(const QString& accountId, const QString& code);

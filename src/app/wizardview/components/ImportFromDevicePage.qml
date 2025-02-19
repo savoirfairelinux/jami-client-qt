@@ -19,6 +19,7 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
+import QtQuick.Dialogs
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
@@ -36,9 +37,7 @@ Rectangle {
     // code cannot be scanned. It is a URI using the scheme "jami-auth".
     readonly property string tokenUri: WizardViewStepModel.deviceLinkDetails["token"] || ""
 
-    // Add after the error property
-    property string peerUserName: ""
-    property string peerId: ""
+    property string jamiId: ""
 
     signal showThisPage
 
@@ -48,6 +47,21 @@ Rectangle {
 
     function errorOccurred(errorMessage) {
         errorText = errorMessage;
+    }
+
+    MessageDialog {
+        id: confirmCloseDialog
+
+        text: JamiStrings.linkDeviceCloseWarningTitle
+        informativeText: JamiStrings.linkDeviceCloseWarningMessage
+        buttons: MessageDialog.Ok | MessageDialog.Cancel
+
+        onButtonClicked: function(button) {
+            if (button === MessageDialog.Ok) {
+                AccountAdapter.cancelImportAccount();
+                WizardViewStepModel.previousStep();
+            }
+        }
     }
 
     Connections {
@@ -71,11 +85,9 @@ Rectangle {
                 clearAllTextFields();
                 break;
             case DeviceAuthStateEnum.AUTHENTICATING:
-                peerId = WizardViewStepModel.deviceLinkDetails["peer_id"] || "";
-                // Try to get display name for the peer ID
-                if (peerId) {
-                    // Maybe start a lookup here
-                    peerDisplayName = peerId;
+                jamiId = WizardViewStepModel.deviceLinkDetails["peer_id"] || "";
+                if (jamiId.length > 0) {
+                    NameDirectory.lookupAddress(CurrentAccount.id, jamiId)
                 }
                 break;
             case DeviceAuthStateEnum.IN_PROGRESS:
@@ -84,25 +96,9 @@ Rectangle {
                 break;
             case DeviceAuthStateEnum.DONE:
                 // Final state - check for specific errors
-                const error = WizardViewStepModel.deviceLinkDetails["error"];
-                if (error) {
-                    switch (error) {
-                    case "network":
-                        errorOccurred(JamiStrings.linkDeviceNetWorkError);
-                        break;
-                    case "timeout":
-                        errorOccurred(JamiStrings.timeoutError);
-                        break;
-                    case "auth_error":
-                        errorOccurred(JamiStrings.invalidPassword);
-                        break;
-                    case "canceled":
-                        errorOccurred(JamiStrings.operationCanceled);
-                        break;
-                    default:
-                        errorOccurred(JamiStrings.errorCreateAccount);
-                        break;
-                    }
+                const error = AccountAdapter.getImportErrorMessage(WizardViewStepModel.deviceLinkDetails);
+                if (error.length > 0) {
+                    errorOccurred(error)
                 } else {
                     // Success - account imported
                     WizardViewStepModel.nextStep();
@@ -124,10 +120,24 @@ Rectangle {
         width: Math.max(508, root.width - 100)
 
         Text {
+            text: JamiStrings.importFromAnotherAccount
+            Layout.alignment: Qt.AlignCenter
+            Layout.topMargin: JamiTheme.preferredMarginSize
+            Layout.preferredWidth: Math.min(360, root.width - JamiTheme.preferredMarginSize * 2)
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+
+            color: JamiTheme.textColor
+            font.pixelSize: JamiTheme.wizardViewTitleFontPixelSize
+            wrapMode: Text.WordWrap
+        }
+
+        Text {
             Layout.alignment: Qt.AlignHCenter
             Layout.maximumWidth: parent.width
             horizontalAlignment: Text.AlignHCenter
-            font.pointSize: JamiTheme.headerFontSize
+            font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
+            lineHeight: JamiTheme.wizardViewTextLineHeight
             text: {
                 switch (WizardViewStepModel.deviceAuthState) {
                 case DeviceAuthStateEnum.INIT:
@@ -153,71 +163,87 @@ Rectangle {
             Layout.alignment: Qt.AlignHCenter
             Layout.maximumWidth: Math.min(parent.width - 40, 400)
             visible: WizardViewStepModel.deviceAuthState === DeviceAuthStateEnum.AUTHENTICATING
-            spacing: 16
+            spacing: JamiTheme.wizardViewPageLayoutSpacing
 
             Text {
                 Layout.fillWidth: true
-                font.pointSize: JamiTheme.textFontSize
-                text: "Connect to account"
+                font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
+                lineHeight: JamiTheme.wizardViewTextLineHeight
+                text: JamiStrings.connectToAccount
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 horizontalAlignment: Text.AlignHCenter
                 color: JamiTheme.textColor
+                font.bold: true
             }
 
-            // Peer ID Widget (avatar + username + ID)
-            RowLayout {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
+            // Account Widget (avatar + username + ID)
+            Rectangle {
+                id: accountContainer
                 Layout.alignment: Qt.AlignHCenter
-                spacing: 8
+                implicitWidth: accountLayout.implicitWidth + 40
+                implicitHeight: accountLayout.implicitHeight + 40
+                radius: 8
+                color: JamiTheme.primaryBackgroundColor
+                border.width: 1
+                border.color: JamiTheme.tabbarBorderColor
 
-                Avatar {
-                    id: userAvatar
-                    showPresenceIndicator: false
-                    Layout.alignment: Qt.AlignVCenter
-                    Layout.preferredWidth: 48
-                    Layout.preferredHeight: 48
-                    mode: Avatar.Mode.Contact
-                    imageId: userName.peerID
-                    visible: userName.peerID !== ""
-                }
+                RowLayout {
+                    id: accountLayout
+                    anchors {
+                        centerIn: parent
+                    }
+                    spacing: 20
 
-                ColumnLayout {
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-                    Text {
-                        id: userName
+                    Avatar {
+                        id: accountAvatar
+                        showPresenceIndicator: false
+                        Layout.alignment: Qt.AlignVCenter
+                        Layout.preferredWidth: 48
+                        Layout.preferredHeight: 48
+                        mode: Avatar.Mode.TemporaryAccount
+                        imageId: name.text || jamiId
+                    }
 
-                        property int registrationState: UsernameTextEdit.NameRegistrationState.BLANK
-                        property string peerID
-                        Component.onCompleted: peerID = "6352c8525fe7eb49283fe4f0e17174cb89ce7c02"
-                        onPeerIDChanged: NameDirectory.lookupAddress(CurrentAccount.id, peerID)
-                        Connections {
-                            id: registeredNameFoundConnection
+                    ColumnLayout {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        Layout.alignment: Qt.AlignVCenter
+                        spacing: 4
 
-                            target: NameDirectory
-                            enabled: userName.peerID
+                        Text {
+                            id: name
+                            visible: text !== undefined && text !== ""
 
-                            function onRegisteredNameFound(status, address, registeredName, requestedName) {
-                                if (address === userName.peerID && status === NameDirectory.LookupStatus.SUCCESS) {
-                                    userId.text = registeredName;
+                            Connections {
+                                id: registeredNameFoundConnection
+                                target: NameDirectory
+                                enabled: jamiId.length > 0
+
+                                function onRegisteredNameFound(status, address, registeredName, requestedName) {
+                                    console.error("************** onRegisteredNameFound")
+                                    if (address === jamiId && status === NameDirectory.LookupStatus.SUCCESS) {
+                                        console.error("************** onRegisteredNameFound, update name", )
+                                        name.text = registeredName;
+                                    }
                                 }
                             }
                         }
-
-                        visible: text !== undefined && text !== ""
-                    }
-                    Text {
-                        id: userId
-                        text: "6352c8525fe7eb49283fe4f0e17174cb89ce7c02"
+                        Text {
+                            id: userId
+                            text: jamiId
+                        }
                     }
                 }
             }
 
-            TextField {
+            PasswordTextEdit {
                 id: passwordField
+
                 Layout.fillWidth: true
-                font.pointSize: JamiTheme.mediumFontSize
+                Layout.leftMargin: 10
+                Layout.rightMargin: 10
+                Layout.topMargin: 10
+                Layout.bottomMargin: 10
                 visible: WizardViewStepModel.deviceLinkDetails["auth_scheme"] === "password"
                 placeholderText: JamiStrings.enterPassword
                 echoMode: TextInput.Password
@@ -225,20 +251,32 @@ Rectangle {
                 onAccepted: confirmButton.clicked()
             }
 
+            Text {
+                id: passwordErrorField
+                Layout.alignment: Qt.AlignHCenter
+                Layout.maximumWidth: parent.width - 40
+                visible: WizardViewStepModel.deviceLinkDetails["auth_error"] !== undefined &&
+                        WizardViewStepModel.deviceLinkDetails["auth_error"] !== "" &&
+                        WizardViewStepModel.deviceLinkDetails["auth_error"] !== "none"
+                text: JamiStrings.authenticationError
+                font.pointSize: JamiTheme.tinyFontSize
+                color: JamiTheme.redColor
+                horizontalAlignment: Text.AlignHCenter
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            }
+
             RowLayout {
                 Layout.alignment: Qt.AlignHCenter
                 spacing: 16
+                Layout.margins: 10
 
                 MaterialButton {
                     id: confirmButton
                     text: JamiStrings.optionConfirm
                     primary: true
+                    enabled: !passwordField.visible || passwordField.text.length > 0
                     onClicked: {
-                        if (passwordField.visible && !passwordField.text) {
-                            errorOccurred(JamiStrings.passwordRequired);
-                            return;
-                        }
-                        AccountAdapter.provideAccountAuthentication(passwordField.visible ? passwordField.text : "");
+                        AccountAdapter.provideAccountAuthentication(passwordField.visible ? passwordField.dynamicText : "");
                     }
                 }
             }
@@ -247,7 +285,7 @@ Rectangle {
         // Show busy indicator when waiting for token
         BusyIndicator {
             Layout.alignment: Qt.AlignHCenter
-            visible: WizardViewStepModel.deviceAuthState === DeviceAuthStateEnum.INIT
+            visible: WizardViewStepModel.deviceAuthState === DeviceAuthStateEnum.INIT || WizardViewStepModel.deviceAuthState === DeviceAuthStateEnum.CONNECTING || WizardViewStepModel.deviceAuthState === DeviceAuthStateEnum.IN_PROGRESS
             Layout.preferredWidth: 50
             Layout.preferredHeight: 50
             running: visible
@@ -268,7 +306,7 @@ Rectangle {
                 id: qrLoader
                 anchors.centerIn: parent
                 active: WizardViewStepModel.deviceAuthState === DeviceAuthStateEnum.TOKEN_AVAILABLE
-                Layout.preferredWidth: Math.min(parent.parent.width - 60, 300)
+                Layout.preferredWidth: Math.min(parent.parent.width - 60, 250)
                 Layout.preferredHeight: Layout.preferredWidth
 
                 sourceComponent: Image {
@@ -292,7 +330,8 @@ Rectangle {
                 Layout.maximumWidth: parent.parent.width - 40
                 horizontalAlignment: Text.AlignHCenter
                 text: JamiStrings.cantScanQRCode
-                font.pointSize: JamiTheme.mediumFontSize
+                font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
+                lineHeight: JamiTheme.wizardViewTextLineHeight
                 color: JamiTheme.textColor
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             }
@@ -302,7 +341,7 @@ Rectangle {
                 Layout.alignment: Qt.AlignHCenter
                 Layout.maximumWidth: parent.parent.width - 40
                 text: tokenUri
-                font.pointSize: JamiTheme.mediumFontSize
+                font.pointSize: JamiTheme.wizardViewDescriptionFontPixelSize
                 horizontalAlignment: Text.AlignHCenter
                 readOnly: true
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
@@ -316,16 +355,36 @@ Rectangle {
             }
         }
 
-        // Error text
-        Text {
+        ColumnLayout {
+            id: errorColumn
             Layout.alignment: Qt.AlignHCenter
             Layout.maximumWidth: parent.width - 40
             visible: errorText !== ""
-            text: errorText
-            font.pointSize: JamiTheme.mediumFontSize
-            color: JamiTheme.redColor
-            horizontalAlignment: Text.AlignHCenter
-            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            spacing: 20
+
+            Rectangle {
+                Layout.alignment: Qt.AlignHCenter
+                width: 50
+                height: 50
+                radius: width/2
+                color: JamiTheme.refuseRed
+
+                Text {
+                    anchors.centerIn: parent
+                    text: "✕"
+                    color: "white"
+                    font.pointSize: 24
+                    font.bold: true
+                }
+            }
+
+            Text {
+                Layout.alignment: Qt.AlignHCenter
+                text: errorText
+                color: JamiTheme.textColor
+                font.pointSize: JamiTheme.mediumFontSize
+                horizontalAlignment: Text.AlignHCenter
+            }
         }
     }
 
@@ -348,92 +407,10 @@ Rectangle {
         visible: WizardViewStepModel.deviceAuthState !== DeviceAuthStateEnum.IN_PROGRESS
 
         onClicked: {
-            if (WizardViewStepModel.deviceAuthState !== DeviceAuthStateEnum.INIT) {
-                AccountAdapter.cancelImportAccount();
-            }
-            WizardViewStepModel.previousStep();
-        }
-    }
-
-    // Debug controls - only visible in debug mode
-    Rectangle {
-        id: debugControls
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-        anchors.margins: 16
-        width: debugColumn.implicitWidth + 32
-        height: debugColumn.implicitHeight + 32
-        color: JamiTheme.primaryBackgroundColor
-        radius: 8
-        border.width: 1
-        border.color: JamiTheme.tabbarBorderColor
-
-        ColumnLayout {
-            id: debugColumn
-            anchors.centerIn: parent
-            spacing: 8
-
-            Text {
-                text: "Debug Controls"
-                font.bold: true
-                color: JamiTheme.textColor
-            }
-
-            ComboBox {
-                id: stateCombo
-                Layout.fillWidth: true
-                model: ["Init", "TokenAvailable", "Connecting", "Authenticating", "InProgress", "Done"]
-                onActivated: {
-                    // Force the state
-                    WizardViewStepModel.deviceAuthState = DeviceAuthStateEnum[currentText.toUpperCase()];
-
-                    // Set appropriate device details for testing
-                    var details = {};
-                    switch (currentText) {
-                    case "TokenAvailable":
-                        details["token"] = "jami-auth://test-token-12345";
-                        break;
-                    case "Authenticating":
-                        details["peer_id"] = "test-peer-id-12345";
-                        details["auth_scheme"] = passwordCheck.checked ? "password" : "none";
-                        break;
-                    case "Done":
-                        details["error"] = errorCombo.currentText === "Success" ? "" : errorCombo.currentText.toLowerCase();
-                        break;
-                    }
-                    WizardViewStepModel.deviceLinkDetails = details;
-                }
-            }
-
-            CheckBox {
-                id: passwordCheck
-                text: "Require Password"
-                checked: false
-                onCheckedChanged: {
-                    if (stateCombo.currentText === "Authenticating") {
-                        var details = WizardViewStepModel.deviceLinkDetails;
-                        details["auth_scheme"] = checked ? "password" : "none";
-                        WizardViewStepModel.deviceLinkDetails = details;
-                    }
-                }
-            }
-
-            ComboBox {
-                id: errorCombo
-                Layout.fillWidth: true
-                model: ["Success", "Network", "Timeout", "Auth_Error", "Canceled"]
-                enabled: stateCombo.currentText === "Done"
-            }
-
-            TextField {
-                id: peerIdField
-                Layout.fillWidth: true
-                placeholderText: "Peer Display Name"
-                onTextChanged: {
-                    if (stateCombo.currentText === "Authenticating") {
-                        peerId = text;
-                    }
-                }
+            if (WizardViewStepModel.deviceAuthState !== DeviceAuthStateEnum.INIT && WizardViewStepModel.deviceAuthState !== DeviceAuthStateEnum.DONE && WizardViewStepModel.deviceAuthState !== DeviceAuthStateEnum.ERROR) {
+                confirmCloseDialog.open();
+            } else {
+                WizardViewStepModel.previousStep();
             }
         }
     }

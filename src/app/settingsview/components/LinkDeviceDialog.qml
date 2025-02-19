@@ -19,13 +19,13 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtQuick.Dialogs
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import "../../commoncomponents"
 import "../../mainview/components"
-import QtQuick.Dialogs
 
 BaseModalDialog {
     id: root
@@ -172,6 +172,7 @@ BaseModalDialog {
                             text: DeviceLinkingModel.linkDeviceError
                             color: JamiTheme.textColor
                             font.pointSize: JamiTheme.mediumFontSize
+                            horizontalAlignment: Text.AlignHCenter
                         }
                     }
                 }
@@ -210,6 +211,7 @@ BaseModalDialog {
                             text: JamiStrings.linkDeviceAllSet
                             color: JamiTheme.textColor
                             font.pointSize: JamiTheme.mediumFontSize
+                            horizontalAlignment: Text.AlignHCenter
                         }
                     }
                 }

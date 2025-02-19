@@ -24,6 +24,7 @@
 #include "lrcinstance.h"
 
 #include <QImage>
+#include <QRegularExpression>
 
 class AsyncAvatarImageResponseRunnable : public AsyncImageResponseRunnable
 {
@@ -71,7 +72,16 @@ public:
             image = Utils::accountPhoto(lrcInstance_, imageId, requestedSize_);
         } else if (type == "contact") {
             image = Utils::contactPhoto(lrcInstance_, imageId, requestedSize_);
-        } else {
+        } else if (type == "temporaryAccount") {
+            // Check if imageId is a SHA-1 hash (jamiId or registered name)
+            static const QRegularExpression sha1Pattern("^[0-9a-fA-F]{40}$");
+            if (sha1Pattern.match(imageId).hasMatch()) {
+                image = Utils::fallbackAvatar("jami:" + imageId, QString(), requestedSize_);
+            } else {
+                image = Utils::fallbackAvatar(QString(), imageId, requestedSize_);
+            }
+        }
+        else {
             qWarning() << Q_FUNC_INFO << "Missing valid prefix in the image url";
             return;
         }
