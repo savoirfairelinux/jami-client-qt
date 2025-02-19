@@ -41,6 +41,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "47b423f0_54f8e148",
+        "filename": "src/app/ViewCoordinator.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-02-19T20:48:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c88c330_86968545",
+      "range": {
+        "startLine": 98,
+        "startChar": 4,
+        "endLine": 137,
+        "endChar": 5
+      },
+      "revId": "5ba059dcec6347266b6185eb64b0bd2f19258190",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cc973914_b30a7848",
@@ -54,6 +78,54 @@
       "writtenOn": "2025-02-19T19:42:55Z",
       "side": 1,
       "message": "remove (from this commit at least)",
+      "range": {
+        "startLine": 25,
+        "startChar": 4,
+        "endLine": 25,
+        "endChar": 12
+      },
+      "revId": "5ba059dcec6347266b6185eb64b0bd2f19258190",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9897f1bd_67e30ccc",
+        "filename": "src/app/net/jami/Constants/JamiQmlUtils.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-02-19T20:48:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc973914_b30a7848",
+      "range": {
+        "startLine": 25,
+        "startChar": 4,
+        "endLine": 25,
+        "endChar": 12
+      },
+      "revId": "5ba059dcec6347266b6185eb64b0bd2f19258190",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8cc6db50_9c8221ff",
+        "filename": "src/app/net/jami/Constants/JamiQmlUtils.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-02-19T20:48:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc973914_b30a7848",
       "range": {
         "startLine": 25,
         "startChar": 4,
