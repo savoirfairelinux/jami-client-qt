@@ -30,7 +30,8 @@ Item {
     enum Mode {
         Account,
         Contact,
-        Conversation
+        Conversation,
+        TemporaryAccount
     }
     property int mode: Avatar.Mode.Account
     property alias sourceSize: image.sourceSize
@@ -47,6 +48,8 @@ Item {
             return 'contact';
         case Avatar.Mode.Conversation:
             return 'conversation';
+        case Avatar.Mode.TemporaryAccount:
+            return 'temporaryAccount';
         }
     }
 
