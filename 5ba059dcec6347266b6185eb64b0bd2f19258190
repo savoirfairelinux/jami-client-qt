@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cfe7ebb_196483b6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-02-19T19:42:55Z",
+      "side": 1,
+      "message": "A couple small changed. Otherwise LGTM",
+      "revId": "5ba059dcec6347266b6185eb64b0bd2f19258190",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c88c330_86968545",
+        "filename": "src/app/ViewCoordinator.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-02-19T19:42:55Z",
+      "side": 1,
+      "message": "```suggestion\n// Create, present, and return a dialog object.\n    function presentDialog(parent, path, props \u003d {}, singleInstance\u003dfalse) {\n        // Open the dialog once the object is created\n        let createFunc \u003d singleInstance ? viewManager.createView : viewManager.createUniqueView;\n        return createFunc(path, parent, function (obj) {\n                const doneCb \u003d function () {\n                    viewManager.destroyView(path);\n                };\n                if (obj.closed !\u003d\u003d undefined) {\n                    obj.closed.connect(doneCb);\n                } else {\n                    if (obj.accepted !\u003d\u003d undefined) {\n                        obj.accepted.connect(doneCb);\n                    }\n                    if (obj.rejected !\u003d\u003d undefined) {\n                        obj.rejected.connect(doneCb);\n                    }\n                }\n                obj.open();\n            }, props);\n    }\n```",
+      "range": {
+        "startLine": 98,
+        "startChar": 4,
+        "endLine": 137,
+        "endChar": 5
+      },
+      "revId": "5ba059dcec6347266b6185eb64b0bd2f19258190",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc973914_b30a7848",
+        "filename": "src/app/net/jami/Constants/JamiQmlUtils.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-02-19T19:42:55Z",
+      "side": 1,
+      "message": "remove (from this commit at least)",
+      "range": {
+        "startLine": 25,
+        "startChar": 4,
+        "endLine": 25,
+        "endChar": 12
+      },
+      "revId": "5ba059dcec6347266b6185eb64b0bd2f19258190",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
