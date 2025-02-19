@@ -172,6 +172,7 @@ BaseModalDialog {
                             text: DeviceLinkingModel.linkDeviceError
                             color: JamiTheme.textColor
                             font.pointSize: JamiTheme.mediumFontSize
+                            horizontalAlignment: Text.AlignHCenter
                         }
                     }
                 }
@@ -210,6 +211,7 @@ BaseModalDialog {
                             text: JamiStrings.linkDeviceAllSet
                             color: JamiTheme.textColor
                             font.pointSize: JamiTheme.mediumFontSize
+                            horizontalAlignment: Text.AlignHCenter
                         }
                     }
                 }
