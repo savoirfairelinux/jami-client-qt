@@ -124,10 +124,25 @@ Rectangle {
         width: Math.max(508, root.width - 100)
 
         Text {
+
+            text: "Import from another account"
+            Layout.alignment: Qt.AlignCenter
+            Layout.topMargin: JamiTheme.preferredMarginSize
+            Layout.preferredWidth: Math.min(360, root.width - JamiTheme.preferredMarginSize * 2)
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+
+            color: JamiTheme.textColor
+            font.pixelSize: JamiTheme.wizardViewTitleFontPixelSize
+            wrapMode: Text.WordWrap
+        }
+
+        Text {
             Layout.alignment: Qt.AlignHCenter
             Layout.maximumWidth: parent.width
             horizontalAlignment: Text.AlignHCenter
-            font.pointSize: JamiTheme.headerFontSize
+            font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
+            lineHeight: JamiTheme.wizardViewTextLineHeight
             text: {
                 switch (WizardViewStepModel.deviceAuthState) {
                 case DeviceAuthStateEnum.INIT:
@@ -153,71 +168,89 @@ Rectangle {
             Layout.alignment: Qt.AlignHCenter
             Layout.maximumWidth: Math.min(parent.width - 40, 400)
             visible: WizardViewStepModel.deviceAuthState === DeviceAuthStateEnum.AUTHENTICATING
-            spacing: 16
+            spacing: JamiTheme.wizardViewPageLayoutSpacing
 
             Text {
                 Layout.fillWidth: true
-                font.pointSize: JamiTheme.textFontSize
+                font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
+                lineHeight: JamiTheme.wizardViewTextLineHeight
                 text: "Connect to account"
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 horizontalAlignment: Text.AlignHCenter
                 color: JamiTheme.textColor
+                font.bold: true
             }
 
             // Peer ID Widget (avatar + username + ID)
-            RowLayout {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
+            Rectangle {
+                id: peerContainer
                 Layout.alignment: Qt.AlignHCenter
-                spacing: 8
+                implicitWidth: peerLayout.implicitWidth + 40
+                implicitHeight: peerLayout.implicitHeight + 40
+                radius: 8
+                color: JamiTheme.primaryBackgroundColor
+                border.width: 1
+                border.color: JamiTheme.tabbarBorderColor
 
-                Avatar {
-                    id: userAvatar
-                    showPresenceIndicator: false
-                    Layout.alignment: Qt.AlignVCenter
-                    Layout.preferredWidth: 48
-                    Layout.preferredHeight: 48
-                    mode: Avatar.Mode.Contact
-                    imageId: userName.peerID
-                    visible: userName.peerID !== ""
-                }
+                RowLayout {
+                    id: peerLayout
+                    anchors {
+                        centerIn: parent
+                    }
+                    spacing: 20
 
-                ColumnLayout {
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-                    Text {
-                        id: userName
+                    Avatar {
+                        id: userAvatar
+                        showPresenceIndicator: false
+                        Layout.alignment: Qt.AlignVCenter
+                        Layout.preferredWidth: 48
+                        Layout.preferredHeight: 48
+                        mode: Avatar.Mode.Contact
+                        imageId: userName.peerID
+                        visible: userName.peerID !== ""
+                    }
 
-                        property int registrationState: UsernameTextEdit.NameRegistrationState.BLANK
-                        property string peerID
-                        Component.onCompleted: peerID = "6352c8525fe7eb49283fe4f0e17174cb89ce7c02"
-                        onPeerIDChanged: NameDirectory.lookupAddress(CurrentAccount.id, peerID)
-                        Connections {
-                            id: registeredNameFoundConnection
+                    ColumnLayout {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        Layout.alignment: Qt.AlignVCenter
+                        spacing: 4
 
-                            target: NameDirectory
-                            enabled: userName.peerID
+                        Text {
+                            id: userName
+                            visible: text !== undefined && text !== ""
+                            property int registrationState: UsernameTextEdit.NameRegistrationState.BLANK
+                            property string peerID
+                            Component.onCompleted: peerID = "6352c8525fe7eb49283fe4f0e17174cb89ce7c02"
+                            onPeerIDChanged: NameDirectory.lookupAddress(CurrentAccount.id, peerID)
+                            Connections {
+                                id: registeredNameFoundConnection
 
-                            function onRegisteredNameFound(status, address, registeredName, requestedName) {
-                                if (address === userName.peerID && status === NameDirectory.LookupStatus.SUCCESS) {
-                                    userId.text = registeredName;
+                                target: NameDirectory
+                                enabled: userName.peerID
+
+                                function onRegisteredNameFound(status, address, registeredName, requestedName) {
+                                    if (address === userName.peerID && status === NameDirectory.LookupStatus.SUCCESS) {
+                                        userName.text = registeredName;
+                                    }
                                 }
                             }
                         }
-
-                        visible: text !== undefined && text !== ""
-                    }
-                    Text {
-                        id: userId
-                        text: "6352c8525fe7eb49283fe4f0e17174cb89ce7c02"
+                        Text {
+                            id: userId
+                            text: "6352c8525fe7eb49283fe4f0e17174cb89ce7c02"
+                        }
                     }
                 }
             }
 
-            TextField {
+            PasswordTextEdit {
                 id: passwordField
+
                 Layout.fillWidth: true
-                font.pointSize: JamiTheme.mediumFontSize
+                Layout.leftMargin: 10
+                Layout.rightMargin: 10
+                Layout.topMargin: 10
                 visible: WizardViewStepModel.deviceLinkDetails["auth_scheme"] === "password"
                 placeholderText: JamiStrings.enterPassword
                 echoMode: TextInput.Password
@@ -228,16 +261,14 @@ Rectangle {
             RowLayout {
                 Layout.alignment: Qt.AlignHCenter
                 spacing: 16
+                Layout.margins: 10
 
                 MaterialButton {
                     id: confirmButton
                     text: JamiStrings.optionConfirm
                     primary: true
+                    enabled: !passwordField.visible || passwordField.text.length > 0
                     onClicked: {
-                        if (passwordField.visible && !passwordField.text) {
-                            errorOccurred(JamiStrings.passwordRequired);
-                            return;
-                        }
                         AccountAdapter.provideAccountAuthentication(passwordField.visible ? passwordField.text : "");
                     }
                 }
@@ -247,7 +278,7 @@ Rectangle {
         // Show busy indicator when waiting for token
         BusyIndicator {
             Layout.alignment: Qt.AlignHCenter
-            visible: WizardViewStepModel.deviceAuthState === DeviceAuthStateEnum.INIT
+            visible: WizardViewStepModel.deviceAuthState === DeviceAuthStateEnum.INIT || WizardViewStepModel.deviceAuthState === DeviceAuthStateEnum.CONNECTING
             Layout.preferredWidth: 50
             Layout.preferredHeight: 50
             running: visible
@@ -268,7 +299,7 @@ Rectangle {
                 id: qrLoader
                 anchors.centerIn: parent
                 active: WizardViewStepModel.deviceAuthState === DeviceAuthStateEnum.TOKEN_AVAILABLE
-                Layout.preferredWidth: Math.min(parent.parent.width - 60, 300)
+                Layout.preferredWidth: Math.min(parent.parent.width - 60, 250)
                 Layout.preferredHeight: Layout.preferredWidth
 
                 sourceComponent: Image {
@@ -292,7 +323,8 @@ Rectangle {
                 Layout.maximumWidth: parent.parent.width - 40
                 horizontalAlignment: Text.AlignHCenter
                 text: JamiStrings.cantScanQRCode
-                font.pointSize: JamiTheme.mediumFontSize
+                font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
+                lineHeight: JamiTheme.wizardViewTextLineHeight
                 color: JamiTheme.textColor
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             }
@@ -302,7 +334,7 @@ Rectangle {
                 Layout.alignment: Qt.AlignHCenter
                 Layout.maximumWidth: parent.parent.width - 40
                 text: tokenUri
-                font.pointSize: JamiTheme.mediumFontSize
+                font.pointSize: JamiTheme.wizardViewDescriptionFontPixelSize
                 horizontalAlignment: Text.AlignHCenter
                 readOnly: true
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
