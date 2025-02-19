@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c4ce3ab_26327714",
+        "filename": "src/libclient/contactmodel.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 891,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-02-19T20:15:16Z",
+      "side": 1,
+      "message": "Typo: youre -\u003e you\u0027re",
+      "range": {
+        "startLine": 891,
+        "startChar": 61,
+        "endLine": 891,
+        "endChar": 66
+      },
+      "revId": "6fc3df51c3a036e0ec198f9baca7e482f8eae27e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
