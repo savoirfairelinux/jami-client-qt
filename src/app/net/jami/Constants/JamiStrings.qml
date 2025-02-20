@@ -346,8 +346,8 @@ Item {
     property string backendError: qsTr("A backend system error occurred: %0")
     property string disabledAccount: qsTr("The account is disabled")
     property string noNetworkConnectivity: qsTr("No network connectivity")
-    property string deletedMessage: qsTr("deleted a message")
-    property string deletedMedia: qsTr("deleted a media")
+    property string deletedMessage: qsTr("%1 deleted a message")
+    property string deletedMedia: qsTr("%1 deleted a media")
     property string returnToCall: qsTr("Return to call")
 
     // MessagesResearch
@@ -411,7 +411,6 @@ Item {
     property string saveAccountTitle: qsTr("Backup account")
     property string saveAccountDescription: qsTr("This Jami account exists only on this device. The account will be lost if this device is lost or the application is uninstalled. It is recommended to make a backup of this account.")
     property string deleteAccountTitle: qsTr("Delete account")
-    property string deleteAccountDescription: qsTr("If the account has not been backed up or added to another device, the account and registered username will be IRREVOCABLY LOST.")
     property string linkedAccountList: qsTr("List of the devices that are linked to this account:")
     property string linkedThisDevice: qsTr("This device")
     property string linkedOtherDevices: qsTr("Other linked devices")

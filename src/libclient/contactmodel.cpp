@@ -887,11 +887,7 @@ ContactModelPimpl::slotContactRemoved(const QString& accountId,
                 }
             }
             storage::removeContactConversations(db, contactUri);
-            if (linked.owner.profileInfo.uri != contactUri) {
-                // Add check to not remove your own vcard if you're deleting
-                // a conversation with yourself.
-                storage::removeProfile(linked.owner.id, contactUri);
-            }
+            storage::removeProfile(linked.owner.id, contactUri);
             contacts.remove(contactUri);
         }
     }

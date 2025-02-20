@@ -31,8 +31,6 @@ SBSMessageBase {
     property string colorUrl: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewLinkColorLight : JamiTheme.chatviewLinkColorDark
     property string colorText: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
 
-
-
     Connections {
         target: bubble
         function onColorChanged(color) {
@@ -43,7 +41,6 @@ SBSMessageBase {
                 MessagesAdapter.parseMessage(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl, bubble.color);
         }
     }
-
 
     isOutgoing: Author === CurrentAccount.uri
     author: Author
@@ -75,7 +72,7 @@ SBSMessageBase {
                 if (ParsedBody !== "")
                     return ParsedBody;
                 bubble.isDeleted = true;
-                return UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author) + " " + JamiStrings.deletedMessage ;
+                return JamiStrings.deletedMessage.arg(UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author));
             }
             horizontalAlignment: Text.AlignLeft
 
@@ -103,7 +100,7 @@ SBSMessageBase {
             onLinkActivated: Qt.openUrlExternally(new URL(hoveredLink))
             readOnly: true
             color: (ParsedBody !== "") ? getBaseColor() : (UtilsAdapter.luma(bubble.color) ? "white" : "dark")
-            opacity:(ParsedBody !== "") ? 1 :  0.5
+            opacity: (ParsedBody !== "") ? 1 : 0.5
 
             function getBaseColor() {
                 var baseColor;
@@ -136,7 +133,6 @@ SBSMessageBase {
                 selectOnly: parent.readOnly
             }
         },
-
         Loader {
             id: extraContent
 
@@ -243,7 +239,7 @@ SBSMessageBase {
     ]
 
     opacity: 0
-    Behavior on opacity  {
+    Behavior on opacity {
         NumberAnimation {
             duration: 100
         }
