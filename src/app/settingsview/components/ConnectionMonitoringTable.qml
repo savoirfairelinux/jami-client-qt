@@ -330,7 +330,7 @@ ListView {
                             }
                         }
                         color: connectionImage.color
-                        property var tooltipText: JamiStrings.remote + RemoteAddress[index]
+                        property var tooltipText: JamiStrings.remote.arg(RemoteAddress[index])
                         MouseArea {
                             anchors.fill: parent
                             hoverEnabled: true

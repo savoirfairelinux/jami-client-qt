@@ -350,7 +350,7 @@ SettingsPageBase {
                             "folder": StandardPaths.writableLocation(StandardPaths.DesktopLocation),
                             "nameFilters": [JamiStrings.jamiAccountFiles, JamiStrings.allFiles],
                             "defaultSuffix": ".jac"
-                        })
+                        });
                     dlg.fileAccepted.connect(function (file) {
                             // is there password? If so, go to password dialog, else, go to following directly
                             var exportPath = UtilsAdapter.getAbsPath(file.toString());
@@ -430,7 +430,7 @@ SettingsPageBase {
                 Layout.alignment: Qt.AlignLeft
                 Layout.fillWidth: true
 
-                text: JamiStrings.deleteAccountDescription
+                text: JamiStrings.deleteAccountInfo
                 color: JamiTheme.textColor
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
@@ -466,7 +466,7 @@ SettingsPageBase {
 
                 onClicked: {
                     var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/DeleteAccountDialog.qml", {
-                            "isSIP": CurrentAccount.type === Profile.Type.SIP,
+                            "isSIP": CurrentAccount.type === Profile.Type.SIP
                         });
                     dlg.accepted.connect(navigateToMainView);
                 }

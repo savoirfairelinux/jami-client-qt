@@ -93,7 +93,7 @@ Loader {
                     bottomPadding: 6
                     topPadding: 6
                     leftPadding: 10
-                    text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author) + " " + JamiStrings.deletedMedia
+                    text: JamiStrings.deletedMedia.arg(UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author))
                     horizontalAlignment: Text.AlignLeft
                     width: Math.min((2 / 3) * parent.width, implicitWidth + 18, innerContent.width - senderMargin + 18)
 

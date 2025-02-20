@@ -326,7 +326,6 @@ JamiListView {
                 target: MessagesAdapter
 
                 function onCurrentConvComposingListChanged() {
-                    var typeIndicatorNameTextString = "";
                     var nameList = MessagesAdapter.currentConvComposingList;
                     if (nameList.length > 4) {
                         typeIndicatorNameText.text = "";
@@ -336,19 +335,20 @@ JamiListView {
                     }
                     if (nameList.length === 1) {
                         typeIndicatorNameText.text = nameList[0];
-                        typeIndicatorEndingText.text = JamiStrings.typeIndicatorSingle.replace("{}", "");
+                        typeIndicatorEndingText.text = JamiStrings.typeIndicatorSingle.arg("");
                         typeIndicatorNameText.calculateWidth();
                         return;
                     }
-                    for (var i = 0; i < nameList.length; i++) {
-                        typeIndicatorNameTextString += nameList[i];
-                        if (i === nameList.length - 2)
-                            typeIndicatorNameTextString += JamiStrings.typeIndicatorAnd;
-                        else if (i !== nameList.length - 1)
-                            typeIndicatorNameTextString += ", ";
+                    var typeIndicatorNameTextString = "";
+                    if (nameList.length === 2) {
+                        typeIndicatorNameTextString = JamiStrings.typeIndicatorAnd.arg(nameList[0]).arg(nameList[1]);
+                    } else {
+                        var namesExceptLast = nameList.slice(0, -1);
+                        var lastName = nameList[nameList.length - 1];
+                        typeIndicatorNameTextString = JamiStrings.typeIndicatorAnd.arg(namesExceptLast.join(", ")).arg(lastName);
                     }
                     typeIndicatorNameText.text = typeIndicatorNameTextString;
-                    typeIndicatorEndingText.text = JamiStrings.typeIndicatorPlural.replace("{}", "");
+                    typeIndicatorEndingText.text = JamiStrings.typeIndicatorPlural.arg("");
                     typeIndicatorNameText.calculateWidth();
                 }
             }

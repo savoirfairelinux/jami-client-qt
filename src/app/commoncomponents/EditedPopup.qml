@@ -59,7 +59,7 @@ BaseModalDialog {
                     Layout.fillWidth: true
                     elide: Text.ElideRight
 
-                    text: modelData.body === "" ? JamiStrings.deletedMessage : modelData.body
+                    text: modelData.body === "" ? JamiStrings.deletedMessage.arg(UtilsAdapter.getBestNameForUri(CurrentAccount.id, modelData.author)) : modelData.body
                     color: JamiTheme.textColor
                 }
             }

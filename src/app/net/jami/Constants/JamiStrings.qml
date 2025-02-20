@@ -30,8 +30,8 @@ Item {
     property string acceptVideo: qsTr("Accept with video")
     property string refuse: qsTr("Decline")
     property string endCall: qsTr("End call")
-    property string incomingAudioCallFrom: qsTr("Incoming audio call from {}")
-    property string incomingVideoCallFrom: qsTr("Incoming video call from {}")
+    property string incomingAudioCallFrom: qsTr("Incoming audio call from %1")
+    property string incomingVideoCallFrom: qsTr("Incoming video call from %1")
     property string newGroup: qsTr("Create new group")
     property string invitations: qsTr("Invitations")
     property string description: qsTr("Jami is a universal communication platform, with privacy as its foundation, that relies on a free distributed network for everyone.")
@@ -227,8 +227,8 @@ Item {
     property string identifier: qsTr("Identifier")
 
     // CallOverlay
-    property string isRecording: qsTr("is recording")
-    property string areRecording: qsTr("are recording")
+    property string isRecording: qsTr("%1 is recording")
+    property string areRecording: qsTr("%1 are recording")
     property string mute: qsTr("Mute microphone")
     property string unmute: qsTr("Unmute microphone")
     property string pauseCall: qsTr("Pause call")
@@ -346,8 +346,8 @@ Item {
     property string backendError: qsTr("A backend system error occurred: %0")
     property string disabledAccount: qsTr("The account is disabled")
     property string noNetworkConnectivity: qsTr("No network connectivity")
-    property string deletedMessage: qsTr("deleted a message")
-    property string deletedMedia: qsTr("deleted a media")
+    property string deletedMessage: qsTr("%1 deleted a message")
+    property string deletedMedia: qsTr("%1 deleted a media")
     property string returnToCall: qsTr("Return to call")
 
     // MessagesResearch
@@ -357,10 +357,10 @@ Item {
     property string search: qsTr("Search")
 
     // Chatview footer
-    property string typeIndicatorSingle: qsTr("{} is typing…")
-    property string typeIndicatorPlural: qsTr("{} are typing…")
+    property string typeIndicatorSingle: qsTr("%1 is typing…")
+    property string typeIndicatorPlural: qsTr("%1 are typing…")
     property string typeIndicatorMax: qsTr("Several people are typing…")
-    property string typeIndicatorAnd: qsTr(" and ")
+    property string typeIndicatorAnd: qsTr("%1 and %2")
 
     // ConnectToAccountManager
     property string enterJAMSURL: qsTr("Enter the Jami Account Management Server (JAMS) URL")
@@ -411,7 +411,6 @@ Item {
     property string saveAccountTitle: qsTr("Backup account")
     property string saveAccountDescription: qsTr("This Jami account exists only on this device. The account will be lost if this device is lost or the application is uninstalled. It is recommended to make a backup of this account.")
     property string deleteAccountTitle: qsTr("Delete account")
-    property string deleteAccountDescription: qsTr("If the account has not been backed up or added to another device, the account and registered username will be IRREVOCABLY LOST.")
     property string linkedAccountList: qsTr("List of the devices that are linked to this account:")
     property string linkedThisDevice: qsTr("This device")
     property string linkedOtherDevices: qsTr("Other linked devices")
@@ -464,7 +463,7 @@ Item {
 
     // DeleteAccountDialog
     property string confirmDeleteAccount: qsTr("Do you want to delete the account? To continue, click Delete.")
-    property string deleteAccountInfos: qsTr("If the account has not been backed up or added to another device, the account and registered username will be IRREVOCABLY LOST.")
+    property string deleteAccountInfo: qsTr("If the account has not been backed up or added to another device, the account and registered username will be IRREVOCABLY LOST.")
 
     // DeviceItemDelegate
     property string saveNewDeviceName: qsTr("Save")
@@ -501,7 +500,7 @@ Item {
     // File transfer settings
     property string fileTransfer: qsTr("File transfer")
     property string autoAcceptFiles: qsTr("Automatically accept incoming files")
-    property string acceptTransferBelow: qsTr("Accept transfer limit (Mb)")
+    property string acceptTransferBelow: qsTr("Accept transfer limit (MB)")
     property string acceptTransferTooltip: qsTr("MB, 0 = unlimited")
 
     // JamiUserIdentity settings
@@ -775,7 +774,7 @@ Item {
     property string dontSend: qsTr("Don't send")
     property string replyTo: qsTr("Reply to")
     property string inReplyTo: qsTr("In reply to")
-    property string repliedTo: qsTr(" replied to")
+    property string repliedTo: qsTr("%1 replied to")
     property string inReplyToMe: qsTr("Me")
     property string reply: qsTr("Reply")
     property string writeTo: qsTr("Write to %1")
@@ -895,6 +894,6 @@ Item {
     property string connection: qsTr("Connection")
     property string channels: qsTr("Channels")
     property string copyAllData: qsTr("Copy all data")
-    property string remote: qsTr("Remote: ")
+    property string remote: qsTr("Remote: %1")
     property string view: qsTr("View")
 }

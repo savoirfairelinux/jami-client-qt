@@ -16,11 +16,9 @@
  */
 import QtQuick
 import QtQuick.Layouts
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-
 import "../../commoncomponents"
 
 Item {
@@ -35,8 +33,8 @@ Item {
         function onIsRecordingRemotelyChanged() {
             var label = "";
             if (CurrentCall.isRecordingRemotely) {
-                label = CurrentCall.remoteRecorderNameList.join(", ") + " ";
-                label += (CurrentCall.remoteRecorderNameList.length > 1) ? JamiStrings.areRecording : JamiStrings.isRecording;
+                var names = CurrentCall.remoteRecorderNameList.join(", ");
+                label = (CurrentCall.remoteRecorderNameList.length > 1) ? JamiStrings.areRecording.arg(names) : JamiStrings.isRecording.arg(names);
             }
             root.remoteRecordingLabel = label;
         }

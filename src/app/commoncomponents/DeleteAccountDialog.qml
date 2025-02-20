@@ -44,9 +44,8 @@ BaseModalDialog {
 
     button2.text: JamiStrings.optionCancel
     button2Role: DialogButtonBox.RejectRole
-    button2.onClicked: close();
+    button2.onClicked: close()
     button1.contentColorProvider: JamiTheme.deleteRedButton
-
 
     BusyIndicator {
         id: busyInd
@@ -68,7 +67,7 @@ BaseModalDialog {
             id: labelDeletion
 
             Layout.alignment: Qt.AlignLeft
-            Layout.maximumWidth: root.width - 4*JamiTheme.preferredMarginSize
+            Layout.maximumWidth: root.width - 4 * JamiTheme.preferredMarginSize
             Layout.bottomMargin: 5
 
             color: JamiTheme.textColor
@@ -238,14 +237,14 @@ BaseModalDialog {
 
             radius: 5
 
-            RowLayout{
+            RowLayout {
                 id: warningLayout
 
                 anchors.centerIn: parent
                 anchors.margins: 15
                 width: parent.width
 
-                Image{
+                Image {
                     id: warningIcon
 
                     Layout.fillWidth: true
@@ -261,7 +260,7 @@ BaseModalDialog {
                     Layout.fillWidth: true
                     Layout.margins: 15
 
-                    text: JamiStrings.deleteAccountInfos
+                    text: JamiStrings.deleteAccountInfo
 
                     font.pointSize: JamiTheme.textFontSize
                     font.kerning: true

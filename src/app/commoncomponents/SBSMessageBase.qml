@@ -152,7 +152,7 @@ Control {
                         text: textMetricsUsername1.elidedText
                         TextMetrics {
                             id: textMetricsUsername1
-                            text: isOutgoing ? JamiStrings.inReplyTo : UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author) + JamiStrings.repliedTo
+                            text: isOutgoing ? JamiStrings.inReplyTo : JamiStrings.repliedTo.arg(UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author))
                             elideWidth: 200
                             elide: Qt.ElideMiddle
                         }
@@ -688,7 +688,7 @@ Control {
                     readers: root.readers
                 }
 
-               Component {
+                Component {
                     id: selfReadIconComp
                     Avatar {
                         width: JamiTheme.avatarReadReceiptSize
