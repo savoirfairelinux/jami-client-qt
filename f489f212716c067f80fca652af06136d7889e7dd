@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6eeca5a8_0643024e",
+        "filename": "src/libclient/api/interaction.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-02-20T20:52:46Z",
+      "side": 0,
+      "message": "Is the original easier to read?",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 2
+      },
+      "revId": "f489f212716c067f80fca652af06136d7889e7dd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
