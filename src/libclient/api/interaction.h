@@ -43,7 +43,7 @@ enum class Type {
     REACTION,
     VOTE,
     UPDATE_PROFILE,
-    COUNT__
+    COUNT__,
 };
 Q_ENUM_NS(Type)
 
@@ -111,15 +111,7 @@ to_type(const QString& type)
         return interaction::Type::INVALID;
 }
 
-enum class Status {
-    INVALID,
-    UNKNOWN,
-    SENDING,
-    FAILURE,
-    SUCCESS,
-    DISPLAYED,
-    COUNT__
-};
+enum class Status { INVALID, UNKNOWN, SENDING, FAILURE, SUCCESS, DISPLAYED, COUNT__ };
 Q_ENUM_NS(Status)
 
 enum class TransferStatus {
