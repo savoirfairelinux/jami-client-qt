@@ -172,15 +172,18 @@ ConversationsAdapter::onNewUnreadInteraction(const QString& accountId,
             return;
         auto from = accountInfo.contactModel->bestNameForContact(interaction.authorUri);
         auto body_ = interaction.body;
+        auto type = interaction.type;
+        auto displayedString = from + ": " + body_;
 
         // Add special handling for member events
-        if (interaction.type == interaction::Type::MEMBER) {
+        if (interaction.type == interaction::Type::CONTACT) {
             auto action = interaction.commit.value("action");
             if (action == "join") {
-                body_ = tr("%1 has joined the conversation").arg(from);
-            } else if (action == "leave") {
-                body_ = tr("%1 has left the conversation").arg(from);
+                body_ = tr("%1 joined the conversation").arg(from);
+            } else if (action == "remove") {
+                body_ = tr("%1 left the conversation").arg(from);
             }
+            displayedString = body_;
         } else if (interaction.type == interaction::Type::DATA_TRANSFER) {
             body_ = interaction.commit.value("displayName");
         }
@@ -198,7 +201,7 @@ ConversationsAdapter::onNewUnreadInteraction(const QString& accountId,
         auto notifId = QString("%1;%2;%3").arg(accountId, convUid, interactionId);
         systemTray_->showNotification(notifId,
                                       tr("%1 received a new message").arg(to),
-                                      from + ": " + body_,
+                                      displayedString,
                                       SystemTray::NotificationType::CHAT,
                                       Utils::QImageToByteArray(contactPhoto));
 
