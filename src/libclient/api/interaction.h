@@ -43,7 +43,6 @@ enum class Type {
     REACTION,
     VOTE,
     UPDATE_PROFILE,
-    MEMBER,
     COUNT__
 };
 Q_ENUM_NS(Type)
