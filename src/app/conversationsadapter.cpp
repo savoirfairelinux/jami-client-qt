@@ -173,7 +173,15 @@ ConversationsAdapter::onNewUnreadInteraction(const QString& accountId,
         auto from = accountInfo.contactModel->bestNameForContact(interaction.authorUri);
         auto body_ = interaction.body;
 
-        if (interaction.type == interaction::Type::DATA_TRANSFER) {
+        // Add special handling for member events
+        if (interaction.type == interaction::Type::MEMBER) {
+            auto action = interaction.commit.value("action");
+            if (action == "join") {
+                body_ = tr("%1 has joined the conversation").arg(from);
+            } else if (action == "leave") {
+                body_ = tr("%1 has left the conversation").arg(from);
+            }
+        } else if (interaction.type == interaction::Type::DATA_TRANSFER) {
             body_ = interaction.commit.value("displayName");
         }
 
