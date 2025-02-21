@@ -46,6 +46,30 @@
       },
       "revId": "1bfacdbb762c39440e69b9fddedda8fd753dac71",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "563dee4b_c36a2bc4",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-02-21T19:34:58Z",
+      "side": 1,
+      "message": "Thanks for testing. Please merge your work. Thank you",
+      "parentUuid": "745f7c7e_35bbe496",
+      "range": {
+        "startLine": 230,
+        "startChar": 39,
+        "endLine": 230,
+        "endChar": 41
+      },
+      "revId": "1bfacdbb762c39440e69b9fddedda8fd753dac71",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
