@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b4b6f91_b2dbf848",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-02-21T19:13:03Z",
+      "side": 1,
+      "message": "Should `has` be added to the string?\n\nShould\n`%1 joined the conversation.`\nbe\n`%1 has joined the conversation.`\n\nCould the value of `%1` ever be `You`? If so, the string should be\n`You joined the conversation.`\nPerhaps you joined on a linked device, and the notification shows up on a different device.\n\nhttps://app.transifex.com/savoirfairelinux/jami/translate/#fr/$/285993071?q\u003dtext%3A\u0027joined+the+conversation\u0027\n\nThank you",
+      "range": {
+        "startLine": 182,
+        "startChar": 28,
+        "endLine": 182,
+        "endChar": 55
+      },
+      "revId": "a4b08f107006e09d95b2d494618eb2e18468e1fd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6568598c_4afc8d62",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-02-21T19:13:03Z",
+      "side": 1,
+      "message": "Should `has` be added to the string?\n\nShould\n`%1 left the conversation.`\nbe\n`%1 has left the conversation.`\n\nhttps://app.transifex.com/savoirfairelinux/jami/translate/#fr/$/335746419?q\u003dtext%3A\u0027left+the+conversation\u0027\n\nThank you",
+      "range": {
+        "startLine": 184,
+        "startChar": 28,
+        "endLine": 184,
+        "endChar": 53
+      },
+      "revId": "a4b08f107006e09d95b2d494618eb2e18468e1fd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
