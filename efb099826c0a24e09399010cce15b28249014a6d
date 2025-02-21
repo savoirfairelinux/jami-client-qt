@@ -95,6 +95,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "32f08e4e_079ccd09",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-02-21T08:12:06Z",
+      "side": 1,
+      "message": "Should the string be added to\n\nsrc/app/net/jami/Constants/JamiStrings.qml\n\nso that the translatable strings are in the JamiStrings.qml file?\n\nThank you",
+      "parentUuid": "411c48c2_482b0100",
+      "range": {
+        "startLine": 182,
+        "startChar": 28,
+        "endLine": 182,
+        "endChar": 54
+      },
+      "revId": "efb099826c0a24e09399010cce15b28249014a6d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "46a33c2a_5f48bc7f",
         "filename": "src/app/conversationsadapter.cpp",
         "patchSetId": 1
@@ -106,6 +130,30 @@
       "writtenOn": "2025-02-20T20:51:51Z",
       "side": 1,
       "message": "1. Is the uniform with the string as used in other places?\n2. Should the sentence end with a full stop/period \".\"?\n\nThank you",
+      "range": {
+        "startLine": 184,
+        "startChar": 28,
+        "endLine": 184,
+        "endChar": 52
+      },
+      "revId": "efb099826c0a24e09399010cce15b28249014a6d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5ac4295_7aa7a616",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-02-21T08:12:06Z",
+      "side": 1,
+      "message": "Should the string be added to\n\nsrc/app/net/jami/Constants/JamiStrings.qml\n\nso that the translatable strings are in the JamiStrings.qml file?\n\nThank you",
+      "parentUuid": "46a33c2a_5f48bc7f",
       "range": {
         "startLine": 184,
         "startChar": 28,
