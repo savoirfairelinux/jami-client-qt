@@ -1,0 +1,303 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1834d5f_ea2bc957",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-02-21T07:44:12Z",
+      "side": 1,
+      "message": "Is there a variable in this string too?",
+      "range": {
+        "startLine": 226,
+        "startChar": 32,
+        "endLine": 226,
+        "endChar": 36
+      },
+      "revId": "6fb688133af36476b382e52659f8c21f4592e4f6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e835247_2f3f5ff6",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-02-21T07:44:12Z",
+      "side": 1,
+      "message": "Is there a variable in this string too?",
+      "range": {
+        "startLine": 230,
+        "startChar": 39,
+        "endLine": 230,
+        "endChar": 51
+      },
+      "revId": "6fb688133af36476b382e52659f8c21f4592e4f6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "068a145e_1fda093d",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-02-21T07:44:12Z",
+      "side": 1,
+      "message": "Is there a variable in this string too?",
+      "range": {
+        "startLine": 231,
+        "startChar": 40,
+        "endLine": 231,
+        "endChar": 53
+      },
+      "revId": "6fb688133af36476b382e52659f8c21f4592e4f6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97e391cd_f7626f90",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-02-21T07:44:12Z",
+      "side": 1,
+      "message": "Should `{}` be changed to `%1`?\n\n1. Unify structure.\n2. Allow for strings with multiple variables to have translations that have the variables shown in different orders",
+      "range": {
+        "startLine": 360,
+        "startChar": 47,
+        "endLine": 360,
+        "endChar": 49
+      },
+      "revId": "6fb688133af36476b382e52659f8c21f4592e4f6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5139f59_5d5eec46",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-02-21T07:44:12Z",
+      "side": 1,
+      "message": "Are there variables in this string too?",
+      "range": {
+        "startLine": 363,
+        "startChar": 44,
+        "endLine": 363,
+        "endChar": 49
+      },
+      "revId": "6fb688133af36476b382e52659f8c21f4592e4f6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78cb4664_7931868d",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-02-21T07:44:12Z",
+      "side": 1,
+      "message": "Should `Infos` be `Info`?",
+      "range": {
+        "startLine": 466,
+        "startChar": 33,
+        "endLine": 466,
+        "endChar": 38
+      },
+      "revId": "6fb688133af36476b382e52659f8c21f4592e4f6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6eff9f2_5376661c",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-02-21T07:44:12Z",
+      "side": 1,
+      "message": "Which is correct, `Mb` or `MB`? Should the convention be consistent?",
+      "range": {
+        "startLine": 503,
+        "startChar": 70,
+        "endLine": 503,
+        "endChar": 72
+      },
+      "revId": "6fb688133af36476b382e52659f8c21f4592e4f6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51620fe1_924f167c",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 775,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-02-21T07:44:12Z",
+      "side": 1,
+      "message": "Is there a variable in this string too?",
+      "range": {
+        "startLine": 775,
+        "startChar": 35,
+        "endLine": 775,
+        "endChar": 43
+      },
+      "revId": "6fb688133af36476b382e52659f8c21f4592e4f6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b50267a8_b2e5f2f6",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 776,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-02-21T07:44:12Z",
+      "side": 1,
+      "message": "Is there a variable in this string too?",
+      "range": {
+        "startLine": 776,
+        "startChar": 37,
+        "endLine": 776,
+        "endChar": 48
+      },
+      "revId": "6fb688133af36476b382e52659f8c21f4592e4f6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4551d54d_4fe27d46",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 777,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-02-21T07:44:12Z",
+      "side": 1,
+      "message": "Are there variables in this string too?",
+      "range": {
+        "startLine": 777,
+        "startChar": 37,
+        "endLine": 777,
+        "endChar": 48
+      },
+      "revId": "6fb688133af36476b382e52659f8c21f4592e4f6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0feb314_a99b15d2",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 828,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-02-21T07:44:12Z",
+      "side": 1,
+      "message": "Is there a variable in this string too?",
+      "range": {
+        "startLine": 828,
+        "startChar": 30,
+        "endLine": 828,
+        "endChar": 33
+      },
+      "revId": "6fb688133af36476b382e52659f8c21f4592e4f6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "061ab8b1_f436f773",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 897,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-02-21T07:44:12Z",
+      "side": 1,
+      "message": "Is there a variable in this string too?",
+      "range": {
+        "startLine": 897,
+        "startChar": 34,
+        "endLine": 897,
+        "endChar": 42
+      },
+      "revId": "6fb688133af36476b382e52659f8c21f4592e4f6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93be48a8_6efbfdd9",
+        "filename": "src/app/settingsview/components/ManageAccountPage.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-02-21T07:44:12Z",
+      "side": 1,
+      "message": "Should `Infos` be `Info`?\n\nhttps://grammarhow.com/plural-of-information/\n\nThank you",
+      "range": {
+        "startLine": 433,
+        "startChar": 34,
+        "endLine": 433,
+        "endChar": 52
+      },
+      "revId": "6fb688133af36476b382e52659f8c21f4592e4f6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
