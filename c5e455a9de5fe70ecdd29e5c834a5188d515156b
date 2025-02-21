@@ -16,6 +16,23 @@
       "message": "Can the unresolved comments please be done in follow up patches? Thank you",
       "revId": "c5e455a9de5fe70ecdd29e5c834a5188d515156b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df32f0fe_e2ae635b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 43
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-02-21T08:06:21Z",
+      "side": 1,
+      "message": "https://review.jami.net/c/jami-client-qt/+/30419",
+      "revId": "c5e455a9de5fe70ecdd29e5c834a5188d515156b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }

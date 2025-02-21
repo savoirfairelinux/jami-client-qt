@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d0a38e2_137331f8",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 42
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-02-21T08:06:21Z",
+      "side": 0,
+      "message": "Acknowledged",
+      "parentUuid": "69223074_3d7d09d5",
+      "range": {
+        "startLine": 414,
+        "startChar": 20,
+        "endLine": 414,
+        "endChar": 44
+      },
+      "revId": "560f44f6f169ce4fd31deaa461e9d9eff60b033f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ff857ba_b6886df2",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-02-20T20:01:55Z",
       "side": 0,
       "message": "Can the strings \"deleteAccountInfos\" and \"deleteAccountDescription\" please be merged as they are equivalent?\n\nShould \"deleteAccountInfos\" be removed as \"Infos\" should be \"Info\"?\n\nThank you",
+      "range": {
+        "startLine": 467,
+        "startChar": 20,
+        "endLine": 467,
+        "endChar": 38
+      },
+      "revId": "560f44f6f169ce4fd31deaa461e9d9eff60b033f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e493d7fa_f88c1bf3",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 42
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-02-21T08:06:21Z",
+      "side": 0,
+      "message": "Acknowledged",
+      "parentUuid": "4ff857ba_b6886df2",
       "range": {
         "startLine": 467,
         "startChar": 20,
