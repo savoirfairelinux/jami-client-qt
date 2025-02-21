@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7378657_73a86fe3",
+        "filename": "src/app/messageparser.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-02-21T22:05:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8e68c18_c742d093",
+      "range": {
+        "startLine": 180,
+        "startChar": 0,
+        "endLine": 181,
+        "endChar": 2
+      },
+      "revId": "d07c8f8557635ca7512e1842a1145d37e4be7abb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4aab325_dc968151",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-02-21T19:49:30Z",
       "side": 1,
       "message": "static (avoid alloc/free for every call \u0026 iteration)",
+      "range": {
+        "startLine": 191,
+        "startChar": 28,
+        "endLine": 191,
+        "endChar": 60
+      },
+      "revId": "d07c8f8557635ca7512e1842a1145d37e4be7abb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74d82d9f_b740ed50",
+        "filename": "src/app/messageparser.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-02-21T22:05:31Z",
+      "side": 1,
+      "message": "Is it better like that ?",
+      "parentUuid": "a4aab325_dc968151",
       "range": {
         "startLine": 191,
         "startChar": 28,
