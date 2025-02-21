@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d9bed4ad_bef4c6c3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-02-21T07:45:56Z",
+      "side": 1,
+      "message": "Add variables to strings to make complete sentences.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 47
+      },
+      "revId": "6fb688133af36476b382e52659f8c21f4592e4f6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a1834d5f_ea2bc957",
         "filename": "src/app/net/jami/Constants/JamiStrings.qml",
         "patchSetId": 2
