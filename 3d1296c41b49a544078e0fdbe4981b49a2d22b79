@@ -48,6 +48,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4784714f_cad5a1bc",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 33
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-02-21T14:39:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "476eb13e_26e91972",
+      "range": {
+        "startLine": 349,
+        "startChar": 42,
+        "endLine": 349,
+        "endChar": 59
+      },
+      "revId": "3d1296c41b49a544078e0fdbe4981b49a2d22b79",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d2a450b0_65c4fe96",
@@ -84,6 +108,30 @@
       "writtenOn": "2025-02-21T08:06:21Z",
       "side": 1,
       "message": "Acknowledged",
+      "parentUuid": "d2a450b0_65c4fe96",
+      "range": {
+        "startLine": 350,
+        "startChar": 40,
+        "endLine": 350,
+        "endChar": 55
+      },
+      "revId": "3d1296c41b49a544078e0fdbe4981b49a2d22b79",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b275463_b55f195d",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 33
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-02-21T14:39:07Z",
+      "side": 1,
+      "message": "Done",
       "parentUuid": "d2a450b0_65c4fe96",
       "range": {
         "startLine": 350,
