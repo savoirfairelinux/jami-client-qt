@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "958e82a8_66f99055",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-02-21T19:03:02Z",
+      "side": 1,
+      "message": "Should the type of variable be added, i.e. string or integer?\ns - the argument is treated as and presented as a string.\nd - the argument is treated as an integer, and presented as a (signed) decimal number.\n\nShould `%1` be `%1$s` or `%1$d`?\n\nhttps://stackoverflow.com/questions/6865673/what-does-the-syntax-s-and-d-mean-as-shorthand-for-calling-a-variable",
+      "range": {
+        "startLine": 230,
+        "startChar": 39,
+        "endLine": 230,
+        "endChar": 41
+      },
+      "revId": "1bfacdbb762c39440e69b9fddedda8fd753dac71",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
