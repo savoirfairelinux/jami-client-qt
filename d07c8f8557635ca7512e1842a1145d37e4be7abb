@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8e68c18_c742d093",
+        "filename": "src/app/messageparser.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2025-02-21T19:49:30Z",
+      "side": 1,
+      "message": "These regex should be defined out of the scope of the function (global/static scope) to avoid rebuilding the same regex for every match.",
+      "range": {
+        "startLine": 180,
+        "startChar": 0,
+        "endLine": 181,
+        "endChar": 2
+      },
+      "revId": "d07c8f8557635ca7512e1842a1145d37e4be7abb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4aab325_dc968151",
+        "filename": "src/app/messageparser.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2025-02-21T19:49:30Z",
+      "side": 1,
+      "message": "static (avoid alloc/free for every call \u0026 iteration)",
+      "range": {
+        "startLine": 191,
+        "startChar": 28,
+        "endLine": 191,
+        "endChar": 60
+      },
+      "revId": "d07c8f8557635ca7512e1842a1145d37e4be7abb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
