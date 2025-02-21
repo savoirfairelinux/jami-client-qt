@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48e00e7f_1665711d",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-02-21T20:26:54Z",
+      "side": 1,
+      "message": "Should `verify` be `check`?\n\n`Please check your password.`\nhttps://app.transifex.com/savoirfairelinux/jami/translate/#fr/$/285993149?q\u003dtext%3A\u0027check+your+password\u0027\n\n`Please check credentials and try again.`\nhttps://app.transifex.com/savoirfairelinux/jami/translate/#fr/$?q\u003dtext%3A\u0027check+credentials\u0027\n\nThank you",
+      "range": {
+        "startLine": 602,
+        "startChar": 81,
+        "endLine": 602,
+        "endChar": 109
+      },
+      "revId": "2b6aabd8ec5ac47ff97ae64f0af1dae7d062e321",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
