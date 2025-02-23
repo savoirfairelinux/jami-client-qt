@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8833769d_c2e7f386",
+        "filename": "NEWLINKDEVICE.md",
+        "patchSetId": 16
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-02-23T18:48:31Z",
+      "side": 1,
+      "message": "The file has been updated.\n\nCan the developer/jami-concepts/link-new-device.md file at https://review.jami.net/c/jami-docs/+/30438 be used?\n\nThe information in this patch has been added to the https://review.jami.net/c/jami-docs/+/30439 patch.\n\nhttps://docs.jami.net/en_US/developer/jami-concepts/link-new-device.html\n\nThank you",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 24
+      },
+      "revId": "82f2693be308e9533c052164f77c11a81fd5dcf3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
