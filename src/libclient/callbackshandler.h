@@ -245,6 +245,19 @@ Q_SIGNALS:
     void deviceAuthStateChanged(const QString& accountId, int state, const MapStringString& details);
 
     /**
+     * Add device state has changed
+     * @param accountId
+     * @param operationId
+     * @param state
+     * @param details map
+     */
+
+    void addDeviceStateChanged(const QString& accountId,
+                               uint32_t operationId,
+                               int state,
+                               const MapStringString& details);
+
+    /**
      * Name registration has ended
      * @param accountId
      * @param status
@@ -586,6 +599,18 @@ private Q_SLOTS:
     void slotDeviceAuthStateChanged(const QString& accountId,
                                     int state,
                                     const MapStringString& details);
+
+    /**
+     * Add device state has changed
+     * @param accountId
+     * @param operationId
+     * @param state
+     * @param details map
+     */
+    void slotAddDeviceStateChanged(const QString& accountId,
+                                   uint32_t operationId,
+                                   int state,
+                                   const MapStringString& details);
 
     /**
      * Emit nameRegistrationEnded
