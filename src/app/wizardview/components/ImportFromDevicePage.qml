@@ -17,11 +17,11 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-import QtQuick.Dialogs
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
+import Qt.labs.platform
 import "../../commoncomponents"
 import "../../mainview/components"
 
@@ -77,7 +77,7 @@ Rectangle {
         informativeText: JamiStrings.linkDeviceCloseWarningMessage
         buttons: MessageDialog.Ok | MessageDialog.Cancel
 
-        onButtonClicked: function(button) {
+        onOkClicked: function(button) {
             if (button === MessageDialog.Ok) {
                 AccountAdapter.cancelImportAccount();
                 WizardViewStepModel.previousStep();
