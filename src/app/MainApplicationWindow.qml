@@ -29,7 +29,6 @@ import "mainview/components"
 import "wizardview"
 import "commoncomponents"
 import QWindowKit
-import QtQuick.Dialogs
 
 ApplicationWindow {
     id: appWindow
