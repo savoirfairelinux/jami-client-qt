@@ -62,6 +62,8 @@
 #include "pluginlistpreferencemodel.h"
 #include "preferenceitemlistmodel.h"
 #include "wizardviewstepmodel.h"
+#include "devicelinkingmodel.h"
+#include "qrcodescannermodel.h"
 
 #include "api/peerdiscoverymodel.h"
 #include "api/codecmodel.h"
@@ -185,6 +187,12 @@ registerTypes(QQmlEngine* engine,
     QQmlEngine::setObjectOwnership(wizardViewStepModel, QQmlEngine::CppOwnership);
     REG_QML_SINGLETON<WizardViewStepModel>(REG_MODEL, "WizardViewStepModel", CREATE(wizardViewStepModel));
 
+    // DeviceLinkingModel
+    auto deviceLinkingModel = new DeviceLinkingModel(lrcInstance);
+    qApp->setProperty("DeviceLinkingModel", QVariant::fromValue(deviceLinkingModel));
+    QQmlEngine::setObjectOwnership(deviceLinkingModel, QQmlEngine::CppOwnership);
+    REG_QML_SINGLETON<DeviceLinkingModel>(REG_MODEL, "DeviceLinkingModel", CREATE(deviceLinkingModel));
+
     // Register app-level objects that are used by QML created objects.
     // These MUST be set prior to loading the initial QML file, in order to
     // be available to the QML adapter class factory creation methods.
@@ -195,6 +203,7 @@ registerTypes(QQmlEngine* engine,
     qApp->setProperty("PreviewEngine", QVariant::fromValue(previewEngine));
 
     // qml adapter registration
+    QML_REGISTERSINGLETON_TYPE(NS_HELPERS, QRCodeScannerModel);
     QML_REGISTERSINGLETON_TYPE(NS_HELPERS, AvatarRegistry);
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, AccountAdapter);
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, CallAdapter);
@@ -275,6 +284,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERUNCREATABLE(NS_ENUMS, VideoInputDeviceModel)
     QML_REGISTERUNCREATABLE(NS_ENUMS, VideoFormatResolutionModel)
     QML_REGISTERUNCREATABLE(NS_ENUMS, VideoFormatFpsModel)
+    QML_REGISTERUNCREATABLE(NS_ENUMS, DeviceAuthStateEnum)
 
     engine->addImageProvider(QLatin1String("qrImage"), new QrImageProvider(lrcInstance));
     engine->addImageProvider(QLatin1String("avatarimage"), new AvatarImageProvider(lrcInstance));
