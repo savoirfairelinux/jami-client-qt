@@ -112,13 +112,37 @@ public:
     Q_INVOKABLE bool exportToFile(const QString& accountId,
                                   const QString& path,
                                   const QString& password = {}) const;
+
     /**
-     * Call exportOnRing from the daemon
+     * Provide authentication for an account
      * @param accountId
-     * @param password
+     * @param credentialsFromUser
+     * @return if the authentication is successful
+     */
+    Q_INVOKABLE bool provideAccountAuthentication(const QString& accountId,
+                                                  const QString& credentialsFromUser) const;
+
+    /**
+     * @param accountId
+     * @param uri
      * @return if the export is initialized
      */
-    Q_INVOKABLE bool exportOnRing(const QString& accountId, const QString& password) const;
+    Q_INVOKABLE int32_t addDevice(const QString& accountId, const QString& token) const;
+
+    /**
+     * Confirm the addition of a device
+     * @param accountId
+     * @param operationId
+     */
+    Q_INVOKABLE bool confirmAddDevice(const QString& accountId, uint32_t operationId) const;
+
+    /**
+     * Cancel the addition of a device
+     * @param accountId
+     * @param operationId
+     */
+    Q_INVOKABLE bool cancelAddDevice(const QString& accountId, uint32_t operationId) const;
+
     /**
      * Call removeAccount from the daemon
      * @param accountId to remove
@@ -141,7 +165,7 @@ public:
      * @param avatar
      * @throws out_of_range exception if account is not found
      */
-    void setAvatar(const QString& accountId, const QString& avatar, bool save = true, int flag =0);
+    void setAvatar(const QString& accountId, const QString& avatar, bool save = true, int flag = 0);
     /**
      * Change the alias of an account
      * @param accountId
@@ -159,18 +183,7 @@ public:
     Q_INVOKABLE bool registerName(const QString& accountId,
                                   const QString& password,
                                   const QString& username);
-    /**
-     * Connect to JAMS to retrieve the account
-     * @param username
-     * @param password
-     * @param serverUri
-     * @param config
-     * @return the account id
-     */
-    static QString connectToAccountManager(const QString& username,
-                                           const QString& password,
-                                           const QString& serverUri,
-                                           const MapStringString& config = MapStringString());
+
     /**
      * Create a new Ring or SIP account
      * @param type determine if the new account will be a Ring account or a SIP one
@@ -184,12 +197,32 @@ public:
      * @return the created account
      */
     static QString createNewAccount(profile::Type type,
+                                    const MapStringString& config = MapStringString(),
                                     const QString& displayName = "",
                                     const QString& archivePath = "",
                                     const QString& password = "",
                                     const QString& pin = "",
-                                    const QString& uri = "",
-                                    const MapStringString& config = MapStringString());
+                                    const QString& uri = "");
+
+    /**
+     * Connect to JAMS to retrieve the account
+     * @param username
+     * @param password
+     * @param serverUri
+     * @param config
+     * @return the account id
+     */
+    static QString connectToAccountManager(const QString& username,
+                                           const QString& password,
+                                           const QString& serverUri,
+                                           const MapStringString& config = MapStringString());
+
+    /**
+     * Create a simple ephemeral account from a device import
+     * @return the account id of the created account
+     */
+    static QString createDeviceImportAccount();
+
     /**
      * Set an account to the first position
      */
@@ -296,14 +329,24 @@ Q_SIGNALS:
     void profileUpdated(const QString& accountID);
 
     /**
-     * Connect this signal to know when an account is exported on the DHT
+     * Device authentication state has changed
      * @param accountID
-     * @param status
-     * @param pin
+     * @param state
+     * @param details map
      */
-    void exportOnRingEnded(const QString& accountID,
-                           account::ExportOnRingStatus status,
-                           const QString& pin);
+    void deviceAuthStateChanged(const QString& accountID, int state, const MapStringString& details);
+
+    /**
+     * Add device state has changed
+     * @param accountID
+     * @param operationId
+     * @param state
+     * @param details map
+     */
+    void addDeviceStateChanged(const QString& accountID,
+                               uint32_t operationId,
+                               int state,
+                               const MapStringString& details);
 
     /**
      * Name registration has ended

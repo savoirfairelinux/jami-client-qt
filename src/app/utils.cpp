@@ -165,8 +165,7 @@ Utils::CreateStartupLink(const std::wstring& wstrAppName)
 #endif
 
     if (desktopPath.isEmpty() || !(QFile::exists(desktopPath))) {
-        qDebug() << "Error while attempting to locate .desktop file at"
-                 << desktopPath;
+        qDebug() << "Error while attempting to locate .desktop file at" << desktopPath;
         return false;
     }
 
@@ -193,8 +192,7 @@ Utils::CreateStartupLink(const std::wstring& wstrAppName)
             if (QDir().mkdir(autoStartDir)) {
                 qDebug() << "Created autostart directory:" << autoStartDir;
             } else {
-                qWarning() << "Error while creating autostart directory:"
-                           << autoStartDir;
+                qWarning() << "Error while creating autostart directory:" << autoStartDir;
                 return false;
             }
         }
@@ -283,7 +281,8 @@ Utils::CheckStartupLink(const std::wstring& wstrAppName)
 #else
     Q_UNUSED(wstrAppName)
     return (
-        !QStandardPaths::locate(QStandardPaths::ConfigLocation, "autostart/net.jami.Jami.desktop").isEmpty());
+        !QStandardPaths::locate(QStandardPaths::ConfigLocation, "autostart/net.jami.Jami.desktop")
+             .isEmpty());
 #endif
 }
 
@@ -616,14 +615,16 @@ Utils::getProjectCredits()
         return {};
     }
     QTextStream in(&projectCreditsFile);
-    return in.readAll().arg(
-        QObject::tr("We would like to thank our contributors, whose efforts over many years have made this software what it is."),
-        QObject::tr("Developers"),
-        QObject::tr("Media"),
-        QObject::tr("Community Management"),
-        QObject::tr("Special thanks to"),
-        QObject::tr("This is a list of people who have made a significant investment of time, with useful results, into Jami. Any such contributors who want to be added to the list should contact us.")
-      );
+    return in.readAll().arg(QObject::tr("We would like to thank our contributors, whose efforts "
+                                        "over many years have made this software what it is."),
+                            QObject::tr("Developers"),
+                            QObject::tr("Media"),
+                            QObject::tr("Community Management"),
+                            QObject::tr("Special thanks to"),
+                            QObject::tr(
+                                "This is a list of people who have made a significant investment "
+                                "of time, with useful results, into Jami. Any such contributors "
+                                "who want to be added to the list should contact us."));
 }
 
 inline QString
@@ -950,4 +951,14 @@ Utils::getTempSwarmAvatarPath()
 {
     return QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QDir::separator()
            + "tmpSwarmImage";
+}
+
+QVariantMap
+Utils::mapStringStringToVariantMap(const MapStringString& map)
+{
+    QVariantMap variantMap;
+    for (auto it = map.constBegin(); it != map.constEnd(); ++it) {
+        variantMap.insert(it.key(), it.value());
+    }
+    return variantMap;
 }
