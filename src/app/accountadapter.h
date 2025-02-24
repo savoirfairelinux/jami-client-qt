@@ -81,6 +81,13 @@ public:
                                          const bool& state);
     Q_INVOKABLE QStringList getDefaultModerators(const QString& accountId);
 
+    // New import account / link device functions
+    // import:  (note: Listen for: DeviceAuthStateChanged)
+    Q_INVOKABLE void startImportAccount();
+    Q_INVOKABLE void provideAccountAuthentication(const QString& password = {});
+    Q_INVOKABLE QString getImportErrorMessage(QVariantMap details);
+    Q_INVOKABLE void cancelImportAccount();
+
 Q_SIGNALS:
     // Trigger other components to reconnect account related signals.
     void accountStatusChanged(QString accountId);
@@ -97,6 +104,9 @@ private:
     void connectFailure();
 
     QMetaObject::Connection registeredNameSavedConnection_;
+
+    // The account ID of the last used import account.
+    QString importAccountId_;
 
     AppSettingsManager* settingsManager_;
     SystemTray* systemTray_;

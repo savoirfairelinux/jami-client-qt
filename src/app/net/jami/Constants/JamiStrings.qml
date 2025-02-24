@@ -70,6 +70,21 @@ Item {
     property string transferThisCall: qsTr("Transfer this call")
     property string transferTo: qsTr("Transfer to")
 
+    // Device import/linking
+    property string scanToImportAccount: qsTr("Scan this QR code on your other device to proceed with importing your account.")
+    property string waitingForToken: qsTr("Please wait…")
+    property string scanQRCode: qsTr("Scan QR code")
+    property string connectingToDevice: qsTr("Action required.\nPlease confirm account on your old device.")
+    property string confirmAccountImport: qsTr("Authenticating device")
+    property string transferringAccount: qsTr("Transferring account…")
+    property string cantScanQRCode: qsTr("If you are unable to scan the QR code, enter this token on your other device to proceed.")
+    property string optionConfirm: qsTr("Confirm")
+    property string optionTryAgain: qsTr("Try again")
+    property string importFailed: qsTr("Import failed")
+    property string importFromAnotherAccount: qsTr("Import from another account")
+    property string connectToAccount: qsTr("Connect to account")
+    property string authenticationError: qsTr("An authentication error occurred. Please check credentials and try again.")
+
     // AccountMigrationDialog
     property string authenticationRequired: qsTr("Authentication required")
     property string migrationReason: qsTr("Your session has expired or been revoked on this device. Please enter your password.")
@@ -579,19 +594,8 @@ Item {
     // ImportFromDevicePage
     property string importButton: qsTr("Import")
     property string pin: qsTr("Enter the PIN code")
-    property string importFromDeviceDescription: qsTr("A PIN code is required to use an existing Jami account on this device.")
-    property string importStep1: qsTr("Step 1")
-    property string importStep2: qsTr("Step 2")
-    property string importStep3: qsTr("Step 3")
-    property string importStep4: qsTr("Step 4")
-    property string importStep1Desc: qsTr("Open the manage account tab in the settings of the previous device.")
-    property string importStep2Desc: qsTr("Select the account to link.")
-    property string importStep3Desc: qsTr("Select “Link new device.”")
-    property string importStep4Desc: qsTr("The PIN code will expire in 10 minutes.")
-    property string importPasswordDesc: qsTr("Fill if the account is password-encrypted.")
 
     // LinkDevicesDialog
-    property string pinTimerInfos: qsTr("The PIN code and the account password should be entered in the device within 10 minutes.")
     property string close: qsTr("Close")
     property string enterAccountPassword: qsTr("Enter account password")
     property string enterPasswordPinCode: qsTr("This account is password encrypted, enter the password to generate a PIN code.")
