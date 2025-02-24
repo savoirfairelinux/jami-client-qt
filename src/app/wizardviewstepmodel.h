@@ -18,6 +18,7 @@
 #pragma once
 
 #include "qtutils.h"
+#include "api/account.h"  // Include for DeviceAuthState
 
 #include <QObject>
 #include <QVariant>
@@ -29,6 +30,20 @@ class AccountAdapter;
 class LRCInstance;
 class AppSettingsManager;
 
+class DeviceAuthStateEnum : public QObject {
+    Q_OBJECT
+public:
+    enum State {
+        INIT = static_cast<int>(lrc::api::account::DeviceAuthState::INIT),
+        TOKEN_AVAILABLE = static_cast<int>(lrc::api::account::DeviceAuthState::TOKEN_AVAILABLE),
+        CONNECTING = static_cast<int>(lrc::api::account::DeviceAuthState::CONNECTING),
+        AUTHENTICATING = static_cast<int>(lrc::api::account::DeviceAuthState::AUTHENTICATING),
+        IN_PROGRESS = static_cast<int>(lrc::api::account::DeviceAuthState::IN_PROGRESS),
+        DONE = static_cast<int>(lrc::api::account::DeviceAuthState::DONE)
+    };
+    Q_ENUM(State)
+};
+
 class WizardViewStepModel : public QObject
 {
     Q_OBJECT
@@ -37,9 +52,10 @@ class WizardViewStepModel : public QObject
 
 public:
     enum class MainSteps {
-        Initial,          // Initial welcome step.
-        AccountCreation,  // General account creation step.
-        NameRegistration, // Name registration step : CreateJamiAccount, CreateRendezVous
+        Initial,            // Initial welcome step.
+        AccountCreation,    // General account creation step.
+        NameRegistration,   // Name registration step : CreateJamiAccount, CreateRendezVous
+        DeviceAuthorization // Add new step for device authorization.
     };
     Q_ENUM(MainSteps)
 
@@ -57,6 +73,8 @@ public:
     QML_PROPERTY(MainSteps, mainStep)
     QML_PROPERTY(AccountCreationOption, accountCreationOption)
     QML_PROPERTY(QVariantMap, accountCreationInfo)
+    QML_PROPERTY(lrc::api::account::DeviceAuthState, deviceAuthState)
+    QML_PROPERTY(QVariantMap, deviceLinkDetails)
 
 public:
     static WizardViewStepModel* create(QQmlEngine*, QJSEngine*)

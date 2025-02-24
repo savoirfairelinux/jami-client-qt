@@ -42,7 +42,6 @@ BaseModalDialog {
             }
             stackedWidget.currentIndex = exportingSpinnerPage.pageIndex;
             spinnerMovie.playing = true;
-            timerForExport.restart();
         }
 
         function setExportPage(status, pin) {
@@ -67,25 +66,6 @@ BaseModalDialog {
             }
             stackedWidget.currentIndex = exportingInfoPage.pageIndex;
             stackedWidget.height = exportingLayout.implicitHeight;
-        }
-
-        Timer {
-            id: timerForExport
-
-            repeat: false
-            interval: 200
-
-            onTriggered: {
-                AccountAdapter.model.exportOnRing(LRCInstance.currentAccountId, passwordEdit.dynamicText);
-            }
-        }
-
-        Connections {
-            target: NameDirectory
-
-            function onExportOnRingEnded(status, pin) {
-                stackedWidget.setExportPage(status, pin);
-            }
         }
 
         onVisibleChanged: {
