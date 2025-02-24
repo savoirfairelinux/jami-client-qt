@@ -38,7 +38,7 @@ BaseModalDialog {
         height: userProfileDialogLayout.height + 10
         radius: 5
 
-        Rectangle{
+        Rectangle {
             id: qrImageBackground
             radius: 5
             anchors.right: parent.right
@@ -90,8 +90,7 @@ BaseModalDialog {
                     spacing: 10
                     Layout.alignment: Qt.AlignLeft
 
-                    // Visible when user alias is not empty and not equal to id.
-                    TextEdit {
+                    Text {
                         id: contactAlias
 
                         Layout.alignment: Qt.AlignLeft
@@ -99,22 +98,19 @@ BaseModalDialog {
                         font.kerning: true
 
                         color: JamiTheme.textColor
-                        visible: aliasText ? (aliasText === idText ? false : true) : false
-
-                        selectByMouse: true
-                        readOnly: true
+                        visible: true
 
                         text: textMetricsContactAliasText.elidedText
                         horizontalAlignment: Text.AlignLeft
                         verticalAlignment: Text.AlignVCenter
+                    }
 
-                        TextMetrics {
-                            id: textMetricsContactAliasText
-                            font: contactAlias.font
-                            text: aliasText
-                            elideWidth: userProfileDialogLayout.width - qrImageBackground.width - 100
-                            elide: Qt.ElideRight
-                        }
+                    TextMetrics {
+                        id: textMetricsContactAliasText
+                        font: contactAlias.font
+                        text: aliasText
+                        elideWidth: userProfileDialogLayout.width - qrImageBackground.width - 100
+                        elide: Qt.ElideRight
                     }
 
                     // Visible when user name is not empty or equals to id.
@@ -135,6 +131,21 @@ BaseModalDialog {
                         horizontalAlignment: Text.AlignLeft
                         verticalAlignment: Text.AlignVCenter
 
+                        LineEditContextMenu {
+                            id: displayNameContextMenu
+                            lineEditObj: contactDisplayName
+                            selectOnly: true
+                        }
+
+                        MouseArea {
+                            anchors.fill: parent
+                            acceptedButtons: Qt.RightButton
+                            cursorShape: Qt.IBeamCursor
+                            onClicked: function (mouse) {
+                                displayNameContextMenu.openMenuAt(mouse);
+                            }
+                        }
+
                         TextMetrics {
                             id: textMetricsContactDisplayNameText
                             font: contactDisplayName.font
@@ -145,8 +156,6 @@ BaseModalDialog {
                     }
                 }
             }
-
-
 
             Rectangle {
                 id: idRectangle
@@ -181,7 +190,7 @@ BaseModalDialog {
                     TextEdit {
                         id: contactId
                         Layout.alignment: Qt.AlignLeft
-                        Layout.minimumWidth: 400 - identifierText.width - 2 * root.popupMargins - 35
+                        Layout.minimumWidth: 400 - identifierText.width - copyButton.width - 2 * root.popupMargins - 35
 
                         font.pointSize: JamiTheme.textFontSize
                         font.kerning: true
@@ -190,6 +199,21 @@ BaseModalDialog {
                         selectByMouse: true
                         readOnly: true
                         text: textMetricsContacIdText.elidedText
+
+                        LineEditContextMenu {
+                            id: idContextMenu
+                            lineEditObj: contactId
+                            selectOnly: true
+                        }
+
+                        MouseArea {
+                            anchors.fill: parent
+                            acceptedButtons: Qt.RightButton
+                            cursorShape: Qt.IBeamCursor
+                            onClicked: function (mouse) {
+                                idContextMenu.openMenuAt(mouse);
+                            }
+                        }
 
                         TextMetrics {
                             id: textMetricsContacIdText
@@ -202,9 +226,25 @@ BaseModalDialog {
                         horizontalAlignment: Text.AlignLeft
                         verticalAlignment: Text.AlignVCenter
                     }
+
+                    PushButton {
+                        id: copyButton
+                        preferredHeight: 24
+                        preferredWidth: 24
+                        circled: false
+                        radius: 3
+
+                        toolTipText: JamiStrings.copy
+                        source: JamiResources.copy_svg
+
+                        onClicked: {
+                            contactId.selectAll();
+                            contactId.copy();
+                            contactId.deselect();
+                        }
+                    }
                 }
             }
         }
     }
 }
-
