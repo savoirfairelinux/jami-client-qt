@@ -238,6 +238,10 @@ Only 64-bit MSVC build can be compiled.
 - Using a new **Non-Elevated Command Prompt**
 
 ```bash
+    python build.py --init --qt <path-to-qt-bin-folder> (e.g. C:/Qt/6.6.2/msvc2019_64)
+```
+
+```bash
     python build.py --install --qt <path-to-qt-bin-folder> (e.g. C:/Qt/6.6.2/msvc2019_64)
 ```
 
