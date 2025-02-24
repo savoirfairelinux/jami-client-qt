@@ -120,4 +120,7 @@ QString generateUid();
 QString humanFileSize(qint64 fileSize);
 QString getDebugFilePath();
 
+// Convert a MapStringString to a QVariantMap
+QVariantMap mapStringStringToVariantMap(const MapStringString& map);
+
 } // namespace Utils
