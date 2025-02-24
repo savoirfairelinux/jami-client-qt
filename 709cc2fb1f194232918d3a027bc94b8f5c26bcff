@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4af7960_d84e9cb2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-02-24T20:29:13Z",
+      "side": 1,
+      "message": "If `%1` is a **noun**, then:\n`%1 has joined the conversation.`\nand\n`%1 has left the conversation.`\nare correct.\n\nIf `%1` is a **pronoun**, then:\n`%1 joined the conversation.`\nand\n`%1 left the conversation.`\nare correct.\n\nThank you",
+      "revId": "709cc2fb1f194232918d3a027bc94b8f5c26bcff",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
