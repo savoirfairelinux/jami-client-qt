@@ -38,7 +38,7 @@ BaseModalDialog {
         height: userProfileDialogLayout.height + 10
         radius: 5
 
-        Rectangle{
+        Rectangle {
             id: qrImageBackground
             radius: 5
             anchors.right: parent.right
@@ -108,6 +108,20 @@ BaseModalDialog {
                         horizontalAlignment: Text.AlignLeft
                         verticalAlignment: Text.AlignVCenter
 
+                        LineEditContextMenu {
+                            id: aliasContextMenu
+                            lineEditObj: contactAlias
+                            selectOnly: true
+                        }
+
+                        MouseArea {
+                            anchors.fill: parent
+                            acceptedButtons: Qt.RightButton
+                            onClicked: function (mouse) {
+                                aliasContextMenu.openMenuAt(mouse);
+                            }
+                        }
+
                         TextMetrics {
                             id: textMetricsContactAliasText
                             font: contactAlias.font
@@ -135,6 +149,20 @@ BaseModalDialog {
                         horizontalAlignment: Text.AlignLeft
                         verticalAlignment: Text.AlignVCenter
 
+                        LineEditContextMenu {
+                            id: displayNameContextMenu
+                            lineEditObj: contactDisplayName
+                            selectOnly: true
+                        }
+
+                        MouseArea {
+                            anchors.fill: parent
+                            acceptedButtons: Qt.RightButton
+                            onClicked: function (mouse) {
+                                displayNameContextMenu.openMenuAt(mouse);
+                            }
+                        }
+
                         TextMetrics {
                             id: textMetricsContactDisplayNameText
                             font: contactDisplayName.font
@@ -145,8 +173,6 @@ BaseModalDialog {
                     }
                 }
             }
-
-
 
             Rectangle {
                 id: idRectangle
@@ -181,7 +207,7 @@ BaseModalDialog {
                     TextEdit {
                         id: contactId
                         Layout.alignment: Qt.AlignLeft
-                        Layout.minimumWidth: 400 - identifierText.width - 2 * root.popupMargins - 35
+                        Layout.minimumWidth: 400 - identifierText.width - copyButton.width - 2 * root.popupMargins - 35
 
                         font.pointSize: JamiTheme.textFontSize
                         font.kerning: true
@@ -190,6 +216,20 @@ BaseModalDialog {
                         selectByMouse: true
                         readOnly: true
                         text: textMetricsContacIdText.elidedText
+
+                        LineEditContextMenu {
+                            id: idContextMenu
+                            lineEditObj: contactId
+                            selectOnly: true
+                        }
+
+                        MouseArea {
+                            anchors.fill: parent
+                            acceptedButtons: Qt.RightButton
+                            onClicked: function (mouse) {
+                                idContextMenu.openMenuAt(mouse);
+                            }
+                        }
 
                         TextMetrics {
                             id: textMetricsContacIdText
@@ -202,9 +242,25 @@ BaseModalDialog {
                         horizontalAlignment: Text.AlignLeft
                         verticalAlignment: Text.AlignVCenter
                     }
+
+                    PushButton {
+                        id: copyButton
+                        preferredHeight: 24
+                        preferredWidth: 24
+                        circled: false
+                        radius: 3
+
+                        toolTipText: JamiStrings.copy
+                        source: JamiResources.copy_svg
+
+                        onClicked: {
+                            contactId.selectAll()
+                            contactId.copy()
+                            contactId.deselect()
+                        }
+                    }
                 }
             }
         }
     }
 }
-
