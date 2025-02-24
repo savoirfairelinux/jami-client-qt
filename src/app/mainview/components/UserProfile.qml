@@ -108,6 +108,20 @@ BaseModalDialog {
                         horizontalAlignment: Text.AlignLeft
                         verticalAlignment: Text.AlignVCenter
 
+                        LineEditContextMenu {
+                            id: aliasContextMenu
+                            lineEditObj: contactAlias
+                            selectOnly: true
+                        }
+
+                        MouseArea {
+                            anchors.fill: parent
+                            acceptedButtons: Qt.RightButton
+                            onClicked: function(mouse) {
+                                aliasContextMenu.openMenuAt(mouse)
+                            }
+                        }
+
                         TextMetrics {
                             id: textMetricsContactAliasText
                             font: contactAlias.font
@@ -134,6 +148,20 @@ BaseModalDialog {
                         text: textMetricsContactDisplayNameText.elidedText
                         horizontalAlignment: Text.AlignLeft
                         verticalAlignment: Text.AlignVCenter
+
+                        LineEditContextMenu {
+                            id: displayNameContextMenu
+                            lineEditObj: contactDisplayName
+                            selectOnly: true
+                        }
+
+                        MouseArea {
+                            anchors.fill: parent
+                            acceptedButtons: Qt.RightButton
+                            onClicked: function(mouse) {
+                                displayNameContextMenu.openMenuAt(mouse)
+                            }
+                        }
 
                         TextMetrics {
                             id: textMetricsContactDisplayNameText
@@ -190,6 +218,20 @@ BaseModalDialog {
                         selectByMouse: true
                         readOnly: true
                         text: textMetricsContacIdText.elidedText
+
+                        LineEditContextMenu {
+                            id: idContextMenu
+                            lineEditObj: contactId
+                            selectOnly: true
+                        }
+
+                        MouseArea {
+                            anchors.fill: parent
+                            acceptedButtons: Qt.RightButton
+                            onClicked: function(mouse) {
+                                idContextMenu.openMenuAt(mouse)
+                            }
+                        }
 
                         TextMetrics {
                             id: textMetricsContacIdText
