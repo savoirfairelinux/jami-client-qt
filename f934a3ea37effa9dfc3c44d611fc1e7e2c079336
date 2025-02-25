@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92f53d74_61198c8c",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 27
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-02-25T07:39:26Z",
+      "side": 1,
+      "message": "Should the variable be added to the string:\n`The PIN code will expire in: %1`\n\nThank you",
+      "range": {
+        "startLine": 608,
+        "startChar": 39,
+        "endLine": 608,
+        "endChar": 68
+      },
+      "revId": "f934a3ea37effa9dfc3c44d611fc1e7e2c079336",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
