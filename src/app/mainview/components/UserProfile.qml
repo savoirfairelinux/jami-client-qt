@@ -30,6 +30,8 @@ BaseModalDialog {
 
     property int preferredImgSize: 80
 
+    registeredNameText : registeredNameText || idText
+
     title: JamiStrings.contactDetails
 
     popupContent: Rectangle {
@@ -90,31 +92,25 @@ BaseModalDialog {
                     spacing: 10
                     Layout.alignment: Qt.AlignLeft
 
-                    // Visible when user alias is not empty and not equal to id.
                     TextEdit {
                         id: contactAlias
 
                         Layout.alignment: Qt.AlignLeft
+                        Layout.fillWidth: false
+                        Layout.maximumWidth: userProfileDialogLayout.width - qrImageBackground.width - contactImage.width -30
                         font.pointSize: JamiTheme.settingsFontSize
                         font.kerning: true
 
                         color: JamiTheme.textColor
-                        visible: aliasText ? (aliasText === idText ? false : true) : false
+                        visible: true
 
                         selectByMouse: true
                         readOnly: true
+                        wrapMode: Text.WrapAnywhere
 
-                        text: textMetricsContactAliasText.elidedText
+                        text: aliasText
                         horizontalAlignment: Text.AlignLeft
                         verticalAlignment: Text.AlignVCenter
-
-                        TextMetrics {
-                            id: textMetricsContactAliasText
-                            font: contactAlias.font
-                            text: aliasText
-                            elideWidth: userProfileDialogLayout.width - qrImageBackground.width - 100
-                            elide: Qt.ElideRight
-                        }
                     }
 
                     // Visible when user name is not empty or equals to id.
@@ -146,8 +142,7 @@ BaseModalDialog {
                 }
             }
 
-
-
+            // Visible when user alias is not empty and not equal to id.
             Rectangle {
                 id: idRectangle
 
@@ -156,7 +151,7 @@ BaseModalDialog {
                 Layout.preferredWidth: idLayout.width + 20
                 radius: 5
 
-                color: root.backgroundColor
+                color: aliasText ? (aliasText === idText ? JamiTheme.backgroundRectangleColor : root.backgroundColor ) : JamiTheme.backgroundRectangleColor
 
                 Layout.preferredHeight: contactId.height + 20
                 Layout.leftMargin: 10
@@ -165,6 +160,8 @@ BaseModalDialog {
                     id: idLayout
                     anchors.centerIn: parent
                     spacing: 15
+                    visible: aliasText ? (aliasText === idText ? false : true) : false
+
 
                     Text {
                         id: identifierText
