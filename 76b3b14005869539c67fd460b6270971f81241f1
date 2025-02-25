@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "040c62e2_8479c9f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-02-25T21:13:59Z",
+      "side": 1,
+      "message": "otherwise LGTM",
+      "revId": "76b3b14005869539c67fd460b6270971f81241f1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1db0db20_54a1a174",
+        "filename": "extras/scripts/update-translations.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-02-25T21:13:59Z",
+      "side": 1,
+      "message": "ideally, this should not appear in this file. otherwise, it should only appear once if possible",
+      "range": {
+        "startLine": 27,
+        "startChar": 22,
+        "endLine": 27,
+        "endChar": 27
+      },
+      "revId": "76b3b14005869539c67fd460b6270971f81241f1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
