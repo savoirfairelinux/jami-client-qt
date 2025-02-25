@@ -40,7 +40,7 @@ Item {
 
     // DaemonReconnectWindow
     property string reconnectWarn: qsTr("An error occurred while reconnecting to the Jami daemon (jamid).\nThe application will now exit.")
-    property string reconnectAttempt: qsTr("Reconnection of the Jami daemon (jamid) is in progress. Please wait…")
+    property string reconnectAttempt: qsTr("Jami daemon (jamid) reconnection is in progress. Please wait…")
 
     // AboutPopUp
     property string buildID: qsTr("Build ID")
