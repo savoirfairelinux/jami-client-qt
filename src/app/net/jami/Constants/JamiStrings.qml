@@ -40,7 +40,7 @@ Item {
 
     // DaemonReconnectWindow
     property string reconnectWarn: qsTr("An error occurred while reconnecting to the Jami daemon (jamid).\nThe application will now exit.")
-    property string reconnectAttempt: qsTr("Reconnection of the Jami daemon (jamid) is in progress. Please wait…")
+    property string reconnectAttempt: qsTr("Jami daemon (jamid) reconnection is in progress. Please wait…")
 
     // AboutPopUp
     property string buildID: qsTr("Build ID")
@@ -630,7 +630,7 @@ Item {
     property string installMannuallyDescription: qsTr("Install an extension directly from your device.")
     property string extensionStoreTitle: qsTr("Available")
     property string extensionStoreNotAvailable: qsTr("The Jami Extension Store is currently unavailable. Please try again later.")
-    property string storeNotSupportedPlatform: qsTr("There are no extensions for the platform to display in the Jami Extension Store. Please check again later.")
+    property string storeNotSupportedPlatform: qsTr("There are no extensions for the platform to display in the Jami Extension Store. Please try again later.")
     property string extensionPreferences: qsTr("Preferences")
     property string installationFailed: qsTr("Installation error")
     property string extensionInstallationFailed: qsTr("An error occurred while installing the extension.")
