@@ -574,7 +574,7 @@ void
 UtilsAdapter::setTempCreationImageFromString(const QString& image, const QString& imageId)
 {
     // Compress the image before saving
-    auto img = Utils::imageFromBase64String(image, false);
+    auto img = Utils::imageFromBase64String(image);
     setTempCreationImageFromImage(img, imageId);
 }
 
@@ -583,7 +583,7 @@ UtilsAdapter::setTempCreationImageFromFile(const QString& path, const QString& i
 {
     // Compress the image before saving
     auto image = Utils::QByteArrayFromFile(path);
-    auto img = Utils::imageFromBase64Data(image, false);
+    auto img = Utils::imageFromBase64Data(image);
     setTempCreationImageFromImage(img, imageId);
 }
 
