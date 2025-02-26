@@ -390,7 +390,7 @@ Utils::accountPhoto(LRCInstance* instance, const QString& accountId, const QSize
             accountId.isEmpty() ? instance->get_currentAccountId() : accountId);
         auto bestName = instance->accountModel().bestNameForAccount(accInfo.id);
         if (!accInfo.profileInfo.avatar.isEmpty()) {
-            photo = imageFromBase64String(accInfo.profileInfo.avatar);
+            photo = imageFromBase64String(accInfo.profileInfo.avatar, false);
             if (photo.isNull()) {
                 qWarning() << "Invalid image for account " << bestName;
             }
@@ -399,12 +399,15 @@ Utils::accountPhoto(LRCInstance* instance, const QString& accountId, const QSize
             QString name = bestName == accInfo.profileInfo.uri ? QString() : bestName;
             QString prefix = accInfo.profileInfo.type == profile::Type::JAMI ? "jami:" : "sip:";
             photo = fallbackAvatar(prefix + accInfo.profileInfo.uri, name, size);
+        } else {
+            auto scaled = scaleAndFrame(photo, size);
+            photo = getCirclePhoto(scaled, size.width());
         }
     } catch (const std::exception& e) {
         qDebug() << e.what() << "; Using default avatar";
         photo = fallbackAvatar(QString(), QString(), size);
     }
-    return Utils::scaleAndFrame(photo, size);
+    return photo;
 }
 
 QImage
@@ -458,9 +461,10 @@ Utils::conversationAvatar(LRCInstance* instance,
         auto* convModel = accInfo.conversationModel.get();
         auto avatarb64 = convModel->avatar(convId);
         if (!avatarb64.isEmpty()) {
-            auto photo = imageFromBase64String(avatarb64, true);
+            auto photo = imageFromBase64String(avatarb64, false);
             if (!photo.isNull()) {
-                return scaleAndFrame(photo, size);
+                auto scaled = scaleAndFrame(photo, size);
+                return getCirclePhoto(scaled, size.width());
             }
             qWarning() << "Unable to load image from Base64 data for conversation " << convId;
         }
@@ -512,31 +516,30 @@ QImage
 Utils::imageFromBase64Data(const QByteArray& data, bool circleCrop)
 {
     QImage img;
-
-    if (img.loadFromData(data)) {
-        if (circleCrop) {
-            return Utils::getCirclePhoto(img, img.size().width());
-        }
-        return img;
-    }
-    return {};
+    if (!img.loadFromData(data))
+        return {};
+    // Note: no circle cropping here - it should be done after scaling
+    return img;
 }
 
 QImage
 Utils::getCirclePhoto(const QImage original, int sizePhoto)
 {
-    QImage target(sizePhoto, sizePhoto, QImage::Format_ARGB32_Premultiplied);
-    target.fill(Qt::transparent);
-
-    QPainter painter(&target);
-    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-    painter.setBrush(QBrush(Qt::white));
+    // First scale the image
     auto scaledPhoto = original
                            .scaled(sizePhoto,
                                    sizePhoto,
                                    Qt::KeepAspectRatioByExpanding,
                                    Qt::SmoothTransformation)
                            .convertToFormat(QImage::Format_ARGB32_Premultiplied);
+
+    QImage target(sizePhoto, sizePhoto, QImage::Format_ARGB32_Premultiplied);
+    target.fill(Qt::transparent);
+
+    QPainter painter(&target);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    painter.setBrush(QBrush(Qt::white));
+
     int marginX = 0;
     int marginY = 0;
 
