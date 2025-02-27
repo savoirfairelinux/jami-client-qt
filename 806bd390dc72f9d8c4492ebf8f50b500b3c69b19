@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf731568_57f509f3",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-02-27T21:01:45Z",
+      "side": 1,
+      "message": "Is it better for you this way ? Displayed string is not redefined.",
+      "parentUuid": "02ccf147_6130e486",
+      "range": {
+        "startLine": 187,
+        "startChar": 12,
+        "endLine": 187,
+        "endChar": 60
+      },
+      "revId": "806bd390dc72f9d8c4492ebf8f50b500b3c69b19",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1ad94aef_68c35872",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-02-26T21:29:46Z",
       "side": 1,
       "message": "I\u0027d remove all changes made to `interaction.h` from this commit since they\u0027re not necessary to fix the bug.",
+      "range": {
+        "startLine": 46,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 12
+      },
+      "revId": "806bd390dc72f9d8c4492ebf8f50b500b3c69b19",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e80f787_5a93f963",
+        "filename": "src/libclient/api/interaction.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-02-27T21:01:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ad94aef_68c35872",
       "range": {
         "startLine": 46,
         "startChar": 4,
