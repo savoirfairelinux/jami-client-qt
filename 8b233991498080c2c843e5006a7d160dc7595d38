@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "313ed789_fd7e4aac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-02-27T21:22:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "822db6a2_30aadf20",
+      "range": {
+        "startLine": 7,
+        "startChar": 43,
+        "endLine": 7,
+        "endChar": 54
+      },
+      "revId": "8b233991498080c2c843e5006a7d160dc7595d38",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bb816c61_94b98c9c",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-02-26T20:36:21Z",
       "side": 1,
       "message": "Nit: Gitlab -\u003e GitLab",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 6
+      },
+      "revId": "8b233991498080c2c843e5006a7d160dc7595d38",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c3557dc_02f7ffda",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-02-27T21:22:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb816c61_94b98c9c",
       "range": {
         "startLine": 11,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2c51a20_16220066",
+        "filename": "src/app/messageparser.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-02-27T21:22:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0dbe5bbb_f75db47c",
+      "range": {
+        "startLine": 170,
+        "startChar": 0,
+        "endLine": 171,
+        "endChar": 34
+      },
+      "revId": "8b233991498080c2c843e5006a7d160dc7595d38",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "86f3134a_9826321b",
@@ -83,6 +155,54 @@
       "writtenOn": "2025-02-26T20:36:21Z",
       "side": 1,
       "message": "Nit: Should capitalize the first letter to be consistent with the rest of the comments.",
+      "range": {
+        "startLine": 63,
+        "startChar": 7,
+        "endLine": 63,
+        "endChar": 18
+      },
+      "revId": "8b233991498080c2c843e5006a7d160dc7595d38",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f98ba2bb_429682f8",
+        "filename": "src/app/messageparser.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-02-27T21:22:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86f3134a_9826321b",
+      "range": {
+        "startLine": 63,
+        "startChar": 7,
+        "endLine": 63,
+        "endChar": 18
+      },
+      "revId": "8b233991498080c2c843e5006a7d160dc7595d38",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9cadd5d_9834466a",
+        "filename": "src/app/messageparser.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-02-27T21:22:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86f3134a_9826321b",
       "range": {
         "startLine": 63,
         "startChar": 7,
