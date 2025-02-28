@@ -146,7 +146,7 @@ Rectangle {
 
             text: {
                 if (!CurrentCall.isOutgoing)
-                    return CurrentCall.isAudioOnly ? JamiStrings.incomingAudioCallFrom.replace("{}", title) : JamiStrings.incomingVideoCallFrom.replace("{}", title);
+                    return CurrentCall.isAudioOnly ? JamiStrings.incomingAudioCallFrom.arg(title) : JamiStrings.incomingVideoCallFrom.arg(title);
                 else
                     return title;
             }
