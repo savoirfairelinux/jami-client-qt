@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5100b0e3_50f71904",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 29
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2025-02-28T20:19:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1ab5816_49c1a70e",
+      "range": {
+        "startLine": 367,
+        "startChar": 17,
+        "endLine": 367,
+        "endChar": 35
+      },
+      "revId": "372aa72f95d6ed154cf1760bb4ffc556aeac141e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f0811321_0fd892e6",
@@ -37,6 +61,24 @@
       "writtenOn": "2025-02-28T18:12:04Z",
       "side": 1,
       "message": "standard header",
+      "revId": "372aa72f95d6ed154cf1760bb4ffc556aeac141e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2aa5fb69_e21f9377",
+        "filename": "src/app/devicelinkingmodel.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2025-02-28T20:19:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0811321_0fd892e6",
       "revId": "372aa72f95d6ed154cf1760bb4ffc556aeac141e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -64,6 +106,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f19162f3_2b1dce73",
+        "filename": "src/app/devicelinkingmodel.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2025-02-28T20:19:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "126e0668_15bd055c",
+      "range": {
+        "startLine": 26,
+        "startChar": 16,
+        "endLine": 26,
+        "endChar": 24
+      },
+      "revId": "372aa72f95d6ed154cf1760bb4ffc556aeac141e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b329baf2_b7095710",
@@ -77,6 +143,24 @@
       "writtenOn": "2025-02-28T18:12:04Z",
       "side": 1,
       "message": "standard header",
+      "revId": "372aa72f95d6ed154cf1760bb4ffc556aeac141e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4670812_ec0a0289",
+        "filename": "src/app/devicelinkingmodel.h",
+        "patchSetId": 29
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2025-02-28T20:19:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b329baf2_b7095710",
       "revId": "372aa72f95d6ed154cf1760bb4ffc556aeac141e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -98,6 +182,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef1b84c0_10852ab5",
+        "filename": "src/app/qrcodescannermodel.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2025-02-28T20:19:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9aa72340_f6b89744",
+      "revId": "372aa72f95d6ed154cf1760bb4ffc556aeac141e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5882f11f_a48b4c0c",
@@ -115,6 +217,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7cd34ff_6dc917e5",
+        "filename": "src/app/qrcodescannermodel.h",
+        "patchSetId": 29
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2025-02-28T20:19:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5882f11f_a48b4c0c",
+      "revId": "372aa72f95d6ed154cf1760bb4ffc556aeac141e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "430f7e36_29a2a7bf",
@@ -128,6 +248,30 @@
       "writtenOn": "2025-02-28T18:12:04Z",
       "side": 1,
       "message": "aerate a bit",
+      "range": {
+        "startLine": 14,
+        "startChar": 4,
+        "endLine": 19,
+        "endChar": 55
+      },
+      "revId": "372aa72f95d6ed154cf1760bb4ffc556aeac141e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f23b6145_d1affd5a",
+        "filename": "src/app/qrcodescannermodel.h",
+        "patchSetId": 29
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2025-02-28T20:19:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "430f7e36_29a2a7bf",
       "range": {
         "startLine": 14,
         "startChar": 4,
