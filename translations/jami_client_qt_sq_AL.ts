@@ -142,7 +142,6 @@
         <translation>Migrimi në teknologjinë Zgjoje do të lejojë njëkohësimin e kësaj bisede në shumë pajisje dhe do të përmirësojë qëndrueshmërinë e funksionimit. Gjatë procesit, historiku i dikurshëm i bisedës do të spastrohet.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="43"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="744"/>
         <source>Reconnection of the Jami daemon (jamid) is in progress. Please wait…</source>
         <translation>Rilidhje e demonit Jami (jamid) është në kryerje e sipër. Ju lutemi, pritni…</translation>
@@ -151,6 +150,11 @@
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="47"/>
         <source>Version</source>
         <translation>Version</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="43"/>
+        <source>Jami daemon (jamid) reconnection is in progress. Please wait…</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="57"/>
@@ -637,12 +641,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="230"/>
         <source>%1 is recording</source>
-        <translation type="unfinished"/>
+        <translation>%1 is recording</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="231"/>
         <source>%1 are recording</source>
-        <translation type="unfinished"/>
+        <translation>%1 po regjistrojnë</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="292"/>
@@ -803,6 +807,11 @@ Nëse nuk zgjidhet një emër përdoruesi, kësaj llogarie do t’i përshoqëro
         <translation>Që të ripohoni heqjen e kësaj pajisje, jepni fjalëkalimin e llogarisë</translation>
     </message>
     <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="633"/>
+        <source>There are no extensions for the platform to display in the Jami Extension Store. Please try again later.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="753"/>
         <source>Discard and restart</source>
         <translation>Hidhe tej dhe rinisu</translation>
@@ -915,7 +924,7 @@ Nëse nuk zgjidhet një emër përdoruesi, kësaj llogarie do t’i përshoqëro
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="897"/>
         <source>Remote: %1</source>
-        <translation type="unfinished"/>
+        <translation>I largët: %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="898"/>
@@ -1058,17 +1067,17 @@ Aplikacioni tani do të mbyllet.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="360"/>
         <source>%1 is typing…</source>
-        <translation type="unfinished"/>
+        <translation>%1 është duke shtypur…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="361"/>
         <source>%1 are typing…</source>
-        <translation type="unfinished"/>
+        <translation>%1 janë duke shtypur…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="363"/>
         <source>%1 and %2</source>
-        <translation type="unfinished"/>
+        <translation>%1 dhe %2</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="384"/>
@@ -1100,7 +1109,7 @@ Nëse po, kësaj llogarie do t’i përshoqërohet vetëm një identifikues 40-s
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="503"/>
         <source>Accept transfer limit (MB)</source>
-        <translation type="unfinished"/>
+        <translation>Kufi pranimi shpërnguljesh (MB)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="523"/>
@@ -1614,12 +1623,12 @@ të lidhet për të njëkohësuar bisedën…</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="33"/>
         <source>Incoming audio call from %1</source>
-        <translation type="unfinished"/>
+        <translation>Thirrje audio ardhëse prej %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="34"/>
         <source>Incoming video call from %1</source>
-        <translation type="unfinished"/>
+        <translation>Thirrje video ardhëse prej %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="267"/>
@@ -1919,12 +1928,12 @@ të lidhet për të njëkohësuar bisedën…</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="349"/>
         <source>%1 deleted a message</source>
-        <translation type="unfinished"/>
+        <translation>%1 fshiu një mesazh</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="350"/>
         <source>%1 deleted a media</source>
-        <translation type="unfinished"/>
+        <translation>%1 fshiu një media</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="354"/>
@@ -2599,11 +2608,6 @@ Profili mund të ndryshohet te rregullime llogarie.</translation>
         <translation>Jami Extension Store është aktualisht jashtë funksionimi. Ju lutemi, riprovoni më vonë.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="633"/>
-        <source>There are no extensions for the platform to display in the Jami Extension Store. Please check again later.</source>
-        <translation>Për platformën s’ka zgjerime te Jami Extension Store për shfaqje. Ju lutemi, kontrolloni sërish më vonë.</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="654"/>
         <source>Version %1</source>
         <translation>Version %1</translation>
@@ -2696,7 +2700,7 @@ Profili mund të ndryshohet te rregullime llogarie.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="777"/>
         <source>%1 replied to</source>
-        <translation type="unfinished"/>
+        <translation>%1 iu përgjigj</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="781"/>

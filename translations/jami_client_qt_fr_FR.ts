@@ -142,7 +142,6 @@
         <translation>La migration vers la technologie Swarm permettra de synchroniser cette conversation sur plusieurs appareils et d&apos;améliorer la fiabilité. L&apos;historique des conversations existantes sera effacé au cours du processus.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="43"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="744"/>
         <source>Reconnection of the Jami daemon (jamid) is in progress. Please wait…</source>
         <translation>Reconnexion au daemon (jamid) en cours. Veuillez patienter.</translation>
@@ -151,6 +150,11 @@
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="47"/>
         <source>Version</source>
         <translation>Version</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="43"/>
+        <source>Jami daemon (jamid) reconnection is in progress. Please wait…</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="57"/>
@@ -638,12 +642,12 @@ Veuillez entrer votre mot de passe.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="230"/>
         <source>%1 is recording</source>
-        <translation type="unfinished"/>
+        <translation>%1 enregistre</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="231"/>
         <source>%1 are recording</source>
-        <translation type="unfinished"/>
+        <translation>%1 enregistre</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="292"/>
@@ -804,6 +808,11 @@ Si aucun nom d&apos;utilisateur n&apos;est choisi, un identifiant de 40 caractè
         <translation>Entrer le mot de passe du compte pour confirmer la suppression de cet appareil</translation>
     </message>
     <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="633"/>
+        <source>There are no extensions for the platform to display in the Jami Extension Store. Please try again later.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="753"/>
         <source>Discard and restart</source>
         <translation>Rejeter et redémarrer</translation>
@@ -916,7 +925,7 @@ Si aucun nom d&apos;utilisateur n&apos;est choisi, un identifiant de 40 caractè
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="897"/>
         <source>Remote: %1</source>
-        <translation type="unfinished"/>
+        <translation>Distant : %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="898"/>
@@ -1059,17 +1068,17 @@ Jami s’arrête.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="360"/>
         <source>%1 is typing…</source>
-        <translation type="unfinished"/>
+        <translation>%1 est en train d&apos;écrire ...</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="361"/>
         <source>%1 are typing…</source>
-        <translation type="unfinished"/>
+        <translation>%1 sont en train d&apos;écrire ...</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="363"/>
         <source>%1 and %2</source>
-        <translation type="unfinished"/>
+        <translation> %1 et %2</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="384"/>
@@ -1102,7 +1111,7 @@ Veuillez réessayer plus tard.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="503"/>
         <source>Accept transfer limit (MB)</source>
-        <translation type="unfinished"/>
+        <translation>Taille maximum des fichiers automatiquement acceptés (en MB)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="523"/>
@@ -1614,12 +1623,12 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="33"/>
         <source>Incoming audio call from %1</source>
-        <translation type="unfinished"/>
+        <translation>Appel audio entrant de %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="34"/>
         <source>Incoming video call from %1</source>
-        <translation type="unfinished"/>
+        <translation>Appel vidéo entrant de %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="267"/>
@@ -1919,12 +1928,12 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="349"/>
         <source>%1 deleted a message</source>
-        <translation type="unfinished"/>
+        <translation>%1 a supprimé un message</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="350"/>
         <source>%1 deleted a media</source>
-        <translation type="unfinished"/>
+        <translation>%1 a supprimé un média</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="354"/>
@@ -2599,11 +2608,6 @@ Le profil peut être modifié à tout moment dans les paramètres du compte.</tr
         <translation>Le magasin d&apos;extensions Jami n&apos;est pas actuellement disponible. Veuillez réessayer plus tard.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="633"/>
-        <source>There are no extensions for the platform to display in the Jami Extension Store. Please check again later.</source>
-        <translation>Le Jami Extension Store n&apos;a actuellement aucune extension disponible pour la plateforme utilisée. Vérifiez à nouveau plus tard !</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="654"/>
         <source>Version %1</source>
         <translation>Version %1</translation>
@@ -2696,7 +2700,7 @@ Le profil peut être modifié à tout moment dans les paramètres du compte.</tr
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="777"/>
         <source>%1 replied to</source>
-        <translation type="unfinished"/>
+        <translation>%1 a répondu à </translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="781"/>

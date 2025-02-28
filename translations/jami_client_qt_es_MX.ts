@@ -142,7 +142,6 @@
         <translation>Migrar a la tecnología Enjambre permitirá sincronizar esta conversación desde múltiples dispositivos y mejorar su fiabilidad. Todo el historial previo de la conversación será eliminado durante el proceso.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="43"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="744"/>
         <source>Reconnection of the Jami daemon (jamid) is in progress. Please wait…</source>
         <translation type="unfinished"/>
@@ -151,6 +150,11 @@
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="47"/>
         <source>Version</source>
         <translation>Versión</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="43"/>
+        <source>Jami daemon (jamid) reconnection is in progress. Please wait…</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="57"/>
@@ -802,6 +806,11 @@ Si no se elige un nombre de usuario, se asignará a esta cuenta un identificador
         <translation>Introducir la contraseña de la cuenta para confirmar la eliminación de este dispositivo</translation>
     </message>
     <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="633"/>
+        <source>There are no extensions for the platform to display in the Jami Extension Store. Please try again later.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="753"/>
         <source>Discard and restart</source>
         <translation>Desechar y reiniciar</translation>
@@ -1009,7 +1018,7 @@ Si no se elige un nombre de usuario, se asignará a esta cuenta un identificador
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="702"/>
         <source>Search results</source>
-        <translation type="unfinished"/>
+        <translation>Resultados de la búsqueda</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="705"/>
@@ -1987,7 +1996,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="400"/>
         <source>Configure existing SIP account</source>
-        <translation type="unfinished"/>
+        <translation>Configurar una cuenta SIP existente</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="405"/>
@@ -2586,11 +2595,6 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="632"/>
         <source>The Jami Extension Store is currently unavailable. Please try again later.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="633"/>
-        <source>There are no extensions for the platform to display in the Jami Extension Store. Please check again later.</source>
         <translation type="unfinished"/>
     </message>
     <message>

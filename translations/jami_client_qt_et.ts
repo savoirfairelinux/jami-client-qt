@@ -142,7 +142,6 @@
         <translation>Kolides vestlused üle uuele rühmavestluste-lahendusele on võimalik vestlusi kergemini ja töökindlamalt sünkroniseerida paljude seadmete vahel ja parandada usaldusväärsust. Selle muutuse käigus kustutatakse senine vestluse ajalugu.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="43"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="744"/>
         <source>Reconnection of the Jami daemon (jamid) is in progress. Please wait…</source>
         <translation>Ühenduse loomine Jami taustateenusega (jamid) on  töös. See võib võtta paar hetke…</translation>
@@ -151,6 +150,11 @@
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="47"/>
         <source>Version</source>
         <translation>Versioon</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="43"/>
+        <source>Jami daemon (jamid) reconnection is in progress. Please wait…</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="57"/>
@@ -637,12 +641,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="230"/>
         <source>%1 is recording</source>
-        <translation type="unfinished"/>
+        <translation>%1 salvestab</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="231"/>
         <source>%1 are recording</source>
-        <translation type="unfinished"/>
+        <translation>%1 salvestavad</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="292"/>
@@ -803,6 +807,11 @@ Kui sa kasutajanime ei lisa, siis lisame sellele kasutajakontole juhuslikult loo
         <translation>Selle seadme eemaldamise kinnitamiseks sisesta salasõna</translation>
     </message>
     <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="633"/>
+        <source>There are no extensions for the platform to display in the Jami Extension Store. Please try again later.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="753"/>
         <source>Discard and restart</source>
         <translation>Loobu ja käivita uuesti</translation>
@@ -915,7 +924,7 @@ Kui sa kasutajanime ei lisa, siis lisame sellele kasutajakontole juhuslikult loo
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="897"/>
         <source>Remote: %1</source>
-        <translation type="unfinished"/>
+        <translation>Kaugseade: %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="898"/>
@@ -1058,17 +1067,17 @@ Jami rakendus lõpetab nüüd töö.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="360"/>
         <source>%1 is typing…</source>
-        <translation type="unfinished"/>
+        <translation>%1 kirjutab…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="361"/>
         <source>%1 are typing…</source>
-        <translation type="unfinished"/>
+        <translation>%1 kirjutavad…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="363"/>
         <source>%1 and %2</source>
-        <translation type="unfinished"/>
+        <translation>%1 ja %2</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="384"/>
@@ -1100,7 +1109,7 @@ Kui jah, siis lisame sellele kasutajakontole juhuslikult loodud 40-märgilise tu
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="503"/>
         <source>Accept transfer limit (MB)</source>
-        <translation type="unfinished"/>
+        <translation>Laaditavate failide mahu piirmäär (megabaitides)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="523"/>
@@ -1614,12 +1623,12 @@ ootame kasutaja %1 ühenduse loomist.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="33"/>
         <source>Incoming audio call from %1</source>
-        <translation type="unfinished"/>
+        <translation>Algav häälkõne kasutajaga %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="34"/>
         <source>Incoming video call from %1</source>
-        <translation type="unfinished"/>
+        <translation>Algav videokõne kasutajaga %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="267"/>
@@ -1919,12 +1928,12 @@ ootame kasutaja %1 ühenduse loomist.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="349"/>
         <source>%1 deleted a message</source>
-        <translation type="unfinished"/>
+        <translation>%1 kustutas sõnumi</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="350"/>
         <source>%1 deleted a media</source>
-        <translation type="unfinished"/>
+        <translation>%1 kustutas meedia</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="354"/>
@@ -2599,11 +2608,6 @@ Profiili saad igal ajal muuta kasutajakonto seadistustest.</translation>
         <translation>Jami lisamoodulite pood pole hetkel saadaval. Palun proovi hiljem uuesti.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="633"/>
-        <source>There are no extensions for the platform to display in the Jami Extension Store. Please check again later.</source>
-        <translation>Jami lisamoodulite poes pole hetkel ühtegi sobivat moodulit selle platvormi jaoks. Palun vaata hiljem uuesti.</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="654"/>
         <source>Version %1</source>
         <translation>Versioon %1</translation>
@@ -2696,7 +2700,7 @@ Profiili saad igal ajal muuta kasutajakonto seadistustest.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="777"/>
         <source>%1 replied to</source>
-        <translation type="unfinished"/>
+        <translation>%1 vastas kasutajale</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="781"/>

@@ -142,7 +142,6 @@
         <translation>A rajcsoportos technológiára való áttelepítés lehetővé teszi ennek a beszélgetésnek az összehongolását több eszközön keresztül, és javítja a megbízhatóságot. A folyamat során az örökölt beszélgetési előzmények törlődnek.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="43"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="744"/>
         <source>Reconnection of the Jami daemon (jamid) is in progress. Please wait…</source>
         <translation>A Jami-rendszerfolyamat (jamid) újracsatlakozása folyamatban van. Kérjük, várjon…</translation>
@@ -151,6 +150,11 @@
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="47"/>
         <source>Version</source>
         <translation>Verzió</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="43"/>
+        <source>Jami daemon (jamid) reconnection is in progress. Please wait…</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="57"/>
@@ -637,12 +641,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="230"/>
         <source>%1 is recording</source>
-        <translation type="unfinished"/>
+        <translation>%1 rögzíti a hívást</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="231"/>
         <source>%1 are recording</source>
-        <translation type="unfinished"/>
+        <translation>%1 rögzíti a hívást</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="292"/>
@@ -802,6 +806,11 @@ If a username is not chosen, a randomly generated 40-character identifier will b
         <translation>Írja be a fiók jelszavát az eszköz eltávolításának megerősítéséhez</translation>
     </message>
     <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="633"/>
+        <source>There are no extensions for the platform to display in the Jami Extension Store. Please try again later.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="753"/>
         <source>Discard and restart</source>
         <translation>Elvetés és újraindítás</translation>
@@ -914,7 +923,7 @@ If a username is not chosen, a randomly generated 40-character identifier will b
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="897"/>
         <source>Remote: %1</source>
-        <translation type="unfinished"/>
+        <translation>Távoli: %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="898"/>
@@ -1057,17 +1066,17 @@ Az alkalmazás most bezáródik.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="360"/>
         <source>%1 is typing…</source>
-        <translation type="unfinished"/>
+        <translation>%1 éppen gépel…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="361"/>
         <source>%1 are typing…</source>
-        <translation type="unfinished"/>
+        <translation>%1 éppen gépel…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="363"/>
         <source>%1 and %2</source>
-        <translation type="unfinished"/>
+        <translation>%1 és %2</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="384"/>
@@ -1099,7 +1108,7 @@ Ha igen, csak egy véletlenszerűen generált 40 karakteres azonosító lesz hoz
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="503"/>
         <source>Accept transfer limit (MB)</source>
-        <translation type="unfinished"/>
+        <translation>Fájlküldési korlátozás elfogadása (MB)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="523"/>
@@ -1613,12 +1622,12 @@ csatlakozásra a beszélgetés összehangolásához…</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="33"/>
         <source>Incoming audio call from %1</source>
-        <translation type="unfinished"/>
+        <translation>Bejövő hanghívás %1 részéről</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="34"/>
         <source>Incoming video call from %1</source>
-        <translation type="unfinished"/>
+        <translation>Bejövő videohívás %1 részéről</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="267"/>
@@ -1918,12 +1927,12 @@ csatlakozásra a beszélgetés összehangolásához…</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="349"/>
         <source>%1 deleted a message</source>
-        <translation type="unfinished"/>
+        <translation>%1 törölt egy üzenetet</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="350"/>
         <source>%1 deleted a media</source>
-        <translation type="unfinished"/>
+        <translation>%1 törölt egy médiát</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="354"/>
@@ -2598,11 +2607,6 @@ A profil módosítható a fiókbeállításokban.</translation>
         <translation>A Jami-bővítmények áruháza jelenleg nem érhető el. Kérjük, hogy később próbálkozzon újra.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="633"/>
-        <source>There are no extensions for the platform to display in the Jami Extension Store. Please check again later.</source>
-        <translation>A platformhoz nincsenek megjeleníthető bővítmények a Jami-bővítmények áruházában. Kérjük, hogy később próbálkozzon újra.</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="654"/>
         <source>Version %1</source>
         <translation>%1 verzió</translation>
@@ -2695,7 +2699,7 @@ A profil módosítható a fiókbeállításokban.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="777"/>
         <source>%1 replied to</source>
-        <translation type="unfinished"/>
+        <translation>%1 válaszolt</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="781"/>
