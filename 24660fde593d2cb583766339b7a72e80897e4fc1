@@ -34,6 +34,24 @@
       "parentUuid": "d04932a3_957235ab",
       "revId": "24660fde593d2cb583766339b7a72e80897e4fc1",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1866a1dd_639425f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-02-28T19:25:17Z",
+      "side": 1,
+      "message": "The string with \"You\" was added in this patch: https://review.jami.net/c/jami-client-qt/+/30295\n\nIt\u0027s already merged.",
+      "parentUuid": "653872f4_e69455df",
+      "revId": "24660fde593d2cb583766339b7a72e80897e4fc1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
