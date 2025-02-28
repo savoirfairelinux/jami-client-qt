@@ -126,6 +126,20 @@ Loader {
             property bool canOpen: root.transferStatus === Interaction.TransferStatus.TRANSFER_FINISHED || isOutgoing
             property real maxMsgWidth: root.width - senderMargin - 2 * hPadding - avatarBlockWidth - buttonsLoader.width - 24 - 6 - 24
 
+            // Timer to update the translation bar
+            Loader {
+                id: timerLoader
+                active: root.transferStatus === Interaction.TransferStatus.TRANSFER_ONGOING
+                sourceComponent: Timer {
+                    interval: 1000 // Update every second
+                    running: true
+                    repeat: true
+                    onTriggered: {
+                        transferStats = MessagesAdapter.getTransferStats(transferId, root.transferStatus);
+                    }
+                }
+            }
+
             isOutgoing: Author === CurrentAccount.uri
             showTime: root.showTime
             seq: root.seq
@@ -136,7 +150,7 @@ Loader {
             timestamp: root.timestamp
             formattedTime: root.formattedTime
             formattedDay: root.formattedTime
-            extraHeight: progressBar.visible ? 18 : 0
+            extraHeight: progressBar.visible ? 25 : 0
 
             innerContent.children: [
                 RowLayout {
@@ -212,8 +226,10 @@ Loader {
                                 imageColor: JamiTheme.chatviewButtonColor
                                 onClicked: {
                                     if (root.transferStatus === Interaction.TransferStatus.TRANSFER_ONGOING) {
-                                        return MessagesAdapter.cancelFile(transferId);
+                                        buttonsLoader.iconSource = JamiResources.close_black_24dp_svg;
+                                        MessagesAdapter.cancelFile(transferId);
                                     } else {
+                                        buttonsLoader.iconSource = JamiResources.close_black_24dp_svg;
                                         return MessagesAdapter.acceptFile(transferId);
                                     }
                                 }
