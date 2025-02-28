@@ -52,6 +52,52 @@
       "parentUuid": "653872f4_e69455df",
       "revId": "24660fde593d2cb583766339b7a72e80897e4fc1",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b200732a_0fa043a4",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-02-28T19:44:13Z",
+      "side": 1,
+      "message": "This line is only relevant in the final `else` block below, so I\u0027d suggest putting it there. I\u0027d also rename `body_` to `body` since we normally use names ending with an underscore for class members, not local variables.",
+      "range": {
+        "startLine": 174,
+        "startChar": 8,
+        "endLine": 174,
+        "endChar": 41
+      },
+      "revId": "24660fde593d2cb583766339b7a72e80897e4fc1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42980afb_189f9b30",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-02-28T19:44:13Z",
+      "side": 1,
+      "message": "The strings can be directly assigned to `displayedString` instead of going through an intermediate variable.",
+      "range": {
+        "startLine": 181,
+        "startChar": 16,
+        "endLine": 183,
+        "endChar": 70
+      },
+      "revId": "24660fde593d2cb583766339b7a72e80897e4fc1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
