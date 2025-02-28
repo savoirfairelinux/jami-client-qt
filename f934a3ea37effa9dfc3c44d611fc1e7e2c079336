@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "df2068ad_5fe77063",
+        "filename": "src/app/accountadapter.cpp",
+        "patchSetId": 27
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-02-28T16:53:29Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 74
+      },
+      "revId": "f934a3ea37effa9dfc3c44d611fc1e7e2c079336",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9161c934_48e04d8f",
+        "filename": "src/app/accountadapter.cpp",
+        "patchSetId": 27
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-02-28T16:53:29Z",
+      "side": 1,
+      "message": "unused?",
+      "range": {
+        "startLine": 406,
+        "startChar": 0,
+        "endLine": 422,
+        "endChar": 1
+      },
+      "revId": "f934a3ea37effa9dfc3c44d611fc1e7e2c079336",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "92f53d74_61198c8c",
         "filename": "src/app/net/jami/Constants/JamiStrings.qml",
         "patchSetId": 27
@@ -67,6 +113,98 @@
         "startChar": 39,
         "endLine": 608,
         "endChar": 68
+      },
+      "revId": "f934a3ea37effa9dfc3c44d611fc1e7e2c079336",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf62533c_f704526f",
+        "filename": "src/app/settingsview/components/LinkDeviceDialog.qml",
+        "patchSetId": 27
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-02-28T16:53:29Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 72,
+        "startChar": 8,
+        "endLine": 87,
+        "endChar": 12
+      },
+      "revId": "f934a3ea37effa9dfc3c44d611fc1e7e2c079336",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee96c314_f6c76ae7",
+        "filename": "src/app/wizardviewstepmodel.cpp",
+        "patchSetId": 27
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-02-28T16:53:29Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 51,
+        "startChar": 4,
+        "endLine": 54,
+        "endChar": 7
+      },
+      "revId": "f934a3ea37effa9dfc3c44d611fc1e7e2c079336",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5b72a9c_5b907ffc",
+        "filename": "src/app/wizardviewstepmodel.cpp",
+        "patchSetId": 27
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-02-28T16:53:29Z",
+      "side": 1,
+      "message": "remove or make C_DEBUG",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 100
+      },
+      "revId": "f934a3ea37effa9dfc3c44d611fc1e7e2c079336",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "229b320a_6eb32216",
+        "filename": "src/libclient/qtwrapper/configurationmanager_wrap.h",
+        "patchSetId": 27
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-02-28T16:53:29Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 167,
+        "startChar": 20,
+        "endLine": 168,
+        "endChar": 46
       },
       "revId": "f934a3ea37effa9dfc3c44d611fc1e7e2c079336",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
