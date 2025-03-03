@@ -171,8 +171,10 @@ ItemDelegate {
         Connections {
             target: menuAction !== undefined ? menuAction : null
             function onTriggered() {
-                if (menuAction.popupMode !== CallActionBar.ActionPopupMode.ListElement)
-                    itemListView.currentIndex = menuAction.listModel.getCurrentIndex();
+                if (menuAction.popupMode !== CallActionBar.ActionPopupMode.ListElement) {
+                    var index = menuAction.listModel.currentIndex
+                    itemListView.currentIndex = index !== undefined ? index : 0
+                }
             }
         }
 
