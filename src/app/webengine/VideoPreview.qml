@@ -38,7 +38,7 @@ Rectangle {
         Component.onCompleted: loadHtml(root.html, 'file:///')
         onFullScreenRequested: function (request) {
             if (request.toggleOn) {
-                layoutManager.pushFullScreenItem(this, root, null, function () {
+                layoutManager.pushFullScreenItem(this, function () {
                         wev.fullScreenCancelled();
                     });
             } else if (!request.toggleOn) {

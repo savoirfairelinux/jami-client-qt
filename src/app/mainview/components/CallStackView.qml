@@ -40,6 +40,13 @@ Item {
         onActivatedAmbiguously: CallAdapter.hangUpThisCall()
     }
 
+    Shortcut {
+        sequence: "F11"
+        context: Qt.ApplicationShortcut
+        enabled: CurrentConversation.hasCall && !layoutManager.isWebFullscreen
+        onActivated: toggleFullScreen();
+    }
+
     Keys.onPressed: {
         if (LRCInstance.currentAccountType !== Profile.Type.SIP)
             return;
@@ -72,14 +79,15 @@ Item {
 
     function toggleFullScreen() {
         if (!layoutManager.isCallFullscreen) {
-            layoutManager.pushFullScreenItem(callStackMainView.item, callStackMainView, null, null);
+            layoutManager.pushFullScreenItem(callStackMainView);
         } else {
-            layoutManager.removeFullScreenItem(callStackMainView.item);
+            layoutManager.removeFullScreenItem(callStackMainView);
         }
     }
 
     Loader {
         id: callStackMainView
+        objectName: "callViewLoader"
 
         anchors.fill: parent
 
