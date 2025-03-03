@@ -177,9 +177,17 @@ ConversationsAdapter::onNewUnreadInteraction(const QString& accountId,
         if (interaction.type == interaction::Type::CONTACT) {
             auto action = interaction.commit.value("action");
             if (action == "join") {
-                displayedString = tr("%1 has joined the conversation.").arg(from);
+                if (from.isEmpty()) {
+                    displayedString = tr("You joined the conversation.");
+                } else {
+                    displayedString = tr("%1 has joined the conversation.").arg(from);
+                }
             } else if (action == "remove") {
-                displayedString = tr("%1 has left the conversation.").arg(from);
+                if (from.isEmpty()) {
+                    displayedString = tr("You left the conversation.");
+                } else {
+                    displayedString = tr("%1 has left the conversation.").arg(from);
+                }
             }
         } else if (interaction.type == interaction::Type::DATA_TRANSFER) {
             displayedString = from + ": " + interaction.commit.value("displayName");
