@@ -72,9 +72,9 @@ Item {
 
     function toggleFullScreen() {
         if (!layoutManager.isCallFullscreen) {
-            layoutManager.pushFullScreenItem(callStackMainView.item, callStackMainView, null, null);
+            layoutManager.setCallFullscreen(true, callStackMainView.item, callStackMainView)
         } else {
-            layoutManager.removeFullScreenItem(callStackMainView.item);
+            layoutManager.setCallFullscreen(false, callStackMainView.item, callStackMainView)
         }
     }
 

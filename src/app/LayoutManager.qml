@@ -147,140 +147,64 @@ QtObject {
         }
     }
 
-    // Adds an item to the fullscreen item stack. Automatically puts
-    // the main window in fullscreen mode if needed. Callbacks should be used
-    // to perform component-specific tasks upon successful transitions.
-    function pushFullScreenItem(item, prevParent, pushedCb, removedCb) {
-        if (item === null || item === undefined
-                || priv.fullScreenItems.length >= 3) {
-            return
-        }
+    // Simplified function to handle call fullscreen
+    function setCallFullscreen(fullscreen, callItem, prevParent) {
+        if (fullscreen) {
+            // Make sure our window is in fullscreen mode
+            if (!isFullScreen) {
+                priv.windowedVisibility = visibility
+                priv.windowedGeometry = Qt.rect(appWindow.x, appWindow.y,
+                                              appWindow.width, appWindow.height)
+                showFullScreen()
+            }
 
-        // Make sure our window is in fullscreen mode.
-        priv.requestWindowModeChange(true)
-
-        // Add the item to our list and reparent it to appContainer.
-        priv.fullScreenItems.push({
-                                 "item": item,
-                                 "prevParent": prevParent,
-                                 "prevAnchorsFill": item.anchors.fill,
-                                 "removedCb": removedCb
-                             })
-        item.parent = appContainer
-        item.anchors.fill = item.parent
-        if (pushedCb) {
-            pushedCb()
-        }
-
-        // Reevaluate isCallFullscreen.
-        priv.fullScreenItemsChanged()
-    }
-
-    // Remove an item if specified, or by default, the top item. Automatically
-    // resets the main window to windowed mode if no items remain in the stack.
-    function popFullScreenItem(obj=null) {
-        // Remove the item and reparent it to its original parent.
-        if (obj === null) {
-            obj = priv.fullScreenItems.pop()
+            // Reparent call item to app container
+            if (callItem) {
+                callItem.parent = appContainer
+                callItem.anchors.fill = callItem.parent
+            }
         } else {
-            const index = priv.fullScreenItems.indexOf(obj);
-            if (index > -1) {
-                priv.fullScreenItems.splice(index, 1);
-            }
-        }
-        if (obj !== undefined) {
-            if (obj.item !== appWindow) {
-                obj.item.anchors.fill = obj.prevAnchorsFill
-                obj.item.parent = obj.prevParent
-                if (obj.removedCb) {
-                    obj.removedCb()
-                }
+            // Restore call item to previous parent
+            if (callItem) {
+                callItem.anchors.fill = undefined
+                callItem.parent = prevParent
             }
 
-            // Reevaluate isCallFullscreen.
-            priv.fullScreenItemsChanged()
+            // Exit fullscreen if we're not manually fullscreened
+            if (isFullScreen && priv.windowedVisibility !== Window.Hidden) {
+                visibility = priv.windowedVisibility
+            }
         }
-
-        // Only leave fullscreen mode if our window isn't in fullscreen
-        // mode already.
-        if (priv.fullScreenItems.length === 0 && priv.windowedVisibility !== Window.Hidden) {
-            // Simply recall the last visibility state.
-            visibility = priv.windowedVisibility
-        }
+        isCallFullscreen = fullscreen
     }
 
-    // Used to filter removal for a specific item.
-    function removeFullScreenItem(item) {
-        priv.fullScreenItems.forEach(o => {
-            if (o.item === item) {
-                popFullScreenItem(o)
-                return
-            }
-        });
-    }
-
-    // Toggle the application window in fullscreen mode.
+    // Keep window fullscreen toggle separate from call fullscreen
     function toggleWindowFullScreen() {
-        priv.requestWindowModeChange(!isFullScreen)
-
-        // If we succeeded, place a dummy item onto the stack as
-        // a state indicator to prevent returning to windowed mode
-        // when popping an item on top. The corresponding pop will
-        // be made within requestWindowModeChange.
-        if (isFullScreen) {
-            priv.fullScreenItems.push({ "item": appWindow })
+        if (!isFullScreen) {
+            priv.windowedVisibility = visibility
+            priv.windowedGeometry = Qt.rect(appWindow.x, appWindow.y,
+                                          appWindow.width, appWindow.height)
+            showFullScreen()
+        } else {
+            visibility = priv.windowedVisibility
         }
     }
 
     property var data: QtObject {
         id: priv
 
-        // Used to store the last windowed mode visibility.
+        // Used to store the last windowed mode visibility
         property int windowedVisibility
 
-        // Used to store the last windowed mode geometry.
+        // Used to store the last windowed mode geometry
         property rect windowedGeometry
 
-        // An stack of items that are fullscreened.
-        property variant fullScreenItems: []
-
-        // When fullScreenItems is changed, we can recompute isCallFullscreen.
-        onFullScreenItemsChanged: {
-            isCallFullscreen = fullScreenItems
-                .filter(o => o.item instanceof OngoingCallPage)
-                .length
-        }
-
-        // Listen for a hangup combined with a fullscreen call state and
-        // remove the OngoingCallPage component.
+        // Listen for hangup to exit call fullscreen
         property var data: Connections {
             target: CallAdapter
             function onHasCallChanged() {
                 if (!CallAdapter.hasCall && isCallFullscreen) {
-                    priv.fullScreenItems.forEach(o => {
-                        if (o.item instanceof OngoingCallPage) {
-                            popFullScreenItem(o)
-                            return
-                        }
-                    });
-                }
-            }
-        }
-
-        // Used internally to switch modes.
-        function requestWindowModeChange(fullScreen) {
-            if (fullScreen) {
-                if (!isFullScreen) {
-                    // Save the previous visibility state and geometry.
-                    windowedVisibility = visibility
-                    windowedGeometry = Qt.rect(appWindow.x, appWindow.y,
-                                               appWindow.width, appWindow.height)
-                    showFullScreen()
-                }
-            } else {
-                // Clear the stack.
-                while (fullScreenItems.length) {
-                    popFullScreenItem()
+                    setCallFullscreen(false)
                 }
             }
         }
