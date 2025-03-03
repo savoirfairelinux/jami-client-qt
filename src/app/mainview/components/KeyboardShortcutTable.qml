@@ -60,10 +60,6 @@ Window {
                 description: qsTr("Search bar")
             }
             ListElement {
-                shortcut: "F11"
-                description: qsTr("Full screen")
-            }
-            ListElement {
                 shortcut: "Ctrl++"
                 description: qsTr("Increase font size")
             }
@@ -130,6 +126,10 @@ Window {
             ListElement {
                 shortcut: "Ctrl+Shift+D"
                 description: qsTr("Decline call")
+            }
+            ListElement {
+                shortcut: "F11"
+                description: qsTr("Full screen")
             }
             ListElement {
                 shortcut: "M"

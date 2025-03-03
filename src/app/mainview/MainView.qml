@@ -136,17 +136,12 @@ Rectangle {
     }
 
     Shortcut {
-        sequence: "F11"
+        sequence: "Esc"
         context: Qt.ApplicationShortcut
-        onActivated: layoutManager.toggleWindowFullScreen()
-    }
-
-    Keys.onPressed: function (keyEvent) {
-        if (keyEvent.key === Qt.Key_Escape) {
+        onActivated: {
             MessagesAdapter.replyToId = "";
             MessagesAdapter.editId = "";
             layoutManager.popFullScreenItem();
-            keyEvent.accepted = true;
         }
     }
 
