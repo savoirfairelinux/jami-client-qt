@@ -61,6 +61,14 @@ Item {
             }
     }
 
+    Shortcut {
+        sequence: "F11"
+        context: Qt.ApplicationShortcut
+        onActivated: if (CallAdapter.hasCall) {
+            callStackView.toggleFullScreen();
+        }
+    }
+
     // TODO: this should all be done by listening to
     // parent visibility change or parent `Component.onDestruction`
     function needToCloseInCallConversationAndPotentialWindow() {
@@ -72,9 +80,9 @@ Item {
 
     function toggleFullScreen() {
         if (!layoutManager.isCallFullscreen) {
-            layoutManager.pushFullScreenItem(callStackMainView.item, callStackMainView, null, null);
+            layoutManager.setCallFullscreen(true, callStackMainView.item, callStackMainView);
         } else {
-            layoutManager.removeFullScreenItem(callStackMainView.item);
+            layoutManager.setCallFullscreen(false);
         }
     }
 
