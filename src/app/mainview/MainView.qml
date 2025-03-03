@@ -37,6 +37,8 @@ Rectangle {
     id: mainView
     objectName: "mainView"
 
+    property alias callStackView: callStackView
+
     property string currentConvId: CurrentConversation.id
     onCurrentConvIdChanged: {
         if (currentConvId !== '') {
@@ -138,7 +140,9 @@ Rectangle {
     Shortcut {
         sequence: "F11"
         context: Qt.ApplicationShortcut
-        onActivated: layoutManager.toggleWindowFullScreen()
+        onActivated: if (CallAdapter.hasCall) {
+            callStackView.toggleFullScreen()
+        }
     }
 
     Keys.onPressed: function (keyEvent) {
@@ -173,5 +177,10 @@ Rectangle {
         sequence: StandardKey.Quit
         context: Qt.ApplicationShortcut
         onActivated: Qt.quit()
+    }
+
+    CallStackView {
+        id: callStackView
+        // ... existing CallStackView properties ...
     }
 }

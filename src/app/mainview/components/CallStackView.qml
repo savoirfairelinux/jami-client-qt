@@ -52,13 +52,13 @@ Item {
     }
 
     Connections {
-            target: CallOverlayModel
-            function onPttKeyPressed() {
-                CallAdapter.muteAudioToggle();
-            }
-            function onPttKeyReleased() {
-                CallAdapter.muteAudioToggle();
-            }
+        target: CallOverlayModel
+        function onPttKeyPressed() {
+            CallAdapter.muteAudioToggle();
+        }
+        function onPttKeyReleased() {
+            CallAdapter.muteAudioToggle();
+        }
     }
 
     // TODO: this should all be done by listening to
@@ -72,9 +72,9 @@ Item {
 
     function toggleFullScreen() {
         if (!layoutManager.isCallFullscreen) {
-            layoutManager.pushFullScreenItem(callStackMainView.item, callStackMainView, null, null);
+            layoutManager.setCallFullscreen(true, callStackMainView.item, callStackMainView);
         } else {
-            layoutManager.removeFullScreenItem(callStackMainView.item);
+            layoutManager.setCallFullscreen(false, callStackMainView.item, callStackMainView);
         }
     }
 
@@ -101,12 +101,14 @@ Item {
 
         Component {
             id: initialCallPageComponent
-            InitialCallPage {}
+            InitialCallPage {
+            }
         }
 
         Component {
             id: ongoingCallPageComponent
-            OngoingCallPage {}
+            OngoingCallPage {
+            }
         }
     }
 }
