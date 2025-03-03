@@ -77,7 +77,7 @@ ItemDelegate {
             return HalfPill.None;
         }
 
-        Behavior on color  {
+        Behavior on color {
             ColorAnimation {
                 duration: JamiTheme.shortFadeDuration
             }
@@ -94,7 +94,7 @@ ItemDelegate {
         radius: isLast ? 5 : width / 2
         type: isLast ? HalfPill.Right : HalfPill.None
 
-        Behavior on color  {
+        Behavior on color {
             ColorAnimation {
                 duration: JamiTheme.shortFadeDuration
             }
@@ -113,7 +113,7 @@ ItemDelegate {
         source: ItemAction ? ItemAction.icon.source : ""
         color: ItemAction ? (ItemAction.enabled ? ItemAction.icon.color : Qt.lighter(ItemAction.icon.color)) : null
 
-        SequentialAnimation on opacity  {
+        SequentialAnimation on opacity {
             loops: Animation.Infinite
             running: ItemAction !== undefined && ItemAction.blinksWhenChecked !== undefined && ItemAction.blinksWhenChecked && checked
             onStopped: icon.opacity = 1
@@ -171,8 +171,10 @@ ItemDelegate {
         Connections {
             target: menuAction !== undefined ? menuAction : null
             function onTriggered() {
-                if (menuAction.popupMode !== CallActionBar.ActionPopupMode.ListElement)
-                    itemListView.currentIndex = menuAction.listModel.getCurrentIndex();
+                if (menuAction.popupMode !== CallActionBar.ActionPopupMode.ListElement) {
+                    var index = menuAction.listModel.currentIndex;
+                    itemListView.currentIndex = index !== undefined ? index : 0;
+                }
             }
         }
 
@@ -186,7 +188,7 @@ ItemDelegate {
             radius: 4
         }
 
-        onActivated: index => menuAction.accept(index);
+        onActivated: index => menuAction.accept(index)
         model: visible ? menuAction.listModel : null
         delegate: ItemDelegate {
             id: menuItem
@@ -311,7 +313,6 @@ ItemDelegate {
                     // it fits within the overlay, with an extra leftward margin of 24 pixels.
                     x = diff > 0 ? xValue - diff - 24 : xValue;
                 }
-
             }
 
             implicitWidth: contentItem.implicitWidth

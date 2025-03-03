@@ -51,6 +51,14 @@ Rectangle {
         }
     }
 
+    Shortcut {
+        sequence: "F11"
+        context: Qt.ApplicationShortcut
+        onActivated: if (CallAdapter.hasCall) {
+            callStackView.toggleFullScreen()
+        }
+    }
+
     function setCallChatVisibility(visible) {
         if (visible) {
             mainColumnLayout.isHorizontal = UtilsAdapter.getAppValue(Settings.Key.ShowChatviewHorizontally);
