@@ -48,12 +48,22 @@
 <context>
     <name>ConversationsAdapter</name>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="192"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="180"/>
+        <source>%1 has joined the conversation.</source>
+        <translation>%1 ist der Unterhaltung beigetreten.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/conversationsadapter.cpp" line="182"/>
+        <source>%1 has left the conversation.</source>
+        <translation>%1 hat die Unterhaltung verlassen.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/conversationsadapter.cpp" line="202"/>
         <source>%1 received a new message</source>
         <translation>%1 hat eine neue Nachricht erhalten</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="247"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="257"/>
         <source>%1 received a new invitation</source>
         <translation>%1 hat eine neue Einladung erhalten</translation>
     </message>
@@ -154,7 +164,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="43"/>
         <source>Jami daemon (jamid) reconnection is in progress. Please wait…</source>
-        <translation type="unfinished"/>
+        <translation>Die erneute Verbindung mit dem Jami-Daemon (jamid) ist im Gange. Bitte warten…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="57"/>
@@ -809,7 +819,7 @@ Wenn kein Benutzername gewählt wird, wird diesem Konto ein zufällig generierte
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="633"/>
         <source>There are no extensions for the platform to display in the Jami Extension Store. Please try again later.</source>
-        <translation type="unfinished"/>
+        <translation>Es gibt keine Erweiterungen für die Plattform, die im Jami Extension Store angezeigt werden können. Bitte versuchen Sie es später noch einmal.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="753"/>

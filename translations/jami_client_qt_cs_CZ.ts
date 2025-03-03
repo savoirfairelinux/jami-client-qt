@@ -48,12 +48,22 @@
 <context>
     <name>ConversationsAdapter</name>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="192"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="180"/>
+        <source>%1 has joined the conversation.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/conversationsadapter.cpp" line="182"/>
+        <source>%1 has left the conversation.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/conversationsadapter.cpp" line="202"/>
         <source>%1 received a new message</source>
         <translation>%1 obdržel novou zprávu</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="247"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="257"/>
         <source>%1 received a new invitation</source>
         <translation type="unfinished"/>
     </message>

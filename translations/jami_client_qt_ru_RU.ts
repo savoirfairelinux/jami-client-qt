@@ -48,12 +48,22 @@
 <context>
     <name>ConversationsAdapter</name>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="192"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="180"/>
+        <source>%1 has joined the conversation.</source>
+        <translation>%1 присоединяется к беседе.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/conversationsadapter.cpp" line="182"/>
+        <source>%1 has left the conversation.</source>
+        <translation>%1 покидает беседу.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/conversationsadapter.cpp" line="202"/>
         <source>%1 received a new message</source>
         <translation>Получено новое сообщение для %1</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="247"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="257"/>
         <source>%1 received a new invitation</source>
         <translation>%1 получил(а) новое приглашение</translation>
     </message>
@@ -154,7 +164,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="43"/>
         <source>Jami daemon (jamid) reconnection is in progress. Please wait…</source>
-        <translation type="unfinished"/>
+        <translation>Переподключение службы Jami (jamid). Подождите…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="57"/>
@@ -808,7 +818,7 @@ If a username is not chosen, a randomly generated 40-character identifier will b
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="633"/>
         <source>There are no extensions for the platform to display in the Jami Extension Store. Please try again later.</source>
-        <translation type="unfinished"/>
+        <translation>Нет расширений для платформы, которые можно было бы отобразить в магазине расширений Jami. </translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="753"/>

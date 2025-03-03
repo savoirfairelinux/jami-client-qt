@@ -48,12 +48,22 @@
 <context>
     <name>ConversationsAdapter</name>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="192"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="180"/>
+        <source>%1 has joined the conversation.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/conversationsadapter.cpp" line="182"/>
+        <source>%1 has left the conversation.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/conversationsadapter.cpp" line="202"/>
         <source>%1 received a new message</source>
         <translation>%1 recibió un mensaje nuevo</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="247"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="257"/>
         <source>%1 received a new invitation</source>
         <translation type="unfinished"/>
     </message>
@@ -1232,7 +1242,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="877"/>
         <source>If you enjoy using Jami and believe in our mission, do you want to make a donation?</source>
-        <translation type="unfinished"/>
+        <translation>Si disfrutas usando Jami y crees en nuestra misión, ¿quieres hacer una donación?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="888"/>
@@ -3863,7 +3873,7 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="340"/>
         <source>Unreachable peer</source>
-        <translation type="unfinished"/>
+        <translation>Par inalcanzable</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="345"/>

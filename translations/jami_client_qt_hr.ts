@@ -4,12 +4,12 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="208"/>
         <source>Missed call</source>
-        <translation>Izgubio poziv</translation>
+        <translation>Propušten poziv</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="209"/>
         <source>Missed call with %1</source>
-        <translation>Izgubio poziv s % 1</translation>
+        <translation>Propušten poziv sa %1</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="528"/>
@@ -24,12 +24,12 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="540"/>
         <source>is calling you</source>
-        <translation>Zove te.</translation>
+        <translation> te zove</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="1038"/>
         <source>Screenshot</source>
-        <translation>Slika zaslona</translation>
+        <translation>Snimka zaslona</translation>
     </message>
 </context>
 <context>
@@ -42,20 +42,30 @@
     <message>
         <location filename="../src/app/conversationlistmodelbase.cpp" line="144"/>
         <source>(deleted message)</source>
-        <translation type="unfinished"/>
+        <translation>(Izbrisana poruka)</translation>
     </message>
 </context>
 <context>
     <name>ConversationsAdapter</name>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="192"/>
-        <source>%1 received a new message</source>
-        <translation>% 1 primio je novu poruku</translation>
+        <location filename="../src/app/conversationsadapter.cpp" line="180"/>
+        <source>%1 has joined the conversation.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="247"/>
-        <source>%1 received a new invitation</source>
+        <location filename="../src/app/conversationsadapter.cpp" line="182"/>
+        <source>%1 has left the conversation.</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/conversationsadapter.cpp" line="202"/>
+        <source>%1 received a new message</source>
+        <translation>%1 je primio novu poruku</translation>
+    </message>
+    <message>
+        <location filename="../src/app/conversationsadapter.cpp" line="257"/>
+        <source>%1 received a new invitation</source>
+        <translation>%1 je dobio novu pozivnicu</translation>
     </message>
 </context>
 <context>
@@ -71,12 +81,12 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="141"/>
         <source>Private</source>
-        <translation>Privredni</translation>
+        <translation>Privatno</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="143"/>
         <source>Private group (restricted invites)</source>
-        <translation>Privatna grupa (obzirana poziva)</translation>
+        <translation>Privatna grupa (ograničene pozivnice)</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="145"/>
@@ -86,17 +96,17 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="147"/>
         <source>Public group</source>
-        <translation>Zajednički</translation>
+        <translation>Javna grupa</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="316"/>
         <source>An error occurred while fetching this repository</source>
-        <translation>Dogodila se greška prilikom preuzimanja ovog skladišta</translation>
+        <translation>Došlo je do pogreške prilikom dohvaćanja ovog repozitorija</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="318"/>
         <source>Unrecognized conversation mode</source>
-        <translation type="unfinished"/>
+        <translation>Neprepoznati način razgovora</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="322"/>
@@ -106,12 +116,12 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="324"/>
         <source>An error occurred while committing a new message</source>
-        <translation type="unfinished"/>
+        <translation>Došlo je do pogreške prilikom slanja nove poruke</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="320"/>
         <source>An invalid message was detected</source>
-        <translation>Otkrivena je nevaljna poruka.</translation>
+        <translation>Otkrivena je nevažeća poruka.</translation>
     </message>
 </context>
 <context>
@@ -124,27 +134,27 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="32"/>
         <source>End call</source>
-        <translation>Završi poziv</translation>
+        <translation>Prekini poziv</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="36"/>
         <source>Invitations</source>
-        <translation>Pozivi</translation>
+        <translation>Pozivnice</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="37"/>
         <source>Jami is a universal communication platform, with privacy as its foundation, that relies on a free distributed network for everyone.</source>
-        <translation>Jami je univerzalna komunikacijska platforma, s privatnošću kao temeljem, koja se oslanja na besplatnu distribuiranu mrežu za sve.</translation>
+        <translation>Jami je univerzalna komunikacijska platforma, utemeljena na privatnošću koja se oslanja na besplatno raspoređivanu mrežu za sve.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="38"/>
         <source>Migrating to the Swarm technology will enable synchronizing this conversation across multiple devices and improve reliability. The legacy conversation history will be cleared in the process.</source>
-        <translation>Migriranje na Swarm tehnologiju omogućiće sinhronizaciju ovog razgovora na više uređaja i poboljšanje pouzdanosti.</translation>
+        <translation>Migriranje na Swarm tehnologiju omogućiti će sinkronizaciju ovog razgovora na više uređaja i poboljšati pouzdanost. Naslijeđena povijest razgovora bit će izbrisana u procesu</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="744"/>
         <source>Reconnection of the Jami daemon (jamid) is in progress. Please wait…</source>
-        <translation type="unfinished"/>
+        <translation>U tijeku je ponovno spajanje za Jami daemon (jamid). Molim pričekajte...</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="47"/>
@@ -154,78 +164,78 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="43"/>
         <source>Jami daemon (jamid) reconnection is in progress. Please wait…</source>
-        <translation type="unfinished"/>
+        <translation>U tijeku je ponovno povezivanje za Jami daemon (jamid). Molim pričekajte...</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="57"/>
         <source>Jami has recovered from a crash. Do you want to send a crash report to help fix the issue?</source>
-        <translation type="unfinished"/>
+        <translation>Jami se oporavio od rušenja Želite li poslati izvješće o rušenju programa za pomoć pri rješavanju problema?(</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="61"/>
         <source>Display QR code</source>
-        <translation>Ispričaj QR kod</translation>
+        <translation>Prikaži QR kod</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="62"/>
         <source>Open settings</source>
-        <translation>Otvoreni postavki</translation>
+        <translation>Otvori postavke</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="63"/>
         <source>Close settings</source>
-        <translation>Sljedeće postavke</translation>
+        <translation>Zatvori postavke</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="68"/>
         <source>Add to conference</source>
-        <translation>Dodajte konferenciju</translation>
+        <translation>Dodaj u konferenciju</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="69"/>
         <source>Add to conversation</source>
-        <translation>Dodaj razgovoru</translation>
+        <translation>Dodaj u razgovor</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="70"/>
         <source>Transfer this call</source>
-        <translation>Prebacite ovaj poziv</translation>
+        <translation>Prenesi ovaj poziv</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="71"/>
         <source>Transfer to</source>
-        <translation>Prenos na</translation>
+        <translation>Prijenos na</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="74"/>
         <source>Authentication required</source>
-        <translation>Potvrda za potvrdu</translation>
+        <translation>Potrebna autentifikacija</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="75"/>
         <source>Your session has expired or been revoked on this device. Please enter your password.</source>
-        <translation>Sjednica je istekla ili je otkazana na ovom uređaju.</translation>
+        <translation>Vaša sesija je istekla ili opozvana na ovom uređaju. Molimo unesite svoju lozinku.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="76"/>
         <source>JAMS server</source>
-        <translation>JAMS server</translation>
+        <translation>JAMS poslužitelj</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="77"/>
         <source>Authenticate</source>
-        <translation>Potvrdi</translation>
+        <translation>Potvrdi autentičnost</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="78"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="413"/>
         <source>Delete account</source>
-        <translation>Izbrišite račun</translation>
+        <translation>Izbriši račun</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="79"/>
         <source>In progress…</source>
-        <translation>U procesu...</translation>
+        <translation>U tijeku…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="81"/>
@@ -240,87 +250,87 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="83"/>
         <source>Alias</source>
-        <translation>Alias</translation>
+        <translation>Nadimak</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="86"/>
         <source>Allow incoming calls from unknown contacts</source>
-        <translation>Dozvoli dolazne pozive od nepoznatih kontakata</translation>
+        <translation>Dopusti dolazne pozive nepoznatih kontakata</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="87"/>
         <source>Convert your account into a rendezvous point</source>
-        <translation>Pretvorite svoj račun u mjesto sastanka</translation>
+        <translation>Pretvori svoj račun u mjesto sastanka</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="89"/>
         <source>Enable custom ringtone</source>
-        <translation>Aktivirajte prilagođene zvončane zvone</translation>
+        <translation>Omogući prilagođeni zvuk zvona</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="90"/>
         <source>Select custom ringtone</source>
-        <translation>Izberite prilagođen zvon</translation>
+        <translation>Odaberi prilagođeni zvuk zvona</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="91"/>
         <source>Select a new ringtone</source>
-        <translation>Izaberite novi zvon</translation>
+        <translation>Odaberi novi zvuk zvona</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="94"/>
         <source>Push-to-talk</source>
-        <translation type="unfinished"/>
+        <translation>Pritisni-za-razgovor</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="95"/>
         <source>Enable push-to-talk</source>
-        <translation type="unfinished"/>
+        <translation>Omogući Pritisni-za-razgovor</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="96"/>
         <source>Keyboard shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Tipkovnički prečac</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="97"/>
         <source>Change keyboard shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Promijeni tipkovni prečac</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="100"/>
         <source>Change shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Promjeni prečac</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="101"/>
         <source>Press the key to be assigned to push-to-talk shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Pritisni tipku kojoj želite dodijeliti prečac Pritisni-za-razgovor</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="102"/>
         <source>Assign</source>
-        <translation type="unfinished"/>
+        <translation>Dodijeli</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="105"/>
         <source>Enable read receipts</source>
-        <translation>Aktivirajte prijemni račune</translation>
+        <translation>Omogući potvrde o čitanju</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="106"/>
         <source>Send and receive receipts indicating that a message have been displayed</source>
-        <translation>Pošaljite i primijte potvrde o prikazu poruke</translation>
+        <translation>Šalji i primaj potvrde koje pokazuju da je poruka prikazana</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="109"/>
         <source>Voicemail</source>
-        <translation>Glasna poruka</translation>
+        <translation>Govorna pošta</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="110"/>
         <source>Voicemail dial code</source>
-        <translation>Voicemail brojki</translation>
+        <translation>Pozivni broj govorne pošte</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="113"/>
@@ -330,17 +340,17 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="114"/>
         <source>Enable SDES key exchange</source>
-        <translation>Olakšavanje razmjene SDES ključeva</translation>
+        <translation>Omogući razmjenu SDES ključeva</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="115"/>
         <source>Encrypt negotiation (TLS)</source>
-        <translation>Računavanje za šifriranje (TLS)</translation>
+        <translation>Šifrirano pregovaranje (TLS)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="116"/>
         <source>CA certificate</source>
-        <translation>Službeni sustav</translation>
+        <translation>CA certifikat</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="117"/>
@@ -360,32 +370,32 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="120"/>
         <source>Verify certificates for incoming TLS connections</source>
-        <translation>Provjeravanje potvrda za prihađane TLS veze</translation>
+        <translation>Provjeri certifikate za dolazne TLS vezeveze</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="121"/>
         <source>Verify server TLS certificates</source>
-        <translation>Provjeravanje TLS certifikata za server</translation>
+        <translation>Provjeri TLS certifikate poslužitelja</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="122"/>
         <source>Require certificate for incoming TLS connections</source>
-        <translation>Pozivanje potvrde za ulazne TLS veze</translation>
+        <translation>Zahtijevaj certifikat za dolazne TLS veze</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="131"/>
         <source>Connectivity</source>
-        <translation>Spojivost</translation>
+        <translation>Povezivost</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="132"/>
         <source>Auto Registration After Expired</source>
-        <translation>Auto registracija nakon isteka</translation>
+        <translation>Automatska registracija nakon isteka</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="133"/>
         <source>Registration expiration time (seconds)</source>
-        <translation>U skladu s člankom 1. stavkom 1.</translation>
+        <translation>Vrijeme isteka registracije (sekunde)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="134"/>
@@ -395,7 +405,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="135"/>
         <source>Use UPnP</source>
-        <translation>Upotreba UPnP</translation>
+        <translation>Koristi UPnP</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="136"/>
@@ -405,7 +415,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="137"/>
         <source>TURN address</source>
-        <translation>Adresa TURN</translation>
+        <translation>TURN adresa</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="138"/>
@@ -425,17 +435,17 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="142"/>
         <source>STUN address</source>
-        <translation>Adresa STUN</translation>
+        <translation>STUN adresa</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="145"/>
         <source>Allow IP Auto Rewrite</source>
-        <translation>Dopustite IP-u da se automatski prepiše</translation>
+        <translation>Dopusti automatsko prepisivanje IP adrese</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="146"/>
         <source>Public address</source>
-        <translation>Uloga</translation>
+        <translation>Javna adresa</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="147"/>
@@ -461,7 +471,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="153"/>
         <source>Enable video</source>
-        <translation>Aktiviraj video</translation>
+        <translation>Omogući video</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="161"/>
@@ -471,32 +481,32 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="162"/>
         <source>Only used during negotiation in case ICE is not supported</source>
-        <translation>U slučaju da se ne podržava ICE-a, koristi se samo tijekom pregovora</translation>
+        <translation>Koristi se samo tijekom pregovora ako ICE nije podržan</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="163"/>
         <source>Audio RTP minimum Port</source>
-        <translation>Minimalni RTP audio</translation>
+        <translation>Minimalni RTP port za zvuk</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="164"/>
         <source>Audio RTP maximum Port</source>
-        <translation>Maksimalni RTP- port</translation>
+        <translation>Maksimalni RTP port za zvuk</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="165"/>
         <source>Video RTP minimum Port</source>
-        <translation>Video RTP minimalni port</translation>
+        <translation>Minimalni RTP port za video</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="166"/>
         <source>Video RTP maximum port</source>
-        <translation>Maksimalni port RTP za video</translation>
+        <translation>Maksimalni RTP port za video</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="169"/>
         <source>Current DHT port used</source>
-        <translation type="unfinished"/>
+        <translation>Trenutačno korišten DHT port</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="170"/>
@@ -506,7 +516,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="171"/>
         <source>Connect to other DHT nodes advertising on your local network.</source>
-        <translation>Povežite se s drugim DHT čvorovima koji oglašavaju na lokalnoj mreži.</translation>
+        <translation>Poveži se s drugim DHT čvorovima koji se oglašavaju na lokalnoj mreži.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="173"/>
@@ -521,7 +531,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="175"/>
         <source>Bootstrap</source>
-        <translation>Ugrađen</translation>
+        <translation>Bootstrap</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="178"/>
@@ -536,12 +546,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="180"/>
         <source>General</source>
-        <translation>Opće</translation>
+        <translation>Općenito</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="181"/>
         <source>Extensions</source>
-        <translation type="unfinished"/>
+        <translation>Proširenja</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="191"/>
@@ -551,37 +561,37 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="192"/>
         <source>Microphone</source>
-        <translation>Mikrofoni</translation>
+        <translation>Mikrofon</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="193"/>
         <source>Select audio input device</source>
-        <translation>Odabran audio ulaz uređaja</translation>
+        <translation>Odaberi ulazni uređaj za zvuk</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="194"/>
         <source>Output device</source>
-        <translation>Uređaj za izlazak</translation>
+        <translation>Izlazni uređaj</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="195"/>
         <source>Select audio output device</source>
-        <translation>Izberite uređaj za izlazak audio</translation>
+        <translation>Odaberi izlazni uređaj za zvuk</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="196"/>
         <source>Ringtone device</source>
-        <translation>Uređaj za zvuk</translation>
+        <translation>Uređaj za zvuk zvona</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="197"/>
         <source>Select ringtone output device</source>
-        <translation>Izberite uređaj za izlazak zvona</translation>
+        <translation>Odaberi izlazni uređaj za zvuk zvona</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="198"/>
         <source>Audio manager</source>
-        <translation>Audio upravljač</translation>
+        <translation>Upravljanje zvukom</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="202"/>
@@ -591,7 +601,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="203"/>
         <source>Select video device</source>
-        <translation>Odabran video uređaj</translation>
+        <translation>Odaberi video uređaj</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="204"/>
@@ -601,32 +611,32 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="205"/>
         <source>Resolution</source>
-        <translation>Razlučivost</translation>
+        <translation>Rezolucija</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="206"/>
         <source>Select video resolution</source>
-        <translation>Izberite rezoluciju video zapisa</translation>
+        <translation>Odaberi rezoluciju videa</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="207"/>
         <source>Frames per second</source>
-        <translation>Snimke u sekundi</translation>
+        <translation>Broj sličica u sekundi</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="208"/>
         <source>Select video frame rate (frames per second)</source>
-        <translation>Izbor brzine slika (slika na sekundu)</translation>
+        <translation>Odaberi broj sličica u sekundi (FPS)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="209"/>
         <source>Enable hardware acceleration</source>
-        <translation>omogućiti ubrzanje hardvera</translation>
+        <translation>Omogući hardversko ubrzanje</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="212"/>
         <source>Select screen sharing frame rate (frames per second)</source>
-        <translation>Izberite brzinu slika za dijeljenje ekrana (slika na sekundu)</translation>
+        <translation>Odaberi broj sličica u sekundi za ddijeljenja ekrana (FPS) na sekundu)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="218"/>
@@ -636,7 +646,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="219"/>
         <source>Back up account</source>
-        <translation>Zaostatak računa</translation>
+        <translation>Sigurnosna kopija računa</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="230"/>
@@ -651,27 +661,27 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="292"/>
         <source>Unavailable</source>
-        <translation>Ne dostupna</translation>
+        <translation>Nedostupno</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="319"/>
         <source>Turn off sharing</source>
-        <translation>Odkloni dijeljenje</translation>
+        <translation>Isključi dijeljenje</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="320"/>
         <source>Stop location sharing in this conversation (%1)</source>
-        <translation>U ovom razgovoru zaustavite dijeljenje lokacije (% 1)</translation>
+        <translation>Zaustavi dijeljenje lokacije u ovom razgovoru (% 1)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="343"/>
         <source>Hide chat</source>
-        <translation>Sakrij se.</translation>
+        <translation>Sakrij čavrljanje</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="377"/>
         <source>You can choose a username to help others more easily find and reach you on Jami.</source>
-        <translation>Možete odabrati korisničko ime kako bi pomogli drugima lakše pronaći i doći do vas na Jamiju.</translation>
+        <translation>Možete odabrati korisničko ime kako biste drugima pomogli da vas lakše pronađu i dođu do vas na Jami-ju.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="385"/>
@@ -679,7 +689,10 @@
 - Alphabetical characters (A to Z and a to z)
 - Numeric characters (0 to 9)
 - Special characters allowed: dash (-)</source>
-        <translation>- Najveći broj 32 znakova - Alfabetski znakovi (A do Z i a do z) - Numerički znakovi (0 do 9) - Dopušten posebni znakovi: znak (-)</translation>
+        <translation>- Najviše 32 znaka
+- Abecedni znakovi (od A do Z i obrnuto)
+- Brojčani znakovi (0 do 9)
+- Dopušteni posebni znakovi: crtica (-)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="391"/>
@@ -689,17 +702,17 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="392"/>
         <source>Choosing a username is recommended, and a chosen username CANNOT be changed later.</source>
-        <translation>Određeno je odabrati korisničko ime, a odabrano korisničko ime NE MOJE se kasnije promijeniti.</translation>
+        <translation>Odabir korisničkog imena je preporučljivo, a odabrano korisničko ime se NE MOŽE promijeniti kasnije.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="393"/>
         <source>Encrypting your account with a password is optional, and if the password is lost it CANNOT be recovered later.</source>
-        <translation>Kodiranje računa sa lozinkom je opcionalno, a ako se lozinka izgubi, ne može se vratiti kasnije.</translation>
+        <translation>Šifriranje vašeg računa lozinkom nije obavezno, a ako se lozinka izgubi, NE MOŽE se kasnije oporaviti.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="394"/>
         <source>Setting a profile picture and nickname is optional, and can also be changed later in the settings.</source>
-        <translation>Postavljanje profile slike i nadimka je opcionalno i također se može promijeniti kasnije u postavkama.</translation>
+        <translation>Postavljanje profilne slike i nadimka nije obavezno, i može se promijeniti kasnije u postavkama.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="403"/>
@@ -715,172 +728,172 @@
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="409"/>
         <source>A chosen username can help to be found more easily on Jami.
 If a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.</source>
-        <translation>Ako se korisničko ime ne izabere, na ovaj račun će biti dodjeljen slučajno generirani identifikator od 40 znakova kao korisničko ime. Teže je pronaći i doći do njega s ovim identifikatorom.</translation>
+        <translation>Odabrano korisničko ime može pomoći da vas se lakše pronađe na Jami. Ako korisničko ime nije odabrano, nasumično generirani identifikator od 40 znakova će biti dodijeljen ovom računu kao korisničko ime. Teže je pronaći i doći do tebe s ovakvim identifikatorom.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="426"/>
         <source>Encrypt account</source>
-        <translation>Kriptirani račun</translation>
+        <translation>Šifriraj račun</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="429"/>
         <source>Back up account to a .gz file</source>
-        <translation>Zaštita računa u.gz datoteku</translation>
+        <translation>Sigurnosno kopiraj račun u .gz datoteku</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="438"/>
         <source>Please note that if you lose your password, it CANNOT be recovered!</source>
-        <translation>Molimo vas da primijetite da ako izgubite lozinku, ona se NE može vratiti!</translation>
+        <translation>Imajte na umu da ako izgubite lozinku, ona se NE MOŽE vratiti!</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="477"/>
         <source>Dark</source>
-        <translation>Tamna</translation>
+        <translation>Tamna tema</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="478"/>
         <source>Light</source>
-        <translation>Svjetlost</translation>
+        <translation>Svijetla tema</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="483"/>
         <source>Use native window frame (requires restart)</source>
-        <translation type="unfinished"/>
+        <translation>Koristi izvorni okvir okna (zahtijeva ponovno pokretanje)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="487"/>
         <source>Include local video in recording</source>
-        <translation>Udio lokalnog videa u snimanje</translation>
+        <translation>Obuhvati lokalni video u snimanje</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="488"/>
         <source>Default settings</source>
-        <translation>Snimke po predrazumevanju</translation>
+        <translation>Zadane postavke</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="491"/>
         <source>Enable typing indicators</source>
-        <translation>Aktivirajte pokazatelje štampanja</translation>
+        <translation>Omogući indikatore tipkanja</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="492"/>
         <source>Send and receive typing indicators showing that a message is being typed.</source>
-        <translation>Pošaljite i primijte pokazatelje za pisanje koji pokazuju da se poruka štampa.</translation>
+        <translation>Šalji primaj indikatore tipkanja koji pokazuju da se poruka tipka.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="515"/>
         <source>Delete file from device</source>
-        <translation type="unfinished"/>
+        <translation>Izbriši datoteku s uređaja</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="596"/>
         <source>Enter account password</source>
-        <translation>Ubaci lozinku računa</translation>
+        <translation>Unesite lozinku računa</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="597"/>
         <source>This account is password encrypted, enter the password to generate a PIN code.</source>
-        <translation type="unfinished"/>
+        <translation>Ovaj račun je šifriran lozinkom, unesi lozinku za generiranje PIN koda.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="600"/>
         <source>On another device</source>
-        <translation type="unfinished"/>
+        <translation>Na drugom uređaju</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="602"/>
         <source>Link new device</source>
-        <translation>Povezivanje novog uređaja</translation>
+        <translation>Poveži novi uređaj</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="607"/>
         <source>Enter password</source>
-        <translation>Unesite lozinku</translation>
+        <translation>Unesi lozinku</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="609"/>
         <source>Enter account password to confirm the removal of this device</source>
-        <translation type="unfinished"/>
+        <translation>Unesi lozinku računa kako bi potvrdio uklanjanje ovog uređaja</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="633"/>
         <source>There are no extensions for the platform to display in the Jami Extension Store. Please try again later.</source>
-        <translation type="unfinished"/>
+        <translation>Ne postoje proširenja za platformu u Jami Extension Store. Pokušaj ponovno kasnije.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="753"/>
         <source>Discard and restart</source>
-        <translation type="unfinished"/>
+        <translation>Odbacite i ponovno pokreni</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="755"/>
         <source>Show less</source>
-        <translation>Pokaži manje</translation>
+        <translation>Prikaži manje</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="757"/>
         <source>Show preview</source>
-        <translation type="unfinished"/>
+        <translation>Prikaži pretpregled</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="758"/>
         <source>Continue editing</source>
-        <translation type="unfinished"/>
+        <translation>Nastavi uređivanje</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="761"/>
         <source>Strikethrough</source>
-        <translation>Precrtaj</translation>
+        <translation>Precrtano</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="767"/>
         <source>Unordered list</source>
-        <translation>Nenumerirani popis</translation>
+        <translation>Neuređeni popis</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="768"/>
         <source>Ordered list</source>
-        <translation>Numerirani popis</translation>
+        <translation>Uređeni popis</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="771"/>
         <source>Press Shift+Enter to insert a new line</source>
-        <translation type="unfinished"/>
+        <translation>Pritisni Shift+Enter za umetanje novog retka</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="772"/>
         <source>Press Enter to insert a new line</source>
-        <translation type="unfinished"/>
+        <translation>Pritisni Enter za umetanje novog retka</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="791"/>
         <source>Select this device</source>
-        <translation type="unfinished"/>
+        <translation>Odaberi ovaj uređaj</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="792"/>
         <source>Select device</source>
-        <translation type="unfinished"/>
+        <translation>Odaberi uređaj</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="797"/>
         <source>Show local video</source>
-        <translation type="unfinished"/>
+        <translation>Prikaži lokalni video</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="798"/>
         <source>Hide local video</source>
-        <translation type="unfinished"/>
+        <translation>Sakrij lokalni video</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="852"/>
         <source>Encrypt your account with a password</source>
-        <translation type="unfinished"/>
+        <translation>Šifriraj svoj račun lozinkom</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="853"/>
         <source>Customize your profile</source>
-        <translation type="unfinished"/>
+        <translation>Prilagodi svoj profil</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="856"/>
@@ -890,7 +903,7 @@ If a username is not chosen, a randomly generated 40-character identifier will b
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="876"/>
         <source>Donate</source>
-        <translation type="unfinished"/>
+        <translation>Doniraj</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="878"/>
@@ -900,7 +913,7 @@ If a username is not chosen, a randomly generated 40-character identifier will b
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="879"/>
         <source>Enable donation campaign</source>
-        <translation type="unfinished"/>
+        <translation>Omogući donatorsku kampanju</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="882"/>
@@ -910,92 +923,92 @@ If a username is not chosen, a randomly generated 40-character identifier will b
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="883"/>
         <source>Shift+Enter</source>
-        <translation type="unfinished"/>
+        <translation>Shift+Enter</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="884"/>
         <source>Enter or Shift+Enter to insert a new line</source>
-        <translation type="unfinished"/>
+        <translation>Pritisni Enter ili Shift+Enter za umetanje novog retka</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="897"/>
         <source>Remote: %1</source>
-        <translation type="unfinished"/>
+        <translation>Udaljeno: %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="898"/>
         <source>View</source>
-        <translation>Prikaži</translation>
+        <translation>Pogled</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="885"/>
         <source>Text formatting</source>
-        <translation type="unfinished"/>
+        <translation>Oblikovanje teksta</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="635"/>
         <source>Installation error</source>
-        <translation type="unfinished"/>
+        <translation>Pogreška pri instalaciji</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="636"/>
         <source>An error occurred while installing the extension.</source>
-        <translation type="unfinished"/>
+        <translation>Došlo je do pogreške prilikom instaliranja proširenja.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="639"/>
         <source>Reset preferences</source>
-        <translation type="unfinished"/>
+        <translation>Resetiraj postavke</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="640"/>
         <source>Select extension to install</source>
-        <translation type="unfinished"/>
+        <translation>Odaberi proširenje za instalaciju</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="641"/>
         <source>Uninstall extension</source>
-        <translation type="unfinished"/>
+        <translation>Deinstaliraj proširenje</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="642"/>
         <source>Do you want to reset the preferences for the %1 extension? To continue, click Reset.</source>
-        <translation type="unfinished"/>
+        <translation>Želiš poništiti postavke proširenja %1? Za nastavak klikni na Reset.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="643"/>
         <source>Do you want to uninstall the %1 extension? To continue, click Uninstall.</source>
-        <translation type="unfinished"/>
+        <translation>Želiš deinstalirati proširenje %1? Za nastavak klikni na Deinstaliraj.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="644"/>
         <source>Go back to extensions list</source>
-        <translation type="unfinished"/>
+        <translation>Vrati se na popis proširenja</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="645"/>
         <source>Select file</source>
-        <translation>Odaberite datoteku</translation>
+        <translation>Odaberi datoteku</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="648"/>
         <source>Extension files (*.jpl)</source>
-        <translation type="unfinished"/>
+        <translation>Datoteke proširenja (*.jpl)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="653"/>
         <source>Choose extension</source>
-        <translation type="unfinished"/>
+        <translation>Odaberi proširenje</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="668"/>
         <source>Select screen to share</source>
-        <translation type="unfinished"/>
+        <translation>Odaberi ekran za dijeljenje</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="669"/>
         <source>Select window to share</source>
-        <translation type="unfinished"/>
+        <translation>Odaberi okno za dijeljenje</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="670"/>
@@ -1677,7 +1690,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="284"/>
         <source>Share window</source>
-        <translation>Podijeli prozor</translation>
+        <translation>Podijeli okno</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="285"/>
@@ -3170,7 +3183,7 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="673"/>
         <source>Screen %1</source>
-        <translation>Ekran % 1</translation>
+        <translation>Ekran %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="676"/>
@@ -4323,7 +4336,7 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="80"/>
         <source>Donate</source>
-        <translation type="unfinished"/>
+        <translation>Doniraj</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="85"/>
