@@ -150,7 +150,7 @@ QtObject {
     // Adds an item to the fullscreen item stack. Automatically puts
     // the main window in fullscreen mode if needed. Callbacks should be used
     // to perform component-specific tasks upon successful transitions.
-    function pushFullScreenItem(item, prevParent, pushedCb, removedCb) {
+    function pushFullScreenItem(item, removedCb=null) {
         if (item === null || item === undefined
                 || priv.fullScreenItems.length >= 3) {
             return
@@ -162,15 +162,13 @@ QtObject {
         // Add the item to our list and reparent it to appContainer.
         priv.fullScreenItems.push({
                                  "item": item,
-                                 "prevParent": prevParent,
+                                 "prevParent": item.parent,
                                  "prevAnchorsFill": item.anchors.fill,
                                  "removedCb": removedCb
                              })
+
         item.parent = appContainer
-        item.anchors.fill = item.parent
-        if (pushedCb) {
-            pushedCb()
-        }
+        item.anchors.fill = appContainer
 
         // Reevaluate isCallFullscreen.
         priv.fullScreenItemsChanged()
@@ -190,8 +188,11 @@ QtObject {
         }
         if (obj !== undefined) {
             if (obj.item !== appWindow) {
-                obj.item.anchors.fill = obj.prevAnchorsFill
+                // Clear anchors first, then set parent, then reset anchors
+                obj.item.anchors.fill = undefined
                 obj.item.parent = obj.prevParent
+                obj.item.anchors.fill = obj.prevAnchorsFill
+
                 if (obj.removedCb) {
                     obj.removedCb()
                 }
@@ -247,7 +248,7 @@ QtObject {
         // When fullScreenItems is changed, we can recompute isCallFullscreen.
         onFullScreenItemsChanged: {
             isCallFullscreen = fullScreenItems
-                .filter(o => o.item instanceof OngoingCallPage)
+                .filter(o => o.item.objectName === "callViewLoader")
                 .length
         }
 
@@ -258,7 +259,7 @@ QtObject {
             function onHasCallChanged() {
                 if (!CallAdapter.hasCall && isCallFullscreen) {
                     priv.fullScreenItems.forEach(o => {
-                        if (o.item instanceof OngoingCallPage) {
+                        if (o.item.objectName === "callViewLoader") {
                             popFullScreenItem(o)
                             return
                         }
