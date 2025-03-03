@@ -288,6 +288,9 @@ getContactInteractionString(const QString& authorUri, const ContactAction& actio
         }
         return QObject::tr("%1 has joined the conversation.").arg(authorUri);
     case ContactAction::LEAVE:
+        if (authorUri.isEmpty()) {
+            return QObject::tr("You left the conversation.");
+        }
         return QObject::tr("%1 has left the conversation.").arg(authorUri);
     case ContactAction::BANNED:
         return QObject::tr("%1 was blocked from the conversation.").arg(authorUri);
