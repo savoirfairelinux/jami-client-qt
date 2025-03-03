@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1e2c1df_d28d72e8",
+        "filename": "src/app/MainApplicationWindow.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-03-03T17:05:41Z",
+      "side": 1,
+      "message": "Remove",
+      "range": {
+        "startLine": 43,
+        "startChar": 8,
+        "endLine": 43,
+        "endChar": 70
+      },
+      "revId": "7943331e63daf4e2cc1cf4a7ada5f688da9b9257",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcc639be_d6a5802c",
+        "filename": "src/app/commoncomponents/JamiFileDialog.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-03-03T17:05:41Z",
+      "side": 1,
+      "message": "Looks like you accidentally reverted a change from a previous commit here.",
+      "range": {
+        "startLine": 2,
+        "startChar": 1,
+        "endLine": 3,
+        "endChar": 61
+      },
+      "revId": "7943331e63daf4e2cc1cf4a7ada5f688da9b9257",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3328946_7b2ac3a2",
+        "filename": "src/app/net/jami/Constants/JamiQmlUtils.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-03-03T17:05:41Z",
+      "side": 1,
+      "message": "Typo: futur -\u003e future",
+      "range": {
+        "startLine": 104,
+        "startChar": 71,
+        "endLine": 104,
+        "endChar": 76
+      },
+      "revId": "7943331e63daf4e2cc1cf4a7ada5f688da9b9257",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
