@@ -109,6 +109,9 @@ protected:
         {"client_sha", APP_VERSION_STRING},
         {"jamicore_sha", CORE_VERSION_STRING},
         {"build_id", QString(VERSION_STRING)},
+#if defined(Q_OS_WIN) && defined(BETA)
+        {"build_variant", "beta"},
+#endif
     };
 };
 
