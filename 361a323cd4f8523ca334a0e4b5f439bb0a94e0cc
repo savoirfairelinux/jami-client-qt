@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80c9c888_801d054a",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-03-04T14:43:47Z",
+      "side": 1,
+      "message": "Notifications aren\u0027t sent to your other devices when you leave or join a conversation. Therefore this code should be unreachable.",
+      "range": {
+        "startLine": 180,
+        "startChar": 15,
+        "endLine": 181,
+        "endChar": 73
+      },
+      "revId": "361a323cd4f8523ca334a0e4b5f439bb0a94e0cc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e7ab94c_eada2b45",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-03-04T14:43:47Z",
+      "side": 1,
+      "message": "Same as above.",
+      "range": {
+        "startLine": 186,
+        "startChar": 16,
+        "endLine": 187,
+        "endChar": 71
+      },
+      "revId": "361a323cd4f8523ca334a0e4b5f439bb0a94e0cc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
