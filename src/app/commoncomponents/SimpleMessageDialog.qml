@@ -35,7 +35,7 @@ BaseModalDialog {
     property var buttonStyles: []
     property string infoText: ""
     property var innerContentData: []
-    property int buttonRoles: []
+    property var buttonRoles: []
 
     function openWithParameters(title, info = "") {
         root.title = title;
