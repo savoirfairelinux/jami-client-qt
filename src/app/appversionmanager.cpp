@@ -77,10 +77,10 @@ struct AppVersionManager::Impl : public QObject
             auto latestVersion = latestVersionString.toULongLong();
             const QString channelStr = isBeta ? "beta" : "stable";
             const auto newVersionFound = latestVersion > currentVersion;
-            qInfo().noquote() << "--------- Version info ------------"
-                              << QString("\n - Current: %1 (%2)").arg(currentVersion).arg(channelStr);
+            qInfo().noquote() << "--------- Version info ------------";
+            qInfo().noquote() << QString("\tCurrent: \t%1 (%2)").arg(currentVersion).arg(channelStr);
             if (newVersionFound) {
-                qDebug() << " - Latest: " << latestVersion;
+                qInfo().noquote() << QString("\tLatest: \t%1").arg(latestVersion);
                 Q_EMIT parent_.updateCheckReplyReceived(true, true);
             } else if (!quiet) {
                 Q_EMIT parent_.updateCheckReplyReceived(true, false);
