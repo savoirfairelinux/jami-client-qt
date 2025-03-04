@@ -34,6 +34,7 @@ SimpleMessageDialog {
     property alias progressBarValue: progressBar.value
 
     closeButtonVisible: false
+    autoClose: false
 
     button1.text: JamiStrings.optionCancel
     button1Role: DialogButtonBox.RejectRole
