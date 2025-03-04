@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c0c5a027_d8eb95b6",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-03-04T21:15:07Z",
+      "side": 1,
+      "message": "Is this code required if notification are sent to your other devices? Thank you",
+      "parentUuid": "80c9c888_801d054a",
+      "range": {
+        "startLine": 180,
+        "startChar": 15,
+        "endLine": 181,
+        "endChar": 73
+      },
+      "revId": "361a323cd4f8523ca334a0e4b5f439bb0a94e0cc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5e7ab94c_eada2b45",
         "filename": "src/app/conversationsadapter.cpp",
         "patchSetId": 7
