@@ -215,8 +215,14 @@ void
 NetworkManager::cancelDownload(int replyId)
 {
     if (downloadReplies_.value(replyId) != NULL) {
+        auto reply = downloadReplies_[replyId];
+        // Disconnect error signals before aborting to prevent network error
+        reply->disconnect(reply,
+                          QOverload<QNetworkReply::NetworkError>::of(&QNetworkReply::errorOccurred),
+                          this,
+                          nullptr);
         Q_EMIT errorOccurred(GetError::CANCELED);
-        downloadReplies_[replyId]->abort();
+        reply->abort();
         resetDownload(replyId);
     }
 }
