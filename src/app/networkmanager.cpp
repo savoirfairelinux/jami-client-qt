@@ -36,6 +36,8 @@ translateErrorCode(QNetworkReply::NetworkError error)
     static auto inRange = [](int value, int min, int max) -> bool {
         return (value >= min && value <= max);
     };
+    if (error == QNetworkReply::OperationCanceledError)
+        return NetworkManager::CANCELED;
     if (inRange(error, 1, 199))
         return NetworkManager::NETWORK_ERROR;
     if (inRange(error, 201, 201))
@@ -187,8 +189,8 @@ NetworkManager::downloadFile(const QUrl& url,
             [this, uuid, reply](QNetworkReply::NetworkError error) {
                 reply->disconnect();
                 resetDownload(uuid);
-                qWarning() << Q_FUNC_INFO
-                           << QMetaEnum::fromType<QNetworkReply::NetworkError>().valueToKey(error);
+                qDebug() << Q_FUNC_INFO
+                         << QMetaEnum::fromType<QNetworkReply::NetworkError>().valueToKey(error);
                 Q_EMIT errorOccurred(translateErrorCode(error));
             });
 
@@ -215,8 +217,13 @@ void
 NetworkManager::cancelDownload(int replyId)
 {
     if (downloadReplies_.value(replyId) != NULL) {
-        Q_EMIT errorOccurred(GetError::CANCELED);
-        downloadReplies_[replyId]->abort();
+        auto reply = downloadReplies_[replyId];
+
+        // Aborting the download will trigger the emission of a QNetworkReply error
+        // (`QNetworkReply::OperationCanceledError`), and be caught, translated to our internal
+        // error `GetError::CANCELED`, and re-emitted.
+        reply->abort();
+
         resetDownload(replyId);
     }
 }
