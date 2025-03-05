@@ -58,6 +58,9 @@ OCI_INSTALL_DIR = $(CURDIR)/debian/$(JAMI_ALL_IN_ONE_PKG_NAME)
 override_dh_auto_configure:
 
 override_dh_auto_build:
+	cd daemon/extras/tools && \
+	./bootstrap && \
+	make
 	# Daemon contribs build + configure
 	mkdir -p daemon/contrib/native
 	cd daemon/contrib/native && \
