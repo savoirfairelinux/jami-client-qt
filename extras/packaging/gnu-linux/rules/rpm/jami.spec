@@ -52,6 +52,9 @@ privacy of its users.
 %setup -n jami-%{version}
 
 %build
+cd %{_builddir}/jami-%{version}/daemon/extras/tools && \
+    ./bootstrap && \
+    make
 # Configure and build bundled ffmpeg (for libavutil/avframe).
 mkdir -p %{_builddir}/jami-%{version}/daemon/contrib/native
 cd %{_builddir}/jami-%{version}/daemon/contrib/native && \

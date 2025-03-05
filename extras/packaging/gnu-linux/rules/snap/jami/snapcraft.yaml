@@ -274,6 +274,10 @@ parts:
     override-build: |
       $SNAPCRAFT_PART_BUILD/extras/packaging/gnu-linux/scripts/install-pipewire-from-source.sh
 
+      cd $SNAPCRAFT_PART_BUILD/daemon/extras/tools
+      ./bootstrap
+      make
+
       cd $SNAPCRAFT_PART_BUILD/daemon/contrib
       mkdir -p native
       cd native
