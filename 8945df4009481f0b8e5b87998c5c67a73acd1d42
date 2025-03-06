@@ -22,6 +22,30 @@
       },
       "revId": "8945df4009481f0b8e5b87998c5c67a73acd1d42",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fc13a26_e68383f8",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 2702,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-03-06T20:49:53Z",
+      "side": 1,
+      "message": "It\u0027s not correct, it should be `SIP` like elsewhere in the code.",
+      "parentUuid": "07d12b87_ff12a53d",
+      "range": {
+        "startLine": 2702,
+        "startChar": 65,
+        "endLine": 2702,
+        "endChar": 69
+      },
+      "revId": "8945df4009481f0b8e5b87998c5c67a73acd1d42",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
