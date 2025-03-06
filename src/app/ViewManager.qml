@@ -59,7 +59,7 @@ QtObject {
         if (views.hasOwnProperty(viewName)) {
             // an instance of the view already exists
             if (cb !== null) {
-                cb(views[viewName])
+                cb(views[viewName], viewName)
             }
             return views[viewName]
         }
@@ -76,7 +76,7 @@ QtObject {
                 viewName.replace(/^.*[\\\/]/, '').replace(/\.[^/.]+$/, "")
             viewPaths[friendlyName] = viewName
             if (cb !== null) {
-                cb(obj)
+                cb(obj , viewName)
             }
             return views[viewName]
         }
@@ -103,6 +103,7 @@ QtObject {
     function destroyView(path) {
         // The view may already have been destroyed.
         if (!views.hasOwnProperty(path)) {
+            console.warn("View not found:", path, "Available views:", Object.keys(views))
             return false
         }
         views[path].destroy()
