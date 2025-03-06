@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07d12b87_ff12a53d",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 2702,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-03-06T20:36:03Z",
+      "side": 1,
+      "message": "Is `JAMI` correct? If so, should the variable be `isJami`? Thank you",
+      "range": {
+        "startLine": 2702,
+        "startChar": 65,
+        "endLine": 2702,
+        "endChar": 69
+      },
+      "revId": "8945df4009481f0b8e5b87998c5c67a73acd1d42",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
