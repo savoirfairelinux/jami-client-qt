@@ -29,10 +29,12 @@ FileDialog {
 
     Component.onCompleted: {
         JamiQmlUtils.openFileDialogCount++;
+        log.debug("JamiFileDialog count: " + JamiQmlUtils.openFileDialogCount);
     }
 
     Component.onDestruction: {
         JamiQmlUtils.openFileDialogCount--;
+        log.debug("JamiFileDialog count: " + JamiQmlUtils.openFileDialogCount);
     }
 
     onAccepted: {
