@@ -99,9 +99,9 @@ QtObject {
     function presentDialog(parent, path, props = {}, singleInstance = false) {
         // Open the dialog once the object is created
         let createFunc = singleInstance ? viewManager.createView : viewManager.createUniqueView;
-        return createFunc(path, parent, function (obj) {
+        return createFunc(path, parent, function (obj, viewName) {
                 const doneCb = function () {
-                    viewManager.destroyView(path);
+                    viewManager.destroyView(viewName);
                 };
                 if (obj.closed !== undefined) {
                     obj.closed.connect(doneCb);
