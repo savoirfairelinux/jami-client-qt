@@ -396,19 +396,4 @@ ApplicationWindow {
 
     onClosing: appWindow.close()
 
-    // Capture the inputs to the main window while the File Dialog is open
-    // This is used to mitigate modality issues on Ubuntu 22.04 systems that use wayland.
-    Loader {
-        active: JamiQmlUtils.openFileDialogCount > 0
-        sourceComponent: Popup {
-            modal: true
-            visible: true
-            closePolicy: Popup.NoAutoClose
-            width: appWindow.width
-            height: appWindow.height
-            background: Rectangle {
-                color: "#80808080"  // Semi-transparent grey
-            }
-        }
-    }
 }
