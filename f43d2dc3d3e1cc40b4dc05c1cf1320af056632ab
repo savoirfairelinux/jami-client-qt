@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da17868f_1707f622",
+        "filename": "src/app/messageparser.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-03-07T19:32:39Z",
+      "side": 1,
+      "message": "I think we can use the return value of `link.indexOf(\"\u003c/p\u003e\")` to determine if there\u0027s a match. This would allow us to get rid of `pTagRe` and avoid performing two searches for the same string.",
+      "range": {
+        "startLine": 191,
+        "startChar": 8,
+        "endLine": 191,
+        "endChar": 60
+      },
+      "revId": "f43d2dc3d3e1cc40b4dc05c1cf1320af056632ab",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
