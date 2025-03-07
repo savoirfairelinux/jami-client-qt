@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a3d0c66_8b550277",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-03-07T16:15:35Z",
+      "side": 1,
+      "message": "The logo is blank for a moment. What about a fade in?",
+      "revId": "82f37d6cfdf635b3038387637c430b93918a419c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a527856a_2a1fee47",
+        "filename": "src/app/mainview/components/JamiLogoWebm.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-03-07T16:15:35Z",
+      "side": 1,
+      "message": "Layout nesting shouldn\u0027t be presumed for a reusable component (the potential confusion won\u0027t be worth the DRY)",
+      "range": {
+        "startLine": 29,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 55
+      },
+      "revId": "82f37d6cfdf635b3038387637c430b93918a419c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
