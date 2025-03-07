@@ -34,6 +34,10 @@ ListView {
     // HACK: remove after migration to Qt 6.7+
     boundsBehavior: Flickable.StopAtBounds
 
+    footer: Item {
+        width: root.width
+        height: 16
+    }
     model: SortFilterProxyModel {
         id: proxyModel
 
@@ -47,44 +51,16 @@ ListView {
         }
     }
 
-    property var prompt: MessagesAdapter.searchbarPrompt
+    property string prompt: MessagesAdapter.searchbarPrompt
 
-    onPromptChanged: {
-        MessagesAdapter.startSearch(prompt, false);
-    }
-
-    onVisibleChanged: {
-        if (visible) {
-            MessagesAdapter.startSearch(prompt, true);
-        }
-    }
+    onPromptChanged: MessagesAdapter.startSearch(prompt, false)
+    onVisibleChanged: visible && MessagesAdapter.startSearch(prompt, false)
 
     Connections {
-        target: researchTabBar
-        function onFilterTabChange() {
+        target: CurrentConversation
+        function onIdChanged() {
             MessagesAdapter.startSearch(prompt, false);
         }
-    }
-
-    // This function will take a filtered message and further format it to fit
-    // into the research panel in a coherent way. Find the first occurence of the search term in the message
-    // highlight it and wrap it with numChars characters on either side. 
-    function formatMessage(searchTerm, message, numChars) {
-        var index = message.toLowerCase().indexOf(searchTerm.toLowerCase());
-        if (index === -1)
-            return message;
-        var prefix = message.substring(Math.max(0, index - numChars), index);
-        var suffix = message.substring(index + searchTerm.length, Math.min(index + searchTerm.length + numChars, message.length));
-        var before = (Math.max(0, index - numChars) === 0);
-        var after = (Math.min(index + searchTerm.length + numChars, message.length) === message.length);
-        var highlightedTerm = '<span style="background-color: #48ffff00">' + message.substring(index, index + searchTerm.length) + "</span>";
-        var result = "";
-        if (!before)
-            result += "... ";
-        result += prefix + highlightedTerm + suffix;
-        if (!after)
-            result += " ...";
-        return result;
     }
 
     delegate: Item {
@@ -101,11 +77,14 @@ ListView {
             id: msgLayout
 
             width: root.width
+            spacing: 5
+            Layout.fillWidth: true
 
             TimestampInfo {
                 id: timestampItem
 
                 showDay: true
+                showTime: true
                 formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
                 formattedDay: MessagesAdapter.getFormattedDay(Timestamp)
             }
@@ -114,6 +93,9 @@ ListView {
                 id: contentRow
 
                 property bool isMe: Author === CurrentAccount.uri
+                width: parent.width
+                Layout.fillWidth: true
+                spacing: 10
 
                 Avatar {
                     id: avatar
@@ -124,56 +106,96 @@ ListView {
                     showPresenceIndicator: false
                     mode: contentRow.isMe ? Avatar.Mode.Account : Avatar.Mode.Contact
                     Layout.leftMargin: 10
-                    Layout.alignment: Qt.AlignTop
                 }
 
                 ColumnLayout {
+                    Layout.fillWidth: true
+                    spacing: 2
 
                     Text {
+                        id: nameText
                         text: contentRow.isMe ? CurrentAccount.bestName : UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author) + " :"
+                        Layout.fillWidth: true
                         Layout.rightMargin: 10
                         Layout.leftMargin: 10
                         font.pixelSize: 0
                         color: JamiTheme.chatviewSecondaryInformationColor
+                        font.bold: true
+                        elide: Text.ElideRight
                     }
 
-                    TextArea {
+                    TextEdit {
                         id: myText
-
-                        text: formatMessage(prompt, Body, 100)
-                        readOnly: true
-
-                        background: Rectangle {
-                            radius: 5
-                            color: JamiTheme.messageInBgColor
-                        }
+                        text: Body
                         color: JamiTheme.textColor
+                        Layout.preferredWidth: contentRow.width - avatar.width
                         Layout.fillWidth: true
                         wrapMode: Text.Wrap
+                        readOnly: true
+                        selectByMouse: true
                         Layout.rightMargin: 10
                         Layout.leftMargin: 10
-                        textFormat: TextEdit.MarkdownText
                         font.pixelSize: IsEmojiOnly ? JamiTheme.chatviewEmojiSize : JamiTheme.chatviewFontSize
-                        Layout.alignment: Qt.AlignLeft
+
+                        // Limit height to approximately 4 lines
+                        property int lineHeight: font.pixelSize * 1.2
+                        Layout.maximumHeight: lineHeight * 4
+                        clip: true
+
+                        // Add fade-out effect for text that is too high
+                        layer.enabled: contentHeight > Layout.maximumHeight
+                        layer.effect: OpacityMask {
+                            maskSource: Item {
+                                width: myText.width
+                                height: myText.height
+
+                                Rectangle {
+                                    anchors.fill: parent
+                                    gradient: Gradient {
+                                        GradientStop {
+                                            position: 0.0
+                                            color: "white"
+                                        }
+                                        GradientStop {
+                                            position: 0.5
+                                            color: "white"
+                                        }
+                                        GradientStop {
+                                            position: 0.75
+                                            color: Qt.rgba(1, 1, 1, 0.5)
+                                        }
+                                        GradientStop {
+                                            position: 1.0
+                                            color: "transparent"
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
+
         Button {
             id: buttonJumpTo
+
             visible: msgHover.hovered || hovered
             anchors.top: msgLayout.top
             anchors.right: msgLayout.right
             anchors.rightMargin: 20
-            anchors.topMargin: timestampItem.height - 21
+            anchors.topMargin: timestampItem.height - 20
             width: buttonJumpText.width + 10
             height: buttonJumpText.height + 10
             background.visible: false
+
             onClicked: {
                 CurrentConversation.scrollToMsg(Id);
             }
+
             Text {
                 id: buttonJumpText
+
                 text: JamiStrings.jumpTo
                 color: buttonJumpTo.hovered ? JamiTheme.blueLinkColor : JamiTheme.chatviewSecondaryInformationColor
                 font.underline: buttonJumpTo.hovered
