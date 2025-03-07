@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "81dcea17_0bce2fcd",
+        "filename": "src/app/linkdevicemodel.h",
+        "patchSetId": 39
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2025-03-07T16:19:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d021bd91_65b7bb2a",
+      "range": {
+        "startLine": 2,
+        "startChar": 3,
+        "endLine": 2,
+        "endChar": 45
+      },
+      "revId": "5a141d7997b0bcd3dbe99097301ff75e3d9c2046",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "602b3c7c_c3a40f03",
@@ -60,6 +84,30 @@
       "writtenOn": "2025-03-06T00:53:54Z",
       "side": 1,
       "message": "`The export account operation to the target device is in progress. Please confirm the import on the target device.`",
+      "range": {
+        "startLine": 605,
+        "startChar": 48,
+        "endLine": 605,
+        "endChar": 135
+      },
+      "revId": "5a141d7997b0bcd3dbe99097301ff75e3d9c2046",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f85c6fc_17e7f620",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 39
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2025-03-07T16:19:27Z",
+      "side": 1,
+      "message": "The export account operation to the new device is in progress.\\nPlease confirm the import on the new device.",
+      "parentUuid": "018a0b16_02f2027b",
       "range": {
         "startLine": 605,
         "startChar": 48,
@@ -116,6 +164,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "21459e9e_041fe80f",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 39
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2025-03-07T16:19:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ffcd74da_4e75eeb5",
+      "range": {
+        "startLine": 606,
+        "startChar": 164,
+        "endLine": 606,
+        "endChar": 168
+      },
+      "revId": "5a141d7997b0bcd3dbe99097301ff75e3d9c2046",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2d5fc507_01a8d739",
@@ -139,6 +211,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "76e3773b_3d7613de",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 39
+      },
+      "lineNbr": 607,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2025-03-07T16:19:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d5fc507_01a8d739",
+      "range": {
+        "startLine": 607,
+        "startChar": 81,
+        "endLine": 607,
+        "endChar": 87
+      },
+      "revId": "5a141d7997b0bcd3dbe99097301ff75e3d9c2046",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "007380bb_8755f299",
@@ -152,6 +248,30 @@
       "writtenOn": "2025-03-06T00:53:54Z",
       "side": 1,
       "message": "`Enter authentication code`",
+      "range": {
+        "startLine": 608,
+        "startChar": 58,
+        "endLine": 608,
+        "endChar": 70
+      },
+      "revId": "5a141d7997b0bcd3dbe99097301ff75e3d9c2046",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac72c01b_5d4f3906",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 39
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2025-03-07T16:19:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "007380bb_8755f299",
       "range": {
         "startLine": 608,
         "startChar": 58,
@@ -187,6 +307,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "422b256c_a8f9911f",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 39
+      },
+      "lineNbr": 611,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2025-03-07T16:19:27Z",
+      "side": 1,
+      "message": "New device IP address: %1",
+      "parentUuid": "6c2ff4cf_24f5a538",
+      "range": {
+        "startLine": 611,
+        "startChar": 49,
+        "endLine": 611,
+        "endChar": 66
+      },
+      "revId": "5a141d7997b0bcd3dbe99097301ff75e3d9c2046",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "29ff8948_8aff4752",
         "filename": "src/app/net/jami/Constants/JamiStrings.qml",
         "patchSetId": 39
@@ -198,6 +342,30 @@
       "writtenOn": "2025-03-06T00:53:54Z",
       "side": 1,
       "message": "`Do you want to exit?`",
+      "range": {
+        "startLine": 612,
+        "startChar": 55,
+        "endLine": 612,
+        "endChar": 85
+      },
+      "revId": "5a141d7997b0bcd3dbe99097301ff75e3d9c2046",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31a66d15_bba11d2d",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 39
+      },
+      "lineNbr": 612,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2025-03-07T16:19:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29ff8948_8aff4752",
       "range": {
         "startLine": 612,
         "startChar": 55,
@@ -221,6 +389,30 @@
       "writtenOn": "2025-03-06T00:53:54Z",
       "side": 1,
       "message": "1. Is `now` superfluous?\n2. `account importation` → `import account`\n3. `process` → `operation`\n\n`Exiting will cancel the import account operation.`",
+      "range": {
+        "startLine": 613,
+        "startChar": 57,
+        "endLine": 613,
+        "endChar": 113
+      },
+      "revId": "5a141d7997b0bcd3dbe99097301ff75e3d9c2046",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec8003f7_7f867003",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 39
+      },
+      "lineNbr": 613,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2025-03-07T16:19:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f5b2bd2_b6565bec",
       "range": {
         "startLine": 613,
         "startChar": 57,
