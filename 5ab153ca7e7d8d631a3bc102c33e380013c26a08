@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca751bd0_a50653fa",
+        "filename": "src/app/mainview/components/SwarmDetailsPanel.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-03-07T15:38:42Z",
+      "side": 1,
+      "message": "format",
+      "range": {
+        "startLine": 661,
+        "startChar": 0,
+        "endLine": 661,
+        "endChar": 28
+      },
+      "revId": "5ab153ca7e7d8d631a3bc102c33e380013c26a08",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
