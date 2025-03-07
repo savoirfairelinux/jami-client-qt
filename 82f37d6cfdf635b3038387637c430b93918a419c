@@ -18,6 +18,23 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d5e70e7_704ffb53",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-03-07T16:18:22Z",
+      "side": 1,
+      "message": "could also inject the same logo if you want them to be synced. still, the vertical jump would be better resolved by organizing the top-level layout in WizardView.qml",
+      "revId": "82f37d6cfdf635b3038387637c430b93918a419c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a527856a_2a1fee47",
