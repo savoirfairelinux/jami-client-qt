@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "414a6636_55853d02",
+        "filename": "src/app/mainview/components/ChatViewFooter.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-03-07T19:52:53Z",
+      "side": 1,
+      "message": "I think `trim()` makes a copy of the entire string each time it\u0027s called? Probably not a big deal in practice but it might be worth checking if there\u0027s a more efficient alternative given that this is going to be called once per keystroke.",
+      "range": {
+        "startLine": 187,
+        "startChar": 72,
+        "endLine": 187,
+        "endChar": 78
+      },
+      "revId": "1e0d7d2025d3cb23be0b5c15659ecc30ba6f9c32",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
