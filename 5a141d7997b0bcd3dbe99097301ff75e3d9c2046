@@ -73,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c92aaba2_c186aa34",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 39
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2025-03-07T19:01:27Z",
+      "side": 1,
+      "message": "keep `new device`",
+      "parentUuid": "602b3c7c_c3a40f03",
+      "range": {
+        "startLine": 604,
+        "startChar": 48,
+        "endLine": 604,
+        "endChar": 78
+      },
+      "revId": "5a141d7997b0bcd3dbe99097301ff75e3d9c2046",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "018a0b16_02f2027b",
         "filename": "src/app/net/jami/Constants/JamiStrings.qml",
         "patchSetId": 39
@@ -108,6 +132,30 @@
       "side": 1,
       "message": "The export account operation to the new device is in progress.\\nPlease confirm the import on the new device.",
       "parentUuid": "018a0b16_02f2027b",
+      "range": {
+        "startLine": 605,
+        "startChar": 48,
+        "endLine": 605,
+        "endChar": 135
+      },
+      "revId": "5a141d7997b0bcd3dbe99097301ff75e3d9c2046",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d91fd5a_a43d149f",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 39
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2025-03-07T19:01:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f85c6fc_17e7f620",
       "range": {
         "startLine": 605,
         "startChar": 48,
@@ -183,6 +231,30 @@
         "startChar": 164,
         "endLine": 606,
         "endChar": 168
+      },
+      "revId": "5a141d7997b0bcd3dbe99097301ff75e3d9c2046",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7dc53590_589bea29",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 39
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2025-03-07T19:01:27Z",
+      "side": 1,
+      "message": "keep `new device`",
+      "parentUuid": "7b4c209a_01dd29db",
+      "range": {
+        "startLine": 606,
+        "startChar": 51,
+        "endLine": 606,
+        "endChar": 54
       },
       "revId": "5a141d7997b0bcd3dbe99097301ff75e3d9c2046",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
@@ -319,6 +391,30 @@
       "side": 1,
       "message": "New device IP address: %1",
       "parentUuid": "6c2ff4cf_24f5a538",
+      "range": {
+        "startLine": 611,
+        "startChar": 49,
+        "endLine": 611,
+        "endChar": 66
+      },
+      "revId": "5a141d7997b0bcd3dbe99097301ff75e3d9c2046",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c67f8be5_15baa60d",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 39
+      },
+      "lineNbr": 611,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2025-03-07T19:01:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "422b256c_a8f9911f",
       "range": {
         "startLine": 611,
         "startChar": 49,
