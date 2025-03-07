@@ -364,6 +364,8 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/pluginversionmanager.cpp
   ${APP_SRC_DIR}/connectioninfolistmodel.cpp
   ${APP_SRC_DIR}/pluginversionmanager.cpp
+  ${APP_SRC_DIR}/linkdevicemodel.cpp
+  ${APP_SRC_DIR}/qrcodescannermodel.cpp
 )
 
 set(COMMON_HEADERS
@@ -436,6 +438,8 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/pttlistener.h
   ${APP_SRC_DIR}/crashreportclient.h
   ${APP_SRC_DIR}/crashreporter.h
+  ${APP_SRC_DIR}/linkdevicemodel.h
+  ${APP_SRC_DIR}/qrcodescannermodel.h
 )
 
 # For libavutil/avframe.
@@ -677,6 +681,15 @@ add_subdirectory(3rdparty/tidy-html5 EXCLUDE_FROM_ALL)
 list(APPEND CLIENT_LINK_DIRS ${tidy_BINARY_DIR}/Release)
 list(APPEND CLIENT_INCLUDE_DIRS ${tidy_SOURCE_DIR}/include)
 list(APPEND CLIENT_LIBS tidy-static)
+
+# ZXing-cpp configuration
+set(BUILD_EXAMPLES OFF CACHE BOOL "")
+set(BUILD_BLACKBOX_TESTS OFF CACHE BOOL "")
+add_subdirectory(3rdparty/zxing-cpp)
+
+# Add ZXing-cpp to includes and libraries
+list(APPEND CLIENT_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/zxing-cpp/core/src)
+list(APPEND CLIENT_LIBS ZXing)
 
 # common executable sources
 qt_add_executable(
