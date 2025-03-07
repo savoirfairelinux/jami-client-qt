@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73c75cd2_2d69078d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-03-07T22:00:57Z",
+      "side": 1,
+      "message": "For now merging this patch doesn\u0027t make sense because it\u0027s basically trying to fix a bug in a feature that hasn\u0027t been implemented.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 77
+      },
+      "revId": "d12cd8275db24a59f14f3cbd9c87ec97a97c7c22",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
