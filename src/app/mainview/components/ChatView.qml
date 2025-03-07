@@ -185,6 +185,7 @@ Rectangle {
                 target: CurrentConversation
 
                 function onIdChanged() {
+                    extrasPanel.closePanel();
                     if (!chatViewHeader.detailsButtonVisibility) {
                         extrasPanel.closePanel();
                     } else if (width < JamiTheme.mainViewMinWidth + extrasPanel.width) {

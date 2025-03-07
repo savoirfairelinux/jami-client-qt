@@ -170,6 +170,9 @@ ContextMenuAutoLoader {
                         "convId": responsibleConvUid
                     });
                 } else {
+                    if (hasCall && !chatViewContainer.visible) {
+                        toggleCallChatVisibility();
+                    }
                     root.showSwarmDetails();
                 }
             }
