@@ -346,7 +346,9 @@ CallAdapter::onCallInfosChanged(const QString& accountId, const QString& callId)
 }
 
 void
-CallAdapter::onCallAddedToConference(const QString& callId, const QString& conversationId, const QString& confId)
+CallAdapter::onCallAddedToConference(const QString& callId,
+                                     const QString& conversationId,
+                                     const QString& confId)
 {
     Q_UNUSED(callId)
     Q_UNUSED(confId)
@@ -377,7 +379,18 @@ CallAdapter::hangUpACall(const QString& accountId, const QString& convUid)
 {
     const auto& convInfo = lrcInstance_->getConversationFromConvUid(convUid, accountId);
     if (!convInfo.uid.isEmpty()) {
-        lrcInstance_->getAccountInfo(accountId).callModel->hangUp(convInfo.callId);
+        const bool hasCall = !convInfo.callId.isEmpty();
+        const bool hasConf = !convInfo.confId.isEmpty();
+        // This is the intended logic.
+        if (hasCall) {
+            lrcInstance_->getAccountInfo(accountId).callModel->hangUp(convInfo.callId);
+        }
+        // This deals with the case where you are hosting a conference
+        // that noone has joined yet.
+        if (!hasCall && hasConf) {
+            lrcInstance_->getAccountInfo(accountId).callModel->hangUp(convInfo.confId);
+        }
+        return;
     }
 }
 
