@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "58985911_29eaa1f3",
+        "filename": "src/app/mainview/components/SwarmDetailsPanel.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2025-03-07T16:06:49Z",
+      "side": 1,
+      "message": "Good call, changed them to be Vertically centered.",
+      "parentUuid": "2010aa39_7cf93956",
+      "range": {
+        "startLine": 621,
+        "startChar": 28,
+        "endLine": 622,
+        "endChar": 82
+      },
+      "revId": "5ab153ca7e7d8d631a3bc102c33e380013c26a08",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ca751bd0_a50653fa",
         "filename": "src/app/mainview/components/SwarmDetailsPanel.qml",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2025-03-07T15:38:42Z",
       "side": 1,
       "message": "format",
+      "range": {
+        "startLine": 661,
+        "startChar": 0,
+        "endLine": 661,
+        "endChar": 28
+      },
+      "revId": "5ab153ca7e7d8d631a3bc102c33e380013c26a08",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b279cae8_03a25a78",
+        "filename": "src/app/mainview/components/SwarmDetailsPanel.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2025-03-07T16:06:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca751bd0_a50653fa",
       "range": {
         "startLine": 661,
         "startChar": 0,
