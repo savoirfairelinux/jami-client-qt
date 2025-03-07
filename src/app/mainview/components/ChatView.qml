@@ -290,15 +290,16 @@ Item {
                 Connections {
                     target: CurrentConversation
 
-                    function onIdChanged() {
-                        if (!chatViewHeader.detailsButtonVisibility) {
-                            extrasPanel.closePanel();
-                        } else if (width < JamiTheme.mainViewMinWidth + extrasPanel.width) {
-                            extrasPanel.closePanel();
-                        } else if (!chatViewHeader.interactionButtonsVisibility) {
-                            extrasPanel.closePanel();
-                        }
+                function onIdChanged() {
+                    extrasPanel.closePanel();
+                    if (!chatViewHeader.detailsButtonVisibility) {
+                        extrasPanel.closePanel();
+                    } else if (width < JamiTheme.mainViewMinWidth + extrasPanel.width) {
+                        extrasPanel.closePanel();
+                    } else if (!chatViewHeader.interactionButtonsVisibility) {
+                        extrasPanel.closePanel();
                     }
+                }
 
                     function onNeedsHost() {
                         viewCoordinator.presentDialog(appWindow, "mainview/components/HostPopup.qml");
