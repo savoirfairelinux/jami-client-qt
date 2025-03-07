@@ -208,8 +208,16 @@ Rectangle {
                 onChatButtonClicked: toggleCallChatVisibility()
                 onFullScreenClicked: callStackView.toggleFullScreen()
                 onSwarmDetailsClicked: {
-                    toggleCallChatVisibility();
-                    if (chatViewContainer.visible) {
+                    if(chatViewContainer.visible) {
+                        if(ChatView.SwarmDetailsPanel.visible) {
+                            ChatView.SwarmDetailsPanel.visible = false;
+                        }
+                        else {
+                            chatView.switchToPanel(ChatView.SwarmDetailsPanel);
+                        }
+                    }
+                    else {
+                        toggleCallChatVisibility();
                         chatView.switchToPanel(ChatView.SwarmDetailsPanel);
                     }
                 }
