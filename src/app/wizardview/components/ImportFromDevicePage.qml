@@ -312,10 +312,10 @@ Rectangle {
             Layout.preferredWidth: qrLoader.Layout.preferredWidth + 40
             Layout.preferredHeight: qrLoader.Layout.preferredHeight + 40
             visible: WizardViewStepModel.deviceAuthState === DeviceAuthStateEnum.TOKEN_AVAILABLE
-            color: JamiTheme.primaryBackgroundColor
+            color: JamiTheme.whiteColor
             radius: 8
             border.width: 1
-            border.color: JamiTheme.tabbarBorderColor
+            border.color: JamiTheme.whiteColor
 
             Loader {
                 id: qrLoader
@@ -327,6 +327,7 @@ Rectangle {
                 sourceComponent: Image {
                     width: qrLoader.Layout.preferredWidth
                     height: qrLoader.Layout.preferredHeight
+                    anchors.centerIn: parent
                     smooth: false
                     fillMode: Image.PreserveAspectFit
                     source: "image://qrImage/raw_" + tokenUri
@@ -356,6 +357,7 @@ Rectangle {
                 Layout.alignment: Qt.AlignHCenter
                 Layout.maximumWidth: parent.parent.width - 40
                 text: tokenUri
+                color: JamiTheme.textColor
                 font.pointSize: JamiTheme.wizardViewDescriptionFontPixelSize
                 horizontalAlignment: Text.AlignHCenter
                 readOnly: true
@@ -365,7 +367,7 @@ Rectangle {
                     color: JamiTheme.primaryBackgroundColor
                     radius: 5
                     border.width: 1
-                    border.color: JamiTheme.tabbarBorderColor
+                    border.color: JamiTheme.textColor
                 }
             }
         }
