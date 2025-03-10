@@ -203,7 +203,7 @@ Rectangle {
                 radius: 8
                 color: JamiTheme.primaryBackgroundColor
                 border.width: 1
-                border.color: JamiTheme.tabbarBorderColor
+                border.color: JamiTheme.textColorHovered
 
                 RowLayout {
                     id: accountLayout
@@ -230,6 +230,7 @@ Rectangle {
 
                         Text {
                             id: name
+                            color: JamiTheme.textColor
                             visible: text !== undefined && text !== ""
 
                             Connections {
@@ -247,6 +248,7 @@ Rectangle {
                         Text {
                             id: userId
                             text: jamiId
+                            color: JamiTheme.textColor
                         }
                     }
                 }
@@ -352,22 +354,79 @@ Rectangle {
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             }
 
-            TextArea {
-                id: tokenUriTextArea
+            // Container for TextArea and copy button
+            RowLayout {
                 Layout.alignment: Qt.AlignHCenter
-                Layout.maximumWidth: parent.parent.width - 40
-                text: tokenUri
-                color: JamiTheme.textColor
-                font.pointSize: JamiTheme.wizardViewDescriptionFontPixelSize
-                horizontalAlignment: Text.AlignHCenter
-                readOnly: true
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                selectByMouse: true
-                background: Rectangle {
-                    color: JamiTheme.primaryBackgroundColor
+                spacing: 0
+
+                Rectangle {
+                    Layout.alignment: Qt.AlignHCenter
+                    Layout.preferredWidth: contentRow.implicitWidth + 40
+                    Layout.preferredHeight: contentRow.implicitHeight + 20
+                    color:  JamiTheme.jamiIdBackgroundColor
                     radius: 5
-                    border.width: 1
-                    border.color: JamiTheme.textColor
+
+                    RowLayout {
+                        id: contentRow
+                        anchors.centerIn: parent
+                        spacing: 5
+
+                        TextEdit {
+                            id: tokenUriTextArea
+                            text: tokenUri
+                            color: JamiTheme.textColor
+                            font.pointSize: JamiTheme.wizardViewDescriptionFontPixelSize
+                            horizontalAlignment: Text.AlignHCenter
+                            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                            selectByMouse: true
+                            readOnly: true
+                            cursorVisible: false
+                        }
+
+                        // Copy button
+                        PushButton {
+                            id: copyButton
+                            Layout.alignment: Qt.AlignVCenter
+                            preferredSize: 30
+                            radius: 5
+                            normalColor: JamiTheme.transparentColor
+                            imageContainerWidth: JamiTheme.pushButtonSize
+                            imageContainerHeight: JamiTheme.pushButtonSize
+                            border.color: JamiTheme.transparentColor
+                            imageColor: JamiTheme.tintedBlue
+                            source: JamiResources.content_copy_24dp_svg
+                            toolTipText: JamiStrings.copy
+
+                            onClicked: {
+                                UtilsAdapter.setClipboardText(tokenUri);
+                            }
+                        }
+                    }
+                }
+
+                MouseArea {
+                    parent: tokenUriTextArea
+                    anchors.fill: parent
+                    acceptedButtons: Qt.RightButton
+                    propagateComposedEvents: true
+
+                    onClicked: function(mouse) {
+                        if (mouse.button === Qt.RightButton) {
+                            mouse.accepted = true
+                            contextMenu.open()
+                        }
+                    }
+                }
+
+                Menu {
+                    id: contextMenu
+                    MenuItem {
+                        text: JamiStrings.copy
+                        enabled: tokenUriTextArea.selectedText.length > 0
+                        onTriggered: {
+                            UtilsAdapter.setClipboardText(tokenUri);
+                        }
+                    }
                 }
             }
         }
