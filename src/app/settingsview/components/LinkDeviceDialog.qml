@@ -237,24 +237,6 @@ BaseModalDialog {
                         lineHeight: JamiTheme.wizardViewTextLineHeight
                         horizontalAlignment: Text.AlignHCenter
                         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                        opacity: 1
-
-                        SequentialAnimation on opacity {
-                            running: true
-                            loops: Animation.Infinite
-                            NumberAnimation {
-                                from: 1
-                                to: 0.3
-                                duration: 1000
-                                easing.type: Easing.InOutQuad
-                            }
-                            NumberAnimation {
-                                from: 0.3
-                                to: 1
-                                duration: 1000
-                                easing.type: Easing.InOutQuad
-                            }
-                        }
                     }
                 }
 
