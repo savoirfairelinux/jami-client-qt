@@ -241,7 +241,7 @@ getLinkDeviceString(DeviceLinkError error)
     case DeviceLinkError::STATE:
         return QObject::tr("An error occurred while exporting the account.\nPlease try again.");
     case DeviceLinkError::CANCELED:
-        return QObject::tr("Operation was canceled.");
+        return QObject::tr("The operation was canceled by the user.");
     case DeviceLinkError::UNKNOWN:
     default:
         return QObject::tr("An unexpected error occurred.\nPlease try again.");
