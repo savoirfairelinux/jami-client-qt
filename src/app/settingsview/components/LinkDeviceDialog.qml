@@ -207,7 +207,7 @@ BaseModalDialog {
                     MaterialButton {
                         Layout.alignment: Qt.AlignHCenter
                         text: JamiStrings.close
-                        toolTipText: JamiStrings.optionTryAgain
+                        toolTipText: JamiStrings.close
                         primary: true
                         onClicked: {
                             root.close();
