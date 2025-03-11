@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46c2a205_17200228",
+        "filename": "src/libclient/api/account.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-03-11T02:13:17Z",
+      "side": 0,
+      "message": "`has` should be removed to become\n`The operation timed out. Please try again.`\n\nPlease advise if you prefer\n`Link device operation timed out. Please try again.`\n\nThank you",
+      "range": {
+        "startLine": 240,
+        "startChar": 28,
+        "endLine": 240,
+        "endChar": 56
+      },
+      "revId": "0d1bdfdfdd2b194a31cd64945106cb6de7c272f9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
