@@ -313,15 +313,15 @@ CurrentConversation::updateErrors(const QString& convId)
             auto& convInfo = optConv->get();
             for (const auto& [code, error] : convInfo.errors) {
                 if (code == 1) {
-                    newErrors.append(tr("An error occurred while fetching this repository"));
+                    newErrors.append(tr("An error occurred while fetching this repository."));
                 } else if (code == 2) {
-                    newErrors.append(tr("Unrecognized conversation mode"));
+                    newErrors.append(tr("Unrecognized conversation mode."));
                 } else if (code == 3) {
-                    newErrors.append(tr("An invalid message was detected"));
+                    newErrors.append(tr("An invalid message was detected."));
                 } else if (code == 4) {
-                    newErrors.append(tr("Insufficient permission to update conversation information"));
+                    newErrors.append(tr("Insufficient permission to update conversation information."));
                 } else if (code == 5) {
-                    newErrors.append(tr("An error occurred while committing a new message"));
+                    newErrors.append(tr("An error occurred while committing a new message."));
                 } else {
                     continue;
                 }
