@@ -83,7 +83,7 @@ Item {
     property string importFailed: qsTr("Import failed")
     property string importFromAnotherAccount: qsTr("Import from another account")
     property string connectToAccount: qsTr("Connect to account")
-    property string authenticationError: qsTr("An authentication error occurred. Please check credentials and try again.")
+    property string authenticationError: qsTr("An authentication error occurred while linking the device. Please check credentials and try again.")
 
     // AccountMigrationDialog
     property string authenticationRequired: qsTr("Authentication required")
@@ -535,10 +535,10 @@ Item {
     property string enableAutoUpdates: qsTr("Enable/Disable automatic updates")
     property string updatesTitle: qsTr("Updates")
     property string updateDialogTitle: qsTr("Update")
-    property string updateFound: qsTr("A new version of Jami is available.\nDo you want to update Jami now?\nTo continue, click Update.")
+    property string updateFound: qsTr("A new version of Jami is available. Do you want to update Jami now? To continue, click Update.")
     property string updateNotFound: qsTr("No new version of Jami was found")
-    property string updateCheckError: qsTr("An error occurred while checking for a new version.")
-    property string updateNetworkError: qsTr("A network error occurred.")
+    property string updateCheckError: qsTr("An error occurred while checking for software version.")
+    property string updateNetworkError: qsTr("A network error occurred while checking for updates.")
     property string updateSSLError: qsTr("An SSL error occurred.")
     property string updateDownloadCanceled: qsTr("Installer download was canceled by user.")
     property string updateDownloading: "Downloading"
@@ -609,8 +609,8 @@ Item {
     property string linkDeviceAllSet: qsTr("You are all set!\nYour account is successfully imported on the new device!")
     property string linkDeviceFoundAddress: qsTr("New device found at address below. Is that you?\nClicking on confirm will continue transfering account.")
     property string linkDeviceNewDeviceIP: qsTr("New device IP address: %1")
-    property string linkDeviceCloseWarningTitle: qsTr("Do you want to exit?")
-    property string linkDeviceCloseWarningMessage: qsTr("Exiting will cancel the import account operation.")
+    property string linkDeviceCloseWarningTitle: qsTr("Do you want to stop linking the account?")
+    property string linkDeviceCloseWarningMessage: qsTr("Stopping will cancel the import account operation.")
 
     // PasswordDialog
     property string enterPassword: qsTr("Enter password")
