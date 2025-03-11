@@ -233,18 +233,18 @@ getLinkDeviceString(DeviceLinkError error)
     switch (error) {
     case DeviceLinkError::WRONG_PASSWORD:
         return QObject::tr(
-            "An authentication error occurred.\nPlease check credentials and try again.");
+            "An authentication error occurred while linking the device. Please check credentials and try again.");
     case DeviceLinkError::NETWORK:
-        return QObject::tr("A network error occurred.\nPlease verify your connection.");
+        return QObject::tr(" A network error occurred while linking the account. Please verify your connection and try again.");
     case DeviceLinkError::TIMEOUT:
-        return QObject::tr("The operation has timed out.\nPlease try again.");
+        return QObject::tr("The operation timed out. Please try again.");
     case DeviceLinkError::STATE:
-        return QObject::tr("An error occurred while exporting the account.\nPlease try again.");
+        return QObject::tr("An error occurred while exporting the account. Please try again.");
     case DeviceLinkError::CANCELED:
-        return QObject::tr("Operation was canceled.");
+        return QObject::tr("The operation was canceled by the user.");
     case DeviceLinkError::UNKNOWN:
     default:
-        return QObject::tr("An unexpected error occurred.\nPlease try again.");
+        return QObject::tr("An unexpected error occurred while linking the device. Please try again.");
     }
 }
 
