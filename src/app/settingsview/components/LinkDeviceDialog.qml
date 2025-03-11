@@ -381,7 +381,7 @@ BaseModalDialog {
                         toolTipText: JamiStrings.connect
                         enabled: codeInput.dynamicText.length > 0
                         onClicked: {
-                            LinkDeviceModel.addDevice(codeInput.text)
+                            LinkDeviceModel.addDevice(codeInput.dynamicText)
                         }
                     }
                 }
