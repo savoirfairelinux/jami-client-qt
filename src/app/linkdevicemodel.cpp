@@ -64,7 +64,7 @@ LinkDeviceModel::addDevice(const QString& token)
 {
     set_tokenErrorMessage("");
     auto errorMessage = QObject::tr(
-        "New device identifier is not recognized.\nPlease follow above instruction.");
+        "Unrecognized new device identifier. Please follow the instructions above.");
 
     if (!token.startsWith("jami-auth://") || (token.length() != 59)) {
         set_tokenErrorMessage(errorMessage);
