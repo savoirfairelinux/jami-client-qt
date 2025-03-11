@@ -609,8 +609,8 @@ Item {
     property string linkDeviceAllSet: qsTr("You are all set!\nYour account is successfully imported on the new device!")
     property string linkDeviceFoundAddress: qsTr("New device found at address below. Is that you?\nClicking on confirm will continue transfering account.")
     property string linkDeviceNewDeviceIP: qsTr("New device IP address: %1")
-    property string linkDeviceCloseWarningTitle: qsTr("Do you want to exit?")
-    property string linkDeviceCloseWarningMessage: qsTr("Exiting will cancel the import account operation.")
+    property string linkDeviceCloseWarningTitle: qsTr("Do you want to stop linking the account?")
+    property string linkDeviceCloseWarningMessage: qsTr("Stopping will cancel the import account operation.")
 
     // PasswordDialog
     property string enterPassword: qsTr("Enter password")
