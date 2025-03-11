@@ -106,11 +106,15 @@ public Q_SLOTS:
         // Create 2 Accounts
         QSignalSpy accountAddedSpy(&lrcInstance_->accountModel(), &AccountModel::accountAdded);
 
-        aliceId = lrcInstance_->accountModel().createNewAccount(profile::Type::JAMI, "Alice");
+        MapStringString aliceDetails;
+        aliceDetails["alias"] = "Alice";
+        aliceId = lrcInstance_->accountModel().createNewAccount(profile::Type::JAMI, aliceDetails);
         accountAddedSpy.wait(15000);
         QCOMPARE(accountAddedSpy.count(), 1);
 
-        bobId = lrcInstance_->accountModel().createNewAccount(profile::Type::JAMI, "Bob");
+        MapStringString bobDetails;
+        bobDetails["alias"] = "Bob";
+        bobId = lrcInstance_->accountModel().createNewAccount(profile::Type::JAMI, bobDetails);
         accountAddedSpy.wait(15000);
         QCOMPARE(accountAddedSpy.count(), 2);
 
