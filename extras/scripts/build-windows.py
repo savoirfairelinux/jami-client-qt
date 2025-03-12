@@ -211,6 +211,7 @@ def init_submodules():
         "3rdparty/SortFilterProxyModel",
         "3rdparty/md4c",
         "3rdparty/tidy-html5",
+        "3rdparty/zxing-cpp",
     ]
     if execute_cmd(["git", "submodule", "update", "--init" ] + submodules,
                    False):
