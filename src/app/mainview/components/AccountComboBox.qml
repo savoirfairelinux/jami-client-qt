@@ -142,12 +142,11 @@ Label {
             }
         }
 
-        Row {
+        Row{
             id: controlRow
 
             spacing: 10
 
-            Layout.preferredWidth: childrenRect.width
             Layout.preferredHeight: parent.height
 
             JamiPushButton {
