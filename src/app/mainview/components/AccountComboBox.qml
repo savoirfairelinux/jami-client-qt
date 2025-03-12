@@ -45,7 +45,7 @@ Label {
         anchors.fill: parent
 
         color: JamiTheme.backgroundColor
-        Behavior on color  {
+        Behavior on color {
             ColorAnimation {
                 duration: JamiTheme.shortFadeDuration
             }
@@ -87,7 +87,6 @@ Label {
                 anchors.rightMargin: 15
 
                 spacing: 10
-
 
                 Avatar {
                     id: avatar
@@ -147,7 +146,6 @@ Label {
 
             spacing: 10
 
-            Layout.preferredWidth: childrenRect.width
             Layout.preferredHeight: parent.height
 
             JamiPushButton {
