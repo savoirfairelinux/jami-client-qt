@@ -94,6 +94,8 @@ MenuItem {
 
                 Text {
                     id: contextMenuItemText
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: parent.left
                     height: parent.height
                     text: itemName
                     color: dangerous ? JamiTheme.redColor : isActif ? JamiTheme.textColor : JamiTheme.chatViewFooterImgColor
