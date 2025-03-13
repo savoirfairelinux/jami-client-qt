@@ -685,7 +685,7 @@ list(APPEND CLIENT_LIBS tidy-static)
 # ZXing-cpp configuration
 set(BUILD_EXAMPLES OFF CACHE BOOL "")
 set(BUILD_BLACKBOX_TESTS OFF CACHE BOOL "")
-add_subdirectory(3rdparty/zxing-cpp)
+add_subdirectory(3rdparty/zxing-cpp EXCLUDE_FROM_ALL)
 
 # Add ZXing-cpp to includes and libraries
 list(APPEND CLIENT_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/zxing-cpp/core/src)
