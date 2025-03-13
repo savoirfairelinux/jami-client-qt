@@ -80,7 +80,7 @@ main(int argc, char* argv[])
 
     MainApplication app(argc, argv);
 
-    app.setDesktopFileName(QStringLiteral("jami"));
+    app.setDesktopFileName(QStringLiteral("net.jami.Jami"));
 #if defined(Q_OS_MACOS)
     if (macutils::isMetalSupported()) {
         QQuickWindow::setGraphicsApi(QSGRendererInterface::MetalRhi);
