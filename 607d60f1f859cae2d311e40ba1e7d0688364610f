@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcbcd9ca_0673d2de",
+        "filename": "src/app/commoncomponents/DataTransferMessageDelegate.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-03-14T17:45:32Z",
+      "side": 1,
+      "message": "This changes the icon but doesn\u0027t actually cancel the transfer, so it\u0027s misleading for users. If it\u0027s possible to cancel the transfer at this stage, then we can do that, otherwise we\u0027ll need to find another solution for the UI (maybe a different icon or something like that).",
+      "range": {
+        "startLine": 231,
+        "startChar": 40,
+        "endLine": 232,
+        "endChar": 100
+      },
+      "revId": "607d60f1f859cae2d311e40ba1e7d0688364610f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5365474b_f0cc0134",
+        "filename": "src/app/commoncomponents/DataTransferMessageDelegate.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-03-14T17:45:32Z",
+      "side": 1,
+      "message": "The formatting of this if-else block needs to be fixed, the indentation levels don\u0027t match the structure of the code.",
+      "range": {
+        "startLine": 233,
+        "startChar": 36,
+        "endLine": 233,
+        "endChar": 42
+      },
+      "revId": "607d60f1f859cae2d311e40ba1e7d0688364610f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f26be8a_86d01cf5",
+        "filename": "src/app/commoncomponents/DataTransferMessageDelegate.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-03-14T17:45:32Z",
+      "side": 1,
+      "message": "Can remove this.",
+      "range": {
+        "startLine": 236,
+        "startChar": 40,
+        "endLine": 236,
+        "endChar": 47
+      },
+      "revId": "607d60f1f859cae2d311e40ba1e7d0688364610f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
