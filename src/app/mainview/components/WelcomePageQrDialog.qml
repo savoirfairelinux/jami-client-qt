@@ -31,17 +31,14 @@ BaseModalDialog {
         height: userQrImage.height + 10
         color: JamiTheme.whiteColor
         radius: 5
-
-        Image {
-            id: userQrImage
-            property int size: JamiTheme.qrCodeImageSize
-            width: size
-            height: size
-            anchors.centerIn: parent
-            smooth: false
-            fillMode: Image.PreserveAspectFit
-            source: "image://qrImage/account_" + CurrentAccount.id
-        }
-    }
+        Image{
+        id: userQrImage
+        property int size: JamiTheme.qrCodeImageSize
+        width: size
+        height: size
+        anchors.centerIn: parent
+        smooth: false
+        fillMode: Image.PreserveAspectFit
+        source: "image://qrImage/account_" + CurrentAccount.id
+    }}
 }
-
