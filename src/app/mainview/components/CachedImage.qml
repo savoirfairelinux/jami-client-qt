@@ -35,6 +35,14 @@ Item {
     property int imageFillMode: 0
     property alias image: image
 
+    // On darkTheme changed, reload the image
+    Connections {
+        target: JamiTheme
+        function onDarkThemeChanged() {
+            updateImageSource(downloadUrl, localPath, defaultImage);
+        }
+    }
+
     AnimatedImage {
         id: image
         objectName: "image"
