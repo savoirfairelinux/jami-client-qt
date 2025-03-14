@@ -119,7 +119,7 @@ Item {
 
     // AdvancedChatSettings
     property string enableReadReceipts: qsTr("Enable read receipts")
-    property string enableReadReceiptsTooltip: qsTr("Send and receive receipts indicating that a message have been displayed")
+    property string enableReadReceiptsTooltip: qsTr("Send and receive receipts indicating that messages have been displayed.")
 
     // AdvancedVoiceMailSettings
     property string voiceMail: qsTr("Voicemail")
@@ -506,7 +506,7 @@ Item {
 
     // ChatviewSettings
     property string enableTypingIndicator: qsTr("Enable typing indicators")
-    property string enableTypingIndicatorDescription: qsTr("Send and receive typing indicators showing that a message is being typed.")
+    property string enableTypingIndicatorDescription: qsTr("Send and receive typing indicators showing when messages are being typed.")
     property string displayHyperlinkPreviews: qsTr("Web link previews")
     property string displayHyperlinkPreviewsDescription: qsTr("Preview requires downloading content from third-party servers.")
 
@@ -908,11 +908,11 @@ Item {
     property string remote: qsTr("Remote: %1")
     property string view: qsTr("View")
 
-    // Spellchecker
+    // Spell checker
     property string checkSpelling: qsTr("Check spelling while typing")
     property string textLanguage: qsTr("Text language")
     property string textLanguageDescription: qsTr("To install new dictionaries, use the system package manager.")
-    property string spellchecking: qsTr("Spellchecking")
+    property string spellChecker: qsTr("Spell checker")
     property string refresh: qsTr("Refresh")
     property string refreshInstalledDictionaries: qsTr("Refresh installed dictionaries")
 }
