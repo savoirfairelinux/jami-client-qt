@@ -120,15 +120,15 @@ Rectangle {
                     id: displayNameContextMenu
                     lineEditObj: title
                     selectOnly: true
-                        }
+                }
+
                 MouseArea {
-                    anchors.fill: parent
                     acceptedButtons: Qt.RightButton
                     cursorShape: Qt.IBeamCursor
                     onClicked: function (mouse) {
                         displayNameContextMenu.openMenuAt(mouse);
                     }
-                        }
+                }
 
                 ElidedTextLabel {
                     id: title
