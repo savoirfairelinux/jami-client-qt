@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a72483cf_034ed8f3",
+        "filename": "src/app/commoncomponents/DataTransferMessageDelegate.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-03-14T19:51:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dcbcd9ca_0673d2de",
+      "range": {
+        "startLine": 231,
+        "startChar": 40,
+        "endLine": 232,
+        "endChar": 100
+      },
+      "revId": "607d60f1f859cae2d311e40ba1e7d0688364610f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5365474b_f0cc0134",
@@ -47,6 +71,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d26f7c8a_c2135b60",
+        "filename": "src/app/commoncomponents/DataTransferMessageDelegate.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-03-14T19:51:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5365474b_f0cc0134",
+      "range": {
+        "startLine": 233,
+        "startChar": 36,
+        "endLine": 233,
+        "endChar": 42
+      },
+      "revId": "607d60f1f859cae2d311e40ba1e7d0688364610f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8f26be8a_86d01cf5",
@@ -60,6 +108,30 @@
       "writtenOn": "2025-03-14T17:45:32Z",
       "side": 1,
       "message": "Can remove this.",
+      "range": {
+        "startLine": 236,
+        "startChar": 40,
+        "endLine": 236,
+        "endChar": 47
+      },
+      "revId": "607d60f1f859cae2d311e40ba1e7d0688364610f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32fc4d7e_c4867d85",
+        "filename": "src/app/commoncomponents/DataTransferMessageDelegate.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-03-14T19:51:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f26be8a_86d01cf5",
       "range": {
         "startLine": 236,
         "startChar": 40,
