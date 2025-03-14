@@ -17,6 +17,8 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import Qt5Compat.GraphicalEffects
+
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
@@ -159,6 +161,14 @@ ListSelectionView {
                     mainBoxTextColor = (hasCustomUi && uiCustomization.mainBoxColor !== undefined) ? (UtilsAdapter.luma(mainBoxColor) ? JamiTheme.whiteColor : JamiTheme.blackColor) : JamiTheme.textColor;
                     contentTipAndIdColor = (hasCustomUi && uiCustomization.tipBoxAndIdColor !== undefined) ? (UtilsAdapter.luma(tipBoxAndIdColor) ? JamiTheme.lightTintedBlue : JamiTheme.darkTintedBlue) : JamiTheme.tintedBlue;
                 }
+            }
+
+            layer.enabled: true
+            // Color overlay to vignette the background image
+            // Dark for dark theme, and light for light theme
+            layer.effect: ColorOverlay {
+                color: JamiTheme.darkTheme ? Qt.rgba(0, 0, 0, 0.3) : Qt.rgba(1, 1, 1, 0.3)
+                source: cachedImgLogo
             }
         }
 
