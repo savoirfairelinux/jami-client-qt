@@ -56,11 +56,11 @@ Popup {
         id: container
 
         property color color: JamiTheme.secondaryBackgroundColor
-        leftPadding: popupMargins
-        bottomPadding: action1.visible || action2.visible ? 10 :popupMargins
+        bottomPadding: action1.visible || action2.visible ? 10 : popupMargins
 
         background: Rectangle {
             id: bgRect
+
             radius: 5
             color: container.color
             layer.enabled: true
@@ -99,7 +99,7 @@ Popup {
             Label {
                 id: titleText
 
-                Layout.rightMargin: popupMargins
+                Layout.leftMargin: popupMargins
                 Layout.bottomMargin: 20
                 Layout.topMargin: closeButtonVisible ? 0 : 30
                 Layout.alignment: Qt.AlignLeft
@@ -115,9 +115,9 @@ Popup {
                 id: flickable
 
                 Layout.fillHeight: true
-
                 Layout.preferredHeight: Math.min(contentHeight, root.height)
                 Layout.preferredWidth: contentItem.childrenRect.width
+                Layout.leftMargin: popupMargins
                 Layout.rightMargin: popupMargins
                 Layout.alignment: Qt.AlignCenter
 
@@ -126,11 +126,13 @@ Popup {
                 contentItem.children: Loader {
                     id: containerSubContentLoader
                 }
+
                 ScrollBar.horizontal.visible: false
             }
 
             DialogButtonBox {
                 id: buttonBox
+
                 Layout.alignment: Qt.AlignRight
                 spacing: 1.5
 
@@ -179,7 +181,7 @@ Popup {
         color: JamiTheme.transparentColor
 
         // Color animation for overlay when pop up is shown.
-        ColorAnimation on color  {
+        ColorAnimation on color {
             to: JamiTheme.popupOverlayColor
             duration: 500
         }

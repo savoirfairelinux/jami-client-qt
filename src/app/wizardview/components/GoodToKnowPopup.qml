@@ -35,7 +35,7 @@ BaseModalDialog {
         InfoBox {
             id: info
 
-            width: root.width - 2 * root.popupMargins
+            width: parent.width
             icoSource: JamiResources.laptop_black_24dp_svg
             title: JamiStrings.local
             description: JamiStrings.localAccount
@@ -43,7 +43,7 @@ BaseModalDialog {
         }
 
         InfoBox {
-            width: root.width - 2 * root.popupMargins
+            width: parent.width
             icoSource: JamiResources.assignment_ind_black_24dp_svg
             title: JamiStrings.username
             description: JamiStrings.usernameRecommened
@@ -51,7 +51,7 @@ BaseModalDialog {
         }
 
         InfoBox {
-            width: root.width - 2 * root.popupMargins
+            width: parent.width
             icoSource: JamiResources.lock_svg
             title: JamiStrings.encrypt
             description: JamiStrings.passwordOptional
@@ -59,7 +59,7 @@ BaseModalDialog {
         }
 
         InfoBox {
-            width: root.width - 2 * root.popupMargins
+            width: parent.width
             icoSource: JamiResources.brush_black_24dp_svg
             title: JamiStrings.customize
             description: JamiStrings.customizeOptional
@@ -67,4 +67,3 @@ BaseModalDialog {
         }
     }
 }
-
