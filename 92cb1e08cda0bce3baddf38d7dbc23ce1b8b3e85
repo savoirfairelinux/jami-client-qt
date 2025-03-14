@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f65f192_379153b0",
+        "filename": "src/app/mainview/components/AccountComboBox.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-03-14T14:36:47Z",
+      "side": 1,
+      "message": "Unintentional formatting change?",
+      "range": {
+        "startLine": 145,
+        "startChar": 8,
+        "endLine": 145,
+        "endChar": 16
+      },
+      "revId": "92cb1e08cda0bce3baddf38d7dbc23ce1b8b3e85",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
