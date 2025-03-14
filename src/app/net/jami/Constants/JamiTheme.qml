@@ -573,7 +573,7 @@ Item {
     property real welcomeGridWidth: 3 * JamiTheme.tipBoxWidth + 2 * JamiTheme.welcomePageSpacing
     property real welcomeThirdGridWidth: (welcomeGridWidth - JamiTheme.welcomePageSpacing) / 3
     property real welcomeShortGridWidth: 2 * JamiTheme.tipBoxWidth + JamiTheme.welcomePageSpacing
-    readonly property string welcomeBg: darkTheme ? JamiResources.background_don_dark_jpg : JamiResources.background_don_white_jpg
+    readonly property string welcomeBg: darkTheme ? JamiResources.welcome_bg_dark_jpg : JamiResources.welcome_bg_light_jpg
     property color welcomeBlockColor: darkTheme ? "#4D000000" : "#4DFFFFFF"
 
     // WizardView Advanced Account Settings
