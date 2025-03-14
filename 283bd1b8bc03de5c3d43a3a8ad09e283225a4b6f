@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5a12d4c_ee382eae",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-03-14T14:54:41Z",
+      "side": 1,
+      "message": "If it\u0027s possible could you attach a gitlab issue ? We try to make it a standard practice.",
+      "revId": "283bd1b8bc03de5c3d43a3a8ad09e283225a4b6f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
