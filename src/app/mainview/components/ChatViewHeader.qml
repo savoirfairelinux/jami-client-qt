@@ -120,7 +120,8 @@ Rectangle {
                     id: displayNameContextMenu
                     lineEditObj: title
                     selectOnly: true
-                        }
+                }
+
                 MouseArea {
                     anchors.fill: parent
                     acceptedButtons: Qt.RightButton
@@ -128,7 +129,7 @@ Rectangle {
                     onClicked: function (mouse) {
                         displayNameContextMenu.openMenuAt(mouse);
                     }
-                        }
+                }
 
                 ElidedTextLabel {
                     id: title
