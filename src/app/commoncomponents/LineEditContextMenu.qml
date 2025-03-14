@@ -43,16 +43,6 @@ ContextMenuAutoLoader {
 
     property list<GeneralMenuItem> menuItems: [
         GeneralMenuItem {
-            id: copy
-
-            canTrigger: true
-            isActif: lineEditObj.selectedText.length
-            itemName: JamiStrings.copy
-            hasIcon: false
-            onClicked:
-                lineEditObj.copy();
-        },
-        GeneralMenuItem {
             id: cut
 
             canTrigger: true
@@ -61,6 +51,16 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked:
                 lineEditObj.cut();
+        },
+        GeneralMenuItem {
+            id: copy
+
+            canTrigger: true
+            isActif: lineEditObj.selectedText.length
+            itemName: JamiStrings.copy
+            hasIcon: false
+            onClicked:
+                lineEditObj.copy();
         },
         GeneralMenuItem {
             id: paste
