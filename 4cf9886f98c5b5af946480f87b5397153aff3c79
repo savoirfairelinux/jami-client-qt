@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa69be59_2995efa2",
+        "filename": "src/app/utilsadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 817,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2025-03-17T14:21:39Z",
+      "side": 1,
+      "message": "Azerbaijani",
+      "range": {
+        "startLine": 817,
+        "startChar": 20,
+        "endLine": 817,
+        "endChar": 27
+      },
+      "revId": "4cf9886f98c5b5af946480f87b5397153aff3c79",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
