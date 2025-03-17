@@ -811,18 +811,19 @@ UtilsAdapter::isRTL()
     pref = pref == "SYSTEM" ? QLocale::system().name() : pref;
     static const QStringList rtlLanguages {
         // as defined by ISO 639-1
-        "ar", // Arabic
-        "he", // Hebrew
-        "fa", // Persian (Farsi)
-        "ur", // Urdu
-        "ps", // Pashto
-        "ku", // Kurdish
-        "sd", // Sindhi
-        "dv", // Dhivehi (Maldivian)
-        "yi", // Yiddish
-        "am", // Amharic
-        "ti", // Tigrinya
-        "kk"  // Kazakh (in Arabic script)
+        "ar",    // Arabic
+        "he",    // Hebrew
+        "fa",    // Persian (Farsi)
+        "az_IR", // Azerbaijani
+        "ur",    // Urdu
+        "ps",    // Pashto
+        "ku",    // Kurdish
+        "sd",    // Sindhi
+        "dv",    // Dhivehi (Maldivian)
+        "yi",    // Yiddish
+        "am",    // Amharic
+        "ti",    // Tigrinya
+        "kk"     // Kazakh (in Arabic script)
     };
     return rtlLanguages.contains(pref);
 }
