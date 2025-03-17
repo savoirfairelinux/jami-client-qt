@@ -32,7 +32,7 @@ Item {
     property bool validated: false
     property bool outsideClic: false
     property bool justChanged: false
-    property bool clic : false
+    property bool clic: false
     height: getHeight()
 
     function getHeight() {
@@ -45,7 +45,6 @@ Item {
             if (usernameTextEdit.editMode) {
                 usernameTextEdit.editMode = false;
             }
-
         }
     }
 
@@ -57,10 +56,16 @@ Item {
 
         RoundedBorderRectangle {
             id: leftRect
+
             fillColor: JamiTheme.jamiIdBackgroundColor
             Layout.preferredWidth: usernameTextEdit.visible ? childrenRect.width + JamiTheme.pushButtonMargins : childrenRect.width
             Layout.preferredHeight: childrenRect.height
-            radius: {
+            radius: isRTL ? {
+                "tl": 0,
+                "tr": 5,
+                "br": 5,
+                "bl": 0
+            } : {
                 "tl": 5,
                 "tr": 0,
                 "br": 0,
@@ -105,7 +110,7 @@ Item {
                         dynamicText = '';
                     }
                 }
-                Label{
+                Label {
                     id: usernameLabel
 
                     visible: !usernameTextEdit.editMode
@@ -118,7 +123,7 @@ Item {
                     Layout.fillHeight: true
                     elide: Text.ElideRight
                     color: JamiTheme.tintedBlue
-                    font.pixelSize : text.length > 16 ? JamiTheme.jamiIdSmallFontSize : JamiTheme.bigFontSize
+                    font.pixelSize: text.length > 16 ? JamiTheme.jamiIdSmallFontSize : JamiTheme.bigFontSize
                     property string registeredName: CurrentAccount.registeredName
                     property string infohash: CurrentAccount.uri
                     text: (btnId.clicked && registeredName) ? registeredName : infohash
@@ -132,7 +137,12 @@ Item {
             Layout.preferredWidth: childrenRect.width + 2 * JamiTheme.pushButtonMargins
 
             Layout.preferredHeight: leftRect.height
-            radius: {
+            radius: isRTL ? {
+                "tl": 5,
+                "tr": 0,
+                "br": 0,
+                "bl": 5
+            } : {
                 "tl": 0,
                 "tr": 5,
                 "br": 5,
@@ -228,10 +238,14 @@ Item {
                     toolTipText: JamiStrings.identifierURI
                     onClicked: {
                         if (clicked) {
-                            usernameTextEdit.staticText = Qt.binding(function() {return CurrentAccount.uri} );
+                            usernameTextEdit.staticText = Qt.binding(function () {
+                                    return CurrentAccount.uri;
+                                });
                             btnId.toolTipText = JamiStrings.identifierRegisterName;
                         } else {
-                            usernameTextEdit.staticText = Qt.binding(function() {return CurrentAccount.registeredName} );
+                            usernameTextEdit.staticText = Qt.binding(function () {
+                                    return CurrentAccount.registeredName;
+                                });
                             btnId.toolTipText = JamiStrings.identifierURI;
                         }
                         clicked = !clicked;
