@@ -39,6 +39,8 @@ BaseModalDialog {
         Qt.openUrlExternally("mailto:jami@gnu.org");
     }
 
+    readonly property bool isRTL: UtilsAdapter.isRTL
+
     popupContent: JamiFlickable {
         id: aboutPopUpScrollView
 
@@ -77,8 +79,10 @@ BaseModalDialog {
                     }
 
                     padding: 10
+
                     contentItem: ColumnLayout {
-                        spacing: 4
+                        spacing: 0
+
                         TextEdit {
                             id: jamiSlogansText
                             Layout.alignment: Qt.AlignLeft
@@ -101,12 +105,15 @@ BaseModalDialog {
                                 text: JamiStrings.slogan
                             }
                         }
+
                         TextEdit {
                             Layout.alignment: Qt.AlignLeft
-
+                            Layout.topMargin: 6
+                            selectByMouse: true
+                            readOnly: true
+                            color: JamiTheme.faddedFontColor
                             font.pixelSize: JamiTheme.textFontSize
-                            padding: 0
-                            readonly property bool isBeta: AppVersionManager.isCurrentVersionBeta()
+
                             text: {
                                 // HACK: Only display the version string if it has been constructed properly.
                                 // This is a workaround for an issue that occurs due to the way Linux
@@ -114,18 +121,26 @@ BaseModalDialog {
                                 // build source at configure time, which is when the version files are
                                 // generated, so we prevent a "." from being displayed if the version
                                 // string is not available.
-                                var contentStr = JamiStrings.buildID + ": " + UtilsAdapter.getBuildIDStr();
-                                const versionStr = UtilsAdapter.getVersionStr();
-                                if (versionStr.length > 1) {
-                                    contentStr += "\n" + JamiStrings.version + ": " + (isBeta ? "(Beta) " : "") + versionStr;
-                                }
+                                const buildIDStr = UtilsAdapter.getBuildIDStr();
+                                var contentStr = isRTL ? buildIDStr + ": " + JamiStrings.buildID : JamiStrings.buildID + ": " + buildIDStr;
                                 return contentStr;
                             }
+                        }
 
+                        TextEdit {
+                            Layout.alignment: Qt.AlignLeft
                             selectByMouse: true
                             readOnly: true
-
                             color: JamiTheme.faddedFontColor
+                            font.pixelSize: JamiTheme.textFontSize
+                            readonly property bool isBeta: AppVersionManager.isCurrentVersionBeta()
+
+                            text: {
+                                const versionStr = UtilsAdapter.getVersionStr();
+                                if (versionStr.length > 1) {
+                                    return (isRTL ? versionStr + ": " + (isBeta ? JamiStrings.beta + " " : "") + JamiStrings.version : JamiStrings.version + ": " + (isBeta ? "(Beta) " : "") + versionStr);
+                                }
+                            }
                         }
                     }
                 }
