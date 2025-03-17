@@ -814,6 +814,7 @@ UtilsAdapter::isRTL()
         "ar", // Arabic
         "he", // Hebrew
         "fa", // Persian (Farsi)
+        "az_IR", // Persian
         "ur", // Urdu
         "ps", // Pashto
         "ku", // Kurdish
