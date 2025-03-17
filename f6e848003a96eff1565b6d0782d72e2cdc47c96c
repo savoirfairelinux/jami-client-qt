@@ -39,6 +39,30 @@
       },
       "revId": "f6e848003a96eff1565b6d0782d72e2cdc47c96c",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f395a944_c9304d9e",
+        "filename": "src/app/mainview/components/AboutPopUp.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-03-17T14:42:07Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f252de4c_03cbedcb",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 1
+      },
+      "revId": "f6e848003a96eff1565b6d0782d72e2cdc47c96c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
