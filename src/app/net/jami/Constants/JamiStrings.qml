@@ -45,6 +45,7 @@ Item {
     // AboutPopUp
     property string buildID: qsTr("Build ID")
     property string version: qsTr("Version")
+    property string beta: qsTr("(Beta)")
     property string declarationYear: "Copyright © 2015–2025"
     property string slogan: "Εἰρήνη"
     property string declaration: qsTr('Jami, a GNU package, is software for universal and distributed peer-to-peer communication that respects the freedom and privacy of its users. Visit <a href="https://jami.net" style="color: ' + JamiTheme.buttonTintedBlue + '">jami.net</a>' + ' to learn more.')
