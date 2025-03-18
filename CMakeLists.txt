@@ -670,6 +670,15 @@ set(SFPM_OBJECTS $<TARGET_OBJECTS:SortFilterProxyModel>)
 set(BUILD_MD2HTML_EXECUTABLE OFF CACHE BOOL "Don't build md2html executable" FORCE)
 set(BUILD_SHARED_LIBS OFF CACHE BOOL "Don't build shared md4c library" FORCE)
 add_subdirectory(3rdparty/md4c EXCLUDE_FROM_ALL)
+execute_process(
+  # Reset before applying the patch to avoid generating an error message
+  # ("patch does not apply") if CMake is called multiple times.
+  COMMAND git reset --hard HEAD
+  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/3rdparty/md4c
+  OUTPUT_QUIET)
+execute_process(
+  COMMAND git apply ${EXTRA_PATCHES_DIR}/0001-Relax-requirements-for-permissive-autolinks.patch
+  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/3rdparty/md4c)
 list(APPEND CLIENT_LINK_DIRS ${MD4C_BINARY_DIR}/src)
 list(APPEND CLIENT_INCLUDE_DIRS ${MD4C_SOURCE_DIR}/src)
 list(APPEND CLIENT_LIBS md4c-html)

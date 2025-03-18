@@ -119,27 +119,33 @@ TEST_F(MessageParserFixture, AComplexLinkIsParsedCorrectly)
     QSignalSpy messageParsedSpy(globalEnv.messageParser.data(), &MessageParser::messageParsed);
     QSignalSpy linkInfoReadySpy(globalEnv.messageParser.data(), &MessageParser::linkInfoReady);
 
-    // Parse a message with a link containing a + or a -.
-    globalEnv.messageParser->parseMessage("msgId_03",
-                                          "https://review.jami.net/q/status:open+-is:wip",
-                                          false,
-                                          linkColor,
-                                          backgroundColor);
+    static const std::vector<QString> links = {
+        "https://review.jami.net/q/status:open+-is:wip",
+        "https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/1885#note_53907",
+        "https://www.youtube.com/watch?v=_tEL8bJ7yqU",
+        "https://www.youtube.com/watch?v=d_z77s7nifU",
+    };
 
-    // Wait for the messageParsed signal which should be emitted once.
-    messageParsedSpy.wait();
-    EXPECT_EQ(messageParsedSpy.count(), 1);
+    static const QString expectedMessageTemplate = "<style>a{color:#0000ff;}</style><p><a href=\"%1\">%1</a></p>\n";
 
-    QList<QVariant> messageParserArguments = messageParsedSpy.takeFirst();
-    EXPECT_TRUE(messageParserArguments.at(0).typeId() == qMetaTypeId<QString>());
-    EXPECT_EQ(messageParserArguments.at(0).toString(), "msgId_03");
-    EXPECT_TRUE(messageParserArguments.at(1).typeId() == qMetaTypeId<QString>());
-    EXPECT_EQ(messageParserArguments.at(1).toString(),
-              "<style>a{color:#0000ff;}</style><p><a "
-              "href=\"https://review.jami.net/q/status:open+-is:wip\">https://review.jami.net/q/"
-              "status:open+-is:wip</a></p>\n");
+    for (const auto& link : links) {
+        globalEnv.messageParser->parseMessage("msgId",
+                                              link,
+                                              false,
+                                              linkColor,
+                                              backgroundColor);
 
-    // The rest of the link info is not tested here.
+        // Wait for the messageParsed signal which should be emitted once.
+        messageParsedSpy.wait();
+        EXPECT_EQ(messageParsedSpy.count(), 1);
+
+        QList<QVariant> messageParserArguments = messageParsedSpy.takeFirst();
+        EXPECT_TRUE(messageParserArguments.at(1).typeId() == qMetaTypeId<QString>());
+
+        QString result = messageParserArguments.at(1).toString();
+        QString expected = expectedMessageTemplate.arg(link);
+        EXPECT_EQ(result.toStdString(), expected.toStdString());
+    }
 }
 
 /*!
