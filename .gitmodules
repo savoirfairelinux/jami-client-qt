@@ -21,7 +21,7 @@
 	ignore = dirty
 [submodule "3rdparty/md4c"]
 	path = 3rdparty/md4c
-	url = https://github.com/mity/md4c.git
+	url = https://github.com/fsimonfc/md4c.git
 	ignore = dirty
 [submodule "3rdparty/tidy-html5"]
 	path = 3rdparty/tidy-html5
