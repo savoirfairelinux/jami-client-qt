@@ -108,8 +108,8 @@ TEST_F(MessageParserFixture, ALinkIsParsedCorrectly)
 }
 
 /*!
- * WHEN  We parse a text body with a link and a + or a -.
- * THEN  The HTML body should be returned correctly including the link even if MD4C doesn't detect it.
+ * WHEN  We parse a text body with a link containing special characters ( +, -, _, etc.)
+ * THEN  The HTML body should be returned correctly including the link.
  */
 TEST_F(MessageParserFixture, AComplexLinkIsParsedCorrectly)
 {
@@ -119,27 +119,45 @@ TEST_F(MessageParserFixture, AComplexLinkIsParsedCorrectly)
     QSignalSpy messageParsedSpy(globalEnv.messageParser.data(), &MessageParser::messageParsed);
     QSignalSpy linkInfoReadySpy(globalEnv.messageParser.data(), &MessageParser::linkInfoReady);
 
-    // Parse a message with a link containing a + or a -.
-    globalEnv.messageParser->parseMessage("msgId_03",
-                                          "https://review.jami.net/q/status:open+-is:wip",
-                                          false,
-                                          linkColor,
-                                          backgroundColor);
+    struct TestCase {
+        QString link;
+        QString expectedMessage;
+    };
+    static const std::vector<TestCase> testCases = {
+        {"https://review.jami.net/q/status:open+-is:wip",
+         "<style>a{color:#0000ff;}</style><p><a href=\"https://review.jami.net/q/status:open+-is:wip\">https://review.jami.net/q/status:open+-is:wip</a></p>\n"},
+        {"https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/1885#note_53907",
+         "<style>a{color:#0000ff;}</style><p><a href=\"https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/1885#note_53907\">https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/1885#note_53907</a></p>\n"},
+        {"https://www.youtube.com/watch?v=_tEL8bJ7yqU",
+         "<style>a{color:#0000ff;}</style><p><a href=\"https://www.youtube.com/watch?v=_tEL8bJ7yqU\">https://www.youtube.com/watch?v=_tEL8bJ7yqU</a></p>\n"},
+        {"https://www.youtube.com/watch?v=d_z77s7nifU",
+         "<style>a{color:#0000ff;}</style><p><a href=\"https://www.youtube.com/watch?v=d_z77s7nifU\">https://www.youtube.com/watch?v=d_z77s7nifU</a></p>\n"},
+        {"http://www.example.com/foo.php?bar[]=1&bar[]=2&bar[]=3",
+         "<style>a{color:#0000ff;}</style><p><a href=\"http://www.example.com/foo.php?bar%5B%5D=1&amp;bar%5B%5D=2&amp;bar%5B%5D=3\">http://www.example.com/foo.php?bar[]=1&amp;bar[]=2&amp;bar[]=3</a></p>\n"},
+    };
 
-    // Wait for the messageParsed signal which should be emitted once.
-    messageParsedSpy.wait();
-    EXPECT_EQ(messageParsedSpy.count(), 1);
+    static const QString expectedMessageTemplate = " <style>a{color:#0000ff;}</style><p><a href=\"%1\">%1</a></p>\n";
 
-    QList<QVariant> messageParserArguments = messageParsedSpy.takeFirst();
-    EXPECT_TRUE(messageParserArguments.at(0).typeId() == qMetaTypeId<QString>());
-    EXPECT_EQ(messageParserArguments.at(0).toString(), "msgId_03");
-    EXPECT_TRUE(messageParserArguments.at(1).typeId() == qMetaTypeId<QString>());
-    EXPECT_EQ(messageParserArguments.at(1).toString(),
-              "<style>a{color:#0000ff;}</style><p><a "
-              "href=\"https://review.jami.net/q/status:open+-is:wip\">https://review.jami.net/q/"
-              "status:open+-is:wip</a></p>\n");
+    for (const auto& testCase : testCases) {
+        globalEnv.messageParser->parseMessage("msgId",
+                                              testCase.link,
+                                              false,
+                                              linkColor,
+                                              backgroundColor);
 
-    // The rest of the link info is not tested here.
+        // Wait for the messageParsed signal which should be emitted once.
+        messageParsedSpy.wait();
+        EXPECT_EQ(messageParsedSpy.count(), 1);
+
+        QList<QVariant> messageParserArguments = messageParsedSpy.takeFirst();
+        EXPECT_TRUE(messageParserArguments.at(1).typeId() == qMetaTypeId<QString>());
+
+        QString result = messageParserArguments.at(1).toString();
+        QString expected = testCase.expectedMessage;
+        // Convert to std::string to get better error messages in case of test
+        // failure (GoogleTest can't print QStrings).
+        EXPECT_EQ(result.toStdString(), expected.toStdString());
+    }
 }
 
 /*!
