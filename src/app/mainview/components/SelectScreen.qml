@@ -44,34 +44,42 @@ Window {
     property var listModel: []
     property real componentMinWidth: 350
     property real marginSize: JamiTheme.preferredMarginSize
-    property real elementWidth: {
-        var layoutWidth = selectScreenWindowLayout.width;
-        var minSize = componentMinWidth + 2 * marginSize;
-        var numberElementPerRow = Math.floor(layoutWidth / minSize);
-        if (numberElementPerRow == 1 && layoutWidth > componentMinWidth * 1.5) {
-            numberElementPerRow = 2;
-        }
-        if (showWindows)
-            numberElementPerRow = Math.min(listModel.length, numberElementPerRow);
-        else
-            numberElementPerRow = Math.min(listModel.length + 1, numberElementPerRow);
-        var spacingLength = marginSize * (numberElementPerRow + 2);
-        return (layoutWidth - spacingLength) / numberElementPerRow;
-    }
 
+    // Function to safely populate screen/window list
     function calculateRepeaterModel() {
-        listModel = [];
+        var newModel = [];
         var idx;
+
         if (!showWindows) {
             for (idx in Qt.application.screens) {
-                listModel.push(JamiStrings.screen.arg(idx));
+                newModel.push({
+                    title: JamiStrings.screen.arg(idx),
+                    index: parseInt(idx),
+                    isAllScreens: false
+                });
             }
         } else {
             AvAdapter.getListWindows();
             for (idx in AvAdapter.windowsNames) {
-                listModel.push(AvAdapter.windowsNames[idx]);
+                newModel.push({
+                    title: AvAdapter.windowsNames[idx],
+                    index: parseInt(idx),
+                    isAllScreens: false
+                });
             }
         }
+
+        // Add "All Screens" option for non-Windows platforms when showing screens
+        if (!showWindows && Qt.application.screens.length > 1 && Qt.platform.os.toString() !== "windows") {
+            newModel.unshift({
+                title: JamiStrings.allScreens,
+                index: -1,
+                isAllScreens: true
+            });
+        }
+
+        listModel = newModel;
+        return newModel;
     }
 
     onVisibleChanged: {
@@ -80,23 +88,21 @@ Window {
         if (!active) {
             selectedScreenNumber = undefined;
         }
-        screenSharePreviewRepeater.model = {};
-        calculateRepeaterModel();
-        screenSharePreviewRepeater.model = root.listModel;
+        screenGrid.model = calculateRepeaterModel();
     }
 
     Rectangle {
         id: selectScreenWindowRect
-
         anchors.fill: parent
         color: JamiTheme.backgroundColor
 
         ColumnLayout {
             id: selectScreenWindowLayout
-
             anchors.fill: parent
+            spacing: marginSize
 
             Text {
+                id: titleText
                 font.pointSize: JamiTheme.menuFontSize
                 font.bold: true
                 text: showWindows ? JamiStrings.windows : JamiStrings.screens
@@ -107,54 +113,49 @@ Window {
 
             ScrollView {
                 id: screenSelectionScrollView
-
-                Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: selectScreenWindowLayout.width
+                Layout.fillWidth: true
                 Layout.fillHeight: true
-
                 clip: true
-                ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+                ScrollBar.horizontal.policy: ScrollBar.AsNeeded
                 ScrollBar.vertical.policy: ScrollBar.AsNeeded
 
-                Flow {
-                    id: screenSelectionScrollViewFlow
+                GridView {
+                    id: screenGrid
+                    anchors.fill: parent
+                    anchors.margins: marginSize
 
-                    // https://bugreports.qt.io/browse/QTBUG-110323
-                    width: screenSelectionScrollView.width
-                    height: screenSelectionScrollView.height
-
-                    topPadding: marginSize
-                    rightPadding: marginSize
-                    leftPadding: marginSize
-                    spacing: marginSize
-
-                    Loader {
-                        // Show all screens
-                        active: !showWindows && Qt.application.screens.length > 1 && Qt.platform.os.toString() !== "windows"
-                        sourceComponent: ScreenSharePreview {
-                            id: screenSelectionRectAll
-
-                            elementIndex: -1
-                            rectTitle: JamiStrings.allScreens
-                            rId: AvAdapter.getSharingResource(-1)
-                        }
+                    cellWidth: {
+                        var cellsPerRow = Math.floor(width / (componentMinWidth + marginSize));
+                        cellsPerRow = Math.max(1, cellsPerRow);
+                        var calculatedWidth = Math.floor(width / cellsPerRow);
+                        return Math.max(componentMinWidth, calculatedWidth);
                     }
+                    cellHeight: cellWidth * 3/4 + marginSize * 2
 
-                    Repeater {
-                        id: screenSharePreviewRepeater
+                    model: listModel
 
-                        model: listModel.length
+                    delegate: Item {
+                        width: screenGrid.cellWidth - marginSize
+                        height: screenGrid.cellHeight - marginSize
 
-                        delegate: ScreenSharePreview {
+                        visible: JamiStrings.selectScreen !== modelData.title &&
+                                 JamiStrings.selectWindow !== modelData.title
+
+                        ScreenSharePreview {
                             id: screenItem
+                            anchors.centerIn: parent
+                            width: parent.width
+                            height: parent.height - marginSize
 
-                            visible: JamiStrings.selectScreen !== listModel[index] && JamiStrings.selectWindow !== listModel[index]
-                            elementIndex: index
-                            rectTitle: listModel[index] ? listModel[index] : ""
+                            elementIndex: modelData.index
+                            rectTitle: modelData.title
                             rId: {
-                                if (showWindows)
-                                    return rId = AvAdapter.getSharingResource(-2, AvAdapter.windowsIds[index], AvAdapter.windowsNames[index]);
-                                return rId = AvAdapter.getSharingResource(index);
+                                if (modelData.isAllScreens)
+                                    return AvAdapter.getSharingResource(-1);
+                                else if (showWindows)
+                                    return AvAdapter.getSharingResource(-2, AvAdapter.windowsIds[modelData.index],
+                                            AvAdapter.windowsNames[modelData.index]);
+                                return AvAdapter.getSharingResource(modelData.index);
                             }
                         }
                     }
@@ -163,19 +164,18 @@ Window {
 
             RowLayout {
                 Layout.margins: marginSize
-                Layout.preferredWidth: selectScreenWindowLayout.width
+                Layout.fillWidth: true
                 Layout.preferredHeight: childrenRect.height
                 spacing: marginSize
 
                 MaterialButton {
                     id: selectButton
-
                     Layout.maximumWidth: 200
                     Layout.fillWidth: true
                     Layout.alignment: Qt.AlignHCenter
                     Layout.leftMargin: marginSize
 
-                    enabled: selectedScreenNumber != undefined
+                    enabled: selectedScreenNumber !== undefined
                     opacity: enabled ? 1.0 : 0.5
 
                     color: JamiTheme.buttonTintedBlack
@@ -193,7 +193,8 @@ Window {
                             if (!showWindows)
                                 AvAdapter.shareEntireScreen(selectedScreenNumber);
                             else {
-                                AvAdapter.shareWindow(AvAdapter.windowsIds[selectedScreenNumber], AvAdapter.windowsNames[selectedScreenNumber - Qt.application.screens.length]);
+                                AvAdapter.shareWindow(AvAdapter.windowsIds[selectedScreenNumber],
+                                        AvAdapter.windowsNames[selectedScreenNumber]);
                             }
                         }
                         root.close();
