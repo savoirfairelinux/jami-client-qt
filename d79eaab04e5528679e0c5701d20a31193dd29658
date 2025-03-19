@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1514ceb8_94e0c977",
+        "filename": "src/app/mainview/components/ChatViewHeader.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-03-19T16:05:24Z",
+      "side": 1,
+      "message": "I can\u0027t click on the `MouseArea` when I build Jami with this patch. I\u0027m guessing it\u0027s because its size is zero by default?",
+      "range": {
+        "startLine": 125,
+        "startChar": 16,
+        "endLine": 126,
+        "endChar": 51
+      },
+      "revId": "d79eaab04e5528679e0c5701d20a31193dd29658",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
