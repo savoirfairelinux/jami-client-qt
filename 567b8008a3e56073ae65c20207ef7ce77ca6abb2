@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b7c9e74_19de8548",
+        "filename": "src/app/commoncomponents/JamiIdentifier.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-03-19T17:21:31Z",
+      "side": 1,
+      "message": "not part of this change, but this variable name is not cromulent (same as `outsideClic` on line 33)",
+      "range": {
+        "startLine": 35,
+        "startChar": 18,
+        "endLine": 35,
+        "endChar": 22
+      },
+      "revId": "567b8008a3e56073ae65c20207ef7ce77ca6abb2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
