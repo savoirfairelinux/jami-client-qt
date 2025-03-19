@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d40f90b1_08100ca8",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-03-19T19:28:27Z",
+      "side": 1,
+      "message": "```suggestion\n        if (!convInfo.callId.isEmpty()) {\n            lrcInstance_-\u003egetAccountInfo(accountId).callModel-\u003ehangUp(convInfo.callId);\n        } else if (!convInfo.confId.isEmpty()) {\n            lrcInstance_-\u003egetAccountInfo(accountId).callModel-\u003ehangUp(convInfo.confId);\n        }\n```",
+      "range": {
+        "startLine": 382,
+        "startChar": 8,
+        "endLine": 393,
+        "endChar": 15
+      },
+      "revId": "a451c101d2c2113cae94f52560f87fd86bcbb4fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
