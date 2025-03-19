@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b23a918d_d02e7ba2",
+        "filename": "src/app/mainview/components/WelcomePageQrDialog.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-03-19T21:06:21Z",
+      "side": 0,
+      "message": "Is removing this rectangle actually necessary to fix the RTL layout issues? It didn\u0027t seem to be when I tested the patch.",
+      "range": {
+        "startLine": 28,
+        "startChar": 19,
+        "endLine": 34,
+        "endChar": 1
+      },
+      "revId": "960fdc0f0584db36fee47d64fbff8823561da500",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
