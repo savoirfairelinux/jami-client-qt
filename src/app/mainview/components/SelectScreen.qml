@@ -35,9 +35,15 @@ Window {
     modality: Qt.ApplicationModal
     title: showWindows ? JamiStrings.selectWindow : JamiStrings.selectScreen
 
-    onClosing: this.destroy()
+    onClosing: {
+        VideoDevices.setDisplayFPS(60);
+        console.warn("FPS increased : "+ VideoDevices.screenSharingDefaultFps.toString())
+        this.destroy();
+    }
 
     required property bool showWindows
+
+    property int screenSharingFPSBuffer: VideoDevices.screenSharingDefaultFps
 
     property var selectedScreenNumber: undefined
     property bool selectAllScreens: selectedScreenNumber === -1
@@ -83,6 +89,11 @@ Window {
         screenSharePreviewRepeater.model = {};
         calculateRepeaterModel();
         screenSharePreviewRepeater.model = root.listModel;
+    }
+
+    Component.onCompleted: {
+        VideoDevices.setDisplayFPS(1);
+        console.warn("FPS decreased: "+ VideoDevices.screenSharingDefaultFps.toString())
     }
 
     Rectangle {
