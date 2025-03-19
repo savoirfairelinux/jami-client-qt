@@ -16,6 +16,24 @@
       "message": "If it\u0027s possible could you attach a gitlab issue ? We try to make it a standard practice.",
       "revId": "283bd1b8bc03de5c3d43a3a8ad09e283225a4b6f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3636e1d2_ecb81e9e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-03-19T16:05:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c5a12d4c_ee382eae",
+      "revId": "283bd1b8bc03de5c3d43a3a8ad09e283225a4b6f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
