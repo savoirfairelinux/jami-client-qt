@@ -406,7 +406,9 @@ public:
      * @param windowProcessId
      * @param windowId
      */
-    QString getDisplay(const QString& windowProcessId, const QString& windowId);
+    QString getDisplay(const QString& windowProcessId,
+                       const QString& windowId,
+                       const int fps = -1);
 
     void emplaceConversationConference(const QString& callId);
 
@@ -481,7 +483,9 @@ Q_SIGNALS:
      * @param conversationId
      * @param confId
      */
-    void callAddedToConference(const QString& callId, const QString& conversationId, const QString& confId) const;
+    void callAddedToConference(const QString& callId,
+                               const QString& conversationId,
+                               const QString& confId) const;
 
     /**
      * Emitted when a voice mail notice arrives
