@@ -96,7 +96,7 @@ protected:
     Q_INVOKABLE void shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned height);
 
     // Select window to display (all platforms except Wayland).
-    Q_INVOKABLE void shareWindow(const QString& windowProcessId, const QString& windowId);
+    Q_INVOKABLE void shareWindow(const QString& windowProcessId, const QString& windowId, const bool preview = false);
 
 #ifdef Q_OS_LINUX
     // Share a window on Wayland.
@@ -110,7 +110,7 @@ protected:
     // Returns the screensharing resource
     Q_INVOKABLE QString getSharingResource(int screenId = -2,
                                            const QString& windowProcessId = "",
-                                           const QString& key = "");
+                                           const QString& key = "", const bool preview = false);
 
     Q_INVOKABLE void getListWindows();
 

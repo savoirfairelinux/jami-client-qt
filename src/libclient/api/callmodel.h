@@ -406,7 +406,7 @@ public:
      * @param windowProcessId
      * @param windowId
      */
-    QString getDisplay(const QString& windowProcessId, const QString& windowId);
+    QString getDisplay(const QString& windowProcessId, const QString& windowId, const bool preview = false);
 
     void emplaceConversationConference(const QString& callId);
 

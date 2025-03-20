@@ -154,7 +154,7 @@ Window {
                                     return AvAdapter.getSharingResource(-1);
                                 else if (showWindows)
                                     return AvAdapter.getSharingResource(-2, AvAdapter.windowsIds[modelData.index],
-                                            AvAdapter.windowsNames[modelData.index]);
+                                            AvAdapter.windowsNames[modelData.index], true);
                                 return AvAdapter.getSharingResource(modelData.index);
                             }
                         }

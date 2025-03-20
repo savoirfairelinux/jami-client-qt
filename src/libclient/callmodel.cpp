@@ -989,7 +989,7 @@ CallModel::getDisplay(int idx, int x, int y, int w, int h)
 }
 
 QString
-CallModel::getDisplay(const QString& windowProcessId, const QString& windowId)
+CallModel::getDisplay(const QString& windowProcessId, const QString& windowId, const bool preview)
 {
 #if defined(__APPLE__)
     Q_UNUSED(windowProcessId)
@@ -1010,6 +1010,11 @@ CallModel::getDisplay(const QString& windowProcessId, const QString& windowId)
               .arg(sep)
               .arg(windowProcessId);
 #endif
+    //if the window is a preview we set a custom fps rate of 1
+    if (preview) {
+        ret += QString(" customframerate fps:1");
+    }
+
     return ret;
 #endif
 }
