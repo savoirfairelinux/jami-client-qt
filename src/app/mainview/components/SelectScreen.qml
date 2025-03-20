@@ -49,35 +49,33 @@ Window {
     function calculateRepeaterModel() {
         var newModel = [];
         var idx;
-
         if (!showWindows) {
             for (idx in Qt.application.screens) {
                 newModel.push({
-                    title: JamiStrings.screen.arg(idx),
-                    index: parseInt(idx),
-                    isAllScreens: false
-                });
+                        title: JamiStrings.screen.arg(idx),
+                        index: parseInt(idx),
+                        isAllScreens: false
+                    });
             }
         } else {
             AvAdapter.getListWindows();
             for (idx in AvAdapter.windowsNames) {
                 newModel.push({
-                    title: AvAdapter.windowsNames[idx],
-                    index: parseInt(idx),
-                    isAllScreens: false
-                });
+                        title: AvAdapter.windowsNames[idx],
+                        index: parseInt(idx),
+                        isAllScreens: false
+                    });
             }
         }
 
         // Add "All Screens" option for non-Windows platforms when showing screens
         if (!showWindows && Qt.application.screens.length > 1 && Qt.platform.os.toString() !== "windows") {
             newModel.unshift({
-                title: JamiStrings.allScreens,
-                index: -1,
-                isAllScreens: true
-            });
+                    title: JamiStrings.allScreens,
+                    index: -1,
+                    isAllScreens: true
+                });
         }
-
         listModel = newModel;
     }
 
@@ -129,7 +127,7 @@ Window {
                         var calculatedWidth = Math.floor(width / cellsPerRow);
                         return Math.max(componentMinWidth, calculatedWidth);
                     }
-                    cellHeight: cellWidth * 3/4 + marginSize * 2
+                    cellHeight: cellWidth * 3 / 4 + marginSize * 2
 
                     model: listModel
 
@@ -137,8 +135,7 @@ Window {
                         width: screenGrid.cellWidth - marginSize
                         height: screenGrid.cellHeight - marginSize
 
-                        visible: JamiStrings.selectScreen !== modelData.title &&
-                                 JamiStrings.selectWindow !== modelData.title
+                        visible: JamiStrings.selectScreen !== modelData.title && JamiStrings.selectWindow !== modelData.title
 
                         ScreenSharePreview {
                             id: screenItem
@@ -152,8 +149,7 @@ Window {
                                 if (modelData.isAllScreens)
                                     return AvAdapter.getSharingResource(-1);
                                 else if (showWindows)
-                                    return AvAdapter.getSharingResource(-2, AvAdapter.windowsIds[modelData.index],
-                                            AvAdapter.windowsNames[modelData.index]);
+                                    return AvAdapter.getSharingResource(-2, AvAdapter.windowsIds[modelData.index], AvAdapter.windowsNames[modelData.index], 1);
                                 return AvAdapter.getSharingResource(modelData.index);
                             }
                         }
@@ -192,8 +188,7 @@ Window {
                             if (!showWindows)
                                 AvAdapter.shareEntireScreen(selectedScreenNumber);
                             else {
-                                AvAdapter.shareWindow(AvAdapter.windowsIds[selectedScreenNumber],
-                                        AvAdapter.windowsNames[selectedScreenNumber]);
+                                AvAdapter.shareWindow(AvAdapter.windowsIds[selectedScreenNumber], AvAdapter.windowsNames[selectedScreenNumber]);
                             }
                         }
                         root.close();
