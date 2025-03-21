@@ -53,7 +53,7 @@ WebEngineView {
     }
     onFullScreenRequested: function (request) {
         if (request.toggleOn) {
-            layoutManager.pushFullScreenItem(this, localMediaCompLoader, null, function () {
+            layoutManager.pushFullScreenItem(this, function () {
                     wev.fullScreenCancelled();
                 });
         } else if (!request.toggleOn) {
