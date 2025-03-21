@@ -40,6 +40,13 @@ Item {
         onActivatedAmbiguously: CallAdapter.hangUpThisCall()
     }
 
+    Shortcut {
+        sequence: "F11"
+        context: Qt.ApplicationShortcut
+        enabled: CurrentConversation.hasCall
+        onActivated: toggleFullScreen();
+    }
+
     Keys.onPressed: {
         if (LRCInstance.currentAccountType !== Profile.Type.SIP)
             return;
@@ -61,14 +68,6 @@ Item {
             }
     }
 
-    Shortcut {
-        sequence: "F11"
-        context: Qt.ApplicationShortcut
-        onActivated: if (CallAdapter.hasCall) {
-            callStackView.toggleFullScreen();
-        }
-    }
-
     // TODO: this should all be done by listening to
     // parent visibility change or parent `Component.onDestruction`
     function needToCloseInCallConversationAndPotentialWindow() {
@@ -80,14 +79,15 @@ Item {
 
     function toggleFullScreen() {
         if (!layoutManager.isCallFullscreen) {
-            layoutManager.setCallFullscreen(true, callStackMainView.item, callStackMainView);
+            layoutManager.pushFullScreenItem(callStackMainView, null, null);
         } else {
-            layoutManager.setCallFullscreen(false);
+            layoutManager.removeFullScreenItem(callStackMainView);
         }
     }
 
     Loader {
         id: callStackMainView
+        objectName: "callViewLoader"
 
         anchors.fill: parent
 
