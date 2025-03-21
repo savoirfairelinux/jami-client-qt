@@ -135,12 +135,13 @@ Rectangle {
         }
     }
 
-    Keys.onPressed: function (keyEvent) {
-        if (keyEvent.key === Qt.Key_Escape) {
+    Shortcut {
+        sequence: "Esc"
+        context: Qt.ApplicationShortcut
+        onActivated: {
             MessagesAdapter.replyToId = "";
             MessagesAdapter.editId = "";
             layoutManager.popFullScreenItem();
-            keyEvent.accepted = true;
         }
     }
 
