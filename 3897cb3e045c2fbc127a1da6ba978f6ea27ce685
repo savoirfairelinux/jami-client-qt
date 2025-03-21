@@ -45,6 +45,29 @@
       },
       "revId": "3897cb3e045c2fbc127a1da6ba978f6ea27ce685",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9f7fcee_17ed76b7",
+        "filename": "src/app/mainview/components/CallButtonDelegate.qml",
+        "patchSetId": 16
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-03-21T20:34:53Z",
+      "side": 1,
+      "message": "unrelated",
+      "range": {
+        "startLine": 175,
+        "startChar": 20,
+        "endLine": 176,
+        "endChar": 80
+      },
+      "revId": "3897cb3e045c2fbc127a1da6ba978f6ea27ce685",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
