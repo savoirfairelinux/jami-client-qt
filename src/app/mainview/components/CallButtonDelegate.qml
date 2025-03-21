@@ -277,11 +277,11 @@ ItemDelegate {
                 if (isVertical) {
                     // For a vertical layout, adjust the y position to center the item vertically
                     // relative to the root's height, with an additional upward offset of 18 pixels.
-                    y = -(implicitHeight - root.height) / 2 - 18;
+                    return -(implicitHeight - root.height) / 2 - 18;
                 } else {
                     // For non-vertical layouts, position the item fully above its normal position
                     // with an upward offset of 12 pixels from its implicit height.
-                    y = -implicitHeight - 12;
+                    return -implicitHeight - 12;
                 }
             }
 
@@ -290,7 +290,7 @@ ItemDelegate {
                 if (isVertical) {
                     // If the layout is vertical, position the item to the left of its implicit width
                     // with an additional offset of 12 pixels.
-                    x = -implicitWidth - 12;
+                    return -implicitWidth - 12;
                 } else {
                     // Note: isn't some of this logic built into the Popup?
 
@@ -309,7 +309,7 @@ ItemDelegate {
 
                     // If the item extends beyond the overlay, adjust x value to the left to ensure
                     // it fits within the overlay, with an extra leftward margin of 24 pixels.
-                    x = diff > 0 ? xValue - diff - 24 : xValue;
+                    return diff > 0 ? xValue - diff - 24 : xValue;
                 }
 
             }
