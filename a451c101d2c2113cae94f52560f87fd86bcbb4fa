@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "96e9109b_b0c30030",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-03-21T05:06:36Z",
+      "side": 1,
+      "message": "Does the \"End call\" button work correctly if you yourself are in the same group call on two different devices? Thank you",
+      "revId": "a451c101d2c2113cae94f52560f87fd86bcbb4fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d40f90b1_08100ca8",
