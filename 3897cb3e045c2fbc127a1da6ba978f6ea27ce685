@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "866415ef_dff3d354",
+        "filename": "src/app/LayoutManager.qml",
+        "patchSetId": 16
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-03-21T17:48:50Z",
+      "side": 1,
+      "message": "Obsolete comment",
+      "range": {
+        "startLine": 153,
+        "startChar": 12,
+        "endLine": 153,
+        "endChar": 57
+      },
+      "revId": "3897cb3e045c2fbc127a1da6ba978f6ea27ce685",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "063af4c8_76b99263",
+        "filename": "src/app/LayoutManager.qml",
+        "patchSetId": 16
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-03-21T17:48:50Z",
+      "side": 1,
+      "message": "If I start a call with a contact, click on a conversation with a different contact, and then press F11, then I get the following QML warning:\n```\nfile:qrc:/LayoutManager.qml:162 qrc:/LayoutManager.qml:162: TypeError: Cannot read property \u0027parent\u0027 of null\n```",
+      "range": {
+        "startLine": 162,
+        "startChar": 16,
+        "endLine": 162,
+        "endChar": 46
+      },
+      "revId": "3897cb3e045c2fbc127a1da6ba978f6ea27ce685",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
