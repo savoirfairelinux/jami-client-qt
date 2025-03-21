@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea2a4b84_9b891d40",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-03-21T15:35:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c3fd5dd_6a2fdbd9",
+      "revId": "438ca428546759e4eb44c1ab2fb596f7d575c022",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "78e85250_76f73e0e",
@@ -41,6 +59,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "13797304_4e635520",
+        "filename": "src/app/LayoutManager.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-03-21T15:35:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78e85250_76f73e0e",
+      "range": {
+        "startLine": 150,
+        "startChar": 4,
+        "endLine": 156,
+        "endChar": 5
+      },
+      "revId": "438ca428546759e4eb44c1ab2fb596f7d575c022",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ee67177e_3444f556",
@@ -54,6 +96,30 @@
       "writtenOn": "2025-03-20T22:10:44Z",
       "side": 1,
       "message": "Do we actually need this? When I tested it seemed to be enough to have the shortcut in the CallStackView.",
+      "range": {
+        "startLine": 54,
+        "startChar": 4,
+        "endLine": 60,
+        "endChar": 5
+      },
+      "revId": "438ca428546759e4eb44c1ab2fb596f7d575c022",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32e3f8cb_10abe7b4",
+        "filename": "src/app/mainview/components/OngoingCallPage.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-03-21T15:35:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee67177e_3444f556",
       "range": {
         "startLine": 54,
         "startChar": 4,
