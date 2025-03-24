@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b519e26_c9c4396a",
+        "filename": "src/app/mainview/components/ChatViewHeader.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-03-24T16:12:28Z",
+      "side": 1,
+      "message": "Incorrect indentation",
+      "range": {
+        "startLine": 143,
+        "startChar": 24,
+        "endLine": 145,
+        "endChar": 17
+      },
+      "revId": "1a9cadbfc6425ff7dadc5f53daacf9695dc51865",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13700baf_14973e36",
+        "filename": "src/app/mainview/components/ChatViewHeader.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-03-24T16:12:28Z",
+      "side": 1,
+      "message": "This text should also be copyable.",
+      "range": {
+        "startLine": 149,
+        "startChar": 15,
+        "endLine": 150,
+        "endChar": 35
+      },
+      "revId": "1a9cadbfc6425ff7dadc5f53daacf9695dc51865",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
