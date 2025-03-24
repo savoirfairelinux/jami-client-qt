@@ -221,7 +221,8 @@
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="77"/>
         <source>Action required.
 Please confirm account on the source device.</source>
-        <translation type="unfinished"/>
+        <translation>Потребна радња.
+Потврдите налог на изворном уређају.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="78"/>
@@ -1144,13 +1145,14 @@ The application will now exit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="378"/>
         <source>%1 and %2</source>
-        <translation type="unfinished"/>
+        <translation>%1 и %2</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="399"/>
         <source>Do you want to create a Jami account without a username?
 If yes, only a randomly generated 40-character identifier will be assigned to the account.</source>
-        <translation type="unfinished"/>
+        <translation>Да ли желите да креирате Јами налог без корисничког имена?
+Ако јесте, налогу ће бити додељен само насумично генерисани идентификатор од 40 знакова.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="472"/>
@@ -1218,7 +1220,8 @@ To continue, click Update.</source>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="811"/>
         <source>Hello,
 Do you want to join the conversation?</source>
-        <translation type="unfinished"/>
+        <translation>Здраво,
+Да ли желите да се придружите разговору?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="812"/>
@@ -1275,7 +1278,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="886"/>
         <source>If you enjoy using Jami and believe in our mission, do you want to make a donation?</source>
-        <translation type="unfinished"/>
+        <translation>Ако уживате у коришћењу Јами-ја и верујете у нашу мисију, да ли желите да дате донацију?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="897"/>
@@ -2034,12 +2037,12 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="415"/>
         <source>Configure existing SIP account</source>
-        <translation type="unfinished"/>
+        <translation>Конфигуришите постојећи SIP налог</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="420"/>
         <source>Display name</source>
-        <translation type="unfinished"/>
+        <translation>Име за приказ</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="425"/>
@@ -2225,7 +2228,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="285"/>
         <source>Do you want to leave this conversation?</source>
-        <translation type="unfinished"/>
+        <translation>Да ли желите да напустите овај разговор?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="286"/>
@@ -4571,7 +4574,7 @@ Please try again.</source>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="995"/>
         <source>Unable to lookup…</source>
-        <translation type="unfinished"/>
+        <translation>Није могуће потражити…</translation>
     </message>
 </context>
 <context>

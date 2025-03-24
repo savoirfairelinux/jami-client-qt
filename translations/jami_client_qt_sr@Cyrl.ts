@@ -121,7 +121,7 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="320"/>
         <source>An invalid message was detected</source>
-        <translation>Откривена је неважна порука.</translation>
+        <translation>Откривена је неважећа порука</translation>
     </message>
 </context>
 <context>
@@ -134,7 +134,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="32"/>
         <source>End call</source>
-        <translation>Završi poziv</translation>
+        <translation>Заврши позив</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="36"/>
@@ -144,7 +144,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="37"/>
         <source>Jami is a universal communication platform, with privacy as its foundation, that relies on a free distributed network for everyone.</source>
-        <translation>Џами је универзална комуникацијска платформа, са приватношћу као основом, која се ослања на слободну дистрибуирују мрежу за све.</translation>
+        <translation>Јами је универзална комуникациона платформа, са приватношћу као основом, која се ослања на бесплатну дистрибуирану мрежу за све.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="38"/>
@@ -170,37 +170,37 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="61"/>
         <source>Display QR code</source>
-        <translation>Показати QR код</translation>
+        <translation>Прикажи QR код</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="62"/>
         <source>Open settings</source>
-        <translation>Отворени накладови</translation>
+        <translation>Отвори подешавања</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="63"/>
         <source>Close settings</source>
-        <translation>Уклађење за блиску</translation>
+        <translation>Затвори подешавања</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="68"/>
         <source>Add to conference</source>
-        <translation>Додајте на конференцију</translation>
+        <translation>Додај конференцији</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="69"/>
         <source>Add to conversation</source>
-        <translation>Додајте у разговор</translation>
+        <translation>Додај у конверзацију</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="70"/>
         <source>Transfer this call</source>
-        <translation>Предајте овај позив</translation>
+        <translation>Пребаци овај позив</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="71"/>
         <source>Transfer to</source>
-        <translation>Превод на</translation>
+        <translation>Пребаци на</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="74"/>
@@ -215,13 +215,14 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="76"/>
         <source>Scan QR code</source>
-        <translation>Скан QR кода</translation>
+        <translation>Скенирај QR код</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="77"/>
         <source>Action required.
 Please confirm account on the source device.</source>
-        <translation type="unfinished"/>
+        <translation>Потребна радња.
+Потврдите налог на изворном уређају.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="78"/>
@@ -276,7 +277,7 @@ Please confirm account on the source device.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="90"/>
         <source>Your session has expired or been revoked on this device. Please enter your password.</source>
-        <translation>Ваша сесија је истекла или је отклана на овом уређају.</translation>
+        <translation>Ваша сесија је истекла или је опозвана на овом уређају. Унесите своју лозинку.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="91"/>
@@ -286,7 +287,7 @@ Please confirm account on the source device.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="92"/>
         <source>Authenticate</source>
-        <translation>Аутентицитирајте</translation>
+        <translation>Аутентификујте</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="93"/>
@@ -302,12 +303,12 @@ Please confirm account on the source device.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="96"/>
         <source>Password</source>
-        <translation>šifra</translation>
+        <translation>Лозинка</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="97"/>
         <source>Username</source>
-        <translation>Korisničko ime</translation>
+        <translation>Корисничко име</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="98"/>
@@ -528,7 +529,7 @@ Please confirm account on the source device.</source>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="167"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="203"/>
         <source>Media</source>
-        <translation>Medija</translation>
+        <translation>Медији</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="168"/>
@@ -756,7 +757,10 @@ Please confirm account on the source device.</source>
 - Alphabetical characters (A to Z and a to z)
 - Numeric characters (0 to 9)
 - Special characters allowed: dash (-)</source>
-        <translation>- Максимално 32 знакова - Алфабетни знакови (А до Z и а до з) - Цифрови знакови (0 до 9) - Допуштени посебни знакови: трага (-)</translation>
+        <translation>- Максимално 32 знака
+- Абецедни знакови (A до Z и од a до z)
+- Нумерички знакови (0 до 9)
+- Дозвољени специјални знакови: цртица (-)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="406"/>
@@ -797,7 +801,7 @@ If a username is not chosen, a randomly generated 40-character identifier will b
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="441"/>
         <source>Encrypt account</source>
-        <translation>Криптован рачун</translation>
+        <translation>Шифруј налог</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="444"/>
@@ -1102,7 +1106,7 @@ If a username is not chosen, a randomly generated 40-character identifier will b
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="721"/>
         <source>OK</source>
-        <translation>U redu</translation>
+        <translation>У реду</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="728"/>
@@ -1144,13 +1148,14 @@ The application will now exit.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="378"/>
         <source>%1 and %2</source>
-        <translation type="unfinished"/>
+        <translation>%1 и %2</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="399"/>
         <source>Do you want to create a Jami account without a username?
 If yes, only a randomly generated 40-character identifier will be assigned to the account.</source>
-        <translation type="unfinished"/>
+        <translation>Да ли желите да креирате Јами налог без корисничког имена?
+Ако јесте, налогу ће бити додељен само насумично генерисани идентификатор од 40 знакова.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="472"/>
@@ -1218,7 +1223,8 @@ To continue, click Update.</source>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="811"/>
         <source>Hello,
 Do you want to join the conversation?</source>
-        <translation type="unfinished"/>
+        <translation>Здраво,
+Да ли желите да се придружите разговору?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="812"/>
@@ -1235,7 +1241,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="818"/>
         <source>Group name</source>
-        <translation>Naziv grupe</translation>
+        <translation>Назив групе</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="819"/>
@@ -1245,17 +1251,17 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="820"/>
         <source>Add description</source>
-        <translation>Dodaj opis</translation>
+        <translation>Додај опис</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="824"/>
         <source>Color</source>
-        <translation>Boja</translation>
+        <translation>Боја</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="827"/>
         <source>Conversation type</source>
-        <translation>Vrsta razgovora</translation>
+        <translation>Тип конверзације</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="832"/>
@@ -1275,7 +1281,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="886"/>
         <source>If you enjoy using Jami and believe in our mission, do you want to make a donation?</source>
-        <translation type="unfinished"/>
+        <translation>Ако уживате у коришћењу Јами-ја и верујете у нашу мисију, да ли желите да дате донацију?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="897"/>
@@ -1295,7 +1301,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="900"/>
         <source>Connecting</source>
-        <translation>Povezivanje</translation>
+        <translation>Повезивање</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="901"/>
@@ -1305,7 +1311,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="902"/>
         <source>Contact</source>
-        <translation>Kontakt</translation>
+        <translation>Контакт</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="903"/>
@@ -2034,12 +2040,12 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="415"/>
         <source>Configure existing SIP account</source>
-        <translation type="unfinished"/>
+        <translation>Конфигуришите постојећи SIP налог</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="420"/>
         <source>Display name</source>
-        <translation type="unfinished"/>
+        <translation>Име за приказ</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="425"/>
@@ -2195,7 +2201,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="251"/>
         <source>Stop camera</source>
-        <translation>Стварајте камеру</translation>
+        <translation>Заустави камеру</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="252"/>
@@ -2225,7 +2231,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="285"/>
         <source>Do you want to leave this conversation?</source>
-        <translation type="unfinished"/>
+        <translation>Да ли желите да напустите овај разговор?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="286"/>
@@ -2572,7 +2578,7 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="638"/>
         <source>Install manually</source>
-        <translation>Instalirajte ručno</translation>
+        <translation>Инсталирајте ручно</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="639"/>
@@ -2617,17 +2623,17 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="699"/>
         <source>Create Jami account</source>
-        <translation>Стварити рачун Jami</translation>
+        <translation>Направите Јами налог</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="760"/>
         <source>Audio message</source>
-        <translation>Audio poruka</translation>
+        <translation>Аудио порука</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="761"/>
         <source>Video message</source>
-        <translation>Video poruka</translation>
+        <translation>Видео порука</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="763"/>
@@ -2692,12 +2698,12 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="796"/>
         <source>Started a call</source>
-        <translation>Započeo poziv</translation>
+        <translation>Започео позив</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="852"/>
         <source>Share your Jami identifier in order to be contacted more easily!</source>
-        <translation>Podelite svoj Jami identifikator kako biste lakše kontaktirali!</translation>
+        <translation>Поделите свој Јами идентификатор како бисте лакше контактирали!</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="853"/>
@@ -2767,7 +2773,7 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="446"/>
         <source>Hide advanced settings</source>
-        <translation>Скријте напредне подешавања</translation>
+        <translation>Сакриј напредна подешавања</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="197"/>
@@ -2782,7 +2788,7 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="449"/>
         <source>Customize profile</source>
-        <translation>Успособити профил</translation>
+        <translation>Прилагоди профил</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="460"/>
@@ -2817,12 +2823,12 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="491"/>
         <source>System</source>
-        <translation>Sistem</translation>
+        <translation>Систем</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="494"/>
         <source>Select a folder</source>
-        <translation>Izaberite fasciklu</translation>
+        <translation>Изаберите фасциклу</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="495"/>
@@ -2847,22 +2853,22 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="511"/>
         <source>User interface language</source>
-        <translation>Jezik korisničkog interfejsa</translation>
+        <translation>Језик корисничког интерфејса</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="512"/>
         <source>Vertical view</source>
-        <translation>Vertikalni prikaz</translation>
+        <translation>Вертикални поглед</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="513"/>
         <source>Horizontal view</source>
-        <translation>Horizontalni prikaz</translation>
+        <translation>Хоризонтални поглед</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="516"/>
         <source>File transfer</source>
-        <translation>Prenos podatka</translation>
+        <translation>Пренос датотека</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="517"/>
@@ -2877,7 +2883,7 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="528"/>
         <source>Save file</source>
-        <translation>Sačuvajte podatak</translation>
+        <translation>Сачувај датотеку</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="529"/>
@@ -2972,7 +2978,7 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="578"/>
         <source>Clear</source>
-        <translation>Jasno</translation>
+        <translation>Очисти</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="579"/>
@@ -2988,7 +2994,7 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="585"/>
         <source>Open file</source>
-        <translation>Otvorite podatak</translation>
+        <translation>Отворите датотеку</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="588"/>
@@ -3003,7 +3009,7 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="591"/>
         <source>Select archive file</source>
-        <translation>Izaberite datoteku arhive</translation>
+        <translation>Изаберите датотеку архиве</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="457"/>
@@ -3107,7 +3113,7 @@ The profile can be changed in account settings.</source>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="142"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="655"/>
         <source>Select</source>
-        <translation>Izaberite</translation>
+        <translation>Изаберите</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="604"/>
@@ -3167,7 +3173,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="656"/>
         <source>Choose image file</source>
-        <translation>Izaberite datoteku slike</translation>
+        <translation>Изаберите датотеку слике</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="658"/>
@@ -3242,27 +3248,27 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="691"/>
         <source>Advanced features</source>
-        <translation>Напредне карактеристике</translation>
+        <translation>Напредне функције</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="692"/>
         <source>Show advanced features</source>
-        <translation>Покажите напредне функције</translation>
+        <translation>Прикажи напредне функције</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="693"/>
         <source>Hide advanced features</source>
-        <translation>Скријте напредне функције</translation>
+        <translation>Сакриј напредне функције</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="694"/>
         <source>Connect to a JAMS server</source>
-        <translation>Спрема на JAMS сервер</translation>
+        <translation>Повежите се на JAMS сервер</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="695"/>
         <source>Create account from Jami Account Management Server (JAMS)</source>
-        <translation>Стварити рачун из сервера за управљање рачун Џами (JAMS)</translation>
+        <translation>Креирајте налог са сервера за управљање налогом Јами (JAMS)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="696"/>
@@ -3277,7 +3283,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="700"/>
         <source>Create new Jami account</source>
-        <translation>Стварити нови рачун Jami</translation>
+        <translation>Креирајте нови Јами налог</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="701"/>
@@ -3287,12 +3293,12 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="702"/>
         <source>About Jami</source>
-        <translation>O Jami</translation>
+        <translation>О Јамију</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="704"/>
         <source>I already have an account</source>
-        <translation>Уже имам рачун.</translation>
+        <translation>Већ имам налог</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="705"/>
@@ -3302,12 +3308,12 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="706"/>
         <source>Welcome to Jami</source>
-        <translation>Dobrodošli na Jami</translation>
+        <translation>Добродошли у Јами</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="710"/>
         <source>Conversations</source>
-        <translation>Konverzacija</translation>
+        <translation>Разговори</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="718"/>
@@ -3354,7 +3360,7 @@ Clicking on confirm will continue transfering account.</source>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="340"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="739"/>
         <source>Maximize</source>
-        <translation>Maksimizirati</translation>
+        <translation>Максимизуј</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="740"/>
@@ -3379,7 +3385,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="746"/>
         <source>Enable local moderators</source>
-        <translation>Omogućite lokalne moderatore</translation>
+        <translation>Омогућите локалне модераторе</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="747"/>
@@ -3404,12 +3410,12 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="759"/>
         <source>Send file</source>
-        <translation>Pošalji podatak</translation>
+        <translation>Пошаљи датотеку</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="782"/>
         <source>Send</source>
-        <translation>Pošalji</translation>
+        <translation>Пошаљи</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="487"/>
@@ -3450,7 +3456,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="590"/>
         <source>Import Jami account from local archive file.</source>
-        <translation>Увезив рачуна Џами из локалног архива.</translation>
+        <translation>Увезите Јами налог из локалне архивске датотеке.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="789"/>
@@ -3460,7 +3466,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="816"/>
         <source>%1 Members</source>
-        <translation>%1 Чланови</translation>
+        <translation>%1 чланова</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="817"/>
@@ -3470,13 +3476,13 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="823"/>
         <source>Ignore all notifications from this conversation</source>
-        <translation>Игнорирајте све обавештења из овог разговора</translation>
+        <translation>Занемари сва обавештења из ове конверзације</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="284"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="826"/>
         <source>Leave conversation</source>
-        <translation>Оставите разговор</translation>
+        <translation>Напустите разговор</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="831"/>
@@ -3506,17 +3512,17 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="840"/>
         <source>Customize</source>
-        <translation>Успособити</translation>
+        <translation>Прилагоди</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="842"/>
         <source>Dismiss</source>
-        <translation>Otpusti</translation>
+        <translation>Одбаци</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="844"/>
         <source>Your profile is only shared with your contacts</source>
-        <translation>Vaš profile je podeljen samo sa Vašim kontaktima</translation>
+        <translation>Ваш профил се дели само са вашим контактима</translation>
     </message>
 </context>
 <context>
@@ -3554,22 +3560,22 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="64"/>
         <source>Full screen</source>
-        <translation>Ceo ekran</translation>
+        <translation>Цео екран</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="68"/>
         <source>Increase font size</source>
-        <translation>Увеличити величину шрифта</translation>
+        <translation>Повећајте величину фонта</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="72"/>
         <source>Decrease font size</source>
-        <translation>Умање величине шрифта</translation>
+        <translation>Смањите величину фонта</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="76"/>
         <source>Reset font size</source>
-        <translation>Ресетирање величине шрифта</translation>
+        <translation>Ресетуј величину фонта</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="100"/>
@@ -3589,12 +3595,12 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="84"/>
         <source>Accept contact request</source>
-        <translation>Прихватајте захтев за контакт</translation>
+        <translation>Прихватите захтев за контакт</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="92"/>
         <source>Edit last message</source>
-        <translation>Редактирајте последњу поруку</translation>
+        <translation>Уредите последњу поруку</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="96"/>
@@ -3604,27 +3610,27 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="216"/>
         <source>Open account creation wizard</source>
-        <translation>Везир за креирање рачуна</translation>
+        <translation>Отворите чаробњак за креирање налога</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="128"/>
         <source>End call</source>
-        <translation>Završi poziv</translation>
+        <translation>Заврши позив</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="108"/>
         <source>Leave conversation</source>
-        <translation>Оставите разговор</translation>
+        <translation>Напустите разговор</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="116"/>
         <source>Start audio call</source>
-        <translation>Почне аудио позив</translation>
+        <translation>Започни аудио позив</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="120"/>
         <source>Start video call</source>
-        <translation>Почне видео позив</translation>
+        <translation>Започните видео позив</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="124"/>
@@ -3639,17 +3645,17 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="136"/>
         <source>Mute microphone</source>
-        <translation>Blokiraj mikrofon</translation>
+        <translation>Искључи микрофон</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="140"/>
         <source>Stop camera</source>
-        <translation>Стварајте камеру</translation>
+        <translation>Заустави камеру</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="144"/>
         <source>Take tile screenshot</source>
-        <translation>Снимите скриншот плочица</translation>
+        <translation>Направите снимак екрана плочице</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="152"/>
@@ -3747,7 +3753,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="486"/>
         <source>&amp;Show Jami</source>
-        <translation>&amp;Show Jami</translation>
+        <translation>&amp;Покажи Јами</translation>
     </message>
 </context>
 <context>
@@ -3755,7 +3761,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="414"/>
         <source>%1 is sharing their location</source>
-        <translation>%1 deli svoju lokaciju</translation>
+        <translation>%1 дели своју локацију</translation>
     </message>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="419"/>
@@ -3773,7 +3779,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/commoncomponents/PresenceIndicator.qml" line="34"/>
         <source>Available</source>
-        <translation>Dostupno</translation>
+        <translation>Доступан</translation>
     </message>
 </context>
 <context>
@@ -4013,7 +4019,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="81"/>
         <source>Use Proxy</source>
-        <translation>Користете прокси</translation>
+        <translation>Користите прокси</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="82"/>
@@ -4033,7 +4039,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="85"/>
         <source>Payment Required</source>
-        <translation>Потребна плаћања</translation>
+        <translation>Обавезно плаћање</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="86"/>
@@ -4074,12 +4080,12 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="93"/>
         <source>Request Entity Too Large</source>
-        <translation>Задатак за захтев је превише велики</translation>
+        <translation>Ентитет захтева је превелик</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="94"/>
         <source>Request URI Too Long</source>
-        <translation>Замољив за УРИ Превише дуго</translation>
+        <translation>Захтев за URI предугачак</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="95"/>
@@ -4089,12 +4095,12 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="96"/>
         <source>Unsupported URI Scheme</source>
-        <translation>Схема неоддржаване УРИ-е</translation>
+        <translation>Неподржана URI шема</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="97"/>
         <source>Bad Extension</source>
-        <translation>Лоша проширења</translation>
+        <translation>Лоше проширење</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="98"/>
@@ -4129,7 +4135,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="104"/>
         <source>Too Many Hops</source>
-        <translation>Превише скока</translation>
+        <translation>Превише скокова</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="105"/>
@@ -4175,7 +4181,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="114"/>
         <source>Internal Server Error</source>
-        <translation>Излога интерног сервера</translation>
+        <translation>Интерна грешка сервера</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="115"/>
@@ -4271,12 +4277,12 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/utils.cpp" line="618"/>
         <source>We would like to thank our contributors, whose efforts over many years have made this software what it is.</source>
-        <translation>Želeli bismo da se zahvalimo našim saradnicima, čiji su napori tokom mnogo godina učinili ovaj softver onim što jeste.</translation>
+        <translation>Желели бисмо да се захвалимо нашим сарадницима, чији су напори током много година учинили овај софтвер оним што јесте.</translation>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="620"/>
         <source>Developers</source>
-        <translation>Programeri</translation>
+        <translation>Програмери</translation>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="621"/>
@@ -4286,12 +4292,12 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/utils.cpp" line="622"/>
         <source>Community Management</source>
-        <translation>Upravljanje zajednicama</translation>
+        <translation>Управљање заједницама</translation>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="623"/>
         <source>Special thanks to</source>
-        <translation>Posebno hvala</translation>
+        <translation>Посебно хвала</translation>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="624"/>
@@ -4570,7 +4576,7 @@ Please try again.</source>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="995"/>
         <source>Unable to lookup…</source>
-        <translation type="unfinished"/>
+        <translation>Није могуће потражити…</translation>
     </message>
 </context>
 <context>

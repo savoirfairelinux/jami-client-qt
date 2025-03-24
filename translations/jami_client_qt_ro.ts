@@ -205,7 +205,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="74"/>
         <source>Scan this QR code on your other device to proceed with importing your account.</source>
-        <translation type="unfinished"/>
+        <translation>Scanează acest cod QR cu celălalt aparat pentru a continua importarea contului.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="75"/>
@@ -221,22 +221,23 @@
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="77"/>
         <source>Action required.
 Please confirm account on the source device.</source>
-        <translation type="unfinished"/>
+        <translation>Acțiune necesară.
+Confirmă contul pe aparatul sursă.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="78"/>
         <source>Authenticating device</source>
-        <translation type="unfinished"/>
+        <translation>Autentificarea aparatului</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="79"/>
         <source>Transferring account…</source>
-        <translation type="unfinished"/>
+        <translation>Se transferă contul…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="80"/>
         <source>If you are unable to scan the QR code, enter this token on your other device to proceed.</source>
-        <translation type="unfinished"/>
+        <translation>Dacă nu poți scana codul QR, introdu acest cod în celălalt aparat pentru a continua.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="81"/>
@@ -251,22 +252,22 @@ Please confirm account on the source device.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="83"/>
         <source>Import failed</source>
-        <translation type="unfinished"/>
+        <translation>Importare nereușită</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="84"/>
         <source>Import from another account</source>
-        <translation type="unfinished"/>
+        <translation>Importă din alt cont</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="85"/>
         <source>Connect to account</source>
-        <translation type="unfinished"/>
+        <translation>Conectează la cont</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="86"/>
         <source>An authentication error occurred. Please check credentials and try again.</source>
-        <translation type="unfinished"/>
+        <translation>A apărut o eroare de autentificare. Verifică datele de autentificare.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="89"/>
@@ -3125,57 +3126,61 @@ Profilul poate fi modificat în reglările contului.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="604"/>
         <source>Connecting to your new device…</source>
-        <translation type="unfinished"/>
+        <translation>Se conectează la noul aparat…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="605"/>
         <source>The export account operation to the new device is in progress.
 Please confirm the import on the new device.</source>
-        <translation type="unfinished"/>
+        <translation>Exportarea contului către noul aparat este în curs.
+Confirmă importarea în noul aparat</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="606"/>
         <source>On the new device, initiate a new account.
 Select Add account -&gt; Connect from another device.
 When ready, scan the QR code.</source>
-        <translation type="unfinished"/>
+        <translation>În noul aparat, creează un cont nou.
+Alege Adaugă un cont -&gt; Conectează-te de la alt aparat.
+Apoi, scanează codul QR.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="607"/>
         <source>Alternatively you could enter the authentication code manually.</source>
-        <translation type="unfinished"/>
+        <translation>Alternativ, poți introduce manual codul de autentificare.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="608"/>
         <source>Enter authentication code</source>
-        <translation type="unfinished"/>
+        <translation>Introdu codul de autentificare</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="609"/>
         <source>You are all set!
 Your account is successfully imported on the new device!</source>
-        <translation type="unfinished"/>
+        <translation>Contul a fost importat cu succes în noul aparat!</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="610"/>
         <source>New device found at address below. Is that you?
 Clicking on confirm will continue transfering account.</source>
-        <translation type="unfinished"/>
+        <translation>Aparat nou conectat la adresa de mai jos. Tu ești?
+Pentru a continua exportarea contului, apasă Confirmă.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="611"/>
         <source>New device IP address: %1</source>
-        <translation type="unfinished"/>
+        <translation>Adresa IP a noului aparat: %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="612"/>
         <source>Do you want to exit?</source>
-        <translation type="unfinished"/>
+        <translation>Vrei să oprești?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="613"/>
         <source>Exiting will cancel the import account operation.</source>
-        <translation type="unfinished"/>
+        <translation>Oprirea va anula importarea contului.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="656"/>
@@ -3898,7 +3903,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="292"/>
         <source>You left the conversation.</source>
-        <translation type="unfinished"/>
+        <translation>Ai părăsit conversația.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="294"/>
@@ -4315,42 +4320,48 @@ Clicking on confirm will continue transfering account.</source>
         <location filename="../src/app/linkdevicemodel.cpp" line="66"/>
         <source>New device identifier is not recognized.
 Please follow above instruction.</source>
-        <translation type="unfinished"/>
+        <translation>Noul identificator al aparatului nu este recunoscut.
+Urmează instrucțiunile de mai sus.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/account.h" line="235"/>
         <source>An authentication error occurred.
 Please check credentials and try again.</source>
-        <translation type="unfinished"/>
+        <translation>A apărut o eroare de autentificare.
+Verifică datele de autentificare.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/account.h" line="238"/>
         <source>A network error occurred.
 Please verify your connection.</source>
-        <translation type="unfinished"/>
+        <translation>A apărut o eroare de rețea.
+Verifică conectarea.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/account.h" line="240"/>
         <source>The operation has timed out.
 Please try again.</source>
-        <translation type="unfinished"/>
+        <translation>Timpul operațiunii a expirat.
+Încearcă din nou.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/account.h" line="242"/>
         <source>An error occurred while exporting the account.
 Please try again.</source>
-        <translation type="unfinished"/>
+        <translation>A apărut o eroare în timpul exportării contului.
+Încearcă din nou.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/account.h" line="244"/>
         <source>Operation was canceled.</source>
-        <translation type="unfinished"/>
+        <translation>Operațiunea a fost anulată.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/account.h" line="247"/>
         <source>An unexpected error occurred.
 Please try again.</source>
-        <translation type="unfinished"/>
+        <translation>A apărut o eroare neașteptată.
+Încearcă din nou.</translation>
     </message>
 </context>
 <context>

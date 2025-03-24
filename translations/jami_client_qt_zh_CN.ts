@@ -205,7 +205,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="74"/>
         <source>Scan this QR code on your other device to proceed with importing your account.</source>
-        <translation type="unfinished"/>
+        <translation>在其他设备上扫描此二维码以继续导入您的帐户。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="75"/>
@@ -221,22 +221,23 @@
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="77"/>
         <source>Action required.
 Please confirm account on the source device.</source>
-        <translation type="unfinished"/>
+        <translation>需要执行操作。
+请在原设备上确认账户。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="78"/>
         <source>Authenticating device</source>
-        <translation type="unfinished"/>
+        <translation>验证设备中</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="79"/>
         <source>Transferring account…</source>
-        <translation type="unfinished"/>
+        <translation>传输帐户...</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="80"/>
         <source>If you are unable to scan the QR code, enter this token on your other device to proceed.</source>
-        <translation type="unfinished"/>
+        <translation>如果无法扫描二维码，请在其他设备上输入此令牌以继续。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="81"/>
@@ -256,17 +257,17 @@ Please confirm account on the source device.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="84"/>
         <source>Import from another account</source>
-        <translation type="unfinished"/>
+        <translation>从其他帐户导入</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="85"/>
         <source>Connect to account</source>
-        <translation type="unfinished"/>
+        <translation>连接到账户</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="86"/>
         <source>An authentication error occurred. Please check credentials and try again.</source>
-        <translation type="unfinished"/>
+        <translation>身份验证错误。请检查凭证并重试。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="89"/>
@@ -723,7 +724,7 @@ Please confirm account on the source device.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="282"/>
         <source>Delete conversation</source>
-        <translation type="unfinished"/>
+        <translation>删除对话</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="307"/>
@@ -3125,57 +3126,61 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="604"/>
         <source>Connecting to your new device…</source>
-        <translation type="unfinished"/>
+        <translation>连接到新设备...</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="605"/>
         <source>The export account operation to the new device is in progress.
 Please confirm the import on the new device.</source>
-        <translation type="unfinished"/>
+        <translation>正在向新设备导出帐户。
+请在新设备上确认导入。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="606"/>
         <source>On the new device, initiate a new account.
 Select Add account -&gt; Connect from another device.
 When ready, scan the QR code.</source>
-        <translation type="unfinished"/>
+        <translation>在新设备上，添加新帐户。
+选择添加帐户→从其他设备连接。
+准备就绪后，扫描 二维码。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="607"/>
         <source>Alternatively you could enter the authentication code manually.</source>
-        <translation type="unfinished"/>
+        <translation>或者，您也可以手动输入验证码。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="608"/>
         <source>Enter authentication code</source>
-        <translation type="unfinished"/>
+        <translation>输入验证码</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="609"/>
         <source>You are all set!
 Your account is successfully imported on the new device!</source>
-        <translation type="unfinished"/>
+        <translation>一切就绪！您的账户已成功导入新设备！</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="610"/>
         <source>New device found at address below. Is that you?
 Clicking on confirm will continue transfering account.</source>
-        <translation type="unfinished"/>
+        <translation>在以下地址找到新设备。是你吗？
+点击确认将继续转移帐户。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="611"/>
         <source>New device IP address: %1</source>
-        <translation type="unfinished"/>
+        <translation>新设备 IP 地址： %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="612"/>
         <source>Do you want to exit?</source>
-        <translation type="unfinished"/>
+        <translation>要退出吗？</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="613"/>
         <source>Exiting will cancel the import account operation.</source>
-        <translation type="unfinished"/>
+        <translation>退出将取消导入账户。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="656"/>
@@ -3898,7 +3903,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="292"/>
         <source>You left the conversation.</source>
-        <translation type="unfinished"/>
+        <translation>您离开了对话。</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="294"/>
@@ -4315,42 +4320,48 @@ Clicking on confirm will continue transfering account.</source>
         <location filename="../src/app/linkdevicemodel.cpp" line="66"/>
         <source>New device identifier is not recognized.
 Please follow above instruction.</source>
-        <translation type="unfinished"/>
+        <translation>新设备标识符无法识别。
+请按照上述指示操作。</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/account.h" line="235"/>
         <source>An authentication error occurred.
 Please check credentials and try again.</source>
-        <translation type="unfinished"/>
+        <translation>身份验证错误。
+请检查凭证并重试。</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/account.h" line="238"/>
         <source>A network error occurred.
 Please verify your connection.</source>
-        <translation type="unfinished"/>
+        <translation>网络错误。
+请验证您的连接。</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/account.h" line="240"/>
         <source>The operation has timed out.
 Please try again.</source>
-        <translation type="unfinished"/>
+        <translation>操作超时。
+请重试。</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/account.h" line="242"/>
         <source>An error occurred while exporting the account.
 Please try again.</source>
-        <translation type="unfinished"/>
+        <translation>导出帐户时出错。
+请重试。</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/account.h" line="244"/>
         <source>Operation was canceled.</source>
-        <translation type="unfinished"/>
+        <translation>操作已取消。</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/account.h" line="247"/>
         <source>An unexpected error occurred.
 Please try again.</source>
-        <translation type="unfinished"/>
+        <translation>发生意外错误。 
+请重试。</translation>
     </message>
 </context>
 <context>
