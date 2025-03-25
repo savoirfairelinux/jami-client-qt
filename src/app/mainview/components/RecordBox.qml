@@ -145,9 +145,9 @@ Popup {
         height: 300
 
         Rectangle {
+            id: previewWidget
 
             radius: 5
-            id: previewWidget
             anchors.centerIn: parent
             height: root.isAudio ? 100 : 300
             width: 300
@@ -210,7 +210,7 @@ Popup {
                 }
             }
 
-            ColumnLayout{
+            ColumnLayout {
                 id: mainLayout
 
                 anchors.fill: parent
@@ -258,7 +258,6 @@ Popup {
                         Layout.alignment: Qt.AlignCenter
                         preferredSize: btnSize
 
-
                         imageColor: JamiTheme.whiteColor
 
                         source: JamiResources.record_round_black_24dp_svg
@@ -295,7 +294,6 @@ Popup {
                         preferredSize: btnSize
                         source: JamiResources.record_black_24dp_svg
 
-
                         imageContainerHeight: 20
                         imageContainerWidth: 20
                         imageColor: JamiTheme.whiteColor
@@ -314,7 +312,7 @@ Popup {
 
                         onClicked: {
                             root.photo = videoProvider.captureVideoFrame(VideoDevices.getDefaultDevice());
-                                         updateState(RecordBox.States.REC_SUCCESS);
+                            updateState(RecordBox.States.REC_SUCCESS);
                         }
                     }
 
@@ -373,14 +371,18 @@ Popup {
                         background: RoundedBorderRectangle {
                             opacity: btnRestart.hovered ? 1 : 0.7
                             fillColor: btnRestart.hovered ? JamiTheme.recordBoxHoverColor : JamiTheme.recordBoxButtonColor
-                            radius: {
+                            radius: isRTL ? {
+                                "tl": 0,
+                                "tr": 5,
+                                "br": 5,
+                                "bl": 0
+                            } : {
                                 "tl": 5,
                                 "tr": 0,
                                 "br": 0,
                                 "bl": 5
                             }
                         }
-
 
                         onClicked: {
                             if (!root.isPhoto)
@@ -415,7 +417,6 @@ Popup {
                         }
                     }
 
-
                     JamiPushButton {
                         id: btnSend
 
@@ -436,7 +437,12 @@ Popup {
                         background: RoundedBorderRectangle {
                             opacity: btnSend.hovered ? 1 : 0.7
                             fillColor: JamiTheme.chatViewFooterSendButtonColor //btnSend.hovered ? JamiTheme.recordBoxHoverColor : JamiTheme.recordBoxButtonColor
-                            radius: {
+                            radius: isRTL ? {
+                                "tl": 5,
+                                "tr": 0,
+                                "br": 0,
+                                "bl": 5
+                            } : {
                                 "tl": 0,
                                 "tr": 5,
                                 "br": 5,
@@ -464,9 +470,8 @@ Popup {
                         repeat: true
                         onTriggered: updateTimer()
                     }
-
-                    }
+                }
+            }
         }
-    }
     }
 }
