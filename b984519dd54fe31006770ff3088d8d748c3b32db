@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57020884_ab802c1a",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-03-25T20:54:28Z",
+      "side": 1,
+      "message": "We had a discussion about whether it makes sense to translate \"Beta\" a few months ago when Andreas added the Build ID to the \"About Jami\" pop-up, and our conclusion was that it should be considered part of the version number and left untranslated.\n\n(The `buildID` and `version` strings are translatable and it makes sense to put them to the right for RTL languages, so that part of the patch is fine.)",
+      "range": {
+        "startLine": 48,
+        "startChar": 4,
+        "endLine": 48,
+        "endChar": 40
+      },
+      "revId": "b984519dd54fe31006770ff3088d8d748c3b32db",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
