@@ -100,6 +100,7 @@ Popup {
                 id: titleText
 
                 Layout.leftMargin: popupMargins
+                Layout.rightMargin: popupMargins
                 Layout.bottomMargin: 20
                 Layout.topMargin: closeButtonVisible ? 0 : 30
                 Layout.alignment: Qt.AlignLeft
