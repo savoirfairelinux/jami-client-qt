@@ -17,6 +17,7 @@
 
 import QtQuick
 import QtQuick.Controls
+import QtWebEngine
 
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
@@ -37,8 +38,11 @@ QtObject {
     readonly property bool isHidden: visibility === Window.Hidden ||
                                      visibility === Window.Minimized
 
-    // Used to store if a OngoingCallPage component is fullscreened.
+    // Used to store if a CallStackView component is fullscreened.
     property bool isCallFullscreen: false
+
+    // Used to store if a WebEngineView component is fullscreened.
+    property bool isWebFullscreen: false
 
     // QWK: Provide spacing for widgets that may be occluded by the system buttons.
     property QtObject qwkSystemButtonSpacing: QtObject {
@@ -150,9 +154,8 @@ QtObject {
     // Adds an item to the fullscreen item stack. Automatically puts
     // the main window in fullscreen mode if needed. Callbacks should be used
     // to perform component-specific tasks upon successful transitions.
-    function pushFullScreenItem(item, removedCb=null) {
-        if (item === null || item === undefined
-                || priv.fullScreenItems.length >= 3) {
+    function pushFullScreenItem(item, removedCb=undefined) {
+        if (!item || priv.fullScreenItems.length >= 3) {
             return
         }
 
@@ -176,37 +179,37 @@ QtObject {
 
     // Remove an item if specified, or by default, the top item. Automatically
     // resets the main window to windowed mode if no items remain in the stack.
-    function popFullScreenItem(obj=null) {
+    function popFullScreenItem(obj = undefined) {
         // Remove the item and reparent it to its original parent.
-        if (obj === null) {
-            obj = priv.fullScreenItems.pop()
+        if (obj === undefined) {
+            obj = priv.fullScreenItems.pop();
         } else {
             const index = priv.fullScreenItems.indexOf(obj);
             if (index > -1) {
                 priv.fullScreenItems.splice(index, 1);
             }
         }
-        if (obj !== undefined) {
+        if (obj && typeof obj === 'object') {
             if (obj.item !== appWindow) {
-                // Clear anchors first, then set parent, then reset anchors
-                obj.item.anchors.fill = undefined
-                obj.item.parent = obj.prevParent
-                obj.item.anchors.fill = obj.prevAnchorsFill
+                // Clear anchors first, then set parent, then reset anchors.
+                obj.item.anchors.fill = undefined;
+                obj.item.parent = obj.prevParent;
+                obj.item.anchors.fill = obj.prevAnchorsFill;
 
-                if (obj.removedCb) {
-                    obj.removedCb()
+                // Call removed callback if it's a function.
+                if (typeof obj.removedCb === 'function') {
+                    obj.removedCb();
                 }
             }
 
             // Reevaluate isCallFullscreen.
-            priv.fullScreenItemsChanged()
+            priv.fullScreenItemsChanged();
         }
 
-        // Only leave fullscreen mode if our window isn't in fullscreen
-        // mode already.
+        // Only leave fullscreen mode if our window isn't in fullscreen mode already.
         if (priv.fullScreenItems.length === 0 && priv.windowedVisibility !== Window.Hidden) {
             // Simply recall the last visibility state.
-            visibility = priv.windowedVisibility
+            visibility = priv.windowedVisibility;
         }
     }
 
@@ -249,6 +252,9 @@ QtObject {
         onFullScreenItemsChanged: {
             isCallFullscreen = fullScreenItems
                 .filter(o => o.item.objectName === "callViewLoader")
+                .length
+            isWebFullscreen = fullScreenItems
+                .filter(o => o.item instanceof WebEngineView)
                 .length
         }
 

@@ -43,7 +43,7 @@ Item {
     Shortcut {
         sequence: "F11"
         context: Qt.ApplicationShortcut
-        enabled: CurrentConversation.hasCall
+        enabled: CurrentConversation.hasCall && !layoutManager.isWebFullscreen
         onActivated: toggleFullScreen();
     }
 
