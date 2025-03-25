@@ -33,6 +33,52 @@
       "message": "!build",
       "revId": "6bf482c4d3c2cea223ea365ba8a5889de7a9577b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03a0258a_aaff3990",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2025-03-25T15:03:34Z",
+      "side": 1,
+      "message": "Do you want to update now to avoid repeating \"update\" three times.\n\"A new version of {} is available\" seems clearer to me, since the user updates to a new version, the user doesn\u0027t update to an update.\nThe noun and the verb \"update\" both exist, but it sounds odd to use both next to each other.",
+      "range": {
+        "startLine": 538,
+        "startChar": 83,
+        "endLine": 538,
+        "endChar": 124
+      },
+      "revId": "6bf482c4d3c2cea223ea365ba8a5889de7a9577b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4896a0a7_7c54d921",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2025-03-25T15:03:34Z",
+      "side": 1,
+      "message": "include app name with placeholder",
+      "range": {
+        "startLine": 538,
+        "startChar": 53,
+        "endLine": 538,
+        "endChar": 68
+      },
+      "revId": "6bf482c4d3c2cea223ea365ba8a5889de7a9577b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
