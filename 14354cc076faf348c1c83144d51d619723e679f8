@@ -68,6 +68,29 @@
       },
       "revId": "14354cc076faf348c1c83144d51d619723e679f8",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "703e3e25_1dc2fe48",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 613,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-03-27T13:35:11Z",
+      "side": 1,
+      "message": "I\u0027m not convinced this change makes sense. These two strings are shown when the user clicks on the \"Back\" button, which a priori is independent from the account linking operation.\n\nThe word \"exit\" is perhaps not the best here and I\u0027m fine with replacing it by something else (go back? leave?), but in my opinion the first string should still refer to the actual action taken by the user (namely clicking on the \"Back\" button), and only the second string should mention the impact on the account import operation.",
+      "range": {
+        "startLine": 612,
+        "startChar": 49,
+        "endLine": 613,
+        "endChar": 109
+      },
+      "revId": "14354cc076faf348c1c83144d51d619723e679f8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
