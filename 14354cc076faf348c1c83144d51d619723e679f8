@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "691e4eb7_0b5b65fb",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-03-27T13:16:57Z",
+      "side": 1,
+      "message": "This change is incorrect: the \"other device\" in this context is the one that exports the account, whereas \"new device\" refers the the one that imports the account.",
+      "range": {
+        "startLine": 74,
+        "startChar": 107,
+        "endLine": 74,
+        "endChar": 124
+      },
+      "revId": "14354cc076faf348c1c83144d51d619723e679f8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea88c1d8_3cbd0dee",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-03-27T13:16:57Z",
+      "side": 1,
+      "message": "No reason to use the passive voice here.",
+      "range": {
+        "startLine": 80,
+        "startChar": 42,
+        "endLine": 80,
+        "endChar": 80
+      },
+      "revId": "14354cc076faf348c1c83144d51d619723e679f8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7cf029e2_dcf63e95",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-03-27T13:16:57Z",
+      "side": 1,
+      "message": "I feel like \"setup\" is too generic.",
+      "range": {
+        "startLine": 609,
+        "startChar": 44,
+        "endLine": 609,
+        "endChar": 49
+      },
+      "revId": "14354cc076faf348c1c83144d51d619723e679f8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
