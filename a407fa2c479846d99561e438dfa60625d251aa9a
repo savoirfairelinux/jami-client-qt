@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfc16d18_4725531b",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 21
+      },
+      "lineNbr": 612,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-03-29T04:48:43Z",
+      "side": 0,
+      "message": "What do you prefer\n`Go back`\nor\n`Click here to go back`\nor\n`Go back {somewhere}` (Firefox says `Go back one page (Alt+Left Arrow)`\n?",
+      "range": {
+        "startLine": 612,
+        "startChar": 55,
+        "endLine": 612,
+        "endChar": 75
+      },
+      "revId": "a407fa2c479846d99561e438dfa60625d251aa9a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
