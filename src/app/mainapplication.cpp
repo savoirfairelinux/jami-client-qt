@@ -431,7 +431,7 @@ MainApplication::initQmlLayer()
     // Register the crash reporter as a context property in the QML engine.
     engine_->rootContext()->setContextProperty("crashReporter", crashReporter_);
 
-    QUrl url = u"qrc:/MainApplicationWindow.qml"_qs;
+    QUrl url = QStringLiteral("qrc:/MainApplicationWindow.qml");
 #ifdef QT_DEBUG
     if (parser_.isSet("test")) {
         // List the QML files in the project source tree.
@@ -445,7 +445,7 @@ MainApplication::initQmlLayer()
         const auto testHeight = parser_.isSet("height") ? parser_.value("height").toInt() : 0;
         engine_->rootContext()->setContextProperty("testWidth", testWidth);
         engine_->rootContext()->setContextProperty("testHeight", testHeight);
-        url = u"qrc:/ComponentTestWindow.qml"_qs;
+        url = QStringLiteral("qrc:/ComponentTestWindow.qml");
     }
 #endif
     QObject::connect(
