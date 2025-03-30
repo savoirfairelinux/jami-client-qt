@@ -91,6 +91,7 @@ endif()
 
 if(WIN32)
   list(APPEND QWINDOWKIT_OPTIONS QWINDOWKIT_ENABLE_WINDOWS_SYSTEM_BORDERS OFF)
+  list(APPEND QWINDOWKIT_OPTIONS QWINDOWKIT_BUILD_QUICK ON)
 endif()
 
 # qmsetup uses the wrong package dir on some distributions
@@ -105,7 +106,7 @@ endif()
 add_fetch_content(
   TARGET qwindowkit
   URL https://github.com/stdware/qwindowkit.git
-  BRANCH 79b1f3110754f9c21af2d7dacbd07b1a9dbaf6ef
+  BRANCH 758b00cb6c2d924be3a1ea137ec366dc33a5132d
   PATCHES ${QWINDOWKIT_PATCHES}
   OPTIONS ${QWINDOWKIT_OPTIONS}
 )
