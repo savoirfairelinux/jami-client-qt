@@ -22,6 +22,30 @@
       },
       "revId": "a407fa2c479846d99561e438dfa60625d251aa9a",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c31547f3_1c2db63c",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 21
+      },
+      "lineNbr": 612,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-03-31T14:01:46Z",
+      "side": 0,
+      "message": "None of these really make sense in context. These two strings are shown on a confirmation dialog that pops up *after* the user has already clicked on the back button. The goal is to make sure that the user is aware that going back will cancel the account import operation, and to give them the option of staying on the page if they don\u0027t want that to happen. That\u0027s why the current string (\"Do you want to exit?\") is formulated as a question. If you want to change it then the new string should still be phrased as a question.",
+      "parentUuid": "dfc16d18_4725531b",
+      "range": {
+        "startLine": 612,
+        "startChar": 55,
+        "endLine": 612,
+        "endChar": 75
+      },
+      "revId": "a407fa2c479846d99561e438dfa60625d251aa9a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
