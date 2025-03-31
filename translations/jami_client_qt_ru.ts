@@ -100,28 +100,28 @@
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="316"/>
-        <source>An error occurred while fetching this repository</source>
-        <translation>Произошла ошибка при получении данных из репозитория</translation>
+        <source>An error occurred while fetching this repository.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="318"/>
-        <source>Unrecognized conversation mode</source>
-        <translation>Неопознанный режим беседы</translation>
-    </message>
-    <message>
-        <location filename="../src/app/currentconversation.cpp" line="322"/>
-        <source>Insufficient permission to update conversation information</source>
-        <translation>Недостаточно прав для обновления информации о беседе</translation>
-    </message>
-    <message>
-        <location filename="../src/app/currentconversation.cpp" line="324"/>
-        <source>An error occurred while committing a new message</source>
-        <translation>Произошла ошибка при отправке нового сообщения</translation>
+        <source>Unrecognized conversation mode.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="320"/>
-        <source>An invalid message was detected</source>
-        <translation>Обнаружено недопустимое сообщение</translation>
+        <source>An invalid message was detected.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/currentconversation.cpp" line="322"/>
+        <source>Insufficient permission to update conversation information.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/currentconversation.cpp" line="324"/>
+        <source>An error occurred while committing a new message.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3570,52 +3570,52 @@ Clicking on confirm will continue transfering account.</source>
         <translation>Панель поиска</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="64"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="132"/>
         <source>Full screen</source>
         <translation>Полноэкранный</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="68"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="64"/>
         <source>Increase font size</source>
         <translation>Увеличить размер шрифта</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="72"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="68"/>
         <source>Decrease font size</source>
         <translation>Уменьшить размер шрифта</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="76"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="72"/>
         <source>Reset font size</source>
         <translation>Сбросить размер шрифта</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="100"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="96"/>
         <source>Clear history</source>
         <translation>Очистить историю</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="88"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="84"/>
         <source>Search messages/files</source>
         <translation>Искать сообщения/файлы</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="104"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="100"/>
         <source>Block contact</source>
         <translation>Заблокировать контакт</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="84"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="80"/>
         <source>Accept contact request</source>
         <translation>Принять запрос в контакты</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="92"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="88"/>
         <source>Edit last message</source>
         <translation>Изменить последнее сообщение</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="96"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="92"/>
         <source>Cancel message edition</source>
         <translation>Отменить правку сообщения</translation>
     </message>
@@ -3625,32 +3625,32 @@ Clicking on confirm will continue transfering account.</source>
         <translation>Мастер создания аккаунта</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="128"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="124"/>
         <source>End call</source>
         <translation>Завершить вызов</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="108"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="104"/>
         <source>Leave conversation</source>
         <translation>Покинуть беседу</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="116"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="112"/>
         <source>Start audio call</source>
         <translation>Начать голосовой вызов</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="120"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="116"/>
         <source>Start video call</source>
         <translation>Начать видеовызов</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="124"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="120"/>
         <source>Answer incoming call</source>
         <translation>Ответить на входящий звонок</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="132"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="128"/>
         <source>Decline call</source>
         <translation>Отклонить звонок</translation>
     </message>
@@ -4317,13 +4317,6 @@ Clicking on confirm will continue transfering account.</source>
         <translation>Это список людей, которые с полезным результатом потратили немало времени на Jami. Любые подобные участники, которые хотят добавиться в список, должны связаться с нами.</translation>
     </message>
     <message>
-        <location filename="../src/app/linkdevicemodel.cpp" line="66"/>
-        <source>New device identifier is not recognized.
-Please follow above instruction.</source>
-        <translation>Новый идентификатор устройства не распознан.
-Пожалуйста, следуйте инструкциям выше.</translation>
-    </message>
-    <message>
         <location filename="../src/libclient/api/account.h" line="235"/>
         <source>An authentication error occurred.
 Please check credentials and try again.</source>
@@ -4362,6 +4355,11 @@ Please try again.</source>
 Please try again.</source>
         <translation>Непредвиденная ошибка.
 Попробуйте еще раз.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/linkdevicemodel.cpp" line="66"/>
+        <source>Unrecognized new device identifier. Please follow the instructions above.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

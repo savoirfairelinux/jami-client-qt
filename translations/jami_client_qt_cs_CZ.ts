@@ -37,12 +37,12 @@
     <message>
         <location filename="../src/app/conversationlistmodelbase.cpp" line="127"/>
         <source>Deleted media</source>
-        <translation type="unfinished"/>
+        <translation>Odstraněná mádia</translation>
     </message>
     <message>
         <location filename="../src/app/conversationlistmodelbase.cpp" line="144"/>
         <source>(deleted message)</source>
-        <translation type="unfinished"/>
+        <translation>(smazaná zpráva)</translation>
     </message>
 </context>
 <context>
@@ -50,12 +50,12 @@
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="180"/>
         <source>%1 has joined the conversation.</source>
-        <translation type="unfinished"/>
+        <translation>%1 se připojil ke konverzaci.</translation>
     </message>
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="182"/>
         <source>%1 has left the conversation.</source>
-        <translation type="unfinished"/>
+        <translation>%1 opustil konverzaci.</translation>
     </message>
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="202"/>
@@ -65,7 +65,7 @@
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="257"/>
         <source>%1 received a new invitation</source>
-        <translation type="unfinished"/>
+        <translation>%1 dostal novou pozvánku</translation>
     </message>
 </context>
 <context>
@@ -100,28 +100,28 @@
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="316"/>
-        <source>An error occurred while fetching this repository</source>
-        <translation>Při načítání tohoto úložiště došlo k chybě.</translation>
+        <source>An error occurred while fetching this repository.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="318"/>
-        <source>Unrecognized conversation mode</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/app/currentconversation.cpp" line="322"/>
-        <source>Insufficient permission to update conversation information</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/app/currentconversation.cpp" line="324"/>
-        <source>An error occurred while committing a new message</source>
+        <source>Unrecognized conversation mode.</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="320"/>
-        <source>An invalid message was detected</source>
-        <translation>Byla zjištěna neplatná zpráva</translation>
+        <source>An invalid message was detected.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/currentconversation.cpp" line="322"/>
+        <source>Insufficient permission to update conversation information.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/currentconversation.cpp" line="324"/>
+        <source>An error occurred while committing a new message.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -256,7 +256,7 @@ Please confirm account on the source device.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="84"/>
         <source>Import from another account</source>
-        <translation type="unfinished"/>
+        <translation>Import z jiného účtu</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="85"/>
@@ -613,7 +613,7 @@ Please confirm account on the source device.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="196"/>
         <source>Extensions</source>
-        <translation type="unfinished"/>
+        <translation>Rozšíření</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="206"/>
@@ -966,7 +966,7 @@ Pokud uživatelské jméno není zvoleno, bude tomuto účtu jako uživatelské 
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="885"/>
         <source>Donate</source>
-        <translation type="unfinished"/>
+        <translation>Darovat</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="887"/>
@@ -1096,12 +1096,12 @@ Pokud uživatelské jméno není zvoleno, bude tomuto účtu jako uživatelské 
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="714"/>
         <source>Decline invitation</source>
-        <translation type="unfinished"/>
+        <translation>Odmítnout pozvání</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="715"/>
         <source>Accept invitation</source>
-        <translation type="unfinished"/>
+        <translation>Přijmout pozvání</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="721"/>
@@ -1169,7 +1169,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="481"/>
         <source>If the account has not been backed up or added to another device, the account and registered username will be IRREVOCABLY LOST.</source>
-        <translation type="unfinished"/>
+        <translation>Pokud účet nebyl zálohován nebo přidán do jiného zařízení, účet a registrované uživatelské jméno budou NENÁVRATNĚ ZTRACENY.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="508"/>
@@ -1259,7 +1259,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="827"/>
         <source>Conversation type</source>
-        <translation type="unfinished"/>
+        <translation>Typ konverzace</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="832"/>
@@ -1284,7 +1284,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="897"/>
         <source>Connected</source>
-        <translation type="unfinished"/>
+        <translation>Připojeno</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="898"/>
@@ -1314,17 +1314,17 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="903"/>
         <source>Connection</source>
-        <translation type="unfinished"/>
+        <translation>Spojení</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="904"/>
         <source>Channels</source>
-        <translation type="unfinished"/>
+        <translation>Kanály</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="905"/>
         <source>Copy all data</source>
-        <translation type="unfinished"/>
+        <translation>Kopírovat všechna data</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="561"/>
@@ -1531,7 +1531,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="64"/>
         <source>Add another account</source>
-        <translation type="unfinished"/>
+        <translation>Přidat další účet</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="65"/>
@@ -1562,7 +1562,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="232"/>
         <source>Your account only exists on this device. If you lose your device or uninstall the application, your account will be deleted and CANNOT be recovered. You can &lt;a href=&apos;blank&apos;&gt; back up your account &lt;/a&gt; now or later (in the Account Settings).</source>
-        <translation type="unfinished"/>
+        <translation>Váš účet existuje pouze na tomto zařízení. Pokud ztratíte zařízení nebo odinstalujete aplikaci, váš účet bude smazán a NELZE jej obnovit. Účet můžete &lt;a href=&apos;blank&apos;&gt; zálohovat &lt;/a&gt; teď nebo později (v nastavení účtu).</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="257"/>
@@ -1663,12 +1663,12 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="33"/>
         <source>Incoming audio call from %1</source>
-        <translation type="unfinished"/>
+        <translation>Příchozí hlasový hovor od %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="34"/>
         <source>Incoming video call from %1</source>
-        <translation type="unfinished"/>
+        <translation>Příchozí video hovor od %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="283"/>
@@ -2038,7 +2038,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="415"/>
         <source>Configure existing SIP account</source>
-        <translation type="unfinished"/>
+        <translation>Nakonfigurujte stávající SIP účet</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="420"/>
@@ -2048,12 +2048,12 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="425"/>
         <source>Your Jami account is registered only on this device as an archive containing the keys of your account. Access to this archive can be protected with a password.</source>
-        <translation type="unfinished"/>
+        <translation>Váš účet Jami je registrován pouze na tomto zařízení jako archiv obsahující klíče vašeho účtu. Přístup do tohoto archivu lze chránit heslem.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="427"/>
         <source>This Jami account exists only on this device. The account will be lost if this device is lost or the application is uninstalled. It is recommended to make a backup of this account.</source>
-        <translation type="unfinished"/>
+        <translation>Tento účet Jami existuje pouze na tomto zařízení. V případě ztráty tohoto zařízení nebo odinstalace aplikace bude účet ztracen. Doporučuje se vytvořit zálohu tohoto účtu.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="434"/>
@@ -2139,7 +2139,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="103"/>
         <source>Automatically answer incoming calls</source>
-        <translation type="unfinished"/>
+        <translation>Automaticky přijímat příchozí hovory</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="107"/>
@@ -2384,7 +2384,7 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="452"/>
         <source>A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected with a password.</source>
-        <translation type="unfinished"/>
+        <translation>Účet Jami je vytvořen a uložen lokálně pouze na tomto zařízení jako archiv obsahující klíče vašeho účtu. Přístup do tohoto archivu může být volitelně chráněn heslem.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="454"/>
@@ -2394,12 +2394,12 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="455"/>
         <source>Use this account on other devices</source>
-        <translation type="unfinished"/>
+        <translation>Použijte tento účet na jiných zařízeních</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="456"/>
         <source>This account is created and stored locally, if you want to use it on another device you have to link the new device to this account.</source>
-        <translation type="unfinished"/>
+        <translation>Tento účet je vytvořen a uložen lokálně, pokud jej chcete používat na jiném zařízení, musíte nové zařízení propojit s tímto účtem.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="469"/>
@@ -2409,12 +2409,12 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="470"/>
         <source>Do you want to unlink the selected device? To continue, enter account password and click Unlink.</source>
-        <translation type="unfinished"/>
+        <translation>Chcete odpojit vybrané zařízení? Chcete-li pokračovat, zadejte heslo účtu a klikněte na Odpojit.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="471"/>
         <source>Account PIN code is:</source>
-        <translation type="unfinished"/>
+        <translation>PIN kód účtu je:</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="475"/>
@@ -2424,7 +2424,7 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="476"/>
         <source>Blocked</source>
-        <translation type="unfinished"/>
+        <translation>Blokováno</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="477"/>
@@ -2434,34 +2434,34 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="486"/>
         <source>Device name:</source>
-        <translation type="unfinished"/>
+        <translation>Jméno zařízení:</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="519"/>
         <source>MB, 0 = unlimited</source>
-        <translation type="unfinished"/>
+        <translation>MB, 0 = neomezeno</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="523"/>
         <source>Incorrect password.</source>
-        <translation type="unfinished"/>
+        <translation>Neplatné heslo.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="524"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="541"/>
         <source>A network error occurred.</source>
-        <translation type="unfinished"/>
+        <translation>Došlo k chybě sítě.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="525"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="549"/>
         <source>An unexpected error occurred.</source>
-        <translation type="unfinished"/>
+        <translation>Došlo k neočekávané chybě.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="540"/>
         <source>An error occurred while checking for a new version.</source>
-        <translation type="unfinished"/>
+        <translation>Při kontrole nové verze došlo k chybě.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="542"/>
@@ -2491,12 +2491,12 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="556"/>
         <source>(Experimental) Enable call support for groups</source>
-        <translation type="unfinished"/>
+        <translation>(Experimentální) Povolit podporu volání pro skupiny</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="557"/>
         <source>This feature will enable the audio and video call buttons in group conversations.</source>
-        <translation type="unfinished"/>
+        <translation>Tato funkce povolí tlačítka pro hlasové a video hovory ve skupinových konverzacích.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="567"/>
@@ -2567,7 +2567,7 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="636"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>Instalovat</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="637"/>
@@ -2577,17 +2577,17 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="638"/>
         <source>Install manually</source>
-        <translation type="unfinished"/>
+        <translation>Nainstalovat ručně</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="639"/>
         <source>Install an extension directly from your device.</source>
-        <translation type="unfinished"/>
+        <translation>Nainstalujte rozšíření přímo ze svého zařízení.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="640"/>
         <source>Available</source>
-        <translation type="unfinished"/>
+        <translation>K dispozici</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="641"/>
@@ -2597,12 +2597,12 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="663"/>
         <source>Version %1</source>
-        <translation type="unfinished"/>
+        <translation>Verze %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="664"/>
         <source>Last update %1</source>
-        <translation type="unfinished"/>
+        <translation>Poslední aktualizace %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="665"/>
@@ -2612,12 +2612,12 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="666"/>
         <source>Proposed by %1</source>
-        <translation type="unfinished"/>
+        <translation>Navrhl %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="670"/>
         <source>More information</source>
-        <translation type="unfinished"/>
+        <translation>Více informací</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="699"/>
@@ -2627,12 +2627,12 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="760"/>
         <source>Audio message</source>
-        <translation type="unfinished"/>
+        <translation>Zvuková zpráva</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="761"/>
         <source>Video message</source>
-        <translation type="unfinished"/>
+        <translation>Video zpráva</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="763"/>
@@ -2677,32 +2677,32 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="778"/>
         <source>Show formatting</source>
-        <translation type="unfinished"/>
+        <translation>Zobrazit formátování</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="779"/>
         <source>Hide formatting</source>
-        <translation type="unfinished"/>
+        <translation>Skrýt formátování</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="786"/>
         <source>%1 replied to</source>
-        <translation type="unfinished"/>
+        <translation>%1 odpověděl na</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="790"/>
         <source>Send a message to %1 in order to add them as a contact</source>
-        <translation type="unfinished"/>
+        <translation>Chcete-li je přidat jako kontakt, odešlete zprávu%1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="796"/>
         <source>Started a call</source>
-        <translation type="unfinished"/>
+        <translation>Volání zahájeno</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="852"/>
         <source>Share your Jami identifier in order to be contacted more easily!</source>
-        <translation type="unfinished"/>
+        <translation>Sdílejte svůj Jami identifikátor, abyste byli snáze kontaktováni!</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="853"/>
@@ -3117,57 +3117,62 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="604"/>
         <source>Connecting to your new device…</source>
-        <translation type="unfinished"/>
+        <translation>Connecting to your new device…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="605"/>
         <source>The export account operation to the new device is in progress.
 Please confirm the import on the new device.</source>
-        <translation type="unfinished"/>
+        <translation>Probíhá operace exportu účtu do nového zařízení.
+Potvrďte import na novém zařízení.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="606"/>
         <source>On the new device, initiate a new account.
 Select Add account -&gt; Connect from another device.
 When ready, scan the QR code.</source>
-        <translation type="unfinished"/>
+        <translation>Na novém zařízení spusťte nový účet.
+Vyberte Přidat účet -&gt; Připojit z jiného zařízení.
+Až budete připraveni, naskenujte QR kód.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="607"/>
         <source>Alternatively you could enter the authentication code manually.</source>
-        <translation type="unfinished"/>
+        <translation>Případně můžete zadat ověřovací kód ručně.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="608"/>
         <source>Enter authentication code</source>
-        <translation type="unfinished"/>
+        <translation>Zadejte ověřovací kód</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="609"/>
         <source>You are all set!
 Your account is successfully imported on the new device!</source>
-        <translation type="unfinished"/>
+        <translation>Vše je nastaveno!
+Váš účet byl úspěšně importován do nového zařízení!</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="610"/>
         <source>New device found at address below. Is that you?
 Clicking on confirm will continue transfering account.</source>
-        <translation type="unfinished"/>
+        <translation>Nové zařízení nalezeno na níže uvedené adrese. Jste to vy?
+Kliknutím na potvrdit bude převod účtu pokračovat.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="611"/>
         <source>New device IP address: %1</source>
-        <translation type="unfinished"/>
+        <translation>IP adresa nového zařízení: %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="612"/>
         <source>Do you want to exit?</source>
-        <translation type="unfinished"/>
+        <translation>Chcete ukončit?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="613"/>
         <source>Exiting will cancel the import account operation.</source>
-        <translation type="unfinished"/>
+        <translation>Ukončením zrušíte operaci importu účtu.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="656"/>
@@ -3557,52 +3562,52 @@ Clicking on confirm will continue transfering account.</source>
         <translation>Vyhledávací lišta</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="64"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="132"/>
         <source>Full screen</source>
         <translation>Celá obrazovka</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="68"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="64"/>
         <source>Increase font size</source>
         <translation>Zvýšit velikost fontu</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="72"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="68"/>
         <source>Decrease font size</source>
         <translation>Snížit velikost fontu</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="76"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="72"/>
         <source>Reset font size</source>
         <translation>Obnovit velikost fontu</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="100"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="96"/>
         <source>Clear history</source>
         <translation>Vymazat historii</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="88"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="84"/>
         <source>Search messages/files</source>
         <translation>Vyhledávání zpráv/souborů</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="104"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="100"/>
         <source>Block contact</source>
         <translation>Blokovat spojení</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="84"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="80"/>
         <source>Accept contact request</source>
         <translation>Přijmout žádost o kontakt</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="92"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="88"/>
         <source>Edit last message</source>
         <translation>Upravit poslední zprávu</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="96"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="92"/>
         <source>Cancel message edition</source>
         <translation>Zrušit vydání zprávy</translation>
     </message>
@@ -3612,32 +3617,32 @@ Clicking on confirm will continue transfering account.</source>
         <translation>Otevřít pomocníka pro vytváření účtu</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="128"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="124"/>
         <source>End call</source>
         <translation>Ukončit hovor</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="108"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="104"/>
         <source>Leave conversation</source>
         <translation>Opustit konverzaci</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="116"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="112"/>
         <source>Start audio call</source>
         <translation>Začít zvukový hovor</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="120"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="116"/>
         <source>Start video call</source>
         <translation>Začít obrazový hovor</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="124"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="120"/>
         <source>Answer incoming call</source>
-        <translation type="unfinished"/>
+        <translation>Přijmout příchozí hovor</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="132"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="128"/>
         <source>Decline call</source>
         <translation>Odmítnout hovor</translation>
     </message>
@@ -3704,12 +3709,12 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="188"/>
         <source>Show/hide formatting</source>
-        <translation type="unfinished"/>
+        <translation>Zobrazit/skrýt formátování</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="192"/>
         <source>Show preview/Continue editing</source>
-        <translation type="unfinished"/>
+        <translation>Zobrazit náhled/Pokračovat v úpravách</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="200"/>
@@ -3729,12 +3734,12 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="212"/>
         <source>Open extensions settings</source>
-        <translation type="unfinished"/>
+        <translation>Otevřít nastavení rozšíření</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="221"/>
         <source>View keyboard shortcuts</source>
-        <translation type="unfinished"/>
+        <translation>Zobrazit klávesové zkratky</translation>
     </message>
 </context>
 <context>
@@ -3760,7 +3765,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="414"/>
         <source>%1 is sharing their location</source>
-        <translation type="unfinished"/>
+        <translation>%1 sdílí svou polohu</translation>
     </message>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="419"/>
@@ -3773,12 +3778,12 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/commoncomponents/PresenceIndicator.qml" line="34"/>
         <source>Connected</source>
-        <translation type="unfinished"/>
+        <translation>Připojeno</translation>
     </message>
     <message>
         <location filename="../src/app/commoncomponents/PresenceIndicator.qml" line="34"/>
         <source>Available</source>
-        <translation type="unfinished"/>
+        <translation>K dispozici</translation>
     </message>
 </context>
 <context>
@@ -3865,57 +3870,57 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/libclient/interaction.cpp" line="88"/>
         <source>Private conversation created</source>
-        <translation type="unfinished"/>
+        <translation>Soukromá konverzace byla vytvořena</translation>
     </message>
     <message>
         <location filename="../src/libclient/interaction.cpp" line="90"/>
         <source>Group conversation created</source>
-        <translation type="unfinished"/>
+        <translation>Skupinová konverzace byla vytvořena</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="284"/>
         <source>%1 was invited to join the conversation.</source>
-        <translation type="unfinished"/>
+        <translation>%1 byl pozván, aby se připojil ke konverzaci.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="287"/>
         <source>You joined the conversation.</source>
-        <translation type="unfinished"/>
+        <translation>Připojil jste se ke konverzaci.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="289"/>
         <source>%1 has joined the conversation.</source>
-        <translation type="unfinished"/>
+        <translation>%1 se připojil ke konverzaci.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="292"/>
         <source>You left the conversation.</source>
-        <translation type="unfinished"/>
+        <translation>Opustil jste konverzaci.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="294"/>
         <source>%1 has left the conversation.</source>
-        <translation type="unfinished"/>
+        <translation>%1 opustil konverzaci.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="296"/>
         <source>%1 was blocked from the conversation.</source>
-        <translation type="unfinished"/>
+        <translation>%1 byl zablokován z konverzace.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="298"/>
         <source>%1 was unblocked from the conversation.</source>
-        <translation type="unfinished"/>
+        <translation>%1 byl odblokován z konverzace.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="341"/>
         <source>Call declined</source>
-        <translation type="unfinished"/>
+        <translation>Hovor byl odmítnut</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="343"/>
         <source>Unreachable peer</source>
-        <translation type="unfinished"/>
+        <translation>Nedosažitelný peer</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="348"/>
@@ -3947,7 +3952,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="485"/>
         <source>(Profile updated)</source>
-        <translation type="unfinished"/>
+        <translation>(Profil aktualizován)</translation>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="496"/>
@@ -4271,17 +4276,17 @@ Clicking on confirm will continue transfering account.</source>
         <location filename="../src/libclient/conversationmodel.cpp" line="1179"/>
         <location filename="../src/libclient/conversationmodel.cpp" line="1192"/>
         <source>%1 (you)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (vy)</translation>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="618"/>
         <source>We would like to thank our contributors, whose efforts over many years have made this software what it is.</source>
-        <translation type="unfinished"/>
+        <translation>Rádi bychom poděkovali našim přispěvatelům, jejichž úsilí po mnoho let učinilo tento software tím, čím je.</translation>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="620"/>
         <source>Developers</source>
-        <translation type="unfinished"/>
+        <translation>Vývojáři</translation>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="621"/>
@@ -4291,57 +4296,61 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/utils.cpp" line="622"/>
         <source>Community Management</source>
-        <translation type="unfinished"/>
+        <translation>Správa komunity</translation>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="623"/>
         <source>Special thanks to</source>
-        <translation type="unfinished"/>
+        <translation>Zvláštní poděkování</translation>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="624"/>
         <source>This is a list of people who have made a significant investment of time, with useful results, into Jami. Any such contributors who want to be added to the list should contact us.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/app/linkdevicemodel.cpp" line="66"/>
-        <source>New device identifier is not recognized.
-Please follow above instruction.</source>
-        <translation type="unfinished"/>
+        <translation>Toto je seznam lidí, kteří do Jami významně investovali čas s užitečnými výsledky. Všichni tito přispěvatelé, kteří chtějí být přidáni do seznamu, by nás měli kontaktovat.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/account.h" line="235"/>
         <source>An authentication error occurred.
 Please check credentials and try again.</source>
-        <translation type="unfinished"/>
+        <translation>Došlo k chybě ověřování.
+Zkontrolujte přihlašovací údaje a zkuste to znovu.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/account.h" line="238"/>
         <source>A network error occurred.
 Please verify your connection.</source>
-        <translation type="unfinished"/>
+        <translation>Došlo k chybě sítě.
+Zkontrolujte prosím vaše připojení.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/account.h" line="240"/>
         <source>The operation has timed out.
 Please try again.</source>
-        <translation type="unfinished"/>
+        <translation>Časový limit operace vypršel.
+Zkuste to prosím znovu.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/account.h" line="242"/>
         <source>An error occurred while exporting the account.
 Please try again.</source>
-        <translation type="unfinished"/>
+        <translation>Při exportu účtu došlo k chybě.
+Zkuste to prosím znovu.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/account.h" line="244"/>
         <source>Operation was canceled.</source>
-        <translation type="unfinished"/>
+        <translation>Operace byla zrušena.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/account.h" line="247"/>
         <source>An unexpected error occurred.
 Please try again.</source>
+        <translation>Došlo k neočekávané chybě.
+Zkuste to prosím znovu.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/linkdevicemodel.cpp" line="66"/>
+        <source>Unrecognized new device identifier. Please follow the instructions above.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4373,7 +4382,7 @@ Please try again.</source>
     <message>
         <location filename="../src/app/systemtray.cpp" line="224"/>
         <source>Answer call</source>
-        <translation type="unfinished"/>
+        <translation>Přijmout hovor</translation>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="225"/>
@@ -4388,12 +4397,12 @@ Please try again.</source>
     <message>
         <location filename="../src/app/systemtray.cpp" line="229"/>
         <source>Accept invitation</source>
-        <translation type="unfinished"/>
+        <translation>Přijmout pozvání</translation>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="230"/>
         <source>Decline invitation</source>
-        <translation type="unfinished"/>
+        <translation>Odmítnout pozvání</translation>
     </message>
 </context>
 <context>
@@ -4411,7 +4420,7 @@ Please try again.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="89"/>
         <source>The choice of the name Jami was inspired by the Swahili word “jamii”, which means “community” as a noun and “together” as an adverb.</source>
-        <translation type="unfinished"/>
+        <translation>Výběr jména Jami byl inspirován svahilským slovem „jamii“, což znamená „společenství“ jako podstatné jméno a „společně“ jako příslovce.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="93"/>
@@ -4421,7 +4430,7 @@ Please try again.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="80"/>
         <source>Donate</source>
-        <translation type="unfinished"/>
+        <translation>Darovat</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="85"/>
@@ -4431,7 +4440,7 @@ Please try again.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="95"/>
         <source>A red dot means that your account is disconnected from the network; it turns green when it’s connected.</source>
-        <translation type="unfinished"/>
+        <translation>Červená tečka znamená, že váš účet je odpojen od sítě; po připojení se změní na zelenou.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="100"/>
@@ -4451,7 +4460,7 @@ Please try again.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="110"/>
         <source>In a call, you can click on “Invite members” to add a contact to a call.</source>
-        <translation type="unfinished"/>
+        <translation>Během hovoru můžete kliknout na „Pozvat členy“ a přidat kontakt do hovoru.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="113"/>
@@ -4476,7 +4485,7 @@ Please try again.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="126"/>
         <source>Why don’t I have to use a password?</source>
-        <translation type="unfinished"/>
+        <translation>Proč nemusím používat heslo?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="128"/>
@@ -4486,7 +4495,7 @@ Please try again.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="134"/>
         <source>Why don’t I have to register a username?</source>
-        <translation type="unfinished"/>
+        <translation>Proč nemusím registrovat uživatelské jméno?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="148"/>
@@ -4529,12 +4538,12 @@ Please try again.</source>
     <message>
         <location filename="../src/app/settingsview/components/TroubleshootSettingsPage.qml" line="59"/>
         <source>Enable crash reports</source>
-        <translation type="unfinished"/>
+        <translation>Povolit zprávy o selhání</translation>
     </message>
     <message>
         <location filename="../src/app/settingsview/components/TroubleshootSettingsPage.qml" line="73"/>
         <source>Automatically send crash reports</source>
-        <translation type="unfinished"/>
+        <translation>Automaticky odesílat zprávy o selhání</translation>
     </message>
 </context>
 <context>
@@ -4575,7 +4584,7 @@ Please try again.</source>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="995"/>
         <source>Unable to lookup…</source>
-        <translation type="unfinished"/>
+        <translation>Nelze vyhledat…</translation>
     </message>
 </context>
 <context>

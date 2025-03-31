@@ -100,28 +100,28 @@
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="316"/>
-        <source>An error occurred while fetching this repository</source>
-        <translation>A apărut o eroare la obținerea acestui depozit</translation>
+        <source>An error occurred while fetching this repository.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="318"/>
-        <source>Unrecognized conversation mode</source>
-        <translation>Tipul conversației nu e recunoscut.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/currentconversation.cpp" line="322"/>
-        <source>Insufficient permission to update conversation information</source>
-        <translation>Nu există permisiunea de a actualiza informațiile despre conversație</translation>
-    </message>
-    <message>
-        <location filename="../src/app/currentconversation.cpp" line="324"/>
-        <source>An error occurred while committing a new message</source>
-        <translation>A apărut o eroare în timpul transmiterii unui nou mesaj</translation>
+        <source>Unrecognized conversation mode.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="320"/>
-        <source>An invalid message was detected</source>
-        <translation>A fost detectat un mesaj greșit</translation>
+        <source>An invalid message was detected.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/currentconversation.cpp" line="322"/>
+        <source>Insufficient permission to update conversation information.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/currentconversation.cpp" line="324"/>
+        <source>An error occurred while committing a new message.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3570,52 +3570,52 @@ Pentru a continua exportarea contului, apasă Confirmă.</translation>
         <translation>Spațiul de căutare</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="64"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="132"/>
         <source>Full screen</source>
         <translation>Pe tot ecranul</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="68"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="64"/>
         <source>Increase font size</source>
         <translation>Mărește dimensiunea literelor</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="72"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="68"/>
         <source>Decrease font size</source>
         <translation>Micșorează dimensiunea literelor</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="76"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="72"/>
         <source>Reset font size</source>
         <translation>Restabilește mărimea literelor</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="100"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="96"/>
         <source>Clear history</source>
         <translation>Șterge conversația</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="88"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="84"/>
         <source>Search messages/files</source>
         <translation>Caută mesaje/fișiere</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="104"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="100"/>
         <source>Block contact</source>
         <translation>Blochează contactul</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="84"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="80"/>
         <source>Accept contact request</source>
         <translation>Acceptă cererea de contact</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="92"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="88"/>
         <source>Edit last message</source>
         <translation>Modifică ultimul mesaj</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="96"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="92"/>
         <source>Cancel message edition</source>
         <translation>Anulează modificarea mesajului</translation>
     </message>
@@ -3625,32 +3625,32 @@ Pentru a continua exportarea contului, apasă Confirmă.</translation>
         <translation>Deschide asistentul de creare a contului</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="128"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="124"/>
         <source>End call</source>
         <translation>Închide apelul</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="108"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="104"/>
         <source>Leave conversation</source>
         <translation>Termină conversația</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="116"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="112"/>
         <source>Start audio call</source>
         <translation>Începe un apel vocal</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="120"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="116"/>
         <source>Start video call</source>
         <translation>Începe un apel video</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="124"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="120"/>
         <source>Answer incoming call</source>
         <translation>Răspunde la apel</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="132"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="128"/>
         <source>Decline call</source>
         <translation>Refuză apelul</translation>
     </message>
@@ -4317,13 +4317,6 @@ Pentru a continua exportarea contului, apasă Confirmă.</translation>
         <translation>Aceasta este o listă de oameni care au făcut o investiție semnificativă de timp, cu rezultate utile, în Jami. Orice astfel de colaboratori care doresc să fie adăugați pe listă trebuie să ne contacteze.</translation>
     </message>
     <message>
-        <location filename="../src/app/linkdevicemodel.cpp" line="66"/>
-        <source>New device identifier is not recognized.
-Please follow above instruction.</source>
-        <translation>Noul identificator al aparatului nu este recunoscut.
-Urmează instrucțiunile de mai sus.</translation>
-    </message>
-    <message>
         <location filename="../src/libclient/api/account.h" line="235"/>
         <source>An authentication error occurred.
 Please check credentials and try again.</source>
@@ -4362,6 +4355,11 @@ Please try again.</source>
 Please try again.</source>
         <translation>A apărut o eroare neașteptată.
 Încearcă din nou.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/linkdevicemodel.cpp" line="66"/>
+        <source>Unrecognized new device identifier. Please follow the instructions above.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

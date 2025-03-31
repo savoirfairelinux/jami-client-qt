@@ -100,28 +100,28 @@
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="316"/>
-        <source>An error occurred while fetching this repository</source>
-        <translation>Une erreur s&apos;est produite lors de la récupération de ce référentiel.</translation>
+        <source>An error occurred while fetching this repository.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="318"/>
-        <source>Unrecognized conversation mode</source>
-        <translation>Mode de conversation non reconnu</translation>
-    </message>
-    <message>
-        <location filename="../src/app/currentconversation.cpp" line="322"/>
-        <source>Insufficient permission to update conversation information</source>
-        <translation>Vous n&apos;êtes pas autorisés à modifier les informations de la conversation</translation>
-    </message>
-    <message>
-        <location filename="../src/app/currentconversation.cpp" line="324"/>
-        <source>An error occurred while committing a new message</source>
-        <translation>Une erreur s&apos;est produite pendant la validation d&apos;un nouveau message</translation>
+        <source>Unrecognized conversation mode.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="320"/>
-        <source>An invalid message was detected</source>
-        <translation>Un message invalide a été détecté</translation>
+        <source>An invalid message was detected.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/currentconversation.cpp" line="322"/>
+        <source>Insufficient permission to update conversation information.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/currentconversation.cpp" line="324"/>
+        <source>An error occurred while committing a new message.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3572,52 +3572,52 @@ En cliquant sur confirmer, le transfert du compte se poursuivra.</translation>
         <translation>Barre de recherche</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="64"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="132"/>
         <source>Full screen</source>
         <translation>Mode plein écran</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="68"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="64"/>
         <source>Increase font size</source>
         <translation>Augmenter la taille de la police</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="72"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="68"/>
         <source>Decrease font size</source>
         <translation>Diminuer la taille de la police</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="76"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="72"/>
         <source>Reset font size</source>
         <translation>Réinitialiser la taille de la police</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="100"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="96"/>
         <source>Clear history</source>
         <translation>Effacer l&apos;historique</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="88"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="84"/>
         <source>Search messages/files</source>
         <translation>Rechercher des messages/fichiers</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="104"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="100"/>
         <source>Block contact</source>
         <translation>Bloquer le contact</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="84"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="80"/>
         <source>Accept contact request</source>
         <translation>Accepter la demande de contact</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="92"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="88"/>
         <source>Edit last message</source>
         <translation>Modifier le dernier message</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="96"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="92"/>
         <source>Cancel message edition</source>
         <translation>Annuler l&apos;édition du message</translation>
     </message>
@@ -3627,32 +3627,32 @@ En cliquant sur confirmer, le transfert du compte se poursuivra.</translation>
         <translation>Ouvrir l&apos;assistant de création de compte</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="128"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="124"/>
         <source>End call</source>
         <translation>Fin d’appel</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="108"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="104"/>
         <source>Leave conversation</source>
         <translation>Quitter la conversation</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="116"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="112"/>
         <source>Start audio call</source>
         <translation>Démarrer appel audio</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="120"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="116"/>
         <source>Start video call</source>
         <translation>Démarrer appel video</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="124"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="120"/>
         <source>Answer incoming call</source>
         <translation>Répondre à l&apos;appel entrant</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="132"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="128"/>
         <source>Decline call</source>
         <translation>Refuser l&apos;appel</translation>
     </message>
@@ -4319,13 +4319,6 @@ En cliquant sur confirmer, le transfert du compte se poursuivra.</translation>
         <translation>Il s&apos;agit d&apos;une liste de personnes qui ont consacré beaucoup de temps à Jami, avec des résultats utiles. Les contributeurs qui souhaitent être ajoutés à la liste doivent nous contacter.</translation>
     </message>
     <message>
-        <location filename="../src/app/linkdevicemodel.cpp" line="66"/>
-        <source>New device identifier is not recognized.
-Please follow above instruction.</source>
-        <translation>Le nouvel identifiant de l&apos;appareil n&apos;est pas reconnu.
-Veuillez suivre les instructions ci-dessus.</translation>
-    </message>
-    <message>
         <location filename="../src/libclient/api/account.h" line="235"/>
         <source>An authentication error occurred.
 Please check credentials and try again.</source>
@@ -4363,6 +4356,11 @@ Vérifiez et réessayez.</translation>
 Please try again.</source>
         <translation>Une erreur inattendue s&apos;est produite.
 Veuillez réessayer.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/linkdevicemodel.cpp" line="66"/>
+        <source>Unrecognized new device identifier. Please follow the instructions above.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -100,28 +100,28 @@
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="316"/>
-        <source>An error occurred while fetching this repository</source>
-        <translation>获取该存储库时发生错误</translation>
+        <source>An error occurred while fetching this repository.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="318"/>
-        <source>Unrecognized conversation mode</source>
-        <translation>无法识别的对话</translation>
-    </message>
-    <message>
-        <location filename="../src/app/currentconversation.cpp" line="322"/>
-        <source>Insufficient permission to update conversation information</source>
-        <translation>更新对话信息的权限不足</translation>
-    </message>
-    <message>
-        <location filename="../src/app/currentconversation.cpp" line="324"/>
-        <source>An error occurred while committing a new message</source>
-        <translation>提交新邮件时出错</translation>
+        <source>Unrecognized conversation mode.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="320"/>
-        <source>An invalid message was detected</source>
-        <translation>检测到无效的消息</translation>
+        <source>An invalid message was detected.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/currentconversation.cpp" line="322"/>
+        <source>Insufficient permission to update conversation information.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/currentconversation.cpp" line="324"/>
+        <source>An error occurred while committing a new message.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3568,52 +3568,52 @@ Clicking on confirm will continue transfering account.</source>
         <translation>搜尋列</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="64"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="132"/>
         <source>Full screen</source>
         <translation>全屏</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="68"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="64"/>
         <source>Increase font size</source>
         <translation>增加字体大小</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="72"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="68"/>
         <source>Decrease font size</source>
         <translation>减少字体大小</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="76"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="72"/>
         <source>Reset font size</source>
         <translation>重置字体大小</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="100"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="96"/>
         <source>Clear history</source>
         <translation>清除記錄</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="88"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="84"/>
         <source>Search messages/files</source>
         <translation>搜索消息/文件</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="104"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="100"/>
         <source>Block contact</source>
         <translation>阻擋連絡人</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="84"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="80"/>
         <source>Accept contact request</source>
         <translation>接受聯絡人請求</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="92"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="88"/>
         <source>Edit last message</source>
         <translation>编辑最后一个消息</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="96"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="92"/>
         <source>Cancel message edition</source>
         <translation>取消消息编辑</translation>
     </message>
@@ -3623,32 +3623,32 @@ Clicking on confirm will continue transfering account.</source>
         <translation>開啟帳號建立精靈</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="128"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="124"/>
         <source>End call</source>
         <translation>結束通話</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="108"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="104"/>
         <source>Leave conversation</source>
         <translation>离开谈话</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="116"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="112"/>
         <source>Start audio call</source>
         <translation>发起语音通话</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="120"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="116"/>
         <source>Start video call</source>
         <translation>開始視訊通話</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="124"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="120"/>
         <source>Answer incoming call</source>
         <translation>接听来电</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="132"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="128"/>
         <source>Decline call</source>
         <translation>拒接通话</translation>
     </message>
@@ -4315,13 +4315,6 @@ Clicking on confirm will continue transfering account.</source>
         <translation>这是一份为Jami投入了大量时间并取得了有益成果的人员名单。任何希望添加到列表中的此类贡献者都应与我们联系。</translation>
     </message>
     <message>
-        <location filename="../src/app/linkdevicemodel.cpp" line="66"/>
-        <source>New device identifier is not recognized.
-Please follow above instruction.</source>
-        <translation>新设备标识符未识别。
-请按照上述指示操作。</translation>
-    </message>
-    <message>
         <location filename="../src/libclient/api/account.h" line="235"/>
         <source>An authentication error occurred.
 Please check credentials and try again.</source>
@@ -4360,6 +4353,11 @@ Please try again.</source>
 Please try again.</source>
         <translation>发生意外错误。 
 请重试。</translation>
+    </message>
+    <message>
+        <location filename="../src/app/linkdevicemodel.cpp" line="66"/>
+        <source>Unrecognized new device identifier. Please follow the instructions above.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
