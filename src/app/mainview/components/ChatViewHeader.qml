@@ -116,20 +116,6 @@ Rectangle {
 
                 spacing: 0
 
-                LineEditContextMenu {
-                    id: displayNameContextMenu
-                    lineEditObj: title
-                    selectOnly: true
-                        }
-                MouseArea {
-                    anchors.fill: parent
-                    acceptedButtons: Qt.RightButton
-                    cursorShape: Qt.IBeamCursor
-                    onClicked: function (mouse) {
-                        displayNameContextMenu.openMenuAt(mouse);
-                    }
-                        }
-
                 ElidedTextLabel {
                     id: title
 
@@ -142,6 +128,21 @@ Rectangle {
 
                     eText: CurrentConversation.title
                     maxWidth: userNameOrIdRect.width
+
+                    LineEditContextMenu {
+                        id: displayNameContextMenu
+                        lineEditObj: title
+                        selectOnly: true
+                    }
+
+                    MouseArea {
+                        anchors.fill: parent
+                        acceptedButtons: Qt.RightButton
+                        cursorShape: Qt.IBeamCursor
+                        onClicked: function (mouse) {
+                            displayNameContextMenu.openMenuAt(mouse);
+                        }
+                    }
                 }
 
                 ElidedTextLabel {
@@ -157,6 +158,21 @@ Rectangle {
                     verticalAlignment: Text.AlignVCenter
                     eText: CurrentConversation.description
                     maxWidth: userNameOrIdRect.width
+
+                    LineEditContextMenu {
+                        id: displayDescriptionContextMenu
+                        lineEditObj: description
+                        selectOnly: true
+                    }
+
+                    MouseArea {
+                        anchors.fill: parent
+                        acceptedButtons: Qt.RightButton
+                        cursorShape: Qt.IBeamCursor
+                        onClicked: function (mouse) {
+                            displayDescriptionContextMenu.openMenuAt(mouse);
+                        }
+                    }
                 }
             }
         }
