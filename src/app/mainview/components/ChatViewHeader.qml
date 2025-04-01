@@ -142,6 +142,7 @@ Rectangle {
 
                     eText: CurrentConversation.title
                     maxWidth: userNameOrIdRect.width
+
                 }
 
                 ElidedTextLabel {
@@ -157,6 +158,21 @@ Rectangle {
                     verticalAlignment: Text.AlignVCenter
                     eText: CurrentConversation.description
                     maxWidth: userNameOrIdRect.width
+
+                    LineEditContextMenu {
+                        id: displayDescriptionContextMenu
+                        lineEditObj: description
+                        selectOnly: true
+                    }
+
+                    MouseArea {
+                        anchors.fill: parent
+                        acceptedButtons: Qt.RightButton
+                        cursorShape: Qt.IBeamCursor
+                        onClicked: function (mouse) {
+                            displayDescriptionContextMenu.openMenuAt(mouse);
+                        }
+                    }
                 }
             }
         }
