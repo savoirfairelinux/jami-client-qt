@@ -17,32 +17,6 @@
 include(FetchContent)
 include(CMakeParseArguments)
 
-# Helper function to check if we're on a distribution that requires us
-# to apply a patch in order for qmsetup to use the right package directory
-function(check_distro_needs_qmsetup_patch DISTRO_NEEDS_QMSETUP_PATCH)
-  set(${DISTRO_NEEDS_QMSETUP_PATCH} FALSE PARENT_SCOPE)
-  # Check for the existence of /etc/os-release
-  if(EXISTS "/etc/os-release")
-    # Read the content of the file
-    file(READ "/etc/os-release" OS_RELEASE_CONTENT)
-      # Check if the distribution is Fedora or Red Hat-based
-      string(REGEX MATCH "ID=fedora|ID_LIKE=\"rhel fedora\"|ID_LIKE=\"rhel centos fedora\"" RED_HAT_BASED "${OS_RELEASE_CONTENT}")
-      # Check if the distribution is openSUSE Leap
-      string(REGEX MATCH "ID=\"opensuse-leap\"" OPENSUSE_LEAP "${OS_RELEASE_CONTENT}")
-      if(RED_HAT_BASED)
-        set(${DISTRO_NEEDS_QMSETUP_PATCH} TRUE PARENT_SCOPE)
-        message(STATUS "Running on a Red Hat-based distribution (Fedora, RHEL, CentOS, etc.)")
-      elseif(OPENSUSE_LEAP)
-        set(${DISTRO_NEEDS_QMSETUP_PATCH} TRUE PARENT_SCOPE)
-        message(STATUS "Running on openSUSE Leap")
-      else()
-        message(STATUS "Distribution is not openSUSE Leap or Red Hat-based")
-      endif()
-  else()
-    message(STATUS "Cannot determine the distribution type: /etc/os-release not found")
-  endif()
-endfunction()
-
 # Helper function to add external content with patches and options.
 # Parameters:
 #   TARGET: Name of the target to create
