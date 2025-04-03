@@ -94,13 +94,11 @@ if(WIN32)
   list(APPEND QWINDOWKIT_OPTIONS QWINDOWKIT_ENABLE_WINDOWS_SYSTEM_BORDERS OFF)
 endif()
 
-# qmsetup uses the wrong package dir on some distributions
-# (including Fedora and openSUSE Leap at least)
-check_distro_needs_qmsetup_patch(DISTRO_NEEDS_QMSETUP_PATCH)
-if(DISTRO_NEEDS_QMSETUP_PATCH)
-  list(APPEND QWINDOWKIT_PATCHES ${EXTRA_PATCHES_DIR}/0001-fix-fedora-fc-build.patch)
-  set(qmsetup_cmake_path ${CMAKE_BINARY_DIR}/_install/lib64/cmake/qmsetup)
-endif()
+# If qwindowkit can't find qmsetup via cmake's find_package function, it will install it and
+# then call find_package again. Unfortunately, even the second call to find_package sometimes
+# fails due to qmsetup having been installed in the wrong directory. The following patch
+# ensures that qmsetup is always installed in the directory where find_package looks for it.
+list(APPEND QWINDOWKIT_PATCHES ${EXTRA_PATCHES_DIR}/0001-fix-qm_install_package-function.patch)
 
 # qwindowkit (frameless window)
 add_fetch_content(
