@@ -270,7 +270,7 @@ Rectangle {
                     font.pixelSize: JamiTheme.headerFontSize
                     horizontalAlignment: Text.AlignHCenter
                     lineHeight: JamiTheme.wizardViewTextLineHeight
-                    text: JamiStrings.customizeProfileDescription
+                    text: JamiStrings.customizeAccountDescription
                     verticalAlignment: Text.AlignVCenter
                     wrapMode: Text.WordWrap
                 }

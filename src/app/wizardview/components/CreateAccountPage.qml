@@ -33,6 +33,7 @@ Rectangle {
     property bool isRendezVous: false
     property bool helpOpened: false
     property int preferredHeight: createAccountStack.implicitHeight
+    property string chosenDisplayName: ""
 
     signal showThisPage
 
@@ -46,7 +47,6 @@ Rectangle {
     function clearAllTextFields() {
         joinJamiButton.enabled = true;
         encryptButton.enabled = true;
-        customizeButton.enabled = true;
         usernameEdit.dynamicText = "";
     }
 
@@ -174,7 +174,7 @@ Rectangle {
                                 }
                             }
 
-                            Behavior on height  {
+                            Behavior on height {
                                 NumberAnimation {
                                     duration: JamiTheme.shortFadeDuration
                                 }
@@ -293,14 +293,13 @@ Rectangle {
                     onClicked: {
                         WizardViewStepModel.accountCreationInfo = JamiQmlUtils.setUpAccountCreationInputPara({
                                 "registeredName": usernameEdit.dynamicText,
-                                "alias": advancedButtons.chosenDisplayName,
+                                "alias": root.chosenDisplayName,
                                 "password": advancedButtons.chosenPassword,
                                 "avatar": UtilsAdapter.tempCreationImage(),
                                 "isRendezVous": root.isRendezVous
                             });
                         if (usernameEdit.nameRegistrationState === UsernameTextEdit.NameRegistrationState.FREE) {
                             enabled = false;
-                            customizeButton.enabled = false;
                             encryptButton.enabled = false;
                             WizardViewStepModel.nextStep();
                         }
@@ -310,14 +309,12 @@ Rectangle {
                     }
                 }
 
-
                 RowLayout {
                     id: advancedButtons
 
                     Layout.alignment: Qt.AlignCenter
 
                     property string chosenPassword: ""
-                    property string chosenDisplayName: ""
 
                     spacing: 5
 
@@ -329,57 +326,22 @@ Rectangle {
 
                         Layout.alignment: Qt.AlignCenter
                         Layout.topMargin: 2 * JamiTheme.wizardViewBlocMarginSize
-                        preferredWidth: customizeButton.width
 
                         text: JamiStrings.setPassword
                         toolTipText: JamiStrings.encryptWithPassword
 
-                        KeyNavigation.tab: customizeButton
+                        KeyNavigation.tab: backButton
                         KeyNavigation.up: joinJamiButton
                         KeyNavigation.down: backButton
-                        KeyNavigation.right: customizeButton
+                        KeyNavigation.right: backButton
 
                         onClicked: {
                             var dlg = viewCoordinator.presentDialog(appWindow, "wizardview/components/EncryptAccountPopup.qml");
                             dlg.accepted.connect(function (password) {
-                                advancedButtons.chosenPassword = password;
-                            });
-                        }
-
-
-                    }
-
-                    MaterialButton {
-                        id: customizeButton
-
-                        tertiary: true
-                        secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
-
-                        TextMetrics {
-                            id: customizeText
-                            text: customizeButton.text
-                        }
-
-                        Layout.alignment: Qt.AlignCenter
-                        Layout.topMargin: 2 * JamiTheme.wizardViewBlocMarginSize
-                        preferredWidth: customizeText.width + 2 * JamiTheme.buttontextWizzardPadding
-
-                        text: JamiStrings.customize
-                        toolTipText: JamiStrings.customizeYourProfile
-
-                        KeyNavigation.tab: backButton
-                        KeyNavigation.up: joinJamiButton
-                        KeyNavigation.left: encryptButton
-                        KeyNavigation.down: backButton
-
-                        onClicked: {
-                            var dlg = viewCoordinator.presentDialog(appWindow, "wizardview/components/CustomizeProfilePopup.qml");
-                            dlg.accepted.connect(function (displayName) {
-                                advancedButtons.chosenDisplayName = displayName;
-                            });
+                                    advancedButtons.chosenPassword = password;
+                                });
                         }
                     }
-
                 }
 
                 NoUsernamePopup {
@@ -391,7 +353,6 @@ Rectangle {
 
                     onJoinClicked: {
                         joinJamiButton.enabled = false;
-                        customizeButton.enabled = false;
                         encryptButton.enabled = false;
                     }
                 }
@@ -399,7 +360,7 @@ Rectangle {
         }
     }
 
-    JamiPushButton { QWKSetParentHitTestVisible {}
+    JamiPushButton {
         id: backButton
 
         objectName: "createAccountPageBackButton"
@@ -442,15 +403,15 @@ Rectangle {
 
         checkable: true
 
-        onClicked:{
+        onClicked: {
             if (!helpOpened) {
-                checked = true
+                checked = true;
                 helpOpened = true;
                 var dlg = viewCoordinator.presentDialog(appWindow, "wizardview/components/GoodToKnowPopup.qml");
-                dlg.accepted.connect(function() {
-                    checked = false;
-                    helpOpened = false;
-                });
+                dlg.accepted.connect(function () {
+                        checked = false;
+                        helpOpened = false;
+                    });
             }
         }
 
