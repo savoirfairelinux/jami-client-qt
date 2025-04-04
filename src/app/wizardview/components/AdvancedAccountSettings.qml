@@ -125,7 +125,7 @@ Rectangle {
                             duration: 100
                         }
                     }
-                    Behavior on Layout.preferredHeight  {
+                    Behavior on Layout.preferredHeight {
                         NumberAnimation {
                             duration: 100
                         }
@@ -379,7 +379,7 @@ Rectangle {
                         }
                     }
 
-                    Behavior on Layout.preferredHeight  {
+                    Behavior on Layout.preferredHeight {
                         NumberAnimation {
                             duration: 100
                         }
@@ -494,7 +494,7 @@ Rectangle {
 
                                 wrapMode: Text.WordWrap
                                 color: JamiTheme.textColor
-                                text: JamiStrings.customizeProfileDescription
+                                text: JamiStrings.customizeAccountDescription
                                 font.pixelSize: JamiTheme.headerFontSize
                                 lineHeight: JamiTheme.wizardViewTextLineHeight
                             }
