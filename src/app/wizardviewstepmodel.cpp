@@ -38,9 +38,9 @@ WizardViewStepModel::WizardViewStepModel(LRCInstance* lrcInstance,
                 auto accountCreationOption = get_accountCreationOption();
                 if (accountCreationOption == AccountCreationOption::ConnectToAccountManager
                     || accountCreationOption == AccountCreationOption::CreateSipAccount) {
-                    Q_EMIT closeWizardView();
                     reset();
-                } else if (accountCreationOption != AccountCreationOption::None) {
+                } else if ((accountCreationOption != AccountCreationOption::None)
+                           && mainStep_ != MainSteps::ProfileCustomization) {
                     Q_EMIT closeWizardView();
                     reset();
                 }
@@ -77,8 +77,21 @@ WizardViewStepModel::startAccountCreationFlow(AccountCreationOption accountCreat
 void
 WizardViewStepModel::nextStep()
 {
-    if (mainStep_ != MainSteps::Initial) {
-        Q_EMIT createAccountRequested(accountCreationOption_);
+    switch (mainStep_) {
+        case MainSteps::Initial:
+            break;
+        case MainSteps::ProfileCustomization:
+            Q_EMIT closeWizardView();
+            break;
+        case MainSteps::NameRegistration:
+            Q_EMIT createAccountRequested(accountCreationOption_);
+            set_mainStep(MainSteps::ProfileCustomization);
+            break;
+        default:
+            Q_EMIT createAccountRequested(accountCreationOption_);
+            Q_EMIT closeWizardView();
+            break;
+
     }
 }
 
@@ -93,6 +106,10 @@ WizardViewStepModel::previousStep()
     case MainSteps::AccountCreation:
     case MainSteps::NameRegistration: {
         reset();
+        break;
+    }
+    case MainSteps::ProfileCustomization: {
+        set_mainStep(MainSteps::NameRegistration);
         break;
     }
     case MainSteps::DeviceAuthorization: {
