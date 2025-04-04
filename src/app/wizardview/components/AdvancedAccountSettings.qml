@@ -494,7 +494,7 @@ Rectangle {
 
                                 wrapMode: Text.WordWrap
                                 color: JamiTheme.textColor
-                                text: JamiStrings.customizeProfileDescription
+                                text: JamiStrings.customizeAccountDescription
                                 font.pixelSize: JamiTheme.headerFontSize
                                 lineHeight: JamiTheme.wizardViewTextLineHeight
                             }
