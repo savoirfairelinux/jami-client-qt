@@ -399,8 +399,11 @@ Item {
     property string nameAlreadyTaken: qsTr("Name already taken")
     property string usernameAlreadyTaken: qsTr("Username already taken")
     property string joinJamiNoPassword: qsTr("Do you want to create a Jami account without a username?\nIf yes, only a randomly generated 40-character identifier will be assigned to the account.")
-    property string usernameToolTip: qsTr("- 32 characters maximum\n- Alphabetical characters (A to Z and a to z)\n- Numeric characters (0 to 9)\n- Special characters allowed: dash (-)")
-
+    property string usernameToolTip: qsTr("- 32 characters maximum\n- Special characters allowed: dash (-)")
+    property string customizeProfileOptional: qsTr("Customize your profile (optional)")
+    property string skip: qsTr("Skip")
+    property string skipProfile: qsTr("Skip profile configuration")
+    property string saveProfile: qsTr("Save profile")
     // Good to know
     property string goodToKnow: qsTr("Good to know")
     property string local: qsTr("Local")
@@ -408,7 +411,7 @@ Item {
     property string localAccount: qsTr("Your account will be created and stored locally.")
     property string usernameRecommened: qsTr("Choosing a username is recommended, and a chosen username CANNOT be changed later.")
     property string passwordOptional: qsTr("Encrypting your account with a password is optional, and if the password is lost it CANNOT be recovered later.")
-    property string customizeOptional: qsTr("Setting a profile picture and nickname is optional, and can also be changed later in the settings.")
+    property string customizeOptional: qsTr("Setting a profile picture and display name is optional, and can also be changed later in the settings.")
 
     // CreateSIPAccountPage
     property string sipAccount: qsTr("SIP account")
@@ -422,7 +425,7 @@ Item {
     property string displayName: qsTr("Display name")
 
     // accountSettingsPages
-    property string customizeAccountDescription: qsTr("Your profile is only shared with your contacts.\nYour picture and your nickname can be changed at all time in the settings of your account.")
+    property string customizeAccountDescription: qsTr("Your profile is only shared with your contacts.\nYour picture and your display name can be changed at all time in the settings of your account.")
     property string usernameAccountDescription: qsTr("A chosen username can help to be found more easily on Jami.\nIf a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.")
     property string encryptAccountDescription: qsTr("Your Jami account is registered only on this device as an archive containing the keys of your account. Access to this archive can be protected with a password.")
     property string saveAccountTitle: qsTr("Backup account")
@@ -449,7 +452,6 @@ Item {
     property string advancedAccountSettings: qsTr("Advanced account settings")
     property string encryptAccount: qsTr("Encrypt account with password")
     property string customizeProfile: qsTr("Customize profile")
-    property string customizeProfileDescription: qsTr("This profile is only shared with account contacts.\nThe profile can be changed in account settings.")
     property string encryptTitle: qsTr("Encrypt account with password")
     property string encryptDescription: qsTr("A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected with a password.")
     property string encryptWarning: qsTr("Please note that if you lose your password, it CANNOT be recovered!")

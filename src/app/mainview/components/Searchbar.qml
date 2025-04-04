@@ -34,7 +34,13 @@ Rectangle {
 
     function clearText() {
         textArea.clear();
-        textArea.forceActiveFocus();
+        setTextAreaFocus();
+    }
+
+    function setTextAreaFocus() {
+        if (visible){
+            textArea.forceActiveFocus();
+        }
     }
 
     radius: JamiTheme.primaryRadius
@@ -42,7 +48,7 @@ Rectangle {
 
     onFocusChanged: {
         if (focus) {
-            textArea.forceActiveFocus();
+            setTextAreaFocus();
         }
     }
 
