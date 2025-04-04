@@ -40,7 +40,9 @@ BaseModalDialog {
     signal focusOnPreviousItem
     signal focusOnNextItem
     signal imageValidated
+    signal imageTemporaryValidated
     signal imageRemoved
+    signal imageTemporaryRemoved
 
     function startBooth() {
         recordBox.openRecorder(true)
@@ -70,8 +72,10 @@ BaseModalDialog {
         visible: false
 
         onValidatePhoto: function(photo) {
-            if (!root.newItem)
+            if (!root.newItem){
                 AccountAdapter.setCurrentAccountAvatarBase64(photo)
+                imageTemporaryValidated();
+            }
             else{
                 UtilsAdapter.setTempCreationImageFromString(photo, imageId);
                 imageValidated();
@@ -174,6 +178,7 @@ BaseModalDialog {
                         var filePath = UtilsAdapter.getAbsPath(file)
                         if (!root.newItem) {
                             AccountAdapter.setCurrentAccountAvatarFile(filePath)
+                            imageTemporaryValidated();
                         } else {
                             UtilsAdapter.setTempCreationImageFromFile(filePath, root.imageId);
                             imageValidated();
@@ -222,8 +227,10 @@ BaseModalDialog {
                 }
 
                 onClicked: {
-                    if (!root.newItem)
-                        AccountAdapter.setCurrentAccountAvatarBase64()
+                    if (!root.newItem){
+                        AccountAdapter.setCurrentAccountAvatarBase64();
+                        imageTemporaryRemoved();
+                    }
                     else {
                         UtilsAdapter.setTempCreationImageFromString("", imageId);
                         imageRemoved();
