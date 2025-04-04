@@ -53,10 +53,11 @@ class WizardViewStepModel : public QObject
 
 public:
     enum class MainSteps {
-        Initial,            // Initial welcome step.
-        AccountCreation,    // General account creation step.
-        NameRegistration,   // Name registration step : CreateJamiAccount, CreateRendezVous
-        DeviceAuthorization // Add new step for device authorization.
+        Initial,             // Initial welcome step.
+        AccountCreation,     // General account creation step.
+        NameRegistration,    // Name registration step : CreateJamiAccount, CreateRendezVous
+        DeviceAuthorization, // Add new step for device authorization.
+        ProfileCustomization
     };
     Q_ENUM(MainSteps)
 
