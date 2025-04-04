@@ -33,6 +33,7 @@ Rectangle {
     property bool isRendezVous: false
     property bool helpOpened: false
     property int preferredHeight: createAccountStack.implicitHeight
+    property string alias: ""
 
     signal showThisPage
 
@@ -262,6 +263,153 @@ Rectangle {
                     color: "#CC0022"
                 }
 
+
+    property bool saved: false
+
+    property string imageId: "temp"
+
+    /*button1.onClicked: {
+        accepted(alias);
+        saved = true;
+        close();
+    }*/
+
+
+    ColumnLayout {
+        id: customColumnLayout
+        spacing: 20
+        Layout.alignment: Qt.AlignCenter
+
+        Rectangle {
+            id: customRectangle
+
+            Layout.preferredHeight: customLayout.height
+            Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
+            Layout.fillWidth: false
+            color: JamiTheme.customizeRectangleColor
+            radius: 5
+
+            RowLayout {
+                id: customLayout
+                anchors.centerIn: parent
+                width: parent.width
+
+                Rectangle {
+                    Layout.alignment: Qt.AlignLeft | Qt.AlignCenter
+                    Layout.margins: 10
+
+                    color: "transparent"
+
+                    width: accountAvatar.width
+                    height: accountAvatar.height
+
+                    PhotoboothView {
+                        id: accountAvatar
+
+                        anchors.centerIn: parent
+
+                        width: avatarSize
+                        height: avatarSize
+
+                        newItem: true
+                        imageId: root.imageId
+                        avatarSize: 56
+                        editButton.visible: false
+                        visible: UtilsAdapter.tempCreationImage(imageId).length !== 0
+
+                        Component.onCompleted: {
+                            root.onClosed.connect(function() {
+                                if(!root.saved)
+                                    UtilsAdapter.setTempCreationImageFromString('', imageId);
+                            });
+                        }
+                    }
+
+                    PushButton {
+                        id: editImage
+
+                        anchors.centerIn: parent
+
+                        width: 56
+                        height: 56
+
+                        anchors.fill: parent
+
+                        source: JamiResources.person_outline_black_24dp_svg
+                        background.opacity:  {
+                            if (accountAvatar.visible) {
+                                if(hovered)
+                                    return 0.3
+                                else
+                                    return 0
+                            }
+                            else
+                                return 1
+                        }
+
+                        preferredSize: 56
+
+                        normalColor: JamiTheme.customizePhotoColor
+                        imageColor: accountAvatar.visible ? JamiTheme.customizeRectangleColor : JamiTheme.whiteColor
+                        hoveredColor: JamiTheme.customizePhotoHoveredColor
+
+                        imageContainerWidth: 30
+
+                        onClicked: {
+                            var dlg = viewCoordinator.presentDialog(parent, "commoncomponents/PhotoboothPopup.qml", {
+                                "parent": editImage,
+                                "imageId": root.imageId,
+                                "newItem": true
+                            })
+                            dlg.onImageValidated.connect(function() {
+                                if (UtilsAdapter.tempCreationImage(root.imageId).length !== 0) {
+                                    accountAvatar.visible = true
+                                }
+                            })
+                            dlg.onImageRemoved.connect(function() {
+                                if (UtilsAdapter.tempCreationImage(root.imageId).length !== 0) {
+                                    accountAvatar.visible = true
+                                }
+                            })
+                        }
+                    }
+                }
+
+                ModalTextEdit {
+                    id: displayNameLineEdit
+
+                    Layout.alignment: Qt.AlignLeft
+                    Layout.rightMargin: 10
+                    Layout.fillWidth: true
+
+                    placeholderText: JamiStrings.displayName
+
+                    onDynamicTextChanged: {
+                        //Debug to see if the properties are updated correctly
+                        console.log("ALIAS: " + root.alias);
+                        root.alias = displayNameLineEdit.dynamicText;
+                        console.log("ALIAS: " + root.alias);
+                    }
+                }
+            }
+        }
+
+
+
+        Text {
+
+            Layout.fillWidth: true
+            Layout.preferredWidth: 400 - 2 * popupMargins
+            Layout.alignment: Qt.AlignLeft
+
+            wrapMode: Text.WordWrap
+            color: JamiTheme.textColor
+            text: JamiStrings.customizeProfileDescription
+            font.pixelSize: JamiTheme.headerFontSize
+            lineHeight: JamiTheme.wizardViewTextLineHeight
+        }
+    }
+
                 MaterialButton {
                     id: joinJamiButton
                     z: -1
@@ -293,7 +441,7 @@ Rectangle {
                     onClicked: {
                         WizardViewStepModel.accountCreationInfo = JamiQmlUtils.setUpAccountCreationInputPara({
                                 "registeredName": usernameEdit.dynamicText,
-                                "alias": advancedButtons.chosenDisplayName,
+                                "alias": root.alias,
                                 "password": advancedButtons.chosenPassword,
                                 "avatar": UtilsAdapter.tempCreationImage(),
                                 "isRendezVous": root.isRendezVous
@@ -317,7 +465,6 @@ Rectangle {
                     Layout.alignment: Qt.AlignCenter
 
                     property string chosenPassword: ""
-                    property string chosenDisplayName: ""
 
                     spacing: 5
 
@@ -374,9 +521,7 @@ Rectangle {
 
                         onClicked: {
                             var dlg = viewCoordinator.presentDialog(appWindow, "wizardview/components/CustomizeProfilePopup.qml");
-                            dlg.accepted.connect(function (displayName) {
-                                advancedButtons.chosenDisplayName = displayName;
-                            });
+                            root.alias = displayNameLineEdit.dynamicText;
                         }
                     }
 
