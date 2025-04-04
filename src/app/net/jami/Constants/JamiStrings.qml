@@ -398,6 +398,7 @@ Item {
     property string usernameAlreadyTaken: qsTr("Username already taken")
     property string joinJamiNoPassword: qsTr("Do you want to create a Jami account without a username?\nIf yes, only a randomly generated 40-character identifier will be assigned to the account.")
     property string usernameToolTip: qsTr("- 32 characters maximum\n- Alphabetical characters (A to Z and a to z)\n- Numeric characters (0 to 9)\n- Special characters allowed: dash (-)")
+    property string displayNameExplaination: qsTr("The display name doesn't need to be unique, it can be changed at any time and is only visible to your contacts.")
 
     // Good to know
     property string goodToKnow: qsTr("Good to know")
@@ -447,7 +448,7 @@ Item {
     property string advancedAccountSettings: qsTr("Advanced account settings")
     property string encryptAccount: qsTr("Encrypt account with password")
     property string customizeProfile: qsTr("Customize profile")
-    property string customizeProfileDescription: qsTr("This profile is only shared with account contacts.\nThe profile can be changed in account settings.")
+    property string customizeProfileDescription: qsTr("The Display name and the profile picture are optional and don't need to be unique. They are only shared with account contacts and can be changed in account settings.")
     property string encryptTitle: qsTr("Encrypt account with password")
     property string encryptDescription: qsTr("A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected with a password.")
     property string encryptWarning: qsTr("Please note that if you lose your password, it CANNOT be recovered!")
