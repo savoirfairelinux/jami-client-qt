@@ -130,6 +130,14 @@ BaseView {
                 onShowThisPage: controlPanelStackView.setPage(this)
             }
 
+            InitialCustomizeProfilePage {
+                id: initialcustomizeProfilePage
+
+                objectName: "initialcustomizeProfilePage"
+
+                onShowThisPage: controlPanelStackView.setPage(this)
+            }
+
             ImportFromDevicePage {
                 id: importFromDevicePage
 
