@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e298247d_6a9e7129",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-04-07T19:37:10Z",
+      "side": 1,
+      "message": "\"new device\" or \"source device\"? Currently `scanToImportAccount` and `cantScanQRCode` are inconsistent on this point.",
+      "range": {
+        "startLine": 80,
+        "startChar": 104,
+        "endLine": 80,
+        "endChar": 114
+      },
+      "revId": "ad547251c42ca083976737a94d37fc5e1f3af7eb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cae8cc3_569a2412",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-04-07T19:37:10Z",
+      "side": 1,
+      "message": "Maybe add \"below\"? I.e. \"enter the token below on...\"",
+      "range": {
+        "startLine": 80,
+        "startChar": 87,
+        "endLine": 80,
+        "endChar": 96
+      },
+      "revId": "ad547251c42ca083976737a94d37fc5e1f3af7eb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9fad3e4_b1c1aac0",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-04-07T19:37:10Z",
+      "side": 1,
+      "message": "Maybe just `Account imported successfully.`?",
+      "range": {
+        "startLine": 609,
+        "startChar": 44,
+        "endLine": 609,
+        "endChar": 92
+      },
+      "revId": "ad547251c42ca083976737a94d37fc5e1f3af7eb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
