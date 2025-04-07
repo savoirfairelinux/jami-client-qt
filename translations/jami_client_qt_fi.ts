@@ -101,27 +101,27 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="316"/>
         <source>An error occurred while fetching this repository.</source>
-        <translation type="unfinished"/>
+        <translation>Virhe haettaessa tätä arkistoa.</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="318"/>
         <source>Unrecognized conversation mode.</source>
-        <translation type="unfinished"/>
+        <translation>Tuntematon keskustelutila.</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="320"/>
         <source>An invalid message was detected.</source>
-        <translation type="unfinished"/>
+        <translation>Virheellinen viesti havaittiin.</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="322"/>
         <source>Insufficient permission to update conversation information.</source>
-        <translation type="unfinished"/>
+        <translation>Ei oikeutta päivittää keskustelutietoja.</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="324"/>
         <source>An error occurred while committing a new message.</source>
-        <translation type="unfinished"/>
+        <translation>Viestiä lähetettäessä tapahtui virhe.</translation>
     </message>
 </context>
 <context>
@@ -4360,7 +4360,7 @@ Yritä uudelleen.</translation>
     <message>
         <location filename="../src/app/linkdevicemodel.cpp" line="66"/>
         <source>Unrecognized new device identifier. Please follow the instructions above.</source>
-        <translation type="unfinished"/>
+        <translation>Tuntematon uusi laitetunniste. Noudata yllä olevia ohjeita.</translation>
     </message>
 </context>
 <context>

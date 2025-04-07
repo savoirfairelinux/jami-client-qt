@@ -101,27 +101,27 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="316"/>
         <source>An error occurred while fetching this repository.</source>
-        <translation type="unfinished"/>
+        <translation>Selle andmehoidla laadimisel tekkis viga.</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="318"/>
         <source>Unrecognized conversation mode.</source>
-        <translation type="unfinished"/>
+        <translation>Tundmatu suhtlusrežiim.</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="320"/>
         <source>An invalid message was detected.</source>
-        <translation type="unfinished"/>
+        <translation>Tuvastasime vigase sõnumi.</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="322"/>
         <source>Insufficient permission to update conversation information.</source>
-        <translation type="unfinished"/>
+        <translation>Pole piisavalt õigusi vestluse teabe uuendamiseks.</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="324"/>
         <source>An error occurred while committing a new message.</source>
-        <translation type="unfinished"/>
+        <translation>Uue sõnumi lisamisel vestlusahelasse tekkis viga.</translation>
     </message>
 </context>
 <context>
@@ -215,7 +215,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="76"/>
         <source>Scan QR code</source>
-        <translation>QR-koodi skanneerimine</translation>
+        <translation>Skaneeri QR-koodi</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="77"/>
@@ -413,7 +413,7 @@ Palun kinnita kasutajakonto lähteseadmes.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="131"/>
         <source>CA certificate</source>
-        <translation>CA sertifikaat</translation>
+        <translation>Sertifitseerimiskeskuse sertifikaat</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="132"/>
@@ -594,7 +594,7 @@ Palun kinnita kasutajakonto lähteseadmes.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="190"/>
         <source>Bootstrap</source>
-        <translation>Laadi mällu</translation>
+        <translation> Algata esmane tuvastus</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="193"/>
@@ -1846,7 +1846,7 @@ ootame kasutaja %1 ühenduse loomist.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="326"/>
         <source>Fps</source>
-        <translation>P/s</translation>
+        <translation>K/Sek</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="329"/>
@@ -2633,7 +2633,7 @@ Profiili saad igal ajal muuta kasutajakonto seadistustest.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="699"/>
         <source>Create Jami account</source>
-        <translation>Loe Jami konto</translation>
+        <translation>Loo Jami konto</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="760"/>
@@ -2758,7 +2758,7 @@ Profiili saad igal ajal muuta kasutajakonto seadistustest.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="880"/>
         <source>Theme</source>
-        <translation>Teema</translation>
+        <translation>Kujundus</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="881"/>
@@ -2868,17 +2868,17 @@ Profiili saad igal ajal muuta kasutajakonto seadistustest.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="512"/>
         <source>Vertical view</source>
-        <translation>Vertikaalne vaade</translation>
+        <translation>Püstvaade</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="513"/>
         <source>Horizontal view</source>
-        <translation>Horisontaalne vaade</translation>
+        <translation>Rõhtvaade</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="516"/>
         <source>File transfer</source>
-        <translation>Failide üleandmine</translation>
+        <translation>Failide teisaldamine</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="517"/>
@@ -3507,7 +3507,7 @@ Kui klõpsid kinnituseks, siis jätkame kasutajakonto teisaldamisega.</translati
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="834"/>
         <source>Administrator</source>
-        <translation>Administraator</translation>
+        <translation>Peakasutaja</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="835"/>
@@ -4362,7 +4362,7 @@ Palun proovi uuesti.</translation>
     <message>
         <location filename="../src/app/linkdevicemodel.cpp" line="66"/>
         <source>Unrecognized new device identifier. Please follow the instructions above.</source>
-        <translation type="unfinished"/>
+        <translation>Tundmatu uue seadme tunnus. Palun järgi eeltoodud juhendit</translation>
     </message>
 </context>
 <context>

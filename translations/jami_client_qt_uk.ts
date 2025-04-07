@@ -786,7 +786,7 @@ Please confirm account on the source device.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="419"/>
         <source>UDP</source>
-        <translation>УПД</translation>
+        <translation>UDP</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="424"/>
@@ -1088,17 +1088,17 @@ If a username is not chosen, a randomly generated 40-character identifier will b
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="711"/>
         <source>Search results</source>
-        <translation type="unfinished"/>
+        <translation>Результати пошуку</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="714"/>
         <source>Decline invitation</source>
-        <translation type="unfinished"/>
+        <translation>Відхилити запрошення</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="715"/>
         <source>Accept invitation</source>
-        <translation type="unfinished"/>
+        <translation>Прийняти запрошення</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="721"/>
@@ -1246,7 +1246,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="820"/>
         <source>Add description</source>
-        <translation type="unfinished"/>
+        <translation>Додати опис</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="824"/>
@@ -1256,7 +1256,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="827"/>
         <source>Conversation type</source>
-        <translation type="unfinished"/>
+        <translation>Тип розмови</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="832"/>
@@ -1276,7 +1276,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="886"/>
         <source>If you enjoy using Jami and believe in our mission, do you want to make a donation?</source>
-        <translation type="unfinished"/>
+        <translation>Якщо вам подобається користуватися Jami і ви вірите в нашу місію, чи хочете зробити пожертву?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="897"/>
@@ -1805,7 +1805,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="320"/>
         <source>Sockets</source>
-        <translation>Заводи</translation>
+        <translation>Sockets</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="321"/>
@@ -1835,7 +1835,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="326"/>
         <source>Fps</source>
-        <translation>Фпс</translation>
+        <translation>Fps</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="329"/>
@@ -1895,7 +1895,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="346"/>
         <source>Pin</source>
-        <translation>Пінка</translation>
+        <translation>Pin</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="347"/>
@@ -2035,12 +2035,12 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="415"/>
         <source>Configure existing SIP account</source>
-        <translation type="unfinished"/>
+        <translation>Налаштувати існуючий SIP-обліковий запис</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="420"/>
         <source>Display name</source>
-        <translation type="unfinished"/>
+        <translation>Відображуване ім&apos;я</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="425"/>
@@ -2096,12 +2096,12 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="29"/>
         <source>Accept with audio</source>
-        <translation type="unfinished"/>
+        <translation>Прийняти зі звуком</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="30"/>
         <source>Accept with video</source>
-        <translation type="unfinished"/>
+        <translation>Прийняти з відео</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="31"/>
@@ -2268,7 +2268,7 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="366"/>
         <source>Return to call</source>
-        <translation type="unfinished"/>
+        <translation>Повернутися до дзвінка</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="393"/>
@@ -2308,7 +2308,7 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="404"/>
         <source>Local</source>
-        <translation>Місцеві</translation>
+        <translation>Local</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="405"/>
@@ -2440,7 +2440,7 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="523"/>
         <source>Incorrect password.</source>
-        <translation type="unfinished"/>
+        <translation>Неправильний пароль.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="524"/>
@@ -2503,17 +2503,17 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="572"/>
         <source>Markdown</source>
-        <translation>Маркадоун</translation>
+        <translation>Markdown</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="577"/>
         <source>Submit issue</source>
-        <translation type="unfinished"/>
+        <translation>Надіслати проблему</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="580"/>
         <source>Copied to clipboard.</source>
-        <translation type="unfinished"/>
+        <translation>Скопійовано в буфер обміну.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="581"/>
@@ -3738,7 +3738,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="478"/>
         <source>E&amp;xit</source>
-        <translation>Е&amp;ксит</translation>
+        <translation>E&amp;xit</translation>
     </message>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="480"/>
@@ -3761,7 +3761,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="419"/>
         <source>Location sharing</source>
-        <translation>Розділ місцезнаходження</translation>
+        <translation>Поширення місцезнаходження</translation>
     </message>
 </context>
 <context>
@@ -3802,7 +3802,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/libclient/api/call.h" line="66"/>
         <source>Incoming</source>
-        <translation>Викликає</translation>
+        <translation>Вхідні</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="68"/>
@@ -3828,17 +3828,17 @@ Clicking on confirm will continue transfering account.</source>
         <location filename="../src/libclient/api/call.h" line="76"/>
         <location filename="../src/libclient/api/call.h" line="82"/>
         <source>Finished</source>
-        <translation>Вийшло</translation>
+        <translation>Завершено</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="78"/>
         <source>Timeout</source>
-        <translation>Час відключення</translation>
+        <translation>Timeout</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="80"/>
         <source>Peer busy</source>
-        <translation>Співробітники зайняті</translation>
+        <translation>Співрозмовник зайнятий</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="84"/>
@@ -3911,7 +3911,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="343"/>
         <source>Unreachable peer</source>
-        <translation type="unfinished"/>
+        <translation>Недоступний вузол</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="348"/>
@@ -3938,7 +3938,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="475"/>
         <source>Join call</source>
-        <translation>Приєднати виклик</translation>
+        <translation>Приєднатися до дзвінка</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="485"/>
@@ -3959,7 +3959,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="70"/>
         <source>Null</source>
-        <translation>Ні</translation>
+        <translation>Null</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="71"/>
@@ -3974,12 +3974,12 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="73"/>
         <source>Being Forwarded</source>
-        <translation>Відправляються</translation>
+        <translation>Переадресовується</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="74"/>
         <source>Queued</source>
-        <translation>Засіда</translation>
+        <translation>У черзі</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="75"/>
@@ -3989,7 +3989,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="76"/>
         <source>OK</source>
-        <translation>Гаразд</translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="77"/>
@@ -4070,7 +4070,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="92"/>
         <source>Gone</source>
-        <translation>Зникли</translation>
+        <translation>Зник</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="93"/>
@@ -4171,7 +4171,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="113"/>
         <source>Undecipherable</source>
-        <translation>Нерозрозуміло.</translation>
+        <translation>Нерозбірливе.</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="114"/>
@@ -4251,17 +4251,17 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/positioning.cpp" line="108"/>
         <source>locationServicesError</source>
-        <translation>Розміщення Послуги Помилка</translation>
+        <translation>locationServicesError</translation>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="111"/>
         <source>locationServicesClosedError</source>
-        <translation>РозміщенняСервіси ЗаключенийВипадок</translation>
+        <translation>locationServicesClosedError</translation>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="113"/>
         <source>locationServicesUnknownError</source>
-        <translation>Розміщення ПослугиНевідомоПошибка</translation>
+        <translation>locationServicesUnknownError</translation>
     </message>
     <message>
         <location filename="../src/libclient/conversationmodel.cpp" line="1179"/>
@@ -4272,12 +4272,12 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/utils.cpp" line="618"/>
         <source>We would like to thank our contributors, whose efforts over many years have made this software what it is.</source>
-        <translation type="unfinished"/>
+        <translation>Ми хотіли б подякувати нашим дописувачам, чиї зусилля протягом багатьох років зробили це програмне забезпечення таким, яким воно є.</translation>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="620"/>
         <source>Developers</source>
-        <translation type="unfinished"/>
+        <translation>Розробники</translation>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="621"/>
@@ -4287,12 +4287,12 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/utils.cpp" line="622"/>
         <source>Community Management</source>
-        <translation type="unfinished"/>
+        <translation>Управління спільнотою</translation>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="623"/>
         <source>Special thanks to</source>
-        <translation type="unfinished"/>
+        <translation>Особлива подяка</translation>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="624"/>
@@ -4383,12 +4383,12 @@ Please try again.</source>
     <message>
         <location filename="../src/app/systemtray.cpp" line="229"/>
         <source>Accept invitation</source>
-        <translation type="unfinished"/>
+        <translation>Прийняти запрошення</translation>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="230"/>
         <source>Decline invitation</source>
-        <translation type="unfinished"/>
+        <translation>Відхилити запрошення</translation>
     </message>
 </context>
 <context>
