@@ -101,27 +101,27 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="316"/>
         <source>An error occurred while fetching this repository.</source>
-        <translation type="unfinished"/>
+        <translation>Beim Abrufen dieses Repository ist ein Fehler aufgetreten.</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="318"/>
         <source>Unrecognized conversation mode.</source>
-        <translation type="unfinished"/>
+        <translation>Unbekannter Unterhaltungsmodus.</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="320"/>
         <source>An invalid message was detected.</source>
-        <translation type="unfinished"/>
+        <translation>Eine ungültige Nachricht wurde erkannt.</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="322"/>
         <source>Insufficient permission to update conversation information.</source>
-        <translation type="unfinished"/>
+        <translation>Unzureichende Berechtigung zum Aktualisieren der Unterhaltungsinformationen.</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="324"/>
         <source>An error occurred while committing a new message.</source>
-        <translation type="unfinished"/>
+        <translation>Beim Übergeben einer neuen Nachricht ist ein Fehler aufgetreten.</translation>
     </message>
 </context>
 <context>
@@ -4362,7 +4362,7 @@ Bitte versuchen Sie es erneut.</translation>
     <message>
         <location filename="../src/app/linkdevicemodel.cpp" line="66"/>
         <source>Unrecognized new device identifier. Please follow the instructions above.</source>
-        <translation type="unfinished"/>
+        <translation>Unbekannte neue Gerätekennung. Bitte folgen Sie den obigen Anweisungen.</translation>
     </message>
 </context>
 <context>
