@@ -18,15 +18,18 @@ import QtQuick
 import QtQuick.Layouts
 import QtMultimedia
 import Qt5Compat.GraphicalEffects
-import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
+import net.jami.Enums 1.1
+import net.jami.Models 1.1
 import "../../commoncomponents"
 import "../../mainview/components"
+import "../../settingsview/components"
 
 Rectangle {
     id: root
 
+    property int itemWidth: 188
     property int preferredHeight: welcomePageColumnLayout.implicitHeight + 2 * JamiTheme.wizardViewPageBackButtonMargins + JamiTheme.wizardViewPageBackButtonSize
     property bool showTab: false
     property bool showAlreadyHave: false
@@ -407,5 +410,40 @@ Rectangle {
         KeyNavigation.down: KeyNavigation.tab
 
         onClicked: WizardViewStepModel.previousStep()
+    }
+
+    SettingsComboBox {
+        id: langComboBoxSetting
+
+        height: JamiTheme.preferredFieldHeight + 20
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        anchors.margins: JamiTheme.wizardViewPageBackButtonMargins
+
+        labelText: JamiStrings.language
+        tipText: JamiStrings.language
+        comboModel: ListModel {
+            id: langModel
+            Component.onCompleted: {
+                var supported = UtilsAdapter.supportedLang();
+                var keys = Object.keys(supported);
+                var currentKey = UtilsAdapter.getAppValue(Settings.Key.LANG);
+                for (var i = 0; i < keys.length; ++i) {
+                    append({
+                            "textDisplay": supported[keys[i]],
+                            "id": keys[i]
+                        });
+                    if (keys[i] === currentKey)
+                        langComboBoxSetting.modelIndex = i;
+                }
+            }
+        }
+
+        widthOfComboBox: itemWidth
+        role: "textDisplay"
+
+        onActivated: {
+            UtilsAdapter.setAppValue(Settings.Key.LANG, comboModel.get(modelIndex).id);
+        }
     }
 }
