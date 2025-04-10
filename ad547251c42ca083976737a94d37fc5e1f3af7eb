@@ -47,6 +47,54 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1f3ae30_b42e94d4",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-04-10T22:17:37Z",
+      "side": 1,
+      "message": "Is \"following\" better?",
+      "parentUuid": "0cae8cc3_569a2412",
+      "range": {
+        "startLine": 80,
+        "startChar": 87,
+        "endLine": 80,
+        "endChar": 96
+      },
+      "revId": "ad547251c42ca083976737a94d37fc5e1f3af7eb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2aba197e_e127be89",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-04-10T22:17:37Z",
+      "side": 1,
+      "message": "From device: `source`\nTo device: `target`, `new`",
+      "parentUuid": "e298247d_6a9e7129",
+      "range": {
+        "startLine": 80,
+        "startChar": 104,
+        "endLine": 80,
+        "endChar": 114
+      },
+      "revId": "ad547251c42ca083976737a94d37fc5e1f3af7eb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f9fad3e4_b1c1aac0",
@@ -60,6 +108,30 @@
       "writtenOn": "2025-04-07T19:37:10Z",
       "side": 1,
       "message": "Maybe just `Account imported successfully.`?",
+      "range": {
+        "startLine": 609,
+        "startChar": 44,
+        "endLine": 609,
+        "endChar": 92
+      },
+      "revId": "ad547251c42ca083976737a94d37fc5e1f3af7eb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c981c1f_7f08dd1f",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-04-10T22:17:37Z",
+      "side": 1,
+      "message": "Is `Account was imported successfully.` acceptable?\n\nAlternatively, `Account has been imported successfully.`?",
+      "parentUuid": "f9fad3e4_b1c1aac0",
       "range": {
         "startLine": 609,
         "startChar": 44,
