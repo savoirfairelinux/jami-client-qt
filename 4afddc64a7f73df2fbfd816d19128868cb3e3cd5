@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7733da7d_24d7ea56",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2025-04-11T19:23:27Z",
+      "side": 1,
+      "message": "Since you now implement a feature related to change the language can you also allow to use a key of your keyboard to select the language?\n\nticket: https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/1278",
+      "revId": "4afddc64a7f73df2fbfd816d19128868cb3e3cd5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
