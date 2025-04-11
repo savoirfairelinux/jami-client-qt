@@ -95,6 +95,54 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "07c9ae5f_0a95e633",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-04-11T18:41:34Z",
+      "side": 1,
+      "message": "\"following\" is good too.",
+      "parentUuid": "b1f3ae30_b42e94d4",
+      "range": {
+        "startLine": 80,
+        "startChar": 87,
+        "endLine": 80,
+        "endChar": 96
+      },
+      "revId": "ad547251c42ca083976737a94d37fc5e1f3af7eb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db59f4ad_19e0f19d",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-04-11T18:41:34Z",
+      "side": 1,
+      "message": "After double checking, the `scanToImportAccount` and `cantScanQRCode` are shown on the new device, which means they need to refer to the source device.",
+      "parentUuid": "2aba197e_e127be89",
+      "range": {
+        "startLine": 80,
+        "startChar": 104,
+        "endLine": 80,
+        "endChar": 114
+      },
+      "revId": "ad547251c42ca083976737a94d37fc5e1f3af7eb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f9fad3e4_b1c1aac0",
@@ -132,6 +180,30 @@
       "side": 1,
       "message": "Is `Account was imported successfully.` acceptable?\n\nAlternatively, `Account has been imported successfully.`?",
       "parentUuid": "f9fad3e4_b1c1aac0",
+      "range": {
+        "startLine": 609,
+        "startChar": 44,
+        "endLine": 609,
+        "endChar": 92
+      },
+      "revId": "ad547251c42ca083976737a94d37fc5e1f3af7eb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13d1f363_dd34ebfd",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-04-11T18:41:34Z",
+      "side": 1,
+      "message": "I won\u0027t block the patch over this but I feel like it makes more sense to either go with the short version (\"Account imported successfully.\") or to write a full sentence (e.g. \"The account was imported successfully.\"). The intermediate version currently in the patch sounds a bit weird/ungrammatical to me.",
+      "parentUuid": "0c981c1f_7f08dd1f",
       "range": {
         "startLine": 609,
         "startChar": 44,
