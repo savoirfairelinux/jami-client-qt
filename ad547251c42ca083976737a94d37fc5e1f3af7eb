@@ -143,6 +143,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6d8b902_16f59b52",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-04-13T07:27:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db59f4ad_19e0f19d",
+      "range": {
+        "startLine": 80,
+        "startChar": 104,
+        "endLine": 80,
+        "endChar": 114
+      },
+      "revId": "ad547251c42ca083976737a94d37fc5e1f3af7eb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f9fad3e4_b1c1aac0",
@@ -204,6 +228,30 @@
       "side": 1,
       "message": "I won\u0027t block the patch over this but I feel like it makes more sense to either go with the short version (\"Account imported successfully.\") or to write a full sentence (e.g. \"The account was imported successfully.\"). The intermediate version currently in the patch sounds a bit weird/ungrammatical to me.",
       "parentUuid": "0c981c1f_7f08dd1f",
+      "range": {
+        "startLine": 609,
+        "startChar": 44,
+        "endLine": 609,
+        "endChar": 92
+      },
+      "revId": "ad547251c42ca083976737a94d37fc5e1f3af7eb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f9e53a3_2294a1a7",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-04-13T07:27:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13d1f363_dd34ebfd",
       "range": {
         "startLine": 609,
         "startChar": 44,
