@@ -98,7 +98,9 @@ endif()
 # then call find_package again. Unfortunately, even the second call to find_package sometimes
 # fails due to qmsetup having been installed in the wrong directory. The following patch
 # ensures that qmsetup is always installed in the directory where find_package looks for it.
-list(APPEND QWINDOWKIT_PATCHES ${EXTRA_PATCHES_DIR}/0001-fix-qm_install_package-function.patch)
+if(NOT WIN32)
+  list(APPEND QWINDOWKIT_PATCHES ${EXTRA_PATCHES_DIR}/0001-fix-qm_install_package-function.patch)
+endif()
 
 # qwindowkit (frameless window)
 add_fetch_content(
