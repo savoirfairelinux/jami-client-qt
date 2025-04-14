@@ -374,7 +374,7 @@ def run_install(args):
         # Prepare the build-windows.py script call
         build_windows = 'extras/scripts/build-windows.py'
         # Initialize build environment
-        execute_script([f'python {build_windows} --init'])
+        execute_script([f'python {build_windows} --init --qt={args.qt}'])
 
         # Construct build command with options
         build_cmd = [
