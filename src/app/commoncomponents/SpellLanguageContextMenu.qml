@@ -1,6 +1,5 @@
 /*
  * Copyright (C) 2020-2024 Savoir-faire Linux Inc.
- * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,6 +23,7 @@ import "../mainview/components"
 
 ContextMenuAutoLoader {
     id: root
+    signal languageChanged(string language)
 
     CachedFile {
         id: cachedFile
@@ -38,7 +38,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "af_ZA/af_ZA"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
         GeneralMenuItem {
@@ -49,7 +49,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "an_ES/an_ES"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
         // Ajoutez les autres langues de la même manière
@@ -61,7 +61,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "ar/ar"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
         GeneralMenuItem {
@@ -72,7 +72,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "be_BY/be-official"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
             GeneralMenuItem {
@@ -83,7 +83,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "bg_BG/bg_BG"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
         GeneralMenuItem {
@@ -94,7 +94,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "bn_BD/bn_BD"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
         GeneralMenuItem {
@@ -105,7 +105,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "bo/bo"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
         GeneralMenuItem {
@@ -116,7 +116,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "br_FR/br_FR"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
         GeneralMenuItem {
@@ -127,7 +127,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "bs_BA/bs_BA"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
         GeneralMenuItem {
@@ -138,7 +138,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "ca/dictionaries/ca"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
         GeneralMenuItem {
@@ -149,7 +149,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "ckb/dictionaries/ckb"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
         GeneralMenuItem {
@@ -160,7 +160,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "cs_CZ/cs_CZ"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
         GeneralMenuItem {
@@ -171,7 +171,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "da_DK/da_DK"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
         GeneralMenuItem {
@@ -182,7 +182,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "de/de_DE_frami"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
         GeneralMenuItem {
@@ -193,7 +193,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "el_GR/el_GR"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
         GeneralMenuItem {
@@ -203,8 +203,8 @@ ContextMenuAutoLoader {
             itemName: JamiStrings.english
             hasIcon: false
             onClicked: {
-                var language = "en/en_US"
-                cachedFile.updateDictionnary(language);
+                var language = "en/en_GB"
+                languageChanged(language)
             }
         },
         GeneralMenuItem {
@@ -215,7 +215,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "eo/eo"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
         GeneralMenuItem {
@@ -226,7 +226,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "es/es_ES"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -238,7 +238,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "et_EE/et_EE"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -250,7 +250,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "fa_IR/fa-IR"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -262,7 +262,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "fr_FR/fr"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -274,7 +274,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "gd_GB/gd_GB"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -286,7 +286,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "gl/gl_ES"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -298,7 +298,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "gu_IN/gu_IN"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -310,7 +310,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "gug/gug"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -322,7 +322,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "he_IL/he_IL"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
         GeneralMenuItem {
@@ -333,7 +333,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "hi_IN/hi_IN"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -345,7 +345,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "hr_HR/hr_HR"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -357,7 +357,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "hu_HU/hu_HU"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -369,7 +369,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "id/id_ID"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -381,7 +381,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "is/is"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -393,7 +393,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "it_IT/it_IT"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -405,7 +405,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "kmr_Latn/kmr_Latn"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -417,7 +417,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "ko_KR/ko_KR"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -429,7 +429,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "lo_LA/lo_LA"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -441,7 +441,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "lt_LT/lt"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -453,7 +453,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "lv_LV/lv_LV"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -465,7 +465,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "mn_MN/mn_MN"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
         GeneralMenuItem {
@@ -476,7 +476,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "ne_NP/ne_NP"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -488,7 +488,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "nl_NL/nl_NL"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -500,7 +500,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "no/nb_NO"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -512,7 +512,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "oc_FR/oc_FR"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -524,7 +524,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "pl_PL/pl_PL"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -536,7 +536,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "pt_BR/pt_BR"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -548,7 +548,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "pt_PT/pt_PT"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -560,7 +560,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "ro/ro_RO"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -572,7 +572,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "ru_RU/ru_RU"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -584,7 +584,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "si_LK/si_LK"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -596,7 +596,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "sk_SK/sk_SK"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -608,9 +608,9 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "sl_SI/sl_SI"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
-        }
+        },
 
         GeneralMenuItem {
             id: sq_AL
@@ -620,7 +620,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "sq_AL/sq_AL"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -632,7 +632,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "sr/sr"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -644,7 +644,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "sv_SE/sv_SE"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -656,7 +656,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "sw_TZ/sw_TZ"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -668,7 +668,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "te_IN/te_IN"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -680,9 +680,9 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "th_TH/th_TH"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
-        }
+        },
 
         GeneralMenuItem {
             id: tr_TR
@@ -692,7 +692,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "tr_TR/tr_TR"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
 
@@ -704,7 +704,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "uk_UA/uk_UA"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         },
         GeneralMenuItem {
@@ -715,7 +715,7 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 var language = "vi/vi_VN"
-                cachedFile.updateDictionnary(language);
+                languageChanged(language)
             }
         }
         // aff file is missing for this language need to figure it out
@@ -727,7 +727,7 @@ ContextMenuAutoLoader {
         //    hasIcon: false
         //    onClicked: {
         //        var language = "zu_ZA"
-        //        cachedFile.updateDictionnary(language);
+        //        languageChanged(language)
         //    }
         //}
     ]

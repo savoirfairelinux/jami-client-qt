@@ -43,6 +43,7 @@ JamiFlickable {
 
     // Used to cache the editable text when showing the preview message
     // and also to debounce the textChanged signal's effect on the composing status.
+    property var underlineList: []
     property string cachedText
     property string debounceText
 

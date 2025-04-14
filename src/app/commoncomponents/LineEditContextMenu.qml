@@ -39,6 +39,14 @@ ContextMenuAutoLoader {
         id: cachedFile
     }
 
+    SpellLanguageContextMenu{
+                    id: spellLanguageContextMenu
+                    onLanguageChanged: {
+                        cachedFile.updateDictionnary(language);
+                        textArea.updateUnderlineText();
+                    }
+                }
+
     property list<GeneralMenuItem> menuItems: [
         GeneralMenuItem {
             id: copy
@@ -82,7 +90,9 @@ ContextMenuAutoLoader {
             itemName: JamiStrings.language
             hasIcon: false
             onClicked: {
-
+                spellLanguageContextMenu.openMenu();
+                var language = "en/en_GB";
+                cachedFile.updateDictionnary(language);
             }
         }
     ]
