@@ -16,6 +16,23 @@
       "message": "https://review.jami.net/c/jami-docs/+/30987",
       "revId": "dd0a32ba88bac55eb284b9a64fcebbb961bed58c",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f22f885_4395c778",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-04-15T22:25:26Z",
+      "side": 1,
+      "message": "https://review.jami.net/c/jami-docs/+/30989",
+      "revId": "dd0a32ba88bac55eb284b9a64fcebbb961bed58c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
