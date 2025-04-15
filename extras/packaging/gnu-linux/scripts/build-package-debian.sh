@@ -47,7 +47,7 @@ if [ ! -f "${qt_deb_path}" ] || [ "${FORCE_REBUILD_QT}" = "true" ]; then
 
         # HACK: For now on ubuntu 24.04 there is no python3.10 package
         # So create a PyEnv environment to install the required packages
-        if cat /etc/os-release | grep -Eq "24.04"; then
+        if cat /etc/os-release | grep -Eq "24.04|25.04"; then
             apt-get install git gcc make python3-pip libssl-dev curl libreadline-dev -y
             curl https://pyenv.run | bash
             export PYENV_ROOT="$HOME/.pyenv"
