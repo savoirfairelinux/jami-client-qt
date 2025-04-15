@@ -63,6 +63,8 @@ extern const QString defaultDownloadPath;
     X(WindowState, QWindow::AutomaticVisibility) \
     X(EnableExperimentalSwarm, false) \
     X(LANG, "SYSTEM") \
+    X(SpellLang, "en/en_GB") \
+    X(EnableSpellCheck, true) \
     X(PluginStoreEndpoint, "https://plugins.jami.net") \
     X(PositionShareDuration, 15) \
     X(PositionShareLimit, true) \
@@ -146,6 +148,7 @@ public:
     Q_INVOKABLE QVariant getDefault(const Settings::Key key) const;
 
     QString getLanguage();
+    Q_INVOKABLE QString getSpellLanguage();
     const QString getDictionaryPath();
 
     void loadTranslations();

@@ -23,7 +23,10 @@ import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
 import "../../commoncomponents"
+import SortFilterProxyModel 0.2
 
+//import Qt5Compat.GraphicalEffects
+//import net.jami.Helpers 1.1
 SettingsPageBase {
     id: root
 
@@ -183,7 +186,114 @@ SettingsPageBase {
                     UtilsAdapter.setAppValue(Settings.Key.LANG, comboModel.get(modelIndex).id);
                 }
             }
+        }
+        ColumnLayout {
 
+            width: parent.width
+            spacing: JamiTheme.settingsCategorySpacing
+
+            Text {
+                id: spellcheckingTitle
+
+                Layout.alignment: Qt.AlignLeft
+                Layout.preferredWidth: parent.width
+
+                text: JamiStrings.spellchecking
+                color: JamiTheme.textColor
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+                wrapMode: Text.WordWrap
+
+                font.pixelSize: JamiTheme.settingsTitlePixelSize
+                font.kerning: true
+            }
+
+            ToggleSwitch {
+                id: enableSpellCheck
+                Layout.fillWidth: true
+                visible: true
+
+                checked: UtilsAdapter.getAppValue(Settings.Key.EnableSpellCheck)
+                labelText: JamiStrings.enableSpellCheck
+                tooltipText: JamiStrings.enableSpellCheck
+                onSwitchToggled: {
+                    UtilsAdapter.setAppValue(Settings.Key.EnableSpellCheck, checked);
+                    if (checked) {
+                        UtilsAdapter.setToDefault(Settings.Key.EnableSpellCheck);
+                    }
+                }
+            }
+
+            SettingsComboBox {
+                id: spellCheckLangComboBoxSetting
+
+                Layout.fillWidth: true
+                height: JamiTheme.preferredFieldHeight
+
+                labelText: JamiStrings.spellCheckLanguage
+                tipText: JamiStrings.spellCheckLanguage
+                comboModel: ListModel {
+                    id: installedSpellCheckLangModel
+                    Component.onCompleted: {
+                        var supported = SpellCorrectorHandler.installedDictionaries();
+                        var keys = Object.keys(supported);
+                        var currentKey = UtilsAdapter.getAppValue(Settings.Key.SpellLang);
+                        for (var i = 0; i < keys.length; ++i) {
+                            append({
+                                    "textDisplay": supported[keys[i]],
+                                    "id": keys[i]
+                                });
+                            if (keys[i] === currentKey)
+                                langComboBoxSetting.modelIndex = i;
+                        }
+                    }
+                }
+
+                widthOfComboBox: itemWidth
+                role: "textDisplay"
+
+                onActivated: {
+                    console.warn("spellCheckLangComboBoxSetting activated: " + modelIndex);
+                    UtilsAdapter.setAppValue(Settings.Key.SpellLang, comboModel.get(modelIndex).id);
+                }
+            }
+
+            SettingsComboBox {
+                id: spellCheckAvailableLangsComboBoxSetting
+
+                Layout.fillWidth: true
+                height: JamiTheme.preferredFieldHeight
+
+                labelText: JamiStrings.spellCheckAvailableLanguage
+                tipText: JamiStrings.spellCheckAvailableLanguage
+                comboModel: ListModel {
+                    id: availableSpellCheckLangModel
+                    Component.onCompleted: {
+                        var supported = SpellCorrectorHandler.availableDictionaries();
+                        var keys = Object.keys(supported);
+                        var currentKey = UtilsAdapter.getAppValue(Settings.Key.SpellLang);
+                        for (var i = 0; i < keys.length; ++i) {
+                            append({
+                                    "textDisplay": supported[keys[i]],
+                                    "id": keys[i]
+                                });
+                            if (keys[i] === currentKey)
+                                langComboBoxSetting.modelIndex = i;
+                        }
+                    }
+                }
+
+                widthOfComboBox: itemWidth
+                role: "textDisplay"
+
+                onActivated:
+                //TODO: append the list of available languages
+                //UtilsAdapter.setAppValue(Settings.Key.SpellLang, comboModel.get(modelIndex).id);
+                {
+                }
+            }
+
+            //TODO: à copier pour le spell check
             Connections {
                 target: UtilsAdapter
 

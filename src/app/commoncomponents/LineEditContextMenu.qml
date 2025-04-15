@@ -20,6 +20,10 @@ import net.jami.Constants 1.1
 import "contextmenu"
 import "../mainview"
 import "../mainview/components"
+import "../commoncomponents"
+import QtQuick.Controls
+import QtWebEngine
+import net.jami.Enums 1.1
 
 ContextMenuAutoLoader {
     id: root
@@ -30,22 +34,19 @@ ContextMenuAutoLoader {
     property var selectionEnd
     property bool customizePaste: false
     property bool selectOnly: false
+    property bool checkSpell: false
     property var suggestionList
     property var nbMenuItems
+    property var language
 
     signal contextMenuRequirePaste
-
-    CachedFile {
-        id: cachedFile
+    SpellLanguageContextMenu {
+        id: spellLanguageContextMenu
+        active: checkSpell
+        onLanguageChanged: {
+            textArea.updateCorrection(language);
+        }
     }
-
-    SpellLanguageContextMenu{
-                    id: spellLanguageContextMenu
-                    onLanguageChanged: {
-                        cachedFile.updateDictionnary(language);
-                        textArea.updateUnderlineText();
-                    }
-                }
 
     property list<GeneralMenuItem> menuItems: [
         GeneralMenuItem {
@@ -85,14 +86,12 @@ ContextMenuAutoLoader {
         },
         GeneralMenuItem {
             id: language
-
-            canTrigger: true
+            visible: checkSpell
+            canTrigger: checkSpell
             itemName: JamiStrings.language
             hasIcon: false
             onClicked: {
                 spellLanguageContextMenu.openMenu();
-                var language = "en/en_GB";
-                cachedFile.updateDictionnary(language);
             }
         }
     ]
@@ -137,7 +136,7 @@ ContextMenuAutoLoader {
         for (var i = 0; i < suggestionList.length; ++i) {
             dynamicModel.append({
                     "name": suggestionList[i]
-            });
+                });
         }
     }
 
