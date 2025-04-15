@@ -32,15 +32,14 @@ Item {
         if (downloadUrl === "") {
             return;
         }
-
         var file = dictionaryPath + languagePath;
         var url = downloadUrl + languagePath;
-
+        console.warn("Download url: " + url);
+        console.warn("Download file: " + file);
         if (url && url !== "" && file !== "") {
             FileDownloader.downloadFile(url + ".aff", file + ".aff");
             FileDownloader.downloadFile(url + ".dic", file + ".dic");
         }
-
         MessagesAdapter.updateDictionnary(file);
     }
 }
