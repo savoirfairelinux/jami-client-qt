@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edf12b0d_a7e19913",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 911,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-04-15T21:51:53Z",
+      "side": 1,
+      "message": "Can the string be improved? Please see the following examples:\n`Check spelling while typing`\n`Always check spelling before sending`\n`Don\u0027t check spelling or grammar`\n`Hide spelling errors`\n`Spelling`\n`Spelling and grammar`\n\nThank you",
+      "range": {
+        "startLine": 911,
+        "startChar": 44,
+        "endLine": 911,
+        "endChar": 70
+      },
+      "revId": "66326d2588a09c8c40c6e8b8206cbe978cbf6867",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d92913ac_475633b9",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 912,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-04-15T21:51:53Z",
+      "side": 1,
+      "message": "Should the string be `Text language`? The spelling (and, if available, grammar) checker should check based on the language.\n\nThe inspiration for the `Text language` string is from the LibreOffice status bar.\n\nAlternatively, `Proofing language`, `Set proofing language` or `Set proofing language…`\n\nThank you",
+      "range": {
+        "startLine": 912,
+        "startChar": 46,
+        "endLine": 912,
+        "endChar": 74
+      },
+      "revId": "66326d2588a09c8c40c6e8b8206cbe978cbf6867",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a20e2043_d027ca0d",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 913,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-04-15T21:51:53Z",
+      "side": 1,
+      "message": "`Proofing language`\n\n`The speller and other proofing tools automatically use dictionaries of the selected language, if available.`",
+      "range": {
+        "startLine": 913,
+        "startChar": 55,
+        "endLine": 913,
+        "endChar": 101
+      },
+      "revId": "66326d2588a09c8c40c6e8b8206cbe978cbf6867",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
