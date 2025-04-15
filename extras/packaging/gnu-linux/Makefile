@@ -168,8 +168,6 @@ DISTRIBUTIONS := \
 	ubuntu_24.04 \
 	ubuntu_24.10 \
 	ubuntu_25.04 \
-	fedora_37 \
-	fedora_38 \
 	fedora_39 \
 	fedora_40 \
 	fedora_41 \
