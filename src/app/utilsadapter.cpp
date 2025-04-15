@@ -63,6 +63,7 @@ void
 UtilsAdapter::setAppValue(const QString& key, const QVariant& value)
 {
     settingsManager_->setValue(key, value);
+    //qWarning("setAppValue: %s, %s", qPrintable(key), qPrintable(value.toString()));
 }
 
 QVariant
@@ -96,6 +97,13 @@ UtilsAdapter::setAppValue(const Settings::Key key, const QVariant& value)
         Q_EMIT appThemeChanged();
     else if (key == Settings::Key::UseFramelessWindow)
         Q_EMIT useFramelessWindowChanged();
+    else if (key == Settings::Key::InstalledSpellLangs)
+        Q_EMIT installedSpellLangsChanged();
+        else if (key == Settings::Key::SpellLang)
+            Q_EMIT spellLangChanged();
+        else if (key == Settings::Key::EnableSpellCheck){
+            Q_EMIT enableSpellCheckChanged();
+        }
 #if !APPSTORE
     // Any donation campaign-related keys can trigger a donation campaign check
     else if (key == Settings::Key::IsDonationVisible
@@ -563,6 +571,19 @@ UtilsAdapter::supportedLang()
     return result;
 }
 
+QVariantMap
+UtilsAdapter::activatedSpellLangs()
+{
+    QVariantMap result;
+    return result;
+}
+
+QVariantMap
+UtilsAdapter::availableSpellLangs()
+{
+    QVariantMap result;
+    return result;
+}
 QString
 UtilsAdapter::tempCreationImage(const QString& imageId) const
 {

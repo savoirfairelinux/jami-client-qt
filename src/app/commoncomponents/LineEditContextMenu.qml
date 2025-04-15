@@ -39,13 +39,13 @@ ContextMenuAutoLoader {
         id: cachedFile
     }
 
-    SpellLanguageContextMenu{
-                    id: spellLanguageContextMenu
-                    onLanguageChanged: {
-                        cachedFile.updateDictionnary(language);
-                        textArea.updateUnderlineText();
-                    }
-                }
+    SpellLanguageContextMenu {
+        id: spellLanguageContextMenu
+        onLanguageChanged: {
+            cachedFile.updateDictionnary(language);
+            textArea.updateUnderlineText();
+        }
+    }
 
     property list<GeneralMenuItem> menuItems: [
         GeneralMenuItem {
@@ -91,8 +91,8 @@ ContextMenuAutoLoader {
             hasIcon: false
             onClicked: {
                 spellLanguageContextMenu.openMenu();
-                var language = "en/en_GB";
-                cachedFile.updateDictionnary(language);
+                //var language = "en/en_GB";
+                //cachedFile.updateDictionnary(language);
             }
         }
     ]
@@ -137,7 +137,7 @@ ContextMenuAutoLoader {
         for (var i = 0; i < suggestionList.length; ++i) {
             dynamicModel.append({
                     "name": suggestionList[i]
-            });
+                });
         }
     }
 

@@ -54,6 +54,7 @@ AppSettingsManager::getValue(const QString& key, const QVariant& defaultValue)
 void
 AppSettingsManager::setValue(const QString& key, const QVariant& value)
 {
+    //qWarning("setValue: %s, %s", qPrintable(key), qPrintable(value.toString()));
     settings_->setValue(key, value);
 }
 

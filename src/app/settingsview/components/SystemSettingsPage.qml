@@ -184,6 +184,90 @@ SettingsPageBase {
                 }
             }
 
+            ToggleSwitch {
+                id: enableSpellCheck
+                Layout.fillWidth: true
+                visible: true
+
+                checked: UtilsAdapter.getAppValue(Settings.Key.EnableSpellCheck)
+                labelText: JamiStrings.enableSpellCheck
+                tooltipText: JamiStrings.enableSpellCheck
+                onSwitchToggled: {
+                    UtilsAdapter.setAppValue(Settings.Key.EnableSpellCheck, checked);
+                    if (checked) {
+                        UtilsAdapter.setToDefault(Settings.Key.EnableSpellCheck);
+                    }
+                }
+            }
+
+            SettingsComboBox {
+                id: spellCheckLangComboBoxSetting
+
+                Layout.fillWidth: true
+                height: JamiTheme.preferredFieldHeight
+
+                labelText: JamiStrings.spellCheckLanguage
+                tipText: JamiStrings.spellCheckLanguage
+                comboModel: ListModel {
+                    id: installedSpellCheckLangModel
+                    Component.onCompleted: {
+                        var supported = UtilsAdapter.activatedSpellLangs();
+                        var keys = Object.keys(supported);
+                        var currentKey = UtilsAdapter.getAppValue(Settings.Key.SpellLang);
+                        for (var i = 0; i < keys.length; ++i) {
+                            append({
+                                    "textDisplay": supported[keys[i]],
+                                    "id": keys[i]
+                                });
+                            if (keys[i] === currentKey)
+                                langComboBoxSetting.modelIndex = i;
+                        }
+                    }
+                }
+
+                widthOfComboBox: itemWidth
+                role: "textDisplay"
+
+                onActivated: {
+                    UtilsAdapter.setAppValue(Settings.Key.SpellLang, comboModel.get(modelIndex).id);
+                }
+            }
+
+            SettingsComboBox {
+                id: spellCheckActivatedLangsComboBoxSetting
+
+                Layout.fillWidth: true
+                height: JamiTheme.preferredFieldHeight
+
+                labelText: JamiStrings.spellCheckavailableLanguage
+                tipText: JamiStrings.spellCheckavailableLanguage
+                comboModel: ListModel {
+                    id: spellCheckLangModel
+                    Component.onCompleted: {
+                        var supported = UtilsAdapter.availableSpellLangs();
+                        var keys = Object.keys(supported);
+                        var currentKey = UtilsAdapter.getAppValue(Settings.Key.InstalledSpellLangs);
+                        for (var i = 0; i < keys.length; ++i) {
+                            append({
+                                    "textDisplay": supported[keys[i]],
+                                    "id": keys[i]
+                                });
+                            if (keys[i] === currentKey)
+                                langComboBoxSetting.modelIndex = i;
+                        }
+                    }
+                }
+
+                widthOfComboBox: itemWidth
+                role: "textDisplay"
+
+                onActivated: {
+                    //TODO: append the list of available languages
+                    UtilsAdapter.setAppValue(Settings.Key.SpellLang, comboModel.get(modelIndex).id);
+                }
+            }
+
+            //TODO: à copier pour le spell check
             Connections {
                 target: UtilsAdapter
 
