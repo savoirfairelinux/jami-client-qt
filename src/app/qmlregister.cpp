@@ -36,6 +36,7 @@
 #include "currentaccounttomigrate.h"
 #include "pttlistener.h"
 #include "calloverlaymodel.h"
+#include "spellcorrectorhandler.h"
 #include "accountlistmodel.h"
 #include "mediacodeclistmodel.h"
 #include "audiodevicemodel.h"
@@ -156,6 +157,11 @@ registerTypes(QQmlEngine* engine,
     QQmlEngine::setObjectOwnership(callOverlayModel, QQmlEngine::CppOwnership);
     REG_QML_SINGLETON<CallOverlayModel>(REG_MODEL, "CallOverlayModel", CREATE(callOverlayModel));
 
+    auto spellCorrectorHandler = new SpellCorrectorHandler(lrcInstance);
+    qApp->setProperty("SpellCorrectorHandler", QVariant::fromValue(spellCorrectorHandler));
+    QQmlEngine::setObjectOwnership(spellCorrectorHandler, QQmlEngine::CppOwnership);
+    REG_QML_SINGLETON<SpellCorrectorHandler>(REG_MODEL, "SpellCorrectorHandler", CREATE(spellCorrectorHandler));
+
     /* Used in CurrentCall */
     auto callParticipantsModel = new CallParticipantsModel(lrcInstance, app);
     qApp->setProperty("CallParticipantsModel", QVariant::fromValue(callParticipantsModel));
@@ -233,6 +239,7 @@ registerTypes(QQmlEngine* engine,
     // QAbstractListModels
     QML_REGISTERTYPE(NS_MODELS, BannedListModel);
     QML_REGISTERTYPE(NS_MODELS, MediaCodecListModel);
+    //QML_REGISTERTYPE(NS_MODELS, DictionariesListModel);
     QML_REGISTERTYPE(NS_MODELS, AudioDeviceModel);
     QML_REGISTERTYPE(NS_MODELS, AudioManagerListModel);
     QML_REGISTERTYPE(NS_MODELS, PreferenceItemListModel);
