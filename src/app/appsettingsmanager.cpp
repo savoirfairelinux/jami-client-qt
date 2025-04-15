@@ -82,17 +82,19 @@ AppSettingsManager::getLanguage()
     return pref == "SYSTEM" ? QLocale::system().name() : pref;
 }
 
+QString
+AppSettingsManager::getSpellLanguage()
+{
+    auto pref = getValue(Settings::Key::SpellLang).toString();
+    qWarning("SpellLang: %s", qPrintable(pref));
+    return pref == "none" ? "en_GB/en" : pref;
+}
+// TODO: remove
 const QString
 AppSettingsManager::getDictionaryPath()
 {
-    QString language = AppSettingsManager::getLanguage();
-
-    #if defined(HUNSPELL_INSTALL_DIR)
-        QString hunspellDataDir = HUNSPELL_INSTALL_DIR + language;
-    #else
-        QString hunspellDataDir = qApp->applicationDirPath() + QDir::separator() + "share";
-    #endif
-    return hunspellDataDir;
+    return QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QDir::separator()
+           + "dictionaries" + QDir::separator() + getSpellLanguage();
 }
 
 void

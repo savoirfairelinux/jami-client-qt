@@ -98,8 +98,6 @@ public:
     Q_INVOKABLE const QString getStyleSheet(const QString& name, const QString& source);
     Q_INVOKABLE const QString getLocalDataPath();
     Q_INVOKABLE const QString getCachePath();
-    Q_INVOKABLE const QString getDictionaryPath();
-    Q_INVOKABLE const QString getDictionaryUrl();
     Q_INVOKABLE bool createStartupLink();
     Q_INVOKABLE QString GetRingtonePath();
     Q_INVOKABLE bool checkStartupLink();
@@ -139,6 +137,7 @@ public:
     Q_INVOKABLE void setScreenshotPath(QString dir);
     Q_INVOKABLE void monitor(const bool& continuous);
     Q_INVOKABLE QVariantMap supportedLang();
+    Q_INVOKABLE QVariantMap activatedSpellLangs();
     Q_INVOKABLE QString tempCreationImage(const QString& imageId = "temp") const;
     Q_INVOKABLE void setTempCreationImageFromString(const QString& image = "",
                                                     const QString& imageId = "temp");
@@ -183,6 +182,9 @@ Q_SIGNALS:
     void changeLanguage();
     void donationCampaignSettingsChanged();
     void useFramelessWindowChanged();
+    void installedSpellLangsChanged();
+    void spellLangChanged();
+    void enableSpellCheckChanged();
 
 private:
     QClipboard* clipboard_;
