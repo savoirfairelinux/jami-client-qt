@@ -17,14 +17,11 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
-
 import SortFilterProxyModel 0.2
-
 import "../../commoncomponents"
 
 JamiFlickable {
@@ -183,7 +180,6 @@ JamiFlickable {
         Keys.onPressed: function (keyEvent) {
             // Update underline on each input to take into account deleted text and sent ones
             updateUnderlineText();
-
             if (keyEvent.matches(StandardKey.Paste)) {
                 MessagesAdapter.onPaste();
                 keyEvent.accepted = true;
