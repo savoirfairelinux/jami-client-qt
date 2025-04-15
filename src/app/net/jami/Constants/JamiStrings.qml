@@ -907,7 +907,13 @@ Item {
     property string remote: qsTr("Remote: %1")
     property string view: qsTr("View")
 
-    //Language
+    // Spellchecker
+    property string enableSpellCheck: qsTr("Check spelling while typing")
+    property string spellCheckLanguage: qsTr("Text language")
+    property string spellCheckAvailableLanguage: qsTr("Install new languages")
+    property string spellchecking: qsTr("Spellchecking")
+
+    //Language TODO: remove
     property string afrikaans: qsTr("afrikaans")
     property string aragonese: qsTr("aragonese")
     property string arabic: qsTr("arabic")
