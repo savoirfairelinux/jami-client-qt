@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d29954b1_6a17fa92",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-04-16T00:21:02Z",
+      "side": 1,
+      "message": "https://review.jami.net/c/jami-docs/+/30990",
+      "revId": "3cb08eb5adf7c50821f4ba5bdc7104e32445ffb0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
