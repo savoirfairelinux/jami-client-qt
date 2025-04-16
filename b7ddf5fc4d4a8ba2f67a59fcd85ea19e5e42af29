@@ -22,6 +22,30 @@
       },
       "revId": "b7ddf5fc4d4a8ba2f67a59fcd85ea19e5e42af29",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0de8f63f_2d90a0e7",
+        "filename": "src/app/settingsview/components/AudioSettingsPage.qml",
+        "patchSetId": 17
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-04-16T20:52:19Z",
+      "side": 1,
+      "message": "n/a",
+      "parentUuid": "9ffe3efe_5a53ca65",
+      "range": {
+        "startLine": 76,
+        "startChar": 23,
+        "endLine": 76,
+        "endChar": 41
+      },
+      "revId": "b7ddf5fc4d4a8ba2f67a59fcd85ea19e5e42af29",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
