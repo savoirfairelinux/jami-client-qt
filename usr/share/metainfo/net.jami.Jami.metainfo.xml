@@ -2,13 +2,30 @@
 <!-- Copyright (C) 2015-2025 Savoir-faire Linux Inc. -->
 <component type="desktop-application">
   <id>net.jami.Jami</id>
-  <metadata_license>CC-BY-SA-3.0</metadata_license>
-  <project_license>GPL-3.0+</project_license>
   <name>Jami</name>
 
-  <summary>Privacy-oriented voice, video, chat, and conference platform</summary>
-  <summary xml:lang="hu">Adatvédelem-orientált hang-, video-, csevegés- és konferenciaplatform</summary>
+  <summary>Share, freely and privately</summary>
+  <summary xml:lang="hu">Megosztás, szabadon és bizalmasan</summary>
+
   <icon type="stock">jami</icon>
+
+  <metadata_license>CC-BY-SA-3.0</metadata_license>
+  <project_license>GPL-3.0+</project_license>
+
+  <developer id="net.jami.Jami">
+    <name>Savoir-faire Linux Inc.</name>
+  </developer>
+
+  <releases>
+    <release version="20241126.0" date="2024-11-26" type="stable">
+      <description>
+        https://git.jami.net/savoirfairelinux/jami-client-qt/-/wikis/Changelog#nightlystable-20241126
+      </description>
+    </release>
+    <release version="20240813.0" date="2024-08-13" type="stable"/>
+    <release version="20240627.0" date="2024-06-27" type="stable"/>
+    <release version="20240214.0" date="2024-02-14" type="stable"/>
+  </releases>
 
   <description>
     <p>Jami, a GNU package, is software for universal and distributed peer-to-peer communication that respects the freedom and privacy of its users.</p>
@@ -44,7 +61,7 @@
       <li xml:lang="hu">Jami: https://jami.net/hu/</li>
       <li>Jami extensions: https://jami.net/extensions/</li>
       <li xml:lang="hu">Jami-bővítmények: https://jami.net/hu/extensions/</li>
-      <li>“Jami Account Management Server” (JAMS): https://jami.biz/</li>
+      <li>JAMS (Jami Account Management Server): https://jami.biz/</li>
       <li xml:lang="hu">JAMS (Jami Account Management Server – Jami fiókkezelő kiszolgáló): https://jami.biz/</li>
       <li>Jami documentation: https://docs.jami.net/</li>
       <li xml:lang="hu">Jami-dokumentáció: https://docs.jami.net/hu/</li>
@@ -54,10 +71,8 @@
     <ul>
       <li>Mastodon: https://mstdn.io/@Jami</li>
       <li xml:lang="hu">Mastodon: https://mstdn.io/@Jami</li>
-      <li>X: https://x.com/jami_social</li>
-      <li xml:lang="hu">X: https://x.com/jami_social</li>
-      <li>YouTube: https://www.youtube.com/@jami9311</li>
-      <li xml:lang="hu">YouTube: https://www.youtube.com/@jami9311</li>
+      <li>Videos: https://docs.jami.net/videos/</li>
+      <li xml:lang="hu">Videók: https://docs.jami.net/hu/videos/</li>
     </ul>
     <p>We’d love to hear from you! Join the Jami community:</p>
     <p xml:lang="hu">Szívesen hallanánk felőled! Csatlakozzon a Jami közösséghez:</p>
@@ -77,12 +92,24 @@
     <p xml:lang="hu">Szerzői jog © Savoir-faire Linux Inc.</p>
   </description>
 
-  <url type="homepage">https://jami.net/</url>
+  <requires>
+    <id>net.jami.daemon</id>
+  </requires>
+
   <url type="bugtracker">https://git.jami.net/savoirfairelinux/jami-client-qt/issues</url>
-  <url type="faq">https://docs.jami.net/user/faq.html</url>
-  <url type="help">https://forum.jami.net/</url>
+  <url type="homepage">https://jami.net/</url>
   <url type="donation">https://jami.net/whydonate/</url>
+  <url type="contact">https://mstdn.io/@Jami</url>
+  <url type="faq">https://docs.jami.net/user/faq.html</url>
   <url type="translate">https://www.transifex.com/savoirfairelinux/jami</url>
+  <url type="contribute">https://jami.net/contribute/</url>
+  <url type="help">https://forum.jami.net/</url>
+  <url type="vcs-browser">https://git.jami.net/savoirfairelinux</url>
+
+  <provides>
+    <binary>jami</binary>
+    <mediatype>x-scheme-handler/jami</mediatype>
+  </provides>
 
   <!-- Maximum caption length is 60 characters -->
   <!-- Officially GIF is not an allowed video format, but it appears to work nonetheless -->
@@ -121,11 +148,19 @@
 
   <launchable type="desktop-id">net.jami.Jami.desktop</launchable>
 
-  <provides><binary>jami</binary></provides>
+  <keywords>
+    <keyword>Qt</keyword>
+    <keyword>chat</keyword>
+    <keyword>talk</keyword>
+    <keyword>im</keyword>
+    <keyword>message</keyword>
+    <keyword>voip</keyword>
+  </keywords>
 
   <!-- https://specifications.freedesktop.org/menu-spec/latest/apa.html -->
   <!-- https://specifications.freedesktop.org/menu-spec/latest/apas02.html -->
   <categories>
+    <category>AudioVideo</category>
     <category>Chat</category>
     <category>FileTransfer</category>
     <category>InstantMessaging</category>
@@ -142,5 +177,4 @@
     <content_attribute id="social-audio">intense</content_attribute>
   </content_rating>
 
-  <requires><id>net.jami.daemon</id></requires>
 </component>
