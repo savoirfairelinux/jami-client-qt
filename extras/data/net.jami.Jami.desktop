@@ -1,14 +1,13 @@
 [Desktop Entry]
 Name=Jami
 GenericName=Jami
-Comment=Privacy-oriented voice, video, chat, and conference platform
-Comment[hu]=Adatvédelem-orientált hang-, video-, csevegés- és konferenciaplatform
-Comment[ru]=Jami — приложение для защищённой связи с распределённой архитектурой
+Comment=Share, freely and privately
+Comment[hu]=Megosztás, szabadon és bizalmasan
 Exec=jami %u
 Icon=jami
 StartupNotify=true
 Terminal=false
 Type=Application
-Categories=Network;Telephony;
+Categories=Chat;FileTransfer;InstantMessaging;Network;P2P;Telephony;VideoConference;
 Keywords=Qt;chat;talk;im;message;voip;
 MimeType=x-scheme-handler/jami;

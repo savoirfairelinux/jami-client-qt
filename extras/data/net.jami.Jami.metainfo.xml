@@ -2,87 +2,91 @@
 <!-- Copyright (C) 2015-2025 Savoir-faire Linux Inc. -->
 <component type="desktop-application">
   <id>net.jami.Jami</id>
-  <metadata_license>CC-BY-SA-3.0</metadata_license>
-  <project_license>GPL-3.0+</project_license>
   <name>Jami</name>
 
-  <summary>Privacy-oriented voice, video, chat, and conference platform</summary>
-  <summary xml:lang="hu">Adatvédelem-orientált hang-, video-, csevegés- és konferenciaplatform</summary>
+  <summary>Share, freely and privately</summary>
+  <summary xml:lang="hu">Megosztás, szabadon és bizalmasan</summary>
+
   <icon type="stock">jami</icon>
 
+  <metadata_license>CC-BY-SA-3.0</metadata_license>
+  <project_license>GPL-3.0+</project_license>
+
+  <developer id="net.jami.Jami">
+    <name>Savoir-faire Linux Inc.</name>
+  </developer>
+
+  <!-- https://www.freedesktop.org/software/appstream/docs/chap-Metadata.html#tag-description -->
   <description>
-    <p>Jami, a GNU package, is software for universal and distributed peer-to-peer communication that respects the freedom and privacy of its users.</p>
-    <p xml:lang="hu">A Jami, egy GNU-csomag, egy univerzális és elosztott társ-társ kommunikációra szolgáló szoftver, amely tiszteletben tartja a felhasználók szabadságát és magánéletét.</p>
-    <p>Jami is the simplest and easiest way to connect with people (and devices) with instant messaging, audio and video calls over the Internet and LAN/WAN intranets.</p>
-    <p xml:lang="hu">A Jami a legegyszerűbb és legegyszerűbb módja annak, hogy azonnali üzenetküldéssel, hang- és videohívásokkal kapcsolódjon az emberekhez (és eszközökhöz) az interneten és a LAN/WAN intraneteken keresztül.</p>
-    <p>Jami is a free/libre, end-to-end encrypted, and private communication platform.</p>
-    <p xml:lang="hu">A Jami egy ingyenes, teljes körűen titkosított és privát kommunikációs platform.</p>
-    <p>Jami – which used to be known as Ring – is also an open-source alternative (to Facebook Messenger, Signal, Skype, Teams, Telegram, TikTok, Viber, WhatsApp, Zoom) that prioritizes the privacy of its users.</p>
-    <p xml:lang="hu">A Jami – amelyet korábban Ring néven ismertek – egy nyílt forráskódú alternatíva is (a Facebook Messenger, a Signal, a Skype, a Teams, a Telegram, a TikTok, a Viber, a WhatsApp, a Zoom számára), amely előtérbe helyezi a felhasználók magánéletét.</p>
-    <p>Jami has a professional-looking design and is available for a wide range of platforms. Unlike the alternatives, calls using Jami are directly between users as it does not use servers to handle calls.</p>
-    <p xml:lang="hu">A Jami professzionális megjelenésű, és platformok széles skálájához elérhető. Az alternatívákkal ellentétben a Jami-t használó hívások közvetlenül a felhasználók között zajlanak, mivel nem használ kiszolgálókat a hívások kezelésére.</p>
-    <p>This gives the greatest privacy as the distributed nature of Jami means your calls are only between participants.</p>
-    <p xml:lang="hu">Ez biztosítja a legnagyobb magánéletet, mivel a Jami elosztott jellege azt jelenti, hogy a hívások csak a résztvevők között zajlanak.</p>
-    <p>One-to-one and group conversations with Jami are enhanced with: instant messaging; audio and video calling; recording and sending audio and video messages; file transfers; screen sharing; and, location sharing.</p>
-    <p xml:lang="hu">A Jamival folytatott személyes és csoportos beszélgetéseket a következők javítják: azonnali üzenetküldés; hang- és videohívások; hang- és videoüzenetek rögzítése és küldése; fájlátvitel; képernyőmegosztás; és helymegosztás.</p>
-    <p>Jami can also function as a SIP client.</p>
-    <p xml:lang="hu">A Jami SIP-ügyfélként is működhet.</p>
-    <p>Jami has multiple extensions available: Audio Filter; Auto Answer; Green Screen; Watermark; and, Whisper Transcript.</p>
-    <p xml:lang="hu">A Jami-nek több bővítménye is elérhető: hangszűrő; automatikus válasz; zöld képernyő; vízjel; és, suttogó átirat.</p>
-    <p>Jami can be easily deployed in organizations with the “Jami Account Management Server” (JAMS), allowing users to connect with their corporate credentials or create local accounts. JAMS allows you to manage your own Jami community while taking advantage of Jami’s distributed network architecture.</p>
-    <p xml:lang="hu">A Jami könnyen telepíthető a szervezetekben a JAMS (Jami Account Management Server – Jami fiókkezelő kiszolgáló), amely lehetővé teszi a felhasználók számára, hogy csatlakozzanak vállalati hitelesítő adataikhoz, vagy helyi fiókokat hozzanak létre. A JAMS lehetővé teszi saját Jami közösségének kezelését, miközben kihasználja a Jami elosztott hálózati architektúráját.</p>
-    <p>Jami is available for GNU/Linux, Windows, macOS, iOS, Android, and Android TV, making Jami an interoperable and cross-platform communication framework.</p>
-    <p xml:lang="hu">A Jami elérhető GNU/Linux, Windows, macOS, iOS, Android és Android TV rendszereken, így a Jami egy interoperábilis és platformok közötti kommunikációs keretrendszer.</p>
-    <p>Manage multiple SIP accounts, Jami accounts and JAMS accounts with the Jami client installed on one or multiple devices.</p>
-    <p xml:lang="hu">Kezeljen több SIP-fiókot, Jami-fiókot és JAMS-fiókot az egy vagy több eszközre telepített Jami-ügyféllel.</p>
-    <p>Jami is free, unlimited, private, advertising free, compatible, fast, autonomous, and anonymous.</p>
+
+    <p><em>Jami</em>, a GNU package, is software for universal and distributed peer-to-peer communication that respects the freedom and privacy of its users.</p>
+    <p xml:lang="hu">A <em>Jami</em>, egy GNU-csomag, egy univerzális és elosztott társ-társ kommunikációt szolgáló szoftver, amely tiszteletben tartja a felhasználók szabadságát és magánéletét.</p>
+
+    <p>Jami is the simplest and easiest way to connect with people (and devices) with instant messaging, audio, and video calls over the <em>Internet</em> and LAN/WAN <em>intranets</em>.</p>
+    <p xml:lang="hu">A Jami a legegyszerűbb és legegyszerűbb módja annak, hogy azonnali üzenetküldéssel, hang- és videohívásokkal kapcsolódjon az emberekhez (és eszközökhöz) az <em>interneten</em> és a LAN/WAN <em>intraneten</em> keresztül.</p>
+
+    <p>Jami is a free/libre, end-to-end encrypted, and private <em>communication platform</em>.</p>
+    <p xml:lang="hu">A Jami egy ingyenes, teljes körűen titkosított és privát <em>kommunikációs platform</em>.</p>
+
+    <p>Jami is <em>open-source</em> software that <em>prioritizes user privacy</em>.</p>
+    <p xml:lang="hu">A Jami <em>nyílt forráskódú</em> szoftver, amely <em>előnyben részesíti a felhasználók adatvédelmét</em>.</p>
+
+    <p>Jami has a professional-looking design and is available for a wide range of platforms. Unlike the alternatives, Jami <em>calls are directly between users</em>, as it does not use servers to handle calls.</p>
+    <p xml:lang="hu">A Jami professzionális megjelenésű, és platformok széles skálájához elérhető. Az alternatívákkal ellentétben a Jami <em>közvetlenül a felhasználók között zajlik</em>, mivel nem használ kiszolgálókat a hívások kezelésére.</p>
+
+    <p>This gives the greatest privacy, as the <em>distributed</em> nature of Jami means your calls are only between participants.</p>
+    <p xml:lang="hu">Ez biztosítja a legnagyobb magánéletet, mivel a Jami <em>elosztott</em> jellege azt jelenti, hogy a hívások csak a résztvevők között zajlanak.</p>
+
+    <p>One-to-one and <em>group conversations</em> with Jami are enhanced with instant messaging, audio and video calling, recording and sending audio and video messages, file transfers, screen sharing, and location sharing.</p>
+    <p xml:lang="hu">A Jamival folytatott személyes és <em>csoportos beszélgetéseket</em> az azonnali üzenetküldés, hang- és videohívások, hang- és videoüzenetek rögzítése és küldése, fájlátvitel, képernyőmegosztás és helymegosztás továbbfejlesztik.</p>
+
+    <p>Jami can also function as a <em>SIP client</em>.</p>
+    <p xml:lang="hu">A Jami <em>SIP-ügyfélként</em> is működhet.</p>
+
+    <p>Multiple <em>Jami extensions</em> are available: Audio Filter, Auto Answer, Green Screen, Segmentation, Watermark, and Whisper Transcript.</p>
+    <p xml:lang="hu">Több <em>Jami bővítmény</em> érhető el: hangszűrő, automatikus válasz, zöld képernyő, szegmentálás, vízjel és suttogó átirat.</p>
+
+    <p>Jami can be easily deployed in organizations with the <em>JAMS (Jami Account Management Server)</em>, allowing users to connect with their corporate credentials or create local accounts. JAMS allows you to <em>manage your own</em> Jami community while taking advantage of Jami’s distributed network architecture.</p>
+    <p xml:lang="hu">A Jami könnyen telepíthető a szervezetekben a <em>JAMS (Jami Account Management Server)</em> segítségével, amely lehetővé teszi a felhasználók számára, hogy csatlakozzanak vállalati hitelesítő adataikhoz, vagy helyi fiókokat hozzanak létre. A JAMS lehetővé teszi a <em>saját</em> Jami közösség kezelését, miközben kihasználja a Jami elosztott hálózati architektúráját.</p>
+
+    <p>Jami is <em>available for</em> GNU/Linux, Windows, macOS, iOS, Android, Android TV, and web browsers, making Jami an interoperable and cross-platform communication framework.</p>
+    <p xml:lang="hu">A Jami <em>elérhető</em> GNU/Linux, Windows, macOS, iOS, Android, Android TV és webböngészők számára, így a Jami interoperábilis és platformok közötti kommunikációs keretrendszerré válik.</p>
+
+    <p><em>Manage multiple</em> SIP accounts, Jami accounts, and JAMS accounts with the Jami client installed on one or multiple devices.</p>
+    <p xml:lang="hu"><em>Több</em> SIP-, Jami- és JAMS-fiók kezelése az egy vagy több eszközre telepített a Jami-alkalmazással.</p>
+
+    <p>Jami is free, unlimited, private, advertising‑free, compatible, fast, autonomous, and anonymous.</p>
     <p xml:lang="hu">A Jami ingyenes, korlátlan, privát, reklámmentes, kompatibilis, gyors, autonóm és névtelen.</p>
-    <p>Learn more about:</p>
-    <p xml:lang="hu">További tájékoztatás:</p>
-    <ul>
-      <li>Jami: https://jami.net/</li>
-      <li xml:lang="hu">Jami: https://jami.net/hu/</li>
-      <li>Jami extensions: https://jami.net/extensions/</li>
-      <li xml:lang="hu">Jami-bővítmények: https://jami.net/hu/extensions/</li>
-      <li>“Jami Account Management Server” (JAMS): https://jami.biz/</li>
-      <li xml:lang="hu">JAMS (Jami Account Management Server – Jami fiókkezelő kiszolgáló): https://jami.biz/</li>
-      <li>Jami documentation: https://docs.jami.net/</li>
-      <li xml:lang="hu">Jami-dokumentáció: https://docs.jami.net/hu/</li>
-    </ul>
-    <p>Follow us for more:</p>
-    <p xml:lang="hu">Kövess minket a továbbiakért:</p>
-    <ul>
-      <li>Mastodon: https://mstdn.io/@Jami</li>
-      <li xml:lang="hu">Mastodon: https://mstdn.io/@Jami</li>
-      <li>X: https://x.com/jami_social</li>
-      <li xml:lang="hu">X: https://x.com/jami_social</li>
-      <li>YouTube: https://www.youtube.com/@jami9311</li>
-      <li xml:lang="hu">YouTube: https://www.youtube.com/@jami9311</li>
-    </ul>
-    <p>We’d love to hear from you! Join the Jami community:</p>
-    <p xml:lang="hu">Szívesen hallanánk felőled! Csatlakozzon a Jami közösséghez:</p>
-    <ul>
-      <li>Contribute: https://jami.net/contribute/</li>
-      <li xml:lang="hu">Közreműködés: https://jami.net/hu/contribute/</li>
-      <li>Forum: https://forum.jami.net/</li>
-      <li xml:lang="hu">Fórum: https://forum.jami.net/</li>
-    </ul>
-    <p>Build with Jami on your IoT project: re-use the universal communications technology of Jami with its portable library on your system of choice.</p>
-    <p xml:lang="hu">Építsen a Jamival IoT-projektjére: használja újra a Jami univerzális kommunikációs technológiáját a hordozható könyvtárával a választott rendszerén.</p>
+
+    <p>Build <em>IoT projects</em> with Jami. Re-use the universal communications technology of Jami with its portable library on your system of choice.</p>
+    <p xml:lang="hu">Építsen <em>IoT-projekteket</em> Jamival. Használja újra a Jami univerzális kommunikációs technológiáját annak hordozható könyvtárával az Ön által választott rendszeren.</p>
+
     <p>Jami for Android TV is tested on NVIDIA SHIELD TV with Logitech cameras.</p>
-    <p xml:lang="hu">A Jami for Android TV-t Logitech kamerákkal ellátott NVIDIA SHIELD TV-n tesztelték.</p>
-    <p>Jami is published under the GPL license, version 3 or higher.</p>
-    <p xml:lang="hu">A Jami a GPL licenc 3-as vagy újabb verziója alatt jelent meg.</p>
-    <p>Copyright © Savoir-faire Linux Inc.</p>
-    <p xml:lang="hu">Szerzői jog © Savoir-faire Linux Inc.</p>
+    <p xml:lang="hu">A Jami Androidra TV-t Logitech kamerákkal ellátott NVIDIA SHIELD TV-n tesztelték.</p>
+
+    <p>Jami is published under the <em>GPL license</em>, version 3 or higher. Copyright © Savoir-faire Linux Inc.</p>
+    <p xml:lang="hu">A Jami a <em>GPL-licenc</em> 3-as vagy újabb verziója alatt jelent meg. Szerzői jog © Savoir-faire Linux Inc.</p>
+
   </description>
 
-  <url type="homepage">https://jami.net/</url>
+  <requires>
+    <id>net.jami.daemon</id>
+  </requires>
+
   <url type="bugtracker">https://git.jami.net/savoirfairelinux/jami-client-qt/issues</url>
-  <url type="faq">https://docs.jami.net/user/faq.html</url>
-  <url type="help">https://forum.jami.net/</url>
+  <url type="homepage">https://jami.net/</url>
   <url type="donation">https://jami.net/whydonate/</url>
-  <url type="translate">https://www.transifex.com/savoirfairelinux/jami</url>
+  <url type="contact">contact@jami.net</url>
+  <url type="faq">https://docs.jami.net/user/faq.html</url>
+  <url type="translate">https://explore.transifex.com/savoirfairelinux/jami/</url>
+  <url type="contribute">https://jami.net/contribute/</url>
+  <url type="help">https://docs.jami.net/</url>
+  <url type="vcs-browser">https://git.jami.net/savoirfairelinux</url>
+
+  <provides>
+    <binary>jami</binary>
+    <mediatype>x-scheme-handler/jami</mediatype>
+  </provides>
 
   <!-- Maximum caption length is 60 characters -->
   <!-- Officially GIF is not an allowed video format, but it appears to work nonetheless -->
@@ -121,7 +125,15 @@
 
   <launchable type="desktop-id">net.jami.Jami.desktop</launchable>
 
-  <provides><binary>jami</binary></provides>
+  <!-- https://www.freedesktop.org/software/appstream/docs/chap-Metadata.html#tag-keywords -->
+  <keywords>
+    <keyword translate="no">Qt</keyword>
+    <keyword>chat</keyword>
+    <keyword>talk</keyword>
+    <keyword>im</keyword>
+    <keyword>message</keyword>
+    <keyword translate="no">voip</keyword>
+  </keywords>
 
   <!-- https://specifications.freedesktop.org/menu-spec/latest/apa.html -->
   <!-- https://specifications.freedesktop.org/menu-spec/latest/apas02.html -->
@@ -142,5 +154,4 @@
     <content_attribute id="social-audio">intense</content_attribute>
   </content_rating>
 
-  <requires><id>net.jami.daemon</id></requires>
 </component>
