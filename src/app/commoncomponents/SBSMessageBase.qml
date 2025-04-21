@@ -142,6 +142,7 @@ Control {
                 RowLayout {
                     id: replyToLayout
 
+                    spacing: replyItem.isSelf ? 2 : 4
                     Layout.alignment: isOutgoing ? Qt.AlignRight : Qt.AlignLeft
                     property var replyUserName: UtilsAdapter.getBestNameForUri(CurrentAccount.id, ReplyToAuthor)
 
