@@ -22,6 +22,30 @@
       },
       "revId": "ae1a2462e2430cb9d3c8a1b92090448ecba24d99",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "036f44dd_f5559502",
+        "filename": "extras/data/jami.xml",
+        "patchSetId": 15
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-04-21T23:53:27Z",
+      "side": 0,
+      "message": "Done. Thank you for the link to your patch. In the `\u003cdescription\u003e` component, the `\u003cb\u003e` tag is unsupported and has been updated to the `\u003cem\u003e` tag and the `\u003curl\u003e` tag has been removed.",
+      "parentUuid": "ab2ad443_4ea24493",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 38
+      },
+      "revId": "ae1a2462e2430cb9d3c8a1b92090448ecba24d99",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }

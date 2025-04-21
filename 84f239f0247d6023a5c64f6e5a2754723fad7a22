@@ -16,6 +16,24 @@
       "message": "The `/usr/share/applications` and `/usr/share/metainfo` directories are where the desktop and metainfo files need to be installed _on the user\u0027s system_. This doesn\u0027t have anything to do with where they are located in the source code. The files get copied from `extras/data` into the correct location when we build a deb or rpm package.",
       "revId": "84f239f0247d6023a5c64f6e5a2754723fad7a22",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f78f4a5_d499d897",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-04-21T23:53:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "796701aa_564e67c8",
+      "revId": "84f239f0247d6023a5c64f6e5a2754723fad7a22",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
