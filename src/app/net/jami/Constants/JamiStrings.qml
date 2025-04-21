@@ -786,7 +786,7 @@ Item {
     property string replyTo: qsTr("Reply to")
     property string inReplyTo: qsTr("In reply to")
     property string repliedTo: qsTr("%1 replied to")
-    property string inReplyToMe: qsTr("Me")
+    property string inReplyToYou: qsTr("you")
     property string reply: qsTr("Reply")
     property string writeTo: qsTr("Write to %1")
     property string writeToNewContact: qsTr("Send a message to %1 in order to add them as a contact")

@@ -142,6 +142,7 @@ Control {
                 RowLayout {
                     id: replyToLayout
 
+                    spacing: replyItem.isSelf ? 2 : 4
                     Layout.alignment: isOutgoing ? Qt.AlignRight : Qt.AlignLeft
                     property var replyUserName: UtilsAdapter.getBestNameForUri(CurrentAccount.id, ReplyToAuthor)
 
@@ -185,7 +186,7 @@ Control {
                         text: textMetricsUsername2.elidedText
                         TextMetrics {
                             id: textMetricsUsername2
-                            text: replyItem.isSelf ? JamiStrings.inReplyToMe : replyToLayout.replyUserName
+                            text: replyItem.isSelf ? JamiStrings.inReplyToYou : replyToLayout.replyUserName
                             elideWidth: 200
                             elide: Qt.ElideMiddle
                         }
