@@ -101,27 +101,27 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="316"/>
         <source>An error occurred while fetching this repository.</source>
-        <translation type="unfinished"/>
+        <translation>Une erreur s&apos;est produite lors de l&apos;extraction de ce dépôt.</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="318"/>
         <source>Unrecognized conversation mode.</source>
-        <translation type="unfinished"/>
+        <translation>Mode de conversation non reconnu.</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="320"/>
         <source>An invalid message was detected.</source>
-        <translation type="unfinished"/>
+        <translation>Un message non valide a été détecté.</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="322"/>
         <source>Insufficient permission to update conversation information.</source>
-        <translation type="unfinished"/>
+        <translation>Autorisation insuffisante pour mettre à jour les informations relatives à la conversation.</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="324"/>
         <source>An error occurred while committing a new message.</source>
-        <translation type="unfinished"/>
+        <translation>Une erreur s&apos;est produite lors de l&apos;enregistrement d&apos;un nouveau message.</translation>
     </message>
 </context>
 <context>
@@ -203,11 +203,6 @@
         <translation>Transférer à </translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="74"/>
-        <source>Scan this QR code on your other device to proceed with importing your account.</source>
-        <translation>Scannez ce code QR sur votre autre appareil pour procéder à l&apos;importation de votre compte.</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="75"/>
         <source>Please wait…</source>
         <translation>Veuillez patienter...</translation>
@@ -216,13 +211,6 @@
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="76"/>
         <source>Scan QR code</source>
         <translation>Scanner le code QR</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="77"/>
-        <source>Action required.
-Please confirm account on the source device.</source>
-        <translation>Action requise.
-Veuillez confirmer le compte sur l&apos;appareil source.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="78"/>
@@ -235,11 +223,6 @@ Veuillez confirmer le compte sur l&apos;appareil source.</translation>
         <translation>Transfert de compte ...</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="80"/>
-        <source>If you are unable to scan the QR code, enter this token on your other device to proceed.</source>
-        <translation>Si vous ne pouvez pas scanner le code QR, entrez ce jeton sur votre autre appareil pour continuer.</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="81"/>
         <source>Confirm</source>
         <translation>Confirmer</translation>
@@ -250,11 +233,6 @@ Veuillez confirmer le compte sur l&apos;appareil source.</translation>
         <translation>Essayez encore</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="83"/>
-        <source>Import failed</source>
-        <translation>Échec d&apos;importation</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="84"/>
         <source>Import from another account</source>
         <translation>Importer d&apos;un autre appareil</translation>
@@ -263,11 +241,6 @@ Veuillez confirmer le compte sur l&apos;appareil source.</translation>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="85"/>
         <source>Connect to account</source>
         <translation>Connexion au compte</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="86"/>
-        <source>An authentication error occurred. Please check credentials and try again.</source>
-        <translation>Une erreur d&apos;authentification s&apos;est produite. Veuillez vérifier vos informations d&apos;identification et réessayer.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="89"/>
@@ -856,6 +829,26 @@ Si aucun nom d&apos;utilisateur n&apos;est choisi, un identifiant de 40 caractè
         <translation>La conversation privée a été créée</translation>
     </message>
     <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="538"/>
+        <source>A new version of the Jami application is available. Do you want to update now? To continue, click Update.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="539"/>
+        <source>The application is up to date.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="540"/>
+        <source>An error occurred while checking for updates.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="541"/>
+        <source>A network error occurred while checking for updates.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="600"/>
         <source>Enter account password</source>
         <translation>Entrer le mot de passe de votre compte</translation>
@@ -869,6 +862,11 @@ Si aucun nom d&apos;utilisateur n&apos;est choisi, un identifiant de 40 caractè
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="603"/>
         <source>Link new device</source>
         <translation>Lier un nouvel appareil</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="609"/>
+        <source>The account was imported successfully.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="616"/>
@@ -1185,15 +1183,6 @@ Veuillez réessayer plus tard.</translation>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="518"/>
         <source>Accept transfer limit (MB)</source>
         <translation>Taille maximum des fichiers automatiquement acceptés (en MB)</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="538"/>
-        <source>A new version of Jami is available.
-Do you want to update Jami now?
-To continue, click Update.</source>
-        <translation>Une nouvelle version de Jami est disponible.
-Souhaitez-vous mettre à jour Jami maintenant ?
-Pour continuer, cliquez sur &quot;Mettre à jour&quot;.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="783"/>
@@ -1677,6 +1666,31 @@ to connect to synchronize the conversation…</source>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="34"/>
         <source>Incoming video call from %1</source>
         <translation>Appel vidéo entrant de %1</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="74"/>
+        <source>To continue the import account operation, scan the following QR code on the source device.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="77"/>
+        <source>Action required. Please confirm account on the source device.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="80"/>
+        <source>If you are unable to scan the QR code, enter the following token on the source device.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="83"/>
+        <source>An error occurred while importing the account.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="86"/>
+        <source>An authentication error occurred while linking the device. Please check credentials and try again.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="283"/>
@@ -2459,7 +2473,6 @@ Le profil peut être modifié à tout moment dans les paramètres du compte.</tr
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="524"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="541"/>
         <source>A network error occurred.</source>
         <translation>Une erreur réseau s&apos;est produite.</translation>
     </message>
@@ -2468,11 +2481,6 @@ Le profil peut être modifié à tout moment dans les paramètres du compte.</tr
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="549"/>
         <source>An unexpected error occurred.</source>
         <translation>Une erreur inattendue s&apos;est produite.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="540"/>
-        <source>An error occurred while checking for a new version.</source>
-        <translation>Une erreur s&apos;est produite en vérifiant si il y avait une nouvelle version.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="542"/>
@@ -2931,11 +2939,6 @@ Le profil peut être modifié à tout moment dans les paramètres du compte.</tr
         <translation>Mise à jour</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="539"/>
-        <source>No new version of Jami was found</source>
-        <translation>Aucune nouvelle version de Jami </translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="546"/>
         <source>Network disconnected</source>
         <translation>Le réseau est déconnecté</translation>
@@ -3155,13 +3158,6 @@ Lorsque vous êtes prêt, scannez le code QR.</translation>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="608"/>
         <source>Enter authentication code</source>
         <translation>Saisir le code d&apos;authentification</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="609"/>
-        <source>You are all set!
-Your account is successfully imported on the new device!</source>
-        <translation>Vous êtes prêt !
-Votre compte est importé avec succès sur le nouvel appareil !</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="610"/>
@@ -4361,7 +4357,7 @@ Veuillez réessayer.</translation>
     <message>
         <location filename="../src/app/linkdevicemodel.cpp" line="66"/>
         <source>Unrecognized new device identifier. Please follow the instructions above.</source>
-        <translation type="unfinished"/>
+        <translation>Nouvel identifiant d&apos;appareil non reconnu. Veuillez suivre les instructions ci-dessus.</translation>
     </message>
 </context>
 <context>
