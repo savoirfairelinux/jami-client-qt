@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab2ad443_4ea24493",
+        "filename": "extras/data/jami.xml",
+        "patchSetId": 15
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-04-21T19:48:39Z",
+      "side": 0,
+      "message": "This file was added for a specific reason: https://review.jami.net/c/jami-client-qt/+/29902. It doesn\u0027t need to be translated, but you can\u0027t delete it unless you know for a fact that it is no longer needed on any of the distributions currently supported by Jami.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 38
+      },
+      "revId": "ae1a2462e2430cb9d3c8a1b92090448ecba24d99",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
