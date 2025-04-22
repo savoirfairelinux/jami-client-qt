@@ -311,11 +311,11 @@ Control {
                     CallAdapter.muteCameraToggle();
                 }
             }
-            checkable: true
+            checkable: VideoDevices.listSize !==0
             icon.source: checked ? JamiResources.videocam_off_24dp_svg : JamiResources.videocam_24dp_svg
             icon.color: checked ? "red" : "white"
             text: !checked ? JamiStrings.stopCamera : JamiStrings.startCamera
-            checked: !CurrentCall.isCapturing
+            checked: !CurrentCall.isCapturing && checkable
             property var menuAction: videoInputMenuAction
             enabled: CurrentAccount.videoEnabled_Video
             onEnabledChanged: CallOverlayModel.setEnabled(this, muteVideoAction.enabled)

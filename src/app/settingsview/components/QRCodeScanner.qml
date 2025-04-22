@@ -67,7 +67,7 @@ Item {
                 // If there's a camera issue, message will be shown after the delay.
                 Timer {
                     id: visibilityTimer
-                    interval: 5000
+                    interval: 1000
                     running: true
                     repeat: false
                     onTriggered: {

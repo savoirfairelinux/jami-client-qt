@@ -25,7 +25,7 @@ VideoView {
     property bool visibilityCondition: true
 
     crop: true
-    visible: isRendering && visibilityCondition
+    visible: visibilityCondition
 
     Component.onDestruction: VideoDevices.stopDevice(rendererId);
 
