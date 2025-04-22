@@ -617,6 +617,7 @@ Item {
     property real popuptextSize: calcSize(15)
     property real popupButtonsMargin: 20
     property real popupPhotoTextSize: calcSize(18)
+    property real popupCameraTextSize: calcSize(18)
 
     // MaterialLineEdit
     property real materialLineEditPointSize: calcSize(10 + fontSizeOffset)

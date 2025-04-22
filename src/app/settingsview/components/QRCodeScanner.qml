@@ -41,6 +41,7 @@ Item {
 
     Rectangle {
         id: cameraContainer
+
         anchors.horizontalCenter: parent.horizontalCenter
         width: parent.width
         height: parent.height
@@ -49,32 +50,21 @@ Item {
 
         LocalVideo {
             id: previewWidget
+
             anchors.fill: parent
             flip: true
 
             // Camera not available
             underlayItems: Text {
-                id: noCameraText
                 anchors.centerIn: parent
-                font.pointSize: 18
+                width: parent.width
+                visible: VideoDevices.listSize == 0
+                horizontalAlignment: Text.AlignHCenter
+                font.pointSize: JamiTheme.popupCameraTextSize
                 font.capitalization: Font.AllUppercase
-                color: "white"
+                color: JamiTheme.whiteColor
                 text: JamiStrings.noCamera
-                visible: false  // Start hidden
-
-                // Delay "No Camera" message to avoid flashing it when camera is starting up.
-                // If camera starts successfully within 5 seconds, user won't see this message.
-                // If there's a camera issue, message will be shown after the delay.
-                Timer {
-                    id: visibilityTimer
-                    interval: 5000
-                    running: true
-                    repeat: false
-                    onTriggered: {
-                        noCameraText.visible = true
-                        destroy()  // Remove the timer after it's done
-                    }
-                }
+                wrapMode: Text.WordWrap
             }
         }
 

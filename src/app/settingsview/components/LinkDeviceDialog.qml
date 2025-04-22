@@ -327,7 +327,6 @@ BaseModalDialog {
                         Layout.alignment: Qt.AlignHCenter
                         width: 250
                         height: width * aspectRatio
-                        visible: VideoDevices.listSize !== 0
 
                         onQrCodeDetected: function(code) {
                             console.log("QR code detected:", code)
