@@ -307,21 +307,31 @@ getFormattedCallDuration(const std::time_t duration)
 {
     if (duration == 0)
         return {};
-    std::string formattedString;
-    auto minutes = duration / 60;
-    auto seconds = duration % 60;
-    if (minutes > 0) {
-        formattedString += std::to_string(minutes) + ":";
-        if (formattedString.length() == 2) {
-            formattedString = "0" + formattedString;
-        }
+
+    int minutes = duration / 60;
+    int seconds = duration % 60;
+    int hours = minutes / 60;
+    int days = hours / 24;
+
+    if (days > 0) {
+        hours = hours % 24;
+        minutes = minutes % 60;
+        return QString("%1d %2h %3m %4s")
+            .arg(days)
+            .arg(hours)
+            .arg(minutes, 2, 10, QChar('0'))
+            .arg(seconds, 2, 10, QChar('0'));
+    } else if (hours > 0) {
+        minutes = minutes % 60;
+        return QString("%1h %2m %3s")
+            .arg(hours)
+            .arg(minutes, 2, 10, QChar('0'))
+            .arg(seconds, 2, 10, QChar('0'));
+    } else if (minutes > 0) {
+        return QString("%1m %2s").arg(minutes).arg(seconds, 2, 10, QChar('0'));
     } else {
-        formattedString += "00:";
+        return QString("%1s").arg(seconds);
     }
-    if (seconds < 10)
-        formattedString += "0";
-    formattedString += std::to_string(seconds);
-    return QString::fromStdString(formattedString);
 }
 
 /**
