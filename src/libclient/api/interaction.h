@@ -310,17 +310,26 @@ getFormattedCallDuration(const std::time_t duration)
     std::string formattedString;
     auto minutes = duration / 60;
     auto seconds = duration % 60;
-    if (minutes > 0) {
-        formattedString += std::to_string(minutes) + ":";
-        if (formattedString.length() == 2) {
-            formattedString = "0" + formattedString;
+    if (minutes >= 60) {
+        auto hours = minutes / 60;
+        minutes = minutes % 60;
+        if (hours >= 24) {
+            auto days = hours / 24;
+            hours = hours % 24;
+            formattedString += std::to_string(days) + "d ";
         }
-    } else {
-        formattedString += "00:";
+        if (hours < 10)
+            formattedString += "0";
+
+        formattedString += std::to_string(hours) + "h ";
     }
+    if (minutes < 10)
+        formattedString += "0";
+    formattedString += std::to_string(minutes) + "m ";
+
     if (seconds < 10)
         formattedString += "0";
-    formattedString += std::to_string(seconds);
+    formattedString += std::to_string(seconds) + "s";
     return QString::fromStdString(formattedString);
 }
 
