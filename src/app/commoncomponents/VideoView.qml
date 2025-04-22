@@ -58,7 +58,7 @@ Item {
 
         antialiasing: true
         anchors.fill: parent
-        opacity: isRendering
+        opacity: 1
         visible: opacity
 
         fillMode: crop ? VideoOutput.PreserveAspectCrop : VideoOutput.PreserveAspectFit
