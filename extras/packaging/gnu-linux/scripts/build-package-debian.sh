@@ -51,7 +51,7 @@ if [ ! -f "${qt_deb_path}" ] || [ "${FORCE_REBUILD_QT}" = "true" ]; then
         # a ModuleNotFoundError when building Qt 6.6.1 (specifically the
         # chromium submodule in QtWebEngine) due to the version of python
         # used (3.13) being too recent.
-        if cat /etc/os-release | grep -Eq "24.04|25.04"; then
+        if cat /etc/os-release | grep -Eq "24.04|25.04|trixie"; then
             apt-get install git gcc make python3-pip libssl-dev curl libreadline-dev -y
             curl https://pyenv.run | bash
             export PYENV_ROOT="$HOME/.pyenv"
