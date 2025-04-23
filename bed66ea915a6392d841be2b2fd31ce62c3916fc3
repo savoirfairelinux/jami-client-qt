@@ -22,6 +22,30 @@
       },
       "revId": "bed66ea915a6392d841be2b2fd31ce62c3916fc3",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bfcbcb5_331944aa",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 912,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-04-23T17:04:04Z",
+      "side": 1,
+      "message": "1) Only one at a time\n2) You can directly disable it with a slider\n3) We are currently making a simplistic but robust version of this feature, it could be a feature request for later to have langages specific to a conversation.",
+      "parentUuid": "4273f5b9_939ecd42",
+      "range": {
+        "startLine": 912,
+        "startChar": 46,
+        "endLine": 912,
+        "endChar": 59
+      },
+      "revId": "bed66ea915a6392d841be2b2fd31ce62c3916fc3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
