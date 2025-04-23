@@ -42,7 +42,8 @@ QVariantMap
 SpellCorrectorHandler::installedDictionaries()
 {
     if (cachedinstalledDictionaries.size() > 0) {
-        qWarning() << "Returning cached installed dictionaries";
+        qWarning() << "Returning cached installed dictionaries, dictionnaries size : "
+                          + QString::number(cachedinstalledDictionaries.size());
         return cachedinstalledDictionaries;
     } else {
         QString hunspellDataDir = getDictionaryPath();
@@ -51,14 +52,24 @@ SpellCorrectorHandler::installedDictionaries()
         auto dictionariesDir = QDir(hunspellDataDir);
         QRegExp regex("(.*).dic");
         QSet<QString> nativeNames;
-        QStringList trFiles = dictionariesDir.entryList(QStringList() << "jami_client_qt_*.qm",
-                                                        QDir::Files);
-        // qWarning() << "Translation files found:" << trFiles;
 
         QVariantMap result;
         QStringList folders = dictionariesDir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
-        // qWarning() << "Folders found in dictionaries directory:" << folders;
+        // Check for dictionary files in the root directory
+        QStringList rootDicFiles = dictionariesDir.entryList(QStringList() << "*.dic", QDir::Files);
+        for (const auto& dicFile : rootDicFiles) {
+            regex.indexIn(dicFile);
+            auto captured = regex.capturedTexts();
+            if (captured.size() == 2) {
+                auto nativeName = QLocale(captured[1]).nativeLanguageName();
+                if (!nativeName.isEmpty() && !nativeNames.contains(nativeName)) {
+                    result[captured[1]] = nativeName;
+                    nativeNames.insert(nativeName);
+                }
+            }
+        }
 
+        // qWarning() << "Folders found in dictionaries directory:" << folders;
         for (const auto& folder : folders) {
             QDir subDir = dictionariesDir.absoluteFilePath(folder);
             // qWarning() << "Processing folder:" << folder;
@@ -119,100 +130,22 @@ SpellCorrectorHandler::getLanguage()
 }
 */
 
-QVariantMap
-SpellCorrectorHandler::availableDictionaries()
-{
-    if (cachedavailableDictionaries.size() > 0) {
-        qWarning() << "Returning cached dictionaries";
-        return cachedavailableDictionaries;
-    } else {
-        auto dictionariesURL = getDictionaryUrl();
-        qWarning() << "Fetching dictionaries from URL:" << dictionariesURL;
-
-        TidyDoc tdoc = tidyCreate();
-        TidyBuffer output = {0};
-        tidyOptSetBool(tdoc, TidyXhtmlOut, yes);
-        tidyOptSetBool(tdoc, TidyForceOutput, yes);
-
-        QNetworkAccessManager manager;
-        QEventLoop loop;
-        QNetworkReply* reply = manager.get(QNetworkRequest(QUrl(dictionariesURL)));
-        QObject::connect(reply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
-        loop.exec();
-
-        QVariantMap result;
-
-        if (reply->error() == QNetworkReply::NoError) {
-            QByteArray data = reply->readAll();
-            QString htmlContent = QString::fromUtf8(data);
-            qWarning() << "Network request successful";
-
-            // Create regex patterns for both formats
-            QRegExp regexWithCountry(
-                "'>[a-z]{2,3}_[A-Z]{2}</a></li>");                  // matches patterns like af_ZA
-            QRegExp regexSimple("'>[a-z]{2,3}(?![A-Z_])</a></li>"); // matches patterns like af
-
-            int pos = 0;
-            QSet<QString> foundDictionaries;
-
-            // Find all matches with country code
-            while ((pos = regexWithCountry.indexIn(htmlContent, pos)) != -1) {
-                QString match = regexWithCountry.cap(0);
-                // remove the HTML tags
-                match.remove(QRegularExpression("</a></li>"));
-                match.remove(QRegularExpression("'>"));
-                if (!foundDictionaries.contains(match)) {
-                    qWarning() << "Match found with country code:" << match;
-                    auto nativeName = QLocale(match).nativeLanguageName();
-                    if (!nativeName.isEmpty()) {
-                        result[match] = nativeName;
-                        foundDictionaries.insert(match);
-                    }
-                    qWarning() << "Found dictionary with country:" << match
-                               << "Native name:" << nativeName;
-                }
-                pos += regexWithCountry.matchedLength();
-            }
-
-            // Find all simple matches
-            pos = 0;
-            while ((pos = regexSimple.indexIn(htmlContent, pos)) != -1) {
-                QString match = regexSimple.cap(0);
-                match.remove(QRegularExpression("</a></li>"));
-                match.remove(QRegularExpression("'>"));
-                if (!foundDictionaries.contains(match)) {
-                    auto nativeName = QLocale(match).nativeLanguageName();
-                    if (!nativeName.isEmpty()) {
-                        result[match] = nativeName;
-                        foundDictionaries.insert(match);
-                    }
-                    qWarning() << "Found simple dictionary:" << match
-                               << "Native name:" << nativeName;
-                }
-                pos += regexSimple.matchedLength();
-            }
-        } else {
-            qWarning() << "Network request failed with error:" << reply->errorString();
-        }
-
-        reply->deleteLater();
-        // tidyBufFree(&output);
-        tidyRelease(tdoc);
-        // We set the cache result to avoid perfoming this operation to many times
-        cachedavailableDictionaries = result;
-        return result;
-    }
-}
-
 const QString
 SpellCorrectorHandler::getDictionaryPath()
 {
-    return QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QDir::separator()
-           + "dictionaries" + QDir::separator();
+    /* return QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QDir::separator()
+           + "dictionaries" + QDir::separator(); */
+    return "/usr/share/hunspell/";
 }
 
 const QString
 SpellCorrectorHandler::getDictionaryUrl()
 {
     return dictionaryUrl;
+}
+
+void
+SpellCorrectorHandler::refreshDictionaries()
+{
+    cachedinstalledDictionaries.clear();
 }
