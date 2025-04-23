@@ -126,28 +126,43 @@ JamiFlickable {
             textArea.updateUnderlineText();
         }
 
-        Loader {
-            active: spellCheckActive
-            Connections {
-                target: UtilsAdapter
+        // Listen to settings changes and apply it to this widget
+        Connections {
+            target: UtilsAdapter
+            enabled: spellCheckActive
 
-                function onSpellLangChanged() {
-                    root.language = AppSettingsManager.getSpellLanguage();
+            function onSpellLangChanged() {
+                root.language = SpellCheckDictionaryManager.getSpellLanguage();
+                textArea.updateCorrection(root.language);
+            }
+
+            function onEnableSpellCheckChanged() {
+                spellCheckActive = AppSettingsManager.getValue(Settings.EnableSpellCheck);
+                console.warn("onenableSpellCheckChanged :" + spellCheckActive);
+                if (spellCheckActive === true) {
+                    root.language = SpellCheckDictionaryManager.getSpellLanguage();
                     textArea.updateCorrection(root.language);
-                }
-
-                function onEnableSpellCheckChanged() {
-                    spellCheckActive = AppSettingsManager.getValue(Settings.EnableSpellCheck);
-                    if (spellCheckActive == true) {
-                        root.language = AppSettingsManager.getSpellLanguage();
-                        textArea.updateCorrection(root.language);
-                        console.warn("Spell check enabled");
-                    } else {
-                        textArea.clearUnderlines();
-                        console.warn("Spell check disabled");
-                    }
+                    console.warn("Spell check enabled");
+                } else {
+                    textArea.clearUnderlines();
+                    console.warn("Spell check disabled");
                 }
             }
+        }
+
+        // Initialize the settings if the component wasn't loaded when changing settings
+        Component.onCompleted: {
+            root.language = SpellCheckDictionaryManager.getSpellLanguage();
+            textArea.updateCorrection(root.language);
+            spellCheckActive = AppSettingsManager.getValue(Settings.EnableSpellCheck);
+            if (spellCheckActive === true) {
+                root.language = SpellCheckDictionaryManager.getSpellLanguage();
+                textArea.updateCorrection(root.language);
+                console.warn("Spell check enabled");
+            } else {
+                    textArea.clearUnderlines();
+                    console.warn("Spell check disabled");
+                }
         }
 
         readOnly: showPreview
@@ -245,48 +260,31 @@ JamiFlickable {
             }
         }
 
-        function highlightCurrentWord() {
-            textMetrics.text = textArea.selectedText;
-            var cursorRect = textArea.cursorRectangle;
-            var x = cursorRect.x - textMetrics.width;
-            var y = cursorRect.y + cursorRect.height;
-            var underlineObject = Qt.createQmlObject('import QtQuick 2.5; Rectangle {height: 2; color: "red";}', parent);
-            underlineObject.x = x;
-            underlineObject.y = y;
-            underlineObject.width = textMetrics.width;
-            underlineList.push(underlineObject);
-        }
-
         function updateUnderlineText() {
             /* Need to refresh all of the underline object. Otherwise the
                 * underline stay persistent on type
                 */
             clearUnderlines();
             if (spellCheckActive) {
-                var cursorPosition = textArea.cursorPosition;
-                var oldCursorPosition = cursorPosition;
+                var text = textArea.text;
 
-                // Extract word from text
-                var words = textArea.text.split(/\W+/);
-                var cursorIndex = 0;
-                for (var i = 0; i < words.length; i++) {
-                    var word = words[i];
-                    if (word.length === 0) {
-                        continue; // Skip empty words
+                // Use regex to find words and their positions
+                var wordRegex = /\b\w+\b/g;
+                var match;
+                while ((match = wordRegex.exec(text)) !== null) {
+                    var word = match[0];
+                    var wordStart = match.index;
+                    if (!MessagesAdapter.spell(word)) {
+                        textMetrics.text = word;
+                        var xPos = textArea.positionToRectangle(wordStart).x;
+                        var yPos = textArea.positionToRectangle(wordStart).y + textArea.positionToRectangle(wordStart).height;
+                        var underlineObject = Qt.createQmlObject('import QtQuick; Rectangle {height: 2; color: "red";}', textArea);
+                        underlineObject.x = xPos;
+                        underlineObject.y = yPos;
+                        underlineObject.width = textMetrics.width;
+                        underlineList.push(underlineObject);
                     }
-
-                    // Find the position of the word in the text
-                    var wordIndex = textArea.text.indexOf(word, cursorIndex);
-                    textArea.cursorPosition = wordIndex;
-                    textArea.selectWord();
-                    if (!MessagesAdapter.spell(textArea.selectedText)) {
-                        highlightCurrentWord();
-                    }
-                    // Update cursor index
-                    cursorIndex = wordIndex + word.length;
-                    textArea.deselect();
                 }
-                textArea.cursorPosition = oldCursorPosition;
             }
         }
 
