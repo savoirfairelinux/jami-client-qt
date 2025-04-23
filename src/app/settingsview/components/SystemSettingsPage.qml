@@ -215,6 +215,7 @@ SettingsPageBase {
 
                 checked: UtilsAdapter.getAppValue(Settings.Key.EnableSpellCheck)
                 labelText: JamiStrings.enableSpellCheck
+                descText: JamiStrings.spellCheckLanguageDescription
                 tooltipText: JamiStrings.enableSpellCheck
                 onSwitchToggled: {
                     UtilsAdapter.setAppValue(Settings.Key.EnableSpellCheck, checked);
@@ -235,7 +236,7 @@ SettingsPageBase {
                 comboModel: ListModel {
                     id: installedSpellCheckLangModel
                     Component.onCompleted: {
-                        var supported = SpellCorrectorHandler.installedDictionaries();
+                        var supported = SpellCheckDictionaryManager.installedDictionaries();
                         var keys = Object.keys(supported);
                         var currentKey = UtilsAdapter.getAppValue(Settings.Key.SpellLang);
                         for (var i = 0; i < keys.length; ++i) {
@@ -244,7 +245,7 @@ SettingsPageBase {
                                     "id": keys[i]
                                 });
                             if (keys[i] === currentKey)
-                                langComboBoxSetting.modelIndex = i;
+                                spellCheckLangComboBoxSetting.modelIndex = i;
                         }
                     }
                 }
@@ -258,38 +259,60 @@ SettingsPageBase {
                 }
             }
 
-            SettingsComboBox {
-                id: spellCheckAvailableLangsComboBoxSetting
-
+            RowLayout {
                 Layout.fillWidth: true
-                height: JamiTheme.preferredFieldHeight
+                Layout.minimumHeight: JamiTheme.preferredFieldHeight
 
-                labelText: JamiStrings.spellCheckAvailableLanguage
-                tipText: JamiStrings.spellCheckAvailableLanguage
-                comboModel: ListModel {
-                    id: availableSpellCheckLangModel
-                    Component.onCompleted: {
-                        var supported = SpellCorrectorHandler.availableDictionaries();
+                Text {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    Layout.rightMargin: JamiTheme.preferredMarginSize
+
+                    color: JamiTheme.textColor
+                    wrapMode: Text.WordWrap
+                    text: JamiStrings.refreshAvailableDictionaries
+                    font.pointSize: JamiTheme.settingsFontSize
+                    font.kerning: true
+
+                    horizontalAlignment: Text.AlignLeft
+                    verticalAlignment: Text.AlignVCenter
+                }
+
+                MaterialButton {
+                    id: refreshAvailableDictionariesPushButton
+
+                    Layout.alignment: Qt.AlignCenter
+
+                    preferredWidth: textSizeRefresh.width + 2 * JamiTheme.buttontextWizzardPadding
+                    buttontextHeightMargin: JamiTheme.buttontextHeightMargin
+
+                    primary: true
+                    toolTipText: JamiStrings.refresh
+
+                    text: JamiStrings.refresh
+
+                    onClicked: {
+                        SpellCheckDictionaryManager.refreshDictionaries();
+                        var langIdx = spellCheckLangComboBoxSetting.modelIndex;
+                        installedSpellCheckLangModel.clear();
+                        var supported = SpellCheckDictionaryManager.installedDictionaries();
                         var keys = Object.keys(supported);
-                        var currentKey = UtilsAdapter.getAppValue(Settings.Key.SpellLang);
                         for (var i = 0; i < keys.length; ++i) {
-                            append({
+                            installedSpellCheckLangModel.append({
                                     "textDisplay": supported[keys[i]],
                                     "id": keys[i]
                                 });
-                            if (keys[i] === currentKey)
-                                langComboBoxSetting.modelIndex = i;
                         }
+                        spellCheckLangComboBoxSetting.modelIndex = langIdx;
                     }
-                }
 
-                widthOfComboBox: itemWidth
-                role: "textDisplay"
-
-                onActivated:
-                //TODO: append the list of available languages
-                //UtilsAdapter.setAppValue(Settings.Key.SpellLang, comboModel.get(modelIndex).id);
-                {
+                    TextMetrics {
+                        id: textSizeRefresh
+                        font.weight: Font.Bold
+                        font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
+                        font.capitalization: Font.AllUppercase
+                        text: refreshAvailableDictionariesPushButton.text
+                    }
                 }
             }
 
@@ -309,6 +332,20 @@ SettingsPageBase {
                             });
                     }
                     langComboBoxSetting.modelIndex = langIdx;
+                }
+
+                function onSpellLangChanged() {
+                    var langIdx = spellCheckLangComboBoxSetting.modelIndex;
+                    installedSpellCheckLangModel.clear();
+                    var supported = SpellCheckDictionaryManager.installedDictionaries();
+                    var keys = Object.keys(supported);
+                    for (var i = 0; i < keys.length; ++i) {
+                        installedSpellCheckLangModel.append({
+                                "textDisplay": supported[keys[i]],
+                                "id": keys[i]
+                            });
+                    }
+                    spellCheckLangComboBoxSetting.modelIndex = langIdx;
                 }
             }
         }
@@ -367,6 +404,7 @@ SettingsPageBase {
                 closeOrMinCheckBox.checked = UtilsAdapter.getDefault(Settings.Key.MinimizeOnClose);
                 checkboxCallSwarm.checked = UtilsAdapter.getDefault(Settings.Key.EnableExperimentalSwarm);
                 langComboBoxSetting.modelIndex = 0;
+                spellCheckLangComboBoxSetting.modelIndex = 0;
                 UtilsAdapter.setToDefault(Settings.Key.EnableNotifications);
                 UtilsAdapter.setToDefault(Settings.Key.MinimizeOnClose);
                 UtilsAdapter.setToDefault(Settings.Key.LANG);
