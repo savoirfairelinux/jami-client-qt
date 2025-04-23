@@ -25,21 +25,21 @@ import "../../commoncomponents"
 
 Item {
     id: cachedFile
-    property string downloadUrl: SpellCorrectorHandler.getDictionaryUrl()
-    property string dictionaryPath: SpellCorrectorHandler.getDictionaryPath()
+    property string downloadUrl: SpellCheckDictionaryManager.getDictionaryUrl()
+    property string dictionaryPath: SpellCheckDictionaryManager.getDictionariesPath()
 
     function updateDictionnary(languagePath) {
         if (downloadUrl === "") {
             return;
         }
         var file = dictionaryPath + languagePath;
-        var url = downloadUrl + languagePath;
-        console.warn("Download url: " + url);
-        console.warn("Download file: " + file);
-        if (url && url !== "" && file !== "") {
+        /* var url = downloadUrl + languagePath;
+        console.warn("Download url: " + url); */
+        console.warn("Dict file: " + file);
+        /* if (url && url !== "" && file !== "") {
             FileDownloader.downloadFile(url + ".aff", file + ".aff");
             FileDownloader.downloadFile(url + ".dic", file + ".dic");
-        }
+        } */
         MessagesAdapter.updateDictionnary(file);
     }
 }

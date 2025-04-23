@@ -148,8 +148,6 @@ public:
     Q_INVOKABLE QVariant getDefault(const Settings::Key key) const;
 
     QString getLanguage();
-    Q_INVOKABLE QString getSpellLanguage();
-    const QString getDictionaryPath();
 
     void loadTranslations();
     void loadHistory();

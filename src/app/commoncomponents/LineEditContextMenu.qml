@@ -20,10 +20,6 @@ import net.jami.Constants 1.1
 import "contextmenu"
 import "../mainview"
 import "../mainview/components"
-import "../commoncomponents"
-import QtQuick.Controls
-import QtWebEngine
-import net.jami.Enums 1.1
 
 ContextMenuAutoLoader {
     id: root
