@@ -72,6 +72,9 @@ Item {
         }
     }
 
+    QWKSetParentHitTestVisible {
+    }
+
     TextMetrics {
         id: nameTextMetrics
         text: bestName
