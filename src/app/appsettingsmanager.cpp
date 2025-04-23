@@ -89,12 +89,11 @@ AppSettingsManager::getSpellLanguage()
     qWarning("SpellLang: %s", qPrintable(pref));
     return pref == "none" ? "en_GB/en" : pref;
 }
-// TODO: remove
+// Is only used at application boot time
 const QString
 AppSettingsManager::getDictionaryPath()
 {
-    return QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QDir::separator()
-           + "dictionaries" + QDir::separator() + getSpellLanguage();
+    return "/usr/share/hunspell/" + getSpellLanguage();
 }
 
 void
