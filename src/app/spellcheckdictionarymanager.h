@@ -21,21 +21,24 @@
 #include <QApplication>
 #include <QQmlEngine>   // QML registration
 #include <QApplication> // QML registration
+#include "appsettingsmanager.h"
 
-class SpellCorrectorHandler : public QObject
+class SpellCheckDictionaryManager : public QObject
 {
     Q_OBJECT
 public:
-    QVariantMap cachedavailableDictionaries;
+    explicit SpellCheckDictionaryManager(AppSettingsManager* settingsManager,
+                                         QObject* parent = nullptr);
+
     QVariantMap cachedinstalledDictionaries;
-    explicit SpellCorrectorHandler(QObject* parent = nullptr);
+    AppSettingsManager* settingsManager_;
     Q_INVOKABLE QVariantMap installedDictionaries();
-    Q_INVOKABLE const QString getDictionaryPath();
+    Q_INVOKABLE const QString getDictionariesPath();
     Q_INVOKABLE const QString getDictionaryUrl();
-    Q_INVOKABLE QVariantMap availableDictionaries();
+    Q_INVOKABLE void refreshDictionaries();
+    Q_INVOKABLE const QString getDictionaryPath();
+    Q_INVOKABLE QString getSpellLanguage();
     // Q_INVOKABLE QString getLanguage();
     static constexpr char dictionaryUrl[]
         = "https://cgit.freedesktop.org/libreoffice/dictionaries/plain/";
-    /* static constexpr char dictionaryUrl[]
-    = "https://github.com/freedesktop-unofficial-mirror/libreoffice__dictionaries/tree/master"; */
 };

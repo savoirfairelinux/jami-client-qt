@@ -44,17 +44,19 @@
 
 MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
                                  PreviewEngine* previewEngine,
+                                 SpellCheckDictionaryManager* spellCheckDictionaryManager,
                                  LRCInstance* instance,
                                  QObject* parent)
     : QmlAdapterBase(instance, parent)
     , settingsManager_(settingsManager)
+    , spellCheckDictionaryManager_(spellCheckDictionaryManager)
     , messageParser_(new MessageParser(previewEngine, this))
     , filteredMsgListModel_(new FilteredMsgListModel(this))
     , mediaInteractions_(std::make_unique<MessageListModel>(nullptr))
     , timestampTimer_(new QTimer(this))
 {
     // Default SpellChecker with default dictionnary path. Can be update with updateDictionnary
-    spellChecker_ = new SpellChecker(settingsManager_->getDictionaryPath());
+    spellChecker_ = new SpellChecker(spellCheckDictionaryManager_->getDictionaryPath());
 
     setObjectName(typeid(*this).name());
 
