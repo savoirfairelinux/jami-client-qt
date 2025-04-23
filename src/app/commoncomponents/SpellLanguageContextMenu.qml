@@ -47,7 +47,7 @@ ContextMenuAutoLoader {
     function generateMenuItems() {
         var menuItems = [];
         // Create new menu items
-        var dictionaries = SpellCorrectorHandler.installedDictionaries();
+        var dictionaries = SpellCheckDictionaryManager.installedDictionaries();
         for (var key in dictionaries) {
             var menuItem = Qt.createComponent("qrc:/commoncomponents/contextmenu/GeneralMenuItem.qml", Component.PreferSynchronous);
             if (menuItem.status !== Component.Ready) {

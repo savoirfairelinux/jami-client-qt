@@ -25,8 +25,8 @@ import "../../commoncomponents"
 
 Item {
     id: cachedFile
-    property string downloadUrl: SpellCorrectorHandler.getDictionaryUrl()
-    property string dictionaryPath: SpellCorrectorHandler.getDictionaryPath()
+    property string downloadUrl: SpellCheckDictionaryManager.getDictionaryUrl()
+    property string dictionaryPath: SpellCheckDictionaryManager.getDictionariesPath()
 
     function updateDictionnary(languagePath) {
         if (downloadUrl === "") {

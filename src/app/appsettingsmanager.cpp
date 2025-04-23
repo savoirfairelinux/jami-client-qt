@@ -82,21 +82,6 @@ AppSettingsManager::getLanguage()
     return pref == "SYSTEM" ? QLocale::system().name() : pref;
 }
 
-QString
-AppSettingsManager::getSpellLanguage()
-{
-    auto pref = getValue(Settings::Key::SpellLang).toString();
-    qWarning("SpellLang: %s", qPrintable(pref));
-    return pref == "none" ? "en_GB/en" : pref;
-}
-// TODO: remove
-const QString
-AppSettingsManager::getDictionaryPath()
-{
-    return QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QDir::separator()
-           + "dictionaries" + QDir::separator() + getSpellLanguage();
-}
-
 void
 AppSettingsManager::loadTranslations()
 {

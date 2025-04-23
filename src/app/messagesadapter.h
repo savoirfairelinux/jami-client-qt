@@ -24,6 +24,7 @@
 #include "messageparser.h"
 #include "appsettingsmanager.h"
 #include "spellchecker.h"
+#include "spellcheckdictionarymanager.h"
 
 #include <QObject>
 #include <QString>
@@ -47,7 +48,6 @@ public:
         connect(this, &QAbstractItemModel::rowsRemoved, this, &FilteredMsgListModel::countChanged);
         connect(this, &QAbstractItemModel::modelReset, this, &FilteredMsgListModel::countChanged);
         connect(this, &QAbstractItemModel::layoutChanged, this, &FilteredMsgListModel::countChanged);
-
     }
     bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override
     {
@@ -102,11 +102,14 @@ public:
     {
         return new MessagesAdapter(qApp->property("AppSettingsManager").value<AppSettingsManager*>(),
                                    qApp->property("PreviewEngine").value<PreviewEngine*>(),
+                                   qApp->property("SpellCheckDictionaryManager")
+                                       .value<SpellCheckDictionaryManager*>(),
                                    qApp->property("LRCInstance").value<LRCInstance*>());
     }
 
     explicit MessagesAdapter(AppSettingsManager* settingsManager,
                              PreviewEngine* previewEngine,
+                             SpellCheckDictionaryManager* spellCheckDictionaryManager,
                              LRCInstance* instance,
                              QObject* parent = nullptr);
     ~MessagesAdapter() = default;
@@ -204,6 +207,7 @@ private:
     AppSettingsManager* settingsManager_;
     MessageParser* messageParser_;
     SpellChecker* spellChecker_;
+    SpellCheckDictionaryManager* spellCheckDictionaryManager_;
 
     FilteredMsgListModel* filteredMsgListModel_;
 
