@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4273f5b9_939ecd42",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 912,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-04-23T02:20:12Z",
+      "side": 1,
+      "message": "1. Can multiple languages be set?\n2. Can the text language be set to `None` (or all languages be disabled) so that proofing tools will be disabled?\n3. Are the text languages set per conversation? A user may have a conversation with someone who only knows French and other conversations with someone who only knows English.\n\nThank you",
+      "range": {
+        "startLine": 912,
+        "startChar": 46,
+        "endLine": 912,
+        "endChar": 59
+      },
+      "revId": "bed66ea915a6392d841be2b2fd31ce62c3916fc3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
