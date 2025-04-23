@@ -47,11 +47,11 @@ if [ ! -f "${qt_deb_path}" ] || [ "${FORCE_REBUILD_QT}" = "true" ]; then
 
         # HACK: For now on ubuntu 24.04 there is no python3.10 package
         # So create a PyEnv environment to install the required packages
-        # NOTE: We use this on Ubuntu 25.04 too because otherwise we get
-        # a ModuleNotFoundError when building Qt 6.6.1 (specifically the
-        # chromium submodule in QtWebEngine) due to the version of python
-        # used (3.13) being too recent.
-        if cat /etc/os-release | grep -Eq "24.04|25.04"; then
+        # NOTE: We use this on Ubuntu 25.04 and Debian 13 ("trixie") too
+        # because otherwise we get a ModuleNotFoundError when building
+        # Qt 6.6.1 (specifically the chromium submodule in QtWebEngine)
+        # due to the version of python used (3.13) being too recent.
+        if cat /etc/os-release | grep -Eq "24.04|25.04|trixie"; then
             apt-get install git gcc make python3-pip libssl-dev curl libreadline-dev -y
             curl https://pyenv.run | bash
             export PYENV_ROOT="$HOME/.pyenv"
