@@ -228,6 +228,11 @@ Window {
 
         anchors.fill: parent
 
+        background: Rectangle {
+            anchors.fill: parent
+            color: JamiTheme.backgroundColor
+        }
+
         // make a list view of keyboardShortcutsModelList[selectionBar.currentIndex]
         JamiListView {
             id: keyboardShortcutsListView
@@ -262,6 +267,7 @@ Window {
                         Layout.topMargin: 8
                         Layout.leftMargin: 20
                         text: description
+                        color: JamiTheme.textColor
                         background: Rectangle {
                             width: parent.width + 16
                             height: parent.height + 16
@@ -269,6 +275,7 @@ Window {
                             border.width: 2
                             radius: 5
                             anchors.centerIn: parent
+                            color: JamiTheme.backgroundColor
                         }
                     }
                     Label {
@@ -277,6 +284,7 @@ Window {
                         Layout.topMargin: 8
                         Layout.rightMargin: 20
                         text: shortcut
+                        color: JamiTheme.textColor
                         background: Rectangle {
                             width: parent.width + 16
                             height: parent.height + 16
@@ -284,6 +292,7 @@ Window {
                             border.width: 2
                             radius: 5
                             anchors.centerIn: parent
+                            color: JamiTheme.backgroundColor
                         }
                     }
                 }
@@ -299,6 +308,10 @@ Window {
             padding: lambda
 
             focus: true
+
+            background: Rectangle {
+                color: JamiTheme.backgroundColor
+            }
 
             Repeater {
                 model: [JamiStrings.generalSettingsTitle, JamiStrings.conversationKeyboardShortcuts, JamiStrings.callKeyboardShortcuts, JamiStrings.markdownKeyboardShortcuts, JamiStrings.settings]
@@ -339,9 +352,16 @@ Window {
         footer: Item {
             height: JamiTheme.keyboardShortcutTabBarSize
             PageIndicator {
+                id: pageIndicator
                 anchors.centerIn: parent
                 count: selectionBar.count
                 currentIndex: selectionBar.currentIndex
+                delegate: Rectangle {
+                    width: 6
+                    height: 6
+                    radius: 3
+                    color: index === pageIndicator.currentIndex ? JamiTheme.textColor : JamiTheme.textColorHoveredHighContrast
+                }
             }
         }
     }

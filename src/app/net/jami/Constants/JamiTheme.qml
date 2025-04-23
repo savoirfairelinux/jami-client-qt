@@ -83,6 +83,7 @@ Item {
     property color editBackgroundColor: darkTheme ? "#373737" : lightGrey_
     property color textColor: primaryForegroundColor
     property color textColorHovered: darkTheme ? "#cccccc" : "#333333"
+    property color textColorHoveredHighContrast: darkTheme ? "#6a6a6a" : "#a7a7a7"
     property color tabbarBorderColor: darkTheme ? blackColor : "#e3e3e3"
     property color popupOverlayColor: darkTheme ? Qt.rgba(255, 255, 255, 0.22) : Qt.rgba(0, 0, 0, 0.33)
     property real formsRadius: 30
@@ -103,7 +104,7 @@ Item {
     property color pressedButtonColor: darkTheme ? pressColor : "#a0a0a0"
     property color hoveredButtonColor: darkTheme ? "#4d4d4d" : "#dedede"
     property color hoveredButtonColorWizard: darkTheme ? "#4d4d4d" : "#dedede"
-    property color normalButtonColor: darkTheme ? backgroundColor : "#e0e0e0"
+    property color normalButtonColor: darkTheme ? "#bfbfbf" : "#e0e0e0"
 
     property color invertedPressedButtonColor: Qt.rgba(0, 0, 0, 0.5)
     property color invertedHoveredButtonColor: Qt.rgba(0, 0, 0, 0.6)
