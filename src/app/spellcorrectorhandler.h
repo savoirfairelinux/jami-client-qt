@@ -26,16 +26,12 @@ class SpellCorrectorHandler : public QObject
 {
     Q_OBJECT
 public:
-    QVariantMap cachedavailableDictionaries;
     QVariantMap cachedinstalledDictionaries;
     explicit SpellCorrectorHandler(QObject* parent = nullptr);
     Q_INVOKABLE QVariantMap installedDictionaries();
     Q_INVOKABLE const QString getDictionaryPath();
     Q_INVOKABLE const QString getDictionaryUrl();
-    Q_INVOKABLE QVariantMap availableDictionaries();
     // Q_INVOKABLE QString getLanguage();
     static constexpr char dictionaryUrl[]
         = "https://cgit.freedesktop.org/libreoffice/dictionaries/plain/";
-    /* static constexpr char dictionaryUrl[]
-    = "https://github.com/freedesktop-unofficial-mirror/libreoffice__dictionaries/tree/master"; */
 };

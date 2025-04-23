@@ -910,7 +910,7 @@ Item {
     // Spellchecker
     property string enableSpellCheck: qsTr("Check spelling while typing")
     property string spellCheckLanguage: qsTr("Text language")
-    property string spellCheckAvailableLanguage: qsTr("Install new languages")
+    property string spellCheckLanguageDescription: qsTr("To install new dictionaries, use the package manager of your system.")
     property string spellchecking: qsTr("Spellchecking")
 
     //Language TODO: remove

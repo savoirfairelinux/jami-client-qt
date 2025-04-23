@@ -215,6 +215,7 @@ SettingsPageBase {
 
                 checked: UtilsAdapter.getAppValue(Settings.Key.EnableSpellCheck)
                 labelText: JamiStrings.enableSpellCheck
+                descText: JamiStrings.spellCheckLanguageDescription
                 tooltipText: JamiStrings.enableSpellCheck
                 onSwitchToggled: {
                     UtilsAdapter.setAppValue(Settings.Key.EnableSpellCheck, checked);
@@ -255,41 +256,6 @@ SettingsPageBase {
                 onActivated: {
                     console.warn("spellCheckLangComboBoxSetting activated: " + modelIndex);
                     UtilsAdapter.setAppValue(Settings.Key.SpellLang, comboModel.get(modelIndex).id);
-                }
-            }
-
-            SettingsComboBox {
-                id: spellCheckAvailableLangsComboBoxSetting
-
-                Layout.fillWidth: true
-                height: JamiTheme.preferredFieldHeight
-
-                labelText: JamiStrings.spellCheckAvailableLanguage
-                tipText: JamiStrings.spellCheckAvailableLanguage
-                comboModel: ListModel {
-                    id: availableSpellCheckLangModel
-                    Component.onCompleted: {
-                        var supported = SpellCorrectorHandler.availableDictionaries();
-                        var keys = Object.keys(supported);
-                        var currentKey = UtilsAdapter.getAppValue(Settings.Key.SpellLang);
-                        for (var i = 0; i < keys.length; ++i) {
-                            append({
-                                    "textDisplay": supported[keys[i]],
-                                    "id": keys[i]
-                                });
-                            if (keys[i] === currentKey)
-                                langComboBoxSetting.modelIndex = i;
-                        }
-                    }
-                }
-
-                widthOfComboBox: itemWidth
-                role: "textDisplay"
-
-                onActivated:
-                //TODO: append the list of available languages
-                //UtilsAdapter.setAppValue(Settings.Key.SpellLang, comboModel.get(modelIndex).id);
-                {
                 }
             }
 
