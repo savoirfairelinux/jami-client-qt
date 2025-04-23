@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "501677e0_f02e65ac",
+        "filename": "src/libclient/api/interaction.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2025-04-23T21:06:10Z",
+      "side": 1,
+      "message": "* Use QString all the way to avoid unneeded conversion and manage alignment\n* simplify to handle different cases\n\n```suggestion\n    auto hours \u003d minutes / 60;\n    if (hours \u003e\u003d 24) {\n        auto days \u003d hours / 24;\n        return QString(\"%1d %2h %3m %4s\")\n            .arg(days)\n            .arg(hours, 2, \u00270\u0027)\n            .arg(minutes, 2, \u00270\u0027)\n            .arg(seconds, 2, \u00270\u0027)\n    } else if (minutes \u003e\u003d 60) {\n        return QString(\"%1h %2m %3s\")\n            .arg(hours, 2, \u00270\u0027)\n            .arg(minutes, 2, \u00270\u0027)\n            .arg(seconds, 2, \u00270\u0027)\n    } else (\n        return QString(\"%2m %3s\")\n            .arg(minutes, 2, \u00270\u0027)\n            .arg(seconds, 2, \u00270\u0027)\n    }\n```",
+      "range": {
+        "startLine": 313,
+        "startChar": 0,
+        "endLine": 328,
+        "endChar": 2
+      },
+      "revId": "ac9bc470c5e4de87634960c5c38def0afb47025b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
