@@ -16,6 +16,24 @@
       "message": "We should be able to also select this text",
       "revId": "a86c0f084f205a25ab8df674c9e5cfab1b1c7d86",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64a81733_623dbc18",
+        "filename": "src/app/mainview/components/ChatViewHeader.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1131
+      },
+      "writtenOn": "2025-04-24T14:14:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4aecb33_0e6e891d",
+      "revId": "a86c0f084f205a25ab8df674c9e5cfab1b1c7d86",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
