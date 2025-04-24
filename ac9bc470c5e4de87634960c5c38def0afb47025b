@@ -22,6 +22,30 @@
       },
       "revId": "ac9bc470c5e4de87634960c5c38def0afb47025b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50a572fe_49b9db42",
+        "filename": "src/libclient/api/interaction.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1131
+      },
+      "writtenOn": "2025-04-24T13:20:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "501677e0_f02e65ac",
+      "range": {
+        "startLine": 313,
+        "startChar": 0,
+        "endLine": 328,
+        "endChar": 2
+      },
+      "revId": "ac9bc470c5e4de87634960c5c38def0afb47025b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
