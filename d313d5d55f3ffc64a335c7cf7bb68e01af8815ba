@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c24a7074_2289adf1",
+        "filename": "src/app/utils.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 1131
+      },
+      "writtenOn": "2025-04-24T17:38:52Z",
+      "side": 1,
+      "message": "I removed this scale function call to use only the one in getCirclePhoto. Another option is to leave it there and remove the scaling done in getCirclePhoto. Thoughts on what the best option is?",
+      "parentUuid": "bff20534_7fc50e49",
+      "revId": "d313d5d55f3ffc64a335c7cf7bb68e01af8815ba",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3cd782e2_c8a60b96",
         "filename": "src/app/utils.cpp",
         "patchSetId": 3
@@ -31,6 +49,24 @@
       "writtenOn": "2025-03-03T16:50:50Z",
       "side": 1,
       "message": "should we remove circleCrop from function parameters?",
+      "revId": "d313d5d55f3ffc64a335c7cf7bb68e01af8815ba",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9fdfe18_a6729481",
+        "filename": "src/app/utils.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 1131
+      },
+      "writtenOn": "2025-04-24T17:38:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3cd782e2_c8a60b96",
       "revId": "d313d5d55f3ffc64a335c7cf7bb68e01af8815ba",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
