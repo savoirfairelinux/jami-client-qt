@@ -22,6 +22,30 @@
       },
       "revId": "7a87554e2738b15bec3f70da6d640fb2da52f24a",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "944281ca_d4d49a8e",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 913,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-04-24T19:25:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06aff2c5_2782efbc",
+      "range": {
+        "startLine": 913,
+        "startChar": 57,
+        "endLine": 913,
+        "endChar": 125
+      },
+      "revId": "7a87554e2738b15bec3f70da6d640fb2da52f24a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
