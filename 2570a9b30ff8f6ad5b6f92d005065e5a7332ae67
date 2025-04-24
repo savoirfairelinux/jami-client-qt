@@ -16,6 +16,24 @@
       "message": "\u003e allows to set custom fps count to a window.\n\nI think this is similar like https://review.jami.net/c/jami-daemon/+/30761\n\nWhat if a user sets a too high frame rate (if technically possible)? For example like 9999 or infinite? Should / can you prevent such settings? (And the user won\u0027t be able to set numbers like zero \"0\" or numbers like \"-1\", \"-2\"? - Will the input just not work or should the user also get an error message like \"invalid number\"?)",
       "revId": "2570a9b30ff8f6ad5b6f92d005065e5a7332ae67",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fc58acc_a5d19431",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-04-24T21:20:23Z",
+      "side": 1,
+      "message": "this is the client part and the other commit is the daemon part. They work together. Users cannot set custom fps count, only developers can when creating a video stream.",
+      "parentUuid": "f8524e4f_fac1c876",
+      "revId": "2570a9b30ff8f6ad5b6f92d005065e5a7332ae67",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
