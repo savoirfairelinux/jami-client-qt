@@ -80,9 +80,6 @@ EOF
     find ./extras/packaging/gnu-linux/packages -type f -name '*.ddeb' -print0 | xargs -0 -I{} mv {} {}.deb
 
     for package in ./extras/packaging/gnu-linux/packages/${DISTRIBUTION}*/*.deb; do
-        echo "## signing: ${package} ##"
-        dpkg-sig -k ${KEYID} --sign builder ${package}
-
         echo "## including ${package} ##"
         package_name=$(dpkg -I ${package} | grep -m 1 Package: | awk '{print $2}')
         package_arch=$(dpkg -I ${package} | grep -m 1 Architecture: | awk '{print $2}')
