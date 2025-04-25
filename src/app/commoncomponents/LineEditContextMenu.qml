@@ -30,13 +30,18 @@ ContextMenuAutoLoader {
     property var selectionEnd
     property bool customizePaste: false
     property bool selectOnly: false
+    property bool checkSpell: false
     property var suggestionList
     property var nbMenuItems
+    property var language
 
     signal contextMenuRequirePaste
-
-    CachedFile {
-        id: cachedFile
+    SpellLanguageContextMenu {
+        id: spellLanguageContextMenu
+        active: checkSpell
+        onLanguageChanged: {
+            textArea.updateCorrection(language);
+        }
     }
 
     property list<GeneralMenuItem> menuItems: [
@@ -77,12 +82,12 @@ ContextMenuAutoLoader {
         },
         GeneralMenuItem {
             id: language
-
-            canTrigger: true
+            visible: checkSpell
+            canTrigger: checkSpell
             itemName: JamiStrings.language
             hasIcon: false
             onClicked: {
-
+                spellLanguageContextMenu.openMenu();
             }
         }
     ]
@@ -127,7 +132,7 @@ ContextMenuAutoLoader {
         for (var i = 0; i < suggestionList.length; ++i) {
             dynamicModel.append({
                     "name": suggestionList[i]
-            });
+                });
         }
     }
 

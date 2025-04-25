@@ -28,6 +28,7 @@ MenuItem {
     id: menuItem
 
     property string itemName: ""
+    property string content: ""
     property alias iconSource: contextMenuItemImage.source
     property string iconColor: ""
     property bool canTrigger: true
@@ -108,6 +109,7 @@ MenuItem {
         }
 
         onReleased: {
+            console.warn("333 onReleased: " + itemName, menuItem);
             menuItem.clicked();
             parentMenu.close();
         }

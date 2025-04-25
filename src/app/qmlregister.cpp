@@ -36,6 +36,7 @@
 #include "currentaccounttomigrate.h"
 #include "pttlistener.h"
 #include "calloverlaymodel.h"
+#include "spellcheckdictionarymanager.h"
 #include "accountlistmodel.h"
 #include "mediacodeclistmodel.h"
 #include "audiodevicemodel.h"
@@ -118,6 +119,7 @@ registerTypes(QQmlEngine* engine,
               LRCInstance* lrcInstance,
               SystemTray* systemTray,
               AppSettingsManager* settingsManager,
+              SpellCheckDictionaryManager* spellCheckDictionaryManager,
               ConnectivityMonitor* connectivityMonitor,
               PreviewEngine* previewEngine,
               ScreenInfo* screenInfo,
@@ -155,6 +157,12 @@ registerTypes(QQmlEngine* engine,
     qApp->setProperty("CallOverlayModel", QVariant::fromValue(callOverlayModel));
     QQmlEngine::setObjectOwnership(callOverlayModel, QQmlEngine::CppOwnership);
     REG_QML_SINGLETON<CallOverlayModel>(REG_MODEL, "CallOverlayModel", CREATE(callOverlayModel));
+
+    /* Used in MessageAdapter*/
+    /* auto spellCheckDictionaryManager = new SpellCheckDictionaryManager(lrcInstance);
+    qApp->setProperty("SpellCheckDictionaryManager", QVariant::fromValue(spellCheckDictionaryManager));
+    QQmlEngine::setObjectOwnership(spellCheckDictionaryManager, QQmlEngine::CppOwnership);
+    REG_QML_SINGLETON<SpellCheckDictionaryManager>(REG_MODEL, "SpellCheckDictionaryManager", CREATE(spellCheckDictionaryManager)); */
 
     /* Used in CurrentCall */
     auto callParticipantsModel = new CallParticipantsModel(lrcInstance, app);
@@ -202,6 +210,7 @@ registerTypes(QQmlEngine* engine,
     qApp->setProperty("AppSettingsManager", QVariant::fromValue(settingsManager));
     qApp->setProperty("ConnectivityMonitor", QVariant::fromValue(connectivityMonitor));
     qApp->setProperty("PreviewEngine", QVariant::fromValue(previewEngine));
+    qApp->setProperty("SpellCheckDictionaryManager", QVariant::fromValue(spellCheckDictionaryManager));
 
     // qml adapter registration
     QML_REGISTERSINGLETON_TYPE(NS_HELPERS, QRCodeScannerModel);
@@ -233,6 +242,7 @@ registerTypes(QQmlEngine* engine,
     // QAbstractListModels
     QML_REGISTERTYPE(NS_MODELS, BannedListModel);
     QML_REGISTERTYPE(NS_MODELS, MediaCodecListModel);
+    //QML_REGISTERTYPE(NS_MODELS, DictionariesListModel);
     QML_REGISTERTYPE(NS_MODELS, AudioDeviceModel);
     QML_REGISTERTYPE(NS_MODELS, AudioManagerListModel);
     QML_REGISTERTYPE(NS_MODELS, PreferenceItemListModel);
@@ -253,6 +263,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, screenInfo, "CurrentScreenInfo")
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, lrcInstance, "LRCInstance")
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, settingsManager, "AppSettingsManager")
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, spellCheckDictionaryManager, "SpellCheckDictionaryManager")
 
     // Lrc namespaces, models, and singletons
     QML_REGISTERNAMESPACE(NS_MODELS, lrc::api::staticMetaObject, "Lrc");
