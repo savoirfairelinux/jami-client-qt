@@ -108,6 +108,7 @@ MenuItem {
         }
 
         onReleased: {
+            console.warn("333 onReleased: " + itemName, menuItem);
             menuItem.clicked();
             parentMenu.close();
         }

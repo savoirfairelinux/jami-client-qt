@@ -17,14 +17,11 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
-
 import SortFilterProxyModel 0.2
-
 import "../../commoncomponents"
 
 JamiFlickable {
@@ -40,9 +37,12 @@ JamiFlickable {
     property bool showPreview: false
     property bool isShowTypo: UtilsAdapter.getAppValue(Settings.Key.ShowMardownOption)
     property int textWidth: textArea.contentWidth
+    property var spellCheckActive: AppSettingsManager.getValue(Settings.EnableSpellCheck)
+    property var language: AppSettingsManager.getValue(Settings.SpellLang)
 
     // Used to cache the editable text when showing the preview message
     // and also to debounce the textChanged signal's effect on the composing status.
+    property var underlineList: []
     property string cachedText
     property string debounceText
 
@@ -73,6 +73,7 @@ JamiFlickable {
 
         lineEditObj: textArea
         customizePaste: true
+        checkSpell: (Qt.platform.os.toString() === "linux") ?  true : false
 
         onContextMenuRequirePaste: {
             // Intercept paste event to use C++ QMimeData
@@ -115,6 +116,55 @@ JamiFlickable {
 
     TextArea.flickable: TextArea {
         id: textArea
+
+        CachedFile {
+            id: cachedFile
+        }
+
+        function updateCorrection(language) {
+            cachedFile.updateDictionnary(language);
+            textArea.updateUnderlineText();
+        }
+
+        // Listen to settings changes and apply it to this widget
+        Connections {
+            target: UtilsAdapter
+
+            function onSpellLangChanged() {
+                root.language = SpellCheckDictionaryManager.getSpellLanguage();
+                textArea.updateCorrection(root.language);
+            }
+
+            function onEnableSpellCheckChanged() {
+                // Disable spell check on non-linux platforms yet
+                if (Qt.platform.os.toString() !== "linux"){
+                    spellCheckActive=false;
+                }else{
+                    spellCheckActive = AppSettingsManager.getValue(Settings.EnableSpellCheck);
+                }
+                if (spellCheckActive === true) {
+                    root.language = SpellCheckDictionaryManager.getSpellLanguage();
+                    textArea.updateCorrection(root.language);
+                } else {
+                    textArea.clearUnderlines();
+                }
+            }
+        }
+
+        // Initialize the settings if the component wasn't loaded when changing settings
+        Component.onCompleted: {
+            if (Qt.platform.os.toString() !== "linux"){
+                spellCheckActive=false;
+            }else{
+            spellCheckActive = AppSettingsManager.getValue(Settings.EnableSpellCheck);
+            }
+            if (spellCheckActive === true) {
+                root.language = SpellCheckDictionaryManager.getSpellLanguage();
+                textArea.updateCorrection(root.language);
+            } else {
+                textArea.clearUnderlines();
+            }
+        }
 
         readOnly: showPreview
         leftPadding: JamiTheme.scrollBarHandleSize
@@ -182,7 +232,6 @@ JamiFlickable {
         Keys.onPressed: function (keyEvent) {
             // Update underline on each input to take into account deleted text and sent ones
             updateUnderlineText();
-
             if (keyEvent.matches(StandardKey.Paste)) {
                 MessagesAdapter.onPaste();
                 keyEvent.accepted = true;
@@ -212,47 +261,32 @@ JamiFlickable {
             }
         }
 
-        function highlightCurrentWord() {
-            textMetrics.text = textArea.selectedText;
-            var cursorRect = textArea.cursorRectangle;
-            var x = cursorRect.x - textMetrics.width;
-            var y = cursorRect.y + cursorRect.height;
-            var underlineObject = Qt.createQmlObject('import QtQuick 2.5; Rectangle {height: 2; color: "red";}', parent);
-            underlineObject.x = x;
-            underlineObject.y = y;
-            underlineObject.width = textMetrics.width;
-            underlineList.push(underlineObject);
-        }
-
         function updateUnderlineText() {
             /* Need to refresh all of the underline object. Otherwise the
-             * underline stay persistent on type
-             */
+                * underline stay persistent on type
+                */
             clearUnderlines();
-            var cursorPosition = textArea.cursorPosition;
-            var oldCursorPosition = cursorPosition;
+            if (spellCheckActive) {
+                var text = textArea.text;
 
-            // Extract word from text
-            var words = textArea.text.split(/\W+/);
-            var cursorIndex = 0;
-            for (var i = 0; i < words.length; i++) {
-                var word = words[i];
-                if (word.length === 0) {
-                    continue; // Skip empty words
+                // Use regex to find words and their positions
+                var wordRegex = /\b\w+\b/g;
+                var match;
+                while ((match = wordRegex.exec(text)) !== null) {
+                    var word = match[0];
+                    var wordStart = match.index;
+                    if (!MessagesAdapter.spell(word)) {
+                        textMetrics.text = word;
+                        var xPos = textArea.positionToRectangle(wordStart).x;
+                        var yPos = textArea.positionToRectangle(wordStart).y + textArea.positionToRectangle(wordStart).height;
+                        var underlineObject = Qt.createQmlObject('import QtQuick; Rectangle {height: 2; color: "red";}', textArea);
+                        underlineObject.x = xPos;
+                        underlineObject.y = yPos;
+                        underlineObject.width = textMetrics.width;
+                        underlineList.push(underlineObject);
+                    }
                 }
-
-                // Find the position of the word in the text
-                var wordIndex = textArea.text.indexOf(word, cursorIndex);
-                textArea.cursorPosition = wordIndex;
-                textArea.selectWord();
-                if (!MessagesAdapter.spell(textArea.selectedText)) {
-                    highlightCurrentWord();
-                }
-                // Update cursor index
-                cursorIndex = wordIndex + word.length;
-                textArea.deselect();
             }
-            textArea.cursorPosition = oldCursorPosition;
         }
 
         function clearUnderlines() {
