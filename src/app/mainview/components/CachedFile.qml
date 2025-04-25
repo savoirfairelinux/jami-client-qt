@@ -25,22 +25,10 @@ import "../../commoncomponents"
 
 Item {
     id: cachedFile
-    property string downloadUrl: UtilsAdapter.getDictionaryUrl()
-    property string dictionaryPath: UtilsAdapter.getDictionaryPath()
+    property string dictionaryPath: SpellCheckDictionaryManager.getDictionariesPath()
 
     function updateDictionnary(languagePath) {
-        if (downloadUrl === "") {
-            return;
-        }
-
         var file = dictionaryPath + languagePath;
-        var url = downloadUrl + languagePath;
-
-        if (url && url !== "" && file !== "") {
-            FileDownloader.downloadFile(url + ".aff", file + ".aff");
-            FileDownloader.downloadFile(url + ".dic", file + ".dic");
-        }
-
         MessagesAdapter.updateDictionnary(file);
     }
 }
