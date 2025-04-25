@@ -82,19 +82,6 @@ AppSettingsManager::getLanguage()
     return pref == "SYSTEM" ? QLocale::system().name() : pref;
 }
 
-const QString
-AppSettingsManager::getDictionaryPath()
-{
-    QString language = AppSettingsManager::getLanguage();
-
-    #if defined(HUNSPELL_INSTALL_DIR)
-        QString hunspellDataDir = HUNSPELL_INSTALL_DIR + language;
-    #else
-        QString hunspellDataDir = qApp->applicationDirPath() + QDir::separator() + "share";
-    #endif
-    return hunspellDataDir;
-}
-
 void
 AppSettingsManager::loadTranslations()
 {

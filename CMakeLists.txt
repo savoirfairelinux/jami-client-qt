@@ -347,6 +347,7 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/conversationlistmodel.cpp
   ${APP_SRC_DIR}/searchresultslistmodel.cpp
   ${APP_SRC_DIR}/calloverlaymodel.cpp
+  ${APP_SRC_DIR}/spellcheckdictionarymanager.cpp
   ${APP_SRC_DIR}/filestosendlistmodel.cpp
   ${APP_SRC_DIR}/wizardviewstepmodel.cpp
   ${APP_SRC_DIR}/avatarregistry.cpp
@@ -419,6 +420,7 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/conversationlistmodel.h
   ${APP_SRC_DIR}/searchresultslistmodel.h
   ${APP_SRC_DIR}/calloverlaymodel.h
+  ${APP_SRC_DIR}/spellcheckdictionarymanager.h
   ${APP_SRC_DIR}/filestosendlistmodel.h
   ${APP_SRC_DIR}/wizardviewstepmodel.h
   ${APP_SRC_DIR}/avatarregistry.h
@@ -474,6 +476,7 @@ find_package(PkgConfig REQUIRED)
 # hunspell
 pkg_check_modules(HUNSPELL hunspell)
 if(HUNSPELL_FOUND)
+    message(STATUS "HUNSPELL FOUND")
   include_directories(${HUNSPELL_INCLUDE_DIR})
   find_path(HUNSPELL_INCLUDE_DIRS
             NAMES hunspell.hxx
@@ -492,6 +495,7 @@ if(HUNSPELL_FOUND)
     set(HUNSPELL_DICT_DIR "/Library/Spelling/")
   endif()
 else()
+    message(STATUS "HUNSPELL NOT FOUND")
   set(HUNSPELL_DIR ${PROJECT_SOURCE_DIR}/3rdparty/hunspell)
   set(HUNSPELL_INCLUDE_DIR ${HUNSPELL_DIR}/src)
 
@@ -508,7 +512,13 @@ else()
     COMMAND make -j
     WORKING_DIRECTORY ${HUNSPELL_DIR}
   )
-  file(GLOB_RECURSE HUNSPELL_LIBRARIES ${HUNSPELL_INCLUDE_DIR}/hunspell/.libs/libhunspell-1.7.a)
+  if (WIN32)
+    add_definitions(-DHUNSPELL_STATIC)
+    set(HUNSPELL_LIBRARIES ${HUNSPELL_DIR}/msvc/x64/Release/libhunspell.lib)
+  else()
+    file(GLOB_RECURSE HUNSPELL_LIBRARIES ${HUNSPELL_INCLUDE_DIR}/hunspell/.libs/libhunspell-1.7.a)
+  endif()
+  message(HUNSPELL_LIBRARIES)
 endif()
 
 if(MSVC)
@@ -572,9 +582,6 @@ elseif (NOT APPLE)
     ${APP_SRC_DIR}/dbuserrorhandler.h
     ${APP_SRC_DIR}/screencastportal.h)
   list(APPEND QT_MODULES DBus)
-
-  include_directories(${HUNSPELL_INCLUDE_DIR})
-  list(APPEND CLIENT_LIBS ${HUNSPELL_LIBRARIES})
 
   pkg_check_modules(GLIB REQUIRED glib-2.0)
   if(GLIB_FOUND)
@@ -657,6 +664,12 @@ else() # APPLE
     add_definitions(-DBETA)
   endif()
 endif()
+
+message(STATUS "Adding HUNSPELL_INCLUDE_DIR" ${HUNSPELL_INCLUDE_DIR})
+list(APPEND CLIENT_INCLUDE_DIRS ${HUNSPELL_INCLUDE_DIR})
+
+message(STATUS "Adding HUNSPELL_LIBRARIES" ${HUNSPELL_INCLUDE_DIR})
+list(APPEND CLIENT_LIBS ${HUNSPELL_LIBRARIES})
 
 # Qt find package
 if(QT6_VER AND QT6_PATH)
