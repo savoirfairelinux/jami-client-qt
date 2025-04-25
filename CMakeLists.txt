@@ -347,6 +347,7 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/conversationlistmodel.cpp
   ${APP_SRC_DIR}/searchresultslistmodel.cpp
   ${APP_SRC_DIR}/calloverlaymodel.cpp
+  ${APP_SRC_DIR}/spellcheckdictionarymanager.cpp
   ${APP_SRC_DIR}/filestosendlistmodel.cpp
   ${APP_SRC_DIR}/wizardviewstepmodel.cpp
   ${APP_SRC_DIR}/avatarregistry.cpp
@@ -419,6 +420,7 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/conversationlistmodel.h
   ${APP_SRC_DIR}/searchresultslistmodel.h
   ${APP_SRC_DIR}/calloverlaymodel.h
+  ${APP_SRC_DIR}/spellcheckdictionarymanager.h
   ${APP_SRC_DIR}/filestosendlistmodel.h
   ${APP_SRC_DIR}/wizardviewstepmodel.h
   ${APP_SRC_DIR}/avatarregistry.h
@@ -473,7 +475,16 @@ find_package(PkgConfig REQUIRED)
 
 # hunspell
 pkg_check_modules(HUNSPELL hunspell)
+if(MSVC)
+elseif (NOT APPLE)
+  set(HUNSPELL_DICT_DIR "/usr/share/hunspell/")
+else()
+  set(HUNSPELL_DICT_DIR "/Library/Spelling/")
+endif()
+
+
 if(HUNSPELL_FOUND)
+    message(STATUS "HUNSPELL FOUND")
   include_directories(${HUNSPELL_INCLUDE_DIR})
   find_path(HUNSPELL_INCLUDE_DIRS
             NAMES hunspell.hxx
@@ -482,33 +493,25 @@ if(HUNSPELL_FOUND)
   )
 
   find_library(HUNSPELL_LIBRARIES
-              NAMES ${HUNSPELL_LIBRARIES} hunspell hunspell-1.7 libhunspell libhunspell-1.7 libhunspell-devel libhunspell-dev
+              NAMES ${HUNSPELL_LIBRARIES}
+                hunspell
+                hunspell-1.7
+                libhunspell
+                libhunspell-1.7
+                libhunspell-devel
+                libhunspell-dev
               HINTS ${HUNSPELL_LIBRARY_DIRS}
   )
-  if(MSVC)
-  elseif (NOT APPLE)
-    set(HUNSPELL_DICT_DIR "/usr/share/hunspell/")
-  else()
-    set(HUNSPELL_DICT_DIR "/Library/Spelling/")
-  endif()
 else()
-  set(HUNSPELL_DIR ${PROJECT_SOURCE_DIR}/3rdparty/hunspell)
-  set(HUNSPELL_INCLUDE_DIR ${HUNSPELL_DIR}/src)
+  message(STATUS "HUNSPELL NOT FOUND - BUILDING HUNSPELL")
 
-  # hunspell submodule build
-  execute_process(
-    COMMAND autoreconf -vfi
-    WORKING_DIRECTORY ${HUNSPELL_DIR}
-  )
-  execute_process(
-    COMMAND ./configure
-    WORKING_DIRECTORY ${HUNSPELL_DIR}
-  )
-  execute_process(
-    COMMAND make -j
-    WORKING_DIRECTORY ${HUNSPELL_DIR}
-  )
-  file(GLOB_RECURSE HUNSPELL_LIBRARIES ${HUNSPELL_INCLUDE_DIR}/hunspell/.libs/libhunspell-1.7.a)
+  set(HUNSPELL_DIR ${PROJECT_SOURCE_DIR}/3rdparty/hunspell)
+
+  # Build using the submodule and its CMakeLists.txt
+  add_subdirectory(${HUNSPELL_DIR} hunspell_build)
+
+  set(HUNSPELL_INCLUDE_DIR ${HUNSPELL_DIR}/src)
+  set(HUNSPELL_LIBRARIES hunspell::hunspell)
 endif()
 
 if(MSVC)
@@ -572,9 +575,6 @@ elseif (NOT APPLE)
     ${APP_SRC_DIR}/dbuserrorhandler.h
     ${APP_SRC_DIR}/screencastportal.h)
   list(APPEND QT_MODULES DBus)
-
-  include_directories(${HUNSPELL_INCLUDE_DIR})
-  list(APPEND CLIENT_LIBS ${HUNSPELL_LIBRARIES})
 
   pkg_check_modules(GLIB REQUIRED glib-2.0)
   if(GLIB_FOUND)
@@ -657,6 +657,13 @@ else() # APPLE
     add_definitions(-DBETA)
   endif()
 endif()
+
+message(STATUS "Adding HUNSPELL_INCLUDE_DIR" ${HUNSPELL_INCLUDE_DIR})
+list(APPEND CLIENT_INCLUDE_DIRS ${HUNSPELL_INCLUDE_DIR} ${CMAKE_BINARY_DIR}/include
+${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/hunspell/src)
+
+message(STATUS "Adding HUNSPELL_LIBRARIES" ${HUNSPELL_INCLUDE_DIR})
+list(APPEND CLIENT_LIBS ${HUNSPELL_LIBRARIES})
 
 # Qt find package
 if(QT6_VER AND QT6_PATH)
@@ -745,6 +752,9 @@ qt_add_executable(
   ${QML_RESOURCES}
   ${QML_RESOURCES_QML}
   ${SFPM_OBJECTS})
+
+# Make sure the client target depends on hunspell
+add_dependencies(${PROJECT_NAME} hunspell)
 
 # Make sure we can find the generated version file
 add_dependencies(${PROJECT_NAME} generate_version_info)
