@@ -795,7 +795,7 @@ Item {
     property string joinCall: qsTr("Join call")
     property string joinWithAudio: qsTr("Join with audio")
     property string joinWithVideo: qsTr("Join with video")
-    property string startedACall: qsTr("Started a call")
+    property string callStarted: qsTr("Call started")
     property string wantToJoin: qsTr("A call is in progress. Do you want to join the call?")
     property string needsHost: qsTr("Current host for this group conversation seems unreachable. Do you want to host the call?")
     property string selectHost: qsTr("Select dedicated device for hosting future calls in this group conversation. If not set, the host will be the device starting a call.")
