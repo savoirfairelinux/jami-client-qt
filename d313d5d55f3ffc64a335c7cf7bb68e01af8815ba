@@ -36,6 +36,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "048fa2da_ebd1d530",
+        "filename": "src/app/utils.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-04-28T16:04:51Z",
+      "side": 1,
+      "message": "The current solution seems good.",
+      "parentUuid": "c24a7074_2289adf1",
+      "revId": "d313d5d55f3ffc64a335c7cf7bb68e01af8815ba",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3cd782e2_c8a60b96",
