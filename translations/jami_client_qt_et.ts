@@ -203,11 +203,6 @@
         <translation>Suuna</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="74"/>
-        <source>Scan this QR code on your other device to proceed with importing your account.</source>
-        <translation>Jätkamaks kasutajakonto importimist, skaneeri seda QR-koodi oma teises seadmes.</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="75"/>
         <source>Please wait…</source>
         <translation>Palun oota...</translation>
@@ -216,13 +211,6 @@
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="76"/>
         <source>Scan QR code</source>
         <translation>Skaneeri QR-koodi</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="77"/>
-        <source>Action required.
-Please confirm account on the source device.</source>
-        <translation>Sinu osalemine on vajalik.
-Palun kinnita kasutajakonto lähteseadmes.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="78"/>
@@ -235,11 +223,6 @@ Palun kinnita kasutajakonto lähteseadmes.</translation>
         <translation>Teisaldame kasutajakontot...</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="80"/>
-        <source>If you are unable to scan the QR code, enter this token on your other device to proceed.</source>
-        <translation>Kui QR-koodi skaneerimine pole võimalik, siis jätkamiseks sisesta see tunnusluba oma teises seadmes.</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="81"/>
         <source>Confirm</source>
         <translation>Kinnita</translation>
@@ -250,11 +233,6 @@ Palun kinnita kasutajakonto lähteseadmes.</translation>
         <translation>Proovi uuesti</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="83"/>
-        <source>Import failed</source>
-        <translation>Importimine ei õnnestunud</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="84"/>
         <source>Import from another account</source>
         <translation>Impordi teisest kasutajakontost</translation>
@@ -263,11 +241,6 @@ Palun kinnita kasutajakonto lähteseadmes.</translation>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="85"/>
         <source>Connect to account</source>
         <translation>Seo kasutajakontoga</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="86"/>
-        <source>An authentication error occurred. Please check credentials and try again.</source>
-        <translation>Autentimisel tekkis viga. Palun kontrolli et konto nimi ja salasõna on õiged.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="89"/>
@@ -855,6 +828,26 @@ Kui sa kasutajanime ei lisa, siis lisame sellele kasutajakontole juhuslikult loo
         <translation>Kustuta fail seadmest</translation>
     </message>
     <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="538"/>
+        <source>A new version of the Jami application is available. Do you want to update now? To continue, click Update.</source>
+        <translation>Tuvastasin Jami rakenduse uue versiooni. Kas sa soovid nüüd Jamit uuendada? Jätkamaks klõpsi „Uuenda“.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="539"/>
+        <source>The application is up to date.</source>
+        <translation>Rakendus on uuendatud viimase versioonini.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="540"/>
+        <source>An error occurred while checking for updates.</source>
+        <translation>Uuenduste kontrollimisel tekkis viga.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="541"/>
+        <source>A network error occurred while checking for updates.</source>
+        <translation>Uuenduste kontrollimisel tekkis võrguviga.</translation>
+    </message>
+    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="600"/>
         <source>Enter account password</source>
         <translation>Sisesta kasutajakonto salasõna</translation>
@@ -868,6 +861,11 @@ Kui sa kasutajanime ei lisa, siis lisame sellele kasutajakontole juhuslikult loo
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="603"/>
         <source>Link new device</source>
         <translation>Seo uus seade</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="609"/>
+        <source>The account was imported successfully.</source>
+        <translation>Kasutajakonto importimine õnnestus. </translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="616"/>
@@ -1183,15 +1181,6 @@ Kui jah, siis lisame sellele kasutajakontole juhuslikult loodud 40-märgilise tu
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="518"/>
         <source>Accept transfer limit (MB)</source>
         <translation>Laaditavate failide mahu piirmäär (megabaitides)</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="538"/>
-        <source>A new version of Jami is available.
-Do you want to update Jami now?
-To continue, click Update.</source>
-        <translation>Tuvastasime Jami uue versiooni.
-Kas sa soovid nüüd Jami uuendada?
-Jätkamaks klõpsi „Uuenda“.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="783"/>
@@ -1677,6 +1666,31 @@ ootame kasutaja %1 ühenduse loomist.</translation>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="34"/>
         <source>Incoming video call from %1</source>
         <translation>Algav videokõne kasutajaga %1</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="74"/>
+        <source>To continue the import account operation, scan the following QR code on the source device.</source>
+        <translation>Kasutajakonto importimise jätkamiseks skaneeri järgnevat QR-koodi lähteseadmes.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="77"/>
+        <source>Action required. Please confirm account on the source device.</source>
+        <translation>Sinu osalemine on vajalik. Palun kinnita kasutajakonto lähteseadmes.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="80"/>
+        <source>If you are unable to scan the QR code, enter the following token on the source device.</source>
+        <translation>Kui QR-koodi skaneerimine pole võimalik, siis jätkamiseks sisesta järgnev tunnusluba oma lähteseadmes.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="83"/>
+        <source>An error occurred while importing the account.</source>
+        <translation>Kasutajakonto importimisel tekkis viga.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="86"/>
+        <source>An authentication error occurred while linking the device. Please check credentials and try again.</source>
+        <translation>Seadme linkimisel tekkis autentimisviga. Palun kontrolli et konto nimi ja salasõna on õiged ja proovi uuesti.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="283"/>
@@ -2459,7 +2473,6 @@ Profiili saad igal ajal muuta kasutajakonto seadistustest.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="524"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="541"/>
         <source>A network error occurred.</source>
         <translation>Tekkis võrguühenduse viga.</translation>
     </message>
@@ -2468,11 +2481,6 @@ Profiili saad igal ajal muuta kasutajakonto seadistustest.</translation>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="549"/>
         <source>An unexpected error occurred.</source>
         <translation>Tekkis ootamatu viga.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="540"/>
-        <source>An error occurred while checking for a new version.</source>
-        <translation>Uue versiooni olemasolu kontrollimisel tekkis viga.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="542"/>
@@ -2931,11 +2939,6 @@ Profiili saad igal ajal muuta kasutajakonto seadistustest.</translation>
         <translation>Uuenda</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="539"/>
-        <source>No new version of Jami was found</source>
-        <translation>Jami uut versiooni ei leidunud</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="546"/>
         <source>Network disconnected</source>
         <translation>Võrguühendus puudub</translation>
@@ -3155,13 +3158,6 @@ Kui see on tehtud, siis skaneeri QR-koodi.</translation>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="608"/>
         <source>Enter authentication code</source>
         <translation>Sisesta autentimiskood</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="609"/>
-        <source>You are all set!
-Your account is successfully imported on the new device!</source>
-        <translation>Kõik on tehtud!
-Sinu kasutajakonto importimine uude seadmesse õnnestus!</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="610"/>

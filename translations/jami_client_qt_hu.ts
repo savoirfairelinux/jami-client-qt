@@ -203,11 +203,6 @@
         <translation>Hívásátadás</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="74"/>
-        <source>Scan this QR code on your other device to proceed with importing your account.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="75"/>
         <source>Please wait…</source>
         <translation>Kérjük, várjon…</translation>
@@ -218,12 +213,6 @@
         <translation>QR-kód beolvasása</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="77"/>
-        <source>Action required.
-Please confirm account on the source device.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="78"/>
         <source>Authenticating device</source>
         <translation>Eszköz hitelesítése</translation>
@@ -231,12 +220,7 @@ Please confirm account on the source device.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="79"/>
         <source>Transferring account…</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="80"/>
-        <source>If you are unable to scan the QR code, enter this token on your other device to proceed.</source>
-        <translation>Ha nem tudja beolvasni a QR-kódot, a folytatáshoz írja be ezt a jogkivonat másik eszközén.</translation>
+        <translation>Fiók átvitele…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="81"/>
@@ -249,24 +233,14 @@ Please confirm account on the source device.</source>
         <translation>Próbálja újra</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="83"/>
-        <source>Import failed</source>
-        <translation>Importálás sikertelen</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="84"/>
         <source>Import from another account</source>
-        <translation type="unfinished"/>
+        <translation>Importálás másik fiókból</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="85"/>
         <source>Connect to account</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="86"/>
-        <source>An authentication error occurred. Please check credentials and try again.</source>
-        <translation>Hitelesítési hiba történt az eszköz összekapcsolása közben. Kérjük, ellenőrizze a hitelesítő adatokat, és próbálkozzon újra.</translation>
+        <translation>Csatlakozás a fiókhoz</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="89"/>
@@ -853,6 +827,26 @@ If a username is not chosen, a randomly generated 40-character identifier will b
         <translation>Fájl törlése az eszközről</translation>
     </message>
     <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="538"/>
+        <source>A new version of the Jami application is available. Do you want to update now? To continue, click Update.</source>
+        <translation>Elérhető a Jami alkalmazás új verziója. Végrehajtja most a frissítést? A folytatáshoz kattintson a Frissítés gombra.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="539"/>
+        <source>The application is up to date.</source>
+        <translation>Az alkalmazás naprakész.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="540"/>
+        <source>An error occurred while checking for updates.</source>
+        <translation>Hiba történt a frissítések keresése közben.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="541"/>
+        <source>A network error occurred while checking for updates.</source>
+        <translation>Hálózati hiba történt a frissítések keresése közben.</translation>
+    </message>
+    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="600"/>
         <source>Enter account password</source>
         <translation>Fiók jelszavának megadása</translation>
@@ -866,6 +860,11 @@ If a username is not chosen, a randomly generated 40-character identifier will b
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="603"/>
         <source>Link new device</source>
         <translation>Új eszköz összekapcsolása</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="609"/>
+        <source>The account was imported successfully.</source>
+        <translation>Megtörtént a fiók importálása.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="616"/>
@@ -1183,15 +1182,6 @@ Ha igen, csak egy véletlenszerűen generált 40 karakteres azonosító lesz hoz
         <translation>Fájlküldési korlátozás elfogadása (MB)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="538"/>
-        <source>A new version of Jami is available.
-Do you want to update Jami now?
-To continue, click Update.</source>
-        <translation>Elérhető a Jami új verziója.
-Szeretné most frissíteni a Jamit?
-A folytatáshoz kattintson a Frissítés gombra.</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="783"/>
         <source>Don&apos;t send</source>
         <translation>Ne küldjön</translation>
@@ -1360,7 +1350,7 @@ csatlakozásra a beszélgetés összehangolásához…</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="784"/>
         <source>Reply to</source>
-        <translation>Válasz a következőre:</translation>
+        <translation>Válasz a következőre</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="785"/>
@@ -1675,6 +1665,31 @@ csatlakozásra a beszélgetés összehangolásához…</translation>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="34"/>
         <source>Incoming video call from %1</source>
         <translation>Bejövő videohívás %1 részéről</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="74"/>
+        <source>To continue the import account operation, scan the following QR code on the source device.</source>
+        <translation>A fiók importálási műveletének folytatásához olvassa be a következő QR-kódot a forráseszközön.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="77"/>
+        <source>Action required. Please confirm account on the source device.</source>
+        <translation>Beavatkozás szükséges. Kérjük, erősítse meg a fiókot a forráseszközön.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="80"/>
+        <source>If you are unable to scan the QR code, enter the following token on the source device.</source>
+        <translation>Ha nem tudja beolvasni a QR-kódot, írja be a következő jogkivonat a forráseszközön.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="83"/>
+        <source>An error occurred while importing the account.</source>
+        <translation>Hiba történt a fiók importálása közben.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="86"/>
+        <source>An authentication error occurred while linking the device. Please check credentials and try again.</source>
+        <translation>Hitelesítési hiba történt az eszköz összekapcsolása közben. Kérjük, ellenőrizze a hitelesítő adatokat, és próbálkozzon újra.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="283"/>
@@ -2457,7 +2472,6 @@ A profil módosítható a fiókbeállításokban.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="524"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="541"/>
         <source>A network error occurred.</source>
         <translation>Hálózati hiba történt.</translation>
     </message>
@@ -2466,11 +2480,6 @@ A profil módosítható a fiókbeállításokban.</translation>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="549"/>
         <source>An unexpected error occurred.</source>
         <translation>Váratlan hiba történt.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="540"/>
-        <source>An error occurred while checking for a new version.</source>
-        <translation>Hiba történt az új verzió keresésekor.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="542"/>
@@ -2541,7 +2550,7 @@ A profil módosítható a fiókbeállításokban.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="626"/>
         <source>How do you want to set the profile picture?</source>
-        <translation>Hogyan szeretné beállítani a profilképet?</translation>
+        <translation>Hogyan szeretné beállítani a névjegyképet?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="627"/>
@@ -2929,11 +2938,6 @@ A profil módosítható a fiókbeállításokban.</translation>
         <translation>Frissítés</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="539"/>
-        <source>No new version of Jami was found</source>
-        <translation>A Jami új verziója nem található</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="546"/>
         <source>Network disconnected</source>
         <translation>Hálózat leválasztva</translation>
@@ -3126,25 +3130,28 @@ A profil módosítható a fiókbeállításokban.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="604"/>
         <source>Connecting to your new device…</source>
-        <translation type="unfinished"/>
+        <translation>Kapcsolódás az új eszközhöz…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="605"/>
         <source>The export account operation to the new device is in progress.
 Please confirm the import on the new device.</source>
-        <translation type="unfinished"/>
+        <translation>A fiók exportálása az új eszközre folyamatban van.
+Kérjük, erősítse meg az importálást az új eszközön.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="606"/>
         <source>On the new device, initiate a new account.
 Select Add account -&gt; Connect from another device.
 When ready, scan the QR code.</source>
-        <translation type="unfinished"/>
+        <translation>Az új eszközön indítsa el a fiók importálásának műveletét.
+Jelölje ki a Fiók hozzáadása → Fiók létrehozása más eszközről lehetőséget.
+Ha készen áll, olvassa be a QR-kódot.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="607"/>
         <source>Alternatively you could enter the authentication code manually.</source>
-        <translation type="unfinished"/>
+        <translation>A hitelesítési kódot is kézzel megadhatja</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="608"/>
@@ -3152,16 +3159,11 @@ When ready, scan the QR code.</source>
         <translation>Hitelesítési kód megadása</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="609"/>
-        <source>You are all set!
-Your account is successfully imported on the new device!</source>
-        <translation>A telepítés sikeresen befejeződött.</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="610"/>
         <source>New device found at address below. Is that you?
 Clicking on confirm will continue transfering account.</source>
-        <translation type="unfinished"/>
+        <translation>Új eszköz található a következő címen. Ön az?
+A fiókexportálási művelet folytatásához kattintson a Megerősítés gombra.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="611"/>

@@ -203,11 +203,6 @@
         <translation>Shpërngule te</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="74"/>
-        <source>Scan this QR code on your other device to proceed with importing your account.</source>
-        <translation>Që të vazhdohet me importimin e llogarisë tuaj, skanojeni këtë kod QR në pajisjen tuaj tjetër.</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="75"/>
         <source>Please wait…</source>
         <translation>Ju lutemi, pritni…</translation>
@@ -216,13 +211,6 @@
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="76"/>
         <source>Scan QR code</source>
         <translation>Skanoni kod QR</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="77"/>
-        <source>Action required.
-Please confirm account on the source device.</source>
-        <translation>Lypset veprim.
-Ju lutemi, ripohoni llogarinë në pajisjen burim.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="78"/>
@@ -235,11 +223,6 @@ Ju lutemi, ripohoni llogarinë në pajisjen burim.</translation>
         <translation>Po shpërngulet llogari…</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="80"/>
-        <source>If you are unable to scan the QR code, enter this token on your other device to proceed.</source>
-        <translation>Nëse s’jeni në gjendje të skanoni kodin QR, jepeni këtë token në pajisjen tuaj tjetër, që të vazhdohet.</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="81"/>
         <source>Confirm</source>
         <translation>Ripohoje</translation>
@@ -250,11 +233,6 @@ Ju lutemi, ripohoni llogarinë në pajisjen burim.</translation>
         <translation>Riprovoni</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="83"/>
-        <source>Import failed</source>
-        <translation>Importimi dështoi</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="84"/>
         <source>Import from another account</source>
         <translation>Importoni prej llogarie tjetër</translation>
@@ -263,11 +241,6 @@ Ju lutemi, ripohoni llogarinë në pajisjen burim.</translation>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="85"/>
         <source>Connect to account</source>
         <translation>Lidhe te llogari</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="86"/>
-        <source>An authentication error occurred. Please check credentials and try again.</source>
-        <translation>Ndodhi një gabim mirëfilltësimi. Ju lutemi, kontrolloni kredencialet dhe riprovoni.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="89"/>
@@ -855,6 +828,26 @@ Nëse nuk zgjidhet një emër përdoruesi, kësaj llogarie do t’i përshoqëro
         <translation>Fshije kartelën prej pajisjeje</translation>
     </message>
     <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="538"/>
+        <source>A new version of the Jami application is available. Do you want to update now? To continue, click Update.</source>
+        <translation>Ka të gatshëm një version të ri Jami. Doni të përditësohet Jami tani? Që të vazhdohet, klikoni mbi “Përditësoje”.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="539"/>
+        <source>The application is up to date.</source>
+        <translation>Aplikacioni është i përditësuar.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="540"/>
+        <source>An error occurred while checking for updates.</source>
+        <translation>Ndodhi një gabim teksa kërkohej për përditësime.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="541"/>
+        <source>A network error occurred while checking for updates.</source>
+        <translation>Ndodhi një gabim rrjeti teksa kërkohej për përditësime.</translation>
+    </message>
+    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="600"/>
         <source>Enter account password</source>
         <translation>Jepni fjalëkalim llogarie</translation>
@@ -868,6 +861,11 @@ Nëse nuk zgjidhet një emër përdoruesi, kësaj llogarie do t’i përshoqëro
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="603"/>
         <source>Link new device</source>
         <translation>Lidhni pajisje të re</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="609"/>
+        <source>The account was imported successfully.</source>
+        <translation>Llogaria u importua me sukses.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="616"/>
@@ -1183,15 +1181,6 @@ Nëse po, kësaj llogarie do t’i përshoqërohet vetëm një identifikues 40-s
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="518"/>
         <source>Accept transfer limit (MB)</source>
         <translation>Kufi pranimi shpërnguljesh (MB)</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="538"/>
-        <source>A new version of Jami is available.
-Do you want to update Jami now?
-To continue, click Update.</source>
-        <translation>Ka të gatshëm një version të ri Jami.
-Doni të përditësohet Jami tani?
-Që të vazhdohet, klikoni mbi “Përditësoje”.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="783"/>
@@ -1677,6 +1666,31 @@ të lidhet për të njëkohësuar bisedën…</translation>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="34"/>
         <source>Incoming video call from %1</source>
         <translation>Thirrje video ardhëse prej %1</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="74"/>
+        <source>To continue the import account operation, scan the following QR code on the source device.</source>
+        <translation>Që të vazhdohet veprimi i importimit të llogarisë, skanoni kodin vijues QR në pajisjen burim.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="77"/>
+        <source>Action required. Please confirm account on the source device.</source>
+        <translation>Lypset veprim. Ju lutemi, ripohoni llogarinë në pajisjen burim.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="80"/>
+        <source>If you are unable to scan the QR code, enter the following token on the source device.</source>
+        <translation>Nëse s’jeni në gjendje të skanoni kodin QR, jepeni këtë token në pajisjen burim.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="83"/>
+        <source>An error occurred while importing the account.</source>
+        <translation>Ndodhi një gabim teksa importohej llogaria.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="86"/>
+        <source>An authentication error occurred while linking the device. Please check credentials and try again.</source>
+        <translation>Ndodhi një gabim mirëfilltësimi teksa lidhej pajisja. Ju lutemi, kontrolloni kredencialet dhe riprovoni.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="283"/>
@@ -2459,7 +2473,6 @@ Profili mund të ndryshohet te rregullime llogarie.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="524"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="541"/>
         <source>A network error occurred.</source>
         <translation>Ndodhi një gabim rrjeti.</translation>
     </message>
@@ -2468,11 +2481,6 @@ Profili mund të ndryshohet te rregullime llogarie.</translation>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="549"/>
         <source>An unexpected error occurred.</source>
         <translation>Ndodhi një gabim i papritur.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="540"/>
-        <source>An error occurred while checking for a new version.</source>
-        <translation>Ndodhi një gabim teksa kërkohej për një version të ri.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="542"/>
@@ -2931,11 +2939,6 @@ Profili mund të ndryshohet te rregullime llogarie.</translation>
         <translation>Përditësim</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="539"/>
-        <source>No new version of Jami was found</source>
-        <translation>S’u gjet version i ri i Jami-t</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="546"/>
         <source>Network disconnected</source>
         <translation>Rrjeti u shkëput</translation>
@@ -3155,13 +3158,6 @@ Kur të jeni gati, skanoni kodin QR.</translation>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="608"/>
         <source>Enter authentication code</source>
         <translation>Jepni kodin e mirëfilltësimit</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="609"/>
-        <source>You are all set!
-Your account is successfully imported on the new device!</source>
-        <translation>Jeni gati!
-Llogaria u importua me sukses në pajisjen e re!</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="610"/>
