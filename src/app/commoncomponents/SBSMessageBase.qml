@@ -85,7 +85,7 @@ Control {
 
     background: Rectangle {
         id: focusIndicator
-        visible: rootDelegate.activeFocus
+        visible: root.activeFocus
         radius: 4
         border.color: JamiTheme.tintedBlue
         border.width: 2
