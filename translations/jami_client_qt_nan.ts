@@ -14,7 +14,7 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="528"/>
         <source>Incoming call</source>
-        <translation type="unfinished"/>
+        <translation>来电</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="529"/>
@@ -101,27 +101,27 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="316"/>
         <source>An error occurred while fetching this repository.</source>
-        <translation type="unfinished"/>
+        <translation>获取此版本库时发生错误。</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="318"/>
         <source>Unrecognized conversation mode.</source>
-        <translation type="unfinished"/>
+        <translation>无法识别的对话模式。</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="320"/>
         <source>An invalid message was detected.</source>
-        <translation type="unfinished"/>
+        <translation>检测到无效消息。</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="322"/>
         <source>Insufficient permission to update conversation information.</source>
-        <translation type="unfinished"/>
+        <translation>没有足够的权限更新对话信息。</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="324"/>
         <source>An error occurred while committing a new message.</source>
-        <translation type="unfinished"/>
+        <translation>提交新邮件时出错。</translation>
     </message>
 </context>
 <context>
@@ -203,11 +203,6 @@
         <translation>传递到</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="74"/>
-        <source>Scan this QR code on your other device to proceed with importing your account.</source>
-        <translation>在其他设备上扫描此二维码以继续导入您的帐户。</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="75"/>
         <source>Please wait…</source>
         <translation>请稍等…</translation>
@@ -216,13 +211,6 @@
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="76"/>
         <source>Scan QR code</source>
         <translation>扫描 QR 码</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="77"/>
-        <source>Action required.
-Please confirm account on the source device.</source>
-        <translation>需要如下操作。
-请确认源设备上的帐户。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="78"/>
@@ -235,11 +223,6 @@ Please confirm account on the source device.</source>
         <translation>传输帐户...</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="80"/>
-        <source>If you are unable to scan the QR code, enter this token on your other device to proceed.</source>
-        <translation>如果无法扫描二维码，请在其他设备上输入此令牌以继续。</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="81"/>
         <source>Confirm</source>
         <translation>確認</translation>
@@ -250,11 +233,6 @@ Please confirm account on the source device.</source>
         <translation>重试</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="83"/>
-        <source>Import failed</source>
-        <translation>匯入失敗</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="84"/>
         <source>Import from another account</source>
         <translation>从其他帐户导入</translation>
@@ -263,11 +241,6 @@ Please confirm account on the source device.</source>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="85"/>
         <source>Connect to account</source>
         <translation>连接到账户</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="86"/>
-        <source>An authentication error occurred. Please check credentials and try again.</source>
-        <translation>身份验证错误。请检查凭证并重试。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="89"/>
@@ -855,6 +828,26 @@ If a username is not chosen, a randomly generated 40-character identifier will b
         <translation>从设备中删除文件</translation>
     </message>
     <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="538"/>
+        <source>A new version of the Jami application is available. Do you want to update now? To continue, click Update.</source>
+        <translation>Jami应用程序的新版本可用。是否立即更新？要继续，请单击“更新”</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="539"/>
+        <source>The application is up to date.</source>
+        <translation>应用程序是最新的。</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="540"/>
+        <source>An error occurred while checking for updates.</source>
+        <translation>检查更新时出错。</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="541"/>
+        <source>A network error occurred while checking for updates.</source>
+        <translation>检查更新时出现网络错误。</translation>
+    </message>
+    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="600"/>
         <source>Enter account password</source>
         <translation>輸入帳號密碼</translation>
@@ -868,6 +861,11 @@ If a username is not chosen, a randomly generated 40-character identifier will b
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="603"/>
         <source>Link new device</source>
         <translation>关联新设备</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="609"/>
+        <source>The account was imported successfully.</source>
+        <translation>已成功导入帐户。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="616"/>
@@ -1183,15 +1181,6 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="518"/>
         <source>Accept transfer limit (MB)</source>
         <translation>接受传输限制（MB）</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="538"/>
-        <source>A new version of Jami is available.
-Do you want to update Jami now?
-To continue, click Update.</source>
-        <translation>Jami的新版本已可用。
-您想立即更新Jami吗？
-要继续，请单击“更新”。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="783"/>
@@ -1675,6 +1664,31 @@ to connect to synchronize the conversation…</source>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="34"/>
         <source>Incoming video call from %1</source>
         <translation>%1发来的视频通话</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="74"/>
+        <source>To continue the import account operation, scan the following QR code on the source device.</source>
+        <translation>要继续导入帐户操作，请扫描源设备上的以下二维码。</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="77"/>
+        <source>Action required. Please confirm account on the source device.</source>
+        <translation>需要采取措施。请在原设备上确认帐户。</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="80"/>
+        <source>If you are unable to scan the QR code, enter the following token on the source device.</source>
+        <translation>如果无法扫描二维码，请在源设备上输入以下令牌。</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="83"/>
+        <source>An error occurred while importing the account.</source>
+        <translation>导入帐户时出错。</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="86"/>
+        <source>An authentication error occurred while linking the device. Please check credentials and try again.</source>
+        <translation>链接设备时出现身份验证错误。请检查凭据，然后重试。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="283"/>
@@ -2456,7 +2470,6 @@ The profile can be changed in account settings.</source>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="524"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="541"/>
         <source>A network error occurred.</source>
         <translation>发生网络错误。</translation>
     </message>
@@ -2465,11 +2478,6 @@ The profile can be changed in account settings.</source>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="549"/>
         <source>An unexpected error occurred.</source>
         <translation>发生意外错误。</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="540"/>
-        <source>An error occurred while checking for a new version.</source>
-        <translation>检查新版本时出错。</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="542"/>
@@ -2928,11 +2936,6 @@ The profile can be changed in account settings.</source>
         <translation>更新</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="539"/>
-        <source>No new version of Jami was found</source>
-        <translation>未发现 Jami 的新版本</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="546"/>
         <source>Network disconnected</source>
         <translation>網路已斷線</translation>
@@ -3152,12 +3155,6 @@ When ready, scan the QR code.</source>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="608"/>
         <source>Enter authentication code</source>
         <translation>输入验证码</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="609"/>
-        <source>You are all set!
-Your account is successfully imported on the new device!</source>
-        <translation>一切就绪！您的账户已成功导入新设备！</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="610"/>
@@ -3591,7 +3588,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="96"/>
         <source>Clear history</source>
-        <translation type="unfinished"/>
+        <translation>清除记录</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="84"/>
@@ -3601,7 +3598,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="100"/>
         <source>Block contact</source>
-        <translation type="unfinished"/>
+        <translation>屏蔽联系人</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="80"/>
@@ -3933,23 +3930,23 @@ Clicking on confirm will continue transfering account.</source>
         <location filename="../src/libclient/api/interaction.h" line="348"/>
         <location filename="../src/libclient/api/interaction.h" line="354"/>
         <source>Outgoing call</source>
-        <translation type="unfinished"/>
+        <translation>去电</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="350"/>
         <location filename="../src/libclient/api/interaction.h" line="360"/>
         <source>Incoming call</source>
-        <translation type="unfinished"/>
+        <translation>来电</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="356"/>
         <source>Missed outgoing call</source>
-        <translation type="unfinished"/>
+        <translation>呼叫失败</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="362"/>
         <source>Missed incoming call</source>
-        <translation type="unfinished"/>
+        <translation>未接来电</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="475"/>
@@ -4358,7 +4355,7 @@ Please try again.</source>
     <message>
         <location filename="../src/app/linkdevicemodel.cpp" line="66"/>
         <source>Unrecognized new device identifier. Please follow the instructions above.</source>
-        <translation type="unfinished"/>
+        <translation>无法识别新设备标识符。请按照上述说明操作。</translation>
     </message>
 </context>
 <context>
@@ -4371,7 +4368,7 @@ Please try again.</source>
         <location filename="../src/app/smartlistmodel.cpp" line="188"/>
         <location filename="../src/app/smartlistmodel.cpp" line="189"/>
         <source>Calls</source>
-        <translation type="unfinished"/>
+        <translation>通话</translation>
     </message>
     <message>
         <location filename="../src/app/smartlistmodel.cpp" line="66"/>
@@ -4381,7 +4378,7 @@ Please try again.</source>
         <location filename="../src/app/smartlistmodel.cpp" line="190"/>
         <location filename="../src/app/smartlistmodel.cpp" line="191"/>
         <source>Contacts</source>
-        <translation type="unfinished"/>
+        <translation>联系人</translation>
     </message>
 </context>
 <context>

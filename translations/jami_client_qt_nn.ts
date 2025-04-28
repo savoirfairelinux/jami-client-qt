@@ -203,11 +203,6 @@
         <translation>Overføring til</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="74"/>
-        <source>Scan this QR code on your other device to proceed with importing your account.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="75"/>
         <source>Please wait…</source>
         <translation>Vennligst vent...</translation>
@@ -218,12 +213,6 @@
         <translation>Skanna QR-kode</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="77"/>
-        <source>Action required.
-Please confirm account on the source device.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="78"/>
         <source>Authenticating device</source>
         <translation type="unfinished"/>
@@ -231,11 +220,6 @@ Please confirm account on the source device.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="79"/>
         <source>Transferring account…</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="80"/>
-        <source>If you are unable to scan the QR code, enter this token on your other device to proceed.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -249,23 +233,13 @@ Please confirm account on the source device.</source>
         <translation>Prøv igjen</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="83"/>
-        <source>Import failed</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="84"/>
         <source>Import from another account</source>
-        <translation type="unfinished"/>
+        <translation>Importer frå ein annan konto</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="85"/>
         <source>Connect to account</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="86"/>
-        <source>An authentication error occurred. Please check credentials and try again.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -792,7 +766,7 @@ Please confirm account on the source device.</source>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="424"/>
         <source>A chosen username can help to be found more easily on Jami.
 If a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.</source>
-        <translation>Ein vald brukernavn kan hjelpa til å finnast lettare på Jami. Dersom eit brukernavn ikkje vert valt, vert ein tilfeldig generert 40-tekstidentifikator tildelt denne kontoen som brukernavn. Det er vanskelegare å finna og nå med denne identifikatoren.</translation>
+        <translation>Eit valt brukarnamn kan hjelpa for å verta funne lettare på Jami. Dersom eit brukarnamn ikkje vert valt, vert ein tilfeldig generert 40-tekstidentifikator tildelt denne kontoen som brukarnamn. Det er vanskelegare å finna og verta nådd med denne identifikatoren.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="441"/>
@@ -812,12 +786,12 @@ If a username is not chosen, a randomly generated 40-character identifier will b
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="492"/>
         <source>Dark</source>
-        <translation>Dunkle</translation>
+        <translation>Dim</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="493"/>
         <source>Light</source>
-        <translation>Ljus</translation>
+        <translation>Lys</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="498"/>
@@ -847,6 +821,26 @@ If a username is not chosen, a randomly generated 40-character identifier will b
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="530"/>
         <source>Delete file from device</source>
+        <translation>Slett fil frå eining</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="538"/>
+        <source>A new version of the Jami application is available. Do you want to update now? To continue, click Update.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="539"/>
+        <source>The application is up to date.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="540"/>
+        <source>An error occurred while checking for updates.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="541"/>
+        <source>A network error occurred while checking for updates.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -863,6 +857,11 @@ If a username is not chosen, a randomly generated 40-character identifier will b
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="603"/>
         <source>Link new device</source>
         <translation>Link nytt utstyr</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="609"/>
+        <source>The account was imported successfully.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="616"/>
@@ -962,7 +961,7 @@ If a username is not chosen, a randomly generated 40-character identifier will b
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="885"/>
         <source>Donate</source>
-        <translation type="unfinished"/>
+        <translation>Doner</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="887"/>
@@ -1092,12 +1091,12 @@ If a username is not chosen, a randomly generated 40-character identifier will b
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="714"/>
         <source>Decline invitation</source>
-        <translation type="unfinished"/>
+        <translation>Nekta invitasjon</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="715"/>
         <source>Accept invitation</source>
-        <translation type="unfinished"/>
+        <translation>Godta invitasjon</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="721"/>
@@ -1178,13 +1177,6 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="538"/>
-        <source>A new version of Jami is available.
-Do you want to update Jami now?
-To continue, click Update.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="783"/>
         <source>Don&apos;t send</source>
         <translation type="unfinished"/>
@@ -1245,7 +1237,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="820"/>
         <source>Add description</source>
-        <translation type="unfinished"/>
+        <translation>Legg til skildring</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="824"/>
@@ -1421,12 +1413,12 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="841"/>
         <source>Tip</source>
-        <translation>Tipp</translation>
+        <translation>Råd</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="843"/>
         <source>Add a profile picture and nickname to complete your profile</source>
-        <translation>Legg til ein profilbilde og ein nicknam for å fylla opp profilen din</translation>
+        <translation>Legg til eit profilbilete og eit kallenamn for å fullføra profilen din</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="200"/>
@@ -1527,7 +1519,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="64"/>
         <source>Add another account</source>
-        <translation type="unfinished"/>
+        <translation>Legg til ein ny konto</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="65"/>
@@ -1664,6 +1656,31 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="34"/>
         <source>Incoming video call from %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="74"/>
+        <source>To continue the import account operation, scan the following QR code on the source device.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="77"/>
+        <source>Action required. Please confirm account on the source device.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="80"/>
+        <source>If you are unable to scan the QR code, enter the following token on the source device.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="83"/>
+        <source>An error occurred while importing the account.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="86"/>
+        <source>An authentication error occurred while linking the device. Please check credentials and try again.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2095,12 +2112,12 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="29"/>
         <source>Accept with audio</source>
-        <translation type="unfinished"/>
+        <translation>Godta med ljod</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="30"/>
         <source>Accept with video</source>
-        <translation type="unfinished"/>
+        <translation>Godta med video</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="31"/>
@@ -2110,7 +2127,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="35"/>
         <source>Create new group</source>
-        <translation type="unfinished"/>
+        <translation>Lag ei ny gruppe</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="46"/>
@@ -2389,7 +2406,7 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="455"/>
         <source>Use this account on other devices</source>
-        <translation type="unfinished"/>
+        <translation>Bruk denne kontoen på andre einingar</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="456"/>
@@ -2443,7 +2460,6 @@ The profile can be changed in account settings.</source>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="524"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="541"/>
         <source>A network error occurred.</source>
         <translation type="unfinished"/>
     </message>
@@ -2451,11 +2467,6 @@ The profile can be changed in account settings.</source>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="525"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="549"/>
         <source>An unexpected error occurred.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="540"/>
-        <source>An error occurred while checking for a new version.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2582,7 +2593,7 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="640"/>
         <source>Available</source>
-        <translation type="unfinished"/>
+        <translation>Tilgjengeleg</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="641"/>
@@ -2915,11 +2926,6 @@ The profile can be changed in account settings.</source>
         <translation>Oppdatering</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="539"/>
-        <source>No new version of Jami was found</source>
-        <translation>Ingen ny versjon av Jami blei funne</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="546"/>
         <source>Network disconnected</source>
         <translation>Nettrekk frå nettverket</translation>
@@ -3135,12 +3141,6 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="608"/>
         <source>Enter authentication code</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="609"/>
-        <source>You are all set!
-Your account is successfully imported on the new device!</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3506,7 +3506,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="840"/>
         <source>Customize</source>
-        <translation>Egeskrepa</translation>
+        <translation>Tilpassa</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="842"/>
@@ -3773,7 +3773,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/commoncomponents/PresenceIndicator.qml" line="34"/>
         <source>Available</source>
-        <translation type="unfinished"/>
+        <translation>Tilgjengeleg</translation>
     </message>
 </context>
 <context>
@@ -4271,12 +4271,12 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/utils.cpp" line="618"/>
         <source>We would like to thank our contributors, whose efforts over many years have made this software what it is.</source>
-        <translation type="unfinished"/>
+        <translation>Me ynskjer å takka dei som har medverka saman med oss, som har arbeidd over mange år for å gjera programvara til kva ho er.</translation>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="620"/>
         <source>Developers</source>
-        <translation type="unfinished"/>
+        <translation>Utviklarar</translation>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="621"/>
@@ -4291,7 +4291,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/utils.cpp" line="623"/>
         <source>Special thanks to</source>
-        <translation type="unfinished"/>
+        <translation>Særleg takk til</translation>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="624"/>
@@ -4382,12 +4382,12 @@ Please try again.</source>
     <message>
         <location filename="../src/app/systemtray.cpp" line="229"/>
         <source>Accept invitation</source>
-        <translation type="unfinished"/>
+        <translation>Godta invitasjon</translation>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="230"/>
         <source>Decline invitation</source>
-        <translation type="unfinished"/>
+        <translation>Nekta invitasjon</translation>
     </message>
 </context>
 <context>
@@ -4395,7 +4395,7 @@ Please try again.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="84"/>
         <source>Customize</source>
-        <translation>Egeskrepa</translation>
+        <translation>Tilpassa</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="87"/>
@@ -4415,7 +4415,7 @@ Please try again.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="80"/>
         <source>Donate</source>
-        <translation type="unfinished"/>
+        <translation>Doner</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="85"/>
