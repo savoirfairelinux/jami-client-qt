@@ -26,18 +26,18 @@ SBSMessageBase {
     id: root
 
     property var confId: ConfId
-    property var currentCallId: CurrentCall.id
-    component JoinCallButton: MaterialButton {
+    property string currentCallId: CurrentCall.id
+
+    component JoinCallButton: PushButton {
         visible: root.isActive && root.currentCallId !== root.confId
         toolTipText: JamiStrings.joinCall
-        color: JamiTheme.blackColor
-        background.opacity: hovered ? 0.2 : 0.1
-        hoveredColor: JamiTheme.blackColor
-        contentColorProvider: JamiTheme.textColor
-        textOpacity: hovered ? 1 : 0.5
-        buttontextHeightMargin: 16
-        textLeftPadding: 9
-        textRightPadding: 9
+        normalColor: JamiTheme.buttonCallLightGreen
+        hoveredColor: JamiTheme.buttonCallDarkGreen
+        imageColor: hovered ? JamiTheme.buttonCallLightGreen : JamiTheme.blackColor
+        Layout.fillHeight: true
+        Layout.fillWidth: true
+        radius: 0
+
     }
 
     property bool isRemoteImage
@@ -48,35 +48,21 @@ SBSMessageBase {
     formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
 
     bubble.border.color: CurrentConversation.color
-    bubble.border.width: root.isActive ? 1.5 : 0
+    bubble.border.width: 0
     bubble.color: JamiTheme.messageInBgColor
     bubble.opacity: 1
-
-    Connections {
-        target: CurrentConversation
-        enabled: root.isActive
-
-        function onActiveCallsChanged() {
-            root.isActive = LRCInstance.indexOfActiveCall(root.confId, ActionUri, DeviceId) !== -1;
-            if (root.isActive) {
-                bubble.mask.border.color = CurrentConversation.color;
-                bubble.mask.border.width = 1.5;
-                bubble.mask.z = -2;
-            }
-        }
-    }
 
     property bool isActive: LRCInstance.indexOfActiveCall(root.confId, ActionUri, DeviceId) !== -1
     visible: isActive || root.confId === "" || Duration > 0
 
-    property var baseColor: JamiTheme.messageInBgColor
+    property color baseColor: JamiTheme.messageInBgColor
 
     innerContent.children: [
+
         RowLayout {
             id: msg
             anchors.right: isOutgoing ? parent.right : undefined
-            spacing: 10
-            visible: root.visible
+            spacing: 0
 
             Image {
                 id: statusIcon
@@ -99,6 +85,7 @@ SBSMessageBase {
                             return "qrc:/icons/missed-incoming-call.svg";
                     }
                 }
+
                 layer {
                     enabled: true
                     effect: ColorOverlay {
@@ -109,6 +96,13 @@ SBSMessageBase {
                         }
                     }
                 }
+            }
+
+            Text {
+                visible: isActive
+                text: JamiStrings.callStarted
+                Layout.leftMargin: 10
+                color: UtilsAdapter.luma(root.baseColor) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
 
             }
 
@@ -121,13 +115,10 @@ SBSMessageBase {
 
                 Layout.fillWidth: true
                 Layout.rightMargin: root.isActive && root.currentCallId !== root.confId ? 0 : root.timeWidth + 16
-                Layout.leftMargin: root.isActive ? 10 : -5 /* spacing is 10 and we want 5px with icon */
+                Layout.leftMargin: root.isActive ? 10 : 5
 
-                text: {
-                    if (root.isActive)
-                        return JamiStrings.startedACall;
-                    return Body;
-                }
+                text: isActive ? bubble.timestampItem.formattedTime : Body
+
                 verticalAlignment: Qt.AlignVCenter
                 horizontalAlignment: Qt.AlignHCenter
 
@@ -139,25 +130,36 @@ SBSMessageBase {
                 color: UtilsAdapter.luma(root.baseColor) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
             }
 
+
             JoinCallButton {
                 id: joinCallWithAudio
+                Layout.topMargin: 0.5 // For better sub-pixel rendering
                 objectName: "joinCallWithAudio"
-                Layout.topMargin: 4
-                Layout.bottomMargin: 4
-
-                text: JamiStrings.joinWithAudio
+                source: JamiResources.place_audiocall_24dp_svg
+                Layout.leftMargin: 10
                 onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, root.confId, true)
             }
 
             JoinCallButton {
                 id: joinCallWithVideo
+                Layout.topMargin: 0.5 // For better sub-pixel rendering
                 objectName: "joinCallWithVideo"
-                text: JamiStrings.joinWithVideo
-                Layout.topMargin: 4
-                Layout.bottomMargin: 4
+                source: JamiResources.videocam_24dp_svg
+                onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, root.confId, true)
 
-                onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, root.confId)
-                Layout.rightMargin: 4
+                layer.enabled: true
+                layer.effect: OpacityMask {
+                    source: joinCallWithVideo
+                    maskSource: Rectangle {
+                        radius: 10
+                        width: joinCallWithVideo.width
+                        height: joinCallWithVideo.height
+                        Rectangle {
+                            width: parent.width / 2
+                            height: parent.height
+                        }
+                    }
+                }
             }
         }
     ]
