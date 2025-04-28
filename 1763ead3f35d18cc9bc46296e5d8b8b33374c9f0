@@ -96,6 +96,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4884f227_45e05e05",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 9
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-04-28T21:03:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b931d73_8de1f359",
+      "range": {
+        "startLine": 624,
+        "startChar": 0,
+        "endLine": 624,
+        "endChar": 19
+      },
+      "revId": "1763ead3f35d18cc9bc46296e5d8b8b33374c9f0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "05507b68_a2240776",

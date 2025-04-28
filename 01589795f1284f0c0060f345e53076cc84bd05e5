@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eece15f6_5e1235c4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 23
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-04-28T21:03:03Z",
+      "side": 1,
+      "message": "Squash this change with its parent (https://review.jami.net/c/jami-client-qt/+/27365)",
+      "revId": "01589795f1284f0c0060f345e53076cc84bd05e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "159fb642_408062ad",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 23
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-04-28T21:03:03Z",
+      "side": 1,
+      "message": "are these required?",
+      "range": {
+        "startLine": 483,
+        "startChar": 42,
+        "endLine": 483,
+        "endChar": 63
+      },
+      "revId": "01589795f1284f0c0060f345e53076cc84bd05e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9670f4ca_bef7266d",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 23
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-04-28T21:03:03Z",
+      "side": 1,
+      "message": "CMake 🙏",
+      "range": {
+        "startLine": 496,
+        "startChar": 2,
+        "endLine": 509,
+        "endChar": 96
+      },
+      "revId": "01589795f1284f0c0060f345e53076cc84bd05e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5b788be_19c6c020",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 23
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-04-28T21:03:03Z",
+      "side": 1,
+      "message": "Perhaps APPEND this to CLIENT_INCLUDE_DIRS, as it is done for other client dependencies.",
+      "range": {
+        "startLine": 574,
+        "startChar": 2,
+        "endLine": 574,
+        "endChar": 21
+      },
+      "revId": "01589795f1284f0c0060f345e53076cc84bd05e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f5a63bf_7d9a98aa",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 23
+      },
+      "lineNbr": 576,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-04-28T21:03:03Z",
+      "side": 1,
+      "message": "This can be outside platform condition blocks; if the variables are empty, it will do nothing",
+      "range": {
+        "startLine": 574,
+        "startChar": 2,
+        "endLine": 576,
+        "endChar": 0
+      },
+      "revId": "01589795f1284f0c0060f345e53076cc84bd05e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46dddac9_f09d72f7",
+        "filename": "build.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-04-28T21:03:03Z",
+      "side": 1,
+      "message": "is this package required?",
+      "range": {
+        "startLine": 174,
+        "startChar": 37,
+        "endLine": 174,
+        "endChar": 45
+      },
+      "revId": "01589795f1284f0c0060f345e53076cc84bd05e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
