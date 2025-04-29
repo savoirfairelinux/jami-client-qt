@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d2c82df_cf02a232",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-04-29T22:38:34Z",
+      "side": 0,
+      "message": "Should the label be renamed to `userInterfaceLanguage`?\n\nCould the user language also refer to the language the user is writing in, and therefore the proofing (spelling and grammar) language?\n\nThank you",
+      "range": {
+        "startLine": 511,
+        "startChar": 20,
+        "endLine": 511,
+        "endChar": 28
+      },
+      "revId": "14e784a705a641f5d5e0915295fb78f05187c1fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
