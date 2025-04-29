@@ -189,7 +189,7 @@ Only 64-bit MSVC build can be compiled.
 
 - Download [Qt (Open Source)](https://www.qt.io/download-open-source?hsCtaTracking=9f6a2170-a938-42df-a8e2-a9f0b1d6cdce%7C6cb0de4f-9bb5-4778-ab02-bfb62735f3e5)
 
-- Using the online installer, install the following Qt 6.6.1 components:
+- Using the online installer, install the following Qt 6.6.2 components:
 
   - Git 2.10.2
   - MSVC 2019 64-bit
@@ -244,6 +244,7 @@ Only 64-bit MSVC build can be compiled.
 ```bash
     python build.py --install --qt <path-to-qt-bin-folder> (e.g. C:/Qt/6.6.2/msvc2019_64)
 ```
+> **CMake** Note: The build script does not specify what CMake generator should be used. This means CMake will search the system for the appropriate generator, which might not always select the right one if, for instance, Ninja is installed. To resolve that, the CMAKE_GENERATOR environment variable can be used, set to "Visual Studio 16 2019" or "Visual Studio 19 2022" depending on the installed Visual Studio version.
 
 > **SDK** Note:
 > Jami can be build with more recent Windows SDK than the one specified in the table above. However, if your have another version than SDK 10.0.18362.0 installed, you need to identify it according to the example below. And you still need to have the required version in addition to the one you chose.
