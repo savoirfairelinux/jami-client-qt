@@ -22,6 +22,30 @@
       },
       "revId": "f4a74e06773a412c61cb4cb0a57653f76e5c1276",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6248da45_d14cddab",
+        "filename": "3rdparty/hunspell",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-04-30T20:04:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d4299f0b_694c9c9e",
+      "range": {
+        "startLine": 1,
+        "startChar": 18,
+        "endLine": 1,
+        "endChar": 58
+      },
+      "revId": "f4a74e06773a412c61cb4cb0a57653f76e5c1276",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
