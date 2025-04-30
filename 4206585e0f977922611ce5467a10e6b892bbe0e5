@@ -26,6 +26,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "06e520f1_a223b8d9",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 18
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-04-30T23:45:25Z",
+      "side": 1,
+      "message": "Should there be only 1 newline here?",
+      "range": {
+        "startLine": 483,
+        "startChar": 2,
+        "endLine": 486,
+        "endChar": 7
+      },
+      "revId": "4206585e0f977922611ce5467a10e6b892bbe0e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bb934b1_db6ba6a2",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 18
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-04-30T23:45:25Z",
+      "side": 1,
+      "message": "Should this have an extra space before `NAMES` to line up?",
+      "range": {
+        "startLine": 496,
+        "startChar": 14,
+        "endLine": 496,
+        "endChar": 15
+      },
+      "revId": "4206585e0f977922611ce5467a10e6b892bbe0e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3703961b_e5040378",
         "filename": "src/app/net/jami/Constants/JamiStrings.qml",
         "patchSetId": 18
