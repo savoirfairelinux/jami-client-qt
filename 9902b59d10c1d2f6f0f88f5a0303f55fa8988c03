@@ -22,6 +22,30 @@
       },
       "revId": "9902b59d10c1d2f6f0f88f5a0303f55fa8988c03",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74279441_8432fe03",
+        "filename": "src/app/wizardviewstepmodel.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-04-30T16:44:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "092c95af_80c3ae72",
+      "range": {
+        "startLine": 80,
+        "startChar": 4,
+        "endLine": 89,
+        "endChar": 5
+      },
+      "revId": "9902b59d10c1d2f6f0f88f5a0303f55fa8988c03",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
