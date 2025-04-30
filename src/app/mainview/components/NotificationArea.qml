@@ -64,7 +64,7 @@ Rectangle {
 
             onClicked: {
                 if (activeCall !== null)
-                    MessagesAdapter.joinCall(activeCall["uri"], activeCall["device"], activeCall["id"], true)
+                    MessagesAdapter.joinCall(activeCall["uri"], activeCall["device"], activeCall["id"])
             }
         }
 
@@ -85,7 +85,7 @@ Rectangle {
 
             onClicked: {
                 if (activeCall !== null)
-                    MessagesAdapter.joinCall(activeCall["uri"], activeCall["device"], activeCall["id"])
+                    MessagesAdapter.joinCall(activeCall["uri"], activeCall["device"], activeCall["id"], false)
             }
         }
 

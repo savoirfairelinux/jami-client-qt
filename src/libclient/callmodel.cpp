@@ -362,8 +362,8 @@ CallModel::setVideoMuted(const QString& callId, bool videoMuted)
     }
 }
 
-static void
-initializeMediaList(VectorMapStringString& mediaList, bool audioOnly)
+void
+initializeMediaList(VectorMapStringString& mediaList, bool audioOnly, bool videoMuted)
 {
     mediaList.push_back({{MediaAttributeKey::MEDIA_TYPE, MediaAttributeValue::AUDIO},
                          {MediaAttributeKey::ENABLED, TRUE_STR},
@@ -372,6 +372,15 @@ initializeMediaList(VectorMapStringString& mediaList, bool audioOnly)
                          {MediaAttributeKey::LABEL, "audio_0"}});
     if (audioOnly)
         return;
+    if (videoMuted) {
+        mediaList.push_back({{MediaAttributeKey::MEDIA_TYPE, MediaAttributeValue::VIDEO},
+                             {MediaAttributeKey::ENABLED, TRUE_STR},
+                             {MediaAttributeKey::MUTED, TRUE_STR},
+                             {MediaAttributeKey::SOURCE, ""},
+                             {MediaAttributeKey::LABEL, "video_0"}});
+        return;
+    }
+
     const auto defaultCamera = VideoManager::instance().getDefaultDevice();
     QString cameraMRL = "camera://" + defaultCamera;
     mediaList.push_back({{MediaAttributeKey::MEDIA_TYPE, MediaAttributeValue::VIDEO},
@@ -383,10 +392,14 @@ initializeMediaList(VectorMapStringString& mediaList, bool audioOnly)
 }
 
 QString
-CallModel::createCall(const QString& uri, bool isAudioOnly, VectorMapStringString mediaList)
+CallModel::createCall(const QString& uri,
+                      bool isAudioOnly,
+                      VectorMapStringString mediaList,
+                      bool videoMuted)
 {
+    bool isSwarm = uri.startsWith("swarm:");
     if (mediaList.isEmpty()) {
-        initializeMediaList(mediaList, isAudioOnly);
+        initializeMediaList(mediaList, isAudioOnly, videoMuted && isSwarm);
     }
 #ifdef ENABLE_LIBWRAP
     auto callId = CallManager::instance().placeCallWithMedia(owner.id, uri, mediaList);
@@ -396,7 +409,7 @@ CallModel::createCall(const QString& uri, bool isAudioOnly, VectorMapStringStrin
 #endif // ENABLE_LIBWRAP
 
     if (callId.isEmpty()) {
-        if (uri.startsWith("swarm:")) {
+        if (isSwarm) {
             pimpl_->waitForConference_ = uri;
             return {};
         }
@@ -412,7 +425,7 @@ CallModel::createCall(const QString& uri, bool isAudioOnly, VectorMapStringStrin
     callInfo->status = call::Status::SEARCHING;
     callInfo->type = call::Type::DIALOG;
     callInfo->isAudioOnly = isAudioOnly;
-    callInfo->videoMuted = isAudioOnly;
+    callInfo->videoMuted = videoMuted;
     callInfo->mediaList = mediaList;
     pimpl_->calls.emplace(callId, std::move(callInfo));
 
@@ -1468,7 +1481,7 @@ CallModelPimpl::slotCallStateChanged(const QString& accountId,
         // NOTE: The CallModel::setVideoMuted function currently relies on callInfo->mediaList
         // having been initialized. Not doing so leads to a bug where the user's camera wrongly
         // gets turned on when they receive a call and click on "Answer in audio".
-        initializeMediaList(callInfo->mediaList, callInfo->isAudioOnly);
+        initializeMediaList(callInfo->mediaList, callInfo->isAudioOnly, callInfo->videoMuted);
         calls.emplace(callId, std::move(callInfo));
 
         if (!(details["CALL_TYPE"] == "1") && !linked.owner.confProperties.allowIncoming
