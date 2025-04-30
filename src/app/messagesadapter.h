@@ -46,7 +46,6 @@ public:
         connect(this, &QAbstractItemModel::rowsRemoved, this, &FilteredMsgListModel::countChanged);
         connect(this, &QAbstractItemModel::modelReset, this, &FilteredMsgListModel::countChanged);
         connect(this, &QAbstractItemModel::layoutChanged, this, &FilteredMsgListModel::countChanged);
-
     }
     bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override
     {
@@ -145,7 +144,7 @@ public:
     Q_INVOKABLE void joinCall(const QString& uri,
                               const QString& deviceId,
                               const QString& confId,
-                              bool isAudioOnly = false);
+                              bool videoMuted = true);
     Q_INVOKABLE void copyToDownloads(const QString& interactionId, const QString& displayName);
     Q_INVOKABLE void userIsComposing(bool isComposing);
     Q_INVOKABLE QVariantMap isLocalImage(const QString& mimeName);
