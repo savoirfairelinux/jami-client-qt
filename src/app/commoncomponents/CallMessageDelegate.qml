@@ -159,7 +159,7 @@ SBSMessageBase {
                 Layout.bottomMargin: 4
 
                 text: JamiStrings.joinWithAudio
-                onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, rootDelegate.confId, true)
+                onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, rootDelegate.confId)
             }
 
             JoinCallButton {
@@ -169,7 +169,7 @@ SBSMessageBase {
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
 
-                onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, rootDelegate.confId)
+                onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, rootDelegate.confId, false)
                 Layout.rightMargin: 4
             }
         }
