@@ -149,7 +149,7 @@ public:
     Q_INVOKABLE void joinCall(const QString& uri,
                               const QString& deviceId,
                               const QString& confId,
-                              bool isAudioOnly = false);
+                              bool videoMuted = true);
     Q_INVOKABLE void copyToDownloads(const QString& interactionId, const QString& displayName);
     Q_INVOKABLE void userIsComposing(bool isComposing);
     Q_INVOKABLE QVariantMap isLocalImage(const QString& mimeName);
