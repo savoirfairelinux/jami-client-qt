@@ -212,7 +212,7 @@ public:
                   const QString& confId,
                   const QString& uri,
                   const QString& deviceId,
-                  bool isAudioOnly);
+                  bool videoMuted);
     /**
      * Send a message to the conversation
      * @param uid of the conversation

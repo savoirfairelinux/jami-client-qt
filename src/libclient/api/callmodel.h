@@ -32,6 +32,7 @@ namespace lrc {
 class CallbacksHandler;
 class CallModelPimpl;
 
+void initializeMediaList(VectorMapStringString& mediaList, bool audioOnly, bool videoMuted);
 namespace api {
 
 namespace account {
@@ -80,7 +81,8 @@ public:
      */
     QString createCall(const QString& uri,
                        bool isAudioOnly = false,
-                       VectorMapStringString mediaList = {});
+                       VectorMapStringString mediaList = {},
+                       bool videoMuted = true);
     /**
      * Add a new media to the current list
      * @param callId
@@ -406,9 +408,7 @@ public:
      * @param windowProcessId
      * @param windowId
      */
-    QString getDisplay(const QString& windowProcessId,
-                       const QString& windowId,
-                       const int fps = -1);
+    QString getDisplay(const QString& windowProcessId, const QString& windowId, const int fps = -1);
 
     void emplaceConversationConference(const QString& callId);
 
