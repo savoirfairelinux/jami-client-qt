@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5105e029_0c3b2962",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 18
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-01T14:42:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2f62f0d_50fde1b5",
+      "range": {
+        "startLine": 7,
+        "startChar": 11,
+        "endLine": 7,
+        "endChar": 13
+      },
+      "revId": "4206585e0f977922611ce5467a10e6b892bbe0e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06e520f1_a223b8d9",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-04-30T23:45:25Z",
       "side": 1,
       "message": "Should there be only 1 newline here?",
+      "range": {
+        "startLine": 483,
+        "startChar": 2,
+        "endLine": 486,
+        "endChar": 7
+      },
+      "revId": "4206585e0f977922611ce5467a10e6b892bbe0e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0841b14_30456d30",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 18
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-01T14:42:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06e520f1_a223b8d9",
       "range": {
         "startLine": 483,
         "startChar": 2,
@@ -70,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ffab2cc_1a0de8de",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 18
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-01T14:42:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1bb934b1_db6ba6a2",
+      "range": {
+        "startLine": 496,
+        "startChar": 14,
+        "endLine": 496,
+        "endChar": 15
+      },
+      "revId": "4206585e0f977922611ce5467a10e6b892bbe0e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cd5c8da1_eda1cd39",
@@ -83,6 +155,30 @@
       "writtenOn": "2025-05-01T12:58:02Z",
       "side": 1,
       "message": "Do not comment code, remove it",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 12
+      },
+      "revId": "4206585e0f977922611ce5467a10e6b892bbe0e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45a6d0a0_e522a6af",
+        "filename": "src/app/commoncomponents/LineEditContextMenu.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-01T14:42:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd5c8da1_eda1cd39",
       "range": {
         "startLine": 42,
         "startChar": 0,
@@ -116,6 +212,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "79fa75ba_7f355ee1",
+        "filename": "src/app/commoncomponents/SpellLanguageContextMenu.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-01T14:42:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "039b0008_27cb02bf",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 29
+      },
+      "revId": "4206585e0f977922611ce5467a10e6b892bbe0e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0eb4c239_a9c489cf",
@@ -129,6 +249,30 @@
       "writtenOn": "2025-05-01T12:58:02Z",
       "side": 1,
       "message": "This personal note should be removed\nFor your answer isn`t it in src/app/mainview/components/ChatViewHeader.qml",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 36,
+        "endChar": 20
+      },
+      "revId": "4206585e0f977922611ce5467a10e6b892bbe0e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a84ce486_7dc660a3",
+        "filename": "src/app/commoncomponents/SpellLanguageContextMenu.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-01T14:42:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0eb4c239_a9c489cf",
       "range": {
         "startLine": 36,
         "startChar": 4,
@@ -162,6 +306,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "732703ef_3497bbed",
+        "filename": "src/app/commoncomponents/SpellLanguageContextMenu.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-01T14:42:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9db8a2f4_85fb0c21",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 2
+      },
+      "revId": "4206585e0f977922611ce5467a10e6b892bbe0e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3d73e0f_1c4b8319",
@@ -175,6 +343,30 @@
       "writtenOn": "2025-05-01T12:58:02Z",
       "side": 1,
       "message": "Should be set back to false",
+      "range": {
+        "startLine": 160,
+        "startChar": 37,
+        "endLine": 160,
+        "endChar": 55
+      },
+      "revId": "4206585e0f977922611ce5467a10e6b892bbe0e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "786f2d71_036cf6aa",
+        "filename": "src/app/mainapplication.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-01T14:42:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3d73e0f_1c4b8319",
       "range": {
         "startLine": 160,
         "startChar": 37,
@@ -208,6 +400,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "624a2b05_01f25cdc",
+        "filename": "src/app/mainview/components/MessageBarTextArea.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-01T14:42:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2344dbee_69f398c7",
+      "range": {
+        "startLine": 30,
+        "startChar": 34,
+        "endLine": 30,
+        "endChar": 35
+      },
+      "revId": "4206585e0f977922611ce5467a10e6b892bbe0e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3703961b_e5040378",
@@ -221,6 +437,30 @@
       "writtenOn": "2025-04-30T23:41:20Z",
       "side": 1,
       "message": "Should `userLanguage` be `userInterfaceLanguage`?",
+      "range": {
+        "startLine": 512,
+        "startChar": 20,
+        "endLine": 512,
+        "endChar": 32
+      },
+      "revId": "4206585e0f977922611ce5467a10e6b892bbe0e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4c9d0d7_54d8c318",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 512,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-01T14:42:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3703961b_e5040378",
       "range": {
         "startLine": 512,
         "startChar": 20,
@@ -254,6 +494,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a0b79ed_80fccc72",
+        "filename": "src/app/qmlregister.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-01T14:42:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c7340b0_0045a604",
+      "range": {
+        "startLine": 162,
+        "startChar": 0,
+        "endLine": 162,
+        "endChar": 2
+      },
+      "revId": "4206585e0f977922611ce5467a10e6b892bbe0e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29011ec2_234f45ea",
@@ -267,6 +531,30 @@
       "writtenOn": "2025-05-01T12:58:02Z",
       "side": 1,
       "message": "remove commented code",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 29
+      },
+      "revId": "4206585e0f977922611ce5467a10e6b892bbe0e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "152ffc55_d6caed52",
+        "filename": "src/app/settingsview/components/SystemSettingsPage.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-01T14:42:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29011ec2_234f45ea",
       "range": {
         "startLine": 28,
         "startChar": 0,
@@ -300,6 +588,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e160337_098c048d",
+        "filename": "src/app/spellcheckdictionarymanager.h",
+        "patchSetId": 18
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-01T14:42:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1cda889a_aa17cde3",
+      "range": {
+        "startLine": 41,
+        "startChar": 3,
+        "endLine": 41,
+        "endChar": 41
+      },
+      "revId": "4206585e0f977922611ce5467a10e6b892bbe0e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b8bf811_e1c10c3a",
@@ -323,6 +635,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ac060c0_0557774b",
+        "filename": "src/app/spellchecker.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-01T14:42:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b8bf811_e1c10c3a",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 2
+      },
+      "revId": "4206585e0f977922611ce5467a10e6b892bbe0e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4a8a2470_429daab1",
@@ -336,6 +672,30 @@
       "writtenOn": "2025-05-01T12:58:02Z",
       "side": 1,
       "message": "you can remove my name, it seems there is no author field in the others files",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 2
+      },
+      "revId": "4206585e0f977922611ce5467a10e6b892bbe0e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59632c1d_5a8fc332",
+        "filename": "src/app/spellchecker.h",
+        "patchSetId": 18
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-01T14:42:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a8a2470_429daab1",
       "range": {
         "startLine": 3,
         "startChar": 0,
