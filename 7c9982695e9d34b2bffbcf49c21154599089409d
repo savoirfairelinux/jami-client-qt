@@ -1,0 +1,297 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0d45352_68025046",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 20
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-05-01T21:38:20Z",
+      "side": 1,
+      "message": "Should the message be shouting?\n\n`hunspell found`\n\nSorry, the SFL convention is unknown based on the other `message(` lines in this file.",
+      "range": {
+        "startLine": 486,
+        "startChar": 18,
+        "endLine": 486,
+        "endChar": 32
+      },
+      "revId": "7c9982695e9d34b2bffbcf49c21154599089409d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d30ebc81_eb039031",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 20
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-05-01T21:38:20Z",
+      "side": 1,
+      "message": "Should the message be shouting?\n\n`hunspell not found - building hunspell`\n\nSorry, the SFL convention is unknown based on the other `message(` lines in this file.",
+      "range": {
+        "startLine": 505,
+        "startChar": 18,
+        "endLine": 505,
+        "endChar": 56
+      },
+      "revId": "7c9982695e9d34b2bffbcf49c21154599089409d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b73a1e4f_01acee96",
+        "filename": "src/app/commoncomponents/SpellLanguageContextMenu.qml",
+        "patchSetId": 20
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-05-01T21:38:20Z",
+      "side": 1,
+      "message": "Should `2024` be changed to `2025`?",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "7c9982695e9d34b2bffbcf49c21154599089409d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5dd3e6a_bb1910c9",
+        "filename": "src/app/mainview/components/CachedFile.qml",
+        "patchSetId": 20
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-05-01T21:38:20Z",
+      "side": 1,
+      "message": "Should `2024` be changed to `2024-2025`?",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "7c9982695e9d34b2bffbcf49c21154599089409d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64560f81_95813c3d",
+        "filename": "src/app/mainview/components/MessageBarTextArea.qml",
+        "patchSetId": 20
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-05-01T21:38:20Z",
+      "side": 1,
+      "message": "Should these spaces be removed to line the `*` underneath each other?",
+      "range": {
+        "startLine": 276,
+        "startChar": 12,
+        "endLine": 276,
+        "endChar": 16
+      },
+      "revId": "7c9982695e9d34b2bffbcf49c21154599089409d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ccfe3bd_95d79481",
+        "filename": "src/app/spellchecker.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-05-01T21:38:20Z",
+      "side": 1,
+      "message": "Should `2024` be `2025`?",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "7c9982695e9d34b2bffbcf49c21154599089409d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9115eca6_b30f3651",
+        "filename": "src/app/spellchecker.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-05-01T21:38:20Z",
+      "side": 1,
+      "message": "What is SFL convention here? Should the blank newline be removed?",
+      "revId": "7c9982695e9d34b2bffbcf49c21154599089409d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "834e8ae6_ce5cef30",
+        "filename": "src/app/spellchecker.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-05-01T21:38:20Z",
+      "side": 1,
+      "message": "What does this mean?\n`Detect encoding by analyzing the SET option in the affix file`",
+      "range": {
+        "startLine": 80,
+        "startChar": 7,
+        "endLine": 80,
+        "endChar": 65
+      },
+      "revId": "7c9982695e9d34b2bffbcf49c21154599089409d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2906972_0faad3c8",
+        "filename": "src/app/spellchecker.h",
+        "patchSetId": 20
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-05-01T21:38:20Z",
+      "side": 1,
+      "message": "Should `2024` be `2025`?",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "7c9982695e9d34b2bffbcf49c21154599089409d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98f2630c_9d80505f",
+        "filename": "src/app/utilsadapter.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-05-01T21:38:20Z",
+      "side": 1,
+      "message": "Should `Lang` be `Language`?",
+      "range": {
+        "startLine": 97,
+        "startChar": 40,
+        "endLine": 97,
+        "endChar": 44
+      },
+      "revId": "7c9982695e9d34b2bffbcf49c21154599089409d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "764b9260_5f6fa9dc",
+        "filename": "src/app/utilsadapter.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 570,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-05-01T21:38:20Z",
+      "side": 1,
+      "message": "1. Should `Langs` be `Languages`?\n2. Should `activated` (pass tense) be `active` (present tense)? `activeSpellLanguages()`\n3. What is the SFL convention? `active` or `enabled`?",
+      "range": {
+        "startLine": 570,
+        "startChar": 28,
+        "endLine": 570,
+        "endChar": 33
+      },
+      "revId": "7c9982695e9d34b2bffbcf49c21154599089409d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc0ef3e7_57080515",
+        "filename": "src/app/utilsadapter.h",
+        "patchSetId": 20
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-05-01T21:38:20Z",
+      "side": 1,
+      "message": "Should `Langs` be `Languages`?",
+      "range": {
+        "startLine": 185,
+        "startChar": 23,
+        "endLine": 185,
+        "endChar": 28
+      },
+      "revId": "7c9982695e9d34b2bffbcf49c21154599089409d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "500d380b_17f5f92c",
+        "filename": "src/app/utilsadapter.h",
+        "patchSetId": 20
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-05-01T21:38:20Z",
+      "side": 1,
+      "message": "Should `Langs` be `Languages`?",
+      "range": {
+        "startLine": 186,
+        "startChar": 14,
+        "endLine": 186,
+        "endChar": 18
+      },
+      "revId": "7c9982695e9d34b2bffbcf49c21154599089409d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
