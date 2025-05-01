@@ -17,7 +17,7 @@
 
 #include "mainapplication.h"
 #include "instancemanager.h"
-#include "version.h"
+#include "version_info.h"
 #if defined(Q_OS_MACOS)
 #include <os/macos/macutils.h>
 #endif
@@ -66,7 +66,7 @@ main(int argc, char* argv[])
     QApplication::setApplicationName(QStringLiteral("Jami"));
     QApplication::setOrganizationDomain(QStringLiteral("jami.net"));
     QApplication::setQuitOnLastWindowClosed(false);
-    QCoreApplication::setApplicationVersion(QString(VERSION_STRING));
+    QCoreApplication::setApplicationVersion(BUILD_VERSION_STRING);
     QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts, true);
     QApplication::setHighDpiScaleFactorRoundingPolicy(
         Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);

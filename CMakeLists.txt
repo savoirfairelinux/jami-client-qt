@@ -266,6 +266,7 @@ add_custom_target(
   -DAPP_BINARY_DIR=${CMAKE_CURRENT_BINARY_DIR}
   -DCORE_SOURCE_DIR=${DAEMON_DIR}
   -DCPP_INT_FILE=${VERSION_INFO_DIR}/version_info.cpp.in
+  -DBUILD_VERSION=${BUILD_VERSION}
   -P ${CMAKE_SCRIPTS_DIR}/generate_version_info.cmake
 )
 list(APPEND CLIENT_INCLUDE_DIRS ${VERSION_INFO_DIR})
@@ -377,7 +378,6 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/appversionmanager.h
   ${APP_SRC_DIR}/utils.h
   ${APP_SRC_DIR}/bannedlistmodel.h
-  ${APP_SRC_DIR}/version.h
   ${APP_SRC_DIR}/accountlistmodel.h
   ${APP_SRC_DIR}/instancemanager.h
   ${APP_SRC_DIR}/connectivitymonitor.h
