@@ -439,6 +439,9 @@ def run_install(args):
         if args.qt:
             install_args += ("-Q", args.qt)
 
+    if args.build_version:
+        install_args += ('-B', args.build_version)
+
     command = ['extras/scripts/install.sh'] + install_args
 
     if 'TARBALLS' not in os.environ:
@@ -769,6 +772,8 @@ def parse_args():
     ap.add_argument('--enable-crash-reports',
                     action='store_true', default=False,
                     help='Enable crash reporting')
+    ap.add_argument('--build_version', type=str,
+                    help='Build version to inject into the app')
 
     dist = choose_distribution()
 
