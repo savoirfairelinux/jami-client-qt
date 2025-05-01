@@ -262,7 +262,7 @@ def cmake_build(config_str, env_vars, cmake_build_dir):
     return True
 
 
-def build(config_str, qt_dir, tests, enable_crash_reports, crash_report_url=None):
+def build(config_str, qt_dir, tests, build_version, enable_crash_reports, crash_report_url=None):
     """Use cmake to build the project."""
     print("Building with Qt at " + qt_dir)
 
@@ -292,6 +292,9 @@ def build(config_str, qt_dir, tests, enable_crash_reports, crash_report_url=None
             cmake_options.append(f"-DCRASH_REPORT_URL={crash_report_url}")
     else:
         cmake_options.append("-DENABLE_CRASHREPORTS=OFF")
+
+    if build_version:
+        cmake_options.append("-DBUILD_VERSION=" + build_version)
 
     # Make sure the build directory exists.
     if not os.path.exists(build_dir):
@@ -470,6 +473,8 @@ def parse_args():
     parser.add_argument(
         "-a", "--arch", default="x64", help="Sets the build architecture")
     parser.add_argument(
+        "--build-version", help="Sets the build version string used for defining app build version")
+    parser.add_argument(
         "-t", "--tests", action="store_true", help="Build and run tests")
     parser.add_argument(
         '-v', '--version', action='store_true',
@@ -551,6 +556,7 @@ def main():
     def do_build(do_tests):
         if not parsed_args.skip_build:
             build(config_str, parsed_args.qt, do_tests,
+                  parsed_args.build_version,
                   parsed_args.enable_crash_reports,
                   parsed_args.crash_report_url)
         if not parsed_args.skip_deploy:
