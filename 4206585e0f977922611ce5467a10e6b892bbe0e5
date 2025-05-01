@@ -72,6 +72,144 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cd5c8da1_eda1cd39",
+        "filename": "src/app/commoncomponents/LineEditContextMenu.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 982
+      },
+      "writtenOn": "2025-05-01T12:58:02Z",
+      "side": 1,
+      "message": "Do not comment code, remove it",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 12
+      },
+      "revId": "4206585e0f977922611ce5467a10e6b892bbe0e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "039b0008_27cb02bf",
+        "filename": "src/app/commoncomponents/SpellLanguageContextMenu.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 982
+      },
+      "writtenOn": "2025-05-01T12:58:02Z",
+      "side": 1,
+      "message": "This personal note should be removed",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 29
+      },
+      "revId": "4206585e0f977922611ce5467a10e6b892bbe0e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0eb4c239_a9c489cf",
+        "filename": "src/app/commoncomponents/SpellLanguageContextMenu.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 982
+      },
+      "writtenOn": "2025-05-01T12:58:02Z",
+      "side": 1,
+      "message": "This personal note should be removed\nFor your answer isn`t it in src/app/mainview/components/ChatViewHeader.qml",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 36,
+        "endChar": 20
+      },
+      "revId": "4206585e0f977922611ce5467a10e6b892bbe0e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9db8a2f4_85fb0c21",
+        "filename": "src/app/commoncomponents/SpellLanguageContextMenu.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 982
+      },
+      "writtenOn": "2025-05-01T12:58:02Z",
+      "side": 1,
+      "message": "Commented code should be removed",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 2
+      },
+      "revId": "4206585e0f977922611ce5467a10e6b892bbe0e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3d73e0f_1c4b8319",
+        "filename": "src/app/mainapplication.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 982
+      },
+      "writtenOn": "2025-05-01T12:58:02Z",
+      "side": 1,
+      "message": "Should be set back to false",
+      "range": {
+        "startLine": 160,
+        "startChar": 37,
+        "endLine": 160,
+        "endChar": 55
+      },
+      "revId": "4206585e0f977922611ce5467a10e6b892bbe0e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2344dbee_69f398c7",
+        "filename": "src/app/mainview/components/MessageBarTextArea.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 982
+      },
+      "writtenOn": "2025-05-01T12:58:02Z",
+      "side": 1,
+      "message": "what is 2 for ? Is there no defined variable somewhere. \nTry to prevent magic number use",
+      "range": {
+        "startLine": 30,
+        "startChar": 34,
+        "endLine": 30,
+        "endChar": 35
+      },
+      "revId": "4206585e0f977922611ce5467a10e6b892bbe0e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3703961b_e5040378",
         "filename": "src/app/net/jami/Constants/JamiStrings.qml",
         "patchSetId": 18
@@ -88,6 +226,121 @@
         "startChar": 20,
         "endLine": 512,
         "endChar": 32
+      },
+      "revId": "4206585e0f977922611ce5467a10e6b892bbe0e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c7340b0_0045a604",
+        "filename": "src/app/qmlregister.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 982
+      },
+      "writtenOn": "2025-05-01T12:58:02Z",
+      "side": 1,
+      "message": "remove commented code",
+      "range": {
+        "startLine": 162,
+        "startChar": 0,
+        "endLine": 162,
+        "endChar": 2
+      },
+      "revId": "4206585e0f977922611ce5467a10e6b892bbe0e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29011ec2_234f45ea",
+        "filename": "src/app/settingsview/components/SystemSettingsPage.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 982
+      },
+      "writtenOn": "2025-05-01T12:58:02Z",
+      "side": 1,
+      "message": "remove commented code",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 29
+      },
+      "revId": "4206585e0f977922611ce5467a10e6b892bbe0e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cda889a_aa17cde3",
+        "filename": "src/app/spellcheckdictionarymanager.h",
+        "patchSetId": 18
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 982
+      },
+      "writtenOn": "2025-05-01T12:58:02Z",
+      "side": 1,
+      "message": "remove commented code",
+      "range": {
+        "startLine": 41,
+        "startChar": 3,
+        "endLine": 41,
+        "endChar": 41
+      },
+      "revId": "4206585e0f977922611ce5467a10e6b892bbe0e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b8bf811_e1c10c3a",
+        "filename": "src/app/spellchecker.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 982
+      },
+      "writtenOn": "2025-05-01T12:58:02Z",
+      "side": 1,
+      "message": "You can remove the name. It doesn\u0027t seems to be part of the field in other files",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 2
+      },
+      "revId": "4206585e0f977922611ce5467a10e6b892bbe0e5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a8a2470_429daab1",
+        "filename": "src/app/spellchecker.h",
+        "patchSetId": 18
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 982
+      },
+      "writtenOn": "2025-05-01T12:58:02Z",
+      "side": 1,
+      "message": "you can remove my name, it seems there is no author field in the others files",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 2
       },
       "revId": "4206585e0f977922611ce5467a10e6b892bbe0e5",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
