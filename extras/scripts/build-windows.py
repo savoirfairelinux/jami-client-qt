@@ -262,7 +262,7 @@ def cmake_build(config_str, env_vars, cmake_build_dir):
     return True
 
 
-def build(config_str, qt_dir, tests, enable_crash_reports, crash_report_url=None):
+def build(config_str, qt_dir, tests, build_version, enable_crash_reports, crash_report_url=None):
     """Use cmake to build the project."""
     print("Building with Qt at " + qt_dir)
 
@@ -276,6 +276,7 @@ def build(config_str, qt_dir, tests, enable_crash_reports, crash_report_url=None
     # We need to update the minimum SDK version to be able to
     # build with system theme support
     cmake_options = [
+        "-DBUILD_VERSION=" + build_version,
         "-DJAMICORE_AS_SUBDIR=ON",
         "-DCMAKE_PREFIX_PATH=" + qt_dir,
         "-DCMAKE_MSVCIDE_RUN_PATH=" + qt_dir + "\\bin",
@@ -470,6 +471,8 @@ def parse_args():
     parser.add_argument(
         "-a", "--arch", default="x64", help="Sets the build architecture")
     parser.add_argument(
+        "--build-version", help="Sets the build version string used for defining app build version")
+    parser.add_argument(
         "-t", "--tests", action="store_true", help="Build and run tests")
     parser.add_argument(
         '-v', '--version', action='store_true',
@@ -548,9 +551,14 @@ def main():
 
     config_str = ('Release', 'Beta')[parsed_args.beta]
 
+    if not parsed_args.build_version:
+        print("Build version not found.")
+        sys.exit(1)
+
     def do_build(do_tests):
         if not parsed_args.skip_build:
             build(config_str, parsed_args.qt, do_tests,
+                  parsed_args.build_version,
                   parsed_args.enable_crash_reports,
                   parsed_args.crash_report_url)
         if not parsed_args.skip_deploy:
