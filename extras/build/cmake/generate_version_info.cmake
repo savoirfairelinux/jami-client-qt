@@ -24,6 +24,7 @@ set(CMAKE_CURRENT_BINARY_DIR ${APP_BINARY_DIR})
 # Generate the version string for the application and core
 configure_version_string(${APP_SOURCE_DIR} APP_VERSION_STRING)
 configure_version_string(${CORE_SOURCE_DIR} CORE_VERSION_STRING)
+set(BUILD_VERSION_STRING ${BUILD_VERSION})
 
 # Get output file names with the .in extension removed
 get_filename_component(VERSION_CPP_FILENAME ${CPP_INT_FILE} NAME_WE)
