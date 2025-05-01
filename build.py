@@ -420,6 +420,8 @@ def run_install(args):
         install_args += ('-D', args.extra_cmake_flags)
     if args.enable_crash_reports:
         install_args.append('-C')
+    if args.build_version:
+        install_args.append('-B', args.build_version)
 
     if args.distribution == OSX_DISTRIBUTION_NAME:
         # The `universal_newlines` parameter has been renamed to `text` in
