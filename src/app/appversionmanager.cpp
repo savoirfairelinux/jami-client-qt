@@ -18,7 +18,7 @@
 #include "appversionmanager.h"
 
 #include "lrcinstance.h"
-#include "version.h"
+#include "version_info.h"
 
 #include <QProcess>
 #include <QTimer>
@@ -73,7 +73,7 @@ struct AppVersionManager::Impl : public QObject
                     Q_EMIT parent_.updateCheckReplyReceived(false);
                 return;
             }
-            auto currentVersion = QString(VERSION_STRING).toULongLong();
+            auto currentVersion = BUILD_VERSION_STRING.toULongLong();
             auto latestVersion = latestVersionString.toULongLong();
             const QString channelStr = isBeta ? "beta" : "stable";
             const auto newVersionFound = latestVersion > currentVersion;
