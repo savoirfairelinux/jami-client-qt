@@ -386,6 +386,9 @@ def run_install(args):
         if args.enable_crash_reports:
             build_cmd.append('--enable-crash-reports')
 
+        if args.build_version:
+            build_cmd.append(f'--build-version={args.build_version}')
+
         execute_script([' '.join(build_cmd)])
         return True
 
@@ -769,6 +772,8 @@ def parse_args():
     ap.add_argument('--enable-crash-reports',
                     action='store_true', default=False,
                     help='Enable crash reporting')
+    ap.add_argument('--build-version', type=str,
+                    help="Sets the build version string used for defining app build version")
 
     dist = choose_distribution()
 
