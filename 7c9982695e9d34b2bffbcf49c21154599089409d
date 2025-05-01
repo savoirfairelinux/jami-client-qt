@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0f617357_1f906e55",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 20
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-05-01T22:06:21Z",
+      "side": 1,
+      "message": "Should the `)` be on a new line?",
+      "range": {
+        "startLine": 371,
+        "startChar": 33,
+        "endLine": 371,
+        "endChar": 34
+      },
+      "revId": "7c9982695e9d34b2bffbcf49c21154599089409d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e34425e6_ff574fe5",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 20
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-05-01T22:06:21Z",
+      "side": 1,
+      "message": "Should the `)` be on a new line?",
+      "range": {
+        "startLine": 446,
+        "startChar": 31,
+        "endLine": 446,
+        "endChar": 32
+      },
+      "revId": "7c9982695e9d34b2bffbcf49c21154599089409d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e0d45352_68025046",
         "filename": "CMakeLists.txt",
         "patchSetId": 20
