@@ -20,7 +20,6 @@
 #include "lrcinstance.h"
 #include "systemtray.h"
 #include "utils.h"
-#include "version.h"
 #include "version_info.h"
 #include "global.h"
 #include <api/datatransfermodel.h>
@@ -128,7 +127,7 @@ UtilsAdapter::getProjectCredits()
 const QString
 UtilsAdapter::getBuildIDStr()
 {
-    return QString(VERSION_STRING);
+    return BUILD_VERSION_STRING;
 }
 
 const QString
