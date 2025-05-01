@@ -265,6 +265,7 @@ add_custom_target(
   -DCORE_SOURCE_DIR=${DAEMON_DIR}
   -DCPP_INT_FILE=${VERSION_INFO_DIR}/version_info.cpp.in
   -DBUILD_VERSION=${BUILD_VERSION}
+  -DMSVC=${MSVC}
   -P ${CMAKE_SCRIPTS_DIR}/generate_version_info.cmake
 )
 list(APPEND CLIENT_INCLUDE_DIRS ${VERSION_INFO_DIR})

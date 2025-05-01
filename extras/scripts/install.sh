@@ -51,8 +51,9 @@ extra_cmake_flags=''
 arch=''
 enable_testing=false
 enable_crashreports=false
+build_version=''
 
-while getopts gsc:dQ:P:p:uWwa:AtD:C OPT; do
+while getopts gsc:dQ:P:p:uWwa:AtD:C:B: OPT; do
   case "$OPT" in
     g)
       global='true'
@@ -95,6 +96,9 @@ while getopts gsc:dQ:P:p:uWwa:AtD:C OPT; do
     ;;
     C)
       enable_crashreports='true'
+    ;;
+    B)
+      build_version="${OPTARG}"
     ;;
     \?)
       exit 1
@@ -245,6 +249,10 @@ if [ "${global}" = "true" ]; then
 else
     client_cmake_flags+=(-DCMAKE_INSTALL_PREFIX="${INSTALL_DIR}"
                          -DWITH_DAEMON_SUBMODULE=true)
+fi
+
+if [ -n "${build_version}" ]; then
+    client_cmake_flags+=(-DBUILD_VERSION="${build_version}")
 fi
 
 # Add extra flags for the client
