@@ -123,7 +123,7 @@ UtilsAdapter::getProjectCredits()
 const QString
 UtilsAdapter::getBuildIDStr()
 {
-    return QString(VERSION_STRING);
+    return BUILD_VERSION_STRING;
 }
 
 const QString
