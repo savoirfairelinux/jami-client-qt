@@ -132,7 +132,7 @@ rpmbuild --define "debug_package %{nil}" -ba jami-libclient.spec
 rpmbuild --define "debug_package %{nil}" -ba jami-qt.spec
 
 # Build the Qt client.
-rpmbuild --define "debug_package %{nil}" -ba jami.spec
+rpmbuild --define "debug_package %{nil}" --define "BUILD_VERSION ${BUILD_VERSION}" -ba jami.spec
 
 # Move the built packages to the output directory.
 mv /root/rpmbuild/RPMS/*/* /opt/output
