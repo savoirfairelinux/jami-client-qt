@@ -38,7 +38,7 @@ Item {
     property string description: JamiStrings.hereIsIdentifier
 
     property real contentWidth: welcomeInfo.width - 2 * JamiTheme.mainViewMargin
-
+    width : JamiTheme.mainViewPaneMinWidth
     function getHeight() {
         return bgRect.height;
     }
