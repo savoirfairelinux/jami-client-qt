@@ -149,7 +149,7 @@ rm -r debian
 ln -s extras/packaging/gnu-linux/rules/debian .
 
 # Create the binary packages.
-dpkg-buildpackage -b -uc -us ${DPKG_BUILD_OPTIONS}
+dpkg-buildpackage -b -uc -us -eBUILD_VERSION=${BUILD_VERSION} ${DPKG_BUILD_OPTIONS}
 
 # Move the artifacts to the output.
 mv ../*deb /opt/output        # .deb and .ddeb packages
