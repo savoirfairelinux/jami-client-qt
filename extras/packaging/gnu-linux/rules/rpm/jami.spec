@@ -82,6 +82,7 @@ cd %{_builddir}/jami-%{version} && \
           -DAPPSTREAM_CATALOG_DIR=%{appstream_catalog_dir} \
           -DWITH_DAEMON_SUBMODULE=true \
           -DCMAKE_BUILD_TYPE=Release \
+          -DBUILD_VERSION=${BUILD_VERSION} \
           ..
 make -C %{_builddir}/jami-%{version}/build %{_smp_mflags} V=2
 
