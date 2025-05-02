@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0126d4b9_028d05eb",
+        "filename": "src/app/mainview/components/MessagesResearchView.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2025-05-02T14:37:40Z",
+      "side": 0,
+      "message": "Sorry for the late review. Change looks good but we should find a way to locate the search term in the message and either highlight it or make it bold for the user to see. Otherwise we can end up with a long message where the search term appears somewhere after the point at which the UI fades the message away and we cannot see where the term appears.",
+      "revId": "515435e9780f0d6cb4cd98114aba76a92caafc9f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
