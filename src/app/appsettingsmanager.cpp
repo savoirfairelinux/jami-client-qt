@@ -34,8 +34,8 @@ AppSettingsManager::AppSettingsManager(QObject* parent)
 {
     for (int i = 0; i < static_cast<int>(Settings::Key::COUNT__); ++i) {
         auto key = static_cast<Settings::Key>(i);
-        if (!settings_->contains(Settings::toString(key)))
-            setValue(key, Settings::defaultValue(key));
+        if ((settings_->contains(Settings::toString(key))) && (settings_->value(Settings::toString(key)) == Settings::defaultValue(key)))
+            settings_->remove(Settings::toString(key));
     }
 }
 
