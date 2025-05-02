@@ -194,6 +194,7 @@ $(1)-docker-image-name := jami-packaging-$(1)
 $(1)-docker-image-file := .docker-image-$$($(1)-docker-image-name)
 $(1)-docker-run-command := docker run \
   --rm --privileged --security-opt apparmor=docker-default \
+  -e BUILD_VERSION=${BUILD_VERSION} \
   -e RELEASE_VERSION="$(RELEASE_VERSION)" \
   -e RELEASE_DIRNAME="$(RELEASE_DIRNAME)" \
   -e RELEASE_TARBALL_FILENAME="$(RELEASE_TARBALL_FILENAME)" \
