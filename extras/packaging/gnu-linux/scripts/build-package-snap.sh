@@ -29,6 +29,9 @@ cp -r extras/packaging/gnu-linux/rules/snap/${SNAP_PKG_NAME}/snapcraft.yaml .
 # set the version and tarball filename
 sed -i "s/RELEASE_VERSION/${RELEASE_VERSION}/g" snapcraft.yaml
 
+# set the build version of the app
+sed -i "s/BUILD_VERSION_PLACEHOLDER/${BUILD_VERSION}/g" snapcraft.yaml
+
 snapcraft # requires snapcraft >= 4.8
 
 # move the built snap to output
