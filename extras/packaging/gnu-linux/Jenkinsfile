@@ -84,6 +84,10 @@ pipeline {
 
     environment {
         TARBALLS = '/var/cache/jami' // set the cache directory
+        BUILD_VERSION = sh(
+                            returnStdout: true,
+                            script: 'date +"%Y%m%d%H%M"'
+                          ).trim()
     }
 
     stages {
