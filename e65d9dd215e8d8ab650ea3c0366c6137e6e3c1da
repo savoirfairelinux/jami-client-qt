@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be6f9e2c_c9ad4053",
+        "filename": "src/app/appsettingsmanager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-05-02T18:32:49Z",
+      "side": 1,
+      "message": "- comment why this is done\n- Settings::toString(key) once if you can",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 5
+      },
+      "revId": "e65d9dd215e8d8ab650ea3c0366c6137e6e3c1da",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
