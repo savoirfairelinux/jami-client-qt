@@ -91,6 +91,7 @@ override_dh_auto_build:
 	mkdir build && \
 	cd build && \
 	cmake \
+	  -DBUILD_VERSION=$(BUILD_VERSION) \
 	  -DCMAKE_INSTALL_PREFIX=/usr \
 	  -DLIBJAMI_BUILD_DIR=$(CURDIR)/daemon/src \
 	  -DENABLE_LIBWRAP=true \
