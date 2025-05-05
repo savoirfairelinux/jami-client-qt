@@ -121,6 +121,7 @@ class CurrentAccount final : public QObject
     QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(bool, sendComposing)
     QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(bool, isRendezVous)
     QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(bool, autoAnswer)
+    QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(bool, denySecondCall)
     QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(bool, proxyEnabled)
     QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(bool, upnpEnabled)
     QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(bool, publishedSameAsLocal)

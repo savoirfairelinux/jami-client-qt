@@ -270,7 +270,7 @@ public Q_SLOTS:
      * Listen from callmodel for calls status changed.
      * @param callId
      */
-    void slotCallStatusChanged(const QString& callId, int code);
+    void slotCallStatusChanged(const QString& accountId, const QString& callId, int code);
     /**
      * Listen from callmodel for writing "Call started"
      * @param callId
@@ -1278,7 +1278,7 @@ ConversationModel::sendMessage(const QString& uid, const QString& body, const QS
         if (peers.isEmpty()) {
             // Should not
             qDebug() << "ConversationModel::sendMessage cannot send an interaction to a conversation "
-                        "with no participants.";
+                   "with no participants.";
             return;
         }
         auto convId = uid;
@@ -2043,10 +2043,10 @@ ConversationModelPimpl::initConversations()
                     continue;
                 }
                 conv.push_back(storage::beginConversationWithPeer(db,
-                                                                c.second.profileInfo.uri,
-                                                                true,
-                                                                linked.owner.contactModel->getAddedTs(
-                                                                    c.second.profileInfo.uri)));
+                                                       c.second.profileInfo.uri,
+                                                       true,
+                                                       linked.owner.contactModel->getAddedTs(
+                                                           c.second.profileInfo.uri)));
             }
             addConversationWith(conv[0], c.first, isRequest);
 
@@ -2060,8 +2060,8 @@ ConversationModelPimpl::initConversations()
                     || interaction.transferStatus == interaction::TransferStatus::TRANSFER_AWAITING_PEER
                     || interaction.transferStatus == interaction::TransferStatus::TRANSFER_ONGOING
                     || interaction.transferStatus == interaction::TransferStatus::TRANSFER_ACCEPTED) {
-                    // If a datatransfer was left in a non-terminal status in DB, we switch this status
-                    // to ERROR
+                    // If a datatransfer was left in a non-terminal status in DB, we switch this
+                    // status to ERROR
                     // TODO : Improve for DBus clients as daemon and transfer may still be ongoing
                     storage::updateInteractionTransferStatus(db, id, interaction::TransferStatus::TRANSFER_ERROR);
 
@@ -3192,7 +3192,7 @@ ConversationModelPimpl::slotNewCall(const QString& fromId,
 }
 
 void
-ConversationModelPimpl::slotCallStatusChanged(const QString& callId, int code)
+ConversationModelPimpl::slotCallStatusChanged(const QString& accountId, const QString& callId, int code)
 {
     Q_UNUSED(code)
     // Get conversation
@@ -3203,8 +3203,11 @@ ConversationModelPimpl::slotCallStatusChanged(const QString& callId, int code)
                           });
 
     try {
+        auto accountProperties = lrc.getAccountModel().getAccountConfig(accountId);
         auto call = linked.owner.callModel->getCall(callId);
-        if (i != conversations.end()) {
+        if (i != conversations.end()
+            && (!accountProperties.denySecondCall
+                || call.status == call::Status::IN_PROGRESS)) {
             // Update interaction status
             invalidateModel();
             linked.selectConversation(i->uid);
@@ -3652,8 +3655,8 @@ ConversationModel::cancelTransfer(const QString& convUid, const QString& fileId)
         if (interactions->updateTransferStatus(fileId, interaction::TransferStatus::TRANSFER_CANCELED)) {
             // update information in the db
             storage::updateInteractionTransferStatus(pimpl_->db,
-                                             fileId,
-                                             interaction::TransferStatus::TRANSFER_CANCELED);
+                                            fileId,
+                                            interaction::TransferStatus::TRANSFER_CANCELED);
             emitUpdated = true;
         }
     }
@@ -4027,7 +4030,10 @@ ConversationModelPimpl::slotTransferStatusTimeoutExpired(const QString& fileId,
     if (info.accountId != linked.owner.id)
         return;
     bool intUpdated;
-    updateTransferStatus(fileId, info, interaction::TransferStatus::TRANSFER_TIMEOUT_EXPIRED, intUpdated);
+    updateTransferStatus(fileId,
+                         info,
+                         interaction::TransferStatus::TRANSFER_TIMEOUT_EXPIRED,
+                         intUpdated);
 }
 
 bool

@@ -111,6 +111,7 @@ Item {
     property string keyboardShortcut: qsTr("Keyboard shortcut")
     property string changeKeyboardShortcut: qsTr("Change keyboard shortcut")
     property string raiseWhenCalled: qsTr("Bring the application to the front for incoming calls")
+    property string denySecondCall: qsTr("Decline incoming calls when already in a call")
 
     // ChangePttKeyPopup
     property string changeShortcut: qsTr("Change shortcut")

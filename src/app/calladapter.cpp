@@ -249,7 +249,7 @@ CallAdapter::onCallEnded(const QString& callId)
 }
 
 void
-CallAdapter::onCallStatusChanged(const QString& callId, int code)
+CallAdapter::onCallStatusChanged(const QString& accountId, const QString& callId, int code)
 {
     Q_UNUSED(code)
 
@@ -468,11 +468,14 @@ CallAdapter::onShowIncomingCallView(const QString& accountId, const QString& con
             showNotification(accountId, convInfo.uid);
             return;
         }
+        if (!accountProperties.denySecondCall) {
+            lrcInstance_->selectConversation(convInfo.uid, accountId);
+        }
+    } else {
+        // finally, in this case, the conversation isn't selected yet
+        // and there are no other special conditions, so just select the conversation
+        lrcInstance_->selectConversation(convInfo.uid, accountId);
     }
-
-    // finally, in this case, the conversation isn't selected yet
-    // and there are no other special conditions, so just select the conversation
-    lrcInstance_->selectConversation(convInfo.uid, accountId);
 }
 
 void
@@ -563,7 +566,7 @@ CallAdapter::connectCallModel(const QString& accountId)
     connect(accInfo.callModel.get(),
             &CallModel::callStatusChanged,
             this,
-            QOverload<const QString&, int>::of(&CallAdapter::onCallStatusChanged),
+            QOverload<const QString&, const QString&, int>::of(&CallAdapter::onCallStatusChanged),
             Qt::UniqueConnection);
 
     connect(accInfo.callModel.get(),
