@@ -110,6 +110,7 @@ Item {
     property string enablePTT: qsTr("Enable push-to-talk")
     property string keyboardShortcut: qsTr("Keyboard shortcut")
     property string changeKeyboardShortcut: qsTr("Change keyboard shortcut")
+    property string raiseWhenCalled: qsTr("Send the application to the front for incoming calls")
 
     // ChangePttKeyPopup
     property string changeShortcut: qsTr("Change shortcut")

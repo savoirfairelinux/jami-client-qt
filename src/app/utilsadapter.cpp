@@ -92,11 +92,12 @@ UtilsAdapter::setAppValue(const Settings::Key key, const QVariant& value)
         Q_EMIT appThemeChanged();
     else if (key == Settings::Key::UseFramelessWindow)
         Q_EMIT useFramelessWindowChanged();
-    else if (key == Settings::Key::SpellLang) {
+    else if (key == Settings::Key::SpellLang)
         Q_EMIT spellLanguageChanged();
-    } else if (key == Settings::Key::EnableSpellCheck) {
+    else if (key == Settings::Key::EnableSpellCheck)
         Q_EMIT enableSpellCheckChanged();
-    }
+    else if (key == Settings::Key::RaiseWhenCalled)
+        Q_EMIT raiseWhenCalledChanged();
 #if !APPSTORE
     // Any donation campaign-related keys can trigger a donation campaign check
     else if (key == Settings::Key::IsDonationVisible
