@@ -270,7 +270,7 @@ public Q_SLOTS:
      * Listen from callmodel for calls status changed.
      * @param callId
      */
-    void slotCallStatusChanged(const QString& callId, int code);
+    void slotCallStatusChanged(const QString& accountId, const QString& callId, int code);
     /**
      * Listen from callmodel for writing "Call started"
      * @param callId
@@ -3192,7 +3192,7 @@ ConversationModelPimpl::slotNewCall(const QString& fromId,
 }
 
 void
-ConversationModelPimpl::slotCallStatusChanged(const QString& callId, int code)
+ConversationModelPimpl::slotCallStatusChanged(const QString& accountId, const QString& callId, int code)
 {
     Q_UNUSED(code)
     // Get conversation
@@ -3203,8 +3203,11 @@ ConversationModelPimpl::slotCallStatusChanged(const QString& callId, int code)
                           });
 
     try {
+        auto accountProperties = lrc.getAccountModel().getAccountConfig(accountId);
         auto call = linked.owner.callModel->getCall(callId);
-        if (i != conversations.end()) {
+        if (i != conversations.end()
+            && (!accountProperties.denySecondCall
+                || call.status == call::Status::IN_PROGRESS)) {
             // Update interaction status
             invalidateModel();
             linked.selectConversation(i->uid);

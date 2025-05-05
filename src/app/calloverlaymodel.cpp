@@ -135,7 +135,7 @@ PendingConferenceesListModel::connectSignals()
     callsStatusChanged_ = connect(currentCallModel,
                                   &CallModel::callStatusChanged,
                                   this,
-                                  [this](const QString&, int) {
+                                  [this](const QString&, const QString&, int) {
                                       Q_EMIT dataChanged(index(0, 0),
                                                          index(rowCount() - 1),
                                                          {Role::CallStatus});

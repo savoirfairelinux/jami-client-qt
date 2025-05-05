@@ -78,6 +78,7 @@ struct ConfProperties_t
     QString mailbox;
     QString dtmfType;
     bool autoAnswer;
+    bool denySecondCall;
     bool sendReadReceipt;
     bool sendComposing;
     bool isRendezVous;

@@ -371,7 +371,7 @@ CurrentConversation::updateActiveCalls(const QString&, const QString& convId)
 }
 
 void
-CurrentConversation::onCallStatusChanged(const QString& callId, int)
+CurrentConversation::onCallStatusChanged(const QString& accountId, const QString& callId, int)
 {
     if (callId != callId_) {
         return;
