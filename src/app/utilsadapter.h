@@ -181,6 +181,7 @@ Q_SIGNALS:
     void changeLanguage();
     void donationCampaignSettingsChanged();
     void useFramelessWindowChanged();
+    void raiseWhenCalledChanged();
 
 private:
     QClipboard* clipboard_;
