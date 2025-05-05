@@ -697,7 +697,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="282"/>
         <source>Delete conversation</source>
-        <translation type="unfinished"/>
+        <translation>Slett samtale</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="307"/>
@@ -1164,7 +1164,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="481"/>
         <source>If the account has not been backed up or added to another device, the account and registered username will be IRREVOCABLY LOST.</source>
-        <translation type="unfinished"/>
+        <translation>Dersom kontoen ikkje har ein backup eller lagt til ei anna eining, blir konten og det registrerte brukernamnet UGJENKALLELEG TAPT.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="508"/>
@@ -1262,7 +1262,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="884"/>
         <source>Free and private sharing. &lt;a href=&quot;https://jami.net/whydonate/&quot;&gt;Donate&lt;/a&gt; to expand it.</source>
-        <translation type="unfinished"/>
+        <translation>Del gratis og privat. &lt;a href=&quot;https://jami.net/whydonate/&quot;&gt;Doner&lt;/a&gt; for å utvida dette.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="886"/>
@@ -2061,12 +2061,12 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="425"/>
         <source>Your Jami account is registered only on this device as an archive containing the keys of your account. Access to this archive can be protected with a password.</source>
-        <translation type="unfinished"/>
+        <translation>Kontoen din på Jami er berre registrert på denne eininga, likt eit arkiv som inneheld nyklane til kontoen din. Tilgjenge til dette arkivet kan ein verna med eit passord.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="427"/>
         <source>This Jami account exists only on this device. The account will be lost if this device is lost or the application is uninstalled. It is recommended to make a backup of this account.</source>
-        <translation type="unfinished"/>
+        <translation>Denne Jami-kontoen finst berre på denne eininga. Kontoen blir tapt dersom denne eininga forsvinn eller applikasjonen blir avinstallert. Det er tilrådd å laga ein backup av denne kontoen.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="434"/>
@@ -2396,7 +2396,7 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="452"/>
         <source>A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected with a password.</source>
-        <translation type="unfinished"/>
+        <translation>Ein Jami-konto blir oppretta og lagra lokalt på denne eininga, likt eit arkiv som inneheld nyklane til kontoen din. Tilgjenget til arkivet kan, heilt valfritt, bli verna med eit passord.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="454"/>
@@ -2456,7 +2456,7 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="523"/>
         <source>Incorrect password.</source>
-        <translation type="unfinished"/>
+        <translation>Feil passord.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="524"/>
@@ -2713,7 +2713,7 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="853"/>
         <source>Jami identity</source>
-        <translation>identiteten til Jami</translation>
+        <translation>Jami-identiteten din</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="854"/>
@@ -2728,7 +2728,7 @@ The profile can be changed in account settings.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="858"/>
         <source>Enabling your account allows you to be contacted on Jami</source>
-        <translation>Med kontoen din kan du bli kontaktad på Jami</translation>
+        <translation>Med kontoen din kan du bli kontakta på Jami</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="868"/>
@@ -4410,7 +4410,7 @@ Please try again.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="93"/>
         <source>What is the green dot next to my account?</source>
-        <translation>Kva er den grøne punkten ved sidan kontoen min?</translation>
+        <translation>Kva tyder den grøne ringen ved sidan kontoen min?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="80"/>

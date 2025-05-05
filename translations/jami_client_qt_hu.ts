@@ -1533,7 +1533,7 @@ csatlakozásra a beszélgetés összehangolásához…</translation>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="65"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="198"/>
         <source>Manage account</source>
-        <translation>Fiók kezelése</translation>
+        <translation>Fiókkezelés</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="199"/>
@@ -1634,7 +1634,7 @@ csatlakozásra a beszélgetés összehangolásához…</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="275"/>
         <source>Share</source>
-        <translation>Megosztás </translation>
+        <translation>Megosztás</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="276"/>
@@ -1829,7 +1829,7 @@ csatlakozásra a beszélgetés összehangolásához…</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="320"/>
         <source>Sockets</source>
-        <translation>Foglalatok</translation>
+        <translation>Csatornák</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="321"/>
@@ -3151,7 +3151,7 @@ Ha készen áll, olvassa be a QR-kódot.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="607"/>
         <source>Alternatively you could enter the authentication code manually.</source>
-        <translation>A hitelesítési kódot is kézzel megadhatja</translation>
+        <translation>Vagy kézzel is megadhatja a hitelesítési kódot.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="608"/>
@@ -4552,7 +4552,7 @@ Please try again.</source>
     <message>
         <location filename="../src/app/utilsadapter.cpp" line="348"/>
         <source>%1 Mbps</source>
-        <translation>%1 megabit másodpercenként </translation>
+        <translation>%1 megabit másodpercenként</translation>
     </message>
     <message>
         <location filename="../src/app/utilsadapter.cpp" line="348"/>
