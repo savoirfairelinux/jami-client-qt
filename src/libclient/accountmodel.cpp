@@ -865,6 +865,7 @@ account::Info::fromDetails(const MapStringString& details)
     confProperties.mailbox = details[ConfProperties::MAILBOX];
     confProperties.dtmfType = details[ConfProperties::DTMF_TYPE];
     confProperties.autoAnswer = toBool(details[ConfProperties::AUTOANSWER]);
+    confProperties.denySecondCall = toBool(details[ConfProperties::DENYSECONDCALL]);
     confProperties.sendReadReceipt = toBool(details[ConfProperties::SENDREADRECEIPT]);
     confProperties.sendComposing = toBool(details[ConfProperties::SENDCOMPOSING]);
     confProperties.isRendezVous = toBool(details[ConfProperties::ISRENDEZVOUS]);
@@ -981,6 +982,7 @@ account::ConfProperties_t::toDetails() const
     details[ConfProperties::MAILBOX] = this->mailbox;
     details[ConfProperties::DTMF_TYPE] = this->dtmfType;
     details[ConfProperties::AUTOANSWER] = toQString(this->autoAnswer);
+    details[ConfProperties::DENYSECONDCALL] = toQString(this->denySecondCall);
     details[ConfProperties::SENDREADRECEIPT] = toQString(this->sendReadReceipt);
     details[ConfProperties::SENDCOMPOSING] = toQString(this->sendComposing);
     details[ConfProperties::ISRENDEZVOUS] = toQString(this->isRendezVous);
