@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40aadbbe_0fc2b5bf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-05-05T10:59:49Z",
+      "side": 1,
+      "message": "Does Jami work without warnings and errors for the patch in the following scenarios?\n1. Jami → Open settings → Account → Advanced settings → Media → Toggle “Enable video” to disable “Video codecs”.\n2. For a device that only has a microphone and a speaker (does not have a camera).\n\nThank you",
+      "revId": "7c5ce3016a968f9aa40629241b86e3f0d0a4dd02",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
