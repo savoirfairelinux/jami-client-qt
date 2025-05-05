@@ -183,6 +183,7 @@ Q_SIGNALS:
     void useFramelessWindowChanged();
     void spellLanguageChanged();
     void enableSpellCheckChanged();
+    void raiseWhenCalledChanged();
 
 private:
     QClipboard* clipboard_;
