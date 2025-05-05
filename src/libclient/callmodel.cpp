@@ -1498,7 +1498,7 @@ CallModelPimpl::slotCallStateChanged(const QString& accountId,
                               details["TO_USERNAME"]);
 
         // NOTE: signal emission order matters, always emit CallStatusChanged before CallEnded
-        Q_EMIT linked.callStatusChanged(callId, code);
+        Q_EMIT linked.callStatusChanged(accountId, callId, code);
         Q_EMIT behaviorController.callStatusChanged(linked.owner.id, callId);
     }
 
@@ -1509,7 +1509,7 @@ CallModelPimpl::slotCallStateChanged(const QString& accountId,
 
     if (status == call::Status::ENDED && !call::isTerminating(call->status)) {
         call->status = call::Status::TERMINATING;
-        Q_EMIT linked.callStatusChanged(callId, code);
+        Q_EMIT linked.callStatusChanged(accountId, callId, code);
         Q_EMIT behaviorController.callStatusChanged(linked.owner.id, callId);
     }
 
@@ -1528,7 +1528,7 @@ CallModelPimpl::slotCallStateChanged(const QString& accountId,
                     .arg(call::to_string(status));
 
     // NOTE: signal emission order matters, always emit CallStatusChanged before CallEnded
-    Q_EMIT linked.callStatusChanged(callId, code);
+    Q_EMIT linked.callStatusChanged(accountId, callId, code);
     Q_EMIT behaviorController.callStatusChanged(linked.owner.id, callId);
 
     if (call->status == call::Status::ENDED) {
