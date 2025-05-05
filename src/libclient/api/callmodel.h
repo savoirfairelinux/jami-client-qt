@@ -446,7 +446,7 @@ Q_SIGNALS:
      * Emitted when a call state changes
      * @param callId
      */
-    void callStatusChanged(const QString& callId, int code) const;
+    void callStatusChanged(const QString& accountId, const QString& callId, int code) const;
     /**
      * Emitted when the rendered image changed
      * @param confId
@@ -481,7 +481,9 @@ Q_SIGNALS:
      * @param conversationId
      * @param confId
      */
-    void callAddedToConference(const QString& callId, const QString& conversationId, const QString& confId) const;
+    void callAddedToConference(const QString& callId,
+                               const QString& conversationId,
+                               const QString& confId) const;
 
     /**
      * Emitted when a voice mail notice arrives

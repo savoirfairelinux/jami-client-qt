@@ -81,7 +81,7 @@ private:
 private Q_SLOTS:
     void onCurrentConvIdChanged();
     void onCurrentAccountIdChanged();
-    void onCallStatusChanged(const QString& callId, int code);
+    void onCallStatusChanged(const QString& accountId, const QString& callId, int code);
     void onCallInfosChanged(const QString& accountId, const QString& callId);
     void onCurrentCallChanged(const QString& callId);
     void onParticipantsChanged(const QString& callId);

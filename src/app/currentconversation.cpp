@@ -319,7 +319,8 @@ CurrentConversation::updateErrors(const QString& convId)
                 } else if (code == 3) {
                     newErrors.append(tr("An invalid message was detected."));
                 } else if (code == 4) {
-                    newErrors.append(tr("Insufficient permission to update conversation information."));
+                    newErrors.append(
+                        tr("Insufficient permission to update conversation information."));
                 } else if (code == 5) {
                     newErrors.append(tr("An error occurred while committing a new message."));
                 } else {
@@ -371,7 +372,7 @@ CurrentConversation::updateActiveCalls(const QString&, const QString& convId)
 }
 
 void
-CurrentConversation::onCallStatusChanged(const QString& callId, int)
+CurrentConversation::onCallStatusChanged(const QString& accountId, const QString& callId, int)
 {
     if (callId != callId_) {
         return;
