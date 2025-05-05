@@ -37,6 +37,7 @@ ApplicationWindow {
     property bool isRTL: UtilsAdapter.isRTL
     LayoutMirroring.enabled: isRTL
     LayoutMirroring.childrenInherit: isRTL
+    property var raiseWhenCalled: AppSettingsManager.getValue(Settings.RaiseWhenCalled)
 
     onActiveFocusItemChanged: {
         focusOverlay.margin = -5;
@@ -287,6 +288,26 @@ ApplicationWindow {
         function onCurrentAccountRemoved() {
             if (UtilsAdapter.getAccountListSize() === 0) {
                 viewCoordinator.present("WizardView");
+            }
+        }
+    }
+
+     Connections {
+        target: UtilsAdapter
+        function onRaiseWhenCalled() {
+            raiseWhenCalled = AppSettingsManager.getValue(Settings.RaiseWhenCalled);
+        }
+    }
+
+    Connections {
+        target: CallAdapter
+
+        function onCallStatusChanged(index, accountId, convUid) {
+            //If we are starting a call with raiseWhenCalled activated
+            if (raiseWhenCalled && index === Call.Status.INCOMING_RINGING) {
+                appWindow.raise();
+                appWindow.requestActivate();
+                layoutManager.restoreApp();
             }
         }
     }
