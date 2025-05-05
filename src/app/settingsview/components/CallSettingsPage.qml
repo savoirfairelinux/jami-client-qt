@@ -95,6 +95,14 @@ SettingsPageBase {
                 checked: CurrentAccount.autoAnswer
                 onSwitchToggled: CurrentAccount.autoAnswer = checked
             }
+
+            ToggleSwitch {
+                id: checkBoxRaiseWhenCalled
+
+                labelText: JamiStrings.raiseWhenCalled
+                checked: UtilsAdapter.getAppValue(Settings.RaiseWhenCalled)
+                onSwitchToggled: UtilsAdapter.setAppValue(Settings.Key.RaiseWhenCalled, checked)
+            }
         }
 
         ColumnLayout {
