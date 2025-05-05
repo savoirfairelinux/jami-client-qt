@@ -1,0 +1,155 @@
+pipeline {
+    agent { label 'builder-win' }
+
+    environment {
+        DL_SSH_KEY = '5825b39b-dfc6-435f-918e-12acc1f56221'
+        CLIENT_DIR = "${pwd()}"
+        DAEMON_DIR = "${env.CLIENT_DIR}\\daemon"
+        INSTALLER_DIR = "${env.CLIENT_DIR}\\JamiInstaller\\bin\\Release\\en-us"
+    }
+
+    options {
+        ansiColor('xterm')
+    }
+
+    parameters {
+        string(name: 'GERRIT_REFSPEC',
+                defaultValue: 'refs/heads/master',
+                description: 'The gerrit refspec to fetch.')
+        string(name: 'VERSION_TAG',
+                description: 'Beta version tag.')
+        booleanParam(name: 'ARCHIVE',
+                defaultValue: false,
+                description: 'do not propagate the release artifacts to the download server.')
+    }
+
+    stages {
+        // stage('Init repository') {
+        //     steps {
+        //         dir(CLIENT_DIR) {
+        //             bat """
+        //                 git submodule update --init --recursive
+        //             """
+        //         }
+        //     }
+        // }
+
+        // stage ('build libjami') {
+        //     steps{
+        //         dir(DAEMON_DIR) {
+        //             ansiColor('xterm') {
+        //                 bat """
+        //                 set
+        //                     git submodule update --init
+        //                     pip install extras/scripts/pywinmake
+        //                     python extras/scripts/winmake.py --base-dir compat/msvc
+        //                 """
+        //             }
+        //         }
+        //     }
+        // }
+
+        // stage ('Build client') {
+        //     steps {
+        //         dir(CLIENT_DIR) {
+        //             ansiColor('xterm') {
+        //                 bat """
+        //                     python extras/scripts/build-windows.py --init || exit /b 1
+        //                     python extras/scripts/build-windows.py --qt=${QT_LATEST_PATH} --build-version=${VERSION_TAG} --enable-crash-reports --crash-report-url=${CRASH_REPORT_URL} || exit /b 1
+        //                 """
+        //             }
+        //         }
+        //     }
+        // }
+
+        // stage ('code sign + create installer') {
+        //     steps {
+        //         script {
+        //             dir(CLIENT_DIR) {
+        //                 bat """
+        //                     cd x64\\Release
+
+        //                     :: setup the code-signing
+        //                     set BASE_DIR=C:\\Users\\jenkins-jami\\jenkins\\signing
+        //                     set TIMESTAMPURL=http://timestamp.comodoca.com
+        //                     set PK_CONTAINER=Sectigo_20240201141825
+        //                     set PIN="LLLvLL=rx+{^2-hM"
+        //                     set CERT="%BASE_DIR%\\COMODO_EV.cer"
+        //                     set SIGNTOOL=%BASE_DIR%\\etokensign\\x64\\Release\\etokensign.exe
+        //                     set TARGET_FILE=%BASE_DIR%\\test\\test.exe
+        //                     set VER_TOOL="C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.22000.0\\x64\\signtool.exe"
+        //                     set SIGN_DESC="Jami"
+
+        //                     :: code-sign all the binaries
+        //                     for /r %%f in (*.dll, *.exe) do if exist %%f %SIGNTOOL% %CERT% %PK_CONTAINER% %PIN% %TIMESTAMPURL% %%f %SIGN_DESC% || exit /b 1
+
+        //                     :: generate .msi
+        //                     set VSInstallerFolder="%ProgramFiles(x86)%\\Microsoft Visual Studio\\Installer"
+        //                     pushd %VSInstallerFolder%
+        //                     for /f "usebackq tokens=*" %%i in (`vswhere -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath`) do (
+        //                     set VSLATESTDIR=%%i
+        //                     )
+        //                     popd
+        //                     set path=%path:"=%
+        //                     call "%VSLATESTDIR%"\\VC\\Auxiliary\\Build\\vcvarsall.bat amd64 10.0.16299.0
+        //                     cd ../..
+        //                     set VCRedistMergeModule=C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Redist\\MSVC\\v142\\MergeModules\\Microsoft_VC142_CRT_x64.msm
+        //                     set MSBUILD="C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\MSBuild\\Current\\Bin\\MSBuild.exe"
+        //                     %MSBUILD% JamiInstaller\\JamiInstaller.wixproj /verbosity:normal /p:Configuration=Release /nologo /p:useenv=true /p:Platform=x64 /maxcpucount:%NUMBER_OF_PROCESSORS% || exit /b 1
+
+        //                     :: code-sign the .msi
+        //                     cd ${INSTALLER_DIR}
+        //                     %SIGNTOOL% %CERT% %PK_CONTAINER% %PIN% %TIMESTAMPURL% "jami.release.x64.msi" %SIGN_DESC% || exit /b 1
+
+        //                     :: verify signature
+        //                     %VER_TOOL% verify /pa /v "jami.release.x64.msi" || exit /b 1
+
+        //                     :: make a copy with a version number to archive"
+        //                     bash -c "cp jami.release.x64.msi 'jami_x86_64-${VERSION_TAG}.msi'"
+
+        //                     :: make a copy of the PDB file to archive
+        //                     bash -c "cp ../../../../x64/Release/Jami.pdb 'jami_x86_64-${VERSION_TAG}.pdb'"
+        //                 """
+        //             }
+        //         }
+        //     }
+        // }
+
+        stage('publish') {
+            when {
+                expression { env.ARCHIVE == false }
+            }
+            steps {
+                sshagent(credentials: [DL_SSH_KEY]) {
+                    dir(CLIENT_DIR) {
+                        script {
+                            def remoteBaseDir = '/srv/repository/ring/windows-test'
+
+                            bat """
+                                echo ${VERSION_TAG} > version
+                                bash -c "scp -v '${INSTALLER_DIR}/jami_x86_64-${VERSION_TAG}.msi' ${SSH_HOST_DL_RING_CX}:${remoteBaseDir}/archive"
+                                bash -c "scp -v '${INSTALLER_DIR}/jami_x86_64-${VERSION_TAG}.pdb' ${SSH_HOST_DL_RING_CX}:${remoteBaseDir}/archive"
+                                bash -c "scp -v 'version' ${SSH_HOST_DL_RING_CX}:${remoteBaseDir}"
+                                bash -c "ssh ${SSH_HOST_DL_RING_CX} ln -fs 'archive/jami_x86_64-${VERSION_TAG}.msi' '${remoteBaseDir}/jami.release.x64.msi'"
+                                bash -c "ssh ${SSH_HOST_DL_RING_CX} rm -f ${remoteBaseDir}/archive/jami_x86_64-null.msi"
+                            """
+                        }
+                    }
+                }
+            }
+        }
+        stage('archive') {
+            when {
+                expression { env.ARCHIVE != false }
+            }
+            steps {
+                dir(CLIENT_DIR) {
+                    script {
+                        echo "ARCHIVE param is: ${env.ARCHIVE} (type: ${env.ARCHIVE.getClass()})"
+                    }
+                    archiveArtifacts "JamiInstaller/bin/Release/en-us/jami.release.x64.msi"
+                }
+            }
+        }
+    }
+}
