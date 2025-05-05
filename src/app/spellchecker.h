@@ -47,6 +47,15 @@ public:
     Q_INVOKABLE QStringList suggest(const QString& word);
     Q_INVOKABLE void ignoreWord(const QString& word);
 
+    // Used to find words and their position in a text
+    struct WordInfo {
+        QString word;
+        int position;
+        int length;
+    };
+
+    Q_INVOKABLE QList<WordInfo> findWords(const QString& text);
+
 private:
     void put_word(const QString& word);
     std::shared_ptr<Hunspell> _hunspell;

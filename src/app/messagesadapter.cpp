@@ -55,9 +55,9 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     , mediaInteractions_(std::make_unique<MessageListModel>(nullptr))
     , timestampTimer_(new QTimer(this))
 {
-    // Default SpellChecker with default dictionnary path. Can be update with updateDictionnary
     #if defined(Q_OS_LINUX)
-    spellChecker_ = new SpellChecker(spellCheckDictionaryManager_->getDictionaryPath());
+    // Initialize with make_shared
+    spellChecker_ = std::make_shared<SpellChecker>(spellCheckDictionaryManager_->getDictionaryPath());
     #endif
     setObjectName(typeid(*this).name());
 
@@ -761,6 +761,24 @@ MessagesAdapter::spellSuggestionsRequest(const QString& word)
     }
 
     return variantList;
+}
+
+QVariantList
+MessagesAdapter::findWords(const QString& text)
+{
+    QVariantList result;
+    if (!spellChecker_)
+        return result;
+
+    auto words = spellChecker_->findWords(text);
+    for (const auto& word : words) {
+        QVariantMap wordInfo;
+        wordInfo["word"] = word.word;
+        wordInfo["position"] = word.position;
+        wordInfo["length"] = word.length;
+        result.append(wordInfo);
+    }
+    return result;
 }
 
 void

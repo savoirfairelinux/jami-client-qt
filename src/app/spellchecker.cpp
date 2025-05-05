@@ -26,6 +26,8 @@
 #include <QStringList>
 #include <QDebug>
 #include <QRegExp>
+#include <QRegularExpression>
+#include <QRegularExpressionMatchIterator>
 
 SpellChecker::SpellChecker(const QString& dictionaryPath)
 {
@@ -92,4 +94,24 @@ SpellChecker::replaceDictionary(const QString& dictionaryPath)
     }
 
     _codec = QTextCodec::codecForName(this->_encoding.toLatin1().constData());
+}
+
+QList<SpellChecker::WordInfo>
+SpellChecker::findWords(const QString& text)
+{
+    // This is in the c++ part of the code because QML regex does not support unicode
+    QList<WordInfo> results;
+    QRegularExpression regex("\\p{L}+|\\p{N}+");
+    QRegularExpressionMatchIterator iter = regex.globalMatch(text);
+
+    while (iter.hasNext()) {
+        QRegularExpressionMatch match = iter.next();
+        WordInfo info;
+        info.word = match.captured();
+        info.position = match.capturedStart();
+        info.length = match.capturedLength();
+        results.append(info);
+    }
+
+    return results;
 }

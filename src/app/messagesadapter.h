@@ -171,6 +171,7 @@ public:
     Q_INVOKABLE QVariantList spellSuggestionsRequest(const QString& word);
     Q_INVOKABLE bool spell(const QString& word);
     Q_INVOKABLE void updateDictionnary(const QString& path);
+    Q_INVOKABLE QVariantList findWords(const QString& text);
 
     // Run corrsponding js functions, c++ to qml.
     void setMessagesImageContent(const QString& path, bool isBased64 = false);
@@ -205,16 +206,12 @@ private:
     QList<QString> conversationTypersUrlToName(const QSet<QString>& typersSet);
 
     AppSettingsManager* settingsManager_;
-    MessageParser* messageParser_;
-    SpellChecker* spellChecker_;
     SpellCheckDictionaryManager* spellCheckDictionaryManager_;
-
+    MessageParser* messageParser_;
     FilteredMsgListModel* filteredMsgListModel_;
-
-    static constexpr const int loadChunkSize_ {20};
-
     std::unique_ptr<MessageListModel> mediaInteractions_;
-
-    QTimer* timestampTimer_ {nullptr};
+    QTimer* timestampTimer_;
+    std::shared_ptr<SpellChecker> spellChecker_;
+    static constexpr const int loadChunkSize_ {20};
     static constexpr const int timestampUpdateIntervalMs_ {1000};
 };
