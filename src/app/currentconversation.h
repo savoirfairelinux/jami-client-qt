@@ -90,7 +90,7 @@ private Q_SLOTS:
     void updateErrors(const QString& convId);
     void updateConversationPreferences(const QString& convId);
     void updateActiveCalls(const QString&, const QString& convId);
-    void onCallStatusChanged(const QString& callId, int code);
+    void onCallStatusChanged(const QString& accountId, const QString& callId, int code);
     void onShowIncomingCallView(const QString& accountId, const QString& convUid);
 
 Q_SIGNALS:

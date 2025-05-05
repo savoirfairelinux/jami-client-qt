@@ -110,6 +110,7 @@ Item {
     property string enablePTT: qsTr("Enable push-to-talk")
     property string keyboardShortcut: qsTr("Keyboard shortcut")
     property string changeKeyboardShortcut: qsTr("Change keyboard shortcut")
+    property string denyNewCallsAutoAnswer: qsTr("Decline incoming calls when in an automatically answered call")
 
     // ChangePttKeyPopup
     property string changeShortcut: qsTr("Change shortcut")
