@@ -314,7 +314,7 @@ def deploy_runtimes(config_str, qt_dir):
     """Deploy the dependencies to the runtime directory."""
     print("Deploying runtime dependencies")
 
-    runtime_dir = os.path.join(repo_root_dir, "x64", config_str)
+    runtime_dir = os.path.join(repo_root_dir, "x64", "Release")
     stamp_file = os.path.join(runtime_dir, ".deploy.stamp")
     if os.path.exists(stamp_file):
         return
