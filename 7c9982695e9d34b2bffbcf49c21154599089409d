@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f81f1326_beaf93c3",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 20
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-05T14:30:20Z",
+      "side": 1,
+      "message": "We don\u0027t do it anywhere else.",
+      "parentUuid": "0f617357_1f906e55",
+      "range": {
+        "startLine": 371,
+        "startChar": 33,
+        "endLine": 371,
+        "endChar": 34
+      },
+      "revId": "7c9982695e9d34b2bffbcf49c21154599089409d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e34425e6_ff574fe5",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-05-01T22:06:21Z",
       "side": 1,
       "message": "Should the `)` be on a new line?",
+      "range": {
+        "startLine": 446,
+        "startChar": 31,
+        "endLine": 446,
+        "endChar": 32
+      },
+      "revId": "7c9982695e9d34b2bffbcf49c21154599089409d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3af3952a_a77a9ba9",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 20
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-05T14:30:20Z",
+      "side": 1,
+      "message": "We don\u0027t do it anywhere else.",
+      "parentUuid": "e34425e6_ff574fe5",
       "range": {
         "startLine": 446,
         "startChar": 31,
@@ -70,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "feddd189_61825238",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 20
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-05T14:30:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0d45352_68025046",
+      "range": {
+        "startLine": 486,
+        "startChar": 18,
+        "endLine": 486,
+        "endChar": 32
+      },
+      "revId": "7c9982695e9d34b2bffbcf49c21154599089409d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d30ebc81_eb039031",
@@ -83,6 +155,30 @@
       "writtenOn": "2025-05-01T21:38:20Z",
       "side": 1,
       "message": "Should the message be shouting?\n\n`hunspell not found - building hunspell`\n\nSorry, the SFL convention is unknown based on the other `message(` lines in this file.",
+      "range": {
+        "startLine": 505,
+        "startChar": 18,
+        "endLine": 505,
+        "endChar": 56
+      },
+      "revId": "7c9982695e9d34b2bffbcf49c21154599089409d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cdd71879_5ea5b754",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 20
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-05T14:30:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d30ebc81_eb039031",
       "range": {
         "startLine": 505,
         "startChar": 18,
@@ -116,6 +212,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a464009_508f933d",
+        "filename": "src/app/commoncomponents/SpellLanguageContextMenu.qml",
+        "patchSetId": 20
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-05T14:30:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b73a1e4f_01acee96",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "7c9982695e9d34b2bffbcf49c21154599089409d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e5dd3e6a_bb1910c9",
@@ -129,6 +249,30 @@
       "writtenOn": "2025-05-01T21:38:20Z",
       "side": 1,
       "message": "Should `2024` be changed to `2024-2025`?",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "7c9982695e9d34b2bffbcf49c21154599089409d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be23065a_36727ab5",
+        "filename": "src/app/mainview/components/CachedFile.qml",
+        "patchSetId": 20
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-05T14:30:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5dd3e6a_bb1910c9",
       "range": {
         "startLine": 2,
         "startChar": 17,
@@ -162,6 +306,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c88e9e9_233d7968",
+        "filename": "src/app/mainview/components/MessageBarTextArea.qml",
+        "patchSetId": 20
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-05T14:30:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64560f81_95813c3d",
+      "range": {
+        "startLine": 276,
+        "startChar": 12,
+        "endLine": 276,
+        "endChar": 16
+      },
+      "revId": "7c9982695e9d34b2bffbcf49c21154599089409d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1ccfe3bd_95d79481",
@@ -175,6 +343,30 @@
       "writtenOn": "2025-05-01T21:38:20Z",
       "side": 1,
       "message": "Should `2024` be `2025`?",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "7c9982695e9d34b2bffbcf49c21154599089409d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87b76be4_9e5dcc23",
+        "filename": "src/app/spellchecker.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-05T14:30:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ccfe3bd_95d79481",
       "range": {
         "startLine": 2,
         "startChar": 22,
@@ -202,6 +394,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6219ee94_fdb1888a",
+        "filename": "src/app/spellchecker.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-05T14:30:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9115eca6_b30f3651",
+      "revId": "7c9982695e9d34b2bffbcf49c21154599089409d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "834e8ae6_ce5cef30",
@@ -215,6 +425,30 @@
       "writtenOn": "2025-05-01T21:38:20Z",
       "side": 1,
       "message": "What does this mean?\n`Detect encoding by analyzing the SET option in the affix file`",
+      "range": {
+        "startLine": 80,
+        "startChar": 7,
+        "endLine": 80,
+        "endChar": 65
+      },
+      "revId": "7c9982695e9d34b2bffbcf49c21154599089409d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "609670d4_ca644f10",
+        "filename": "src/app/spellchecker.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-05T14:30:20Z",
+      "side": 1,
+      "message": "An .aff (affix) file is a configuration file used by Hunspell that contains rules for handling word prefixes and suffixes.\nIn Hunspell\u0027s .aff files, there\u0027s usually a SET directive that specifies the character encoding used for the dictionary.\nThe code looks for this encoding by:\n-Opening the .aff file\n-Searching for a line that starts with \"SET\" followed by an encoding name\n-Using a regular expression to extract the encoding value",
+      "parentUuid": "834e8ae6_ce5cef30",
       "range": {
         "startLine": 80,
         "startChar": 7,
@@ -248,6 +482,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "059f9852_d3020742",
+        "filename": "src/app/spellchecker.h",
+        "patchSetId": 20
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-05T14:30:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f2906972_0faad3c8",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "7c9982695e9d34b2bffbcf49c21154599089409d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "98f2630c_9d80505f",
@@ -261,6 +519,30 @@
       "writtenOn": "2025-05-01T21:38:20Z",
       "side": 1,
       "message": "Should `Lang` be `Language`?",
+      "range": {
+        "startLine": 97,
+        "startChar": 40,
+        "endLine": 97,
+        "endChar": 44
+      },
+      "revId": "7c9982695e9d34b2bffbcf49c21154599089409d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c0a243c_93b51d13",
+        "filename": "src/app/utilsadapter.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-05T14:30:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98f2630c_9d80505f",
       "range": {
         "startLine": 97,
         "startChar": 40,
@@ -294,6 +576,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d05a4c1_3f255b06",
+        "filename": "src/app/utilsadapter.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 570,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-05T14:30:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "764b9260_5f6fa9dc",
+      "range": {
+        "startLine": 570,
+        "startChar": 28,
+        "endLine": 570,
+        "endChar": 33
+      },
+      "revId": "7c9982695e9d34b2bffbcf49c21154599089409d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fc0ef3e7_57080515",
@@ -317,6 +623,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94d7a946_bbcad781",
+        "filename": "src/app/utilsadapter.h",
+        "patchSetId": 20
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-05T14:30:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc0ef3e7_57080515",
+      "range": {
+        "startLine": 185,
+        "startChar": 23,
+        "endLine": 185,
+        "endChar": 28
+      },
+      "revId": "7c9982695e9d34b2bffbcf49c21154599089409d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "500d380b_17f5f92c",
@@ -330,6 +660,30 @@
       "writtenOn": "2025-05-01T21:38:20Z",
       "side": 1,
       "message": "Should `Langs` be `Languages`?",
+      "range": {
+        "startLine": 186,
+        "startChar": 14,
+        "endLine": 186,
+        "endChar": 18
+      },
+      "revId": "7c9982695e9d34b2bffbcf49c21154599089409d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54f337e7_1ea63f8d",
+        "filename": "src/app/utilsadapter.h",
+        "patchSetId": 20
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-05T14:30:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "500d380b_17f5f92c",
       "range": {
         "startLine": 186,
         "startChar": 14,
