@@ -95,6 +95,14 @@ SettingsPageBase {
                 checked: CurrentAccount.autoAnswer
                 onSwitchToggled: CurrentAccount.autoAnswer = checked
             }
+
+            ToggleSwitch {
+                id: checkBoxDenyNewCallsAutoAnswer
+
+                labelText: JamiStrings.denyNewCallsAutoAnswer
+                checked: CurrentAccount.denyNewCallsAutoAnswer
+                onSwitchToggled: CurrentAccount.denyNewCallsAutoAnswer = checked
+            }
         }
 
         ColumnLayout {
