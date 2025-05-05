@@ -16,20 +16,10 @@
     <InstallerPlatform>x64</InstallerPlatform>
     <DefineSolutionProperties>false</DefineSolutionProperties>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
-    <OutputPath>bin\$(Configuration)\</OutputPath>
-    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+  <PropertyGroup>
+    <OutputPath>bin\Release\</OutputPath>
+    <IntermediateOutputPath>obj\Release\</IntermediateOutputPath>
     <DefineConstants>AppHarvestPath=..\x64\Release;CrtHarvestPath=$(VC_CRT_Dir)</DefineConstants>
-    <SuppressPdbOutput>True</SuppressPdbOutput>
-    <CompilerAdditionalOptions>
-    </CompilerAdditionalOptions>
-    <WixVariables>
-    </WixVariables>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Beta|x64' ">
-    <OutputPath>bin\$(Configuration)\</OutputPath>
-    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
-    <DefineConstants>AppHarvestPath=..\x64\Beta;CrtHarvestPath=$(VC_CRT_Dir)</DefineConstants>
     <SuppressPdbOutput>True</SuppressPdbOutput>
     <CompilerAdditionalOptions>
     </CompilerAdditionalOptions>
@@ -70,7 +60,7 @@
     <Error Text="The WiX Toolset v3.11 (or newer) build tools must be installed to build this project. To download the WiX Toolset, see http://wixtoolset.org/releases/" />
   </Target>
   <Target Name="BeforeBuild">
-    <HeatDirectory Directory="..\x64\$(Configuration)"
+    <HeatDirectory Directory="..\x64\Release"
       PreprocessorVariable="var.AppHarvestPath"
       OutputFile="AppComponents.wxs"
       ComponentGroupName="AppHeatGenerated"
