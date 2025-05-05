@@ -272,26 +272,33 @@ JamiFlickable {
         }
 
         function updateUnderlineText() {
-            /* Need to refresh all of the underline object. Otherwise the
-            underline stay persistent on type
-            */
             clearUnderlines();
             if (spellCheckActive) {
                 var text = textArea.text;
 
-                // Use regex to find words and their positions
-                var wordRegex = /\b\w+\b/g;
-                var match;
-                while ((match = wordRegex.exec(text)) !== null) {
-                    var word = match[0];
-                    var wordStart = match.index;
+                // Split text into words using simpler approach
+                var words = text.split(/[ \t\n\r\f\v.,!?;:'"()[\]{}\u3000\u00A0]+/);
+                var currentPos = 0;
+
+                for (var i = 0; i < words.length; i++) {
+                    var word = words[i];
+                    if (word.length === 0) continue;
+
+                    // Find actual position of the word in text
+                    var wordStart = text.indexOf(word, currentPos);
+                    currentPos = wordStart + word.length;
+
                     if (!MessagesAdapter.spell(word)) {
                         textMetrics.text = word;
-                        var xPos = textArea.positionToRectangle(wordStart).x;
-                        var yPos = textArea.positionToRectangle(wordStart).y + textArea.positionToRectangle(wordStart).height;
-                        var underlineObject = Qt.createQmlObject('import QtQuick; Rectangle {height: 2; color: "red";}', textArea);
-                        underlineObject.x = xPos;
-                        underlineObject.y = yPos;
+                        var rect = textArea.positionToRectangle(wordStart);
+
+                        var underlineObject = Qt.createQmlObject('import QtQuick; Rectangle {
+                            height: 2;
+                            color: "red";
+                        }', textArea);
+
+                        underlineObject.x = rect.x;
+                        underlineObject.y = rect.y + rect.height;
                         underlineObject.width = textMetrics.width;
                         underlineList.push(underlineObject);
                     }
