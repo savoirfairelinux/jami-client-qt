@@ -356,7 +356,7 @@ CurrentCall::onCurrentAccountIdChanged()
 }
 
 void
-CurrentCall::onCallStatusChanged(const QString& callId, int code)
+CurrentCall::onCallStatusChanged(const QString& accountId, const QString& callId, int code)
 {
     Q_UNUSED(code)
 
