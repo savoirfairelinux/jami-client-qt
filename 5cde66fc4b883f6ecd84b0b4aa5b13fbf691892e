@@ -52,6 +52,24 @@
       "parentUuid": "fe4062b6_117d2e47",
       "revId": "5cde66fc4b883f6ecd84b0b4aa5b13fbf691892e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3776df41_4604490e",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-05-06T23:05:12Z",
+      "side": 1,
+      "message": "^",
+      "parentUuid": "2d2778f7_b6d83506",
+      "revId": "5cde66fc4b883f6ecd84b0b4aa5b13fbf691892e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
