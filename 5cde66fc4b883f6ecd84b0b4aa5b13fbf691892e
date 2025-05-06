@@ -16,6 +16,24 @@
       "message": "Please see the https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/2005#note_55232 comment. Thank you",
       "revId": "5cde66fc4b883f6ecd84b0b4aa5b13fbf691892e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe4062b6_117d2e47",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-06T20:25:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e9628d0_6d3cae04",
+      "revId": "5cde66fc4b883f6ecd84b0b4aa5b13fbf691892e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
