@@ -34,6 +34,24 @@
       "parentUuid": "3e9628d0_6d3cae04",
       "revId": "5cde66fc4b883f6ecd84b0b4aa5b13fbf691892e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d2778f7_b6d83506",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-05-06T21:38:05Z",
+      "side": 1,
+      "message": "The string hasn\u0027t changed. Is this correct?",
+      "parentUuid": "fe4062b6_117d2e47",
+      "revId": "5cde66fc4b883f6ecd84b0b4aa5b13fbf691892e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
