@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8405f769_362b5fb3",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 911,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-05-06T23:10:41Z",
+      "side": 1,
+      "message": "checkSpelling",
+      "range": {
+        "startLine": 911,
+        "startChar": 20,
+        "endLine": 911,
+        "endChar": 36
+      },
+      "revId": "a72505f449ec7d0793a20ef1fca48b92892b63bd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bec037d6_dc3ca939",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 912,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-05-06T23:10:41Z",
+      "side": 1,
+      "message": "textLanguage",
+      "range": {
+        "startLine": 912,
+        "startChar": 25,
+        "endLine": 912,
+        "endChar": 38
+      },
+      "revId": "a72505f449ec7d0793a20ef1fca48b92892b63bd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7a7e635_8fec003c",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 916,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-05-06T23:10:41Z",
+      "side": 1,
+      "message": "refreshInstalledDictionaries",
+      "range": {
+        "startLine": 916,
+        "startChar": 20,
+        "endLine": 916,
+        "endChar": 48
+      },
+      "revId": "a72505f449ec7d0793a20ef1fca48b92892b63bd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
