@@ -70,6 +70,24 @@
       "parentUuid": "2d2778f7_b6d83506",
       "revId": "5cde66fc4b883f6ecd84b0b4aa5b13fbf691892e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37a8997e_1dcf1e3a",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-07T15:22:46Z",
+      "side": 1,
+      "message": "I lost my changes with a misplaced squash. I corrected it now.",
+      "parentUuid": "3776df41_4604490e",
+      "revId": "5cde66fc4b883f6ecd84b0b4aa5b13fbf691892e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
