@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f646d760_8ca77924",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 911,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-07T14:02:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8405f769_362b5fb3",
+      "range": {
+        "startLine": 911,
+        "startChar": 20,
+        "endLine": 911,
+        "endChar": 36
+      },
+      "revId": "a72505f449ec7d0793a20ef1fca48b92892b63bd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bec037d6_dc3ca939",
@@ -47,6 +71,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "238734b1_61b4ebac",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 912,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-07T14:02:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bec037d6_dc3ca939",
+      "range": {
+        "startLine": 912,
+        "startChar": 25,
+        "endLine": 912,
+        "endChar": 38
+      },
+      "revId": "a72505f449ec7d0793a20ef1fca48b92892b63bd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c7a7e635_8fec003c",
@@ -60,6 +108,30 @@
       "writtenOn": "2025-05-06T23:10:41Z",
       "side": 1,
       "message": "refreshInstalledDictionaries",
+      "range": {
+        "startLine": 916,
+        "startChar": 20,
+        "endLine": 916,
+        "endChar": 48
+      },
+      "revId": "a72505f449ec7d0793a20ef1fca48b92892b63bd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bd170ac_20fac20f",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 916,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-07T14:02:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7a7e635_8fec003c",
       "range": {
         "startLine": 916,
         "startChar": 20,
