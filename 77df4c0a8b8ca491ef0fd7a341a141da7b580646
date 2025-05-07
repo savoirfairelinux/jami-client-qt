@@ -34,6 +34,24 @@
       "parentUuid": "aee619f5_1a96e358",
       "revId": "77df4c0a8b8ca491ef0fd7a341a141da7b580646",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b661195e_7e7c8b10",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-05-07T23:36:57Z",
+      "side": 1,
+      "message": "1. Should `Put` be changed to `Send`?\n2. To help with white labeling, should `Jami` be changed to `the application`?\n3. Should `when called` be changed to `for incoming calls`?\n\n`Send the application to the front for incoming calls`\n\nThank you",
+      "parentUuid": "8d2bd458_d981c781",
+      "revId": "77df4c0a8b8ca491ef0fd7a341a141da7b580646",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
