@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ca40f3f_0a5f60cb",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 787,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-05-07T23:51:55Z",
+      "side": 0,
+      "message": "Is the application notifying the user of an event?\n\nShould `me` be `you`?\n\nShould `inReplyToMe: qsTr(\"Me\")` be `inReplyToYou: qsTr(\"you\")`\n\nShould this string be incorporated into the `%1 replied to` string to become `%1 replied to you`? It can assist with better translations.\n\nThank you",
+      "range": {
+        "startLine": 787,
+        "startChar": 20,
+        "endLine": 787,
+        "endChar": 43
+      },
+      "revId": "b8b06ccfa15dc08e56bf624312117a0f80b6cf7a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
