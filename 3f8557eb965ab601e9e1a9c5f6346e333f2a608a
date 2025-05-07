@@ -1,0 +1,130 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffe72f55_9df14a17",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 29
+      },
+      "lineNbr": 755,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-05-07T23:08:26Z",
+      "side": 1,
+      "message": "`Hunspell`\nhttps://en.wikipedia.org/wiki/Hunspell",
+      "range": {
+        "startLine": 755,
+        "startChar": 41,
+        "endLine": 755,
+        "endChar": 49
+      },
+      "revId": "3f8557eb965ab601e9e1a9c5f6346e333f2a608a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ba6757f_fb467a62",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 29
+      },
+      "lineNbr": 755,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-05-07T23:08:26Z",
+      "side": 1,
+      "message": "Ensure",
+      "range": {
+        "startLine": 755,
+        "startChar": 2,
+        "endLine": 755,
+        "endChar": 11
+      },
+      "revId": "3f8557eb965ab601e9e1a9c5f6346e333f2a608a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc9c612e_3a5e11e1",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 29
+      },
+      "lineNbr": 758,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-05-07T23:08:26Z",
+      "side": 1,
+      "message": "`# Ensure the generated version file can be found.`",
+      "revId": "3f8557eb965ab601e9e1a9c5f6346e333f2a608a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1aad2f4_4fac0d6c",
+        "filename": "src/app/mainview/components/CachedFile.qml",
+        "patchSetId": 29
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-05-07T23:08:26Z",
+      "side": 1,
+      "message": "Update `2025` to `2025-2025`?\n\nThen a global find (`-2025`) and replace (`-2026`) can be done at the beginning of next year to correctly update only the `2025` years that need changing.\n\nPlease ignore if not SFL convention.\n\nThank you",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "3f8557eb965ab601e9e1a9c5f6346e333f2a608a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e41a200a_341bf174",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-05-07T23:08:26Z",
+      "side": 1,
+      "message": "Is there a file that contains the `#define` constants?\n\nFor an alternative and preferred option, can an option please be added in the Jami settings allowing the user to change the number of spelling suggestions?\n\nThank you",
+      "revId": "3f8557eb965ab601e9e1a9c5f6346e333f2a608a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b39c796d_38eee744",
+        "filename": "src/app/spellchecker.cpp",
+        "patchSetId": 29
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-05-07T23:08:26Z",
+      "side": 1,
+      "message": "`C++`",
+      "range": {
+        "startLine": 102,
+        "startChar": 22,
+        "endLine": 102,
+        "endChar": 25
+      },
+      "revId": "3f8557eb965ab601e9e1a9c5f6346e333f2a608a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
