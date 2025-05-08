@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3edf576a_e93ccc3b",
+        "filename": "src/app/messagesadapter.h",
+        "patchSetId": 29
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-05-08T19:39:52Z",
+      "side": 0,
+      "message": "It\u0027s often good to assume that in-class member initialization is done for a reason. But this isn\u0027t.",
+      "range": {
+        "startLine": 209,
+        "startChar": 4,
+        "endLine": 209,
+        "endChar": 38
+      },
+      "revId": "ff5f94b34a717752d35db221c2f274af22902776",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
