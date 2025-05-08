@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc9d2ae1_fc2a06db",
+        "filename": "src/app/wizardview/WizardView.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-05-08T22:07:42Z",
+      "side": 1,
+      "message": "Nit: to respect our usual naming convention the \"c\" in the id and objectName should be capitalized: `initialCustomizeProfilePage`.",
+      "range": {
+        "startLine": 134,
+        "startChar": 16,
+        "endLine": 136,
+        "endChar": 57
+      },
+      "revId": "7283c7737793f3997693e1bb48d85b0b3625750a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8834c91_7d0b8af4",
+        "filename": "src/app/wizardview/components/InitialCustomizeProfilePage.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-05-08T22:07:42Z",
+      "side": 1,
+      "message": "Is this actually needed? It doesn\u0027t seem to be used anywhere.",
+      "range": {
+        "startLine": 33,
+        "startChar": 18,
+        "endLine": 33,
+        "endChar": 30
+      },
+      "revId": "7283c7737793f3997693e1bb48d85b0b3625750a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36cfc6a9_e6b2d760",
+        "filename": "src/app/wizardview/components/InitialCustomizeProfilePage.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-05-08T22:07:42Z",
+      "side": 1,
+      "message": "Delete if not needed.",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 44,
+        "endChar": 7
+      },
+      "revId": "7283c7737793f3997693e1bb48d85b0b3625750a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcddb6da_65c7d3d8",
+        "filename": "src/app/wizardview/components/InitialCustomizeProfilePage.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-05-08T22:07:42Z",
+      "side": 1,
+      "message": "It looks like this function is only called in one place? If so then I\u0027d suggest getting rid of it.",
+      "range": {
+        "startLine": 46,
+        "startChar": 4,
+        "endLine": 48,
+        "endChar": 5
+      },
+      "revId": "7283c7737793f3997693e1bb48d85b0b3625750a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bf3bdb7_22e47f87",
+        "filename": "src/app/wizardview/components/InitialCustomizeProfilePage.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-05-08T22:07:42Z",
+      "side": 1,
+      "message": "What\u0027s the reason for using a `StackLayout` here? Maybe I\u0027m missing something but it looks like `customizeProfileStack.currentIndex` and `customizeProfilePage.stackIndex` are both always equal to 0?",
+      "range": {
+        "startLine": 74,
+        "startChar": 4,
+        "endLine": 74,
+        "endChar": 17
+      },
+      "revId": "7283c7737793f3997693e1bb48d85b0b3625750a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa7d9316_f3928e3a",
+        "filename": "src/app/wizardview/components/InitialCustomizeProfilePage.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-05-08T22:07:42Z",
+      "side": 1,
+      "message": "Can you explain the reasoning behind this?",
+      "range": {
+        "startLine": 99,
+        "startChar": 23,
+        "endLine": 99,
+        "endChar": 54
+      },
+      "revId": "7283c7737793f3997693e1bb48d85b0b3625750a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "647af59c_c559f8a2",
+        "filename": "src/app/wizardview/components/InitialCustomizeProfilePage.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-05-08T22:07:42Z",
+      "side": 1,
+      "message": "Might be clearer to call this `saveProfileButton` instead?",
+      "range": {
+        "startLine": 239,
+        "startChar": 24,
+        "endLine": 239,
+        "endChar": 43
+      },
+      "revId": "7283c7737793f3997693e1bb48d85b0b3625750a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ca10352_96ada3bf",
+        "filename": "src/app/wizardview/components/InitialCustomizeProfilePage.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-05-08T22:07:42Z",
+      "side": 1,
+      "message": "Nit: it\u0027s generally better to avoid writing expressions whose validity relies on details of operator precedence and associativity rules. Err on the side of adding parentheses even if they\u0027re not strictly necessary: `(1 / 2) * [...]` (And actually it\u0027d probably be even better to get in the habit of writing `0.5 * [...]` or `[...] / 2` since `1 / 2` evaluates to zero in some programming languages.)",
+      "range": {
+        "startLine": 286,
+        "startChar": 42,
+        "endLine": 286,
+        "endChar": 50
+      },
+      "revId": "7283c7737793f3997693e1bb48d85b0b3625750a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
