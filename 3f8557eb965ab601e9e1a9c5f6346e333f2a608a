@@ -264,6 +264,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "14d386a1_0d721166",
+        "filename": "src/app/commoncomponents/LineEditContextMenu.qml",
+        "patchSetId": 29
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-09T19:04:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "85dd3732_fd2ed75c",
+      "range": {
+        "startLine": 98,
+        "startChar": 19,
+        "endLine": 98,
+        "endChar": 31
+      },
+      "revId": "3f8557eb965ab601e9e1a9c5f6346e333f2a608a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3214415c_63029241",
@@ -277,6 +301,30 @@
       "writtenOn": "2025-05-08T19:39:52Z",
       "side": 1,
       "message": "Looks a bit like this should be clearing the model. It\u0027s called in `onClosed` which checks:\n```\nif (!suggestionList || suggestionList.length \u003d\u003d 0) {\n    return;\n}\n```\nand does not clear the model in that case. Is it guaranteed that the `suggestionList` and `dynamicModel` are synced?",
+      "range": {
+        "startLine": 122,
+        "startChar": 8,
+        "endLine": 122,
+        "endChar": 54
+      },
+      "revId": "3f8557eb965ab601e9e1a9c5f6346e333f2a608a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "118ad547_63e12fad",
+        "filename": "src/app/commoncomponents/LineEditContextMenu.qml",
+        "patchSetId": 29
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-09T19:04:57Z",
+      "side": 1,
+      "message": "Not critical, will be adressed in next development phase",
+      "parentUuid": "3214415c_63029241",
       "range": {
         "startLine": 122,
         "startChar": 8,
