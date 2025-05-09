@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "662fb2f3_48e067ad",
+        "filename": "src/app/wizardview/components/WelcomePage.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2025-05-09T20:55:03Z",
+      "side": 1,
+      "message": "Maybe should add a margin so that it aligns with the buttons in the corners of the window",
+      "range": {
+        "startLine": 419,
+        "startChar": 16,
+        "endLine": 419,
+        "endChar": 23
+      },
+      "revId": "773464e67c203c0c7410af1c2f142a3b9a3a8a14",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
