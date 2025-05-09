@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "809fa070_9e93e7f1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 21
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-05-09T02:19:28Z",
+      "side": 1,
+      "message": "It\u0027s not just a cleanup if you\u0027re adding hundreds of lines of translations. I recommend submitting the translations as a separate patch to make the actual cleanup easier to review.",
+      "range": {
+        "startLine": 7,
+        "startChar": 30,
+        "endLine": 7,
+        "endChar": 37
+      },
+      "revId": "7682cfdd66de608fbb6b8b40ec3010b0c5904edb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
