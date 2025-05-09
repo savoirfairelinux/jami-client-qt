@@ -72,6 +72,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "049bac90_869dd3f1",
+        "filename": "src/app/MainApplicationWindow.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-09T18:01:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67d0b577_e7868728",
+      "range": {
+        "startLine": 307,
+        "startChar": 45,
+        "endLine": 307,
+        "endChar": 46
+      },
+      "revId": "77df4c0a8b8ca491ef0fd7a341a141da7b580646",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aee619f5_1a96e358",
@@ -139,6 +163,24 @@
       "side": 1,
       "message": "https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/2004#note_55250\n\nShould\n`Put Jami in foreground when called`\nbe\n`Bring the application to the front for incoming calls`\nor\n`Send the application to the front for incoming calls`\n?",
       "parentUuid": "b661195e_7e7c8b10",
+      "revId": "77df4c0a8b8ca491ef0fd7a341a141da7b580646",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5948e3b_82dbe23f",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-09T18:01:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f4beb8c_e4a56499",
       "revId": "77df4c0a8b8ca491ef0fd7a341a141da7b580646",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
