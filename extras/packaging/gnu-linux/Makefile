@@ -128,7 +128,8 @@ $(RELEASE_TARBALL_FILENAME): tarballs.manifest
 	    ./3rdparty/SortFilterProxyModel \
 	    ./3rdparty/md4c \
 	    ./3rdparty/tidy-html5 \
-	    ./3rdparty/zxing-cpp; do \
+	    ./3rdparty/zxing-cpp \
+	    ./3rdparty/hunspell; do \
 	  (cd "$$m" && git archive --prefix "$$m/" HEAD \
 	    | tar xf - -C $(TMPDIR)/$(RELEASE_DIRNAME)); \
 	done

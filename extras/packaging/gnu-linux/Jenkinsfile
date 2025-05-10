@@ -34,7 +34,8 @@ def SUBMODULES = ['daemon',
                   '3rdparty/SortFilterProxyModel',
                   '3rdparty/md4c',
                   '3rdparty/tidy-html5',
-                  '3rdparty/zxing-cpp']
+                  '3rdparty/zxing-cpp',
+                  '3rdparty/hunspell']
 def TARGETS = [:]
 def REMOTE_HOST = env.SSH_HOST_DL_RING_CX
 def REMOTE_BASE_DIR = '/srv/repository/ring'

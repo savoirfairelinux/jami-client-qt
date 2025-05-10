@@ -212,6 +212,7 @@ def init_submodules():
         "3rdparty/md4c",
         "3rdparty/tidy-html5",
         "3rdparty/zxing-cpp",
+        "3rdparty/hunspell",
     ]
     if execute_cmd(["git", "submodule", "update", "--init" ] + submodules,
                    False):
