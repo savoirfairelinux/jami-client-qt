@@ -507,7 +507,7 @@ else()
   set(HUNSPELL_DIR ${PROJECT_SOURCE_DIR}/3rdparty/hunspell)
 
   # Build using the submodule and its CMakeLists.txt
-  add_subdirectory(${HUNSPELL_DIR} hunspell_build)
+  add_subdirectory(${HUNSPELL_DIR} hunspell_build EXCLUDE_FROM_ALL)
 
   set(HUNSPELL_INCLUDE_DIR ${HUNSPELL_DIR}/src)
   set(HUNSPELL_LIBRARIES hunspell::hunspell)
