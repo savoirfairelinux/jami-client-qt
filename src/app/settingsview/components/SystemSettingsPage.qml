@@ -182,6 +182,7 @@ SettingsPageBase {
 
                 onActivated: {
                     UtilsAdapter.setAppValue(Settings.Key.LANG, comboModel.get(modelIndex).id);
+                    SpellCheckDictionaryManager.getBestDictionary(comboModel.get(modelIndex).id);
                 }
             }
         }
@@ -288,6 +289,7 @@ SettingsPageBase {
 
                     onClicked: {
                         SpellCheckDictionaryManager.refreshDictionaries();
+                        SpellCheckDictionaryManager.availableDictionaries();
                         var langIdx = spellCheckLangComboBoxSetting.modelIndex;
                         installedSpellCheckLangModel.clear();
                         var supported = SpellCheckDictionaryManager.installedDictionaries();

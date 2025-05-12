@@ -29,15 +29,12 @@
 #include <QRegularExpression>
 #include <QRegularExpressionMatchIterator>
 
-SpellChecker::SpellChecker(const QString& dictionaryPath)
-{
-    replaceDictionary(dictionaryPath);
-}
-
 bool
 SpellChecker::spell(const QString& word)
 {
     // Encode from Unicode to the encoding used by current dictionary
+    std::unique_lock lk(mutex_);
+    conditionVariable_.wait(lk, [this]{ return dictionaryLoaded; });
     return hunspell_->spell(word.toStdString()) != 0;
 }
 
@@ -77,7 +74,8 @@ SpellChecker::replaceDictionary(const QString& dictionaryPath)
         hunspell_.reset();
     }
     hunspell_ = std::make_shared<Hunspell>(affixFilePathBA.constData(), dictFilePathBA.constData());
-
+    dictionaryLoaded = true;
+    conditionVariable_.notify_one();
     // detect encoding analyzing the SET option in the affix file
     encoding_ = "ISO8859-1";
     QFile _affixFile(affixFile);

@@ -32,21 +32,31 @@
 #include <QRegularExpression>
 
 SpellCheckDictionaryManager::SpellCheckDictionaryManager(AppSettingsManager* settingsManager,
-                                                         QObject* parent)
+                                                           ConnectivityMonitor* cm,
+                                                           QObject* parent)
     : QObject {parent}
     , settingsManager_ {settingsManager}
-{}
+    , connectivityMonitor_ {cm}
+    , spellCheckFileDownloader(cm, this)
+{
+    populateInstalledDictionaries();
+    populateAvailableDictionaries();
+}
 
 QVariantMap
-SpellCheckDictionaryManager::installedDictionaries()
+SpellCheckDictionaryManager::getInstalledDictionaries()
 {
     // If we already have a cache of the installed dictionaries, return it
-    if (cachedInstalledDictionaries_.size() > 0) {
-        return cachedInstalledDictionaries_;
+    if (cachedInstalledDictionaries_.size() == 0) {
+        // ELse we need to populate it
+        populateInstalledDictionaries();
+    }
+    return cachedInstalledDictionaries_;
 
-        // If not, we need to check the dictionaries directory
-    } else {
-        QString hunspellDataDir = getDictionariesPath();
+}
+
+void SpellCheckDictionaryManager::populateInstalledDictionaries(){
+    QString hunspellDataDir = getDictionariesPath();
 
         auto dictionariesDir = QDir(hunspellDataDir);
         QRegExp regex("(.*).dic");
@@ -108,8 +118,98 @@ SpellCheckDictionaryManager::installedDictionaries()
             }
         }
         cachedInstalledDictionaries_ = result;
-        return result;
+}
+
+void
+SpellCheckDictionaryManager::refreshDictionaries()
+{
+    cachedInstalledDictionaries_.clear();
+    cachedAvailableDictionaries_.clear();
+    getInstalledDictionaries();
+    getAvailableDictionaries();
+}
+
+QString
+SpellCheckDictionaryManager::getSpellLanguage()
+{
+    auto pref = settingsManager_->getValue(Settings::Key::SpellLang).toString();
+    qWarning() << "Spell language:" << pref;
+    return pref;
+}
+
+QVariantMap
+SpellCheckDictionaryManager::getAvailableDictionaries()
+{
+
+    if (cachedAvailableDictionaries_.size() == 0) {
+        populateAvailableDictionaries();
+        /* conditionVariable_.notify_one(); */
+    } else {
+        qWarning() << "Returning cached available dictionaries";
     }
+    return cachedAvailableDictionaries_;
+}
+
+void
+SpellCheckDictionaryManager::populateAvailableDictionaries()
+{
+    auto dictionariesURL = getDictionaryUrl();
+    qWarning() << "Fetching available dictionaries from URL:" << dictionariesURL;
+    QNetworkRequest request(dictionariesURL);
+    QNetworkReply* reply = networkRequestManager_.get(request);
+    QObject::connect(reply, &QNetworkReply::finished, [=]() {
+        if (reply->error() == QNetworkReply::NoError) {
+            QString webPageContent = QString::fromUtf8(reply->readAll());
+            // qWarning() << "Page content:" << webPageContent;
+            QVariantMap result;
+            QRegularExpression regexWithCountry("'>\\s*([a-z]{2,3}_[A-Z]{2})\\s*</a></li>");
+            QRegularExpression regexSimple("'>\\s*([a-z]{2,3})(?![A-Z_])\\s*</a></li>");
+            QSet<QString> foundDictionaries;
+
+            // Find all matches with a country code
+            auto matchIterator = regexWithCountry.globalMatch(webPageContent);
+            while (matchIterator.hasNext()) {
+                QRegularExpressionMatch match = matchIterator.next();
+                QString locale = match.captured(1);
+                if (!foundDictionaries.contains(locale)) {
+                    /* qWarning() << "Match found with country code:" << locale; */
+                    auto nativeName = QLocale(locale).nativeLanguageName();
+                    if (!nativeName.isEmpty()) {
+                        result[locale] = nativeName;
+                        foundDictionaries.insert(locale);
+                    }
+                    /* qWarning() << "Found dictionary with country:" << locale
+                                << "Native name:" << nativeName; */
+                }
+
+            }
+
+            // Find all simple matches
+            matchIterator = regexSimple.globalMatch(webPageContent);
+            while (matchIterator.hasNext()) {
+                QRegularExpressionMatch match = matchIterator.next();
+                QString locale = match.captured(1);
+                if (!foundDictionaries.contains(locale)) {
+                    auto nativeName = QLocale(locale).nativeLanguageName();
+                    if (!nativeName.isEmpty()) {
+                        result[locale] = nativeName;
+                        foundDictionaries.insert(locale);
+                    }
+                    /* qWarning()
+                        << "Found simple dictionary:" << locale << "Native name:" << nativeName; */
+                }
+            }
+
+            cachedAvailableDictionaries_ = result;
+            Q_EMIT dictionnariesListPopulated();
+            /* conditionVariable_.notify_one(); */
+
+            qWarning() << "-----------------------------------------------Available dictionaries updated";
+        } else {
+            qWarning() << "Error:" << reply->errorString();
+        }
+        reply->deleteLater();
+    });
 }
 
 QString
@@ -117,33 +217,120 @@ SpellCheckDictionaryManager::getDictionariesPath()
 {
 #if defined(Q_OS_LINUX)
     QString hunDir = "/usr/share/hunspell/";
-    ;
-
-#elif defined(Q_OS_MACOS)
-    QString hunDir = "/Library/Spelling/";
 #else
-    QString hunDir = "";
+    QString hunDir QStandardPaths::writableLocation(QStandardPaths::CacheLocation)
+        + "/dictionaries/";
 #endif
     return hunDir;
-}
-
-
-void
-SpellCheckDictionaryManager::refreshDictionaries()
-{
-    cachedInstalledDictionaries_.clear();
-}
-
-QString
-SpellCheckDictionaryManager::getSpellLanguage()
-{
-    auto pref = settingsManager_->getValue(Settings::Key::SpellLang).toString();
-    return pref ;
 }
 
 // Is only used at application boot time
 QString
 SpellCheckDictionaryManager::getDictionaryPath()
 {
-    return "/usr/share/hunspell/" + getSpellLanguage();
+    qWarning() << "SpellLang at boot" << settingsManager_->getValue(Settings::Key::SpellLang).toString();
+    if (settingsManager_->getValue(Settings::Key::SpellLang).toString() == "NONE") {
+        return getDictionariesPath() + getBestDictionary(settingsManager_->getValue(Settings::Key::LANG).toString());
+    }
+    return getDictionariesPath() + getSpellLanguage();
+}
+
+bool
+SpellCheckDictionaryManager::isDictionnaryInstalled(QString locale)
+{
+    getInstalledDictionaries();
+    return cachedInstalledDictionaries_.contains(locale);
+}
+
+bool
+SpellCheckDictionaryManager::isDictionnaryAvailable(QString locale)
+{
+    return cachedAvailableDictionaries_.contains(locale);
+}
+
+QUrl
+SpellCheckDictionaryManager::getDictionaryUrl()
+{
+    return dictionaryUrl_;
+}
+
+QString
+SpellCheckDictionaryManager::getBestDictionary(QString locale)
+{
+
+
+   /*  std::unique_lock lk(mutex_);
+    conditionVariable_.wait_for(lk, std::chrono::seconds(15), [this]{ return (!cachedAvailableDictionaries_.empty()); }); */
+    qWarning() << "+++++ LOCK: " << locale;
+
+    QString bestDictionary;
+    // Check if the dictionnary is installed
+    if (isDictionnaryInstalled(locale)) {
+        qWarning() << "Dictionary installed:" << locale;
+        bestDictionary = locale;
+        return bestDictionary;
+    }
+    // Check if the dictionnary is avilable at the repository
+    if (isDictionnaryAvailable(locale)) {
+        qWarning() << "Dictionary available for download:" << locale;
+        bestDictionary = locale;
+        downloadDictionary(locale);
+        return bestDictionary;
+    }
+    // check if a local starting with the same 2 first letters is installed
+    QStringList localeParts = locale.split("_");
+    QString locale2letters = localeParts[0];
+    QList key_iterator = cachedInstalledDictionaries_.keys();
+    for (const auto& key : key_iterator) {
+        if (key.startsWith(locale2letters)) {
+            bestDictionary = key;
+            qWarning() << "Dictionary installed with matcing language:" << bestDictionary;
+            return bestDictionary;
+        }
+    }
+    // check if a local starting with the same 2 first letters is available
+    key_iterator = cachedAvailableDictionaries_.keys();
+    for (const auto& key : key_iterator) {
+        if (key.startsWith(locale2letters)) {
+            bestDictionary = key;
+            qWarning() << "Dictionary available on the remote with matching language:"
+                       << bestDictionary;
+            downloadDictionary(bestDictionary);
+            return bestDictionary;
+        }
+    }
+    if (bestDictionary.isEmpty()) {
+        qWarning() << "No dictionary found for locale:" << locale;
+        // Fallback to the default dictionary
+        bestDictionary = "en_US";
+        getBestDictionary(bestDictionary);
+    }
+    return bestDictionary;
+}
+
+
+void  SpellCheckDictionaryManager::updateDictionary(QString languagePath) {
+    QString file = getDictionaryPath() + languagePath;
+    //SpellCheckHandler.updateDictionnary(file);
+}
+
+// Used on Windows and MacOS
+void SpellCheckDictionaryManager::downloadDictionary(QString languagePath) {
+    if (getDictionaryUrl().isEmpty()) {
+        qWarning() << "Dictionary " << languagePath<< " cannot be downloaded : No dictionary URL set";
+        return;
+    }
+    QString file = QStandardPaths::writableLocation(QStandardPaths::CacheLocation)
+    + "/dictionaries/" + languagePath;
+    QUrl urlAff = getDictionaryUrl().toString() + languagePath + "/" + languagePath + ".aff";
+    QUrl urlDic = getDictionaryUrl().toString() + languagePath + "/" + languagePath + ".dic";
+    if (file != "") {
+        qWarning()<< "Download urls: " << urlAff.toString() <<" " << urlDic.toString();
+        qWarning()<<"Download file: " << file;
+        spellCheckFileDownloader.downloadFile(urlAff, file + ".aff");
+        spellCheckFileDownloader.downloadFile(urlDic , file + ".dic");
+    }else {
+        qWarning() << "Dictionary " << languagePath<< " cannot be downloaded : No dictionary path set";
+    }
+    //SpellCheckHandler.updateDictionary(file);
 }

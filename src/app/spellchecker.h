@@ -29,6 +29,8 @@
 #include <QDebug>
 #include <QObject>
 #include <string>
+#include <mutex>
+#include <condition_variable>
 
 #include <hunspell/hunspell.hxx>
 
@@ -38,7 +40,7 @@ class SpellChecker : public QObject
 {
     Q_OBJECT
 public:
-    explicit SpellChecker(const QString&);
+    explicit SpellChecker() = default;
     ~SpellChecker() = default;
     void replaceDictionary(const QString& dictionaryPath);
 
@@ -60,4 +62,7 @@ private:
     std::shared_ptr<Hunspell> hunspell_;
     QString encoding_;
     QTextCodec* codec_;
+    std::mutex mutex_;
+    std::condition_variable conditionVariable_;
+    bool dictionaryLoaded = false;
 };

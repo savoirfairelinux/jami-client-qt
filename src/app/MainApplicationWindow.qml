@@ -294,7 +294,7 @@ ApplicationWindow {
 
      Connections {
         target: UtilsAdapter
-        function onRaiseWhenCalled() {
+        function onRaiseWhenCalledChanged() {
             raiseWhenCalled = AppSettingsManager.getValue(Settings.RaiseWhenCalled);
         }
     }
