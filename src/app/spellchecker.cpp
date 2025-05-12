@@ -29,9 +29,10 @@
 #include <QRegularExpression>
 #include <QRegularExpressionMatchIterator>
 
-SpellChecker::SpellChecker(const QString& dictionaryPath)
+SpellChecker::SpellChecker()
+    : hunspell_(new Hunspell("", ""))
+    , loaded_(true)
 {
-    replaceDictionary(dictionaryPath);
 }
 
 bool
@@ -71,13 +72,10 @@ SpellChecker::replaceDictionary(const QString& dictionaryPath)
 {
     QString dictFile = dictionaryPath + ".dic";
     QString affixFile = dictionaryPath + ".aff";
-    QByteArray dictFilePathBA = dictFile.toLocal8Bit();
-    QByteArray affixFilePathBA = affixFile.toLocal8Bit();
-    if (hunspell_) {
-        hunspell_.reset();
-    }
-    hunspell_ = std::make_shared<Hunspell>(affixFilePathBA.constData(), dictFilePathBA.constData());
-
+    QByteArray dictFilePath = dictFile.toLocal8Bit();
+    QByteArray affixFilePath = affixFile.toLocal8Bit();
+    hunspell_.reset(new Hunspell(affixFilePath.constData(), dictFilePath.constData()));
+    loaded_ = true;
     // detect encoding analyzing the SET option in the affix file
     encoding_ = "ISO8859-1";
     QFile _affixFile(affixFile);
