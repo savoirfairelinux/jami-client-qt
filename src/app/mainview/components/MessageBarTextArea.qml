@@ -226,8 +226,8 @@ JamiFlickable {
                 var position = textArea.positionAt(event.x, event.y);
                 textArea.moveCursorSelection(position, TextInput.SelectWords);
                 textArea.selectWord();
-                if (!MessagesAdapter.spell(textArea.selectedText)) {
-                    var wordList = MessagesAdapter.spellSuggestionsRequest(textArea.selectedText);
+                if (!SpellCheckHandler.spell(textArea.selectedText)) {
+                    var wordList = SpellCheckHandler.spellSuggestionsRequest(textArea.selectedText);
                     if (wordList.length !== 0) {
                         textAreaContextMenu.addMenuItem(wordList);
                     }
@@ -285,12 +285,12 @@ JamiFlickable {
             // We iterate over the whole text to find words to check and underline them if needed
             if (spellCheckActive) {
                 var text = textArea.text;
-                var words = MessagesAdapter.findWords(text);
+                var words = SpellCheckHandler.findWords(text);
                 if (!words)
                     return;
                 for (var i = 0; i < words.length; i++) {
                     var wordInfo = words[i];
-                    if (wordInfo && wordInfo.word && !MessagesAdapter.spell(wordInfo.word)) {
+                    if (wordInfo && wordInfo.word && !SpellCheckHandler.spell(wordInfo.word)) {
                         textMetrics.text = wordInfo.word;
                         var xPos = textArea.positionToRectangle(wordInfo.position).x;
                         var yPos = textArea.positionToRectangle(wordInfo.position).y + textArea.positionToRectangle(wordInfo.position).height;
