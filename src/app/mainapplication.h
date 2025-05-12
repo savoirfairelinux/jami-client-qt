@@ -32,6 +32,7 @@ class ConnectivityMonitor;
 class SystemTray;
 class AppSettingsManager;
 class SpellCheckDictionaryManager;
+class SpellCheckHandler;
 class CrashReporter;
 class PreviewEngine;
 
@@ -120,6 +121,7 @@ private:
     SystemTray* systemTray_;
     AppSettingsManager* settingsManager_;
     SpellCheckDictionaryManager* spellCheckDictionaryManager_;
+    SpellCheckHandler* spellCheckHandler_;
     PreviewEngine* previewEngine_;
     CrashReporter* crashReporter_;
 

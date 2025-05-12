@@ -911,8 +911,9 @@ Item {
     // Spellchecker
     property string checkSpelling: qsTr("Check spelling while typing")
     property string textLanguage: qsTr("Text language")
-    property string textLanguageDescription: qsTr("To install new dictionaries, use the system package manager.")
+    property string textLanguageDescription: qsTr("To install new dictionaries select them in this list")
     property string spellchecking: qsTr("Spellchecking")
     property string refresh: qsTr("Refresh")
     property string refreshInstalledDictionaries: qsTr("Refresh installed dictionaries")
+    property string availableTextLanguages: qsTr("Install new text languages")
 }

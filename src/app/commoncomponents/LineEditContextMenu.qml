@@ -100,6 +100,7 @@ ContextMenuAutoLoader {
                 canTrigger: true
                 isActif: true
                 itemName: model.name
+                bold: true
                 hasIcon: false
                 onClicked: {
                     replaceWord(model.name);
