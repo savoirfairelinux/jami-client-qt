@@ -30,7 +30,7 @@ ContextMenuAutoLoader {
     property var selectionEnd
     property bool customizePaste: false
     property bool selectOnly: false
-    property bool checkSpell: false
+    property bool checkSpellingIfActivated: false
     property var suggestionList
     property var menuItemsLength
     property var language
@@ -38,7 +38,7 @@ ContextMenuAutoLoader {
     signal contextMenuRequirePaste
     SpellLanguageContextMenu {
         id: spellLanguageContextMenu
-        active: checkSpell
+        active: checkSpellingIfActivated
     }
 
     property list<GeneralMenuItem> menuItems: [
@@ -49,8 +49,7 @@ ContextMenuAutoLoader {
             isActif: lineEditObj.selectedText.length && !selectOnly
             itemName: JamiStrings.cut
             hasIcon: false
-            onClicked:
-                lineEditObj.cut();
+            onClicked: lineEditObj.cut()
         },
         GeneralMenuItem {
             id: copy
@@ -59,8 +58,7 @@ ContextMenuAutoLoader {
             isActif: lineEditObj.selectedText.length
             itemName: JamiStrings.copy
             hasIcon: false
-            onClicked:
-                lineEditObj.copy();
+            onClicked: lineEditObj.copy()
         },
         GeneralMenuItem {
             id: paste
@@ -77,8 +75,8 @@ ContextMenuAutoLoader {
         },
         GeneralMenuItem {
             id: language
-            visible: checkSpell
-            canTrigger: checkSpell
+            visible: checkSpellingIfActivated
+            canTrigger: checkSpellingIfActivated
             itemName: JamiStrings.language
             hasIcon: false
             onClicked: {
@@ -100,6 +98,7 @@ ContextMenuAutoLoader {
                 canTrigger: true
                 isActif: true
                 itemName: model.name
+                bold: true
                 hasIcon: false
                 onClicked: {
                     replaceWord(model.name);

@@ -37,6 +37,7 @@
 #include "pttlistener.h"
 #include "calloverlaymodel.h"
 #include "spellcheckdictionarymanager.h"
+#include "spellcheckhandler.h"
 #include "accountlistmodel.h"
 #include "mediacodeclistmodel.h"
 #include "audiodevicemodel.h"
@@ -120,6 +121,7 @@ registerTypes(QQmlEngine* engine,
               SystemTray* systemTray,
               AppSettingsManager* settingsManager,
               SpellCheckDictionaryManager* spellCheckDictionaryManager,
+              SpellCheckHandler* spellCheckHandler,
               ConnectivityMonitor* connectivityMonitor,
               PreviewEngine* previewEngine,
               ScreenInfo* screenInfo,
@@ -205,6 +207,7 @@ registerTypes(QQmlEngine* engine,
     qApp->setProperty("ConnectivityMonitor", QVariant::fromValue(connectivityMonitor));
     qApp->setProperty("PreviewEngine", QVariant::fromValue(previewEngine));
     qApp->setProperty("SpellCheckDictionaryManager", QVariant::fromValue(spellCheckDictionaryManager));
+    qApp->setProperty("SpellCheckHandler", QVariant::fromValue(spellCheckHandler));
 
     // qml adapter registration
     QML_REGISTERSINGLETON_TYPE(NS_HELPERS, QRCodeScannerModel);
@@ -256,6 +259,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, lrcInstance, "LRCInstance")
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, settingsManager, "AppSettingsManager")
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, spellCheckDictionaryManager, "SpellCheckDictionaryManager")
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, spellCheckHandler, "SpellCheckHandler")
 
     // Lrc namespaces, models, and singletons
     QML_REGISTERNAMESPACE(NS_MODELS, lrc::api::staticMetaObject, "Lrc");
