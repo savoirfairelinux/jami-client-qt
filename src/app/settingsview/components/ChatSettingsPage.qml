@@ -17,11 +17,13 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
+import Qt5Compat.GraphicalEffects
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 import net.jami.Constants 1.1
 import net.jami.Helpers 1.1
+import SortFilterProxyModel 0.2
 import "../../commoncomponents"
 import "../../mainview/components"
 import "../../mainview/js/contactpickercreation.js" as ContactPickerCreation
@@ -40,6 +42,63 @@ SettingsPageBase {
         spacing: 2 * JamiTheme.settingsCategorySpacing
         anchors.left: parent.left
         anchors.leftMargin: JamiTheme.preferredSettingsMarginSize
+
+        ColumnLayout {
+
+            width: parent.width
+            spacing: JamiTheme.settingsCategorySpacing
+
+            Text {
+                id: spellcheckingTitle
+
+                Layout.alignment: Qt.AlignLeft
+                Layout.preferredWidth: parent.width
+
+                text: JamiStrings.spellchecking
+                color: JamiTheme.textColor
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+                wrapMode: Text.WordWrap
+
+                font.pixelSize: JamiTheme.settingsTitlePixelSize
+                font.kerning: true
+            }
+
+            ToggleSwitch {
+                id: enableSpellCheckToggleSwitch
+                Layout.fillWidth: true
+                visible: true
+
+                checked: UtilsAdapter.getAppValue(Settings.Key.EnableSpellCheck)
+                labelText: JamiStrings.checkSpelling
+                tooltipText: JamiStrings.checkSpelling
+                onSwitchToggled: {
+                    UtilsAdapter.setAppValue(Settings.Key.EnableSpellCheck, checked);
+                }
+            }
+
+            SpellCheckLanguageComboBox {
+                id: spellCheckLangComboBoxSetting
+                Layout.fillWidth: true
+                widthOfComboBox: itemWidth
+            }
+
+            // A button to open the dictionary install view as a popup
+            MaterialButton {
+                id: dictionaryInstallButton
+
+                secondary: true
+
+                preferredWidth: itemWidth
+                height: spellCheckLangComboBoxSetting.comboBox.height
+                Layout.alignment: Qt.AlignRight
+
+                text: JamiStrings.manageDictionaries
+                onClicked: {
+                    viewCoordinator.presentDialog(appWindow, "commoncomponents/ManageDictionariesDialog.qml");
+                }
+            }
+        }
 
         ColumnLayout {
             id: generalSettings

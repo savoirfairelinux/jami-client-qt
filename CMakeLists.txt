@@ -347,7 +347,8 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/conversationlistmodel.cpp
   ${APP_SRC_DIR}/searchresultslistmodel.cpp
   ${APP_SRC_DIR}/calloverlaymodel.cpp
-  ${APP_SRC_DIR}/spellcheckdictionarymanager.cpp
+  ${APP_SRC_DIR}/spellcheckdictionarylistmodel.cpp
+  ${APP_SRC_DIR}/spellcheckadapter.cpp
   ${APP_SRC_DIR}/filestosendlistmodel.cpp
   ${APP_SRC_DIR}/wizardviewstepmodel.cpp
   ${APP_SRC_DIR}/avatarregistry.cpp
@@ -420,7 +421,8 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/conversationlistmodel.h
   ${APP_SRC_DIR}/searchresultslistmodel.h
   ${APP_SRC_DIR}/calloverlaymodel.h
-  ${APP_SRC_DIR}/spellcheckdictionarymanager.h
+  ${APP_SRC_DIR}/spellcheckdictionarylistmodel.h
+  ${APP_SRC_DIR}/spellcheckadapter.h
   ${APP_SRC_DIR}/filestosendlistmodel.h
   ${APP_SRC_DIR}/wizardviewstepmodel.h
   ${APP_SRC_DIR}/avatarregistry.h
@@ -475,13 +477,6 @@ find_package(PkgConfig REQUIRED)
 
 # hunspell
 pkg_search_module(hunspell IMPORTED_TARGET hunspell)
-if(MSVC)
-elseif (NOT APPLE)
-  set(HUNSPELL_DICT_DIR "/usr/share/hunspell/")
-else()
-  set(HUNSPELL_DICT_DIR "/Library/Spelling/")
-endif()
-
 if(hunspell_FOUND)
   message(STATUS "hunspell found")
   set(HUNSPELL_LIBRARIES PkgConfig::hunspell)
@@ -734,7 +729,8 @@ qt_add_executable(
   ${COMMON_SOURCES}
   ${QML_RESOURCES}
   ${QML_RESOURCES_QML}
-  ${SFPM_OBJECTS})
+  ${SFPM_OBJECTS}
+  src/app/spellcheckadapter.h src/app/spellcheckadapter.cpp)
 
 #add_dependencies(${PROJECT_NAME} hunspell)
 

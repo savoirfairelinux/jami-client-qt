@@ -273,9 +273,9 @@ Item {
     property string hideSpectators: qsTr("Hide spectators")
 
     // LineEditContextMenu
-    property string copy: qsTr("Copy")
     property string share: qsTr("Share")
     property string cut: qsTr("Cut")
+    property string copy: qsTr("Copy")
     property string paste: qsTr("Paste")
     property string language: qsTr("Language")
 
@@ -913,9 +913,15 @@ Item {
 
     // Spell checker
     property string checkSpelling: qsTr("Check spelling while typing")
+    property string systemDictionary: qsTr("System")
     property string textLanguage: qsTr("Text language")
-    property string textLanguageDescription: qsTr("To install new dictionaries, use the system package manager.")
-    property string spellChecker: qsTr("Spell checker")
-    property string refresh: qsTr("Refresh")
-    property string refreshInstalledDictionaries: qsTr("Refresh installed dictionaries")
+    property string spellchecking: qsTr("Spell checker")
+    property string searchTextLanguages: qsTr("Search text languages")
+    property string searchAvailableTextLanguages: qsTr("Search for available text languages")
+    property string noDictionariesFoundFor: qsTr("No dictionaries found for '%1'")
+    property string noDictionariesAvailable: qsTr("No dictionaries available")
+    property string manageDictionaries: qsTr("Manage Dictionaries")
+    property string spellCheckDownloadFailed: qsTr("Download failed for dictionary '%1'")
+    property string showInstalledDictionaries: qsTr("Show installed")
+    property string showInstalledDictionariesDescription: qsTr("Only show dictionaries that are currently installed")
 }
