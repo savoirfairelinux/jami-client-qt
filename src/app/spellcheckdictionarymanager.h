@@ -17,23 +17,50 @@
 
 #pragma once
 #include "appsettingsmanager.h"
+#include "connectivitymonitor.h"
+#include "filedownloader.h"
 
+#include <condition_variable>
+#include <mutex>
 #include <QObject>
 #include <QApplication>
 #include <QQmlEngine>
+#include <QUrl>
 
 class SpellCheckDictionaryManager : public QObject
 {
     Q_OBJECT
     QVariantMap cachedInstalledDictionaries_;
+    QVariantMap cachedAvailableDictionaries_;
     AppSettingsManager* settingsManager_;
+    // To know what translation files are available on the remote
+    // To initialize the fileDownloader
+    ConnectivityMonitor* connectivityMonitor_;
+    const QUrl dictionaryUrl_ {"https://cgit.freedesktop.org/libreoffice/dictionaries/plain/"};
+    std::mutex mutex_;
+    std::condition_variable conditionVariable_;
+
 public:
     explicit SpellCheckDictionaryManager(AppSettingsManager* settingsManager,
+                                         ConnectivityMonitor* cm,
                                          QObject* parent = nullptr);
 
-    Q_INVOKABLE QVariantMap installedDictionaries();
+    FileDownloader spellCheckFileDownloader;
+
+    Q_INVOKABLE QVariantMap getInstalledDictionaries();
+    Q_INVOKABLE QVariantMap getAvailableDictionaries();
     Q_INVOKABLE QString getDictionariesPath();
     Q_INVOKABLE void refreshDictionaries();
     Q_INVOKABLE QString getDictionaryPath();
     Q_INVOKABLE QString getSpellLanguage();
+    Q_INVOKABLE QUrl getDictionaryUrl();
+    Q_INVOKABLE bool isDictionnaryInstalled(QString locale);
+    Q_INVOKABLE bool isDictionnaryAvailable(QString locale);
+    Q_INVOKABLE QString getBestDictionary(QString locale);
+    Q_INVOKABLE void updateDictionary(QString languagePath);
+    Q_INVOKABLE void downloadDictionary(QString languagePath);
+    Q_INVOKABLE void populateInstalledDictionaries();
+    Q_INVOKABLE void populateAvailableDictionaries();
+
+    Q_SIGNAL void dictionnariesListPopulated();
 };

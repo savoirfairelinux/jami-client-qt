@@ -182,6 +182,7 @@ SettingsPageBase {
 
                 onActivated: {
                     UtilsAdapter.setAppValue(Settings.Key.LANG, comboModel.get(modelIndex).id);
+                    SpellCheckDictionaryManager.getBestDictionary(comboModel.get(modelIndex).id);
                 }
             }
         }
@@ -189,7 +190,6 @@ SettingsPageBase {
 
             width: parent.width
             spacing: JamiTheme.settingsCategorySpacing
-            visible: (Qt.platform.os.toString() !== "linux") ? false : true
 
             Text {
                 id: spellcheckingTitle
@@ -217,6 +217,7 @@ SettingsPageBase {
                 descText: JamiStrings.textLanguageDescription
                 tooltipText: JamiStrings.checkSpelling
                 onSwitchToggled: {
+                    SpellCheckDictionaryManager.availableDictionaries();
                     UtilsAdapter.setAppValue(Settings.Key.EnableSpellCheck, checked);
                 }
             }
@@ -257,6 +258,7 @@ SettingsPageBase {
             RowLayout {
                 Layout.fillWidth: true
                 Layout.minimumHeight: JamiTheme.preferredFieldHeight
+                visible: (Qt.platform.os.toString() !== "linux") ? false : true
 
                 Text {
                     Layout.fillWidth: true
@@ -288,6 +290,7 @@ SettingsPageBase {
 
                     onClicked: {
                         SpellCheckDictionaryManager.refreshDictionaries();
+                        SpellCheckDictionaryManager.availableDictionaries();
                         var langIdx = spellCheckLangComboBoxSetting.modelIndex;
                         installedSpellCheckLangModel.clear();
                         var supported = SpellCheckDictionaryManager.installedDictionaries();
