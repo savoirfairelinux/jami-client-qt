@@ -68,6 +68,7 @@ QString GetISODate();
 QSize getRealSize(QScreen* screen);
 void forceDeleteAsync(const QString& path);
 QString getProjectCredits();
+QString getAvailableDictionariesJson();
 void removeOldVersions();
 
 // LRC helpers

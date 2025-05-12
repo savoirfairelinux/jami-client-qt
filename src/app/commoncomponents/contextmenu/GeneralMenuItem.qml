@@ -28,6 +28,7 @@ MenuItem {
     id: menuItem
 
     property string itemName: ""
+    property bool bold: false
     property string content: ""
     property alias iconSource: contextMenuItemImage.source
     property string iconColor: ""
@@ -99,6 +100,7 @@ MenuItem {
                     anchors.left: parent.left
                     height: parent.height
                     text: itemName
+                    font.bold: bold
                     color: dangerous ? JamiTheme.redColor : isActif ? JamiTheme.textColor : JamiTheme.chatViewFooterImgColor
                     font.pointSize: JamiTheme.textFontSize
                     horizontalAlignment: Text.AlignLeft
