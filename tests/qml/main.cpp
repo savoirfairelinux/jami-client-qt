@@ -16,7 +16,6 @@
  */
 
 #include "appsettingsmanager.h"
-#include "spellcheckdictionarymanager.h"
 #include "connectivitymonitor.h"
 #include "mainapplication.h"
 #include "previewengine.h"
@@ -46,13 +45,13 @@
 #endif
 
 #ifdef Q_OS_WIN
-#define DATA_DIR    "JAMI_DATA_HOME"
-#define CONFIG_DIR  "JAMI_CONFIG_HOME"
-#define CACHE_DIR   "JAMI_CACHE_HOME"
+#define DATA_DIR   "JAMI_DATA_HOME"
+#define CONFIG_DIR "JAMI_CONFIG_HOME"
+#define CACHE_DIR  "JAMI_CACHE_HOME"
 #else
-#define DATA_DIR    "XDG_DATA_HOME"
-#define CONFIG_DIR  "XDG_CONFIG_HOME"
-#define CACHE_DIR   "XDG_CACHE_HOME"
+#define DATA_DIR   "XDG_DATA_HOME"
+#define CONFIG_DIR "XDG_CONFIG_HOME"
+#define CACHE_DIR  "XDG_CACHE_HOME"
 #endif
 
 #include <atomic>
@@ -95,7 +94,6 @@ public Q_SLOTS:
         settingsManager_.reset(new AppSettingsManager(this));
         systemTray_.reset(new SystemTray(settingsManager_.get(), this));
         previewEngine_.reset(new PreviewEngine(connectivityMonitor_.get(), this));
-        spellCheckDictionaryManager_.reset(new SpellCheckDictionaryManager(settingsManager_.get(), this));
 
         QFontDatabase::addApplicationFont(":/images/FontAwesome.otf");
 
@@ -154,7 +152,6 @@ public Q_SLOTS:
                              lrcInstance_.get(),
                              systemTray_.get(),
                              settingsManager_.get(),
-                             spellCheckDictionaryManager_.get(),
                              connectivityMonitor_.get(),
                              previewEngine_.get(),
                              &screenInfo_,
@@ -172,7 +169,6 @@ private:
 
     QScopedPointer<ConnectivityMonitor> connectivityMonitor_;
     QScopedPointer<AppSettingsManager> settingsManager_;
-    QScopedPointer<SpellCheckDictionaryManager> spellCheckDictionaryManager_;
     QScopedPointer<SystemTray> systemTray_;
     QScopedPointer<PreviewEngine> previewEngine_;
     ScreenInfo screenInfo_;
