@@ -29,10 +29,9 @@
 #include <QRegularExpression>
 #include <QRegularExpressionMatchIterator>
 
-SpellChecker::SpellChecker(const QString& dictionaryPath)
-{
-    replaceDictionary(dictionaryPath);
-}
+SpellChecker::SpellChecker()
+    : hunspell_(new Hunspell("", ""))
+{}
 
 bool
 SpellChecker::spell(const QString& word)
@@ -71,13 +70,9 @@ SpellChecker::replaceDictionary(const QString& dictionaryPath)
 {
     QString dictFile = dictionaryPath + ".dic";
     QString affixFile = dictionaryPath + ".aff";
-    QByteArray dictFilePathBA = dictFile.toLocal8Bit();
-    QByteArray affixFilePathBA = affixFile.toLocal8Bit();
-    if (hunspell_) {
-        hunspell_.reset();
-    }
-    hunspell_ = std::make_shared<Hunspell>(affixFilePathBA.constData(), dictFilePathBA.constData());
-
+    QByteArray dictFilePath = dictFile.toLocal8Bit();
+    QByteArray affixFilePath = affixFile.toLocal8Bit();
+    hunspell_.reset(new Hunspell(affixFilePath.constData(), dictFilePath.constData()));
     // detect encoding analyzing the SET option in the affix file
     encoding_ = "ISO8859-1";
     QFile _affixFile(affixFile);
@@ -99,9 +94,10 @@ SpellChecker::replaceDictionary(const QString& dictionaryPath)
 QList<SpellChecker::WordInfo>
 SpellChecker::findWords(const QString& text)
 {
+
     // This is in the C++ part of the code because QML regex does not support unicode
     QList<WordInfo> results;
-    QRegularExpression regex("\\p{L}+|\\p{N}+");
+    QRegularExpression regex("\\p{L}+");
     QRegularExpressionMatchIterator iter = regex.globalMatch(text);
 
     while (iter.hasNext()) {
