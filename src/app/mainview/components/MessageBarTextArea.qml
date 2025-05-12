@@ -117,12 +117,7 @@ JamiFlickable {
     TextArea.flickable: TextArea {
         id: textArea
 
-        CachedFile {
-            id: cachedFile
-        }
-
         function updateCorrection(language) {
-            cachedFile.updateDictionnary(language);
             textArea.updateUnderlineText();
         }
 
@@ -140,6 +135,7 @@ JamiFlickable {
 
             function onSpellLanguageChanged() {
                 root.language = SpellCheckDictionaryManager.getSpellLanguage();
+                console.log("Spell language changed to: " + root.language);
                 if ((Qt.platform.os.toString() !== "linux") || (AppSettingsManager.getValue(Settings.SpellLang) === "NONE")) {
                     spellCheckActive = false;
                 } else {
@@ -171,8 +167,11 @@ JamiFlickable {
 
         // Initialize the settings if the component wasn't loaded when changing settings
         Component.onCompleted: {
-            if ((Qt.platform.os.toString() !== "linux") || (AppSettingsManager.getValue(Settings.SpellLang) === "NONE")) {
-                spellCheckActive = false;
+            if ((AppSettingsManager.getValue(Settings.SpellLang) === "NONE")) {
+                SpellCheckDictionaryManager.getBestDictionary("NONE");
+                console.warn("------------------------------------------SET VALUE");
+                root.language = AppSettingsManager.getValue(Settings.SpellLang);
+
             } else {
                 spellCheckActive = AppSettingsManager.getValue(Settings.EnableSpellCheck);
             }
@@ -226,8 +225,8 @@ JamiFlickable {
                 var position = textArea.positionAt(event.x, event.y);
                 textArea.moveCursorSelection(position, TextInput.SelectWords);
                 textArea.selectWord();
-                if (!MessagesAdapter.spell(textArea.selectedText)) {
-                    var wordList = MessagesAdapter.spellSuggestionsRequest(textArea.selectedText);
+                if (!SpellCheckHandler.spell(textArea.selectedText)) {
+                    var wordList = SpellCheckHandler.spellSuggestionsRequest(textArea.selectedText);
                     if (wordList.length !== 0) {
                         textAreaContextMenu.addMenuItem(wordList);
                     }
@@ -285,12 +284,12 @@ JamiFlickable {
             // We iterate over the whole text to find words to check and underline them if needed
             if (spellCheckActive) {
                 var text = textArea.text;
-                var words = MessagesAdapter.findWords(text);
+                var words = SpellCheckHandler.findWords(text);
                 if (!words)
                     return;
                 for (var i = 0; i < words.length; i++) {
                     var wordInfo = words[i];
-                    if (wordInfo && wordInfo.word && !MessagesAdapter.spell(wordInfo.word)) {
+                    if (wordInfo && wordInfo.word && !SpellCheckHandler.spell(wordInfo.word)) {
                         textMetrics.text = wordInfo.word;
                         var xPos = textArea.positionToRectangle(wordInfo.position).x;
                         var yPos = textArea.positionToRectangle(wordInfo.position).y + textArea.positionToRectangle(wordInfo.position).height;

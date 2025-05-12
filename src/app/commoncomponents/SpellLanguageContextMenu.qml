@@ -26,11 +26,7 @@ import "../mainview/components"
 ContextMenuAutoLoader {
     id: root
 
-    signal languageChanged()
-
-    CachedFile {
-        id: cachedFile
-    }
+    signal languageChanged
 
     function openMenuAt(mouseEvent) {
         x = mouseEvent.x;
@@ -43,10 +39,21 @@ ContextMenuAutoLoader {
         menuItemsToLoad = generateMenuItems();
     }
 
+    Connections {
+            target: UtilsAdapter
+
+            function onSpellLanguageChanged() {
+                //console.warn("Spell language changed in SpellLanguageContextMenu");
+                generateMenuItems();
+            }
+
+
+    }
+
     function generateMenuItems() {
         var menuItems = [];
         // Create new menu items
-        var dictionaries = SpellCheckDictionaryManager.installedDictionaries();
+        var dictionaries = SpellCheckDictionaryManager.getInstalledDictionaries();
         var keys = Object.keys(dictionaries);
         for (var i = 0; i < keys.length; ++i) {
             var menuItem = Qt.createComponent("qrc:/commoncomponents/contextmenu/GeneralMenuItem.qml", Component.PreferSynchronous);
@@ -60,15 +67,15 @@ ContextMenuAutoLoader {
                     "isActif": true,
                     "itemName": dictionaries[keys[i]],
                     "hasIcon": false,
-                    "content": keys[i],
+                    "content": keys[i]
                 });
             if (menuItemObject === null) {
                 console.error("Error creating menu item:", menuItem.errorString());
                 continue;
             }
             menuItemObject.clicked.connect(function () {
-                UtilsAdapter.setAppValue(Settings.Key.SpellLang, menuItemObject.content);
-            });
+                    UtilsAdapter.setAppValue(Settings.Key.SpellLang, menuItemObject.content);
+                });
             // Log the object pointer
             menuItems.push(menuItemObject);
         }

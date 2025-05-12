@@ -17,23 +17,60 @@
 
 #pragma once
 #include "appsettingsmanager.h"
+#include "connectivitymonitor.h"
+#include "filedownloader.h"
 
+#include <condition_variable>
+#include <mutex>
 #include <QObject>
 #include <QApplication>
 #include <QQmlEngine>
+#include <QUrl>
+#include <QPair>
+#include <QJsonObject>
 
 class SpellCheckDictionaryManager : public QObject
 {
     Q_OBJECT
     QVariantMap cachedInstalledDictionaries_;
+    QJsonObject cachedAvailableDictionaries_; // Changed from QMap to QJsonObject
+    // To know what translation files are available on the remote
+    // To initialize the fileDownloader
+    ConnectivityMonitor* connectivityMonitor_;
+    const QUrl dictionaryUrl_ {
+        "https://api.github.com/repos/LibreOffice/dictionaries/git/trees/master?recursive=1"};
+    const QUrl downloadUrl_ {"https://raw.githubusercontent.com/LibreOffice/dictionaries/master"};
+
+    std::mutex mutex_;
+    std::condition_variable conditionVariable_;
     AppSettingsManager* settingsManager_;
+
 public:
     explicit SpellCheckDictionaryManager(AppSettingsManager* settingsManager,
+                                         ConnectivityMonitor* cm,
                                          QObject* parent = nullptr);
+    ~SpellCheckDictionaryManager();
 
-    Q_INVOKABLE QVariantMap installedDictionaries();
+    FileDownloader* spellCheckFileDownloader;
+
+    Q_INVOKABLE QVariantMap getInstalledDictionaries();
+    Q_INVOKABLE QJsonObject getAvailableDictionaries(); // Changed return type
     Q_INVOKABLE QString getDictionariesPath();
     Q_INVOKABLE void refreshDictionaries();
     Q_INVOKABLE QString getDictionaryPath();
     Q_INVOKABLE QString getSpellLanguage();
+    Q_INVOKABLE QUrl getDictionaryUrl();
+    Q_INVOKABLE bool isDictionnaryInstalled(QString locale);
+    Q_INVOKABLE bool isDictionnaryAvailable(QString locale);
+    Q_INVOKABLE QString getBestDictionary(QString locale);
+    Q_INVOKABLE void updateDictionary(QString languagePath);
+    Q_INVOKABLE void downloadDictionary(QString languagePath);
+    Q_INVOKABLE void populateInstalledDictionaries();
+    Q_INVOKABLE void populateAvailableDictionaries();
+    Q_INVOKABLE QString getUILanguage();
+
+    Q_SIGNAL void dictionaryAvailable();
+
+    Q_SLOT void onDownloadFileFinished(const QString& localPath);
+    Q_SLOT void onDownloadFileFailed(const QString& localPath);
 };
