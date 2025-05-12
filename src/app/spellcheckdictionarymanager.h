@@ -17,23 +17,444 @@
 
 #pragma once
 #include "appsettingsmanager.h"
+#include "connectivitymonitor.h"
+#include "filedownloader.h"
 
+#include <condition_variable>
+#include <mutex>
 #include <QObject>
 #include <QApplication>
 #include <QQmlEngine>
+#include <QUrl>
+#include <QPair>
+#include <QJsonObject>
 
 class SpellCheckDictionaryManager : public QObject
 {
     Q_OBJECT
     QVariantMap cachedInstalledDictionaries_;
+    QJsonObject cachedAvailableDictionaries_; // Changed from QMap to QJsonObject
+    // To know what translation files are available on the remote
+    const QUrl downloadUrl_ {"https://raw.githubusercontent.com/LibreOffice/dictionaries/master"};
+
+    std::mutex mutex_;
+    std::condition_variable conditionVariable_;
     AppSettingsManager* settingsManager_;
+
 public:
     explicit SpellCheckDictionaryManager(AppSettingsManager* settingsManager,
+                                         ConnectivityMonitor* cm,
                                          QObject* parent = nullptr);
+    ~SpellCheckDictionaryManager();
 
-    Q_INVOKABLE QVariantMap installedDictionaries();
+    FileDownloader* spellCheckFileDownloader;
+
+    Q_INVOKABLE QVariantMap getInstalledDictionaries();
+    Q_INVOKABLE QJsonObject getAvailableDictionaries(); // Changed return type
     Q_INVOKABLE QString getDictionariesPath();
     Q_INVOKABLE void refreshDictionaries();
     Q_INVOKABLE QString getDictionaryPath();
     Q_INVOKABLE QString getSpellLanguage();
+    Q_INVOKABLE QUrl getDictionaryUrl();
+    Q_INVOKABLE bool isDictionnaryInstalled(QString locale);
+    Q_INVOKABLE bool isDictionnaryAvailable(QString locale);
+    Q_INVOKABLE QString getBestDictionary(QString locale);
+    Q_INVOKABLE void updateDictionary(QString languagePath);
+    Q_INVOKABLE void downloadDictionary(QString languagePath);
+    Q_INVOKABLE void populateInstalledDictionaries();
+    Q_INVOKABLE void populateAvailableDictionaries();
+    Q_INVOKABLE QString getUILanguage();
+
+    Q_SIGNAL void dictionaryAvailable();
+    Q_SIGNAL QString dictionaryDownloadFailed(const QString& localPath);
+
+    Q_SLOT void onDownloadFileFinished(const QString& localPath);
+    Q_SLOT void onDownloadFileFailed(const QString& localPath);
+
+private:
+    // This is hardcoded because we don't want to send request including user metadata to microsoft
+    // everytime a user boots Jami This should regularly be updated from the libreOffice github
+    // repository using https://api.github.com/repos/LibreOffice/dictionaries/git/trees/master?recursive=1
+    const QString dictionaryListJson_ = R"**({
+    "af_ZA": {
+        "nativeName": "Afrikaans (Suid-Afrika)",
+        "path": "af_ZA/af_ZA"
+    },
+    "an_ES": {
+        "nativeName": "aragonés (España)",
+        "path": "an_ES/an_ES"
+    },
+    "ar": {
+        "nativeName": "العربية",
+        "path": "ar/ar"
+    },
+    "as_IN": {
+        "nativeName": "অসমীয়া (भारत)",
+        "path": "as_IN/as_IN"
+    },
+    "be-official": {
+        "nativeName": "беларуская",
+        "path": "be_BY/be-official"
+    },
+    "bg_BG": {
+        "nativeName": "български (България)",
+        "path": "bg_BG/bg_BG"
+    },
+    "bn_BD": {
+        "nativeName": "বাংলা (বাংলাদেশ)",
+        "path": "bn_BD/bn_BD"
+    },
+    "bn_IN": {
+        "nativeName": "বাংলা (भारत)",
+        "path": "bn_BD/bn_IN"
+    },
+    "bo": {
+        "nativeName": "བོད་སྐད་",
+        "path": "bo/bo"
+    },
+    "br_FR": {
+        "nativeName": "brezhoneg (France)",
+        "path": "br_FR/br_FR"
+    },
+    "bs_BA": {
+        "nativeName": "bosanski (Bosna i Hercegovina)",
+        "path": "bs_BA/bs_BA"
+    },
+    "cs_CZ": {
+        "nativeName": "čeština (Česko)",
+        "path": "cs_CZ/cs_CZ"
+    },
+    "da_DK": {
+        "nativeName": "dansk (Danmark)",
+        "path": "da_DK/da_DK"
+    },
+    "de_AT_frami": {
+        "nativeName": "Österreichisches Deutsch (Österreich)",
+        "path": "de/de_AT_frami"
+    },
+    "de_CH_frami": {
+        "nativeName": "Schweizer Hochdeutsch (Schweiz)",
+        "path": "de/de_CH_frami"
+    },
+    "de_DE_frami": {
+        "nativeName": "Deutsch (Deutschland)",
+        "path": "de/de_DE_frami"
+    },
+    "el_GR": {
+        "nativeName": "Ελληνικά (Ελλάδα)",
+        "path": "el_GR/el_GR"
+    },
+    "en_AU": {
+        "nativeName": "Australian English (Australia)",
+        "path": "en/en_AU"
+    },
+    "en_CA": {
+        "nativeName": "Canadian English (Canada)",
+        "path": "en/en_CA"
+    },
+    "en_GB": {
+        "nativeName": "British English (Rywvaneth Unys)",
+        "path": "en/en_GB"
+    },
+    "en_US": {
+        "nativeName": "American English (ᏌᏊ ᎢᏳᎾᎵᏍᏔᏅ ᏍᎦᏚᎩ)",
+        "path": "en/en_US"
+    },
+    "en_ZA": {
+        "nativeName": "English (Suid-Afrika)",
+        "path": "en/en_ZA"
+    },
+    "eo": {
+        "nativeName": "esperanto",
+        "path": "eo/eo"
+    },
+    "es_AR": {
+        "nativeName": "español (Argentina)",
+        "path": "es/es_AR"
+    },
+    "es_BO": {
+        "nativeName": "español (Bolivia)",
+        "path": "es/es_BO"
+    },
+    "es_CL": {
+        "nativeName": "español (Chile)",
+        "path": "es/es_CL"
+    },
+    "es_CO": {
+        "nativeName": "español (Colombia)",
+        "path": "es/es_CO"
+    },
+    "es_CR": {
+        "nativeName": "español (Costa Rica)",
+        "path": "es/es_CR"
+    },
+    "es_CU": {
+        "nativeName": "español (Cuba)",
+        "path": "es/es_CU"
+    },
+    "es_DO": {
+        "nativeName": "español (República Dominicana)",
+        "path": "es/es_DO"
+    },
+    "es_EC": {
+        "nativeName": "español (Ecuador)",
+        "path": "es/es_EC"
+    },
+    "es_ES": {
+        "nativeName": "español de España (España)",
+        "path": "es/es_ES"
+    },
+    "es_GQ": {
+        "nativeName": "español (Guinea Ecuatorial)",
+        "path": "es/es_GQ"
+    },
+    "es_GT": {
+        "nativeName": "español (Guatemala)",
+        "path": "es/es_GT"
+    },
+    "es_HN": {
+        "nativeName": "español (Honduras)",
+        "path": "es/es_HN"
+    },
+    "es_MX": {
+        "nativeName": "español de México (México)",
+        "path": "es/es_MX"
+    },
+    "es_NI": {
+        "nativeName": "español (Nicaragua)",
+        "path": "es/es_NI"
+    },
+    "es_PA": {
+        "nativeName": "español (Panamá)",
+        "path": "es/es_PA"
+    },
+    "es_PE": {
+        "nativeName": "español (Perú)",
+        "path": "es/es_PE"
+    },
+    "es_PH": {
+        "nativeName": "español (Pilipinas)",
+        "path": "es/es_PH"
+    },
+    "es_PR": {
+        "nativeName": "español (Puerto Rico)",
+        "path": "es/es_PR"
+    },
+    "es_PY": {
+        "nativeName": "español (Paraguai)",
+        "path": "es/es_PY"
+    },
+    "es_SV": {
+        "nativeName": "español (El Salvador)",
+        "path": "es/es_SV"
+    },
+    "es_US": {
+        "nativeName": "español (ᏌᏊ ᎢᏳᎾᎵᏍᏔᏅ ᏍᎦᏚᎩ)",
+        "path": "es/es_US"
+    },
+    "es_UY": {
+        "nativeName": "español (Uruguay)",
+        "path": "es/es_UY"
+    },
+    "es_VE": {
+        "nativeName": "español (Venezuela)",
+        "path": "es/es_VE"
+    },
+    "et_EE": {
+        "nativeName": "eesti (Eesti)",
+        "path": "et_EE/et_EE"
+    },
+    "fa-IR": {
+        "nativeName": "فارسی",
+        "path": "fa_IR/fa-IR"
+    },
+    "fr": {
+        "nativeName": "français",
+        "path": "fr_FR/fr"
+    },
+    "gd_GB": {
+        "nativeName": "Gàidhlig (Rywvaneth Unys)",
+        "path": "gd_GB/gd_GB"
+    },
+    "gl_ES": {
+        "nativeName": "galego (España)",
+        "path": "gl/gl_ES"
+    },
+    "gu_IN": {
+        "nativeName": "ગુજરાતી (भारत)",
+        "path": "gu_IN/gu_IN"
+    },
+    "he_IL": {
+        "nativeName": "עברית (ישראל)",
+        "path": "he_IL/he_IL"
+    },
+    "hi_IN": {
+        "nativeName": "हिन्दी (भारत)",
+        "path": "hi_IN/hi_IN"
+    },
+    "hr_HR": {
+        "nativeName": "hrvatski (Hrvatska)",
+        "path": "hr_HR/hr_HR"
+    },
+    "hu_HU": {
+        "nativeName": "magyar (Magyarország)",
+        "path": "hu_HU/hu_HU"
+    },
+    "id_ID": {
+        "nativeName": "Indonesia (Indonesia)",
+        "path": "id/id_ID"
+    },
+    "is": {
+        "nativeName": "íslenska",
+        "path": "is/is"
+    },
+    "it_IT": {
+        "nativeName": "italiano (Italia)",
+        "path": "it_IT/it_IT"
+    },
+    "kmr_Latn": {
+        "nativeName": " (Canada)",
+        "path": "kmr_Latn/kmr_Latn"
+    },
+    "kn_IN": {
+        "nativeName": "ಕನ್ನಡ (भारत)",
+        "path": "kn_IN/kn_IN"
+    },
+    "ko_KR": {
+        "nativeName": "한국어 (대한민국)",
+        "path": "ko_KR/ko_KR"
+    },
+    "lo_LA": {
+        "nativeName": "ລາວ (ລາວ)",
+        "path": "lo_LA/lo_LA"
+    },
+    "lt": {
+        "nativeName": "lietuvių",
+        "path": "lt_LT/lt"
+    },
+    "lv_LV": {
+        "nativeName": "latviešu (Latvija)",
+        "path": "lv_LV/lv_LV"
+    },
+    "mn_MN": {
+        "nativeName": "монгол (Монгол)",
+        "path": "mn_MN/mn_MN"
+    },
+    "mr_IN": {
+        "nativeName": "मराठी (भारत)",
+        "path": "mr_IN/mr_IN"
+    },
+    "nb_NO": {
+        "nativeName": "norsk bokmål (Norge)",
+        "path": "no/nb_NO"
+    },
+    "ne_NP": {
+        "nativeName": "नेपाली (नेपाल)",
+        "path": "ne_NP/ne_NP"
+    },
+    "nl_NL": {
+        "nativeName": "Nederlands (Nederland)",
+        "path": "nl_NL/nl_NL"
+    },
+    "nn_NO": {
+        "nativeName": "norsk nynorsk (Norge)",
+        "path": "no/nn_NO"
+    },
+    "oc_FR": {
+        "nativeName": "occitan (France)",
+        "path": "oc_FR/oc_FR"
+    },
+    "or_IN": {
+        "nativeName": "ଓଡ଼ିଆ (भारत)",
+        "path": "or_IN/or_IN"
+    },
+    "pa_IN": {
+        "nativeName": "ਪੰਜਾਬੀ (भारत)",
+        "path": "pa_IN/pa_IN"
+    },
+    "pl_PL": {
+        "nativeName": "polski (Polska)",
+        "path": "pl_PL/pl_PL"
+    },
+    "pt_BR": {
+        "nativeName": "português (Brasil)",
+        "path": "pt_BR/pt_BR"
+    },
+    "pt_PT": {
+        "nativeName": "português europeu (Portugal)",
+        "path": "pt_PT/pt_PT"
+    },
+    "ro_RO": {
+        "nativeName": "română (România)",
+        "path": "ro/ro_RO"
+    },
+    "ru_RU": {
+        "nativeName": "русский (Россия)",
+        "path": "ru_RU/ru_RU"
+    },
+    "sa_IN": {
+        "nativeName": "संस्कृत भाषा (भारत)",
+        "path": "sa_IN/sa_IN"
+    },
+    "si_LK": {
+        "nativeName": "සිංහල (ශ්‍රී ලංකාව)",
+        "path": "si_LK/si_LK"
+    },
+    "sk_SK": {
+        "nativeName": "slovenčina (Slovensko)",
+        "path": "sk_SK/sk_SK"
+    },
+    "sl_SI": {
+        "nativeName": "slovenščina (Slovenija)",
+        "path": "sl_SI/sl_SI"
+    },
+    "sq_AL": {
+        "nativeName": "shqip (Shqipëri)",
+        "path": "sq_AL/sq_AL"
+    },
+    "sr": {
+        "nativeName": "српски",
+        "path": "sr/sr"
+    },
+    "sr-Latn": {
+        "nativeName": "srpski",
+        "path": "sr/sr-Latn"
+    },
+    "sv_FI": {
+        "nativeName": "svenska (Suomi)",
+        "path": "sv_SE/sv_FI"
+    },
+    "sv_SE": {
+        "nativeName": "svenska (Sverige)",
+        "path": "sv_SE/sv_SE"
+    },
+    "sw_TZ": {
+        "nativeName": "Kiswahili (Tanzania)",
+        "path": "sw_TZ/sw_TZ"
+    },
+    "ta_IN": {
+        "nativeName": "தமிழ் (भारत)",
+        "path": "ta_IN/ta_IN"
+    },
+    "te_IN": {
+        "nativeName": "తెలుగు (भारत)",
+        "path": "te_IN/te_IN"
+    },
+    "th_TH": {
+        "nativeName": "ไทย (ไทย)",
+        "path": "th_TH/th_TH"
+    },
+    "tr_TR": {
+        "nativeName": "Türkçe (Türkiye)",
+        "path": "tr_TR/tr_TR"
+    },
+    "uk_UA": {
+        "nativeName": "українська (Україна)",
+        "path": "uk_UA/uk_UA"
+    },
+    "vi_VN": {
+        "nativeName": "Tiếng Việt (Việt Nam)",
+        "path": "vi/vi_VN"
+    }
+})**";
 };

@@ -911,8 +911,10 @@ Item {
     // Spellchecker
     property string checkSpelling: qsTr("Check spelling while typing")
     property string textLanguage: qsTr("Text language")
-    property string textLanguageDescription: qsTr("To install new dictionaries, use the system package manager.")
     property string spellchecking: qsTr("Spellchecking")
-    property string refresh: qsTr("Refresh")
-    property string refreshInstalledDictionaries: qsTr("Refresh installed dictionaries")
+    property string availableTextLanguages: qsTr("Install new text languages")
+    property string dictionaryDownloadSuccessfully: qsTr("Dictionary downloaded successfully.")
+    property string downloadDictionaryFailed: qsTr("Could not download dictionary")
+    property string dictionarySetAsCurrent: qsTr("Dictionary has been set as the current spell checking language")
+    property string checkInternetAndRetry: qsTr("Please check your internet connection and try again")
 }

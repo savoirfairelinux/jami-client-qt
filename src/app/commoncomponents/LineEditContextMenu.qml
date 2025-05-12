@@ -49,8 +49,7 @@ ContextMenuAutoLoader {
             isActif: lineEditObj.selectedText.length
             itemName: JamiStrings.copy
             hasIcon: false
-            onClicked:
-                lineEditObj.copy();
+            onClicked: lineEditObj.copy()
         },
         GeneralMenuItem {
             id: cut
@@ -59,8 +58,7 @@ ContextMenuAutoLoader {
             isActif: lineEditObj.selectedText.length && !selectOnly
             itemName: JamiStrings.cut
             hasIcon: false
-            onClicked:
-                lineEditObj.cut();
+            onClicked: lineEditObj.cut()
         },
         GeneralMenuItem {
             id: paste
@@ -100,6 +98,7 @@ ContextMenuAutoLoader {
                 canTrigger: true
                 isActif: true
                 itemName: model.name
+                bold: true
                 hasIcon: false
                 onClicked: {
                     replaceWord(model.name);
