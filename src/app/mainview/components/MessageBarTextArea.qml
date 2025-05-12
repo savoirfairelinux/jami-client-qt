@@ -73,7 +73,7 @@ JamiFlickable {
 
         lineEditObj: textArea
         customizePaste: true
-        checkSpell: (Qt.platform.os.toString() === "linux") ? true : false
+        checkSpellingIfActivated: true
 
         onContextMenuRequirePaste: {
             // Intercept paste event to use C++ QMimeData
@@ -97,10 +97,14 @@ JamiFlickable {
     onShowPreviewChanged: {
         if (showPreview) {
             cachedText = textArea.text;
+            spellCheckActive = false;
             MessagesAdapter.parseMessage("", textArea.text, false, "", "");
+            textArea.clearUnderlines();
         } else {
             textArea.textFormatChanged.disconnect(resetEditableText);
             textArea.textFormatChanged.connect(resetEditableText);
+            spellCheckActive = AppSettingsManager.getValue(Settings.EnableSpellCheck);
+            textArea.updateUnderlineText();
         }
     }
 
@@ -117,30 +121,16 @@ JamiFlickable {
     TextArea.flickable: TextArea {
         id: textArea
 
-        CachedFile {
-            id: cachedFile
-        }
-
         function updateCorrection(language) {
-            cachedFile.updateDictionnary(language);
             textArea.updateUnderlineText();
         }
 
-        // Listen to settings changes and apply it to this widget
         Connections {
-            target: UtilsAdapter
+            target: SpellCheckHandler
 
-            function onChangeLanguage() {
-                textArea.updateUnderlineText();
-            }
-
-            function onChangeFontSize() {
-                textArea.updateUnderlineText();
-            }
-
-            function onSpellLanguageChanged() {
+            function onDictionaryChanged() {
                 root.language = SpellCheckDictionaryManager.getSpellLanguage();
-                if ((Qt.platform.os.toString() !== "linux") || (AppSettingsManager.getValue(Settings.SpellLang) === "NONE")) {
+                if (AppSettingsManager.getValue(Settings.SpellLang) === "NONE") {
                     spellCheckActive = false;
                 } else {
                     spellCheckActive = AppSettingsManager.getValue(Settings.EnableSpellCheck);
@@ -152,10 +142,22 @@ JamiFlickable {
                     textArea.clearUnderlines();
                 }
             }
+        }
+
+        // Listen to settings changes to apply it to the text area
+        Connections {
+            target: UtilsAdapter
+
+            function onChangeLanguage() {
+                textArea.updateUnderlineText();
+            }
+
+            function onChangeFontSize() {
+                textArea.updateUnderlineText();
+            }
 
             function onEnableSpellCheckChanged() {
-                // Disable spell check on non-linux platforms yet
-                if ((Qt.platform.os.toString() !== "linux") || (AppSettingsManager.getValue(Settings.SpellLang) === "NONE")) {
+                if (AppSettingsManager.getValue(Settings.SpellLang) === "NONE") {
                     spellCheckActive = false;
                 } else {
                     spellCheckActive = AppSettingsManager.getValue(Settings.EnableSpellCheck);
@@ -171,8 +173,9 @@ JamiFlickable {
 
         // Initialize the settings if the component wasn't loaded when changing settings
         Component.onCompleted: {
-            if ((Qt.platform.os.toString() !== "linux") || (AppSettingsManager.getValue(Settings.SpellLang) === "NONE")) {
-                spellCheckActive = false;
+            SpellCheckDictionaryManager.getBestDictionary(AppSettingsManager.getValue(Settings.SpellLang));
+            if ((AppSettingsManager.getValue(Settings.SpellLang) === "NONE")) {
+                root.language = AppSettingsManager.getValue(Settings.SpellLang);
             } else {
                 spellCheckActive = AppSettingsManager.getValue(Settings.EnableSpellCheck);
             }
@@ -226,8 +229,8 @@ JamiFlickable {
                 var position = textArea.positionAt(event.x, event.y);
                 textArea.moveCursorSelection(position, TextInput.SelectWords);
                 textArea.selectWord();
-                if (!MessagesAdapter.spell(textArea.selectedText)) {
-                    var wordList = MessagesAdapter.spellSuggestionsRequest(textArea.selectedText);
+                if (!SpellCheckHandler.spell(textArea.selectedText)) {
+                    var wordList = SpellCheckHandler.spellSuggestionsRequest(textArea.selectedText);
                     if (wordList.length !== 0) {
                         textAreaContextMenu.addMenuItem(wordList);
                     }
@@ -285,12 +288,12 @@ JamiFlickable {
             // We iterate over the whole text to find words to check and underline them if needed
             if (spellCheckActive) {
                 var text = textArea.text;
-                var words = MessagesAdapter.findWords(text);
+                var words = SpellCheckHandler.findWords(text);
                 if (!words)
                     return;
                 for (var i = 0; i < words.length; i++) {
                     var wordInfo = words[i];
-                    if (wordInfo && wordInfo.word && !MessagesAdapter.spell(wordInfo.word)) {
+                    if (wordInfo && wordInfo.word && !SpellCheckHandler.spell(wordInfo.word)) {
                         textMetrics.text = wordInfo.word;
                         var xPos = textArea.positionToRectangle(wordInfo.position).x;
                         var yPos = textArea.positionToRectangle(wordInfo.position).y + textArea.positionToRectangle(wordInfo.position).height;

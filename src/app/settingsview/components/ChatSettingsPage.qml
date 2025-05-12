@@ -42,6 +42,210 @@ SettingsPageBase {
         anchors.leftMargin: JamiTheme.preferredSettingsMarginSize
 
         ColumnLayout {
+
+            width: parent.width
+            spacing: JamiTheme.settingsCategorySpacing
+
+            Text {
+                id: spellcheckingTitle
+
+                Layout.alignment: Qt.AlignLeft
+                Layout.preferredWidth: parent.width
+
+                text: JamiStrings.spellchecking
+                color: JamiTheme.textColor
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+                wrapMode: Text.WordWrap
+
+                font.pixelSize: JamiTheme.settingsTitlePixelSize
+                font.kerning: true
+            }
+
+            ToggleSwitch {
+                id: enableSpellCheckToggleSwitch
+                Layout.fillWidth: true
+                visible: true
+
+                checked: UtilsAdapter.getAppValue(Settings.Key.EnableSpellCheck)
+                labelText: JamiStrings.checkSpelling
+                tooltipText: JamiStrings.checkSpelling
+                onSwitchToggled: {
+                    UtilsAdapter.setAppValue(Settings.Key.EnableSpellCheck, checked);
+                }
+            }
+
+            SettingsComboBox {
+                id: spellCheckLangComboBoxSetting
+                Layout.fillWidth: true
+                height: JamiTheme.preferredFieldHeight
+                labelText: JamiStrings.textLanguage
+                tipText: JamiStrings.textLanguage
+                comboModel: ListModel {
+                    id: installedSpellCheckLangModel
+                    Component.onCompleted: {
+                        var supported = SpellCheckDictionaryManager.getInstalledDictionaries();
+                        var keys = Object.keys(supported);
+                        var currentKey = UtilsAdapter.getAppValue(Settings.Key.SpellLang);
+                        for (var i = 0; i < keys.length; ++i) {
+                            var dictInfo = supported[keys[i]];
+                            append({
+                                    "displayText": dictInfo.nativeName,
+                                    "id": keys[i],
+                                    "path": dictInfo.path
+                                });
+                            if (keys[i] === currentKey)
+                                spellCheckLangComboBoxSetting.modelIndex = i;
+                        }
+                    }
+                }
+                widthOfComboBox: itemWidth
+                role: "displayText"
+                onActivated: {
+                    // Get selected dictionary
+                    var selectedDict = comboModel.get(modelIndex);
+                    if (!selectedDict)
+                        return;
+
+                    // Download dictionary
+                    SpellCheckDictionaryManager.getBestDictionary(selectedDict.id);
+
+                    // Dialog will handle the rest through onDownloadFinished signal
+                    // which will properly update both lists
+                }
+            }
+
+            SettingsComboBox {
+                id: spellCheckAvailableLangComboBoxSetting
+
+                Layout.fillWidth: true
+                height: JamiTheme.preferredFieldHeight
+
+                labelText: JamiStrings.availableTextLanguages
+                tipText: JamiStrings.availableTextLanguages
+                comboModel: ListModel {
+                    id: availableSpellCheckLangModel
+                    Component.onCompleted: {
+                        var dictionaries = SpellCheckDictionaryManager.getAvailableDictionaries();
+                        var keys = Object.keys(dictionaries);
+                        var currentKey = UtilsAdapter.getAppValue(Settings.Key.SpellLang);
+                        for (var i = 0; i < keys.length; ++i) {
+                            var dictInfo = dictionaries[keys[i]];
+                            append({
+                                    "displayText": dictInfo.nativeName,
+                                    "id": keys[i],
+                                    "path": dictInfo.path
+                                });
+                            if (keys[i] === currentKey)
+                                spellCheckAvailableLangComboBoxSetting.modelIndex = i;
+                        }
+                    }
+                }
+
+                widthOfComboBox: itemWidth
+                role: "displayText"
+                onActivated: {
+                    SpellCheckDictionaryManager.getBestDictionary(comboModel.get(modelIndex).id);
+                    // First refresh dictionaries to update both cached lists
+                    SpellCheckDictionaryManager.refreshDictionaries();
+
+                    // Save current selection
+                    var langIdx = spellCheckLangComboBoxSetting.modelIndex;
+
+                    // Update installed languages list
+                    installedSpellCheckLangModel.clear();
+                    var supported = SpellCheckDictionaryManager.getInstalledDictionaries();
+                    var currentKey = UtilsAdapter.getAppValue(Settings.Key.SpellLang);
+                    var keys = Object.keys(supported);
+                    for (var i = 0; i < keys.length; ++i) {
+                        var dictInfo = supported[keys[i]];
+                        installedSpellCheckLangModel.append({
+                                "displayText": dictInfo.nativeName,
+                                "id": keys[i],
+                                "path": dictInfo.path
+                            });
+                        // Restore selection
+                        if (keys[i] === currentKey) {
+                            spellCheckLangComboBoxSetting.modelIndex = i;
+                        }
+                    }
+
+                    // Update available languages list
+                    availableSpellCheckLangModel.clear();
+                    var dictionaries = SpellCheckDictionaryManager.getAvailableDictionaries();
+                    var availableKeys = Object.keys(dictionaries);
+                    for (var j = 0; j < availableKeys.length; ++j) {
+                        var availableDictInfo = dictionaries[availableKeys[j]];
+                        availableSpellCheckLangModel.append({
+                                "displayText": availableDictInfo.nativeName,
+                                "id": availableKeys[j],
+                                "path": availableDictInfo.path
+                            });
+                    }
+                }
+            }
+
+            DownloadDictionaryPopup {
+                id: downloadDictionaryPopup
+                visible: false
+            }
+
+            Connections {
+                target: SpellCheckDictionaryManager
+
+                function onDownloadFinished() {
+                    // Show success popup
+                    downloadDictionaryPopup.success = true;
+                    downloadDictionaryPopup.visible = true;
+                    downloadDictionaryPopup.enabled = true;
+
+                    // First refresh dictionaries to ensure caches are updated
+                    SpellCheckDictionaryManager.refreshDictionaries();
+
+                    // Update installed languages list
+                    installedSpellCheckLangModel.clear();
+                    var supported = SpellCheckDictionaryManager.getInstalledDictionaries();
+                    var currentKey = UtilsAdapter.getAppValue(Settings.Key.SpellLang);
+                    var keys = Object.keys(supported);
+
+                    // Populate installed languages
+                    for (var i = 0; i < keys.length; ++i) {
+                        var dictInfo = supported[keys[i]];
+                        installedSpellCheckLangModel.append({
+                                "displayText": dictInfo.nativeName,
+                                "id": keys[i],
+                                "path": dictInfo.path
+                            });
+                        // Set current selection if this is the active language
+                        if (keys[i] === currentKey) {
+                            spellCheckLangComboBoxSetting.modelIndex = i;
+                        }
+                    }
+
+                    // Update available languages list
+                    availableSpellCheckLangModel.clear();
+                    var dictionaries = SpellCheckDictionaryManager.getAvailableDictionaries();
+                    var availableKeys = Object.keys(dictionaries);
+                    for (var j = 0; j < availableKeys.length; ++j) {
+                        var availableDictInfo = dictionaries[availableKeys[j]];
+                        availableSpellCheckLangModel.append({
+                                "displayText": availableDictInfo.nativeName,
+                                "id": availableKeys[j],
+                                "path": availableDictInfo.path
+                            });
+                    }
+                }
+
+                function onDictionaryDownloadFailed(localPath) {
+                    // Show failure popup
+                    downloadDictionaryPopup.success = false;
+                    downloadDictionaryPopup.visible = true;
+                    downloadDictionaryPopup.enabled = true;
+                }
+            }
+        }
+
+        ColumnLayout {
             id: generalSettings
 
             width: parent.width

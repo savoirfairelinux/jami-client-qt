@@ -627,6 +627,17 @@ Utils::getProjectCredits()
                                 "who want to be added to the list should contact us."));
 }
 
+QString
+Utils::getAvailableDictionariesJson()
+{
+    QFile availableDictionariesFile(":/misc/available_dictionaries.json");
+    if (!availableDictionariesFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qDebug().noquote() << "Available Dictionaries file failed to load";
+        return {};
+    }
+    return QString(availableDictionariesFile.readAll());
+}
+
 inline QString
 removeEndlines(const QString& str)
 {
