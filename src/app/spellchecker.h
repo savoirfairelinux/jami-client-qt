@@ -38,8 +38,8 @@ class SpellChecker : public QObject
 {
     Q_OBJECT
 public:
-    explicit SpellChecker(const QString&);
-    ~SpellChecker() = default;
+    explicit SpellChecker();
+
     void replaceDictionary(const QString& dictionaryPath);
 
     Q_INVOKABLE bool spell(const QString& word);
@@ -47,7 +47,8 @@ public:
     Q_INVOKABLE void ignoreWord(const QString& word);
 
     // Used to find words and their position in a text
-    struct WordInfo {
+    struct WordInfo
+    {
         QString word;
         int position;
         int length;
@@ -57,7 +58,7 @@ public:
 
 private:
     void put_word(const QString& word);
-    std::shared_ptr<Hunspell> hunspell_;
+    std::unique_ptr<Hunspell> hunspell_;
     QString encoding_;
     QTextCodec* codec_;
 };
