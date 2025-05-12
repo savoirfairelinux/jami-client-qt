@@ -16,19 +16,21 @@
  */
 import QtQuick
 import QtQuick.Controls
-import QtQuick.Layouts
+import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import net.jami.Helpers 1.1
-import net.jami.Models 1.1
-import "../../commoncomponents"
 
-Item {
-    id: cachedFile
-    property string dictionaryPath: SpellCheckDictionaryManager.getDictionariesPath()
+import "../commoncomponents/contextmenu"
 
-    function updateDictionnary(languagePath) {
-        var file = dictionaryPath + languagePath;
-        MessagesAdapter.updateDictionnary(file);
+BaseModalDialog {
+    id: root
+
+    title: JamiStrings.manageDictionaries
+
+    popupContent: DictionaryInstallView {
+        Accessible.name: JamiStrings.manageDictionaries
+        Accessible.role: Accessible.PopupMenu
+        width: 400
+        height: 500
     }
 }
