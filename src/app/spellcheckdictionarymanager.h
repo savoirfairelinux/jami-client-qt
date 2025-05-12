@@ -21,19 +21,28 @@
 #include <QObject>
 #include <QApplication>
 #include <QQmlEngine>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QNetworkRequest>
+#include <QUrl>
 
 class SpellCheckDictionaryManager : public QObject
 {
     Q_OBJECT
     QVariantMap cachedInstalledDictionaries_;
+    QVariantMap cachedAvailableDictionaries_;
     AppSettingsManager* settingsManager_;
+    QNetworkAccessManager networkRequestManager_;
+    const QUrl dictionaryUrl_{"https://cgit.freedesktop.org/libreoffice/dictionaries/plain/"};
 public:
     explicit SpellCheckDictionaryManager(AppSettingsManager* settingsManager,
                                          QObject* parent = nullptr);
 
     Q_INVOKABLE QVariantMap installedDictionaries();
+    Q_INVOKABLE QVariantMap availableDictionaries();
     Q_INVOKABLE QString getDictionariesPath();
     Q_INVOKABLE void refreshDictionaries();
     Q_INVOKABLE QString getDictionaryPath();
     Q_INVOKABLE QString getSpellLanguage();
+    Q_INVOKABLE QUrl getDictionaryUrl();
 };

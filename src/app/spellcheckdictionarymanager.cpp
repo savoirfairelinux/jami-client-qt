@@ -31,11 +31,15 @@
 #include <QEventLoop>
 #include <QRegularExpression>
 
+
 SpellCheckDictionaryManager::SpellCheckDictionaryManager(AppSettingsManager* settingsManager,
                                                          QObject* parent)
     : QObject {parent}
     , settingsManager_ {settingsManager}
-{}
+{
+    installedDictionaries();
+    availableDictionaries();
+}
 
 QVariantMap
 SpellCheckDictionaryManager::installedDictionaries()
@@ -146,4 +150,73 @@ QString
 SpellCheckDictionaryManager::getDictionaryPath()
 {
     return "/usr/share/hunspell/" + getSpellLanguage();
+}
+
+QVariantMap
+SpellCheckDictionaryManager::availableDictionaries()
+{
+    if (cachedAvailableDictionaries_.size() > 0) {
+        qWarning() << "Returning cached dictionaries";
+        return cachedAvailableDictionaries_;
+    } else {
+        auto dictionariesURL = getDictionaryUrl();
+        qWarning() << "Fetching dictionaries from URL:" << dictionariesURL;
+        QNetworkRequest request(dictionariesURL);
+        QNetworkReply *reply = networkRequestManager_.get(request);
+        QObject::connect(reply, &QNetworkReply::finished, [=]() {
+            if (reply->error() == QNetworkReply::NoError) {
+                QString webPageContent = QString::fromUtf8(reply->readAll());
+                qWarning() << "Page content:" << webPageContent;
+                QVariantMap result;
+                QRegularExpression regexWithCountry("'>\\s*([a-z]{2,3}_[A-Z]{2})\\s*</a></li>");
+                QRegularExpression regexSimple("'>\\s*([a-z]{2,3})(?![A-Z_])\\s*</a></li>");
+                QSet<QString> foundDictionaries;
+
+                // Find all matches with a country code
+                auto matchIterator = regexWithCountry.globalMatch(webPageContent);
+                while (matchIterator.hasNext()) {
+                    QRegularExpressionMatch match = matchIterator.next();
+                    QString locale = match.captured(1);
+                    if (!foundDictionaries.contains(locale)) {
+                        qWarning() << "Match found with country code:" << locale;
+                        auto nativeName = QLocale(locale).nativeLanguageName();
+                        if (!nativeName.isEmpty()) {
+                            result[locale] = nativeName;
+                            foundDictionaries.insert(locale);
+                        }
+                        qWarning() << "Found dictionary with country:" << locale
+                                   << "Native name:" << nativeName;
+                    }
+                }
+
+                // Find all simple matches
+                matchIterator = regexSimple.globalMatch(webPageContent);
+                while (matchIterator.hasNext()) {
+                    QRegularExpressionMatch match = matchIterator.next();
+                    QString locale = match.captured(1);
+                    if (!foundDictionaries.contains(locale)) {
+                        auto nativeName = QLocale(locale).nativeLanguageName();
+                        if (!nativeName.isEmpty()) {
+                            result[locale] = nativeName;
+                            foundDictionaries.insert(locale);
+                        }
+                        qWarning() << "Found simple dictionary:" << locale
+                                   << "Native name:" << nativeName;
+                    }
+                }
+
+                cachedAvailableDictionaries_ = result;
+            } else {
+                qWarning() << "Error:" << reply->errorString();
+            }
+            reply->deleteLater();
+        });
+    }
+    return QVariantMap{};
+}
+
+QUrl
+SpellCheckDictionaryManager::getDictionaryUrl()
+{
+    return dictionaryUrl_;
 }
