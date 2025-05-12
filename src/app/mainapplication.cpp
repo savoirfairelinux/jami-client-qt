@@ -21,6 +21,7 @@
 #include "qmlregister.h"
 #include "appsettingsmanager.h"
 #include "spellcheckdictionarymanager.h"
+#include "spellcheckhandler.h"
 #include "connectivitymonitor.h"
 #include "systemtray.h"
 #include "previewengine.h"
@@ -191,7 +192,6 @@ MainApplication::init()
     // to any other initialization. This won't do anything if crashpad isn't
     // enabled.
     settingsManager_ = new AppSettingsManager(this);
-    spellCheckDictionaryManager_ = new SpellCheckDictionaryManager(settingsManager_, this);
     crashReporter_ = new CrashReporter(settingsManager_, this);
 
     // This 2-phase initialisation prevents ephemeral instances from
@@ -201,6 +201,10 @@ MainApplication::init()
     QWK::registerTypes(engine_.get());
 
     connectivityMonitor_ = new ConnectivityMonitor(this);
+    spellCheckDictionaryManager_ = new SpellCheckDictionaryManager(settingsManager_,
+                                                                   connectivityMonitor_,
+                                                                   this);
+    spellCheckHandler_ = new SpellCheckHandler(spellCheckDictionaryManager_, this);
     systemTray_ = new SystemTray(settingsManager_, this);
     previewEngine_ = new PreviewEngine(connectivityMonitor_, this);
 
@@ -426,6 +430,7 @@ MainApplication::initQmlLayer()
                          systemTray_,
                          settingsManager_,
                          spellCheckDictionaryManager_,
+                         spellCheckHandler_,
                          connectivityMonitor_,
                          previewEngine_,
                          &screenInfo_,
