@@ -26,9 +26,27 @@ import "../../commoncomponents"
 Item {
     id: cachedFile
     property string dictionaryPath: SpellCheckDictionaryManager.getDictionariesPath()
+    property string downloadUrl: SpellCheckDictionaryManager.getDictionaryUrl()
 
     function updateDictionnary(languagePath) {
         var file = dictionaryPath + languagePath;
         MessagesAdapter.updateDictionnary(file);
+    }
+
+    // Used on Windows and MacOS
+    function downloadDictionary(languagePath) {
+        if (downloadUrl === "") {
+            return;
+        }
+        var file = dictionaryPath + languagePath;
+        if (Qt.platform.os.toString() !== "linux") {
+            console.warn("Download url: " + url);
+            console.warn("Download file: " + file);
+            if (url && url !== "" && file !== "") {
+                FileDownloader.downloadFile(url + ".aff", file + ".aff");
+                FileDownloader.downloadFile(url + ".dic", file + ".dic");
+            }
+        }
+        MessagesAdapter.updateDictionary(file);
     }
 }

@@ -21,6 +21,7 @@
 #include "qmlregister.h"
 #include "appsettingsmanager.h"
 #include "spellcheckdictionarymanager.h"
+#include "spellcheckhandler.h"
 #include "connectivitymonitor.h"
 #include "systemtray.h"
 #include "previewengine.h"
@@ -192,6 +193,7 @@ MainApplication::init()
     // enabled.
     settingsManager_ = new AppSettingsManager(this);
     spellCheckDictionaryManager_ = new SpellCheckDictionaryManager(settingsManager_, this);
+    spellCheckHandler_ = new SpellCheckHandler(spellCheckDictionaryManager_, this);
     crashReporter_ = new CrashReporter(settingsManager_, this);
 
     // This 2-phase initialisation prevents ephemeral instances from
@@ -426,6 +428,7 @@ MainApplication::initQmlLayer()
                          systemTray_,
                          settingsManager_,
                          spellCheckDictionaryManager_,
+                         spellCheckHandler_,
                          connectivityMonitor_,
                          previewEngine_,
                          &screenInfo_,

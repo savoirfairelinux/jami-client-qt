@@ -288,6 +288,7 @@ SettingsPageBase {
 
                     onClicked: {
                         SpellCheckDictionaryManager.refreshDictionaries();
+                        SpellCheckDictionaryManager.availableDictionaries();
                         var langIdx = spellCheckLangComboBoxSetting.modelIndex;
                         installedSpellCheckLangModel.clear();
                         var supported = SpellCheckDictionaryManager.installedDictionaries();
