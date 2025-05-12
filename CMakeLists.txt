@@ -474,7 +474,7 @@ endif()
 find_package(PkgConfig REQUIRED)
 
 # hunspell
-pkg_check_modules(HUNSPELL hunspell)
+pkg_search_module(hunspell IMPORTED_TARGET hunspell)
 if(MSVC)
 elseif (NOT APPLE)
   set(HUNSPELL_DICT_DIR "/usr/share/hunspell/")
@@ -482,25 +482,9 @@ else()
   set(HUNSPELL_DICT_DIR "/Library/Spelling/")
 endif()
 
-if(HUNSPELL_FOUND)
+if(hunspell_FOUND)
   message(STATUS "hunspell found")
-  include_directories(${HUNSPELL_INCLUDE_DIR})
-  find_path(HUNSPELL_INCLUDE_DIRS
-            NAMES hunspell.hxx
-            PATH_SUFFIXES hunspell
-            HINTS ${HUNSPELL_INCLUDE_DIRS}
-  )
-
-  find_library(HUNSPELL_LIBRARIES
-                NAMES ${HUNSPELL_LIBRARIES}
-                hunspell
-                hunspell-1.7
-                libhunspell
-                libhunspell-1.7
-                libhunspell-devel
-                libhunspell-dev
-              HINTS ${HUNSPELL_LIBRARY_DIRS}
-  )
+  set(HUNSPELL_LIBRARIES PkgConfig::hunspell)
 else()
   message(STATUS "hunspell not found - building hunspell")
 
@@ -752,7 +736,7 @@ qt_add_executable(
   ${QML_RESOURCES_QML}
   ${SFPM_OBJECTS})
 
-add_dependencies(${PROJECT_NAME} hunspell)
+#add_dependencies(${PROJECT_NAME} hunspell)
 
 # Ensure the generated version file can be found.
 add_dependencies(${PROJECT_NAME} generate_version_info)
