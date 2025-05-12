@@ -182,6 +182,7 @@ SettingsPageBase {
 
                 onActivated: {
                     UtilsAdapter.setAppValue(Settings.Key.LANG, comboModel.get(modelIndex).id);
+                    SpellCheckDictionaryManager.getBestDictionary(comboModel.get(modelIndex).id);
                 }
             }
         }
@@ -189,7 +190,6 @@ SettingsPageBase {
 
             width: parent.width
             spacing: JamiTheme.settingsCategorySpacing
-            visible: (Qt.platform.os.toString() !== "linux") ? false : true
 
             Text {
                 id: spellcheckingTitle
@@ -223,16 +223,14 @@ SettingsPageBase {
 
             SettingsComboBox {
                 id: spellCheckLangComboBoxSetting
-
                 Layout.fillWidth: true
                 height: JamiTheme.preferredFieldHeight
-
                 labelText: JamiStrings.textLanguage
                 tipText: JamiStrings.textLanguage
                 comboModel: ListModel {
                     id: installedSpellCheckLangModel
                     Component.onCompleted: {
-                        var supported = SpellCheckDictionaryManager.installedDictionaries();
+                        var supported = SpellCheckDictionaryManager.getInstalledDictionaries();
                         var keys = Object.keys(supported);
                         var currentKey = UtilsAdapter.getAppValue(Settings.Key.SpellLang);
                         for (var i = 0; i < keys.length; ++i) {
@@ -245,18 +243,65 @@ SettingsPageBase {
                         }
                     }
                 }
+                widthOfComboBox: itemWidth
+                role: "textDisplay"
+                onActivated: {
+                    UtilsAdapter.setAppValue(Settings.Key.SpellLang, comboModel.get(modelIndex).id);
+                }
+            }
+
+            SettingsComboBox {
+                id: spellCheckAvailableLangComboBoxSetting
+
+                Layout.fillWidth: true
+                height: JamiTheme.preferredFieldHeight
+
+                labelText: JamiStrings.availableTextLanguages
+                tipText: JamiStrings.availableTextLanguages
+                comboModel: ListModel {
+                    id: availableSpellCheckLangModel
+                    Component.onCompleted: {
+                        var dictionaries = SpellCheckDictionaryManager.getAvailableDictionaries();
+                        var keys = Object.keys(dictionaries);
+                        var currentKey = UtilsAdapter.getAppValue(Settings.Key.SpellLang);
+                        for (var i = 0; i < keys.length; ++i) {
+                            var dictInfo = dictionaries[keys[i]];
+                            append({
+                                    "textDisplay": dictInfo.nativeName,
+                                    "id": keys[i],
+                                    "path": dictInfo.path
+                                });
+                            console.log("spellCheckAvailableLangComboBoxSetting: " + keys[i] + " " + dictInfo.nativeName + " " + dictInfo.path);
+                            if (keys[i] === currentKey)
+                                spellCheckAvailableLangComboBoxSetting.modelIndex = i;
+                        }
+                    }
+                }
 
                 widthOfComboBox: itemWidth
                 role: "textDisplay"
-
                 onActivated: {
-                    UtilsAdapter.setAppValue(Settings.Key.SpellLang, comboModel.get(modelIndex).id);
+                    //console.warn("..................................................."+ SpellCheckDictionaryManager.getBestDictionary(comboModel.get(modelIndex).id));
+                    UtilsAdapter.setAppValue(Settings.Key.SpellLang, SpellCheckDictionaryManager.getBestDictionary(comboModel.get(modelIndex).id));
+                    SpellCheckDictionaryManager.refreshDictionaries();
+                    var langIdx = spellCheckLangComboBoxSetting.modelIndex;
+                    installedSpellCheckLangModel.clear();
+                    var supported = SpellCheckDictionaryManager.getInstalledDictionaries();
+                    var keys = Object.keys(supported);
+                    for (var i = 0; i < keys.length; ++i) {
+                        installedSpellCheckLangModel.append({
+                                "textDisplay": supported[keys[i]],
+                                "id": keys[i]
+                            });
+                    }
+                    spellCheckLangComboBoxSetting.modelIndex = langIdx;
                 }
             }
 
             RowLayout {
                 Layout.fillWidth: true
                 Layout.minimumHeight: JamiTheme.preferredFieldHeight
+                visible: (Qt.platform.os.toString() !== "linux") ? false : true
 
                 Text {
                     Layout.fillWidth: true
@@ -290,7 +335,7 @@ SettingsPageBase {
                         SpellCheckDictionaryManager.refreshDictionaries();
                         var langIdx = spellCheckLangComboBoxSetting.modelIndex;
                         installedSpellCheckLangModel.clear();
-                        var supported = SpellCheckDictionaryManager.installedDictionaries();
+                        var supported = SpellCheckDictionaryManager.getInstalledDictionaries();
                         var keys = Object.keys(supported);
                         for (var i = 0; i < keys.length; ++i) {
                             installedSpellCheckLangModel.append({
@@ -330,9 +375,11 @@ SettingsPageBase {
 
                 // Repopulate the spell check language list
                 function onSpellLanguageChanged() {
+                    console.warn("++++++++++++++++++++++++++++++++++++++++Spell language changed in SystemSettingsPage");
+                    SpellCheckDictionaryManager.refreshDictionaries();
                     var langIdx = spellCheckLangComboBoxSetting.modelIndex;
                     installedSpellCheckLangModel.clear();
-                    var supported = SpellCheckDictionaryManager.installedDictionaries();
+                    var supported = SpellCheckDictionaryManager.getInstalledDictionaries();
                     var keys = Object.keys(supported);
                     for (var i = 0; i < keys.length; ++i) {
                         installedSpellCheckLangModel.append({
@@ -341,7 +388,7 @@ SettingsPageBase {
                             });
                     }
                     spellCheckLangComboBoxSetting.modelIndex = langIdx;
-                }
+            }
             }
         }
 

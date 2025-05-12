@@ -29,6 +29,8 @@
 #include <QDebug>
 #include <QObject>
 #include <string>
+#include <mutex>
+#include <condition_variable>
 
 #include <hunspell/hunspell.hxx>
 
@@ -38,16 +40,21 @@ class SpellChecker : public QObject
 {
     Q_OBJECT
 public:
-    explicit SpellChecker(const QString&);
-    ~SpellChecker() = default;
+    explicit SpellChecker();
+
     void replaceDictionary(const QString& dictionaryPath);
 
     Q_INVOKABLE bool spell(const QString& word);
     Q_INVOKABLE QStringList suggest(const QString& word);
     Q_INVOKABLE void ignoreWord(const QString& word);
+    Q_INVOKABLE bool isLoaded() const
+    {
+        return loaded_;
+    }
 
     // Used to find words and their position in a text
-    struct WordInfo {
+    struct WordInfo
+    {
         QString word;
         int position;
         int length;
@@ -57,7 +64,8 @@ public:
 
 private:
     void put_word(const QString& word);
-    std::shared_ptr<Hunspell> hunspell_;
+    std::unique_ptr<Hunspell> hunspell_;
     QString encoding_;
     QTextCodec* codec_;
+    bool loaded_ {false};
 };
