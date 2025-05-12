@@ -20,7 +20,6 @@
 #include "global.h"
 #include "qmlregister.h"
 #include "appsettingsmanager.h"
-#include "spellcheckdictionarymanager.h"
 #include "connectivitymonitor.h"
 #include "systemtray.h"
 #include "previewengine.h"
@@ -160,6 +159,7 @@ MainApplication::MainApplication(int& argc, char** argv)
                                      "qml.debug=false\n"
                                      "default.debug=false\n"
                                      "client.debug=false\n"
+                                     "spellcheck.debug=false\n"
                                      "\n");
     // These can be set in the environment as well.
     // e.g. QT_LOGGING_RULES="*.debug=false;qml.debug=true"
@@ -191,7 +191,6 @@ MainApplication::init()
     // to any other initialization. This won't do anything if crashpad isn't
     // enabled.
     settingsManager_ = new AppSettingsManager(this);
-    spellCheckDictionaryManager_ = new SpellCheckDictionaryManager(settingsManager_, this);
     crashReporter_ = new CrashReporter(settingsManager_, this);
 
     // This 2-phase initialisation prevents ephemeral instances from
@@ -349,8 +348,8 @@ MainApplication::parseArguments()
     parser_.addOption(muteDaemonOption);
 
 #ifdef QT_DEBUG
-    // In debug mode, add an option to test a specific QML component via its name.
-    // e.g. ./jami --test AccountComboBox
+    //  In debug mode, add an option to test a specific QML component via its name.
+    //  e.g. ./jami --test AccountComboBox
     parser_.addOption(QCommandLineOption("test", "Test a QML component via its name.", "uri"));
     // We may need to force the test window dimensions in the case that the component to test
     // does not specify its own dimensions and is dependent on parent/sibling dimensions.
@@ -425,7 +424,6 @@ MainApplication::initQmlLayer()
                          lrcInstance_.get(),
                          systemTray_,
                          settingsManager_,
-                         spellCheckDictionaryManager_,
                          connectivityMonitor_,
                          previewEngine_,
                          &screenInfo_,

@@ -17,6 +17,8 @@
 import QtQuick
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
+import net.jami.Enums 1.1
+import net.jami.Models 1.1
 import "contextmenu"
 import "../mainview"
 import "../mainview/components"
@@ -30,15 +32,16 @@ ContextMenuAutoLoader {
     property var selectionEnd
     property bool customizePaste: false
     property bool selectOnly: false
-    property bool checkSpell: false
+    property bool spellCheckEnabled: false
     property var suggestionList
     property var menuItemsLength
     property var language
 
     signal contextMenuRequirePaste
+
     SpellLanguageContextMenu {
         id: spellLanguageContextMenu
-        active: checkSpell
+        active: spellCheckEnabled
     }
 
     property list<GeneralMenuItem> menuItems: [
@@ -49,8 +52,7 @@ ContextMenuAutoLoader {
             isActif: lineEditObj.selectedText.length && !selectOnly
             itemName: JamiStrings.cut
             hasIcon: false
-            onClicked:
-                lineEditObj.cut();
+            onClicked: lineEditObj.cut()
         },
         GeneralMenuItem {
             id: copy
@@ -59,8 +61,7 @@ ContextMenuAutoLoader {
             isActif: lineEditObj.selectedText.length
             itemName: JamiStrings.copy
             hasIcon: false
-            onClicked:
-                lineEditObj.copy();
+            onClicked: lineEditObj.copy()
         },
         GeneralMenuItem {
             id: paste
@@ -77,29 +78,39 @@ ContextMenuAutoLoader {
         },
         GeneralMenuItem {
             id: language
-            visible: checkSpell
-            canTrigger: checkSpell
+            canTrigger: spellCheckEnabled && SpellCheckAdapter.installedDictionaryCount > 0
             itemName: JamiStrings.language
             hasIcon: false
             onClicked: {
                 spellLanguageContextMenu.openMenu();
+            }
+        },
+        GeneralMenuItem {
+            id: manageLanguages
+            itemName: JamiStrings.manageDictionaries
+            canTrigger: spellCheckEnabled
+            hasIcon: false
+            onClicked: {
+                viewCoordinator
+                    .presentDialog(appWindow, "commoncomponents/ManageDictionariesDialog.qml");
             }
         }
     ]
 
     ListView {
         model: ListModel {
-            id: dynamicModel
+            id: suggestionListModel
         }
 
         Instantiator {
-            model: dynamicModel
+            model: suggestionListModel
             delegate: GeneralMenuItem {
                 id: suggestion
 
                 canTrigger: true
                 isActif: true
                 itemName: model.name
+                bold: true
                 hasIcon: false
                 onClicked: {
                     replaceWord(model.name);
@@ -117,7 +128,7 @@ ContextMenuAutoLoader {
     }
 
     function removeItems() {
-        dynamicModel.remove(0, suggestionList.length);
+        suggestionListModel.clear();
         suggestionList.length = 0;
     }
 
@@ -125,7 +136,7 @@ ContextMenuAutoLoader {
         menuItemsLength = menuItems.length; // Keep initial number of items for easier removal
         suggestionList = wordList;
         for (var i = 0; i < suggestionList.length; ++i) {
-            dynamicModel.append({
+            suggestionListModel.append({
                     "name": suggestionList[i]
                 });
         }
@@ -154,7 +165,7 @@ ContextMenuAutoLoader {
             lineEditObj.select(selectionStart, selectionEnd);
         }
         function onClosed() {
-            if (!suggestionList || suggestionList.length == 0) {
+            if (!suggestionList || suggestionList.length === 0) {
                 return;
             }
             removeItems();
