@@ -182,6 +182,7 @@ SettingsPageBase {
 
                 onActivated: {
                     UtilsAdapter.setAppValue(Settings.Key.LANG, comboModel.get(modelIndex).id);
+                    SpellCheckDictionaryManager.getBestDictionary(comboModel.get(modelIndex).id);
                 }
             }
         }
@@ -189,7 +190,6 @@ SettingsPageBase {
 
             width: parent.width
             spacing: JamiTheme.settingsCategorySpacing
-            visible: (Qt.platform.os.toString() !== "linux") ? false : true
 
             Text {
                 id: spellcheckingTitle
@@ -232,14 +232,16 @@ SettingsPageBase {
                 comboModel: ListModel {
                     id: installedSpellCheckLangModel
                     Component.onCompleted: {
-                        var supported = SpellCheckDictionaryManager.installedDictionaries();
+                        var supported = SpellCheckDictionaryManager.getAvailableDictionaries();
                         var keys = Object.keys(supported);
                         var currentKey = UtilsAdapter.getAppValue(Settings.Key.SpellLang);
                         for (var i = 0; i < keys.length; ++i) {
                             append({
-                                    "textDisplay": supported[keys[i]],
-                                    "id": keys[i]
-                                });
+                                "textDisplay": supported[keys[i]].second, // Use the second element (native name)
+                                "id": keys[i],                           // Use the locale as id
+                                "path": supported[keys[i]].first         // Store the path for future use
+                            });
+                            console.log("spellCheckLangComboBoxSetting: " + keys[i]+ " " + supported[keys[i]].second);
                             if (keys[i] === currentKey)
                                 spellCheckLangComboBoxSetting.modelIndex = i;
                         }
@@ -250,13 +252,17 @@ SettingsPageBase {
                 role: "textDisplay"
 
                 onActivated: {
-                    UtilsAdapter.setAppValue(Settings.Key.SpellLang, comboModel.get(modelIndex).id);
+                    var selectedId = comboModel.get(modelIndex).id;
+                    var selectedPath = comboModel.get(modelIndex).path;
+                    UtilsAdapter.setAppValue(Settings.Key.SpellLang, selectedId);
+                    // If you need to use the path later, it's available in selectedPath
                 }
             }
 
             RowLayout {
                 Layout.fillWidth: true
                 Layout.minimumHeight: JamiTheme.preferredFieldHeight
+                visible: (Qt.platform.os.toString() !== "linux") ? false : true
 
                 Text {
                     Layout.fillWidth: true
@@ -288,9 +294,10 @@ SettingsPageBase {
 
                     onClicked: {
                         SpellCheckDictionaryManager.refreshDictionaries();
+                        SpellCheckDictionaryManager.getAvailableDictionaries();
                         var langIdx = spellCheckLangComboBoxSetting.modelIndex;
                         installedSpellCheckLangModel.clear();
-                        var supported = SpellCheckDictionaryManager.installedDictionaries();
+                        var supported = SpellCheckDictionaryManager.getInstalledDictionaries();
                         var keys = Object.keys(supported);
                         for (var i = 0; i < keys.length; ++i) {
                             installedSpellCheckLangModel.append({
@@ -332,7 +339,7 @@ SettingsPageBase {
                 function onSpellLanguageChanged() {
                     var langIdx = spellCheckLangComboBoxSetting.modelIndex;
                     installedSpellCheckLangModel.clear();
-                    var supported = SpellCheckDictionaryManager.installedDictionaries();
+                    var supported = SpellCheckDictionaryManager.getInstalledDictionaries();
                     var keys = Object.keys(supported);
                     for (var i = 0; i < keys.length; ++i) {
                         installedSpellCheckLangModel.append({
