@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e57509c0_33a309a6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-05-13T00:35:43Z",
+      "side": 1,
+      "message": "`directly`\n\nAllow switching languages directly when creating an account.",
+      "range": {
+        "startLine": 9,
+        "startChar": 26,
+        "endLine": 9,
+        "endChar": 34
+      },
+      "revId": "773464e67c203c0c7410af1c2f142a3b9a3a8a14",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "662fb2f3_48e067ad",
         "filename": "src/app/wizardview/components/WelcomePage.qml",
         "patchSetId": 2
