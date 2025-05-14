@@ -74,7 +74,7 @@ override_dh_auto_build:
 	  --disable-gsm \
 	  --disable-speexdsp \
 	  --disable-natpmp  \
-	  --enable-gnutls $(BUNDLED_PKGS) && \
+	  $(BUNDLED_PKGS) && \
 	make list && \
 	make -j$(NO_CPUS) V=1
 	cd daemon && \
