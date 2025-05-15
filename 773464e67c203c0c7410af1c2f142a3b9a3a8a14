@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "86b3cbe0_c31b2941",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-05-15T18:26:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e57509c0_33a309a6",
+      "range": {
+        "startLine": 9,
+        "startChar": 26,
+        "endLine": 9,
+        "endChar": 34
+      },
+      "revId": "773464e67c203c0c7410af1c2f142a3b9a3a8a14",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "662fb2f3_48e067ad",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-05-09T20:55:03Z",
       "side": 1,
       "message": "Maybe should add a margin so that it aligns with the buttons in the corners of the window",
+      "range": {
+        "startLine": 419,
+        "startChar": 16,
+        "endLine": 419,
+        "endChar": 23
+      },
+      "revId": "773464e67c203c0c7410af1c2f142a3b9a3a8a14",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "845781bb_135ed0fb",
+        "filename": "src/app/wizardview/components/WelcomePage.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-05-15T18:26:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "662fb2f3_48e067ad",
       "range": {
         "startLine": 419,
         "startChar": 16,
