@@ -88,7 +88,7 @@ Item {
     // AccountMigrationDialog
     property string authenticationRequired: qsTr("Authentication required")
     property string migrationReason: qsTr("Your session has expired or been revoked on this device. Please enter your password.")
-    property string jamsServer: qsTr("JAMS server")
+    property string jamsServer: qsTr("Management server")
     property string authenticate: qsTr("Authenticate")
     property string deleteAccount: qsTr("Delete account")
     property string inProgress: qsTr("In progress…")
@@ -119,8 +119,8 @@ Item {
     property string assign: qsTr("Assign")
 
     // AdvancedChatSettings
-    property string enableReadReceipts: qsTr("Enable read receipts")
-    property string enableReadReceiptsTooltip: qsTr("Send and receive receipts indicating that messages have been displayed.")
+    property string enableReadReceipts: qsTr("Delivery status notification")
+    property string enableReadReceiptsTooltip: qsTr("Send and request delivery receipts indicating that messages have been displayed.")
 
     // AdvancedVoiceMailSettings
     property string voiceMail: qsTr("Voicemail")
@@ -273,11 +273,10 @@ Item {
     property string hideSpectators: qsTr("Hide spectators")
 
     // LineEditContextMenu
-    property string copy: qsTr("Copy")
     property string share: qsTr("Share")
     property string cut: qsTr("Cut")
+    property string copy: qsTr("Copy")
     property string paste: qsTr("Paste")
-    property string language: qsTr("Language")
 
     // ConversationContextMenu
     property string startAudioCall: qsTr("Start audio call")
@@ -381,9 +380,9 @@ Item {
     property string typeIndicatorAnd: qsTr("%1 and %2")
 
     // ConnectToAccountManager
-    property string enterJAMSURL: qsTr("Enter the Jami Account Management Server (JAMS) URL")
-    property string jamiManagementServerURL: qsTr("Jami Account Management Server URL")
-    property string jamsCredentials: qsTr("Enter JAMS credentials")
+    property string enterJAMSURL: qsTr("Enter the management server URL")
+    property string jamiManagementServerURL: qsTr("Management server URL")
+    property string jamsCredentials: qsTr("Enter the management server credentials")
     property string connect: qsTr("Connect")
     property string creatingAccount: qsTr("Creating account…")
 
@@ -426,8 +425,8 @@ Item {
     property string displayName: qsTr("Display name")
 
     // accountSettingsPages
-    property string customizeAccountDescription: qsTr("Your profile is only shared with your contacts.\nYour picture and your display name can be changed at all time in the settings of your account.")
-    property string usernameAccountDescription: qsTr("A chosen username can help to be found more easily on Jami.\nIf a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.")
+    property string customizeAccountDescription: qsTr("Your profile is only shared with your contacts. The profile can be changed at any time.")
+    property string usernameAccountDescription: qsTr("A chosen username can help to be found more easily on Jami. If a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.")
     property string encryptAccountDescription: qsTr("Your Jami account is registered only on this device as an archive containing the keys of your account. Access to this archive can be protected with a password.")
     property string saveAccountTitle: qsTr("Backup account")
     property string saveAccountDescription: qsTr("This Jami account exists only on this device. The account will be lost if this device is lost or the application is uninstalled. It is recommended to make a backup of this account.")
@@ -508,7 +507,7 @@ Item {
     property string defaultSettings: qsTr("Default settings")
 
     // ChatviewSettings
-    property string enableTypingIndicator: qsTr("Enable typing indicators")
+    property string enableTypingIndicator: qsTr("Typing indicator")
     property string enableTypingIndicatorDescription: qsTr("Send and receive typing indicators showing when messages are being typed.")
     property string displayHyperlinkPreviews: qsTr("Web link previews")
     property string displayHyperlinkPreviewsDescription: qsTr("Preview requires downloading content from third-party servers.")
@@ -696,8 +695,8 @@ Item {
     property string advancedFeatures: qsTr("Advanced features")
     property string showAdvancedFeatures: qsTr("Show advanced features")
     property string hideAdvancedFeatures: qsTr("Hide advanced features")
-    property string connectJAMSServer: qsTr("Connect to a JAMS server")
-    property string createFromJAMS: qsTr("Create account from Jami Account Management Server (JAMS)")
+    property string connectJAMSServer: qsTr("Connect to a management server")
+    property string createFromJAMS: qsTr("Create account from the management server")
     property string addSIPAccount: qsTr("Configure a SIP account")
     property string errorCreateAccount: qsTr("An error occurred while creating the account. Check credentials and try again.")
     property string createNewRV: qsTr("Create a rendezvous point")

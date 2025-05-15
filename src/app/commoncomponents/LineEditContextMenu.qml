@@ -41,6 +41,35 @@ ContextMenuAutoLoader {
         active: checkSpell
     }
 
+    ListView {
+        model: ListModel {
+            id: dynamicModel
+        }
+
+        Instantiator {
+            model: dynamicModel
+            delegate: GeneralMenuItem {
+                id: suggestion
+
+                canTrigger: true
+                isActif: true
+                itemName: model.name
+                hasIcon: false
+                onClicked: {
+                    replaceWord(model.name);
+                }
+            }
+
+            onObjectAdded: {
+                menuItems.push(object);
+            }
+
+            onObjectRemoved: {
+                menuItems.splice(menuItemsLength, suggestionList.length);
+            }
+        }
+    }
+
     property list<GeneralMenuItem> menuItems: [
         GeneralMenuItem {
             id: cut
@@ -76,45 +105,16 @@ ContextMenuAutoLoader {
             }
         },
         GeneralMenuItem {
-            id: language
+            id: textLanguage
             visible: checkSpell
             canTrigger: checkSpell
-            itemName: JamiStrings.language
+            itemName: JamiStrings.textLanguage
             hasIcon: false
             onClicked: {
                 spellLanguageContextMenu.openMenu();
             }
         }
     ]
-
-    ListView {
-        model: ListModel {
-            id: dynamicModel
-        }
-
-        Instantiator {
-            model: dynamicModel
-            delegate: GeneralMenuItem {
-                id: suggestion
-
-                canTrigger: true
-                isActif: true
-                itemName: model.name
-                hasIcon: false
-                onClicked: {
-                    replaceWord(model.name);
-                }
-            }
-
-            onObjectAdded: {
-                menuItems.push(object);
-            }
-
-            onObjectRemoved: {
-                menuItems.splice(menuItemsLength, suggestionList.length);
-            }
-        }
-    }
 
     function removeItems() {
         dynamicModel.remove(0, suggestionList.length);
