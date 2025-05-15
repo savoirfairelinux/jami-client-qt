@@ -118,10 +118,6 @@ Item {
     property string assignmentIndication: qsTr("Press the key to be assigned to push-to-talk shortcut")
     property string assign: qsTr("Assign")
 
-    // AdvancedChatSettings
-    property string enableReadReceipts: qsTr("Enable read receipts")
-    property string enableReadReceiptsTooltip: qsTr("Send and receive receipts indicating that messages have been displayed.")
-
     // AdvancedVoiceMailSettings
     property string voiceMail: qsTr("Voicemail")
     property string voiceMailDialCode: qsTr("Voicemail dial code")
@@ -277,7 +273,6 @@ Item {
     property string cut: qsTr("Cut")
     property string copy: qsTr("Copy")
     property string paste: qsTr("Paste")
-    property string language: qsTr("Language")
 
     // ConversationContextMenu
     property string startAudioCall: qsTr("Start audio call")
@@ -426,8 +421,8 @@ Item {
     property string displayName: qsTr("Display name")
 
     // accountSettingsPages
-    property string customizeAccountDescription: qsTr("Your profile is only shared with your contacts.\nYour picture and your display name can be changed at all time in the settings of your account.")
-    property string usernameAccountDescription: qsTr("A chosen username can help to be found more easily on Jami.\nIf a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.")
+    property string customizeAccountDescription: qsTr("Your profile is only shared with your contacts. The profile can be changed at any time.")
+    property string usernameAccountDescription: qsTr("A chosen username can help to be found more easily on Jami. If a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.")
     property string encryptAccountDescription: qsTr("Your Jami account is registered only on this device as an archive containing the keys of your account. Access to this archive can be protected with a password.")
     property string saveAccountTitle: qsTr("Backup account")
     property string saveAccountDescription: qsTr("This Jami account exists only on this device. The account will be lost if this device is lost or the application is uninstalled. It is recommended to make a backup of this account.")
@@ -508,8 +503,10 @@ Item {
     property string defaultSettings: qsTr("Default settings")
 
     // ChatviewSettings
-    property string enableTypingIndicator: qsTr("Enable typing indicators")
-    property string enableTypingIndicatorDescription: qsTr("Send and receive typing indicators showing when messages are being typed.")
+    property string enableTypingIndicator: qsTr("Typing indicator")
+    property string enableTypingIndicatorDescription: qsTr("Indicate when messages are being typed.")
+    property string enableReadReceipts: qsTr("Read receipts")
+    property string enableReadReceiptsTooltip: qsTr("Send and request delivery and read receipts to be sent when messages are delivered or read.")
     property string displayHyperlinkPreviews: qsTr("Web link previews")
     property string displayHyperlinkPreviewsDescription: qsTr("Preview requires downloading content from third-party servers.")
 
