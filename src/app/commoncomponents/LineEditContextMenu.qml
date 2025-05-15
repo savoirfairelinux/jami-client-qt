@@ -76,10 +76,10 @@ ContextMenuAutoLoader {
             }
         },
         GeneralMenuItem {
-            id: language
+            id: textLanguage
             visible: checkSpell
             canTrigger: checkSpell
-            itemName: JamiStrings.language
+            itemName: JamiStrings.textLanguage
             hasIcon: false
             onClicked: {
                 spellLanguageContextMenu.openMenu();
