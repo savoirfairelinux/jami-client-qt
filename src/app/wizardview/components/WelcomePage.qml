@@ -420,8 +420,8 @@ Rectangle {
         anchors.bottom: parent.bottom
         anchors.margins: JamiTheme.wizardViewPageBackButtonMargins
 
-        labelText: JamiStrings.language
-        tipText: JamiStrings.language
+        labelText: JamiStrings.userInterfaceLanguage
+        tipText: JamiStrings.userInterfaceLanguage
         comboModel: ListModel {
             id: langModel
             Component.onCompleted: {
