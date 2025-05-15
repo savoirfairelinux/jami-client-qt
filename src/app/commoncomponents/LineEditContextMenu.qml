@@ -44,6 +44,36 @@ ContextMenuAutoLoader {
         active: spellCheckEnabled
     }
 
+    ListView {
+        model: ListModel {
+            id: suggestionListModel
+        }
+
+        Instantiator {
+            model: suggestionListModel
+            delegate: GeneralMenuItem {
+                id: suggestion
+
+                canTrigger: true
+                isActif: true
+                itemName: model.name
+                bold: true
+                hasIcon: false
+                onClicked: {
+                    replaceWord(model.name);
+                }
+            }
+
+            onObjectAdded: {
+                menuItems.push(object);
+            }
+
+            onObjectRemoved: {
+                menuItems.splice(menuItemsLength, suggestionList.length);
+            }
+        }
+    }
+
     property list<GeneralMenuItem> menuItems: [
         GeneralMenuItem {
             id: cut
@@ -95,36 +125,6 @@ ContextMenuAutoLoader {
             }
         }
     ]
-
-    ListView {
-        model: ListModel {
-            id: suggestionListModel
-        }
-
-        Instantiator {
-            model: suggestionListModel
-            delegate: GeneralMenuItem {
-                id: suggestion
-
-                canTrigger: true
-                isActif: true
-                itemName: model.name
-                bold: true
-                hasIcon: false
-                onClicked: {
-                    replaceWord(model.name);
-                }
-            }
-
-            onObjectAdded: {
-                menuItems.push(object);
-            }
-
-            onObjectRemoved: {
-                menuItems.splice(menuItemsLength, suggestionList.length);
-            }
-        }
-    }
 
     function removeItems() {
         suggestionListModel.clear();
