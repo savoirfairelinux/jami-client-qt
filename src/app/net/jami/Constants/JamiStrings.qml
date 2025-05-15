@@ -118,7 +118,7 @@ Item {
     property string assign: qsTr("Assign")
 
     // AdvancedChatSettings
-    property string enableReadReceipts: qsTr("Enable read receipts")
+    property string enableReadReceipts: qsTr("Read receipts")
     property string enableReadReceiptsTooltip: qsTr("Send and receive receipts indicating that messages have been displayed.")
 
     // AdvancedVoiceMailSettings
@@ -507,7 +507,7 @@ Item {
     property string defaultSettings: qsTr("Default settings")
 
     // ChatviewSettings
-    property string enableTypingIndicator: qsTr("Enable typing indicators")
+    property string enableTypingIndicator: qsTr("Typing indicator")
     property string enableTypingIndicatorDescription: qsTr("Send and receive typing indicators showing when messages are being typed.")
     property string displayHyperlinkPreviews: qsTr("Web link previews")
     property string displayHyperlinkPreviewsDescription: qsTr("Preview requires downloading content from third-party servers.")
