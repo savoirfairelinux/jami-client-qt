@@ -435,11 +435,11 @@ Rectangle {
         anchors.bottom: parent.bottom
         anchors.margins: JamiTheme.wizardViewPageBackButtonMargins
         Accessible.role: Accessible.ComboBox
-        Accessible.name: JamiStrings.language
+        Accessible.name: JamiStrings.userInterfaceLanguage
         Accessible.description: JamiStrings.languageComboBoxExplanation
 
         labelText: JamiStrings.userInterfaceLanguage
-        tipText: JamiStrings.language
+        tipText: JamiStrings.userInterfaceLanguage
         comboModel: ListModel {
             id: langModel
             Component.onCompleted: {
