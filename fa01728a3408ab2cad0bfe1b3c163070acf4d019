@@ -66,6 +66,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "165447e9_953a2967",
+        "filename": "src/app/mainview/components/MessageBarTextArea.qml",
+        "patchSetId": 17
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-16T17:59:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d54534bb_2248209e",
+      "range": {
+        "startLine": 76,
+        "startChar": 8,
+        "endLine": 76,
+        "endChar": 24
+      },
+      "revId": "fa01728a3408ab2cad0bfe1b3c163070acf4d019",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "e01c55a2_8d5c7f0c",
         "filename": "src/app/messagesadapter.h",
         "patchSetId": 17
@@ -104,6 +128,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "67f32607_ea6fe446",
+        "filename": "src/app/settingsview/components/ChatSettingsPage.qml",
+        "patchSetId": 17
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-16T17:59:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ecdf100_335c4581",
+      "range": {
+        "startLine": 92,
+        "startChar": 37,
+        "endLine": 92,
+        "endChar": 48
+      },
+      "revId": "fa01728a3408ab2cad0bfe1b3c163070acf4d019",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d30394a5_cca74ab3",
@@ -117,6 +165,30 @@
       "writtenOn": "2025-05-16T14:42:16Z",
       "side": 1,
       "message": "remove",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 22
+      },
+      "revId": "fa01728a3408ab2cad0bfe1b3c163070acf4d019",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09d1529a_e5ee48a7",
+        "filename": "src/app/settingsview/components/DownloadDictionaryPopup.qml",
+        "patchSetId": 17
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-16T17:59:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d30394a5_cca74ab3",
       "range": {
         "startLine": 2,
         "startChar": 17,
@@ -150,6 +222,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd248d51_e4912581",
+        "filename": "src/app/spellcheckdictionarymanager.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-16T17:59:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3a36432_5160592a",
+      "range": {
+        "startLine": 128,
+        "startChar": 20,
+        "endLine": 128,
+        "endChar": 28
+      },
+      "revId": "fa01728a3408ab2cad0bfe1b3c163070acf4d019",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34bb691f_07a0a391",
@@ -163,6 +259,30 @@
       "writtenOn": "2025-05-16T14:42:16Z",
       "side": 1,
       "message": "why not `const QString\u0026` ?",
+      "range": {
+        "startLine": 59,
+        "startChar": 44,
+        "endLine": 59,
+        "endChar": 51
+      },
+      "revId": "fa01728a3408ab2cad0bfe1b3c163070acf4d019",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ad1e9e0_4e4bfef2",
+        "filename": "src/app/spellcheckdictionarymanager.h",
+        "patchSetId": 17
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-16T17:59:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34bb691f_07a0a391",
       "range": {
         "startLine": 59,
         "startChar": 44,
@@ -196,6 +316,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "33ce42a6_c55fdcea",
+        "filename": "src/app/spellchecker.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-16T17:59:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2405d363_69e2d028",
+      "range": {
+        "startLine": 34,
+        "startChar": 5,
+        "endLine": 34,
+        "endChar": 19
+      },
+      "revId": "fa01728a3408ab2cad0bfe1b3c163070acf4d019",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0703f257_17312977",
@@ -209,6 +353,24 @@
       "writtenOn": "2025-05-16T14:42:16Z",
       "side": 1,
       "message": "file header",
+      "revId": "fa01728a3408ab2cad0bfe1b3c163070acf4d019",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "946c80ce_e58efa04",
+        "filename": "src/app/spellcheckhandler.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-16T17:59:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0703f257_17312977",
       "revId": "fa01728a3408ab2cad0bfe1b3c163070acf4d019",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -236,6 +398,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d79aee62_978d1469",
+        "filename": "src/app/spellcheckhandler.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-16T17:59:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd9b0f77_6f14a067",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 85
+      },
+      "revId": "fa01728a3408ab2cad0bfe1b3c163070acf4d019",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f5193b40_74f3b4a9",
@@ -249,6 +435,24 @@
       "writtenOn": "2025-05-16T14:42:16Z",
       "side": 1,
       "message": "file header",
+      "revId": "fa01728a3408ab2cad0bfe1b3c163070acf4d019",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03c7bae5_5b62f7e8",
+        "filename": "src/app/spellcheckhandler.h",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-16T17:59:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f5193b40_74f3b4a9",
       "revId": "fa01728a3408ab2cad0bfe1b3c163070acf4d019",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
