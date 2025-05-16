@@ -1,0 +1,256 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b983eeb_8488b142",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-05-16T14:42:16Z",
+      "side": 1,
+      "message": "Looking great so far",
+      "revId": "fa01728a3408ab2cad0bfe1b3c163070acf4d019",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0340b8c6_2917e6bf",
+        "filename": "src/app/MainApplicationWindow.qml",
+        "patchSetId": 17
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-05-16T14:42:16Z",
+      "side": 1,
+      "message": "👍",
+      "range": {
+        "startLine": 297,
+        "startChar": 17,
+        "endLine": 297,
+        "endChar": 41
+      },
+      "revId": "fa01728a3408ab2cad0bfe1b3c163070acf4d019",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d54534bb_2248209e",
+        "filename": "src/app/mainview/components/MessageBarTextArea.qml",
+        "patchSetId": 17
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-05-16T14:42:16Z",
+      "side": 1,
+      "message": "check spelling if activated?",
+      "range": {
+        "startLine": 76,
+        "startChar": 8,
+        "endLine": 76,
+        "endChar": 24
+      },
+      "revId": "fa01728a3408ab2cad0bfe1b3c163070acf4d019",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e01c55a2_8d5c7f0c",
+        "filename": "src/app/messagesadapter.h",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-05-16T14:42:16Z",
+      "side": 1,
+      "message": "very good",
+      "revId": "fa01728a3408ab2cad0bfe1b3c163070acf4d019",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ecdf100_335c4581",
+        "filename": "src/app/settingsview/components/ChatSettingsPage.qml",
+        "patchSetId": 17
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-05-16T14:42:16Z",
+      "side": 1,
+      "message": "nitpick: prefer `displayText` (textDisplay sounds like a device that displays text)",
+      "range": {
+        "startLine": 92,
+        "startChar": 37,
+        "endLine": 92,
+        "endChar": 48
+      },
+      "revId": "fa01728a3408ab2cad0bfe1b3c163070acf4d019",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d30394a5_cca74ab3",
+        "filename": "src/app/settingsview/components/DownloadDictionaryPopup.qml",
+        "patchSetId": 17
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-05-16T14:42:16Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 22
+      },
+      "revId": "fa01728a3408ab2cad0bfe1b3c163070acf4d019",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3a36432_5160592a",
+        "filename": "src/app/spellcheckdictionarymanager.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-05-16T14:42:16Z",
+      "side": 1,
+      "message": "use categories (e.g., https://review.jami.net/c/jami-client-qt/+/31170/17/src/app/mainapplication.cpp#468)",
+      "range": {
+        "startLine": 128,
+        "startChar": 20,
+        "endLine": 128,
+        "endChar": 28
+      },
+      "revId": "fa01728a3408ab2cad0bfe1b3c163070acf4d019",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34bb691f_07a0a391",
+        "filename": "src/app/spellcheckdictionarymanager.h",
+        "patchSetId": 17
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-05-16T14:42:16Z",
+      "side": 1,
+      "message": "why not `const QString\u0026` ?",
+      "range": {
+        "startLine": 59,
+        "startChar": 44,
+        "endLine": 59,
+        "endChar": 51
+      },
+      "revId": "fa01728a3408ab2cad0bfe1b3c163070acf4d019",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2405d363_69e2d028",
+        "filename": "src/app/spellchecker.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-05-16T14:42:16Z",
+      "side": 1,
+      "message": "is this still used? if so, this is initialized to false in the header",
+      "range": {
+        "startLine": 34,
+        "startChar": 5,
+        "endLine": 34,
+        "endChar": 19
+      },
+      "revId": "fa01728a3408ab2cad0bfe1b3c163070acf4d019",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0703f257_17312977",
+        "filename": "src/app/spellcheckhandler.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-05-16T14:42:16Z",
+      "side": 1,
+      "message": "file header",
+      "revId": "fa01728a3408ab2cad0bfe1b3c163070acf4d019",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd9b0f77_6f14a067",
+        "filename": "src/app/spellcheckhandler.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-05-16T14:42:16Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 85
+      },
+      "revId": "fa01728a3408ab2cad0bfe1b3c163070acf4d019",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5193b40_74f3b4a9",
+        "filename": "src/app/spellcheckhandler.h",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-05-16T14:42:16Z",
+      "side": 1,
+      "message": "file header",
+      "revId": "fa01728a3408ab2cad0bfe1b3c163070acf4d019",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
