@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df2668af_1268d4d5",
+        "filename": "extras/packaging/gnu-linux/scripts/build-package-snap.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-05-20T14:22:54Z",
+      "side": 1,
+      "message": "just an observation, the replacement above uses the variable name as the placeholder (`\"s/RELEASE_VERSION/${RELEASE_VERSION}/g\"`). Is one better than the other? why are the techniques different?",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 70
+      },
+      "revId": "e195591f0b97b884ec59b5cea20081b137fa126d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
