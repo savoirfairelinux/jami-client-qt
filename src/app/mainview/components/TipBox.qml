@@ -78,6 +78,8 @@ FocusScope {
                     maxHeight: root.maximumHeight
                     textColor: root.textColor
                     iconColor: root.iconColor
+                    KeyNavigation.up: component_btnClose
+                    KeyNavigation.down: KeyNavigation.up
                 }
                 width: parent.width
             }
@@ -92,6 +94,8 @@ FocusScope {
                     maxHeight: root.maximumHeight
                     textColor: root.textColor
                     iconColor: root.iconColor
+                    KeyNavigation.up: component_btnClose
+                    KeyNavigation.down: KeyNavigation.up
                 }
                 width: parent.width
             }
@@ -101,6 +105,8 @@ FocusScope {
                 sourceComponent: CustomizeTipBox {
                     textColor: root.textColor
                     iconColor: root.iconColor
+                    KeyNavigation.up: component_btnClose
+                    KeyNavigation.down: KeyNavigation.up
                 }
                 width: parent.width
                 focus: true
@@ -112,6 +118,8 @@ FocusScope {
                     maxHeight: root.maximumHeight
                     textColor: root.textColor
                     iconColor: root.iconColor
+                    KeyNavigation.up: component_btnClose
+                    KeyNavigation.down: KeyNavigation.up
                 }
                 width: parent.width
             }
@@ -177,6 +185,8 @@ FocusScope {
             source: JamiResources.trash_black_24dp_svg
 
             onClicked: root.ignoreClicked()
+            KeyNavigation.up: tipColumnLayout
+            KeyNavigation.down: KeyNavigation.up
         }
     }
 }

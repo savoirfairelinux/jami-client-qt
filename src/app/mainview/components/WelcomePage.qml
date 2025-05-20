@@ -278,6 +278,8 @@ ListSelectionView {
                     text: JamiStrings.aboutJami
 
                     onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/AboutPopUp.qml")
+
+                    KeyNavigation.up: loader_tipsRow
                 }
 
                 PushButton {

@@ -68,7 +68,7 @@ Item {
                 color: root.iconColor
             }
 
-            Text {
+            Label {
                 id: title
                 text: JamiStrings.backupAccountBtn
                 color: root.textColor
@@ -80,6 +80,11 @@ Item {
                 font.pixelSize: JamiTheme.tipBoxTitleFontSize
                 horizontalAlignment: Text.AlignLeft
                 elide: Qt.ElideRight
+                Accessible.role: Accessible.StaticText
+                Accessible.name: text
+                Accessible.description: JamiStrings.tip
+                focus: opened
+                activeFocusOnTab: opened
             }
         }
 
@@ -95,6 +100,11 @@ Item {
             text: JamiStrings.whyBackupAccount
             color: root.textColor
             horizontalAlignment: Text.AlignLeft
+            Accessible.role: Accessible.Link
+            Accessible.name: text
+            Accessible.description: JamiStrings.tipBackupAccount
+            focus: opened
+            activeFocusOnTab: opened
         }
 
         JamiFlickable {
@@ -113,6 +123,10 @@ Item {
                 color: root.textColor
                 horizontalAlignment: Text.AlignLeft
                 linkColor: JamiTheme.buttonTintedBlue
+                Accessible.role: Accessible.Link
+                Accessible.name: text
+                Accessible.description: JamiStrings.tipBackupAccount
+                focus: opened
 
                 onLinkActivated: {
                     var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {

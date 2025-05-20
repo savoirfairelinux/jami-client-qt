@@ -102,6 +102,10 @@ JamiFlickable {
                     else
                         row.openedTipCount--;
                 }
+                KeyNavigation.left: index > 0 ? tipsRepeater.itemAt(index - 1) : null
+                    KeyNavigation.right: index < tipsRepeater.count - 1 ? tipsRepeater.itemAt(index + 1) : null
+                    KeyNavigation.tab: opened ? null : (KeyNavigation.right || parent.KeyNavigation.tab)
+                    KeyNavigation.backtab: opened ? null : (KeyNavigation.left || parent.KeyNavigation.backtab)
             }
 
             property int visibleTipBoxCount: 0
