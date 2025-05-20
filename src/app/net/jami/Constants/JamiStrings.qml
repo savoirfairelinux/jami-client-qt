@@ -843,7 +843,7 @@ Item {
     // TipBox
     property string customize: qsTr("Customize")
     property string tip: qsTr("Tip")
-    property string dismiss: qsTr("Dismiss")
+    property string dismiss: qsTr("Dismiss tip box")
     property string customizeText: qsTr("Add a profile picture and nickname to complete your profile")
     property string customizationDescription: qsTr("Your profile is only shared with your contacts")
 

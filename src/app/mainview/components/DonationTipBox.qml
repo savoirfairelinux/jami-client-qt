@@ -67,7 +67,7 @@ Item {
                 source: JamiResources.favorite_black_24dp_svg
             }
 
-            Text {
+            Label {
                 id: title
                 text: JamiStrings.donation
                 color: root.textColor

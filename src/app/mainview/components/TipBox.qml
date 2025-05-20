@@ -115,6 +115,9 @@ FocusScope {
                 }
                 width: parent.width
             }
+
+            KeyNavigation.up: component_btnClose
+            KeyNavigation.down: KeyNavigation.up
         }
     }
 
@@ -177,6 +180,8 @@ FocusScope {
             source: JamiResources.trash_black_24dp_svg
 
             onClicked: root.ignoreClicked()
+            KeyNavigation.up: tipColumnLayout
+            KeyNavigation.down: KeyNavigation.up
         }
     }
 }
