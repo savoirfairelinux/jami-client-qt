@@ -25,6 +25,16 @@ import "../../commoncomponents"
 
 FocusScope {
     id: root
+
+    // Add Accessible properties for screen reader
+    Accessible.role: Accessible.Button
+    Accessible.name: JamiStrings.tip + ": " + title
+    Accessible.description: description
+
+    // Modify focus behavior
+    focus: true
+    activeFocusOnTab: !opened
+
     property string title: ""
     property string description: ""
     property int tipId: 0
@@ -51,9 +61,6 @@ FocusScope {
 
     signal ignoreClicked
 
-    focus: true
-    activeFocusOnTab: true
-
     Rectangle {
         id: rect
         anchors.fill: parent
@@ -62,7 +69,7 @@ FocusScope {
 
         radius: 5
 
-        focus: true
+        focus: false
 
         Column {
             id: tipColumnLayout
@@ -78,8 +85,16 @@ FocusScope {
                     maxHeight: root.maximumHeight
                     textColor: root.textColor
                     iconColor: root.iconColor
+                    /* KeyNavigation.up: component_btnClose
+                    KeyNavigation.down: KeyNavigation.up */
                 }
                 width: parent.width
+                onLoaded: {
+                    if (item) {
+                        item.KeyNavigation.tab = root.KeyNavigation.tab
+                        item.KeyNavigation.backtab = root.KeyNavigation.backtab
+                    }
+                }
             }
 
             Loader {
@@ -92,8 +107,16 @@ FocusScope {
                     maxHeight: root.maximumHeight
                     textColor: root.textColor
                     iconColor: root.iconColor
+                    /* KeyNavigation.up: component_btnClose
+                    KeyNavigation.down: KeyNavigation.up */
                 }
                 width: parent.width
+                onLoaded: {
+                    if (item) {
+                        item.KeyNavigation.tab = root.KeyNavigation.tab
+                        item.KeyNavigation.backtab = root.KeyNavigation.backtab
+                    }
+                }
             }
             Loader {
                 id: loader_customizeTip
@@ -101,9 +124,17 @@ FocusScope {
                 sourceComponent: CustomizeTipBox {
                     textColor: root.textColor
                     iconColor: root.iconColor
+                    /* KeyNavigation.up: component_btnClose
+                    KeyNavigation.down: KeyNavigation.up */
                 }
                 width: parent.width
                 focus: true
+                onLoaded: {
+                    if (item) {
+                        item.KeyNavigation.tab = root.KeyNavigation.tab
+                        item.KeyNavigation.backtab = root.KeyNavigation.backtab
+                    }
+                }
             }
             Loader {
                 id: loader_infoTip
@@ -112,8 +143,16 @@ FocusScope {
                     maxHeight: root.maximumHeight
                     textColor: root.textColor
                     iconColor: root.iconColor
+                    /* KeyNavigation.up: component_btnClose
+                    KeyNavigation.down: KeyNavigation.up */
                 }
                 width: parent.width
+                onLoaded: {
+                    if (item) {
+                        item.KeyNavigation.tab = root.KeyNavigation.tab
+                        item.KeyNavigation.backtab = root.KeyNavigation.backtab
+                    }
+                }
             }
         }
     }
@@ -153,6 +192,15 @@ FocusScope {
         anchors.margins: 8
         anchors.bottom: root.top
         anchors.horizontalCenter: root.horizontalCenter
+        onLoaded: {
+            if (item) {
+                item.KeyNavigation.tab = root.KeyNavigation.tab
+                item.KeyNavigation.backtab = loader_infoTip.item ||
+                    loader_customizeTip.item ||
+                    loader_backupTip.item ||
+                    loader_donationTip.item
+            }
+        }
     }
 
     Component {
@@ -177,6 +225,19 @@ FocusScope {
             source: JamiResources.trash_black_24dp_svg
 
             onClicked: root.ignoreClicked()
+            KeyNavigation.up: tipColumnLayout
+            KeyNavigation.down: KeyNavigation.up
         }
+    }
+
+    // Update key handling
+    Keys.onReturnPressed: {
+        if (!opened)
+            root.forceActiveFocus()
+    }
+
+    Keys.onEscapePressed: {
+        if (opened)
+            focus = false
     }
 }

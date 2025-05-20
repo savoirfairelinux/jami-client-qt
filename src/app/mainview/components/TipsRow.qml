@@ -75,14 +75,14 @@ JamiFlickable {
                 }
 
                 enabled: {
-                    if (x > tipsRow.width || x < tipsRow.x )
+                    if (x > tipsRow.width || x < tipsRow.x)
                         return false;
                     else
                         return true;
                 }
 
                 opacity: {
-                    if (x > tipsRow.width || x < tipsRow.x )
+                    if (x > tipsRow.width || x < tipsRow.x)
                         return 0;
                     else
                         return 1;
@@ -93,7 +93,7 @@ JamiFlickable {
                 }
 
                 onHideTipBoxChanged: {
-                    tipsRepeater.updateVisibleTipBoxCount()
+                    tipsRepeater.updateVisibleTipBoxCount();
                 }
 
                 onOpenedChanged: {
@@ -102,27 +102,30 @@ JamiFlickable {
                     else
                         row.openedTipCount--;
                 }
+                KeyNavigation.left: index > 0 ? tipsRepeater.itemAt(index - 1) : null
+                KeyNavigation.right: index < tipsRepeater.count - 1 ? tipsRepeater.itemAt(index + 1) : null
+                KeyNavigation.tab: opened ? null : (KeyNavigation.right || parent.KeyNavigation.tab)
+                KeyNavigation.backtab: opened ? null : (KeyNavigation.left || parent.KeyNavigation.backtab)
             }
 
             property int visibleTipBoxCount: 0
 
             Component.onCompleted: {
-                updateVisibleTipBoxCount()
+                updateVisibleTipBoxCount();
             }
 
             function updateVisibleTipBoxCount() {
-                var count = 0
+                var count = 0;
                 for (var i = 0; i < tipsRepeater.count; i++) {
-                    var item = tipsRepeater.itemAt(i)
-                    if (item.type === "backup" || item.type === "customize"){
+                    var item = tipsRepeater.itemAt(i);
+                    if (item.type === "backup" || item.type === "customize") {
                         if (item.visible)
-                            count ++
-                    }
-                    else if (!item.hideTipBox) {
-                        count++
+                            count++;
+                    } else if (!item.hideTipBox) {
+                        count++;
                     }
                 }
-                visibleTipBoxCount = count
+                visibleTipBoxCount = count;
             }
         }
     }

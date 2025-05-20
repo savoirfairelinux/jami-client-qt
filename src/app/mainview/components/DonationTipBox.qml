@@ -67,7 +67,7 @@ Item {
                 source: JamiResources.favorite_black_24dp_svg
             }
 
-            Text {
+            Label {
                 id: title
                 text: JamiStrings.donation
                 color: root.textColor
@@ -79,6 +79,11 @@ Item {
                 font.pixelSize: JamiTheme.tipBoxTitleFontSize
                 horizontalAlignment: Text.AlignLeft
                 elide: Qt.ElideRight
+                Accessible.role: Accessible.StaticText
+                Accessible.name: text
+                Accessible.description: JamiStrings.tip
+                focus: opened
+                activeFocusOnTab: opened
             }
         }
 
@@ -97,6 +102,10 @@ Item {
             color: root.textColor
             horizontalAlignment: Text.AlignLeft
             linkColor: JamiTheme.buttonTintedBlue
+            Accessible.role: Accessible.Link
+            Accessible.name: text
+            Accessible.description: JamiStrings.donationTipBoxText
+            activeFocusOnTab: opened
             onLinkActivated: {
                 Qt.openUrlExternally(JamiTheme.donationUrl);
             }

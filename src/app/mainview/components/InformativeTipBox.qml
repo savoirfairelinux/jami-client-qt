@@ -73,7 +73,7 @@ ColumnLayout {
         }
     }
 
-    Text {
+    Label {
         id: title
         Layout.preferredHeight: contentHeight
         Layout.preferredWidth: opened ? 140 : 150
@@ -86,6 +86,11 @@ ColumnLayout {
         text: root.title
         horizontalAlignment: Text.AlignLeft
         color: column.textColor
+        Accessible.role: Accessible.StaticText
+        Accessible.name: text
+        Accessible.description: JamiStrings.tip
+        focus: opened
+        activeFocusOnTab: opened
     }
 
     JamiFlickable {
@@ -103,6 +108,10 @@ ColumnLayout {
             text: root.description
             horizontalAlignment: Text.AlignLeft
             color: column.textColor
+            Accessible.role: Accessible.StaticText
+            Accessible.name: text
+            focus: opened
+            activeFocusOnTab: opened
         }
     }
 }
