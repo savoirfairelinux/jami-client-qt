@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "90af329f_1edcbca4",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-21T21:01:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47d9f739_85b1bfe4",
+      "range": {
+        "startLine": 349,
+        "startChar": 0,
+        "endLine": 351,
+        "endChar": 59
+      },
+      "revId": "1a61b5669d819ef3c2481b9f1b816bc00fd96ae5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d1603951_2685e65f",
@@ -47,6 +71,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8809d50d_e89fda5a",
+        "filename": "src/app/calladapter.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-21T21:01:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1603951_2685e65f",
+      "range": {
+        "startLine": 122,
+        "startChar": 4,
+        "endLine": 124,
+        "endChar": 56
+      },
+      "revId": "1a61b5669d819ef3c2481b9f1b816bc00fd96ae5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8c72db4d_dfb81df2",
@@ -60,6 +108,30 @@
       "writtenOn": "2025-05-21T17:04:56Z",
       "side": 1,
       "message": "Unrelated formatting change",
+      "range": {
+        "startLine": 322,
+        "startChar": 20,
+        "endLine": 323,
+        "endChar": 91
+      },
+      "revId": "1a61b5669d819ef3c2481b9f1b816bc00fd96ae5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6c3b456_d9d8c180",
+        "filename": "src/app/currentconversation.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-21T21:01:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c72db4d_dfb81df2",
       "range": {
         "startLine": 322,
         "startChar": 20,
@@ -130,6 +202,30 @@
       "writtenOn": "2025-05-21T17:04:56Z",
       "side": 1,
       "message": "Almost all of the changes in this file are just formatting.",
+      "range": {
+        "startLine": 312,
+        "startChar": 4,
+        "endLine": 314,
+        "endChar": 58
+      },
+      "revId": "1a61b5669d819ef3c2481b9f1b816bc00fd96ae5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b5124b0_c28a9a12",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-21T21:01:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3c1012e_0760fe09",
       "range": {
         "startLine": 312,
         "startChar": 4,
