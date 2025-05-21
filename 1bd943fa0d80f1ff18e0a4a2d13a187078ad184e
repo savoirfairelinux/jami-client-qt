@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc459d6a_8f99f594",
+        "filename": "src/app/spellcheckdictionarymanager.h",
+        "patchSetId": 22
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-05-21T20:37:20Z",
+      "side": 1,
+      "message": "should not be in a header. define in it the implementation or load it as a resource",
+      "range": {
+        "startLine": 87,
+        "startChar": 4,
+        "endLine": 468,
+        "endChar": 6
+      },
+      "revId": "1bd943fa0d80f1ff18e0a4a2d13a187078ad184e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
