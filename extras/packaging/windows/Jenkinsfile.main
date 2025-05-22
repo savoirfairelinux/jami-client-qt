@@ -1,0 +1,77 @@
+pipeline {
+    agent { label env.MACHINE }
+
+    parameters {
+        booleanParam(name: 'ARCHIVE',
+                defaultValue: false,
+                description: 'Do not propagate the release artifacts to the download server.')
+        booleanParam(name: 'BETA',
+                defaultValue: false,
+                description: 'Boolean value for BETA builds.')
+        string(name: 'GIT_REFSPEC',
+                defaultValue: 'refs/heads/master',
+                description: 'The git refspec to fetch.')
+    }
+    stages {
+        stage('Tag release') {
+            when {
+                expression { return params.BETA == true }
+            }
+            steps {
+                deleteDir()
+                sshagent(credentials: [env.JENKINS_SSH_KEY]) {
+                    script {
+                        VERSION_TAG = sh(
+                            returnStdout: true,
+                            script: 'date +"%Y%m%d%H%M"'
+                        ).trim()
+                        sh """
+                            git clone --depth=1 ${env.GIT_PUSH_URL}
+                            cd jami-client-qt
+
+                            git config user.name "${env.GIT_USER_NAME}"
+                            git config user.email "${env.GIT_USER_EMAIL}"
+
+                            git tag -am "Jami new Beta version" beta/${env.VERSION_TAG}
+                            git push origin --tags
+                        """
+                    }
+                }
+            }
+        }
+
+        stage('Exec deployment job') {
+            steps {
+                script {
+                    if (params.BETA == true) {
+                        build job: env.BUILD_JOB,
+                            parameters: [
+                                booleanParam(name: 'ARCHIVE', value: params.ARCHIVE?.toBoolean() ?: false),
+                                booleanParam(name: 'BETA', value: true),
+                                string(name: 'VERSION_TAG', value: VERSION_TAG ?: ''),
+                                string(name: 'GIT_REFSPEC', value: env.GIT_REFSPEC),
+                            ]
+                    } else {
+                        sshagent(credentials: [SSH_KEY]) {
+                            sh """
+                                scp -v "${SSH_HOST_DL_RING_CX}":"${REMOTE_BASE_DIR}"/version ./version
+                            """
+                            if (fileExists('version')) {
+                                env.VERSION_TAG = readFile('version').trim()
+                            }
+                            else {
+                                error("Version file not found")
+                            }
+                        }
+                        build job: env.BUILD_JOB,
+                            parameters: [
+                                booleanParam(name: 'ARCHIVE', value: params.ARCHIVE?.toBoolean() ?: false),
+                                string(name: 'VERSION_TAG', value: VERSION_TAG ?: ''),
+                                string(name: 'GIT_REFSPEC', value: "refs/tags/beta/${VERSION_TAG}"),
+                            ]
+                    }
+                }
+            }
+        }
+    }
+}
