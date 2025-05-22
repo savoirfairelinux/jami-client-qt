@@ -189,7 +189,7 @@ Popup {
                             root.close();
                         }
 
-                        KeyNavigation.tab: addAccountItem
+                        //KeyNavigation.tab: listView
                     }
                 }
             }
@@ -212,6 +212,18 @@ Popup {
             Layout.fillHeight: true
             Layout.preferredWidth: parent.width
 
+            // Add keyboard navigation
+            focus: true
+            keyNavigationEnabled: true
+            keyNavigationWraps: true
+            highlightFollowsCurrentItem: true
+
+            Keys.onReturnPressed: {
+                if (currentItem) {
+                    currentItem.clicked()
+                }
+            }
+
             model: SortFilterProxyModel {
                 sourceModel: AccountListModel
                 filters: ValueFilter {
@@ -221,9 +233,42 @@ Popup {
                 }
             }
 
+            // Update the highlight to show a better focus indicator
+            highlight: Rectangle {
+                color: "transparent"
+                border.color: JamiTheme.primaryBackgroundColor
+                border.width: 2
+                radius: 5
+
+                Rectangle {
+                    anchors.fill: parent
+                    color: JamiTheme.hoverColor
+                    radius: 5
+                    opacity: 0.3
+                }
+            }
+
             delegate: AccountItemDelegate {
                 height: JamiTheme.accountListItemHeight
                 width: root.width
+
+                // Add focus handling
+                Accessible.role: Accessible.ListItem
+                Accessible.name: model.alias || model.username
+                focusPolicy: Qt.StrongFocus
+
+                // Update the background to show focus state
+                background: Rectangle {
+                    color: parent.activeFocus ? JamiTheme.hoverColor : "transparent"
+                    opacity: parent.activeFocus ? 0.3 : 1
+                    radius: 5
+                }
+
+                // Update keyboard navigation
+                KeyNavigation.backtab: index === 0 ? settingsButton : null
+                KeyNavigation.tab: index === listView.count - 1 ? addAccountItem : null
+                KeyNavigation.up: index === 0 ? settingsButton : null
+                KeyNavigation.down: index === listView.count - 1 ? addAccountItem : null
 
                 onClicked: {
                     root.close();
@@ -233,6 +278,21 @@ Popup {
                     LRCInstance.currentAccountId = ID;
                 }
             }
+
+            /* // Add highlight for keyboard navigation
+            highlight: Rectangle {
+                color: "transparent"
+                border.color: JamiTheme.primaryBackgroundColor
+                border.width: 2
+                radius: 5
+
+                Rectangle {
+                    anchors.fill: parent
+                    color: JamiTheme.hoverColor
+                    radius: 5
+                    opacity: 0.3
+                }
+            } */
         }
 
         Rectangle{
@@ -247,13 +307,20 @@ Popup {
         ItemDelegate {
             id: addAccountItem
 
+            // Add existing properties
             Layout.preferredHeight: 45
             Layout.preferredWidth: parent.width -10
             Layout.alignment: Qt.AlignLeft
             Layout.leftMargin: 5
 
+            focusPolicy: Qt.StrongFocus
             Accessible.name: JamiStrings.addAccount
             Accessible.role: Accessible.Button
+
+            //KeyNavigation.backtab: addAccountItem
+            KeyNavigation.tab: manageAccountItem
+            KeyNavigation.up: listView
+            KeyNavigation.down: manageAccountItem
 
             background: Rectangle {
                 color: addAccountItem.hovered ? JamiTheme.hoverColor : JamiTheme.accountComboBoxBackgroundColor
@@ -285,15 +352,19 @@ Popup {
                 root.close();
                 viewCoordinator.present("WizardView");
             }
-
-            KeyNavigation.tab: manageAccountItem
         }
 
         ItemDelegate {
             id: manageAccountItem
 
+            focusPolicy: Qt.StrongFocus
             Accessible.role: Accessible.Button
             Accessible.name: JamiStrings.manageAccount
+
+            KeyNavigation.backtab: addAccountItem
+            KeyNavigation.tab: settingsButton
+            KeyNavigation.up: addAccountItem
+            KeyNavigation.down: settingsButton
 
             Layout.preferredHeight: 45
             Layout.preferredWidth: parent.width-10
