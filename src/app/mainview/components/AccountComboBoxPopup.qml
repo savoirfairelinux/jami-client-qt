@@ -85,7 +85,6 @@ Popup {
                         anchors.rightMargin: 15
                         spacing: 10
 
-
                         Avatar {
                             id: avatar
                             objectName: "accountComboBoxPopupAvatar"
@@ -164,6 +163,10 @@ Popup {
                         imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
                         hoveredColor: JamiTheme.hoverColor
 
+                        Accessible.role: Accessible.Button
+                        Accessible.name: toolTipText
+                        Accessible.description: JamiStrings.qrCodeExplanation
+
                         onClicked: {
                             viewCoordinator.presentDialog(appWindow, "mainview/components/WelcomePageQrDialog.qml");
                             root.close();
@@ -184,18 +187,22 @@ Popup {
 
                         toolTipText: !inSettings ? JamiStrings.openSettings : JamiStrings.closeSettings
 
+                        Accessible.role: Accessible.Button
+                        Accessible.name: toolTipText
+
+                        KeyNavigation.backtab: shareButton
+
                         onClicked: {
                             !inSettings ? viewCoordinator.present("SettingsView") : viewCoordinator.dismiss("SettingsView");
                             root.close();
                         }
 
-                        KeyNavigation.tab: addAccountItem
                     }
                 }
             }
         }
 
-        Rectangle{
+        Rectangle {
             Layout.alignment: Qt.AlignHCenter
             height: 1
             Layout.fillWidth: true
@@ -204,13 +211,24 @@ Popup {
             color: JamiTheme.smartListHoveredColor
         }
 
-
         JamiListView {
             id: listView
             objectName: "accountList"
 
             Layout.fillHeight: true
             Layout.preferredWidth: parent.width
+
+            // Add keyboard navigation
+            focus: true
+            keyNavigationEnabled: true
+            keyNavigationWraps: true
+            highlightFollowsCurrentItem: true
+
+            Keys.onReturnPressed: {
+                if (currentItem) {
+                    currentItem.clicked();
+                }
+            }
 
             model: SortFilterProxyModel {
                 sourceModel: AccountListModel
@@ -221,9 +239,43 @@ Popup {
                 }
             }
 
+            // Update the highlight to show a better focus indicator
+            highlight: Rectangle {
+                color: "transparent"
+                border.color: JamiTheme.primaryBackgroundColor
+                border.width: 2
+                radius: 5
+
+                Rectangle {
+                    anchors.fill: parent
+                    color: JamiTheme.hoverColor
+                    radius: 5
+                    opacity: 0.3
+                }
+            }
+
             delegate: AccountItemDelegate {
                 height: JamiTheme.accountListItemHeight
                 width: root.width
+
+                // Add focus handling
+                Accessible.role: Accessible.ListItem
+                Accessible.name: Alias || Username
+                Accessible.description: JamiStrings.switchToAccount
+                focusPolicy: Qt.StrongFocus
+
+                // Update the background to show focus state
+                background: Rectangle {
+                    color: parent.activeFocus ? JamiTheme.hoverColor : "transparent"
+                    opacity: parent.activeFocus ? 0.3 : 1
+                    radius: 5
+                }
+
+                // Update keyboard navigation
+                KeyNavigation.backtab: index === 0 ? settingsButton : null
+                KeyNavigation.tab: index === listView.count - 1 ? addAccountItem : null
+                KeyNavigation.up: index === 0 ? settingsButton : null
+                KeyNavigation.down: index === listView.count - 1 ? addAccountItem : null
 
                 onClicked: {
                     root.close();
@@ -233,9 +285,10 @@ Popup {
                     LRCInstance.currentAccountId = ID;
                 }
             }
+
         }
 
-        Rectangle{
+        Rectangle {
             Layout.alignment: Qt.AlignHCenter
             height: 1
             Layout.fillWidth: true
@@ -248,19 +301,24 @@ Popup {
             id: addAccountItem
 
             Layout.preferredHeight: 45
-            Layout.preferredWidth: parent.width -10
+            Layout.preferredWidth: parent.width - 10
             Layout.alignment: Qt.AlignLeft
             Layout.leftMargin: 5
 
-            Accessible.name: JamiStrings.addAccount
+            focusPolicy: Qt.StrongFocus
+            Accessible.name: addAccountText.text
             Accessible.role: Accessible.Button
+
+            KeyNavigation.tab: manageAccountItem
+            KeyNavigation.up: listView
+            KeyNavigation.down: manageAccountItem
 
             background: Rectangle {
                 color: addAccountItem.hovered ? JamiTheme.hoverColor : JamiTheme.accountComboBoxBackgroundColor
                 radius: 5
             }
 
-            RowLayout{
+            RowLayout {
                 anchors.left: parent.left
                 anchors.leftMargin: 18
                 anchors.verticalCenter: parent.verticalCenter
@@ -274,6 +332,7 @@ Popup {
                 }
 
                 Text {
+                    id: addAccountText
                     Layout.alignment: Qt.AlignLeft
                     text: JamiStrings.addAccount
                     textFormat: TextEdit.PlainText
@@ -285,18 +344,22 @@ Popup {
                 root.close();
                 viewCoordinator.present("WizardView");
             }
-
-            KeyNavigation.tab: manageAccountItem
         }
 
         ItemDelegate {
             id: manageAccountItem
 
+            focusPolicy: Qt.StrongFocus
             Accessible.role: Accessible.Button
-            Accessible.name: JamiStrings.manageAccount
+            Accessible.name: manageAccountText.text
+
+            KeyNavigation.backtab: addAccountItem
+            KeyNavigation.tab: shareButton
+            KeyNavigation.up: addAccountItem
+            KeyNavigation.down: shareButton
 
             Layout.preferredHeight: 45
-            Layout.preferredWidth: parent.width-10
+            Layout.preferredWidth: parent.width - 10
             Layout.leftMargin: 5
             Layout.bottomMargin: 5
 
@@ -305,7 +368,7 @@ Popup {
                 radius: 5
             }
 
-            RowLayout{
+            RowLayout {
                 anchors.left: parent.left
                 anchors.leftMargin: 18
                 anchors.verticalCenter: parent.verticalCenter
@@ -319,8 +382,8 @@ Popup {
                     color: manageAccountItem.hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
                 }
                 Text {
+                    id: manageAccountText
                     text: JamiStrings.manageAccount
-
                     textFormat: TextEdit.PlainText
                     color: JamiTheme.textColor
                     font.pointSize: JamiTheme.textFontSize
@@ -328,7 +391,7 @@ Popup {
             }
             onClicked: {
                 root.close();
-                viewCoordinator.present("SettingsView")
+                viewCoordinator.present("SettingsView");
             }
         }
     }
