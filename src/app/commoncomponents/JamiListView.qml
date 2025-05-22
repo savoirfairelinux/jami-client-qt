@@ -23,6 +23,7 @@ ListView {
     id: root
 
     property alias verticalScrollBar: verticalScrollBar
+    property bool isKeyNavigationEnabled: false
 
     layer.mipmap: false
     clip: true
@@ -37,6 +38,25 @@ ListView {
     // HACK: remove after migration to Qt 6.7+
     boundsBehavior: Flickable.StopAtBounds
 
-    Keys.onUpPressed: verticalScrollBar.decrease()
-    Keys.onDownPressed: verticalScrollBar.increase()
+    Keys.onUpPressed: {
+        if (isKeyNavigationEnabled) {
+            if (currentIndex > 0) {
+                decrementCurrentIndex()
+                positionViewAtIndex(currentIndex, ListView.Contain)
+            }
+        } else {
+            verticalScrollBar.decrease()
+        }
+    }
+
+    Keys.onDownPressed: {
+        if (isKeyNavigationEnabled) {
+            if (currentIndex < count - 1) {
+                incrementCurrentIndex()
+                positionViewAtIndex(currentIndex, ListView.Contain)
+            }
+        } else {
+            verticalScrollBar.increase()
+        }
+    }
 }
