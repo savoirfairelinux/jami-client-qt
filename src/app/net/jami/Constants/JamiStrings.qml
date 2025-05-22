@@ -924,4 +924,10 @@ Item {
     property string spellCheckDownloadFailed: qsTr("Download failed for dictionary '%1'")
     property string showInstalledDictionaries: qsTr("Show installed")
     property string showInstalledDictionariesDescription: qsTr("Only show dictionaries that are currently installed")
+
+    // Accessibility
+    property string switchToAccount: qsTr("Press enter to switch to this account")
+    property string qrCodeExplanation: qsTr("Display your QR code to allow other users to scan it and add you as a contact")
+    property string accountList: qsTr("Account list")
+    property string accountListDescription: qsTr("Use arrows to switch between available account")
 }
