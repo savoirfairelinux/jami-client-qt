@@ -918,4 +918,8 @@ Item {
     property string spellChecker: qsTr("Spell checker")
     property string refresh: qsTr("Refresh")
     property string refreshInstalledDictionaries: qsTr("Refresh installed dictionaries")
+
+    // Accessibility
+    property string switchToAccount: qsTr("Press enter to switch to this account")
+    property string qrCodeExplanation: qsTr("Display your QR code to allow other users to scan it and add you as a contact")
 }
