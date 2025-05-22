@@ -41,15 +41,18 @@ ApplicationWindow {
 
     onActiveFocusItemChanged: {
         focusOverlay.margin = -5;
-        if (activeFocusItem && ((activeFocusItem.focusReason === Qt.TabFocusReason) || (activeFocusItem.focusReason === Qt.BacktabFocusReason))) {
-            if (activeFocusItem.focusOnChild) {
-                focusOverlay.parent = activeFocusItem.parent;
-            } else if (activeFocusItem.dontShowFocusState) {
-                focusOverlay.parent = null;
-            } else {
-                if (activeFocusItem.showFocusMargin)
-                    focusOverlay.margin = 0;
-                focusOverlay.parent = activeFocusItem;
+        if (activeFocusItem) {
+            const goodReasonToChangeFocus = activeFocusItem instanceof ItemDelegate || ((activeFocusItem.focusReason === Qt.TabFocusReason) || (activeFocusItem.focusReason === Qt.BacktabFocusReason));
+            if (goodReasonToChangeFocus) {
+                if (activeFocusItem.focusOnChild) {
+                    focusOverlay.parent = activeFocusItem.parent;
+                } else if (activeFocusItem.dontShowFocusState) {
+                    focusOverlay.parent = null;
+                } else {
+                    if (activeFocusItem.showFocusMargin)
+                        focusOverlay.margin = 0;
+                    focusOverlay.parent = activeFocusItem;
+                }
             }
         } else {
             focusOverlay.parent = null;
