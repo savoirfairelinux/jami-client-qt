@@ -28,17 +28,24 @@ ItemDelegate {
     height: JamiTheme.accountListItemHeight
 
     background: Rectangle {
-        width: root.width - 10
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors {
+            left: parent ? parent.left : undefined
+            right: parent ? parent.right : undefined
+            leftMargin: 5
+            rightMargin: 5
+        }
         radius: 5
 
-        Rectangle{
+        Rectangle {
             id: separationLine
-
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.top: parent.top
+            anchors {
+                left: parent.left
+                right: parent.right
+                top: parent.top
+                leftMargin: 10
+                rightMargin: 10
+            }
             height: 1
-            width: parent.width - 20
             color: JamiTheme.hoverColor
             visible: index !== 0
         }
