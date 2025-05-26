@@ -70,9 +70,8 @@ RUN dnf install -y \
         libdrm \
         gperf \
         bison \
-        clang \
-        clang-devel \
-        llvm-devel \
+        clang16-devel \
+        llvm16-devel \
         nodejs \
         flex \
         gstreamer1 gstreamer1-devel \
@@ -96,7 +95,6 @@ RUN dnf install -y \
         perl-English \
         libxshmfence-devel \
         ninja-build \
-        clang \
         cmake \
         fmt-devel \
         python3-html5lib \
