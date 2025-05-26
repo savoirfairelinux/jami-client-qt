@@ -1,0 +1,90 @@
+pipeline {
+    agent { label "${env.BUILDER_WIN}" }
+
+    environment {
+        CLIENT_DIR = "${pwd()}"
+        DAEMON_DIR = "${env.CLIENT_DIR}\\daemon"
+    }
+
+    options {
+        ansiColor('xterm')
+    }
+
+    parameters {
+        string(name: 'VERSION_TAG',
+                description: 'Version associated with the git tag.')
+        string(name: 'GIT_REFSPEC',
+                defaultValue: 'refs/heads/master',
+                description: 'The git refspec to fetch.')
+        booleanParam(name: 'ARCHIVE',
+                defaultValue: false,
+                description: 'Do not propagate the release artifacts to the download server.')
+        booleanParam(name: 'BETA',
+                defaultValue: false,
+                description: 'Boolean value for BETA builds.')
+    }
+
+    stages {
+        stage('Check version tag') {
+            steps {
+                script {
+                    if (params.VERSION_TAG == null || params.VERSION_TAG == '') {
+                        error("VERSION_TAG parameter is required")
+                    }
+                }
+            }
+        }
+
+        stage('Init repository') {
+            steps {
+                dir(CLIENT_DIR) {
+                    bat """
+                        git submodule update --init --recursive
+                    """
+                }
+            }
+        }
+
+        stage('Build libjami') {
+            steps {
+                dir(DAEMON_DIR) {
+                    bat """
+                        python extras/scripts/winmake.py --base-dir compat/msvc
+                    """
+                }
+            }
+        }
+
+        stage('Build client') {
+            steps {
+                dir(CLIENT_DIR) {
+                    bat """
+                        python extras/scripts/build-windows.py --init || exit /b 1
+                        python extras/scripts/build-windows.py --qt=${QT_LATEST_PATH} --build-version=${VERSION_TAG} --enable-crash-reports --crash-report-url=${CRASH_REPORT_URL} --beta || exit /b 1
+                    """
+                }
+            }
+        }
+        stage('Compress and trigger release job') {
+            steps {
+                dir(CLIENT_DIR) {
+                    bat """
+                        set ZIP_FILE=%CLIENT_DIR%\\archive.zip
+                        if exist %ZIP_FILE% del /f /q %ZIP_FILE%
+                        powershell -Command "Compress-Archive -Path .\\JamiInstaller -DestinationPath %ZIP_FILE% -CompressionLevel Optimal"
+                        powershell -Command "Compress-Archive -Update -Path x64\\Release -DestinationPath %ZIP_FILE% -CompressionLevel Optimal"
+                    """
+                    archiveArtifacts artifacts: 'archive.zip', fingerprint: true
+                    script {
+                        build job: env.SIGN_JOB, wait: false, parameters: [
+                            string(name: 'VERSION_TAG', value: params.VERSION_TAG),
+                            string(name: 'BUILD_ID', value: "${env.BUILD_NUMBER}"),
+                            booleanParam(name: 'BETA', value: params.BETA),
+                            booleanParam(name: 'ARCHIVE', value: params.ARCHIVE),
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}
