@@ -54,6 +54,9 @@ Rectangle {
         if (visible)
             forceActiveFocus();
     }
+    Accessible.role: Accessible.Pane
+    Accessible.name: introduction.text
+    Accessible.description: JamiStrings.description
 
     KeyNavigation.tab: newAccountButton
     KeyNavigation.up: newAccountButton
@@ -71,6 +74,8 @@ Rectangle {
         width: 800
 
         Item {
+            Accessible.name: introduction.text
+            Accessible.description: JamiStrings.description
 
             Layout.alignment: Qt.AlignCenter | Qt.AlignTop
             Layout.preferredWidth: JamiTheme.welcomeLogoWidth
@@ -372,7 +377,7 @@ Rectangle {
 
             fontSize: JamiTheme.wizardViewAboutJamiFontPixelSize
 
-            KeyNavigation.tab: backButton.visible ? backButton : newAccountButton
+            KeyNavigation.tab: langComboBoxSetting
             KeyNavigation.up: connectAccountManagerButton
             KeyNavigation.down: KeyNavigation.tab
 
@@ -404,6 +409,9 @@ Rectangle {
         }
 
         visible: UtilsAdapter.getAccountListSize()
+        Accessible.role: Accessible.Button
+        Accessible.name: id
+        Accessible.description: JamiStrings.backButtonExplanation
 
         KeyNavigation.tab: newAccountButton
         KeyNavigation.up: showAdvanced ? newSIPAccountButton : showAdvancedButton
@@ -419,8 +427,15 @@ Rectangle {
         anchors.right: parent.right
         anchors.bottom: parent.bottom
         anchors.margins: JamiTheme.wizardViewPageBackButtonMargins
+        Accessible.role: Accessible.ComboBox
+        Accessible.name: JamiStrings.language
+        Accessible.description: JamiStrings.languageComboBoxExplanation
 
-        labelText: JamiStrings.language
+        KeyNavigation.tab: backButton.visible ? backButton : newAccountButton
+        KeyNavigation.up: btnAboutPopUp
+        KeyNavigation.down: KeyNavigation.tab
+
+        labelText: JamiStrings.userInterfaceLanguage
         tipText: JamiStrings.language
         comboModel: ListModel {
             id: langModel

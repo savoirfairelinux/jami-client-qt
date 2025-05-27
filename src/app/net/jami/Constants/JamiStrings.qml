@@ -921,4 +921,6 @@ Item {
     // Accessibility
     property string switchToAccount: qsTr("Press enter to switch to this account")
     property string qrCodeExplanation: qsTr("Display your QR code to allow other users to scan it and add you as a contact")
+    property string languageComboBoxExplanation: qsTr("Select the language of the user interface")
+    property string backButtonExplanation: qsTr("Go back to the previous page")
 }

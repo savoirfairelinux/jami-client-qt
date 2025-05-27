@@ -39,6 +39,10 @@ ListSelectionView {
     onPresented: LRCInstance.deselectConversation()
     leftPaneItem: viewCoordinator.getView("SidePanel", true)
 
+    Accessible.role: Accessible.Pane
+    Accessible.name: title
+    Accessible.description: JamiStrings.description
+
     property variant uiCustomization: CurrentAccount.uiCustomization
 
     onUiCustomizationChanged: {
@@ -276,6 +280,9 @@ ListSelectionView {
                     anchors.horizontalCenter: parent.horizontalCenter
                     preferredWidth: textSize.width + 2 * JamiTheme.preferredMarginSize
                     text: JamiStrings.aboutJami
+
+                    Accessible.role: Accessible.Button
+                    Accessible.name: text
 
                     onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/AboutPopUp.qml")
                 }
