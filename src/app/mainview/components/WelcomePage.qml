@@ -87,12 +87,11 @@ ListSelectionView {
     property color mainBoxTextColor: JamiTheme.textColor
     property color contentTipAndIdColor: JamiTheme.tintedBlue
 
-    Connections {
-        target: UtilsAdapter
-        function onChangeLanguage() {
-            title = hasCustomUi && uiCustomization.title !== undefined ? uiCustomization.title : JamiStrings.welcomeToJami;
-            description = hasCustomUi && uiCustomization.description !== undefined ? uiCustomization.description : JamiStrings.hereIsIdentifier;
-        }
+    property var lang: AppSettingsManager.settingsMap.LANG
+
+    onLangChanged: {
+        title = hasCustomUi && uiCustomization.title !== undefined ? uiCustomization.title : JamiStrings.welcomeToJami;
+        description = hasCustomUi && uiCustomization.description !== undefined ? uiCustomization.description : JamiStrings.hereIsIdentifier;
     }
 
     function updateUiFlags() {

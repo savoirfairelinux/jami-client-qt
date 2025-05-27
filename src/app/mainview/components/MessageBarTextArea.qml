@@ -37,8 +37,12 @@ JamiFlickable {
     property bool showPreview: false
     property bool isShowTypo: AppSettingsManager.settingsMap.ShowMardownOption
     property int textWidth: textArea.contentWidth
-    property var spellCheckActive: AppSettingsManager.getValue(Settings.EnableSpellCheck)
-    property var language: AppSettingsManager.getValue(Settings.SpellLang)
+    property var spellCheckActive: AppSettingsManager.settingsMap.EnableSpellCheck
+    property var enableSpellCheck: AppSettingsManager.settingsMap.EnableSpellCheck
+    property var language: AppSettingsManager.settingsMap.SpellLang
+    property var spellLang: AppSettingsManager.settingsMap.SpellLang
+    property var lang: AppSettingsManager.settingsMap.LANG
+    property var baseZoom: AppSettingsManager.settingsMap.BaseZoom
 
     // Used to cache the editable text when showing the preview message
     // and also to debounce the textChanged signal's effect on the composing status.
@@ -112,8 +116,42 @@ JamiFlickable {
                 textArea.update();
             }
         }
+
     }
 
+    // Listen to settings changes and apply it to this widget
+    onLangChanged: {
+        textArea.updateUnderlineText();
+    }
+    onBaseZoomChanged: {
+        textArea.updateUnderlineText();
+    }
+    onSpellLangChanged: {
+        if ((Qt.platform.os.toString() !== "linux") || (AppSettingsManager.settingsMap.SpellLang === "NONE")) {
+            spellCheckActive = false;
+        } else {
+            spellCheckActive = AppSettingsManager.settingsMap.EnableSpellCheck;
+        }
+        if (spellCheckActive === true) {
+            root.language = SpellCheckDictionaryManager.getSpellLanguage();
+            textArea.updateCorrection(root.language);
+        } else {
+            textArea.clearUnderlines();
+        }
+    }
+    onEnableSpellCheckChanged: {
+        if ((Qt.platform.os.toString() !== "linux") || (AppSettingsManager.settingsMap.SpellLang === "NONE")) {
+            spellCheckActive = false;
+        } else {
+            spellCheckActive = AppSettingsManager.settingsMap.EnableSpellCheck;
+        }
+        if (spellCheckActive === true) {
+            root.language = SpellCheckDictionaryManager.getSpellLanguage();
+            textArea.updateCorrection(root.language);
+        } else {
+            textArea.clearUnderlines();
+        }
+    }
     TextArea.flickable: TextArea {
         id: textArea
 
@@ -126,55 +164,12 @@ JamiFlickable {
             textArea.updateUnderlineText();
         }
 
-        // Listen to settings changes and apply it to this widget
-        Connections {
-            target: UtilsAdapter
-
-            function onChangeLanguage() {
-                textArea.updateUnderlineText();
-            }
-
-            function onChangeFontSize() {
-                textArea.updateUnderlineText();
-            }
-
-            function onSpellLanguageChanged() {
-                root.language = SpellCheckDictionaryManager.getSpellLanguage();
-                if ((Qt.platform.os.toString() !== "linux") || (AppSettingsManager.getValue(Settings.SpellLang) === "NONE")) {
-                    spellCheckActive = false;
-                } else {
-                    spellCheckActive = AppSettingsManager.getValue(Settings.EnableSpellCheck);
-                }
-                if (spellCheckActive === true) {
-                    root.language = SpellCheckDictionaryManager.getSpellLanguage();
-                    textArea.updateCorrection(root.language);
-                } else {
-                    textArea.clearUnderlines();
-                }
-            }
-
-            function onEnableSpellCheckChanged() {
-                // Disable spell check on non-linux platforms yet
-                if ((Qt.platform.os.toString() !== "linux") || (AppSettingsManager.getValue(Settings.SpellLang) === "NONE")) {
-                    spellCheckActive = false;
-                } else {
-                    spellCheckActive = AppSettingsManager.getValue(Settings.EnableSpellCheck);
-                }
-                if (spellCheckActive === true) {
-                    root.language = SpellCheckDictionaryManager.getSpellLanguage();
-                    textArea.updateCorrection(root.language);
-                } else {
-                    textArea.clearUnderlines();
-                }
-            }
-        }
-
         // Initialize the settings if the component wasn't loaded when changing settings
         Component.onCompleted: {
-            if ((Qt.platform.os.toString() !== "linux") || (AppSettingsManager.getValue(Settings.SpellLang) === "NONE")) {
+            if ((Qt.platform.os.toString() !== "linux") || (AppSettingsManager.settingsMap.SpellLang === "NONE")) {
                 spellCheckActive = false;
             } else {
-                spellCheckActive = AppSettingsManager.getValue(Settings.EnableSpellCheck);
+                spellCheckActive = AppSettingsManager.settingsMap.EnableSpellCheck;
             }
             if (spellCheckActive === true) {
                 root.language = SpellCheckDictionaryManager.getSpellLanguage();
