@@ -34,8 +34,8 @@ Rectangle {
     property real marginSize: JamiTheme.messageBarMarginSize
     property bool sendButtonVisibility: true
     property bool animate: false
-    property bool showDefault: !UtilsAdapter.getAppValue(Settings.Key.ShowSendOption)
-    property bool showTypo: UtilsAdapter.getAppValue(Settings.Key.ShowMardownOption)
+    property bool showDefault: !AppSettingsManager.settingsMap.ShowSendOption
+    property bool showTypo: AppSettingsManager.settingsMap.ShowMardownOption
     property bool showTypoSecond: false
     property bool showPreview: false
 
@@ -242,7 +242,7 @@ Rectangle {
                     onActivated: {
                         showTypo = !showTypo;
                         messageBarTextArea.isShowTypo = showTypo;
-                        UtilsAdapter.setAppValue(Settings.Key.ShowMardownOption, showTypo);
+                        AppSettingsManager.settingsMap.ShowMardownOption = showTypo;
                     }
                 }
 

@@ -118,16 +118,16 @@ SettingsPageBase {
             Layout.fillWidth: true
             Layout.fillHeight: true
 
-            property bool isMax: UtilsAdapter.getAppValue(Settings.PositionShareDuration) < 0.05
-            value: isMax ? Math.log(600) : Math.log(UtilsAdapter.getAppValue(Settings.PositionShareDuration))
+            property bool isMax: AppSettingsManager.settingsMap.PositionShareDuration < 0.05
+            value: isMax ? Math.log(600) : Math.log(AppSettingsManager.settingsMap.PositionShareDuration)
             useSystemFocusVisuals: false
 
             function valueLabel() {
                 if (value != Math.log(600)) {
-                    UtilsAdapter.setAppValue(Settings.PositionShareDuration, Math.floor(Math.exp(value)));
+                    AppSettingsManager.settingsMap.PositionShareDuration = Math.floor(Math.exp(value));
                     timeSharingLocationValueLabel.text = timeSharingLocation.standartCountdown(Math.floor(Math.exp(value)));
                 } else {
-                    UtilsAdapter.setAppValue(Settings.PositionShareDuration, 0);
+                    AppSettingsManager.settingsMap.PositionShareDuration = 0;
                     timeSharingLocationValueLabel.text = JamiStrings.maxLocationDuration;
                 }
             }
@@ -173,7 +173,7 @@ SettingsPageBase {
                     }
 
                     color: JamiTheme.tintedBlue
-                    text: timeSharingLocation.standartCountdown(UtilsAdapter.getAppValue(Settings.PositionShareDuration))
+                    text: timeSharingLocation.standartCountdown(AppSettingsManager.settingsMap.PositionShareDuration)
                     Layout.alignment: Qt.AlignHCenter
 
                     font.pointSize: JamiTheme.settingsFontSize
@@ -200,9 +200,9 @@ SettingsPageBase {
             preferredWidth: defaultSettingsTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
 
             onClicked: {
-                timeSharingSlider.value = Math.log(UtilsAdapter.getDefault(Settings.Key.PositionShareDuration));
+                timeSharingSlider.value = Math.log(AppSettingsManager.getDefault(Settings.Key.PositionShareDuration));
                 timeSharingSlider.valueLabel();
-                UtilsAdapter.setToDefault(Settings.Key.PositionShareDuration);
+                AppSettingsManager.setToDefault(Settings.Key.PositionShareDuration);
             }
         }
     }

@@ -121,7 +121,7 @@ BaseContextMenu {
 
             toolTipText: JamiStrings.share
 
-            mirror: UtilsAdapter.isRTL
+            mirror: AppSettingsManager.isRTL
 
             source: JamiResources.send_black_24dp_svg
 
