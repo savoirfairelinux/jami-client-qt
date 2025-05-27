@@ -17,11 +17,13 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
+import Qt5Compat.GraphicalEffects
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 import net.jami.Constants 1.1
 import net.jami.Helpers 1.1
+import SortFilterProxyModel 0.2
 import "../../commoncomponents"
 import "../../mainview/components"
 import "../../mainview/js/contactpickercreation.js" as ContactPickerCreation
@@ -75,172 +77,25 @@ SettingsPageBase {
                 }
             }
 
-            SettingsComboBox {
+            SpellCheckLanguageComboBox {
                 id: spellCheckLangComboBoxSetting
                 Layout.fillWidth: true
-                height: JamiTheme.preferredFieldHeight
-                labelText: JamiStrings.textLanguage
-                tipText: JamiStrings.textLanguage
-                comboModel: ListModel {
-                    id: installedSpellCheckLangModel
-                    Component.onCompleted: {
-                        var supported = SpellCheckDictionaryManager.getInstalledDictionaries();
-                        var keys = Object.keys(supported);
-                        var currentKey = UtilsAdapter.getAppValue(Settings.Key.SpellLang);
-                        for (var i = 0; i < keys.length; ++i) {
-                            var dictInfo = supported[keys[i]];
-                            append({
-                                    "displayText": dictInfo.nativeName,
-                                    "id": keys[i],
-                                    "path": dictInfo.path
-                                });
-                            if (keys[i] === currentKey)
-                                spellCheckLangComboBoxSetting.modelIndex = i;
-                        }
-                    }
-                }
                 widthOfComboBox: itemWidth
-                role: "displayText"
-                onActivated: {
-                    // Get selected dictionary
-                    var selectedDict = comboModel.get(modelIndex);
-                    if (!selectedDict)
-                        return;
-
-                    // Download dictionary
-                    SpellCheckDictionaryManager.getBestDictionary(selectedDict.id);
-
-                    // Dialog will handle the rest through onDownloadFinished signal
-                    // which will properly update both lists
-                }
             }
 
-            SettingsComboBox {
-                id: spellCheckAvailableLangComboBoxSetting
+            // A button to open the dictionary install view as a popup
+            MaterialButton {
+                id: dictionaryInstallButton
 
-                Layout.fillWidth: true
-                height: JamiTheme.preferredFieldHeight
+                secondary: true
 
-                labelText: JamiStrings.availableTextLanguages
-                tipText: JamiStrings.availableTextLanguages
-                comboModel: ListModel {
-                    id: availableSpellCheckLangModel
-                    Component.onCompleted: {
-                        var dictionaries = SpellCheckDictionaryManager.getAvailableDictionaries();
-                        var keys = Object.keys(dictionaries);
-                        var currentKey = UtilsAdapter.getAppValue(Settings.Key.SpellLang);
-                        for (var i = 0; i < keys.length; ++i) {
-                            var dictInfo = dictionaries[keys[i]];
-                            append({
-                                    "displayText": dictInfo.nativeName,
-                                    "id": keys[i],
-                                    "path": dictInfo.path
-                                });
-                            if (keys[i] === currentKey)
-                                spellCheckAvailableLangComboBoxSetting.modelIndex = i;
-                        }
-                    }
-                }
+                preferredWidth: itemWidth
+                height: spellCheckLangComboBoxSetting.comboBox.height
+                Layout.alignment: Qt.AlignRight
 
-                widthOfComboBox: itemWidth
-                role: "displayText"
-                onActivated: {
-                    SpellCheckDictionaryManager.getBestDictionary(comboModel.get(modelIndex).id);
-                    // First refresh dictionaries to update both cached lists
-                    SpellCheckDictionaryManager.refreshDictionaries();
-
-                    // Save current selection
-                    var langIdx = spellCheckLangComboBoxSetting.modelIndex;
-
-                    // Update installed languages list
-                    installedSpellCheckLangModel.clear();
-                    var supported = SpellCheckDictionaryManager.getInstalledDictionaries();
-                    var currentKey = UtilsAdapter.getAppValue(Settings.Key.SpellLang);
-                    var keys = Object.keys(supported);
-                    for (var i = 0; i < keys.length; ++i) {
-                        var dictInfo = supported[keys[i]];
-                        installedSpellCheckLangModel.append({
-                                "displayText": dictInfo.nativeName,
-                                "id": keys[i],
-                                "path": dictInfo.path
-                            });
-                        // Restore selection
-                        if (keys[i] === currentKey) {
-                            spellCheckLangComboBoxSetting.modelIndex = i;
-                        }
-                    }
-
-                    // Update available languages list
-                    availableSpellCheckLangModel.clear();
-                    var dictionaries = SpellCheckDictionaryManager.getAvailableDictionaries();
-                    var availableKeys = Object.keys(dictionaries);
-                    for (var j = 0; j < availableKeys.length; ++j) {
-                        var availableDictInfo = dictionaries[availableKeys[j]];
-                        availableSpellCheckLangModel.append({
-                                "displayText": availableDictInfo.nativeName,
-                                "id": availableKeys[j],
-                                "path": availableDictInfo.path
-                            });
-                    }
-                }
-            }
-
-            DownloadDictionaryPopup {
-                id: downloadDictionaryPopup
-                visible: false
-            }
-
-            Connections {
-                target: SpellCheckDictionaryManager
-
-                function onDownloadFinished() {
-                    // Show success popup
-                    downloadDictionaryPopup.success = true;
-                    downloadDictionaryPopup.visible = true;
-                    downloadDictionaryPopup.enabled = true;
-
-                    // First refresh dictionaries to ensure caches are updated
-                    SpellCheckDictionaryManager.refreshDictionaries();
-
-                    // Update installed languages list
-                    installedSpellCheckLangModel.clear();
-                    var supported = SpellCheckDictionaryManager.getInstalledDictionaries();
-                    var currentKey = UtilsAdapter.getAppValue(Settings.Key.SpellLang);
-                    var keys = Object.keys(supported);
-
-                    // Populate installed languages
-                    for (var i = 0; i < keys.length; ++i) {
-                        var dictInfo = supported[keys[i]];
-                        installedSpellCheckLangModel.append({
-                                "displayText": dictInfo.nativeName,
-                                "id": keys[i],
-                                "path": dictInfo.path
-                            });
-                        // Set current selection if this is the active language
-                        if (keys[i] === currentKey) {
-                            spellCheckLangComboBoxSetting.modelIndex = i;
-                        }
-                    }
-
-                    // Update available languages list
-                    availableSpellCheckLangModel.clear();
-                    var dictionaries = SpellCheckDictionaryManager.getAvailableDictionaries();
-                    var availableKeys = Object.keys(dictionaries);
-                    for (var j = 0; j < availableKeys.length; ++j) {
-                        var availableDictInfo = dictionaries[availableKeys[j]];
-                        availableSpellCheckLangModel.append({
-                                "displayText": availableDictInfo.nativeName,
-                                "id": availableKeys[j],
-                                "path": availableDictInfo.path
-                            });
-                    }
-                }
-
-                function onDictionaryDownloadFailed(localPath) {
-                    // Show failure popup
-                    downloadDictionaryPopup.success = false;
-                    downloadDictionaryPopup.visible = true;
-                    downloadDictionaryPopup.enabled = true;
+                text: qsTr("Manage Dictionaries")
+                onClicked: {
+                    viewCoordinator.presentDialog(appWindow, "commoncomponents/ManageDictionariesDialog.qml");
                 }
             }
         }
