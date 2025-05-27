@@ -32,8 +32,6 @@
 class SystemTray;
 class LRCInstance;
 class AppSettingsManager;
-class SpellCheckDictionaryManager;
-class SpellCheckHandler;
 class PreviewEngine;
 class ScreenInfo;
 class MainApplication;
@@ -63,8 +61,6 @@ void registerTypes(QQmlEngine* engine,
                    LRCInstance* lrcInstance,
                    SystemTray* systemTray,
                    AppSettingsManager* appSettingsManager,
-                   SpellCheckDictionaryManager* spellCheckDictionaryManager,
-                   SpellCheckHandler* spellCheckHandler,
                    ConnectivityMonitor* connectivityMonitor,
                    PreviewEngine* previewEngine,
                    ScreenInfo* screenInfo,

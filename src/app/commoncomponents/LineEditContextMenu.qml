@@ -17,6 +17,8 @@
 import QtQuick
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
+import net.jami.Enums 1.1
+import net.jami.Models 1.1
 import "contextmenu"
 import "../mainview"
 import "../mainview/components"
@@ -30,7 +32,7 @@ ContextMenuAutoLoader {
     property var selectionEnd
     property bool customizePaste: false
     property bool selectOnly: false
-    property bool checkSpellingIfActivated: false
+    property bool checkSpellingIfActivated: AppSettingsManager.getValue(Settings.EnableSpellCheck);
     property var suggestionList
     property var menuItemsLength
     property var language
@@ -82,16 +84,27 @@ ContextMenuAutoLoader {
             onClicked: {
                 spellLanguageContextMenu.openMenu();
             }
+        },
+        GeneralMenuItem {
+            id: manageLanguages
+            itemName: qsTr("Manage Dictionaries")
+            visible: checkSpellingIfActivated
+            canTrigger: checkSpellingIfActivated
+            hasIcon: false
+            onClicked: {
+                viewCoordinator
+                    .presentDialog(appWindow, "commoncomponents/ManageDictionariesDialog.qml");
+            }
         }
     ]
 
     ListView {
         model: ListModel {
-            id: dynamicModel
+            id: suggestionListModel
         }
 
         Instantiator {
-            model: dynamicModel
+            model: suggestionListModel
             delegate: GeneralMenuItem {
                 id: suggestion
 
@@ -116,7 +129,7 @@ ContextMenuAutoLoader {
     }
 
     function removeItems() {
-        dynamicModel.remove(0, suggestionList.length);
+        suggestionListModel.clear();
         suggestionList.length = 0;
     }
 
@@ -124,7 +137,7 @@ ContextMenuAutoLoader {
         menuItemsLength = menuItems.length; // Keep initial number of items for easier removal
         suggestionList = wordList;
         for (var i = 0; i < suggestionList.length; ++i) {
-            dynamicModel.append({
+            suggestionListModel.append({
                     "name": suggestionList[i]
                 });
         }
@@ -153,12 +166,14 @@ ContextMenuAutoLoader {
             lineEditObj.select(selectionStart, selectionEnd);
         }
         function onClosed() {
-            if (!suggestionList || suggestionList.length == 0) {
+            if (!suggestionList || suggestionList.length === 0) {
                 return;
             }
             removeItems();
         }
     }
 
-    Component.onCompleted: menuItemsToLoad = menuItems
+    Component.onCompleted: {
+        menuItemsToLoad = menuItems
+    }
 }

@@ -224,6 +224,9 @@ ApplicationWindow {
                     crashReporter.clearReports();
                 });
         }
+
+        // Initialize spell checking
+        SpellCheckAdapter;
     }
 
     Loader {

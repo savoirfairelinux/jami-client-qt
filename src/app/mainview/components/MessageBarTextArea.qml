@@ -37,7 +37,6 @@ JamiFlickable {
     property bool showPreview: false
     property bool isShowTypo: UtilsAdapter.getAppValue(Settings.Key.ShowMardownOption)
     property int textWidth: textArea.contentWidth
-    property var spellCheckActive: AppSettingsManager.getValue(Settings.EnableSpellCheck)
     property var language: AppSettingsManager.getValue(Settings.SpellLang)
 
     // Used to cache the editable text when showing the preview message
@@ -73,7 +72,7 @@ JamiFlickable {
 
         lineEditObj: textArea
         customizePaste: true
-        checkSpellingIfActivated: true
+
 
         onContextMenuRequirePaste: {
             // Intercept paste event to use C++ QMimeData
@@ -97,14 +96,10 @@ JamiFlickable {
     onShowPreviewChanged: {
         if (showPreview) {
             cachedText = textArea.text;
-            spellCheckActive = false;
             MessagesAdapter.parseMessage("", textArea.text, false, "", "");
-            textArea.clearUnderlines();
         } else {
             textArea.textFormatChanged.disconnect(resetEditableText);
             textArea.textFormatChanged.connect(resetEditableText);
-            spellCheckActive = AppSettingsManager.getValue(Settings.EnableSpellCheck);
-            textArea.updateUnderlineText();
         }
     }
 
@@ -121,26 +116,22 @@ JamiFlickable {
     TextArea.flickable: TextArea {
         id: textArea
 
-        function updateCorrection(language) {
-            textArea.updateUnderlineText();
-        }
+        // Spell check is active under the following conditions:
+        // 1. Spell check is enabled in settings
+        // 2. The selected spell language is not "NONE"
+        // 3. We are not in preview mode
+        readonly property bool spellCheckActive:
+            AppSettingsManager.getValue(Settings.EnableSpellCheck) &&
+            AppSettingsManager.getValue(Settings.SpellLang) !== "NONE" &&
+            !root.showPreview
+
+        onSpellCheckActiveChanged: textArea.updateSpellCorrection()
 
         Connections {
-            target: SpellCheckHandler
+            target: SpellCheckAdapter
 
             function onDictionaryChanged() {
-                root.language = SpellCheckDictionaryManager.getSpellLanguage();
-                if (AppSettingsManager.getValue(Settings.SpellLang) === "NONE") {
-                    spellCheckActive = false;
-                } else {
-                    spellCheckActive = AppSettingsManager.getValue(Settings.EnableSpellCheck);
-                }
-                if (spellCheckActive === true) {
-                    root.language = SpellCheckDictionaryManager.getSpellLanguage();
-                    textArea.updateCorrection(root.language);
-                } else {
-                    textArea.clearUnderlines();
-                }
+                textArea.updateSpellCorrection();
             }
         }
 
@@ -149,41 +140,15 @@ JamiFlickable {
             target: UtilsAdapter
 
             function onChangeLanguage() {
-                textArea.updateUnderlineText();
+                textArea.updateSpellCorrection();
             }
 
             function onChangeFontSize() {
-                textArea.updateUnderlineText();
+                textArea.updateSpellCorrection();
             }
 
             function onEnableSpellCheckChanged() {
-                if (AppSettingsManager.getValue(Settings.SpellLang) === "NONE") {
-                    spellCheckActive = false;
-                } else {
-                    spellCheckActive = AppSettingsManager.getValue(Settings.EnableSpellCheck);
-                }
-                if (spellCheckActive === true) {
-                    root.language = SpellCheckDictionaryManager.getSpellLanguage();
-                    textArea.updateCorrection(root.language);
-                } else {
-                    textArea.clearUnderlines();
-                }
-            }
-        }
-
-        // Initialize the settings if the component wasn't loaded when changing settings
-        Component.onCompleted: {
-            SpellCheckDictionaryManager.getBestDictionary(AppSettingsManager.getValue(Settings.SpellLang));
-            if ((AppSettingsManager.getValue(Settings.SpellLang) === "NONE")) {
-                root.language = AppSettingsManager.getValue(Settings.SpellLang);
-            } else {
-                spellCheckActive = AppSettingsManager.getValue(Settings.EnableSpellCheck);
-            }
-            if (spellCheckActive === true) {
-                root.language = SpellCheckDictionaryManager.getSpellLanguage();
-                textArea.updateCorrection(root.language);
-            } else {
-                textArea.clearUnderlines();
+                textArea.updateSpellCorrection();
             }
         }
 
@@ -226,13 +191,13 @@ JamiFlickable {
 
         onReleased: function (event) {
             if (event.button === Qt.RightButton) {
-                var position = textArea.positionAt(event.x, event.y);
-                textArea.moveCursorSelection(position, TextInput.SelectWords);
-                textArea.selectWord();
-                if (!SpellCheckHandler.spell(textArea.selectedText)) {
-                    var wordList = SpellCheckHandler.spellSuggestionsRequest(textArea.selectedText);
-                    if (wordList.length !== 0) {
-                        textAreaContextMenu.addMenuItem(wordList);
+                if (spellCheckActive) {
+                    // If the selected text is not in the dictionary, we don't show the context menu
+                    if (!SpellCheckAdapter.spell(textArea.selectedText)) {
+                        var wordList = SpellCheckAdapter.spellSuggestionsRequest(textArea.selectedText);
+                        if (wordList.length !== 0) {
+                            textAreaContextMenu.addMenuItem(wordList);
+                        }
                     }
                 }
                 textAreaContextMenu.openMenuAt(event);
@@ -240,7 +205,7 @@ JamiFlickable {
         }
 
         onTextChanged: {
-            updateUnderlineText();
+            updateSpellCorrection();
             if (text !== debounceText && !showPreview) {
                 debounceText = text;
                 MessagesAdapter.userIsComposing(text ? true : false);
@@ -253,7 +218,7 @@ JamiFlickable {
         //     Shift + Enter -> Next Line
         Keys.onPressed: function (keyEvent) {
             // Update underline on each input to take into account deleted text and sent ones
-            updateUnderlineText();
+            updateSpellCorrection();
             if (keyEvent.matches(StandardKey.Paste)) {
                 MessagesAdapter.onPaste();
                 keyEvent.accepted = true;
@@ -283,17 +248,17 @@ JamiFlickable {
             }
         }
 
-        function updateUnderlineText() {
-            clearUnderlines();
+        function updateSpellCorrection() {
             // We iterate over the whole text to find words to check and underline them if needed
             if (spellCheckActive) {
+                clearUnderlines();
                 var text = textArea.text;
-                var words = SpellCheckHandler.findWords(text);
+                var words = SpellCheckAdapter.findWords(text);
                 if (!words)
                     return;
                 for (var i = 0; i < words.length; i++) {
                     var wordInfo = words[i];
-                    if (wordInfo && wordInfo.word && !SpellCheckHandler.spell(wordInfo.word)) {
+                    if (wordInfo && wordInfo.word && !SpellCheckAdapter.spell(wordInfo.word)) {
                         textMetrics.text = wordInfo.word;
                         var xPos = textArea.positionToRectangle(wordInfo.position).x;
                         var yPos = textArea.positionToRectangle(wordInfo.position).y + textArea.positionToRectangle(wordInfo.position).height;
@@ -304,6 +269,8 @@ JamiFlickable {
                         underlineList.push(underlineObject);
                     }
                 }
+            } else {
+                clearUnderlines();
             }
         }
 

@@ -915,7 +915,7 @@ Item {
     property string checkSpelling: qsTr("Check spelling while typing")
     property string textLanguage: qsTr("Text language")
     property string spellchecking: qsTr("Spellchecking")
-    property string availableTextLanguages: qsTr("Install new text languages")
+    property string searchAvailableTextLanguages: qsTr("Search for available text languages")
     property string dictionaryDownloadSuccessfully: qsTr("Dictionary downloaded successfully.")
     property string downloadDictionaryFailed: qsTr("Could not download dictionary")
     property string dictionarySetAsCurrent: qsTr("Dictionary has been set as the current spell checking language")
