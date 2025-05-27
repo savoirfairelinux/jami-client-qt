@@ -46,77 +46,6 @@ UtilsAdapter::UtilsAdapter(AppSettingsManager* settingsManager,
     if (lrcInstance_->avModel().getRecordPath().isEmpty()) {
         lrcInstance_->avModel().setRecordPath(getDefaultRecordPath());
     }
-    set_isRTL(isRTL());
-}
-
-QVariant
-UtilsAdapter::getAppValue(const QString& key, const QVariant& defaultValue)
-{
-    return settingsManager_->getValue(key, defaultValue);
-}
-
-void
-UtilsAdapter::setAppValue(const QString& key, const QVariant& value)
-{
-    settingsManager_->setValue(key, value);
-}
-
-QVariant
-UtilsAdapter::getAppValue(const Settings::Key key)
-{
-    return settingsManager_->getValue(key);
-}
-
-void
-UtilsAdapter::setAppValue(const Settings::Key key, const QVariant& value)
-{
-    if (key == Settings::Key::BaseZoom) {
-        if (value.toDouble() < 0.1 || value.toDouble() > 2.0)
-            return;
-    }
-    settingsManager_->setValue(key, value);
-    // If we change the lang preference, reload the translations
-    if (key == Settings::Key::LANG) {
-        settingsManager_->loadTranslations();
-        set_isRTL(isRTL());
-        Q_EMIT changeLanguage();
-    } else if (key == Settings::Key::BaseZoom)
-        Q_EMIT changeFontSize();
-    else if (key == Settings::Key::DisplayHyperlinkPreviews)
-        settingsManager_->loadHistory();
-    else if (key == Settings::Key::EnableExperimentalSwarm)
-        Q_EMIT showExperimentalCallSwarm();
-    else if (key == Settings::Key::ShowChatviewHorizontally)
-        Q_EMIT chatviewPositionChanged();
-    else if (key == Settings::Key::AppTheme)
-        Q_EMIT appThemeChanged();
-    else if (key == Settings::Key::UseFramelessWindow)
-        Q_EMIT useFramelessWindowChanged();
-    else if (key == Settings::Key::SpellLang)
-        Q_EMIT spellLanguageChanged();
-    else if (key == Settings::Key::EnableSpellCheck)
-        Q_EMIT enableSpellCheckChanged();
-    else if (key == Settings::Key::RaiseWhenCalled)
-        Q_EMIT raiseWhenCalledChanged();
-#if !APPSTORE
-    // Any donation campaign-related keys can trigger a donation campaign check
-    else if (key == Settings::Key::IsDonationVisible
-             || key == Settings::Key::Donation2023VisibleDate
-             || key == Settings::Key::Donation2023EndDate2)
-        Q_EMIT donationCampaignSettingsChanged();
-#endif
-}
-
-QVariant
-UtilsAdapter::getDefault(const Settings::Key key)
-{
-    return settingsManager_->getDefault(key);
-}
-
-void
-UtilsAdapter::setToDefault(const Settings::Key key)
-{
-    setAppValue(key, settingsManager_->getDefault(key));
 }
 
 const QString
@@ -495,7 +424,7 @@ UtilsAdapter::setRunOnStartUp(bool state)
 void
 UtilsAdapter::setDownloadPath(QString dir)
 {
-    setAppValue(Settings::Key::DownloadPath, dir);
+    settingsManager_->setValue(Settings::Key::DownloadPath, dir);
     if (!dir.endsWith(QDir::separator()))
         dir += QDir::separator();
     lrcInstance_->accountModel().downloadDirectory = dir;
@@ -504,7 +433,7 @@ UtilsAdapter::setDownloadPath(QString dir)
 void
 UtilsAdapter::setScreenshotPath(QString dir)
 {
-    setAppValue(Settings::Key::ScreenshotPath, dir);
+    settingsManager_->setValue(Settings::Key::ScreenshotPath, dir);
     if (!dir.endsWith(QDir::separator()))
         dir += QDir::separator();
     lrcInstance_->accountModel().screenshotDirectory = dir;
@@ -762,7 +691,7 @@ UtilsAdapter::isSystemThemeDark()
 bool
 UtilsAdapter::useApplicationTheme()
 {
-    QString theme = getAppValue(Settings::Key::AppTheme).toString();
+    QString theme = settingsManager_->getValue(Settings::Key::AppTheme).toString();
     if (theme == "Dark")
         return true;
     else if (theme == "Light")
@@ -807,30 +736,6 @@ UtilsAdapter::getVideoPlayer(const QString& resource, const QString& bgColor)
         {"isVideo", true},
         {"html", htmlVideo.arg(resource, bgColor)},
     };
-}
-
-bool
-UtilsAdapter::isRTL()
-{
-    auto pref = getAppValue(Settings::Key::LANG).toString();
-    pref = pref == "SYSTEM" ? QLocale::system().name() : pref;
-    static const QStringList rtlLanguages {
-        // as defined by ISO 639-1
-        "ar",    // Arabic
-        "he",    // Hebrew
-        "fa",    // Persian (Farsi)
-        "az_IR", // Azerbaijani
-        "ur",    // Urdu
-        "ps",    // Pashto
-        "ku",    // Kurdish
-        "sd",    // Sindhi
-        "dv",    // Dhivehi (Maldivian)
-        "yi",    // Yiddish
-        "am",    // Amharic
-        "ti",    // Tigrinya
-        "kk"     // Kazakh (in Arabic script)
-    };
-    return rtlLanguages.contains(pref);
 }
 
 bool

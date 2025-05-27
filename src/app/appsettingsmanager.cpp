@@ -31,34 +31,58 @@ const QString defaultDownloadPath = QStandardPaths::writableLocation(
 AppSettingsManager::AppSettingsManager(QObject* parent)
     : QObject(parent)
     , settings_(new QSettings("jami.net", "Jami", this))
+    , settingsMap_(this)
 {
     for (int i = 0; i < static_cast<int>(Settings::Key::COUNT__); ++i) {
         auto key = static_cast<Settings::Key>(i);
-        auto strKey= Settings::toString(key);
+        auto strKey = Settings::toString(key);
+
+        // Populate QPropertyMap with stored settings values
+        auto settingsValue = settings_->value(strKey, Settings::defaultValue(key));
+        if (QString(settingsValue.typeName()) == "QString"
+            && (settingsValue.toString() == "false" || settingsValue.toString() == "true"))
+            settingsValue = settingsValue.toBool();
+        settingsMap_.insert(strKey, settingsValue);
+
         // If the setting is written in the settings file and is equal to the default value,
         // remove it from the settings file.
         // This allow us to change default values without risking to remove user settings
-        if ((settings_->contains(strKey)) && (settings_->value(strKey) == Settings::defaultValue(key)))
+        if ((settings_->contains(strKey))
+            && (settings_->value(strKey) == Settings::defaultValue(key)))
             settings_->remove(strKey);
     }
+    // Connect changes to QQmlPropertyMap to QSettings
+    // Additionnal logic related to specific settings done here
+    connect(&settingsMap_,
+            &CustomQmlPropertyMap::valueChanged,
+            this,
+            [this](const QString& key, const QVariant& value) {
+                if (key == Settings::toString(Settings::Key::BaseZoom)) {
+                    if (value.toDouble() < 0.1 || value.toDouble() > 2.0) {
+                        setValue(key, settings_->value(key, Settings::defaultValue(Settings::Key::BaseZoom)));
+                        return;
+                    }
+                }
+                settings_->setValue(key, value);
+                if (key == Settings::toString(Settings::Key::LANG)) {
+                    loadTranslations();
+                    set_isRTL(isRTL());
+                } else if (key == Settings::toString(Settings::Key::DisplayHyperlinkPreviews))
+                    loadHistory();
+            });
+    set_isRTL(isRTL());
 }
 
 QVariant
 AppSettingsManager::getValue(const QString& key, const QVariant& defaultValue)
 {
-    auto value = settings_->value(key, defaultValue);
-
-    if (QString(value.typeName()) == "QString"
-        && (value.toString() == "false" || value.toString() == "true"))
-        return value.toBool();
-
-    return value;
+    return settingsMap_.value(key);
 }
 
 void
 AppSettingsManager::setValue(const QString& key, const QVariant& value)
 {
-    settings_->setValue(key, value);
+    settingsMap_.setValue(key, value);
 }
 
 QVariant
@@ -79,11 +103,41 @@ AppSettingsManager::getDefault(const Settings::Key key) const
     return Settings::defaultValue(key);
 }
 
+void
+AppSettingsManager::setToDefault(const Settings::Key key)
+{
+    setValue(Settings::toString(key), getDefault(key));
+}
+
 QString
 AppSettingsManager::getLanguage()
 {
     auto pref = getValue(Settings::Key::LANG).toString();
     return pref == "SYSTEM" ? QLocale::system().name() : pref;
+}
+
+bool
+AppSettingsManager::isRTL()
+{
+    auto pref = getValue(Settings::Key::LANG);
+    pref = pref == "SYSTEM" ? QLocale::system().name() : pref;
+    static const QStringList rtlLanguages {
+        // as defined by ISO 639-1
+        "ar",    // Arabic
+        "he",    // Hebrew
+        "fa",    // Persian (Farsi)
+        "az_IR", // Azerbaijani
+        "ur",    // Urdu
+        "ps",    // Pashto
+        "ku",    // Kurdish
+        "sd",    // Sindhi
+        "dv",    // Dhivehi (Maldivian)
+        "yi",    // Yiddish
+        "am",    // Amharic
+        "ti",    // Tigrinya
+        "kk"     // Kazakh (in Arabic script)
+    };
+    return rtlLanguages.contains(pref);
 }
 
 void

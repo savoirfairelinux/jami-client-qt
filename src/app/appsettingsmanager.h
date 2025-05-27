@@ -19,6 +19,9 @@
 
 #pragma once
 
+#include "qtutils.h"
+#include "customqmlpropertymap.h"
+
 #include <QMetaEnum>
 #include <QObject>
 #include <QString>
@@ -136,9 +139,14 @@ Q_DECLARE_METATYPE(Settings::Key)
 class AppSettingsManager : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(CustomQmlPropertyMap* settingsMap READ settingsMap CONSTANT)
+    QML_RO_PROPERTY(bool, isRTL)
+
 public:
     explicit AppSettingsManager(QObject* parent = nullptr);
     ~AppSettingsManager() = default;
+
+    CustomQmlPropertyMap* settingsMap() { return &settingsMap_; }
 
     Q_INVOKABLE QVariant getValue(const QString& key, const QVariant& defaultValue = {});
     Q_INVOKABLE void setValue(const QString& key, const QVariant& value = {});
@@ -147,9 +155,10 @@ public:
     Q_INVOKABLE void setValue(const Settings::Key key, const QVariant& value = {});
 
     Q_INVOKABLE QVariant getDefault(const Settings::Key key) const;
+    Q_INVOKABLE void setToDefault(const Settings::Key key);
 
     QString getLanguage();
-
+    Q_INVOKABLE bool isRTL();
     void loadTranslations();
     void loadHistory();
 
@@ -158,6 +167,7 @@ Q_SIGNALS:
     void reloadHistory();
 
 private:
+    CustomQmlPropertyMap settingsMap_;
     QSettings* settings_;
     QVector<QTranslator*> installedTr_ {};
 };

@@ -99,8 +99,8 @@ SettingsPageBase {
                 id: checkBoxRaiseWhenCalled
 
                 labelText: JamiStrings.raiseWhenCalled
-                checked: UtilsAdapter.getAppValue(Settings.RaiseWhenCalled)
-                onSwitchToggled: UtilsAdapter.setAppValue(Settings.Key.RaiseWhenCalled, checked)
+                checked: AppSettingsManager.settingsMap.RaiseWhenCalled
+                onSwitchToggled: AppSettingsManager.settingsMap.RaiseWhenCalled = checked
             }
 
             ToggleSwitch {
@@ -323,7 +323,7 @@ SettingsPageBase {
             spacing: 9
 
             function isComplete() {
-                var horizontalView = UtilsAdapter.getAppValue(Settings.Key.ShowChatviewHorizontally) ? 1 : 0;
+                var horizontalView = AppSettingsManager.settingsMap.ShowChatviewHorizontally ? 1 : 0;
                 verticalRadio.checked = horizontalView === 0;
                 horizontalRadio.checked = horizontalView === 1;
             }
@@ -366,7 +366,7 @@ SettingsPageBase {
 
                     onCheckedChanged: {
                         if (checked) {
-                            UtilsAdapter.setAppValue(Settings.Key.ShowChatviewHorizontally, true);
+                            AppSettingsManager.settingsMap.ShowChatviewHorizontally = true;
                         }
                     }
                 }
@@ -384,7 +384,7 @@ SettingsPageBase {
 
                     onCheckedChanged: {
                         if (checked) {
-                            UtilsAdapter.setAppValue(Settings.Key.ShowChatviewHorizontally, false);
+                            AppSettingsManager.settingsMap.ShowChatviewHorizontally = false;
                         }
                     }
                 }
@@ -405,9 +405,9 @@ SettingsPageBase {
             ToggleSwitch {
                 id: pttToggle
                 labelText: JamiStrings.enablePTT
-                checked: UtilsAdapter.getAppValue(Settings.EnablePtt)
+                checked: AppSettingsManager.settingsMap.EnablePtt
                 onSwitchToggled: {
-                    UtilsAdapter.setAppValue(Settings.Key.EnablePtt, checked);
+                    AppSettingsManager.settingsMap.EnablePtt = checked;
                 }
             }
             RowLayout {

@@ -57,10 +57,10 @@ SettingsPageBase {
                 visible: ENABLE_CRASHREPORTS
                 Layout.fillWidth: true
                 labelText: qsTr("Enable crash reports")
-                checked: UtilsAdapter.getAppValue(Settings.EnableCrashReporting)
+                checked: AppSettingsManager.settingsMap.EnableCrashReporting
 
                 onSwitchToggled: {
-                    UtilsAdapter.setAppValue(Settings.EnableCrashReporting, checked);
+                    AppSettingsManager.settingsMap.EnableCrashReporting = checked;
                     crashReporter.syncHandlerWithSettings();
                 }
             }
@@ -71,10 +71,10 @@ SettingsPageBase {
                 enabled: enableCrashReports.checked
                 Layout.fillWidth: true
                 labelText: qsTr("Automatically send crash reports")
-                checked: UtilsAdapter.getAppValue(Settings.EnableAutomaticCrashReporting)
+                checked: AppSettingsManager.settingsMap.EnableAutomaticCrashReporting
 
                 onSwitchToggled: {
-                    UtilsAdapter.setAppValue(Settings.EnableAutomaticCrashReporting, checked);
+                    AppSettingsManager.settingsMap.EnableAutomaticCrashReporting = checked;
                     crashReporter.syncHandlerWithSettings();
                 }
             }

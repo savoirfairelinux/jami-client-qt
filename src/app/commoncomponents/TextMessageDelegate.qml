@@ -38,7 +38,7 @@ SBSMessageBase {
             root.colorText = UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark;
             // Update parsed body with correct colors
             if (Body !== "")
-                MessagesAdapter.parseMessage(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl, bubble.color);
+                MessagesAdapter.parseMessage(Id, Body, AppSettingsManager.settingsMap.DisplayHyperlinkPreviews, root.colorUrl, bubble.color);
         }
     }
 
@@ -66,7 +66,7 @@ SBSMessageBase {
             anchors.rightMargin: isOutgoing && !isEmojiOnly && !bigMsg ? root.timeWidth + root.editedWidth : 0
             text: {
                 if (Body !== "" && ParsedBody.length === 0) {
-                    MessagesAdapter.parseMessage(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl, bubble.color);
+                    MessagesAdapter.parseMessage(Id, Body, AppSettingsManager.settingsMap.DisplayHyperlinkPreviews, root.colorUrl, bubble.color);
                     return "";
                 }
                 if (ParsedBody !== "")
