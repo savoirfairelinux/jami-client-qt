@@ -42,7 +42,7 @@ ContextMenuAutoLoader {
     function generateMenuItems() {
         var menuItems = [];
         // Create new menu items
-        var dictionaries = SpellCheckDictionaryManager.getInstalledDictionaries();
+        var dictionaries = SpellCheckDictionaryListmodel.getInstalledDictionaries();
         var keys = Object.keys(dictionaries);
         for (var i = 0; i < keys.length; ++i) {
             var menuItem = Qt.createComponent("qrc:/commoncomponents/contextmenu/GeneralMenuItem.qml", Component.PreferSynchronous);
@@ -63,7 +63,7 @@ ContextMenuAutoLoader {
                 continue;
             }
             menuItemObject.clicked.connect(function () {
-                    SpellCheckDictionaryManager.getBestDictionary(menuItemObject.content);
+                    SpellCheckDictionaryListmodel.getBestDictionary(menuItemObject.content);
                 });
             // Log the object pointer
             menuItems.push(menuItemObject);

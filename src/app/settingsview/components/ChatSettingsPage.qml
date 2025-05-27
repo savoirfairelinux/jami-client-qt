@@ -17,11 +17,13 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
+import Qt5Compat.GraphicalEffects
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 import net.jami.Constants 1.1
 import net.jami.Helpers 1.1
+import SortFilterProxyModel 0.2
 import "../../commoncomponents"
 import "../../mainview/components"
 import "../../mainview/js/contactpickercreation.js" as ContactPickerCreation
@@ -81,166 +83,377 @@ SettingsPageBase {
                 height: JamiTheme.preferredFieldHeight
                 labelText: JamiStrings.textLanguage
                 tipText: JamiStrings.textLanguage
-                comboModel: ListModel {
-                    id: installedSpellCheckLangModel
+                comboModel: SortFilterProxyModel {
+                    id: installedDictionariesModel
+                    sourceModel: SpellCheckAdapter.getDictionaryListModel()
+
+                    // Filter to show only installed dictionaries
+                    filters: ValueFilter {
+                        roleName: "Installed"
+                        value: true
+                    }
+
+                    // Sort alphabetically by native name
+                    sorters: RoleSorter {
+                        roleName: "NativeName"
+                        sortOrder: Qt.AscendingOrder
+                    }
+
                     Component.onCompleted: {
-                        var supported = SpellCheckDictionaryManager.getInstalledDictionaries();
-                        var keys = Object.keys(supported);
-                        var currentKey = UtilsAdapter.getAppValue(Settings.Key.SpellLang);
-                        for (var i = 0; i < keys.length; ++i) {
-                            var dictInfo = supported[keys[i]];
-                            append({
-                                    "displayText": dictInfo.nativeName,
-                                    "id": keys[i],
-                                    "path": dictInfo.path
+                        spellCheckLangComboBoxSetting.enabled =
+                                Qt.binding(function() {
+                                    return installedDictionariesModel.count > 0;
                                 });
-                            if (keys[i] === currentKey)
-                                spellCheckLangComboBoxSetting.modelIndex = i;
-                        }
                     }
                 }
                 widthOfComboBox: itemWidth
-                role: "displayText"
-                onActivated: {
-                    // Get selected dictionary
-                    var selectedDict = comboModel.get(modelIndex);
-                    if (!selectedDict)
-                        return;
+                role: "NativeName"
 
-                    // Download dictionary
-                    SpellCheckDictionaryManager.getBestDictionary(selectedDict.id);
+                // Show placeholder when disabled
+                placeholderText: qsTr("None")
 
-                    // Dialog will handle the rest through onDownloadFinished signal
-                    // which will properly update both lists
+                function getCurrentLocaleIndex() {
+                    var currentLang = UtilsAdapter.getAppValue(Settings.Key.SpellLang)
+                    for (var i = 0; i < comboModel.count; i++) {
+                        var item = comboModel.get(i)
+                        if (item.Locale === currentLang)
+                            return i
+                    }
+                    return -1
                 }
+
+                // Set initial selection based on current spell language setting
+                Component.onCompleted: modelIndex = getCurrentLocaleIndex()
+
+                property string locale
+                property string filePath
+                function setForIndex(index) {
+                    var selectedDict = comboModel.get(index)
+                    if (selectedDict && selectedDict.Locale && selectedDict.Installed) {
+                        filePath = selectedDict.FilePath // capture the file path
+                        locale = selectedDict.Locale
+                    }
+                }
+                onLocaleChanged: {
+                    console.info("Locale changed to:", locale)
+                    UtilsAdapter.setAppValue(Settings.Key.SpellLang, locale)
+                    SpellCheckAdapter.setDictionaryPath(filePath)
+                }
+
+                // When the count changes, we might need to update the model index
+                readonly property int count: installedDictionariesModel.count
+                onCountChanged: {
+                    modelIndex = getCurrentLocaleIndex()
+                    // If the new index is -1 and we still have dictionaries, use the first one
+                    if (modelIndex === -1 && installedDictionariesModel.count > 0) {
+                        modelIndex = 0
+                    }
+                }
+
+                // If the model index changes programmatically, we need to update the dictionary path
+                onModelIndexChanged: setForIndex(modelIndex)
             }
 
-            SettingsComboBox {
-                id: spellCheckAvailableLangComboBoxSetting
+            // A new widget to replace the ones above (Test first) that harnesses our new model
+            // and provides a more user-friendly interface for managing spell check dictionaries.
 
+            // Search bar for filtering dictionaries
+            Searchbar {
+                id: dictionarySearchBar
                 Layout.fillWidth: true
-                height: JamiTheme.preferredFieldHeight
+                Layout.preferredHeight: 35
+                Layout.bottomMargin: 8
 
-                labelText: JamiStrings.availableTextLanguages
-                tipText: JamiStrings.availableTextLanguages
-                comboModel: ListModel {
-                    id: availableSpellCheckLangModel
-                    Component.onCompleted: {
-                        var dictionaries = SpellCheckDictionaryManager.getAvailableDictionaries();
-                        var keys = Object.keys(dictionaries);
-                        var currentKey = UtilsAdapter.getAppValue(Settings.Key.SpellLang);
-                        for (var i = 0; i < keys.length; ++i) {
-                            var dictInfo = dictionaries[keys[i]];
-                            append({
-                                    "displayText": dictInfo.nativeName,
-                                    "id": keys[i],
-                                    "path": dictInfo.path
-                                });
-                            if (keys[i] === currentKey)
-                                spellCheckAvailableLangComboBoxSetting.modelIndex = i;
-                        }
+                placeHolderText: JamiStrings.search + " " + JamiStrings.availableTextLanguages.toLowerCase()
+
+
+                // Enhanced visual feedback
+                property bool hasFocus: activeFocus
+
+                // Smooth scale animation on focus
+                scale: hasFocus ? 1.02 : 1.0
+                Behavior on scale {
+                    NumberAnimation {
+                        duration: 200
+                        easing.type: Easing.OutCubic
                     }
                 }
 
-                widthOfComboBox: itemWidth
-                role: "displayText"
-                onActivated: {
-                    SpellCheckDictionaryManager.getBestDictionary(comboModel.get(modelIndex).id);
-                    // First refresh dictionaries to update both cached lists
-                    SpellCheckDictionaryManager.refreshDictionaries();
+                // Subtle glow effect when focused
+                layer.enabled: hasFocus
+                layer.effect: DropShadow {
+                    horizontalOffset: 0
+                    verticalOffset: 0
+                    radius: 12
+                    samples: 24
+                    color: Qt.rgba(JamiTheme.buttonTintedBlue.r,
+                                   JamiTheme.buttonTintedBlue.g,
+                                   JamiTheme.buttonTintedBlue.b, 0.3)
+                    transparentBorder: true
+                }
 
-                    // Save current selection
-                    var langIdx = spellCheckLangComboBoxSetting.modelIndex;
-
-                    // Update installed languages list
-                    installedSpellCheckLangModel.clear();
-                    var supported = SpellCheckDictionaryManager.getInstalledDictionaries();
-                    var currentKey = UtilsAdapter.getAppValue(Settings.Key.SpellLang);
-                    var keys = Object.keys(supported);
-                    for (var i = 0; i < keys.length; ++i) {
-                        var dictInfo = supported[keys[i]];
-                        installedSpellCheckLangModel.append({
-                                "displayText": dictInfo.nativeName,
-                                "id": keys[i],
-                                "path": dictInfo.path
-                            });
-                        // Restore selection
-                        if (keys[i] === currentKey) {
-                            spellCheckLangComboBoxSetting.modelIndex = i;
-                        }
-                    }
-
-                    // Update available languages list
-                    availableSpellCheckLangModel.clear();
-                    var dictionaries = SpellCheckDictionaryManager.getAvailableDictionaries();
-                    var availableKeys = Object.keys(dictionaries);
-                    for (var j = 0; j < availableKeys.length; ++j) {
-                        var availableDictInfo = dictionaries[availableKeys[j]];
-                        availableSpellCheckLangModel.append({
-                                "displayText": availableDictInfo.nativeName,
-                                "id": availableKeys[j],
-                                "path": availableDictInfo.path
-                            });
-                    }
+                onSearchBarTextChanged: function(text) {
+                    dictionaryProxyModel.filterPattern = text
                 }
             }
 
-            DownloadDictionaryPopup {
-                id: downloadDictionaryPopup
-                visible: false
-            }
+            JamiListView {
+                id: spellCheckDictionaryListView
 
-            Connections {
-                target: SpellCheckDictionaryManager
-
-                function onDownloadFinished() {
-                    // Show success popup
-                    downloadDictionaryPopup.success = true;
-                    downloadDictionaryPopup.visible = true;
-                    downloadDictionaryPopup.enabled = true;
-
-                    // First refresh dictionaries to ensure caches are updated
-                    SpellCheckDictionaryManager.refreshDictionaries();
-
-                    // Update installed languages list
-                    installedSpellCheckLangModel.clear();
-                    var supported = SpellCheckDictionaryManager.getInstalledDictionaries();
-                    var currentKey = UtilsAdapter.getAppValue(Settings.Key.SpellLang);
-                    var keys = Object.keys(supported);
-
-                    // Populate installed languages
-                    for (var i = 0; i < keys.length; ++i) {
-                        var dictInfo = supported[keys[i]];
-                        installedSpellCheckLangModel.append({
-                                "displayText": dictInfo.nativeName,
-                                "id": keys[i],
-                                "path": dictInfo.path
-                            });
-                        // Set current selection if this is the active language
-                        if (keys[i] === currentKey) {
-                            spellCheckLangComboBoxSetting.modelIndex = i;
-                        }
+                // Smooth transitions for filtering and sorting
+                add: Transition {
+                    NumberAnimation {
+                        property: "opacity"
+                        from: 0
+                        to: 1
+                        duration: 300
+                        easing.type: Easing.OutCubic
                     }
-
-                    // Update available languages list
-                    availableSpellCheckLangModel.clear();
-                    var dictionaries = SpellCheckDictionaryManager.getAvailableDictionaries();
-                    var availableKeys = Object.keys(dictionaries);
-                    for (var j = 0; j < availableKeys.length; ++j) {
-                        var availableDictInfo = dictionaries[availableKeys[j]];
-                        availableSpellCheckLangModel.append({
-                                "displayText": availableDictInfo.nativeName,
-                                "id": availableKeys[j],
-                                "path": availableDictInfo.path
-                            });
+                    NumberAnimation {
+                        property: "scale"
+                        from: 0.8
+                        to: 1.0
+                        duration: 300
+                        easing.type: Easing.OutBack
+                        easing.overshoot: 1.2
                     }
                 }
 
-                function onDictionaryDownloadFailed(localPath) {
-                    // Show failure popup
-                    downloadDictionaryPopup.success = false;
-                    downloadDictionaryPopup.visible = true;
-                    downloadDictionaryPopup.enabled = true;
+                remove: Transition {
+                    NumberAnimation {
+                        property: "opacity"
+                        to: 0
+                        duration: 200
+                        easing.type: Easing.InCubic
+                    }
+                    NumberAnimation {
+                        property: "scale"
+                        to: 0.8
+                        duration: 200
+                        easing.type: Easing.InCubic
+                    }
+                }
+
+                displaced: Transition {
+                    NumberAnimation {
+                        properties: "x,y"
+                        duration: 400
+                        easing.type: Easing.OutCubic
+                    }
+                }
+
+                populate: Transition {
+                    NumberAnimation {
+                        property: "opacity"
+                        from: 0
+                        to: 1
+                        duration: 600
+                        easing.type: Easing.OutCubic
+                    }
+                }
+
+                model: SortFilterProxyModel {
+                    id: dictionaryProxyModel
+                    sourceModel: SpellCheckAdapter.getDictionaryListModel()
+
+                    filterRoleName: "NativeName"
+                    filterCaseSensitivity: Qt.CaseInsensitive
+
+                    // Also search in locale if native name doesn't match
+                    filters: AnyOf {
+                        RegExpFilter {
+                            roleName: "NativeName"
+                            pattern: dictionaryProxyModel.filterPattern
+                            caseSensitivity: Qt.CaseInsensitive
+                        }
+                        RegExpFilter {
+                            roleName: "Locale"
+                            pattern: dictionaryProxyModel.filterPattern
+                            caseSensitivity: Qt.CaseInsensitive
+                        }
+                    }
+
+                    sorters: [
+                        // Sort by native name alphabetically
+                        RoleSorter {
+                            roleName: "NativeName"
+                            sortOrder: Qt.AscendingOrder
+                        }
+                    ]
+                }
+                Layout.fillWidth: true
+                Layout.preferredHeight: Math.max(JamiTheme.preferredFieldHeight * 4,
+                                                 Math.min(JamiTheme.preferredFieldHeight * 6,
+                                                          contentHeight + 20))
+                Layout.minimumHeight: JamiTheme.preferredFieldHeight * 4
+
+                readonly property int itemMargins: 20
+                topMargin: itemMargins / 2
+                bottomMargin: itemMargins / 2
+
+                spacing: 8
+                clip: true
+
+                // Add a subtle background
+                Rectangle {
+                    anchors.fill: parent
+                    color: JamiTheme.backgroundColor
+                    radius: JamiTheme.primaryRadius
+                    border.color: "#ccc"
+                    border.width: 1
+                    opacity: 0.3
+                }
+
+                delegate: ItemDelegate {
+                    id: dictionaryDelegate
+                    width: spellCheckDictionaryListView.width
+                    height: Math.max(JamiTheme.preferredFieldHeight, contentLayout.implicitHeight + 32)
+
+                    background: Rectangle {
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        width: parent.width - spellCheckDictionaryListView.itemMargins
+                        height: parent.height
+                        color: JamiTheme.backgroundColor
+                        radius: JamiTheme.primaryRadius
+                        border.color: "transparent"
+                        border.width: 1
+                    }
+
+                    RowLayout {
+                        id: contentLayout
+                        anchors.fill: parent
+                        anchors.margins: 16
+                        spacing: 16
+
+                        // Dictionary info
+                        ColumnLayout {
+                            Layout.fillWidth: true
+                            Layout.alignment: Qt.AlignVCenter
+                            Layout.leftMargin: 16
+                            spacing: 2
+
+                            Text {
+                                id: dictionaryName
+                                Layout.fillWidth: true
+                                text: model.NativeName || ""
+                                color: JamiTheme.textColor
+                                font.pixelSize: JamiTheme.settingsDescriptionPixelSize
+                                font.weight: Font.Medium
+                                elide: Text.ElideRight
+                                verticalAlignment: Text.AlignVCenter
+                            }
+
+                            Text {
+                                id: dictionaryLocale
+                                Layout.fillWidth: true
+                                text: model.Locale || ""
+                                color: JamiTheme.faddedLastInteractionFontColor
+                                font.pixelSize: JamiTheme.settingsDescriptionPixelSize - 2
+                                elide: Text.ElideRight
+                                visible: text !== ""
+                                verticalAlignment: Text.AlignVCenter
+                            }
+                        }
+
+                        // Installation status and action
+                        Item {
+                            Layout.preferredWidth: 100
+                            Layout.preferredHeight: 32
+                            Layout.alignment: Qt.AlignVCenter
+                            Layout.rightMargin: 16
+
+                            // Install button for available dictionaries
+                            MaterialButton {
+                                id: installButton
+                                anchors.centerIn: parent
+                                width: 100
+                                height: 32
+
+                                text: JamiStrings.install
+
+                                font.pixelSize: JamiTheme.settingsDescriptionPixelSize - 1
+                                font.weight: Font.Medium
+
+                                onClicked: {
+                                    if (model.Locale) {
+                                        SpellCheckAdapter.installDictionary(model.Locale)
+                                    }
+                                }
+
+                                visible: !model.Downloading && !model.Installed &&
+                                         model.Locale !== undefined && model.Locale !== ""
+                            }
+
+                            // Uninstall button for installed dictionaries
+                            MaterialButton {
+                                id: uninstallButton
+                                anchors.centerIn: parent
+                                width: 100
+                                height: 32
+
+                                text: JamiStrings.uninstall
+                                color: "#ff6666"
+                                hoveredColor: "#ff9999"
+
+                                font.pixelSize: JamiTheme.settingsDescriptionPixelSize - 1
+                                font.weight: Font.Medium
+
+                                onClicked: {
+                                    if (model.Locale) {
+                                        SpellCheckAdapter.uninstallDictionary(model.Locale)
+                                    }
+                                }
+
+                                visible: !model.Downloading && model.Installed &&
+                                         model.Locale !== undefined && model.Locale !== ""
+                            }
+
+                            // Downloading status indicator
+                            BusyIndicator {
+                                anchors.centerIn: parent
+                                visible: model.Downloading
+                                running: model.Downloading
+                                width: 24
+                                height: 24
+
+                                // Use a custom animation for better UX
+                                Behavior on running {
+                                    NumberAnimation { duration: 300; easing.type: Easing.InOutQuad }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Empty state with better styling
+                Item {
+                    anchors.fill: parent
+                    visible: dictionaryProxyModel.count === 0
+
+                    ColumnLayout {
+                        anchors.centerIn: parent
+                        spacing: 16
+                        width: parent.width * 0.8
+
+                        Text {
+                            Layout.alignment: Qt.AlignHCenter
+                            text: "📚"
+                            font.pixelSize: 48
+                            opacity: 0.3
+                        }
+
+                        Text {
+                            Layout.alignment: Qt.AlignHCenter
+                            Layout.fillWidth: true
+                            text: dictionarySearchBar.textContent.length > 0 ?
+                                  qsTr("No dictionaries found for '%1'").arg(dictionarySearchBar.textContent) :
+                                  qsTr("No dictionaries available")
+                            color: JamiTheme.faddedLastInteractionFontColor
+                            font.pixelSize: JamiTheme.settingsDescriptionPixelSize
+                            horizontalAlignment: Text.AlignHCenter
+                            wrapMode: Text.WordWrap
+                        }
+                    }
                 }
             }
         }
@@ -458,3 +671,4 @@ SettingsPageBase {
         }
     }
 }
+
