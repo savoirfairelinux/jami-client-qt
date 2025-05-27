@@ -37,6 +37,9 @@ BaseModalDialog {
     visible: false
     focus: true
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+    Accessible.role: Accessible.Dialog
+    Accessible.name: title
+    Accessible.description: JamiStrings.joinJamiNoPassword
 
     button1.text: JamiStrings.chooseAUsername
     button1Role: DialogButtonBox.NoRole
