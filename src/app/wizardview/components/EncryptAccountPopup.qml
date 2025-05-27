@@ -86,6 +86,7 @@ BaseModalDialog {
             Layout.topMargin: 20
             KeyNavigation.up: passwordEdit
             KeyNavigation.down: KeyNavigation.up
+            Accessible.description: JamiStrings.encryptDescription
 
             onDynamicTextChanged: {
                 button1.enabled = passwordEdit.dynamicText === passwordConfirmEdit.dynamicText && passwordEdit.dynamicText.length !== 0
