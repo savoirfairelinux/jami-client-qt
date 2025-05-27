@@ -40,14 +40,10 @@ SettingsPageBase {
             rootLayout.populateAudioSettings();
             AvAdapter.startAudioMeter();
         }
-
-        Connections {
-            target: UtilsAdapter
-
-            function onChangeLanguage() {
-                rootLayout.resetDeviceModels();
-                rootLayout.resetDeviceIndices();
-            }
+        property var lang: AppSettingsManager.settingsMap.LANG
+        onLangChanged: {
+            rootLayout.resetDeviceModels();
+            rootLayout.resetDeviceIndices();
         }
 
         function resetDeviceModels() {
