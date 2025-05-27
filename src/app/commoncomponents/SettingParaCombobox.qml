@@ -50,11 +50,14 @@ ComboBox {
 
         contentItem: Text {
             text: {
-                if (index < 0)
+                if (index < 0 || !model)
                     return '';
-                var currentItem = root.delegateModel.items.get(index);
-                const value = currentItem.model[root.textRole];
-                return value === undefined ? '' : value.toString();
+
+                if (root.textRole && model[root.textRole] !== undefined) {
+                    return model[root.textRole].toString();
+                }
+
+                return model.display !== undefined ? model.display.toString() : '';
             }
 
             color: hovered ? JamiTheme.comboboxTextColorHovered : JamiTheme.textColor
@@ -80,7 +83,7 @@ ComboBox {
 
         source: popup.visible ? JamiResources.expand_less_24dp_svg : JamiResources.expand_more_24dp_svg
 
-        color: JamiTheme.comboboxIconColor
+        color: root.enabled ? JamiTheme.comboboxIconColor : "grey"
     }
 
     contentItem: Text {
@@ -92,7 +95,7 @@ ComboBox {
         anchors.rightMargin: root.indicator.width * 2
         font.pixelSize: JamiTheme.settingsDescriptionPixelSize
         text: root.displayText
-        color: JamiTheme.comboboxTextColor
+        color: root.enabled ?  JamiTheme.comboboxTextColor : "grey"
         font.weight: Font.Medium
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignLeft
@@ -104,7 +107,11 @@ ComboBox {
         color: JamiTheme.transparentColor
         implicitWidth: 120
         implicitHeight: contentItem.implicitHeight + JamiTheme.buttontextHeightMargin
-        border.color: popup.visible ? JamiTheme.comboboxBorderColorActive : JamiTheme.comboboxBorderColor
+        border.color: root.enabled ?
+                          (popup.visible ?
+                              JamiTheme.comboboxBorderColorActive :
+                              JamiTheme.comboboxBorderColor) :
+                          "grey"
         border.width: root.visualFocus ? 2 : 1
         radius: 5
     }

@@ -36,8 +36,8 @@
 #include "currentaccounttomigrate.h"
 #include "pttlistener.h"
 #include "calloverlaymodel.h"
-#include "spellcheckdictionarymanager.h"
-#include "spellcheckhandler.h"
+#include "spellcheckdictionarylistmodel.h"
+#include "spellcheckadapter.h"
 #include "accountlistmodel.h"
 #include "mediacodeclistmodel.h"
 #include "audiodevicemodel.h"
@@ -66,7 +66,6 @@
 #include "wizardviewstepmodel.h"
 #include "linkdevicemodel.h"
 #include "qrcodescannermodel.h"
-#include "spellchecker.h"
 
 #include "api/peerdiscoverymodel.h"
 #include "api/codecmodel.h"
@@ -120,8 +119,6 @@ registerTypes(QQmlEngine* engine,
               LRCInstance* lrcInstance,
               SystemTray* systemTray,
               AppSettingsManager* settingsManager,
-              SpellCheckDictionaryManager* spellCheckDictionaryManager,
-              SpellCheckHandler* spellCheckHandler,
               ConnectivityMonitor* connectivityMonitor,
               PreviewEngine* previewEngine,
               ScreenInfo* screenInfo,
@@ -198,6 +195,10 @@ registerTypes(QQmlEngine* engine,
     QQmlEngine::setObjectOwnership(linkdevicemodel, QQmlEngine::CppOwnership);
     REG_QML_SINGLETON<LinkDeviceModel>(REG_MODEL, "LinkDeviceModel", CREATE(linkdevicemodel));
 
+    // SpellCheckDictionaryListModel (available through SpellCheckAdapter)
+    auto spellCheckDictionaryListModel = new SpellCheckDictionaryListModel(settingsManager, connectivityMonitor, app);
+    qApp->setProperty("SpellCheckDictionaryListModel", QVariant::fromValue(spellCheckDictionaryListModel));
+
     // Register app-level objects that are used by QML created objects.
     // These MUST be set prior to loading the initial QML file, in order to
     // be available to the QML adapter class factory creation methods.
@@ -206,8 +207,6 @@ registerTypes(QQmlEngine* engine,
     qApp->setProperty("AppSettingsManager", QVariant::fromValue(settingsManager));
     qApp->setProperty("ConnectivityMonitor", QVariant::fromValue(connectivityMonitor));
     qApp->setProperty("PreviewEngine", QVariant::fromValue(previewEngine));
-    qApp->setProperty("SpellCheckDictionaryManager", QVariant::fromValue(spellCheckDictionaryManager));
-    qApp->setProperty("SpellCheckHandler", QVariant::fromValue(spellCheckHandler));
 
     // qml adapter registration
     QML_REGISTERSINGLETON_TYPE(NS_HELPERS, QRCodeScannerModel);
@@ -228,6 +227,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, VideoDevices);
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, CurrentAccountToMigrate);
     QML_REGISTERSINGLETON_TYPE(NS_HELPERS, FileDownloader);
+    QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, SpellCheckAdapter);
 
     // TODO: remove these
     QML_REGISTERSINGLETONTYPE_CUSTOM(NS_MODELS, AVModel, &lrcInstance->avModel())
@@ -244,7 +244,6 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERTYPE(NS_MODELS, PluginListPreferenceModel);
     QML_REGISTERTYPE(NS_MODELS, FilesToSendListModel);
     QML_REGISTERTYPE(NS_MODELS, CallInformationListModel);
-    QML_REGISTERTYPE(NS_MODELS, SpellChecker);
 
     // Roles & type enums for models
     QML_REGISTERNAMESPACE(NS_MODELS, AccountList::staticMetaObject, "AccountList");
@@ -253,13 +252,12 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERNAMESPACE(NS_MODELS, FilesToSend::staticMetaObject, "FilesToSend");
     QML_REGISTERNAMESPACE(NS_MODELS, MessageList::staticMetaObject, "MessageList");
     QML_REGISTERNAMESPACE(NS_MODELS, PluginStatus::staticMetaObject, "PluginStatus");
+    // QML_REGISTERNAMESPACE(NS_MODELS, SpellCheckDictionaryList::staticMetaObject, "SpellCheckDictionaryList");
 
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, app, "MainApplication")
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, screenInfo, "CurrentScreenInfo")
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, lrcInstance, "LRCInstance")
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, settingsManager, "AppSettingsManager")
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, spellCheckDictionaryManager, "SpellCheckDictionaryManager")
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, spellCheckHandler, "SpellCheckHandler")
 
     // Lrc namespaces, models, and singletons
     QML_REGISTERNAMESPACE(NS_MODELS, lrc::api::staticMetaObject, "Lrc");
