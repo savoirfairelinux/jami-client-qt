@@ -18,6 +18,7 @@
 #include "spellcheckdictionarymanager.h"
 
 #include "global.h"
+#include "utils.h"
 
 #include <QApplication>
 #include <QBuffer>
@@ -32,6 +33,353 @@
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QJsonObject>
+#include <QStandardPaths>
+#include <QFile>
+
+SpellCheckDictionaryListModel::SpellCheckDictionaryListModel(ConnectivityMonitor* cm,
+                                                             QObject* parent)
+    : QAbstractListModel(parent)
+    , spellCheckFileDownloader_(new FileDownloader(cm, this))
+{
+    // Connect FileDownloader signals
+    connect(spellCheckFileDownloader_,
+            &FileDownloader::downloadFileSuccessful,
+            this,
+            &SpellCheckDictionaryListModel::onDownloadFileFinished);
+    connect(spellCheckFileDownloader_,
+            &FileDownloader::downloadFileFailed,
+            this,
+            &SpellCheckDictionaryListModel::onDownloadFileFailed);
+
+    // We need access to the SpellCheckDictionaryManager to check installed dictionaries
+    // For now, we'll populate without the installed status and update it later
+    populateDictionaries();
+}
+
+int
+SpellCheckDictionaryListModel::rowCount(const QModelIndex& parent) const
+{
+    return dictionaries_.size();
+}
+
+QVariant
+SpellCheckDictionaryListModel::data(const QModelIndex& index, int role) const
+{
+    if (!index.isValid())
+        return {};
+    // Try to find the item at the index
+    const auto& item = dictionaries_.at(index.row());
+    if (!item.isObject())
+        return {};
+    // Try to convert the item to a QJsonObject
+    const auto& itemObject = item.toObject().toVariantMap();
+    switch (role) {
+    case Role::NativeName:
+        return itemObject.value("nativeName");
+    case Role::Path:
+        return itemObject.value("path");
+    case Role::Locale:
+        return itemObject.value("locale");
+    case Role::Installed:
+        return itemObject.value("installed").toBool();
+    default:
+        return {};
+    }
+}
+
+QHash<int, QByteArray>
+SpellCheckDictionaryListModel::roleNames() const
+{
+    using namespace SpellCheckDictionaryList;
+    QHash<int, QByteArray> roles;
+#define X(role) roles[role] = #role;
+    SPELL_CHECK_DICTIONARY_MODEL_ROLES
+#undef X
+    return roles;
+}
+
+Q_INVOKABLE void
+SpellCheckDictionaryListModel::populateDictionaries()
+{
+    Q_EMIT beginResetModel();
+    dictionaries_ = QJsonArray();
+
+    // First, we need to get the list of available dictionaries.
+    QFile availableDictionariesFile(":/misc/available_dictionaries.json");
+    if (!availableDictionariesFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qWarning().noquote() << "Available Dictionaries file failed to load";
+        return;
+    }
+    const auto availableDictionaries = QString(availableDictionariesFile.readAll());
+    QJsonDocument doc = QJsonDocument::fromJson(availableDictionaries.toUtf8());
+    /*
+    The file is a JSON object with the following structure:
+    {
+        "af_ZA": {
+            "nativeName": "Afrikaans (Suid-Afrika)",
+            "path": "af_ZA/af_ZA"
+        },
+        ...
+    }
+    We want to convert it to a QJsonArray of QJsonObjects, each containing the locale,
+    nativeName, path, and installed status.
+    */
+    if (!doc.isNull() && doc.isObject()) {
+        const auto object = doc.object();
+
+        // Get installed dictionaries to check status
+        QString hunspellDataDir = QStandardPaths::writableLocation(QStandardPaths::CacheLocation)
+                                  + "/dictionaries/";
+        QDir dictionariesDir(hunspellDataDir);
+        QRegExp regex("(.*).dic");
+        QStringList installedLocales;
+
+        // Check for dictionary files in the base directory
+        QStringList rootDicFiles = dictionariesDir.entryList(QStringList() << "*.dic", QDir::Files);
+        for (const auto& dicFile : rootDicFiles) {
+            regex.indexIn(dicFile);
+            auto captured = regex.capturedTexts();
+            if (captured.size() == 2) {
+                installedLocales << captured[1];
+            }
+        }
+
+        // Check for dictionary files in subdirectories
+        QStringList folders = dictionariesDir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
+        for (const auto& folder : folders) {
+            QDir subDir = dictionariesDir.absoluteFilePath(folder);
+            QStringList dicFiles = subDir.entryList(QStringList() << "*.dic", QDir::Files);
+            for (const auto& dicFile : dicFiles) {
+                regex.indexIn(dicFile);
+                auto captured = regex.capturedTexts();
+                if (captured.size() == 2) {
+                    installedLocales << captured[1];
+                }
+            }
+        }
+
+        for (const auto& key : object.keys()) {
+            const auto value = object.value(key).toObject();
+            bool isInstalled = installedLocales.contains(key);
+            dictionaries_.append(QJsonObject {{"locale", key},
+                                              {"nativeName", value.value("nativeName").toString()},
+                                              {"path", value.value("path").toString()},
+                                              {"installed", isInstalled}});
+        }
+    }
+
+    Q_EMIT endResetModel();
+}
+
+Q_INVOKABLE void
+SpellCheckDictionaryListModel::installDictionary(const QString& locale)
+{
+    // Check if dictionary is already installed
+    const auto index = getDictionaryIndex(locale);
+    if (!index.isValid()) {
+        qWarning() << "Dictionary not found for locale:" << locale;
+        return;
+    }
+
+    // Check if already installed
+    auto dictObj = dictionaries_.at(index.row()).toObject();
+    if (dictObj.value("installed").toBool()) {
+        qWarning() << "Dictionary already installed for locale:" << locale;
+        return;
+    }
+
+    // Check if download is already in progress
+    if (pendingDownloads_.contains(locale)) {
+        qWarning() << "Download already in progress for locale:" << locale;
+        return;
+    }
+
+    // Start the download process
+    downloadDictionaryFiles(locale);
+}
+
+Q_INVOKABLE void
+SpellCheckDictionaryListModel::uninstallDictionary(const QString& locale)
+{
+    const auto index = getDictionaryIndex(locale);
+    if (!index.isValid()) {
+        qWarning() << "Dictionary not found for locale:" << locale;
+        return;
+    }
+
+    // Check if dictionary is actually installed
+    auto dictObj = dictionaries_.at(index.row()).toObject();
+    if (!dictObj.value("installed").toBool()) {
+        qWarning() << "Dictionary not installed for locale:" << locale;
+        return;
+    }
+
+    // Delete the dictionary files
+    QString targetDir = getDictionariesPath();
+    QString affFile = targetDir + locale + ".aff";
+    QString dicFile = targetDir + locale + ".dic";
+
+    bool affDeleted = true;
+    bool dicDeleted = true;
+
+    if (QFile::exists(affFile)) {
+        affDeleted = QFile::remove(affFile);
+        if (!affDeleted) {
+            qWarning() << "Failed to delete .aff file:" << affFile;
+        }
+    }
+
+    if (QFile::exists(dicFile)) {
+        dicDeleted = QFile::remove(dicFile);
+        if (!dicDeleted) {
+            qWarning() << "Failed to delete .dic file:" << dicFile;
+        }
+    }
+
+    // Update the installation status regardless of file deletion success
+    // This ensures the UI reflects the uninstall attempt
+    updateDictionaryInstallationStatus(locale, false);
+
+    if (affDeleted && dicDeleted) {
+        qDebug() << "Dictionary uninstalled successfully for locale:" << locale;
+        Q_EMIT uninstallFinished(locale);
+    } else {
+        qWarning() << "Dictionary uninstall completed with errors for locale:" << locale;
+        Q_EMIT uninstallFailed(locale);
+    }
+}
+
+QModelIndex
+SpellCheckDictionaryListModel::getDictionaryIndex(const QString& locale) const
+{
+    for (int i = 0; i < dictionaries_.size(); ++i) {
+        if (dictionaries_.at(i).toObject().value("locale") == locale)
+            return createIndex(i, 0);
+    }
+    return {}; // Not found
+}
+
+void
+SpellCheckDictionaryListModel::downloadDictionaryFiles(const QString& locale)
+{
+    // Find the dictionary info
+    const auto index = getDictionaryIndex(locale);
+    if (!index.isValid()) {
+        qWarning() << "Cannot download: dictionary not found for locale:" << locale;
+        return;
+    }
+
+    auto dictObj = dictionaries_.at(index.row()).toObject();
+    QString basePath = dictObj.value("path").toString();
+
+    if (basePath.isEmpty()) {
+        qWarning() << "Cannot download: invalid path for dictionary" << locale;
+        Q_EMIT downloadFailed(locale);
+        return;
+    }
+
+    // Add to pending downloads
+    pendingDownloads_.append(locale);
+
+    // Create target directory if it doesn't exist
+    QString targetDir = getDictionariesPath();
+    QDir().mkpath(targetDir);
+
+    QString targetFile = targetDir + locale;
+
+    // Construct URLs using the stored path
+    QString baseUrl = downloadUrl_.toString();
+    QUrl urlAff = baseUrl + "/" + basePath + ".aff";
+    QUrl urlDic = baseUrl + "/" + basePath + ".dic";
+
+    qDebug() << "Downloading dictionary files for" << locale;
+    qDebug() << "AFF URL:" << urlAff.toString();
+    qDebug() << "DIC URL:" << urlDic.toString();
+    qDebug() << "Target:" << targetFile;
+
+    // Start downloads
+    spellCheckFileDownloader_->downloadFile(urlAff, targetFile + ".aff");
+    spellCheckFileDownloader_->downloadFile(urlDic, targetFile + ".dic");
+}
+
+void
+SpellCheckDictionaryListModel::updateDictionaryInstallationStatus(const QString& locale,
+                                                                  bool installed)
+{
+    const auto index = getDictionaryIndex(locale);
+    if (!index.isValid()) {
+        return;
+    }
+
+    // Update the dictionary object
+    auto dictObj = dictionaries_.at(index.row()).toObject();
+    dictObj["installed"] = installed;
+    dictionaries_[index.row()] = dictObj;
+
+    // Emit data changed signal
+    Q_EMIT dataChanged(index, index, {SpellCheckDictionaryList::Installed});
+}
+
+QString
+SpellCheckDictionaryListModel::getDictionariesPath() const
+{
+    return QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + "/dictionaries/";
+}
+
+void
+SpellCheckDictionaryListModel::onDownloadFileFinished(const QString& localPath)
+{
+    qDebug() << "Download finished:" << localPath;
+
+    // Extract locale from file path
+    QFileInfo fileInfo(localPath);
+    QString locale = fileInfo.baseName();
+
+    // Check if this is a .dic file and if the corresponding .aff file exists
+    if (localPath.endsWith(".dic")) {
+        QString affFilePath = localPath;
+        affFilePath.chop(4); // Remove ".dic"
+        affFilePath += ".aff";
+
+        if (QFile::exists(affFilePath)) {
+            // Both files are now available, mark as installed
+            updateDictionaryInstallationStatus(locale, true);
+            pendingDownloads_.removeAll(locale);
+            Q_EMIT downloadFinished(locale);
+            qDebug() << "Dictionary installation completed for:" << locale;
+        } else {
+            qDebug() << "Waiting for .aff file for:" << locale;
+        }
+    } else if (localPath.endsWith(".aff")) {
+        QString dicFilePath = localPath;
+        dicFilePath.chop(4); // Remove ".aff"
+        dicFilePath += ".dic";
+
+        if (QFile::exists(dicFilePath)) {
+            // Both files are now available, mark as installed
+            updateDictionaryInstallationStatus(locale, true);
+            pendingDownloads_.removeAll(locale);
+            Q_EMIT downloadFinished(locale);
+            qDebug() << "Dictionary installation completed for:" << locale;
+        } else {
+            qDebug() << "Waiting for .dic file for:" << locale;
+        }
+    }
+}
+
+void
+SpellCheckDictionaryListModel::onDownloadFileFailed(const QString& localPath)
+{
+    qWarning() << "Download failed for file:" << localPath;
+
+    // Extract locale from file path
+    QFileInfo fileInfo(localPath);
+    QString locale = fileInfo.baseName();
+
+    // Remove from pending downloads and emit failure signal
+    pendingDownloads_.removeAll(locale);
+    Q_EMIT downloadFailed(locale);
+}
 
 SpellCheckDictionaryManager::SpellCheckDictionaryManager(AppSettingsManager* settingsManager,
                                                          ConnectivityMonitor* cm,
@@ -39,8 +387,8 @@ SpellCheckDictionaryManager::SpellCheckDictionaryManager(AppSettingsManager* set
                                                          QObject* parent)
     : QObject {parent}
     , settingsManager_ {settingsManager}
-    , spellCheckFileDownloader {new FileDownloader(cm, this)}
     , systemTray_ {systemTray}
+    , spellCheckFileDownloader {new FileDownloader(cm, this)}
 {
     populateInstalledDictionaries();
     populateAvailableDictionaries();

@@ -354,16 +354,16 @@ MainApplication::parseArguments()
     QCommandLineOption muteDaemonOption({"q", "quiet"}, "Mute daemon logging. (only if debug)");
     parser_.addOption(muteDaemonOption);
 
-#ifdef QT_DEBUG
-    // In debug mode, add an option to test a specific QML component via its name.
-    // e.g. ./jami --test AccountComboBox
+    // #ifdef QT_DEBUG
+    //  In debug mode, add an option to test a specific QML component via its name.
+    //  e.g. ./jami --test AccountComboBox
     parser_.addOption(QCommandLineOption("test", "Test a QML component via its name.", "uri"));
     // We may need to force the test window dimensions in the case that the component to test
     // does not specify its own dimensions and is dependent on parent/sibling dimensions.
     // e.g. ./jami --test AccountComboBox -w 200
     parser_.addOption(QCommandLineOption("width", "Width for the test window.", "width"));
     parser_.addOption(QCommandLineOption("height", "Height for the test window.", "height"));
-#endif
+    // #endif
 
     parser_.process(*this);
 
@@ -442,7 +442,7 @@ MainApplication::initQmlLayer()
     engine_->rootContext()->setContextProperty("crashReporter", crashReporter_);
 
     QUrl url = QStringLiteral("qrc:/MainApplicationWindow.qml");
-#ifdef QT_DEBUG
+    // #ifdef QT_DEBUG
     if (parser_.isSet("test")) {
         // List the QML files in the project source tree.
         const auto targetTestComponent = findResource(parser_.value("test"));
@@ -457,7 +457,7 @@ MainApplication::initQmlLayer()
         engine_->rootContext()->setContextProperty("testHeight", testHeight);
         url = QStringLiteral("qrc:/ComponentTestWindow.qml");
     }
-#endif
+    // #endif
     QObject::connect(
         engine_.get(),
         &QQmlApplicationEngine::objectCreationFailed,

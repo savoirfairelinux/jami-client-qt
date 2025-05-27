@@ -198,6 +198,12 @@ registerTypes(QQmlEngine* engine,
     QQmlEngine::setObjectOwnership(linkdevicemodel, QQmlEngine::CppOwnership);
     REG_QML_SINGLETON<LinkDeviceModel>(REG_MODEL, "LinkDeviceModel", CREATE(linkdevicemodel));
 
+    // SpellCheckDictionaryListModel
+    auto spellCheckDictionaryListModel = new SpellCheckDictionaryListModel(connectivityMonitor, app);
+    qApp->setProperty("SpellCheckDictionaryListModel", QVariant::fromValue(spellCheckDictionaryListModel));
+    QQmlEngine::setObjectOwnership(spellCheckDictionaryListModel, QQmlEngine::CppOwnership);
+    REG_QML_SINGLETON<SpellCheckDictionaryListModel>(REG_MODEL, "SpellCheckDictionaryListModel", CREATE(spellCheckDictionaryListModel));
+
     // Register app-level objects that are used by QML created objects.
     // These MUST be set prior to loading the initial QML file, in order to
     // be available to the QML adapter class factory creation methods.
@@ -253,6 +259,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERNAMESPACE(NS_MODELS, FilesToSend::staticMetaObject, "FilesToSend");
     QML_REGISTERNAMESPACE(NS_MODELS, MessageList::staticMetaObject, "MessageList");
     QML_REGISTERNAMESPACE(NS_MODELS, PluginStatus::staticMetaObject, "PluginStatus");
+    QML_REGISTERNAMESPACE(NS_MODELS, SpellCheckDictionaryList::staticMetaObject, "SpellCheckDictionaryList");
 
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, app, "MainApplication")
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, screenInfo, "CurrentScreenInfo")

@@ -19,7 +19,6 @@
 #include "appsettingsmanager.h"
 #include "connectivitymonitor.h"
 #include "filedownloader.h"
-#include "utils.h"
 #include "systemtray.h"
 
 #include <QObject>
@@ -27,8 +26,80 @@
 #include <QQmlEngine>
 #include <QUrl>
 #include <QJsonObject>
+#include <QJsonArray>
 #include <QSystemTrayIcon>
 #include <QtCore/QLoggingCategory>
+#include <QAbstractListModel>
+#include <QJsonDocument>
+
+#define SPELL_CHECK_DICTIONARY_MODEL_ROLES \
+    X(NativeName) \
+    X(Path) \
+    X(Locale) \
+    X(Installed)
+
+namespace SpellCheckDictionaryList {
+Q_NAMESPACE
+enum Role {
+    DummyRole = Qt::UserRole + 1,
+#define X(role) role,
+    SPELL_CHECK_DICTIONARY_MODEL_ROLES
+#undef X
+};
+Q_ENUM_NS(Role)
+} // namespace SpellCheckDictionaryList
+
+class SpellCheckDictionaryListModel : public QAbstractListModel
+{
+    Q_OBJECT
+
+public:
+    explicit SpellCheckDictionaryListModel(ConnectivityMonitor* cm, QObject* parent = nullptr);
+    ~SpellCheckDictionaryListModel() override = default;
+
+    // QAbstractListModel interface
+    int rowCount(const QModelIndex& parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
+    QHash<int, QByteArray> roleNames() const override;
+
+    Q_INVOKABLE void populateDictionaries();
+    Q_INVOKABLE void installDictionary(const QString& locale);
+    Q_INVOKABLE void uninstallDictionary(const QString& locale);
+
+Q_SIGNALS:
+    void downloadFinished(const QString& locale);
+    void downloadFailed(const QString& locale);
+    void uninstallFinished(const QString& locale);
+    void uninstallFailed(const QString& locale);
+
+protected:
+    using Role = SpellCheckDictionaryList::Role;
+
+private Q_SLOTS:
+    void onDownloadFileFinished(const QString& localPath);
+    void onDownloadFileFailed(const QString& localPath);
+
+private:
+    // Underlying data
+    QJsonArray dictionaries_;
+
+    // Utility to get the index of a dictionary
+    QModelIndex getDictionaryIndex(const QString& locale) const;
+
+    // Helper methods for download functionality
+    void downloadDictionaryFiles(const QString& locale);
+    void updateDictionaryInstallationStatus(const QString& locale, bool installed);
+    QString getDictionariesPath() const;
+
+    // Downloader utility
+    FileDownloader* spellCheckFileDownloader_;
+    const QUrl downloadUrl_ {"https://raw.githubusercontent.com/LibreOffice/dictionaries/master"};
+    const QString dictionariesPath_ = QStandardPaths::writableLocation(QStandardPaths::CacheLocation)
+                                      + "/dictionaries/";
+
+    // Track pending downloads
+    QStringList pendingDownloads_;
+};
 
 class SpellCheckDictionaryManager : public QObject
 {
