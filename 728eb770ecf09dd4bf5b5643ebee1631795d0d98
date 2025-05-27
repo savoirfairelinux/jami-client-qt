@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ae72a92_a19dd316",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-27T15:38:37Z",
+      "side": 1,
+      "message": "the changes regarding JAMS should be in a different commit.",
+      "revId": "728eb770ecf09dd4bf5b5643ebee1631795d0d98",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
