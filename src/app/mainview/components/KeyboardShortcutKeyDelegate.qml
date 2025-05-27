@@ -22,7 +22,7 @@ import net.jami.Adapters 1.1
 RowLayout {
     id: root
 
-    layoutDirection: UtilsAdapter.isRTL ? Qt.RightToLeft : Qt.LeftToRight
+    layoutDirection: AppSettingsManager.isRTL ? Qt.RightToLeft : Qt.LeftToRight
 
     focus: true
 

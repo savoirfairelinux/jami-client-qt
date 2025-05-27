@@ -41,13 +41,13 @@ SettingsPageBase {
 
             Layout.fillWidth: true
 
-            checked: Qt.platform.os.toString() === "windows" ? UtilsAdapter.getAppValue(Settings.Key.AutoUpdate) : AppVersionManager.isAutoUpdaterEnabled()
+            checked: Qt.platform.os.toString() === "windows" ? AppSettingsManager.settingsMap.AutoUpdate : AppVersionManager.isAutoUpdaterEnabled()
 
             labelText: JamiStrings.update
             tooltipText: JamiStrings.enableAutoUpdates
 
             onSwitchToggled: {
-                UtilsAdapter.setAppValue(Settings.Key.AutoUpdate, checked);
+                AppSettingsManager.settingsMap.AutoUpdate = checked;
                 AppVersionManager.setAutoUpdateCheck(checked);
             }
         }

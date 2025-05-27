@@ -75,10 +75,10 @@ SettingsPageBase {
                 id: notificationCheckBox
                 Layout.fillWidth: true
 
-                checked: UtilsAdapter.getAppValue(Settings.EnableNotifications)
+                checked: AppSettingsManager.settingsMap.EnableNotifications
                 labelText: JamiStrings.showNotifications
                 tooltipText: JamiStrings.enableNotifications
-                onSwitchToggled: UtilsAdapter.setAppValue(Settings.Key.EnableNotifications, checked)
+                onSwitchToggled: AppSettingsManager.settingsMap.EnableNotifications = checked
             }
 
             ToggleSwitch {
@@ -86,13 +86,13 @@ SettingsPageBase {
                 Layout.fillWidth: true
                 visible: (new Date() >= new Date(Date.parse("2023-11-01")) && !APPSTORE)
 
-                checked: UtilsAdapter.getAppValue(Settings.Key.IsDonationVisible)
+                checked: AppSettingsManager.settingsMap.IsDonationVisible
                 labelText: JamiStrings.enableDonation
                 tooltipText: JamiStrings.enableDonation
                 onSwitchToggled: {
-                    UtilsAdapter.setAppValue(Settings.Key.IsDonationVisible, checked);
+                    AppSettingsManager.settingsMap.IsDonationVisible = checked;
                     if (checked) {
-                        UtilsAdapter.setToDefault(Settings.Key.Donation2023VisibleDate);
+                        AppSettingsManager.setToDefault(Settings.Key.Donation2023VisibleDate);
                     }
                 }
             }
@@ -101,9 +101,10 @@ SettingsPageBase {
                 id: closeOrMinCheckBox
                 Layout.fillWidth: true
 
-                checked: UtilsAdapter.getAppValue(Settings.MinimizeOnClose)
+                checked: AppSettingsManager.settingsMap.MinimizeOnClose
                 labelText: JamiStrings.keepMinimized
-                onSwitchToggled: UtilsAdapter.setAppValue(Settings.Key.MinimizeOnClose, checked)
+                onSwitchToggled: AppSettingsManager.settingsMap.MinimizeOnClose = checked
+
             }
 
             ToggleSwitch {
@@ -165,7 +166,7 @@ SettingsPageBase {
                     Component.onCompleted: {
                         var supported = UtilsAdapter.supportedLang();
                         var keys = Object.keys(supported);
-                        var currentKey = UtilsAdapter.getAppValue(Settings.Key.LANG);
+                        var currentKey = AppSettingsManager.settingsMap.LANG;
                         for (var i = 0; i < keys.length; ++i) {
                             append({
                                     "textDisplay": supported[keys[i]],
@@ -180,9 +181,7 @@ SettingsPageBase {
                 widthOfComboBox: itemWidth
                 role: "textDisplay"
 
-                onActivated: {
-                    UtilsAdapter.setAppValue(Settings.Key.LANG, comboModel.get(modelIndex).id);
-                }
+                onActivated: AppSettingsManager.settingsMap.LANG = comboModel.get(modelIndex).id
             }
         }
         ColumnLayout {
@@ -212,13 +211,12 @@ SettingsPageBase {
                 Layout.fillWidth: true
                 visible: true
 
-                checked: UtilsAdapter.getAppValue(Settings.Key.EnableSpellCheck)
+                checked: AppSettingsManager.settingsMap.EnableSpellCheck
                 labelText: JamiStrings.checkSpelling
                 descText: JamiStrings.textLanguageDescription
                 tooltipText: JamiStrings.checkSpelling
-                onSwitchToggled: {
-                    UtilsAdapter.setAppValue(Settings.Key.EnableSpellCheck, checked);
-                }
+                onSwitchToggled: AppSettingsManager.settingsMap.EnableSpellCheck = checked
+
             }
 
             SettingsComboBox {
@@ -234,7 +232,7 @@ SettingsPageBase {
                     Component.onCompleted: {
                         var supported = SpellCheckDictionaryManager.installedDictionaries();
                         var keys = Object.keys(supported);
-                        var currentKey = UtilsAdapter.getAppValue(Settings.Key.SpellLang);
+                        var currentKey = AppSettingsManager.settingsMap.SpellLang;
                         for (var i = 0; i < keys.length; ++i) {
                             append({
                                     "textDisplay": supported[keys[i]],
@@ -249,9 +247,7 @@ SettingsPageBase {
                 widthOfComboBox: itemWidth
                 role: "textDisplay"
 
-                onActivated: {
-                    UtilsAdapter.setAppValue(Settings.Key.SpellLang, comboModel.get(modelIndex).id);
-                }
+                onActivated: AppSettingsManager.settingsMap.SpellLang = comboModel.get(modelIndex).id
             }
 
             RowLayout {
@@ -369,12 +365,10 @@ SettingsPageBase {
             ToggleSwitch {
                 id: checkboxCallSwarm
                 Layout.fillWidth: true
-                checked: UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm)
+                checked: AppSettingsManager.settingsMap.EnableExperimentalSwarm
                 labelText: JamiStrings.experimentalCallSwarm
                 tooltipText: JamiStrings.experimentalCallSwarmTooltip
-                onSwitchToggled: {
-                    UtilsAdapter.setAppValue(Settings.Key.EnableExperimentalSwarm, checked);
-                }
+                onSwitchToggled: AppSettingsManager.settingsMap.EnableExperimentalSwarm = checked
             }
         }
 
@@ -395,18 +389,18 @@ SettingsPageBase {
             preferredWidth: textSize.width + 2 * JamiTheme.buttontextWizzardPadding
 
             onClicked: {
-                notificationCheckBox.checked = UtilsAdapter.getDefault(Settings.Key.EnableNotifications);
-                closeOrMinCheckBox.checked = UtilsAdapter.getDefault(Settings.Key.MinimizeOnClose);
-                checkboxCallSwarm.checked = UtilsAdapter.getDefault(Settings.Key.EnableExperimentalSwarm);
+                notificationCheckBox.checked = AppSettingsManager.getDefault(Settings.Key.EnableNotifications);
+                closeOrMinCheckBox.checked = AppSettingsManager.getDefault(Settings.Key.MinimizeOnClose);
+                checkboxCallSwarm.checked = AppSettingsManager.getDefault(Settings.Key.EnableExperimentalSwarm);
                 langComboBoxSetting.modelIndex = 0;
                 spellCheckLangComboBoxSetting.modelIndex = 0;
-                UtilsAdapter.setToDefault(Settings.Key.EnableNotifications);
-                UtilsAdapter.setToDefault(Settings.Key.MinimizeOnClose);
-                UtilsAdapter.setToDefault(Settings.Key.LANG);
-                UtilsAdapter.setToDefault(Settings.Key.EnableExperimentalSwarm);
-                UtilsAdapter.setToDefault(Settings.Key.IsDonationVisible);
-                UtilsAdapter.setToDefault(Settings.Key.Donation2023VisibleDate);
-                enableDonation.checked = Qt.binding(() => UtilsAdapter.getAppValue(Settings.Key.IsDonationVisible));
+                AppSettingsManager.setToDefault(Settings.Key.EnableNotifications);
+                AppSettingsManager.setToDefault(Settings.Key.MinimizeOnClose);
+                AppSettingsManager.setToDefault(Settings.Key.LANG);
+                AppSettingsManager.setToDefault(Settings.Key.EnableExperimentalSwarm);
+                AppSettingsManager.setToDefault(Settings.Key.IsDonationVisible);
+                AppSettingsManager.setToDefault(Settings.Key.Donation2023VisibleDate);
+                enableDonation.checked = Qt.binding(() => AppSettingsManager.settingsMap.IsDonationVisible);
             }
         }
     }

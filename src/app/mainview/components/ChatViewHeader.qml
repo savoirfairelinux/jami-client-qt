@@ -84,7 +84,7 @@ Rectangle {
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
             Layout.leftMargin: 8
 
-            mirror: UtilsAdapter.isRTL
+            mirror: AppSettingsManager.isRTL
 
             source: JamiResources.back_24dp_svg
             toolTipText: CurrentConversation.inCall ? JamiStrings.returnToCall : JamiStrings.hideChat
@@ -166,7 +166,7 @@ Rectangle {
             QWKSetParentHitTestVisible {
             }
 
-            visible: interactionButtonsVisibility && (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
+            visible: interactionButtonsVisibility && (!addMemberVisibility || AppSettingsManager.settingsMap.EnableExperimentalSwarm)
             source: JamiResources.place_audiocall_24dp_svg
             toolTipText: JamiStrings.startAudioCall
 
@@ -178,7 +178,7 @@ Rectangle {
             QWKSetParentHitTestVisible {
             }
 
-            visible: interactionButtonsVisibility && CurrentAccount.videoEnabled_Video && (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
+            visible: interactionButtonsVisibility && CurrentAccount.videoEnabled_Video && (!addMemberVisibility || AppSettingsManager.settingsMap.EnableExperimentalSwarm)
             source: JamiResources.videocam_24dp_svg
             toolTipText: JamiStrings.startVideoCall
 

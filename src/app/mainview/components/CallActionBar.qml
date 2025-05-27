@@ -176,24 +176,24 @@ Control {
                         CallAdapter.showGridConferenceLayout();
                     break;
                 case JamiStrings.participantsSide:
-                    if (!UtilsAdapter.getAppValue(Settings.ParticipantsSide)) {
-                        UtilsAdapter.setAppValue(Settings.ParticipantsSide, true);
+                    if (!AppSettingsManager.settingsMap.ParticipantsSide) {
+                        AppSettingsManager.settingsMap.ParticipantsSide = true;
                         participantsSide = true;
                     }
                     break;
                 case JamiStrings.participantsTop:
-                    if (UtilsAdapter.getAppValue(Settings.ParticipantsSide)) {
-                        UtilsAdapter.setAppValue(Settings.ParticipantsSide, false);
+                    if (AppSettingsManager.settingsMap.ParticipantsSide) {
+                        AppSettingsManager.settingsMap.ParticipantsSide = false;
                         participantsSide = false;
                     }
                     break;
                 case JamiStrings.hideSelf:
-                    UtilsAdapter.setAppValue(Settings.HideSelf, !layoutModel.get(index).ActiveSetting);
-                    CurrentCall.hideSelf = UtilsAdapter.getAppValue(Settings.HideSelf);
+                    AppSettingsManager.settingsMap.HideSelf = !layoutModel.get(index).ActiveSetting;
+                    CurrentCall.hideSelf = AppSettingsManager.settingsMap.HideSelf;
                     break;
                 case JamiStrings.hideSpectators:
-                    UtilsAdapter.setAppValue(Settings.HideSpectators, !layoutModel.get(index).ActiveSetting);
-                    CurrentCall.hideSpectators = UtilsAdapter.getAppValue(Settings.HideSpectators);
+                    AppSettingsManager.settingsMap.HideSpectators = !layoutModel.get(index).ActiveSetting;
+                    CurrentCall.hideSpectators = AppSettingsManager.settingsMap.HideSpectators;
                     break;
                 }
             }
@@ -208,7 +208,7 @@ Control {
                             "BottomMargin": true,
                             "SectionEnd": true
                         });
-                    var onTheSide = UtilsAdapter.getAppValue(Settings.ParticipantsSide);
+                    var onTheSide = AppSettingsManager.settingsMap.ParticipantsSide;
                     layoutModel.append({
                             "Name": JamiStrings.participantsTop,
                             "IconSource": JamiResources.onthetop_black_24dp_svg,
@@ -228,7 +228,7 @@ Control {
                     layoutModel.append({
                             "Name": JamiStrings.hideSelf,
                             "IconSource": JamiResources.hidemyself_black_24dp_svg,
-                            "ActiveSetting": UtilsAdapter.getAppValue(Settings.HideSelf),
+                            "ActiveSetting": AppSettingsManager.settingsMap.HideSelf,
                             "TopMargin": true,
                             "BottomMargin": false,
                             "SectionEnd": false
@@ -246,7 +246,7 @@ Control {
                     layoutModel.append({
                             "Name": JamiStrings.hideSpectators,
                             "IconSource": JamiResources.videocam_off_24dp_svg,
-                            "ActiveSetting": UtilsAdapter.getAppValue(Settings.HideSpectators),
+                            "ActiveSetting": AppSettingsManager.settingsMap.HideSpectators,
                             "TopMargin": true,
                             "BottomMargin": true
                         });
