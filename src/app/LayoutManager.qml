@@ -109,13 +109,13 @@ QtObject {
 
         console.debug("Saving window: " + JSON.stringify(geometry) + " " + visibilityToSave);
 
-        AppSettingsManager.setValue(Settings.WindowState, visibilityToSave)
-        AppSettingsManager.setValue(Settings.WindowGeometry, geometry)
+        AppSettingsManager.settingsMap.WindowState = visibilityToSave
+        AppSettingsManager.settingsMap.WindowGeometry = geometry
     }
 
     // Restore the window geometry and visibility settings.
     function restoreWindowSettings() {
-        var geometry = AppSettingsManager.getValue(Settings.WindowGeometry)
+        var geometry = AppSettingsManager.settingsMap.WindowGeometry
 
         // Position.
         if (!isNaN(geometry.x) && !isNaN(geometry.y)) {
@@ -134,7 +134,7 @@ QtObject {
         appWindow.minimumHeight = JamiTheme.mainViewMinHeight
 
         // State.
-        const visibilityStr = AppSettingsManager.getValue(Settings.WindowState)
+        const visibilityStr = AppSettingsManager.settingsMap.WindowState
         var visibilitySetting = parseInt(visibilityStr)
 
         console.debug("Restoring window: " + JSON.stringify(geometry) + " " + visibilitySetting)

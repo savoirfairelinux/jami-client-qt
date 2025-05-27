@@ -50,7 +50,7 @@ SettingsPageBase {
             property var nativeDarkThemeShift: UtilsAdapter.hasNativeDarkTheme() ? 1 : 0
 
             function isComplete() {
-                var theme = UtilsAdapter.getAppValue(Settings.Key.AppTheme);
+                var theme = AppSettingsManager.settingsMap.AppTheme;
                 if (themeSettings.nativeDarkThemeShift && theme === "System")
                     sysThemeButton.checked = true;
                 if (theme === "Light") {
@@ -103,7 +103,7 @@ SettingsPageBase {
 
                     onCheckedChanged: {
                         if (checked)
-                            UtilsAdapter.setAppValue(Settings.Key.AppTheme, "Light");
+                            AppSettingsManager.settingsMap.AppTheme = "Light";
                     }
                 }
 
@@ -122,7 +122,7 @@ SettingsPageBase {
 
                     onCheckedChanged: {
                         if (checked)
-                            UtilsAdapter.setAppValue(Settings.Key.AppTheme, "Dark");
+                            AppSettingsManager.settingsMap.AppTheme = "Dark";
                     }
                 }
 
@@ -136,7 +136,7 @@ SettingsPageBase {
 
                     onCheckedChanged: {
                         if (checked)
-                            UtilsAdapter.setAppValue(Settings.Key.AppTheme, "System");
+                            AppSettingsManager.settingsMap.AppTheme = "System";
                     }
                 }
             }
@@ -172,7 +172,7 @@ SettingsPageBase {
                 Layout.fillHeight: true
                 Layout.topMargin: 10
 
-                value: Math.round(UtilsAdapter.getAppValue(Settings.BaseZoom) * 100.0)
+                value: Math.round(AppSettingsManager.settingsMap.BaseZoom * 100.0)
 
                 from: 50
                 to: 200
@@ -181,7 +181,7 @@ SettingsPageBase {
                 useSystemFocusVisuals: false
 
                 onMoved: {
-                    UtilsAdapter.setAppValue(Settings.BaseZoom, value / 100.0);
+                    AppSettingsManager.settingsMap.BaseZoom = value / 100.0;
                 }
 
                 background: Rectangle {
@@ -231,7 +231,7 @@ SettingsPageBase {
                 target: UtilsAdapter
 
                 function onChangeFontSize() {
-                    zoomSpinBox.value = Math.round(UtilsAdapter.getAppValue(Settings.BaseZoom) * 100.0);
+                    zoomSpinBox.value = Math.round(AppSettingsManager.settingsMap.BaseZoom * 100.0);
                 }
             }
         }
@@ -240,9 +240,9 @@ SettingsPageBase {
             id: useNativeWindowFrameCheckBox
             Layout.fillWidth: true
 
-            checked: !UtilsAdapter.getAppValue(Settings.Key.UseFramelessWindow)
+            checked: !AppSettingsManager.settingsMap.UseFramelessWindow
             labelText: JamiStrings.useNativeWindowFrame
-            onSwitchToggled: UtilsAdapter.setAppValue(Settings.Key.UseFramelessWindow, !checked)
+            onSwitchToggled: AppSettingsManager.settingsMap.UseFramelessWindow = !checked
         }
 
         MaterialButton {
@@ -262,9 +262,9 @@ SettingsPageBase {
             preferredWidth: defaultSettingsTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
 
             onClicked: {
-                zoomSpinBox.value = Math.round(UtilsAdapter.getDefault(Settings.BaseZoom) * 100.0);
-                UtilsAdapter.setToDefault(Settings.Key.AppTheme);
-                UtilsAdapter.setToDefault(Settings.Key.BaseZoom);
+                zoomSpinBox.value = Math.round(AppSettingsManager.getDefault(Settings.BaseZoom) * 100.0);
+                AppSettingsManager.setToDefault(Settings.Key.AppTheme);
+                AppSettingsManager.setToDefault(Settings.Key.BaseZoom);
                 themeSettings.isComplete();
             }
         }

@@ -35,7 +35,7 @@ JamiFlickable {
     property alias selectionStart: textArea.selectionStart
     property alias selectionEnd: textArea.selectionEnd
     property bool showPreview: false
-    property bool isShowTypo: UtilsAdapter.getAppValue(Settings.Key.ShowMardownOption)
+    property bool isShowTypo: AppSettingsManager.settingsMap.ShowMardownOption
     property int textWidth: textArea.contentWidth
     property var spellCheckActive: AppSettingsManager.getValue(Settings.EnableSpellCheck)
     property var language: AppSettingsManager.getValue(Settings.SpellLang)
@@ -261,7 +261,7 @@ JamiFlickable {
                 MessagesAdapter.editId = CurrentConversation.lastSelfMessageId;
                 keyEvent.accepted = true;
             } else if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
-                const isEnterNewLine = UtilsAdapter.getAppValue(Settings.Key.ChatViewEnterIsNewLine);
+                const isEnterNewLine = AppSettingsManager.settingsMap.ChatViewEnterIsNewLine;
                 const isShiftPressed = (keyEvent.modifiers & Qt.ShiftModifier);
                 const isCtrlPressed = (keyEvent.modifiers & Qt.ControlModifier);
                 if (!root.isShowTypo && !isShiftPressed) {

@@ -27,7 +27,7 @@ Rectangle {
     property alias filesToSendListModel: repeater.model
     property alias filesToSendCount: repeater.count
     color: JamiTheme.primaryBackgroundColor
-    LayoutMirroring.enabled: UtilsAdapter.isRTL
+    LayoutMirroring.enabled: AppSettingsManager.isRTL
     LayoutMirroring.childrenInherit: true
 
     JamiFlickable {
@@ -46,7 +46,7 @@ Rectangle {
 
             anchors.centerIn: parent
 
-            layoutDirection: UtilsAdapter.isRTL ? Qt.RightToLeft : Qt.LeftToRight
+            layoutDirection: AppSettingsManager.isRTL ? Qt.RightToLeft : Qt.LeftToRight
 
             spacing: JamiTheme.filesToSendContainerSpacing
             //padding: JamiTheme.filesToSendContainerPadding

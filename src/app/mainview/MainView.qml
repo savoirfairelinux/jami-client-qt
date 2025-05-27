@@ -65,7 +65,7 @@ Rectangle {
         onWheel: (wheel)=> {
             if (wheel.modifiers & Qt.ControlModifier) {
                 var delta = wheel.angleDelta.y / 120
-                UtilsAdapter.setAppValue(Settings.BaseZoom, parseFloat(UtilsAdapter.getAppValue(Settings.BaseZoom)) + delta * 0.1)
+                AppSettingsManager.settingsMap.BaseZoom = parseFloat(AppSettingsManager.settingsMap.BaseZoom) + delta * 0.1
             }
         }
     }
@@ -74,7 +74,7 @@ Rectangle {
         sequence: "Ctrl++"
         context: Qt.ApplicationShortcut
         onActivated: {
-            UtilsAdapter.setAppValue(Settings.BaseZoom, parseFloat(UtilsAdapter.getAppValue(Settings.BaseZoom)) + 0.1)
+            AppSettingsManager.settingsMap.BaseZoom = parseFloat(AppSettingsManager.settingsMap.BaseZoom) + 0.1
         }
     }
 
@@ -82,7 +82,7 @@ Rectangle {
         sequence: "Ctrl+="
         context: Qt.ApplicationShortcut
         onActivated: {
-            UtilsAdapter.setAppValue(Settings.BaseZoom, parseFloat(UtilsAdapter.getAppValue(Settings.BaseZoom)) + 0.1)
+            AppSettingsManager.settingsMap.BaseZoom = parseFloat(AppSettingsManager.settingsMap.BaseZoom) + 0.1
         }
     }
 
@@ -90,7 +90,7 @@ Rectangle {
         sequence: "Ctrl+-"
         context: Qt.ApplicationShortcut
         onActivated: {
-            UtilsAdapter.setAppValue(Settings.BaseZoom, parseFloat(UtilsAdapter.getAppValue(Settings.BaseZoom)) - 0.1)
+            AppSettingsManager.settingsMap.BaseZoom = parseFloat(AppSettingsManager.settingsMap.BaseZoom) - 0.1
         }
     }
 
@@ -98,14 +98,14 @@ Rectangle {
         sequence: "Ctrl+_"
         context: Qt.ApplicationShortcut
         onActivated: {
-            UtilsAdapter.setAppValue(Settings.BaseZoom, parseFloat(UtilsAdapter.getAppValue(Settings.BaseZoom)) - 0.1)
+            AppSettingsManager.settingsMap.BaseZoom = parseFloat(AppSettingsManager.settingsMap.BaseZoom) - 0.1
         }
     }
 
     Shortcut {
         sequence: "Ctrl+0"
         context: Qt.ApplicationShortcut
-        onActivated: UtilsAdapter.setAppValue(Settings.BaseZoom, 1.0)
+        onActivated: AppSettingsManager.settingsMap.BaseZoom = 1.0
     }
 
     Shortcut {

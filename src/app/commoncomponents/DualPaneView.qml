@@ -25,7 +25,7 @@ BaseView {
     required property Item leftPaneItem
     required property Item rightPaneItem
 
-    property bool isRTL: UtilsAdapter.isRTL
+    property bool isRTL: AppSettingsManager.isRTL
 
     property alias leftPane: leftPane
     property alias rightPane: rightPane
@@ -94,7 +94,7 @@ BaseView {
         }
 
         Connections {
-            target: UtilsAdapter
+            target: AppSettingsManager
 
             function onIsRTLChanged() {
                 var bck = previousMinorPaneWidth

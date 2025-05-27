@@ -68,7 +68,6 @@ class UtilsAdapter final : public QmlAdapterBase
     QML_SINGLETON
 
     QML_PROPERTY(QStringList, logList)
-    QML_RO_PROPERTY(bool, isRTL)
 public:
     static UtilsAdapter* create(QQmlEngine*, QJSEngine*)
     {
@@ -82,13 +81,6 @@ public:
                           LRCInstance* instance,
                           QObject* parent = nullptr);
     ~UtilsAdapter() = default;
-
-    Q_INVOKABLE QVariant getAppValue(const QString& key, const QVariant& defaultValue = {});
-    Q_INVOKABLE void setAppValue(const QString& key, const QVariant& value);
-    Q_INVOKABLE QVariant getAppValue(const Settings::Key key);
-    Q_INVOKABLE void setAppValue(const Settings::Key key, const QVariant& value);
-    Q_INVOKABLE QVariant getDefault(const Settings::Key key);
-    Q_INVOKABLE void setToDefault(const Settings::Key key);
 
     Q_INVOKABLE const QString getProjectCredits();
     Q_INVOKABLE const QString getBuildIDStr();
@@ -159,7 +151,6 @@ public:
 
     Q_INVOKABLE QVariantMap getVideoPlayer(const QString& resource, const QString& bgColor);
 
-    Q_INVOKABLE bool isRTL();
     Q_INVOKABLE bool isSystemTrayIconVisible();
 
     Q_INVOKABLE QString base64Encode(const QString& input);
@@ -174,16 +165,7 @@ public:
     Q_INVOKABLE bool isWayland() const;
 Q_SIGNALS:
     void debugMessageReceived(const QString& message);
-    void changeFontSize();
-    void chatviewPositionChanged();
     void appThemeChanged();
-    void showExperimentalCallSwarm();
-    void changeLanguage();
-    void donationCampaignSettingsChanged();
-    void useFramelessWindowChanged();
-    void spellLanguageChanged();
-    void enableSpellCheckChanged();
-    void raiseWhenCalledChanged();
 
 private:
     QClipboard* clipboard_;

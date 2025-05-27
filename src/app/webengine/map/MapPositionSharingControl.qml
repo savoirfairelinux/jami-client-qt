@@ -123,7 +123,7 @@ ColumnLayout {
             }
 
             onClicked: {
-                var sharingDuration = 60 * 1000 * UtilsAdapter.getAppValue(Settings.PositionShareDuration);
+                var sharingDuration = 60 * 1000 * AppSettingsManager.settingsMap.PositionShareDuration;
                 if (!isError && !isUnpin) {
                     PositionManager.sharePosition(sharingDuration, attachedAccountId, currentConvId);
                 }

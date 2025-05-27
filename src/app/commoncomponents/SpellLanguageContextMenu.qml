@@ -67,7 +67,7 @@ ContextMenuAutoLoader {
                 continue;
             }
             menuItemObject.clicked.connect(function () {
-                UtilsAdapter.setAppValue(Settings.Key.SpellLang, menuItemObject.content);
+                AppSettingsManager.settingsMap.SpellLang = menuItemObject.content;
             });
             // Log the object pointer
             menuItems.push(menuItemObject);
