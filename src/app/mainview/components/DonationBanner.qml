@@ -32,7 +32,7 @@ Control {
         // Calculate the time 7 days from now
         var futureDate = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000);
         var formattedDate = Qt.formatDateTime(futureDate, "yyyy-MM-dd hh:mm");
-        UtilsAdapter.setAppValue(Settings.Key.Donation2023VisibleDate, formattedDate);
+        AppSettingsManager.settingsMap.Donation2023VisibleDate = formattedDate;
     }
 
     MouseArea {
