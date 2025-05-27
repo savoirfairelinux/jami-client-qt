@@ -24,17 +24,16 @@ import net.jami.Enums 1.1
 
 Item {
     property bool darkTheme: UtilsAdapter.useApplicationTheme()
-
     Connections {
         target: UtilsAdapter
-
-        function onChangeFontSize() {
-            baseZoom = AppSettingsManager.settingsMap.BaseZoom;
-        }
 
         function onAppThemeChanged() {
             darkTheme = UtilsAdapter.useApplicationTheme();
         }
+    }
+    property var appTheme: AppSettingsManager.settingsMap.AppTheme
+    onAppThemeChanged: {
+        darkTheme = UtilsAdapter.useApplicationTheme();
     }
 
     // Jami theme colors
