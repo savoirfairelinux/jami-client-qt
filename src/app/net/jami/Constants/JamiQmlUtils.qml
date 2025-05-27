@@ -79,13 +79,21 @@ Item {
     }
 
     property bool isDonationBannerVisible: getIsDonationBannerVisible()
-    Connections {
-        target: UtilsAdapter
-        function onDonationCampaignSettingsChanged() {
-            // Changing any of the donation campaign settings will trigger a recompute
-            // of the banner visibility.
-            updateIsDonationBannerVisible();
-        }
+    property var donationVisible: AppSettingsManager.settingsMap.IsDonationVisible
+    property var donationEndDate: AppSettingsManager.settingsMap.Donation2023EndDate2
+    property var donationStartDate: AppSettingsManager.settingsMap.Donation2023VisibleDate
+
+    onDonationVisibleChanged: {
+        // When the donation visibility setting changes, we need to recompute the banner visibility
+        updateIsDonationBannerVisible();
+    }
+    onDonationEndDateChanged: {
+        // When the donation end date changes, we need to recompute the banner visibility
+        updateIsDonationBannerVisible();
+    }
+    onDonationStartDateChanged: {
+        // When the donation start date changes, we need to recompute the banner visibility
+        updateIsDonationBannerVisible();
     }
 
     function updateIsDonationBannerVisible() {

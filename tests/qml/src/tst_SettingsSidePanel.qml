@@ -25,41 +25,30 @@ import net.jami.Enums 1.1
 
 import "../../../src/app/settingsview"
 import "../../../src/app/commoncomponents"
+import "../../../src/app/mainview/components"
 
-SettingsSidePanel {
-    id: uut
-
-    SignalSpy {
-        id: spyUpdated
-
-        target: uut
-        signalName: "updated"
+Item {
+    MessageBarTextArea {
+        id: target
     }
 
-    SignalSpy {
-        id: spyChangeLang
+    SettingsSidePanel {
+        id: uut
 
-        target: UtilsAdapter
-        signalName: "changeLanguage"
-    }
+        TestCase {
+            name: "WelcomePage to different account creation page and return back"
+            when: windowShown
 
-    TestCase {
-        name: "WelcomePage to different account creation page and return back"
-        when: windowShown
-
-        function test_retranslate() {
-            // spyUpdated.clear()
-            // UtilsAdapter.setAppValue(Settings.Key.LANG, "en_EN")
-            // spyChangeLang.wait(1000)
-            // compare(spyChangeLang.count, 1)
-            // spyUpdated.wait(1000)
-            // compare(spyUpdated.count, 1)
-            // UtilsAdapter.setAppValue(Settings.Key.LANG, "fr")
-            // spyChangeLang.wait(1000)
-            // compare(spyChangeLang.count, 2)
-            // spyUpdated.wait(1000)
-            // compare(spyUpdated.count, 2)
+            function test_retranslate() {
+                AppSettingsManager.settingsMap.EnableSpellCheck = true
+                AppSettingsManager.settingsMap.SpellLang = "en_EN"
+                wait(500)
+                compare(target.language, "en_EN")
+                AppSettingsManager.settingsMap.SpellLang = "fr"
+                wait(500)
+                compare(target.language, "fr")
+            }
         }
     }
-
 }
+

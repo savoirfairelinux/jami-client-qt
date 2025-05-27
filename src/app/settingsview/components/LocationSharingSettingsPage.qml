@@ -200,7 +200,6 @@ SettingsPageBase {
             preferredWidth: defaultSettingsTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
 
             onClicked: {
-                timeSharingSlider.value = Math.log(AppSettingsManager.getDefault(Settings.Key.PositionShareDuration));
                 timeSharingSlider.valueLabel();
                 AppSettingsManager.setToDefault(Settings.Key.PositionShareDuration);
             }

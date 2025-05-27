@@ -43,12 +43,9 @@ Rectangle {
         }
     }
 
-    Connections {
-        target: UtilsAdapter
-
-        function onChatviewPositionChanged() {
-            mainColumnLayout.isHorizontal = AppSettingsManager.settingsMap.ShowChatviewHorizontally;
-        }
+    property var showChatviewHorizontally : AppSettingsManager.settingsMap.ShowChatviewHorizontally
+    onShowChatviewHorizontallyChanged: {
+        mainColumnLayout.isHorizontal = AppSettingsManager.settingsMap.ShowChatviewHorizontally;
     }
 
     function setCallChatVisibility(visible) {
