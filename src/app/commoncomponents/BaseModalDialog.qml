@@ -80,6 +80,8 @@ Popup {
 
             JamiPushButton { QWKSetParentHitTestVisible {}
                 id: closeButton
+                Accessible.role: Accessible.Button
+                Accessible.name: JamiStrings.close
 
                 visible: closeButtonVisible
 
