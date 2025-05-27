@@ -37,9 +37,9 @@ Item {
     property bool screenshotButtonHovered: false
 
     onVisibleChanged: {
-        CurrentCall.hideSelf = UtilsAdapter.getAppValue(Settings.HideSelf);
-        CurrentCall.hideSpectators = UtilsAdapter.getAppValue(Settings.HideSpectators);
-        CurrentCall.flipSelf = UtilsAdapter.getAppValue(Settings.FlipSelf);
+        CurrentCall.hideSelf = AppSettingsManager.settingsMap.HideSelf;
+        CurrentCall.hideSpectators = AppSettingsManager.settingsMap.HideSpectators;
+        CurrentCall.flipSelf = AppSettingsManager.settingsMap.FlipSelf;
     }
 
     Component {

@@ -28,7 +28,7 @@ import "../../commoncomponents"
 Item {
     id: root
 
-    property bool participantsSide: UtilsAdapter.getAppValue(Settings.ParticipantsSide)
+    property bool participantsSide: AppSettingsManager.settingsMap.ParticipantsSide
     property alias mainOverlayOpacity: mainOverlay.opacity
 
     signal chatButtonClicked

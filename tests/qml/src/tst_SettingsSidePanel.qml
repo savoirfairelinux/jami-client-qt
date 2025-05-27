@@ -49,12 +49,12 @@ SettingsSidePanel {
 
         function test_retranslate() {
             spyUpdated.clear()
-            UtilsAdapter.setAppValue(Settings.Key.LANG, "en_EN")
+            AppSettingsManager.settingsMap.LANG = "en_EN"
             spyChangeLang.wait(1000)
             compare(spyChangeLang.count, 1)
             spyUpdated.wait(1000)
             compare(spyUpdated.count, 1)
-            UtilsAdapter.setAppValue(Settings.Key.LANG, "fr")
+            AppSettingsManager.settingsMap.LANG = "fr"
             spyChangeLang.wait(1000)
             compare(spyChangeLang.count, 2)
             spyUpdated.wait(1000)

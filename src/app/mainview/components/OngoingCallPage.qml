@@ -47,13 +47,13 @@ Rectangle {
         target: UtilsAdapter
 
         function onChatviewPositionChanged() {
-            mainColumnLayout.isHorizontal = UtilsAdapter.getAppValue(Settings.Key.ShowChatviewHorizontally);
+            mainColumnLayout.isHorizontal = AppSettingsManager.settingsMap.ShowChatviewHorizontally;
         }
     }
 
     function setCallChatVisibility(visible) {
         if (visible) {
-            mainColumnLayout.isHorizontal = UtilsAdapter.getAppValue(Settings.Key.ShowChatviewHorizontally);
+            mainColumnLayout.isHorizontal = AppSettingsManager.settingsMap.ShowChatviewHorizontally;
             chatViewContainer.visible = false;
             chatViewContainer.visible = true;
         } else {
@@ -66,7 +66,7 @@ Rectangle {
     }
 
     function openInCallConversation() {
-        mainColumnLayout.isHorizontal = UtilsAdapter.getAppValue(Settings.Key.ShowChatviewHorizontally);
+        mainColumnLayout.isHorizontal = AppSettingsManager.settingsMap.ShowChatviewHorizontally;
         chatViewContainer.visible = false;
         chatViewContainer.visible = true;
     }
