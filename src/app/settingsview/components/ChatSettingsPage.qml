@@ -69,7 +69,7 @@ SettingsPageBase {
 
                 Layout.fillWidth: true
 
-                checked: UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews)
+                checked: AppSettingsManager.settingsMap.DisplayHyperlinkPreviews
 
                 labelText: JamiStrings.displayHyperlinkPreviews
                 descText: JamiStrings.displayHyperlinkPreviewsDescription
@@ -77,7 +77,7 @@ SettingsPageBase {
                 tooltipText: JamiStrings.displayHyperlinkPreviews
 
                 onSwitchToggled: {
-                    UtilsAdapter.setAppValue(Settings.Key.DisplayHyperlinkPreviews, checked);
+                    AppSettingsManager.settingsMap.DisplayHyperlinkPreviews = checked;
                 }
             }
         }
@@ -142,7 +142,7 @@ SettingsPageBase {
 
                     onCheckedChanged: {
                         if (checked)
-                            UtilsAdapter.setAppValue(Settings.Key.ChatViewEnterIsNewLine, true);
+                            AppSettingsManager.settingsMap.ChatViewEnterIsNewLine = true;
                     }
                 }
 
@@ -161,12 +161,12 @@ SettingsPageBase {
 
                     onCheckedChanged: {
                         if (checked)
-                            UtilsAdapter.setAppValue(Settings.Key.ChatViewEnterIsNewLine, false);
+                            AppSettingsManager.settingsMap.ChatViewEnterIsNewLine = false;
                     }
                 }
 
                 Component.onCompleted: {
-                    if (UtilsAdapter.getAppValue(Settings.Key.ChatViewEnterIsNewLine))
+                    if (AppSettingsManager.settingsMap.ChatViewEnterIsNewLine)
                         enterButton.checked = true;
                     else
                         shiftEnterButton.checked = true;
@@ -239,14 +239,14 @@ SettingsPageBase {
             preferredWidth: defaultSettingsTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
 
             onClicked: {
-                autoAcceptFilesCheckbox.checked = UtilsAdapter.getDefault(Settings.Key.AutoAcceptFiles);
-                acceptTransferBelowSpinBox.valueField = UtilsAdapter.getDefault(Settings.Key.AcceptTransferBelow);
-                UtilsAdapter.setToDefault(Settings.Key.AutoAcceptFiles);
-                UtilsAdapter.setToDefault(Settings.Key.AcceptTransferBelow);
-                UtilsAdapter.setToDefault(Settings.Key.ChatViewEnterIsNewLine);
-                UtilsAdapter.setToDefault(Settings.Key.DisplayHyperlinkPreviews);
-                displayImagesCheckbox.checked = UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews);
-                if (UtilsAdapter.getAppValue(Settings.Key.ChatViewEnterIsNewLine))
+                autoAcceptFilesCheckbox.checked = AppSettingsManager.getDefault(Settings.Key.AutoAcceptFiles);
+                acceptTransferBelowSpinBox.valueField = AppSettingsManager.getDefault(Settings.Key.AcceptTransferBelow);
+                AppSettingsManager.setToDefault(Settings.Key.AutoAcceptFiles);
+                AppSettingsManager.setToDefault(Settings.Key.AcceptTransferBelow);
+                AppSettingsManager.setToDefault(Settings.Key.ChatViewEnterIsNewLine);
+                AppSettingsManager.setToDefault(Settings.Key.DisplayHyperlinkPreviews);
+                displayImagesCheckbox.checked = AppSettingsManager.settingsMap.DisplayHyperlinkPreviews;
+                if (AppSettingsManager.settingsMap.ChatViewEnterIsNewLine)
                     enterButton.checked = true;
                 else
                     shiftEnterButton.checked = true;

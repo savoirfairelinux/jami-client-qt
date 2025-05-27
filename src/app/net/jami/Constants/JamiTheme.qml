@@ -19,6 +19,7 @@
 pragma Singleton
 import QtQuick
 import net.jami.Adapters 1.1
+import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 
 Item {
@@ -28,7 +29,7 @@ Item {
         target: UtilsAdapter
 
         function onChangeFontSize() {
-            baseZoom = UtilsAdapter.getAppValue(Settings.BaseZoom);
+            baseZoom = AppSettingsManager.settingsMap.BaseZoom;
         }
 
         function onAppThemeChanged() {
@@ -49,7 +50,7 @@ Item {
         return size * 0.75;
     }
 
-    property real baseZoom: UtilsAdapter.getAppValue(Settings.BaseZoom)
+    property real baseZoom: AppSettingsManager.settingsMap.BaseZoom
     property real fontSizeOffset: (Qt.platform.os.toString() === "osx" ? 3 : 0)
     property real fontSizeOffsetSmall: (Qt.platform.os.toString() === "osx" ? 1 : 0)
 

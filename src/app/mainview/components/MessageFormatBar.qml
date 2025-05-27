@@ -28,7 +28,7 @@ import "qrc:/js/markdownedition.js" as MDE
 Rectangle {
     id: messageBarRowLayout
     Layout.preferredWidth: showTypo ? firstRow.width + secondRow.width : secondRow.width
-    LayoutMirroring.enabled: UtilsAdapter.isRTL
+    LayoutMirroring.enabled: AppSettingsManager.isRTL
     LayoutMirroring.childrenInherit: true
 
     Row {
@@ -352,8 +352,8 @@ Rectangle {
                     showTypoSecond = false;
                 if (!showDefault)
                     showDefault = true;
-                UtilsAdapter.setAppValue(Settings.Key.ShowMardownOption, showTypo);
-                UtilsAdapter.setAppValue(Settings.Key.ShowSendOption, !showDefault);
+                AppSettingsManager.settingsMap.ShowMardownOption = showTypo;
+                AppSettingsManager.settingsMap.ShowSendOption = !showDefault;
             }
         }
 
@@ -664,7 +664,7 @@ Rectangle {
 
                 toolTipText: JamiStrings.send
 
-                mirror: UtilsAdapter.isRTL
+                mirror: AppSettingsManager.isRTL
 
                 source: JamiResources.send_black_24dp_svg
 

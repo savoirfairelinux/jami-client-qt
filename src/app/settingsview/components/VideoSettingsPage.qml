@@ -77,7 +77,7 @@ SettingsPageBase {
         }
 
         Component.onCompleted: {
-            flipControl.checked = UtilsAdapter.getAppValue(Settings.FlipSelf);
+            flipControl.checked = AppSettingsManager.settingsMap.FlipSelf;
             hardwareAccelControl.checked = AvAdapter.getHardwareAcceleration();
             startPreviewing(true);
         }
@@ -122,8 +122,8 @@ SettingsPageBase {
             labelText: JamiStrings.mirrorLocalVideo
 
             onSwitchToggled: {
-                UtilsAdapter.setAppValue(Settings.FlipSelf, checked);
-                CurrentCall.flipSelf = UtilsAdapter.getAppValue(Settings.FlipSelf);
+                AppSettingsManager.settingsMap.FlipSelf = checked;
+                CurrentCall.flipSelf = AppSettingsManager.settingsMap.FlipSelf;
             }
         }
 

@@ -23,7 +23,7 @@ import net.jami.Constants 1.1
 SplitView {
     id: control
 
-    property bool isRTL: UtilsAdapter.isRTL
+    property bool isRTL: AppSettingsManager.isRTL
     property bool isSinglePane: false
     property bool isSwapped: false
     property real handleSize: 1
@@ -43,11 +43,11 @@ SplitView {
     property bool autoManageState: !(parent instanceof BaseView)
 
     function saveSplitViewState() {
-        UtilsAdapter.setAppValue("sv_" + splitViewStateKey, control.saveState());
+        AppSettingsManager.settingsMap["sv_" + splitViewStateKey] = control.saveState();
     }
 
     function restoreSplitViewState() {
-        control.restoreState(UtilsAdapter.getAppValue("sv_" + splitViewStateKey));
+        control.restoreState(AppSettingsManager.settingsMap["sv_" + splitViewStateKey]);
     }
 
     onResizingChanged: if (!resizing)
@@ -86,7 +86,7 @@ SplitView {
             // size (4 pixels). This is done to make it easier to grab small scroll-view handles that are
             // adjacent to the SplitView handle. Note: vertically oriented handles are not offset.
             readonly property real extraHandleSize: 4
-            readonly property real handleXPosition: !UtilsAdapter.isRTL ? 0 : -extraHandleSize
+            readonly property real handleXPosition: !AppSettingsManager.isRTL ? 0 : -extraHandleSize
             readonly property real handleSize: handleRoot.defaultSize + extraHandleSize
 
             x: control.orientation === Qt.Horizontal ? handleXPosition : 0
