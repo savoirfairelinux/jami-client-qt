@@ -28,6 +28,10 @@ Control {
     property string title: ""
     property string description: ""
 
+    Accessible.role: Accessible.StaticText
+    Accessible.name: title
+    Accessible.description: description
+
     width: 190
     height: infos.implicitHeight
 

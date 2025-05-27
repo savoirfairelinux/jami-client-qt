@@ -54,6 +54,9 @@ Rectangle {
         if (visible)
             forceActiveFocus();
     }
+    Accessible.role: Accessible.Pane
+    Accessible.name: introduction.text
+    Accessible.description: JamiStrings.description
 
     KeyNavigation.tab: newAccountButton
     KeyNavigation.up: newAccountButton
@@ -71,6 +74,8 @@ Rectangle {
         width: 800
 
         Item {
+            Accessible.name: introduction.text
+            Accessible.description: JamiStrings.description
 
             Layout.alignment: Qt.AlignCenter | Qt.AlignTop
             Layout.preferredWidth: JamiTheme.welcomeLogoWidth
@@ -373,8 +378,9 @@ Rectangle {
             fontSize: JamiTheme.wizardViewAboutJamiFontPixelSize
 
             KeyNavigation.tab: backButton.visible ? backButton : newAccountButton
-            KeyNavigation.up: connectAccountManagerButton
+            KeyNavigation.up: showAdvanced ? newSIPAccountButton : showAdvancedButton
             KeyNavigation.down: KeyNavigation.tab
+            KeyNavigation.backtab: KeyNavigation.up
 
             text: JamiStrings.aboutJami
 
@@ -382,8 +388,10 @@ Rectangle {
         }
     }
 
-    JamiPushButton { QWKSetParentHitTestVisible {}
+    JamiPushButton {
         id: backButton
+        QWKSetParentHitTestVisible {
+        }
 
         objectName: "welcomePageBackButton"
 
@@ -404,6 +412,9 @@ Rectangle {
         }
 
         visible: UtilsAdapter.getAccountListSize()
+        Accessible.role: Accessible.Button
+        Accessible.name: JamiStrings.backButton
+        Accessible.description: JamiStrings.backButtonExplanation
 
         KeyNavigation.tab: newAccountButton
         KeyNavigation.up: showAdvanced ? newSIPAccountButton : showAdvancedButton
@@ -415,12 +426,19 @@ Rectangle {
     SettingsComboBox {
         id: langComboBoxSetting
 
+        // This component is yet not reacheable with keyboard naviguation because our comboboxs
+        // are currently broken and not properly useable with a keyboard. The fix would be to
+        // refactor to start using the base Qt combobox.
+
         height: JamiTheme.preferredFieldHeight + 20
         anchors.right: parent.right
         anchors.bottom: parent.bottom
         anchors.margins: JamiTheme.wizardViewPageBackButtonMargins
+        Accessible.role: Accessible.ComboBox
+        Accessible.name: JamiStrings.language
+        Accessible.description: JamiStrings.languageComboBoxExplanation
 
-        labelText: JamiStrings.language
+        labelText: JamiStrings.userInterfaceLanguage
         tipText: JamiStrings.language
         comboModel: ListModel {
             id: langModel
