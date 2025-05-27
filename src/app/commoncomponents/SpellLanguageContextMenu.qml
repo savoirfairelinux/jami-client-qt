@@ -23,6 +23,8 @@ import "contextmenu"
 import "../mainview"
 import "../mainview/components"
 
+import SortFilterProxyModel 0.2
+
 ContextMenuAutoLoader {
     id: root
 
@@ -42,10 +44,13 @@ ContextMenuAutoLoader {
     function generateMenuItems() {
         var menuItems = [];
         // Create new menu items
-        var dictionaries = SpellCheckDictionaryManager.getInstalledDictionaries();
+        var dictionaries = SpellCheckAdapter.getInstalledDictionaries();
         var keys = Object.keys(dictionaries);
         for (var i = 0; i < keys.length; ++i) {
-            var menuItem = Qt.createComponent("qrc:/commoncomponents/contextmenu/GeneralMenuItem.qml", Component.PreferSynchronous);
+            const filePath = keys[i]
+            const nativeName = dictionaries[keys[i]];
+            var menuItem = Qt.createComponent("qrc:/commoncomponents/contextmenu/GeneralMenuItem.qml",
+                                              Component.PreferSynchronous);
             if (menuItem.status !== Component.Ready) {
                 console.error("Error loading component:", menuItem.errorString());
                 continue;
@@ -54,17 +59,18 @@ ContextMenuAutoLoader {
                     "parent": root,
                     "canTrigger": true,
                     "isActif": true,
-                    "itemName": dictionaries[keys[i]],
+                    "itemName": nativeName,
                     "hasIcon": false,
-                    "content": keys[i]
+                    "content": filePath
                 });
             if (menuItemObject === null) {
                 console.error("Error creating menu item:", menuItem.errorString());
                 continue;
             }
             menuItemObject.clicked.connect(function () {
-                    SpellCheckDictionaryManager.getBestDictionary(menuItemObject.content);
-                });
+                const filePath = menuItemObject.content;
+                SpellCheckAdapter.setDictionaryPath(filePath);
+            });
             // Log the object pointer
             menuItems.push(menuItemObject);
         }

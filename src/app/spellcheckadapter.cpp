@@ -15,30 +15,65 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "spellcheckhandler.h"
+#include "spellcheckadapter.h"
+
 #include "global.h"
+#include "spellcheckdictionarylistmodel.h"
 
 #include <QApplication>
+
 #define SUGGESTIONS_MAX_SIZE 10 // limit the number of spelling suggestions
 
-SpellCheckHandler::SpellCheckHandler(SpellCheckDictionaryManager* spellCheckDictionaryManager,
+SpellCheckAdapter::SpellCheckAdapter(SpellCheckDictionaryListModel* dictionaryListModel,
                                      QObject* parent)
-    : spellCheckDictionaryManager_(spellCheckDictionaryManager)
+    : QObject(parent)
+    , dictionaryListModel_(dictionaryListModel)
 {
-    connect(spellCheckDictionaryManager_,
-            &SpellCheckDictionaryManager::dictionaryAvailable,
+    // Connect to update the selected dictionary if no dictionary is set on start
+    connect(dictionaryListModel_,
+            &SpellCheckDictionaryListModel::dictionaryAvailable,
             this,
-            &SpellCheckHandler::onDictionaryAvailable);
+            &SpellCheckAdapter::setDictionaryPath);
+
+    // Load the current dictionary if available
+    auto currentDictionaryPath = dictionaryListModel->currentDictionaryPath();
+    if (!currentDictionaryPath.isEmpty()) {
+        setDictionaryPath(currentDictionaryPath);
+    }
+}
+
+void
+SpellCheckAdapter::installDictionary(const QString& locale)
+{
+    dictionaryListModel_->installDictionary(locale);
+}
+
+void
+SpellCheckAdapter::uninstallDictionary(const QString& locale)
+{
+    dictionaryListModel_->uninstallDictionary(locale);
+}
+
+QVariant
+SpellCheckAdapter::getDictionaryListModel() const
+{
+    return QVariant::fromValue(dictionaryListModel_);
+}
+
+QVariantMap
+SpellCheckAdapter::getInstalledDictionaries() const
+{
+    return dictionaryListModel_->getInstalledDictionaries();
 }
 
 bool
-SpellCheckHandler::spell(const QString& word)
+SpellCheckAdapter::spell(const QString& word)
 {
     return spellChecker_.spell(word);
 }
 
 QVariantList
-SpellCheckHandler::spellSuggestionsRequest(const QString& word)
+SpellCheckAdapter::spellSuggestionsRequest(const QString& word)
 {
     QStringList suggestionsList;
     QVariantList variantList;
@@ -57,7 +92,7 @@ SpellCheckHandler::spellSuggestionsRequest(const QString& word)
 }
 
 QVariantList
-SpellCheckHandler::findWords(const QString& text)
+SpellCheckAdapter::findWords(const QString& text)
 {
     QVariantList result;
     auto words = spellChecker_.findWords(text);
@@ -72,10 +107,9 @@ SpellCheckHandler::findWords(const QString& text)
 }
 
 void
-SpellCheckHandler::onDictionaryAvailable()
+SpellCheckAdapter::setDictionaryPath(const QString& localPath)
 {
-    dictPath_ = spellCheckDictionaryManager_->getDictionaryPath();
-    C_DBG << "Dictionary set : " << dictPath_;
-    spellChecker_.replaceDictionary(dictPath_);
-    Q_EMIT dictionaryChanged();
+    if (spellChecker_.replaceDictionary(localPath)) {
+        Q_EMIT dictionaryChanged();
+    }
 }

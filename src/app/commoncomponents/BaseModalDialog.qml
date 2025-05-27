@@ -76,9 +76,9 @@ Popup {
         }
 
         contentItem: ColumnLayout {
-            id: contentLayout
+            id: contentLayout 
 
-            JamiPushButton {
+            JamiPushButton { QWKSetParentHitTestVisible {}
                 id: closeButton
 
                 visible: closeButtonVisible
@@ -117,7 +117,7 @@ Popup {
 
                 Layout.fillHeight: true
                 Layout.preferredHeight: Math.min(contentHeight, root.height)
-                Layout.preferredWidth: contentItem.childrenRect.width
+                Layout.preferredWidth: contentItem.childrenRect.width + ScrollBar.vertical.width
                 Layout.leftMargin: popupMargins
                 Layout.rightMargin: popupMargins
                 Layout.alignment: Qt.AlignCenter
