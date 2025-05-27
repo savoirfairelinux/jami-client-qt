@@ -220,7 +220,6 @@ Popup {
                     id: cancelBtn
                     objectName: "cancelBtn"
                     z: 1
-
                     Layout.alignment: Qt.AlignRight | Qt.AlignTop
                     Layout.preferredHeight: 20
                     Layout.preferredWidth: 20
@@ -322,6 +321,9 @@ Popup {
 
                         Layout.alignment: Qt.AlignCenter
                         preferredSize: btnSize
+
+                        Accessible.role: Accessible.Button
+                        Accessible.name: toolTipText
 
                         source: JamiResources.stop_rectangle_24dp_svg
 
