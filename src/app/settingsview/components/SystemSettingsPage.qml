@@ -306,38 +306,34 @@ SettingsPageBase {
                     }
                 }
             }
-
-            Connections {
-                target: UtilsAdapter
-
-                function onChangeLanguage() {
-                    var langIdx = langComboBoxSetting.modelIndex;
-                    langModel.clear();
-                    var supported = UtilsAdapter.supportedLang();
-                    var keys = Object.keys(supported);
-                    for (var i = 0; i < keys.length; ++i) {
-                        langModel.append({
-                                "textDisplay": supported[keys[i]],
-                                "id": keys[i]
-                            });
-                    }
-                    langComboBoxSetting.modelIndex = langIdx;
+            property var lang: AppSettingsManager.settingsMap.LANG
+            onLangChanged: {
+                var langIdx = langComboBoxSetting.modelIndex;
+                langModel.clear();
+                var supported = UtilsAdapter.supportedLang();
+                var keys = Object.keys(supported);
+                for (var i = 0; i < keys.length; ++i) {
+                    langModel.append({
+                            "textDisplay": supported[keys[i]],
+                            "id": keys[i]
+                        });
                 }
+                langComboBoxSetting.modelIndex = langIdx;
+            }
 
-                // Repopulate the spell check language list
-                function onSpellLanguageChanged() {
+            property var spellLang: AppSettingsManager.settingsMap.SpellLang
+            onSpellLangChanged: {
                     var langIdx = spellCheckLangComboBoxSetting.modelIndex;
-                    installedSpellCheckLangModel.clear();
-                    var supported = SpellCheckDictionaryManager.installedDictionaries();
-                    var keys = Object.keys(supported);
-                    for (var i = 0; i < keys.length; ++i) {
-                        installedSpellCheckLangModel.append({
-                                "textDisplay": supported[keys[i]],
-                                "id": keys[i]
-                            });
-                    }
-                    spellCheckLangComboBoxSetting.modelIndex = langIdx;
+                installedSpellCheckLangModel.clear();
+                var supported = SpellCheckDictionaryManager.installedDictionaries();
+                var keys = Object.keys(supported);
+                for (var i = 0; i < keys.length; ++i) {
+                    installedSpellCheckLangModel.append({
+                            "textDisplay": supported[keys[i]],
+                            "id": keys[i]
+                        });
                 }
+                spellCheckLangComboBoxSetting.modelIndex = langIdx;
             }
         }
 
@@ -389,9 +385,6 @@ SettingsPageBase {
             preferredWidth: textSize.width + 2 * JamiTheme.buttontextWizzardPadding
 
             onClicked: {
-                notificationCheckBox.checked = AppSettingsManager.getDefault(Settings.Key.EnableNotifications);
-                closeOrMinCheckBox.checked = AppSettingsManager.getDefault(Settings.Key.MinimizeOnClose);
-                checkboxCallSwarm.checked = AppSettingsManager.getDefault(Settings.Key.EnableExperimentalSwarm);
                 langComboBoxSetting.modelIndex = 0;
                 spellCheckLangComboBoxSetting.modelIndex = 0;
                 AppSettingsManager.setToDefault(Settings.Key.EnableNotifications);

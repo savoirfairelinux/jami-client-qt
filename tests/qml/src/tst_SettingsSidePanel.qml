@@ -40,12 +40,12 @@ Item {
             when: windowShown
 
             function test_retranslate() {
-                // AppSettingsManager.settingsMap.LANG = "en_EN"
+                AppSettingsManager.settingsMap.LANG = "en_EN"
                 wait(100)
-                // compare(target.language, "en_EN")
-                // AppSettingsManager.settingsMap.LANG = "fr"
-                // wait(100)
-                // compare(target.language, "fr")
+                compare(target.language, "en_EN")
+                AppSettingsManager.settingsMap.LANG = "fr"
+                wait(100)
+                compare(target.language, "fr")
             }
         }
     }
