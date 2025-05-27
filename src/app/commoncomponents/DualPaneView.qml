@@ -42,27 +42,27 @@ BaseView {
 
     onPresented: {
         if (leftPaneItem)
-            leftPaneItem.parent = leftPane
+            leftPaneItem.parent = leftPane;
         if (rightPaneItem)
-            rightPaneItem.parent = rightPane
-        splitView.restoreSplitViewState()
-        resolvePanes()
+            rightPaneItem.parent = rightPane;
+        splitView.restoreSplitViewState();
+        resolvePanes();
     }
     onDismissed: splitView.saveSplitViewState()
 
     Component.onCompleted: {
         // Avoid double triggering this handler during instantiation.
-        onIsSinglePaneChanged.connect(isSinglePaneChangedHandler)
+        onIsSinglePaneChanged.connect(isSinglePaneChangedHandler);
     }
 
     onWidthChanged: resolvePanes()
     function resolvePanes() {
-        isSinglePane = width < majorPaneMinWidth + previousMinorPaneWidth
+        isSinglePane = width < majorPaneMinWidth + previousMinorPaneWidth;
     }
 
     // Override this if needed.
     property var isSinglePaneChangedHandler: function () {
-        rightPaneItem.parent = isSinglePane ? leftPane : rightPane
+        rightPaneItem.parent = isSinglePane ? leftPane : rightPane;
     }
 
     JamiSplitView {
@@ -86,20 +86,20 @@ BaseView {
         required property bool isMinorPane
         onWidthChanged: {
             if (!isSinglePane && isMinorPane)
-                previousMinorPaneWidth = width
+                previousMinorPaneWidth = width;
             if (!isSinglePane && !isMinorPane)
-                previousMajorPaneWidth = width
+                previousMajorPaneWidth = width;
             if (isMinorPane)
-                JamiTheme.currentLeftPaneWidth = width
+                JamiTheme.currentLeftPaneWidth = width;
         }
 
         Connections {
             target: AppSettingsManager
 
             function onIsRTLChanged() {
-                var bck = previousMinorPaneWidth
-                previousMinorPaneWidth = previousMajorPaneWidth
-                previousMajorPaneWidth = bck
+                var bck = previousMinorPaneWidth;
+                previousMinorPaneWidth = previousMajorPaneWidth;
+                previousMajorPaneWidth = bck;
             }
         }
 
