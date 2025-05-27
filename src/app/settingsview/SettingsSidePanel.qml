@@ -187,6 +187,14 @@ SidePanelBase {
         }
     }
 
+    property var lang: AppSettingsManager.settingsMap.LANG
+    onLangChanged: {
+        // For some reason, under Qt 6.5.3, even if locale is changed before
+        // model is not computer correctly.
+        // Delaying the update works
+        timerTranslate.restart()
+    }
+
     function updateModel() {
         if (visible) {
             listView.model = getHeaders();
@@ -211,17 +219,6 @@ SidePanelBase {
         function onTypeChanged() {
             updateModel();
             select(-1);
-        }
-    }
-
-    Connections {
-        target: UtilsAdapter
-
-        function onChangeLanguage() {
-            // For some reason, under Qt 6.5.3, even if locale is changed before
-            // model is not computer correctly.
-            // Delaying the update works
-            timerTranslate.restart()
         }
     }
 
