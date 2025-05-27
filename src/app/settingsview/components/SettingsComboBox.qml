@@ -32,10 +32,12 @@ RowLayout {
     property alias fontPointSize: comboBoxOfLayout.font.pointSize
     property alias modelIndex: comboBoxOfLayout.currentIndex
     property alias modelSize: comboBoxOfLayout.count
+    property alias comboBox: comboBoxOfLayout
 
     property int widthOfComboBox: 50
 
     signal activated
+    signal comboBoxActivated
 
     Text {
         id: title
@@ -53,6 +55,7 @@ RowLayout {
     SettingParaCombobox {
         id: comboBoxOfLayout
 
+        enabled: root.enabled
         Layout.preferredWidth: widthOfComboBox
 
         font.pointSize: JamiTheme.buttonFontSize
@@ -63,6 +66,9 @@ RowLayout {
         textRole: role
         tooltipText: tipText
 
-        onActivated: root.activated()
+        onActivated: {
+            root.activated()
+            root.comboBoxActivated()
+        }
     }
 }

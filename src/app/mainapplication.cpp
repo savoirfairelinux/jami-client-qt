@@ -20,8 +20,6 @@
 #include "global.h"
 #include "qmlregister.h"
 #include "appsettingsmanager.h"
-#include "spellcheckdictionarymanager.h"
-#include "spellcheckhandler.h"
 #include "connectivitymonitor.h"
 #include "systemtray.h"
 #include "previewengine.h"
@@ -203,11 +201,6 @@ MainApplication::init()
 
     connectivityMonitor_ = new ConnectivityMonitor(this);
     systemTray_ = new SystemTray(settingsManager_, this);
-    spellCheckDictionaryManager_ = new SpellCheckDictionaryManager(settingsManager_,
-                                                                   connectivityMonitor_,
-                                                                   systemTray_,
-                                                                   this);
-    spellCheckHandler_ = new SpellCheckHandler(spellCheckDictionaryManager_, this);
     previewEngine_ = new PreviewEngine(connectivityMonitor_, this);
 
     // These should should be QueuedConnection to ensure that the
@@ -354,16 +347,16 @@ MainApplication::parseArguments()
     QCommandLineOption muteDaemonOption({"q", "quiet"}, "Mute daemon logging. (only if debug)");
     parser_.addOption(muteDaemonOption);
 
-#ifdef QT_DEBUG
-    // In debug mode, add an option to test a specific QML component via its name.
-    // e.g. ./jami --test AccountComboBox
+    // #ifdef QT_DEBUG
+    //  In debug mode, add an option to test a specific QML component via its name.
+    //  e.g. ./jami --test AccountComboBox
     parser_.addOption(QCommandLineOption("test", "Test a QML component via its name.", "uri"));
     // We may need to force the test window dimensions in the case that the component to test
     // does not specify its own dimensions and is dependent on parent/sibling dimensions.
     // e.g. ./jami --test AccountComboBox -w 200
     parser_.addOption(QCommandLineOption("width", "Width for the test window.", "width"));
     parser_.addOption(QCommandLineOption("height", "Height for the test window.", "height"));
-#endif
+    // #endif
 
     parser_.process(*this);
 
@@ -431,8 +424,6 @@ MainApplication::initQmlLayer()
                          lrcInstance_.get(),
                          systemTray_,
                          settingsManager_,
-                         spellCheckDictionaryManager_,
-                         spellCheckHandler_,
                          connectivityMonitor_,
                          previewEngine_,
                          &screenInfo_,
@@ -442,7 +433,7 @@ MainApplication::initQmlLayer()
     engine_->rootContext()->setContextProperty("crashReporter", crashReporter_);
 
     QUrl url = QStringLiteral("qrc:/MainApplicationWindow.qml");
-#ifdef QT_DEBUG
+    // #ifdef QT_DEBUG
     if (parser_.isSet("test")) {
         // List the QML files in the project source tree.
         const auto targetTestComponent = findResource(parser_.value("test"));
@@ -457,7 +448,7 @@ MainApplication::initQmlLayer()
         engine_->rootContext()->setContextProperty("testHeight", testHeight);
         url = QStringLiteral("qrc:/ComponentTestWindow.qml");
     }
-#endif
+    // #endif
     QObject::connect(
         engine_.get(),
         &QQmlApplicationEngine::objectCreationFailed,
