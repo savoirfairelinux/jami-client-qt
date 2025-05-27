@@ -37,15 +37,14 @@ BaseModalDialog {
     button2.onClicked: close()
 
     popupContent: ColumnLayout {
-
         id: passwordColumnLayout
         anchors.bottomMargin: 30
 
         Component.onCompleted: {
-            root.button1.clicked.connect(function() {
-                root.accepted(passwordConfirmEdit.dynamicText);
-                root.close();
-            });
+            root.button1.clicked.connect(function () {
+                    root.accepted(passwordConfirmEdit.dynamicText);
+                    root.close();
+                });
         }
 
         Text {
@@ -73,7 +72,7 @@ BaseModalDialog {
             KeyNavigation.down: KeyNavigation.up
 
             onDynamicTextChanged: {
-                button1.enabled = passwordEdit.dynamicText === passwordConfirmEdit.dynamicText && passwordEdit.dynamicText.length !== 0
+                button1.enabled = passwordEdit.dynamicText === passwordConfirmEdit.dynamicText && passwordEdit.dynamicText.length !== 0;
             }
         }
 
@@ -86,9 +85,10 @@ BaseModalDialog {
             Layout.topMargin: 20
             KeyNavigation.up: passwordEdit
             KeyNavigation.down: KeyNavigation.up
+            Accessible.description: JamiStrings.encryptDescription
 
             onDynamicTextChanged: {
-                button1.enabled = passwordEdit.dynamicText === passwordConfirmEdit.dynamicText && passwordEdit.dynamicText.length !== 0
+                button1.enabled = passwordEdit.dynamicText === passwordConfirmEdit.dynamicText && passwordEdit.dynamicText.length !== 0;
             }
         }
 
@@ -107,7 +107,7 @@ BaseModalDialog {
                 anchors.centerIn: parent
                 spacing: 10
 
-                ResponsiveImage{
+                ResponsiveImage {
                     Layout.fillWidth: true
                     source: JamiResources.outline_info_24dp_svg
                     fillMode: Image.PreserveAspectFit

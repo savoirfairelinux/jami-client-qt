@@ -18,7 +18,6 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
@@ -38,6 +37,10 @@ ListSelectionView {
 
     onPresented: LRCInstance.deselectConversation()
     leftPaneItem: viewCoordinator.getView("SidePanel", true)
+
+    Accessible.role: Accessible.Pane
+    Accessible.name: title
+    Accessible.description: JamiStrings.description
 
     property variant uiCustomization: CurrentAccount.uiCustomization
 
@@ -276,6 +279,9 @@ ListSelectionView {
                     anchors.horizontalCenter: parent.horizontalCenter
                     preferredWidth: textSize.width + 2 * JamiTheme.preferredMarginSize
                     text: JamiStrings.aboutJami
+
+                    Accessible.role: Accessible.Button
+                    Accessible.name: text
 
                     onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/AboutPopUp.qml")
                 }

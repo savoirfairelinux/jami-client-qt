@@ -86,6 +86,7 @@ BaseModalDialog {
 
         JamiPushButton {
             id: takePhotoButton
+            Accessible.name: objectName
 
             objectName: "takePhotoButton"
 
@@ -135,6 +136,8 @@ BaseModalDialog {
 
             height: buttonSize
             width: buttonSize
+
+            Accessible.name: objectName
 
             normalColor: "transparent"
             source: JamiResources.add_photo_alternate_black_24dp_svg
