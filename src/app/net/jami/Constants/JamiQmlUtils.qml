@@ -19,6 +19,7 @@
 pragma Singleton
 import QtQuick
 import net.jami.Adapters 1.1
+import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 
 Item {
@@ -94,9 +95,9 @@ Item {
     function getIsDonationBannerVisible() {
         // The banner is visible if the current date is after the date set in the settings and before the end date
         // And if the donation toggle is checked
-        const isVisible = UtilsAdapter.getAppValue(Settings.Key.IsDonationVisible);
-        const endDate = Date.parse(UtilsAdapter.getAppValue(Settings.Key.Donation2023EndDate2));
-        const startDate = Date.parse(UtilsAdapter.getAppValue(Settings.Key.Donation2023VisibleDate));
+        const isVisible = AppSettingsManager.settingsMap.IsDonationVisible;
+        const endDate = Date.parse(AppSettingsManager.settingsMap.Donation2023EndDate2);
+        const startDate = Date.parse(AppSettingsManager.settingsMap.Donation2023VisibleDate);
         const now = new Date();
         return isVisible && now < endDate && now >= startDate;
     }

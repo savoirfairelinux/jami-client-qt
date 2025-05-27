@@ -275,7 +275,7 @@ ItemDelegate {
         if (!interactive)
             return;
         ListView.view.model.select(index);
-        if (CurrentConversation.isSwarm && !CurrentConversation.isCoreDialog && !UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
+        if (CurrentConversation.isSwarm && !CurrentConversation.isCoreDialog && !AppSettingsManager.settingsMap.EnableExperimentalSwarm)
             return; // For now disable calls for swarm with multiple participants
         if (LRCInstance.currentAccountType === Profile.Type.SIP || !CurrentAccount.videoEnabled_Video)
             CallAdapter.placeAudioOnlyCall();

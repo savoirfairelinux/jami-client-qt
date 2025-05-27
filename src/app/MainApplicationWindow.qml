@@ -33,11 +33,11 @@ import QWindowKit
 ApplicationWindow {
     id: appWindow
 
-    readonly property bool useFrameless: UtilsAdapter.getAppValue(Settings.Key.UseFramelessWindow)
-    property bool isRTL: UtilsAdapter.isRTL
+    readonly property bool useFrameless: AppSettingsManager.settingsMap.UseFramelessWindow
+    property bool isRTL: AppSettingsManager.isRTL
     LayoutMirroring.enabled: isRTL
     LayoutMirroring.childrenInherit: isRTL
-    property var raiseWhenCalled: AppSettingsManager.getValue(Settings.RaiseWhenCalled)
+    property var raiseWhenCalled: AppSettingsManager.settingsMap.RaiseWhenCalled
 
     onActiveFocusItemChanged: {
         focusOverlay.margin = -5;
@@ -111,7 +111,7 @@ ApplicationWindow {
     function close(force = false) {
         // If we're in the onboarding wizard or 'MinimizeOnClose'
         // is set, then we can quit
-        var minimizeToTray = UtilsAdapter.getAppValue(Settings.MinimizeOnClose) && UtilsAdapter.isSystemTrayIconVisible();
+        var minimizeToTray = AppSettingsManager.settingsMap.MinimizeOnClose && UtilsAdapter.isSystemTrayIconVisible();
         if (force || !minimizeToTray || !UtilsAdapter.getAccountListSize()) {
             Qt.quit();
         } else {
@@ -181,7 +181,7 @@ ApplicationWindow {
 
         // Quiet check for updates on start if set to.
         if (Qt.platform.os.toString() === "windows") {
-            if (UtilsAdapter.getAppValue(Settings.AutoUpdate)) {
+            if (AppSettingsManager.settingsMap.AutoUpdate) {
                 AppVersionManager.checkForUpdates(true);
                 AppVersionManager.setAutoUpdateCheck(true);
             }
@@ -289,13 +289,6 @@ ApplicationWindow {
             if (UtilsAdapter.getAccountListSize() === 0) {
                 viewCoordinator.present("WizardView");
             }
-        }
-    }
-
-     Connections {
-        target: UtilsAdapter
-        function onRaiseWhenCalled() {
-            raiseWhenCalled = AppSettingsManager.getValue(Settings.RaiseWhenCalled);
         }
     }
 

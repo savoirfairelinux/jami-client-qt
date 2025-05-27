@@ -42,7 +42,7 @@ ApplicationWindow {
     // WARNING: The following currently must be maintained in tandem with MainApplicationWindow.qml
     // Used to manage full screen mode and save/restore window geometry.
     readonly property bool useFrameless: false
-    property bool isRTL: UtilsAdapter.isRTL
+    property bool isRTL: AppSettingsManager.isRTL
     LayoutMirroring.enabled: isRTL
     LayoutMirroring.childrenInherit: isRTL
     property LayoutManager layoutManager: LayoutManager {
