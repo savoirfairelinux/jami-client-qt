@@ -19,16 +19,11 @@
 
 #pragma once
 
-#include "lrcinstance.h"
-#include "qmladapterbase.h"
-#include "previewengine.h"
-
 #include <QTextCodec>
 #include <QString>
 #include <QStringList>
 #include <QDebug>
 #include <QObject>
-#include <string>
 
 #include <hunspell/hunspell.hxx>
 
@@ -40,7 +35,7 @@ class SpellChecker : public QObject
 public:
     explicit SpellChecker();
 
-    void replaceDictionary(const QString& dictionaryPath);
+    bool replaceDictionary(const QString& dictionaryPath);
 
     Q_INVOKABLE bool spell(const QString& word);
     Q_INVOKABLE QStringList suggest(const QString& word);
@@ -58,7 +53,10 @@ public:
 
 private:
     void put_word(const QString& word);
+
     std::unique_ptr<Hunspell> hunspell_;
+
+    QString currentDictionaryPath_;
     QString encoding_;
     QTextCodec* codec_;
 };

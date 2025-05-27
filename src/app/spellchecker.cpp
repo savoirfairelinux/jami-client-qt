@@ -65,9 +65,13 @@ SpellChecker::put_word(const QString& word)
     hunspell_->add(codec_->fromUnicode(word).constData());
 }
 
-void
+bool
 SpellChecker::replaceDictionary(const QString& dictionaryPath)
 {
+    if (dictionaryPath == currentDictionaryPath_) {
+        return false;
+    }
+
     QString dictFile = dictionaryPath + ".dic";
     QString affixFile = dictionaryPath + ".aff";
     QByteArray dictFilePath = dictFile.toLocal8Bit();
@@ -89,6 +93,9 @@ SpellChecker::replaceDictionary(const QString& dictionaryPath)
     }
 
     codec_ = QTextCodec::codecForName(this->encoding_.toLatin1().constData());
+
+    currentDictionaryPath_ = dictionaryPath;
+    return true;
 }
 
 QList<SpellChecker::WordInfo>
