@@ -135,9 +135,15 @@ Rectangle {
                     id: usernameEdit
                     accountId: ""
 
+                    Accessible.role: Accessible.EditableText
+                    Accessible.name: invalidLabel.text
+
                     icon: PushButton {
                         id: infoBox
                         z: 1
+
+                        Accessible.role: Accessible.Label
+                        Accessible.name: textInfo.text
 
                         normalColor: "transparent"
                         imageColor: infoBox.checked ? JamiTheme.inviteHoverColor : JamiTheme.buttonTintedBlue
@@ -273,6 +279,7 @@ Rectangle {
                         font.capitalization: Font.AllUppercase
                         text: joinJamiButton.text
                     }
+                    Accessible.description: invalidLabel.text
 
                     objectName: "joinJamiButton"
 
@@ -371,6 +378,10 @@ Rectangle {
         imageContainerWidth: 20
         source: JamiResources.ic_arrow_back_24dp_svg
 
+        Accessible.role: Accessible.Button
+        Accessible.name: id
+        Accessible.description: JamiStrings.backButtonExplanation
+
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.margins: JamiTheme.wizardViewPageBackButtonMargins
@@ -396,6 +407,10 @@ Rectangle {
 
         preferredSize: 36
         checkedImageColor: JamiTheme.chatviewButtonColor
+
+        Accessible.role: Accessible.Button
+        Accessible.name: id
+        Accessible.description: JamiStrings.adviceBoxExplanation
 
         anchors.right: parent.right
         anchors.top: parent.top
