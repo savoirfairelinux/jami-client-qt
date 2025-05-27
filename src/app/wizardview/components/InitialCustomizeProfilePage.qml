@@ -38,6 +38,9 @@ Rectangle {
     signal showThisPage
 
     color: JamiTheme.secondaryBackgroundColor
+    Accessible.role: Accessible.Pane
+    Accessible.name: joinJami.text
+    Accessible.description: JamiStrings.customizeAccountDescription
 
     Connections {
         target: WizardViewStepModel
@@ -132,6 +135,9 @@ Rectangle {
                             KeyNavigation.tab: displayNameLineEdit
                             KeyNavigation.right: KeyNavigation.tab
                             KeyNavigation.down: saveProfileButton
+                            Accessible.role: Accessible.Button
+                            Accessible.name: JamiStrings.selectImage
+                            Accessible.description: JamiStrings.customizeOptional
 
                             anchors.centerIn: parent
 
@@ -279,6 +285,10 @@ Rectangle {
         }
 
         objectName: "createAccountPageBackButton"
+
+        Accessible.role: Accessible.Button
+        Accessible.name: JamiStrings.backButton
+        Accessible.description: JamiStrings.backButtonExplanation
 
         preferredSize: 36
         imageContainerWidth: 20
