@@ -26,6 +26,10 @@ BaseModalDialog {
     title: JamiStrings.goodToKnow
     signal accepted
 
+    KeyNavigation.tab: info
+    KeyNavigation.backtab: customizeInfo
+    KeyNavigation.down: KeyNavigation.tab
+
     onClosed: accepted()
 
     popupContent: Column {
@@ -40,30 +44,41 @@ BaseModalDialog {
             title: JamiStrings.local
             description: JamiStrings.localAccount
             icoColor: JamiTheme.wizardIconColor
+            KeyNavigation.tab: usernameInfo
+            KeyNavigation.backtab: closeButton
         }
 
         InfoBox {
+            id: usernameInfo
             width: parent.width
             icoSource: JamiResources.assignment_ind_black_24dp_svg
             title: JamiStrings.username
             description: JamiStrings.usernameRecommened
             icoColor: JamiTheme.wizardIconColor
+            KeyNavigation.tab: passwordInfo
+            KeyNavigation.backtab: info
         }
 
         InfoBox {
+            id: passwordInfo
             width: parent.width
             icoSource: JamiResources.lock_svg
             title: JamiStrings.encrypt
             description: JamiStrings.passwordOptional
             icoColor: JamiTheme.wizardIconColor
+            KeyNavigation.tab: customizeInfo
+            KeyNavigation.backtab: usernameInfo
         }
 
         InfoBox {
+            id: customizeInfo
             width: parent.width
             icoSource: JamiResources.brush_black_24dp_svg
             title: JamiStrings.customize
             description: JamiStrings.customizeOptional
             icoColor: JamiTheme.wizardIconColor
+            KeyNavigation.tab: closeButton
+            KeyNavigation.backtab: passwordInfo
         }
     }
 }

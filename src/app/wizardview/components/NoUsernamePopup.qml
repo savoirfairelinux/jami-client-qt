@@ -51,13 +51,16 @@ BaseModalDialog {
     button1.onClicked: root.close()
 
     popupContent: Text {
-                width: root.width - 2 * root.popupMargins
-                font.pixelSize: JamiTheme.popuptextSize
+        Accessible.role: Accessible.Dialog
+        Accessible.name: title
+        Accessible.description: JamiStrings.joinJamiNoPassword
+        width: root.width - 2 * root.popupMargins
+        font.pixelSize: JamiTheme.popuptextSize
 
-                lineHeight: JamiTheme.wizardViewTextLineHeight
-                wrapMode: Text.WordWrap
+        lineHeight: JamiTheme.wizardViewTextLineHeight
+        wrapMode: Text.WordWrap
 
-                color: JamiTheme.textColor
-                text: JamiStrings.joinJamiNoPassword
-        }
+        color: JamiTheme.textColor
+        text: JamiStrings.joinJamiNoPassword
     }
+}
