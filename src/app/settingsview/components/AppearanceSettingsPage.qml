@@ -226,14 +226,6 @@ SettingsPageBase {
                     }
                 }
             }
-
-            Connections {
-                target: UtilsAdapter
-
-                function onChangeFontSize() {
-                    zoomSpinBox.value = Math.round(AppSettingsManager.settingsMap.BaseZoom * 100.0);
-                }
-            }
         }
 
         ToggleSwitch {
@@ -262,7 +254,6 @@ SettingsPageBase {
             preferredWidth: defaultSettingsTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
 
             onClicked: {
-                zoomSpinBox.value = Math.round(AppSettingsManager.getDefault(Settings.BaseZoom) * 100.0);
                 AppSettingsManager.setToDefault(Settings.Key.AppTheme);
                 AppSettingsManager.setToDefault(Settings.Key.BaseZoom);
                 themeSettings.isComplete();
