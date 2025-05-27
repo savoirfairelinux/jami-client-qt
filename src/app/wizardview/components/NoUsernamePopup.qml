@@ -37,6 +37,9 @@ BaseModalDialog {
     visible: false
     focus: true
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+    Accessible.role: Accessible.Dialog
+    Accessible.name: title
+    Accessible.description: JamiStrings.joinJamiNoPassword
 
     button1.text: JamiStrings.chooseAUsername
     button1Role: DialogButtonBox.NoRole
@@ -51,13 +54,13 @@ BaseModalDialog {
     button1.onClicked: root.close()
 
     popupContent: Text {
-                width: root.width - 2 * root.popupMargins
-                font.pixelSize: JamiTheme.popuptextSize
+        width: root.width - 2 * root.popupMargins
+        font.pixelSize: JamiTheme.popuptextSize
 
-                lineHeight: JamiTheme.wizardViewTextLineHeight
-                wrapMode: Text.WordWrap
+        lineHeight: JamiTheme.wizardViewTextLineHeight
+        wrapMode: Text.WordWrap
 
-                color: JamiTheme.textColor
-                text: JamiStrings.joinJamiNoPassword
-        }
+        color: JamiTheme.textColor
+        text: JamiStrings.joinJamiNoPassword
     }
+}
