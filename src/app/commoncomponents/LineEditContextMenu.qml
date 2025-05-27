@@ -82,16 +82,26 @@ ContextMenuAutoLoader {
             onClicked: {
                 spellLanguageContextMenu.openMenu();
             }
+        },
+        // A button to open the dictionary install view as a popup
+        GeneralMenuItem {
+            id: installDictionary
+            itemName: qsTr("Manage Dictionaries")
+            hasIcon: false
+            onClicked: {
+                viewCoordinator
+                    .presentDialog(appWindow, "commoncomponents/ManageDictionariesDialog.qml");
+            }
         }
     ]
 
     ListView {
         model: ListModel {
-            id: dynamicModel
+            id: suggestionListModel
         }
 
         Instantiator {
-            model: dynamicModel
+            model: suggestionListModel
             delegate: GeneralMenuItem {
                 id: suggestion
 
@@ -116,7 +126,7 @@ ContextMenuAutoLoader {
     }
 
     function removeItems() {
-        dynamicModel.remove(0, suggestionList.length);
+        suggestionListModel.clear();
         suggestionList.length = 0;
     }
 
@@ -124,7 +134,7 @@ ContextMenuAutoLoader {
         menuItemsLength = menuItems.length; // Keep initial number of items for easier removal
         suggestionList = wordList;
         for (var i = 0; i < suggestionList.length; ++i) {
-            dynamicModel.append({
+            suggestionListModel.append({
                     "name": suggestionList[i]
                 });
         }
@@ -153,7 +163,7 @@ ContextMenuAutoLoader {
             lineEditObj.select(selectionStart, selectionEnd);
         }
         function onClosed() {
-            if (!suggestionList || suggestionList.length == 0) {
+            if (!suggestionList || suggestionList.length === 0) {
                 return;
             }
             removeItems();
