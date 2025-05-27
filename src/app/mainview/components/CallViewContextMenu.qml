@@ -146,8 +146,8 @@ Popup {
                             }
                             break;
                         case JamiStrings.mirrorLocalVideo:
-                            UtilsAdapter.setAppValue(Settings.FlipSelf, !UtilsAdapter.getAppValue(Settings.FlipSelf));
-                            CurrentCall.flipSelf = UtilsAdapter.getAppValue(Settings.FlipSelf);
+                            AppSettingsManager.settingsMap.FlipSelf = !AppSettingsManager.settingsMap.FlipSelf;
+                            CurrentCall.flipSelf = AppSettingsManager.settingsMap.FlipSelf;
                             break;
                         }
                         root.close();

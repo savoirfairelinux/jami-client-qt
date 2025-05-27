@@ -427,7 +427,7 @@ Rectangle {
             Component.onCompleted: {
                 var supported = UtilsAdapter.supportedLang();
                 var keys = Object.keys(supported);
-                var currentKey = UtilsAdapter.getAppValue(Settings.Key.LANG);
+                var currentKey = AppSettingsManager.settingsMap.LANG;
                 for (var i = 0; i < keys.length; ++i) {
                     append({
                             "textDisplay": supported[keys[i]],
@@ -443,7 +443,7 @@ Rectangle {
         role: "textDisplay"
 
         onActivated: {
-            UtilsAdapter.setAppValue(Settings.Key.LANG, comboModel.get(modelIndex).id);
+            AppSettingsManager.settingsMap.LANG = comboModel.get(modelIndex).id
         }
     }
 }
