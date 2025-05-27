@@ -32,6 +32,7 @@ RowLayout {
     property alias fontPointSize: comboBoxOfLayout.font.pointSize
     property alias modelIndex: comboBoxOfLayout.currentIndex
     property alias modelSize: comboBoxOfLayout.count
+    property alias comboBox: comboBoxOfLayout
 
     property int widthOfComboBox: 50
 
@@ -53,6 +54,7 @@ RowLayout {
     SettingParaCombobox {
         id: comboBoxOfLayout
 
+        enabled: root.enabled
         Layout.preferredWidth: widthOfComboBox
 
         font.pointSize: JamiTheme.buttonFontSize

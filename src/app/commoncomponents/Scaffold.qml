@@ -23,7 +23,7 @@ import QtQuick.Layouts
 Rectangle {
     property alias name: label.text
     property bool stretchParent: false
-    property string tag: parent.toString()
+    property string tag: parent.toString() + " (w:" + width + ", h: " + height + ")"
     signal moveX(real dx)
     signal moveY(real dy)
     property real ox: 0
