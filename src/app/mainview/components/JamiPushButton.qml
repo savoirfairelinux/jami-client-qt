@@ -25,4 +25,6 @@ PushButton {
 
     normalColor: JamiTheme.chatviewBgColor
     imageColor: hovered ? JamiTheme.chatviewButtonColor : JamiTheme.chatViewFooterImgColor
+    Accessible.role: Accessible.Button
+    Accessible.description: toolTipText
 }
