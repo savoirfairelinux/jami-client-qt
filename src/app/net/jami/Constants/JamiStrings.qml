@@ -915,9 +915,8 @@ Item {
     property string checkSpelling: qsTr("Check spelling while typing")
     property string textLanguage: qsTr("Text language")
     property string spellchecking: qsTr("Spellchecking")
-    property string availableTextLanguages: qsTr("Install new text languages")
-    property string dictionaryDownloadSuccessfully: qsTr("Dictionary downloaded successfully.")
-    property string downloadDictionaryFailed: qsTr("Could not download dictionary")
-    property string dictionarySetAsCurrent: qsTr("Dictionary has been set as the current spell checking language")
-    property string checkInternetAndRetry: qsTr("Please check your internet connection and try again")
+    property string searchAvailableTextLanguages: qsTr("Search for available text languages")
+    property string noDictionariesFoundFor: qsTr("No dictionaries found for '%1'")
+    property string noDictionariesAvailable: qsTr("No dictionaries available")
+    property string manageDictionaries: qsTr("Manage Dictionaries")
 }

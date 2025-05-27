@@ -20,8 +20,6 @@
 #include "global.h"
 #include "qmlregister.h"
 #include "appsettingsmanager.h"
-#include "spellcheckdictionarymanager.h"
-#include "spellcheckhandler.h"
 #include "connectivitymonitor.h"
 #include "systemtray.h"
 #include "previewengine.h"
@@ -203,11 +201,6 @@ MainApplication::init()
 
     connectivityMonitor_ = new ConnectivityMonitor(this);
     systemTray_ = new SystemTray(settingsManager_, this);
-    spellCheckDictionaryManager_ = new SpellCheckDictionaryManager(settingsManager_,
-                                                                   connectivityMonitor_,
-                                                                   systemTray_,
-                                                                   this);
-    spellCheckHandler_ = new SpellCheckHandler(spellCheckDictionaryManager_, this);
     previewEngine_ = new PreviewEngine(connectivityMonitor_, this);
 
     // These should should be QueuedConnection to ensure that the
@@ -355,8 +348,8 @@ MainApplication::parseArguments()
     parser_.addOption(muteDaemonOption);
 
 #ifdef QT_DEBUG
-    // In debug mode, add an option to test a specific QML component via its name.
-    // e.g. ./jami --test AccountComboBox
+    //  In debug mode, add an option to test a specific QML component via its name.
+    //  e.g. ./jami --test AccountComboBox
     parser_.addOption(QCommandLineOption("test", "Test a QML component via its name.", "uri"));
     // We may need to force the test window dimensions in the case that the component to test
     // does not specify its own dimensions and is dependent on parent/sibling dimensions.
@@ -431,8 +424,6 @@ MainApplication::initQmlLayer()
                          lrcInstance_.get(),
                          systemTray_,
                          settingsManager_,
-                         spellCheckDictionaryManager_,
-                         spellCheckHandler_,
                          connectivityMonitor_,
                          previewEngine_,
                          &screenInfo_,
