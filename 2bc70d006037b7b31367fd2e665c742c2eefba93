@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9aa786ca_0e2b8f0f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-28T18:07:58Z",
+      "side": 1,
+      "message": "As with previous patch, solid but might be a few adjustments remaining",
+      "revId": "2bc70d006037b7b31367fd2e665c742c2eefba93",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3cdc6a2_63970113",
+        "filename": "src/app/commoncomponents/DualPaneView.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-28T18:07:58Z",
+      "side": 1,
+      "message": "are there any change in this file that are not formatting ?",
+      "range": {
+        "startLine": 44,
+        "startChar": 8,
+        "endLine": 50,
+        "endChar": 5
+      },
+      "revId": "2bc70d006037b7b31367fd2e665c742c2eefba93",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2600b4e3_89450895",
+        "filename": "src/app/mainview/components/MessageBarTextArea.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-28T18:07:58Z",
+      "side": 1,
+      "message": "will not be needed anymore. Maybe wait until the new spellcheck merge to fix",
+      "range": {
+        "startLine": 165,
+        "startChar": 16,
+        "endLine": 165,
+        "endChar": 32
+      },
+      "revId": "2bc70d006037b7b31367fd2e665c742c2eefba93",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e76eaf5c_e8bd3627",
+        "filename": "src/app/net/jami/Constants/JamiTheme.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-28T18:07:58Z",
+      "side": 1,
+      "message": "Still needed ?",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 35,
+        "endChar": 21
+      },
+      "revId": "2bc70d006037b7b31367fd2e665c742c2eefba93",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc03ec9b_2c86a633",
+        "filename": "src/app/settingsview/components/SystemSettingsPage.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-28T18:07:58Z",
+      "side": 1,
+      "message": "will be obsolete with spellcheck merge",
+      "revId": "2bc70d006037b7b31367fd2e665c742c2eefba93",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
