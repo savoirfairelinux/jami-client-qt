@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64ba8cc2_237342f0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-28T18:01:53Z",
+      "side": 1,
+      "message": "Overall very solid but I still have a few questions",
+      "revId": "7458d1af425a649a622c402c814a34d8ee312194",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7ca1e9d_55924efb",
+        "filename": "src/app/MainApplicationWindow.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-28T18:01:53Z",
+      "side": 1,
+      "message": "Can be deleted ?",
+      "range": {
+        "startLine": 298,
+        "startChar": 12,
+        "endLine": 298,
+        "endChar": 76
+      },
+      "revId": "7458d1af425a649a622c402c814a34d8ee312194",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1848657_ed34cb87",
+        "filename": "src/app/mainview/components/CallActionBar.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-28T18:01:53Z",
+      "side": 1,
+      "message": "Could be changed to automatically mirror settings value ?",
+      "range": {
+        "startLine": 179,
+        "startChar": 25,
+        "endLine": 181,
+        "endChar": 48
+      },
+      "revId": "7458d1af425a649a622c402c814a34d8ee312194",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0371b58_b55fcdfb",
+        "filename": "src/app/mainview/components/CallActionBar.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-28T18:01:53Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 196,
+        "startChar": 19,
+        "endLine": 196,
+        "endChar": 49
+      },
+      "revId": "7458d1af425a649a622c402c814a34d8ee312194",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e79af391_e445b1dc",
+        "filename": "src/app/mainview/components/MessageBar.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-28T18:01:53Z",
+      "side": 1,
+      "message": "Does that line still make sens now that it is changed automaticly ?",
+      "range": {
+        "startLine": 245,
+        "startChar": 25,
+        "endLine": 245,
+        "endChar": 84
+      },
+      "revId": "7458d1af425a649a622c402c814a34d8ee312194",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c0ba175_bcf4db77",
+        "filename": "src/app/mainview/components/ParticipantsLayer.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-05-28T18:01:53Z",
+      "side": 1,
+      "message": "should this be changed for this refactoring. Especially regarding the switch in callactionbar.qml changing those values",
+      "range": {
+        "startLine": 40,
+        "startChar": 7,
+        "endLine": 43,
+        "endChar": 5
+      },
+      "revId": "7458d1af425a649a622c402c814a34d8ee312194",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
