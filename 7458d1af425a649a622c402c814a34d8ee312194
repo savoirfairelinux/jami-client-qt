@@ -112,6 +112,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "76bb0907_71720737",
+        "filename": "src/app/mainview/components/CallActionBar.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1131
+      },
+      "writtenOn": "2025-05-28T19:12:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8acde854_8fe758d4",
+      "range": {
+        "startLine": 179,
+        "startChar": 25,
+        "endLine": 181,
+        "endChar": 48
+      },
+      "revId": "7458d1af425a649a622c402c814a34d8ee312194",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e0371b58_b55fcdfb",
@@ -196,6 +220,30 @@
       "side": 1,
       "message": "Yes, the automatic changes the QMLPropertyMap introduce work the other way : when a value in the map gets updated, all qml elements that are binded to the map value will get refreshed\nex. with : \n\n```someProperty: AppSettingsmanager.settingsMap.someSetting```\n\nsomeProperty will mirror the settings value\n\nSo we still need to populate the settingsMap with new values when needed",
       "parentUuid": "e79af391_e445b1dc",
+      "range": {
+        "startLine": 245,
+        "startChar": 25,
+        "endLine": 245,
+        "endChar": 84
+      },
+      "revId": "7458d1af425a649a622c402c814a34d8ee312194",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "daaca37a_2ff8ca89",
+        "filename": "src/app/mainview/components/MessageBar.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1131
+      },
+      "writtenOn": "2025-05-28T19:12:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ddae82d4_2c10acfd",
       "range": {
         "startLine": 245,
         "startChar": 25,
