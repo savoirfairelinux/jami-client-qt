@@ -65,6 +65,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "36cf6137_9b60d5c9",
+        "filename": "src/app/commoncomponents/DualPaneView.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1131
+      },
+      "writtenOn": "2025-05-28T19:13:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e6815b5_2c19b612",
+      "range": {
+        "startLine": 44,
+        "startChar": 8,
+        "endLine": 50,
+        "endChar": 5
+      },
+      "revId": "2bc70d006037b7b31367fd2e665c742c2eefba93",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2600b4e3_89450895",
@@ -149,6 +173,30 @@
       "side": 1,
       "message": "Yeah sadly, the onPropertyChanged is needed if we want to add some logic when a value from the property map changes (we\u0027re hooking up to the auto-generated onValueChanged signal from the QmlPropertyMap), and there\u0027s some logic in ```useApplicationTheme``` needed to set the darkTheme property",
       "parentUuid": "e76eaf5c_e8bd3627",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 35,
+        "endChar": 21
+      },
+      "revId": "2bc70d006037b7b31367fd2e665c742c2eefba93",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8670e775_88a49839",
+        "filename": "src/app/net/jami/Constants/JamiTheme.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1131
+      },
+      "writtenOn": "2025-05-28T19:13:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cbeaf787_b2a1dff8",
       "range": {
         "startLine": 35,
         "startChar": 4,
