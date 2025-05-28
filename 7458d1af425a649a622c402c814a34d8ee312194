@@ -41,6 +41,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3eb714c7_97b843b9",
+        "filename": "src/app/MainApplicationWindow.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1131
+      },
+      "writtenOn": "2025-05-28T18:44:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7ca1e9d_55924efb",
+      "range": {
+        "startLine": 298,
+        "startChar": 12,
+        "endLine": 298,
+        "endChar": 76
+      },
+      "revId": "7458d1af425a649a622c402c814a34d8ee312194",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d1848657_ed34cb87",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-05-28T18:01:53Z",
       "side": 1,
       "message": "Could be changed to automatically mirror settings value ?",
+      "range": {
+        "startLine": 179,
+        "startChar": 25,
+        "endLine": 181,
+        "endChar": 48
+      },
+      "revId": "7458d1af425a649a622c402c814a34d8ee312194",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8acde854_8fe758d4",
+        "filename": "src/app/mainview/components/CallActionBar.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1131
+      },
+      "writtenOn": "2025-05-28T18:44:13Z",
+      "side": 1,
+      "message": "I don\u0027t think it can, don\u0027t know much about this feature but if we remove this, the setting will not get updated",
+      "parentUuid": "d1848657_ed34cb87",
       "range": {
         "startLine": 179,
         "startChar": 25,
@@ -89,6 +137,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "99fe3cc2_a2091e74",
+        "filename": "src/app/mainview/components/CallActionBar.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1131
+      },
+      "writtenOn": "2025-05-28T18:44:13Z",
+      "side": 1,
+      "message": "Same as above, and I don\u0027t think there\u0027s a way to automatically mirror the value of AppSettingsManager.settingsMap.HideSpectators in CurrentCall.hideSpectators",
+      "parentUuid": "e0371b58_b55fcdfb",
+      "range": {
+        "startLine": 196,
+        "startChar": 19,
+        "endLine": 196,
+        "endChar": 49
+      },
+      "revId": "7458d1af425a649a622c402c814a34d8ee312194",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e79af391_e445b1dc",
         "filename": "src/app/mainview/components/MessageBar.qml",
         "patchSetId": 4
@@ -112,6 +184,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ddae82d4_2c10acfd",
+        "filename": "src/app/mainview/components/MessageBar.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1131
+      },
+      "writtenOn": "2025-05-28T18:44:13Z",
+      "side": 1,
+      "message": "Yes, the automatic changes the QMLPropertyMap introduce work the other way : when a value in the map gets updated, all qml elements that are binded to the map value will get refreshed\nex. with : \n\n```someProperty: AppSettingsmanager.settingsMap.someSetting```\n\nsomeProperty will mirror the settings value\n\nSo we still need to populate the settingsMap with new values when needed",
+      "parentUuid": "e79af391_e445b1dc",
+      "range": {
+        "startLine": 245,
+        "startChar": 25,
+        "endLine": 245,
+        "endChar": 84
+      },
+      "revId": "7458d1af425a649a622c402c814a34d8ee312194",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2c0ba175_bcf4db77",
         "filename": "src/app/mainview/components/ParticipantsLayer.qml",
         "patchSetId": 4
@@ -123,6 +219,30 @@
       "writtenOn": "2025-05-28T18:01:53Z",
       "side": 1,
       "message": "should this be changed for this refactoring. Especially regarding the switch in callactionbar.qml changing those values",
+      "range": {
+        "startLine": 40,
+        "startChar": 7,
+        "endLine": 43,
+        "endChar": 5
+      },
+      "revId": "7458d1af425a649a622c402c814a34d8ee312194",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b2cafac_b4f001b5",
+        "filename": "src/app/mainview/components/ParticipantsLayer.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1131
+      },
+      "writtenOn": "2025-05-28T18:44:13Z",
+      "side": 1,
+      "message": "I think, as above, that we need this unless we find a way to sync the CurrentCall properties to the settingsMap values. \nAs that settingsmap is intended to notify QML of value changes, not to sync two cpp objects, I think we would need to hook to the onValueChanged signal of the settingsMap if we wanted to react in cpp to those value changes",
+      "parentUuid": "2c0ba175_bcf4db77",
       "range": {
         "startLine": 40,
         "startChar": 7,
