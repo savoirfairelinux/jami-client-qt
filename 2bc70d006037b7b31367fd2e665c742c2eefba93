@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7e6815b5_2c19b612",
+        "filename": "src/app/commoncomponents/DualPaneView.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1131
+      },
+      "writtenOn": "2025-05-28T19:01:38Z",
+      "side": 1,
+      "message": "No you\u0027re right, I have an unidentified linter setup somewhere on my machine that runs on QML files when it shouldn\u0027t, I did not mean to push that haha",
+      "parentUuid": "b3cdc6a2_63970113",
+      "range": {
+        "startLine": 44,
+        "startChar": 8,
+        "endLine": 50,
+        "endChar": 5
+      },
+      "revId": "2bc70d006037b7b31367fd2e665c742c2eefba93",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2600b4e3_89450895",
         "filename": "src/app/mainview/components/MessageBarTextArea.qml",
         "patchSetId": 5
@@ -54,6 +78,30 @@
       "writtenOn": "2025-05-28T18:07:58Z",
       "side": 1,
       "message": "will not be needed anymore. Maybe wait until the new spellcheck merge to fix",
+      "range": {
+        "startLine": 165,
+        "startChar": 16,
+        "endLine": 165,
+        "endChar": 32
+      },
+      "revId": "2bc70d006037b7b31367fd2e665c742c2eefba93",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "232b5ecc_534b8230",
+        "filename": "src/app/mainview/components/MessageBarTextArea.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1131
+      },
+      "writtenOn": "2025-05-28T19:01:38Z",
+      "side": 1,
+      "message": "Yeah, will rebase these changes on the spellcheck ones later",
+      "parentUuid": "2600b4e3_89450895",
       "range": {
         "startLine": 165,
         "startChar": 16,
@@ -89,6 +137,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cbeaf787_b2a1dff8",
+        "filename": "src/app/net/jami/Constants/JamiTheme.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1131
+      },
+      "writtenOn": "2025-05-28T19:01:38Z",
+      "side": 1,
+      "message": "Yeah sadly, the onPropertyChanged is needed if we want to add some logic when a value from the property map changes (we\u0027re hooking up to the auto-generated onValueChanged signal from the QmlPropertyMap), and there\u0027s some logic in ```useApplicationTheme``` needed to set the darkTheme property",
+      "parentUuid": "e76eaf5c_e8bd3627",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 35,
+        "endChar": 21
+      },
+      "revId": "2bc70d006037b7b31367fd2e665c742c2eefba93",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cc03ec9b_2c86a633",
         "filename": "src/app/settingsview/components/SystemSettingsPage.qml",
         "patchSetId": 5
@@ -100,6 +172,24 @@
       "writtenOn": "2025-05-28T18:07:58Z",
       "side": 1,
       "message": "will be obsolete with spellcheck merge",
+      "revId": "2bc70d006037b7b31367fd2e665c742c2eefba93",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72371eb1_6f89fca8",
+        "filename": "src/app/settingsview/components/SystemSettingsPage.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1131
+      },
+      "writtenOn": "2025-05-28T19:01:38Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "cc03ec9b_2c86a633",
       "revId": "2bc70d006037b7b31367fd2e665c742c2eefba93",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
