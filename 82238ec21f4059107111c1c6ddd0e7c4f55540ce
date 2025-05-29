@@ -16,6 +16,24 @@
       "message": "Unless there are further changes, can you please merge this patch?\n\nIs it okay that once this patch has been merged, another patch will be created with the \"JAMS\" to \"management server\" string changes?\n\nThank you",
       "revId": "82238ec21f4059107111c1c6ddd0e7c4f55540ce",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "984f5c93_fdc98cd4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 31
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-05-29T23:05:42Z",
+      "side": 1,
+      "message": "Done at the https://review.jami.net/c/jami-client-qt/+/31280 patch.",
+      "parentUuid": "c81bb161_73055b4b",
+      "revId": "82238ec21f4059107111c1c6ddd0e7c4f55540ce",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
