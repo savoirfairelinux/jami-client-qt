@@ -4,11 +4,24 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV QT_QUICK_BACKEND software
 ENV QT_QPA_PLATFORM offscreen
 
-RUN apt-get clean
 RUN apt-get update && \
-    apt-get install -y devscripts equivs
+    apt-get install -y --no-install-recommends ca-certificates && \
+    rm -rf /var/lib/apt/lists/*
 
-RUN apt install gnupg dirmngr ca-certificates curl --no-install-recommends
+# Use only the custom Savoir-faire Linux Ubuntu mirror
+RUN rm -f /etc/apt/sources.list /etc/apt/sources.list.d/* && \
+    echo "deb http://gpl.savoirfairelinux.net/pub/mirrors/ubuntu jammy main restricted universe multiverse" > /etc/apt/sources.list && \
+    echo "deb http://gpl.savoirfairelinux.net/pub/mirrors/ubuntu jammy-updates main restricted universe multiverse" >> /etc/apt/sources.list && \
+    echo "deb http://gpl.savoirfairelinux.net/pub/mirrors/ubuntu jammy-security main restricted universe multiverse" >> /etc/apt/sources.list
+
+RUN apt-get update && \
+    apt-get install -y \
+        devscripts \
+        equivs \
+        gnupg \
+        dirmngr \
+        curl
+
 RUN curl -s https://dl.jami.net/public-key.gpg | tee /usr/share/keyrings/jami-archive-keyring.gpg > /dev/null
 RUN sh -c "echo 'deb [signed-by=/usr/share/keyrings/jami-archive-keyring.gpg] https://dl.jami.net/internal/ubuntu_22.04/ jami main' > /etc/apt/sources.list.d/jami.list"
 RUN apt-get update && apt-get install libqt-jami -y
@@ -69,7 +82,8 @@ RUN apt-get install -y pandoc \
         libcppunit-dev \
         googletest \
         libgtest-dev \
-        wget
+        wget && \
+        rm -rf /var/lib/apt/lists/*
 
 # Install a recent version of CMake
 ADD extras/packaging/gnu-linux/scripts/install-cmake.sh /opt/install-cmake.sh
