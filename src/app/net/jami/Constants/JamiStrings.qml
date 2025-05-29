@@ -88,7 +88,7 @@ Item {
     // AccountMigrationDialog
     property string authenticationRequired: qsTr("Authentication required")
     property string migrationReason: qsTr("The session has expired or has been revoked on this device. Please enter the account password.")
-    property string jamsServer: qsTr("JAMS server")
+    property string jamsServer: qsTr("Management server")
     property string authenticate: qsTr("Authenticate")
     property string deleteAccount: qsTr("Delete account")
     property string inProgress: qsTr("In progress…")
@@ -395,9 +395,9 @@ Item {
     property string typeIndicatorAnd: qsTr("%1 and %2")
 
     // ConnectToAccountManager
-    property string enterJAMSURL: qsTr("Enter the Jami Account Management Server (JAMS) URL")
-    property string jamiManagementServerURL: qsTr("Jami Account Management Server URL")
-    property string jamsCredentials: qsTr("Enter JAMS credentials")
+    property string enterJAMSURL: qsTr("Enter the management server URL")
+    property string jamiManagementServerURL: qsTr("Management server URL")
+    property string jamsCredentials: qsTr("Enter management server credentials")
     property string connect: qsTr("Connect")
     property string creatingAccount: qsTr("Creating account…")
 
@@ -710,8 +710,8 @@ Item {
     property string advancedFeatures: qsTr("Advanced features")
     property string showAdvancedFeatures: qsTr("Show advanced features")
     property string hideAdvancedFeatures: qsTr("Hide advanced features")
-    property string connectJAMSServer: qsTr("Connect to JAMS server")
-    property string createFromJAMS: qsTr("Create account from Jami Account Management Server (JAMS)")
+    property string connectJAMSServer: qsTr("Connect to management server")
+    property string createFromJAMS: qsTr("Create account from management server")
     property string addSIPAccount: qsTr("Configure SIP account")
     property string errorCreateAccount: qsTr("An error occurred while creating the account. Check credentials and try again.")
     property string createNewRV: qsTr("Create rendezvous point")
