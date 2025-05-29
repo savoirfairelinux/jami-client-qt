@@ -4,6 +4,9 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV QT_QUICK_BACKEND software
 ENV QT_QPA_PLATFORM offscreen
 
+RUN rm -f /etc/apt/sources.list /etc/apt/sources.list.d/*
+RUN echo "deb https://gpl.savoirfairelinux.net/pub/mirrors/ubuntu jammy main restricted universe multiverse" > /etc/apt/sources.list
+
 RUN apt-get clean
 RUN apt-get update && \
     apt-get install -y devscripts equivs
