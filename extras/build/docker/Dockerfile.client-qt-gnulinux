@@ -4,6 +4,8 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV QT_QUICK_BACKEND software
 ENV QT_QPA_PLATFORM offscreen
 
+RUN RUN echo "deb https://gpl.savoirfairelinux.net/pub/mirrors/ubuntu focal main restricted universe multiverse" > /etc/apt/sources.list
+
 RUN apt-get clean
 RUN apt-get update && \
     apt-get install -y devscripts equivs
