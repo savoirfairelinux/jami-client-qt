@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b81b0a11_01df8d8b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-05-29T23:05:08Z",
+      "side": 1,
+      "message": "Split the https://review.jami.net/c/jami-client-qt/+/31200 patch.",
+      "revId": "284a4a3e0a8f3ab55cbb74ea5634a411be4b8ee7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
