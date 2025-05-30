@@ -8,13 +8,18 @@ set -e
 
 arch=''
 debug=
-while getopts "a:d:" OPT; do
+contrib_cache_dir=''
+
+while getopts "a:d:c:" OPT; do
   case "$OPT" in
   a)
     arch="${OPTARG}"
     ;;
   d)
     debug=true
+    ;;
+  c)
+    contrib_cache_dir="${OPTARG}"
     ;;
   \?)
     exit 1
@@ -46,7 +51,9 @@ for ARCH in "${ARCHS[@]}"; do
   mkdir -p contrib/native-"${ARCH}"
   (
     cd contrib/native-"${ARCH}"
-    ../bootstrap --host="$HOST"
+    ../bootstrap --host="$HOST --cache-dir=$contrib_cache_dir --cache-builds"
+    make list
+    make fetch
 
     echo "Building contrib for $ARCH"
     # force to build every contrib
