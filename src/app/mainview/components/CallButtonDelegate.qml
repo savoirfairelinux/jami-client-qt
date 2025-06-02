@@ -42,8 +42,18 @@ ItemDelegate {
     text: ""
 
     Accessible.role: Accessible.Button
-    Accessible.name: text
-    Accessible.description: text
+    Accessible.name: ItemAction.text
+    Accessible.description: {
+        if (!ItemAction?.text) return ""
+        if (ItemAction.checkable) {
+            return JamiStrings.pressToToggle.arg(ItemAction.text)
+                .arg(ItemAction.checked ? JamiStrings.active : JamiStrings.inactive)
+        }
+        return JamiStrings.pressToAction.arg(ItemAction.text)
+    }
+    Accessible.pressed: pressed
+    Accessible.checkable: ItemAction ? ItemAction.checkable : false
+    Accessible.checked: ItemAction ? ItemAction.checked : false
 
     z: index
 
