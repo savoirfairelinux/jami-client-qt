@@ -104,6 +104,33 @@ Item {
         }
     }
 
+    Timer {
+        id: accessibilityFadeOutTimer
+        interval: JamiTheme.overlayFadeDelay * 10
+        onTriggered: {
+            if (frozen)
+                return;
+            root.opacity = 0;
+            resetLabelsTimer.restart();
+        }
+    }
+
+    Connections {
+        target: appWindow
+
+        function onActiveFocusItemChanged() {
+            if (root.visible) {
+                root.opacity = 1;
+                accessibilityFadeOutTimer.restart();
+            }
+        }
+    }
+
+    FocusScope {
+        anchors.fill: parent
+        focus: root.visible
+    }
+
     // Timer to reset recording label and call duration time
     Timer {
         id: resetLabelsTimer
@@ -253,7 +280,6 @@ Item {
 
     CallActionBar {
         id: __callActionBar
-
         objectName: "callActionBar"
 
         anchors {
