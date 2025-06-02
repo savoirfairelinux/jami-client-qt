@@ -935,4 +935,9 @@ Item {
     property string adviceBox: qsTr("Advice Box")
     property string backButton: qsTr("Back button")
     property string adviceBoxExplanation: qsTr("Open the advice popup containing various information about Jami")
+    property string more: qsTr("More")
+    property string pressToAction: qsTr("Press to %1")
+    property string pressToToggle: qsTr("Press to toggle %1 (%2)")
+    property string active: qsTr("active")
+    property string inactive: qsTr("inactive")
 }

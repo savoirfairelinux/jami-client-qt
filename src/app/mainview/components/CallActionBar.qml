@@ -55,16 +55,97 @@ Control {
     signal fullScreenClicked
     signal swarmDetailsClicked
 
+    // For Keyboard naviguation
+    property bool isInternalNavigation: false
+
+    function exitBarNavigation() {
+        isInternalNavigation = false
+        // Let the parent control take over focus handling
+        parent.forceActiveFocus()
+    }
+
     Component {
         id: buttonDelegate
 
         CallButtonDelegate {
+            id: delegateItem
             width: root.height
             height: width
             barWidth: root.width
             onSubMenuVisibleChanged: subMenuOpen = subMenuVisible
             onHoveredChanged: root.barHovered = hovered
+
+            focusPolicy: Qt.StrongFocus
+            focus: false
+
+            property var nextTab: {
+                // For primary actions
+                if (ListView.view === itemListView) {
+                    var nextIndex = index + 1
+                    if (nextIndex < itemListView.count) {
+                        return itemListView.itemAtIndex(nextIndex)
+                    }
+                    if (overflowItemListView.count > 0) {
+                        return overflowItemListView.itemAtIndex(0)
+                    }
+                    if (overflowButton.visible) {
+                        return overflowButton
+                    }
+                }
+                // For overflow items
+                else if (ListView.view === overflowItemListView) {
+                    var nextOverflowIndex = index + 1
+                    if (nextOverflowIndex < overflowItemListView.count) {
+                        return overflowItemListView.itemAtIndex(nextOverflowIndex)
+                    }
+                    if (overflowButton.visible) {
+                        return overflowButton
+                    }
+                }
+                // Exit bar navigation if we've reached the end
+                root.exitBarNavigation()
+                return null
+            }
+
+            property var previousTab: {
+                // For primary actions
+                if (ListView.view === itemListView) {
+                    if (index > 0) {
+                        return itemListView.itemAtIndex(index - 1)
+                    }
+                    if (overflowButton.visible) {
+                        return overflowButton
+                    }
+                    if (overflowItemListView.count > 0) {
+                        return overflowItemListView.itemAtIndex(overflowItemListView.count - 1)
+                    }
+                }
+                // For overflow items
+                else if (ListView.view === overflowItemListView) {
+                    if (index > 0) {
+                        return overflowItemListView.itemAtIndex(index - 1)
+                    }
+                    return itemListView.itemAtIndex(itemListView.count - 1)
+                }
+                return null
+            }
+
+            // Use the computed properties for KeyNavigation
+            KeyNavigation.tab: nextTab
+            KeyNavigation.backtab: previousTab
+
+            Keys.onEscapePressed: root.exitBarNavigation()
         }
+    }
+
+    // Check if an item is in a ListView
+    function containsItem(listView, item) {
+        for (var i = 0; i < listView.count; i++) {
+            if (listView.itemAtIndex(i) === item) {
+                return true
+            }
+        }
+        return false
     }
 
     Connections {
@@ -566,6 +647,36 @@ Control {
 
             ComboBox {
                 id: overflowButton
+
+
+                focusPolicy: Qt.StrongFocus
+                Accessible.role: Accessible.Button
+                Accessible.name: JamiStrings.more
+                Accessible.description: JamiStrings.moreOptions
+
+                KeyNavigation.tab: {
+                    if (popup.opened) {
+                        return popup.contentItem.itemAtIndex(0)
+                    }
+                    // Exit bar navigation if we've reached the end
+                    root.exitBarNavigation()
+                    return null
+                }
+
+                KeyNavigation.backtab: {
+                    if (overflowItemListView.count > 0) {
+                        return overflowItemListView.itemAtIndex(overflowItemListView.count - 1)
+                    }
+                    return itemListView.itemAtIndex(itemListView.count - 1)
+                }
+
+                Keys.onEscapePressed: {
+                    if (popup.opened) {
+                        popup.close()
+                    } else {
+                        root.exitBarNavigation()
+                    }
+                }
 
                 visible: CallOverlayModel.overflowIndex < overflowItemCount - 2
                 width: root.height
