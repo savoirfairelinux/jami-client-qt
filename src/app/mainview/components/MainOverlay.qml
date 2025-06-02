@@ -26,6 +26,17 @@ Item {
 
     property string timeText: "00:00"
     property string remoteRecordingLabel
+    property bool isKeyboardSelectionActive: {
+        if (!appWindow || !appWindow.activeFocusItem)
+            return false;
+        let parent = appWindow.activeFocusItem.parent;
+        while (parent && parent !== appWindow && parent !== root && parent !== null) {
+            if (parent.objectName === "callActionBar")
+                return true;
+            parent = parent.parent;
+        }
+        return false;
+    }
 
     Connections {
         target: CurrentCall
@@ -42,7 +53,11 @@ Item {
 
     property alias callActionBar: __callActionBar
 
-    property bool frozen: callActionBar.overflowOpen || callActionBar.barHovered || callActionBar.subMenuOpen || participantCallInStatusView.visible
+    property bool frozen: callActionBar.overflowOpen ||
+                          callActionBar.barHovered ||
+                          callActionBar.subMenuOpen ||
+                          participantCallInStatusView.visible ||
+                          isKeyboardSelectionActive
 
     property string muteAlertMessage: ""
     property bool muteAlertActive: false
@@ -59,14 +74,26 @@ Item {
     Component.onDestruction: CallOverlayModel.setEventFilterActive(appWindow, this, false)
     onVisibleChanged: CallOverlayModel.setEventFilterActive(appWindow, this, visible)
 
+    function kickOverlay() {
+        root.opacity = 1;
+        fadeOutTimer.restart();
+    }
+
     Connections {
         target: CallOverlayModel
 
         function onMouseMoved(item) {
             if (item === root) {
-                root.opacity = 1;
-                fadeOutTimer.restart();
+                kickOverlay();
             }
+        }
+
+        // This is part of a mechanism used to show the overlay when a focus key is pressed
+        // and keep it open in the case that the user is navigating with the keyboard over
+        // the call action bar.
+        function onFocusKeyPressed() {
+            // Always show the overlay when a focus key (Tab/BackTab) is pressed
+            kickOverlay();
         }
     }
 
@@ -76,8 +103,7 @@ Item {
         context: Qt.ApplicationShortcut
         onActivated: {
             CallAdapter.muteAudioToggle();
-            root.opacity = 1;
-            fadeOutTimer.restart();
+            kickOverlay();
         }
     }
 
@@ -87,8 +113,7 @@ Item {
         context: Qt.ApplicationShortcut
         onActivated: {
             CallAdapter.muteCameraToggle();
-            root.opacity = 1;
-            fadeOutTimer.restart();
+            kickOverlay();
         }
     }
 

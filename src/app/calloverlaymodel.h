@@ -140,6 +140,7 @@ public:
 
 Q_SIGNALS:
     void mouseMoved(QQuickItem* item);
+    void focusKeyPressed();
     void pttKeyPressed();
     void pttKeyReleased();
 

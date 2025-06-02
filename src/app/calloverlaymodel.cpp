@@ -401,6 +401,16 @@ CallOverlayModel::eventFilter(QObject* object, QEvent* event)
             }
         }
     }
+    // Tab or BackTab key events should trigger a signal that we can use to
+    // prevent the overlay from fading and to allow the user to navigate
+    // through the controls.
+    if (event->type() == QEvent::KeyPress && (static_cast<QKeyEvent*>(event)->key() == Qt::Key_Tab)
+        || (static_cast<QKeyEvent*>(event)->key() == Qt::Key_Backtab)) {
+        Q_EMIT focusKeyPressed();
+        // Don't absorb the event so that the focus can be changed
+        // to the next or previous control.
+        return false;
+    }
 #ifndef HAVE_GLOBAL_PTT
     else if (event->type() == QEvent::KeyPress && listener_->getPttState()) {
         QKeyEvent* keyEvent = static_cast<QKeyEvent*>(event);
