@@ -26,6 +26,7 @@ Item {
 
     property string timeText: "00:00"
     property string remoteRecordingLabel
+    property bool isKeyboardSelectionActive: false
 
     Connections {
         target: CurrentCall
@@ -42,7 +43,7 @@ Item {
 
     property alias callActionBar: __callActionBar
 
-    property bool frozen: callActionBar.overflowOpen || callActionBar.barHovered || callActionBar.subMenuOpen || participantCallInStatusView.visible
+    property bool frozen: callActionBar.overflowOpen || callActionBar.barHovered || callActionBar.subMenuOpen || participantCallInStatusView.visible || isKeyboardSelectionActive
 
     property string muteAlertMessage: ""
     property bool muteAlertActive: false
@@ -97,11 +98,47 @@ Item {
         id: fadeOutTimer
         interval: JamiTheme.overlayFadeDelay
         onTriggered: {
+            console.warn("Fade out timer triggered"+ ", frozen: " + frozen);
             if (frozen)
                 return;
             root.opacity = 0;
             resetLabelsTimer.restart();
         }
+    }
+
+    property var activeFocusItem: appWindow.activeFocusItem
+
+
+    function onActiveFocusItemChanged() {
+        console.warn("onActiveFocusItemChanged called, activeFocusItem: " + activeFocusItem);
+        if (root.visible) {
+            if (activeFocusItem){
+                fadeOutTimer.restart();
+                console.warn("WE HAVE AN ACTIVE FOCUS ITEM: " + activeFocusItem);
+                //if the active focus item is a child of the call action bar we want to keep the overlay visible
+                if (activeFocusItem.objectName === "callActionBar" || activeFocusItem.parent === __callActionBar) {
+                    console.warn("Active focus item is callActionBar or its child: " + activeFocusItem);
+
+                    if ((activeFocusItem.focusReason === Qt.TabFocusReason) || (activeFocusItem.focusReason === Qt.BacktabFocusReason)){
+                        console.warn("Active focus item is focused by keyboard: " + activeFocusItem);
+                        isKeyboardSelectionActive: true;
+                    }else{
+                        isKeyboardSelectionActive = false;
+                        console.warn("No active focus item, resetting isKeyboardSelectionActive to false");
+
+                    }
+                }else{
+                        isKeyboardSelectionActive = false;
+                        console.warn("No active focus item, resetting isKeyboardSelectionActive to false");
+                    }
+            }
+            console.warn("Active focus item changed: " + activeFocusItem + ", isKeyboardSelectionActive: " + isKeyboardSelectionActive);
+        }
+    }
+
+    FocusScope {
+        anchors.fill: parent
+        focus: root.visible
     }
 
     // Timer to reset recording label and call duration time
@@ -253,7 +290,6 @@ Item {
 
     CallActionBar {
         id: __callActionBar
-
         objectName: "callActionBar"
 
         anchors {
