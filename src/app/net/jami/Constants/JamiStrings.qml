@@ -931,4 +931,7 @@ Item {
     property string pressToToggle: qsTr("Press to toggle %1 (%2)")
     property string active: qsTr("active")
     property string inactive: qsTr("inactive")
+    property string minimize: qsTr("Minimize application")
+    property string maximize: qsTr("Maximize application")
+    property string closeApplication: qsTr("Close application")
 }

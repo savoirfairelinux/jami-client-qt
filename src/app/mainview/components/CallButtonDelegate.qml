@@ -44,12 +44,12 @@ ItemDelegate {
     Accessible.role: Accessible.Button
     Accessible.name: ItemAction.text
     Accessible.description: {
-        if (!ItemAction?.text) return ""
+        if (!ItemAction?.text)
+            return "";
         if (ItemAction.checkable) {
-            return JamiStrings.pressToToggle.arg(ItemAction.text)
-                .arg(ItemAction.checked ? JamiStrings.active : JamiStrings.inactive)
+            return JamiStrings.pressToToggle.arg(ItemAction.text).arg(ItemAction.checked ? JamiStrings.active : JamiStrings.inactive);
         }
-        return JamiStrings.pressToAction.arg(ItemAction.text)
+        return JamiStrings.pressToAction.arg(ItemAction.text);
     }
     Accessible.pressed: pressed
     Accessible.checkable: ItemAction ? ItemAction.checkable : false
@@ -87,7 +87,7 @@ ItemDelegate {
             return HalfPill.None;
         }
 
-        Behavior on color  {
+        Behavior on color {
             ColorAnimation {
                 duration: JamiTheme.shortFadeDuration
             }
@@ -104,7 +104,7 @@ ItemDelegate {
         radius: isLast ? 5 : width / 2
         type: isLast ? HalfPill.Right : HalfPill.None
 
-        Behavior on color  {
+        Behavior on color {
             ColorAnimation {
                 duration: JamiTheme.shortFadeDuration
             }
@@ -123,7 +123,7 @@ ItemDelegate {
         source: ItemAction ? ItemAction.icon.source : ""
         color: ItemAction ? (ItemAction.enabled ? ItemAction.icon.color : Qt.lighter(ItemAction.icon.color)) : null
 
-        SequentialAnimation on opacity  {
+        SequentialAnimation on opacity {
             loops: Animation.Infinite
             running: ItemAction !== undefined && ItemAction.blinksWhenChecked !== undefined && ItemAction.blinksWhenChecked && checked
             onStopped: icon.opacity = 1
@@ -198,7 +198,7 @@ ItemDelegate {
             radius: 4
         }
 
-        onActivated: index => menuAction.accept(index);
+        onActivated: index => menuAction.accept(index)
         model: visible ? menuAction.listModel : null
         delegate: ItemDelegate {
             id: menuItem
@@ -323,7 +323,6 @@ ItemDelegate {
                     // it fits within the overlay, with an extra leftward margin of 24 pixels.
                     return diff > 0 ? xValue - diff - 24 : xValue;
                 }
-
             }
 
             implicitWidth: contentItem.implicitWidth
