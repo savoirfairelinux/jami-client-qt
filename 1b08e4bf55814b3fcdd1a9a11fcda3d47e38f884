@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06fc683c_0fc4a498",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 33
+      },
+      "lineNbr": 917,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-06-03T21:46:57Z",
+      "side": 1,
+      "message": "This patch seems to remove the original line at 918.\n\nWould rebasing this patch update the string to `Spell checker`?",
+      "range": {
+        "startLine": 917,
+        "startChar": 41,
+        "endLine": 917,
+        "endChar": 54
+      },
+      "revId": "1b08e4bf55814b3fcdd1a9a11fcda3d47e38f884",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
