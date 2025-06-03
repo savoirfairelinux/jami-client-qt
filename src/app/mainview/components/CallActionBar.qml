@@ -59,9 +59,9 @@ Control {
     property bool isInternalNavigation: false
 
     function exitBarNavigation() {
-        isInternalNavigation = false
+        isInternalNavigation = false;
         // Let the parent control take over focus handling
-        parent.forceActiveFocus()
+        parent.forceActiveFocus();
     }
 
     Component {
@@ -81,53 +81,53 @@ Control {
             property var nextTab: {
                 // For primary actions
                 if (ListView.view === itemListView) {
-                    var nextIndex = index + 1
+                    var nextIndex = index + 1;
                     if (nextIndex < itemListView.count) {
-                        return itemListView.itemAtIndex(nextIndex)
+                        return itemListView.itemAtIndex(nextIndex);
                     }
                     if (overflowItemListView.count > 0) {
-                        return overflowItemListView.itemAtIndex(0)
+                        return overflowItemListView.itemAtIndex(0);
                     }
                     if (overflowButton.visible) {
-                        return overflowButton
+                        return overflowButton;
                     }
-                }
+                } else
                 // For overflow items
-                else if (ListView.view === overflowItemListView) {
-                    var nextOverflowIndex = index + 1
+                if (ListView.view === overflowItemListView) {
+                    var nextOverflowIndex = index + 1;
                     if (nextOverflowIndex < overflowItemListView.count) {
-                        return overflowItemListView.itemAtIndex(nextOverflowIndex)
+                        return overflowItemListView.itemAtIndex(nextOverflowIndex);
                     }
                     if (overflowButton.visible) {
-                        return overflowButton
+                        return overflowButton;
                     }
                 }
                 // Exit bar navigation if we've reached the end
-                root.exitBarNavigation()
-                return null
+                root.exitBarNavigation();
+                return null;
             }
 
             property var previousTab: {
                 // For primary actions
                 if (ListView.view === itemListView) {
                     if (index > 0) {
-                        return itemListView.itemAtIndex(index - 1)
+                        return itemListView.itemAtIndex(index - 1);
                     }
                     if (overflowButton.visible) {
-                        return overflowButton
+                        return overflowButton;
                     }
                     if (overflowItemListView.count > 0) {
-                        return overflowItemListView.itemAtIndex(overflowItemListView.count - 1)
+                        return overflowItemListView.itemAtIndex(overflowItemListView.count - 1);
                     }
-                }
+                } else
                 // For overflow items
-                else if (ListView.view === overflowItemListView) {
+                if (ListView.view === overflowItemListView) {
                     if (index > 0) {
-                        return overflowItemListView.itemAtIndex(index - 1)
+                        return overflowItemListView.itemAtIndex(index - 1);
                     }
-                    return itemListView.itemAtIndex(itemListView.count - 1)
+                    return itemListView.itemAtIndex(itemListView.count - 1);
                 }
-                return null
+                return null;
             }
 
             // Use the computed properties for KeyNavigation
@@ -142,10 +142,10 @@ Control {
     function containsItem(listView, item) {
         for (var i = 0; i < listView.count; i++) {
             if (listView.itemAtIndex(i) === item) {
-                return true
+                return true;
             }
         }
-        return false
+        return false;
     }
 
     Connections {
@@ -648,7 +648,6 @@ Control {
             ComboBox {
                 id: overflowButton
 
-
                 focusPolicy: Qt.StrongFocus
                 Accessible.role: Accessible.Button
                 Accessible.name: JamiStrings.more
@@ -656,25 +655,25 @@ Control {
 
                 KeyNavigation.tab: {
                     if (popup.opened) {
-                        return popup.contentItem.itemAtIndex(0)
+                        return popup.contentItem.itemAtIndex(0);
                     }
                     // Exit bar navigation if we've reached the end
-                    root.exitBarNavigation()
-                    return null
+                    root.exitBarNavigation();
+                    return null;
                 }
 
                 KeyNavigation.backtab: {
                     if (overflowItemListView.count > 0) {
-                        return overflowItemListView.itemAtIndex(overflowItemListView.count - 1)
+                        return overflowItemListView.itemAtIndex(overflowItemListView.count - 1);
                     }
-                    return itemListView.itemAtIndex(itemListView.count - 1)
+                    return itemListView.itemAtIndex(itemListView.count - 1);
                 }
 
                 Keys.onEscapePressed: {
                     if (popup.opened) {
-                        popup.close()
+                        popup.close();
                     } else {
-                        root.exitBarNavigation()
+                        root.exitBarNavigation();
                     }
                 }
 
