@@ -37,12 +37,16 @@ Row {
 
     SystemButton {
         id: minButton
+        Accessible.name: JamiStrings.minimize
+        Accessible.role: Accessible.Button
         source: JamiResources.window_bar_minimize_svg
         onClicked: appWindow.showMinimized()
     }
 
     SystemButton {
         id: maxButton
+        Accessible.name: JamiStrings.maximize
+        Accessible.role: Accessible.Button
         source: appWindow.visibility === Window.Maximized ?
                     JamiResources.window_bar_restore_svg :
                     JamiResources.window_bar_maximize_svg
@@ -53,6 +57,8 @@ Row {
 
     SystemButton {
         id: closeButton
+        Accessible.name: JamiStrings.closeApplication
+        Accessible.role: Accessible.Button
         source: JamiResources.window_bar_close_svg
         baseColor: "#e81123"
         onClicked: appWindow.close()
