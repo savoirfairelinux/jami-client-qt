@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "777d47f2_7e86e02c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 33
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-06-03T21:53:34Z",
+      "side": 1,
+      "message": "Can the \"spellchecker: contextual menu\" in the https://review.jami.net/c/jami-client-qt/+/31200 patch please be merged or squashed into this patch? Thank you",
+      "revId": "1b08e4bf55814b3fcdd1a9a11fcda3d47e38f884",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "06fc683c_0fc4a498",
         "filename": "src/app/net/jami/Constants/JamiStrings.qml",
         "patchSetId": 33
