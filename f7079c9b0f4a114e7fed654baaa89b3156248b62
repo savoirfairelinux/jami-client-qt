@@ -33,6 +33,24 @@
       "message": "Or squash",
       "revId": "f7079c9b0f4a114e7fed654baaa89b3156248b62",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7039e44d_85bce3bb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 32
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-06-03T17:55:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc28ece0_41f5b194",
+      "revId": "f7079c9b0f4a114e7fed654baaa89b3156248b62",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
