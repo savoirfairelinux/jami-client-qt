@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9e505d8_d30da466",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 32
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-06-03T14:16:54Z",
+      "side": 1,
+      "message": "I\u0027d add that UI synchronization and component selection issues will be addressed in a subsequent commit.",
+      "revId": "f7079c9b0f4a114e7fed654baaa89b3156248b62",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
