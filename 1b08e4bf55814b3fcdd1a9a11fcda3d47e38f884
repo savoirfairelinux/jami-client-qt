@@ -54,6 +54,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "17fa0358_17a57d04",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 33
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-06-03T23:23:54Z",
+      "side": 1,
+      "message": "We can rebase https://review.jami.net/c/jami-client-qt/+/31200 onto this patch to integrate any unrelated but pertinent changes.",
+      "parentUuid": "8ab59d2f_ba0e4733",
+      "revId": "1b08e4bf55814b3fcdd1a9a11fcda3d47e38f884",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06fc683c_0fc4a498",
@@ -91,6 +109,30 @@
       "side": 1,
       "message": "Acknowledged",
       "parentUuid": "06fc683c_0fc4a498",
+      "range": {
+        "startLine": 917,
+        "startChar": 41,
+        "endLine": 917,
+        "endChar": 54
+      },
+      "revId": "1b08e4bf55814b3fcdd1a9a11fcda3d47e38f884",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ce50949_04c80ddd",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 33
+      },
+      "lineNbr": 917,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-06-03T23:23:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a21207f8_222a481b",
       "range": {
         "startLine": 917,
         "startChar": 41,
