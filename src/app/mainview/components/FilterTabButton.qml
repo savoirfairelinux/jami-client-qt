@@ -43,6 +43,10 @@ TabButton {
     hoverEnabled: true
     onClicked: selected()
 
+    Accessible.name: root.labelText
+    Accessible.role: Accessible.Button
+    Accessible.description: root.acceleratorSequence
+
     Rectangle {
         id: contentRect
 
