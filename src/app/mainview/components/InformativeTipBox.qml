@@ -26,6 +26,12 @@ ColumnLayout {
     id: column
     width: parent.width
 
+    property alias tipTitle: title.text
+    property alias tipDescription: description.text
+
+    Accessible.name: tipTitle
+    Accessible.description: tipDescription
+
     property real maxHeight: 250
 
     property var iconSize: 26

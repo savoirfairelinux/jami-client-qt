@@ -24,6 +24,13 @@ import "../../commoncomponents"
 
 Item {
     id: root
+
+    property string tipTitle: title.text
+    property string tipDescription: content.text
+
+    Accessible.name: tipTitle
+    Accessible.description: tipDescription
+
     focus: true
     width: parent.width
     height: backupLayout.height
