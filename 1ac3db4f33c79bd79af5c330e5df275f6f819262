@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59eb5feb_0b00c5a2",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 32
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-06-04T14:21:11Z",
+      "side": 0,
+      "message": "This seems to be used at `src/app/wizardview/components/WelcomePage.qml:423,424`",
+      "range": {
+        "startLine": 280,
+        "startChar": 0,
+        "endLine": 280,
+        "endChar": 46
+      },
+      "revId": "1ac3db4f33c79bd79af5c330e5df275f6f819262",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
