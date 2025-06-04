@@ -26,6 +26,12 @@ ColumnLayout {
     id: column
     width: parent.width
 
+    property string tipTitle: JamiStrings.customize
+    property string tipDescription: JamiStrings.customizeText
+
+    Accessible.name: tipTitle
+    Accessible.description: tipDescription
+
     property var iconSize: 26
     property var margin: 5
     property var prefWidth: 170
