@@ -25,6 +25,13 @@ import "../../commoncomponents"
 
 Item {
     id: root
+
+    property string tipTitle: title.text
+    property string tipDescription: opened ? description.text : JamiStrings.whyBackupAccount
+
+    Accessible.name: tipTitle
+    Accessible.description: tipDescription
+
     width: parent.width
     height: backupLayout.height
 

@@ -934,4 +934,6 @@ Item {
     property string minimize: qsTr("Minimize application")
     property string maximize: qsTr("Maximize application")
     property string closeApplication: qsTr("Close application")
+    property string dismissTip: qsTr("Dismiss this tip")
+    property string tipDescription: qsTr("Tips to help you use Jami more effectively")
 }
