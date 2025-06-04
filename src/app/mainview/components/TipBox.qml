@@ -36,6 +36,36 @@ FocusScope {
     property color textColor: JamiTheme.textColor
     property color iconColor: JamiTheme.tintedBlue
 
+    Accessible.role: Accessible.Paragraph
+    Accessible.name: {
+        switch (type) {
+            case "donation":
+                return JamiStrings.donation
+            case "backup":
+                return JamiStrings.backupAccountBtn
+            case "customize":
+                return JamiStrings.customize
+            case "tip":
+                return title
+            default:
+                return ""
+        }
+    }
+    Accessible.description: {
+        switch (type) {
+            case "donation":
+                return JamiStrings.donationTipBoxText
+            case "backup":
+                return JamiStrings.whyBackupAccount
+            case "customize":
+                return JamiStrings.customizeText
+            case "tip":
+                return description
+            default:
+                return ""
+        }
+    }
+
     property string customizeTip: "CustomizeTipBox {}"
 
     property string backupTip: "BackupTipBox {" + "    onIgnore: {" + "        root.ignoreClicked()" + "    }" + "}"
@@ -75,6 +105,9 @@ FocusScope {
                 active: type === "donation"
                 focus: true
                 sourceComponent: DonationTipBox {
+                    Accessible.name: JamiStrings.donation
+                    Accessible.description: JamiStrings.donationTipBoxText
+                    Accessible.role: Accessible.Link
                     maxHeight: root.maximumHeight
                     textColor: root.textColor
                     iconColor: root.iconColor
@@ -86,6 +119,9 @@ FocusScope {
                 id: loader_backupTip
                 active: type === "backup"
                 sourceComponent: BackupTipBox {
+                    Accessible.name: JamiStrings.backupAccountBtn
+                    Accessible.description: JamiStrings.whyBackupAccount
+                    Accessible.role: Accessible.Link
                     onIgnore: {
                         root.ignoreClicked();
                     }
@@ -95,20 +131,24 @@ FocusScope {
                 }
                 width: parent.width
             }
+
             Loader {
                 id: loader_customizeTip
                 active: type === "customize"
                 sourceComponent: CustomizeTipBox {
+                    Accessible.role: Accessible.Link
                     textColor: root.textColor
                     iconColor: root.iconColor
                 }
                 width: parent.width
                 focus: true
             }
+
             Loader {
                 id: loader_infoTip
                 active: type === "tip"
                 sourceComponent: InformativeTipBox {
+                    Accessible.role: Accessible.Link
                     maxHeight: root.maximumHeight
                     textColor: root.textColor
                     iconColor: root.iconColor
@@ -159,6 +199,8 @@ FocusScope {
         id: component_btnClose
         PushButton {
             id: btnClose
+            Accessible.role: Accessible.Button
+            Accessible.name: JamiStrings.dismissTip
 
             width: 20
             height: 20
