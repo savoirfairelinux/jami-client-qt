@@ -22,6 +22,30 @@
       },
       "revId": "1ac3db4f33c79bd79af5c330e5df275f6f819262",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa2e6c97_23e21c22",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 32
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-06-04T21:37:37Z",
+      "side": 0,
+      "message": "This patch should show that the lines 423 and 424 have been updated to:\n```\n        labelText: JamiStrings.userInterfaceLanguage\n        tipText: JamiStrings.userInterfaceLanguage\n```\n\nIf not, I don\u0027t know why it isn\u0027t showing.",
+      "parentUuid": "59eb5feb_0b00c5a2",
+      "range": {
+        "startLine": 280,
+        "startChar": 0,
+        "endLine": 280,
+        "endChar": 46
+      },
+      "revId": "1ac3db4f33c79bd79af5c330e5df275f6f819262",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
