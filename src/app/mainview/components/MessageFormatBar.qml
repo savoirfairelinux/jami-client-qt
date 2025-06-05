@@ -479,6 +479,9 @@ Rectangle {
                 anchors.bottom: parent.bottom
                 enabled: !showPreview
                 hoverEnabled: !showPreview
+                Accessible.name: JamiStrings.showMoreMessagingOptions
+                Accessible.role: Accessible.ComboBox
+                Accessible.description: JamiStrings.showMoreMessagingOptionsDescription
 
                 // Used to choose the correct color for the button.
                 readonly property bool highlight: down || hovered

@@ -22,6 +22,7 @@ import "contextmenu"
 
 BaseContextMenu {
     id: root
+
     property var modelList
     signal audioRecordMessageButtonClicked
     signal videoRecordMessageButtonClicked
@@ -31,35 +32,63 @@ BaseContextMenu {
         GeneralMenuItem {
             id: audioMessage
 
+            Accessible.role: Accessible.MenuItem
+            Accessible.name: itemName
+            focusPolicy: Qt.StrongFocus
+            Keys.onReturnPressed: clicked()
+
             canTrigger: true
             iconSource: JamiResources.message_audio_black_24dp_svg
             itemName: JamiStrings.leaveAudioMessage
             onClicked: {
                 root.audioRecordMessageButtonClicked();
+                root.close()
             }
+
+            KeyNavigation.tab: videoMessage
+            KeyNavigation.backtab: shareLocation
         },
         GeneralMenuItem {
             id: videoMessage
 
+            Accessible.role: Accessible.MenuItem
+            Accessible.name: itemName
+
+            focusPolicy: Qt.StrongFocus
+            Keys.onReturnPressed: clicked()
+
             canTrigger: true
             iconSource: JamiResources.message_video_black_24dp_svg
             itemName: JamiStrings.leaveVideoMessage
-
             isActif: VideoDevices.listSize !== 0
 
             onClicked: {
                 root.videoRecordMessageButtonClicked();
+                root.close()
             }
+
+            KeyNavigation.tab: shareLocation
+            KeyNavigation.backtab: audioMessage
         },
         GeneralMenuItem {
             id: shareLocation
+
+            Accessible.role: Accessible.MenuItem
+            Accessible.name: itemName
+
+            focusPolicy: Qt.StrongFocus
+            Keys.onReturnPressed: clicked()
 
             canTrigger: true
             iconSource: JamiResources.localisation_sharing_send_pin_svg
             itemName: JamiStrings.shareLocation
             onClicked: {
                 root.showMapClicked();
+                root.close()
             }
+
+            KeyNavigation.tab: audioMessage
+            KeyNavigation.backtab: videoMessage
         }
     ]
 
