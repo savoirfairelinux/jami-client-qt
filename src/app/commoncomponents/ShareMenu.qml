@@ -22,46 +22,116 @@ import "contextmenu"
 
 BaseContextMenu {
     id: root
+
     property var modelList
     signal audioRecordMessageButtonClicked
     signal videoRecordMessageButtonClicked
     signal showMapClicked
 
+    Keys.onReturnPressed: {
+        if (currentItem) {
+            currentItem.clicked()
+        }
+    }
+
+    property GeneralMenuItem currentItem: menuItems.length > 0 ? menuItems[0] : null
+
     property list<GeneralMenuItem> menuItems: [
         GeneralMenuItem {
             id: audioMessage
+
+            Accessible.role: Accessible.MenuItem
+            Accessible.name: itemName
+            focusPolicy: Qt.StrongFocus
+            Keys.onReturnPressed: clicked()
 
             canTrigger: true
             iconSource: JamiResources.message_audio_black_24dp_svg
             itemName: JamiStrings.leaveAudioMessage
             onClicked: {
                 root.audioRecordMessageButtonClicked();
+                root.close()
             }
+
+            // Update focus when selected
+            onFocusChanged: {
+                if (focus) {
+                    root.currentItem = this
+                }
+            }
+
+            KeyNavigation.tab: videoMessage
+            KeyNavigation.backtab: shareLocation
         },
         GeneralMenuItem {
             id: videoMessage
 
+            Accessible.role: Accessible.MenuItem
+            Accessible.name: itemName
+
+            focusPolicy: Qt.StrongFocus
+            Keys.onReturnPressed: clicked()
+
             canTrigger: true
             iconSource: JamiResources.message_video_black_24dp_svg
             itemName: JamiStrings.leaveVideoMessage
-
             isActif: VideoDevices.listSize !== 0
 
             onClicked: {
                 root.videoRecordMessageButtonClicked();
+                root.close()
             }
+
+            onFocusChanged: {
+                if (focus) {
+                    root.currentItem = this
+                }
+            }
+
+            KeyNavigation.tab: shareLocation
+            KeyNavigation.backtab: audioMessage
         },
         GeneralMenuItem {
             id: shareLocation
+
+            Accessible.role: Accessible.MenuItem
+            Accessible.name: itemName
+
+            focusPolicy: Qt.StrongFocus
+            Keys.onReturnPressed: clicked()
 
             canTrigger: true
             iconSource: JamiResources.localisation_sharing_send_pin_svg
             itemName: JamiStrings.shareLocation
             onClicked: {
                 root.showMapClicked();
+                root.close()
             }
+
+            onFocusChanged: {
+                if (focus) {
+                    root.currentItem = this
+                }
+            }
+
+            KeyNavigation.tab: audioMessage
+            KeyNavigation.backtab: videoMessage
         }
     ]
+
+    Keys.onUpPressed: {
+        const currentIndex = menuItems.indexOf(currentItem)
+        if (currentIndex > 0) {
+            menuItems[currentIndex - 1].forceActiveFocus()
+        }
+    }
+
+    Keys.onDownPressed: {
+        const currentIndex = menuItems.indexOf(currentItem)
+        if (currentIndex < menuItems.length - 1) {
+            menuItems[currentIndex + 1].forceActiveFocus()
+        }
+    }
 
     Component.onCompleted: {
         root.loadMenuItems(menuItems);

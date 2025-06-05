@@ -45,7 +45,6 @@ TabButton {
 
     Accessible.name: root.labelText
     Accessible.role: Accessible.Button
-    Accessible.description: root.acceleratorSequence
 
     Rectangle {
         id: contentRect
