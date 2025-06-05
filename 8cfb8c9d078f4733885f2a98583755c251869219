@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a72436b_cf1fc4ff",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 935,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-06-05T18:07:48Z",
+      "side": 1,
+      "message": "`information` (no \u0027s\u0027 at the end)",
+      "range": {
+        "startLine": 935,
+        "startChar": 89,
+        "endLine": 935,
+        "endChar": 101
+      },
+      "revId": "8cfb8c9d078f4733885f2a98583755c251869219",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "731f48ed_057fd4f7",
+        "filename": "src/app/wizardview/components/EncryptAccountPopup.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-06-05T18:07:48Z",
+      "side": 1,
+      "message": "There are several unrelated formatting changes in this file.",
+      "range": {
+        "startLine": 44,
+        "startChar": 12,
+        "endLine": 47,
+        "endChar": 19
+      },
+      "revId": "8cfb8c9d078f4733885f2a98583755c251869219",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "410a8d02_749442b6",
+        "filename": "src/app/wizardview/components/GoodToKnowPopup.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-06-05T18:07:48Z",
+      "side": 1,
+      "message": "I get a bunch of QML warnings when opening the popup:\n```\nGoodToKnowPopup.qml:48: ReferenceError: closeButton is not defined\nGoodToKnowPopup.qml:80: ReferenceError: closeButton is not defined\nGoodToKnowPopup.qml:30: ReferenceError: customizeInfo is not defined\nGoodToKnowPopup.qml:29: ReferenceError: info is not defined\n```",
+      "range": {
+        "startLine": 29,
+        "startChar": 3,
+        "endLine": 30,
+        "endChar": 40
+      },
+      "revId": "8cfb8c9d078f4733885f2a98583755c251869219",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfe887d8_97f20aff",
+        "filename": "src/app/wizardview/components/WelcomePage.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-06-05T18:07:48Z",
+      "side": 1,
+      "message": "I\u0027m not able to select a language when navigating with the keyboard.",
+      "range": {
+        "startLine": 380,
+        "startChar": 31,
+        "endLine": 380,
+        "endChar": 50
+      },
+      "revId": "8cfb8c9d078f4733885f2a98583755c251869219",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab3d6ad2_fc4dd0d5",
+        "filename": "src/app/wizardview/components/WelcomePage.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-06-05T18:07:48Z",
+      "side": 1,
+      "message": "When the list of advanced features is visible, `up` should take the user to \"Configure a SIP account\", not \"Connect to a JAMS server\". Note also that `backtab` currently behaves differently from `up` in this situation.",
+      "range": {
+        "startLine": 381,
+        "startChar": 12,
+        "endLine": 381,
+        "endChar": 57
+      },
+      "revId": "8cfb8c9d078f4733885f2a98583755c251869219",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
