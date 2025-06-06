@@ -279,5 +279,33 @@ SettingsPageBase {
                 }
             }
         }
+
+        ColumnLayout {
+            width: parent.width
+            spacing: JamiTheme.settingsCategorySpacing
+            Text {
+                id: experimentalTitle
+                Layout.alignment: Qt.AlignLeft
+                Layout.preferredWidth: parent.width
+                text: JamiStrings.experimental
+                color: JamiTheme.textColor
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+                wrapMode: Text.WordWrap
+                font.pixelSize: JamiTheme.settingsTitlePixelSize
+                font.kerning: true
+            }
+            ToggleSwitch {
+                id: checkboxCallSwarm
+                Layout.fillWidth: true
+                checked: UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm)
+                labelText: JamiStrings.experimentalCallSwarm
+                tooltipText: JamiStrings.experimentalCallSwarmTooltip
+                onSwitchToggled: {
+                    UtilsAdapter.setAppValue(Settings.Key.EnableExperimentalSwarm, checked);
+                }
+            }
+        }
+
     }
 }
