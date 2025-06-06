@@ -78,7 +78,7 @@ SidePanelBase {
                             "title": JamiStrings.locationSharingLabel
                         }, {
                             "id": 9,
-                            "title": JamiStrings.callRecording
+                            "title": JamiStrings.callSettingsTitle
                         }, {
                             "id": 10,
                             "title": JamiStrings.troubleshootTitle
@@ -154,7 +154,7 @@ SidePanelBase {
                             "title": JamiStrings.locationSharingLabel
                         }, {
                             "id": 9,
-                            "title": JamiStrings.callRecording
+                            "title": JamiStrings.callSettingsTitle
                         }, {
                             "id": 10,
                             "title": JamiStrings.troubleshootTitle
