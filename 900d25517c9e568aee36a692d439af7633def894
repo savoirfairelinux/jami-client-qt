@@ -22,6 +22,30 @@
       },
       "revId": "900d25517c9e568aee36a692d439af7633def894",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3841dccb_259de82a",
+        "filename": "src/app/mainview/components/AccountComboBoxPopup.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-06-06T14:43:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db66ad9c_356c6efc",
+      "range": {
+        "startLine": 273,
+        "startChar": 16,
+        "endLine": 274,
+        "endChar": 88
+      },
+      "revId": "900d25517c9e568aee36a692d439af7633def894",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
