@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8279bd64_5cfa7e7a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-06-06T11:31:27Z",
+      "side": 1,
+      "message": "Please help as unable to connect to:\nhttps://jenkins.jami.net/job/client-qt-gnulinux/4687/ : FAILURE\nhttps://jenkins.jami.net/job/client-qt-msvc/2488/ : FAILURE\n\nThank you",
+      "revId": "d9030b161a0f6ede9aec568f2aa69e8af107d30c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
