@@ -49,12 +49,12 @@ SettingsPageBase {
             spacing: JamiTheme.settingsCategorySpacing
 
             Text {
-                id: spellcheckingTitle
+                id: spellCheckerTitle
 
                 Layout.alignment: Qt.AlignLeft
                 Layout.preferredWidth: parent.width
 
-                text: JamiStrings.spellchecking
+                text: JamiStrings.spellChecker
                 color: JamiTheme.textColor
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter

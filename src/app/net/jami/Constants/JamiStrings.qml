@@ -915,7 +915,7 @@ Item {
     property string checkSpelling: qsTr("Check spelling while typing")
     property string systemDictionary: qsTr("System")
     property string textLanguage: qsTr("Text language")
-    property string spellchecking: qsTr("Spell checker")
+    property string spellChecker: qsTr("Spell checker")
     property string searchTextLanguages: qsTr("Search text languages")
     property string searchAvailableTextLanguages: qsTr("Search for available text languages")
     property string noDictionariesFoundFor: qsTr("No dictionaries found for '%1'")
