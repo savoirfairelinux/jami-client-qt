@@ -199,9 +199,9 @@ Item {
     property string enableAccountSettingsTitle: qsTr("Enable account")
     property string manageAccountSettingsTitle: qsTr("Manage account")
     property string linkedDevicesSettingsTitle: qsTr("Linked devices")
-    property string callSettingsTitle: qsTr("Call settings")
+    property string callSettingsTitle: qsTr("Call")
     property string chatSettingsTitle: qsTr("Chat")
-    property string advancedSettingsTitle: qsTr("Advanced settings")
+    property string advancedSettingsTitle: qsTr("Advanced")
     property string mediaSettingsTitle: qsTr("Media")
 
     // AudioSettings
@@ -553,6 +553,13 @@ Item {
     property string contentNotFoundError: qsTr("Content not found.")
     property string genericError: qsTr("An unexpected error occurred.")
 
+    // Call Settings
+    property string quality: qsTr("Quality")
+    property string saveRecordingsTo: qsTr("Save recordings to")
+    property string saveScreenshotsTo: qsTr("Save screenshots to")
+    property string callRecording: qsTr("Call recording")
+    property string alwaysRecordCalls: qsTr("Always record calls")
+
     // Troubleshoot Settings
     property string troubleshootTitle: qsTr("Troubleshoot")
     property string troubleshootButton: qsTr("Open logs")
@@ -560,13 +567,6 @@ Item {
 
     property string experimentalCallSwarm: qsTr("(Experimental) Enable call support for groups")
     property string experimentalCallSwarmTooltip: qsTr("This feature will enable the audio and video call buttons in group conversations.")
-
-    // Recording Settings
-    property string quality: qsTr("Quality")
-    property string saveRecordingsTo: qsTr("Save recordings to")
-    property string saveScreenshotsTo: qsTr("Save screenshots to")
-    property string callRecording: qsTr("Call recording")
-    property string alwaysRecordCalls: qsTr("Always record calls")
 
     // Keyboard shortcuts
     property string keyboardShortcutTableWindowTitle: qsTr("Keyboard shortcuts")

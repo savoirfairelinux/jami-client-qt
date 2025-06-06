@@ -15,37 +15,38 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 import QtQuick
-import QtQuick.Layouts
 import QtQuick.Controls
-import QtMultimedia
+import QtQuick.Layouts
+import Qt.labs.platform
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
-import net.jami.Enums 1.1
 import net.jami.Constants 1.1
-import net.jami.Helpers 1.1
 import "../../commoncomponents"
-import "../../mainview/components"
-import "../../mainview/js/contactpickercreation.js" as ContactPickerCreation
 
 SettingsPageBase {
     id: root
 
-    property bool isSIP: CurrentAccount.type === Profile.Type.SIP
-    property int itemWidth: 132
-    property string key: PTTListener.keyToString(PTTListener.getCurrentKey())
+    property string recordPath: AVModel.getRecordPath()
+    property string screenshotPath: UtilsAdapter.getDirScreenshot()
+
+    property string recordPathBestName: UtilsAdapter.dirName(AVModel.getRecordPath())
+    property string screenshotPathBestName: UtilsAdapter.dirName(UtilsAdapter.getDirScreenshot())
+
+    property int itemWidth: 188
     title: JamiStrings.callSettingsTitle
 
-    function updateAndShowModeratorsSlot() {
-        moderatorListWidget.model.reset();
-        moderatorListWidget.visible = moderatorListWidget.model.rowCount() > 0;
+    onRecordPathChanged: {
+        if (recordPath === "")
+            return;
+        if (AVModel) {
+            AVModel.setRecordPath(recordPath);
+        }
     }
 
-    Connections {
-        target: ContactAdapter
-
-        function onDefaultModeratorsUpdated() {
-            updateAndShowModeratorsSlot();
-        }
+    onScreenshotPathChanged: {
+        if (screenshotPath === "")
+            return;
+        UtilsAdapter.setScreenshotPath(screenshotPath);
     }
 
     flickableContent: ColumnLayout {
@@ -60,183 +61,151 @@ SettingsPageBase {
             id: generalSettings
 
             width: parent.width
-            spacing: JamiTheme.settingsCategorySpacing
 
-            Text {
-                id: enableAccountTitle
+            FolderDialog {
+                id: recordPathDialog
 
-                Layout.alignment: Qt.AlignLeft
-                Layout.preferredWidth: parent.width
+                title: JamiStrings.selectFolder
+                currentFolder: UtilsAdapter.getDirScreenshot()
+                options: FolderDialog.ShowDirsOnly
 
-                text: JamiStrings.generalSettingsTitle
-                color: JamiTheme.textColor
-                horizontalAlignment: Text.AlignLeft
-                verticalAlignment: Text.AlignVCenter
-                wrapMode: Text.WordWrap
-
-                font.pixelSize: JamiTheme.settingsTitlePixelSize
-                font.kerning: true
-            }
-
-            ToggleSwitch {
-                id: checkBoxUntrusted
-                visible: !root.isSIP
-
-                labelText: JamiStrings.allowCallsUnknownContacs
-                checked: CurrentAccount.PublicInCalls_DHT
-                onSwitchToggled: CurrentAccount.PublicInCalls_DHT = checked
-            }
-
-            ToggleSwitch {
-                id: checkBoxAutoAnswer
-
-                labelText: JamiStrings.autoAnswerCalls
-                checked: CurrentAccount.autoAnswer
-                onSwitchToggled: CurrentAccount.autoAnswer = checked
-            }
-
-            ToggleSwitch {
-                id: checkBoxRaiseWhenCalled
-
-                labelText: JamiStrings.raiseWhenCalled
-                checked: UtilsAdapter.getAppValue(Settings.RaiseWhenCalled)
-                onSwitchToggled: UtilsAdapter.setAppValue(Settings.Key.RaiseWhenCalled, checked)
-            }
-
-            ToggleSwitch {
-                id: checkBoxDenySecondCall
-
-                labelText: JamiStrings.denySecondCall
-                checked: CurrentAccount.denySecondCall
-                onSwitchToggled: CurrentAccount.denySecondCall = checked
-            }
-        }
-
-        ColumnLayout {
-            id: ringtoneSettings
-
-            width: parent.width
-            spacing: 9
-
-            Text {
-
-                Layout.alignment: Qt.AlignLeft
-                Layout.preferredWidth: parent.width
-
-                text: JamiStrings.ringtone
-                color: JamiTheme.textColor
-                horizontalAlignment: Text.AlignLeft
-                verticalAlignment: Text.AlignVCenter
-                wrapMode: Text.WordWrap
-
-                font.pixelSize: JamiTheme.settingsTitlePixelSize
-                font.kerning: true
-            }
-
-            ToggleSwitch {
-                id: checkBoxCustomRingtone
-
-                labelText: JamiStrings.enableCustomRingtone
-                checked: CurrentAccount.ringtoneEnabled_Ringtone
-                onSwitchToggled: CurrentAccount.ringtoneEnabled_Ringtone = checked
-            }
-
-            SettingMaterialButton {
-                id: btnRingtone
-
-                Layout.fillWidth: true
-
-                enabled: checkBoxCustomRingtone.checked
-
-                textField: UtilsAdapter.toFileInfoName(CurrentAccount.ringtonePath_Ringtone)
-
-                titleField: JamiStrings.selectCustomRingtone
-                itemWidth: root.itemWidth
-
-                onClick: {
-                    var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
-                            "title": JamiStrings.selectNewRingtone,
-                            "fileMode": JamiFileDialog.OpenFile,
-                            "folder": JamiQmlUtils.qmlFilePrefix + UtilsAdapter.toFileAbsolutepath(CurrentAccount.ringtonePath_Ringtone),
-                            "nameFilters": [JamiStrings.audioFile, JamiStrings.allFiles]
-                        });
-                    dlg.fileAccepted.connect(function (file) {
-                            var url = UtilsAdapter.getAbsPath(file.toString());
-                            if (url.length !== 0) {
-                                CurrentAccount.ringtonePath_Ringtone = url;
-                            }
-                        });
+                onAccepted: {
+                    var dir = UtilsAdapter.getAbsPath(folder.toString());
+                    var dirName = UtilsAdapter.dirName(folder.toString());
+                    recordPath = dir;
+                    recordPathBestName = dirName;
                 }
             }
-        }
 
-        ColumnLayout {
-            id: rendezVousSettings
+            FolderDialog {
+                id: screenshotPathDialog
 
-            width: parent.width
-            spacing: JamiTheme.settingsCategorySpacing
-            visible: !isSIP
+                title: JamiStrings.selectFolder
+                currentFolder: StandardPaths.writableLocation(StandardPaths.PicturesLocation)
+                options: FolderDialog.ShowDirsOnly
 
-            Text {
+                onAccepted: {
+                    var dir = UtilsAdapter.getAbsPath(folder.toString());
+                    var dirName = UtilsAdapter.dirName(folder.toString());
+                    screenshotPath = dir;
+                    screenshotPathBestName = dirName;
+                }
+            }
 
-                Layout.alignment: Qt.AlignLeft
-                Layout.preferredWidth: parent.width
+            Timer {
+                id: updateRecordQualityTimer
 
-                text: JamiStrings.rendezVousPoint
-                color: JamiTheme.textColor
-                horizontalAlignment: Text.AlignLeft
-                verticalAlignment: Text.AlignVCenter
-                wrapMode: Text.WordWrap
+                interval: 500
 
-                font.pixelSize: JamiTheme.settingsTitlePixelSize
-                font.kerning: true
+                onTriggered: AVModel.setRecordQuality(recordQualitySlider.value * 100)
             }
 
             ToggleSwitch {
-                id: checkBoxRdv
+                id: alwaysRecordingCheckBox
 
-                labelText: JamiStrings.rendezVous
-                checked: CurrentAccount.isRendezVous
-                onSwitchToggled: CurrentAccount.isRendezVous = checked
-            }
-        }
-
-        ColumnLayout {
-            id: moderationSettings
-
-            width: parent.width
-            spacing: 9
-            visible: !isSIP
-
-            Text {
-
-                Layout.alignment: Qt.AlignLeft
-                Layout.preferredWidth: parent.width
-
-                text: JamiStrings.moderation
-                color: JamiTheme.textColor
-                horizontalAlignment: Text.AlignLeft
-                verticalAlignment: Text.AlignVCenter
-                wrapMode: Text.WordWrap
-
-                font.pixelSize: JamiTheme.settingsTitlePixelSize
-                font.kerning: true
+                Layout.fillWidth: true
+                checked: AVModel.getAlwaysRecord()
+                labelText: JamiStrings.alwaysRecordCalls
+                tooltipText: JamiStrings.alwaysRecordCalls
+                onSwitchToggled: AVModel.setAlwaysRecord(checked)
             }
 
             ToggleSwitch {
-                id: toggleLocalModerators
+                id: recordPreviewCheckBox
 
-                labelText: JamiStrings.enableLocalModerators
-                checked: CurrentAccount.isLocalModeratorsEnabled
-                onSwitchToggled: CurrentAccount.isLocalModeratorsEnabled = checked
+                Layout.fillWidth: true
+                checked: AVModel.getRecordPreview()
+                labelText: JamiStrings.includeLocalVideo
+                onSwitchToggled: AVModel.setRecordPreview(checked)
             }
 
-            ToggleSwitch {
-                id: checkboxAllModerators
+            RowLayout {
+                Layout.fillWidth: true
+                Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-                labelText: JamiStrings.enableAllModerators
-                checked: CurrentAccount.isAllModeratorsEnabled
-                onSwitchToggled: CurrentAccount.isAllModeratorsEnabled = checked
+                Text {
+                    Layout.fillWidth: true
+                    Layout.rightMargin: JamiTheme.preferredMarginSize / 2
+
+                    color: JamiTheme.textColor
+                    text: JamiStrings.quality
+                    font.pointSize: JamiTheme.settingsFontSize
+                    font.kerning: true
+                    wrapMode: Text.WordWrap
+                    horizontalAlignment: Text.AlignLeft
+                    verticalAlignment: Text.AlignVCenter
+                }
+
+                Text {
+                    id: recordQualityValueLabel
+
+                    Layout.alignment: Qt.AlignRight
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    Layout.rightMargin: JamiTheme.preferredMarginSize / 2
+
+                    color: JamiTheme.tintedBlue
+                    text: UtilsAdapter.getRecordQualityString(AVModel.getRecordQuality() / 100)
+                    wrapMode: Text.WordWrap
+
+                    font.pointSize: JamiTheme.settingsFontSize
+                    font.kerning: true
+                    font.weight: Font.Medium
+                    horizontalAlignment: Text.AlignRight
+                    verticalAlignment: Text.AlignVCenter
+                }
+
+                Slider {
+                    id: recordQualitySlider
+
+                    Layout.maximumWidth: itemWidth
+                    Layout.alignment: Qt.AlignRight
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+
+                    value: AVModel.getRecordQuality() / 100
+                    useSystemFocusVisuals: false
+
+                    from: 0
+                    to: 500
+                    stepSize: 1
+
+                    onMoved: {
+                        recordQualityValueLabel.text = UtilsAdapter.getRecordQualityString(value);
+                        updateRecordQualityTimer.restart();
+                    }
+
+                    background: Rectangle {
+                        y: recordQualitySlider.height / 2
+                        implicitWidth: 200
+                        implicitHeight: 2
+                        width: recordQualitySlider.availableWidth
+                        height: implicitHeight
+                        radius: 2
+                        color: JamiTheme.tintedBlue
+                    }
+
+                    handle: ColumnLayout {
+                        x: recordQualitySlider.visualPosition * recordQualitySlider.availableWidth
+                        y: recordQualitySlider.height / 2
+
+                        Rectangle {
+                            Layout.topMargin: -12
+                            implicitWidth: 6
+                            implicitHeight: 25
+                            radius: implicitWidth
+                            color: JamiTheme.tintedBlue
+                            Layout.alignment: Qt.AlignHCenter
+                        }
+                    }
+
+                    MaterialToolTip {
+                        id: toolTip
+                        text: JamiStrings.quality
+                        visible: parent.hovered
+                        delay: Qt.styleHints.mousePressAndHoldInterval
+                    }
+                }
             }
 
             RowLayout {
@@ -246,11 +215,10 @@ SettingsPageBase {
                 Text {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-                    Layout.rightMargin: JamiTheme.preferredMarginSize
 
-                    color: JamiTheme.textColor
+                    text: JamiStrings.saveRecordingsTo
                     wrapMode: Text.WordWrap
-                    text: JamiStrings.defaultModerators
+                    color: JamiTheme.textColor
                     font.pointSize: JamiTheme.settingsFontSize
                     font.kerning: true
 
@@ -259,83 +227,71 @@ SettingsPageBase {
                 }
 
                 MaterialButton {
-                    id: addDefaultModeratorPushButton
+                    id: recordPathButton
 
-                    Layout.alignment: Qt.AlignCenter
+                    Layout.alignment: Qt.AlignRight
 
-                    preferredWidth: textSize.width + 2 * JamiTheme.buttontextWizzardPadding
+                    preferredWidth: itemWidth
                     buttontextHeightMargin: JamiTheme.buttontextHeightMargin
+                    textLeftPadding: JamiTheme.buttontextWizzardPadding
+                    textRightPadding: JamiTheme.buttontextWizzardPadding
 
-                    primary: true
-                    toolTipText: JamiStrings.addDefaultModerator
+                    toolTipText: recordPath
+                    text: recordPathBestName
+                    secondary: true
 
-                    text: JamiStrings.addModerator
-
-                    onClicked: {
-                        ContactPickerCreation.presentContactPickerPopup(ContactList.CONVERSATION, appWindow);
-                    }
-
-                    TextMetrics {
-                        id: textSize
-                        font.weight: Font.Bold
-                        font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
-                        font.capitalization: Font.AllUppercase
-                        text: addDefaultModeratorPushButton.text
-                    }
+                    onClicked: recordPathDialog.open()
                 }
             }
 
-            JamiListView {
-                id: moderatorListWidget
-
+            RowLayout {
                 Layout.fillWidth: true
-                Layout.preferredHeight: 160
-                spacing: JamiTheme.settingsListViewsSpacing
+                Layout.minimumHeight: JamiTheme.preferredFieldHeight
 
-                visible: count > 0
-                model: ModeratorListModel
+                Text {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
 
-                delegate: ContactItemDelegate {
-                    id: moderatorListDelegate
+                    text: JamiStrings.saveScreenshotsTo
+                    wrapMode: Text.WordWrap
+                    color: JamiTheme.textColor
+                    font.pointSize: JamiTheme.settingsFontSize
+                    font.kerning: true
 
-                    width: moderatorListWidget.width
-                    height: 74
+                    horizontalAlignment: Text.AlignLeft
+                    verticalAlignment: Text.AlignVCenter
+                }
 
-                    contactName: ContactName
-                    contactID: ContactID
+                MaterialButton {
+                    id: screenshotPathButton
 
-                    btnImgSource: JamiStrings.optionRemove
-                    btnToolTip: JamiStrings.removeDefaultModerator
+                    Layout.alignment: Qt.AlignRight
 
-                    onClicked: moderatorListWidget.currentIndex = index
-                    onBtnContactClicked: {
-                        AccountAdapter.setDefaultModerator(LRCInstance.currentAccountId, contactID, false);
-                        updateAndShowModeratorsSlot();
-                    }
+                    preferredWidth: itemWidth
+                    buttontextHeightMargin: JamiTheme.buttontextHeightMargin
+                    textLeftPadding: JamiTheme.buttontextWizzardPadding
+                    textRightPadding: JamiTheme.buttontextWizzardPadding
+
+                    toolTipText: screenshotPath
+                    text: screenshotPathBestName
+                    secondary: true
+                    onClicked: screenshotPathDialog.open()
                 }
             }
         }
 
         ColumnLayout {
-            id: chatViewSettings
 
             width: parent.width
-            spacing: 9
-
-            function isComplete() {
-                var horizontalView = UtilsAdapter.getAppValue(Settings.Key.ShowChatviewHorizontally) ? 1 : 0;
-                verticalRadio.checked = horizontalView === 0;
-                horizontalRadio.checked = horizontalView === 1;
-            }
-
-            Component.onCompleted: chatViewSettings.isComplete()
+            spacing: JamiTheme.settingsCategorySpacing
 
             Text {
+                id: experimentalTitle
 
                 Layout.alignment: Qt.AlignLeft
                 Layout.preferredWidth: parent.width
 
-                text: JamiStrings.chatSettingsTitle
+                text: JamiStrings.experimental
                 color: JamiTheme.textColor
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
@@ -345,117 +301,17 @@ SettingsPageBase {
                 font.kerning: true
             }
 
-            Flow {
-
-                Layout.preferredWidth: parent.width
-                Layout.preferredHeight: childrenRect.height
-                spacing: 5
-
-                ButtonGroup {
-                    id: optionsB
-                }
-
-                MaterialRadioButton {
-                    id: horizontalRadio
-                    width: 255
-                    height: 60
-
-                    text: JamiStrings.horizontalViewOpt
-                    ButtonGroup.group: optionsB
-                    iconSource: JamiResources.horizontal_view_svg
-
-                    onCheckedChanged: {
-                        if (checked) {
-                            UtilsAdapter.setAppValue(Settings.Key.ShowChatviewHorizontally, true);
-                        }
-                    }
-                }
-
-                MaterialRadioButton {
-                    id: verticalRadio
-
-                    width: 255
-                    height: 60
-
-                    text: JamiStrings.verticalViewOpt
-                    ButtonGroup.group: optionsB
-                    //color: JamiTheme.blackColor
-                    iconSource: JamiResources.vertical_view_svg
-
-                    onCheckedChanged: {
-                        if (checked) {
-                            UtilsAdapter.setAppValue(Settings.Key.ShowChatviewHorizontally, false);
-                        }
-                    }
-                }
-            }
-        }
-        ColumnLayout {
-            width: parent.width
-            spacing: 9
-            Text {
-                text: JamiStrings.pushToTalk
-                color: JamiTheme.textColor
-                horizontalAlignment: Text.AlignLeft
-                verticalAlignment: Text.AlignVCenter
-                wrapMode: Text.WordWrap
-                font.pixelSize: JamiTheme.settingsTitlePixelSize
-                font.kerning: true
-            }
             ToggleSwitch {
-                id: pttToggle
-                labelText: JamiStrings.enablePTT
-                checked: UtilsAdapter.getAppValue(Settings.EnablePtt)
+                id: checkboxCallSwarm
+                Layout.fillWidth: true
+                checked: UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm)
+                labelText: JamiStrings.experimentalCallSwarm
+                tooltipText: JamiStrings.experimentalCallSwarmTooltip
                 onSwitchToggled: {
-                    UtilsAdapter.setAppValue(Settings.Key.EnablePtt, checked);
-                }
-            }
-            RowLayout {
-                visible: pttToggle.checked
-                Layout.preferredWidth: parent.width
-
-                Label {
-                    color: JamiTheme.textColor
-                    wrapMode: Text.WordWrap
-                    text: JamiStrings.keyboardShortcut
-                    font.pointSize: JamiTheme.settingsFontSize
-                    font.kerning: true
-                    horizontalAlignment: Text.AlignLeft
-                    verticalAlignment: Text.AlignVCenter
-                }
-                Label {
-                    id: keyLabel
-                    color: JamiTheme.blackColor
-                    wrapMode: Text.WordWrap
-                    text: key
-                    font.pointSize: JamiTheme.settingsFontSize
-                    font.kerning: true
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-                    background: Rectangle {
-                        id: backgroundRect
-                        anchors.centerIn: parent
-                        width: keyLabel.width + 2 * JamiTheme.preferredMarginSize
-                        height: keyLabel.height + JamiTheme.preferredMarginSize
-                        color: JamiTheme.lightGrey_
-                        border.color: JamiTheme.darkGreyColor
-                        radius: 4
-                    }
-                }
-                MaterialButton {
-                    Layout.alignment: Qt.AlignRight
-                    buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-                    primary: true
-                    toolTipText: JamiStrings.changeKeyboardShortcut
-                    text: JamiStrings.change
-                    onClicked: {
-                        var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ChangePttKeyPopup.qml");
-                        dlg.choiceMade.connect(function (chosenKey) {
-                                keyLabel.text = PTTListener.keyToString(chosenKey);
-                            });
-                    }
+                    UtilsAdapter.setAppValue(Settings.Key.EnableExperimentalSwarm, checked);
                 }
             }
         }
+
     }
 }
