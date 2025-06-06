@@ -186,39 +186,6 @@ SettingsPageBase {
             }
         }
 
-        ColumnLayout {
-
-            width: parent.width
-            spacing: JamiTheme.settingsCategorySpacing
-
-            Text {
-                id: experimentalTitle
-
-                Layout.alignment: Qt.AlignLeft
-                Layout.preferredWidth: parent.width
-
-                text: JamiStrings.experimental
-                color: JamiTheme.textColor
-                horizontalAlignment: Text.AlignLeft
-                verticalAlignment: Text.AlignVCenter
-                wrapMode: Text.WordWrap
-
-                font.pixelSize: JamiTheme.settingsTitlePixelSize
-                font.kerning: true
-            }
-
-            ToggleSwitch {
-                id: checkboxCallSwarm
-                Layout.fillWidth: true
-                checked: UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm)
-                labelText: JamiStrings.experimentalCallSwarm
-                tooltipText: JamiStrings.experimentalCallSwarmTooltip
-                onSwitchToggled: {
-                    UtilsAdapter.setAppValue(Settings.Key.EnableExperimentalSwarm, checked);
-                }
-            }
-        }
-
         MaterialButton {
             id: defaultSettings
 
@@ -238,13 +205,11 @@ SettingsPageBase {
             onClicked: {
                 notificationCheckBox.checked = UtilsAdapter.getDefault(Settings.Key.EnableNotifications);
                 closeOrMinCheckBox.checked = UtilsAdapter.getDefault(Settings.Key.MinimizeOnClose);
-                checkboxCallSwarm.checked = UtilsAdapter.getDefault(Settings.Key.EnableExperimentalSwarm);
                 langComboBoxSetting.modelIndex = 0;
                 spellCheckLangComboBoxSetting.modelIndex = 0;
                 UtilsAdapter.setToDefault(Settings.Key.EnableNotifications);
                 UtilsAdapter.setToDefault(Settings.Key.MinimizeOnClose);
                 UtilsAdapter.setToDefault(Settings.Key.LANG);
-                UtilsAdapter.setToDefault(Settings.Key.EnableExperimentalSwarm);
                 UtilsAdapter.setToDefault(Settings.Key.IsDonationVisible);
                 UtilsAdapter.setToDefault(Settings.Key.Donation2023VisibleDate);
                 enableDonation.checked = Qt.binding(() => UtilsAdapter.getAppValue(Settings.Key.IsDonationVisible));
