@@ -198,9 +198,9 @@ Item {
     property string enableAccountSettingsTitle: qsTr("Enable account")
     property string manageAccountSettingsTitle: qsTr("Manage account")
     property string linkedDevicesSettingsTitle: qsTr("Linked devices")
-    property string callSettingsTitle: qsTr("Call settings")
+    property string callSettingsTitle: qsTr("Call")
     property string chatSettingsTitle: qsTr("Chat")
-    property string advancedSettingsTitle: qsTr("Advanced settings")
+    property string advancedSettingsTitle: qsTr("Advanced")
     property string mediaSettingsTitle: qsTr("Media")
 
     // AudioSettings
@@ -490,7 +490,7 @@ Item {
     property string unlinkDevice: qsTr("Remove")
     property string deviceId: qsTr("Device Id")
 
-    // SystemSettings
+    // Settings → Application → General
     property string system: qsTr("System")
     property string dark: qsTr("Dark")
     property string light: qsTr("Light")
@@ -502,10 +502,9 @@ Item {
     property string tipRunStartup: qsTr("Run at system startup")
     property string runStartup: qsTr("Launch at startup")
     property string downloadFolder: qsTr("Choose download directory")
-    property string includeLocalVideo: qsTr("Include local video in recording")
     property string defaultSettings: qsTr("Default settings")
 
-    // ChatviewSettings
+    // Settings → Conversation → Chat
     property string enableTypingIndicator: qsTr("Typing indicator")
     property string enableTypingIndicatorDescription: qsTr("Send and receive typing indicators showing when messages are being typed.")
     property string enableReadReceipts: qsTr("Read receipts")
@@ -553,20 +552,20 @@ Item {
     property string contentNotFoundError: qsTr("Content not found.")
     property string genericError: qsTr("An unexpected error occurred.")
 
-    // Troubleshoot Settings
-    property string troubleshootTitle: qsTr("Troubleshoot")
-    property string troubleshootButton: qsTr("Open logs")
-    property string troubleshootText: qsTr("Get logs")
-
-    property string experimentalCallSwarm: qsTr("(Experimental) Enable call support for groups")
-    property string experimentalCallSwarmTooltip: qsTr("This feature will enable the audio and video call buttons in group conversations.")
-
-    // Recording Settings
+    // Settings → Conversation → Call
+    property string callRecording: qsTr("Call recording")
+    property string alwaysRecordCalls: qsTr("Always record calls")
+    property string includeLocalVideo: qsTr("Include local video in recording")
     property string quality: qsTr("Quality")
     property string saveRecordingsTo: qsTr("Save recordings to")
     property string saveScreenshotsTo: qsTr("Save screenshots to")
-    property string callRecording: qsTr("Call recording")
-    property string alwaysRecordCalls: qsTr("Always record calls")
+    property string experimentalCallSwarm: qsTr("(Experimental) Enable call support for groups")
+    property string experimentalCallSwarmTooltip: qsTr("This feature will enable the audio and video call buttons in group conversations.")
+
+    // Settings → Conversation → Troubleshoot
+    property string troubleshootTitle: qsTr("Troubleshoot")
+    property string troubleshootText: qsTr("Get logs")
+    property string troubleshootButton: qsTr("Open logs")
 
     // Keyboard shortcuts
     property string keyboardShortcutTableWindowTitle: qsTr("Keyboard shortcuts")
