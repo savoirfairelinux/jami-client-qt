@@ -16,6 +16,24 @@
       "message": "Please help as unable to connect to:\nhttps://jenkins.jami.net/job/client-qt-gnulinux/4687/ : FAILURE\nhttps://jenkins.jami.net/job/client-qt-msvc/2488/ : FAILURE\n\nThank you",
       "revId": "d9030b161a0f6ede9aec568f2aa69e8af107d30c",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9414a13_91835933",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-06-06T12:16:43Z",
+      "side": 1,
+      "message": "Build Successful \nhttps://jenkins.jami.net/job/client-qt-macos/7351/ : SUCCESS\nhttps://jenkins.jami.net/job/client-qt-gnulinux/4689/ : SUCCESS\nhttps://jenkins.jami.net/job/client-qt-msvc/2489/ : SUCCESS\nPatch set 14:Verified +1",
+      "parentUuid": "8279bd64_5cfa7e7a",
+      "revId": "d9030b161a0f6ede9aec568f2aa69e8af107d30c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
