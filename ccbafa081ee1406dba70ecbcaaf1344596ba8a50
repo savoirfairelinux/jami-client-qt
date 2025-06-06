@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28a88afb_cb894521",
+        "filename": "extras/data/net.jami.Jami.desktop",
+        "patchSetId": 37
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-06-06T15:52:04Z",
+      "side": 1,
+      "message": "Remove blank lines",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 12
+      },
+      "revId": "ccbafa081ee1406dba70ecbcaaf1344596ba8a50",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e513d7e_41c0617a",
+        "filename": "extras/data/net.jami.Jami.desktop",
+        "patchSetId": 37
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-06-06T15:52:04Z",
+      "side": 1,
+      "message": "I\u0027m not convinced that AudioVideo should be in this list, given that we already have a main category (Network) and that all the \"additional categories\" in the list are related to it according to this page: https://specifications.freedesktop.org/menu-spec/latest/additional-category-registry.html",
+      "range": {
+        "startLine": 13,
+        "startChar": 11,
+        "endLine": 13,
+        "endChar": 21
+      },
+      "revId": "ccbafa081ee1406dba70ecbcaaf1344596ba8a50",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e629c55_6b121477",
+        "filename": "extras/data/net.jami.Jami.metainfo.xml",
+        "patchSetId": 37
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-06-06T15:52:04Z",
+      "side": 1,
+      "message": "I don\u0027t think it makes sense to add `\u003creleases\u003e` information manually in this file; if we want to have it, then it should be automatically generated every time we do a new release (and if we decide to officially support Flathub, then we should probably also add an automated check to make sure the metainfo file is valid using the tool mentioned at https://docs.flathub.org/docs/for-app-authors/metainfo-guidelines#validation).",
+      "range": {
+        "startLine": 19,
+        "startChar": 2,
+        "endLine": 26,
+        "endChar": 20
+      },
+      "revId": "ccbafa081ee1406dba70ecbcaaf1344596ba8a50",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1523549_23a3df35",
+        "filename": "extras/data/net.jami.Jami.metainfo.xml",
+        "patchSetId": 37
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-06-06T15:52:04Z",
+      "side": 1,
+      "message": "The usual convention for translations in metainfo files is to put all the translations for a tag immediately under that tag. Note that the example in Flathub\u0027s documentation follows this format: https://docs.flathub.org/docs/for-app-authors/metainfo-guidelines#metainfo-translations",
+      "range": {
+        "startLine": 43,
+        "startChar": 2,
+        "endLine": 45,
+        "endChar": 30
+      },
+      "revId": "ccbafa081ee1406dba70ecbcaaf1344596ba8a50",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cf1b731_59f2d509",
+        "filename": "extras/data/net.jami.Jami.metainfo.xml",
+        "patchSetId": 37
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-06-06T15:52:04Z",
+      "side": 1,
+      "message": "According to https://www.freedesktop.org/software/appstream/docs/chap-Metadata.html#tag-url, a \"contact\" URL \"should allow the user to contact the developer\", so I don\u0027t think it makes sense to put a link to the forum there.",
+      "range": {
+        "startLine": 86,
+        "startChar": 2,
+        "endLine": 86,
+        "endChar": 51
+      },
+      "revId": "ccbafa081ee1406dba70ecbcaaf1344596ba8a50",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bf144be_b0e38ec8",
+        "filename": "extras/data/net.jami.Jami.metainfo.xml",
+        "patchSetId": 37
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-06-06T15:52:04Z",
+      "side": 1,
+      "message": "This link gives me a 404 error. I\u0027m guessing that\u0027s because I\u0027m not logged in Transifex. Might be better to put https://explore.transifex.com/savoirfairelinux/jami/ instead?",
+      "range": {
+        "startLine": 88,
+        "startChar": 24,
+        "endLine": 88,
+        "endChar": 71
+      },
+      "revId": "ccbafa081ee1406dba70ecbcaaf1344596ba8a50",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c8db591_97559c68",
+        "filename": "extras/data/net.jami.Jami.metainfo.xml",
+        "patchSetId": 37
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-06-06T15:52:04Z",
+      "side": 1,
+      "message": "Same comment as for the .desktop file, I\u0027m not convinced that AudioVideo is appropriate for Jami.",
+      "range": {
+        "startLine": 148,
+        "startChar": 4,
+        "endLine": 148,
+        "endChar": 35
+      },
+      "revId": "ccbafa081ee1406dba70ecbcaaf1344596ba8a50",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
