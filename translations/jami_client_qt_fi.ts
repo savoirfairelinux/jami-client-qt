@@ -987,24 +987,49 @@ Jos nimeä ei valita, annetaan satunnaisesti luotu 40-merkkinen tunniste. Tunnis
         <translation>Tarkista oikeinkirjoitus kirjoittamisen aikana</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="916"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="917"/>
         <source>Text language</source>
         <translation>Tekstin kieli</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="917"/>
-        <source>To install new dictionaries, use the system package manager.</source>
-        <translation>Asenna uusia sanakirjoja tietokoneesi ohjelmiston asennuksen avulla.</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="919"/>
-        <source>Refresh</source>
-        <translation>Virkistä</translation>
+        <source>Search text languages</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="920"/>
-        <source>Refresh installed dictionaries</source>
-        <translation>Virkistä asennetut sanakirjat</translation>
+        <source>Search for available text languages</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="921"/>
+        <source>No dictionaries found for &apos;%1&apos;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="922"/>
+        <source>No dictionaries available</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="923"/>
+        <source>Manage Dictionaries</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="924"/>
+        <source>Download failed for dictionary &apos;%1&apos;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="925"/>
+        <source>Show installed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="926"/>
+        <source>Only show dictionaries that are currently installed</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="899"/>
@@ -1630,18 +1655,18 @@ synkronoi keskustelun…</translation>
         <translation>Piilota katsojat</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="276"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="278"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="581"/>
         <source>Copy</source>
         <translation>Kopioi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="277"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="276"/>
         <source>Share</source>
         <translation>Jako</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="278"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="277"/>
         <source>Cut</source>
         <translation>Leikkaa</translation>
     </message>
@@ -2912,6 +2937,7 @@ Kun olet valmis, skannaa QR-koodi.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="496"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="916"/>
         <source>System</source>
         <translation>Järjestelmä</translation>
     </message>
@@ -3805,17 +3831,17 @@ Vahvista tilin siirto painamalla painiketta.</translation>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="481"/>
+        <location filename="../src/app/mainapplication.cpp" line="479"/>
         <source>E&amp;xit</source>
         <translation>P&amp;oistu</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="483"/>
+        <location filename="../src/app/mainapplication.cpp" line="481"/>
         <source>&amp;Quit</source>
         <translation>&amp;Lopeta</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="489"/>
+        <location filename="../src/app/mainapplication.cpp" line="487"/>
         <source>&amp;Show Jami</source>
         <translation>&amp;Näytä Jami</translation>
     </message>
@@ -4303,17 +4329,17 @@ Vahvista tilin siirto painamalla painiketta.</translation>
         <translation>Ei hyväksytä missään</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="678"/>
+        <location filename="../src/app/messagesadapter.cpp" line="669"/>
         <source>Just now</source>
         <translation>Juuri nyt</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="697"/>
+        <location filename="../src/app/messagesadapter.cpp" line="688"/>
         <source>Today</source>
         <translation>Tänään</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="699"/>
+        <location filename="../src/app/messagesadapter.cpp" line="690"/>
         <source>Yesterday</source>
         <translation>Eilen</translation>
     </message>
@@ -4434,14 +4460,6 @@ Yritä uudelleen.</translation>
         <location filename="../src/app/smartlistmodel.cpp" line="191"/>
         <source>Contacts</source>
         <translation>Yhteystiedot</translation>
-    </message>
-</context>
-<context>
-    <name>SpellCheckDictionaryManager</name>
-    <message>
-        <location filename="../src/app/spellcheckdictionarymanager.cpp" line="56"/>
-        <source>None</source>
-        <translation>Ei mitään</translation>
     </message>
 </context>
 <context>
