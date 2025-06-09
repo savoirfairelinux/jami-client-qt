@@ -37,18 +37,19 @@ bool
 SpellChecker::spell(const QString& word)
 {
     // Encode from Unicode to the encoding used by current dictionary
-    return hunspell_->spell(word.toStdString()) != 0;
+    return hunspell_->spell(codec_->fromUnicode(word).toStdString()) != 0;
 }
 
 QStringList
 SpellChecker::suggest(const QString& word)
 {
     // Encode from Unicode to the encoding used by current dictionary
-    std::vector<std::string> numSuggestions = hunspell_->suggest(word.toStdString());
+    std::vector<std::string> numSuggestions = hunspell_->suggest(
+        codec_->fromUnicode(word).constData());
     QStringList suggestions;
 
-    for (size_t i = 0; i < numSuggestions.size(); ++i) {
-        suggestions << QString::fromStdString(numSuggestions.at(i));
+    for (const auto& suggestion : numSuggestions) {
+        suggestions << codec_->toUnicode(suggestion.c_str());
     }
     return suggestions;
 }
@@ -77,23 +78,8 @@ SpellChecker::replaceDictionary(const QString& dictionaryPath)
     QByteArray dictFilePath = dictFile.toLocal8Bit();
     QByteArray affixFilePath = affixFile.toLocal8Bit();
     hunspell_.reset(new Hunspell(affixFilePath.constData(), dictFilePath.constData()));
-    // detect encoding analyzing the SET option in the affix file
-    encoding_ = "ISO8859-1";
-    QFile _affixFile(affixFile);
-    if (_affixFile.open(QIODevice::ReadOnly)) {
-        QTextStream stream(&_affixFile);
-        QRegExp enc_detector("^\\s*SET\\s+([A-Z0-9\\-]+)\\s*", Qt::CaseInsensitive);
-        for (QString line = stream.readLine(); !line.isEmpty(); line = stream.readLine()) {
-            if (enc_detector.indexIn(line) > -1) {
-                encoding_ = enc_detector.cap(1);
-                break;
-            }
-        }
-        _affixFile.close();
-    }
-
+    encoding_ =hunspell_->get_dic_encoding();
     codec_ = QTextCodec::codecForName(this->encoding_.toLatin1().constData());
-
     currentDictionaryPath_ = dictionaryPath;
     return true;
 }
