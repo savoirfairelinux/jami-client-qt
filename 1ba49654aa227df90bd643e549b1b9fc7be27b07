@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53cff603_83a83e41",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2025-06-12T14:56:51Z",
+      "side": 1,
+      "message": "Daemon adjustments are also needed when adding media because hasVideo is false for calls with muted video.",
+      "revId": "1ba49654aa227df90bd643e549b1b9fc7be27b07",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4492aff_ed5943c3",
+        "filename": "src/libclient/callmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2025-06-12T14:56:51Z",
+      "side": 1,
+      "message": "when answer swarm call prefix is rdv:",
+      "revId": "1ba49654aa227df90bd643e549b1b9fc7be27b07",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
