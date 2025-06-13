@@ -113,7 +113,8 @@ JamiFlickable {
         }
     }
 
-    readonly property bool spellCheckEnabled:
+    property bool dictionnaryAlreadyLoaded: SpellCheckAdapter.hasAlreadyLoadedADictionary()
+    property bool spellCheckEnabled:
         AppSettingsManager.getValue(Settings.EnableSpellCheck) &&
         AppSettingsManager.getValue(Settings.SpellLang) !== ""
 
@@ -132,6 +133,8 @@ JamiFlickable {
             target: SpellCheckAdapter
 
             function onDictionaryChanged() {
+                console.warn("SpellCheckAdapter.onDictionaryChanged   RECEIVED");
+                root.dictionnaryAlreadyLoaded = true;
                 textArea.updateSpellCorrection();
             }
         }
@@ -149,6 +152,8 @@ JamiFlickable {
             }
 
             function onEnableSpellCheckChanged() {
+                spellCheckEnabled = AppSettingsManager.getValue(Settings.EnableSpellCheck) &&
+                AppSettingsManager.getValue(Settings.SpellLang) !== ""
                 textArea.updateSpellCorrection();
             }
         }
@@ -192,7 +197,7 @@ JamiFlickable {
 
         onReleased: function (event) {
             if (event.button === Qt.RightButton) {
-                if (spellCheckActive) {
+                if (spellCheckActive && dictionnaryAlreadyLoaded) {
                     var position = textArea.positionAt(event.x, event.y);
                     textArea.moveCursorSelection(position, TextInput.SelectWords);
                     textArea.selectWord();
@@ -254,7 +259,7 @@ JamiFlickable {
         function updateSpellCorrection() {
             clearUnderlines();
             // We iterate over the whole text to find words to check and underline them if needed
-            if (spellCheckActive) {
+            if (spellCheckActive && dictionnaryAlreadyLoaded) {
                 var text = textArea.text;
                 var words = SpellCheckAdapter.findWords(text);
                 if (!words)

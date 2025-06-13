@@ -128,12 +128,20 @@ SpellCheckAdapter::findWords(const QString& text)
     return result;
 }
 
+bool SpellCheckAdapter::hasAlreadyLoadedADictionary() const
+{
+    return hasLoadedDictionary_;
+}
+
 void
 SpellCheckAdapter::setDictionary(const QString& locale)
 {
     auto localPath = dictionaryListModel_->pathForLocale(locale);
     if (spellChecker_.replaceDictionary(localPath)) {
         settingsManager_->setValue(Settings::Key::SpellLang, locale);
+        hasLoadedDictionary_ = true;
         Q_EMIT dictionaryChanged();
+    }else{
+        qWarning() << "Failed to set dictionary for locale:" << locale;
     }
 }

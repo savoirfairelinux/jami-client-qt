@@ -31,12 +31,19 @@
 
 SpellChecker::SpellChecker()
     : hunspell_(new Hunspell("", ""))
-{}
+{
+    // Initialize with default UTF-8 codec
+    codec_ = QTextCodec::codecForName("UTF-8");
+}
 
 bool
 SpellChecker::spell(const QString& word)
 {
     // Encode from Unicode to the encoding used by current dictionary
+    if  (!codec_){
+        return true;
+    }
+
     return hunspell_->spell(codec_->fromUnicode(word).toStdString()) != 0;
 }
 
@@ -75,11 +82,22 @@ SpellChecker::replaceDictionary(const QString& dictionaryPath)
 
     QString dictFile = dictionaryPath + ".dic";
     QString affixFile = dictionaryPath + ".aff";
+
+    // Check if dictionary files exist
+    if (!QFile::exists(dictFile) || !QFile::exists(affixFile)) {
+        qWarning() << "Dictionary files not found:" << dictFile << affixFile;
+        return false;
+    }
+
     QByteArray dictFilePath = dictFile.toLocal8Bit();
     QByteArray affixFilePath = affixFile.toLocal8Bit();
     hunspell_.reset(new Hunspell(affixFilePath.constData(), dictFilePath.constData()));
     encoding_ =hunspell_->get_dic_encoding();
     codec_ = QTextCodec::codecForName(this->encoding_.toLatin1().constData());
+    if (codec_==nullptr) {
+        qWarning() << "Failed to initialize codec for encoding:" << encoding_;
+        return false;
+    }
     currentDictionaryPath_ = dictionaryPath;
     return true;
 }

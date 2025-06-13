@@ -57,6 +57,6 @@ private:
     std::unique_ptr<Hunspell> hunspell_;
 
     QString currentDictionaryPath_;
-    QString encoding_;
+    QString encoding_="UTF-8";
     QTextCodec* codec_;
 };
