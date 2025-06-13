@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2aab76e1_ce6869e9",
+        "filename": "src/app/mainview/components/MessageBarTextArea.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-06-13T19:43:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "553c9295_04b25f5c",
+      "range": {
+        "startLine": 116,
+        "startChar": 18,
+        "endLine": 116,
+        "endChar": 42
+      },
+      "revId": "5ecd6e4eca4943f84cec024b7b7fd0f44d096d92",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "28b73055_408e4d3f",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-06-13T19:28:26Z",
       "side": 1,
       "message": "remove",
+      "range": {
+        "startLine": 134,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 81
+      },
+      "revId": "5ecd6e4eca4943f84cec024b7b7fd0f44d096d92",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c83e5c9_96176d88",
+        "filename": "src/app/mainview/components/MessageBarTextArea.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-06-13T19:43:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28b73055_408e4d3f",
       "range": {
         "startLine": 134,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9921b910_08c70212",
+        "filename": "src/app/mainview/components/MessageBarTextArea.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-06-13T19:43:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1cfdce7e_3b84a7d9",
+      "range": {
+        "startLine": 153,
+        "startChar": 16,
+        "endLine": 153,
+        "endChar": 149
+      },
+      "revId": "5ecd6e4eca4943f84cec024b7b7fd0f44d096d92",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef4afee0_58d976e4",
@@ -83,6 +155,24 @@
       "writtenOn": "2025-06-13T19:28:26Z",
       "side": 1,
       "message": "https://review.jami.net/c/jami-client-qt/+/31337/2/src/app/spellchecker.h#60\n??",
+      "revId": "5ecd6e4eca4943f84cec024b7b7fd0f44d096d92",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "975af96f_a860d8c2",
+        "filename": "src/app/spellchecker.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1116
+      },
+      "writtenOn": "2025-06-13T19:43:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef4afee0_58d976e4",
       "revId": "5ecd6e4eca4943f84cec024b7b7fd0f44d096d92",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
