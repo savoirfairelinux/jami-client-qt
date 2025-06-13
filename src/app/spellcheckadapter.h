@@ -33,6 +33,7 @@ class SpellCheckAdapter final : public QObject
     QML_SINGLETON
 
     QML_RO_PROPERTY(int, installedDictionaryCount)
+    QML_RO_PROPERTY(bool, hasLoadedDictionary)
 
 public:
     static SpellCheckAdapter* create(QQmlEngine* engine, QJSEngine*)

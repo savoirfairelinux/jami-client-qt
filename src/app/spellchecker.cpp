@@ -31,7 +31,10 @@
 
 SpellChecker::SpellChecker()
     : hunspell_(new Hunspell("", ""))
-{}
+{
+    // Initialize with default UTF-8 codec
+    codec_ = QTextCodec::codecForName("UTF-8");
+}
 
 bool
 SpellChecker::spell(const QString& word)
@@ -75,11 +78,26 @@ SpellChecker::replaceDictionary(const QString& dictionaryPath)
 
     QString dictFile = dictionaryPath + ".dic";
     QString affixFile = dictionaryPath + ".aff";
+
+    // Check if dictionary files exist
+    if (!QFile::exists(dictFile) || !QFile::exists(affixFile)) {
+        qWarning() << "Dictionary files not found:" << dictFile << affixFile;
+        return false;
+    }
+
     QByteArray dictFilePath = dictFile.toLocal8Bit();
     QByteArray affixFilePath = affixFile.toLocal8Bit();
-    hunspell_.reset(new Hunspell(affixFilePath.constData(), dictFilePath.constData()));
-    encoding_ =hunspell_->get_dic_encoding();
-    codec_ = QTextCodec::codecForName(this->encoding_.toLatin1().constData());
+
+    std::unique_ptr<Hunspell> hunspell(
+        new Hunspell(affixFilePath.constData(), dictFilePath.constData()));
+    auto encoding = hunspell->get_dic_encoding();
+    auto codec = QTextCodec::codecForName(encoding);
+    if (!codec) {
+        return false;
+    }
+
+    hunspell_ = std::move(hunspell);
+    codec_ = codec;
     currentDictionaryPath_ = dictionaryPath;
     return true;
 }
