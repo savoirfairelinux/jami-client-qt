@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "553c9295_04b25f5c",
+        "filename": "src/app/mainview/components/MessageBarTextArea.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-06-13T19:28:26Z",
+      "side": 1,
+      "message": "1. dictionnary is a mix between English and French spelling\n2. remove the redundant term `Already`\n3. if this is preventing useless calls to spellchecker while the dictionary is loading, then remove it",
+      "range": {
+        "startLine": 116,
+        "startChar": 18,
+        "endLine": 116,
+        "endChar": 42
+      },
+      "revId": "5ecd6e4eca4943f84cec024b7b7fd0f44d096d92",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28b73055_408e4d3f",
+        "filename": "src/app/mainview/components/MessageBarTextArea.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-06-13T19:28:26Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 134,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 81
+      },
+      "revId": "5ecd6e4eca4943f84cec024b7b7fd0f44d096d92",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cfdce7e_3b84a7d9",
+        "filename": "src/app/mainview/components/MessageBarTextArea.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-06-13T19:28:26Z",
+      "side": 1,
+      "message": "mark this for removal given when settings become observable",
+      "range": {
+        "startLine": 153,
+        "startChar": 16,
+        "endLine": 153,
+        "endChar": 149
+      },
+      "revId": "5ecd6e4eca4943f84cec024b7b7fd0f44d096d92",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef4afee0_58d976e4",
+        "filename": "src/app/spellchecker.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-06-13T19:28:26Z",
+      "side": 1,
+      "message": "https://review.jami.net/c/jami-client-qt/+/31337/2/src/app/spellchecker.h#60\n??",
+      "revId": "5ecd6e4eca4943f84cec024b7b7fd0f44d096d92",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
