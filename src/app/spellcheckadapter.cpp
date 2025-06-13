@@ -134,6 +134,9 @@ SpellCheckAdapter::setDictionary(const QString& locale)
     auto localPath = dictionaryListModel_->pathForLocale(locale);
     if (spellChecker_.replaceDictionary(localPath)) {
         settingsManager_->setValue(Settings::Key::SpellLang, locale);
+        set_hasLoadedDictionary(true);
         Q_EMIT dictionaryChanged();
+    } else {
+        qWarning() << "Failed to set dictionary for locale:" << locale;
     }
 }
