@@ -57,6 +57,7 @@ public:
     Q_INVOKABLE QVariantList spellSuggestionsRequest(const QString& word);
     Q_INVOKABLE bool spell(const QString& word);
     Q_INVOKABLE QVariantList findWords(const QString& text);
+    Q_INVOKABLE bool hasAlreadyLoadedADictionary() const;
 
 public Q_SLOTS:
     Q_INVOKABLE void setDictionary(const QString& locale);
@@ -69,4 +70,5 @@ private:
     SpellChecker spellChecker_;
     SpellCheckDictionaryListModel* dictionaryListModel_ {nullptr};
     AppSettingsManager* settingsManager_ {nullptr};
+    bool hasLoadedDictionary_ = false;
 };
