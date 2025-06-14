@@ -839,6 +839,18 @@ AVModel::setAutoRestart(const QString& id, bool restart)
     VideoManager::instance().setAutoRestart(id, restart);
 }
 
+bool
+AVModel::isAgcEnabled()
+{
+    return ConfigurationManager::instance().isAgcEnabled();
+}
+
+void
+AVModel::setAGCState(bool enabled)
+{
+    ConfigurationManager::instance().setAgcState(enabled);
+}
+
 AVModelPimpl::AVModelPimpl(AVModel& linked, const CallbacksHandler& callbacksHandler)
     : callbacksHandler(callbacksHandler)
     , linked_(linked)

@@ -214,6 +214,7 @@ Item {
     property string selectRingtoneOutputDevice: qsTr("Select ringtone output device")
     property string audioManager: qsTr("Audio manager")
     property string soundTest: qsTr("Sound test")
+    property string enableAGC: qsTr("Enable automatic gain control")
 
     // VideoSettings
     property string video: qsTr("Video")

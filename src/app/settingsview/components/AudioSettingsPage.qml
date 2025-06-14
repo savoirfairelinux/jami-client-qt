@@ -77,6 +77,7 @@ SettingsPageBase {
                 audioManagerComboBoxSetting.modelIndex = audioManagerComboBoxSetting.comboModel.getCurrentSettingIndex();
             }
             audioManagerComboBoxSetting.visible = audioManagerComboBoxSetting.comboModel.rowCount() > 0;
+            automaticGainControl.checked = AVModel.isAgcEnabled();
         }
 
         SettingsComboBox {
@@ -197,6 +198,18 @@ SettingsPageBase {
                 AVModel.setAudioManager(selectedAudioManager);
                 AvAdapter.startAudioMeter();
                 rootLayout.populateAudioSettings();
+            }
+        }
+
+        ToggleSwitch {
+            id: automaticGainControl
+
+            Layout.fillWidth: true
+
+            labelText: JamiStrings.enableAGC
+
+            onSwitchToggled: {
+                AVModel.setAGCState(checked);
             }
         }
     }

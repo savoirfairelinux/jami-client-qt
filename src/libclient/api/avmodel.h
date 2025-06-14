@@ -293,6 +293,13 @@ public:
     Q_INVOKABLE qint64 getPlayerDuration(const QString& id);
     Q_INVOKABLE void setAutoRestart(const QString& id, bool restart);
 
+    /**
+     * Get if automatic gain control is enabled
+     * @return if automatic gain control is enabled
+     */
+    Q_INVOKABLE bool isAgcEnabled();
+    Q_INVOKABLE void setAGCState(bool enabled);
+
 Q_SIGNALS:
     /**
      * Emitted after an update of renderer's fps
