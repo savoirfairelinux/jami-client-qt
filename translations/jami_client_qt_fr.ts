@@ -990,24 +990,49 @@ Pour continuer, cliquez sur &quot;Mettre à jour&quot;.</translation>
         <translation>Vérifier l&apos;orthographe durant l&apos;écriture</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="916"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="917"/>
         <source>Text language</source>
         <translation>Langue </translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="917"/>
-        <source>To install new dictionaries, use the system package manager.</source>
-        <translation>Pour installer des nouveaux dictionnaires, veuillez utiliser votre gestionnaire de paquets.</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="919"/>
-        <source>Refresh</source>
-        <translation>Rafraîchir </translation>
+        <source>Search text languages</source>
+        <translation>Rechercher les langues</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="920"/>
-        <source>Refresh installed dictionaries</source>
-        <translation>Rafraîchir la liste des dictionnaires installés.</translation>
+        <source>Search for available text languages</source>
+        <translation>Rechercher les langues disponibles</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="921"/>
+        <source>No dictionaries found for &apos;%1&apos;</source>
+        <translation>Aucun dictionnaire correspondant à  &apos;%1&apos;</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="922"/>
+        <source>No dictionaries available</source>
+        <translation>Aucun dictionnaire disponible</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="923"/>
+        <source>Manage Dictionaries</source>
+        <translation>Gestion des dictionnaires</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="924"/>
+        <source>Download failed for dictionary &apos;%1&apos;</source>
+        <translation>Le téléchargement du dictionnaire &apos;%1&apos; a échoué</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="925"/>
+        <source>Show installed</source>
+        <translation>Montrer les dictionnaires installés</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="926"/>
+        <source>Only show dictionaries that are currently installed</source>
+        <translation>N&apos;afficher que les dictionnaires actuellement installés</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="899"/>
@@ -1632,18 +1657,18 @@ to connect to synchronize the conversation…</source>
         <translation>Cacher les participants</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="276"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="278"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="581"/>
         <source>Copy</source>
         <translation>Copier</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="277"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="276"/>
         <source>Share</source>
         <translation>Partager</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="278"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="277"/>
         <source>Cut</source>
         <translation>Couper</translation>
     </message>
@@ -2913,6 +2938,7 @@ Lorsque vous êtes prêt, scannez le code QR.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="496"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="916"/>
         <source>System</source>
         <translation>Système</translation>
     </message>
@@ -3806,17 +3832,17 @@ En cliquant sur confirmer, le transfert du compte se poursuivra.</translation>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="481"/>
+        <location filename="../src/app/mainapplication.cpp" line="479"/>
         <source>E&amp;xit</source>
         <translation>&amp;Sortir</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="483"/>
+        <location filename="../src/app/mainapplication.cpp" line="481"/>
         <source>&amp;Quit</source>
         <translation>&amp;Quitter</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="489"/>
+        <location filename="../src/app/mainapplication.cpp" line="487"/>
         <source>&amp;Show Jami</source>
         <translation>&amp;Montrer Jami</translation>
     </message>
@@ -4304,17 +4330,17 @@ En cliquant sur confirmer, le transfert du compte se poursuivra.</translation>
         <translation>N&apos;est pas acceptable ici</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="678"/>
+        <location filename="../src/app/messagesadapter.cpp" line="669"/>
         <source>Just now</source>
         <translation>À l&apos;instant</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="697"/>
+        <location filename="../src/app/messagesadapter.cpp" line="688"/>
         <source>Today</source>
         <translation>Aujourd&apos;hui</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="699"/>
+        <location filename="../src/app/messagesadapter.cpp" line="690"/>
         <source>Yesterday</source>
         <translation>Hier</translation>
     </message>
@@ -4435,14 +4461,6 @@ Veuillez réessayer.</translation>
         <location filename="../src/app/smartlistmodel.cpp" line="191"/>
         <source>Contacts</source>
         <translation>Contacts</translation>
-    </message>
-</context>
-<context>
-    <name>SpellCheckDictionaryManager</name>
-    <message>
-        <location filename="../src/app/spellcheckdictionarymanager.cpp" line="56"/>
-        <source>None</source>
-        <translation>Aucun</translation>
     </message>
 </context>
 <context>
@@ -4617,17 +4635,17 @@ Veuillez réessayer.</translation>
 <context>
     <name>UtilsAdapter</name>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="353"/>
+        <location filename="../src/app/utilsadapter.cpp" line="352"/>
         <source>%1 Mbps</source>
         <translation>%1 Mbits/s</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="353"/>
+        <location filename="../src/app/utilsadapter.cpp" line="352"/>
         <source>Default</source>
         <translation>Défaut</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="547"/>
+        <location filename="../src/app/utilsadapter.cpp" line="546"/>
         <source>System</source>
         <translation>Système</translation>
     </message>
