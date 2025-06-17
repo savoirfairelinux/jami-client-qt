@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3fd1c9c_777c27b1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 40
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-06-17T14:35:06Z",
+      "side": 1,
+      "message": "This should be updated since it no longer reflects the content of the commit.",
+      "range": {
+        "startLine": 7,
+        "startChar": 30,
+        "endLine": 7,
+        "endChar": 53
+      },
+      "revId": "a61bec7c56bc0fc966aa30f66952eba115a80613",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "9adf00e4_e5b10434",
@@ -14,6 +37,46 @@
       "writtenOn": "2025-06-16T23:46:37Z",
       "side": 1,
       "message": "!build",
+      "revId": "a61bec7c56bc0fc966aa30f66952eba115a80613",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6054ce4_f82a86f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 40
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-06-17T14:35:06Z",
+      "side": 1,
+      "message": "Last two review comments before merging the patch.",
+      "revId": "a61bec7c56bc0fc966aa30f66952eba115a80613",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "423aec77_0d497761",
+        "filename": "extras/data/net.jami.Jami.metainfo.xml",
+        "patchSetId": 40
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-06-17T14:35:06Z",
+      "side": 1,
+      "message": "I feel like the emphasis tag is used too much in the description currently. I think it\u0027s fine to emphasize the first occurrence of \"Jami\", and maybe also the first occurrence of \"JAMS\", but otherwise I feel like the text would be more readable without it.",
+      "range": {
+        "startLine": 22,
+        "startChar": 7,
+        "endLine": 22,
+        "endChar": 20
+      },
       "revId": "a61bec7c56bc0fc966aa30f66952eba115a80613",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
