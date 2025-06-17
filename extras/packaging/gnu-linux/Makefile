@@ -172,6 +172,7 @@ DISTRIBUTIONS := \
 	fedora_41 \
 	fedora_42 \
 	alma_9 \
+	alma_10 \
 	opensuse-leap_15.6 \
 	snap
 
