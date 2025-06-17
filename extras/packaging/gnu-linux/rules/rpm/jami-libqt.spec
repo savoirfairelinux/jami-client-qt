@@ -31,6 +31,7 @@ URL:           https://jami.net/
 Source:        jami-libqt-%{version}.tar.xz
 Patch0:        0001-fix-gcc14.patch
 Patch1:        0002-qtwebengine-add-missing-chromium-dependencies.patch
+Patch2:        0003-fix-embree-linking-errors.patch
 
 %global gst 0.10
 %if 0%{?fedora} || 0%{?rhel} > 7
@@ -68,6 +69,7 @@ This package contains Qt libraries for Jami.
 %setup -n qt-everywhere-src-%{version}
 %patch -P 0 -p1
 %patch -P 1 -p1
+%patch -P 2 -p1
 
 %build
 echo "Building Qt using %{job_count} parallel jobs"
