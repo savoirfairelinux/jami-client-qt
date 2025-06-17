@@ -1,0 +1,93 @@
+FROM almalinux:10
+RUN dnf clean all && dnf update -y
+RUN dnf install -y epel-release
+RUN dnf install -y 'dnf-command(config-manager)'
+RUN dnf config-manager --set-enabled crb
+RUN dnf config-manager --set-enabled appstream
+RUN dnf install -y dnf-command\(builddep\) rpmdevtools && \
+    dnf install -y mock
+RUN yum install -y xorg-x11-xauth
+RUN dnf install -y \
+        alsa-lib-devel \
+        astyle \
+        autoconf \
+        automake \
+        bison \
+        check \
+        chrpath \
+        clang15-devel \
+        cmake \
+        cryptopp-devel \
+        cups-devel \
+        dbus-devel \
+        expat-devel \
+        flex \
+        fmt-devel \
+        gcc-c++ \
+        gettext-devel \
+        git \
+        gnutls-devel \
+        gperf \
+        gsm-devel \
+        gstreamer1 gstreamer1-devel \
+        gstreamer1-plugins-bad-free-devel \
+        gstreamer1-plugins-base-devel \
+        gstreamer1-plugins-good \
+        jsoncpp-devel \
+        libX11-devel \
+        libXext-devel \
+        libXfixes-devel \
+        libXrender-devel \
+        libappindicator-gtk3-devel \
+        libargon2-devel \
+        libcanberra-devel \
+        libcurl-devel \
+        libdrm \
+        libnatpmp-devel \
+        libnotify \
+        libnotify-devel \
+        libsndfile-devel \
+        libstdc++-static \
+        libtool \
+        libupnp-devel \
+        libuuid-devel \
+        libva-devel \
+        libvdpau-devel \
+        libxcb* \
+        libxkb* \
+        libxshmfence-devel \
+        llvm15-devel \
+        make \
+        mesa-dri-drivers \
+        mesa-libgbm-devel \
+        msgpack-devel \
+        nasm \
+        nettle-devel \
+        NetworkManager-libnm-devel \
+        ninja-build \
+        nodejs \
+        nss-devel \
+        openssl-devel \
+        opus-devel \
+        pcre2-devel \
+        perl-English \
+        perl-generators \
+        pipewire-devel \
+        pulseaudio-libs-devel \
+        python3-html5lib \
+        qrencode-devel \
+        speex-devel \
+        speexdsp-devel \
+        sqlite-devel \
+        systemd-devel \
+        uuid-devel \
+        vulkan-devel \
+        webkitgtk6.0-devel \
+        wget \
+        which \
+        xcb-util-* \
+        xkeyboard-config \
+        yaml-cpp-devel \
+        yasm
+ADD extras/packaging/gnu-linux/scripts/build-package-rpm.sh /opt/build-package-rpm.sh
+CMD ["/opt/build-package-rpm.sh"]

@@ -1,0 +1,29 @@
+From 709d0b0cf45b920f63960a70725138dbaf7ec721 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Fran=C3=A7ois-Simon=20Fauteux-Chapleau?=
+ <francois-simon.fauteux-chapleau@savoirfairelinux.com>
+Date: Wed, 18 Jun 2025 15:53:55 -0400
+Subject: [PATCH] Fix embree linking errors
+
+Patch taken from:
+https://gitweb.gentoo.org/repo/gentoo.git/commit/?id=37bd373cd33c36f8dd44e71be25fa6ea24cf4588
+---
+ qtquick3d/src/3rdparty/embree/CMakeLists.txt | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/qtquick3d/src/3rdparty/embree/CMakeLists.txt b/qtquick3d/src/3rdparty/embree/CMakeLists.txt
+index cf27196de2..332bbd17ca 100644
+--- a/qtquick3d/src/3rdparty/embree/CMakeLists.txt
++++ b/qtquick3d/src/3rdparty/embree/CMakeLists.txt
+@@ -62,6 +62,9 @@ if (IOS)
+ endif()
+ 
+ # Use SSE2 only, ignore AVX/SSE4.2 for now
++if (TEST_architecture_arch STREQUAL x86_64)
++    qt_internal_extend_target(BundledEmbree COMPILE_OPTIONS -mno-avx -mno-sse4.2)
++endif()
+ qt_internal_extend_target(BundledEmbree DEFINES
+     EMBREE_TARGET_SSE2
+     __SSE2__
+-- 
+2.34.1
+
