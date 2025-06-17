@@ -169,12 +169,9 @@ DISTRIBUTIONS := \
 	ubuntu_24.04 \
 	ubuntu_24.10 \
 	ubuntu_25.04 \
-	fedora_39 \
-	fedora_40 \
 	fedora_41 \
 	fedora_42 \
 	alma_9 \
-	opensuse-leap_15.5 \
 	opensuse-leap_15.6 \
 	snap
 

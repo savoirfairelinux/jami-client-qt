@@ -1,16 +1,7 @@
 %define name        jami
 %define version     RELEASE_VERSION
 %define release     0
-
-# The AppStream 1.0 spec says that the catalog file must be put in /usr/share/swcatalog/xml
-# (see https://www.freedesktop.org/software/appstream/docs/chap-CatalogData.html).
-#
-# However, openSUSE Leap still uses the legacy path /usr/share/app-info/xmls as of version 15.5.
-%if 0%{?sle_version} &&  0%{?sle_version} <= 150500
-%define appstream_catalog_dir /share/app-info/xmls
-%else
 %define appstream_catalog_dir /share/swcatalog/xml
-%endif
 
 # Exclude vendored Qt6 from dependency generator
 %define __requires_exclude ^libQt6.*$

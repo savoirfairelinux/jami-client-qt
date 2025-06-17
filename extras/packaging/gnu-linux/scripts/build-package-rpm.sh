@@ -101,10 +101,6 @@ if [ ! -f "${RPM_PATH}" ]; then
         # Cache the built Qt RPM package.
         if [[ "${DISTRIBUTION:0:4}" == "rhel" ]]; then
             cp /root/rpmbuild/RPMS/x86_64/jami-libqt-$QT_MAJOR_MINOR_PATCH-*.el8.x86_64.rpm "${RPM_PATH}"
-        elif [[ "${DISTRIBUTION}" == "fedora_39" ]]; then
-            cp /root/rpmbuild/RPMS/x86_64/jami-libqt-$QT_MAJOR_MINOR_PATCH-*.fc39.x86_64.rpm "${RPM_PATH}"
-        elif [[ "${DISTRIBUTION}" == "fedora_40" ]]; then
-            cp /root/rpmbuild/RPMS/x86_64/jami-libqt-$QT_MAJOR_MINOR_PATCH-*.fc40.x86_64.rpm "${RPM_PATH}"
         elif [[ "${DISTRIBUTION}" == "fedora_41" ]]; then
             cp /root/rpmbuild/RPMS/x86_64/jami-libqt-$QT_MAJOR_MINOR_PATCH-*.fc41.x86_64.rpm "${RPM_PATH}"
         elif [[ "${DISTRIBUTION}" == "fedora_42" ]]; then
