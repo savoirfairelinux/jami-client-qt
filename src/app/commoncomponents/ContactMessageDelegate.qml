@@ -36,6 +36,30 @@ Column {
     height: timestampItem.height + textLabel.height
     spacing: 0
 
+    Accessible.name: {
+        let name = UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author)
+        return name + ": " + Body + " " + formattedTime + " " + formattedDay
+    }
+    Accessible.description: {
+        let status = ""
+        if (IsLastSent) status += JamiStrings.sent + " "
+        return status
+    }
+
+    Rectangle {
+        id: focusIndicator
+        visible: root.activeFocus
+        border.color: JamiTheme.tintedBlue
+        border.width: 2
+        color: "transparent"
+        // Only anchor after parent item is ready
+        anchors {
+            fill: parent
+            margins: -2 // Offset to show border outside the bubble
+        }
+        z: -2 // Keep behind message content
+    }
+
     Item {
         anchors.horizontalCenter: parent.horizontalCenter
         height: timestampItem.height + textLabel.height
