@@ -26,6 +26,35 @@ import net.jami.Enums 1.1
 SBSMessageBase {
     id: root
 
+    // Make the whole delegate accessible
+    Accessible.role: Accessible.StaticText
+    Accessible.name: {
+        let name = isOutgoing ? JamiStrings.inReplyToYou : UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author)
+        return name + ": " + Body + " " + formattedTime
+    }
+    Accessible.description: {
+        let status = ""
+        if (bubble.isEdited) status += JamiStrings.edited + " "
+        if (IsLastSent) status += JamiStrings.sent + " "
+        return status + (readers.length > 0 ? JamiStrings.readBy + " " + readers.map(function(uri) { return UtilsAdapter.getBestNameForUri(CurrentAccount.id, uri); }).join(", ") : "")
+    }
+
+    // Add visual focus indicator
+    Rectangle {
+        id: focusIndicator
+        visible: root.activeFocus
+        border.color: JamiTheme.tintedBlue
+        border.width: 2
+        radius: root.msgRadius
+        color: "transparent"
+        // Only anchor after parent item is ready
+        anchors {
+            fill: parent
+            margins: -2 // Offset to show border outside the bubble
+        }
+        z: -2 // Keep behind message content
+    }
+
     property bool isRemoteImage
     property bool isEmojiOnly: IsEmojiOnly
     property string colorUrl: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewLinkColorLight : JamiTheme.chatviewLinkColorDark
