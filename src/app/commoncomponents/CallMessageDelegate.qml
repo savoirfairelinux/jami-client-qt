@@ -40,6 +40,34 @@ SBSMessageBase {
         textRightPadding: 9
     }
 
+    Accessible.role: Accessible.StaticText
+    Accessible.name: {
+        let name = isOutgoing ? JamiStrings.inReplyToYou : UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author);
+        return name + ": " + callLabel.text + " " + formattedDay;
+    }
+    Accessible.description: {
+        let status = "";
+        if (bubble.isEdited)
+            status += JamiStrings.edited + " ";
+        return status + (readers.length > 0 ? JamiStrings.readBy + " " + readers.map(function (uri) {
+                    return UtilsAdapter.getBestNameForUri(CurrentAccount.id, uri);
+                }).join(", ") : "");
+    }
+
+    Rectangle {
+        id: focusIndicator
+        visible: root.activeFocus
+        border.color: JamiTheme.tintedBlue
+        border.width: 2
+        radius: root.msgRadius
+        color: "transparent"
+        anchors {
+            fill: parent
+            margins: -2
+        }
+        z: -2
+    }
+
     property bool isRemoteImage
 
     isOutgoing: Author === CurrentAccount.uri
@@ -104,12 +132,11 @@ SBSMessageBase {
                     effect: ColorOverlay {
                         color: {
                             if (Duration > 0)
-                                return UtilsAdapter.luma(root.baseColor) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
-                            return JamiTheme.redColor
+                                return UtilsAdapter.luma(root.baseColor) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark;
+                            return JamiTheme.redColor;
                         }
                     }
                 }
-
             }
 
             Text {
@@ -163,7 +190,7 @@ SBSMessageBase {
     ]
 
     opacity: 0
-    Behavior on opacity  {
+    Behavior on opacity {
         NumberAnimation {
             duration: 100
         }

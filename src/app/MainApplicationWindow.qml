@@ -53,6 +53,8 @@ ApplicationWindow {
                         focusOverlay.margin = 0;
                     focusOverlay.parent = activeFocusItem;
                 }
+            } else {
+                focusOverlay.parent = null;
             }
         } else {
             focusOverlay.parent = null;

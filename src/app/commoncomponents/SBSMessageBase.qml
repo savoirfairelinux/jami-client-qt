@@ -24,6 +24,7 @@ import net.jami.Constants 1.1
 
 Control {
     id: root
+    Accessible.role: Accessible.StaticText
 
     property alias avatarBlockWidth: avatarBlock.width
     property alias innerContent: innerContent
@@ -64,6 +65,7 @@ Control {
     property bool bigMsg
     property bool timeUnderBubble: false
     property var type: Type
+    property var shouldBeVisible: msgRowlayout.msgHovered || root.activeFocus || reply.activeFocus || more.activeFocus || share.activeFocus
 
     // If the ListView attached properties are not available,
     // then the root delegate is likely a Loader.
@@ -301,7 +303,7 @@ Control {
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.right: isOutgoing ? optionButtonItem.right : undefined
                         anchors.left: !isOutgoing ? optionButtonItem.left : undefined
-                        visible: msgRowlayout.msgHovered
+                        visible: shouldBeVisible
                         source: JamiResources.more_vert_24dp_svg
                         width: optionButtonItem.width / 4
                         height: optionButtonItem.height
@@ -311,7 +313,7 @@ Control {
 
                         function setBindings() {
                             more.isOpen = false;
-                            visible = Qt.binding(() => msgRowlayout.msgHovered);
+                            visible = Qt.binding(() => shouldBeVisible);
                             imageColor = Qt.binding(() => hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor);
                             normalColor = Qt.binding(() => JamiTheme.primaryBackgroundColor);
                         }
@@ -356,7 +358,7 @@ Control {
                         anchors.rightMargin: 5
                         anchors.right: isOutgoing ? more.left : undefined
                         anchors.left: !isOutgoing ? more.right : undefined
-                        visible: msgRowlayout.msgHovered
+                        visible: shouldBeVisible
 
                         onClicked: {
                             MessagesAdapter.editId = "";
@@ -380,13 +382,14 @@ Control {
                         anchors.rightMargin: 5
                         anchors.right: isOutgoing ? reply.left : undefined
                         anchors.left: !isOutgoing ? reply.right : undefined
-                        visible: msgRowlayout.msgHovered
+
+                        visible: shouldBeVisible
                         property bool isOpen: false
                         property var obj: undefined
 
                         function setBindings() { // when the popup is closed, setBindings is called to reset the icon's visual settings
                             share.isOpen = false;
-                            visible = Qt.binding(() => msgRowlayout.msgHovered);
+                            visible = Qt.binding(() => shouldBeVisible);
                             imageColor = Qt.binding(() => hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor);
                             normalColor = Qt.binding(() => JamiTheme.primaryBackgroundColor);
                         }
