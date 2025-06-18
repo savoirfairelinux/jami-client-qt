@@ -21,8 +21,8 @@ import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
-Column {
-    id: root
+Control {
+    id: rootDelegate
 
     property bool showTime: false
     property bool showDay: false
@@ -36,21 +36,41 @@ Column {
     height: timestampItem.height + textLabel.height
     spacing: 0
 
-    Item {
+    Accessible.name: {
+        let name = UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author);
+        return name + ": " + Body + " " + formattedTime + " " + formattedDay;
+    }
+    Accessible.description: {
+        let status = "";
+        if (IsLastSent)
+            status += JamiStrings.sent + " ";
+        return status;
+    }
+
+    background: Rectangle {
+        id: focusIndicator
+        visible: rootDelegate.activeFocus
+        border.color: JamiTheme.tintedBlue
+        border.width: 2
+        radius: 10
+        color: "transparent"
+        z: 1
+    }
+
+    contentItem: Item {
         anchors.horizontalCenter: parent.horizontalCenter
         height: timestampItem.height + textLabel.height
 
         TimestampInfo {
             id: timestampItem
 
-            showDay: root.showDay
-            showTime: root.showTime
-            formattedTime: root.formattedTime
-            formattedDay: root.formattedDay
+            showDay: rootDelegate.showDay
+            showTime: rootDelegate.showTime
+            formattedTime: rootDelegate.formattedTime
+            formattedDay: rootDelegate.formattedDay
 
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.top
-
         }
 
         Label {
@@ -67,7 +87,7 @@ Column {
         }
     }
     opacity: 0
-    Behavior on opacity  {
+    Behavior on opacity {
         NumberAnimation {
             duration: 100
         }

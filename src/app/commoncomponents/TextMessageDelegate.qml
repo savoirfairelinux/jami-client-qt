@@ -24,7 +24,21 @@ import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 
 SBSMessageBase {
-    id: root
+    id: rootDelegate
+
+    Accessible.role: Accessible.StaticText
+    Accessible.name: {
+        let name = isOutgoing ? JamiStrings.inReplyToYou : UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author);
+        return name + ": " + Body + " " + formattedTime;
+    }
+    Accessible.description: {
+        let status = "";
+        if (bubble.isEdited)
+            status += JamiStrings.edited + " ";
+        return status + (readers.length > 0 ? JamiStrings.readBy + " " + readers.map(function (uri) {
+                    return UtilsAdapter.getBestNameForUri(CurrentAccount.id, uri);
+                }).join(", ") : "");
+    }
 
     property bool isRemoteImage
     property bool isEmojiOnly: IsEmojiOnly
@@ -34,11 +48,11 @@ SBSMessageBase {
     Connections {
         target: bubble
         function onColorChanged(color) {
-            root.colorUrl = UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewLinkColorLight : JamiTheme.chatviewLinkColorDark;
-            root.colorText = UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark;
+            rootDelegate.colorUrl = UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewLinkColorLight : JamiTheme.chatviewLinkColorDark;
+            rootDelegate.colorText = UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark;
             // Update parsed body with correct colors
             if (Body !== "")
-                MessagesAdapter.parseMessage(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl, bubble.color);
+                MessagesAdapter.parseMessage(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), rootDelegate.colorUrl, bubble.color);
         }
     }
 
@@ -53,7 +67,7 @@ SBSMessageBase {
     textContentWidth: textEditId.width
     textContentHeight: textEditId.height
 
-    bigMsg: textContentWidth >= (2 / 3) * root.maxMsgWidth || extraContent.active
+    bigMsg: textContentWidth >= (2 / 3) * rootDelegate.maxMsgWidth || extraContent.active
 
     innerContent.children: [
         TextEdit {
@@ -63,10 +77,10 @@ SBSMessageBase {
             topPadding: bubble.isDeleted ? 6 : 10
             bottomPadding: bubble.isDeleted ? 6 : 10
             anchors.right: isOutgoing ? parent.right : undefined
-            anchors.rightMargin: isOutgoing && !isEmojiOnly && !bigMsg ? root.timeWidth + root.editedWidth : 0
+            anchors.rightMargin: isOutgoing && !isEmojiOnly && !bigMsg ? rootDelegate.timeWidth + rootDelegate.editedWidth : 0
             text: {
                 if (Body !== "" && ParsedBody.length === 0) {
-                    MessagesAdapter.parseMessage(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), root.colorUrl, bubble.color);
+                    MessagesAdapter.parseMessage(Id, Body, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), rootDelegate.colorUrl, bubble.color);
                     return "";
                 }
                 if (ParsedBody !== "")
@@ -82,11 +96,11 @@ SBSMessageBase {
 
             width: {
                 if (extraContent.active)
-                    Math.max(extraContent.width, Math.min((2 / 3) * root.maxMsgWidth, implicitWidth - avatarBlockWidth, extraContent.minSize) - senderMargin);
+                    Math.max(extraContent.width, Math.min((2 / 3) * rootDelegate.maxMsgWidth, implicitWidth - avatarBlockWidth, extraContent.minSize) - senderMargin);
                 else if (isEmojiOnly)
-                    Math.min((2 / 3) * root.maxMsgWidth, implicitWidth, innerContent.width - senderMargin - (innerContent.width - senderMargin) % (JamiTheme.chatviewEmojiSize + 2));
+                    Math.min((2 / 3) * rootDelegate.maxMsgWidth, implicitWidth, innerContent.width - senderMargin - (innerContent.width - senderMargin) % (JamiTheme.chatviewEmojiSize + 2));
                 else
-                    Math.min((2 / 3) * root.maxMsgWidth, implicitWidth + 5, innerContent.width - senderMargin + 5);
+                    Math.min((2 / 3) * rootDelegate.maxMsgWidth, implicitWidth + 5, innerContent.width - senderMargin + 5);
             }
 
             wrapMode: Label.WrapAtWordBoundaryOrAnywhere
@@ -96,7 +110,7 @@ SBSMessageBase {
             renderType: Text.NativeRendering
             textFormat: Text.RichText
             clip: true
-            onLinkHovered: root.hoveredLink = hoveredLink
+            onLinkHovered: rootDelegate.hoveredLink = hoveredLink
             onLinkActivated: Qt.openUrlExternally(new URL(hoveredLink))
             readOnly: true
             color: (ParsedBody !== "") ? getBaseColor() : (UtilsAdapter.luma(bubble.color) ? "white" : "dark")
@@ -150,7 +164,7 @@ SBSMessageBase {
                 HoverHandler {
                     target: previewContent
                     onHoveredChanged: {
-                        root.hoveredLink = hovered ? LinkPreviewInfo.url : "";
+                        rootDelegate.hoveredLink = hovered ? LinkPreviewInfo.url : "";
                     }
                     cursorShape: Qt.PointingHandCursor
                 }
@@ -204,7 +218,7 @@ SBSMessageBase {
                         wrapMode: Label.WrapAtWordBoundaryOrAnywhere
                         renderType: Text.NativeRendering
                         textFormat: TextEdit.RichText
-                        color: root.colorText
+                        color: rootDelegate.colorText
                         visible: LinkPreviewInfo.title.length > 0
                         text: LinkPreviewInfo.title
                         lineHeight: 1.3
@@ -217,9 +231,9 @@ SBSMessageBase {
                         renderType: Text.NativeRendering
                         textFormat: TextEdit.RichText
                         visible: LinkPreviewInfo.description.length > 0
-                        font.underline: root.hoveredLink
+                        font.underline: rootDelegate.hoveredLink
                         text: LinkPreviewInfo.description
-                        color: root.colorUrl
+                        color: rootDelegate.colorUrl
                         lineHeight: 1.3
                     }
                     Label {
@@ -229,7 +243,7 @@ SBSMessageBase {
                         wrapMode: Label.WrapAtWordBoundaryOrAnywhere
                         renderType: Text.NativeRendering
                         textFormat: TextEdit.RichText
-                        color: root.colorText
+                        color: rootDelegate.colorText
                         text: LinkPreviewInfo.domain
                         lineHeight: 1.3
                     }
