@@ -34,6 +34,32 @@ Column {
     spacing: 2
     topPadding: 12
     bottomPadding: 12
+
+    Accessible.name: {
+        let name = UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author);
+        return name + ": " + Body + " " + formattedTime + " " + formattedDay;
+    }
+    Accessible.description: {
+        let status = "";
+        if (IsLastSent)
+            status += JamiStrings.sent + " ";
+        return status;
+    }
+
+    Rectangle {
+        id: focusIndicator
+        visible: root.activeFocus
+        border.color: JamiTheme.tintedBlue
+        border.width: 2
+        color: "transparent"
+        // Only anchor after parent item is ready
+        anchors {
+            fill: parent
+            margins: -2 // Offset to show border outside the bubble
+        }
+        z: -2 // Keep behind message content
+    }
+
     ColumnLayout {
 
         width: parent.width
@@ -60,7 +86,7 @@ Column {
     }
 
     opacity: 0
-    Behavior on opacity  {
+    Behavior on opacity {
         NumberAnimation {
             duration: 100
         }

@@ -40,6 +40,7 @@ ApplicationWindow {
     property var raiseWhenCalled: AppSettingsManager.getValue(Settings.RaiseWhenCalled)
 
     onActiveFocusItemChanged: {
+        console.warn("Active focus item changed:", activeFocusItem);
         focusOverlay.margin = -5;
         if (activeFocusItem) {
             const goodReasonToChangeFocus = activeFocusItem instanceof ItemDelegate || ((activeFocusItem.focusReason === Qt.TabFocusReason) || (activeFocusItem.focusReason === Qt.BacktabFocusReason));
