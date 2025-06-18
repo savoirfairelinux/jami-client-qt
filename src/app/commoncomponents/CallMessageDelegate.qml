@@ -40,6 +40,32 @@ SBSMessageBase {
         textRightPadding: 9
     }
 
+    Accessible.role: Accessible.StaticText
+    Accessible.name: {
+        let name = isOutgoing ? JamiStrings.inReplyToYou : UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author)
+        return name + ": " + callLabel.text + " " + formattedTime + " " + formattedDay
+    }
+    Accessible.description: {
+        let status = ""
+        if (bubble.isEdited) status += JamiStrings.edited + " "
+        if (IsLastSent) status += JamiStrings.sent + " "
+        return status + (readers.length > 0 ? JamiStrings.readBy + " " + readers.join(", ") : "")
+    }
+
+    Rectangle {
+        id: focusIndicator
+        visible: root.activeFocus
+        border.color: JamiTheme.tintedBlue
+        border.width: 2
+        radius: root.msgRadius
+        color: "transparent"
+        anchors {
+            fill: parent
+            margins: -2
+        }
+        z: -2
+    }
+
     property bool isRemoteImage
 
     isOutgoing: Author === CurrentAccount.uri
