@@ -947,4 +947,8 @@ Item {
     property string tipDescription: qsTr("Tips to help you use Jami more effectively")
     property string showMoreMessagingOptions: qsTr("Show more messaging options")
     property string showMoreMessagingOptionsDescription: qsTr("Open a menu that allows you to send voice and video messages as well as sharing your location")
+    property string conversationMessages: qsTr("Conversation messages list. Use arrow keys to navigate through messages.")
+    property string dataTransfer: qsTr("Data transfer")
+    property string status: qsTr("Status")
+    property string readBy: qsTr("Read by")
 }

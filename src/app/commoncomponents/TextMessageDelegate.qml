@@ -26,6 +26,34 @@ import net.jami.Enums 1.1
 SBSMessageBase {
     id: root
 
+    Accessible.role: Accessible.StaticText
+    Accessible.name: {
+        let name = isOutgoing ? JamiStrings.inReplyToYou : UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author);
+        return name + ": " + Body + " " + formattedTime;
+    }
+    Accessible.description: {
+        let status = "";
+        if (bubble.isEdited)
+            status += JamiStrings.edited + " ";
+        return status + (readers.length > 0 ? JamiStrings.readBy + " " + readers.map(function (uri) {
+                    return UtilsAdapter.getBestNameForUri(CurrentAccount.id, uri);
+                }).join(", ") : "");
+    }
+
+    Rectangle {
+        id: focusIndicator
+        visible: root.activeFocus
+        border.color: JamiTheme.tintedBlue
+        border.width: 2
+        radius: root.msgRadius
+        color: "transparent"
+        anchors {
+            fill: parent
+            margins: -2
+        }
+        z: -2
+    }
+
     property bool isRemoteImage
     property bool isEmojiOnly: IsEmojiOnly
     property string colorUrl: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewLinkColorLight : JamiTheme.chatviewLinkColorDark

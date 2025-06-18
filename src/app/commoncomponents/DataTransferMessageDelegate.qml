@@ -38,6 +38,31 @@ Loader {
     property string body: Body
     property var tid: TID
     property int transferStatus: TransferStatus
+
+    Accessible.name: {
+        let name = UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author);
+        return JamiStrings.dataTransfer + name + ": " + JamiStrings.status + TransferStatus + Body + " " + formattedTime + " " + formattedDay;
+    }
+    Accessible.description: {
+        let status = "";
+        if (IsLastSent)
+            status += JamiStrings.sent + " ";
+        return status;
+    }
+
+    Rectangle {
+        id: focusIndicator
+        visible: root.activeFocus
+        border.color: JamiTheme.tintedBlue
+        border.width: 2
+        color: "transparent"
+        anchors {
+            fill: parent
+            margins: -2
+        }
+        z: -2
+    }
+
     onTidChanged: {
         if (tid === "") {
             sourceComponent = deletedMsgComp;
