@@ -24,20 +24,32 @@ import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
 
 Loader {
-    id: root
+    id: rootDelegate
 
     property var mediaInfo
     property bool showTime
     property bool showDay
     property int timestamp: Timestamp
-    property string formattedTime: MessagesAdapter.getFormattedTime(root.timestamp)
-    property string formattedDay: MessagesAdapter.getFormattedDay(root.timestamp)
+    property string formattedTime: MessagesAdapter.getFormattedTime(rootDelegate.timestamp)
+    property string formattedDay: MessagesAdapter.getFormattedDay(rootDelegate.timestamp)
 
     property int seq: MsgSeq.single
     property string author: Author
     property string body: Body
     property var tid: TID
     property int transferStatus: TransferStatus
+
+    Accessible.name: {
+        let name = UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author);
+        return JamiStrings.dataTransfer + name + ": " + JamiStrings.status + TransferStatus + Body + " " + formattedTime + " " + formattedDay;
+    }
+    Accessible.description: {
+        let status = "";
+        if (IsLastSent)
+            status += JamiStrings.sent + " ";
+        return status;
+    }
+
     onTidChanged: {
         if (tid === "") {
             sourceComponent = deletedMsgComp;
@@ -48,7 +60,7 @@ Loader {
             sourceComponent = deletedMsgComp;
             return;
         } else if (transferStatus === Interaction.TransferStatus.TRANSFER_FINISHED) {
-            mediaInfo = MessagesAdapter.getMediaInfo(root.body);
+            mediaInfo = MessagesAdapter.getMediaInfo(rootDelegate.body);
             if (Object.keys(mediaInfo).length !== 0 && WITH_WEBENGINE) {
                 sourceComponent = localMediaMsgComp;
                 return;
@@ -74,13 +86,13 @@ Loader {
             id: deletedItem
 
             isOutgoing: Author === CurrentAccount.uri
-            showTime: root.showTime
-            seq: root.seq
+            showTime: rootDelegate.showTime
+            seq: rootDelegate.seq
             author: Author
             readers: Readers
-            timestamp: root.timestamp
-            formattedTime: root.formattedTime
-            formattedDay: root.formattedTime
+            timestamp: rootDelegate.timestamp
+            formattedTime: rootDelegate.formattedTime
+            formattedDay: rootDelegate.formattedTime
             extraHeight: 0
             textContentWidth: textEditId.width
             textContentHeight: textEditId.height
@@ -122,34 +134,34 @@ Loader {
             id: dataTransferItem
 
             transferId: Id
-            property var transferStats: MessagesAdapter.getTransferStats(transferId, root.transferStatus)
-            property bool canOpen: root.transferStatus === Interaction.TransferStatus.TRANSFER_FINISHED || isOutgoing
-            property real maxMsgWidth: root.width - senderMargin - 2 * hPadding - avatarBlockWidth - buttonsLoader.width - 24 - 6 - 24
+            property var transferStats: MessagesAdapter.getTransferStats(transferId, rootDelegate.transferStatus)
+            property bool canOpen: rootDelegate.transferStatus === Interaction.TransferStatus.TRANSFER_FINISHED || isOutgoing
+            property real maxMsgWidth: rootDelegate.width - senderMargin - 2 * hPadding - avatarBlockWidth - buttonsLoader.width - 24 - 6 - 24
 
             // Timer to update the translation bar
             Loader {
                 id: timerLoader
-                active: root.transferStatus === Interaction.TransferStatus.TRANSFER_ONGOING
+                active: rootDelegate.transferStatus === Interaction.TransferStatus.TRANSFER_ONGOING
                 sourceComponent: Timer {
                     interval: 1000 // Update every second
                     running: true
                     repeat: true
                     onTriggered: {
-                        transferStats = MessagesAdapter.getTransferStats(transferId, root.transferStatus);
+                        transferStats = MessagesAdapter.getTransferStats(transferId, rootDelegate.transferStatus);
                     }
                 }
             }
 
             isOutgoing: Author === CurrentAccount.uri
-            showTime: root.showTime
-            seq: root.seq
+            showTime: rootDelegate.showTime
+            seq: rootDelegate.seq
             author: Author
             location: Body
             transferName: TransferName
             readers: Readers
-            timestamp: root.timestamp
-            formattedTime: root.formattedTime
-            formattedDay: root.formattedTime
+            timestamp: rootDelegate.timestamp
+            formattedTime: rootDelegate.formattedTime
+            formattedDay: rootDelegate.formattedTime
             extraHeight: progressBar.visible ? 25 : 0
 
             innerContent.children: [
@@ -178,7 +190,7 @@ Loader {
                         Layout.margins: 8
 
                         sourceComponent: {
-                            switch (root.transferStatus) {
+                            switch (rootDelegate.transferStatus) {
                             case Interaction.TransferStatus.TRANSFER_CREATED:
                             case Interaction.TransferStatus.TRANSFER_FINISHED:
                                 iconSource = JamiResources.link_black_24dp_svg;
@@ -225,7 +237,7 @@ Loader {
                                 normalColor: JamiTheme.chatviewBgColor
                                 imageColor: JamiTheme.chatviewButtonColor
                                 onClicked: {
-                                    if (root.transferStatus === Interaction.TransferStatus.TRANSFER_ONGOING) {
+                                    if (rootDelegate.transferStatus === Interaction.TransferStatus.TRANSFER_ONGOING) {
                                         MessagesAdapter.cancelFile(transferId);
                                     } else {
                                         buttonsLoader.iconSource = JamiResources.connecting_black_24dp_svg;
@@ -287,7 +299,7 @@ Loader {
                 ProgressBar {
                     id: progressBar
 
-                    visible: root.transferStatus === Interaction.TransferStatus.TRANSFER_ONGOING
+                    visible: rootDelegate.transferStatus === Interaction.TransferStatus.TRANSFER_ONGOING
                     height: visible * implicitHeight
                     value: transferStats.progress / transferStats.totalSize
                     width: transferItem.width
@@ -305,15 +317,15 @@ Loader {
 
             isOutgoing: Author === CurrentAccount.uri
             transferId: Id
-            property var transferStats: MessagesAdapter.getTransferStats(transferId, root.transferStatus)
-            showTime: root.showTime
-            seq: root.seq
+            property var transferStats: MessagesAdapter.getTransferStats(transferId, rootDelegate.transferStatus)
+            showTime: rootDelegate.showTime
+            seq: rootDelegate.seq
             author: Author
             location: Body
             transferName: TransferName
             readers: Readers
-            formattedTime: MessagesAdapter.getFormattedTime(root.timestamp)
-            formattedDay: MessagesAdapter.getFormattedDay(root.timestamp)
+            formattedTime: MessagesAdapter.getFormattedTime(rootDelegate.timestamp)
+            formattedDay: MessagesAdapter.getFormattedDay(rootDelegate.timestamp)
 
             property real contentWidth
 

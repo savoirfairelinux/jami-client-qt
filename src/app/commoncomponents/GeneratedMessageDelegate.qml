@@ -21,7 +21,7 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
 Column {
-    id: root
+    id: rootDelegate
 
     property bool showTime: false
     property bool showDay: false
@@ -34,6 +34,18 @@ Column {
     spacing: 2
     topPadding: 12
     bottomPadding: 12
+
+    Accessible.name: {
+        let name = UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author);
+        return name + ": " + Body + " " + formattedTime + " " + formattedDay;
+    }
+    Accessible.description: {
+        let status = "";
+        if (IsLastSent)
+            status += JamiStrings.sent + " ";
+        return status;
+    }
+
     ColumnLayout {
 
         width: parent.width
@@ -42,10 +54,10 @@ Column {
         TimestampInfo {
             id: timestampItem
 
-            showDay: root.showDay
-            showTime: root.showTime
-            formattedTime: root.formattedTime
-            formattedDay: root.formattedDay
+            showDay: rootDelegate.showDay
+            showTime: rootDelegate.showTime
+            formattedTime: rootDelegate.formattedTime
+            formattedDay: rootDelegate.formattedDay
             Layout.alignment: Qt.AlignHCenter
         }
 
@@ -60,7 +72,7 @@ Column {
     }
 
     opacity: 0
-    Behavior on opacity  {
+    Behavior on opacity {
         NumberAnimation {
             duration: 100
         }

@@ -23,12 +23,12 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
 SBSMessageBase {
-    id: root
+    id: rootDelegate
 
     property var confId: ConfId
     property var currentCallId: CurrentCall.id
     component JoinCallButton: MaterialButton {
-        visible: root.isActive && root.currentCallId !== root.confId
+        visible: rootDelegate.isActive && rootDelegate.currentCallId !== rootDelegate.confId
         toolTipText: JamiStrings.joinCall
         color: JamiTheme.blackColor
         background.opacity: hovered ? 0.2 : 0.1
@@ -40,6 +40,20 @@ SBSMessageBase {
         textRightPadding: 9
     }
 
+    Accessible.role: Accessible.StaticText
+    Accessible.name: {
+        let name = isOutgoing ? JamiStrings.inReplyToYou : UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author);
+        return name + ": " + callLabel.text + " " + formattedDay;
+    }
+    Accessible.description: {
+        let status = "";
+        if (bubble.isEdited)
+            status += JamiStrings.edited + " ";
+        return status + (readers.length > 0 ? JamiStrings.readBy + " " + readers.map(function (uri) {
+                    return UtilsAdapter.getBestNameForUri(CurrentAccount.id, uri);
+                }).join(", ") : "");
+    }
+
     property bool isRemoteImage
 
     isOutgoing: Author === CurrentAccount.uri
@@ -48,17 +62,17 @@ SBSMessageBase {
     formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
 
     bubble.border.color: CurrentConversation.color
-    bubble.border.width: root.isActive ? 1.5 : 0
+    bubble.border.width: rootDelegate.isActive ? 1.5 : 0
     bubble.color: JamiTheme.messageInBgColor
     bubble.opacity: 1
 
     Connections {
         target: CurrentConversation
-        enabled: root.isActive
+        enabled: rootDelegate.isActive
 
         function onActiveCallsChanged() {
-            root.isActive = LRCInstance.indexOfActiveCall(root.confId, ActionUri, DeviceId) !== -1;
-            if (root.isActive) {
+            rootDelegate.isActive = LRCInstance.indexOfActiveCall(rootDelegate.confId, ActionUri, DeviceId) !== -1;
+            if (rootDelegate.isActive) {
                 bubble.mask.border.color = CurrentConversation.color;
                 bubble.mask.border.width = 1.5;
                 bubble.mask.z = -2;
@@ -66,8 +80,8 @@ SBSMessageBase {
         }
     }
 
-    property bool isActive: LRCInstance.indexOfActiveCall(root.confId, ActionUri, DeviceId) !== -1
-    visible: isActive || root.confId === "" || Duration > 0
+    property bool isActive: LRCInstance.indexOfActiveCall(rootDelegate.confId, ActionUri, DeviceId) !== -1
+    visible: isActive || rootDelegate.confId === "" || Duration > 0
 
     property var baseColor: JamiTheme.messageInBgColor
 
@@ -76,7 +90,7 @@ SBSMessageBase {
             id: msg
             anchors.right: isOutgoing ? parent.right : undefined
             spacing: 10
-            visible: root.visible
+            visible: rootDelegate.visible
 
             Image {
                 id: statusIcon
@@ -84,10 +98,10 @@ SBSMessageBase {
                 width: 10
                 height: 10
                 verticalAlignment: Qt.AlignVCenter
-                visible: !root.isActive
+                visible: !rootDelegate.isActive
 
                 source: {
-                    if (root.isOutgoing) {
+                    if (rootDelegate.isOutgoing) {
                         if (Duration > 0)
                             return "qrc:/icons/outgoing-call.svg";
                         else
@@ -104,12 +118,11 @@ SBSMessageBase {
                     effect: ColorOverlay {
                         color: {
                             if (Duration > 0)
-                                return UtilsAdapter.luma(root.baseColor) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
-                            return JamiTheme.redColor
+                                return UtilsAdapter.luma(rootDelegate.baseColor) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark;
+                            return JamiTheme.redColor;
                         }
                     }
                 }
-
             }
 
             Text {
@@ -120,11 +133,11 @@ SBSMessageBase {
                 bottomPadding: 8
 
                 Layout.fillWidth: true
-                Layout.rightMargin: root.isActive && root.currentCallId !== root.confId ? 0 : root.timeWidth + 16
-                Layout.leftMargin: root.isActive ? 10 : -5 /* spacing is 10 and we want 5px with icon */
+                Layout.rightMargin: rootDelegate.isActive && rootDelegate.currentCallId !== rootDelegate.confId ? 0 : rootDelegate.timeWidth + 16
+                Layout.leftMargin: rootDelegate.isActive ? 10 : -5 /* spacing is 10 and we want 5px with icon */
 
                 text: {
-                    if (root.isActive)
+                    if (rootDelegate.isActive)
                         return JamiStrings.startedACall;
                     return Body;
                 }
@@ -136,7 +149,7 @@ SBSMessageBase {
                 renderType: Text.NativeRendering
                 textFormat: Text.MarkdownText
 
-                color: UtilsAdapter.luma(root.baseColor) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
+                color: UtilsAdapter.luma(rootDelegate.baseColor) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
             }
 
             JoinCallButton {
@@ -146,7 +159,7 @@ SBSMessageBase {
                 Layout.bottomMargin: 4
 
                 text: JamiStrings.joinWithAudio
-                onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, root.confId, true)
+                onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, rootDelegate.confId, true)
             }
 
             JoinCallButton {
@@ -156,20 +169,20 @@ SBSMessageBase {
                 Layout.topMargin: 4
                 Layout.bottomMargin: 4
 
-                onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, root.confId)
+                onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, rootDelegate.confId)
                 Layout.rightMargin: 4
             }
         }
     ]
 
     opacity: 0
-    Behavior on opacity  {
+    Behavior on opacity {
         NumberAnimation {
             duration: 100
         }
     }
     Component.onCompleted: {
-        bubble.timestampItem.visible = !root.isActive || root.currentCallId === root.confId;
+        bubble.timestampItem.visible = !rootDelegate.isActive || rootDelegate.currentCallId === rootDelegate.confId;
         opacity = 1;
     }
 }
