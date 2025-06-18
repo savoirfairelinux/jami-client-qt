@@ -34,6 +34,17 @@ Column {
     spacing: 2
     topPadding: 12
     bottomPadding: 12
+
+    Accessible.name: {
+        let name = UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author)
+        return name + ": " + Body + " " + formattedTime + " " + formattedDay
+    }
+    Accessible.description: {
+        let status = ""
+        if (IsLastSent) status += JamiStrings.sent + " "
+        return status
+    }
+
     ColumnLayout {
 
         width: parent.width

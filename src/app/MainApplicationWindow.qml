@@ -41,6 +41,7 @@ ApplicationWindow {
 
     onActiveFocusItemChanged: {
         focusOverlay.margin = -5;
+        console.warn("Active focus item changed to: " + activeFocusItem);
         if (activeFocusItem && ((activeFocusItem.focusReason === Qt.TabFocusReason) || (activeFocusItem.focusReason === Qt.BacktabFocusReason))) {
             if (activeFocusItem.focusOnChild) {
                 focusOverlay.parent = activeFocusItem.parent;
