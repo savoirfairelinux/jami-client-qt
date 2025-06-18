@@ -24,8 +24,26 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import "../../commoncomponents"
 
-JamiListView {
+ListView {
     id: root
+    property alias verticalScrollBar: verticalScrollBar
+    layer.mipmap: false
+    clip: true
+
+    ScrollBar.vertical: JamiScrollBar {
+        id: verticalScrollBar
+
+        attachedFlickableMoving: root.moving
+    }
+
+    keyNavigationEnabled: true
+    keyNavigationWraps: false
+
+    focus: true
+    activeFocusOnTab: true
+
+    Accessible.role: Accessible.List
+    Accessible.name: JamiStrings.conversationMessages
 
     function getDistanceToBottom() {
         const scrollDiff = ScrollBar.vertical.position - (1.0 - ScrollBar.vertical.size);
@@ -139,7 +157,10 @@ JamiListView {
     }
 
     // fade-in mechanism
-    Component.onCompleted: fadeAnimation.start()
+    Component.onCompleted: {
+        positionViewAtBeginning();
+        fadeAnimation.start();
+    }
     Rectangle {
         id: overlay
         anchors.fill: parent
@@ -193,6 +214,13 @@ JamiListView {
     verticalLayoutDirection: ListView.BottomToTop
     boundsBehavior: Flickable.StopAtBounds
     currentIndex: -1
+
+    Connections {
+        target: CurrentConversation
+        function onIdChanged() {
+            currentIndex = -1;
+        }
+    }
 
     model: MessagesAdapter.messageListModel
     delegate: DelegateChooser {
