@@ -36,6 +36,16 @@ Column {
     height: timestampItem.height + textLabel.height
     spacing: 0
 
+    Accessible.name: {
+        let name = UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author)
+        return name + ": " + Body + " " + formattedTime + " " + formattedDay
+    }
+    Accessible.description: {
+        let status = ""
+        if (IsLastSent) status += JamiStrings.sent + " "
+        return status
+    }
+
     Item {
         anchors.horizontalCenter: parent.horizontalCenter
         height: timestampItem.height + textLabel.height

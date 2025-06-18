@@ -24,6 +24,7 @@ import net.jami.Constants 1.1
 
 Control {
     id: root
+    Accessible.role: Accessible.StaticText
 
     property alias avatarBlockWidth: avatarBlock.width
     property alias innerContent: innerContent
@@ -301,7 +302,7 @@ Control {
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.right: isOutgoing ? optionButtonItem.right : undefined
                         anchors.left: !isOutgoing ? optionButtonItem.left : undefined
-                        visible: msgRowlayout.msgHovered
+                        visible: msgRowlayout.msgHovered // TODO: make it also visible when the message is selected using keyboard naviguation
                         source: JamiResources.more_vert_24dp_svg
                         width: optionButtonItem.width / 4
                         height: optionButtonItem.height
@@ -753,5 +754,16 @@ Control {
 
         reactions: Reactions
         msgId: Id
+    }
+
+    // Add keyboard focus visual feedback
+    property bool hasKeyboardFocus: activeFocus && !mouseArea.containsMouse
+
+    // Add mouse handling to ensure proper focus behavior
+    MouseArea {
+        id: mouseArea
+        anchors.fill: parent
+        hoverEnabled: true
+        onClicked: root.forceActiveFocus()
     }
 }
