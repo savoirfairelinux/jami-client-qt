@@ -24,6 +24,7 @@ import net.jami.Constants 1.1
 
 Control {
     id: root
+    Accessible.role: Accessible.StaticText
 
     property alias avatarBlockWidth: avatarBlock.width
     property alias innerContent: innerContent
@@ -301,7 +302,7 @@ Control {
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.right: isOutgoing ? optionButtonItem.right : undefined
                         anchors.left: !isOutgoing ? optionButtonItem.left : undefined
-                        visible: msgRowlayout.msgHovered
+                        visible: msgRowlayout.msgHovered || root.activeFocus
                         source: JamiResources.more_vert_24dp_svg
                         width: optionButtonItem.width / 4
                         height: optionButtonItem.height
@@ -311,7 +312,7 @@ Control {
 
                         function setBindings() {
                             more.isOpen = false;
-                            visible = Qt.binding(() => msgRowlayout.msgHovered);
+                            visible = Qt.binding(() => msgRowlayout.msgHovered || root.activeFocus);
                             imageColor = Qt.binding(() => hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor);
                             normalColor = Qt.binding(() => JamiTheme.primaryBackgroundColor);
                         }
@@ -356,7 +357,7 @@ Control {
                         anchors.rightMargin: 5
                         anchors.right: isOutgoing ? more.left : undefined
                         anchors.left: !isOutgoing ? more.right : undefined
-                        visible: msgRowlayout.msgHovered
+                        visible: msgRowlayout.msgHovered || root.activeFocus
 
                         onClicked: {
                             MessagesAdapter.editId = "";
@@ -380,13 +381,13 @@ Control {
                         anchors.rightMargin: 5
                         anchors.right: isOutgoing ? reply.left : undefined
                         anchors.left: !isOutgoing ? reply.right : undefined
-                        visible: msgRowlayout.msgHovered
+                        visible: msgRowlayout.msgHovered || root.activeFocus
                         property bool isOpen: false
                         property var obj: undefined
 
                         function setBindings() { // when the popup is closed, setBindings is called to reset the icon's visual settings
                             share.isOpen = false;
-                            visible = Qt.binding(() => msgRowlayout.msgHovered);
+                            visible = Qt.binding(() => msgRowlayout.msgHovered || root.activeFocus);
                             imageColor = Qt.binding(() => hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor);
                             normalColor = Qt.binding(() => JamiTheme.primaryBackgroundColor);
                         }
@@ -753,5 +754,16 @@ Control {
 
         reactions: Reactions
         msgId: Id
+    }
+
+    // Add keyboard focus visual feedback
+    property bool hasKeyboardFocus: activeFocus && !mouseArea.containsMouse
+
+    // Add mouse handling to ensure proper focus behavior
+    MouseArea {
+        id: mouseArea
+        anchors.fill: parent
+        hoverEnabled: true
+        onClicked: root.forceActiveFocus()
     }
 }
