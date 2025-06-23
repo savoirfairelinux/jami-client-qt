@@ -921,7 +921,7 @@ Item {
     property string noDictionariesFoundFor: qsTr("No dictionaries found for '%1'")
     property string noDictionariesAvailable: qsTr("No dictionaries available")
     property string manageDictionaries: qsTr("Manage Dictionaries")
-    property string spellCheckDownloadFailed: qsTr("Download failed for dictionary '%1'")
-    property string showInstalledDictionaries: qsTr("Show installed")
+    property string spellCheckDownloadFailed: qsTr("An error occurred while downloading the %1 dictionary.")
+    property string showInstalledDictionaries: qsTr("Show installed dictionaries")
     property string showInstalledDictionariesDescription: qsTr("Only show dictionaries that are currently installed")
 }
