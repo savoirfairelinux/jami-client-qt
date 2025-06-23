@@ -87,11 +87,11 @@ ContextMenuAutoLoader {
         },
         GeneralMenuItem {
             id: manageLanguages
-            itemName: JamiStrings.manageDictionaries
+            itemName: JamiStrings.dictionaryManager
             canTrigger: spellCheckEnabled
             hasIcon: false
             onClicked: {
-                viewCoordinator.presentDialog(appWindow, "commoncomponents/ManageDictionariesDialog.qml");
+                viewCoordinator.presentDialog(appWindow, "commoncomponents/DictionaryManagerDialog.qml");
             }
         }
     ]

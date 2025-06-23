@@ -23,12 +23,12 @@ import "../commoncomponents/contextmenu"
 
 BaseModalDialog {
     id: root
-    objectName: "manageDictionariesDialog"
+    objectName: "dictionaryManagerDialog"
 
-    title: JamiStrings.manageDictionaries
+    title: JamiStrings.dictionaryManager
 
     popupContent: DictionaryInstallView {
-        Accessible.name: JamiStrings.manageDictionaries
+        Accessible.name: JamiStrings.dictionaryManager
         Accessible.role: Accessible.PopupMenu
         width: 400
         height: 500

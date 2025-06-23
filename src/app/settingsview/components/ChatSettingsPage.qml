@@ -93,9 +93,9 @@ SettingsPageBase {
                 height: spellCheckLangComboBoxSetting.comboBox.height
                 Layout.alignment: Qt.AlignRight
 
-                text: JamiStrings.manageDictionaries
+                text: JamiStrings.dictionaryManager
                 onClicked: {
-                    viewCoordinator.presentDialog(appWindow, "commoncomponents/ManageDictionariesDialog.qml");
+                    viewCoordinator.presentDialog(appWindow, "commoncomponents/DictionaryManagerDialog.qml");
                 }
             }
         }
