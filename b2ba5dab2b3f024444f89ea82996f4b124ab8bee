@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "094ff0e5_d41dfd8b",
+        "filename": "extras/packaging/windows/Jenkinsfile",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1131
+      },
+      "writtenOn": "2025-06-26T15:52:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca1d7b59_318b0b41",
+      "range": {
+        "startLine": 2,
+        "startChar": 18,
+        "endLine": 2,
+        "endChar": 31
+      },
+      "revId": "b2ba5dab2b3f024444f89ea82996f4b124ab8bee",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "32c7d3c8_bfd20b76",
@@ -47,6 +71,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "43f5ce22_46f574be",
+        "filename": "extras/packaging/windows/Jenkinsfile",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1131
+      },
+      "writtenOn": "2025-06-26T15:52:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "32c7d3c8_bfd20b76",
+      "range": {
+        "startLine": 5,
+        "startChar": 22,
+        "endLine": 5,
+        "endChar": 58
+      },
+      "revId": "b2ba5dab2b3f024444f89ea82996f4b124ab8bee",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f46c42cd_899a5327",
@@ -60,6 +108,30 @@
       "writtenOn": "2025-06-17T18:55:58Z",
       "side": 1,
       "message": "parameter",
+      "range": {
+        "startLine": 80,
+        "startChar": 35,
+        "endLine": 80,
+        "endChar": 57
+      },
+      "revId": "b2ba5dab2b3f024444f89ea82996f4b124ab8bee",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b20d50fd_433e0e24",
+        "filename": "extras/packaging/windows/Jenkinsfile",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1131
+      },
+      "writtenOn": "2025-06-26T15:52:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f46c42cd_899a5327",
       "range": {
         "startLine": 80,
         "startChar": 35,
