@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd79d423_0e9a9dc8",
+        "filename": "extras/packaging/windows/Jenkinsfile.main",
+        "patchSetId": 15
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1131
+      },
+      "writtenOn": "2025-06-26T15:52:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e0216d0_87363799",
+      "range": {
+        "startLine": 2,
+        "startChar": 18,
+        "endLine": 2,
+        "endChar": 48
+      },
+      "revId": "6de88fcf435125d79990d27ae05a5ae1331086b7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "270d8e0e_73f52c13",
@@ -70,6 +94,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6db601ec_6db4b28a",
+        "filename": "extras/packaging/windows/Jenkinsfile.main",
+        "patchSetId": 15
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1131
+      },
+      "writtenOn": "2025-06-26T15:52:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "270d8e0e_73f52c13",
+      "range": {
+        "startLine": 5,
+        "startChar": 22,
+        "endLine": 5,
+        "endChar": 58
+      },
+      "revId": "6de88fcf435125d79990d27ae05a5ae1331086b7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "59a6db04_576b9032",
@@ -83,6 +131,30 @@
       "writtenOn": "2025-06-17T18:56:06Z",
       "side": 1,
       "message": "also external env",
+      "range": {
+        "startLine": 6,
+        "startChar": 8,
+        "endLine": 9,
+        "endChar": 77
+      },
+      "revId": "6de88fcf435125d79990d27ae05a5ae1331086b7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d84d6345_6a0dacab",
+        "filename": "extras/packaging/windows/Jenkinsfile.main",
+        "patchSetId": 15
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1131
+      },
+      "writtenOn": "2025-06-26T15:52:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "59a6db04_576b9032",
       "range": {
         "startLine": 6,
         "startChar": 8,
@@ -139,6 +211,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2145fb4_a51fc00b",
+        "filename": "extras/packaging/windows/Jenkinsfile.main",
+        "patchSetId": 15
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1131
+      },
+      "writtenOn": "2025-06-26T15:52:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5058892c_f24a9d77",
+      "range": {
+        "startLine": 62,
+        "startChar": 49,
+        "endLine": 62,
+        "endChar": 82
+      },
+      "revId": "6de88fcf435125d79990d27ae05a5ae1331086b7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56f63d23_596c9c69",
@@ -152,6 +248,30 @@
       "writtenOn": "2025-06-17T18:56:06Z",
       "side": 1,
       "message": "env var",
+      "range": {
+        "startLine": 73,
+        "startChar": 36,
+        "endLine": 73,
+        "endChar": 57
+      },
+      "revId": "6de88fcf435125d79990d27ae05a5ae1331086b7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "817d9901_82cd8d77",
+        "filename": "extras/packaging/windows/Jenkinsfile.main",
+        "patchSetId": 15
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1131
+      },
+      "writtenOn": "2025-06-26T15:52:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56f63d23_596c9c69",
       "range": {
         "startLine": 73,
         "startChar": 36,
