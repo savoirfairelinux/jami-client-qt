@@ -2391,7 +2391,7 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
         }
         Q_EMIT linked.newInteraction(conversationId, msgId, msg);
         Q_EMIT linked.modelChanged();
-        if (msg.transferStatus == interaction::TransferStatus::TRANSFER_AWAITING_HOST && updateUnread) {
+        if (msg.transferStatus == interaction::TransferStatus::TRANSFER_AWAITING_HOST) {
             handleIncomingFile(conversationId,
                                msgId,
                                QString(message.body.value("totalSize")).toInt());
