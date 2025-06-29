@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f30ec00c_22f3a14a",
+        "filename": "src/app/mainview/components/KeyboardShortcutTable.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-06-29T10:39:21Z",
+      "side": 0,
+      "message": "Should it be `Accept call` to be consistent with:\n* other instances of `Accept call`\n* `Decline call` is used in the keyboard shortcut table, not `Decline incoming call`\n\nWhat do you think?\n\nThank you",
+      "range": {
+        "startLine": 120,
+        "startChar": 35,
+        "endLine": 120,
+        "endChar": 55
+      },
+      "revId": "af09269d8141e8073db2f903d807843461a01bfb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
