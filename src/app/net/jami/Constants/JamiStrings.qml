@@ -100,7 +100,7 @@ Item {
     // AdvancedCallSettings
     property string allowCallsUnknownContacs: qsTr("Allow incoming calls from unknown contacts")
     property string rendezVous: qsTr("Convert your account into a rendezvous point")
-    property string autoAnswerCalls: qsTr("Automatically answer incoming calls")
+    property string autoAnswerCalls: qsTr("Automatically accept calls")
     property string enableCustomRingtone: qsTr("Enable custom ringtone")
     property string selectCustomRingtone: qsTr("Select custom ringtone")
     property string selectNewRingtone: qsTr("Select a new ringtone")
@@ -609,7 +609,7 @@ Item {
     property string enterPasswordPinCode: qsTr("This account is password encrypted, enter the password to generate a PIN code.")
     property string addDevice: qsTr("Add Device")
     property string linkNewDevice: qsTr("Link new device")
-    property string linkDeviceConnecting: qsTr("Connecting to your new device…")
+    property string linkDeviceConnecting: qsTr("Connecting to the new device…")
     property string linkDeviceInProgress: qsTr("The export account operation to the new device is in progress.\nPlease confirm the import on the new device.")
     property string linkDeviceScanQR: qsTr("On the new device, initiate a new account.\nSelect Add account → Connect from another device.\nWhen ready, scan the QR code.")
     property string linkDeviceEnterManually: qsTr("Alternatively, enter the authentication code manually.")
