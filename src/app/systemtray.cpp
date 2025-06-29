@@ -221,7 +221,7 @@ SystemTray::showNotification(const QString& id,
 
     if (pimpl_->actions) {
         if (type == NotificationType::CALL) {
-            pimpl_->addNotificationAction(n, tr("Answer call"), (void*) answerCall);
+            pimpl_->addNotificationAction(n, tr("Accept call"), (void*) answerCall);
             pimpl_->addNotificationAction(n, tr("Decline call"), (void*) declineCall);
         } else {
             pimpl_->addNotificationAction(n, tr("Open conversation"), (void*) openConversation);
