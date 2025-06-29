@@ -117,7 +117,7 @@ Window {
             }
             ListElement {
                 shortcut: "Ctrl+Y"
-                description: qsTr("Answer incoming call")
+                description: qsTr("Accept incoming call")
             }
             ListElement {
                 shortcut: "Ctrl+D"
