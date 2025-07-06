@@ -618,8 +618,8 @@ else() # APPLE
     ${myApp_ICON}
     PROPERTIES
     MACOSX_PACKAGE_LOCATION Resources)
-  INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/3rdparty/libqrencode/include)
-  LINK_DIRECTORIES(${PROJECT_SOURCE_DIR}/3rdparty/libqrencode/lib)
+  INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/3rdparty/libqrencode/)
+  LINK_DIRECTORIES(${PROJECT_SOURCE_DIR}/3rdparty/libqrencode/)
   if(ENABLE_SPARKLE)
     message("Sparkle auto-update enabled")
     set(sparkle_dir "${PACKAGING_DIR}/update/sparkle")
