@@ -987,23 +987,48 @@ Se non si sceglie un nome utente, all&apos;account verrà assegnato come nome ut
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="916"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="917"/>
         <source>Text language</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="917"/>
-        <source>To install new dictionaries, use the system package manager.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="919"/>
-        <source>Refresh</source>
+        <source>Search text languages</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="920"/>
-        <source>Refresh installed dictionaries</source>
+        <source>Search for available text languages</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="921"/>
+        <source>No dictionaries found for &apos;%1&apos;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="922"/>
+        <source>No dictionaries available</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="923"/>
+        <source>Manage Dictionaries</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="924"/>
+        <source>Download failed for dictionary &apos;%1&apos;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="925"/>
+        <source>Show installed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="926"/>
+        <source>Only show dictionaries that are currently installed</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1627,18 +1652,18 @@ to connect to synchronize the conversation…</source>
         <translation>Nascondi spettatori</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="276"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="278"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="581"/>
         <source>Copy</source>
         <translation>Copia</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="277"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="276"/>
         <source>Share</source>
         <translation>Condividi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="278"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="277"/>
         <source>Cut</source>
         <translation>Taglia</translation>
     </message>
@@ -2903,6 +2928,7 @@ When ready, scan the QR code.</source>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="496"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="916"/>
         <source>System</source>
         <translation>Sistema</translation>
     </message>
@@ -3794,17 +3820,17 @@ Clicking on confirm will continue transfering account.</source>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="481"/>
+        <location filename="../src/app/mainapplication.cpp" line="479"/>
         <source>E&amp;xit</source>
         <translation>E&amp;sci</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="483"/>
+        <location filename="../src/app/mainapplication.cpp" line="481"/>
         <source>&amp;Quit</source>
         <translation>&amp;Esci</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="489"/>
+        <location filename="../src/app/mainapplication.cpp" line="487"/>
         <source>&amp;Show Jami</source>
         <translation>&amp;Mostra Jami</translation>
     </message>
@@ -4292,17 +4318,17 @@ Clicking on confirm will continue transfering account.</source>
         <translation>Non accettabile ovunque</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="678"/>
+        <location filename="../src/app/messagesadapter.cpp" line="669"/>
         <source>Just now</source>
         <translation>Proprio ora</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="697"/>
+        <location filename="../src/app/messagesadapter.cpp" line="688"/>
         <source>Today</source>
         <translation>Oggi</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="699"/>
+        <location filename="../src/app/messagesadapter.cpp" line="690"/>
         <source>Yesterday</source>
         <translation>Ieri</translation>
     </message>
@@ -4419,14 +4445,6 @@ Please try again.</source>
         <location filename="../src/app/smartlistmodel.cpp" line="191"/>
         <source>Contacts</source>
         <translation>Contatti</translation>
-    </message>
-</context>
-<context>
-    <name>SpellCheckDictionaryManager</name>
-    <message>
-        <location filename="../src/app/spellcheckdictionarymanager.cpp" line="56"/>
-        <source>None</source>
-        <translation>Nessuno</translation>
     </message>
 </context>
 <context>
@@ -4601,17 +4619,17 @@ Please try again.</source>
 <context>
     <name>UtilsAdapter</name>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="353"/>
+        <location filename="../src/app/utilsadapter.cpp" line="352"/>
         <source>%1 Mbps</source>
         <translation>%1 Mbit/s</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="353"/>
+        <location filename="../src/app/utilsadapter.cpp" line="352"/>
         <source>Default</source>
         <translation>Predefinito</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="547"/>
+        <location filename="../src/app/utilsadapter.cpp" line="546"/>
         <source>System</source>
         <translation>Sistema</translation>
     </message>
