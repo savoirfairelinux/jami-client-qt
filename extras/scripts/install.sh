@@ -126,76 +126,61 @@ fi
 
 # jamid
 DAEMON="${TOP}/daemon"
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    sh "${TOP}"/extras/scripts/build_daemon_macos.sh -a "$arch" -d "$debug"
+cd "$DAEMON"
+
+mkdir -p "${BUILD_DIR}"
+cd "${BUILD_DIR}"
+daemon_cmake_flags=(-DCMAKE_BUILD_TYPE="${BUILD_TYPE}")
+if [ "${asan}" = "true" ]; then
+    daemon_cmake_flags+=(-DENABLE_ASAN=On)
+fi
+if [ "${enable_libwrap}" = "false" ]; then
+    daemon_cmake_flags+=(-DJAMI_DBUS=On)
 else
-    cd "$DAEMON"
+    daemon_cmake_flags+=(-DJAMI_DBUS=Off)
+fi
+if [ "${enable_testing}" = "true" ]; then
+    daemon_cmake_flags+=(-DBUILD_TESTING=On)
+else
+    daemon_cmake_flags+=(-DBUILD_TESTING=Off)
+fi
+if [ "${global}" = "true" ]; then
+    daemon_cmake_flags+=(${prefix:+"-DCMAKE_INSTALL_PREFIX=$prefix"})
+else
+    daemon_cmake_flags+=(-DCMAKE_INSTALL_PREFIX="${INSTALL_DIR}")
+fi
 
-    # Build the contribs.
-    mkdir -p contrib/native
-    (
-        cd contrib/native
-        ../bootstrap ${prefix:+"--prefix=$prefix"} ${asan:+"--enable-asan"}
-        make -j"${proc}"
-    )
+cmake .. "${daemon_cmake_flags[@]}"
+make -j"${proc}" V=1
+make_install "${global}" "${priv_install}"
 
-    if [[ "${enable_libwrap}" != "true" ]]; then
-      # Disable shared if requested
-      if [[ "$OSTYPE" != "darwin"* ]]; then
-        CONFIGURE_FLAGS+=" --disable-shared"
-      fi
+# Verify system's version if no path provided.
+if [ -z "$qtpath" ]; then
+    sys_qtver=""
+    if command -v qmake6 &> /dev/null; then
+        sys_qtver=$(qmake6 -v)
+    elif command -v qmake-qt6 &> /dev/null; then
+        sys_qtver=$(qmake-qt6 -v) # Fedora
+    elif command -v qmake &> /dev/null; then
+        sys_qtver=$(qmake -v)
     else
-      CONFIGURE_FLAGS+="--without-dbus"
+        echo "No valid Qt found"; exit 1;
     fi
 
-    BUILD_TYPE="Release"
-    if [ "${debug}" = "true" ]; then
-      BUILD_TYPE="Debug"
-      CONFIGURE_FLAGS+=" --enable-debug"
-    fi
+    sys_qtver=${sys_qtver#*Qt version}
+    sys_qtver=${sys_qtver%\ in\ *}
 
-    if [ "${asan}" = "true" ]; then
-      CONFIGURE_FLAGS+=" --enable-asan"
-    fi
+    installed_qtver=$(echo "$sys_qtver" | cut -d'.' -f 2)
+    required_qtver=$(echo $QT_MIN_VER | cut -d'.' -f 2)
 
-    # Build the daemon itself.
-    test -f configure || ./autogen.sh
-
-    if [ "${global}" = "true" ]; then
-        ./configure ${CONFIGURE_FLAGS} ${prefix:+"--prefix=$prefix"}
+    if [[ $installed_qtver -ge $required_qtver ]] ; then
+        # Set qtpath to empty in order to use system's Qt.
+        qtpath=""
     else
-        ./configure ${CONFIGURE_FLAGS} --prefix="${INSTALL_DIR}"
-    fi
-    make -j"${proc}" V=1
-    make_install "${global}" "${priv_install}"
-
-    # Verify system's version if no path provided.
-    if [ -z "$qtpath" ]; then
-        sys_qtver=""
-        if command -v qmake6 &> /dev/null; then
-            sys_qtver=$(qmake6 -v)
-        elif command -v qmake-qt6 &> /dev/null; then
-            sys_qtver=$(qmake-qt6 -v) # Fedora
-        elif command -v qmake &> /dev/null; then
-            sys_qtver=$(qmake -v)
-        else
-            echo "No valid Qt found"; exit 1;
-        fi
-
-        sys_qtver=${sys_qtver#*Qt version}
-        sys_qtver=${sys_qtver%\ in\ *}
-
-        installed_qtver=$(echo "$sys_qtver" | cut -d'.' -f 2)
-        required_qtver=$(echo $QT_MIN_VER | cut -d'.' -f 2)
-
-        if [[ $installed_qtver -ge $required_qtver ]] ; then
-            # Set qtpath to empty in order to use system's Qt.
-            qtpath=""
-        else
-            echo "No valid Qt found"; exit 1;
-        fi
+        echo "No valid Qt found"; exit 1;
     fi
 fi
+# fi
 
 # client
 cd "${TOP}"
