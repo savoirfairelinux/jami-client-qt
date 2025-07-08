@@ -52,7 +52,6 @@ set(CMAKE_FIND_LIBRARY_SUFFIXES ".dylib;.so;.dll")
 set(LIBJAMI_NAMES
   jami-core
   jami
-  ring
 )
 
 if(WITH_DAEMON_SUBMODULE)
