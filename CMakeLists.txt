@@ -26,7 +26,7 @@ set(CMAKE_SCRIPTS_DIR ${PROJECT_SOURCE_DIR}/extras/build/cmake)
 include(${CMAKE_SCRIPTS_DIR}/extra_tools.cmake)
 
 option(WITH_DAEMON_SUBMODULE "Build with daemon submodule" ON)
-option(JAMICORE_AS_SUBDIR "Build Jami-core as a subdir dependency" OFF)
+option(JAMICORE_AS_SUBDIR "Build Jami-core as a subdir dependency" ON)
 option(WITH_WEBENGINE "Build with WebEngine" ON)
 option(ENABLE_LIBWRAP "Enable libwrap (single process mode)" ON)
 if(NOT (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
@@ -62,6 +62,7 @@ endif()
 # client cmake.
 if(JAMICORE_AS_SUBDIR)
   add_subdirectory(${DAEMON_DIR})
+  set(LIBJAMI_LIB jami-core)
 endif()
 
 # init some variables for includes, libs, etc.
@@ -240,11 +241,12 @@ cloned this repository via git, perhaps you did not initialize its \
 submodules afterwards.  You can do so by running \"git submodule \
 update --init\" in the repository.")
 endif()
-set(CMAKE_MODULE_PATH
-  ${CMAKE_MODULE_PATH} "${EXTRAS_DIR}/build/cmake/modules")
-find_package(LibJami REQUIRED)
-if(LIBJAMI_FOUND)
-  include_directories(${LIBJAMI_INCLUDE_DIR})
+list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/extras/build/cmake/modules)
+if (NOT JAMICORE_AS_SUBDIR)
+  find_package(LibJami REQUIRED)
+  if(LIBJAMI_FOUND)
+    include_directories(${LIBJAMI_INCLUDE_DIRS})
+  endif()
 endif()
 
 include(FindPython3)
@@ -450,7 +452,7 @@ set(LIBJAMI_CONTRIB_DIR "${DAEMON_DIR}/contrib")
 find_path(AVUTIL_INCLUDE_DIR libavutil/avutil.h
   PATHS
   ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg
-  ${LIBJAMI_CONTRIB_DIR}/apple-darwin/include/
+  ${LIBJAMI_CONTRIB_DIR}/apple-darwin${CMAKE_SYSTEM_VERSION}/include/
   ${LIBJAMI_CONTRIB_DIR}/build/ffmpeg/Build/win32/x64/include)
 include_directories(${AVUTIL_INCLUDE_DIR})
 
@@ -580,19 +582,12 @@ elseif (NOT APPLE)
     add_definitions(${LIBGDKPIXBUF_CFLAGS})
   endif()
 
-  list(PREPEND CMAKE_PREFIX_PATH
-    ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg/libavutil)
-  pkg_check_modules(LIBAVUTIL libavutil>=55.75.100)
-  list(REMOVE_ITEM CMAKE_PREFIX_PATH
-    ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg/libavutil)
-
   include_directories(
     ${LIBCLIENT_SRC_DIR}
     ${LIBNM_INCLUDE_DIRS}
     ${LIBNOTIFY_INCLUDE_DIRS}
     ${LIBGDKPIXBUF_INCLUDE_DIRS}
-    ${GLIB_INCLUDE_DIRS}
-    ${LIBAVUTIL_INCLUDE_DIRS})
+    ${GLIB_INCLUDE_DIRS})
 
   set(JAMI_DATA_PREFIX "${CMAKE_INSTALL_PREFIX}/share")
 

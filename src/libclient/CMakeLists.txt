@@ -193,12 +193,6 @@ else()
 endif()
 
 if(ENABLE_LIBWRAP)
-  # The daemon is only required for when using direct linking
-  if(NOT LIBJAMI_LIB)
-    message(FATAL_ERROR "Jami daemon library is required when \
-building with ENABLE_LIBWRAP")
-  endif()
-
   # Use native calls (no DBus)
   add_definitions(-DENABLE_LIBWRAP=true)
   if (NOT (CMAKE_CXX_COMPILER_ID MATCHES "MSVC"))
@@ -316,7 +310,7 @@ set(LIBJAMI_CONTRIB_DIR
 find_path(AVUTIL_INCLUDE_DIR libavutil/avutil.h
   PATHS
   ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg
-  ${LIBJAMI_CONTRIB_DIR}/apple-darwin/include/
+  ${LIBJAMI_CONTRIB_DIR}/apple-darwin${CMAKE_SYSTEM_VERSION}/include/
   ${LIBJAMI_CONTRIB_DIR}/build/ffmpeg/Build/win32/x64/include)
 include_directories(${AVUTIL_INCLUDE_DIR})
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
@@ -326,10 +320,6 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
 else()
   set(CC_MACHINE "")
 endif()
-find_library(AVUTIL_LIBRARY avutil
-  HINTS
-  ${LIBJAMI_CONTRIB_DIR}/${CC_MACHINE}/lib
-  ${LIBJAMI_CONTRIB_DIR}/apple-darwin/lib)
 
 if(ENABLE_LIBWRAP)
   list(APPEND LIBCLIENT_HEADERS directrenderer.h)
@@ -480,7 +470,7 @@ if(NOT(APPLE OR MSVC))
 endif()
 
 if(ENABLE_LIBWRAP)
-  target_link_libraries(${LIBCLIENT_NAME} qtwrapper ${LIBJAMI_LIB})
+  target_link_libraries(${LIBCLIENT_NAME} qtwrapper)
   if (NOT (CMAKE_CXX_COMPILER_ID MATCHES "MSVC"))
     target_link_libraries(${LIBCLIENT_NAME} ${AVUTIL_LIBRARY})
   endif()

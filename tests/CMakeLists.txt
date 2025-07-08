@@ -85,10 +85,6 @@ else()
     set(PTHREAD_LIB pthread)
 endif()
 
-if(CMAKE_BUILD_TYPE)
-    string(TOUPPER ${CMAKE_BUILD_TYPE} BUILD_TYPE)
-endif()
-
 set(QML_TESTS_SOURCE_FILES
     ${CMAKE_SOURCE_DIR}/tests/qml/main.cpp
     ${TEST_QML_RESOURCES}
@@ -120,6 +116,7 @@ function(setup_test TEST_NAME TEST_SOURCES TEST_INPUT)
     target_link_libraries(${TEST_BINARY_NAME} ${ALL_TESTS_LIBS})
     target_include_directories(${TEST_BINARY_NAME} PUBLIC ${ALL_TESTS_INCLUDES})
     if(MSVC)
+        string(TOUPPER ${CMAKE_BUILD_TYPE} BUILD_TYPE)
         set_target_properties(${TEST_BINARY_NAME} PROPERTIES
             RUNTIME_OUTPUT_DIRECTORY_${BUILD_TYPE} ${OUTPUT_DIRECTORY})
     endif()
