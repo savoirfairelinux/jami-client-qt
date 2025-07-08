@@ -26,7 +26,7 @@ set(CMAKE_SCRIPTS_DIR ${PROJECT_SOURCE_DIR}/extras/build/cmake)
 include(${CMAKE_SCRIPTS_DIR}/extra_tools.cmake)
 
 option(WITH_DAEMON_SUBMODULE "Build with daemon submodule" ON)
-option(JAMICORE_AS_SUBDIR "Build Jami-core as a subdir dependency" OFF)
+option(JAMICORE_AS_SUBDIR "Build Jami-core as a subdir dependency" ON)
 option(WITH_WEBENGINE "Build with WebEngine" ON)
 option(ENABLE_LIBWRAP "Enable libwrap (single process mode)" ON)
 if(NOT (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
@@ -62,6 +62,7 @@ endif()
 # client cmake.
 if(JAMICORE_AS_SUBDIR)
   add_subdirectory(${DAEMON_DIR})
+  set(LIBJAMI_LIB jami-core)
 endif()
 
 # init some variables for includes, libs, etc.
@@ -234,11 +235,12 @@ cloned this repository via git, perhaps you did not initialize its \
 submodules afterwards.  You can do so by running \"git submodule \
 update --init\" in the repository.")
 endif()
-set(CMAKE_MODULE_PATH
-  ${CMAKE_MODULE_PATH} "${EXTRAS_DIR}/build/cmake/modules")
-find_package(LibJami REQUIRED)
-if(LIBJAMI_FOUND)
-  include_directories(${LIBJAMI_INCLUDE_DIR})
+list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/extras/build/cmake/modules)
+if (NOT JAMICORE_AS_SUBDIR)
+  find_package(LibJami REQUIRED)
+  if(LIBJAMI_FOUND)
+    include_directories(${LIBJAMI_INCLUDE_DIRS})
+  endif()
 endif()
 
 include(FindPython3)
@@ -573,19 +575,6 @@ elseif (NOT APPLE)
     pkg_check_modules(LIBGDKPIXBUF gdk-pixbuf-2.0>=2.40.0)
     add_definitions(${LIBGDKPIXBUF_CFLAGS})
   endif()
-
-  # Link against the version of libavutil built in the daemon's contribs to
-  # make sure we don't have ABI incompatibility issues.
-  set(ARCHITECTURE ${CMAKE_LIBRARY_ARCHITECTURE})
-  if (NOT ARCHITECTURE)
-      execute_process(COMMAND gcc -dumpmachine  COMMAND tr -d '\n' OUTPUT_VARIABLE ARCHITECTURE)
-  endif()
-  list(PREPEND CMAKE_PREFIX_PATH
-    ${LIBJAMI_CONTRIB_DIR}/${ARCHITECTURE})
-  pkg_check_modules(avutil REQUIRED IMPORTED_TARGET libavutil=58.2.100)
-  list(REMOVE_ITEM CMAKE_PREFIX_PATH
-    ${LIBJAMI_CONTRIB_DIR}/${ARCHITECTURE})
-  list(APPEND CLIENT_LIBS PkgConfig::avutil)
 
   include_directories(
     ${LIBCLIENT_SRC_DIR}

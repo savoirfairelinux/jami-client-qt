@@ -120,6 +120,7 @@ function(setup_test TEST_NAME TEST_SOURCES TEST_INPUT)
     target_link_libraries(${TEST_BINARY_NAME} ${ALL_TESTS_LIBS})
     target_include_directories(${TEST_BINARY_NAME} PUBLIC ${ALL_TESTS_INCLUDES})
     if(MSVC)
+        string(TOUPPER ${CMAKE_BUILD_TYPE} BUILD_TYPE)
         set_target_properties(${TEST_BINARY_NAME} PROPERTIES
             RUNTIME_OUTPUT_DIRECTORY_${BUILD_TYPE} ${OUTPUT_DIRECTORY})
     endif()
