@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b50c5b5_06efc7d5",
+        "filename": "src/app/mainview/components/CallActionBar.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-07-08T17:52:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c53a388_c264589a",
+      "range": {
+        "startLine": 133,
+        "startChar": 12,
+        "endLine": 135,
+        "endChar": 46
+      },
+      "revId": "3ac816a2fa3b1f5a0f09ba0493d2213c3efe475d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d7eb7bd5_d6c12e07",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-07-03T17:46:25Z",
       "side": 1,
       "message": "this breaks the overlay mechanism and needs to be rethought",
+      "range": {
+        "startLine": 107,
+        "startChar": 4,
+        "endLine": 127,
+        "endChar": 5
+      },
+      "revId": "3ac816a2fa3b1f5a0f09ba0493d2213c3efe475d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "533cd41f_a1120d51",
+        "filename": "src/app/mainview/components/MainOverlay.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-07-08T17:52:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7eb7bd5_d6c12e07",
       "range": {
         "startLine": 107,
         "startChar": 4,
