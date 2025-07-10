@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fa6e5c0_d5bfd07b",
+        "filename": "src/app/MainApplicationWindow.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-07-10T18:33:20Z",
+      "side": 1,
+      "message": "formatting",
+      "range": {
+        "startLine": 56,
+        "startChar": 12,
+        "endLine": 58,
+        "endChar": 13
+      },
+      "revId": "3150d37a158c8e6a36ce8e7cb46e6cf2313d6771",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c16e03ea_fd4397c5",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-07-10T18:33:20Z",
+      "side": 1,
+      "message": "this condition seems to be used often. perhaps create a property for it",
+      "range": {
+        "startLine": 305,
+        "startChar": 57,
+        "endLine": 305,
+        "endChar": 138
+      },
+      "revId": "3150d37a158c8e6a36ce8e7cb46e6cf2313d6771",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c739418_84d10983",
+        "filename": "src/app/mainview/components/MessageListView.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-07-10T18:33:20Z",
+      "side": 1,
+      "message": "this seems unrelated",
+      "range": {
+        "startLine": 30,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 14
+      },
+      "revId": "3150d37a158c8e6a36ce8e7cb46e6cf2313d6771",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
