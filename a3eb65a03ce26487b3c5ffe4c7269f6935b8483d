@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1339d6e_412cadac",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 2592,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2025-07-10T14:27:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "01f9b746_f27cc985",
+      "range": {
+        "startLine": 2592,
+        "startChar": 25,
+        "endLine": 2592,
+        "endChar": 54
+      },
+      "revId": "a3eb65a03ce26487b3c5ffe4c7269f6935b8483d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c02d4a0_63c44bec",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-08-01T19:53:30Z",
       "side": 1,
       "message": "If `getConversationForUid` (at line 2630 above) fails to find the given conversation ID, this line will only print `map::at` in the logs. I think it\u0027d be useful to have a more detailed error message (including the `accountId` and `conversationId`).",
+      "range": {
+        "startLine": 2673,
+        "startChar": 8,
+        "endLine": 2673,
+        "endChar": 31
+      },
+      "revId": "a3eb65a03ce26487b3c5ffe4c7269f6935b8483d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5db49dce_0c94bbaa",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 2673,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2025-07-10T14:27:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c02d4a0_63c44bec",
       "range": {
         "startLine": 2673,
         "startChar": 8,
