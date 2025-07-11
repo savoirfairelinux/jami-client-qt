@@ -1030,5 +1030,6 @@ qt_finalize_executable(${PROJECT_NAME})
 # tests
 if(BUILD_TESTING)
   message("Add Jami tests")
+  enable_testing()
   add_subdirectory(${TESTS_DIR})
 endif()
