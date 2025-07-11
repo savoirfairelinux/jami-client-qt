@@ -85,7 +85,9 @@ else()
     set(PTHREAD_LIB pthread)
 endif()
 
-string(TOUPPER ${CMAKE_BUILD_TYPE} BUILD_TYPE)
+if(CMAKE_BUILD_TYPE)
+    string(TOUPPER ${CMAKE_BUILD_TYPE} BUILD_TYPE)
+endif()
 
 set(QML_TESTS_SOURCE_FILES
     ${CMAKE_SOURCE_DIR}/tests/qml/main.cpp
