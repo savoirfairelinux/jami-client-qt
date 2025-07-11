@@ -724,13 +724,20 @@ else()
 endif()
 
 # ZXing-cpp configuration
-set(BUILD_EXAMPLES OFF CACHE BOOL "")
-set(BUILD_BLACKBOX_TESTS OFF CACHE BOOL "")
-add_subdirectory(3rdparty/zxing-cpp EXCLUDE_FROM_ALL)
+pkg_check_modules(zxing IMPORTED_TARGET zxing)
+if(zxing_FOUND)
+  message(STATUS "Using system-provided ZXing-cpp")
+  list(APPEND CLIENT_INCLUDE_DIRS ${zxing_INCLUDE_DIRS})
+  list(APPEND CLIENT_LIBS PkgConfig::zxing)
+else()
+  set(BUILD_EXAMPLES OFF CACHE BOOL "")
+  set(BUILD_BLACKBOX_TESTS OFF CACHE BOOL "")
+  add_subdirectory(3rdparty/zxing-cpp EXCLUDE_FROM_ALL)
 
-# Add ZXing-cpp to includes and libraries
-list(APPEND CLIENT_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/zxing-cpp/core/src)
-list(APPEND CLIENT_LIBS ZXing)
+  # Add ZXing-cpp to includes and libraries
+  list(APPEND CLIENT_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/zxing-cpp/core/src)
+  list(APPEND CLIENT_LIBS ZXing)
+endif()
 
 # common executable sources
 qt_add_executable(
