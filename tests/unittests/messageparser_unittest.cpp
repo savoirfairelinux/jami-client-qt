@@ -69,6 +69,9 @@ TEST_F(MessageParserFixture, TextIsParsedCorrectly)
  */
 TEST_F(MessageParserFixture, ALinkIsParsedCorrectly)
 {
+    if (!globalEnv.connectivityMonitor->isOnline())
+        GTEST_SKIP() << "ALinkIsParsedCorrectly requires Internet connectivity";
+
     auto linkColor = QColor::fromRgb(0, 0, 255);
     auto backgroundColor = QColor::fromRgb(0, 0, 255);
 
@@ -227,6 +230,9 @@ TEST_F(MessageParserFixture, FencedCodeIsParsedCorrectly)
  */
 TEST_F(MessageParserFixture, YoutubeLinkIsParsedCorrectly)
 {
+    if (!globalEnv.connectivityMonitor->isOnline())
+        GTEST_SKIP() << "YoutubeLinkIsParsedCorrectly requires Internet connectivity";
+
     auto url = "https://www.youtube.com/watch?v=1234567890";
     auto msg = "blah blah " + QString(url) + " blah blah";
 
