@@ -24,7 +24,10 @@
  (list
   ;; Minimal requirements of the daemon contrib build system.
   "coreutils"
-  "gcc-toolchain"
+  ;; When using GCC 15, Jami fails to link with errors like:
+  ;; ld: CMakeFiles/jami.dir/src/app/main.cpp.o:(.rodata+0x0):
+  ;; multiple definition of `QtPrivate::IsFloatType_v<_Float16>'
+  "gcc-toolchain@14"
   "git-minimal"
   "grep"
   "gzip"
@@ -42,18 +45,12 @@
   "alsa-lib"
   "autoconf"
   "automake"
+  "asio"
   "bash"
   "bzip2"
   "cmake"
   "dbus"
-  ;; Bundled because broken with GCC 7 upstream (unmaintained).  When
-  ;; attempting to use it, it would cause confusing errors such as
-  ;; "ld: ../src/.libs/libring.a(libupnpcontrol_la-upnp_context.o): in
-  ;; function `jami::upnp::UPnPContext::updateMappingList(bool)':
-  ;; upnp_context.cpp:(.text+0xa4be): undefined reference to
-  ;; `std::__cxx11::basic_ostringstream<char, std::char_traits<char>,
-  ;; std::allocator<char> >::basic_ostringstream()'
-  ;;"dbus-c++"                          ;for dbusxx-xml2cpp
+  ;;"dhtnet"                            ;bundled because tightly coupled
   "diffutils"
   "doxygen"
   "eudev"                               ;udev library
@@ -67,6 +64,7 @@
   "gsm"
   "gtk-doc"
   "http-parser"
+  "jack@0"
   "jsoncpp"
   "libarchive"
   "libgit2"
@@ -84,16 +82,24 @@
   "patch"
   "pcre"
   "perl"
+  "pipewire"
   ;;"pjproject"                         ;bundled because patched
   "pulseaudio"
+  "sdbus-c++@1"
   "speex"
   "speexdsp"
+  "webrtc-audio-processing@0"
   "which"
   "yaml-cpp"
   "yasm"
 
   ;; For the Qt client.
+  "glib"
+  "hunspell"
+  "libnotify"
+  "libxcb"
   "libxkbcommon"
+  "md4c"
   "network-manager"                     ;libnm
   "qrencode"
   "qtbase"
@@ -103,10 +109,13 @@
   "qtnetworkauth"
   "qtpositioning"
   "qtsvg"
+  "qwindowkit"
   "qttools"
   "qtwebchannel"
   "qtwebengine"
+  "tidy-html"
   "vulkan-headers"
+  "zxing-cpp"
 
   ;; For tests and debugging.
   "file"
