@@ -101,13 +101,13 @@ endif()
 
 # qwindowkit (frameless window)
 add_fetch_content(
-  TARGET qwindowkit
+  TARGET QWindowKit
   URL https://github.com/stdware/qwindowkit.git
   BRANCH d4536ebe12dd35504abdba66986daf21c0aee805
   PATCHES ${QWINDOWKIT_PATCHES}
   OPTIONS ${QWINDOWKIT_OPTIONS}
 )
-list(APPEND CLIENT_INCLUDE_DIRS ${QWindowKit_BINARY_DIR}/include)
+
 list(APPEND CLIENT_LIBS QWindowKit::Quick)
 
 # If ENABLE_CRASHREPORTS is enabled, we will use crashpad_cmake for now.
