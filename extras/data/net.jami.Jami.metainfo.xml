@@ -7,14 +7,25 @@
   <summary>Share, freely and privately</summary>
   <summary xml:lang="hu">Megosztás, szabadon és bizalmasan</summary>
 
-  <icon type="stock">jami</icon>
+  <icon type="stock">net.jami.Jami</icon>
 
   <metadata_license>CC-BY-SA-3.0</metadata_license>
   <project_license>GPL-3.0+</project_license>
 
-  <developer id="net.jami.Jami">
+  <developer id="net.jami">
     <name>Savoir-faire Linux Inc.</name>
   </developer>
+
+  <releases>
+    <release version="20250613.0" date="2025-06-13">
+      <url type="details">https://git.jami.net/savoirfairelinux/jami-client-qt/-/wikis/Changelog#nightlystable-20250613</url>
+    </release>
+  </releases>
+
+  <branding>
+    <color type="primary" scheme_preference="light">#03b9e9</color>
+    <color type="primary" scheme_preference="dark">#005699</color>
+  </branding>
 
   <!-- https://www.freedesktop.org/software/appstream/docs/chap-Metadata.html#tag-description -->
   <description>
@@ -76,7 +87,6 @@
   <url type="bugtracker">https://git.jami.net/savoirfairelinux/jami-client-qt/issues</url>
   <url type="homepage">https://jami.net/</url>
   <url type="donation">https://jami.net/whydonate/</url>
-  <url type="contact">contact@jami.net</url>
   <url type="faq">https://docs.jami.net/user/faq.html</url>
   <url type="translate">https://explore.transifex.com/savoirfairelinux/jami/</url>
   <url type="contribute">https://jami.net/contribute/</url>
