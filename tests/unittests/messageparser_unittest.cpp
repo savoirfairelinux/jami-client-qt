@@ -49,7 +49,7 @@ TEST_F(MessageParserFixture, TextIsParsedCorrectly)
 
     // Wait for the messageParsed signal which should be emitted once.
     messageParsedSpy.wait();
-    EXPECT_EQ(messageParsedSpy.count(), 1);
+    ASSERT_EQ(messageParsedSpy.count(), 1);
 
     QList<QVariant> messageParserArguments = messageParsedSpy.takeFirst();
     EXPECT_TRUE(messageParserArguments.at(0).typeId() == qMetaTypeId<QString>());
@@ -60,7 +60,7 @@ TEST_F(MessageParserFixture, TextIsParsedCorrectly)
 
     // No link info should be returned.
     linkInfoReadySpy.wait();
-    EXPECT_EQ(linkInfoReadySpy.count(), 0);
+    ASSERT_EQ(linkInfoReadySpy.count(), 0);
 }
 
 /*!
@@ -84,7 +84,7 @@ TEST_F(MessageParserFixture, ALinkIsParsedCorrectly)
 
     // Wait for the messageParsed signal which should be emitted once.
     messageParsedSpy.wait();
-    EXPECT_EQ(messageParsedSpy.count(), 1);
+    ASSERT_EQ(messageParsedSpy.count(), 1);
 
     QList<QVariant> messageParserArguments = messageParsedSpy.takeFirst();
     EXPECT_TRUE(messageParserArguments.at(0).typeId() == qMetaTypeId<QString>());
@@ -96,7 +96,7 @@ TEST_F(MessageParserFixture, ALinkIsParsedCorrectly)
 
     // Wait for the linkInfoReady signal which should be emitted once.
     linkInfoReadySpy.wait();
-    EXPECT_EQ(linkInfoReadySpy.count(), 1);
+    ASSERT_EQ(linkInfoReadySpy.count(), 1);
 
     QList<QVariant> linkInfoReadyArguments = linkInfoReadySpy.takeFirst();
     EXPECT_TRUE(linkInfoReadyArguments.at(0).typeId() == qMetaTypeId<QString>());
@@ -180,7 +180,7 @@ TEST_F(MessageParserFixture, EndOfLineCharactersAreParsedCorrectly)
 
     // Wait for the messageParsed signal which should be emitted once.
     messageParsedSpy.wait();
-    EXPECT_EQ(messageParsedSpy.count(), 1);
+    ASSERT_EQ(messageParsedSpy.count(), 1);
 
     QList<QVariant> messageParserArguments = messageParsedSpy.takeFirst();
     EXPECT_TRUE(messageParserArguments.at(0).typeId() == qMetaTypeId<QString>());
@@ -210,7 +210,7 @@ TEST_F(MessageParserFixture, FencedCodeIsParsedCorrectly)
 
     // Wait for the messageParsed signal which should be emitted once.
     messageParsedSpy.wait();
-    EXPECT_EQ(messageParsedSpy.count(), 1);
+    ASSERT_EQ(messageParsedSpy.count(), 1);
 
     QList<QVariant> messageParserArguments = messageParsedSpy.takeFirst();
     EXPECT_TRUE(messageParserArguments.at(0).typeId() == qMetaTypeId<QString>());
@@ -242,14 +242,14 @@ TEST_F(MessageParserFixture, YoutubeLinkIsParsedCorrectly)
 
     // Wait for the messageParsed signal which should be emitted once.
     messageParsedSpy.wait();
-    EXPECT_EQ(messageParsedSpy.count(), 1);
+    ASSERT_EQ(messageParsedSpy.count(), 1);
 
     QList<QVariant> messageParserArguments = messageParsedSpy.takeFirst();
     EXPECT_TRUE(messageParserArguments.at(0).typeId() == qMetaTypeId<QString>());
 
     // Wait for the linkInfoReady signal which should be emitted once.
     linkInfoReadySpy.wait();
-    EXPECT_EQ(linkInfoReadySpy.count(), 1);
+    ASSERT_EQ(linkInfoReadySpy.count(), 1);
 
     QList<QVariant> linkInfoReadyArguments = linkInfoReadySpy.takeFirst();
     EXPECT_TRUE(linkInfoReadyArguments.at(0).typeId() == qMetaTypeId<QString>());
