@@ -61,7 +61,7 @@ target_include_directories(test_common_obj PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_SOURCE_DIR}/src)
 target_link_directories(test_common_obj PRIVATE ${CLIENT_LINK_DIRS})
-target_link_libraries(test_common_obj ${QML_TEST_LIBS})
+target_link_libraries(test_common_obj ${QML_TEST_LIBS} ${CLIENT_LIBS})
 target_compile_definitions(test_common_obj PRIVATE BUILD_TESTING="ON")
 
 set(COMMON_TESTS_SOURCES
