@@ -847,12 +847,12 @@ elseif (NOT APPLE)
 
   # Logos
   install(
-    FILES resources/images/jami.svg
+    FILES resources/images/net.jami.Jami.svg
     DESTINATION
     ${CMAKE_INSTALL_PREFIX}/share/icons/hicolor/scalable/apps)
 
   install(
-    FILES resources/images/jami-48px.png
+    FILES resources/images/net.jami.Jami-48px.png
     DESTINATION ${CMAKE_INSTALL_PREFIX}/share/icons/hicolor/48x48/apps
     RENAME jami.png)
 

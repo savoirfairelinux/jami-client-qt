@@ -85,7 +85,7 @@
       <id>net.jami.daemon</id>
     </requires>
     <launchable type="desktop-id">net.jami.Jami.desktop</launchable>
-    <icon type="stock">jami</icon>
+    <icon type="stock">net.jami.Jami</icon>
     <url type="homepage">https://jami.net/</url>
     <url type="bugtracker">https://git.jami.net/savoirfairelinux/jami-client-qt/issues</url>
     <url type="faq">https://docs.jami.net/user/faq.html</url>
