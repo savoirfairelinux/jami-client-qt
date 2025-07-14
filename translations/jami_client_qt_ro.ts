@@ -987,24 +987,174 @@ Dacă nu se alege un nume de utilizator, un identificator de 40 de caractere gen
         <translation>Controlează ortografia cînd scrii</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="916"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="917"/>
         <source>Text language</source>
         <translation>Limba textului</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="917"/>
-        <source>To install new dictionaries, use the system package manager.</source>
-        <translation>Pentru a instala dicționare noi, folosește administratorul de pachete al sistemului.</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="919"/>
-        <source>Refresh</source>
-        <translation>Actualizează</translation>
+        <source>Search text languages</source>
+        <translation>Caută limbi</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="920"/>
-        <source>Refresh installed dictionaries</source>
-        <translation>Actualizează dicționarele instalate</translation>
+        <source>Search for available text languages</source>
+        <translation>Caută limbi disponibile pentru text</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="921"/>
+        <source>No dictionaries found for &apos;%1&apos;</source>
+        <translation>Niciun dicționar pentru „%1”</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="922"/>
+        <source>No dictionaries available</source>
+        <translation>Niciun dicționar disponibil</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="923"/>
+        <source>Manage Dictionaries</source>
+        <translation>Gestionează dicționare</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="924"/>
+        <source>Download failed for dictionary &apos;%1&apos;</source>
+        <translation>Nu s-a putut descărca dicționarul „%1”</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="925"/>
+        <source>Show installed</source>
+        <translation>Arată instalate</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="926"/>
+        <source>Only show dictionaries that are currently installed</source>
+        <translation>Arată doar dicționarele instalate</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="929"/>
+        <source>Press enter to switch to this account</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="930"/>
+        <source>Display your QR code to allow other users to scan it and add you as a contact</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="931"/>
+        <source>Account list</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="932"/>
+        <source>Use arrows to switch between available account</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="933"/>
+        <source>Select the user interface language</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="934"/>
+        <source>Go back to the previous page</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="935"/>
+        <source>Advice Box</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="936"/>
+        <source>Back button</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="937"/>
+        <source>Open the advice popup that contains information about Jami</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="938"/>
+        <source>More</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="939"/>
+        <source>Press to %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="940"/>
+        <source>Press to toggle %1 (%2)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="941"/>
+        <source>active</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="942"/>
+        <source>inactive</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="943"/>
+        <source>Minimize application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="944"/>
+        <source>Maximize application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="945"/>
+        <source>Close application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="946"/>
+        <source>Dismiss this tip</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="947"/>
+        <source>Tips to help you use Jami more effectively</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="948"/>
+        <source>Show more messaging options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="949"/>
+        <source>Open a menu that allows you to send voice and video messages as well as sharing your location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="950"/>
+        <source>Conversation messages list. Use arrow keys to navigate through messages.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="951"/>
+        <source>Data transfer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="952"/>
+        <source>Status</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="953"/>
+        <source>Read by</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="899"/>
@@ -1629,18 +1779,18 @@ to connect to synchronize the conversation…</source>
         <translation>Ascunde spectatorii</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="276"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="278"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="581"/>
         <source>Copy</source>
         <translation>Copiază</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="277"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="276"/>
         <source>Share</source>
         <translation>Distribuie</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="278"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="277"/>
         <source>Cut</source>
         <translation>Taie</translation>
     </message>
@@ -2911,6 +3061,7 @@ Apoi, scanează codul QR.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="496"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="916"/>
         <source>System</source>
         <translation>Sistem</translation>
     </message>
@@ -3804,17 +3955,17 @@ Pentru a continua exportarea contului, apasă Confirmă.</translation>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="481"/>
+        <location filename="../src/app/mainapplication.cpp" line="479"/>
         <source>E&amp;xit</source>
         <translation>I&amp;eșire</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="483"/>
+        <location filename="../src/app/mainapplication.cpp" line="481"/>
         <source>&amp;Quit</source>
         <translation>Î&amp;nchide</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="489"/>
+        <location filename="../src/app/mainapplication.cpp" line="487"/>
         <source>&amp;Show Jami</source>
         <translation>&amp;Arată Jami</translation>
     </message>
@@ -4302,17 +4453,17 @@ Pentru a continua exportarea contului, apasă Confirmă.</translation>
         <translation>Nu este acceptat nicăieri</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="678"/>
+        <location filename="../src/app/messagesadapter.cpp" line="669"/>
         <source>Just now</source>
         <translation>Chiar acum</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="697"/>
+        <location filename="../src/app/messagesadapter.cpp" line="688"/>
         <source>Today</source>
         <translation>Azi</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="699"/>
+        <location filename="../src/app/messagesadapter.cpp" line="690"/>
         <source>Yesterday</source>
         <translation>Ieri</translation>
     </message>
@@ -4434,14 +4585,6 @@ Please try again.</source>
         <location filename="../src/app/smartlistmodel.cpp" line="191"/>
         <source>Contacts</source>
         <translation>Contacte</translation>
-    </message>
-</context>
-<context>
-    <name>SpellCheckDictionaryManager</name>
-    <message>
-        <location filename="../src/app/spellcheckdictionarymanager.cpp" line="56"/>
-        <source>None</source>
-        <translation>Nimic</translation>
     </message>
 </context>
 <context>
@@ -4616,17 +4759,17 @@ Please try again.</source>
 <context>
     <name>UtilsAdapter</name>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="353"/>
+        <location filename="../src/app/utilsadapter.cpp" line="352"/>
         <source>%1 Mbps</source>
         <translation>%1 Mbps</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="353"/>
+        <location filename="../src/app/utilsadapter.cpp" line="352"/>
         <source>Default</source>
         <translation>Prestabilit</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="547"/>
+        <location filename="../src/app/utilsadapter.cpp" line="546"/>
         <source>System</source>
         <translation>Sistem</translation>
     </message>
