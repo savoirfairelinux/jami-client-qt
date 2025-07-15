@@ -554,7 +554,7 @@ void
 AccountModelPimpl::slotAccountStatusChanged(const QString& accountID,
                                             const api::account::Status status)
 {
-    if (status == api::account::Status::INVALID) {
+    if (status == api::account::Status::STATUS_INVALID) {
         Q_EMIT linked.invalidAccountDetected(accountID);
         return;
     }
@@ -657,7 +657,7 @@ AccountModelPimpl::slotNameRegistrationEnded(const QString& accountId,
                                              int status,
                                              const QString& name)
 {
-    account::RegisterNameStatus convertedStatus = account::RegisterNameStatus::INVALID;
+    account::RegisterNameStatus convertedStatus = account::RegisterNameStatus::RNS_INVALID;
     switch (status) {
     case 0: {
         convertedStatus = account::RegisterNameStatus::SUCCESS;
@@ -674,7 +674,7 @@ AccountModelPimpl::slotNameRegistrationEnded(const QString& accountId,
         convertedStatus = account::RegisterNameStatus::WRONG_PASSWORD;
         break;
     case 2:
-        convertedStatus = account::RegisterNameStatus::INVALID_NAME;
+        convertedStatus = account::RegisterNameStatus::RNS_INVALID_NAME;
         break;
     case 3:
         convertedStatus = account::RegisterNameStatus::ALREADY_TAKEN;
@@ -695,13 +695,13 @@ AccountModelPimpl::slotRegisteredNameFound(const QString& accountId,
                                            const QString& address,
                                            const QString& registeredName)
 {
-    account::LookupStatus convertedStatus = account::LookupStatus::INVALID;
+    account::LookupStatus convertedStatus = account::LookupStatus::LOOKUP_INVALID;
     switch (status) {
     case 0:
         convertedStatus = account::LookupStatus::SUCCESS;
         break;
     case 1:
-        convertedStatus = account::LookupStatus::INVALID_NAME;
+        convertedStatus = account::LookupStatus::LOOKUP_INVALID_NAME;
         break;
     case 2:
         convertedStatus = account::LookupStatus::NOT_FOUND;

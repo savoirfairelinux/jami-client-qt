@@ -106,9 +106,5 @@ Menu {
         }
     }
 
-    Component.onDestruction: {
-        for (var i = 0; i < generalMenuSeparatorList.length; ++i) {
-            generalMenuSeparatorList[i].destroy();
-        }
-    }
+    Component.onDestruction: menuItemsToLoad.forEach(item => item.parent = null)
 }
