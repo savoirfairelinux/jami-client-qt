@@ -55,7 +55,7 @@ BaseModalDialog {
         Accessible.role: Accessible.Dialog
         Accessible.name: title
         Accessible.description: JamiStrings.joinJamiNoPassword
-        width: root.width - 2 * root.popupMargins
+        width: 400 - 2 * popupMargins
         font.pixelSize: JamiTheme.popuptextSize
 
         lineHeight: JamiTheme.wizardViewTextLineHeight
