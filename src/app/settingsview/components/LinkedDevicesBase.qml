@@ -18,10 +18,10 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import SortFilterProxyModel 0.2
+import net.jami.Enums 1.1
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import net.jami.Enums 1.1
 import "../../commoncomponents"
 
 ColumnLayout {
@@ -104,7 +104,7 @@ ColumnLayout {
         delegate: DeviceItemDelegate {
             id: settingsListDelegate
 
-            Layout.fillWidth: true
+            fillWidth: true
             implicitWidth: root.width
             height: 70
             deviceName: root.isCurrent ? DeviceName : JamiStrings.deviceName + " " + DeviceName
