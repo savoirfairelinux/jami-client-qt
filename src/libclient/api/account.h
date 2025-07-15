@@ -42,13 +42,13 @@ namespace account {
 Q_NAMESPACE
 Q_CLASSINFO("RegisterEnumClassesUnscoped", "false")
 
-enum class Type { INVALID, JAMI, SIP };
+enum class Type { TYPE_INVALID, JAMI, SIP };
 Q_ENUM_NS(Type)
 
 #pragma push_macro("REGISTERED")
 #undef REGISTERED
 
-enum class Status { INVALID, ERROR_NEED_MIGRATION, INITIALIZING, UNREGISTERED, TRYING, REGISTERED };
+enum class Status { STATUS_INVALID, ERROR_NEED_MIGRATION, INITIALIZING, UNREGISTERED, TRYING, REGISTERED };
 Q_ENUM_NS(Status)
 
 static inline account::Status
@@ -65,7 +65,7 @@ to_status(const QString& type)
     else if (type == "ERROR_NEED_MIGRATION")
         return account::Status::ERROR_NEED_MIGRATION;
     else
-        return account::Status::INVALID;
+        return account::Status::STATUS_INVALID;
 }
 
 #pragma pop_macro("REGISTERED")
@@ -202,7 +202,7 @@ enum class DeviceAuthState {
 Q_ENUM_NS(DeviceAuthState)
 
 enum class DeviceLinkError {
-    WRONG_PASSWORD, // auth_error, invalid_credentials
+    WRONG_DEVICE_PASSWORD, // auth_error, invalid_credentials
     NETWORK,        // network
     TIMEOUT,        // timeout
     STATE,          // state
@@ -216,7 +216,7 @@ inline DeviceLinkError
 mapLinkDeviceError(const std::string& error)
 {
     if (error == "auth_error" || error == "invalid_credentials")
-        return DeviceLinkError::WRONG_PASSWORD;
+        return DeviceLinkError::WRONG_DEVICE_PASSWORD;
     if (error == "network")
         return DeviceLinkError::NETWORK;
     if (error == "timeout")
@@ -232,7 +232,7 @@ inline QString
 getLinkDeviceString(DeviceLinkError error)
 {
     switch (error) {
-    case DeviceLinkError::WRONG_PASSWORD:
+    case DeviceLinkError::WRONG_DEVICE_PASSWORD:
         return QObject::tr(
             "An authentication error occurred.\nPlease check credentials and try again.");
     case DeviceLinkError::NETWORK:
@@ -252,20 +252,20 @@ getLinkDeviceString(DeviceLinkError error)
 enum class RegisterNameStatus {
     SUCCESS = 0,
     WRONG_PASSWORD = 1,
-    INVALID_NAME = 2,
+    RNS_INVALID_NAME = 2,
     ALREADY_TAKEN = 3,
     NETWORK_ERROR = 4,
-    INVALID
+    RNS_INVALID
 };
 Q_ENUM_NS(RegisterNameStatus)
 
-enum class LookupStatus { SUCCESS = 0, INVALID_NAME = 1, NOT_FOUND = 2, ERROR = 3, INVALID };
+enum class LookupStatus { SUCCESS = 0, LOOKUP_INVALID_NAME = 1, NOT_FOUND = 2, ERROR = 3, LOOKUP_INVALID };
 Q_ENUM_NS(LookupStatus)
 
 struct Info
 {
     QString registeredName;
-    Status status = account::Status::INVALID;
+    Status status = account::Status::STATUS_INVALID;
     std::unique_ptr<lrc::api::CallModel> callModel;
     std::unique_ptr<lrc::api::ContactModel> contactModel;
     std::unique_ptr<lrc::api::ConversationModel> conversationModel;
