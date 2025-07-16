@@ -1,0 +1,79 @@
+From 24dd03e131cd3edc89907a699369562e61d8aa86 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Fran=C3=A7ois-Simon=20Fauteux-Chapleau?=
+ <francois-simon.fauteux-chapleau@savoirfairelinux.com>
+Date: Mon, 21 Jul 2025 13:19:58 -0400
+Subject: [PATCH] qtwebengine: fix ASSERT_TRIVIALLY_COPYABLE failure
+
+Some compilers don't implement std::is_trivially_copyable correctly,
+which can cause chromium's build to fail with the following error:
+
+    In file included from ../../../3rdparty/chromium/v8/src/base/bits.h:12,
+                     from ../../../3rdparty/chromium/v8/src/base/small-vector.h:12,
+                     from ../../../3rdparty/chromium/v8/src/compiler/turboshaft/graph.h:17,
+                     from ../../../3rdparty/chromium/v8/src/compiler/turboshaft/analyzer-iterator.h:9,
+                     from ./../../../3rdparty/chromium/v8/src/compiler/turboshaft/analyzer-iterator.cc:5,
+                     from gen/v8/v8_turboshaft_jumbo_1.cc:5:
+    ../../../3rdparty/chromium/v8/src/base/small-vector.h: In instantiation of 'class v8::base::SmallVector&lt;std::pair&lt;const v8::internal::compiler::turboshaft::PhiOp*, const v8::internal::compiler::turboshaft::OpIndex&gt;, 16&gt;':
+    ../../../3rdparty/chromium/v8/src/compiler/turboshaft/loop-unrolling-reducer.h:433:11:   required from here
+    ../../../3rdparty/chromium/v8/src/base/macros.h:206:55: error: static assertion failed: T should be trivially copyable
+      206 |   static_assert(::v8::base::is_trivially_copyable&lt;T&gt;::value, \
+          |                                                       ^~~~~
+    ../../../3rdparty/chromium/v8/src/base/small-vector.h:25:3: note: in expansion of macro 'ASSERT_TRIVIALLY_COPYABLE'
+       25 |   ASSERT_TRIVIALLY_COPYABLE(T);
+          |   ^~~~~~~~~~~~~~~~~~~~~~~~~
+    ../../../3rdparty/chromium/v8/src/base/macros.h:206:55: note: 'v8::base::is_trivially_copyable&lt;std::pair&lt;const v8::internal::compiler::turboshaft::PhiOp*, const v8::internal::compiler::turboshaft::OpIndex&gt; &gt;::value' evaluates to false
+      206 |   static_assert(::v8::base::is_trivially_copyable&lt;T&gt;::value, \
+          |                                                       ^~~~~
+    ../../../3rdparty/chromium/v8/src/base/small-vector.h:25:3: note: in expansion of macro 'ASSERT_TRIVIALLY_COPYABLE'
+       25 |   ASSERT_TRIVIALLY_COPYABLE(T);
+          |   ^~~~~~~~~~~~~~~~~~~~~~~~~
+
+References:
+https://chromium-review.googlesource.com/c/v8/v8/+/5679182
+https://chromium-review.googlesource.com/c/v8/v8/+/5872655
+https://github.com/rubyjs/libv8-node/pull/57
+https://github.com/nodejs/node/issues/54576
+---
+ qtwebengine/src/3rdparty/chromium/v8/src/base/macros.h       | 3 ++-
+ qtwebengine/src/3rdparty/chromium/v8/src/base/small-vector.h | 4 ++--
+ 2 files changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/qtwebengine/src/3rdparty/chromium/v8/src/base/macros.h b/qtwebengine/src/3rdparty/chromium/v8/src/base/macros.h
+index 93a99ec136..88c6555189 100644
+--- a/qtwebengine/src/3rdparty/chromium/v8/src/base/macros.h
++++ b/qtwebengine/src/3rdparty/chromium/v8/src/base/macros.h
+@@ -173,7 +173,8 @@ namespace base {
+ // base::is_trivially_copyable will differ for these cases.
+ template <typename T>
+ struct is_trivially_copyable {
+-#if V8_CC_MSVC
++#if V8_CC_MSVC || (__GNUC__ == 12 && __GNUC_MINOR__ <= 2) || \
++    (defined(__clang__) && __clang_major__ <= 17)
+   // Unfortunately, MSVC 2015 is broken in that std::is_trivially_copyable can
+   // be false even though it should be true according to the standard.
+   // (status at 2018-02-26, observed on the msvc waterfall bot).
+diff --git a/qtwebengine/src/3rdparty/chromium/v8/src/base/small-vector.h b/qtwebengine/src/3rdparty/chromium/v8/src/base/small-vector.h
+index b1b5d64198..ce2e003fb9 100644
+--- a/qtwebengine/src/3rdparty/chromium/v8/src/base/small-vector.h
++++ b/qtwebengine/src/3rdparty/chromium/v8/src/base/small-vector.h
+@@ -22,7 +22,7 @@ template <typename T, size_t kSize, typename Allocator = std::allocator<T>>
+ class SmallVector {
+   // Currently only support trivially copyable and trivially destructible data
+   // types, as it uses memcpy to copy elements and never calls destructors.
+-  ASSERT_TRIVIALLY_COPYABLE(T);
++  // ASSERT_TRIVIALLY_COPYABLE(T);
+   static_assert(std::is_trivially_destructible<T>::value);
+ 
+  public:
+@@ -193,7 +193,7 @@ class SmallVector {
+ 
+   void resize_no_init(size_t new_size) {
+     // Resizing without initialization is safe if T is trivially copyable.
+-    ASSERT_TRIVIALLY_COPYABLE(T);
++    // ASSERT_TRIVIALLY_COPYABLE(T);
+     if (new_size > capacity()) Grow(new_size);
+     end_ = begin_ + new_size;
+   }
+-- 
+2.34.1
+

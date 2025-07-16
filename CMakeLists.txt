@@ -171,7 +171,7 @@ set(TESTS_DIR ${PROJECT_SOURCE_DIR}/tests)
 # Here we let find_package(<PackageName>...) try to find Qt 6,
 # If it is found, find_package will succeed, and the CMake variable
 # QT_VERSION_MAJOR will be defined 6.
-set(QT6_MINVER_MINOR 6)
+set(QT6_MINVER_MINOR 8)
 if(QT6_VER AND QT6_PATH)
   find_package(QT NAMES Qt6 REQUIRED
     PATHS ${QT6_PATH} NO_DEFAULT_PATH)
@@ -180,15 +180,9 @@ else()
   find_package(QT NAMES Qt6 REQUIRED)
 endif()
 if (${QT_VERSION_MINOR} GREATER_EQUAL ${QT6_MINVER_MINOR})
-  # Enforce a minimum Qt version of 6.6.2 for the Windows build
-  # https://github.com/stdware/qwindowkit/issues/23
-  if(MSVC AND ${QT_VERSION_MINOR} EQUAL 6 AND ${QT_VERSION_PATCH} LESS 2)
-    message(FATAL_ERROR "Qt 6.6.2 or higher is required. Found ${QT_VERSION}")
-  endif()
-  # Qt version is 6.6 or higher
   message(STATUS "Found a suitable Qt version ${QT_VERSION}")
 else()
-  message(FATAL_ERROR "Qt 6.6 or higher is required. Found ${QT_VERSION}")
+  message(FATAL_ERROR "Qt 6.8 or higher is required. Found ${QT_VERSION}")
 endif()
 
 # libjamiclient

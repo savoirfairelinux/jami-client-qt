@@ -74,8 +74,9 @@ cd %{_builddir}/jami-%{version} && \
           -DWITH_DAEMON_SUBMODULE=true \
           -DCMAKE_BUILD_TYPE=Release \
           -DBUILD_VERSION=${BUILD_VERSION} \
+          -DCMAKE_PREFIX_PATH=%{CMAKE_PREFIX_PATH} \
           ..
-make -C %{_builddir}/jami-%{version}/build %{_smp_mflags} V=2
+make -C %{_builddir}/jami-%{version}/build %{_smp_mflags} VERBOSE=1
 
 %install
 DESTDIR=%{buildroot} make -C %{_builddir}/jami-%{version}/build install V=2
