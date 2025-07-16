@@ -11,14 +11,6 @@ RUN apt-get update --allow-releaseinfo-change && \
         wget \
         nasm
 
-# As of January 2024, the default compiler on Debian testing is GCC 13.2.0, which
-# is unable to build one of Qt 6.6.1's dependencies, see:
-# https://github.com/qt/qtquick3d-assimp/commit/253f8bfa621a9fa6cd2c36291cdaa8c60c99322c
-# The linked commit above fixes the problem and is included in more recent versions of Qt.
-# For now, we use GCC 12 as a temporary workaround:
-ADD extras/packaging/gnu-linux/scripts/install-gcc-debian.sh /opt/install-gcc-debian.sh
-RUN /opt/install-gcc-debian.sh 12
-
 ADD extras/packaging/gnu-linux/scripts/prebuild-package-debian.sh /opt/prebuild-package-debian.sh
 
 COPY extras/packaging/gnu-linux/rules/debian-qt/control /tmp/builddeps/debian/control
@@ -29,5 +21,6 @@ RUN /opt/prebuild-package-debian.sh jami-deps
 
 RUN apt-get remove -y libre2-dev libre2-11
 
+ADD extras/packaging/gnu-linux/scripts/install-ffmpeg-for-qt.sh /opt/install-ffmpeg-for-qt.sh
 ADD extras/packaging/gnu-linux/scripts/build-package-debian.sh /opt/build-package-debian.sh
 CMD ["/opt/build-package-debian.sh"]
