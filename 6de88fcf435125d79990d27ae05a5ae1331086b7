@@ -118,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a64247ff_1bf67316",
+        "filename": "extras/packaging/windows/Jenkinsfile.main",
+        "patchSetId": 15
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1131
+      },
+      "writtenOn": "2025-07-16T20:25:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9bf0b992_0fa9d741",
+      "range": {
+        "startLine": 5,
+        "startChar": 8,
+        "endLine": 5,
+        "endChar": 18
+      },
+      "revId": "6de88fcf435125d79990d27ae05a5ae1331086b7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "59a6db04_576b9032",
@@ -178,6 +202,30 @@
       "writtenOn": "2025-06-17T18:56:06Z",
       "side": 1,
       "message": "remove",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 21
+      },
+      "revId": "6de88fcf435125d79990d27ae05a5ae1331086b7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a797a960_af3dc105",
+        "filename": "extras/packaging/windows/Jenkinsfile.main",
+        "patchSetId": 15
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1131
+      },
+      "writtenOn": "2025-07-16T20:25:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "676e3d4a_1f95b74e",
       "range": {
         "startLine": 10,
         "startChar": 0,
