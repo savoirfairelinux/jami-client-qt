@@ -18,12 +18,6 @@ RUN /opt/prebuild-package-debian.sh qt-deps
 COPY extras/packaging/gnu-linux/rules/debian/control /tmp/builddeps/debian/control
 RUN /opt/prebuild-package-debian.sh jami-deps
 
-# Remove the libre2-dev package in order to force Qt to build using the bundled
-# version of the RE2 library. This is necessary because the system version of the
-# library on Ubuntu 24.10 (libre2-11) is not compatible with the one used in
-# Qt 6.6.1 due to an API change:
-# https://codereview.qt-project.org/c/qt/qtwebengine/+/516094
-RUN apt-get remove -y libre2-dev libre2-11
-
+ADD extras/packaging/gnu-linux/scripts/install-ffmpeg-for-qt.sh /opt/install-ffmpeg-for-qt.sh
 ADD extras/packaging/gnu-linux/scripts/build-package-debian.sh /opt/build-package-debian.sh
 CMD ["/opt/build-package-debian.sh"]
