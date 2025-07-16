@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4e1d639_769e8f8e",
+        "filename": "extras/packaging/windows/Jenkinsfile.main",
+        "patchSetId": 24
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-07-16T20:35:45Z",
+      "side": 1,
+      "message": "fix",
+      "range": {
+        "startLine": 28,
+        "startChar": 24,
+        "endLine": 37,
+        "endChar": 30
+      },
+      "revId": "3e296fc3e0d7cc46aa1e61ecffd7d4dbf1fad348",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66f66725_bd040357",
+        "filename": "extras/packaging/windows/Jenkinsfile.main",
+        "patchSetId": 24
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-07-16T20:35:45Z",
+      "side": 1,
+      "message": "fix",
+      "range": {
+        "startLine": 70,
+        "startChar": 67,
+        "endLine": 70,
+        "endChar": 157
+      },
+      "revId": "3e296fc3e0d7cc46aa1e61ecffd7d4dbf1fad348",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
