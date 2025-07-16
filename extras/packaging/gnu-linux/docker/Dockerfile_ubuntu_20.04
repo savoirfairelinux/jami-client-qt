@@ -32,6 +32,7 @@ RUN /opt/prebuild-package-debian.sh jami-deps
 ADD extras/packaging/gnu-linux/scripts/install-cmake.sh /opt/install-cmake.sh
 RUN /opt/install-cmake.sh
 
+ADD extras/packaging/gnu-linux/scripts/install-ffmpeg-for-qt.sh /opt/install-ffmpeg-for-qt.sh
 ADD extras/packaging/gnu-linux/scripts/build-package-debian.sh /opt/build-package-debian.sh
 
 # Setting this variable so that FFmpeg gets built without pipewiregrab
