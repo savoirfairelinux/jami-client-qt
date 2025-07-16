@@ -28,34 +28,36 @@ import "../../../src/app/mainview"
 import "../../../src/app/mainview/components"
 import "../../../src/app/commoncomponents"
 
-ListSelectionView {
-    id: viewNode
-    objectName: "ConversationView"
-    managed: false
+TestWrapper {
+    ListSelectionView {
+        id: viewNode
+        objectName: "ConversationView"
+        managed: false
 
-    leftPaneItem: Rectangle {}
+        leftPaneItem: Rectangle {}
 
-    rightPaneItem: ChatView {
-        id: uut
+        rightPaneItem: ChatView {
+            id: uut
 
-        inCallView: false
+            inCallView: false
 
-        TestCase {
-            name: "Check basic visibility for header buttons"
-            function test_checkBasicVisibility() {
-                var chatviewHeader = findChild(uut, "chatViewHeader")
-                var detailsButton = findChild(chatviewHeader, "detailsButton")
-                compare(detailsButton.visible, true)
+            TestCase {
+                name: "Check basic visibility for header buttons"
+                function test_checkBasicVisibility() {
+                    var chatviewHeader = findChild(uut, "chatViewHeader")
+                    var detailsButton = findChild(chatviewHeader, "detailsButton")
+                    compare(detailsButton.visible, true)
 
-                var chatViewFooter = findChild(uut, "chatViewFooter")
-                CurrentConversation.isTemporary = true
-                compare(chatViewFooter.visible, true)
-                CurrentConversation.isTemporary = false
-                CurrentConversation.isRequest = true
-                compare(chatViewFooter.visible, false)
-                CurrentConversation.isRequest = false
-                CurrentConversation.needsSyncing = true
-                compare(chatViewFooter.visible, false)
+                    var chatViewFooter = findChild(uut, "chatViewFooter")
+                    CurrentConversation.isTemporary = true
+                    compare(chatViewFooter.visible, true)
+                    CurrentConversation.isTemporary = false
+                    CurrentConversation.isRequest = true
+                    compare(chatViewFooter.visible, false)
+                    CurrentConversation.isRequest = false
+                    CurrentConversation.needsSyncing = true
+                    compare(chatViewFooter.visible, false)
+                }
             }
         }
     }
