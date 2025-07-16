@@ -38,9 +38,9 @@ QT_JAMI_PREFIX="/usr/lib64/qt-jami"
 PATH="${QT_JAMI_PREFIX}/bin:${PATH}"
 LD_LIBRARY_PATH="${QT_JAMI_PREFIX}/lib:${LD_LIBRARY_PATH}"
 PKG_CONFIG_PATH="${QT_JAMI_PREFIX}/lib/pkgconfig:${PKG_CONFIG_PATH}"
-CMAKE_PREFIX_PATH="${QT_JAMI_PREFIX}/lib/cmake:${CMAKE_PREFIX_PATH}"
+CMAKE_PREFIX_PATH="${QT_JAMI_PREFIX}:${CMAKE_PREFIX_PATH}"
 QT_MAJOR=6
-QT_MINOR=6
+QT_MINOR=8
 QT_PATCH=3
 QT_RELEASE_PATCH=0
 
@@ -50,7 +50,7 @@ QT_MAJOR_MINOR_PATCH=${QT_MAJOR}.${QT_MINOR}.${QT_PATCH}
 QT_TARBALL_URL=https://download.qt.io/archive/qt/$QT_MAJOR_MINOR/\
 $QT_MAJOR_MINOR_PATCH/single/qt-everywhere-src-$QT_MAJOR_MINOR_PATCH.tar.xz
 
-QT_TARBALL_SHA256="69d0348fef415da98aa890a34651e9cfb232f1bffcee289b7b4e21386bf36104"
+QT_TARBALL_SHA256="cdd3a69967208276bb01af7ace7dba0ba53e679f886a4cbe624225c60fb73f2c"
 QT_TARBALL_FILE_NAME=$(basename "$QT_TARBALL_URL")
 CACHED_QT_TARBALL=$TARBALLS/$QT_TARBALL_FILE_NAME
 
@@ -67,6 +67,10 @@ if [ ! -f "${RPM_PATH}" ]; then
         flock 9             # block until the lock is available
         test -f "$RPM_PATH" && exit 0 # check again
 
+        # Build and install the correct version of FFmpeg.
+        /opt/install-ffmpeg-for-qt.sh
+
+        # Build Qt.
         mkdir /opt/qt-jami-build
         cd /opt/qt-jami-build
         tar xf "/src/$RELEASE_TARBALL_FILENAME" \
