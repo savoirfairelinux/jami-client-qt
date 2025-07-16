@@ -29,9 +29,7 @@ License:       GPLv3+
 Vendor:        Savoir-faire Linux Inc.
 URL:           https://jami.net/
 Source:        jami-libqt-%{version}.tar.xz
-Patch0:        0001-fix-gcc14.patch
-Patch1:        0002-qtwebengine-add-missing-chromium-dependencies.patch
-Patch2:        0003-fix-embree-linking-errors.patch
+Patch0:        0001-qtwebengine-fix-build-error-due-to-missing-chromium-dependency.patch
 
 %global gst 0.10
 %if 0%{?fedora} || 0%{?rhel} > 7
@@ -68,36 +66,9 @@ This package contains Qt libraries for Jami.
 %prep
 %setup -n qt-everywhere-src-%{version}
 %patch -P 0 -p1
-%patch -P 1 -p1
-%patch -P 2 -p1
 
 %build
 echo "Building Qt using %{job_count} parallel jobs"
-# Qt 6.4 (https://wiki.linuxfromscratch.org/blfs/ticket/14729)
-sed -i 's,default=False,default=True,g' qtwebengine/src/3rdparty/chromium/third_party/catapult/tracing/tracing_build/generate_about_tracing_contents.py
-# Gcc 13
-sed -i 's,std::uint32_t,uint32_t,g' qt3d/src/3rdparty/assimp/src/code/AssetLib/FBX/FBXBinaryTokenizer.cpp
-sed -i 's,std::uint32_t,uint32_t,g' qtquick3d/src/3rdparty/assimp/src/code/AssetLib/FBX/FBXBinaryTokenizer.cpp
-# https://bugs.gentoo.org/768261 (Qt 5.15)
-sed -i 's,#include "absl/base/internal/spinlock.h"1,#include "absl/base/internal/spinlock.h"1\n#include <limits>,g' qtwebengine/src/3rdparty/chromium/third_party/abseil-cpp/absl/synchronization/internal/graphcycles.cc
-sed -i 's,#include <stdint.h>,#include <stdint.h>\n#include <limits>,g' qtwebengine/src/3rdparty/chromium/third_party/perfetto/src/trace_processor/containers/string_pool.h
-# else, break build for fedora 35
-sed -i 's/static const unsigned kSigStackSize = std::max(16384, SIGSTKSZ);/static const size_t kSigStackSize = std::max(size_t(16384), size_t(SIGSTKSZ));/g' qtwebengine/src/3rdparty/chromium/third_party/breakpad/breakpad/src/client/linux/handler/exception_handler.cc
-# https://bugreports.qt.io/browse/QTBUG-93452 (Qt 5.15)
-sed -i 's,#  include <utility>,#  include <utility>\n#  include <limits>,g' qtbase/src/corelib/global/qglobal.h
-sed -i 's,#include <string.h>,#include <string.h>\n#include <limits>,g' qtbase/src/corelib/global/qendian.h
-cat qtbase/src/corelib/global/qendian.h
-sed -i 's,#include <string.h>,#include <string.h>\n#include <limits>,g' qtbase/src/corelib/global/qfloat16.h
-sed -i 's,#include <QtCore/qbytearray.h>,#include <QtCore/qbytearray.h>\n#include <limits>,g' qtbase/src/corelib/text/qbytearraymatcher.h
-cat qtwebengine/configure.cmake
-
-#https://bugreports.qt.io/browse/QTBUG-117979
-if test -f "/usr/bin/python3.10"; then
-  /usr/bin/python3.10 -m venv env
-  source env/bin/activate
-  python -m pip install html5lib
-  python -m pip install six
-fi
 
 # recent gcc version do not like lto from qt
 CXXFLAGS="${CXXFLAGS} -fno-lto" CFLAGS="${CFLAGS} -fno-lto" LDFLAGS="$(CFLAGS) ${LDFLAGS}" ./configure \
@@ -106,7 +77,6 @@ CXXFLAGS="${CXXFLAGS} -fno-lto" CFLAGS="${CFLAGS} -fno-lto" LDFLAGS="$(CFLAGS) $
   -nomake examples \
   -nomake tests \
   -prefix "%{_libdir}/qt-jami"
-sed -i 's,bin/python,bin/env python3,g' qtbase/mkspecs/features/uikit/devices.py
 # Chromium is built using Ninja, which doesn't honor MAKEFLAGS.
 cmake --build . --parallel
 
