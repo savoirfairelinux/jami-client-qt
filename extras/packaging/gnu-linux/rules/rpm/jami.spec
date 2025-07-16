@@ -75,7 +75,8 @@ cd %{_builddir}/jami-%{version} && \
           -DCMAKE_BUILD_TYPE=Release \
           -DBUILD_VERSION=${BUILD_VERSION} \
           ..
-make -C %{_builddir}/jami-%{version}/build %{_smp_mflags} V=2
+echo "@@@ CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}"
+make -C %{_builddir}/jami-%{version}/build %{_smp_mflags} VERBOSE=1
 
 %install
 DESTDIR=%{buildroot} make -C %{_builddir}/jami-%{version}/build install V=2
