@@ -96,7 +96,7 @@ override_dh_auto_build:
 	  -DLIBJAMI_BUILD_DIR=$(CURDIR)/daemon/src \
 	  -DENABLE_LIBWRAP=true \
 	  $(CMAKE_OPTIONS) ..
-	make -C build -j$(NO_CPUS) V=1
+	make -C build -j$(NO_CPUS) VERBOSE=1
 
 override_dh_auto_clean:
 	# Daemon clean
