@@ -12,7 +12,8 @@ override_dh_auto_configure:
 	  -confirm-license \
 	  -nomake examples \
 	  -nomake tests \
-	  -prefix "${QT_JAMI_PREFIX}"
+	  -prefix "${QT_JAMI_PREFIX}" \
+	  -- -DFFMPEG_DIR="${FFMPEG_PATH}" -DQT_DEPLOY_FFMPEG=ON
 
 override_dh_auto_build:
 	cmake --build . --parallel

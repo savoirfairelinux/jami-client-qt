@@ -94,10 +94,11 @@ RUN dnf install -y \
         ninja-build \
         cmake \
         fmt-devel \
-        python3.10 \
+        python3-html5lib \
         cups-devel \
         pipewire-devel
 
+ADD extras/packaging/gnu-linux/scripts/install-ffmpeg-for-qt.sh /opt/install-ffmpeg-for-qt.sh
 ADD extras/packaging/gnu-linux/scripts/build-package-rpm.sh /opt/build-package-rpm.sh
 
 CMD ["/opt/build-package-rpm.sh"]
