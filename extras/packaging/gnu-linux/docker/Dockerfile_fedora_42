@@ -81,16 +81,9 @@ RUN dnf install -y \
         ninja-build \
         cmake \
         fmt-devel \
-        python3.10 \
+        python3-html5lib \
         cups-devel \
         pipewire-devel
-
-# Use GCC 14 instead of GCC 15 (the default on Fedora 42)
-# because Qt 6.6.3 fails to build when using the latter.
-RUN rm /usr/bin/gcc /usr/bin/g++ /usr/bin/c++ && \
-    ln -s /usr/bin/gcc-14 /usr/bin/gcc && \
-    ln -s /usr/bin/g++-14 /usr/bin/g++ && \
-    ln -s /usr/bin/g++-14 /usr/bin/c++
 
 ADD extras/packaging/gnu-linux/scripts/build-package-rpm.sh /opt/build-package-rpm.sh
 

@@ -1,0 +1,36 @@
+From c9a7e341067797628a69b03837bfd9de5b7f539c Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Fran=C3=A7ois-Simon=20Fauteux-Chapleau?=
+ <francois-simon.fauteux-chapleau@savoirfairelinux.com>
+Date: Tue, 22 Jul 2025 13:40:55 -0400
+Subject: [PATCH] qtwebengine: add missing zygote_communication_linux
+ dependency
+
+Commit 42e09c7bea of qtwebengine-chromium added
+content/public/browser/child_process_host.h to the list of header files
+included in zygote_communication_linux.cc without updating the list of
+dependencies in content/common/BUILD.gn accordingly, which can cause the
+build to fail with the following error:
+
+    In file included from ../../../3rdparty/chromium/content/common/zygote/zygote_communication_linux.cc:21:
+    ../../../3rdparty/chromium/content/public/browser/child_process_host.h:17:10: fatal error: content/common/buildflags.h: No such file or directory
+       17 | #include "content/common/buildflags.h"
+          |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---
+ qtwebengine/src/3rdparty/chromium/content/common/BUILD.gn | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/qtwebengine/src/3rdparty/chromium/content/common/BUILD.gn b/qtwebengine/src/3rdparty/chromium/content/common/BUILD.gn
+index 90399a1bd6..587141caac 100644
+--- a/qtwebengine/src/3rdparty/chromium/content/common/BUILD.gn
++++ b/qtwebengine/src/3rdparty/chromium/content/common/BUILD.gn
+@@ -50,6 +50,7 @@ if (is_linux || is_chromeos) {
+     deps = [
+       "//base",
+       "//base:i18n",
++      "//content/public/browser:browser",
+       "//content/public/common:content_descriptors",
+       "//content/public/common:result_codes",
+       "//content/public/common:sandbox_support_linux",
+-- 
+2.34.1
+
