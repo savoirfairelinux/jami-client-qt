@@ -82,7 +82,6 @@ cd %{_builddir}/jami-%{version}/daemon/contrib/native && \
     make list && \
     make fetch && \
     make %{_smp_mflags} V=1 && \
-    make %{_smp_mflags} V=1 .ffmpeg
 # Configure the daemon.
 cd %{_builddir}/jami-%{version}/daemon && \
     ./autogen.sh && \

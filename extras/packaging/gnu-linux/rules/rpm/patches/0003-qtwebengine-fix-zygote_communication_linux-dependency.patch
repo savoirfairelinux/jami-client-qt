@@ -1,0 +1,49 @@
+From 5c247c7a084661932969acf2f7103096b8b0d6b4 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Fran=C3=A7ois-Simon=20Fauteux-Chapleau?=
+ <francois-simon.fauteux-chapleau@savoirfairelinux.com>
+Date: Tue, 22 Jul 2025 13:40:55 -0400
+Subject: [PATCH] qtwebengine: fix zygote_communication_linux dependency
+
+Commit 42e09c7bea of qtwebengine-chromium added
+content/public/browser/child_process_host.h to the list of header files
+included in zygote_communication_linux.cc, which can cause the build to
+fail with the following error:
+
+    In file included from ../../../3rdparty/chromium/content/common/zygote/zygote_communication_linux.cc:21:
+    ../../../3rdparty/chromium/content/public/browser/child_process_host.h:17:10: fatal error: content/common/buildflags.h: No such file or directory
+       17 | #include "content/common/buildflags.h"
+          |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---
+ .../content/common/zygote/zygote_communication_linux.cc  | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
+
+diff --git a/qtwebengine/src/3rdparty/chromium/content/common/zygote/zygote_communication_linux.cc b/qtwebengine/src/3rdparty/chromium/content/common/zygote/zygote_communication_linux.cc
+index 5bd9a53568..ff883d59e4 100644
+--- a/qtwebengine/src/3rdparty/chromium/content/common/zygote/zygote_communication_linux.cc
++++ b/qtwebengine/src/3rdparty/chromium/content/common/zygote/zygote_communication_linux.cc
+@@ -18,7 +18,7 @@
+ #include "base/posix/eintr_wrapper.h"
+ #include "base/posix/unix_domain_socket.h"
+ #include "content/common/zygote/zygote_commands_linux.h"
+-#include "content/public/browser/child_process_host.h"
++#include "content/public/common/content_paths.h"
+ #include "content/public/common/content_switches.h"
+ #include "content/public/common/result_codes.h"
+ #include "sandbox/policy/switches.h"
+@@ -237,8 +237,11 @@ void ZygoteCommunication::Init(
+     base::OnceCallback<pid_t(base::CommandLine*, base::ScopedFD*)> launcher) {
+   CHECK(!init_);
+ 
+-  base::FilePath chrome_path = content::ChildProcessHost::GetChildPath(
+-      content::ChildProcessHost::CHILD_NORMAL);
++  base::FilePath chrome_path = base::CommandLine::ForCurrentProcess()->GetSwitchValuePath(
++      switches::kBrowserSubprocessPath);
++  if (chrome_path.empty()) {
++    base::PathService::Get(CHILD_PROCESS_EXE, &chrome_path);
++  }
+ 
+   base::CommandLine cmd_line(chrome_path);
+   cmd_line.AppendSwitchASCII(switches::kProcessType, switches::kZygoteProcess);
+-- 
+2.34.1
+
