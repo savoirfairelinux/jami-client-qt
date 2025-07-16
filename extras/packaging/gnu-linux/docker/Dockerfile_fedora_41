@@ -94,7 +94,7 @@ RUN dnf install -y \
         ninja-build \
         cmake \
         fmt-devel \
-        python3.10 \
+        python3-html5lib \
         cups-devel \
         pipewire-devel
 
