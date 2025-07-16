@@ -1,0 +1,39 @@
+From 0d0856252b48895a8d6cad7bff66c904ccfc0725 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Fran=C3=A7ois-Simon=20Fauteux-Chapleau?=
+ <francois-simon.fauteux-chapleau@savoirfairelinux.com>
+Date: Wed, 16 Jul 2025 13:49:54 -0400
+Subject: [PATCH] qtwebengine: fix build error due to missing chromium
+ dependency
+
+Error:
+
+    In file included from ../../../3rdparty/chromium/ui/gl/gl_surface.h:30,
+                     from ../../../3rdparty/chromium/tools/v8_context_snapshot/qt_overrides.cc:13:
+    ../../../3rdparty/chromium/ui/gl/gl_implementation.h:18:10: fatal error: ui/gl/buildflags.h: No such file or directory
+       18 | #include "ui/gl/buildflags.h"
+          |          ^~~~~~~~~~~~~~~~~~~~
+    compilation terminated.
+
+Patch taken from: https://codereview.qt-project.org/c/qt/qtwebengine-chromium/+/637889
+---
+ .../src/3rdparty/chromium/chrome/test/chromedriver/BUILD.gn   | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/qtwebengine/src/3rdparty/chromium/chrome/test/chromedriver/BUILD.gn b/qtwebengine/src/3rdparty/chromium/chrome/test/chromedriver/BUILD.gn
+index 812445d934..97cd46140d 100644
+--- a/qtwebengine/src/3rdparty/chromium/chrome/test/chromedriver/BUILD.gn
++++ b/qtwebengine/src/3rdparty/chromium/chrome/test/chromedriver/BUILD.gn
+@@ -455,6 +455,10 @@ if (is_linux && !is_qtwebengine) {
+       output_name = "webenginedriver"
+       deps -= [ "//net/traffic_annotation:test_support" ]
+ 
++      if (is_linux || is_mac) {
++        deps += [ "//ui/gl:buildflags" ]
++      }
++
+       if (is_linux) {
+         sources += [
+           "//content/public/common/content_switches.cc",
+-- 
+2.34.1
+

@@ -171,7 +171,7 @@ set(TESTS_DIR ${PROJECT_SOURCE_DIR}/tests)
 # Here we let find_package(<PackageName>...) try to find Qt 6,
 # If it is found, find_package will succeed, and the CMake variable
 # QT_VERSION_MAJOR will be defined 6.
-set(QT6_MINVER_MINOR 6)
+set(QT6_MINVER_MINOR 8)
 if(QT6_VER AND QT6_PATH)
   find_package(QT NAMES Qt6 REQUIRED
     PATHS ${QT6_PATH} NO_DEFAULT_PATH)
@@ -180,15 +180,9 @@ else()
   find_package(QT NAMES Qt6 REQUIRED)
 endif()
 if (${QT_VERSION_MINOR} GREATER_EQUAL ${QT6_MINVER_MINOR})
-  # Enforce a minimum Qt version of 6.6.2 for the Windows build
-  # https://github.com/stdware/qwindowkit/issues/23
-  if(MSVC AND ${QT_VERSION_MINOR} EQUAL 6 AND ${QT_VERSION_PATCH} LESS 2)
-    message(FATAL_ERROR "Qt 6.6.2 or higher is required. Found ${QT_VERSION}")
-  endif()
-  # Qt version is 6.6 or higher
   message(STATUS "Found a suitable Qt version ${QT_VERSION}")
 else()
-  message(FATAL_ERROR "Qt 6.6 or higher is required. Found ${QT_VERSION}")
+  message(FATAL_ERROR "Qt 6.8 or higher is required. Found ${QT_VERSION}")
 endif()
 
 # libjamiclient
@@ -582,11 +576,15 @@ elseif (NOT APPLE)
 
   # Link against the version of libavutil built in the daemon's contribs to
   # make sure we don't have ABI incompatibility issues.
+  set(ARCHITECTURE ${CMAKE_LIBRARY_ARCHITECTURE})
+  if (NOT ARCHITECTURE)
+      execute_process(COMMAND gcc -dumpmachine  COMMAND tr -d '\n' OUTPUT_VARIABLE ARCHITECTURE)
+  endif()
   list(PREPEND CMAKE_PREFIX_PATH
-    ${LIBJAMI_CONTRIB_DIR}/${CMAKE_LIBRARY_ARCHITECTURE})
+    ${LIBJAMI_CONTRIB_DIR}/${ARCHITECTURE})
   pkg_check_modules(avutil REQUIRED IMPORTED_TARGET libavutil=58.2.100)
   list(REMOVE_ITEM CMAKE_PREFIX_PATH
-    ${LIBJAMI_CONTRIB_DIR}/${CMAKE_LIBRARY_ARCHITECTURE})
+    ${LIBJAMI_CONTRIB_DIR}/${ARCHITECTURE})
   list(APPEND CLIENT_LIBS PkgConfig::avutil)
 
   include_directories(

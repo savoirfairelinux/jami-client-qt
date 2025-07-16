@@ -58,9 +58,11 @@ RUN zypper --non-interactive install -y \
         sqlite3-devel \
         gtk3-devel\
         qrencode-devel \
-        python310 \
-        python3-python-dateutil \
-        python3-html5lib \
+        python311 \
+        python311-python-dateutil \
+        python311-html5lib \
+        python311-six \
+        python311-importlib-metadata \
         libsndfile-devel \
         libdrm-devel \
         gperf \
@@ -71,8 +73,6 @@ RUN zypper --non-interactive install -y \
         nodejs20 \
         mozilla-nss-devel \
         python-xml \
-        python3-six \
-        python3-importlib-metadata \
         libxcb* \
         libxkb* \
         libX11-devel \
@@ -103,12 +103,13 @@ RUN zypper --non-interactive install -y \
         pipewire-devel
 
 # openSUSE Leap 15.6 comes with Python 3.6 by default,
-# but we need at least 3.7 to compile Qt 6.6.1
-RUN rm /usr/bin/python3 && ln -s /usr/bin/python3.10 /usr/bin/python3
+# but we need at least 3.7 to compile Qt 6.8.3
+RUN rm /usr/bin/python3 && ln -s /usr/bin/python3.11 /usr/bin/python3
 
 RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 50
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 50
 
+ADD extras/packaging/gnu-linux/scripts/install-ffmpeg-for-qt.sh /opt/install-ffmpeg-for-qt.sh
 ADD extras/packaging/gnu-linux/scripts/build-package-rpm.sh /opt/build-package-rpm.sh
 
 ENV CC=gcc
