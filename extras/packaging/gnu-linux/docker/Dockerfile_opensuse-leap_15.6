@@ -103,7 +103,7 @@ RUN zypper --non-interactive install -y \
         pipewire-devel
 
 # openSUSE Leap 15.6 comes with Python 3.6 by default,
-# but we need at least 3.7 to compile Qt 6.6.1
+# but we need at least 3.7 to compile Qt 6.8.3
 RUN rm /usr/bin/python3 && ln -s /usr/bin/python3.10 /usr/bin/python3
 
 RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 50
