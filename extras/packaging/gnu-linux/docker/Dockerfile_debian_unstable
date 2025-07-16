@@ -21,5 +21,6 @@ RUN /opt/prebuild-package-debian.sh jami-deps
 
 RUN apt-get remove -y libre2-dev libre2-11
 
+ADD extras/packaging/gnu-linux/scripts/install-ffmpeg-for-qt.sh /opt/install-ffmpeg-for-qt.sh
 ADD extras/packaging/gnu-linux/scripts/build-package-debian.sh /opt/build-package-debian.sh
 CMD ["/opt/build-package-debian.sh"]
