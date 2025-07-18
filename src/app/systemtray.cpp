@@ -146,7 +146,7 @@ void
 SystemTray::onNotificationCountChanged(int count)
 {
     if (count == 0) {
-        setIcon(QIcon(":/images/jami.svg"));
+        setIcon(QIcon(":/images/net.jami.Jami.svg"));
     } else {
         setIcon(QIcon(":/images/jami-new.svg"));
     }
@@ -258,9 +258,9 @@ SystemTray::showNotification(const QString& message,
     setOnClickedCallback(std::move(onClickedCb));
 
     if (from.isEmpty())
-        showMessage(message, "", QIcon(":images/jami.svg"));
+        showMessage(message, "", QIcon(":images/net.jami.Jami.svg"));
     else
-        showMessage(from, message, QIcon(":images/jami.svg"));
+        showMessage(from, message, QIcon(":images/net.jami.Jami.svg"));
 }
 
 template<typename Func>

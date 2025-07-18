@@ -270,7 +270,7 @@ parts:
       ls
       snapcraftctl pull
       sed -i -E 's|(tmpName) << (PACKAGE_NAME << "_shm_")|\1 << "snap.jami." << \2|' ./daemon/src/media/video/sinkclient.cpp
-      sed -i -E 's|^Icon=.*|Icon=${SNAP}/usr/share/icons/hicolor/scalable/apps/jami.svg|' extras/data/net.jami.Jami.desktop
+      sed -i -E 's|^Icon=.*|Icon=${SNAP}/usr/share/icons/hicolor/scalable/apps/net.jami.Jami.svg|' extras/data/net.jami.Jami.desktop
     override-build: |
       $SNAPCRAFT_PART_BUILD/extras/packaging/gnu-linux/scripts/install-pipewire-from-source.sh
 

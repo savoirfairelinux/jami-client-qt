@@ -252,7 +252,7 @@ define guix-pack-command
 guix pack -C xz -f $(1) -m $(CURDIR)/extras/packaging/gnu-linux/guix/guix-pack-manifest.scm -v3 \
   -S /usr/bin/jami=bin/jami \
   -S /usr/share/applications/net.jami.Jami.desktop=share/applications/net.jami.Jami.desktop \
-  -S /usr/share/icons/hicolor/scalable/apps/jami.svg=share/icons/hicolor/scalable/apps/jami.svg \
+  -S /usr/share/icons/hicolor/scalable/apps/net.jami.Jami.svg=share/icons/hicolor/scalable/apps/net.jami.Jami.svg \
   -S /usr/share/icons/hicolor/48x48/apps/jami.png=share/icons/hicolor/48x48/apps/jami.png \
   -S /usr/share/metainfo/net.jami.Jami.metainfo.xml=share/metainfo/net.jami.Jami.metainfo.xml \
   -S /usr/share/swcatalog/xml/jami.xml=share/swcatalog/xml/jami.xml \

@@ -464,7 +464,7 @@ MainApplication::initQmlLayer()
 void
 MainApplication::initSystray()
 {
-    systemTray_->setIcon(QIcon(":/images/jami.svg"));
+    systemTray_->setIcon(QIcon(":/images/net.jami.Jami.svg"));
 
     QMenu* menu {nullptr};
     // If there was a previous menu, reuse it, otherwise create a new one.

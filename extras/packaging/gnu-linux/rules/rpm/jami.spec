@@ -85,7 +85,7 @@ DESTDIR=%{buildroot} make -C %{_builddir}/jami-%{version}/build install V=2
 %{_bindir}/jami
 %{_datadir}/applications/net.jami.Jami.desktop
 %{_datadir}/jami/net.jami.Jami.desktop
-%{_datadir}/icons/hicolor/scalable/apps/jami.svg
+%{_datadir}/icons/hicolor/scalable/apps/net.jami.Jami.svg
 %{_datadir}/icons/hicolor/48x48/apps/jami.png
 %{_datadir}/pixmaps/jami.xpm
 %{_datadir}/metainfo/net.jami.Jami.metainfo.xml
