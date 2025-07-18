@@ -28,6 +28,7 @@ Rectangle {
 
     WebEngineView {
         id: wev
+        objectName: JamiQmlUtils.webEngineNames.videoPreview
 
         anchors.fill: parent
         anchors.verticalCenter: root.verticalCenter
