@@ -17,7 +17,6 @@
 
 import QtQuick
 import QtQuick.Controls
-import QtWebEngine
 
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
@@ -253,9 +252,15 @@ QtObject {
             isCallFullscreen = fullScreenItems
                 .filter(o => o.item.objectName === "callViewLoader")
                 .length
-            isWebFullscreen = fullScreenItems
-                .filter(o => o.item instanceof WebEngineView)
-                .length
+            isWebFullscreen = WITH_WEBENGINE ? fullScreenItems
+                .filter(o => o.item && (
+                    o.item.objectName === JamiQmlUtils.webEngineNames.mediaPreview ||
+                    o.item.objectName === JamiQmlUtils.webEngineNames.videoPreview ||
+                    o.item.objectName === JamiQmlUtils.webEngineNames.map ||
+                    o.item.objectName === JamiQmlUtils.webEngineNames.general ||
+                    o.item.objectName === JamiQmlUtils.webEngineNames.emojiPicker
+                ))
+                .length : 0
         }
 
         // Listen for a hangup combined with a fullscreen call state and

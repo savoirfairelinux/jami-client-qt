@@ -22,6 +22,7 @@ import net.jami.Constants 1.1
 
 WebEngineView {
     id: root
+    objectName: JamiQmlUtils.webEngineNames.general
 
     property string onCompletedLoadHtml: ""
     property string onCompletedUrl: "qrc" + onCompletedLoadHtml

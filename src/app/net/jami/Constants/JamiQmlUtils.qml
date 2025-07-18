@@ -25,6 +25,14 @@ Item {
     property string qmlFilePrefix: "file:/"
     readonly property string base64StringTitle: "data:image/png;base64,"
 
+    readonly property var webEngineNames: {
+        "mediaPreview": "mediaPreviewWebEngine",
+        "videoPreview": "videoPreviewWebEngine",
+        "map": "mapWebEngine",
+        "general": "generalWebEngine",
+        "emojiPicker": "emojiPickerWebEngine"
+    }
+
     property var accountCreationInputParaObject: ({})
 
     function setUpAccountCreationInputPara(inputPara) {

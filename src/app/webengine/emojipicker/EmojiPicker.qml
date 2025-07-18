@@ -77,6 +77,7 @@ Popup {
 
     GeneralWebEngineView {
         id: emojiPickerWebView
+        objectName: JamiQmlUtils.webEngineNames.emojiPicker
 
         width: JamiTheme.emojiPickerWidth
         height: JamiTheme.emojiPickerHeight
