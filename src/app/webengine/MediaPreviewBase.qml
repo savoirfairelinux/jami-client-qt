@@ -26,6 +26,7 @@ import "../commoncomponents"
 
 WebEngineView {
     id: wev
+    objectName: JamiQmlUtils.webEngineNames.mediaPreview
     property bool isVideo
     property string html
     readonly property real minSize: 192

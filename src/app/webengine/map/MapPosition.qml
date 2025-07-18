@@ -132,6 +132,7 @@ Item {
 
             WebEngineView {
                 id: webView
+                objectName: JamiQmlUtils.webEngineNames.map
 
                 layer.enabled: !isFullScreen
                 layer.effect: OpacityMask {
