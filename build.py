@@ -216,7 +216,7 @@ UNINSTALL_DAEMON_SCRIPT = [
 ASSUME_YES_FLAG = ' -y'
 ASSUME_YES_FLAG_PACMAN = ' --noconfirm'
 
-GUIX_MANIFEST = 'extras/packaging/gnu-linux/guix/manifest.scm'
+GUIX_MANIFEST = 'extras/packaging/gnu-linux/guix/client+daemon-manifest.scm'
 
 
 def run_powershell_cmd(cmd):
@@ -300,7 +300,7 @@ def run_dependencies(args):
         sys.exit(1)
     elif args.distribution == 'guix':
         print(f"Building the profile defined in '{GUIX_MANIFEST}'…")
-        execute_script([f'guix shell --manifest={GUIX_MANIFEST} -- true'])
+        execute_script([f'guix build --manifest={GUIX_MANIFEST}'])
 
     else:
         print("Not yet implemented for current distribution (%s). Please continue with the --install instruction. Note: You may need to install some dependencies manually." %
@@ -458,10 +458,8 @@ def run_install(args):
             share_tarballs_args = ['--preserve=TARBALLS',
                                    f'--share={os.environ["TARBALLS"]}']
         command = ['guix', 'shell', f'--manifest={GUIX_MANIFEST}',
-                   '--symlink=/usr/bin/env=bin/env',
-                   '--symlink=/etc/ssl/certs=etc/ssl/certs',
-                   '--container', '--network'] + share_tarballs_args \
-            + ['--'] + command
+                   '--container', '--network', '--emulate-fhs'] \
+                   + share_tarballs_args + ['--'] + command
 
     print(f'info: Building/installing using the command: {" ".join(command)}')
     return subprocess.run(command, env=environ, check=True)
@@ -845,7 +843,12 @@ def main():
             # Relaunch this script, this time in a pure Guix environment.
             guix_args = ['shell', '--pure',
                          # to allow pulseaudio to connect to an existing server
-                         "-E", "XAUTHORITY", "-E", "XDG_RUNTIME_DIR",
+                         "-E", "GTK_DATA_PREFIX", # for theming on Guix System
+                         "-E", "QT_QPA_PLATFORM",
+                         "-E", "XAUTHORITY",
+                         "-E", "XCURSOR_PATH",
+                         "-E", "^XDG",
+                         "-E", "WAYLAND_DISPLAY",
                          f'--manifest={GUIX_MANIFEST}', '--']
             args = sys.argv + ['--distribution=guix']
             print('Running in a guix shell spawned with: guix {}'

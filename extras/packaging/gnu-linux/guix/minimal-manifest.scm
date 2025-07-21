@@ -1,5 +1,5 @@
 ;;; To use with the GNU Guix package manager.
-;;; Available at https://guix.gnu.org/.
+;;; Available from https://guix.gnu.org/.
 ;;;
 ;;; Commentary:
 ;;;

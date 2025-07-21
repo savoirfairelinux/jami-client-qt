@@ -1,0 +1,1 @@
+extras/packaging/gnu-linux/guix/client+daemon-manifest.scm
