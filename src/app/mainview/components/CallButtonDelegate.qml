@@ -181,9 +181,23 @@ ItemDelegate {
         Connections {
             target: menuAction !== undefined ? menuAction : null
             function onTriggered() {
-                if (menuAction.popupMode !== CallActionBar.ActionPopupMode.ListElement) {
-                    var index = menuAction.listModel.currentIndex;
-                    itemListView.currentIndex = index !== undefined ? index : 0;
+                var index;
+                switch (menuAction.popupMode) {
+                    case CallActionBar.ActionPopupMode.MediaDevice:
+                        index = menuAction.listModel.getCurrentIndex();
+                        break;
+                    case CallActionBar.ActionPopupMode.LayoutOption:
+                        index = menuAction.listModel.currentIndex;
+                        break;
+                    case CallActionBar.ActionPopupMode.ListElement:
+                        index = menuAction.listModel.currentIndex;
+                        break;
+                    default:
+                        console.warn("Unknown popup mode: " + menuAction.popupMode);
+                        return;
+                }
+                if (index !== undefined) {
+                    itemListView.currentIndex = index;
                 }
             }
         }

@@ -98,6 +98,7 @@ Control {
             id: audioInputMenuAction
             text: JamiStrings.selectAudioInputDevice
             Component.onCompleted: enabled = audioInputDeviceListModel.rowCount()
+            property int popupMode: CallActionBar.ActionPopupMode.MediaDevice
             property var listModel: AudioDeviceModel {
                 id: audioInputDeviceListModel
                 lrcInstance: LRCInstance
@@ -113,6 +114,7 @@ Control {
             id: audioOutputMenuAction
             text: JamiStrings.selectAudioOutputDevice
             Component.onCompleted: enabled = audioOutputDeviceListModel.rowCount()
+            property int popupMode: CallActionBar.ActionPopupMode.MediaDevice
             property var listModel: AudioDeviceModel {
                 id: audioOutputDeviceListModel
                 lrcInstance: LRCInstance
@@ -272,6 +274,7 @@ Control {
             id: videoInputMenuAction
             enabled: VideoDevices.listSize !== 0
             text: JamiStrings.selectVideoDevice
+            property int popupMode: CallActionBar.ActionPopupMode.MediaDevice
             property var listModel: VideoDevices.deviceSourceModel
             function accept(index) {
                 VideoDevices.setDefaultDevice(index);
