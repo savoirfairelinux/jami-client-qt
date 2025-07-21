@@ -17,7 +17,8 @@
 
 #include "globaltestenvironment.h"
 
-#include <QtHttpServer/QHttpServer>
+#include <QtHttpServer>
+#include <QTcpServer>
 
 class PreviewEngineFixture : public ::testing::Test
 {
@@ -27,19 +28,27 @@ public:
     void SetUp() override
     {
         server = new QHttpServer();
-        // Setup a server that can return an HTML body.
-        server->listen(QHostAddress::LocalHost, 8000);
+        tcpserver = new QTcpServer();
+
+        // Setup a server that can return an HTML body, which listens
+        // on 127.0.0.1 (localhost) and port 8000.
+        if (!tcpserver->listen(QHostAddress::LocalHost, 8000)
+            || !server->bind(tcpserver)) {
+            qFatal() << "failed to listen:" << tcpserver->errorString();
+        }
     }
 
     // Close unit test context. Called
     // after each unit test ending
     void TearDown() override
     {
+        delete tcpserver;
         delete server;
     }
 
     // An instance of QHttpServer used to create a server.
     QHttpServer* server;
+    QTcpServer* tcpserver;
 };
 
 /*!
