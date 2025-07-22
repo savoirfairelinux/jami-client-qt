@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bd3771b_fd9818c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1143
+      },
+      "writtenOn": "2025-07-22T06:09:11Z",
+      "side": 1,
+      "message": "Any clue about that CI failure? I can\u0027t see the log.",
+      "revId": "aff584aa9df6a13778c0352d4114eb35ac600488",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
