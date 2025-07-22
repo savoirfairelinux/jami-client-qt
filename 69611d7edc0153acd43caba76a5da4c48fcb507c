@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e4fab11_e5bc5669",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1143
+      },
+      "writtenOn": "2025-07-22T06:07:26Z",
+      "side": 1,
+      "message": "If there\u0027s an issue to fix reported in Jenkins, would you mind to copy/paste it here, I can\u0027t see the logs.",
+      "revId": "69611d7edc0153acd43caba76a5da4c48fcb507c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
