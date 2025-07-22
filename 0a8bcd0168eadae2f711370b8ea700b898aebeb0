@@ -16,6 +16,24 @@
       "message": "This passes for me with Qt 6.8.2. Does it fail CI because it\u0027s using an older Qt version?",
       "revId": "0a8bcd0168eadae2f711370b8ea700b898aebeb0",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2ac0250_7930961e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1143
+      },
+      "writtenOn": "2025-07-22T06:03:42Z",
+      "side": 1,
+      "message": "(I don\u0027t have access to the jenkins logs)",
+      "parentUuid": "64171c22_8a8b2cd9",
+      "revId": "0a8bcd0168eadae2f711370b8ea700b898aebeb0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
