@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e41f6fca_8009bf3d",
+        "filename": "src/libclient/api/account.h",
+        "patchSetId": 33
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2025-07-22T19:27:52Z",
+      "side": 1,
+      "message": "whitespace introduced",
+      "range": {
+        "startLine": 239,
+        "startChar": 28,
+        "endLine": 239,
+        "endChar": 29
+      },
+      "revId": "d34d1b0c6e68605c475af7f2aee4b0811346c8b7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
