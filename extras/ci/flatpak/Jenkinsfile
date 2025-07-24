@@ -1,0 +1,36 @@
+pipeline {
+    agent {
+        node {
+            label 'jami-buildmachine-04.mtl.sfl'
+        }
+    }
+
+    // // Modify metainfo releases? (should only apply to stable releases)
+    // sh(
+    //     script: "${PACKAGING_DIR}/scripts/update-metainfo-releases.sh" +
+    //             " ${METAINFO_DIR}"
+    // )
+
+    // // Is this even possible ? Check machine permissions
+    // sh "git add ${METAINFO_DIR}/net.jami.Jami.metainfo.xml"
+    // sh "git commit -m \"Update metainfo releases\""
+    // sh "git push origin"
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
+}

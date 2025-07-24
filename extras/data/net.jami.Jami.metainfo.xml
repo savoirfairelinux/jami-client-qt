@@ -87,11 +87,35 @@
   </developer>
 
   <releases>
-    <release version="20250718.0" date="2025-07-18">
+    <release version="20250815.1" date="20250815">
+      <url type="details">https://git.jami.net/savoirfairelinux/jami-client-qt/-/wikis/Changelog#nightlystable-20250815</url>
+    </release>
+    <release version="20250815.0" date="20250815">
+      <url type="details">https://git.jami.net/savoirfairelinux/jami-client-qt/-/wikis/Changelog#nightlystable-20250815</url>
+    </release>
+    <release version="20250718.0" date="20250718">
       <url type="details">https://git.jami.net/savoirfairelinux/jami-client-qt/-/wikis/Changelog#nightlystable-20250718</url>
     </release>
-    <release version="20250613.0" date="2025-06-13">
+    <release version="20250613.0" date="20250613">
       <url type="details">https://git.jami.net/savoirfairelinux/jami-client-qt/-/wikis/Changelog#nightlystable-20250613</url>
+    </release>
+    <release version="20250610.0" date="20250610">
+      <url type="details">https://git.jami.net/savoirfairelinux/jami-client-qt/-/wikis/Changelog#nightlystable-20250610</url>
+    </release>
+    <release version="20250523.0" date="20250523">
+      <url type="details">https://git.jami.net/savoirfairelinux/jami-client-qt/-/wikis/Changelog#nightlystable-20250523</url>
+    </release>
+    <release version="20250430.1" date="20250430">
+      <url type="details">https://git.jami.net/savoirfairelinux/jami-client-qt/-/wikis/Changelog#nightlystable-20250430</url>
+    </release>
+    <release version="20250430.0" date="20250430">
+      <url type="details">https://git.jami.net/savoirfairelinux/jami-client-qt/-/wikis/Changelog#nightlystable-20250430</url>
+    </release>
+    <release version="20250424.1" date="20250424">
+      <url type="details">https://git.jami.net/savoirfairelinux/jami-client-qt/-/wikis/Changelog#nightlystable-20250424</url>
+    </release>
+    <release version="20250424.0" date="20250424">
+      <url type="details">https://git.jami.net/savoirfairelinux/jami-client-qt/-/wikis/Changelog#nightlystable-20250424</url>
     </release>
   </releases>
 
