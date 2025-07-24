@@ -1,0 +1,59 @@
+pipeline {
+    agent {
+        node {
+            label 'ai.mtl.sfl'
+        }
+    }
+
+    options {
+        ansiColor('xterm')
+    }
+
+    stages {
+        stage('Setup SSH') {
+            steps {
+                sh '''
+                    mkdir -p ~/.ssh
+                    ssh-keyscan -H github.com >> ~/.ssh/known_hosts 2>/dev/null || true
+                '''
+            }
+        }
+
+        stage('SCM Checkout - Flatpak') {
+            steps {
+                checkout changelog: true, poll: false,
+                        scm: [$class: 'GitSCM',
+                            branches: [[name: 'master']],
+                            doGenerateSubmoduleConfigurations: false,
+                            extensions: [[$class: 'CloneOption', noTags: false, reference: '', shallow: false, timeout: 10]],
+                            submoduleCfg: [],
+                            userRemoteConfigs: [[url: 'git@github.com:flathub/net.jami.Jami.git',
+                                               credentialsId: 'flatpak-github-ssh-key']]]
+            }
+        }
+
+        // Clone the Jami Flathub repo
+        stage('SCM Checkout - Jami') {
+            steps {
+                // Wipe workspace and fetch jami-daemon
+                checkout changelog: true, poll: false,
+                    scm: [$class: 'GitSCM',
+                        branches: [[name: 'FETCH_HEAD']],
+                        doGenerateSubmoduleConfigurations: false,
+                        extensions: [
+                            [$class: 'CloneOption', noTags: false, reference: '', shallow: false],
+                            [$class: 'WipeWorkspace']],
+                        submoduleCfg: [],
+                        userRemoteConfigs: [[refspec: '${GERRIT_REFSPEC}', url: 'ssh://jenkins@review.jami.net:29420/jami-client-qt']]]
+            }
+        }
+
+        // Run script to publish to Flathub
+        stage('Trigger GitHub PR and Merge') {
+            steps {
+                sh "chmod +x ${WORKSPACE}/jami-client-qt/extras/packaging/gnu-linux/scripts/publish-flatpak.sh"
+                sh "${WORKSPACE}/jami-client-qt/extras/packaging/gnu-linux/scripts/publish-flatpak.sh ${VERSION_TAG} ${WORKSPACE}/net.jami.Jami"
+            }
+        }
+    }
+}
