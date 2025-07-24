@@ -1,0 +1,92 @@
+// Copyright (C) 2025 Savoir-faire Linux Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// Updates releases in <extras/data/net.jami.Jami.metainfo.xml>
+
+def GIT_USER_NAME = 'jenkins'
+def GIT_USER_EMAIL = 'jenkins@jami.net'
+def PACKAGING_DIR = 'extras/packaging/gnu-linux'
+def JENKINS_SSH_KEY = '35cefd32-dd99-41b0-8312-0b386df306ff'
+def DL_SSH_KEY = '5825b39b-dfc6-435f-918e-12acc1f56221'
+
+pipeline {
+    agent {
+        node {
+            label 'jami-buildmachine-04.mtl.sfl'
+        }
+    }
+
+    options {
+        ansiColor('xterm')
+    }
+
+    stages {
+        stage('SCM Checkout') {
+            steps {
+                // Wipe workspace and fetch jami-daemon
+                checkout changelog: true, poll: false,
+                    scm: [$class: 'GitSCM',
+                        branches: [[name: 'FETCH_HEAD']],
+                        doGenerateSubmoduleConfigurations: false,
+                        extensions: [
+                            [$class: 'CloneOption', noTags: false, reference: '', shallow: false],
+                            [$class: 'WipeWorkspace']],
+                        submoduleCfg: [],
+                        userRemoteConfigs: [[refspec: '${GERRIT_REFSPEC}', url: 'ssh://jenkins@review.jami.net:29420/jami-client-qt']]]
+            }
+        }
+        stage('Configure Git') {
+            steps {
+                sh """git config user.name ${GIT_USER_NAME}
+                      git config user.email ${GIT_USER_EMAIL}
+                   """
+            }
+        }
+        stage('Init repository') {
+            steps {
+                script {
+                    sh """
+                        git rev-parse HEAD
+                        git submodule update --init --recursive
+                    """
+                }
+            }
+        }
+        stage('Update Metainfo') {
+            steps {
+                script {
+                    sh """
+                    chmod +x ${PACKAGING_DIR}/scripts/update-metainfo-releases.sh
+                    ${PACKAGING_DIR}/scripts/update-metainfo-releases.sh extras/data/net.jami.Jami.metainfo.xml
+                    """
+                }
+            }
+        }
+        stage('Commit Changes') {
+            steps {
+                sshagent(credentials: [JENKINS_SSH_KEY, DL_SSH_KEY]) {
+                    script {
+                        sh '''
+                        git status
+                        git add extras/data/net.jami.Jami.metainfo.xml
+                        git commit --amend -m """$(git log -1 --pretty=%B)"""
+                        git push ssh://jenkins@review.jami.net:29420/jami-client-qt HEAD:refs/for/master
+                        '''
+                    }
+                }
+            }
+        }
+    }
+}
