@@ -1,0 +1,112 @@
+// Copyright (C) 2025 Savoir-faire Linux Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// Publishes latest Jami version to Flathub
+
+pipeline {
+    agent {
+        node {
+            label 'ai.mtl.sfl'
+        }
+    }
+
+    options {
+        ansiColor('xterm')
+    }
+
+    stages {
+        stage('Setup SSH') {
+            steps {
+                sh '''
+                    mkdir -p ~/.ssh
+                    ssh-keyscan -H github.com >> ~/.ssh/known_hosts 2>/dev/null || true
+                '''
+            }
+        }
+
+        // Required for pull requests and merging on GitHub repo
+        stage('Install GitHub CLI') {
+            steps {
+                sh '''
+                    # Install GitHub CLI if not already present
+                    if ! command -v gh &> /dev/null; then
+                        echo "Installing GitHub CLI..."
+                        # For Debian/Ubuntu systems
+                        curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+                        echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+                        sudo apt update
+                        sudo apt install gh -y
+                    else
+                        echo "GitHub CLI already installed"
+                        gh --version
+                    fi
+                '''
+            }
+        }
+
+        stage('SCM Checkout - Flatpak') {
+            steps {
+                // Need to delete directory before clone to avoid existing branch conflcits
+                // on retriggers of the job
+                deleteDir()
+                dir('net.jami.Jami') {
+                    checkout changelog: true, poll: false,
+                            scm: [$class: 'GitSCM',
+                                branches: [[name: 'master']],
+                                doGenerateSubmoduleConfigurations: false,
+                                extensions: [
+                                    [$class: 'CloneOption', noTags: false, reference: '', shallow: false, timeout: 10]
+                                ],
+                                submoduleCfg: [],
+                                userRemoteConfigs: [[url: 'git@github.com:flathub/net.jami.Jami.git',
+                                                   credentialsId: 'flatpak-github-ssh-key']]]
+                }
+            }
+        }
+
+        // Clone the Jami repo to a subdirectory
+        stage('SCM Checkout - Jami') {
+            steps {
+                dir('jami-client-qt') {
+                    checkout changelog: true, poll: false,
+                        scm: [$class: 'GitSCM',
+                            branches: [[name: 'FETCH_HEAD']],
+                            doGenerateSubmoduleConfigurations: false,
+                            extensions: [
+                                [$class: 'CloneOption', noTags: false, reference: '', shallow: false]],
+                            submoduleCfg: [],
+                            userRemoteConfigs: [[refspec: '${GERRIT_REFSPEC}', url: 'ssh://jenkins@review.jami.net:29420/jami-client-qt']]]
+                }
+            }
+        }
+
+        // Run script to publish to Flathub
+        stage('Trigger GitHub PR and Merge') {
+            steps {
+                sshagent(['flatpak-github-ssh-key']) {
+                    withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
+                        sh '''
+                            # GitHub CLI will automatically use GITHUB_TOKEN environment variable
+                            echo "Authenticating with GitHub CLI..."
+                            gh auth status || echo "GitHub CLI authenticated via GITHUB_TOKEN"
+                        '''
+                        sh "chmod +x ${WORKSPACE}/jami-client-qt/extras/packaging/gnu-linux/scripts/publish-flatpak.sh"
+                        sh "${WORKSPACE}/jami-client-qt/extras/packaging/gnu-linux/scripts/publish-flatpak.sh ${VERSION_TAG} ${WORKSPACE}/net.jami.Jami"
+                    }
+                }
+            }
+        }
+    }
+}
