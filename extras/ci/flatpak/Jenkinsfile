@@ -1,0 +1,41 @@
+pipeline {
+    agent {
+        node {
+            label 'ai.mtl.sfl'
+        }
+    }
+
+    options {
+        ansiColor('xterm')
+    }
+
+    stages {
+        stage('Setup SSH') {
+            steps {
+                sh '''
+                    mkdir -p ~/.ssh
+                    ssh-keyscan -H github.com >> ~/.ssh/known_hosts 2>/dev/null || true
+                '''
+            }
+        }
+        
+        stage('SCM Checkout') {
+            steps {
+                checkout changelog: true, poll: false,
+                        scm: [$class: 'GitSCM',
+                            branches: [[name: 'master']],
+                            doGenerateSubmoduleConfigurations: false,
+                            extensions: [[$class: 'CloneOption', noTags: false, reference: '', shallow: false, timeout: 10]],
+                            submoduleCfg: [],
+                            userRemoteConfigs: [[url: 'git@github.com:flathub/net.jami.Jami.git',
+                                               credentialsId: 'flatpak-github-ssh-key']]]
+            }
+        }
+
+        stage('Trigger GitHub PR and Merge') {
+            steps {
+                sh './extras/packaging/gnu-linux/scripts/build-flatpak.sh'
+            }
+        }
+    }
+}
