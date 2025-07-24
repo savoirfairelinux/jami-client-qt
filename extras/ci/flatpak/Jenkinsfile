@@ -1,0 +1,34 @@
+pipeline {
+    agent {
+        node {
+            label 'jami-buildmachine-04.mtl.sfl'
+        }
+    }
+
+    options {
+        ansiColor('xterm')
+    }
+
+    stages {
+        stage('SCM Checkout') {
+            steps {
+                sshagent(['flatpak-github-ssh-key']) {
+                    sh '''
+                        mkdir -p ~/.ssh
+                        echo "Host github.com" >> ~/.ssh/config
+                        echo "  StrictHostKeyChecking accept-new" >> ~/.ssh/config
+                        echo "  UserKnownHostsFile ~/.ssh/known_hosts" >> ~/.ssh/config
+                        ssh-keyscan -H github.com >> ~/.ssh/known_hosts 2>/dev/null
+                    '''
+                    checkout changelog: true, poll: false,
+                            scm: [$class: 'GitSCM',
+                                branches: [[name: 'master']],
+                                doGenerateSubmoduleConfigurations: false,
+                                extensions: [[$class: 'CloneOption', noTags: false, reference: '', shallow: false, timeout: 10]],
+                                submoduleCfg: [],
+                                userRemoteConfigs: [[url: 'git@github.com:flathub/net.jami.Jami.git']]]
+                }
+            }
+        }
+    }
+}
