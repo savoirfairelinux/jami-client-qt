@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f310e2f6_9fef3a30",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-07-28T08:53:19Z",
+      "side": 1,
+      "message": "Should the following be added to the commit message?\n`GitLab: #1955`\n\nThank you",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 52
+      },
+      "revId": "2ed1d4dd927c5b80aac9c7ec4f9d7a00170296ba",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
