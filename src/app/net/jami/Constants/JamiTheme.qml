@@ -696,6 +696,7 @@ Item {
     property color darkThemeBackgroundColor: JamiTheme.darkTheme ? JamiTheme.blackColor : JamiTheme.bgDarkMode_
     property color darkThemeCheckedColor: "#03B9E9"
     property color darkThemeBorderColor: "#03B9E9"
+    property color radioCheckedColor: darkTheme ? darkThemeCheckedColor : lightThemeCheckedColor
 
     // Donation campaign
     property color donationButtonTextColor: "#005699"

@@ -16,6 +16,7 @@
  */
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Controls
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -76,26 +77,106 @@ ColumnLayout {
             id: checkBoxEnableProxy
 
             labelText: JamiStrings.enableProxy
+            descText: checked ? JamiStrings.usingProxy + CurrentAccount.currentProxyServer : JamiStrings.proxyDisabled
             Layout.fillWidth: true
 
             checked: CurrentAccount.proxyEnabled
 
-            onSwitchToggled: CurrentAccount.proxyEnabled = checked
+            onSwitchToggled: CurrentAccount.proxyEnabled = checked;
         }
 
-        SettingsMaterialTextEdit {
-            id: lineEditProxy
-
+        RowLayout {
+            id: lineEditProxyServer
             Layout.fillWidth: true
 
-            enabled: checkBoxEnableProxy.checked
+            Text {
+                text: JamiStrings.proxyAddress
+                font.pointSize: JamiTheme.settingsFontSize
+                font.kerning: true
+                color: JamiTheme.textColor
 
-            staticText: CurrentAccount.proxyServer
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+                Layout.fillWidth: true
+            }
 
-            itemWidth: root.itemWidth
-            titleField: JamiStrings.proxyAddress
+            ModalTextEdit {
+                id: modalTextEditProxyServer
+                TextMetrics {
+                    text: modalTextEditProxyServer.staticText
+                    elide: Text.ElideRight
+                    elideWidth: itemWidth - 20
+                    font.pixelSize: JamiTheme.materialLineEditPixelSize
+                }
 
-            onEditFinished: CurrentAccount.proxyServer = dynamicText
+                visible: true
+                focus: visible
+                isSettings: true
+
+                Layout.preferredWidth: itemWidth - proxyServerRadioButton.indicator.width
+                                        - proxyServerRadioButton.spacing
+                                        - proxyServerRadioButton.horizontalPadding
+                staticText: CurrentAccount.proxyServer
+                placeholderText: JamiStrings.proxyAddress
+
+                onAccepted: CurrentAccount.proxyServer = dynamicText
+            }
+
+            JamiRadioButton {
+                id: proxyServerRadioButton
+                checked: !CurrentAccount.proxyListEnabled
+                leftPadding: 2
+                rightPadding: 0
+                spacing: 0
+
+                onPressed: CurrentAccount.proxyListEnabled = !CurrentAccount.proxyListEnabled
+            }
+        }
+
+        RowLayout {
+            id: lineEditProxyListURL
+            Layout.fillWidth: true
+
+            Text {
+                text: JamiStrings.proxyListURL
+                font.pointSize: JamiTheme.settingsFontSize
+                font.kerning: true
+                color: JamiTheme.textColor
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+                Layout.fillWidth: true
+            }
+
+            ModalTextEdit {
+                id: modalTextEditProxyListURL
+                TextMetrics {
+                    text: modalTextEditProxyListURL.staticText
+                    elide: Text.ElideRight
+                    elideWidth: itemWidth - 40
+                    font.pixelSize: JamiTheme.materialLineEditPixelSize
+                }
+
+                visible: true
+                focus: visible
+                isSettings: true
+
+                Layout.preferredWidth: itemWidth - proxyListURLRadioButton.indicator.width
+                                        - proxyListURLRadioButton.spacing
+                                        - proxyListURLRadioButton.horizontalPadding
+                staticText: CurrentAccount.dhtProxyListUrl
+                placeholderText: JamiStrings.proxyListURL
+
+                onAccepted: CurrentAccount.dhtProxyListUrl = dynamicText
+            }
+            JamiRadioButton {
+                id: proxyListURLRadioButton
+                checked: CurrentAccount.proxyListEnabled
+                rightPadding: 0
+                leftPadding: 2
+                spacing: 0
+
+                onPressed: CurrentAccount.proxyListEnabled = !CurrentAccount.proxyListEnabled
+            }
         }
 
         SettingsMaterialTextEdit {
