@@ -32,6 +32,7 @@ export OSTYPE
   # -A: enable AddressSanitizer
   # -D: extra CMake flags for the client
   # -C: enable crash reporting
+  # -i: ignore system libraries and build everything regardless of system detection
 
 set -ex
 
@@ -51,8 +52,9 @@ extra_cmake_flags=''
 arch=''
 enable_testing=false
 enable_crashreports=false
+ignore_system_libs=false
 
-while getopts gsc:dQ:P:p:uWwa:AtD:C OPT; do
+while getopts gsc:dQ:P:p:uWwa:AtD:Ci OPT; do
   case "$OPT" in
     g)
       global='true'
@@ -95,6 +97,9 @@ while getopts gsc:dQ:P:p:uWwa:AtD:C OPT; do
     ;;
     C)
       enable_crashreports='true'
+    ;;
+    i)
+      ignore_system_libs='true'
     ;;
     \?)
       exit 1
@@ -143,6 +148,9 @@ cd "${BUILD_DIR}"
 daemon_cmake_flags=(-DCMAKE_BUILD_TYPE="${BUILD_TYPE}")
 if [ "${asan}" = "true" ]; then
     daemon_cmake_flags+=(-DENABLE_ASAN=On)
+fi
+if [ "${ignore_system_libs}" = "true" ]; then
+    daemon_cmake_flags+=(-DIGNORE_SYSTEM_LIBS=On)
 fi
 if [ "${enable_libwrap}" = "false" ]; then
     daemon_cmake_flags+=(-DJAMI_DBUS=On)
