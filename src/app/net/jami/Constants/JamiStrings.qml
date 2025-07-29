@@ -189,7 +189,10 @@ Item {
     property string openDHTConfig: qsTr("OpenDHT configuration")
     property string enableProxy: qsTr("Enable proxy")
     property string proxyAddress: qsTr("Proxy address")
+    property string proxyListURL: qsTr("Proxy list URL")
     property string bootstrap: qsTr("Bootstrap")
+    property string usingProxy: qsTr("Using proxy:")
+    property string proxyDisabled: qsTr("Proxy disabled")
 
     // SettingsHeader
     property string back: qsTr("Back")

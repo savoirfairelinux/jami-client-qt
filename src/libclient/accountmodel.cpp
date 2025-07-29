@@ -630,6 +630,10 @@ AccountModelPimpl::slotVolatileAccountDetailsChanged(const QString& accountId,
     if (new_deviceId != details.end())
         accountInfo.confProperties.deviceId = new_deviceId.value();
 
+    auto currentProxyServer = details.find(libjami::Account::ConfProperties::PROXY_SERVER);
+    if (currentProxyServer != details.end())
+        accountInfo.confProperties.currentProxyServer = currentProxyServer.value();
+
     Q_EMIT linked.profileUpdated(accountId);
 }
 
@@ -908,6 +912,7 @@ account::Info::fromDetails(const MapStringString& details)
     confProperties.keepAliveEnabled = toBool(details[ConfProperties::KEEP_ALIVE_ENABLED]);
     confProperties.bootstrapListUrl = QString(details[ConfProperties::BOOTSTRAP_LIST_URL]);
     confProperties.dhtProxyListUrl = QString(details[ConfProperties::DHT_PROXY_LIST_URL]);
+    confProperties.proxyListEnabled = toBool(details[ConfProperties::PROXY_LIST_ENABLED]);
     confProperties.defaultModerators = QString(details[ConfProperties::DEFAULT_MODERATORS]);
     confProperties.localModeratorsEnabled = toBool(
         details[ConfProperties::LOCAL_MODERATORS_ENABLED]);
@@ -1020,6 +1025,7 @@ account::ConfProperties_t::toDetails() const
     details[ConfProperties::ACCOUNT_PUBLISH] = toQString(this->accountPublish);
     details[ConfProperties::KEEP_ALIVE_ENABLED] = toQString(this->keepAliveEnabled);
     details[ConfProperties::BOOTSTRAP_LIST_URL] = this->bootstrapListUrl;
+    details[ConfProperties::PROXY_LIST_ENABLED] = toQString(this->proxyListEnabled);
     details[ConfProperties::DHT_PROXY_LIST_URL] = this->dhtProxyListUrl;
     details[ConfProperties::DEFAULT_MODERATORS] = this->defaultModerators;
     details[ConfProperties::LOCAL_MODERATORS_ENABLED] = toQString(this->localModeratorsEnabled);
