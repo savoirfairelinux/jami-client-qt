@@ -108,6 +108,7 @@ struct ConfProperties_t
     QString archivePin;
     bool proxyEnabled;
     QString proxyServer;
+    QString currentProxyServer;
     QString proxyPushToken;
     bool peerDiscovery;
     int dhtPort;
@@ -117,6 +118,7 @@ struct ConfProperties_t
     bool keepAliveEnabled;
     QString bootstrapListUrl;
     QString dhtProxyListUrl;
+    bool proxyListEnabled;
     QString defaultModerators;
     bool localModeratorsEnabled;
     VectorMapStringString credentials;
