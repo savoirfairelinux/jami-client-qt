@@ -153,6 +153,9 @@ CurrentAccount::updateData()
         set_publishedSameAsLocal(accConfig.publishedSameAsLocal, true);
         set_allowIPAutoRewrite(accConfig.allowIPAutoRewrite, true);
         set_proxyServer(accConfig.proxyServer, true);
+        set_currentProxyServer(accConfig.currentProxyServer, true);
+        set_dhtProxyListUrl(accConfig.dhtProxyListUrl, true);
+        set_proxyListEnabled(accConfig.proxyListEnabled, true);
         set_routeset(accConfig.routeset, true);
         set_username(accConfig.username, true);
         set_hostname(accConfig.hostname, true);
