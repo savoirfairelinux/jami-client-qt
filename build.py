@@ -417,6 +417,8 @@ def run_install(args):
         install_args += ('-D', args.extra_cmake_flags)
     if args.enable_crash_reports:
         install_args.append('-C')
+    if args.ignore_system_libs:
+        install_args.append('-i')
 
     if args.distribution == OSX_DISTRIBUTION_NAME:
         # The `universal_newlines` parameter has been renamed to `text` in
@@ -769,6 +771,9 @@ def parse_args():
     ap.add_argument('--enable-crash-reports',
                     action='store_true', default=False,
                     help='Enable crash reporting')
+    ap.add_argument('--ignore_system_libs', dest='ignore_system_libs',
+                    default=False, action='store_true',
+                    help='Build contrib packages regardless of system detection')
 
     dist = choose_distribution()
 
