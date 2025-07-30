@@ -930,7 +930,8 @@ Item {
     property string qrCodeExplanation: qsTr("Display your QR code to allow other users to scan it and add you as a contact")
     property string accountList: qsTr("Account list")
     property string accountListDescription: qsTr("Use arrows to switch between available account")
-    property string languageComboBoxExplanation: qsTr("Select the user interface language")
+    property string languageComboBoxExplanation: qsTr("Select the language for Jami's user interface. The current language selected is '%1'")
+    property string languageSelected: qsTr("Language selected: ")
     property string backButtonExplanation: qsTr("Go back to the previous page")
     property string adviceBox: qsTr("Advice Box")
     property string backButton: qsTr("Back button")
@@ -951,4 +952,7 @@ Item {
     property string dataTransfer: qsTr("Data transfer")
     property string status: qsTr("Status")
     property string readBy: qsTr("Read by")
+    property string selectedDescription: qsTr("is the currently selected '%1'")
+    property string availableOptionDescription: qsTr("is an available '%1' option")
+    property string hasBeenSelectedDescription: qsTr("'%1 has been selected for %2")
 }
