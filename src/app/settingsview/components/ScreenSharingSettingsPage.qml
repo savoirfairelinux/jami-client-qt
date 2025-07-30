@@ -38,35 +38,52 @@ SettingsPageBase {
         anchors.left: parent.left
         anchors.leftMargin: JamiTheme.preferredSettingsMarginSize
 
-        SettingsComboBox {
-            id: screenSharingFPSComboBoxSetting
+        RowLayout {
+            Text {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                Layout.rightMargin: JamiTheme.preferredMarginSize
+                wrapMode: Text.WordWrap
+                color: JamiTheme.textColor
+                text: JamiStrings.fps
+                font.pointSize: JamiTheme.settingsFontSize
+                font.kerning: true
 
-            visible: modelSize > 0
-
-            Layout.fillWidth: true
-            Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
-            widthOfComboBox: itemWidth
-            fontPointSize: JamiTheme.settingsFontSize
-
-            tipText: JamiStrings.selectScreenSharingFPS
-            labelText: JamiStrings.fps
-            currentSelectionText: VideoDevices.screenSharingDefaultFps.toString()
-            placeholderText: VideoDevices.screenSharingDefaultFps.toString()
-            comboModel: ListModel {
-                id: screenSharingFpsModel
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
             }
-            role: "FPS"
-            Component.onCompleted: {
-                var elements = VideoDevices.sharingFpsSourceModel;
-                for (var item in elements) {
-                    screenSharingFpsModel.append({
-                            "FPS": elements[item]
-                        });
+
+            JamiComboBox {
+                id: screenSharingFPSComboBoxSetting
+
+                visible: screenSharingFPSComboBoxSetting.count > 0
+
+                width: itemWidth
+                height: JamiTheme.preferredFieldHeight
+
+                accessibilityName: JamiStrings.screenSharingFPS
+                accessibilityDescription: JamiStrings.screenSharingFPSDescription
+                comboBoxPointSize: JamiTheme.settingsFontSize
+
+                textRole: "FPS"
+                model: ListModel {
+                    id: screenSharingFPSModel
+                    Component.onCompleted: {
+                        var elements = VideoDevices.sharingFpsSourceModel;
+                        var defaultFps = VideoDevices.screenSharingDefaultFps;
+                        for (var item in elements) {
+                            screenSharingFPSModel.append({
+                                "FPS": elements[item]
+                            });
+                            if (elements[item] === defaultFps) {
+                                screenSharingFPSComboBoxSetting.currentIndex = screenSharingFPSModel.count - 1;
+                            }
+                        }
+                    }
                 }
-            }
 
-            onActivated: VideoDevices.setDisplayFPS(screenSharingFpsModel.get(modelIndex).FPS)
+                onActivated: VideoDevices.setDisplayFPS(screenSharingFPSModel.get(screenSharingFPSComboBoxSetting.currentIndex).FPS)
+            }
         }
     }
 }
