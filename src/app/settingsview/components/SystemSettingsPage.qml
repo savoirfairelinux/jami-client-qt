@@ -152,36 +152,46 @@ SettingsPageBase {
                 }
             }
 
-            SettingsComboBox {
-                id: langComboBoxSetting
+            RowLayout {
 
-                Layout.fillWidth: true
-                height: JamiTheme.preferredFieldHeight
+                Text {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    Layout.rightMargin: JamiTheme.preferredMarginSize
+                    wrapMode: Text.WordWrap
+                    color: JamiTheme.textColor
+                    text: JamiStrings.userInterfaceLanguage
+                    font.pointSize: JamiTheme.settingsFontSize
+                    font.kerning: true
 
-                labelText: JamiStrings.userInterfaceLanguage
-                tipText: JamiStrings.userInterfaceLanguage
-                comboModel: ListModel {
-                    id: langModel
-                    Component.onCompleted: {
-                        var supported = UtilsAdapter.supportedLang();
-                        var keys = Object.keys(supported);
-                        var currentKey = UtilsAdapter.getAppValue(Settings.Key.LANG);
-                        for (var i = 0; i < keys.length; ++i) {
-                            append({
-                                    "textDisplay": supported[keys[i]],
-                                    "id": keys[i]
-                                });
-                            if (keys[i] === currentKey)
-                                langComboBoxSetting.modelIndex = i;
-                        }
-                    }
+                    horizontalAlignment: Text.AlignLeft
+                    verticalAlignment: Text.AlignVCenter
                 }
 
-                widthOfComboBox: itemWidth
-                role: "textDisplay"
-
-                onActivated: {
-                    UtilsAdapter.setAppValue(Settings.Key.LANG, comboModel.get(modelIndex).id);
+                JamiComboBox {
+                    id: langComboBoxSetting
+                    textRole: "textDisplay"
+                    model: ListModel {
+                        id: langModel
+                        Component.onCompleted: {
+                            var supported = UtilsAdapter.supportedLang();
+                            var keys = Object.keys(supported);
+                            var currentKey = UtilsAdapter.getAppValue(Settings.Key.LANG);
+                            for (var i = 0; i < keys.length; ++i) {
+                                append({
+                                           "textDisplay": supported[keys[i]],
+                                           "id": keys[i]
+                                       });
+                                if (keys[i] === currentKey)
+                                    langComboBoxSetting.currentIndex = i;
+                            }
+                        }
+                    }
+                    width: itemWidth
+                    height: JamiTheme.preferredFieldHeight
+                    onActivated: {
+                        UtilsAdapter.setAppValue(Settings.Key.LANG, langModel.get(currentIndex).id);
+                    }
                 }
             }
         }
@@ -239,7 +249,7 @@ SettingsPageBase {
                 notificationCheckBox.checked = UtilsAdapter.getDefault(Settings.Key.EnableNotifications);
                 closeOrMinCheckBox.checked = UtilsAdapter.getDefault(Settings.Key.MinimizeOnClose);
                 checkboxCallSwarm.checked = UtilsAdapter.getDefault(Settings.Key.EnableExperimentalSwarm);
-                langComboBoxSetting.modelIndex = 0;
+                langComboBoxSetting.currentIndex = 0;
                 spellCheckLangComboBoxSetting.modelIndex = 0;
                 UtilsAdapter.setToDefault(Settings.Key.EnableNotifications);
                 UtilsAdapter.setToDefault(Settings.Key.MinimizeOnClose);
