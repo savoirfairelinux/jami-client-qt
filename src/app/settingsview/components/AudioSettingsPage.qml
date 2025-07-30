@@ -51,15 +51,15 @@ SettingsPageBase {
         }
 
         function resetDeviceModels() {
-            inputAudioModel.reset();
-            outputAudioModel.reset();
-            ringtoneAudioModel.reset();
+            inputComboBoxSetting.model.reset();
+            outputComboBoxSetting.model.reset();
+            ringtoneComboBoxSetting.model.reset();
         }
 
         function resetDeviceIndices() {
-            inputComboBoxSetting.modelIndex = inputComboBoxSetting.comboModel.getCurrentIndex();
-            outputComboBoxSetting.modelIndex = outputComboBoxSetting.comboModel.getCurrentIndex();
-            ringtoneComboBoxSetting.modelIndex = ringtoneComboBoxSetting.comboModel.getCurrentIndex();
+            inputComboBoxSetting.currentIndex = inputComboBoxSetting.model.getCurrentIndex();
+            outputComboBoxSetting.currentIndex = outputComboBoxSetting.model.getCurrentIndex();
+            ringtoneComboBoxSetting.currentIndex = ringtoneComboBoxSetting.model.getCurrentIndex();
         }
 
         Connections {
@@ -73,32 +73,38 @@ SettingsPageBase {
 
         function populateAudioSettings() {
             rootLayout.resetDeviceIndices();
-            if (audioManagerComboBoxSetting.comboModel.rowCount() > 0) {
-                audioManagerComboBoxSetting.modelIndex = audioManagerComboBoxSetting.comboModel.getCurrentSettingIndex();
+            if (audioManagerComboBoxSetting.model.rowCount() > 0) {
+                audioManagerComboBoxSetting.currentIndex = audioManagerComboBoxSetting.model.getCurrentSettingIndex();
             }
-            audioManagerComboBoxSetting.visible = audioManagerComboBoxSetting.comboModel.rowCount() > 0;
+            audioManagerComboBoxSetting.visible = audioManagerComboBoxSetting.model.rowCount() > 0;
         }
 
-        SettingsComboBox {
-            id: inputComboBoxSetting
-
+        RowLayout {
             Layout.fillWidth: true
+            Layout.minimumHeight: JamiTheme.preferredFieldHeight
 
-            labelText: JamiStrings.microphone
-            fontPointSize: JamiTheme.settingsFontSize
-            comboModel: AudioDeviceModel {
-                id: inputAudioModel
-                lrcInstance: LRCInstance
-                type: AudioDeviceModel.Type.Record
+            Text {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                Layout.rightMargin: JamiTheme.preferredMarginSize
+                wrapMode: Text.WordWrap
+                color: JamiTheme.textColor
+                text: JamiStrings.microphone
+                font.pointSize: JamiTheme.settingsFontSize
+                font.kerning: true
+
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
             }
-            widthOfComboBox: itemWidth
-            tipText: JamiStrings.selectAudioInputDevice
-            role: "DeviceName"
 
-            onActivated: {
-                AvAdapter.stopAudioMeter();
-                AVModel.setInputDevice(modelIndex);
-                AvAdapter.startAudioMeter();
+            AudioDeviceComboBox {
+                id: inputComboBoxSetting
+
+                affectedAudioComponent: JamiStrings.microphone
+                audioDeviceModelType: AudioDeviceModel.Type.Record
+
+                width: itemWidth
+                height: JamiTheme.preferredFieldHeight
             }
         }
 
@@ -132,71 +138,103 @@ SettingsPageBase {
             }
         }
 
-        SettingsComboBox {
-            id: outputComboBoxSetting
-
+        RowLayout {
             Layout.fillWidth: true
+            Layout.minimumHeight: JamiTheme.preferredFieldHeight
 
-            labelText: JamiStrings.outputDevice
-            fontPointSize: JamiTheme.settingsFontSize
-            comboModel: AudioDeviceModel {
-                id: outputAudioModel
-                lrcInstance: LRCInstance
-                type: AudioDeviceModel.Type.Playback
+            Text {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                Layout.rightMargin: JamiTheme.preferredMarginSize
+                wrapMode: Text.WordWrap
+                color: JamiTheme.textColor
+                text: JamiStrings.outputDevice
+                font.pointSize: JamiTheme.settingsFontSize
+                font.kerning: true
+
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
             }
-            widthOfComboBox: itemWidth
-            tipText: JamiStrings.selectAudioOutputDevice
-            role: "DeviceName"
 
-            onActivated: {
-                AvAdapter.stopAudioMeter();
-                AVModel.setOutputDevice(modelIndex);
-                AvAdapter.startAudioMeter();
+            AudioDeviceComboBox {
+                id: outputComboBoxSetting
+
+                width: itemWidth
+                height: JamiTheme.preferredFieldHeight
+
+                affectedAudioComponent: JamiStrings.outputDevice
+                audioDeviceModelType: AudioDeviceModel.Type.Playback
             }
         }
 
-        SettingsComboBox {
-            id: ringtoneComboBoxSetting
-
+        RowLayout {
             Layout.fillWidth: true
+            Layout.minimumHeight: JamiTheme.preferredFieldHeight
 
-            labelText: JamiStrings.ringtoneDevice
-            fontPointSize: JamiTheme.settingsFontSize
-            comboModel: AudioDeviceModel {
-                id: ringtoneAudioModel
-                lrcInstance: LRCInstance
-                type: AudioDeviceModel.Type.Ringtone
+            Text {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                Layout.rightMargin: JamiTheme.preferredMarginSize
+                wrapMode: Text.WordWrap
+                color: JamiTheme.textColor
+                text: JamiStrings.ringtoneDevice
+                font.pointSize: JamiTheme.settingsFontSize
+                font.kerning: true
+
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
             }
-            widthOfComboBox: itemWidth
-            tipText: JamiStrings.selectRingtoneOutputDevice
-            role: "DeviceName"
 
-            onActivated: {
-                AvAdapter.stopAudioMeter();
-                AVModel.setRingtoneDevice(modelIndex);
-                AvAdapter.startAudioMeter();
+            AudioDeviceComboBox {
+                id: ringtoneComboBoxSetting
+
+                width: itemWidth
+                height: JamiTheme.preferredFieldHeight
+
+                affectedAudioComponent: JamiStrings.ringtoneDevice
+                audioDeviceModelType: AudioDeviceModel.Type.Ringtone
             }
         }
 
-        SettingsComboBox {
-            id: audioManagerComboBoxSetting
-
+        RowLayout {
             Layout.fillWidth: true
+            Layout.minimumHeight: JamiTheme.preferredFieldHeight
 
-            labelText: JamiStrings.audioManager
-            fontPointSize: JamiTheme.settingsFontSize
-            comboModel: AudioManagerListModel {
-                lrcInstance: LRCInstance
+            Text {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                Layout.rightMargin: JamiTheme.preferredMarginSize
+                wrapMode: Text.WordWrap
+                color: JamiTheme.textColor
+                text: JamiStrings.audioManager
+                font.pointSize: JamiTheme.settingsFontSize
+                font.kerning: true
+
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
             }
-            widthOfComboBox: itemWidth
-            role: "ID_UTF8"
 
-            onActivated: {
-                AvAdapter.stopAudioMeter();
-                var selectedAudioManager = comboModel.data(comboModel.index(modelIndex, 0), AudioManagerListModel.AudioManagerID);
-                AVModel.setAudioManager(selectedAudioManager);
-                AvAdapter.startAudioMeter();
-                rootLayout.populateAudioSettings();
+            JamiComboBox {
+                id: audioManagerComboBoxSetting
+
+                width: itemWidth
+                height: JamiTheme.preferredFieldHeight
+
+                accessibilityName: JamiStrings.audioManager
+                accessibilityDescription: JamiStrings.audioManagerDescription
+                comboBoxPointSize: JamiTheme.settingsFontSize
+
+                textRole: "ID_UTF8"
+                model: AudioManagerListModel {
+                    lrcInstance: LRCInstance
+                }
+                onActivated: {
+                    AvAdapter.stopAudioMeter();
+                    var selectedAudioManager = comboModel.data(comboModel.index(modelIndex, 0), AudioManagerListModel.AudioManagerID);
+                    AVModel.setAudioManager(selectedAudioManager);
+                    AvAdapter.startAudioMeter();
+                    rootLayout.populateAudioSettings();
+                }
             }
         }
     }
