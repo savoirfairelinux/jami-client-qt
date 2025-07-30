@@ -11,10 +11,6 @@
 	url = https://github.com/atraczyk/SortFilterProxyModel.git
 	branch = qt-6
 	ignore = dirty
-[submodule "daemon"]
-	path = daemon
-	url = https://review.jami.net/jami-daemon
-# Sparkle is updater for macOS
 [submodule "extras/packaging/update/sparkle/Sparkle"]
 	path = extras/packaging/update/sparkle/Sparkle
 	url = https://github.com/sparkle-project/Sparkle.git
