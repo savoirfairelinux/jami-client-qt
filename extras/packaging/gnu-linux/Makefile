@@ -167,7 +167,6 @@ DISTRIBUTIONS := \
 	ubuntu_20.04 \
 	ubuntu_22.04 \
 	ubuntu_24.04 \
-	ubuntu_24.10 \
 	ubuntu_25.04 \
 	fedora_41 \
 	fedora_42 \
