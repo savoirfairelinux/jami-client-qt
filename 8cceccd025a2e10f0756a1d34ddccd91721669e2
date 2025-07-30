@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8e157d2_43b9174a",
+        "filename": "src/app/commoncomponents/LineEditContextMenu.qml",
+        "patchSetId": 47
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-07-30T18:04:49Z",
+      "side": 1,
+      "message": "I assume you moved the `ListView` code because you wanted to change the order of the items in the context menu? That won\u0027t work: the display order is determined by the order of the elements in the `menuItems` list.",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 14
+      },
+      "revId": "8cceccd025a2e10f0756a1d34ddccd91721669e2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
