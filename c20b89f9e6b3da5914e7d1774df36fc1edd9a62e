@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee3bd180_5411c28b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1131
+      },
+      "writtenOn": "2025-07-30T19:48:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77791acb_6659753e",
+      "revId": "c20b89f9e6b3da5914e7d1774df36fc1edd9a62e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "05ba03a3_d43e085a",
@@ -41,6 +59,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "59bc0f1a_f3fc0f60",
+        "filename": "src/app/mainview/components/CallButtonDelegate.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1131
+      },
+      "writtenOn": "2025-07-30T19:48:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05ba03a3_d43e085a",
+      "range": {
+        "startLine": 184,
+        "startChar": 41,
+        "endLine": 184,
+        "endChar": 43
+      },
+      "revId": "c20b89f9e6b3da5914e7d1774df36fc1edd9a62e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "78963375_8158c48e",
@@ -54,6 +96,30 @@
       "writtenOn": "2025-07-21T19:30:55Z",
       "side": 1,
       "message": "```suggestion\n                var index;\n                switch (menuAction.popupMode) {\n                    case CallActionBar.ActionPopupMode.MediaDevice:\n                        index \u003d menuAction.listModel.getCurrentIndex();\n                        break;\n                    case CallActionBar.ActionPopupMode.LayoutOption:\n                        index \u003d menuAction.listModel.currentIndex;\n                        break;\n                    default:\n                        console.warn(\"Unknown popup mode: \" + menuAction.popupMode);\n                        return;\n                }\n                if (index !\u003d\u003d undefined) {\n                    itemListView.currentIndex \u003d index;\n                }\n```",
+      "range": {
+        "startLine": 184,
+        "startChar": 16,
+        "endLine": 190,
+        "endChar": 17
+      },
+      "revId": "c20b89f9e6b3da5914e7d1774df36fc1edd9a62e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aadcce4a_f6240fea",
+        "filename": "src/app/mainview/components/CallButtonDelegate.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1131
+      },
+      "writtenOn": "2025-07-30T19:48:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78963375_8158c48e",
       "range": {
         "startLine": 184,
         "startChar": 16,
