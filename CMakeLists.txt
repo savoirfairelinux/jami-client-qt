@@ -580,19 +580,21 @@ elseif (NOT APPLE)
     add_definitions(${LIBGDKPIXBUF_CFLAGS})
   endif()
 
+  # Link against the version of libavutil built in the daemon's contribs to
+  # make sure we don't have ABI incompatibility issues.
   list(PREPEND CMAKE_PREFIX_PATH
-    ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg/libavutil)
-  pkg_check_modules(LIBAVUTIL libavutil>=55.75.100)
+    ${LIBJAMI_CONTRIB_DIR}/${CMAKE_LIBRARY_ARCHITECTURE})
+  pkg_check_modules(avutil REQUIRED IMPORTED_TARGET libavutil=58.2.100)
   list(REMOVE_ITEM CMAKE_PREFIX_PATH
-    ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg/libavutil)
+    ${LIBJAMI_CONTRIB_DIR}/${CMAKE_LIBRARY_ARCHITECTURE})
+  list(APPEND CLIENT_LIBS PkgConfig::avutil)
 
   include_directories(
     ${LIBCLIENT_SRC_DIR}
     ${LIBNM_INCLUDE_DIRS}
     ${LIBNOTIFY_INCLUDE_DIRS}
     ${LIBGDKPIXBUF_INCLUDE_DIRS}
-    ${GLIB_INCLUDE_DIRS}
-    ${LIBAVUTIL_INCLUDE_DIRS})
+    ${GLIB_INCLUDE_DIRS})
 
   set(JAMI_DATA_PREFIX "${CMAKE_INSTALL_PREFIX}/share")
 
