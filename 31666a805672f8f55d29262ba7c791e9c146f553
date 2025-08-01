@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "72dfaab9_f844a999",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-08-01T21:42:09Z",
+      "side": 1,
+      "message": "Is this a duplicate of the https://review.jami.net/c/jami-client-qt/+/31563 patch?",
+      "revId": "31666a805672f8f55d29262ba7c791e9c146f553",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d3892e8_6eaea11f",
