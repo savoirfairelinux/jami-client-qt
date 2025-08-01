@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73711879_00ca68a9",
+        "filename": "src/app/wizardview/components/WelcomePage.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-08-01T13:04:11Z",
+      "side": 0,
+      "message": "explain in the commit description why this is done (e.g. borked in Qt 6.8+)",
+      "range": {
+        "startLine": 179,
+        "startChar": 12,
+        "endLine": 181,
+        "endChar": 49
+      },
+      "revId": "52f3a9bc2872e5b28b37590190e74164b20ca1e6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
