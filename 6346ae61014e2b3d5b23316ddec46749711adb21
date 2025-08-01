@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a29a852_b9bb9b64",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-08-01T13:09:31Z",
+      "side": 1,
+      "message": "check comments. LGTM otherwise",
+      "revId": "6346ae61014e2b3d5b23316ddec46749711adb21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a86a1dcb_14ebfcb5",
+        "filename": "src/app/commoncomponents/JamiRadioButton.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-08-01T13:09:31Z",
+      "side": 1,
+      "message": "file header",
+      "revId": "6346ae61014e2b3d5b23316ddec46749711adb21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d977e1fa_04def179",
+        "filename": "src/app/commoncomponents/JamiRadioButton.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-08-01T13:09:31Z",
+      "side": 1,
+      "message": "control",
+      "range": {
+        "startLine": 7,
+        "startChar": 8,
+        "endLine": 7,
+        "endChar": 23
+      },
+      "revId": "6346ae61014e2b3d5b23316ddec46749711adb21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "635be08f_45e02385",
+        "filename": "src/app/commoncomponents/JamiRadioButton.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-08-01T13:09:31Z",
+      "side": 1,
+      "message": "control.enabled ?",
+      "range": {
+        "startLine": 31,
+        "startChar": 15,
+        "endLine": 31,
+        "endChar": 23
+      },
+      "revId": "6346ae61014e2b3d5b23316ddec46749711adb21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b82308c_5fd4a07e",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-08-01T13:09:31Z",
+      "side": 1,
+      "message": "is this space required?",
+      "range": {
+        "startLine": 194,
+        "startChar": 50,
+        "endLine": 194,
+        "endChar": 51
+      },
+      "revId": "6346ae61014e2b3d5b23316ddec46749711adb21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
