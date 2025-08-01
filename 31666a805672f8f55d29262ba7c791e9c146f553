@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d3892e8_6eaea11f",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 958,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-08-01T21:39:35Z",
+      "side": 1,
+      "message": "Remove apostrophe `\u0027`?",
+      "range": {
+        "startLine": 958,
+        "startChar": 171,
+        "endLine": 958,
+        "endChar": 172
+      },
+      "revId": "31666a805672f8f55d29262ba7c791e9c146f553",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "608ccc09_5e3142a6",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 960,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-08-01T21:39:35Z",
+      "side": 1,
+      "message": "Should the strings end with full stops `.`?",
+      "range": {
+        "startLine": 960,
+        "startChar": 51,
+        "endLine": 960,
+        "endChar": 130
+      },
+      "revId": "31666a805672f8f55d29262ba7c791e9c146f553",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
