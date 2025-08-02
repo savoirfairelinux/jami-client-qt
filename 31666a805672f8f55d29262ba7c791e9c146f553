@@ -18,6 +18,23 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "56007f62_d340df97",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-08-02T21:29:41Z",
+      "side": 1,
+      "message": "Sorry for the noise.",
+      "revId": "31666a805672f8f55d29262ba7c791e9c146f553",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db6419ac_7b1491d1",
@@ -31,6 +48,30 @@
       "writtenOn": "2025-08-02T14:07:12Z",
       "side": 1,
       "message": "Select the user interface language. Current language: %1.",
+      "range": {
+        "startLine": 933,
+        "startChar": 98,
+        "endLine": 933,
+        "endChar": 134
+      },
+      "revId": "31666a805672f8f55d29262ba7c791e9c146f553",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f10fb945_df3a5bb3",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 933,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-08-02T21:29:41Z",
+      "side": 1,
+      "message": "Alternative:\n`Set the user interface language. %1 selected.`",
+      "parentUuid": "db6419ac_7b1491d1",
       "range": {
         "startLine": 933,
         "startChar": 98,
@@ -66,6 +107,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "989fa6c1_d6757331",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 954,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-08-02T21:29:41Z",
+      "side": 1,
+      "message": "Alternative:\n`%1 selected`",
+      "parentUuid": "71f12a45_59fd13f3",
+      "range": {
+        "startLine": 954,
+        "startChar": 47,
+        "endLine": 954,
+        "endChar": 78
+      },
+      "revId": "31666a805672f8f55d29262ba7c791e9c146f553",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3f81b7c8_39d9471b",
         "filename": "src/app/net/jami/Constants/JamiStrings.qml",
         "patchSetId": 1
@@ -77,6 +142,30 @@
       "writtenOn": "2025-08-02T14:07:12Z",
       "side": 1,
       "message": "Frame rate for screen sharing",
+      "range": {
+        "startLine": 957,
+        "startChar": 44,
+        "endLine": 957,
+        "endChar": 62
+      },
+      "revId": "31666a805672f8f55d29262ba7c791e9c146f553",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b357d95e_d6278519",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 957,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-08-02T21:29:41Z",
+      "side": 1,
+      "message": "Alternative:\n`Screen sharing frame rate`",
+      "parentUuid": "3f81b7c8_39d9471b",
       "range": {
         "startLine": 957,
         "startChar": 44,
@@ -135,6 +224,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ea8fa672_2336a60a",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 958,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-08-02T21:29:41Z",
+      "side": 1,
+      "message": "Alternative:\n`Screen sharing frame rate. %1 selected.`",
+      "parentUuid": "961966fb_0b0ce5a4",
+      "range": {
+        "startLine": 958,
+        "startChar": 55,
+        "endLine": 958,
+        "endChar": 174
+      },
+      "revId": "31666a805672f8f55d29262ba7c791e9c146f553",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "69443710_67f2b27f",
         "filename": "src/app/net/jami/Constants/JamiStrings.qml",
         "patchSetId": 1
@@ -146,6 +259,30 @@
       "writtenOn": "2025-08-02T14:07:12Z",
       "side": 1,
       "message": "Audio device for %1. Selected: %2.",
+      "range": {
+        "startLine": 959,
+        "startChar": 61,
+        "endLine": 959,
+        "endChar": 143
+      },
+      "revId": "31666a805672f8f55d29262ba7c791e9c146f553",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fef8cf73_b00cc7bb",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 959,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-08-02T21:29:41Z",
+      "side": 1,
+      "message": "Alternative:\n`Audio device for %1. %2 selected.`",
+      "parentUuid": "69443710_67f2b27f",
       "range": {
         "startLine": 959,
         "startChar": 61,
@@ -192,6 +329,30 @@
       "writtenOn": "2025-08-02T14:07:12Z",
       "side": 1,
       "message": "Audio manager. Selected: %1.",
+      "range": {
+        "startLine": 960,
+        "startChar": 51,
+        "endLine": 960,
+        "endChar": 130
+      },
+      "revId": "31666a805672f8f55d29262ba7c791e9c146f553",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9d80995_f29476e3",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 960,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-08-02T21:29:41Z",
+      "side": 1,
+      "message": "Alternative:\n`Audio manager. %1 selected.`",
+      "parentUuid": "b32e8cf8_28f9eaa8",
       "range": {
         "startLine": 960,
         "startChar": 51,
