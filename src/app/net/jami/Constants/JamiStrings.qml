@@ -954,4 +954,7 @@ Item {
     property string dataTransfer: qsTr("Data transfer")
     property string status: qsTr("Status")
     property string readBy: qsTr("Read by")
+    property string selectedDescription: qsTr("Currently selected: %1")
+    property string hasBeenSelectedDescription: qsTr("%1 has been selected for %2")
+    property string availableOptionDescription: qsTr("Available option for %1")
 }
