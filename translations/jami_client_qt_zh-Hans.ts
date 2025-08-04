@@ -4,12 +4,12 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="208"/>
         <source>Missed call</source>
-        <translation type="unfinished"/>
+        <translation>未接来电</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="209"/>
         <source>Missed call with %1</source>
-        <translation type="unfinished"/>
+        <translation>来自 %1 的未接来电</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="531"/>
@@ -19,17 +19,17 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="532"/>
         <source>%1 is calling you</source>
-        <translation type="unfinished"/>
+        <translation>%1 正在呼叫您</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="543"/>
         <source>is calling you</source>
-        <translation type="unfinished"/>
+        <translation>正在呼叫您</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="1041"/>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>截图</translation>
     </message>
 </context>
 <context>
@@ -60,7 +60,7 @@
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="202"/>
         <source>%1 received a new message</source>
-        <translation type="unfinished"/>
+        <translation>%1收到一个新的消息</translation>
     </message>
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="257"/>
@@ -73,7 +73,7 @@
     <message>
         <location filename="../src/app/currentcall.cpp" line="186"/>
         <source>Me</source>
-        <translation type="unfinished"/>
+        <translation>我</translation>
     </message>
 </context>
 <context>
@@ -81,22 +81,22 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="141"/>
         <source>Private</source>
-        <translation type="unfinished"/>
+        <translation>私有</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="143"/>
         <source>Private group (restricted invites)</source>
-        <translation type="unfinished"/>
+        <translation>非公开群组(禁止邀请)</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="145"/>
         <source>Private group</source>
-        <translation type="unfinished"/>
+        <translation>非公开群组</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="147"/>
         <source>Public group</source>
-        <translation type="unfinished"/>
+        <translation>公开群组</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="316"/>
@@ -134,12 +134,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="32"/>
         <source>End call</source>
-        <translation>結束電話</translation>
+        <translation>结束通话</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="36"/>
         <source>Invitations</source>
-        <translation>邀請</translation>
+        <translation>邀请</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="37"/>
@@ -175,17 +175,17 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="62"/>
         <source>Open settings</source>
-        <translation>開啟設定</translation>
+        <translation>打开设置</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="63"/>
         <source>Close settings</source>
-        <translation>關閉設定</translation>
+        <translation>关闭设置</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="68"/>
         <source>Add to conference</source>
-        <translation>加入會議</translation>
+        <translation>加入会议</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="69"/>
@@ -195,7 +195,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="70"/>
         <source>Transfer this call</source>
-        <translation>轉送此通話</translation>
+        <translation>转接呼叫</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="71"/>
@@ -225,7 +225,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="81"/>
         <source>Confirm</source>
-        <translation>確認</translation>
+        <translation>确认</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="82"/>
@@ -271,12 +271,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="94"/>
         <source>In progress…</source>
-        <translation>進行中……</translation>
+        <translation>进行中</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="96"/>
         <source>Password</source>
-        <translation>密碼</translation>
+        <translation>密码</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="97"/>
@@ -296,12 +296,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="102"/>
         <source>Convert your account into a rendezvous point</source>
-        <translation>將您的帳號轉換為 rendezvous 點</translation>
+        <translation>将你的账号转换为 rendezvous 点</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="104"/>
         <source>Enable custom ringtone</source>
-        <translation>啟用自訂鈴聲</translation>
+        <translation>启用自定义铃声</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="105"/>
@@ -311,7 +311,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="106"/>
         <source>Select a new ringtone</source>
-        <translation>選取新鈴聲</translation>
+        <translation>选择新铃声</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="109"/>
@@ -351,17 +351,17 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="122"/>
         <source>Enable read receipts</source>
-        <translation>啟用讀取回條</translation>
+        <translation>启用已读回执</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="126"/>
         <source>Voicemail</source>
-        <translation>語音信箱</translation>
+        <translation>语音邮件</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="127"/>
         <source>Voicemail dial code</source>
-        <translation>語音信箱撥號代碼</translation>
+        <translation>语音邮件拨号码</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="130"/>
@@ -381,27 +381,27 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="133"/>
         <source>CA certificate</source>
-        <translation>CA 證書</translation>
+        <translation>CA 证书</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="134"/>
         <source>User certificate</source>
-        <translation>使用者證書</translation>
+        <translation>用户证书</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="135"/>
         <source>Private key</source>
-        <translation>私密金鑰</translation>
+        <translation>私钥</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="136"/>
         <source>Private key password</source>
-        <translation>私鑰保護密碼</translation>
+        <translation>私钥密码</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="137"/>
         <source>Verify certificates for incoming TLS connections</source>
-        <translation>驗證連入的 TLS 連線證書</translation>
+        <translation>验证传入 TLS 连接的证书</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="138"/>
@@ -451,12 +451,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="155"/>
         <source>TURN username</source>
-        <translation>TURN 使用者名稱</translation>
+        <translation>TURN 用户名</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="156"/>
         <source>TURN password</source>
-        <translation>TURN 密碼</translation>
+        <translation>TURN 密码</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="158"/>
@@ -481,7 +481,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="164"/>
         <source>Use custom address and port</source>
-        <translation>使用自訂地址與通訊埠</translation>
+        <translation>使用自定义地址与端口</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="165"/>
@@ -491,7 +491,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="166"/>
         <source>Port</source>
-        <translation>埠</translation>
+        <translation>端口</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="169"/>
@@ -502,7 +502,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="170"/>
         <source>Enable video</source>
-        <translation>啟用視訊</translation>
+        <translation>启用视频</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="178"/>
@@ -512,7 +512,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="179"/>
         <source>Only used during negotiation in case ICE is not supported</source>
-        <translation>僅在不支援 ICE 的協商期間使用</translation>
+        <translation>仅在协商过程中(不支持 ICE 时)使用</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="180"/>
@@ -527,12 +527,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="182"/>
         <source>Video RTP minimum Port</source>
-        <translation>視訊 RTP 最小通訊埠</translation>
+        <translation>视频 RTP 最小端口</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="183"/>
         <source>Video RTP maximum port</source>
-        <translation>視訊 RTP 最大通訊埠</translation>
+        <translation>视频 RTP 最大端口</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="186"/>
@@ -562,17 +562,17 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="192"/>
         <source>Bootstrap</source>
-        <translation>Bootstrap</translation>
+        <translation>初始化</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="195"/>
         <source>Back</source>
-        <translation>前一個</translation>
+        <translation>上一步</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="196"/>
         <source>Account</source>
-        <translation>帳號</translation>
+        <translation>账户</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="197"/>
@@ -592,7 +592,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="209"/>
         <source>Microphone</source>
-        <translation>麥克風</translation>
+        <translation>麦克风</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="210"/>
@@ -602,12 +602,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="211"/>
         <source>Output device</source>
-        <translation>輸出裝置</translation>
+        <translation>输出设备</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="212"/>
         <source>Select audio output device</source>
-        <translation>選取音訊輸出裝置</translation>
+        <translation>选择音频输出设备</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="213"/>
@@ -622,7 +622,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="215"/>
         <source>Audio manager</source>
-        <translation>音訊管理程式</translation>
+        <translation>音频管理器</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="219"/>
@@ -632,7 +632,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="220"/>
         <source>Select video device</source>
-        <translation>選取視訊裝置</translation>
+        <translation>选择视频设备</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="221"/>
@@ -652,7 +652,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="224"/>
         <source>Frames per second</source>
-        <translation>每秒畫面數</translation>
+        <translation>帧率</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="225"/>
@@ -662,7 +662,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="226"/>
         <source>Enable hardware acceleration</source>
-        <translation>啟用硬體加速</translation>
+        <translation>启用硬件加速</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="229"/>
@@ -829,7 +829,7 @@ If a username is not chosen, a randomly generated 40-character identifier will b
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="605"/>
         <source>Enter account password</source>
-        <translation>輸入帳號密碼</translation>
+        <translation>输入账户密码</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="606"/>
@@ -987,24 +987,174 @@ If a username is not chosen, a randomly generated 40-character identifier will b
         <translation>在输入时检查拼写</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="916"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="917"/>
         <source>Text language</source>
         <translation>文本语言</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="917"/>
-        <source>To install new dictionaries, use the system package manager.</source>
-        <translation>要安装新词典，请使用系统包管理器。</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="919"/>
-        <source>Refresh</source>
-        <translation>刷新</translation>
+        <source>Search text languages</source>
+        <translation>搜索文本语言</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="920"/>
-        <source>Refresh installed dictionaries</source>
-        <translation>刷新已安装的词典</translation>
+        <source>Search for available text languages</source>
+        <translation>搜索可用文本语言</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="921"/>
+        <source>No dictionary found for %1.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="922"/>
+        <source>No dictionary is available.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="923"/>
+        <source>Dictionary manager</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="924"/>
+        <source>An error occurred while downloading the %1 dictionary.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="925"/>
+        <source>Show installed dictionaries</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="926"/>
+        <source>Only show dictionaries that are currently installed</source>
+        <translation>仅显示当前已安装的词典</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="929"/>
+        <source>Press enter to switch to this account</source>
+        <translation>按下回车键切换至此账户</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="930"/>
+        <source>Display your QR code to allow other users to scan it and add you as a contact</source>
+        <translation>显示您的二维码，以便其他用户扫描并添加您为联系人</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="931"/>
+        <source>Account list</source>
+        <translation>账户列表</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="932"/>
+        <source>Use arrows to switch between available account</source>
+        <translation>使用方向键在可用账户间切换</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="933"/>
+        <source>Select the user interface language</source>
+        <translation>选择用户界面语言</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="934"/>
+        <source>Go back to the previous page</source>
+        <translation>返回上一页</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="935"/>
+        <source>Advice Box</source>
+        <translation>提示框</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="936"/>
+        <source>Back button</source>
+        <translation>返回按钮</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="937"/>
+        <source>Open the advice popup that contains information about Jami</source>
+        <translation>打开包含关于Jami信息的提示弹窗</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="938"/>
+        <source>More</source>
+        <translation>更多</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="939"/>
+        <source>Press to %1</source>
+        <translation>点击以 %1</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="940"/>
+        <source>Press to toggle %1 (%2)</source>
+        <translation>点击以切换 %1 (%2)</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="941"/>
+        <source>active</source>
+        <translation>活动</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="942"/>
+        <source>inactive</source>
+        <translation>非活动</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="943"/>
+        <source>Minimize application</source>
+        <translation>最小化应用程序</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="944"/>
+        <source>Maximize application</source>
+        <translation>最大化应用程序</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="945"/>
+        <source>Close application</source>
+        <translation>关闭应用程序</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="946"/>
+        <source>Dismiss this tip</source>
+        <translation>关闭此提示</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="947"/>
+        <source>Tips to help you use Jami more effectively</source>
+        <translation>提示，帮助您更有效地使用Jami</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="948"/>
+        <source>Show more messaging options</source>
+        <translation>显示更多消息选项</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="949"/>
+        <source>Open a menu that allows you to send voice and video messages as well as sharing your location</source>
+        <translation>打开一个菜单，允许您发送语音和视频消息以及共享您的位置</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="950"/>
+        <source>Conversation messages list. Use arrow keys to navigate through messages.</source>
+        <translation>对话消息列表。使用方向键在消息之间导航。</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="951"/>
+        <source>Data transfer</source>
+        <translation>数据传输</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="952"/>
+        <source>Status</source>
+        <translation>状态</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="953"/>
+        <source>Read by</source>
+        <translation>阅读</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="899"/>
@@ -1104,12 +1254,12 @@ If a username is not chosen, a randomly generated 40-character identifier will b
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="720"/>
         <source>Accept invitation</source>
-        <translation>Accept invitation</translation>
+        <translation>接受邀请</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="726"/>
         <source>OK</source>
-        <translation>確定</translation>
+        <translation>确定</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="733"/>
@@ -1298,7 +1448,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="905"/>
         <source>Connecting</source>
-        <translation>連接中</translation>
+        <translation>正在连接</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="906"/>
@@ -1348,7 +1498,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="763"/>
         <source>more emojis</source>
-        <translation>更多的爱默契</translation>
+        <translation>更多表情符号</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="789"/>
@@ -1379,7 +1529,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="798"/>
         <source>Join call</source>
-        <translation>加入通話</translation>
+        <translation>加入通话</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="802"/>
@@ -1404,7 +1554,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="810"/>
         <source>Make me the default host for future calls</source>
-        <translation>让我成为未来电话的默认主机</translation>
+        <translation>将我在以后的通话中设为默认主持人</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="827"/>
@@ -1419,7 +1569,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="833"/>
         <source>None</source>
-        <translation>無</translation>
+        <translation>无</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="846"/>
@@ -1434,7 +1584,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="202"/>
         <source>Call settings</source>
-        <translation>通話設定</translation>
+        <translation>通话设置</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="140"/>
@@ -1444,17 +1594,17 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="171"/>
         <source>Video codecs</source>
-        <translation>視訊編碼器</translation>
+        <translation>视频编解码器</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="172"/>
         <source>Audio codecs</source>
-        <translation>音訊編碼器</translation>
+        <translation>音频编解码器</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="175"/>
         <source>Name server</source>
-        <translation>名称服务器</translation>
+        <translation>设置服务器名称</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="189"/>
@@ -1494,12 +1644,12 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="244"/>
         <source>Identifier</source>
-        <translation>識別碼</translation>
+        <translation>标识符</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="251"/>
         <source>Pause call</source>
-        <translation>暫停通話</translation>
+        <translation>暂停通话</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="252"/>
@@ -1536,7 +1686,7 @@ to connect to synchronize the conversation…</source>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="65"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="200"/>
         <source>Manage account</source>
-        <translation>管理帳號</translation>
+        <translation>管理账户</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="201"/>
@@ -1546,7 +1696,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="204"/>
         <source>Advanced settings</source>
-        <translation>進階設定</translation>
+        <translation>高级设置</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="216"/>
@@ -1629,30 +1779,30 @@ to connect to synchronize the conversation…</source>
         <translation>隐藏观众</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="276"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="278"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="581"/>
         <source>Copy</source>
-        <translation>複製</translation>
+        <translation>复制</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="277"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="276"/>
         <source>Share</source>
         <translation>分享</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="278"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="277"/>
         <source>Cut</source>
         <translation>剪切</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="279"/>
         <source>Paste</source>
-        <translation>貼上</translation>
+        <translation>粘贴</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="284"/>
         <source>Start video call</source>
-        <translation>開始視訊通話</translation>
+        <translation>发起视频通话</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="283"/>
@@ -1702,7 +1852,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="114"/>
         <source>Decline incoming calls when already in a call</source>
-        <translation>正在通话时拒绝来电</translation>
+        <translation>在通话时拒绝来电</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="123"/>
@@ -1722,7 +1872,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="291"/>
         <source>Block contact</source>
-        <translation>阻擋連絡人</translation>
+        <translation>屏蔽联系人</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="292"/>
@@ -1737,12 +1887,12 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="297"/>
         <source>Transfer call</source>
-        <translation>轉送通話</translation>
+        <translation>转接通话</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="298"/>
         <source>Stop recording</source>
-        <translation>停止錄製</translation>
+        <translation>停止录制</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="299"/>
@@ -1752,7 +1902,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="300"/>
         <source>View full screen</source>
-        <translation>檢視全螢幕</translation>
+        <translation>全屏查看</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="301"/>
@@ -1767,7 +1917,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="303"/>
         <source>Stop sharing screen or file</source>
-        <translation>停止分享畫面或檔案</translation>
+        <translation>停止共享屏幕或文件</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="304"/>
@@ -1777,7 +1927,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="305"/>
         <source>Share file</source>
-        <translation>分享檔案</translation>
+        <translation>分享文件</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="306"/>
@@ -1792,7 +1942,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="309"/>
         <source>No video device</source>
-        <translation>無視訊裝置</translation>
+        <translation>无视频设备</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="311"/>
@@ -1862,7 +2012,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="326"/>
         <source>Video bitrate</source>
-        <translation>視訊位元率</translation>
+        <translation>视频比特率</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="327"/>
@@ -1987,7 +2137,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="363"/>
         <source>Add to conversations</source>
-        <translation>新增到對話中</translation>
+        <translation>添加到会话</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="365"/>
@@ -2017,7 +2167,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="373"/>
         <source>Messages</source>
-        <translation>訊息</translation>
+        <translation>消息</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="374"/>
@@ -2027,7 +2177,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="375"/>
         <source>Search</source>
-        <translation>搜尋</translation>
+        <translation>搜索</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="380"/>
@@ -2042,7 +2192,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="385"/>
         <source>Jami Account Management Server URL</source>
-        <translation>Jami 帳號管理伺服器 URL</translation>
+        <translation>Jami 账户管理服务器 URL</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="386"/>
@@ -2062,7 +2212,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="391"/>
         <source>Choose name</source>
-        <translation>選擇名稱</translation>
+        <translation>选择名称</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="392"/>
@@ -2099,7 +2249,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="407"/>
         <source>Save profile</source>
-        <translation>儲存個人檔案</translation>
+        <translation>保存个人资料</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="415"/>
@@ -2317,7 +2467,7 @@ Your picture and your display name can be changed at all time in the settings of
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="289"/>
         <source>Do you want to block this conversation?</source>
-        <translation>您想阻止这次对话吗？</translation>
+        <translation>您想暂停这次对话吗？</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="296"/>
@@ -2361,22 +2511,22 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="396"/>
         <source>Choose a name for your rendezvous point</source>
-        <translation>選擇您 rendezvous 點的名稱</translation>
+        <translation>为您的rendezvous点选择一个名称</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="397"/>
         <source>Choose a name</source>
-        <translation>選擇名稱</translation>
+        <translation>选择名称</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="398"/>
         <source>Invalid name</source>
-        <translation>無效的名稱</translation>
+        <translation>无效名称</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="399"/>
         <source>Invalid username</source>
-        <translation>無效的使用者名稱</translation>
+        <translation>非法用户名</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="400"/>
@@ -2386,7 +2536,7 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="401"/>
         <source>Username already taken</source>
-        <translation>已取得的使用者名稱</translation>
+        <translation>用户名已被占用</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="409"/>
@@ -2411,7 +2561,7 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="419"/>
         <source>Proxy</source>
-        <translation>代理服務器</translation>
+        <translation>代理服务器</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="420"/>
@@ -2426,7 +2576,7 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="423"/>
         <source>Add SIP account</source>
-        <translation>新增 SIP 帳號</translation>
+        <translation>添加 SIP 账户</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="432"/>
@@ -2446,12 +2596,12 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="437"/>
         <source>Other linked devices</source>
-        <translation>其他已連結的裝置</translation>
+        <translation>其他关联设备</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="446"/>
         <source>Change password</source>
-        <translation>變更密碼</translation>
+        <translation>修改密码</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="457"/>
@@ -2491,12 +2641,12 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="480"/>
         <source>Unblock contact</source>
-        <translation>取消封鎖聯絡人</translation>
+        <translation>取消屏蔽该联系人</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="481"/>
         <source>Blocked</source>
-        <translation>已封鎖</translation>
+        <translation>屏蔽</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="482"/>
@@ -2647,7 +2797,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="640"/>
         <source>Installed</source>
-        <translation>安装</translation>
+        <translation>已安装</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="641"/>
@@ -2707,7 +2857,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="704"/>
         <source>Create Jami account</source>
-        <translation>建立 Jami 帳號</translation>
+        <translation>创建 Jami 账号</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="765"/>
@@ -2727,7 +2877,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="773"/>
         <source>Bold</source>
-        <translation>粗體</translation>
+        <translation>粗体</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="774"/>
@@ -2737,12 +2887,12 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="776"/>
         <source>Title</source>
-        <translation>標題</translation>
+        <translation>标题</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="777"/>
         <source>Heading</source>
-        <translation>標題</translation>
+        <translation>标题</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="778"/>
@@ -2827,7 +2977,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="879"/>
         <source>Rendezvous point</source>
-        <translation>聚会点</translation>
+        <translation>聚集点</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="882"/>
@@ -2847,7 +2997,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="448"/>
         <source>Set a password</source>
-        <translation>設定密碼</translation>
+        <translation>设置密码</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="449"/>
@@ -2857,7 +3007,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="451"/>
         <source>Display advanced settings</source>
-        <translation>顯示進階設定</translation>
+        <translation>显示高级设置</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="452"/>
@@ -2867,7 +3017,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="199"/>
         <source>Enable account</source>
-        <translation>啟用帳號</translation>
+        <translation>启用账户</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="453"/>
@@ -2882,12 +3032,12 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="465"/>
         <source>Set username</source>
-        <translation>設定使用者名稱</translation>
+        <translation>设置用户名</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="466"/>
         <source>Registering name</source>
-        <translation>正在註冊使用者名稱</translation>
+        <translation>正在注册用户名</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="469"/>
@@ -2897,7 +3047,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="472"/>
         <source>Link a new device to this account</source>
-        <translation>連結新裝置到此帳號</translation>
+        <translation>关联一个新设备到该账户</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="473"/>
@@ -2911,13 +3061,14 @@ When ready, scan the QR code.</source>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="496"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="916"/>
         <source>System</source>
         <translation>系统</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="499"/>
         <source>Select a folder</source>
-        <translation>選取資料夾</translation>
+        <translation>选择文件夹</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="500"/>
@@ -2947,7 +3098,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="517"/>
         <source>Vertical view</source>
-        <translation>垂直檢視</translation>
+        <translation>垂直视图</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="518"/>
@@ -2967,12 +3118,12 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="527"/>
         <source>Register</source>
-        <translation>註冊</translation>
+        <translation>注册</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="533"/>
         <source>Save file</source>
-        <translation>儲存檔案</translation>
+        <translation>保存文件</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="534"/>
@@ -2987,12 +3138,12 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="539"/>
         <source>Check for updates now</source>
-        <translation>現在檢查更新</translation>
+        <translation>立即检查更新</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="540"/>
         <source>Enable/Disable automatic updates</source>
-        <translation>啟用／停用自動更新</translation>
+        <translation>启用/禁用自动更新</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="541"/>
@@ -3007,7 +3158,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="551"/>
         <source>Network disconnected</source>
-        <translation>網路已斷線</translation>
+        <translation>网络已断开</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="557"/>
@@ -3032,27 +3183,27 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="569"/>
         <source>Always record calls</source>
-        <translation>永遠記錄通話</translation>
+        <translation>总是记录通话</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="574"/>
         <source>Conversation</source>
-        <translation>對話</translation>
+        <translation>会话</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="575"/>
         <source>Call</source>
-        <translation>撥打</translation>
+        <translation>呼叫</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="576"/>
         <source>Settings</source>
-        <translation>設定</translation>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="580"/>
         <source>Debug</source>
-        <translation>除錯</translation>
+        <translation>调试</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="583"/>
@@ -3078,12 +3229,12 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="593"/>
         <source>Generating account…</source>
-        <translation>正在生成帳號……</translation>
+        <translation>正在生成账户…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="594"/>
         <source>Import from archive backup</source>
-        <translation>從封存備份匯入</translation>
+        <translation>从归档备份中导入</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="596"/>
@@ -3098,12 +3249,12 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="600"/>
         <source>Import</source>
-        <translation>匯入</translation>
+        <translation>导入</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="852"/>
         <source>Delete message</source>
-        <translation>刪除訊息</translation>
+        <translation>删除消息</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="853"/>
@@ -3119,7 +3270,7 @@ When ready, scan the QR code.</source>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="347"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="604"/>
         <source>Close</source>
-        <translation>關閉</translation>
+        <translation>关闭</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="568"/>
@@ -3144,7 +3295,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="622"/>
         <source>Enter current password</source>
-        <translation>輸入目前密碼</translation>
+        <translation>输入当前密码</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="624"/>
@@ -3159,7 +3310,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="626"/>
         <source>Change</source>
-        <translation>變更</translation>
+        <translation>更改</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="627"/>
@@ -3251,22 +3402,22 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="665"/>
         <source>Edit preference</source>
-        <translation>編輯偏好設定</translation>
+        <translation>编辑偏好设置</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="666"/>
         <source>On/Off</source>
-        <translation>開啟／關閉</translation>
+        <translation>开启/关闭</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="674"/>
         <source>Information</source>
-        <translation>資訊</translation>
+        <translation>信息</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="676"/>
         <source>Profile</source>
-        <translation>個人檔案</translation>
+        <translation>账户资料</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="679"/>
@@ -3301,7 +3452,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="694"/>
         <source>Import from another device</source>
-        <translation>從其他裝置匯入</translation>
+        <translation>从其他设备导入</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="695"/>
@@ -3316,12 +3467,12 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="697"/>
         <source>Show advanced features</source>
-        <translation>顯示進階功能</translation>
+        <translation>显示高级功能</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="698"/>
         <source>Hide advanced features</source>
-        <translation>隱藏進階功能</translation>
+        <translation>隐藏高级功能</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="699"/>
@@ -3331,7 +3482,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="700"/>
         <source>Create account from Jami Account Management Server (JAMS)</source>
-        <translation>從 Jami 帳號管理伺服器 (JAMS) 建立帳號</translation>
+        <translation>从 Jami 账户管理服务器 (JAMS) 创建账户</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="701"/>
@@ -3341,12 +3492,12 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="703"/>
         <source>Create a rendezvous point</source>
-        <translation>建立 rendezvous 點</translation>
+        <translation>创建 rendezvous 点</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="705"/>
         <source>Create new Jami account</source>
-        <translation>建立新 Jami 帳號</translation>
+        <translation>创建新的 Jami 账户</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="706"/>
@@ -3376,7 +3527,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="715"/>
         <source>Conversations</source>
-        <translation>對話</translation>
+        <translation>会话</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="723"/>
@@ -3392,12 +3543,12 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="729"/>
         <source>Upgrade</source>
-        <translation>升級</translation>
+        <translation>升级</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="730"/>
         <source>Later</source>
-        <translation>稍後</translation>
+        <translation>稍后</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="731"/>
@@ -3412,12 +3563,12 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="740"/>
         <source>Set moderator</source>
-        <translation>設定主持人</translation>
+        <translation>设置管理员</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="741"/>
         <source>Unset moderator</source>
-        <translation>取消設定主持人</translation>
+        <translation>解除管理员</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="343"/>
@@ -3433,7 +3584,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="746"/>
         <source>Hangup</source>
-        <translation>掛斷</translation>
+        <translation>挂断</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="747"/>
@@ -3448,7 +3599,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="751"/>
         <source>Enable local moderators</source>
-        <translation>啟用本機主持人</translation>
+        <translation>启用本地会议主持人</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="752"/>
@@ -3458,7 +3609,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="753"/>
         <source>Add default moderator</source>
-        <translation>新增預設主持人</translation>
+        <translation>添加默认会议主持人</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="755"/>
@@ -3468,12 +3619,12 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="762"/>
         <source>Add emoji</source>
-        <translation>新增表情符號</translation>
+        <translation>添加表情符号</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="764"/>
         <source>Send file</source>
-        <translation>傳送檔案</translation>
+        <translation>发送文件</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="787"/>
@@ -3555,7 +3706,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="839"/>
         <source>Administrator</source>
-        <translation>管理員</translation>
+        <translation>管理员</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="840"/>
@@ -3593,52 +3744,52 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="40"/>
         <source>Open account list</source>
-        <translation type="unfinished"/>
+        <translation>打开账户列表</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="44"/>
         <source>Focus conversations list</source>
-        <translation type="unfinished"/>
+        <translation>聚焦会话列表</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="48"/>
         <source>Requests list</source>
-        <translation type="unfinished"/>
+        <translation>请求列表</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="52"/>
         <source>Previous conversation</source>
-        <translation type="unfinished"/>
+        <translation>上一个会话</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="56"/>
         <source>Next conversation</source>
-        <translation type="unfinished"/>
+        <translation>下一个会话</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="60"/>
         <source>Search bar</source>
-        <translation type="unfinished"/>
+        <translation>搜索栏</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="132"/>
         <source>Full screen</source>
-        <translation type="unfinished"/>
+        <translation>全屏</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="64"/>
         <source>Increase font size</source>
-        <translation type="unfinished"/>
+        <translation>增加字体大小</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="68"/>
         <source>Decrease font size</source>
-        <translation type="unfinished"/>
+        <translation>减少字体大小</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="72"/>
         <source>Reset font size</source>
-        <translation type="unfinished"/>
+        <translation>重置字体大小</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="96"/>
@@ -3648,7 +3799,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="84"/>
         <source>Search messages/files</source>
-        <translation type="unfinished"/>
+        <translation>搜索消息或文件</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="100"/>
@@ -3658,32 +3809,32 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="80"/>
         <source>Accept contact request</source>
-        <translation type="unfinished"/>
+        <translation>接受联系人请求</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="88"/>
         <source>Edit last message</source>
-        <translation type="unfinished"/>
+        <translation>编辑最后一个消息</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="92"/>
         <source>Cancel message edition</source>
-        <translation type="unfinished"/>
+        <translation>取消消息编辑</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="216"/>
         <source>Open account creation wizard</source>
-        <translation type="unfinished"/>
+        <translation>打开账户创建向导</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="124"/>
         <source>End call</source>
-        <translation type="unfinished"/>
+        <translation>结束通话</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="104"/>
         <source>Leave conversation</source>
-        <translation>离开谈话</translation>
+        <translation>离开会话</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="112"/>
@@ -3693,7 +3844,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="116"/>
         <source>Start video call</source>
-        <translation>開始視訊通話</translation>
+        <translation>发起视频通话</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="120"/>
@@ -3708,62 +3859,62 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="136"/>
         <source>Mute microphone</source>
-        <translation type="unfinished"/>
+        <translation>禁用麦克风</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="140"/>
         <source>Stop camera</source>
-        <translation type="unfinished"/>
+        <translation>关闭摄像头</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="144"/>
         <source>Take tile screenshot</source>
-        <translation type="unfinished"/>
+        <translation>截图</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="152"/>
         <source>Bold</source>
-        <translation type="unfinished"/>
+        <translation>粗体</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="156"/>
         <source>Italic</source>
-        <translation type="unfinished"/>
+        <translation>斜体</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="160"/>
         <source>Strikethrough</source>
-        <translation type="unfinished"/>
+        <translation>删除线</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="164"/>
         <source>Heading</source>
-        <translation type="unfinished"/>
+        <translation>标题</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="168"/>
         <source>Link</source>
-        <translation type="unfinished"/>
+        <translation>链接</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="172"/>
         <source>Code</source>
-        <translation type="unfinished"/>
+        <translation>代码块</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="176"/>
         <source>Quote</source>
-        <translation type="unfinished"/>
+        <translation>引用</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="180"/>
         <source>Unordered list</source>
-        <translation type="unfinished"/>
+        <translation>无序列表</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="184"/>
         <source>Ordered list</source>
-        <translation type="unfinished"/>
+        <translation>有序列表</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="188"/>
@@ -3804,19 +3955,19 @@ Clicking on confirm will continue transfering account.</source>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="481"/>
+        <location filename="../src/app/mainapplication.cpp" line="479"/>
         <source>E&amp;xit</source>
-        <translation type="unfinished"/>
+        <translation>离开(&amp;X)</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="483"/>
+        <location filename="../src/app/mainapplication.cpp" line="481"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished"/>
+        <translation>退出(&amp;Q)</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="489"/>
+        <location filename="../src/app/mainapplication.cpp" line="487"/>
         <source>&amp;Show Jami</source>
-        <translation type="unfinished"/>
+        <translation>显示 Jami</translation>
     </message>
 </context>
 <context>
@@ -3829,7 +3980,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="419"/>
         <source>Location sharing</source>
-        <translation type="unfinished"/>
+        <translation>位置共享</translation>
     </message>
 </context>
 <context>
@@ -3850,73 +4001,73 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="457"/>
         <source>Me</source>
-        <translation type="unfinished"/>
+        <translation>我</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="60"/>
         <source>Hold</source>
-        <translation type="unfinished"/>
+        <translation>暂停</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="62"/>
         <source>Talking</source>
-        <translation type="unfinished"/>
+        <translation>正在通话</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="64"/>
         <source>ERROR</source>
-        <translation type="unfinished"/>
+        <translation>错误</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="66"/>
         <source>Incoming</source>
-        <translation type="unfinished"/>
+        <translation>来电</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="68"/>
         <source>Calling</source>
-        <translation type="unfinished"/>
+        <translation>正在拨打</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="70"/>
         <source>Connecting</source>
-        <translation type="unfinished"/>
+        <translation>正在连接</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="72"/>
         <source>Searching</source>
-        <translation type="unfinished"/>
+        <translation>正在搜索</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="74"/>
         <source>Inactive</source>
-        <translation type="unfinished"/>
+        <translation>不活跃</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="76"/>
         <location filename="../src/libclient/api/call.h" line="82"/>
         <source>Finished</source>
-        <translation type="unfinished"/>
+        <translation>已结束</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="78"/>
         <source>Timeout</source>
-        <translation type="unfinished"/>
+        <translation>拨打超时</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="80"/>
         <source>Peer busy</source>
-        <translation type="unfinished"/>
+        <translation>对方正在通话中</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="84"/>
         <source>Communication established</source>
-        <translation type="unfinished"/>
+        <translation>已建立通信</translation>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="494"/>
         <source>Invitation received</source>
-        <translation type="unfinished"/>
+        <translation>已收到邀请</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="282"/>
@@ -3924,7 +4075,7 @@ Clicking on confirm will continue transfering account.</source>
         <location filename="../src/libclient/api/interaction.h" line="302"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="491"/>
         <source>Contact added</source>
-        <translation type="unfinished"/>
+        <translation>已添加联系人</translation>
     </message>
     <message>
         <location filename="../src/libclient/interaction.cpp" line="88"/>
@@ -3964,7 +4115,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="296"/>
         <source>%1 was blocked from the conversation.</source>
-        <translation>%1被阻止参与对话。</translation>
+        <translation>%1被禁止参与对话。</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="298"/>
@@ -3979,13 +4130,13 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="343"/>
         <source>Unreachable peer</source>
-        <translation>对方无法连接</translation>
+        <translation>无法连接到对方</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="348"/>
         <location filename="../src/libclient/api/interaction.h" line="354"/>
         <source>Outgoing call</source>
-        <translation>去电</translation>
+        <translation>呼出电话</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="350"/>
@@ -4006,7 +4157,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="475"/>
         <source>Join call</source>
-        <translation type="unfinished"/>
+        <translation>加入通话</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="485"/>
@@ -4016,326 +4167,326 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="496"/>
         <source>Invitation accepted</source>
-        <translation type="unfinished"/>
+        <translation>已收到邀请</translation>
     </message>
     <message>
         <location filename="../src/libclient/avmodel.cpp" line="387"/>
         <location filename="../src/libclient/avmodel.cpp" line="406"/>
         <source>default</source>
-        <translation type="unfinished"/>
+        <translation>默认</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="70"/>
         <source>Null</source>
-        <translation type="unfinished"/>
+        <translation>空</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="71"/>
         <source>Trying</source>
-        <translation type="unfinished"/>
+        <translation>正在尝试</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="72"/>
         <source>Ringing</source>
-        <translation type="unfinished"/>
+        <translation>正在响铃</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="73"/>
         <source>Being Forwarded</source>
-        <translation type="unfinished"/>
+        <translation>正在转接</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="74"/>
         <source>Queued</source>
-        <translation type="unfinished"/>
+        <translation>已加入队列</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="75"/>
         <source>Progress</source>
-        <translation type="unfinished"/>
+        <translation>进度</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="76"/>
         <source>OK</source>
-        <translation type="unfinished"/>
+        <translation>确定</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="77"/>
         <source>Accepted</source>
-        <translation type="unfinished"/>
+        <translation>已接受</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="78"/>
         <source>Multiple Choices</source>
-        <translation type="unfinished"/>
+        <translation>多选</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="79"/>
         <source>Moved Permanently</source>
-        <translation type="unfinished"/>
+        <translation>永久移动 </translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="80"/>
         <source>Moved Temporarily</source>
-        <translation type="unfinished"/>
+        <translation>暂时移动 </translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="81"/>
         <source>Use Proxy</source>
-        <translation type="unfinished"/>
+        <translation>使用代理</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="82"/>
         <source>Alternative Service</source>
-        <translation type="unfinished"/>
+        <translation>替代服务 </translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="83"/>
         <source>Bad Request</source>
-        <translation type="unfinished"/>
+        <translation>错误请求</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="84"/>
         <source>Unauthorized</source>
-        <translation type="unfinished"/>
+        <translation>未授权的</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="85"/>
         <source>Payment Required</source>
-        <translation type="unfinished"/>
+        <translation>需要付款</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="86"/>
         <source>Forbidden</source>
-        <translation type="unfinished"/>
+        <translation>禁止的</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="87"/>
         <source>Not Found</source>
-        <translation type="unfinished"/>
+        <translation>未找到</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="88"/>
         <source>Method Not Allowed</source>
-        <translation type="unfinished"/>
+        <translation>不被允許的方法</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="89"/>
         <location filename="../src/libclient/callmodel.cpp" line="109"/>
         <source>Not Acceptable</source>
-        <translation type="unfinished"/>
+        <translation>无法接受</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="90"/>
         <source>Proxy Authentication Required</source>
-        <translation type="unfinished"/>
+        <translation>需要代理服务器认证</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="91"/>
         <source>Request Timeout</source>
-        <translation type="unfinished"/>
+        <translation>请求超时</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="92"/>
         <source>Gone</source>
-        <translation type="unfinished"/>
+        <translation>已离开</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="93"/>
         <source>Request Entity Too Large</source>
-        <translation type="unfinished"/>
+        <translation>请求的实体过大</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="94"/>
         <source>Request URI Too Long</source>
-        <translation type="unfinished"/>
+        <translation>请求的 URI 过长</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="95"/>
         <source>Unsupported Media Type</source>
-        <translation type="unfinished"/>
+        <translation>不支持的媒体类型</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="96"/>
         <source>Unsupported URI Scheme</source>
-        <translation type="unfinished"/>
+        <translation>不支持的 URI 方案</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="97"/>
         <source>Bad Extension</source>
-        <translation type="unfinished"/>
+        <translation>错误的扩展名 </translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="98"/>
         <source>Extension Required</source>
-        <translation type="unfinished"/>
+        <translation>需要扩展名</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="99"/>
         <source>Session Timer Too Small</source>
-        <translation type="unfinished"/>
+        <translation>会话计时器过小 </translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="100"/>
         <source>Interval Too Brief</source>
-        <translation type="unfinished"/>
+        <translation>间隔过短 </translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="101"/>
         <source>Temporarily Unavailable</source>
-        <translation type="unfinished"/>
+        <translation>暂时不可用 </translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="102"/>
         <source>Call TSX Does Not Exist</source>
-        <translation type="unfinished"/>
+        <translation>调用 TSX 不存在</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="103"/>
         <source>Loop Detected</source>
-        <translation type="unfinished"/>
+        <translation>检测到循环</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="104"/>
         <source>Too Many Hops</source>
-        <translation type="unfinished"/>
+        <translation>跳数过多</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="105"/>
         <source>Address Incomplete</source>
-        <translation type="unfinished"/>
+        <translation>地址不完整 </translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="106"/>
         <source>Ambiguous</source>
-        <translation type="unfinished"/>
+        <translation>URI不明确</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="339"/>
         <location filename="../src/libclient/callmodel.cpp" line="107"/>
         <source>Busy</source>
-        <translation type="unfinished"/>
+        <translation>忙碌中</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="108"/>
         <source>Request Terminated</source>
-        <translation type="unfinished"/>
+        <translation>请求已终止</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="110"/>
         <source>Bad Event</source>
-        <translation type="unfinished"/>
+        <translation>错误事件 </translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="111"/>
         <source>Request Updated</source>
-        <translation type="unfinished"/>
+        <translation>请求已更新</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="112"/>
         <source>Request Pending</source>
-        <translation type="unfinished"/>
+        <translation>请求待处理</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="113"/>
         <source>Undecipherable</source>
-        <translation type="unfinished"/>
+        <translation>无法解码</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="114"/>
         <source>Internal Server Error</source>
-        <translation type="unfinished"/>
+        <translation>内部服务器错误 </translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="115"/>
         <source>Not Implemented</source>
-        <translation type="unfinished"/>
+        <translation>未实现 </translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="116"/>
         <source>Bad Gateway</source>
-        <translation type="unfinished"/>
+        <translation>网关错误</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="117"/>
         <source>Service Unavailable</source>
-        <translation type="unfinished"/>
+        <translation>服务不可用</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="118"/>
         <source>Server Timeout</source>
-        <translation type="unfinished"/>
+        <translation>服务器超时</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="119"/>
         <source>Version Not Supported</source>
-        <translation type="unfinished"/>
+        <translation>不受支持的版本 </translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="120"/>
         <source>Message Too Large</source>
-        <translation type="unfinished"/>
+        <translation>消息过长</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="121"/>
         <source>Precondition Failure</source>
-        <translation type="unfinished"/>
+        <translation>前置条件失败</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="122"/>
         <source>Busy Everywhere</source>
-        <translation type="unfinished"/>
+        <translation>服务器繁忙</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="123"/>
         <source>Call Refused</source>
-        <translation type="unfinished"/>
+        <translation>呼叫已被拒绝</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="124"/>
         <source>Does Not Exist Anywhere</source>
-        <translation type="unfinished"/>
+        <translation>不存在于任何地方</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="125"/>
         <source>Not Acceptable Anywhere</source>
-        <translation type="unfinished"/>
+        <translation>任何地方均不接受</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="678"/>
+        <location filename="../src/app/messagesadapter.cpp" line="669"/>
         <source>Just now</source>
         <translation>刚才</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="697"/>
+        <location filename="../src/app/messagesadapter.cpp" line="688"/>
         <source>Today</source>
-        <translation type="unfinished"/>
+        <translation>今天</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="699"/>
+        <location filename="../src/app/messagesadapter.cpp" line="690"/>
         <source>Yesterday</source>
-        <translation type="unfinished"/>
+        <translation>昨天</translation>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="108"/>
         <source>locationServicesError</source>
-        <translation type="unfinished"/>
+        <translation>位置服务发生错误</translation>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="111"/>
         <source>locationServicesClosedError</source>
-        <translation type="unfinished"/>
+        <translation>位置服务发生关闭错误</translation>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="113"/>
         <source>locationServicesUnknownError</source>
-        <translation type="unfinished"/>
+        <translation>位置服务发生未知错误</translation>
     </message>
     <message>
         <location filename="../src/libclient/conversationmodel.cpp" line="1179"/>
         <location filename="../src/libclient/conversationmodel.cpp" line="1192"/>
         <source>%1 (you)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (您)</translation>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="618"/>
@@ -4437,14 +4588,6 @@ Please try again.</source>
     </message>
 </context>
 <context>
-    <name>SpellCheckDictionaryManager</name>
-    <message>
-        <location filename="../src/app/spellcheckdictionarymanager.cpp" line="56"/>
-        <source>None</source>
-        <translation>無</translation>
-    </message>
-</context>
-<context>
     <name>SystemTray</name>
     <message>
         <location filename="../src/app/systemtray.cpp" line="224"/>
@@ -4459,12 +4602,12 @@ Please try again.</source>
     <message>
         <location filename="../src/app/systemtray.cpp" line="227"/>
         <source>Open conversation</source>
-        <translation type="unfinished"/>
+        <translation>打开会话</translation>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="229"/>
         <source>Accept invitation</source>
-        <translation>Accept invitation</translation>
+        <translation>同意邀请</translation>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="230"/>
@@ -4477,12 +4620,12 @@ Please try again.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="84"/>
         <source>Customize</source>
-        <translation type="unfinished"/>
+        <translation>自定义</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="87"/>
         <source>What does Jami mean?</source>
-        <translation type="unfinished"/>
+        <translation>Jami 有何含义？</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="89"/>
@@ -4492,17 +4635,17 @@ Please try again.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="93"/>
         <source>What is the green dot next to my account?</source>
-        <translation type="unfinished"/>
+        <translation>我的账户旁边的绿点有什么作用？</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="80"/>
         <source>Donate</source>
-        <translation type="unfinished"/>
+        <translation>捐助</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="85"/>
         <source>Backup account</source>
-        <translation type="unfinished"/>
+        <translation>备份账户</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="95"/>
@@ -4512,17 +4655,17 @@ Please try again.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="100"/>
         <source>Why should I back up my account?</source>
-        <translation type="unfinished"/>
+        <translation>为什么我应该备份账户？</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="102"/>
         <source>Jami is distributed and your account is only stored locally on your device. If you lose your password or your local account data, you WILL NOT be able to recover your account if you did not back it up earlier.</source>
-        <translation type="unfinished"/>
+        <translation>Jami 采用分布式架构，您的账户仅存储在本地设备上。若丢失密码或本地账户数据，且未提前备份，您将无法恢复账户。</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="108"/>
         <source>Can I make a conference call?</source>
-        <translation type="unfinished"/>
+        <translation>我可以进行电话会议吗？</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="110"/>
@@ -4532,32 +4675,32 @@ Please try again.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="113"/>
         <source>What is a Jami account?</source>
-        <translation type="unfinished"/>
+        <translation>什么是Jami账户？</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="115"/>
         <source>A Jami account is an asymmetric encryption key. Your account is identified by a Jami ID, which is a fingerprint of your public key.</source>
-        <translation type="unfinished"/>
+        <translation>Jami账户是一个非对称加密密钥。您的账户由Jami ID来识别，该ID是您的公共密钥的指纹。</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="119"/>
         <source>What information do I need to provide to create a Jami account?</source>
-        <translation type="unfinished"/>
+        <translation>我需要提供哪些信息来创建Jami账户？</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="121"/>
         <source>When you create a new Jami account, you do not have to provide any private information like an email, address, or phone number.</source>
-        <translation type="unfinished"/>
+        <translation>当您创建新 Jami 账户时，您不需要提供任何个人信息，如电子邮件、地址或电话号码等。</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="126"/>
         <source>Why don’t I have to use a password?</source>
-        <translation>为什么我不需要使用密码？</translation>
+        <translation>为什么我不需要使用强制密码？</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="128"/>
         <source>With Jami, your account is stored in a directory on your device. The password is only used to encrypt your account in order to protect you from someone who has physical access to your device.</source>
-        <translation type="unfinished"/>
+        <translation>在 Jami 中，您的账户存储在您设备中的目录下。密码仅用于加密您的帐户，以防止其他人使用您设备时访问您的账户信息。</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="134"/>
@@ -4567,37 +4710,37 @@ Please try again.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="148"/>
         <source>Your account is only stored on your own devices. If you delete your account from all of your devices, the account is gone forever and you CANNOT recover it.</source>
-        <translation type="unfinished"/>
+        <translation>您的账户仅存储在您自己的设备上。如果您从所有设备中删除了账户，则账户将永远消失并且无法恢复。</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="152"/>
         <source>Can I use my account on multiple devices?</source>
-        <translation type="unfinished"/>
+        <translation>我可以在多个设备上使用我的账户吗?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="154"/>
         <source>Yes, you can link your account from the settings, or you can import your backup on another device.</source>
-        <translation type="unfinished"/>
+        <translation>是的,您可以在设置中链接您的帐户,或者您可以将通过备份将自己的账户导入到其他设备上.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="136"/>
         <source>The most permanent, secure identifier is your Jami ID, but since these are difficult to use for some people, you also have the option of registering a username.</source>
-        <translation type="unfinished"/>
+        <translation>最永久、最安全的标识符是您的Jami ID，但由于这些标识符对一部分人人来说难以辨识，因此您也可以选择注册一个用户名。</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="141"/>
         <source>How can I back up my account?</source>
-        <translation type="unfinished"/>
+        <translation>怎样备份账户?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="142"/>
         <source>In Account Settings, a button is available to create a backup your account.</source>
-        <translation type="unfinished"/>
+        <translation>在账户设置里，有一个可以创建账户的备份的·按钮</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="146"/>
         <source>What happens when I delete my account?</source>
-        <translation type="unfinished"/>
+        <translation>当我删除自己的账号会发生什么?</translation>
     </message>
 </context>
 <context>
@@ -4616,19 +4759,19 @@ Please try again.</source>
 <context>
     <name>UtilsAdapter</name>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="353"/>
+        <location filename="../src/app/utilsadapter.cpp" line="352"/>
         <source>%1 Mbps</source>
-        <translation type="unfinished"/>
+        <translation>%1 Mbps</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="353"/>
+        <location filename="../src/app/utilsadapter.cpp" line="352"/>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>默认</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="547"/>
+        <location filename="../src/app/utilsadapter.cpp" line="546"/>
         <source>System</source>
-        <translation type="unfinished"/>
+        <translation>系统</translation>
     </message>
 </context>
 <context>
@@ -4636,17 +4779,17 @@ Please try again.</source>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="494"/>
         <source>Searching…</source>
-        <translation type="unfinished"/>
+        <translation>正在搜索…</translation>
     </message>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="989"/>
         <source>Invalid ID</source>
-        <translation type="unfinished"/>
+        <translation>无效 ID</translation>
     </message>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="992"/>
         <source>Username not found</source>
-        <translation type="unfinished"/>
+        <translation>找不到该用户名</translation>
     </message>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="995"/>
@@ -4659,7 +4802,7 @@ Please try again.</source>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="457"/>
         <source>Bad URI scheme</source>
-        <translation type="unfinished"/>
+        <translation>错误的 URI 方案 </translation>
     </message>
 </context>
 </TS>
