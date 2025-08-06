@@ -98,7 +98,7 @@ description: |
 
 confinement: strict
 grade: stable
-base: core20
+base: core22
 
 plugs:
   gnome-3-38-2004:
@@ -129,8 +129,8 @@ slots:
     name: cx.ring.Ring
 
 layout:
-  /usr/lib/$SNAPCRAFT_ARCH_TRIPLET/alsa-lib:
-    bind: $SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/alsa-lib
+  /usr/lib/$CRAFT_ARCH_TRIPLET/alsa-lib:
+    bind: $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET/alsa-lib
   /usr/share/alsa:
     bind: $SNAP/usr/share/alsa
   /usr/share/X11/xkb:
@@ -139,7 +139,7 @@ layout:
 environment:
   XDG_CURRENT_DESKTOP: Unity
   QT_BASE_DIR: "/usr/lib/libqt-jami"
-  LD_LIBRARY_PATH: "$LD_LIBRARY_PATH:$SNAP$QT_BASE_DIR/lib"
+  LD_LIBRARY_PATH: "${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$SNAP$QT_BASE_DIR/lib"
 
 apps:
   jami:
@@ -153,8 +153,8 @@ apps:
     desktop: usr/share/applications/net.jami.Jami.desktop
     environment:
       PIPEWIRE_CONFIG_NAME: "$SNAP/usr/share/pipewire/pipewire.conf"
-      PIPEWIRE_MODULE_DIR: "$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/pipewire-0.3"
-      SPA_PLUGIN_DIR: "$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/spa-0.2"
+      PIPEWIRE_MODULE_DIR: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET/pipewire-0.3"
+      SPA_PLUGIN_DIR: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET/spa-0.2"
     slots:
     - dbus-jami
     - dbus-ring
@@ -185,7 +185,7 @@ package-repositories:
     components: [main]
     suites: [jami]
     key-id: A295D773307D25A33AE72F2F64CD5FA175348F84
-    url: https://dl.jami.net/internal/ubuntu_20.04/
+    url: https://dl.jami.net/internal/ubuntu_22.04/
 
 parts:
   desktop-launch:
@@ -201,14 +201,14 @@ parts:
     - devscripts
     - equivs
     override-pull: |
-      snapcraftctl pull
+      craftctl default
       sed -i -E 's|\. \$SNAP/flavor-select|USE_gtk3=true|' gtk/launcher-specific
       sed -i -E 's|\. \$SNAP/flavor-select|USE_qt5=true|' qt/launcher-specific
       sed -i -E 's|(append_dir GTK_PATH \$RUNTIME/usr/lib/\$ARCH/gtk-2.0)|#\1|' qt/launcher-specific
       sed -i -E 's|\$RUNTIME|$SNAP|g' qt/launcher-specific
       sed -i -E 's|\$WITH_RUNTIME|no|g' qt/launcher-specific
     override-build: |
-      snapcraftctl build
+      craftctl default
       gcc -Wall -O2 -o bindtextdomain.so -fPIC -shared src/bindtextdomain.c -ldl
 
       echo "#!/bin/bash" > desktop-launch
@@ -224,10 +224,10 @@ parts:
 
       cat common/mark-and-exec >> desktop-launch
 
-      install -D -m755 desktop-launch $SNAPCRAFT_PART_INSTALL/bin/desktop-launch
-      install -D -m644 bindtextdomain.so $SNAPCRAFT_PART_INSTALL/lib/bindtextdomain.so
+      install -D -m755 desktop-launch $CRAFT_PART_INSTALL/bin/desktop-launch
+      install -D -m644 bindtextdomain.so $CRAFT_PART_INSTALL/lib/bindtextdomain.so
 
-      mkdir -pv $SNAPCRAFT_PART_INSTALL/gnome-platform
+      mkdir -pv $CRAFT_PART_INSTALL/gnome-platform
 
   scripts:
     plugin: dump
@@ -264,45 +264,47 @@ parts:
     build-environment:
       - QT_BASE_DIR: "/usr/lib/libqt-jami"
       - PATH: "$QT_BASE_DIR/bin:$PATH"
-      - LD_LIBRARY_PATH: "$QT_BASE_DIR/lib:$LD_LIBRARY_PATH"
-      - PKG_CONFIG_PATH: "$QT_BASE_DIR/lib/pkgconfig:$PKG_CONFIG_PATH"
+      - LD_LIBRARY_PATH: "$QT_BASE_DIR/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+      - PKG_CONFIG_PATH: "$QT_BASE_DIR/lib/pkgconfig${PKG_CONFIG_PATH:+:$PKG_CONFIG_PATH}"
     override-pull: |
       ls
-      snapcraftctl pull
+      craftctl default
       sed -i -E 's|(tmpName) << (PACKAGE_NAME << "_shm_")|\1 << "snap.jami." << \2|' ./daemon/src/media/video/sinkclient.cpp
       sed -i -E 's|^Icon=.*|Icon=${SNAP}/usr/share/icons/hicolor/scalable/apps/net.jami.Jami.svg|' extras/data/net.jami.Jami.desktop
     override-build: |
-      $SNAPCRAFT_PART_BUILD/extras/packaging/gnu-linux/scripts/install-pipewire-from-source.sh
+      $CRAFT_PART_BUILD/extras/packaging/gnu-linux/scripts/install-pipewire-from-source.sh
 
-      cd $SNAPCRAFT_PART_BUILD/daemon/contrib
+      cd $CRAFT_PART_BUILD/daemon/contrib
       mkdir -p native
       cd native
       ../bootstrap
       make .ffmpeg
       make
 
-      cd $SNAPCRAFT_PART_BUILD/daemon
+      cd $CRAFT_PART_BUILD/daemon
       ./autogen.sh
       ./configure --prefix=/usr --without-dbus
-      make -j$SNAPCRAFT_PARALLEL_BUILD_COUNT
-      DESTDIR=$SNAPCRAFT_PART_INSTALL make install
+      make -j$CRAFT_PARALLEL_BUILD_COUNT
+      DESTDIR=$CRAFT_PART_INSTALL make install
 
-      cd $SNAPCRAFT_PART_BUILD/
+      cd $CRAFT_PART_BUILD/
       mkdir build
       cd build
       cmake .. -DENABLE_LIBWRAP=true \
-               -DLIBJAMI_BUILD_DIR=$SNAPCRAFT_PART_BUILD/daemon/src \
+               -DLIBJAMI_BUILD_DIR=$CRAFT_PART_BUILD/daemon/src \
                -DCMAKE_INSTALL_PREFIX=/usr \
                -DCMAKE_BUILD_TYPE=Release \
+               -DCMAKE_PREFIX_PATH=$QT_BASE_DIR \
                -DBUILD_VERSION=BUILD_VERSION_PLACEHOLDER
-      make -j$SNAPCRAFT_PARALLEL_BUILD_COUNT
-      DESTDIR=$SNAPCRAFT_PART_INSTALL make install
+      make -j$CRAFT_PARALLEL_BUILD_COUNT
+      DESTDIR=$CRAFT_PART_INSTALL make install
     build-packages:
     - autoconf
     - autoconf-archive
     - automake
     - autopoint
     - bzip2
+    - cmake
     - curl
     - gcc
     - g++
@@ -340,6 +342,7 @@ parts:
     - gnutls-bin
     - libssl-dev
     - git            # PipeWire build dependencies
+    - meson          #
     - libasound2-dev #
     - libdbus-1-dev  # These packages are needed by the
     - libglib2.0-dev # install-pipewire-from-source.sh
@@ -352,7 +355,7 @@ parts:
     - libegl1
     - libgbm1
     - libgudev-1.0-0
-    - libjsoncpp1
+    - libjsoncpp25
     - libllvm12
     - libminizip1
     - libnm0
@@ -385,6 +388,6 @@ parts:
     - -usr/lib/libqt-jami/bin/
     - -usr/lib/libqt-jami/docs/
     - -usr/lib/libqt-jami/examples/
-    - -usr/lib/$SNAPCRAFT_ARCH_TRIPLET/libLLVM-*.so*
-    - -usr/lib/$SNAPCRAFT_ARCH_TRIPLET/libclang-*.so*
-    - -usr/lib/$SNAPCRAFT_ARCH_TRIPLET/libflite*.so*
+    - -usr/lib/$CRAFT_ARCH_TRIPLET/libLLVM-*.so*
+    - -usr/lib/$CRAFT_ARCH_TRIPLET/libclang-*.so*
+    - -usr/lib/$CRAFT_ARCH_TRIPLET/libflite*.so*
