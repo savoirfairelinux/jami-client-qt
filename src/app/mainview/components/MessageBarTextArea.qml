@@ -119,9 +119,9 @@ JamiFlickable {
     // 1. Spell check is enabled in settings
     // 2. The selected spell language is not ""
     // 3. We are not in preview mode
-    readonly property bool spellCheckActive: spellCheckEnabled && !showPreview
-
-    onSpellCheckActiveChanged: textArea.updateSpellCorrection()
+    function isSpellCheckActive() {
+        return AppSettingsManager.getValue(Settings.EnableSpellCheck) && AppSettingsManager.getValue(Settings.SpellLang) !== "" && !showPreview;
+    }
 
     TextArea.flickable: TextArea {
         id: textArea
@@ -190,7 +190,7 @@ JamiFlickable {
 
         onReleased: function (event) {
             if (event.button === Qt.RightButton) {
-                if (spellCheckActive && SpellCheckAdapter.hasLoadedDictionary) {
+                if (isSpellCheckActive() && SpellCheckAdapter.hasLoadedDictionary) {
                     var position = textArea.positionAt(event.x, event.y);
                     textArea.moveCursorSelection(position, TextInput.SelectWords);
                     textArea.selectWord();
@@ -252,7 +252,7 @@ JamiFlickable {
         function updateSpellCorrection() {
             clearUnderlines();
             // We iterate over the whole text to find words to check and underline them if needed
-            if (spellCheckActive && SpellCheckAdapter.hasLoadedDictionary) {
+            if (isSpellCheckActive() && SpellCheckAdapter.hasLoadedDictionary) {
                 var text = textArea.text;
                 var words = SpellCheckAdapter.findWords(text);
                 if (!words)
