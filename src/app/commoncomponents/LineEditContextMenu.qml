@@ -32,7 +32,6 @@ ContextMenuAutoLoader {
     property var selectionEnd
     property bool customizePaste: false
     property bool selectOnly: false
-    property bool spellCheckEnabled: false
     property var suggestionList
     property var menuItemsLength
     property var language
@@ -41,7 +40,7 @@ ContextMenuAutoLoader {
 
     SpellLanguageContextMenu {
         id: spellLanguageContextMenu
-        active: spellCheckEnabled
+        active: isSpellCheckActive()
     }
 
     property list<GeneralMenuItem> menuItems: [
@@ -78,7 +77,7 @@ ContextMenuAutoLoader {
         },
         GeneralMenuItem {
             id: textLanguage
-            canTrigger: spellCheckEnabled && SpellCheckAdapter.installedDictionaryCount > 0
+            canTrigger: isSpellCheckActive() && SpellCheckAdapter.installedDictionaryCount > 0
             itemName: JamiStrings.textLanguage
             hasIcon: false
             onClicked: {
@@ -88,7 +87,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: manageLanguages
             itemName: JamiStrings.dictionaryManager
-            canTrigger: spellCheckEnabled
+            canTrigger: isSpellCheckActive()
             hasIcon: false
             onClicked: {
                 viewCoordinator.presentDialog(appWindow, "commoncomponents/DictionaryManagerDialog.qml");
@@ -168,6 +167,24 @@ ContextMenuAutoLoader {
                 return;
             }
             removeItems();
+        }
+    }
+
+    function isSpellCheckActive() {
+        return AppSettingsManager.getValue(Settings.EnableSpellCheck) && AppSettingsManager.getValue(Settings.SpellLang);
+    }
+
+    Connections {
+        target: UtilsAdapter
+
+        function onEnableSpellCheckChanged() {
+            textLanguage.canTrigger = isSpellCheckActive() && SpellCheckAdapter.installedDictionaryCount > 0;
+            manageLanguages.canTrigger = isSpellCheckActive();
+        }
+
+        function onSpellLanguageChanged() {
+            textLanguage.canTrigger = isSpellCheckActive() && SpellCheckAdapter.installedDictionaryCount > 0;
+            manageLanguages.canTrigger = isSpellCheckActive();
         }
     }
 
