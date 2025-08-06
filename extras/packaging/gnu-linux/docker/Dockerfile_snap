@@ -2,7 +2,7 @@
 #   https://snapcraft.io/docs/build-on-docker
 #   https://github.com/canonical/snapcraft/issues/5079#issuecomment-2414199613
 
-ARG UBUNTU=focal
+ARG UBUNTU=jammy
 
 FROM ubuntu:$UBUNTU AS builder
 ARG UBUNTU
@@ -20,11 +20,6 @@ RUN apt-get install --yes \
 RUN curl -L $(curl -H 'X-Ubuntu-Series: 16' 'https://api.snapcraft.io/api/v1/snaps/details/core22' | jq '.download_url' -r) --output core22.snap
 RUN mkdir -p /snap/core22
 RUN unsquashfs -d /snap/core22/current core22.snap
-
-# Download and unpack the core20 snap
-RUN curl -L $(curl -H 'X-Ubuntu-Series: 16' 'https://api.snapcraft.io/api/v1/snaps/details/core20' | jq '.download_url' -r) --output core20.snap
-RUN mkdir -p /snap/core20
-RUN unsquashfs -d /snap/core20/current core20.snap
 
 # Download and unpack the core24 snap
 RUN curl -L $(curl -H 'X-Ubuntu-Series: 16' 'https://api.snapcraft.io/api/v1/snaps/details/core24' | jq '.download_url' -r) --output core24.snap
@@ -48,7 +43,6 @@ RUN chmod +x /snap/bin/snapcraft
 # time so they can be cached.
 FROM ubuntu:$UBUNTU
 
-COPY --from=builder /snap/core20 /snap/core20
 COPY --from=builder /snap/core22 /snap/core22
 COPY --from=builder /snap/core24 /snap/core24
 COPY --from=builder /snap/snapcraft /snap/snapcraft
@@ -56,10 +50,6 @@ COPY --from=builder /snap/bin/snapcraft /snap/bin/snapcraft
 
 # Generate locale and install dependencies.
 RUN apt-get update && apt-get dist-upgrade --yes && apt-get install --yes snapd sudo apt-transport-https locales wget && locale-gen en_US.UTF-8
-
-# Install CMake 3.21 for Qt 6
-ADD extras/packaging/gnu-linux/scripts/install-cmake.sh /opt/install-cmake.sh
-RUN /opt/install-cmake.sh
 
 # Set the proper environment.
 ENV LANG="en_US.UTF-8"
@@ -69,6 +59,7 @@ ENV PATH="/snap/bin:/snap/snapcraft/current/usr/bin:/snap/snapcraft/current/libe
 ENV SNAP="/snap/snapcraft/current"
 ENV SNAP_NAME="snapcraft"
 ENV SNAP_ARCH="amd64"
+ENV SNAPCRAFT_BUILD_ENVIRONMENT=host
 
 ADD extras/packaging/gnu-linux/scripts/build-package-snap.sh /opt/build-package-snap.sh
 CMD ["/opt/build-package-snap.sh"]
