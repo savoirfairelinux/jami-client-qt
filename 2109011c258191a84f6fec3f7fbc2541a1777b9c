@@ -22,6 +22,30 @@
       },
       "revId": "2109011c258191a84f6fec3f7fbc2541a1777b9c",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac9b2018_26be7389",
+        "filename": "src/app/mainview/components/MessageBarTextArea.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-08-08T15:13:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05222a11_bd0d06c4",
+      "range": {
+        "startLine": 116,
+        "startChar": 18,
+        "endLine": 116,
+        "endChar": 35
+      },
+      "revId": "2109011c258191a84f6fec3f7fbc2541a1777b9c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
