@@ -61,13 +61,13 @@ ConnectionInfoListModel::data(const QModelIndex& index, int role) const
     }
     case ConnectionInfoList::ConnectionDatas: {
         QString peerString;
-        peerString += "Peer:" + peerId;
+        peerString += "Peer: " + peerId;
         for (const auto& device : peerData.keys()) {
-            peerString += "{";
-            peerString += "Device:" + device + ",";
-            peerString += "Status:" + peerData[device]["status"].toString() + ",";
-            peerString += "Channels:" + peerData[device]["channels"].toString() + ",";
-            peerString += "Remote Address" + peerData[device]["remoteAddress"].toString();
+            peerString += "\n    {";
+            peerString += "Device: " + device + ", ";
+            peerString += "Status: " + peerData[device]["status"].toString() + ", ";
+            peerString += "Channel(s): " + peerData[device]["channels"].toString() + ", ";
+            peerString += "Remote IP address: " + peerData[device]["remoteAddress"].toString();
             peerString += "}";
         }
         return peerString;
