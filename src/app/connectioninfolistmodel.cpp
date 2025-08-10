@@ -67,7 +67,7 @@ ConnectionInfoListModel::data(const QModelIndex& index, int role) const
             peerString += "Device:" + device + ",";
             peerString += "Status:" + peerData[device]["status"].toString() + ",";
             peerString += "Channels:" + peerData[device]["channels"].toString() + ",";
-            peerString += "Remote Address" + peerData[device]["remoteAddress"].toString();
+            peerString += "Remote IP address:" + peerData[device]["remoteAddress"].toString();
             peerString += "}";
         }
         return peerString;
