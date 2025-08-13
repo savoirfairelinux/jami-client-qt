@@ -897,7 +897,6 @@ account::Info::fromDetails(const MapStringString& details)
     confProperties.archivePassword = details[ConfProperties::ARCHIVE_PASSWORD];
     confProperties.archiveHasPassword = toBool(details[ConfProperties::ARCHIVE_HAS_PASSWORD]);
     confProperties.archivePath = details[ConfProperties::ARCHIVE_PATH];
-    confProperties.archivePin = details[ConfProperties::ARCHIVE_PIN];
     confProperties.proxyEnabled = toBool(details[ConfProperties::PROXY_ENABLED]);
     confProperties.proxyServer = details[ConfProperties::PROXY_SERVER];
     confProperties.proxyPushToken = details[ConfProperties::PROXY_PUSH_TOKEN];
@@ -1009,7 +1008,6 @@ account::ConfProperties_t::toDetails() const
     details[ConfProperties::ARCHIVE_PASSWORD] = this->archivePassword;
     details[ConfProperties::ARCHIVE_HAS_PASSWORD] = toQString(this->archiveHasPassword);
     details[ConfProperties::ARCHIVE_PATH] = this->archivePath;
-    details[ConfProperties::ARCHIVE_PIN] = this->archivePin;
     // ConfProperties::DEVICE_NAME name is set with DeviceModel interface
     details[ConfProperties::PROXY_ENABLED] = toQString(this->proxyEnabled);
     details[ConfProperties::PROXY_SERVER] = this->proxyServer;
@@ -1090,7 +1088,6 @@ AccountModel::createNewAccount(profile::Type type,
                                const QString& displayName,
                                const QString& archivePath,
                                const QString& password,
-                               const QString& pin,
                                const QString& uri)
 {
     // Get the template for the account type to prefill the details
@@ -1117,7 +1114,6 @@ AccountModel::createNewAccount(profile::Type type,
         details[ConfProperties::ALIAS] = displayName;
         details[ConfProperties::UPNP_ENABLED] = "true";
         details[ConfProperties::ARCHIVE_PASSWORD] = password;
-        details[ConfProperties::ARCHIVE_PIN] = pin;
         details[ConfProperties::ARCHIVE_PATH] = archivePath;
 
         // Override the username with the provided URI if it's a SIP account
