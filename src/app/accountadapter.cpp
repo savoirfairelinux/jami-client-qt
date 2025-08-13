@@ -171,7 +171,6 @@ AccountAdapter::createJamiAccount(const QVariantMap& settings)
                                                       settings["alias"].toString(),
                                                       settings["archivePath"].toString(),
                                                       settings["password"].toString(),
-                                                      settings["archivePin"].toString(),
                                                       "");
     });
 }
@@ -218,7 +217,6 @@ AccountAdapter::createSIPAccount(const QVariantMap& settings)
                                                       {},
                                                       settings["alias"].toString(),
                                                       settings["archivePath"].toString(),
-                                                      "",
                                                       "",
                                                       settings["username"].toString());
     });
