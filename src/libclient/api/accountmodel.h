@@ -201,7 +201,6 @@ public:
                                     const QString& displayName = "",
                                     const QString& archivePath = "",
                                     const QString& password = "",
-                                    const QString& pin = "",
                                     const QString& uri = "");
 
     /**
