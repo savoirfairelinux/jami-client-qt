@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1150feb1_1378a28e",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 53
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-08-15T20:52:20Z",
+      "side": 1,
+      "message": "Suggestion: \"You can customize your profile at any time.\"",
+      "range": {
+        "startLine": 427,
+        "startChar": 103,
+        "endLine": 427,
+        "endChar": 142
+      },
+      "revId": "ee4f70c664a3611e5eaacb86e1a34ea9a36fb549",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8928e769_32db906e",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 53
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-08-15T20:52:20Z",
+      "side": 1,
+      "message": "Revert string to original description. Users should be aware that enabling/disabling this function means that they will not see typing indicators regardless of whether or not the user(s) on the other end have enabled it.",
+      "range": {
+        "startLine": 510,
+        "startChar": 4,
+        "endLine": 510,
+        "endChar": 101
+      },
+      "revId": "ee4f70c664a3611e5eaacb86e1a34ea9a36fb549",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dd72aba_a27b507c",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 53
+      },
+      "lineNbr": 615,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-08-15T20:52:20Z",
+      "side": 1,
+      "message": "Change to connected",
+      "range": {
+        "startLine": 615,
+        "startChar": 61,
+        "endLine": 615,
+        "endChar": 66
+      },
+      "revId": "ee4f70c664a3611e5eaacb86e1a34ea9a36fb549",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
