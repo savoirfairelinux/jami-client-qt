@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "479991c0_3da9fa5c",
+        "filename": "extras/data/net.jami.Jami.metainfo.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-08-18T18:25:29Z",
+      "side": 1,
+      "message": "Even though the commit tag is 20250815.1, the actual release date is 2025-08-17.",
+      "range": {
+        "startLine": 90,
+        "startChar": 40,
+        "endLine": 90,
+        "endChar": 50
+      },
+      "revId": "a0e807ef5b7d18e6a7eabf224d2fd30002726000",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2deaab1e_8ae8ca80",
+        "filename": "extras/data/net.jami.Jami.metainfo.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-08-18T18:25:29Z",
+      "side": 1,
+      "message": "https://git.jami.net/savoirfairelinux/jami-client-qt/-/wikis/Changelog#stable-20250817",
+      "range": {
+        "startLine": 91,
+        "startChar": 26,
+        "endLine": 91,
+        "endChar": 113
+      },
+      "revId": "a0e807ef5b7d18e6a7eabf224d2fd30002726000",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
