@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac0d31b2_fcff5bd0",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 16
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-08-18T20:27:20Z",
+      "side": 1,
+      "message": "Change to `autoAcceptCalls`",
+      "range": {
+        "startLine": 103,
+        "startChar": 20,
+        "endLine": 103,
+        "endChar": 35
+      },
+      "revId": "87525c40f1dd8997985d7ee306473befa13f0c55",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "571c64c5_ec4a425b",
+        "filename": "src/app/systemtray.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-08-18T20:27:20Z",
+      "side": 1,
+      "message": "Should it be `acceptCall`?",
+      "range": {
+        "startLine": 224,
+        "startChar": 72,
+        "endLine": 224,
+        "endChar": 82
+      },
+      "revId": "87525c40f1dd8997985d7ee306473befa13f0c55",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
