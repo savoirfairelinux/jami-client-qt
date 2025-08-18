@@ -67,7 +67,7 @@ CallAdapter::CallAdapter(AppSettingsManager* settingsManager,
 #ifdef Q_OS_LINUX
     // notification responses (gnu/linux currently)
     connect(systemTray_,
-            &SystemTray::answerCallActivated,
+            &SystemTray::acceptCallActivated,
             this,
             [this](const QString& accountId, const QString& convUid) {
                 acceptACall(accountId, convUid);
