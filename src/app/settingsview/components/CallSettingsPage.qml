@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
@@ -90,7 +91,7 @@ SettingsPageBase {
             ToggleSwitch {
                 id: checkBoxAutoAnswer
 
-                labelText: JamiStrings.autoAnswerCalls
+                labelText: JamiStrings.autoAcceptCalls
                 checked: CurrentAccount.autoAnswer
                 onSwitchToggled: CurrentAccount.autoAnswer = checked
             }

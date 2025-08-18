@@ -100,7 +100,7 @@ Item {
     // AdvancedCallSettings
     property string allowCallsUnknownContacs: qsTr("Allow incoming calls from unknown contacts")
     property string rendezVous: qsTr("Convert your account into a rendezvous point")
-    property string autoAnswerCalls: qsTr("Automatically accept calls")
+    property string autoAcceptCalls: qsTr("Automatically accept calls")
     property string enableCustomRingtone: qsTr("Enable custom ringtone")
     property string selectCustomRingtone: qsTr("Select custom ringtone")
     property string selectNewRingtone: qsTr("Select a new ringtone")
