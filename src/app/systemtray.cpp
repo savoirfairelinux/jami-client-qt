@@ -53,10 +53,10 @@ refusePending(NotifyNotification*, char* action, SystemTray* nm)
 }
 
 void
-answerCall(NotifyNotification*, char* action, SystemTray* nm)
+acceptCall(NotifyNotification*, char* action, SystemTray* nm)
 {
     QStringList sl = QString(action).split(";");
-    Q_EMIT nm->answerCallActivated(sl.at(1), sl.at(2));
+    Q_EMIT nm->acceptCallActivated(sl.at(1), sl.at(2));
 }
 
 void
@@ -221,7 +221,7 @@ SystemTray::showNotification(const QString& id,
 
     if (pimpl_->actions) {
         if (type == NotificationType::CALL) {
-            pimpl_->addNotificationAction(n, tr("Accept call"), (void*) answerCall);
+            pimpl_->addNotificationAction(n, tr("Accept call"), (void*) acceptCall);
             pimpl_->addNotificationAction(n, tr("Decline call"), (void*) declineCall);
         } else {
             pimpl_->addNotificationAction(n, tr("Open conversation"), (void*) openConversation);
