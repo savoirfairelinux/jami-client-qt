@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "557450ab_15e1192f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-08-19T14:42:56Z",
+      "side": 1,
+      "message": "Build fails, need to rename signal `answerCallActivated` to `acceptCallActivated` in line 52 of systemtray header file `systemtray.h`",
+      "revId": "511ddf4f1a5e4021bf4e0a2dd66722e9c3ed4176",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
