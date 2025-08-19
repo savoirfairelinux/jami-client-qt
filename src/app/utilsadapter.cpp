@@ -826,8 +826,9 @@ UtilsAdapter::isRTL()
         "dv",    // Dhivehi (Maldivian)
         "yi",    // Yiddish
         "am",    // Amharic
-        "ti",    // Tigrinya
-        "kk"     // Kazakh (in Arabic script)
+        "ti"     // Tigrinya
+        // Since we haven't requested the Arabic script of Kazakh in Transifex, we cannot include it here.
+        // However we have the Cyrillic script of Kazakh which is LTR (code: "kk").
     };
     return rtlLanguages.contains(pref);
 }
