@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a31a6e0c_10ce7560",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 35
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-08-19T14:17:23Z",
+      "side": 1,
+      "message": "There are now two subsections labelled \"Call\", one under Account and another under General. This may cause some confusion, so I suggest reverting it back to \"Call recording\" for specificity since all the settings under the section concern recording calls.",
+      "revId": "239e8e81d591f2e69dd5e9df02b699bc9c67c902",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50ee02f6_8741d76b",
+        "filename": "src/app/settingsview/components/ConversationCallSettingsPage.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-08-19T14:17:23Z",
+      "side": 1,
+      "message": "String doesn\u0027t seem to exist in `JamiStrings`. Did you mean `callRecording`?",
+      "range": {
+        "startLine": 71,
+        "startChar": 34,
+        "endLine": 71,
+        "endChar": 43
+      },
+      "revId": "239e8e81d591f2e69dd5e9df02b699bc9c67c902",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6956f40_f136614b",
+        "filename": "src/app/settingsview/components/ConversationCallSettingsPage.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-08-19T14:17:23Z",
+      "side": 1,
+      "message": "ReferenceError, need to add `import net.jami.Enums 1.1`",
+      "range": {
+        "startLine": 317,
+        "startChar": 50,
+        "endLine": 317,
+        "endChar": 59
+      },
+      "revId": "239e8e81d591f2e69dd5e9df02b699bc9c67c902",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
