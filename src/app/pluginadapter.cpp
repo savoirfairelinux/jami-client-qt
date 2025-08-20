@@ -215,7 +215,7 @@ PluginAdapter::checkVersionStatus(const QString& pluginId)
 QString
 PluginAdapter::baseUrl() const
 {
-    return settingsManager_->getValue("PluginStoreEndpoint").toString();
+    return settingsManager_->getValue(Settings::Key::PluginStoreEndpoint).toString();
 }
 
 QString

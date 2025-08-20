@@ -104,7 +104,7 @@ public:
             return;
         }
         parent_.sendGetRequest(
-            QUrl(settingsManager_->getValue("PluginStoreEndpoint").toString() + "/versions/"
+            QUrl(settingsManager_->getValue(Settings::Key::PluginStoreEndpoint).toString() + "/versions/"
                  + plugin.id + "?arch=" + lrcInstance_->pluginModel().getPlatformInfo()["os"]),
             [this, plugin](const QByteArray& data) {
                 // `data` represents the version in this case.
@@ -122,7 +122,7 @@ public:
     void installRemotePlugin(const QString& pluginId)
     {
         parent_.downloadFile(
-            QUrl(settingsManager_->getValue("PluginStoreEndpoint").toString() + "/download/"
+            QUrl(settingsManager_->getValue(Settings::Key::PluginStoreEndpoint).toString() + "/download/"
                  + lrcInstance_->pluginModel().getPlatformInfo()["os"] + "/" + pluginId),
             pluginId,
             0,

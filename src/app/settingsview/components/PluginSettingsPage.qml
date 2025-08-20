@@ -70,15 +70,16 @@ SettingsPageBase {
                     }
                 }
             }
+            InstallManuallyView {
+                Layout.fillWidth: true
+                spacing: 10
+            }
+
             // View of available plugins in the store
             PluginStoreListView {
                 id: pluginRemoteList
                 Layout.alignment: Qt.AlignBottom | Qt.AlignHCenter
                 Layout.fillWidth: true
-            }
-            InstallManuallyView {
-                Layout.fillWidth: true
-                spacing: 10
             }
         }
     }
