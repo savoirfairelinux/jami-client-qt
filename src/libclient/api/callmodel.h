@@ -262,7 +262,7 @@ public:
 
     /**
      * @param  callId
-     * @return a human readable call duration (M:ss)
+     * @return a human-readable call duration (e.g. "mm:ss", "hh:mm:ss", or "Exceeded 100 hours" if over 99 hours)
      */
     QString getFormattedCallDuration(const QString& callId) const;
 
