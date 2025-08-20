@@ -305,23 +305,20 @@ getContactInteractionString(const QString& authorUri, const ContactAction& actio
 static inline QString
 getFormattedCallDuration(const std::time_t duration)
 {
-    if (duration == 0)
+    if (duration <= 0)
         return {};
-    std::string formattedString;
-    auto minutes = duration / 60;
-    auto seconds = duration % 60;
-    if (minutes > 0) {
-        formattedString += std::to_string(minutes) + ":";
-        if (formattedString.length() == 2) {
-            formattedString = "0" + formattedString;
-        }
+
+    int hours = duration / 3600;
+    int minutes = (duration % 3600) / 60;
+    int seconds = duration % 60;
+    QTime formattedCallDuration(hours, minutes, seconds);
+    if (hours >= 100) {
+        return QObject::tr("Exceeded 100 hours");
+    } else if (hours > 0) {
+        return formattedCallDuration.toString("hh:mm:ss");
     } else {
-        formattedString += "00:";
+        return formattedCallDuration.toString("mm:ss");
     }
-    if (seconds < 10)
-        formattedString += "0";
-    formattedString += std::to_string(seconds);
-    return QString::fromStdString(formattedString);
 }
 
 /**
