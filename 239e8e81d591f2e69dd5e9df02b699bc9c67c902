@@ -41,6 +41,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7cfba75_aeabaee1",
+        "filename": "src/app/settingsview/components/ConversationCallSettingsPage.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-08-20T10:03:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50ee02f6_8741d76b",
+      "range": {
+        "startLine": 71,
+        "startChar": 34,
+        "endLine": 71,
+        "endChar": 43
+      },
+      "revId": "239e8e81d591f2e69dd5e9df02b699bc9c67c902",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b6956f40_f136614b",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-08-19T14:17:23Z",
       "side": 1,
       "message": "ReferenceError, need to add `import net.jami.Enums 1.1`",
+      "range": {
+        "startLine": 317,
+        "startChar": 50,
+        "endLine": 317,
+        "endChar": 59
+      },
+      "revId": "239e8e81d591f2e69dd5e9df02b699bc9c67c902",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88912181_496aa2e4",
+        "filename": "src/app/settingsview/components/ConversationCallSettingsPage.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-08-20T10:03:48Z",
+      "side": 1,
+      "message": "Thank you for the exact text to add.\n\nDone",
+      "parentUuid": "b6956f40_f136614b",
       "range": {
         "startLine": 317,
         "startChar": 50,
