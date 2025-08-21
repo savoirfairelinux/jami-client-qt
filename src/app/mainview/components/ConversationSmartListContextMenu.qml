@@ -73,28 +73,38 @@ ContextMenuAutoLoader {
             onClicked: MessagesAdapter.clearConversationHistory(responsibleAccountId, responsibleConvUid)
         },
         GeneralMenuItem {
-            id: removeContact
+            id: removeConversation
 
             canTrigger: !hasCall && !root.isBanned
-            itemName: {
-                if (mode !== Conversation.Mode.NON_SWARM)
-                    return JamiStrings.removeConversation;
-                else
-                    return JamiStrings.removeContact;
-            }
+            itemName: JamiStrings.removeConversation
             iconSource: JamiResources.ic_hangup_participant_24dp_svg
             onClicked: {
                 var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
                         "title": JamiStrings.confirmAction,
-                        "textLabel": JamiStrings.confirmLeaveConversation,
+                        "textLabel": mode === Conversation.Mode.ONE_TO_ONE ? JamiStrings.confirmRemoveOneToOneConversation : JamiStrings.confirmLeaveConversation,
                         "confirmLabel": JamiStrings.optionLeave
                     });
                 dlg.accepted.connect(function () {
-                        if (mode !== Conversation.Mode.NON_SWARM)
-                            MessagesAdapter.removeConversation(responsibleConvUid);
-                        else
-                            MessagesAdapter.removeContact(responsibleConvUid);
+                        MessagesAdapter.removeConversation(responsibleConvUid, true);
+                });
+            }
+        },
+
+        GeneralMenuItem {
+            id: removeContact
+
+            canTrigger: !hasCall && !root.isBanned && mode === Conversation.Mode.ONE_TO_ONE
+            itemName: JamiStrings.removeContact
+            iconSource: JamiResources.kick_member_svg
+            onClicked: {
+                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
+                        "title": JamiStrings.confirmAction,
+                        "textLabel": JamiStrings.confirmRemoveContact,
+                        "confirmLabel": JamiStrings.optionRemove
                     });
+                dlg.accepted.connect(function () {
+                        MessagesAdapter.removeContact(responsibleConvUid);
+                });
             }
         },
         GeneralMenuItem {
@@ -130,7 +140,7 @@ ContextMenuAutoLoader {
             onClicked: {
                 var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
                         "title": JamiStrings.confirmAction,
-                        "textLabel": JamiStrings.confirmBlockConversation,
+                        "textLabel": JamiStrings.confirmBlockContact,
                         "confirmLabel": JamiStrings.optionBlock
                     });
                 dlg.accepted.connect(function () {

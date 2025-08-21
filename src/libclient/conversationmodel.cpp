@@ -819,7 +819,7 @@ ConversationModel::selectConversation(const QString& uid) const
 }
 
 void
-ConversationModel::removeConversation(const QString& uid, bool banned)
+ConversationModel::removeConversation(const QString& uid, bool banned, bool keepContact)
 {
     // Get conversation
     auto conversationIdx = pimpl_->indexOf(uid);
@@ -837,7 +837,7 @@ ConversationModel::removeConversation(const QString& uid, bool banned)
                     "participant.";
         return;
     }
-    if (conversation.isSwarm() && !banned && !conversation.isCoreDialog()) {
+    if (conversation.isSwarm() && !banned && (!conversation.isCoreDialog() || keepContact)) {
         if (conversation.isRequest) {
             ConfigurationManager::instance().declineConversationRequest(owner.id, uid);
         } else {
