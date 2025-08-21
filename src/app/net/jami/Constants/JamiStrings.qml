@@ -283,8 +283,10 @@ Item {
     property string deleteConversation: qsTr("Delete conversation")
     property string confirmAction: qsTr("Confirm action")
     property string removeConversation: qsTr("Leave conversation")
+    property string restartConversation: qsTr("Restart conversation")
     property string confirmLeaveConversation: qsTr("Do you want to leave this conversation?")
     property string confirmBlockConversation: qsTr("Do you want to block this conversation?")
+    property string confirmRestartConversation: qsTr("Do you want to restart this conversation? The existing history will be removed and a new conversation will be started.")
     property string removeContact: qsTr("Remove contact")
     property string blockContact: qsTr("Block contact")
     property string convDetails: qsTr("Conversation details")
@@ -734,6 +736,7 @@ Item {
     property string optionBlock: qsTr("Block")
     property string optionUnblock: qsTr("Unblock")
     property string optionReset: qsTr("Reset")
+    property string optionRestart: qsTr("Restart")
     property string optionUninstall: qsTr("Uninstall")
 
     // Conference moderation

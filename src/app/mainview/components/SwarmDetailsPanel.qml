@@ -326,6 +326,42 @@ Rectangle {
                     SwarmDetailsItem {
                         Layout.fillWidth: true
                         Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
+                        visible: CurrentConversation.isCoreDialog
+
+                        Text {
+                            anchors.left: parent.left
+                            anchors.right: parent.right
+                            anchors.top: parent.top
+                            anchors.margins: JamiTheme.preferredMarginSize
+                            text: JamiStrings.restartConversation
+                            font.pixelSize: JamiTheme.settingsDescriptionPixelSize
+                            font.kerning: true
+                            elide: Text.ElideRight
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+
+                            color: JamiTheme.textColor
+                        }
+
+                        TapHandler {
+                            target: parent
+                            enabled: parent.visible
+                            onTapped: function onTapped(eventPoint) {
+                                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
+                                        "title": JamiStrings.confirmAction,
+                                        "textLabel": JamiStrings.confirmRestartConversation,
+                                        "confirmLabel": JamiStrings.optionRestart
+                                    });
+                                dlg.accepted.connect(function () {
+                                        MessagesAdapter.removeConversation(LRCInstance.selectedConvUid, true);
+                                    });
+                            }
+                        }
+                    }
+
+                    SwarmDetailsItem {
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
                         visible: CurrentAccount.type !== Profile.Type.SIP // TODO for SIP save in VCard
 
                         RowLayout {
