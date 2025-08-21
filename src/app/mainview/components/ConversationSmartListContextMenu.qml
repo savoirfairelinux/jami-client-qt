@@ -97,6 +97,24 @@ ContextMenuAutoLoader {
                     });
             }
         },
+
+        GeneralMenuItem {
+            id: restartConversation
+
+            canTrigger: !hasCall && !root.isBanned && mode === Conversation.Mode.ONE_TO_ONE
+            itemName: JamiStrings.restartConversation
+            iconSource: JamiResources.shift_enter_black_24dp_svg
+            onClicked: {
+                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
+                        "title": JamiStrings.confirmAction,
+                        "textLabel": JamiStrings.confirmRestartConversation,
+                        "confirmLabel": JamiStrings.optionRestart
+                    });
+                dlg.accepted.connect(function () {
+                        MessagesAdapter.removeConversation(responsibleConvUid, true);
+                    });
+            }
+        },
         GeneralMenuItem {
             id: hangup
 

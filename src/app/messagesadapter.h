@@ -113,7 +113,7 @@ public:
     Q_INVOKABLE void loadMoreMessages();
     Q_INVOKABLE void connectConversationModel();
     Q_INVOKABLE void sendConversationRequest();
-    Q_INVOKABLE void removeConversation(const QString& convUid);
+    Q_INVOKABLE void removeConversation(const QString& convUid, bool restart = false);
     Q_INVOKABLE void addConversationMember(const QString& convUid, const QString& participantUri);
     Q_INVOKABLE void removeConversationMember(const QString& convUid, const QString& participantUri);
     Q_INVOKABLE void removeContact(const QString& convUid, bool banContact = false);
