@@ -313,8 +313,44 @@ Rectangle {
                             onTapped: function onTapped(eventPoint) {
                                 var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
                                         "title": JamiStrings.confirmAction,
-                                        "textLabel": JamiStrings.confirmLeaveConversation,
+                                        "textLabel": CurrentConversation.isCoreDialog ? JamiStrings.confirmRemoveOneToOneConversation : JamiStrings.confirmLeaveConversation,
                                         "confirmLabel": JamiStrings.optionLeave
+                                    });
+                                dlg.accepted.connect(function () {
+                                        MessagesAdapter.removeConversation(LRCInstance.selectedConvUid, true);
+                                    });
+                            }
+                        }
+                    }
+
+                    SwarmDetailsItem {
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
+                        visible: CurrentConversation.isCoreDialog
+
+                        Text {
+                            anchors.left: parent.left
+                            anchors.right: parent.right
+                            anchors.top: parent.top
+                            anchors.margins: JamiTheme.preferredMarginSize
+                            text: JamiStrings.removeContact
+                            font.pixelSize: JamiTheme.settingsDescriptionPixelSize
+                            font.kerning: true
+                            elide: Text.ElideRight
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+
+                            color: JamiTheme.textColor
+                        }
+
+                        TapHandler {
+                            target: parent
+                            enabled: parent.visible
+                            onTapped: function onTapped(eventPoint) {
+                                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
+                                        "title": JamiStrings.confirmAction,
+                                        "textLabel": JamiStrings.confirmRemoveContact,
+                                        "confirmLabel": JamiStrings.optionRemove
                                     });
                                 dlg.accepted.connect(function () {
                                         MessagesAdapter.removeConversation(LRCInstance.selectedConvUid);
