@@ -480,10 +480,10 @@ MessagesAdapter::clearConversationHistory(const QString& accountId, const QStrin
 }
 
 void
-MessagesAdapter::removeConversation(const QString& convUid)
+MessagesAdapter::removeConversation(const QString& convUid, bool keepContact)
 {
     auto& accInfo = lrcInstance_->getCurrentAccountInfo();
-    accInfo.conversationModel->removeConversation(convUid);
+    accInfo.conversationModel->removeConversation(convUid, keepContact);
 }
 
 void
