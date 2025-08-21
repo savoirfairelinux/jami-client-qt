@@ -64,12 +64,22 @@ Label {
         spacing: 10
 
         Rectangle {
+            property int focusReason: Qt.TabFocusReason
+            focusPolicy: Qt.StrongFocus
+            activeFocusOnTab: true
+
             Layout.fillWidth: true
             Layout.fillHeight: true
             color: root.popup.opened ? Qt.lighter(JamiTheme.hoverColor, 1.0) : mouseArea.containsMouse ? Qt.lighter(JamiTheme.hoverColor, 1.0) : JamiTheme.backgroundColor
             radius: 5
             Layout.topMargin: 5
 
+            Keys.onPressed: function (event) {
+                if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
+                    togglePopup();
+                    event.accepted = true;
+                }
+            }
             MouseArea {
                 id: mouseArea
                 enabled: visible
