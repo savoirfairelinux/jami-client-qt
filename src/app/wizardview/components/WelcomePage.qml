@@ -367,7 +367,7 @@ Rectangle {
             id: btnAboutPopUp
 
             Layout.alignment: Qt.AlignBottom | Qt.AlignHCenter
-            Layout.bottomMargin: JamiTheme.preferredMarginSize
+            Layout.bottomMargin: JamiTheme.preferredMarginSize * 3
             Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
 
             preferredWidth: JamiTheme.aboutButtonPreferredWidth
