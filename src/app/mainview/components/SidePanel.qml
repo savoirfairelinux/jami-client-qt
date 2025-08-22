@@ -67,20 +67,20 @@ SidePanelBase {
             viewCoordinator.present("NewSwarmPage");
             const newSwarmPage = viewCoordinator.getView("NewSwarmPage");
             newSwarmPage.removeMember.connect((convId, member) => {
-                    removeMember(convId, member);
-                });
+                removeMember(convId, member);
+            });
             newSwarmPage.createSwarmClicked.connect((title, description, avatar) => {
-                    var uris = [];
-                    for (var idx in newSwarmPage.members) {
-                        var uri = newSwarmPage.members[idx].uri;
-                        if (uris.indexOf(uri) === -1) {
-                            uris.push(uri);
-                        }
+                var uris = [];
+                for (var idx in newSwarmPage.members) {
+                    var uri = newSwarmPage.members[idx].uri;
+                    if (uris.indexOf(uri) === -1) {
+                        uris.push(uri);
                     }
-                    let convuid = ConversationsAdapter.createSwarm(title, description, avatar, uris);
-                    viewCoordinator.dismiss("NewSwarmPage");
-                    LRCInstance.selectConversation(convuid);
-                });
+                }
+                let convuid = ConversationsAdapter.createSwarm(title, description, avatar, uris);
+                viewCoordinator.dismiss("NewSwarmPage");
+                LRCInstance.selectConversation(convuid);
+            });
         } else {
             viewCoordinator.dismiss("NewSwarmPage");
         }
@@ -115,9 +115,9 @@ SidePanelBase {
                 var uri = item.uris[idx];
                 if (!Array.from(newHm).find(r => r.uri === uri) && uri !== CurrentAccount.uri) {
                     newHm.push({
-                            "uri": uri,
-                            "convId": convId
-                        });
+                        "uri": uri,
+                        "convId": convId
+                    });
                     added = true;
                 }
             }
@@ -173,8 +173,7 @@ SidePanelBase {
 
         header: AccountComboBox {
             id: accountComboBox
-            QWKSetParentHitTestVisible {
-            }
+            QWKSetParentHitTestVisible {}
             Shortcut {
                 sequence: "Ctrl+J"
                 context: Qt.ApplicationShortcut
@@ -361,6 +360,18 @@ SidePanelBase {
 
                 visible: !swarmMemberSearchList.visible
 
+                activeFocusOnTab: true
+                // Need to delegate focus to appropiate list depending on visibility
+                onActiveFocusChanged: {
+                    if (searchResultsListView.visible) {
+                        console.warn("Forcing searchResultsListView");
+                        searchResultsListView.forceActiveFocus();
+                    } else if (conversationListView.visible) {
+                        console.warn("Forcing conversationListView");
+                        conversationListView.forceActiveFocus();
+                    }
+                }
+
                 ConversationListView {
                     id: searchResultsListView
 
@@ -383,13 +394,21 @@ SidePanelBase {
                             return parent.height;
                     }
 
+                    onActiveFocusChanged: {
+                        if (activeFocus === false && conversationListView.count > 0) {
+                            conversationListView.forceActiveFocus();
+                        }
+                    }
+
                     model: ConversationsAdapter.searchListProxyModel
 
                     delegate: SmartListItemDelegate {
-                        extraButtons.contentItem:  JamiPushButton {
+                        extraButtons.contentItem: JamiPushButton {
                             id: sendContactRequestButton
-                            QWKSetParentHitTestVisible {
-                            }
+                            QWKSetParentHitTestVisible {}
+
+                            // Keep disabled, otherwise focus trap occurs
+                            activeFocusOnTab: false
 
                             anchors.right: parent.right
                             anchors.verticalCenter: parent.verticalCenter
@@ -408,11 +427,19 @@ SidePanelBase {
                                 }
                             }
                         }
-                        extraButtons.height: sendContactRequestButton.height;
-                        extraButtons.width: sendContactRequestButton.width;
+                        extraButtons.height: sendContactRequestButton.height
+                        extraButtons.width: sendContactRequestButton.width
                     }
                     headerLabel: JamiStrings.searchResults
                     headerVisible: true
+
+                    Rectangle {
+                        anchors.fill: parent
+                        border.color: JamiTheme.tintedBlue
+                        border.width: 2
+                        color: JamiTheme.transparentColor
+                        visible: searchResultsListView.activeFocus
+                    }
                 }
 
                 ConversationListView {
@@ -424,6 +451,14 @@ SidePanelBase {
                     model: ConversationsAdapter.convListProxyModel
                     headerLabel: JamiStrings.conversations
                     headerVisible: count && searchResultsListView.visible
+
+                    Rectangle {
+                        anchors.fill: parent
+                        border.color: JamiTheme.tintedBlue
+                        border.width: 2
+                        color: JamiTheme.transparentColor
+                        visible: conversationListView.activeFocus
+                    }
                 }
             }
 

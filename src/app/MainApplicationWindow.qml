@@ -42,7 +42,7 @@ ApplicationWindow {
     onActiveFocusItemChanged: {
         focusOverlay.margin = -5;
         if (activeFocusItem) {
-            const goodReasonToChangeFocus = activeFocusItem instanceof ItemDelegate || ((activeFocusItem.focusReason === Qt.TabFocusReason) || (activeFocusItem.focusReason === Qt.BacktabFocusReason));
+            const goodReasonToChangeFocus = (activeFocusItem.focusReason === Qt.TabFocusReason) || (activeFocusItem.focusReason === Qt.BacktabFocusReason) || (activeFocusItem.focusReason === Qt.OtherFocusReason);
             if (goodReasonToChangeFocus) {
                 if (activeFocusItem.focusOnChild) {
                     focusOverlay.parent = activeFocusItem.parent;
@@ -73,8 +73,8 @@ ApplicationWindow {
     Rectangle {
         id: focusOverlay
         objectName: "focusOverlay"
-        property real margin: -5
-        z: -2
+        property real margin: 0
+        z: 1
         anchors.fill: parent
         anchors.margins: margin
         visible: true
@@ -90,11 +90,9 @@ ApplicationWindow {
         appContainer: fullscreenContainer
     }
     // Used to manage dynamic view loading and unloading.
-    property ViewManager viewManager: ViewManager {
-    }
+    property ViewManager viewManager: ViewManager {}
     // Used to manage the view stack and the current view.
-    property ViewCoordinator viewCoordinator: ViewCoordinator {
-    }
+    property ViewCoordinator viewCoordinator: ViewCoordinator {}
 
     // Used to prevent the window from being visible until the
     // window geometry has been restored and the view stack has
@@ -215,19 +213,19 @@ ApplicationWindow {
         if (crashedLastRun) {
             // A crash was detected during the last session. We need to inform the user and offer to send a crash report.
             var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
-                    "title": JamiStrings.crashReportTitle,
-                    "textLabel": JamiStrings.crashReportMessage + "\n\n" + JamiStrings.crashReportMessageExtra,
-                    "confirmLabel": JamiStrings.send,
-                    "rejectLabel": JamiStrings.dontSend,
-                    "textHAlign": Text.AlignLeft,
-                    "textMaxWidth": 400
-                });
+                "title": JamiStrings.crashReportTitle,
+                "textLabel": JamiStrings.crashReportMessage + "\n\n" + JamiStrings.crashReportMessageExtra,
+                "confirmLabel": JamiStrings.send,
+                "rejectLabel": JamiStrings.dontSend,
+                "textHAlign": Text.AlignLeft,
+                "textMaxWidth": 400
+            });
             dlg.accepted.connect(function () {
-                    crashReporter.uploadLastReport();
-                });
+                crashReporter.uploadLastReport();
+            });
             dlg.rejected.connect(function () {
-                    crashReporter.clearReports();
-                });
+                crashReporter.clearReports();
+            });
         }
     }
 
@@ -350,26 +348,26 @@ ApplicationWindow {
 
     function presentUpdateInfoDialog(infoText) {
         return viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
-                "title": JamiStrings.updateDialogTitle,
-                "infoText": infoText,
-                "buttonTitles": [JamiStrings.optionOk],
-                "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
-                "buttonCallBacks": [],
-                "buttonRoles": [DialogButtonBox.AcceptRole]
-            });
+            "title": JamiStrings.updateDialogTitle,
+            "infoText": infoText,
+            "buttonTitles": [JamiStrings.optionOk],
+            "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
+            "buttonCallBacks": [],
+            "buttonRoles": [DialogButtonBox.AcceptRole]
+        });
     }
 
     function presentUpdateConfirmInstallDialog(switchToBeta = false) {
         return viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
-                "title": JamiStrings.updateDialogTitle,
-                "infoText": switchToBeta ? JamiStrings.confirmBeta : JamiStrings.updateFound,
-                "buttonTitles": [JamiStrings.optionUpgrade, JamiStrings.optionLater],
-                "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue, SimpleMessageDialog.ButtonStyle.TintedBlue],
-                "buttonCallBacks": [function () {
-                        AppVersionManager.applyUpdates(switchToBeta);
-                    }],
-                "buttonRoles": [DialogButtonBox.AcceptRole, DialogButtonBox.RejectRole]
-            });
+            "title": JamiStrings.updateDialogTitle,
+            "infoText": switchToBeta ? JamiStrings.confirmBeta : JamiStrings.updateFound,
+            "buttonTitles": [JamiStrings.optionUpgrade, JamiStrings.optionLater],
+            "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue, SimpleMessageDialog.ButtonStyle.TintedBlue],
+            "buttonCallBacks": [function () {
+                    AppVersionManager.applyUpdates(switchToBeta);
+                }],
+            "buttonRoles": [DialogButtonBox.AcceptRole, DialogButtonBox.RejectRole]
+        });
     }
 
     function translateErrorToString(error) {
@@ -395,8 +393,8 @@ ApplicationWindow {
 
         function onDownloadStarted() {
             viewCoordinator.presentDialog(appWindow, "settingsview/components/UpdateDownloadDialog.qml", {
-                    "title": JamiStrings.updateDialogTitle
-                });
+                "title": JamiStrings.updateDialogTitle
+            });
         }
 
         function onUpdateCheckReplyReceived(ok, found) {

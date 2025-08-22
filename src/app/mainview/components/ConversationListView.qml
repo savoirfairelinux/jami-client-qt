@@ -27,13 +27,19 @@ JamiListView {
     required property string headerLabel
     required property bool headerVisible
 
-    delegate: SmartListItemDelegate {
-    }
+    delegate: SmartListItemDelegate {}
     currentIndex: model.currentFilteredRow
 
     // Disable highlight on current item; we do this ourselves with the
     // SmartListItemDelegate.
     highlightFollowsCurrentItem: false
+
+    // Allows scrolling to follow currently focused item
+    onCurrentIndexChanged: {
+        if (currentIndex >= 0 && currentIndex < count) {
+            positionViewAtIndex(currentIndex, ListView.Contain);
+        }
+    }
 
     headerPositioning: ListView.OverlayHeader
     header: Rectangle {
@@ -68,7 +74,7 @@ JamiListView {
 
     onCountChanged: positionViewAtBeginning()
 
-    Behavior on opacity  {
+    Behavior on opacity {
         NumberAnimation {
             easing.type: Easing.OutCubic
             duration: 2 * JamiTheme.smartListTransitionDuration

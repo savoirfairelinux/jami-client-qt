@@ -36,7 +36,7 @@ ItemDelegate {
     property string accountId: ""
     property string convId: ""
 
-    highlighted: ListView.isCurrentItem
+    highlighted: ListView.isCurrentItem || activeFocus
     property bool interactive: true
     property bool isTemporary: false
     property bool isBanned: false
@@ -88,7 +88,6 @@ ItemDelegate {
 
             Layout.preferredWidth: JamiTheme.smartListAvatarSize
             Layout.preferredHeight: JamiTheme.smartListAvatarSize
-
 
             Rectangle {
                 id: overlayHighlighted
