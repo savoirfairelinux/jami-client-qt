@@ -351,7 +351,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="122"/>
         <source>Enable read receipts</source>
-        <translation>Habilita la confirmació de lectura</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="126"/>
@@ -692,7 +692,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="280"/>
         <source>Language</source>
-        <translation>Idioma</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="285"/>
@@ -753,7 +753,7 @@
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="430"/>
         <source>A chosen username can help to be found more easily on Jami.
 If a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.</source>
-        <translation>Un nom d&apos;usuari escollit pot ajudar a trobar-lo més fàcilment en Jami. Si no es trien un nom d&apos;usuari, un identificador de 40 caràcters generat aleatòriament serà assignat a aquest compte com a nom d&apos;usuari. És més difícil de trobar i arribar amb aquest identificador.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="447"/>
@@ -798,7 +798,7 @@ If a username is not chosen, a randomly generated 40-character identifier will b
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="511"/>
         <source>Enable typing indicators</source>
-        <translation>Habilita els indicadors de tecleig</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="535"/>
@@ -4424,7 +4424,7 @@ Please try again.</source>
     <message>
         <location filename="../src/app/spellcheckdictionarymanager.cpp" line="56"/>
         <source>None</source>
-        <translation>Ningú</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

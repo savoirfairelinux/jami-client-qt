@@ -351,7 +351,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="122"/>
         <source>Enable read receipts</source>
-        <translation>Activar notificación de lectura</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="126"/>
@@ -753,7 +753,7 @@
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="430"/>
         <source>A chosen username can help to be found more easily on Jami.
 If a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.</source>
-        <translation>Un nome de usuario elixido pode axudar a ser máis fácil de atopar en Jami. Se non se elixe un nome de usuario, un identificador de 40 caracteres xerado aleatoriamente será asignado a esta conta como nome de usuario. É máis difícil de atopar e chegar con este identificador.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="447"/>

@@ -351,7 +351,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="122"/>
         <source>Enable read receipts</source>
-        <translation>אפשרת קבלות קריאה</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="126"/>
@@ -753,7 +753,7 @@
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="430"/>
         <source>A chosen username can help to be found more easily on Jami.
 If a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.</source>
-        <translation>שם משתמש שנבחר יכול לעזור למצוא אותו בקלות רבה יותר ב- Jami. אם שם משתמש לא נבחר, מזהה של 40 אותיות ייצור באופן אקראי ייחלק לחשבון הזה כשם משתמש. קשה יותר למצוא ולהגיע אליו עם זה מזהה.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="447"/>

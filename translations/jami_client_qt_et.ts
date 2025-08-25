@@ -351,7 +351,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="122"/>
         <source>Enable read receipts</source>
-        <translation>Võta lugemisteatised kasutusele</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="126"/>
@@ -562,7 +562,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="192"/>
         <source>Bootstrap</source>
-        <translation> Algata esmane tuvastus</translation>
+        <translation> Server esmaseks tuvastuseks</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="195"/>
@@ -753,8 +753,7 @@
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="430"/>
         <source>A chosen username can help to be found more easily on Jami.
 If a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.</source>
-        <translation>Kasutajanime alusel on sind Jami võrgus lihtsam leida
-Kui sa kasutajanime ei lisa, siis lisame sellele kasutajakontole juhuslikult loodud 40-märgilise tunnuse ning see asendab kasutajanime, kuid selle alusel on sinu tuvastamine ja otsimine keerulisem.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="447"/>
@@ -799,7 +798,7 @@ Kui sa kasutajanime ei lisa, siis lisame sellele kasutajakontole juhuslikult loo
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="511"/>
         <source>Enable typing indicators</source>
-        <translation>Luba trükkimisteatiste kuvamine</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="535"/>
@@ -994,7 +993,7 @@ Kui sa kasutajanime ei lisa, siis lisame sellele kasutajakontole juhuslikult loo
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="917"/>
         <source>To install new dictionaries, use the system package manager.</source>
-        <translation>Kasuta süsteemi paketihaldust uute sõnastike paigaldamiseks.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="919"/>
@@ -1004,7 +1003,7 @@ Kui sa kasutajanime ei lisa, siis lisame sellele kasutajakontole juhuslikult loo
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="920"/>
         <source>Refresh installed dictionaries</source>
-        <translation>Uuenda paigaldatud sõnastikke</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="899"/>
@@ -2122,8 +2121,7 @@ ootame kasutaja %1 ühenduse loomist.</translation>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="429"/>
         <source>Your profile is only shared with your contacts.
 Your picture and your display name can be changed at all time in the settings of your account.</source>
-        <translation>Sinu profiili jagatakse vaid sinu kontaktidega.
-Oma pilti ja hüüdnime saad igal ajal muuta oma kasutajakonto seadistustes.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="431"/>
@@ -3199,7 +3197,7 @@ Kui see on tehtud, siis skaneeri QR-koodi.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="609"/>
         <source>Connecting to your new device…</source>
-        <translation>Loome ühendust sinu uue seadmega…</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="610"/>
@@ -4443,7 +4441,7 @@ Palun proovi uuesti.</translation>
     <message>
         <location filename="../src/app/spellcheckdictionarymanager.cpp" line="56"/>
         <source>None</source>
-        <translation>Mitte ühtegi</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

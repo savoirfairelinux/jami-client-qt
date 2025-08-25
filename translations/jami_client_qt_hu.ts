@@ -753,7 +753,7 @@
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="430"/>
         <source>A chosen username can help to be found more easily on Jami.
 If a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.</source>
-        <translation>Egy kiválasztott felhasználónév segíthet abban, hogy könnyebben megtaláljuk a Jami oldalán. Ha nem választ felhasználónevet, egy véletlenszerűen generált 40 karakteres azonosító lesz hozzárendelve ehhez a fiókhoz felhasználónévként. Ezzel az azonosítóval nehezebb megtalálni és elérni.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="447"/>
@@ -1003,7 +1003,7 @@ If a username is not chosen, a randomly generated 40-character identifier will b
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="920"/>
         <source>Refresh installed dictionaries</source>
-        <translation>Telepített szótárak frissítése</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="899"/>
@@ -1314,7 +1314,7 @@ csatlakozásra a beszélgetés összehangolásához…</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="908"/>
         <source>Connection</source>
-        <translation>Csatlakozás</translation>
+        <translation>Kapcsolat</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="909"/>
@@ -3197,7 +3197,7 @@ Ha készen áll, olvassa be a QR-kódot.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="609"/>
         <source>Connecting to your new device…</source>
-        <translation>Kapcsolódás az új eszközhöz…</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="610"/>
@@ -3216,7 +3216,7 @@ Kérjük, erősítse meg az importálást az új eszközön.</translation>
         <source>New device found at address below. Is that you?
 Clicking on confirm will continue transfering account.</source>
         <translation>Új eszköz található a következő címen. Ön az?
-A fiókexportálási művelet folytatásához kattintson a Megerősítés gombra.</translation>
+A fiók exportálási művelet folytatásához kattintson a Megerősítés gombra.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="616"/>
@@ -4183,7 +4183,7 @@ A fiókexportálási művelet folytatásához kattintson a Megerősítés gombra
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="101"/>
         <source>Temporarily Unavailable</source>
-        <translation>Ideiglenesen nem elérhető</translation>
+        <translation>Átmenetileg nem érhető el</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="102"/>
@@ -4259,7 +4259,7 @@ A fiókexportálási művelet folytatásához kattintson a Megerősítés gombra
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="117"/>
         <source>Service Unavailable</source>
-        <translation>A szolgáltatás nem elérhető</translation>
+        <translation>A szolgáltatás nem érhető el</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="118"/>

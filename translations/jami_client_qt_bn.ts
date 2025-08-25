@@ -351,7 +351,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="122"/>
         <source>Enable read receipts</source>
-        <translation>পাঠ প্রাপ্তি সক্ষম করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="126"/>
@@ -753,7 +753,7 @@
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="430"/>
         <source>A chosen username can help to be found more easily on Jami.
 If a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.</source>
-        <translation>একটি নির্বাচিত ব্যবহারকারীর নাম জামিতে আরও সহজেই খুঁজে পেতে সহায়তা করতে পারে। যদি কোনও ব্যবহারকারীর নাম নির্বাচিত না হয় তবে এই অ্যাকাউন্টে ব্যবহারকারীর নাম হিসাবে একটি র্যান্ডম-উত্পন্ন 40-অক্ষরের সনাক্তকারী নির্ধারিত হবে। এটি খুঁজে পাওয়া এবং এই সনাক্তকারী দিয়ে পৌঁছানো আরও কঠিন।</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="447"/>
@@ -798,7 +798,7 @@ If a username is not chosen, a randomly generated 40-character identifier will b
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="511"/>
         <source>Enable typing indicators</source>
-        <translation>টাইপিং নির্দেশক সক্ষম করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="535"/>
@@ -4424,7 +4424,7 @@ Please try again.</source>
     <message>
         <location filename="../src/app/spellcheckdictionarymanager.cpp" line="56"/>
         <source>None</source>
-        <translation>কোনটিই</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

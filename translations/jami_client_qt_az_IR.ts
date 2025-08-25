@@ -351,7 +351,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="122"/>
         <source>Enable read receipts</source>
-        <translation>اوخونما رسیدلرینی فعال ائتمک</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="126"/>
@@ -753,7 +753,7 @@
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="430"/>
         <source>A chosen username can help to be found more easily on Jami.
 If a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.</source>
-        <translation>آدی یازیچی (اینگیلیسجه: Jami) آمریکالی یازیچی و یازیچی. ۲۰۱۵-جی ایلين نۆفوس ساییمی اساسیندا ۷۰ نفر و یاشاییش منطقه سی دیر. ۲۰۱۵-جی ایلين نۆفوس ساییمی اساسیندا ۷۰ نفر دیر. ۲۰۱۵-جی ایلين نۆفوس ساییمی اساسیندا ۷۱۴ نفر دیر. ۲۰۱۵-جی ایلين نۆفوس ساییمی اساسیندا ۷۱۴ نفر دیر.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="447"/>
@@ -798,7 +798,7 @@ If a username is not chosen, a randomly generated 40-character identifier will b
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="511"/>
         <source>Enable typing indicators</source>
-        <translation>تایپلاشما مؤشراتلرینی فعال ائتمک</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="535"/>
@@ -4424,7 +4424,7 @@ Please try again.</source>
     <message>
         <location filename="../src/app/spellcheckdictionarymanager.cpp" line="56"/>
         <source>None</source>
-        <translation>هچ کس</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -351,7 +351,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="122"/>
         <source>Enable read receipts</source>
-        <translation>Lesebestätigungen aktivieren</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="126"/>
@@ -692,7 +692,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="280"/>
         <source>Language</source>
-        <translation>Sprache</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="285"/>
@@ -753,8 +753,7 @@
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="430"/>
         <source>A chosen username can help to be found more easily on Jami.
 If a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.</source>
-        <translation>Ein gewählter Benutzername kann dabei helfen, auf Jami leichter gefunden zu werden.
-Wenn kein Benutzername gewählt wird, wird diesem Konto ein zufällig generierter 40-stelliger Identifikator als Benutzername zugewiesen. Mit diesem Identifikator ist es schwieriger gefunden und erreicht zu werden.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="447"/>
@@ -799,7 +798,7 @@ Wenn kein Benutzername gewählt wird, wird diesem Konto ein zufällig generierte
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="511"/>
         <source>Enable typing indicators</source>
-        <translation>aktiviere Tipp-Indikatoren</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="535"/>
@@ -994,7 +993,7 @@ Wenn kein Benutzername gewählt wird, wird diesem Konto ein zufällig generierte
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="917"/>
         <source>To install new dictionaries, use the system package manager.</source>
-        <translation>Verwenden Sie zum Installieren neuer Wörterbücher den Systempaketmanager.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="919"/>
@@ -1004,7 +1003,7 @@ Wenn kein Benutzername gewählt wird, wird diesem Konto ein zufällig generierte
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="920"/>
         <source>Refresh installed dictionaries</source>
-        <translation>Installierte Wörterbücher aktualisieren</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="899"/>
@@ -1709,7 +1708,7 @@ um eine Verbindung herzustellen, um die Unterhaltung zu synchronisieren ...</tra
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="123"/>
         <source>Send and receive receipts indicating that messages have been displayed.</source>
-        <translation>Senden und Empfangen von Bestätigungen, die angeben, dass Nachrichten angezeigt wurden.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="286"/>
@@ -2122,8 +2121,7 @@ um eine Verbindung herzustellen, um die Unterhaltung zu synchronisieren ...</tra
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="429"/>
         <source>Your profile is only shared with your contacts.
 Your picture and your display name can be changed at all time in the settings of your account.</source>
-        <translation>Ihr Profil wird nur mit Ihren Kontakten geteilt.
-Ihr Bild und Ihr Anzeigename können jederzeit in den Einstellungen Ihres Kontos geändert werden.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="431"/>
@@ -3199,7 +3197,7 @@ Scannen Sie anschließend den QR-Code.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="609"/>
         <source>Connecting to your new device…</source>
-        <translation>Verbindung zu Ihrem neuen Gerät wird hergestellt …</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="610"/>
@@ -3217,8 +3215,7 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="615"/>
         <source>New device found at address below. Is that you?
 Clicking on confirm will continue transfering account.</source>
-        <translation>Neues Gerät unter der unten stehenden Adresse gefunden. Sind Sie das?
-Durch Klicken auf „Bestätigen“ wird die Kontoübertragung fortgesetzt.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="616"/>
@@ -4443,7 +4440,7 @@ Bitte versuchen Sie es erneut.</translation>
     <message>
         <location filename="../src/app/spellcheckdictionarymanager.cpp" line="56"/>
         <source>None</source>
-        <translation>Keine</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

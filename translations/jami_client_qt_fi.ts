@@ -351,7 +351,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="122"/>
         <source>Enable read receipts</source>
-        <translation>Lukukuittaukset käyttöön</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="126"/>
@@ -753,8 +753,7 @@
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="430"/>
         <source>A chosen username can help to be found more easily on Jami.
 If a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.</source>
-        <translation>Valittu nimi auttaa muita löytämään sinut helpommin Jami&apos;sta.
-Jos nimeä ei valita, annetaan satunnaisesti luotu 40-merkkinen tunniste. Tunnisteella on vaikeampi löytää ja tavoittaa.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="447"/>
@@ -994,7 +993,7 @@ Jos nimeä ei valita, annetaan satunnaisesti luotu 40-merkkinen tunniste. Tunnis
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="917"/>
         <source>To install new dictionaries, use the system package manager.</source>
-        <translation>Asenna uusia sanakirjoja tietokoneesi ohjelmiston asennuksen avulla.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="919"/>
@@ -1004,7 +1003,7 @@ Jos nimeä ei valita, annetaan satunnaisesti luotu 40-merkkinen tunniste. Tunnis
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="920"/>
         <source>Refresh installed dictionaries</source>
-        <translation>Virkistä asennetut sanakirjat</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="899"/>
@@ -2038,12 +2037,12 @@ synkronoi keskustelun…</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="384"/>
         <source>Enter the Jami Account Management Server (JAMS) URL</source>
-        <translation>Anna Jami Account Management Server (JAMS) URL-osoite</translation>
+        <translation>Anna Jami Account Management Server (JAMS) osoite</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="385"/>
         <source>Jami Account Management Server URL</source>
-        <translation>Jami Account Management Server URL-osoite</translation>
+        <translation>Jami Account Management Server osoite</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="386"/>
@@ -2121,8 +2120,7 @@ synkronoi keskustelun…</translation>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="429"/>
         <source>Your profile is only shared with your contacts.
 Your picture and your display name can be changed at all time in the settings of your account.</source>
-        <translation>Profiili jaetaan vain sinun yhteystietojen kanssa.
-Voit muuttaa milloin tahansa sinun kuvaa ja lempinimeä tilisi asetuksissa.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="431"/>
@@ -2412,7 +2410,7 @@ Muiden jäsenten sijainnit voidaan edelleen vastaanottaa.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="419"/>
         <source>Proxy</source>
-        <translation>Välityspalvelin</translation>
+        <translation>Proxy</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="420"/>
@@ -3198,7 +3196,7 @@ Kun olet valmis, skannaa QR-koodi.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="609"/>
         <source>Connecting to your new device…</source>
-        <translation>Yhdistetään uuteen laitteeseen…</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="610"/>
@@ -4083,7 +4081,7 @@ Vahvista tilin siirto painamalla painiketta.</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="81"/>
         <source>Use Proxy</source>
-        <translation>Käytä välityspalvelinta</translation>
+        <translation>Käytä proxya</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="82"/>
@@ -4129,7 +4127,7 @@ Vahvista tilin siirto painamalla painiketta.</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="90"/>
         <source>Proxy Authentication Required</source>
-        <translation>Välityspalvelin todennus vaaditaan</translation>
+        <translation>Proxy todennus vaaditaan</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="91"/>
@@ -4441,7 +4439,7 @@ Yritä uudelleen.</translation>
     <message>
         <location filename="../src/app/spellcheckdictionarymanager.cpp" line="56"/>
         <source>None</source>
-        <translation>Ei mitään</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

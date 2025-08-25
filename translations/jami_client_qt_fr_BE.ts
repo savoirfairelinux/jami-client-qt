@@ -352,7 +352,7 @@ Veuillez entrer votre mot de passe.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="122"/>
         <source>Enable read receipts</source>
-        <translation>Activer les accusés de réception de messages lus</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="126"/>
@@ -754,8 +754,7 @@ Veuillez entrer votre mot de passe.</translation>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="430"/>
         <source>A chosen username can help to be found more easily on Jami.
 If a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.</source>
-        <translation>Un nom d&apos;utilisateur choisi permet d&apos;être trouvé plus facilement sur Jami.
-Si aucun nom d&apos;utilisateur n&apos;est choisi, un identifiant de 40 caractères généré de manière aléatoire sera attribué à ce compte en tant que nom d&apos;utilisateur. Il est plus difficile d&apos;être trouvé et joint avec cet identifiant.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="447"/>
@@ -997,7 +996,7 @@ Pour continuer, cliquez sur &quot;Mettre à jour&quot;.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="917"/>
         <source>To install new dictionaries, use the system package manager.</source>
-        <translation>Pour installer des nouveaux dictionnaires, veuillez utiliser votre gestionnaire de paquets.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="919"/>
@@ -1007,7 +1006,7 @@ Pour continuer, cliquez sur &quot;Mettre à jour&quot;.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="920"/>
         <source>Refresh installed dictionaries</source>
-        <translation>Rafraîchir la liste des dictionnaires installés.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="899"/>
@@ -2122,8 +2121,7 @@ to connect to synchronize the conversation…</source>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="429"/>
         <source>Your profile is only shared with your contacts.
 Your picture and your display name can be changed at all time in the settings of your account.</source>
-        <translation>Votre profil n&apos;est partagé qu&apos;avec vos contacts.
-Votre photo et votre pseudo peuvent être modifiés à tout moment dans les paramètres de votre compte.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="431"/>
@@ -3199,7 +3197,7 @@ Lorsque vous êtes prêt, scannez le code QR.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="609"/>
         <source>Connecting to your new device…</source>
-        <translation>Connexion à votre nouvel appareil ...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="610"/>
@@ -4442,7 +4440,7 @@ Veuillez réessayer.</translation>
     <message>
         <location filename="../src/app/spellcheckdictionarymanager.cpp" line="56"/>
         <source>None</source>
-        <translation>...</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

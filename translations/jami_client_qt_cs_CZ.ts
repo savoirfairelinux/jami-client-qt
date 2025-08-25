@@ -351,7 +351,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="122"/>
         <source>Enable read receipts</source>
-        <translation>Povolení potvrzení o přečtení</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="126"/>
@@ -692,7 +692,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="280"/>
         <source>Language</source>
-        <translation>Jazyk</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="285"/>
@@ -753,8 +753,7 @@
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="430"/>
         <source>A chosen username can help to be found more easily on Jami.
 If a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.</source>
-        <translation>Zvolené uživatelské jméno vám pomůže být na Jami snadněji nalezen.
-Pokud uživatelské jméno není zvoleno, bude tomuto účtu jako uživatelské jméno přiřazen náhodně vygenerovaný 40znakový identifikátor. S tímto identifikátorem je obtížnější být nalezen a dosažitelný.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="447"/>
@@ -799,7 +798,7 @@ Pokud uživatelské jméno není zvoleno, bude tomuto účtu jako uživatelské 
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="511"/>
         <source>Enable typing indicators</source>
-        <translation>Povolení indikátorů psaní</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="535"/>
@@ -2217,7 +2216,7 @@ Your picture and your display name can be changed at all time in the settings of
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="103"/>
         <source>Automatically answer incoming calls</source>
-        <translation>Automaticky přijímat příchozí hovory</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="107"/>
@@ -3188,7 +3187,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="609"/>
         <source>Connecting to your new device…</source>
-        <translation>Connecting to your new device…</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="610"/>
@@ -3206,8 +3205,7 @@ Potvrďte import na novém zařízení.</translation>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="615"/>
         <source>New device found at address below. Is that you?
 Clicking on confirm will continue transfering account.</source>
-        <translation>Nové zařízení nalezeno na níže uvedené adrese. Jste to vy?
-Kliknutím na potvrdit bude převod účtu pokračovat.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="616"/>
@@ -4432,7 +4430,7 @@ Zkuste to prosím znovu.</translation>
     <message>
         <location filename="../src/app/spellcheckdictionarymanager.cpp" line="56"/>
         <source>None</source>
-        <translation>Nic</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
