@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "30ea2bae_2ba6788b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-08-25T20:38:14Z",
+      "side": 1,
+      "message": "Should the nightly version of Jami be automatically released to Flathub as a beta release?\n\nhttps://git.jami.net/savoirfairelinux/jami-client-qt/-/wikis/Changelog",
+      "revId": "78ad891a0e681869dfca8bd38f56baf2fa8c82a5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f5d39665_a77ea80b",
         "filename": "extras/ci/flatpak/Jenkinsfile",
         "patchSetId": 18
