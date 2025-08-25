@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5d39665_a77ea80b",
+        "filename": "extras/ci/flatpak/Jenkinsfile",
+        "patchSetId": 18
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2025-08-25T19:31:34Z",
+      "side": 1,
+      "message": "use generic label like \"flatpak\"",
+      "range": {
+        "startLine": 21,
+        "startChar": 18,
+        "endLine": 21,
+        "endChar": 30
+      },
+      "revId": "78ad891a0e681869dfca8bd38f56baf2fa8c82a5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d3c3d65_98bd6c0d",
+        "filename": "extras/ci/flatpak/Jenkinsfile",
+        "patchSetId": 18
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2025-08-25T19:31:34Z",
+      "side": 1,
+      "message": "add to the CI machine manually",
+      "range": {
+        "startLine": 30,
+        "startChar": 8,
+        "endLine": 37,
+        "endChar": 9
+      },
+      "revId": "78ad891a0e681869dfca8bd38f56baf2fa8c82a5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91e2a464_e1552e26",
+        "filename": "extras/ci/flatpak/Jenkinsfile",
+        "patchSetId": 18
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2025-08-25T19:31:34Z",
+      "side": 1,
+      "message": "install on the machine",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 2
+      },
+      "revId": "78ad891a0e681869dfca8bd38f56baf2fa8c82a5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26b94ef9_e5abe4a0",
+        "filename": "extras/ci/flatpak/Jenkinsfile",
+        "patchSetId": 18
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2025-08-25T19:31:34Z",
+      "side": 1,
+      "message": "should not be needed, set as executable in the repo",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 2
+      },
+      "revId": "78ad891a0e681869dfca8bd38f56baf2fa8c82a5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
