@@ -224,6 +224,10 @@ else
     client_cmake_flags+=(-DBUILD_TESTING=Off)
 fi
 
+if [ "${ignore_system_libs}" = "true" ]; then
+    client_cmake_flags+=(-DIGNORE_SYSTEM_LIBS=On)
+fi
+
 if [ "${enable_crashreports}" = "true" ]; then
     client_cmake_flags+=(-DENABLE_CRASHREPORTS=ON)
 else
