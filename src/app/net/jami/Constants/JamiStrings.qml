@@ -368,6 +368,9 @@ Item {
     property string deletedMedia: qsTr("%1 deleted a media")
     property string returnToCall: qsTr("Return to call")
 
+    // Conversation ended banner
+    property string conversationEnded: qsTr("This conversation has ended.")
+
     // MessagesResearch
     property string jumpTo: qsTr("Jump to")
     property string messages: qsTr("Messages")
