@@ -45,6 +45,7 @@ Rectangle {
     color: JamiTheme.chatviewBgColor
 
     property var mapPositions: PositionManager.mapStatus
+    property bool isConversationEndedFlag: false
 
     // The purpose of this alias is to make the message bar
     // accessible to the EmojiPicker
@@ -85,6 +86,34 @@ Rectangle {
         }
     }
 
+    function isConversationEnded() {
+        if (!CurrentConversation.isSwarm)
+            return false;
+        var myRole = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri);
+        if (myRole === Member.Role.ADMIN)
+            return false;
+        var info = ConversationsAdapter.getConvInfoMap(CurrentConversation.id);
+        var peers = info && info.uris ? info.uris : [];
+        peers = peers.filter(function(u) { return u !== CurrentAccount.uri; });
+        if (peers.length === 0) {
+            return true;
+        }
+        for (var i = 0; i < peers.length; i++) {
+            var role = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, peers[i]);
+            if (!(role === Member.Role.LEFT || role === Member.Role.BANNED)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function updateConversationEndedFlag() {
+        var newVal = isConversationEnded();
+        if (isConversationEndedFlag !== newVal) {
+            isConversationEndedFlag = newVal;
+        }
+    }
+
     // Used externally to switch to a extras panel.
     function switchToPanel(panel, toggle = true) {
         extrasPanel.switchToPanel(panel, toggle);
@@ -103,15 +132,32 @@ Rectangle {
     }
 
     Connections {
+        target: LRCInstance
+        function onConversationUpdated(convId, accountId) {
+            if (convId === CurrentConversation.id) {
+                updateConversationEndedFlag();
+            }
+        }
+    }
+    Connections {
+        target: CurrentConversation.members
+        function onCountChanged() {
+            updateConversationEndedFlag();
+        }
+    }
+
+    Connections {
         target: CurrentConversation
         function onIdChanged() {
             MessagesAdapter.loadMoreMessages();
+            updateConversationEndedFlag();
         }
     }
 
     onVisibleChanged: {
         if (visible) {
             chatViewSplitView.resolvePanes(true);
+            Qt.callLater(updateConversationEndedFlag);
         }
     }
 
@@ -194,6 +240,29 @@ Rectangle {
             Layout.fillWidth: true
             Layout.preferredHeight: JamiTheme.qwkTitleBarHeight
             visible: false
+        }
+
+        Control {
+            id: conversationEndedBanner
+            Layout.fillWidth: true
+            visible: isConversationEndedFlag
+
+            padding: 10
+            background: Rectangle {
+                color: JamiTheme.infoRectangleColor
+                radius: 5
+            }
+            contentItem: RowLayout {
+                spacing: 8
+                Label {
+                    text: JamiStrings.conversationEnded
+                    color: JamiTheme.textColor
+                    wrapMode: Text.WordWrap
+                    horizontalAlignment: Text.AlignHCenter
+                    Layout.alignment: Qt.AlignHCenter
+                    Layout.fillWidth: true
+                }
+            }
         }
 
         NotificationArea {
