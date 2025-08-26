@@ -441,12 +441,22 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/qrcodescannermodel.h
   ${APP_SRC_DIR}/spellchecker.h)
 
+set(CONTRIB_DARWIN_FOLDER "apple-darwin${CMAKE_SYSTEM_VERSION}")  # default: fat
+if(APPLE)
+  list(LENGTH CMAKE_OSX_ARCHITECTURES ARCH_LEN)
+  if(ARCH_LEN EQUAL 1)
+    # single-arch -> use <arch>-apple-darwin<ver>
+    set(DARWIN_ARCH "${CMAKE_OSX_ARCHITECTURES}")
+    set(CONTRIB_DARWIN_FOLDER "${DARWIN_ARCH}-apple-darwin${CMAKE_SYSTEM_VERSION}")
+  endif()
+endif()
+
 # For libavutil/avframe.
 set(LIBJAMI_CONTRIB_DIR "${DAEMON_DIR}/contrib")
 find_path(AVUTIL_INCLUDE_DIR libavutil/avutil.h
   PATHS
   ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg
-  ${LIBJAMI_CONTRIB_DIR}/apple-darwin${CMAKE_SYSTEM_VERSION}/include/
+  ${LIBJAMI_CONTRIB_DIR}/${CONTRIB_DARWIN_FOLDER}/include/
   ${LIBJAMI_CONTRIB_DIR}/build/ffmpeg/Build/win32/x64/include)
 include_directories(${AVUTIL_INCLUDE_DIR})
 
@@ -934,7 +944,7 @@ else()
   target_sources(${PROJECT_NAME} PRIVATE ${resources})
   list(APPEND CLIENT_LIBS ${libs})
 
-  file(GLOB CONTRIB ${LIBJAMI_CONTRIB_DIR}/apple-darwin/lib/*.a)
+  file(GLOB CONTRIB ${LIBJAMI_CONTRIB_DIR}/${CONTRIB_DARWIN_FOLDER}/lib/*.a)
   list(APPEND CLIENT_LIBS ${CONTRIB})
 
   find_package(Iconv REQUIRED)
