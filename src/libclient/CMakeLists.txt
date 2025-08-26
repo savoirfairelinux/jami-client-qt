@@ -305,10 +305,21 @@ set(LIBCLIENT_HEADERS_API
 # For libavutil/avframe.
 set(LIBJAMI_CONTRIB_DIR
   "${DAEMON_DIR}/contrib")
+
+set(CONTRIB_DARWIN_FOLDER "apple-darwin${CMAKE_SYSTEM_VERSION}")  # default: fat
+if(APPLE)
+  list(LENGTH CMAKE_OSX_ARCHITECTURES ARCH_LEN)
+  if(ARCH_LEN EQUAL 1)
+    # single-arch -> use <arch>-apple-darwin<ver>
+    set(DARWIN_ARCH "${CMAKE_OSX_ARCHITECTURES}")
+    set(CONTRIB_DARWIN_FOLDER "${DARWIN_ARCH}-apple-darwin${CMAKE_SYSTEM_VERSION}")
+  endif()
+endif()
+
 find_path(AVUTIL_INCLUDE_DIR libavutil/avutil.h
   PATHS
   ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg
-  ${LIBJAMI_CONTRIB_DIR}/apple-darwin${CMAKE_SYSTEM_VERSION}/include/
+  ${LIBJAMI_CONTRIB_DIR}/${CONTRIB_DARWIN_FOLDER}/include/
   ${LIBJAMI_CONTRIB_DIR}/build/ffmpeg/Build/win32/x64/include)
 include_directories(${AVUTIL_INCLUDE_DIR})
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
