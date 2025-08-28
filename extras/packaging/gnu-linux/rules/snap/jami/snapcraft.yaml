@@ -129,8 +129,8 @@ slots:
     name: cx.ring.Ring
 
 layout:
-  /usr/lib/$CRAFT_ARCH_TRIPLET/alsa-lib:
-    bind: $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET/alsa-lib
+  /usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/alsa-lib:
+    bind: $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/alsa-lib
   /usr/share/alsa:
     bind: $SNAP/usr/share/alsa
   /usr/share/X11/xkb:
@@ -139,7 +139,7 @@ layout:
 environment:
   XDG_CURRENT_DESKTOP: Unity
   QT_BASE_DIR: "/usr/lib/libqt-jami"
-  LD_LIBRARY_PATH: "${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$SNAP$QT_BASE_DIR/lib"
+  LD_LIBRARY_PATH: "${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$SNAP$QT_BASE_DIR/lib:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR"
 
 apps:
   jami:
@@ -153,8 +153,8 @@ apps:
     desktop: usr/share/applications/net.jami.Jami.desktop
     environment:
       PIPEWIRE_CONFIG_NAME: "$SNAP/usr/share/pipewire/pipewire.conf"
-      PIPEWIRE_MODULE_DIR: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET/pipewire-0.3"
-      SPA_PLUGIN_DIR: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET/spa-0.2"
+      PIPEWIRE_MODULE_DIR: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/pipewire-0.3"
+      SPA_PLUGIN_DIR: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/spa-0.2"
     slots:
     - dbus-jami
     - dbus-ring
@@ -388,6 +388,6 @@ parts:
     - -usr/lib/libqt-jami/bin/
     - -usr/lib/libqt-jami/docs/
     - -usr/lib/libqt-jami/examples/
-    - -usr/lib/$CRAFT_ARCH_TRIPLET/libLLVM-*.so*
-    - -usr/lib/$CRAFT_ARCH_TRIPLET/libclang-*.so*
-    - -usr/lib/$CRAFT_ARCH_TRIPLET/libflite*.so*
+    - -usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libLLVM-*.so*
+    - -usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libclang-*.so*
+    - -usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libflite*.so*
