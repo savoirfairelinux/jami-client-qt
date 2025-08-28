@@ -24,6 +24,7 @@ export OSTYPE
 
   # -g: install globally instead for all users
   # -s: link everything statically, no D-Bus communication. More likely to work!
+  # -d: debug build
   # -p: number of processors to use
   # -u: disable use of privileges (sudo) during install
   # -W: disable libwrap and shared library
@@ -106,6 +107,14 @@ while getopts gsc:dQ:P:p:uWwa:AtD:Ci OPT; do
     ;;
   esac
 done
+
+if [ -z "${BUILD_TYPE:-}" ]; then
+    if [ "$debug" = "true" ]; then
+        BUILD_TYPE="Debug"
+    else
+        BUILD_TYPE="Release"
+    fi
+fi
 
 # $1: global-install?
 # $2: private-install?
