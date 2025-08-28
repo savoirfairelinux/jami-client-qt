@@ -20,8 +20,8 @@ meson install -C builddir
 # The files installed by the previous command are only for the "Build" step of the snap
 # creation process (https://snapcraft.io/docs/how-snapcraft-builds). In order to ensure
 # that PipeWire is installed in the final snap archive, we also need to copy all the
-# required files under the $SNAPCRAFT_PART_INSTALL directory.
-meson configure builddir -Dprefix=$SNAPCRAFT_PART_INSTALL/usr/
+# required files under the $CRAFT_PART_INSTALL directory.
+meson configure builddir -Dprefix=$CRAFT_PART_INSTALL/usr/
 meson install -C builddir
 
 # Cleanup
