@@ -296,7 +296,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="102"/>
         <source>Convert your account into a rendezvous point</source>
-        <translation>Wandeln Sie ihren Benutzernamen in einen Treffpunkt um</translation>
+        <translation>Ihr Konto in einen Treffpunkt umwandeln</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="104"/>
@@ -1704,7 +1704,7 @@ um eine Verbindung herzustellen, um die Unterhaltung zu synchronisieren ...</tra
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="114"/>
         <source>Decline incoming calls when already in a call</source>
-        <translation>Ablehnen eingehender Anrufe während eines laufenden Gesprächs</translation>
+        <translation>Eingehende Anrufe während eines laufenden Anrufs ablehnen</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="123"/>
@@ -4443,7 +4443,7 @@ Bitte versuchen Sie es erneut.</translation>
     <message>
         <location filename="../src/app/spellcheckdictionarymanager.cpp" line="56"/>
         <source>None</source>
-        <translation>Kein</translation>
+        <translation>Keines</translation>
     </message>
 </context>
 <context>

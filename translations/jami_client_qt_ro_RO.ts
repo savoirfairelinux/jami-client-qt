@@ -1233,7 +1233,8 @@ la conversație.</translation>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="818"/>
         <source>Waiting for %1
 to connect to synchronize the conversation…</source>
-        <translation>Se așteaptă ca %1 să se conecteze pentru a sincroniza conversația…</translation>
+        <translation>Se așteaptă ca %1
+să se conecteze pentru a sincroniza conversația…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="823"/>

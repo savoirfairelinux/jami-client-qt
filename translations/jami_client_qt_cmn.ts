@@ -4,12 +4,12 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="208"/>
         <source>Missed call</source>
-        <translation type="unfinished"/>
+        <translation>未接来电</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="209"/>
         <source>Missed call with %1</source>
-        <translation type="unfinished"/>
+        <translation>来自 %1 的未接来电</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="531"/>
@@ -19,17 +19,17 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="532"/>
         <source>%1 is calling you</source>
-        <translation type="unfinished"/>
+        <translation>%1 正在呼叫您</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="543"/>
         <source>is calling you</source>
-        <translation type="unfinished"/>
+        <translation>正在呼叫您</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="1041"/>
         <source>Screenshot</source>
-        <translation type="unfinished"/>
+        <translation>截图</translation>
     </message>
 </context>
 <context>
@@ -60,7 +60,7 @@
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="202"/>
         <source>%1 received a new message</source>
-        <translation type="unfinished"/>
+        <translation>%1收到一个新的消息</translation>
     </message>
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="257"/>
@@ -73,7 +73,7 @@
     <message>
         <location filename="../src/app/currentcall.cpp" line="186"/>
         <source>Me</source>
-        <translation type="unfinished"/>
+        <translation>我</translation>
     </message>
 </context>
 <context>
@@ -81,22 +81,22 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="141"/>
         <source>Private</source>
-        <translation type="unfinished"/>
+        <translation>私有</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="143"/>
         <source>Private group (restricted invites)</source>
-        <translation type="unfinished"/>
+        <translation>私人群组(受限制邀请)</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="145"/>
         <source>Private group</source>
-        <translation type="unfinished"/>
+        <translation>非公开群组</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="147"/>
         <source>Public group</source>
-        <translation type="unfinished"/>
+        <translation>公开群组</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="316"/>
@@ -3593,52 +3593,52 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="40"/>
         <source>Open account list</source>
-        <translation type="unfinished"/>
+        <translation>打开账户列表</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="44"/>
         <source>Focus conversations list</source>
-        <translation type="unfinished"/>
+        <translation>聚焦会话列表</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="48"/>
         <source>Requests list</source>
-        <translation type="unfinished"/>
+        <translation>请求列表</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="52"/>
         <source>Previous conversation</source>
-        <translation type="unfinished"/>
+        <translation>上一个会话</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="56"/>
         <source>Next conversation</source>
-        <translation type="unfinished"/>
+        <translation>下一个会话</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="60"/>
         <source>Search bar</source>
-        <translation type="unfinished"/>
+        <translation>搜索栏</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="132"/>
         <source>Full screen</source>
-        <translation type="unfinished"/>
+        <translation>全屏</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="64"/>
         <source>Increase font size</source>
-        <translation type="unfinished"/>
+        <translation>增加字体大小</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="68"/>
         <source>Decrease font size</source>
-        <translation type="unfinished"/>
+        <translation>减少字体大小</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="72"/>
         <source>Reset font size</source>
-        <translation type="unfinished"/>
+        <translation>重置字体大小</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="96"/>
@@ -3658,27 +3658,27 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="80"/>
         <source>Accept contact request</source>
-        <translation type="unfinished"/>
+        <translation>接受联系人请求</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="88"/>
         <source>Edit last message</source>
-        <translation type="unfinished"/>
+        <translation>编辑最后一个消息</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="92"/>
         <source>Cancel message edition</source>
-        <translation type="unfinished"/>
+        <translation>取消消息编辑</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="216"/>
         <source>Open account creation wizard</source>
-        <translation type="unfinished"/>
+        <translation>打开账户创建向导</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="124"/>
         <source>End call</source>
-        <translation type="unfinished"/>
+        <translation>结束通话</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="104"/>
@@ -3708,17 +3708,17 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="136"/>
         <source>Mute microphone</source>
-        <translation type="unfinished"/>
+        <translation>禁用麦克风</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="140"/>
         <source>Stop camera</source>
-        <translation type="unfinished"/>
+        <translation>关闭摄像头</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="144"/>
         <source>Take tile screenshot</source>
-        <translation type="unfinished"/>
+        <translation>截图</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="152"/>
@@ -3806,17 +3806,17 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="481"/>
         <source>E&amp;xit</source>
-        <translation type="unfinished"/>
+        <translation>退出(&amp;X)</translation>
     </message>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="483"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished"/>
+        <translation>退出(&amp;Q)</translation>
     </message>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="489"/>
         <source>&amp;Show Jami</source>
-        <translation type="unfinished"/>
+        <translation>显示 Jami</translation>
     </message>
 </context>
 <context>
@@ -3829,7 +3829,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="419"/>
         <source>Location sharing</source>
-        <translation type="unfinished"/>
+        <translation>位置共享</translation>
     </message>
 </context>
 <context>
@@ -3850,73 +3850,73 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="457"/>
         <source>Me</source>
-        <translation type="unfinished"/>
+        <translation>我</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="60"/>
         <source>Hold</source>
-        <translation type="unfinished"/>
+        <translation>等待</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="62"/>
         <source>Talking</source>
-        <translation type="unfinished"/>
+        <translation>正在通话</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="64"/>
         <source>ERROR</source>
-        <translation type="unfinished"/>
+        <translation>错误</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="66"/>
         <source>Incoming</source>
-        <translation type="unfinished"/>
+        <translation>来电</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="68"/>
         <source>Calling</source>
-        <translation type="unfinished"/>
+        <translation>正在拨打</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="70"/>
         <source>Connecting</source>
-        <translation type="unfinished"/>
+        <translation>正在连接</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="72"/>
         <source>Searching</source>
-        <translation type="unfinished"/>
+        <translation>正在搜索</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="74"/>
         <source>Inactive</source>
-        <translation type="unfinished"/>
+        <translation>不活跃</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="76"/>
         <location filename="../src/libclient/api/call.h" line="82"/>
         <source>Finished</source>
-        <translation type="unfinished"/>
+        <translation>已结束</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="78"/>
         <source>Timeout</source>
-        <translation type="unfinished"/>
+        <translation>拨打超时</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="80"/>
         <source>Peer busy</source>
-        <translation type="unfinished"/>
+        <translation>对方正在通话中</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="84"/>
         <source>Communication established</source>
-        <translation type="unfinished"/>
+        <translation>已建立通信</translation>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="494"/>
         <source>Invitation received</source>
-        <translation type="unfinished"/>
+        <translation>已收到邀請</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="282"/>
@@ -3924,7 +3924,7 @@ Clicking on confirm will continue transfering account.</source>
         <location filename="../src/libclient/api/interaction.h" line="302"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="491"/>
         <source>Contact added</source>
-        <translation type="unfinished"/>
+        <translation>已添加联系人</translation>
     </message>
     <message>
         <location filename="../src/libclient/interaction.cpp" line="88"/>
@@ -4006,7 +4006,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="475"/>
         <source>Join call</source>
-        <translation type="unfinished"/>
+        <translation>加入通话</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="485"/>
@@ -4016,103 +4016,103 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="496"/>
         <source>Invitation accepted</source>
-        <translation type="unfinished"/>
+        <translation>已收到邀请</translation>
     </message>
     <message>
         <location filename="../src/libclient/avmodel.cpp" line="387"/>
         <location filename="../src/libclient/avmodel.cpp" line="406"/>
         <source>default</source>
-        <translation type="unfinished"/>
+        <translation>默认</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="70"/>
         <source>Null</source>
-        <translation type="unfinished"/>
+        <translation>空</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="71"/>
         <source>Trying</source>
-        <translation type="unfinished"/>
+        <translation>尝试中</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="72"/>
         <source>Ringing</source>
-        <translation type="unfinished"/>
+        <translation>正在响铃</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="73"/>
         <source>Being Forwarded</source>
-        <translation type="unfinished"/>
+        <translation>正在转接</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="74"/>
         <source>Queued</source>
-        <translation type="unfinished"/>
+        <translation>已加入队列</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="75"/>
         <source>Progress</source>
-        <translation type="unfinished"/>
+        <translation>进度</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="76"/>
         <source>OK</source>
-        <translation type="unfinished"/>
+        <translation>确定</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="77"/>
         <source>Accepted</source>
-        <translation type="unfinished"/>
+        <translation>已接受</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="78"/>
         <source>Multiple Choices</source>
-        <translation type="unfinished"/>
+        <translation>多选</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="79"/>
         <source>Moved Permanently</source>
-        <translation type="unfinished"/>
+        <translation>永久移动 </translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="80"/>
         <source>Moved Temporarily</source>
-        <translation type="unfinished"/>
+        <translation>暂时移动 </translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="81"/>
         <source>Use Proxy</source>
-        <translation type="unfinished"/>
+        <translation>使用代理</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="82"/>
         <source>Alternative Service</source>
-        <translation type="unfinished"/>
+        <translation>替代服务 </translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="83"/>
         <source>Bad Request</source>
-        <translation type="unfinished"/>
+        <translation>错误请求</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="84"/>
         <source>Unauthorized</source>
-        <translation type="unfinished"/>
+        <translation>未授权的</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="85"/>
         <source>Payment Required</source>
-        <translation type="unfinished"/>
+        <translation>需要付款</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="86"/>
         <source>Forbidden</source>
-        <translation type="unfinished"/>
+        <translation>禁止的</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="87"/>
         <source>Not Found</source>
-        <translation type="unfinished"/>
+        <translation>未找到</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="88"/>
@@ -4123,7 +4123,7 @@ Clicking on confirm will continue transfering account.</source>
         <location filename="../src/libclient/callmodel.cpp" line="89"/>
         <location filename="../src/libclient/callmodel.cpp" line="109"/>
         <source>Not Acceptable</source>
-        <translation type="unfinished"/>
+        <translation>无法接受</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="90"/>
@@ -4133,32 +4133,32 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="91"/>
         <source>Request Timeout</source>
-        <translation type="unfinished"/>
+        <translation>请求超时</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="92"/>
         <source>Gone</source>
-        <translation type="unfinished"/>
+        <translation>已离开</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="93"/>
         <source>Request Entity Too Large</source>
-        <translation type="unfinished"/>
+        <translation>请求的实体过大</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="94"/>
         <source>Request URI Too Long</source>
-        <translation type="unfinished"/>
+        <translation>请求的 URI 过长</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="95"/>
         <source>Unsupported Media Type</source>
-        <translation type="unfinished"/>
+        <translation>不支持的媒体类型</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="96"/>
         <source>Unsupported URI Scheme</source>
-        <translation type="unfinished"/>
+        <translation>不支持的 URI 方案</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="97"/>
@@ -4173,37 +4173,37 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="99"/>
         <source>Session Timer Too Small</source>
-        <translation type="unfinished"/>
+        <translation>会话计时器过小 </translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="100"/>
         <source>Interval Too Brief</source>
-        <translation type="unfinished"/>
+        <translation>间隔太短 </translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="101"/>
         <source>Temporarily Unavailable</source>
-        <translation type="unfinished"/>
+        <translation>暂时不可用 </translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="102"/>
         <source>Call TSX Does Not Exist</source>
-        <translation type="unfinished"/>
+        <translation>调用 TSX 不存在</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="103"/>
         <source>Loop Detected</source>
-        <translation type="unfinished"/>
+        <translation>检测到循环</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="104"/>
         <source>Too Many Hops</source>
-        <translation type="unfinished"/>
+        <translation>跳数过多</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="105"/>
         <source>Address Incomplete</source>
-        <translation type="unfinished"/>
+        <translation>地址不完整 </translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="106"/>
@@ -4214,82 +4214,82 @@ Clicking on confirm will continue transfering account.</source>
         <location filename="../src/libclient/api/interaction.h" line="339"/>
         <location filename="../src/libclient/callmodel.cpp" line="107"/>
         <source>Busy</source>
-        <translation type="unfinished"/>
+        <translation>忙碌中</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="108"/>
         <source>Request Terminated</source>
-        <translation type="unfinished"/>
+        <translation>请求已终止</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="110"/>
         <source>Bad Event</source>
-        <translation type="unfinished"/>
+        <translation>错误事件 </translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="111"/>
         <source>Request Updated</source>
-        <translation type="unfinished"/>
+        <translation>请求已更新</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="112"/>
         <source>Request Pending</source>
-        <translation type="unfinished"/>
+        <translation>请求待处理 </translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="113"/>
         <source>Undecipherable</source>
-        <translation type="unfinished"/>
+        <translation>无法解码</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="114"/>
         <source>Internal Server Error</source>
-        <translation type="unfinished"/>
+        <translation>内部服务器错误 </translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="115"/>
         <source>Not Implemented</source>
-        <translation type="unfinished"/>
+        <translation>未实现 </translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="116"/>
         <source>Bad Gateway</source>
-        <translation type="unfinished"/>
+        <translation>网关错误</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="117"/>
         <source>Service Unavailable</source>
-        <translation type="unfinished"/>
+        <translation>服务不可用</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="118"/>
         <source>Server Timeout</source>
-        <translation type="unfinished"/>
+        <translation>服务器超时</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="119"/>
         <source>Version Not Supported</source>
-        <translation type="unfinished"/>
+        <translation>不受支持的版本 </translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="120"/>
         <source>Message Too Large</source>
-        <translation type="unfinished"/>
+        <translation>消息过长</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="121"/>
         <source>Precondition Failure</source>
-        <translation type="unfinished"/>
+        <translation>前置条件失败</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="122"/>
         <source>Busy Everywhere</source>
-        <translation type="unfinished"/>
+        <translation>服务器繁忙</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="123"/>
         <source>Call Refused</source>
-        <translation type="unfinished"/>
+        <translation>呼叫已被拒绝</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="124"/>
@@ -4309,27 +4309,27 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="697"/>
         <source>Today</source>
-        <translation type="unfinished"/>
+        <translation>今天</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="699"/>
         <source>Yesterday</source>
-        <translation type="unfinished"/>
+        <translation>昨天</translation>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="108"/>
         <source>locationServicesError</source>
-        <translation type="unfinished"/>
+        <translation>位置服务错误</translation>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="111"/>
         <source>locationServicesClosedError</source>
-        <translation type="unfinished"/>
+        <translation>位置服务 关闭错误</translation>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="113"/>
         <source>locationServicesUnknownError</source>
-        <translation type="unfinished"/>
+        <translation>位置服务未知错误</translation>
     </message>
     <message>
         <location filename="../src/libclient/conversationmodel.cpp" line="1179"/>
@@ -4459,7 +4459,7 @@ Please try again.</source>
     <message>
         <location filename="../src/app/systemtray.cpp" line="227"/>
         <source>Open conversation</source>
-        <translation type="unfinished"/>
+        <translation>打开会话</translation>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="229"/>
@@ -4477,12 +4477,12 @@ Please try again.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="84"/>
         <source>Customize</source>
-        <translation type="unfinished"/>
+        <translation>自定义</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="87"/>
         <source>What does Jami mean?</source>
-        <translation type="unfinished"/>
+        <translation>Jami 有何含义？</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="89"/>
@@ -4492,7 +4492,7 @@ Please try again.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="93"/>
         <source>What is the green dot next to my account?</source>
-        <translation type="unfinished"/>
+        <translation>我的账户旁边的绿点有什么作用？</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="80"/>
@@ -4502,7 +4502,7 @@ Please try again.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="85"/>
         <source>Backup account</source>
-        <translation type="unfinished"/>
+        <translation>备份账户</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="95"/>
@@ -4512,17 +4512,17 @@ Please try again.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="100"/>
         <source>Why should I back up my account?</source>
-        <translation type="unfinished"/>
+        <translation>为什么我应该备份账户？</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="102"/>
         <source>Jami is distributed and your account is only stored locally on your device. If you lose your password or your local account data, you WILL NOT be able to recover your account if you did not back it up earlier.</source>
-        <translation type="unfinished"/>
+        <translation>Jami 采用分布式架构，您的账户仅存储在本地设备上。若丢失密码或本地账户数据，且未提前备份，您将无法恢复账户。</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="108"/>
         <source>Can I make a conference call?</source>
-        <translation type="unfinished"/>
+        <translation>我可以进行电话会议吗？</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="110"/>
@@ -4532,17 +4532,17 @@ Please try again.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="113"/>
         <source>What is a Jami account?</source>
-        <translation type="unfinished"/>
+        <translation>什么是Jami账户？</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="115"/>
         <source>A Jami account is an asymmetric encryption key. Your account is identified by a Jami ID, which is a fingerprint of your public key.</source>
-        <translation type="unfinished"/>
+        <translation>Jami账户是一个非对称加密密钥。您的账户由Jami ID来识别，该ID是您的公共密钥的指纹。</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="119"/>
         <source>What information do I need to provide to create a Jami account?</source>
-        <translation type="unfinished"/>
+        <translation>我需要提供哪些信息来创建Jami账户？</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="121"/>
@@ -4577,27 +4577,27 @@ Please try again.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="154"/>
         <source>Yes, you can link your account from the settings, or you can import your backup on another device.</source>
-        <translation type="unfinished"/>
+        <translation>是的,您可以在设置中链接您的帐户,或者您可以将通过备份将自己的账户导入到其他设备上.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="136"/>
         <source>The most permanent, secure identifier is your Jami ID, but since these are difficult to use for some people, you also have the option of registering a username.</source>
-        <translation type="unfinished"/>
+        <translation>最永久、最安全的标识符是您的Jami ID，但由于这些标识符对一部分人人来说难以辨识，因此您也可以选择注册一个用户名。</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="141"/>
         <source>How can I back up my account?</source>
-        <translation type="unfinished"/>
+        <translation>怎样备份账户?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="142"/>
         <source>In Account Settings, a button is available to create a backup your account.</source>
-        <translation type="unfinished"/>
+        <translation>在账户设置里，有一个按钮可以创建账户的备份</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="146"/>
         <source>What happens when I delete my account?</source>
-        <translation type="unfinished"/>
+        <translation>当我删除自己的账号会发生什么?</translation>
     </message>
 </context>
 <context>
@@ -4618,17 +4618,17 @@ Please try again.</source>
     <message>
         <location filename="../src/app/utilsadapter.cpp" line="353"/>
         <source>%1 Mbps</source>
-        <translation type="unfinished"/>
+        <translation>%1 Mbps</translation>
     </message>
     <message>
         <location filename="../src/app/utilsadapter.cpp" line="353"/>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>默认</translation>
     </message>
     <message>
         <location filename="../src/app/utilsadapter.cpp" line="547"/>
         <source>System</source>
-        <translation type="unfinished"/>
+        <translation>系统</translation>
     </message>
 </context>
 <context>
@@ -4636,17 +4636,17 @@ Please try again.</source>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="494"/>
         <source>Searching…</source>
-        <translation type="unfinished"/>
+        <translation>正在搜索…</translation>
     </message>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="989"/>
         <source>Invalid ID</source>
-        <translation type="unfinished"/>
+        <translation>无效 ID</translation>
     </message>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="992"/>
         <source>Username not found</source>
-        <translation type="unfinished"/>
+        <translation>找不到该用户名</translation>
     </message>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="995"/>
@@ -4659,7 +4659,7 @@ Please try again.</source>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="457"/>
         <source>Bad URI scheme</source>
-        <translation type="unfinished"/>
+        <translation>错误的 URI 方案 </translation>
     </message>
 </context>
 </TS>

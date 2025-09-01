@@ -1093,7 +1093,7 @@ If a username is not chosen, a randomly generated 40-character identifier will b
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="716"/>
         <source>Search results</source>
-        <translation type="unfinished"/>
+        <translation>Resultados da pesquisa</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="719"/>
@@ -3968,7 +3968,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="343"/>
         <source>Unreachable peer</source>
-        <translation type="unfinished"/>
+        <translation>Par não conectável</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="348"/>

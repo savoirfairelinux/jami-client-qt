@@ -562,7 +562,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="192"/>
         <source>Bootstrap</source>
-        <translation> Algata esmane tuvastus</translation>
+        <translation> Server esmaseks tuvastuseks</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="195"/>
@@ -3199,7 +3199,7 @@ Kui see on tehtud, siis skaneeri QR-koodi.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="609"/>
         <source>Connecting to your new device…</source>
-        <translation>Loome ühendust sinu uue seadmega…</translation>
+        <translation>Ühendan sinu uue seadmega…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="610"/>
@@ -3217,7 +3217,7 @@ Jätkamiseks palun kinnita importimine uues seadmes.</translation>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="615"/>
         <source>New device found at address below. Is that you?
 Clicking on confirm will continue transfering account.</source>
-        <translation>Leidsime uue seadme allpooltoodud aadressil. Kas see oled sina?
+        <translation>Leidsin uue seadme allpooltoodud aadressil. Kas see oled sina?
 Kui klõpsid kinnituseks, siis jätkame kasutajakonto teisaldamisega.</translation>
     </message>
     <message>
@@ -4443,7 +4443,7 @@ Palun proovi uuesti.</translation>
     <message>
         <location filename="../src/app/spellcheckdictionarymanager.cpp" line="56"/>
         <source>None</source>
-        <translation>Mitte ühtegi</translation>
+        <translation>Puudub</translation>
     </message>
 </context>
 <context>

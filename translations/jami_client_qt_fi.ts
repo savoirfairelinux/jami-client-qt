@@ -2038,12 +2038,12 @@ synkronoi keskustelun…</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="384"/>
         <source>Enter the Jami Account Management Server (JAMS) URL</source>
-        <translation>Anna Jami Account Management Server (JAMS) URL-osoite</translation>
+        <translation>Anna Jami Account Management Server (JAMS) osoite</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="385"/>
         <source>Jami Account Management Server URL</source>
-        <translation>Jami Account Management Server URL-osoite</translation>
+        <translation>Jami Account Management Server osoite</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="386"/>
@@ -2412,7 +2412,7 @@ Muiden jäsenten sijainnit voidaan edelleen vastaanottaa.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="419"/>
         <source>Proxy</source>
-        <translation>Välityspalvelin</translation>
+        <translation>Proxy</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="420"/>
@@ -4083,7 +4083,7 @@ Vahvista tilin siirto painamalla painiketta.</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="81"/>
         <source>Use Proxy</source>
-        <translation>Käytä välityspalvelinta</translation>
+        <translation>Käytä proxya</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="82"/>
@@ -4129,7 +4129,7 @@ Vahvista tilin siirto painamalla painiketta.</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="90"/>
         <source>Proxy Authentication Required</source>
-        <translation>Välityspalvelin todennus vaaditaan</translation>
+        <translation>Proxy todennus vaaditaan</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="91"/>

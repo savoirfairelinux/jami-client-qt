@@ -753,7 +753,7 @@
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="430"/>
         <source>A chosen username can help to be found more easily on Jami.
 If a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.</source>
-        <translation>Nama pengguna yang dipilih dapat membantu untuk lebih mudah ditemukan di Jami. Jika nama pengguna tidak dipilih, identifier 40 karakter yang dihasilkan secara acak akan ditugaskan ke akun ini sebagai nama pengguna.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="447"/>
