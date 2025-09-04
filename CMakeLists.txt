@@ -58,10 +58,8 @@ else()
   set(DAEMON_DIR ${PROJECT_SOURCE_DIR}/daemon)
 endif()
 
-# For now only MSVC is supported for building Jami-core within the
-# client cmake.
 if(JAMICORE_AS_SUBDIR)
-  add_subdirectory(${DAEMON_DIR})
+  add_subdirectory(${DAEMON_DIR} EXCLUDE_FROM_ALL)
   set(LIBJAMI_LIB jami-core)
 endif()
 

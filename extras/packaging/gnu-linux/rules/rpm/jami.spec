@@ -75,6 +75,7 @@ cd %{_builddir}/jami-%{version} && \
           -DCMAKE_BUILD_TYPE=Release \
           -DBUILD_VERSION=${BUILD_VERSION} \
           -DCMAKE_PREFIX_PATH=%{QT_JAMI_PREFIX} \
+          -DBUILD_TESTING=Off \
           ..
 make -C %{_builddir}/jami-%{version}/build %{_smp_mflags} VERBOSE=1
 

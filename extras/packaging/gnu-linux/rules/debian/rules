@@ -95,6 +95,7 @@ override_dh_auto_build:
 	  -DCMAKE_INSTALL_PREFIX=/usr \
 	  -DLIBJAMI_BUILD_DIR=$(CURDIR)/daemon/src \
 	  -DENABLE_LIBWRAP=true \
+	  -DBUILD_TESTING=Off \
 	  $(CMAKE_OPTIONS) ..
 	make -C build -j$(NO_CPUS) VERBOSE=1
 
