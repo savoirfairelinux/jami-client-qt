@@ -24,11 +24,6 @@
 // libjami
 #include <datatransfer_interface.h>
 
-// Std
-#include <map>
-#include <stdexcept>
-#include <type_traits>
-
 // Qt
 #include <QDir>
 #include <QFileInfo>
@@ -38,38 +33,6 @@
 namespace lrc {
 namespace api {
 
-// LIBJAMI to LRC event code conversion
-static inline datatransfer::Status
-convertDataTransferEvent(libjami::DataTransferEventCode event)
-{
-    switch (event) {
-    case libjami::DataTransferEventCode::invalid:
-        return datatransfer::Status::INVALID;
-    case libjami::DataTransferEventCode::created:
-        return datatransfer::Status::on_connection;
-    case libjami::DataTransferEventCode::unsupported:
-        return datatransfer::Status::unsupported;
-    case libjami::DataTransferEventCode::wait_peer_acceptance:
-        return datatransfer::Status::on_connection;
-    case libjami::DataTransferEventCode::wait_host_acceptance:
-        return datatransfer::Status::on_connection;
-    case libjami::DataTransferEventCode::ongoing:
-        return datatransfer::Status::on_progress;
-    case libjami::DataTransferEventCode::finished:
-        return datatransfer::Status::success;
-    case libjami::DataTransferEventCode::closed_by_host:
-        return datatransfer::Status::stop_by_host;
-    case libjami::DataTransferEventCode::closed_by_peer:
-        return datatransfer::Status::stop_by_peer;
-    case libjami::DataTransferEventCode::invalid_pathname:
-        return datatransfer::Status::invalid_pathname;
-    case libjami::DataTransferEventCode::unjoinable_peer:
-        return datatransfer::Status::unjoinable_peer;
-    case libjami::DataTransferEventCode::timeout_expired:
-        return datatransfer::Status::timeout_expired;
-    }
-    throw std::runtime_error("BUG: broken convertDataTransferEvent() switch");
-}
 
 class DataTransferModel::Impl : public QObject
 {
