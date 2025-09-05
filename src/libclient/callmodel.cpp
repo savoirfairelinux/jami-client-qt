@@ -61,7 +61,6 @@
 using namespace libjami::Media;
 
 constexpr static const char HARDWARE_ACCELERATION[] = "HARDWARE_ACCELERATION";
-constexpr static const char AUDIO_CODEC[] = "AUDIO_CODEC";
 constexpr static const char CALL_ID[] = "CALL_ID";
 
 static std::uniform_int_distribution<int> dis {0, std::numeric_limits<int>::max()};
