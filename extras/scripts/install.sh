@@ -33,6 +33,7 @@ export OSTYPE
   # -D: extra CMake flags for the client
   # -C: enable crash reporting
   # -i: ignore system libraries and build everything regardless of system detection
+  # -S: daemon as submodule - skip daemon build, let client CMake handle it
 
 set -ex
 
@@ -53,8 +54,9 @@ arch=''
 enable_testing=false
 enable_crashreports=false
 ignore_system_libs=false
+daemon_as_submodule=false
 
-while getopts gsc:dQ:P:p:uWwa:AtD:Ci OPT; do
+while getopts gsc:dQ:P:p:uWwa:AtD:CiS OPT; do
   case "$OPT" in
     g)
       global='true'
@@ -101,6 +103,9 @@ while getopts gsc:dQ:P:p:uWwa:AtD:Ci OPT; do
     i)
       ignore_system_libs='true'
     ;;
+    S)
+      daemon_as_submodule='true'
+    ;;
     \?)
       exit 1
     ;;
@@ -139,42 +144,44 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     fi
 fi
 
-# jamid
-DAEMON="${TOP}/daemon"
-cd "$DAEMON"
+# jamid - only build if not using daemon as submodule
+if [ "${daemon_as_submodule}" != "true" ]; then
+    DAEMON="${TOP}/daemon"
+    cd "$DAEMON"
 
-mkdir -p "${BUILD_DIR}"
-cd "${BUILD_DIR}"
-daemon_cmake_flags=(-DCMAKE_BUILD_TYPE="${BUILD_TYPE}")
-if [ "${asan}" = "true" ]; then
-    daemon_cmake_flags+=(-DENABLE_ASAN=On)
-fi
-if [ "${ignore_system_libs}" = "true" ]; then
-    daemon_cmake_flags+=(-DIGNORE_SYSTEM_LIBS=On)
-fi
-if [ "${enable_libwrap}" = "false" ]; then
-    daemon_cmake_flags+=(-DJAMI_DBUS=On)
-else
-    daemon_cmake_flags+=(-DJAMI_DBUS=Off)
-fi
-if [ "${enable_testing}" = "true" ]; then
-    daemon_cmake_flags+=(-DBUILD_TESTING=On)
-else
-    daemon_cmake_flags+=(-DBUILD_TESTING=Off)
-fi
-if [ "${global}" = "true" ]; then
-    daemon_cmake_flags+=(${prefix:+"-DCMAKE_INSTALL_PREFIX=$prefix"})
-else
-    daemon_cmake_flags+=(-DCMAKE_INSTALL_PREFIX="${INSTALL_DIR}")
-fi
+    mkdir -p "${BUILD_DIR}"
+    cd "${BUILD_DIR}"
+    daemon_cmake_flags=(-DCMAKE_BUILD_TYPE="${BUILD_TYPE}")
+    if [ "${asan}" = "true" ]; then
+        daemon_cmake_flags+=(-DENABLE_ASAN=On)
+    fi
+    if [ "${ignore_system_libs}" = "true" ]; then
+        daemon_cmake_flags+=(-DIGNORE_SYSTEM_LIBS=On)
+    fi
+    if [ "${enable_libwrap}" = "false" ]; then
+        daemon_cmake_flags+=(-DJAMI_DBUS=On)
+    else
+        daemon_cmake_flags+=(-DJAMI_DBUS=Off)
+    fi
+    if [ "${enable_testing}" = "true" ]; then
+        daemon_cmake_flags+=(-DBUILD_TESTING=On)
+    else
+        daemon_cmake_flags+=(-DBUILD_TESTING=Off)
+    fi
+    if [ "${global}" = "true" ]; then
+        daemon_cmake_flags+=(${prefix:+"-DCMAKE_INSTALL_PREFIX=$prefix"})
+    else
+        daemon_cmake_flags+=(-DCMAKE_INSTALL_PREFIX="${INSTALL_DIR}")
+    fi
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    daemon_cmake_flags+=(-DCMAKE_OSX_ARCHITECTURES="${CMAKE_OSX_ARCHITECTURES}")
-fi
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        daemon_cmake_flags+=(-DCMAKE_OSX_ARCHITECTURES="${CMAKE_OSX_ARCHITECTURES}")
+    fi
 
-cmake .. "${daemon_cmake_flags[@]}"
-make -j"${proc}" V=1
-make_install "${global}" "${priv_install}"
+    cmake .. "${daemon_cmake_flags[@]}"
+    make -j"${proc}" V=1
+    make_install "${global}" "${priv_install}"
+fi
 
 # Verify system's version if no path provided.
 if [ -z "$qtpath" ]; then
@@ -249,6 +256,15 @@ if [ "${global}" = "true" ]; then
 else
     client_cmake_flags+=(-DCMAKE_INSTALL_PREFIX="${INSTALL_DIR}"
                          -DWITH_DAEMON_SUBMODULE=true)
+fi
+
+# When using daemon as submodule, pass daemon-specific flags to client CMake
+if [ "${daemon_as_submodule}" = "true" ]; then
+    if [ "${enable_libwrap}" = "false" ]; then
+        client_cmake_flags+=(-DJAMI_DBUS=On)
+    else
+        client_cmake_flags+=(-DJAMI_DBUS=Off)
+    fi
 fi
 
 # Add extra flags for the client

@@ -419,6 +419,8 @@ def run_install(args):
         install_args.append('-C')
     if args.ignore_system_libs:
         install_args.append('-i')
+    if args.daemon_as_submodule:
+        install_args.append('-S')
 
     if args.distribution == OSX_DISTRIBUTION_NAME:
         # The `universal_newlines` parameter has been renamed to `text` in
@@ -774,6 +776,9 @@ def parse_args():
     ap.add_argument('--ignore_system_libs', dest='ignore_system_libs',
                     default=False, action='store_true',
                     help='Build contrib packages regardless of system detection')
+    ap.add_argument('--daemon-as-submodule', dest='daemon_as_submodule',
+                    default=False, action='store_true',
+                    help='Build daemon as CMake submodule instead of separate build stage')
 
     dist = choose_distribution()
 
