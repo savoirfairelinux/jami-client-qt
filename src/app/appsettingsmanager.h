@@ -84,9 +84,9 @@ extern const QString defaultDownloadPath;
 // Additional key-value pairs for non-APPSTORE builds including donation
 // related settings.
 #define KEYS COMMON_KEYS \
-    X(Donation2023VisibleDate, "2023-11-27 05:00") \
+    X(Donation2025StartDate, "2025-09-15 00:00") \
     X(IsDonationVisible, true) \
-    X(Donation2023EndDate2, "2024-04-01 00:00")
+    X(Donation2025EndDate, "2025-11-16 00:00")
 #endif
 
 /*
