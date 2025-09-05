@@ -241,19 +241,6 @@ UtilsAdapter::getConvIdForUri(const QString& accountId, const QString& uri)
     }
 }
 
-const QString
-UtilsAdapter::getPeerUri(const QString& accountId, const QString& uid)
-{
-    try {
-        auto* convModel = lrcInstance_->getAccountInfo(accountId).conversationModel.get();
-        const auto& convInfo = convModel->getConversationForUid(uid).value();
-        return convInfo.get().participants.front().uri;
-    } catch (const std::out_of_range& e) {
-        C_DBG << e.what();
-        return "";
-    }
-}
-
 QString
 UtilsAdapter::getBestId(const QString& accountId)
 {
@@ -270,12 +257,6 @@ UtilsAdapter::getBestId(const QString& accountId, const QString& uid)
         return lrcInstance_->getAccountInfo(accountId).contactModel->bestIdForContact(
             conv.participants[0].uri);
     return QString();
-}
-
-void
-UtilsAdapter::setConversationFilter(const QString& filter)
-{
-    lrcInstance_->getCurrentConversationModel()->setFilter(filter);
 }
 
 int
@@ -295,19 +276,6 @@ UtilsAdapter::hasCall(const QString& accountId)
         }
     }
     return false;
-}
-
-const QString
-UtilsAdapter::getCallConvForAccount(const QString& accountId)
-{
-    // TODO: Currently returning first call, establish priority according to state?
-    for (const auto& callId : lrcInstance_->getActiveCalls(accountId)) {
-        auto& accountInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
-        if (accountInfo.callModel->hasCall(callId)) {
-            return lrcInstance_->getConversationFromCallId(callId, accountId).uid;
-        }
-    }
-    return "";
 }
 
 const QString

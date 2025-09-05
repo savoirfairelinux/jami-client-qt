@@ -101,17 +101,14 @@ public:
     Q_INVOKABLE bool createStartupLink();
     Q_INVOKABLE QString GetRingtonePath();
     Q_INVOKABLE bool checkStartupLink();
-    Q_INVOKABLE void setConversationFilter(const QString& filter);
     Q_INVOKABLE const QString getBestName(const QString& accountId, const QString& uid);
     Q_INVOKABLE QString getBestNameForUri(const QString& accountId, const QString& uri);
     Q_INVOKABLE QString getBestIdForUri(const QString& accountId, const QString& uri);
     Q_INVOKABLE QString getConvIdForUri(const QString& accountId, const QString& uri);
-    Q_INVOKABLE const QString getPeerUri(const QString& accountId, const QString& uid);
     Q_INVOKABLE QString getBestId(const QString& accountId);
     Q_INVOKABLE const QString getBestId(const QString& accountId, const QString& uid);
     Q_INVOKABLE int getAccountListSize();
     Q_INVOKABLE bool hasCall(const QString& accountId);
-    Q_INVOKABLE const QString getCallConvForAccount(const QString& accountId);
     Q_INVOKABLE const QString getCallId(const QString& accountId, const QString& convUid);
     Q_INVOKABLE int getCallStatus(const QString& callId);
     Q_INVOKABLE const QString getCallStatusStr(int statusInt);
