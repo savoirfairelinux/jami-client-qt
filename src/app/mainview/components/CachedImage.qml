@@ -84,6 +84,12 @@ Item {
     }
 
     function updateImageSource(downloadUrl, localPath, defaultImage) {
+        // TODO: this is a temporary fix to load bundled resources directly from qrc
+        // we need to investigate why we use a cached image for bundled resources
+        if (downloadUrl.startsWith("qrc:")) {
+            image.source = downloadUrl;
+            return;
+        }
         if (downloadUrl === "") {
             image.source = defaultImage;
             return;
