@@ -65,7 +65,7 @@ ColumnLayout {
             titleField: JamiStrings.caCertificate
             itemWidth: root.itemWidth
 
-            onClick: openFileDialog(JamiStrings.selectCACert, CurrentAccount.certificateListFile_TLS, JamiStrings.certificateFile, function (file) {
+            onSettingMaterialButtonClicked: openFileDialog(JamiStrings.selectCACert, CurrentAccount.certificateListFile_TLS, JamiStrings.certificateFile, function (file) {
                     CurrentAccount.certificateListFile_TLS = UtilsAdapter.getAbsPath(file.toString());
                 })
         }
@@ -80,7 +80,7 @@ ColumnLayout {
             titleField: JamiStrings.userCertificate
             itemWidth: root.itemWidth
 
-            onClick: openFileDialog(JamiStrings.selectUserCert, CurrentAccount.certificateFile_TLS, JamiStrings.certificateFile, function (file) {
+            onSettingMaterialButtonClicked: openFileDialog(JamiStrings.selectUserCert, CurrentAccount.certificateFile_TLS, JamiStrings.certificateFile, function (file) {
                     CurrentAccount.certificateFile_TLS = UtilsAdapter.getAbsPath(file.toString());
                 })
         }
@@ -95,7 +95,7 @@ ColumnLayout {
             titleField: JamiStrings.privateKey
             itemWidth: root.itemWidth
 
-            onClick: openFileDialog(JamiStrings.selectPrivateKey, CurrentAccount.privateKeyFile_TLS, JamiStrings.keyFile, function (file) {
+            onSettingMaterialButtonClicked: openFileDialog(JamiStrings.selectPrivateKey, CurrentAccount.privateKeyFile_TLS, JamiStrings.keyFile, function (file) {
                     CurrentAccount.privateKeyFile_TLS = UtilsAdapter.getAbsPath(file.toString());
                 })
         }

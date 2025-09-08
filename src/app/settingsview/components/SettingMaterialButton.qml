@@ -31,7 +31,7 @@ RowLayout {
     property string source
     property int itemWidth
 
-    signal click
+    signal settingMaterialButtonClicked
 
     Text {
         id: title
@@ -59,6 +59,6 @@ RowLayout {
         iconSource: root.source
         secondary: true
 
-        onClicked: click()
+        onClicked: settingMaterialButtonClicked()
     }
 }

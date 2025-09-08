@@ -154,7 +154,7 @@ SettingsPageBase {
                 titleField: JamiStrings.selectCustomRingtone
                 itemWidth: root.itemWidth
 
-                onClick: {
+                onSettingMaterialButtonClicked: {
                     var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
                             "title": JamiStrings.selectNewRingtone,
                             "fileMode": JamiFileDialog.OpenFile,
