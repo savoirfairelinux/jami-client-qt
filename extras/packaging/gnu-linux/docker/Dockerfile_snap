@@ -38,6 +38,14 @@ RUN snap_version="$(awk '/^version:/{print $2}' /snap/snapcraft/current/meta/sna
 RUN echo 'exec "/snap/snapcraft/current/bin/python3" -m snapcraft "$@"' >> /snap/bin/snapcraft
 RUN chmod +x /snap/bin/snapcraft
 
+# kde-qt6-core22-sdk
+RUN curl -L $(curl -H 'X-Ubuntu-Series: 16' 'https://api.snapcraft.io/api/v1/snaps/details/kde-qt6-core22-sdk' | jq '.download_url' -r) --output kde-qt6-core22-sdk.snap
+RUN mkdir -p /snap/kde-qt6-core22-sdk
+RUN unsquashfs -d /snap/kde-qt6-core22-sdk/current kde-qt6-core22-sdk.snap
+# kf6-core22-sdk
+RUN curl -L $(curl -H 'X-Ubuntu-Series: 16' 'https://api.snapcraft.io/api/v1/snaps/details/kf6-core22-sdk' | jq '.download_url' -r) --output kf6-core22-sdk.snap
+RUN mkdir -p /snap/kf6-core22-sdk
+RUN unsquashfs -d /snap/kf6-core22-sdk/current kf6-core22-sdk.snap
 
 # Multi-stage build, only need the snaps from the builder. Copy them one at a
 # time so they can be cached.
@@ -46,6 +54,8 @@ FROM ubuntu:$UBUNTU
 COPY --from=builder /snap/core22 /snap/core22
 COPY --from=builder /snap/core24 /snap/core24
 COPY --from=builder /snap/snapcraft /snap/snapcraft
+COPY --from=builder /snap/kde-qt6-core22-sdk /snap/kde-qt6-core22-sdk
+COPY --from=builder /snap/kf6-core22-sdk /snap/kf6-core22-sdk
 COPY --from=builder /snap/bin/snapcraft /snap/bin/snapcraft
 
 # Generate locale and install dependencies.
