@@ -100,24 +100,6 @@ confinement: strict
 grade: stable
 base: core22
 
-plugs:
-  gnome-42-2204:
-    interface: content
-    target: $SNAP/gnome-platform
-    default-provider: gnome-42-2204
-  gtk-3-themes:
-    interface: content
-    target: $SNAP/data-dir/themes
-    default-provider: gtk-common-themes:gtk-3-themes
-  icon-themes:
-    interface: content
-    target: $SNAP/data-dir/icons
-    default-provider: gtk-common-themes:icon-themes
-  sound-themes:
-    interface: content
-    target: $SNAP/data-dir/sounds
-    default-provider: gtk-common-themes:sounds-themes
-
 slots:
   dbus-jami:
     interface: dbus
@@ -133,21 +115,15 @@ layout:
     bind: $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/alsa-lib
   /usr/share/alsa:
     bind: $SNAP/usr/share/alsa
-  /usr/share/X11/xkb:
-    bind: $SNAP/usr/share/X11/xkb
 
 environment:
-  XDG_CURRENT_DESKTOP: Unity
-  QT_BASE_DIR: "/usr/lib/libqt-jami"
-  LD_LIBRARY_PATH: "${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$SNAP$QT_BASE_DIR/lib:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/pulseaudio"
+  LD_LIBRARY_PATH: "${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/pulseaudio"
 
 apps:
   jami:
     command: usr/bin/jami
     command-chain:
-    - bin/desktop-launch
     - snap/command-chain/alsa-launch
-    - bin/jami-wrapper
     autostart: net.jami.Jami.desktop
     common-id: net.jami.Jami
     desktop: usr/share/applications/net.jami.Jami.desktop
@@ -155,6 +131,8 @@ apps:
       PIPEWIRE_CONFIG_NAME: "$SNAP/usr/share/pipewire/pipewire.conf"
       PIPEWIRE_MODULE_DIR: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/pipewire-0.3"
       SPA_PLUGIN_DIR: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/spa-0.2"
+    extensions:
+    - kde-neon-6
     slots:
     - dbus-jami
     - dbus-ring
@@ -164,77 +142,15 @@ apps:
     - audio-record
     - browser-support
     - camera
-    - desktop
-    - desktop-legacy
     - gsettings
     - hardware-observe
     - home
-    - network
-    - network-bind
     - network-manager
-    - opengl
     - removable-media
     - screen-inhibit-control
     - system-observe
-    - unity7
-    - wayland
-    - x11
-
-package-repositories:
-  - type: apt
-    components: [main]
-    suites: [jami]
-    key-id: A295D773307D25A33AE72F2F64CD5FA175348F84
-    url: https://dl.jami.net/internal/ubuntu_22.04/
 
 parts:
-  desktop-launch:
-    source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
-    plugin: nil
-    build-packages:
-    - dpkg-dev
-    - gcc
-    - g++
-    - cmake
-    - cmake-data
-    - libqt-jami
-    - devscripts
-    - equivs
-    override-pull: |
-      craftctl default
-      sed -i -E 's|\. \$SNAP/flavor-select|USE_gtk3=true|' gtk/launcher-specific
-      sed -i -E 's|\. \$SNAP/flavor-select|USE_qt5=true|' qt/launcher-specific
-      sed -i -E 's|(append_dir GTK_PATH \$RUNTIME/usr/lib/\$ARCH/gtk-2.0)|#\1|' qt/launcher-specific
-      sed -i -E 's|\$RUNTIME|$SNAP|g' qt/launcher-specific
-      sed -i -E 's|\$WITH_RUNTIME|no|g' qt/launcher-specific
-    override-build: |
-      craftctl default
-      gcc -Wall -O2 -o bindtextdomain.so -fPIC -shared src/bindtextdomain.c -ldl
-
-      echo "#!/bin/bash" > desktop-launch
-      cat common/init >> desktop-launch
-
-      cat qt/runtime-exports >> desktop-launch
-      cat gtk/runtime-exports >> desktop-launch
-
-      cat common/desktop-exports >> desktop-launch
-
-      cat qt/launcher-specific >> desktop-launch
-      cat gtk/launcher-specific >> desktop-launch
-
-      cat common/mark-and-exec >> desktop-launch
-
-      install -D -m755 desktop-launch $CRAFT_PART_INSTALL/bin/desktop-launch
-      install -D -m644 bindtextdomain.so $CRAFT_PART_INSTALL/lib/bindtextdomain.so
-
-      mkdir -pv $CRAFT_PART_INSTALL/gnome-platform
-
-  scripts:
-    plugin: dump
-    source: common/scripts
-    organize:
-      jami-wrapper: bin/jami-wrapper
-
   alsa-mixin:
     plugin: dump
     source: https://github.com/diddlesnaps/snapcraft-alsa.git
@@ -261,11 +177,6 @@ parts:
       - -usr/lib/x86_64-linux-gnu/libldap_r-2.4.so*
       - -usr/share/doc/libldap-2.4-2/changelog.Debian.gz
       - -usr/share/doc/libldap-common/changelog.Debian.gz
-    build-environment:
-      - QT_BASE_DIR: "/usr/lib/libqt-jami"
-      - PATH: "$QT_BASE_DIR/bin:$PATH"
-      - LD_LIBRARY_PATH: "$QT_BASE_DIR/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-      - PKG_CONFIG_PATH: "$QT_BASE_DIR/lib/pkgconfig${PKG_CONFIG_PATH:+:$PKG_CONFIG_PATH}"
     override-pull: |
       ls
       craftctl default
@@ -294,7 +205,7 @@ parts:
                -DLIBJAMI_BUILD_DIR=$CRAFT_PART_BUILD/daemon/src \
                -DCMAKE_INSTALL_PREFIX=/usr \
                -DCMAKE_BUILD_TYPE=Release \
-               -DCMAKE_PREFIX_PATH=$QT_BASE_DIR \
+               -DCMAKE_PREFIX_PATH=/snap/kde-qt6-core22-sdk/current/usr \
                -DBUILD_VERSION=BUILD_VERSION_PLACEHOLDER \
                -DBUILD_TESTING=Off
       make -j$CRAFT_PARALLEL_BUILD_COUNT
@@ -307,10 +218,14 @@ parts:
     - bzip2
     - cmake
     - curl
+    - dpkg-dev
+    - devscripts
+    - libtool
     - gcc
     - g++
     - gettext
     - gzip
+    - libb2-dev
     - libnotify-dev
     - libqrencode-dev
     - libsndfile1-dev
@@ -368,7 +283,6 @@ parts:
     - liborc-0.4-0
     - libpcre2-16-0
     - libqrencode4
-    - libqt-jami
     - libsnappy1v5
     - libspeex1
     - libproxy1v5
@@ -386,9 +300,6 @@ parts:
     - libvdpau1
     - va-driver-all
     prime:
-    - -usr/lib/libqt-jami/bin/
-    - -usr/lib/libqt-jami/docs/
-    - -usr/lib/libqt-jami/examples/
     - -usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libLLVM-*.so*
     - -usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libclang-*.so*
     - -usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libflite*.so*
