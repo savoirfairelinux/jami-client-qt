@@ -291,7 +291,7 @@ Rectangle {
                     id: confirmButton
                     text: JamiStrings.optionConfirm
                     primary: true
-                    enabled: !passwordField.visible || passwordField.dynamicText.length > 0
+                    enabled: true
                     onClicked: {
                         AccountAdapter.provideAccountAuthentication(passwordField.visible ? passwordField.dynamicText : "");
                     }
