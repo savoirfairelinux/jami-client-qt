@@ -101,6 +101,10 @@ grade: stable
 base: core22
 
 plugs:
+  graphics-core22:
+    interface: content
+    target: $SNAP/graphics
+    default-provider: mesa-core22
   gnome-42-2204:
     interface: content
     target: $SNAP/gnome-platform
@@ -135,6 +139,14 @@ layout:
     bind: $SNAP/usr/share/alsa
   /usr/share/X11/xkb:
     bind: $SNAP/usr/share/X11/xkb
+  /usr/share/libdrm:
+    bind: $SNAP/graphics/libdrm
+  /usr/share/drirc.d:
+    symlink: $SNAP/graphics/drirc.d
+  /usr/share/X11/XErrorDB:
+    symlink: $SNAP/graphics/X11/XErrorDB
+  /usr/share/X11/locale:
+    symlink: $SNAP/graphics/X11/locale
 
 environment:
   XDG_CURRENT_DESKTOP: Unity
@@ -145,6 +157,7 @@ apps:
   jami:
     command: usr/bin/jami
     command-chain:
+    - bin/graphics-core22-wrapper
     - bin/desktop-launch
     - snap/command-chain/alsa-launch
     - bin/jami-wrapper
@@ -392,3 +405,15 @@ parts:
     - -usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libLLVM-*.so*
     - -usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libclang-*.so*
     - -usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libflite*.so*
+
+  graphics-core22:
+    after: [jami]
+    source: https://github.com/canonical/gpu-snap.git
+    plugin: dump
+    override-prime: |
+      craftctl default
+      ${CRAFT_PART_SRC}/bin/graphics-core22-cleanup mesa-core22 nvidia-core22
+      # Workaround for https://bugs.launchpad.net/snapd/+bug/2055273
+      mkdir -p "${CRAFT_PRIME}/graphics"
+    prime:
+    - bin/graphics-core22-wrapper
