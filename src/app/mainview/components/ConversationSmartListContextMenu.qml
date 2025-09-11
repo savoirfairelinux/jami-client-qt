@@ -76,20 +76,19 @@ ContextMenuAutoLoader {
             id: removeConversation
 
             canTrigger: !hasCall && !root.isBanned
-            itemName: JamiStrings.removeConversation
+            itemName: mode === Conversation.Mode.ONE_TO_ONE ? JamiStrings.removeConversation : JamiStrings.leaveGroup
             iconSource: JamiResources.ic_hangup_participant_24dp_svg
             onClicked: {
                 var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
-                        "title": JamiStrings.confirmAction,
-                        "textLabel": mode === Conversation.Mode.ONE_TO_ONE ? JamiStrings.confirmRemoveOneToOneConversation : JamiStrings.confirmLeaveConversation,
-                        "confirmLabel": JamiStrings.optionLeave
-                    });
+                    "title": JamiStrings.confirmAction,
+                    "textLabel": mode === Conversation.Mode.ONE_TO_ONE ? JamiStrings.confirmRemoveOneToOneConversation : JamiStrings.confrimLeaveGroup,
+                    "confirmLabel": mode === Conversation.Mode.ONE_TO_ONE ? JamiStrings.optionRemove : JamiStrings.optionLeave
+                });
                 dlg.accepted.connect(function () {
-                        MessagesAdapter.removeConversation(responsibleConvUid, true);
+                    MessagesAdapter.removeConversation(responsibleConvUid, true);
                 });
             }
         },
-
         GeneralMenuItem {
             id: removeContact
 
@@ -98,12 +97,12 @@ ContextMenuAutoLoader {
             iconSource: JamiResources.kick_member_svg
             onClicked: {
                 var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
-                        "title": JamiStrings.confirmAction,
-                        "textLabel": JamiStrings.confirmRemoveContact,
-                        "confirmLabel": JamiStrings.optionRemove
-                    });
+                    "title": JamiStrings.confirmAction,
+                    "textLabel": JamiStrings.confirmRemoveContact,
+                    "confirmLabel": JamiStrings.optionRemove
+                });
                 dlg.accepted.connect(function () {
-                        MessagesAdapter.removeContact(responsibleConvUid);
+                    MessagesAdapter.removeContact(responsibleConvUid);
                 });
             }
         },
@@ -139,13 +138,13 @@ ContextMenuAutoLoader {
             iconSource: JamiResources.block_black_24dp_svg
             onClicked: {
                 var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
-                        "title": JamiStrings.confirmAction,
-                        "textLabel": JamiStrings.confirmBlockContact,
-                        "confirmLabel": JamiStrings.optionBlock
-                    });
+                    "title": JamiStrings.confirmAction,
+                    "textLabel": JamiStrings.confirmBlockContact,
+                    "confirmLabel": JamiStrings.optionBlock
+                });
                 dlg.accepted.connect(function () {
-                        MessagesAdapter.blockConversation(responsibleConvUid);
-                    });
+                    MessagesAdapter.blockConversation(responsibleConvUid);
+                });
             }
         },
         GeneralMenuItem {
@@ -165,11 +164,11 @@ ContextMenuAutoLoader {
             onClicked: {
                 if (isCoreDialog) {
                     viewCoordinator.presentDialog(appWindow, "mainview/components/UserProfile.qml", {
-                            "aliasText": aliasText,
-                            "registeredNameText": registeredNameText,
-                            "idText": idText,
-                            "convId": responsibleConvUid
-                        });
+                        "aliasText": aliasText,
+                        "registeredNameText": registeredNameText,
+                        "idText": idText,
+                        "convId": responsibleConvUid
+                    });
                 } else {
                     root.showSwarmDetails();
                 }

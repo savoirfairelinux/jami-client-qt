@@ -297,7 +297,7 @@ Rectangle {
                             anchors.right: parent.right
                             anchors.top: parent.top
                             anchors.margins: JamiTheme.preferredMarginSize
-                            text: JamiStrings.leaveConversation
+                            text: CurrentConversation.modeString.indexOf("group") >= 0 ? JamiStrings.leaveGroup : JamiStrings.removeConversation
                             font.pixelSize: JamiTheme.settingsDescriptionPixelSize
                             font.kerning: true
                             elide: Text.ElideRight
@@ -312,13 +312,13 @@ Rectangle {
                             enabled: parent.visible
                             onTapped: function onTapped(eventPoint) {
                                 var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
-                                        "title": JamiStrings.confirmAction,
-                                        "textLabel": CurrentConversation.isCoreDialog ? JamiStrings.confirmRemoveOneToOneConversation : JamiStrings.confirmLeaveConversation,
-                                        "confirmLabel": JamiStrings.optionLeave
-                                    });
+                                    "title": JamiStrings.confirmAction,
+                                    "textLabel": CurrentConversation.modeString.indexOf("group") >= 0 ? JamiStrings.confrimLeaveGroup : JamiStrings.confirmRemoveOneToOneConversation,
+                                    "confirmLabel": CurrentConversation.modeString.indexOf("group") >= 0 ? JamiStrings.optionLeave : JamiStrings.optionRemove
+                                });
                                 dlg.accepted.connect(function () {
-                                        MessagesAdapter.removeConversation(LRCInstance.selectedConvUid, true);
-                                    });
+                                    MessagesAdapter.removeConversation(LRCInstance.selectedConvUid, true);
+                                });
                             }
                         }
                     }
@@ -348,13 +348,13 @@ Rectangle {
                             enabled: parent.visible
                             onTapped: function onTapped(eventPoint) {
                                 var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
-                                        "title": JamiStrings.confirmAction,
-                                        "textLabel": JamiStrings.confirmRemoveContact,
-                                        "confirmLabel": JamiStrings.optionRemove
-                                    });
+                                    "title": JamiStrings.confirmAction,
+                                    "textLabel": JamiStrings.confirmRemoveContact,
+                                    "confirmLabel": JamiStrings.optionRemove
+                                });
                                 dlg.accepted.connect(function () {
-                                        MessagesAdapter.removeConversation(LRCInstance.selectedConvUid);
-                                    });
+                                    MessagesAdapter.removeConversation(LRCInstance.selectedConvUid);
+                                });
                             }
                         }
                     }
@@ -536,8 +536,6 @@ Rectangle {
                             verticalAlignment: Text.AlignVCenter
 
                             color: JamiTheme.textColor
-
-
                         }
 
                         Text {
