@@ -129,6 +129,11 @@ else
     BUILD_DIR="build"
 fi
 
+BUILD_TYPE="Release"
+if [ "${debug}" = "true" ]; then
+  BUILD_TYPE="Debug"
+fi
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
     #detect arch for macos
     CMAKE_OSX_ARCHITECTURES="arm64"
