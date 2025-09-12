@@ -313,7 +313,7 @@ Rectangle {
                             onTapped: function onTapped(eventPoint) {
                                 var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
                                     "title": JamiStrings.confirmAction,
-                                    "textLabel": CurrentConversation.modeString.indexOf("group") >= 0 ? JamiStrings.confrimLeaveGroup : JamiStrings.confirmRemoveOneToOneConversation,
+                                    "textLabel": CurrentConversation.modeString.indexOf("group") >= 0 ? JamiStrings.confirmLeaveGroup : JamiStrings.confirmRemoveOneToOneConversation,
                                     "confirmLabel": CurrentConversation.modeString.indexOf("group") >= 0 ? JamiStrings.optionLeave : JamiStrings.optionRemove
                                 });
                                 dlg.accepted.connect(function () {

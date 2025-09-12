@@ -285,7 +285,7 @@ Item {
     property string removeConversation: qsTr("Remove conversation")
     property string confirmRemoveConversation: qsTr("Do you want to leave this conversation?")
     property string leaveGroup: qsTr("Leave group")
-    property string confrimLeaveGroup: qsTr("Are you sure you want to leave this group?")
+    property string confirmLeaveGroup: qsTr("Are you sure you want to leave this group?")
     property string confirmRemoveContact: qsTr("Do you want to remove this contact? The existing conversation will be deleted.")
     property string confirmBlockContact: qsTr("Do you want to block this contact?")
     property string confirmRemoveOneToOneConversation: qsTr("Are you sure you want to remove this conversation? The contact will not be removed.")
