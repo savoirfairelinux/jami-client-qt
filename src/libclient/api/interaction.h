@@ -319,18 +319,21 @@ getFormattedCallDuration(const std::time_t duration)
         return QString("%1d %2h %3m %4s")
             .arg(days)
             .arg(hours)
-            .arg(minutes, 2, 10, QChar('0'))
-            .arg(seconds, 2, 10, QChar('0'));
+            .arg(minutes)
+            .arg(seconds);
     } else if (hours > 0) {
         minutes = minutes % 60;
         return QString("%1h %2m %3s")
             .arg(hours)
-            .arg(minutes, 2, 10, QChar('0'))
-            .arg(seconds, 2, 10, QChar('0'));
+            .arg(minutes)
+            .arg(seconds);
     } else if (minutes > 0) {
-        return QString("%1m %2s").arg(minutes).arg(seconds, 2, 10, QChar('0'));
+        return QString("%1m %2s")
+            .arg(minutes)
+            .arg(seconds);
     } else {
-        return QString("%1s").arg(seconds);
+        return QString("%1s")
+            .arg(seconds);
     }
 }
 
