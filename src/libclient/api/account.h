@@ -182,11 +182,11 @@ struct ConfProperties_t
         bool PublicInCalls;
         bool AllowFromTrusted;
     } DHT;
-    struct RingNS_t
+    struct Nameserver_t
     {
         QString uri;
         QString account;
-    } RingNS;
+    } Nameserver;
 
     MapStringString toDetails() const;
 };
