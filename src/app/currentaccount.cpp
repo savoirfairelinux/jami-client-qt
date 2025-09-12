@@ -171,8 +171,8 @@ CurrentAccount::updateData()
         // DHT
         set_PublicInCallsDHT(accConfig.DHT.PublicInCalls, true);
 
-        // RingNS
-        set_uriRingNS(accConfig.RingNS.uri, true);
+        // Nameserver
+        set_uriNameserver(accConfig.Nameserver.uri, true);
 
         // TLS
         set_enableTLS(accConfig.TLS.enable, true);
