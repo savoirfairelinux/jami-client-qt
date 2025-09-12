@@ -964,9 +964,9 @@ account::Info::fromDetails(const MapStringString& details)
     // DHT
     confProperties.DHT.PublicInCalls = toBool(details[ConfProperties::DHT::PUBLIC_IN_CALLS]);
     confProperties.DHT.AllowFromTrusted = toBool(details[ConfProperties::DHT::ALLOW_FROM_TRUSTED]);
-    // RingNS
-    confProperties.RingNS.uri = details[ConfProperties::Nameserver::URI];
-    confProperties.RingNS.account = details[ConfProperties::Nameserver::ACCOUNT];
+    // Nameserver
+    confProperties.Nameserver.uri = details[ConfProperties::Nameserver::URI];
+    confProperties.Nameserver.account = details[ConfProperties::Nameserver::ACCOUNT];
     // Jams
     confProperties.managerUri = details[ConfProperties::MANAGER_URI];
     confProperties.managerUsername = details[ConfProperties::MANAGER_USERNAME];
@@ -1075,9 +1075,9 @@ account::ConfProperties_t::toDetails() const
     // DHT
     details[ConfProperties::DHT::PUBLIC_IN_CALLS] = toQString(this->DHT.PublicInCalls);
     details[ConfProperties::DHT::ALLOW_FROM_TRUSTED] = toQString(this->DHT.AllowFromTrusted);
-    // RingNS
-    details[ConfProperties::Nameserver::URI] = this->RingNS.uri;
-    details[ConfProperties::Nameserver::ACCOUNT] = this->RingNS.account;
+    // Nameserver
+    details[ConfProperties::Nameserver::URI] = this->Nameserver.uri;
+    details[ConfProperties::Nameserver::ACCOUNT] = this->Nameserver.account;
     // Manager
     details[ConfProperties::MANAGER_URI] = this->managerUri;
     details[ConfProperties::MANAGER_USERNAME] = this->managerUsername;
