@@ -148,8 +148,8 @@ class CurrentAccount final : public QObject
     Q_PROPERTY(bool isLocalModeratorsEnabled READ get_isLocalModeratorsEnabled WRITE
                    set_isLocalModeratorsEnabled NOTIFY isLocalModeratorsEnabledChanged)
 
-    // RingNS setting
-    QML_ACCOUNT_CONFIG_CATEGORY_SETTINGS_PROPERTY(QString, uri, RingNS)
+    // Nameserver setting
+    QML_ACCOUNT_CONFIG_CATEGORY_SETTINGS_PROPERTY(QString, uri, Nameserver)
 
     // DHT settings
     QML_ACCOUNT_CONFIG_CATEGORY_SETTINGS_PROPERTY(bool, PublicInCalls, DHT)
