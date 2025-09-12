@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e7a6527_bde6e497",
+        "filename": "extras/data/net.jami.Jami.metainfo.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-09-12T18:23:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6bbb7ec2_0f5fe19b",
+      "range": {
+        "startLine": 93,
+        "startChar": 3,
+        "endLine": 95,
+        "endChar": 14
+      },
+      "revId": "3ea62f40ca7f882996d9c5cc3121b26f8fc5541c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d6d8064c_360be0e0",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-09-12T18:13:22Z",
       "side": 1,
       "message": "https://git.jami.net/savoirfairelinux/jami-client-qt/-/wikis/Changelog#stable-20250817",
+      "range": {
+        "startLine": 96,
+        "startChar": 4,
+        "endLine": 101,
+        "endChar": 14
+      },
+      "revId": "3ea62f40ca7f882996d9c5cc3121b26f8fc5541c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6236f419_f7f476b2",
+        "filename": "extras/data/net.jami.Jami.metainfo.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-09-12T18:23:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6d8064c_360be0e0",
       "range": {
         "startLine": 96,
         "startChar": 4,
