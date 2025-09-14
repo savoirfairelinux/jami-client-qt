@@ -455,12 +455,6 @@ endif()
 
 # For libavutil/avframe.
 set(LIBJAMI_CONTRIB_DIR "${DAEMON_DIR}/contrib")
-find_path(AVUTIL_INCLUDE_DIR libavutil/avutil.h
-  PATHS
-  ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg
-  ${LIBJAMI_CONTRIB_DIR}/${CONTRIB_DARWIN_FOLDER}/include/
-  ${LIBJAMI_CONTRIB_DIR}/build/ffmpeg/Build/win32/x64/include)
-include_directories(${AVUTIL_INCLUDE_DIR})
 
 find_package(Vulkan)
 if(Vulkan_FOUND)
