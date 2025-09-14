@@ -318,12 +318,6 @@ if(APPLE)
   endif()
 endif()
 
-find_path(AVUTIL_INCLUDE_DIR libavutil/avutil.h
-  PATHS
-  ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg
-  ${LIBJAMI_CONTRIB_DIR}/${CONTRIB_DARWIN_FOLDER}/include/
-  ${LIBJAMI_CONTRIB_DIR}/build/ffmpeg/Build/win32/x64/include)
-include_directories(${AVUTIL_INCLUDE_DIR})
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
   execute_process(COMMAND ${CMAKE_CXX_COMPILER} -dumpmachine
     OUTPUT_STRIP_TRAILING_WHITESPACE
@@ -494,8 +488,6 @@ if (NOT (CMAKE_CXX_COMPILER_ID MATCHES "MSVC"))
 endif()
 set_target_properties(${LIBCLIENT_NAME}
   PROPERTIES VERSION ${LIBCLIENT_VERSION})
-target_include_directories(${LIBCLIENT_NAME}
-  PRIVATE ${AVUTIL_INCLUDE_DIR})
 
 # Set these in the parent scope for use from the top-level
 # CMakeLists.txt file.
