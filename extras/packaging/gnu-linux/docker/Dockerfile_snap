@@ -2,7 +2,7 @@
 #   https://snapcraft.io/docs/build-on-docker
 #   https://github.com/canonical/snapcraft/issues/5079#issuecomment-2414199613
 
-ARG UBUNTU=jammy
+ARG UBUNTU=noble
 
 FROM ubuntu:$UBUNTU AS builder
 ARG UBUNTU
@@ -15,11 +15,6 @@ RUN apt-get install --yes \
       curl \
       jq \
       squashfs-tools
-
-# Download and unpack the core22 snap
-RUN curl -L $(curl -H 'X-Ubuntu-Series: 16' 'https://api.snapcraft.io/api/v1/snaps/details/core22' | jq '.download_url' -r) --output core22.snap
-RUN mkdir -p /snap/core22
-RUN unsquashfs -d /snap/core22/current core22.snap
 
 # Download and unpack the core24 snap
 RUN curl -L $(curl -H 'X-Ubuntu-Series: 16' 'https://api.snapcraft.io/api/v1/snaps/details/core24' | jq '.download_url' -r) --output core24.snap
@@ -43,7 +38,6 @@ RUN chmod +x /snap/bin/snapcraft
 # time so they can be cached.
 FROM ubuntu:$UBUNTU
 
-COPY --from=builder /snap/core22 /snap/core22
 COPY --from=builder /snap/core24 /snap/core24
 COPY --from=builder /snap/snapcraft /snap/snapcraft
 COPY --from=builder /snap/bin/snapcraft /snap/bin/snapcraft
