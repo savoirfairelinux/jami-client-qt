@@ -98,13 +98,13 @@ description: |
 
 confinement: strict
 grade: stable
-base: core22
+base: core24
 
 plugs:
-  gnome-42-2204:
-    interface: content
-    target: $SNAP/gnome-platform
-    default-provider: gnome-42-2204
+  gnome-46-2404:
+      interface: content
+      target: $SNAP/gnome-platform
+      default-provider: gnome-46-2404
   gtk-3-themes:
     interface: content
     target: $SNAP/data-dir/themes
@@ -117,6 +117,10 @@ plugs:
     interface: content
     target: $SNAP/data-dir/sounds
     default-provider: gtk-common-themes:sounds-themes
+  gpu-2404:
+    interface: content
+    target: $SNAP/gpu-2404
+    default-provider: mesa-2404
 
 slots:
   dbus-jami:
@@ -135,9 +139,10 @@ layout:
     bind: $SNAP/usr/share/alsa
   /usr/share/X11/xkb:
     bind: $SNAP/usr/share/X11/xkb
+  /usr/share/X11/XErrorDB:
+    symlink: $SNAP/gpu-2404/X11/XErrorDB
 
 environment:
-  XDG_CURRENT_DESKTOP: Unity
   QT_BASE_DIR: "/usr/lib/libqt-jami"
   LD_LIBRARY_PATH: "${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$SNAP$QT_BASE_DIR/lib:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/pulseaudio"
 
@@ -145,6 +150,7 @@ apps:
   jami:
     command: usr/bin/jami
     command-chain:
+    - bin/gpu-2404-wrapper
     - bin/desktop-launch
     - snap/command-chain/alsa-launch
     - bin/jami-wrapper
@@ -185,7 +191,7 @@ package-repositories:
     components: [main]
     suites: [jami]
     key-id: A295D773307D25A33AE72F2F64CD5FA175348F84
-    url: https://dl.jami.net/internal/ubuntu_22.04/
+    url: https://dl.jami.net/internal/ubuntu_24.04/
 
 parts:
   desktop-launch:
@@ -247,7 +253,7 @@ parts:
     build-packages:
       - libasound2-dev
     stage-packages:
-      - libasound2
+      - libasound2t64
       - libasound2-plugins
       - yad
 
@@ -272,8 +278,6 @@ parts:
       sed -i -E 's|(tmpName) << (PACKAGE_NAME << "_shm_")|\1 << "snap.jami." << \2|' ./daemon/src/media/video/sinkclient.cpp
       sed -i -E 's|^Icon=.*|Icon=${SNAP}/usr/share/icons/hicolor/scalable/apps/net.jami.Jami.svg|' extras/data/net.jami.Jami.desktop
     override-build: |
-      $CRAFT_PART_BUILD/extras/packaging/gnu-linux/scripts/install-pipewire-from-source.sh
-
       cd $CRAFT_PART_BUILD/daemon/contrib
       mkdir -p native
       cd native
@@ -283,7 +287,7 @@ parts:
 
       cd $CRAFT_PART_BUILD/daemon
       ./autogen.sh
-      ./configure --prefix=/usr --without-dbus
+      ./configure --prefix=/usr --without-dbus --enable-debug
       make -j$CRAFT_PARALLEL_BUILD_COUNT
       DESTDIR=$CRAFT_PART_INSTALL make install
 
@@ -293,7 +297,7 @@ parts:
       cmake .. -DENABLE_LIBWRAP=true \
                -DLIBJAMI_BUILD_DIR=$CRAFT_PART_BUILD/daemon/src \
                -DCMAKE_INSTALL_PREFIX=/usr \
-               -DCMAKE_BUILD_TYPE=Release \
+               -DCMAKE_BUILD_TYPE=Debug \
                -DCMAKE_PREFIX_PATH=$QT_BASE_DIR \
                -DBUILD_VERSION=BUILD_VERSION_PLACEHOLDER \
                -DBUILD_TESTING=Off
@@ -301,7 +305,6 @@ parts:
       DESTDIR=$CRAFT_PART_INSTALL make install
     build-packages:
     - autoconf
-    - autoconf-archive
     - automake
     - autopoint
     - bzip2
@@ -312,8 +315,8 @@ parts:
     - gettext
     - gzip
     - libnotify-dev
+    - libpipewire-0.3-dev
     - libqrencode-dev
-    - libsndfile1-dev
     - libspeex-dev
     - python3
     - python3-dev
@@ -321,13 +324,9 @@ parts:
     - yasm
     - wget
     - nasm # ffmpeg
-    - libavcodec-dev
-    - libavdevice-dev
-    - libavformat-dev
-    - libswscale-dev
     - libva-dev
     - libvdpau-dev
-    - libargon2-0-dev # opendht
+    - libargon2-dev # opendht
     - libexpat1-dev
     - libjsoncpp-dev
     - libnm-dev # connectivityChanged()
@@ -340,51 +339,27 @@ parts:
     - libgl-dev
     - libvulkan-dev
     - libgnutls28-dev # TLS
-    - gnutls-bin
     - libssl-dev
-    - git            # PipeWire build dependencies
-    - meson          #
-    - libasound2-dev #
-    - libdbus-1-dev  # These packages are needed by the
-    - libglib2.0-dev # install-pipewire-from-source.sh
-    - ninja-build    # script in order to build PipeWire
-    - pkg-config     # from source.
     stage-packages:
     - libgnutls30
-    - libavutil56
     - libdouble-conversion3
-    - libegl1
     - libgbm1
-    - libgudev-1.0-0
     - libjsoncpp25
-    - libllvm12
-    - libminizip1
+    - libminizip1t64
     - libnm0
     - libnotify4
     - libnspr4
     - libnss3
-    - libopengl0
     - libopus0
-    - liborc-0.4-0
-    - libpcre2-16-0
+    - libpcre2-8-0
     - libqrencode4
     - libqt-jami
     - libsnappy1v5
     - libspeex1
-    - libproxy1v5
-    - libwayland-server0
     - libwebpdemux2
     - libwebpmux3
     - libxkbfile1
     - libxtst6
-    - ocl-icd-libopencl1
-    - libva-drm2
-    - libva-glx2
-    - libva-wayland2
-    - libva2
-    - libvdpau-va-gl1
-    - libvdpau1
-    - va-driver-all
     prime:
     - -usr/lib/libqt-jami/bin/
     - -usr/lib/libqt-jami/docs/
@@ -392,3 +367,15 @@ parts:
     - -usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libLLVM-*.so*
     - -usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libclang-*.so*
     - -usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libflite*.so*
+
+  gpu-2404:
+    after: [jami]
+    source: https://github.com/canonical/gpu-snap.git
+    plugin: dump
+    override-prime: |
+      craftctl default
+      ${CRAFT_PART_SRC}/bin/gpu-2404-cleanup mesa-2404
+      # Workaround for https://bugs.launchpad.net/snapd/+bug/2055273
+      mkdir -p "${CRAFT_PRIME}/gpu-2404"
+    prime:
+    - bin/gpu-2404-wrapper
