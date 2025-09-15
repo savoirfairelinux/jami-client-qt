@@ -1314,7 +1314,7 @@ csatlakozásra a beszélgetés összehangolásához…</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="908"/>
         <source>Connection</source>
-        <translation>Csatlakozás</translation>
+        <translation>Kapcsolat</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="909"/>
@@ -3216,7 +3216,7 @@ Kérjük, erősítse meg az importálást az új eszközön.</translation>
         <source>New device found at address below. Is that you?
 Clicking on confirm will continue transfering account.</source>
         <translation>Új eszköz található a következő címen. Ön az?
-A fiókexportálási művelet folytatásához kattintson a Megerősítés gombra.</translation>
+A fiók exportálási művelet folytatásához kattintson a Megerősítés gombra.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="616"/>
@@ -4183,7 +4183,7 @@ A fiókexportálási művelet folytatásához kattintson a Megerősítés gombra
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="101"/>
         <source>Temporarily Unavailable</source>
-        <translation>Ideiglenesen nem elérhető</translation>
+        <translation>Átmenetileg nem érhető el</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="102"/>
@@ -4259,7 +4259,7 @@ A fiókexportálási művelet folytatásához kattintson a Megerősítés gombra
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="117"/>
         <source>Service Unavailable</source>
-        <translation>A szolgáltatás nem elérhető</translation>
+        <translation>A szolgáltatás nem érhető el</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="118"/>

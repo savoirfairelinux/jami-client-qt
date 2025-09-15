@@ -808,7 +808,7 @@ If a username is not chosen, a randomly generated 40-character identifier will b
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="543"/>
         <source>A new version of the Jami application is available. Do you want to update now? To continue, click Update.</source>
-        <translation type="unfinished"/>
+        <translation>Ei ny utgåve av Jami-programmet er tilgjengeleg. Ynskjer du å oppdatera no? For å halda fram, klikk Oppdater.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="544"/>
@@ -1098,7 +1098,7 @@ If a username is not chosen, a randomly generated 40-character identifier will b
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="719"/>
         <source>Decline invitation</source>
-        <translation>Nekta invitasjon</translation>
+        <translation>Ikkje godta invitasjon</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="720"/>
@@ -1254,7 +1254,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="832"/>
         <source>Conversation type</source>
-        <translation type="unfinished"/>
+        <translation>Samtaletype</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="837"/>
@@ -1274,7 +1274,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="891"/>
         <source>If you enjoy using Jami and believe in our mission, do you want to make a donation?</source>
-        <translation type="unfinished"/>
+        <translation>Dersom du likar å bruka Jami og trur på saka vår, har du lyst til å donera?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="902"/>
@@ -1304,7 +1304,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="907"/>
         <source>Contact</source>
-        <translation type="unfinished"/>
+        <translation>Kontakt</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="908"/>
@@ -1698,7 +1698,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="114"/>
         <source>Decline incoming calls when already in a call</source>
-        <translation type="unfinished"/>
+        <translation>Ikkje godta innkomande samtaler, når du er i ei samtale</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="123"/>
@@ -2186,7 +2186,7 @@ Your picture and your display name can be changed at all time in the settings of
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="31"/>
         <source>Decline</source>
-        <translation>Nedgang</translation>
+        <translation>Ikkje godta</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="35"/>
@@ -2306,7 +2306,7 @@ Your picture and your display name can be changed at all time in the settings of
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="288"/>
         <source>Do you want to leave this conversation?</source>
-        <translation type="unfinished"/>
+        <translation>Vil du slutta av denne samtala?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="289"/>
@@ -2488,7 +2488,7 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="481"/>
         <source>Blocked</source>
-        <translation type="unfinished"/>
+        <translation>Blokkerte</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="482"/>
@@ -2627,7 +2627,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="638"/>
         <source>Auto update</source>
-        <translation type="unfinished"/>
+        <translation>Oppdater automatisk</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="639"/>
@@ -3691,7 +3691,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="128"/>
         <source>Decline call</source>
-        <translation type="unfinished"/>
+        <translation>Ikkje godta samtala</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="136"/>
@@ -3962,7 +3962,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="341"/>
         <source>Call declined</source>
-        <translation type="unfinished"/>
+        <translation>Samtala vart ikkje godteke</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="343"/>
@@ -3999,7 +3999,7 @@ Clicking on confirm will continue transfering account.</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="485"/>
         <source>(Profile updated)</source>
-        <translation type="unfinished"/>
+        <translation>(Profilen vart oppdatert)</translation>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="496"/>
@@ -4437,7 +4437,7 @@ Please try again.</source>
     <message>
         <location filename="../src/app/systemtray.cpp" line="225"/>
         <source>Decline call</source>
-        <translation type="unfinished"/>
+        <translation>Ikkje godta samtala</translation>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="227"/>
@@ -4452,7 +4452,7 @@ Please try again.</source>
     <message>
         <location filename="../src/app/systemtray.cpp" line="230"/>
         <source>Decline invitation</source>
-        <translation>Nekta invitasjon</translation>
+        <translation>Ikkje godta innbydinga</translation>
     </message>
 </context>
 <context>
