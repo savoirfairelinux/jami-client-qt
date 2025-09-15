@@ -283,7 +283,7 @@ parts:
 
       cd $CRAFT_PART_BUILD/daemon
       ./autogen.sh
-      ./configure --prefix=/usr --without-dbus
+      ./configure --prefix=/usr --without-dbus --enable-debug
       make -j$CRAFT_PARALLEL_BUILD_COUNT
       DESTDIR=$CRAFT_PART_INSTALL make install
 
@@ -293,7 +293,7 @@ parts:
       cmake .. -DENABLE_LIBWRAP=true \
                -DLIBJAMI_BUILD_DIR=$CRAFT_PART_BUILD/daemon/src \
                -DCMAKE_INSTALL_PREFIX=/usr \
-               -DCMAKE_BUILD_TYPE=Release \
+               -DCMAKE_BUILD_TYPE=Debug \
                -DCMAKE_PREFIX_PATH=$QT_BASE_DIR \
                -DBUILD_VERSION=BUILD_VERSION_PLACEHOLDER \
                -DBUILD_TESTING=Off
