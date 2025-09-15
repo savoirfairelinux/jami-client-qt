@@ -137,7 +137,6 @@ layout:
     bind: $SNAP/usr/share/X11/xkb
 
 environment:
-  XDG_CURRENT_DESKTOP: Unity
   QT_BASE_DIR: "/usr/lib/libqt-jami"
   LD_LIBRARY_PATH: "${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$SNAP$QT_BASE_DIR/lib:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/pulseaudio"
 
@@ -283,7 +282,7 @@ parts:
 
       cd $CRAFT_PART_BUILD/daemon
       ./autogen.sh
-      ./configure --prefix=/usr --without-dbus
+      ./configure --prefix=/usr --without-dbus --enable-debug
       make -j$CRAFT_PARALLEL_BUILD_COUNT
       DESTDIR=$CRAFT_PART_INSTALL make install
 
@@ -293,7 +292,7 @@ parts:
       cmake .. -DENABLE_LIBWRAP=true \
                -DLIBJAMI_BUILD_DIR=$CRAFT_PART_BUILD/daemon/src \
                -DCMAKE_INSTALL_PREFIX=/usr \
-               -DCMAKE_BUILD_TYPE=Release \
+               -DCMAKE_BUILD_TYPE=Debug \
                -DCMAKE_PREFIX_PATH=$QT_BASE_DIR \
                -DBUILD_VERSION=BUILD_VERSION_PLACEHOLDER \
                -DBUILD_TESTING=Off
@@ -351,9 +350,7 @@ parts:
     - pkg-config     # from source.
     stage-packages:
     - libgnutls30
-    - libavutil56
     - libdouble-conversion3
-    - libegl1
     - libgbm1
     - libgudev-1.0-0
     - libjsoncpp25
@@ -363,7 +360,6 @@ parts:
     - libnotify4
     - libnspr4
     - libnss3
-    - libopengl0
     - libopus0
     - liborc-0.4-0
     - libpcre2-16-0
@@ -372,19 +368,11 @@ parts:
     - libsnappy1v5
     - libspeex1
     - libproxy1v5
-    - libwayland-server0
     - libwebpdemux2
     - libwebpmux3
     - libxkbfile1
     - libxtst6
     - ocl-icd-libopencl1
-    - libva-drm2
-    - libva-glx2
-    - libva-wayland2
-    - libva2
-    - libvdpau-va-gl1
-    - libvdpau1
-    - va-driver-all
     prime:
     - -usr/lib/libqt-jami/bin/
     - -usr/lib/libqt-jami/docs/
