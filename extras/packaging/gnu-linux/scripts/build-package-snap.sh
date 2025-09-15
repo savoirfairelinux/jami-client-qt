@@ -32,7 +32,7 @@ sed -i "s/RELEASE_VERSION/${RELEASE_VERSION}/g" snapcraft.yaml
 # set the build version of the app
 sed -i "s/BUILD_VERSION_PLACEHOLDER/${BUILD_VERSION}/g" snapcraft.yaml
 
-snapcraft # requires snapcraft >= 4.8
+snapcraft pack
 
 # move the built snap to output
 mv *.snap /opt/output/
