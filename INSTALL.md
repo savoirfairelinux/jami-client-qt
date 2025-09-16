@@ -29,7 +29,7 @@ sudo apt-get update && sudo apt-get install libqt-jami
 
 #### Install libqt-jami, Debian based
 
-To install libqt-jami on Debian, execute these commands replacing `debian_<VERSION>` by your distribution version. For example "debian_11"
+To install libqt-jami on Debian, execute these commands replacing `debian_<VERSION>` by your distribution version. For example "debian_12"
 
 ```bash
 sudo apt install gnupg dirmngr ca-certificates curl --no-install-recommends
