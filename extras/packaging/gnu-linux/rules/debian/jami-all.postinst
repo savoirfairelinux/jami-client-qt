@@ -95,6 +95,8 @@ if [ -f /etc/os-release ]; then
         ENDTAG="debian_11"
     elif [ "${VERSION_CODENAME}" = "bookworm" ] || [ "${ID}_${VERSION_ID}" = "debian_12" ]; then
         ENDTAG="debian_12"
+    elif [ "${VERSION_CODENAME}" = "trixie" ] || [ "${ID}_${VERSION_ID}" = "debian_13" ]; then
+        ENDTAG="debian_13"
     elif [ "${UBUNTU_CODENAME}" = "jammy" ] || [ "${ID}_${VERSION_ID}" = "ubuntu_22.04" ]; then
         ENDTAG="ubuntu_22.04"
     elif [ "${UBUNTU_CODENAME}" = "noble" ] || [ "${ID}_${VERSION_ID}" = "ubuntu_24.04" ]; then
