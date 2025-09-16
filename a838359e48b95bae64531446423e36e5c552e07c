@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d964d46_f993e7f7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-09-16T15:30:44Z",
+      "side": 1,
+      "message": "Typo",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 9
+      },
+      "revId": "a838359e48b95bae64531446423e36e5c552e07c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0024c9c0_4d8019d3",
+        "filename": "extras/data/net.jami.Jami.metainfo.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1312,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-09-16T15:30:44Z",
+      "side": 1,
+      "message": "Inconsistent indentation",
+      "range": {
+        "startLine": 1312,
+        "startChar": 4,
+        "endLine": 1312,
+        "endChar": 33
+      },
+      "revId": "a838359e48b95bae64531446423e36e5c552e07c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
