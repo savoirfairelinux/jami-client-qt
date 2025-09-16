@@ -8,13 +8,18 @@ set -e
 
 arch=''
 debug=
-while getopts "a:d:" OPT; do
+contrib_cache_dir=''
+
+while getopts "a:d:c:" OPT; do
   case "$OPT" in
   a)
     arch="${OPTARG}"
     ;;
   d)
     debug=true
+    ;;
+  c)
+    contrib_cache_dir="${OPTARG}"
     ;;
   \?)
     exit 1
@@ -46,7 +51,14 @@ for ARCH in "${ARCHS[@]}"; do
   mkdir -p contrib/native-"${ARCH}"
   (
     cd contrib/native-"${ARCH}"
-    ../bootstrap --host="$HOST"
+    if [ -n "$contrib_cache_dir" ]; then
+      echo "Using contrib cache dir : $contrib_cache_dir"
+      ../bootstrap --host="$HOST" --cache-dir="$contrib_cache_dir" --cache-builds
+    else
+      ../bootstrap --host="$HOST"
+    fi
+    make list
+    make fetch
 
     echo "Building contrib for $ARCH"
     # force to build every contrib
@@ -59,7 +71,12 @@ for ARCH in "${ARCHS[@]}"; do
         [ "$PKG" != "onnx" ] && [ "$PKG" != "opencv" ] &&
         [ "$PKG" != "opencv_contrib" ] && [ "$PKG" != "uuid" ] &&
         [ "$PKG" != "webrtc-audio-processing" ] && [ "$PKG" != "liburcu" ]; then
-        make -j"$NPROC" ."$PKG"
+        if [ -n "$contrib_cache_dir" ]; then
+          echo "Using contrib cache dir : $contrib_cache_dir"
+          make -j"$NPROC" .cache-"$PKG"
+        else
+          make -j"$NPROC" ".$PKG"
+        fi
       fi
     done
   )
@@ -96,6 +113,7 @@ rsync -ar --delete "$DAEMON/contrib/${ARCHS[0]}-apple-darwin$OS_VER/include"* "$
 
 # build deamon for every arch
 for ARCH in "${ARCHS[@]}"; do
+  echo "Building Daemon for arch :"
   echo "$ARCH"
   cd "$DAEMON"
   HOST="${ARCH}-apple-darwin"
