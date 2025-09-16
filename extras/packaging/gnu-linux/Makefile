@@ -162,6 +162,7 @@ endif
 DISTRIBUTIONS := \
 	debian_11 \
 	debian_12 \
+	debian_13 \
 	debian_testing \
 	debian_unstable \
 	ubuntu_22.04 \
