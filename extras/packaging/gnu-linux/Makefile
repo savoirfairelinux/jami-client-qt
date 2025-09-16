@@ -160,7 +160,6 @@ endif
 # Traditionally built packages (in Docker containers).
 #
 DISTRIBUTIONS := \
-	debian_11 \
 	debian_12 \
 	debian_13 \
 	debian_testing \

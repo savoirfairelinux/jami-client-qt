@@ -91,9 +91,7 @@ if [ -f /etc/os-release ]; then
     . /etc/os-release
 
     # Set-up Jami repository end tag
-    if [ "${VERSION_CODENAME}" = "bullseye" ] || [ "${ID}_${VERSION_ID}" = "debian_11" ]; then
-        ENDTAG="debian_11"
-    elif [ "${VERSION_CODENAME}" = "bookworm" ] || [ "${ID}_${VERSION_ID}" = "debian_12" ]; then
+    if [ "${VERSION_CODENAME}" = "bookworm" ] || [ "${ID}_${VERSION_ID}" = "debian_12" ]; then
         ENDTAG="debian_12"
     elif [ "${VERSION_CODENAME}" = "trixie" ] || [ "${ID}_${VERSION_ID}" = "debian_13" ]; then
         ENDTAG="debian_13"
