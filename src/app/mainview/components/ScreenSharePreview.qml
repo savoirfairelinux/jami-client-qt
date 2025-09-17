@@ -27,6 +27,7 @@ Rectangle {
 
     color: JamiTheme.secondaryBackgroundColor
     border.color: selectedScreenNumber === elementIndex ? JamiTheme.screenSelectionBorderColor : JamiTheme.tabbarBorderColor
+    border.width: selectedScreenNumber === elementIndex ? 3 : 1
 
     width: elementWidth
     height: 3 * width / 4
