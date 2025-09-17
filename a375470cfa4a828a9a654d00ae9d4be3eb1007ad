@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15a2c2fa_7cc27d7f",
+        "filename": "extras/packaging/gnu-linux/rules/snap/jami/snapcraft.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-09-17T13:54:37Z",
+      "side": 1,
+      "message": "Inconsistent indentation",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 37
+      },
+      "revId": "a375470cfa4a828a9a654d00ae9d4be3eb1007ad",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
