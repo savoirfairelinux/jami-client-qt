@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3ed0f66_141909f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-09-18T13:50:26Z",
+      "side": 1,
+      "message": "Does not compile, see required changed",
+      "revId": "9a6dfaae3bce59a7938d5463d173eb596334d751",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0ad4571_5efbcd34",
+        "filename": "src/libclient/api/interaction.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-09-18T13:50:26Z",
+      "side": 1,
+      "message": "QObject::tr",
+      "range": {
+        "startLine": 320,
+        "startChar": 15,
+        "endLine": 320,
+        "endChar": 26
+      },
+      "revId": "9a6dfaae3bce59a7938d5463d173eb596334d751",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9bea05ee_a2dc0d43",
+        "filename": "src/libclient/api/interaction.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-09-18T13:50:26Z",
+      "side": 1,
+      "message": "QObject::tr",
+      "range": {
+        "startLine": 327,
+        "startChar": 15,
+        "endLine": 327,
+        "endChar": 26
+      },
+      "revId": "9a6dfaae3bce59a7938d5463d173eb596334d751",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fafce86_3f11c5a6",
+        "filename": "src/libclient/api/interaction.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-09-18T13:50:26Z",
+      "side": 1,
+      "message": "QObject::tr",
+      "range": {
+        "startLine": 332,
+        "startChar": 15,
+        "endLine": 332,
+        "endChar": 26
+      },
+      "revId": "9a6dfaae3bce59a7938d5463d173eb596334d751",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7def7fc8_0b84dc69",
+        "filename": "src/libclient/api/interaction.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-09-18T13:50:26Z",
+      "side": 1,
+      "message": "QObject::tr",
+      "range": {
+        "startLine": 336,
+        "startChar": 15,
+        "endLine": 336,
+        "endChar": 26
+      },
+      "revId": "9a6dfaae3bce59a7938d5463d173eb596334d751",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
