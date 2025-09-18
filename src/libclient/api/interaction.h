@@ -14,6 +14,7 @@
  *   You should have received a copy of the GNU General Public License      *
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.  *
  ***************************************************************************/
+
 #pragma once
 
 #include <QString>
@@ -308,31 +309,31 @@ getFormattedCallDuration(const std::time_t duration)
     if (duration == 0)
         return {};
 
-    int minutes = duration / 60;
     int seconds = duration % 60;
+    int minutes = duration / 60;
     int hours = minutes / 60;
     int days = hours / 24;
 
     if (days > 0) {
         hours = hours % 24;
         minutes = minutes % 60;
-        return QString("%1d %2h %3m %4s")
-            .arg(days)
-            .arg(hours)
+        return QObject::tr("%L4d %L3h %L2m %L1s")
+            .arg(seconds)
             .arg(minutes)
-            .arg(seconds);
+            .arg(hours)
+            .arg(days);
     } else if (hours > 0) {
         minutes = minutes % 60;
-        return QString("%1h %2m %3s")
-            .arg(hours)
+        return QObject::tr("%L3h %L2m %L1s")
+            .arg(seconds)
             .arg(minutes)
-            .arg(seconds);
+            .arg(hours);
     } else if (minutes > 0) {
-        return QString("%1m %2s")
-            .arg(minutes)
-            .arg(seconds);
+        return QObject::tr("%L2m %L1s")
+            .arg(seconds)
+            .arg(minutes);
     } else {
-        return QString("%1s")
+        return QObject::tr("%L1s")
             .arg(seconds);
     }
 }
