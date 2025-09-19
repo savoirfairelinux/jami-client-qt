@@ -42,9 +42,6 @@ Popup {
 
     onAboutToShow: {
         actionsModel.clear();
-        actionsModel.append({
-                "Top": true
-            });
         if (root.isOnLocal)
             actionsModel.append({
                     "Name": JamiStrings.mirrorLocalVideo,
@@ -59,10 +56,6 @@ Popup {
                 "Name": JamiStrings.advancedInformation,
                 "IconSource": JamiResources.informations_black_24dp_svg
             });
-        actionsModel.append({
-                "Bottom": true
-            });
-        itemListView.implicitHeight = 20 + 45 * (actionsModel.count - 2);
     }
 
     onAboutToHide: {
@@ -79,84 +72,74 @@ Popup {
 
     contentItem: Rectangle {
         id: container
-        width: childrenRect.width
-        height: childrenRect.height
+        implicitWidth: 200
+        implicitHeight: actionsModel.count * 45
         color: "#c4272727"
         radius: 4
 
-        ColumnLayout {
-            anchors.topMargin: 8
-            anchors.bottomMargin: 8
-            ListView {
-                id: itemListView
+        ListView {
+            id: itemListView
 
-                orientation: ListView.Vertical
-                implicitWidth: 200
-                implicitHeight: 100
-                interactive: false
+            orientation: ListView.Vertical
+            implicitWidth: 200
+            implicitHeight: parent.height
+            model: actionsModel
 
-                model: actionsModel
-                delegate: ItemDelegate {
-                    id: menuItem
+            delegate: ItemDelegate {
+                id: menuItem
 
-                    width: 200
-                    height: Top || Bottom ? 10 : 45
+                width: 200
+                height: 45
 
-                    background: Rectangle {
-                        radius: 5
-                        visible: !Top && !Bottom
-                        anchors.fill: parent
-                        anchors.leftMargin: 5
-                        anchors.rightMargin: 5
-                        color: menuItem.down ? "#c4aaaaaa" : menuItem.hovered ? "#c4777777" : "transparent"
+                background: Rectangle {
+                    radius: 5
+                    anchors.fill: parent
+                    anchors.margins: 5
+                    color: menuItem.down ? "#c4aaaaaa" : menuItem.hovered ? "#c4777777" : "transparent"
+                }
+
+                RowLayout {
+                    anchors.fill: menuItem
+                    ResponsiveImage {
+                        Layout.leftMargin: JamiTheme.preferredMarginSize
+                        source: IconSource
+                        color: "white"
+                        width: 20
+                        height: 20
                     }
-
-                    RowLayout {
-                        anchors.fill: parent
-                        anchors.leftMargin: 5
-                        anchors.rightMargin: 5
-                        visible: !Top && !Bottom
-                        ResponsiveImage {
-                            Layout.leftMargin: JamiTheme.preferredMarginSize
-                            source: IconSource
-                            color: "white"
-                            width: 20
-                            height: 20
-                        }
-                        Text {
-                            Layout.fillWidth: true
-                            horizontalAlignment: Text.AlignLeft
-                            verticalAlignment: Text.AlignVCenter
-                            text: Name
-                            elide: Text.ElideRight
-                            font.pointSize: JamiTheme.participantFontSize
-                            color: "white"
-                        }
+                    Text {
+                        Layout.fillWidth: true
+                        horizontalAlignment: Text.AlignLeft
+                        verticalAlignment: Text.AlignVCenter
+                        text: Name
+                        elide: Text.ElideRight
+                        font.pointSize: JamiTheme.participantFontSize
+                        color: "white"
                     }
+                }
 
-                    onClicked: {
-                        switch (Name) {
-                        case JamiStrings.advancedInformation:
-                            CallAdapter.startTimerInformation();
-                            callInformationOverlay.open();
-                            break;
-                        case JamiStrings.tileScreenshot:
-                            if (CallAdapter.takeScreenshot(videoProvider.captureRawVideoFrame(hoveredOverlaySinkId), UtilsAdapter.getDirScreenshot())) {
-                                screenshotTaken();
-                            }
-                            break;
-                        case JamiStrings.mirrorLocalVideo:
-                            UtilsAdapter.setAppValue(Settings.FlipSelf, !UtilsAdapter.getAppValue(Settings.FlipSelf));
-                            CurrentCall.flipSelf = UtilsAdapter.getAppValue(Settings.FlipSelf);
-                            break;
+                onClicked: {
+                    switch (Name) {
+                    case JamiStrings.advancedInformation:
+                        CallAdapter.startTimerInformation();
+                        callInformationOverlay.open();
+                        break;
+                    case JamiStrings.tileScreenshot:
+                        if (CallAdapter.takeScreenshot(videoProvider.captureRawVideoFrame(hoveredOverlaySinkId), UtilsAdapter.getDirScreenshot())) {
+                            screenshotTaken();
                         }
-                        root.close();
+                        break;
+                    case JamiStrings.mirrorLocalVideo:
+                        UtilsAdapter.setAppValue(Settings.FlipSelf, !UtilsAdapter.getAppValue(Settings.FlipSelf));
+                        CurrentCall.flipSelf = UtilsAdapter.getAppValue(Settings.FlipSelf);
+                        break;
                     }
+                    root.close();
+                }
 
-                    onHoveredChanged: {
-                        if (Name === JamiStrings.tileScreenshot) {
-                            screenshotButtonHovered = hovered;
-                        }
+                onHoveredChanged: {
+                    if (Name === JamiStrings.tileScreenshot) {
+                        screenshotButtonHovered = hovered;
                     }
                 }
             }
