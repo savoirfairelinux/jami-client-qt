@@ -163,12 +163,37 @@ Window {
                 Layout.preferredHeight: childrenRect.height
                 spacing: marginSize
 
+                // Push buttons to the right
+                Item {
+                    Layout.fillWidth: true
+                }
+
                 MaterialButton {
-                    id: selectButton
+                    id: cancelButton
+
                     Layout.maximumWidth: 200
                     Layout.fillWidth: true
-                    Layout.alignment: Qt.AlignHCenter
-                    Layout.leftMargin: marginSize
+                    Layout.alignment: Qt.AlignRight
+                    Layout.rightMargin: marginSize
+
+                    color: JamiTheme.buttonTintedBlack
+                    hoveredColor: JamiTheme.buttonTintedBlackHovered
+                    pressedColor: JamiTheme.buttonTintedBlackPressed
+                    secondary: true
+                    autoAccelerator: true
+
+                    text: JamiStrings.optionCancel
+
+                    onClicked: root.close()
+                }
+
+                MaterialButton {
+                    id: selectButton
+
+                    Layout.maximumWidth: 200
+                    Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignRight
+                    Layout.rightMargin: marginSize
 
                     enabled: selectedScreenNumber !== undefined
                     opacity: enabled ? 1.0 : 0.5
@@ -193,25 +218,6 @@ Window {
                         }
                         root.close();
                     }
-                }
-
-                MaterialButton {
-                    id: cancelButton
-
-                    Layout.maximumWidth: 200
-                    Layout.fillWidth: true
-                    Layout.alignment: Qt.AlignHCenter
-                    Layout.rightMargin: marginSize
-
-                    color: JamiTheme.buttonTintedBlack
-                    hoveredColor: JamiTheme.buttonTintedBlackHovered
-                    pressedColor: JamiTheme.buttonTintedBlackPressed
-                    secondary: true
-                    autoAccelerator: true
-
-                    text: JamiStrings.optionCancel
-
-                    onClicked: root.close()
                 }
             }
         }
