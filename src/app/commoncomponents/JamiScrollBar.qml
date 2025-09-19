@@ -25,6 +25,8 @@ ScrollBar {
     property bool attachedFlickableMoving: false
     property alias handleColor: scrollBarRect.color
 
+    interactive: true
+
     active: {
         if (root.orientation === Qt.Horizontal)
             return visible;
