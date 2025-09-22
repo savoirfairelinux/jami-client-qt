@@ -76,7 +76,7 @@ SettingsPageBase {
             if (audioManagerComboBoxSetting.comboModel.rowCount() > 0) {
                 audioManagerComboBoxSetting.modelIndex = audioManagerComboBoxSetting.comboModel.getCurrentSettingIndex();
             }
-            audioManagerComboBoxSetting.visible = audioManagerComboBoxSetting.comboModel.rowCount() > 0;
+            audioManagerComboBoxSetting.visible = audioManagerComboBoxSetting.comboModel.rowCount() > 1;
         }
 
         SettingsComboBox {
