@@ -989,26 +989,26 @@ CallModel::getDisplay(int idx, int x, int y, int w, int h)
 }
 
 QString
-CallModel::getDisplay(const QString& windowProcessId, const QString& windowId, const int fps)
+CallModel::getDisplay(const QString& windowId, const QString& windowName, const int fps)
 {
 #if defined(__APPLE__)
-    Q_UNUSED(windowProcessId)
     Q_UNUSED(windowId)
+    Q_UNUSED(windowName)
     return {};
 #else
     QString sep = libjami::Media::VideoProtocolPrefix::SEPARATOR;
     QString ret {};
 #if defined(Q_OS_UNIX)
-    Q_UNUSED(windowId);
+    Q_UNUSED(windowName);
     ret = QString("%1%2:+0,0 window-id:%3")
               .arg(libjami::Media::VideoProtocolPrefix::DISPLAY)
               .arg(sep)
-              .arg(windowProcessId);
+              .arg(windowId);
 #elif WIN32
     ret = QString("%1%2:+0,0 window-id:hwnd=%3")
               .arg(libjami::Media::VideoProtocolPrefix::DISPLAY)
               .arg(sep)
-              .arg(windowProcessId);
+              .arg(windowId);
 #endif
     // Usefull if the window is a preview to set a custom fps rate of 1
     if (fps > 0) {

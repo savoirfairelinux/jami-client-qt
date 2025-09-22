@@ -345,10 +345,10 @@ AvAdapter::shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned heig
 }
 
 void
-AvAdapter::shareWindow(const QString& windowProcessId, const QString& windowId, const int fps)
+AvAdapter::shareWindow(const QString& windowId, const QString& windowName, const int fps)
 {
-    auto resource = lrcInstance_->getCurrentCallModel()->getDisplay(windowProcessId,
-                                                                    windowId,
+    auto resource = lrcInstance_->getCurrentCallModel()->getDisplay(windowId,
+                                                                    windowName,
                                                                     fps);
     auto callId = lrcInstance_->getCurrentCallId();
 
@@ -359,8 +359,8 @@ AvAdapter::shareWindow(const QString& windowProcessId, const QString& windowId, 
 
 QString
 AvAdapter::getSharingResource(int screenId,
-                              const QString& windowProcessId,
                               const QString& windowId,
+                              const QString& windowName,
                               const int fps)
 {
     if (screenId == -1) {
@@ -391,8 +391,8 @@ AvAdapter::getSharingResource(int screenId,
                                                                    * screen->devicePixelRatio(),
                                                                rect.height()
                                                                    * screen->devicePixelRatio());
-    } else if (!windowId.isEmpty()) {
-        return lrcInstance_->getCurrentCallModel()->getDisplay(windowProcessId, windowId, fps);
+    } else if (!windowName.isEmpty()) {
+        return lrcInstance_->getCurrentCallModel()->getDisplay(windowId, windowName, fps);
     }
 
     return "";

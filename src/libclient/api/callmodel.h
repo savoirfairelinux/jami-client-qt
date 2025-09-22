@@ -403,11 +403,11 @@ public:
     QString getDisplay(int idx, int x, int y, int w, int h);
     /**
      * Get the current window resource string
-     * @param windowProcessId
      * @param windowId
+     * @param windowName
      */
-    QString getDisplay(const QString& windowProcessId,
-                       const QString& windowId,
+    QString getDisplay(const QString& windowId,
+                       const QString& windowName,
                        const int fps = -1);
 
     void emplaceConversationConference(const QString& callId);
