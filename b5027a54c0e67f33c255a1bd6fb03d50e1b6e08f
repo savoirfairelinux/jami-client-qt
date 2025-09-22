@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "224cbd78_f11a9ece",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-09-22T20:07:00Z",
+      "side": 1,
+      "message": "use gitlab issue 2102",
+      "revId": "b5027a54c0e67f33c255a1bd6fb03d50e1b6e08f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4636c158_2b44fec5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-09-22T20:07:00Z",
+      "side": 1,
+      "message": "Seems reasonable. Are these methods also used for sharing the entire screen?",
+      "revId": "b5027a54c0e67f33c255a1bd6fb03d50e1b6e08f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
