@@ -16,6 +16,24 @@
       "message": "The 2025-09-17 version was only released on snap (to fix a snap-specific bug) and Debian 13 (because it\u0027s a new distribution for which we didn\u0027t have a package before). I don\u0027t think it\u0027s worth uploading to Flathub.",
       "revId": "e69ee51c0a23bba7893d09800f71045772edaeeb",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11b4cc38_44712886",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-09-22T15:08:13Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ba079239_36c33088",
+      "revId": "e69ee51c0a23bba7893d09800f71045772edaeeb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
