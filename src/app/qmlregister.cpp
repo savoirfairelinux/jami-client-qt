@@ -42,6 +42,7 @@
 #include "mediacodeclistmodel.h"
 #include "audiodevicemodel.h"
 #include "audiomanagerlistmodel.h"
+#include "audioconfiglistmodel.h"
 #include "bannedlistmodel.h"
 #include "moderatorlistmodel.h"
 #include "deviceitemlistmodel.h"
@@ -240,6 +241,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERTYPE(NS_MODELS, MediaCodecListModel);
     QML_REGISTERTYPE(NS_MODELS, AudioDeviceModel);
     QML_REGISTERTYPE(NS_MODELS, AudioManagerListModel);
+    QML_REGISTERTYPE(NS_MODELS, AudioConfigListModel);
     QML_REGISTERTYPE(NS_MODELS, PreferenceItemListModel);
     QML_REGISTERTYPE(NS_MODELS, PluginListPreferenceModel);
     QML_REGISTERTYPE(NS_MODELS, FilesToSendListModel);
