@@ -123,6 +123,16 @@ public:
      */
     QVector<QString> getAudioOutputDevices() const;
     /**
+     * Get the current config option for noise reduction
+     * @return The noise suppression option
+     */
+    Q_INVOKABLE QString getNoiseSuppression() const;
+    /**
+     * Get the current config option for echo cancellation
+     * @return The echo cancellation option
+     */
+    Q_INVOKABLE QString getEchoCancellation() const;
+    /**
      * Get current audio inputs
      * @return audio inputs
      */
@@ -166,6 +176,18 @@ public:
      * @return if the operation is successful
      */
     Q_INVOKABLE bool setAudioManager(const QString& name);
+
+    /**
+     * Set the current noise reduction option
+     * @param name of the new noise reduction option
+     */
+    Q_INVOKABLE void setNoiseSuppression(const QString& name);
+    /**
+     * Set the current echo cancellation option
+     * @param name of the new echo cancellation option
+     */
+    Q_INVOKABLE void setEchoCancellation(const QString& name);
+
     /**
      * Set current ringtone device
      * @param idx of the new ringtone device
