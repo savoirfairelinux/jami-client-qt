@@ -328,6 +328,7 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/audiodevicemodel.cpp
   ${APP_SRC_DIR}/pluginlistpreferencemodel.cpp
   ${APP_SRC_DIR}/audiomanagerlistmodel.cpp
+  ${APP_SRC_DIR}/audioconfiglistmodel.cpp
   ${APP_SRC_DIR}/qmlregister.cpp
   ${APP_SRC_DIR}/utilsadapter.cpp
   ${APP_SRC_DIR}/moderatorlistmodel.cpp
@@ -398,6 +399,7 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/audiodevicemodel.h
   ${APP_SRC_DIR}/pluginlistpreferencemodel.h
   ${APP_SRC_DIR}/audiomanagerlistmodel.h
+  ${APP_SRC_DIR}/audioconfiglistmodel.h
   ${APP_SRC_DIR}/qmlregister.h
   ${APP_SRC_DIR}/abstractlistmodelbase.h
   ${APP_SRC_DIR}/quickimageproviderbase.h
