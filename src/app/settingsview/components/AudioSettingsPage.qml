@@ -76,6 +76,16 @@ SettingsPageBase {
             if (audioManagerComboBoxSetting.comboModel.rowCount() > 0) {
                 audioManagerComboBoxSetting.modelIndex = audioManagerComboBoxSetting.comboModel.getCurrentSettingIndex();
             }
+
+            if (noiseReductionComboBoxSetting.comboModel.rowCount() > 0) {
+                noiseReductionComboBoxSetting.modelIndex = noiseReductionComboBoxSetting.comboModel.getCurrentSettingIndex(AVModel.getNoiseSuppression());
+            }
+
+            if (echoSupressionComboBoxSettings.comboModel.rowCount() > 0) {
+                echoSupressionComboBoxSettings.modelIndex = echoSupressionComboBoxSettings.comboModel.getCurrentSettingIndex(AVModel.getEchoCancellation());
+            }
+
+            voiceActivityDetectionSwitch.checked = AVModel.getVoiceActivityDetection();
             audioManagerComboBoxSetting.visible = audioManagerComboBoxSetting.comboModel.rowCount() > 0;
         }
 
@@ -178,6 +188,22 @@ SettingsPageBase {
             }
         }
 
+        Text {
+            id: advancedFeaturesTitle
+
+            Layout.alignment: Qt.AlignLeft
+            Layout.preferredWidth: parent.width
+
+            text: JamiStrings.advancedFeatures
+            color: JamiTheme.textColor
+            horizontalAlignment: Text.AlignLeft
+            verticalAlignment: Text.AlignVCenter
+            wrapMode: Text.WordWrap
+
+            font.pixelSize: JamiTheme.settingsTitlePixelSize
+            font.kerning: true
+        }
+
         SettingsComboBox {
             id: audioManagerComboBoxSetting
 
@@ -197,6 +223,53 @@ SettingsPageBase {
                 AVModel.setAudioManager(selectedAudioManager);
                 AvAdapter.startAudioMeter();
                 rootLayout.populateAudioSettings();
+            }
+        }
+
+        SettingsComboBox {
+            id: noiseReductionComboBoxSetting
+
+            Layout.fillWidth: true
+
+            labelText: JamiStrings.noiseReduction
+            fontPointSize: JamiTheme.settingsFontSize
+            comboModel: AudioConfigListModel {}
+
+            widthOfComboBox: itemWidth
+            role: "AudioConfigOption"
+
+            onActivated: {
+                var selectedNoiseReduction = comboModel.data(comboModel.index(modelIndex, 0), AudioConfigListModel.AudioConfigOption);
+                AVModel.setNoiseSuppression(selectedNoiseReduction);
+            }
+        }
+
+        SettingsComboBox {
+            id: echoSupressionComboBoxSettings
+
+            Layout.fillWidth: true
+
+            labelText: JamiStrings.echoSupression
+            fontPointSize: JamiTheme.settingsFontSize
+            comboModel: AudioConfigListModel {}
+            widthOfComboBox: itemWidth
+            role: "AudioConfigOption"
+
+            onActivated: {
+                var selectedEchoSuppression = comboModel.data(comboModel.index(modelIndex, 0), AudioConfigListModel.AudioConfigOption);
+                AVModel.setEchoCancellation(selectedEchoSuppression);
+            }
+        }
+
+        ToggleSwitch {
+            id: voiceActivityDetectionSwitch
+
+            Layout.fillWidth: true
+            labelText: JamiStrings.voiceActivityDetection
+
+            onSwitchToggled: {
+                console.warn("CHECKED: ", checked);
+                AVModel.setVoiceActivityDetection(checked);
             }
         }
     }

@@ -213,6 +213,9 @@ Item {
     property string selectRingtoneOutputDevice: qsTr("Select ringtone output device")
     property string audioManager: qsTr("Audio manager")
     property string soundTest: qsTr("Sound test")
+    property string noiseReduction: qsTr("Noise reduction")
+    property string echoSupression: qsTr("Echo supression")
+    property string voiceActivityDetection: qsTr("Voice activity detection")
 
     // VideoSettings
     property string video: qsTr("Video")
