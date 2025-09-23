@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26a8d54c_2b41fc23",
+        "filename": "src/libclient/api/avmodel.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-09-23T15:15:58Z",
+      "side": 1,
+      "message": "I know it\u0027s not done consistent /)_-) but maybe normalize:\n```suggestion\n    /**\n     * Check if automatic gain control (AGC) is enabled.\n     * @return true if AGC is enabled, false otherwise.\n     */\n    Q_INVOKABLE bool isAgcEnabled() const;\n\n    /**\n     * Enable or disable automatic gain control (AGC).\n     * @param enabled Set to true to enable AGC, false to disable.\n     */\n    Q_INVOKABLE void setAgcEnabled(bool enabled);\n```",
+      "range": {
+        "startLine": 296,
+        "startChar": 0,
+        "endLine": 301,
+        "endChar": 47
+      },
+      "revId": "1b0742eb243d7e36000208abb7d6bcc361296c8d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
