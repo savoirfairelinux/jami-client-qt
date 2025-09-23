@@ -32,7 +32,7 @@ SettingsPageBase {
         id: rootLayout
 
         width: contentFlickableWidth
-        spacing: JamiTheme.settingsCategoryAudioVideoSpacing
+        spacing: JamiTheme.settingsBlockSpacing
         anchors.left: parent.left
         anchors.leftMargin: JamiTheme.preferredSettingsMarginSize
 
@@ -76,127 +76,229 @@ SettingsPageBase {
             if (audioManagerComboBoxSetting.comboModel.rowCount() > 0) {
                 audioManagerComboBoxSetting.modelIndex = audioManagerComboBoxSetting.comboModel.getCurrentSettingIndex();
             }
-            audioManagerComboBoxSetting.visible = audioManagerComboBoxSetting.comboModel.rowCount() > 1;
+
+            if (noiseReductionComboBoxSetting.comboModel.rowCount() > 0) {
+                noiseReductionComboBoxSetting.modelIndex = noiseReductionComboBoxSetting.comboModel.getCurrentSettingIndex(AVModel.getNoiseSuppression());
+            }
+
+            if (echoSuppressionComboBoxSettings.comboModel.rowCount() > 0) {
+                echoSuppressionComboBoxSettings.modelIndex = echoSuppressionComboBoxSettings.comboModel.getCurrentSettingIndex(AVModel.getEchoCancellation());
+            }
+
+            voiceActivityDetectionSwitch.checked = AVModel.getVoiceActivityDetection();
+            audioManagerComboBoxSetting.visible = audioManagerComboBoxSetting.comboModel.rowCount() > 0;
         }
 
-        SettingsComboBox {
-            id: inputComboBoxSetting
+        ColumnLayout {
+            id: audioDevicesSection
 
             Layout.fillWidth: true
-
-            labelText: JamiStrings.microphone
-            fontPointSize: JamiTheme.settingsFontSize
-            comboModel: AudioDeviceModel {
-                id: inputAudioModel
-                lrcInstance: LRCInstance
-                type: AudioDeviceModel.Type.Record
-            }
-            widthOfComboBox: itemWidth
-            tipText: JamiStrings.selectAudioInputDevice
-            role: "DeviceName"
-
-            onActivated: {
-                AvAdapter.stopAudioMeter();
-                AVModel.setInputDevice(modelIndex);
-                AvAdapter.startAudioMeter();
-            }
-        }
-
-        RowLayout {
-            Layout.fillWidth: true
-            Layout.minimumHeight: JamiTheme.preferredFieldHeight
+            spacing: JamiTheme.settingsCategoryAudioVideoSpacing
 
             Text {
+                id: deviceSelectionTitle
+
+                Layout.alignment: Qt.AlignLeft
                 Layout.fillWidth: true
 
-                text: JamiStrings.soundTest
-                elide: Text.ElideRight
+                text: JamiStrings.devices
                 color: JamiTheme.textColor
-                font.pointSize: JamiTheme.settingsFontSize
-                font.kerning: true
-
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
+                wrapMode: Text.WordWrap
+
+                font.pixelSize: JamiTheme.settingsTitlePixelSize
+                font.kerning: true
             }
 
-            // the audio level meter
-            LevelMeter {
-                id: audioInputMeter
+            SettingsComboBox {
+                id: inputComboBoxSetting
 
-                Layout.alignment: Qt.AlignRight
-                Layout.preferredWidth: itemWidth
+                Layout.fillWidth: true
 
-                indeterminate: false
-                from: 0
-                to: 100
+                labelText: JamiStrings.microphone
+                fontPointSize: JamiTheme.settingsFontSize
+                comboModel: AudioDeviceModel {
+                    id: inputAudioModel
+                    lrcInstance: LRCInstance
+                    type: AudioDeviceModel.Type.Record
+                }
+                widthOfComboBox: itemWidth
+                tipText: JamiStrings.selectAudioInputDevice
+                role: "DeviceName"
+
+                onActivated: {
+                    AvAdapter.stopAudioMeter();
+                    AVModel.setInputDevice(modelIndex);
+                    AvAdapter.startAudioMeter();
+                }
+            }
+
+            RowLayout {
+                Layout.fillWidth: true
+                Layout.minimumHeight: JamiTheme.preferredFieldHeight
+
+                Text {
+                    Layout.fillWidth: true
+
+                    text: JamiStrings.soundTest
+                    elide: Text.ElideRight
+                    color: JamiTheme.textColor
+                    font.pointSize: JamiTheme.settingsFontSize
+                    font.kerning: true
+
+                    horizontalAlignment: Text.AlignLeft
+                    verticalAlignment: Text.AlignVCenter
+                }
+
+                // the audio level meter
+                LevelMeter {
+                    id: audioInputMeter
+
+                    Layout.alignment: Qt.AlignRight
+                    Layout.preferredWidth: itemWidth
+
+                    indeterminate: false
+                    from: 0
+                    to: 100
+                }
+            }
+
+            SettingsComboBox {
+                id: outputComboBoxSetting
+
+                Layout.fillWidth: true
+
+                labelText: JamiStrings.outputDevice
+                fontPointSize: JamiTheme.settingsFontSize
+                comboModel: AudioDeviceModel {
+                    id: outputAudioModel
+                    lrcInstance: LRCInstance
+                    type: AudioDeviceModel.Type.Playback
+                }
+                widthOfComboBox: itemWidth
+                tipText: JamiStrings.selectAudioOutputDevice
+                role: "DeviceName"
+
+                onActivated: {
+                    AvAdapter.stopAudioMeter();
+                    AVModel.setOutputDevice(modelIndex);
+                    AvAdapter.startAudioMeter();
+                }
+            }
+
+            SettingsComboBox {
+                id: ringtoneComboBoxSetting
+
+                Layout.fillWidth: true
+
+                labelText: JamiStrings.ringtoneDevice
+                fontPointSize: JamiTheme.settingsFontSize
+                comboModel: AudioDeviceModel {
+                    id: ringtoneAudioModel
+                    lrcInstance: LRCInstance
+                    type: AudioDeviceModel.Type.Ringtone
+                }
+                widthOfComboBox: itemWidth
+                tipText: JamiStrings.selectRingtoneOutputDevice
+                role: "DeviceName"
+
+                onActivated: {
+                    AvAdapter.stopAudioMeter();
+                    AVModel.setRingtoneDevice(modelIndex);
+                    AvAdapter.startAudioMeter();
+                }
             }
         }
 
-        SettingsComboBox {
-            id: outputComboBoxSetting
+        ColumnLayout {
+            id: advancedFeaturesSection
 
             Layout.fillWidth: true
+            spacing: JamiTheme.settingsCategoryAudioVideoSpacing
 
-            labelText: JamiStrings.outputDevice
-            fontPointSize: JamiTheme.settingsFontSize
-            comboModel: AudioDeviceModel {
-                id: outputAudioModel
-                lrcInstance: LRCInstance
-                type: AudioDeviceModel.Type.Playback
+            Text {
+                id: advancedFeaturesTitle
+
+                Layout.alignment: Qt.AlignLeft
+                Layout.preferredWidth: parent.width
+
+                text: JamiStrings.advancedFeatures
+                color: JamiTheme.textColor
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+                wrapMode: Text.WordWrap
+
+                font.pixelSize: JamiTheme.settingsTitlePixelSize
+                font.kerning: true
             }
-            widthOfComboBox: itemWidth
-            tipText: JamiStrings.selectAudioOutputDevice
-            role: "DeviceName"
 
-            onActivated: {
-                AvAdapter.stopAudioMeter();
-                AVModel.setOutputDevice(modelIndex);
-                AvAdapter.startAudioMeter();
+            SettingsComboBox {
+                id: audioManagerComboBoxSetting
+
+                Layout.fillWidth: true
+
+                labelText: JamiStrings.audioManager
+                fontPointSize: JamiTheme.settingsFontSize
+                comboModel: AudioManagerListModel {
+                    lrcInstance: LRCInstance
+                }
+                widthOfComboBox: itemWidth
+                role: "ID_UTF8"
+
+                onActivated: {
+                    AvAdapter.stopAudioMeter();
+                    var selectedAudioManager = comboModel.data(comboModel.index(modelIndex, 0), AudioManagerListModel.AudioManagerID);
+                    AVModel.setAudioManager(selectedAudioManager);
+                    AvAdapter.startAudioMeter();
+                    rootLayout.populateAudioSettings();
+                }
             }
-        }
 
-        SettingsComboBox {
-            id: ringtoneComboBoxSetting
+            SettingsComboBox {
+                id: noiseReductionComboBoxSetting
 
-            Layout.fillWidth: true
+                Layout.fillWidth: true
 
-            labelText: JamiStrings.ringtoneDevice
-            fontPointSize: JamiTheme.settingsFontSize
-            comboModel: AudioDeviceModel {
-                id: ringtoneAudioModel
-                lrcInstance: LRCInstance
-                type: AudioDeviceModel.Type.Ringtone
+                labelText: JamiStrings.noiseReduction
+                fontPointSize: JamiTheme.settingsFontSize
+                comboModel: AudioConfigListModel {}
+
+                widthOfComboBox: itemWidth
+                role: "AudioConfigOption"
+
+                onActivated: {
+                    var selectedNoiseReduction = comboModel.data(comboModel.index(modelIndex, 0), AudioConfigListModel.AudioConfigOption);
+                    AVModel.setNoiseSuppression(selectedNoiseReduction);
+                }
             }
-            widthOfComboBox: itemWidth
-            tipText: JamiStrings.selectRingtoneOutputDevice
-            role: "DeviceName"
 
-            onActivated: {
-                AvAdapter.stopAudioMeter();
-                AVModel.setRingtoneDevice(modelIndex);
-                AvAdapter.startAudioMeter();
+            SettingsComboBox {
+                id: echoSuppressionComboBoxSettings
+
+                Layout.fillWidth: true
+
+                labelText: JamiStrings.echoSuppression
+                fontPointSize: JamiTheme.settingsFontSize
+                comboModel: AudioConfigListModel {}
+                widthOfComboBox: itemWidth
+                role: "AudioConfigOption"
+
+                onActivated: {
+                    var selectedEchoSuppression = comboModel.data(comboModel.index(modelIndex, 0), AudioConfigListModel.AudioConfigOption);
+                    AVModel.setEchoCancellation(selectedEchoSuppression);
+                }
             }
-        }
 
-        SettingsComboBox {
-            id: audioManagerComboBoxSetting
+            ToggleSwitch {
+                id: voiceActivityDetectionSwitch
 
-            Layout.fillWidth: true
+                Layout.fillWidth: true
+                labelText: JamiStrings.voiceActivityDetection
 
-            labelText: JamiStrings.audioManager
-            fontPointSize: JamiTheme.settingsFontSize
-            comboModel: AudioManagerListModel {
-                lrcInstance: LRCInstance
-            }
-            widthOfComboBox: itemWidth
-            role: "ID_UTF8"
-
-            onActivated: {
-                AvAdapter.stopAudioMeter();
-                var selectedAudioManager = comboModel.data(comboModel.index(modelIndex, 0), AudioManagerListModel.AudioManagerID);
-                AVModel.setAudioManager(selectedAudioManager);
-                AvAdapter.startAudioMeter();
-                rootLayout.populateAudioSettings();
+                onSwitchToggled: {
+                    AVModel.setVoiceActivityDetection(checked);
+                }
             }
         }
     }
