@@ -16,6 +16,24 @@
       "message": "remove this newline",
       "revId": "9174c9345e8db97371ad4914aaaaac9f329bd866",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71b6f143_9623c362",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-09-23T16:39:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6069e89d_91150967",
+      "revId": "9174c9345e8db97371ad4914aaaaac9f329bd866",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
