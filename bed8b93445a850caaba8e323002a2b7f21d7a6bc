@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "febe9efb_c91fa3cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2025-09-23T21:11:25Z",
+      "side": 1,
+      "message": "If a user does both (mixed) - changes the settings using the new UI and / before and or / aferwards change settings in the dring.yml - will this new setting automatically be updated - so the UI settings will notice that somebody has changed the dring.yml and vice versa?",
+      "revId": "bed8b93445a850caaba8e323002a2b7f21d7a6bc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
