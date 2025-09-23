@@ -33,6 +33,23 @@
       "message": "so if you disable noiseReduce and echoCancel no sound will be changed anymore? or do you need other settings as well to be changed - other settings like audioProcessor: webrtc and automaticGainControl: false and voiceActivityDetection: true don\u0027t matter?",
       "revId": "bed8b93445a850caaba8e323002a2b7f21d7a6bc",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "010373ab_3e20c5e7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2025-09-23T21:19:59Z",
+      "side": 1,
+      "message": "And I think other clients like iOS, web or Android ( developers like @adrien.beraud@savoirfairelinux.com take care of that?) should have that feature too.",
+      "revId": "bed8b93445a850caaba8e323002a2b7f21d7a6bc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
