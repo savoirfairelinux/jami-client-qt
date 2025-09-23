@@ -50,6 +50,23 @@
       "message": "And I think other clients like iOS, web or Android ( developers like @adrien.beraud@savoirfairelinux.com take care of that?) should have that feature too.",
       "revId": "bed8b93445a850caaba8e323002a2b7f21d7a6bc",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7db34cd2_948bb251",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2025-09-23T21:24:30Z",
+      "side": 1,
+      "message": "Could you also add an opt-in that other peers will get a notification like for example \"user username1 has enabled / disabled Noise reduction and/ or Echo supression. It is recommended that you also disable these settings (if you want to stream for example music)\" - both during a call (if you change these settings during a call) or if you make a call?",
+      "revId": "bed8b93445a850caaba8e323002a2b7f21d7a6bc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
