@@ -670,6 +670,16 @@ public Q_SLOTS: // METHODS
         return libjami::getNoiseSuppressState().c_str();
     }
 
+    QString getEchoCancellationState()
+    {
+        return libjami::getEchoCancellationState().c_str();
+    }
+
+    bool getVoiceActivityDetectionState()
+    {
+        return libjami::getVoiceActivityDetectionState();
+    }
+
     QString getRecordPath()
     {
         QString temp(libjami::getRecordPath().c_str());
@@ -829,6 +839,16 @@ public Q_SLOTS: // METHODS
     void setNoiseSuppressState(QString state)
     {
         libjami::setNoiseSuppressState(state.toStdString());
+    }
+
+    void setEchoCancellationState(QString state)
+    {
+        libjami::setEchoCancellationState(state.toStdString());
+    }
+
+    void setVoiceActivityDetectionState(bool state)
+    {
+        libjami::setVoiceActivityDetectionState(state);
     }
 
     bool isAudioMeterActive(const QString& id)

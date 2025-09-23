@@ -395,6 +395,24 @@ AVModel::getAudioOutputDevices() const
     return (QVector<QString>) result;
 }
 
+QString
+AVModel::getNoiseSuppression() const
+{
+    return ConfigurationManager::instance().getNoiseSuppressState();
+}
+
+QString
+AVModel::getEchoCancellation() const
+{
+    return ConfigurationManager::instance().getEchoCancellationState();
+}
+
+bool
+AVModel::getVoiceActivityDetection() const
+{
+    return ConfigurationManager::instance().getVoiceActivityDetectionState();
+}
+
 QVector<QString>
 AVModel::getAudioInputDevices() const
 {
@@ -463,6 +481,44 @@ bool
 AVModel::setAudioManager(const QString& name)
 {
     return ConfigurationManager::instance().setAudioManager(name);
+}
+
+void
+AVModel::setNoiseSuppression(const QString& name)
+{
+    QString state = "auto"; // Default is auto
+    if (name == "System (if available)")
+        state = "system";
+    else if (name == "Built-in")
+        state = "audioProcessor";
+    else if (name == "Auto (default)")
+        state = "auto";
+    else if (name == "Disabled")
+        state = "off";
+
+    return ConfigurationManager::instance().setNoiseSuppressState(state);
+}
+
+void
+AVModel::setEchoCancellation(const QString& name)
+{
+    QString state = "auto"; // Default is auto
+    if (name == "System (if available)")
+        state = "system";
+    else if (name == "Built-in")
+        state = "audioProcessor";
+    else if (name == "Auto (default)")
+        state = "auto";
+    else if (name == "Disabled")
+        state = "off";
+
+    return ConfigurationManager::instance().setEchoCancellationState(state);
+}
+
+void
+AVModel::setVoiceActivityDetection(bool state)
+{
+    return ConfigurationManager::instance().setVoiceActivityDetectionState(state);
 }
 
 void
