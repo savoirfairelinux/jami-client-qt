@@ -96,13 +96,14 @@ public:
                   bool shareAudio = false);
 
     /**
-     * get list of proposed medias
+     * Generate a proposed media list with the new media added/replaced
      * @param mediaList
      * @param callId
      * @param source        Of the media
      * @param type          Audio/video
      * @param mute
      * @param shareAudio
+     * @return              Updated media list.
      */
     VectorMapStringString getProposed(VectorMapStringString mediaList,
                                       const QString& callId,
@@ -406,9 +407,7 @@ public:
      * @param windowProcessId
      * @param windowId
      */
-    QString getDisplay(const QString& windowProcessId,
-                       const QString& windowId,
-                       const int fps = -1);
+    QString getDisplay(const QString& windowProcessId, const QString& windowId, const int fps = -1);
 
     void emplaceConversationConference(const QString& callId);
 
