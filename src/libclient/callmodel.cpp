@@ -613,7 +613,11 @@ CallModel::addMedia(
 
     auto proposedList = getProposed(callInfo->mediaList, callId, source, type, mute, shareAudio);
 
-    CallManager::instance().requestMediaChange(owner.id, callId, proposedList);
+    bool success = CallManager::instance().requestMediaChange(owner.id, callId, proposedList);
+    if (!success) {
+        qWarning() << "Media change request failed, not updating media list";
+        return;
+    }
     callInfo->mediaList = proposedList;
     if (callInfo->status == call::Status::IN_PROGRESS)
         Q_EMIT callInfosChanged(owner.id, callId);
@@ -687,7 +691,12 @@ CallModel::removeMedia(const QString& callId,
     if (isVideo && !label.isEmpty())
         pimpl_->lrc.getAVModel().stopPreview(label);
 
-    CallManager::instance().requestMediaChange(owner.id, callId, proposedList);
+    bool success = CallManager::instance().requestMediaChange(owner.id, callId, proposedList);
+    if (!success) {
+        qWarning() << "Media change request failed when removing " << mediaType << " in call "
+                   << callId << ", not updating media list";
+        return;
+    }
     callInfo->mediaList = proposedList;
     if (callInfo->status == call::Status::IN_PROGRESS)
         Q_EMIT callInfosChanged(owner.id, callId);
