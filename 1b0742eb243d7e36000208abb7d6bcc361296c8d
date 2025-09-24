@@ -22,6 +22,30 @@
       },
       "revId": "1b0742eb243d7e36000208abb7d6bcc361296c8d",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fceda6b5_bfbc61cb",
+        "filename": "src/libclient/api/avmodel.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1006
+      },
+      "writtenOn": "2025-09-24T15:51:47Z",
+      "side": 1,
+      "message": "Should I abandon this patch? I think it can be done in [31955](https://review.jami.net/c/jami-client-qt/+/31955) ?",
+      "parentUuid": "26a8d54c_2b41fc23",
+      "range": {
+        "startLine": 296,
+        "startChar": 0,
+        "endLine": 301,
+        "endChar": 47
+      },
+      "revId": "1b0742eb243d7e36000208abb7d6bcc361296c8d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
