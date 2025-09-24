@@ -139,6 +139,24 @@
       "parentUuid": "abbcff32_cecd2e15",
       "revId": "bed8b93445a850caaba8e323002a2b7f21d7a6bc",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ea1da97_27ba9e63",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-09-24T19:48:50Z",
+      "side": 1,
+      "message": "@devel9@swisscows.email see patchset 2 for voiceActivityDetection",
+      "parentUuid": "7d6908f4_4bbd327b",
+      "revId": "bed8b93445a850caaba8e323002a2b7f21d7a6bc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
