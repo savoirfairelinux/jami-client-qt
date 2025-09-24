@@ -67,6 +67,78 @@
       "message": "Could you also add an opt-in that other peers will get a notification like for example \"user username1 has enabled / disabled Noise reduction and/ or Echo supression. It is recommended that you also disable these settings (if you want to stream for example music)\" - both during a call (if you change these settings during a call) or if you make a call?",
       "revId": "bed8b93445a850caaba8e323002a2b7f21d7a6bc",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d59597b_1c8560fd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2025-09-24T15:19:06Z",
+      "side": 1,
+      "message": "Yes, they are the same settings.\nNote that editing dring.yml while Jami is running is not supported (the file could be overriden by Jami), but yes if it\u0027s edited while Jami isn\u0027t running the changed settings will apply the next time Jami is started, and changing the settings in Jami will update dring.yml.",
+      "parentUuid": "febe9efb_c91fa3cb",
+      "revId": "bed8b93445a850caaba8e323002a2b7f21d7a6bc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "691c48f6_94b54ce6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2025-09-24T15:19:06Z",
+      "side": 1,
+      "message": "On iOS and Android, the system native echo canceller / noise suppression is used, and the system automatically adjust its settings based on the output device (speakerphone, headset etc.), which is almost always what\u0027s wanted, especially since Android and iOS typically don\u0027t allow an app to be used as the audio input of another app, which is the main use-case for the option on Linux.",
+      "parentUuid": "010373ab_3e20c5e7",
+      "revId": "bed8b93445a850caaba8e323002a2b7f21d7a6bc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ed2f1a9_08cb1325",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2025-09-24T15:19:06Z",
+      "side": 1,
+      "message": "Honestly, this sounds like a niche feature which would require non-trivial work, and we have so many issues to tackle to improve the call experience and quality.\nAudio processing normally only applies to the microphone input, not when streaming files using the native Jami feature.\nSome users may also stream audio using other means, possibly exposing it as an audio input to Jami. For this use-case, it seems relevant to offer the option to disable audio processing, and it\u0027s easy for us to implement in the UI because the settings already exists but was not exposed.",
+      "parentUuid": "7db34cd2_948bb251",
+      "revId": "bed8b93445a850caaba8e323002a2b7f21d7a6bc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d6908f4_4bbd327b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2025-09-24T15:19:06Z",
+      "side": 1,
+      "message": "automaticGainControl is false by default, we\u0027ll keep it as a hidden \"power-user\" feature for now because it can cause unwanted and unpredictable interactions with the system gain control.\nWe\u0027ll add the option to configure voiceActivityDetection, but note that it has no impact on the audio. It\u0027s only used to highlight users who are talking during a call.",
+      "parentUuid": "abbcff32_cecd2e15",
+      "revId": "bed8b93445a850caaba8e323002a2b7f21d7a6bc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
