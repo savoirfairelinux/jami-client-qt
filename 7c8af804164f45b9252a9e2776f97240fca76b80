@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe92efe0_a1f5b6b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2025-09-25T15:20:41Z",
+      "side": 1,
+      "message": "Is it possible to change these settings during one or more ongoing calls and have these settings be applied immediately (without ending the call)?",
+      "revId": "7c8af804164f45b9252a9e2776f97240fca76b80",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
