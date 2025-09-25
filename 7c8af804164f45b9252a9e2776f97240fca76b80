@@ -16,6 +16,24 @@
       "message": "Is it possible to change these settings during one or more ongoing calls and have these settings be applied immediately (without ending the call)?",
       "revId": "7c8af804164f45b9252a9e2776f97240fca76b80",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0abad36d_03c9349d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2025-09-25T20:26:30Z",
+      "side": 1,
+      "message": "For now these settings are global and accessible from advanced audio settings.\n\nIn the future they might be configured per-device, since audio processing settings are typically device-related. That would also mean that changing input device during a call would select the processing configuration for that device.\nWould that work for your use-case ?",
+      "parentUuid": "fe92efe0_a1f5b6b8",
+      "revId": "7c8af804164f45b9252a9e2776f97240fca76b80",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
