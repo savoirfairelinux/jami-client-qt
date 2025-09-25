@@ -52,6 +52,52 @@
       "parentUuid": "0abad36d_03c9349d",
       "revId": "7c8af804164f45b9252a9e2776f97240fca76b80",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f7afe82_7ad3d65e",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-09-25T21:25:51Z",
+      "side": 1,
+      "message": "Typo? Should `supression` be `suppression`?\n\nhttps://en.wikipedia.org/wiki/Echo_suppression_and_cancellation\n\u003e Please check that this is an `Echo suppressor` not an `Echo cancellation` based on the method used.\n\nThank you",
+      "range": {
+        "startLine": 217,
+        "startChar": 47,
+        "endLine": 217,
+        "endChar": 57
+      },
+      "revId": "7c8af804164f45b9252a9e2776f97240fca76b80",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a536fc5f_b52bc482",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-09-25T21:25:51Z",
+      "side": 1,
+      "message": "Typo? Should `echoSupression` be `echoSuppression`?",
+      "range": {
+        "startLine": 217,
+        "startChar": 20,
+        "endLine": 217,
+        "endChar": 34
+      },
+      "revId": "7c8af804164f45b9252a9e2776f97240fca76b80",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
