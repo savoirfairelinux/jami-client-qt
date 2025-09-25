@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c547b9c0_5cc89b9c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-09-25T21:27:05Z",
+      "side": 1,
+      "message": "Which method is used? `cancellation` or `suppression`? The commit message is different to the text in JamiStrings.\n\nhttps://en.wikipedia.org/wiki/Echo_suppression_and_cancellation",
+      "range": {
+        "startLine": 10,
+        "startChar": 44,
+        "endLine": 10,
+        "endChar": 56
+      },
+      "revId": "7c8af804164f45b9252a9e2776f97240fca76b80",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fe92efe0_a1f5b6b8",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
