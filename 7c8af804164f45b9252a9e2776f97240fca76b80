@@ -34,6 +34,24 @@
       "parentUuid": "fe92efe0_a1f5b6b8",
       "revId": "7c8af804164f45b9252a9e2776f97240fca76b80",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4c6bbe5_66f9e218",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2025-09-25T20:39:33Z",
+      "side": 1,
+      "message": "Yes would be great - but maybe you add an opt-in setting in the future like \"apply these setting to all devices yes/no\"\n\nAnd it still would be great - since you can access the settings during a call - that during a call changing individual settings will be applied.",
+      "parentUuid": "0abad36d_03c9349d",
+      "revId": "7c8af804164f45b9252a9e2776f97240fca76b80",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
