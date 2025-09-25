@@ -90,7 +90,7 @@
     <url type="bugtracker">https://git.jami.net/savoirfairelinux/jami-client-qt/issues</url>
     <url type="faq">https://docs.jami.net/user/faq.html</url>
     <url type="help">https://forum.jami.net/</url>
-    <url type="donation">https://jami.net/whydonate/</url>
+    <url type="donation">https://jami.net/donate/</url>
     <url type="translate">https://www.transifex.com/savoirfairelinux/jami</url>
     <categories>
       <category>Chat</category>
