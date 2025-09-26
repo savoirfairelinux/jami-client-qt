@@ -351,13 +351,13 @@ Item {
     property string pinWindow: qsTr("Pin")
     property string positionShareDuration: qsTr("Position share duration")
     property string locationSharingLabel: qsTr("Location sharing")
+    property string minLocationDuration: qsTr("1 m")
     property string maxLocationDuration: qsTr("Unlimited")
-    property string minLocationDuration: qsTr("1 min")
-    property string xhourxmin: qsTr("%1h%2min")
-    property string xhour: qsTr("%1h")
-    property string xminxsec: qsTr("%1min%2s")
-    property string xmin: qsTr("%1min")
-    property string xsec: qsTr("%sec")
+    property string xhourxmin: qsTr("%L1h %L2m")
+    property string xhour: qsTr("%L1h")
+    property string xminxsec: qsTr("%L1m %L2s")
+    property string xmin: qsTr("%L1m")
+    property string xsec: qsTr("%L1s")
 
     // Chatview header
     property string hideChat: qsTr("Hide chat")
@@ -825,7 +825,7 @@ Item {
     property string invitationViewWaitingForSync: qsTr("Waiting for %1\nto connect to synchronize the conversation…")
 
     // SwarmDetailsPanel (group conversation panel)
-    property string members: qsTr("%1 Members")
+    property string members: qsTr("%L1 members")
     property string member: qsTr("Member")
     property string groupName: qsTr("Group name")
     property string contactName: qsTr("Contact name")
