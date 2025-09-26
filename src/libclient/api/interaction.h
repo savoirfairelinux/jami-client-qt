@@ -317,23 +317,23 @@ getFormattedCallDuration(const std::time_t duration)
     if (days > 0) {
         hours = hours % 24;
         minutes = minutes % 60;
-        return QObject::tr("%4d %3h %2m %1s")
+        return QObject::tr("%L4d %L3h %L2m %L1s")
             .arg(seconds)
             .arg(minutes)
             .arg(hours)
             .arg(days);
     } else if (hours > 0) {
         minutes = minutes % 60;
-        return QObject::tr("%3h %2m %1s")
+        return QObject::tr("%L3h %L2m %L1s")
             .arg(seconds)
             .arg(minutes)
             .arg(hours);
     } else if (minutes > 0) {
-        return QObject::tr("%2m %1s")
+        return QObject::tr("%L2m %L1s")
             .arg(seconds)
             .arg(minutes);
     } else {
-        return QObject::tr("%1s")
+        return QObject::tr("%L1s")
             .arg(seconds);
     }
 }
