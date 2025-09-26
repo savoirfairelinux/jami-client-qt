@@ -56,7 +56,7 @@ ColumnLayout {
         active: storeAvailable
         Layout.fillWidth: true
         Layout.alignment: Qt.AlignHCenter
-        Layout.preferredHeight: active ? item.height : 0
+        Layout.preferredHeight: active ? wrapper.height : 0
         sourceComponent: Flow {
             id: pluginStoreList
             height: childrenRect.height
