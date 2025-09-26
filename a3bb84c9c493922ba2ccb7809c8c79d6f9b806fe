@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8212a952_c6afcbbd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-09-26T20:58:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9cb76be7_64a0faea",
+      "revId": "a3bb84c9c493922ba2ccb7809c8c79d6f9b806fe",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6f97ff9f_dc5838c6",
@@ -31,6 +49,30 @@
       "writtenOn": "2025-09-26T19:40:44Z",
       "side": 1,
       "message": "Typo? Should `Supression` be `Suppression`?",
+      "range": {
+        "startLine": 84,
+        "startChar": 20,
+        "endLine": 84,
+        "endChar": 30
+      },
+      "revId": "a3bb84c9c493922ba2ccb7809c8c79d6f9b806fe",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5c2e443_c3af941c",
+        "filename": "src/app/settingsview/components/AudioSettingsPage.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-09-26T20:58:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f97ff9f_dc5838c6",
       "range": {
         "startLine": 84,
         "startChar": 20,
@@ -87,6 +129,54 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a42efe7d_24b7eaa2",
+        "filename": "src/app/settingsview/components/AudioSettingsPage.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-09-26T20:58:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db373e8a_920444e5",
+      "range": {
+        "startLine": 85,
+        "startChar": 20,
+        "endLine": 85,
+        "endChar": 30
+      },
+      "revId": "a3bb84c9c493922ba2ccb7809c8c79d6f9b806fe",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e42f140_f6a2b1c6",
+        "filename": "src/app/settingsview/components/AudioSettingsPage.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-09-26T20:58:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "30307919_103da858",
+      "range": {
+        "startLine": 85,
+        "startChar": 64,
+        "endLine": 85,
+        "endChar": 74
+      },
+      "revId": "a3bb84c9c493922ba2ccb7809c8c79d6f9b806fe",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "54a0d5cc_0fe78574",
@@ -110,6 +200,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b590af9b_676a4630",
+        "filename": "src/app/settingsview/components/AudioSettingsPage.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-09-26T20:58:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54a0d5cc_0fe78574",
+      "range": {
+        "startLine": 248,
+        "startChar": 20,
+        "endLine": 248,
+        "endChar": 30
+      },
+      "revId": "a3bb84c9c493922ba2ccb7809c8c79d6f9b806fe",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1570313d_bc702267",
@@ -123,6 +237,30 @@
       "writtenOn": "2025-09-26T19:40:44Z",
       "side": 1,
       "message": "Typo? Should `Supression` be `Suppression`?",
+      "range": {
+        "startLine": 252,
+        "startChar": 39,
+        "endLine": 252,
+        "endChar": 49
+      },
+      "revId": "a3bb84c9c493922ba2ccb7809c8c79d6f9b806fe",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a084b671_51718024",
+        "filename": "src/app/settingsview/components/AudioSettingsPage.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-09-26T20:58:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1570313d_bc702267",
       "range": {
         "startLine": 252,
         "startChar": 39,
