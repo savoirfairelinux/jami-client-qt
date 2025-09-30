@@ -99,9 +99,12 @@ Rectangle {
                 return false;
             }
         }
+
         if (CurrentConversation.isCoreDialog) {
-            return true
+            // Verify that a conversation with oneself has been removed
+            return myRole === Member.Role.LEFT;
         }
+
         return myRole !== Member.Role.ADMIN;
     }
 
