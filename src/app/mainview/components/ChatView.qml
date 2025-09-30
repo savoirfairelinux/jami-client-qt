@@ -100,7 +100,9 @@ Rectangle {
             }
         }
         if (CurrentConversation.isCoreDialog) {
-            return true
+            // Vertify that a conversation with oneself has been removed
+            const selfRole = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, peers[0]);
+            return selfRole === Member.Role.LEFT;
         }
         return myRole !== Member.Role.ADMIN;
     }
