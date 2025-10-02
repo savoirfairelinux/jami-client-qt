@@ -70,6 +70,78 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "501894ff_391753f1",
+        "filename": "src/app/audioconfiglistmodel.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-10-02T20:05:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7261256_913d0816",
+      "range": {
+        "startLine": 43,
+        "startChar": 21,
+        "endLine": 43,
+        "endChar": 30
+      },
+      "revId": "8e2f60348673f7716ae4719469a5734b5d2c972d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "542f6338_4d62a5fc",
+        "filename": "src/app/audioconfiglistmodel.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-10-02T20:05:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b9768395_223bcc7b",
+      "range": {
+        "startLine": 43,
+        "startChar": 60,
+        "endLine": 43,
+        "endChar": 65
+      },
+      "revId": "8e2f60348673f7716ae4719469a5734b5d2c972d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87a012d0_7ea1e644",
+        "filename": "src/app/audioconfiglistmodel.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-10-02T20:05:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a76aa3e_29a84ef4",
+      "range": {
+        "startLine": 43,
+        "startChar": 50,
+        "endLine": 43,
+        "endChar": 52
+      },
+      "revId": "8e2f60348673f7716ae4719469a5734b5d2c972d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8bc162f_a02e7ea8",
@@ -83,6 +155,24 @@
       "writtenOn": "2025-09-26T21:06:36Z",
       "side": 1,
       "message": "Unsure of the convention. Is a blank line here required?",
+      "revId": "8e2f60348673f7716ae4719469a5734b5d2c972d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df82b524_b5d62bb6",
+        "filename": "src/libclient/api/avmodel.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-10-02T20:05:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8bc162f_a02e7ea8",
       "revId": "8e2f60348673f7716ae4719469a5734b5d2c972d",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -104,6 +194,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fca23955_969c4319",
+        "filename": "src/libclient/api/avmodel.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-10-02T20:05:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34a29fd7_42be8c0c",
+      "revId": "8e2f60348673f7716ae4719469a5734b5d2c972d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d35c9b2_f845373e",
@@ -117,6 +225,30 @@
       "writtenOn": "2025-09-26T21:06:36Z",
       "side": 1,
       "message": "Should this be translatable?",
+      "range": {
+        "startLine": 490,
+        "startChar": 17,
+        "endLine": 490,
+        "endChar": 38
+      },
+      "revId": "8e2f60348673f7716ae4719469a5734b5d2c972d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5367a026_6f35d91f",
+        "filename": "src/libclient/avmodel.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 490,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-10-02T20:05:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d35c9b2_f845373e",
       "range": {
         "startLine": 490,
         "startChar": 17,
@@ -150,6 +282,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e6f3b64_0f36f583",
+        "filename": "src/libclient/avmodel.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 492,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-10-02T20:05:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f880def9_1ea63b97",
+      "range": {
+        "startLine": 492,
+        "startChar": 22,
+        "endLine": 492,
+        "endChar": 30
+      },
+      "revId": "8e2f60348673f7716ae4719469a5734b5d2c972d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dee0a2e8_4409859b",
@@ -163,6 +319,30 @@
       "writtenOn": "2025-09-26T21:06:36Z",
       "side": 1,
       "message": "Should this be translatable?",
+      "range": {
+        "startLine": 494,
+        "startChar": 22,
+        "endLine": 494,
+        "endChar": 36
+      },
+      "revId": "8e2f60348673f7716ae4719469a5734b5d2c972d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b79ce26_71b0c81b",
+        "filename": "src/libclient/avmodel.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-10-02T20:05:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dee0a2e8_4409859b",
       "range": {
         "startLine": 494,
         "startChar": 22,
@@ -196,6 +376,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd66ee4a_daa404ef",
+        "filename": "src/libclient/avmodel.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-10-02T20:05:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d255d242_80dffb1e",
+      "range": {
+        "startLine": 496,
+        "startChar": 22,
+        "endLine": 496,
+        "endChar": 30
+      },
+      "revId": "8e2f60348673f7716ae4719469a5734b5d2c972d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "92ee8020_76be6e7a",
@@ -209,6 +413,30 @@
       "writtenOn": "2025-09-26T21:06:36Z",
       "side": 1,
       "message": "Should this be translatable?",
+      "range": {
+        "startLine": 506,
+        "startChar": 17,
+        "endLine": 506,
+        "endChar": 38
+      },
+      "revId": "8e2f60348673f7716ae4719469a5734b5d2c972d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0b15641_689a2d57",
+        "filename": "src/libclient/avmodel.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-10-02T20:05:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92ee8020_76be6e7a",
       "range": {
         "startLine": 506,
         "startChar": 17,
@@ -242,6 +470,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "630d8548_039613be",
+        "filename": "src/libclient/avmodel.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 508,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-10-02T20:05:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c74f892_333fa4bb",
+      "range": {
+        "startLine": 508,
+        "startChar": 22,
+        "endLine": 508,
+        "endChar": 30
+      },
+      "revId": "8e2f60348673f7716ae4719469a5734b5d2c972d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b5a0e505_d0882ff5",
@@ -265,6 +517,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d5dd638_4b151125",
+        "filename": "src/libclient/avmodel.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-10-02T20:05:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5a0e505_d0882ff5",
+      "range": {
+        "startLine": 510,
+        "startChar": 22,
+        "endLine": 510,
+        "endChar": 36
+      },
+      "revId": "8e2f60348673f7716ae4719469a5734b5d2c972d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b3f0850_d6ad10cd",
@@ -278,6 +554,30 @@
       "writtenOn": "2025-09-26T21:06:36Z",
       "side": 1,
       "message": "Should this be translatable?",
+      "range": {
+        "startLine": 512,
+        "startChar": 22,
+        "endLine": 512,
+        "endChar": 30
+      },
+      "revId": "8e2f60348673f7716ae4719469a5734b5d2c972d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83ab3aeb_710d6e1a",
+        "filename": "src/libclient/avmodel.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 512,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-10-02T20:05:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b3f0850_d6ad10cd",
       "range": {
         "startLine": 512,
         "startChar": 22,
