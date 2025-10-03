@@ -41,6 +41,9 @@ AvAdapter::AvAdapter(LRCInstance* instance, QObject* parent)
     , rendererInformationListModel_(std::make_unique<RendererInformationListModel>())
 {
     set_renderersInfoList(QVariant::fromValue(rendererInformationListModel_.get()));
+
+    set_shareStreamAudio(false);
+
     connect(&lrcInstance_->avModel(),
             &lrc::api::AVModel::audioDeviceEvent,
             this,
@@ -101,7 +104,7 @@ AvAdapter::getAllScreensBoundingRect()
 }
 
 void
-AvAdapter::shareEntireScreen(int screenNumber)
+AvAdapter::shareEntireScreen(int screenNumber, bool withDesktopAudio)
 {
     QScreen* screen = QGuiApplication::screens().at(screenNumber);
     if (!screen)
@@ -123,7 +126,7 @@ AvAdapter::shareEntireScreen(int screenNumber)
     auto callId = lrcInstance_->getCurrentCallId();
     muteCamera_ = !isCapturing();
     lrcInstance_->getCurrentCallModel()
-        ->addMedia(callId, resource, lrc::api::CallModel::MediaRequestType::SCREENSHARING);
+        ->addMedia(callId, resource, lrc::api::CallModel::MediaRequestType::SCREENSHARING, !withDesktopAudio);
 }
 
 #ifdef Q_OS_LINUX
@@ -151,7 +154,7 @@ AvAdapter::closePortal(const QString& callId)
 }
 
 void
-AvAdapter::shareWayland(bool entireScreen)
+AvAdapter::shareWayland(bool entireScreen, bool withAudio)
 {
     QString callId = lrcInstance_->getCurrentCallId();
     closePortal(callId);
@@ -197,24 +200,24 @@ AvAdapter::shareWayland(bool entireScreen)
     callPortal[callId] = std::move(portal);
     muteCamera_ = !isCapturing();
     lrcInstance_->getCurrentCallModel()
-        ->addMedia(callId, resource, lrc::api::CallModel::MediaRequestType::SCREENSHARING);
+        ->addMedia(callId, resource, lrc::api::CallModel::MediaRequestType::SCREENSHARING, !withAudio);
 }
 
 void
-AvAdapter::shareEntireScreenWayland()
+AvAdapter::shareEntireScreenWayland(bool withDesktopAudio)
 {
-    shareWayland(true);
+    shareWayland(true, withDesktopAudio);
 }
 
 void
-AvAdapter::shareWindowWayland()
+AvAdapter::shareWindowWayland(bool withWindowAudio)
 {
-    shareWayland(false);
+    shareWayland(false, withWindowAudio);
 }
 #endif // Q_OS_LINUX
 
 void
-AvAdapter::shareAllScreens()
+AvAdapter::shareAllScreens(bool withDesktopAudio)
 {
     const auto arrangementRect = getAllScreensBoundingRect();
 
@@ -226,7 +229,7 @@ AvAdapter::shareAllScreens()
     auto callId = lrcInstance_->getCurrentCallId();
     muteCamera_ = !isCapturing();
     lrcInstance_->getCurrentCallModel()
-        ->addMedia(callId, resource, lrc::api::CallModel::MediaRequestType::SCREENSHARING);
+        ->addMedia(callId, resource, lrc::api::CallModel::MediaRequestType::SCREENSHARING, !withDesktopAudio);
 }
 
 void
@@ -313,7 +316,7 @@ AvAdapter::shareFile(const QString& filePath)
 }
 
 void
-AvAdapter::shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned height)
+AvAdapter::shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned height, bool withDesktopAudio)
 {
     muteCamera_ = !isCapturing();
 #ifdef Q_OS_LINUX
@@ -330,7 +333,7 @@ AvAdapter::shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned heig
                                                                         height < 128 ? 128 : height);
         auto callId = lrcInstance_->getCurrentCallId();
         lrcInstance_->getCurrentCallModel()
-            ->addMedia(callId, resource, lrc::api::CallModel::MediaRequestType::SCREENSHARING);
+            ->addMedia(callId, resource, lrc::api::CallModel::MediaRequestType::SCREENSHARING, !withDesktopAudio);
     });
 #else
     auto resource = lrcInstance_->getCurrentCallModel()->getDisplay(getScreenNumber(),
@@ -340,12 +343,12 @@ AvAdapter::shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned heig
                                                                     height < 128 ? 128 : height);
     auto callId = lrcInstance_->getCurrentCallId();
     lrcInstance_->getCurrentCallModel()
-        ->addMedia(callId, resource, lrc::api::CallModel::MediaRequestType::SCREENSHARING);
+        ->addMedia(callId, resource, lrc::api::CallModel::MediaRequestType::SCREENSHARING, !withDesktopAudio);
 #endif
 }
 
 void
-AvAdapter::shareWindow(const QString& windowProcessId, const QString& windowId, const int fps)
+AvAdapter::shareWindow(const QString& windowProcessId, const QString& windowId, const int fps, bool withWindowAudio)
 {
     auto resource = lrcInstance_->getCurrentCallModel()->getDisplay(windowProcessId,
                                                                     windowId,
@@ -354,7 +357,7 @@ AvAdapter::shareWindow(const QString& windowProcessId, const QString& windowId, 
 
     muteCamera_ = !isCapturing();
     lrcInstance_->getCurrentCallModel()
-        ->addMedia(callId, resource, lrc::api::CallModel::MediaRequestType::SCREENSHARING);
+        ->addMedia(callId, resource, lrc::api::CallModel::MediaRequestType::SCREENSHARING, !withWindowAudio);
 }
 
 QString
@@ -434,6 +437,29 @@ AvAdapter::stopSharing(const QString& source)
     }
 }
 
+void AvAdapter::toggleShareAudio(bool enable)
+{
+    auto callId = lrcInstance_->getCurrentCallId();
+    auto callModel = lrcInstance_->getCurrentCallModel();
+    qWarning() << enable;
+    try {
+        auto& call = callModel->getCall(callId);
+        for (const auto& media : call.mediaList) {
+            if (media[libjami::Media::MediaAttributeKey::SOURCE].startsWith("display://") &&
+                media[libjami::Media::MediaAttributeKey::MEDIA_TYPE] == libjami::Media::Details::MEDIA_TYPE_AUDIO) {
+                
+                QString label = media[libjami::Media::MediaAttributeKey::LABEL];
+                qWarning() << "Toggling share audio for label:" << label << "to" << (enable ? "enabled" : "disabled");
+                callModel->muteMedia(callId, label, !enable);
+            }
+        }
+        set_shareStreamAudio(enable);
+        
+    } catch (const std::exception& e) {
+        qWarning() << "Failed to toggle share audio:" << e.what();
+    }
+}
+
 void
 AvAdapter::startAudioMeter()
 {
@@ -490,6 +516,20 @@ AvAdapter::isSharing() const
         return call.hasMediaWithType(libjami::Media::VideoProtocolPrefix::DISPLAY,
                                      libjami::Media::Details::MEDIA_TYPE_VIDEO)
                || call.hasMediaWithType("file:", libjami::Media::Details::MEDIA_TYPE_VIDEO);
+    } catch (...) {
+    }
+    return false;
+}
+
+bool
+AvAdapter::isSharingScreenOrWindow() const
+{
+    try {
+        auto callId = lrcInstance_->getCurrentCallId();
+        auto callModel = lrcInstance_->getCurrentCallModel();
+        auto call = callModel->getCall(callId);
+        return call.hasMediaWithType(libjami::Media::VideoProtocolPrefix::DISPLAY,
+                                     libjami::Media::Details::MEDIA_TYPE_VIDEO);
     } catch (...) {
     }
     return false;
