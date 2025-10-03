@@ -150,6 +150,7 @@ Item {
     // Jami switch
     property color switchBackgroundCheckedColor: "#8dbaea"
     property color switchBackgroundColor: darkTheme ? "#626262" : "#E5EEF5"
+    property color switchBackgroundBorderColor : darkTheme ? "#4d4d4d" : "#A3C2DA"
     property color switchHandleColor: darkTheme ? "#2B2B2B" : whiteColor
     property color switchHandleCheckedColor: tintedBlue
     property color switchHandleBorderColor: tintedBlue
