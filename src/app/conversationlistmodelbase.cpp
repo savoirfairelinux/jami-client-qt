@@ -222,7 +222,7 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
         try {
             contact = contactModel->getContact(peerUri);
         } catch (const std::exception&) {
-            C_WARN << "Can't find contact" << peerUri << "for account"
+            C_WARN << "Unable to find contact" << peerUri << "for account"
                    << lrcInstance_->accountModel().bestNameForAccount(accInfo.id)
                    << "- Conv:" << item.uid;
         }
