@@ -22,6 +22,30 @@
       },
       "revId": "b70641fac2f8f6c5265a11c7a940460e3c39051f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6660b50a_f723e83c",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-10-06T20:09:17Z",
+      "side": 1,
+      "message": "1. Click the “Open settings” button.\n2. Click the “General” tab.\n3. Click the “Location sharing” tab.\n4. The “Position share duration” number line has a lower and upper limit of “1 min” and “Unlimited,” respectively. Is the `minLocationDuration` variable used as the lower limit?",
+      "parentUuid": "ca3c7d0c_2855d859",
+      "range": {
+        "startLine": 354,
+        "startChar": 20,
+        "endLine": 354,
+        "endChar": 39
+      },
+      "revId": "b70641fac2f8f6c5265a11c7a940460e3c39051f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
