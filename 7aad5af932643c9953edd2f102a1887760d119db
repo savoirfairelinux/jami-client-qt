@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d93149bc_69ecb92c",
+        "filename": "src/app/audioconfiglistmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-10-06T03:32:32Z",
+      "side": 1,
+      "message": "`Only one column is required.`",
+      "range": {
+        "startLine": 41,
+        "startChar": 7,
+        "endLine": 41,
+        "endChar": 28
+      },
+      "revId": "7aad5af932643c9953edd2f102a1887760d119db",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d30d11d3_d660866f",
+        "filename": "src/libclient/api/avmodel.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-10-06T03:32:32Z",
+      "side": 1,
+      "message": "Unsure of the convention. Should the sentence start with a capital (`N`) and end with a full stop (`.`)?\n`@param Name of the new echo cancellation option.`",
+      "range": {
+        "startLine": 191,
+        "startChar": 14,
+        "endLine": 191,
+        "endChar": 54
+      },
+      "revId": "7aad5af932643c9953edd2f102a1887760d119db",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbf8f6b5_ed423fd3",
+        "filename": "src/libclient/api/avmodel.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-10-06T03:32:32Z",
+      "side": 1,
+      "message": "Sorry, do not understand this sentence.",
+      "range": {
+        "startLine": 196,
+        "startChar": 14,
+        "endLine": 196,
+        "endChar": 64
+      },
+      "revId": "7aad5af932643c9953edd2f102a1887760d119db",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
