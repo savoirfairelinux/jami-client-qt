@@ -155,7 +155,7 @@ TEST_F(MessageParserFixture, AComplexLinkIsParsedCorrectly)
         QString result = messageParserArguments.at(1).toString();
         QString expected = testCase.expectedMessage;
         // Convert to std::string to get better error messages in case of test
-        // failure (GoogleTest can't print QStrings).
+        // failure (GoogleTest is unable to print QStrings).
         EXPECT_EQ(result.toStdString(), expected.toStdString());
     }
 }
