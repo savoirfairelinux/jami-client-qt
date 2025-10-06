@@ -91,7 +91,7 @@ if(WIN32)
   list(APPEND QWINDOWKIT_OPTIONS QWINDOWKIT_ENABLE_WINDOWS_SYSTEM_BORDERS OFF)
 endif()
 
-# If qwindowkit can't find qmsetup via cmake's find_package function, it will install it and
+# If qwindowkit is unable to find qmsetup via cmake's find_package function, it will install it and
 # then call find_package again. Unfortunately, even the second call to find_package sometimes
 # fails due to qmsetup having been installed in the wrong directory. The following patch
 # ensures that qmsetup is always installed in the directory where find_package looks for it.
