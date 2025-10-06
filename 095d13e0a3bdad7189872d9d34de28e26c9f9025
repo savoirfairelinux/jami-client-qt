@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e5b8fa8_80167fdf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-10-06T20:04:13Z",
+      "side": 1,
+      "message": "Please update to `https://jami.net/donate/`. Thank you",
+      "range": {
+        "startLine": 10,
+        "startChar": 7,
+        "endLine": 10,
+        "endChar": 34
+      },
+      "revId": "095d13e0a3bdad7189872d9d34de28e26c9f9025",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "302a45ff_06182be3",
@@ -38,6 +61,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bfb63c8d_929e3fc0",
+        "filename": "src/app/mainview/components/AboutPopUp.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-10-06T20:04:13Z",
+      "side": 1,
+      "message": "Please update to `https://jami.net/donate/`. Thank you",
+      "range": {
+        "startLine": 37,
+        "startChar": 30,
+        "endLine": 37,
+        "endChar": 57
+      },
+      "revId": "095d13e0a3bdad7189872d9d34de28e26c9f9025",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "aea7ffed_e38bf044",
         "filename": "src/app/mainview/components/AboutPopUp.qml",
         "patchSetId": 4
@@ -54,6 +100,29 @@
         "startChar": 37,
         "endLine": 43,
         "endChar": 49
+      },
+      "revId": "095d13e0a3bdad7189872d9d34de28e26c9f9025",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77e18edd_0776b77d",
+        "filename": "src/app/mainview/components/AboutPopUp.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-10-06T20:04:13Z",
+      "side": 1,
+      "message": "Is `UP` meant to be in uppercase?",
+      "range": {
+        "startLine": 64,
+        "startChar": 32,
+        "endLine": 64,
+        "endChar": 34
       },
       "revId": "095d13e0a3bdad7189872d9d34de28e26c9f9025",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
