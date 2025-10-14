@@ -279,11 +279,11 @@ SettingsPageBase {
                 Layout.alignment: Qt.AlignLeft
 
                 toolTipText: CurrentAccount.hasArchivePassword ? JamiStrings.changeCurrentPassword : JamiStrings.setAPassword
-                text: CurrentAccount.hasArchivePassword ? JamiStrings.changePassword : JamiStrings.setPassword
+                text: CurrentAccount.hasArchivePassword ? JamiStrings.changePassword : JamiStrings.setAPassword
 
                 onClicked: viewCoordinator.presentDialog(appWindow, "commoncomponents/PasswordDialog.qml", {
-                        "purpose": CurrentAccount.hasArchivePassword ? PasswordDialog.ChangePassword : PasswordDialog.SetPassword
-                    })
+                    "purpose": CurrentAccount.hasArchivePassword ? PasswordDialog.ChangePassword : PasswordDialog.SetPassword
+                })
             }
         }
 
@@ -345,32 +345,32 @@ SettingsPageBase {
 
                 onClicked: {
                     var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
-                            "title": JamiStrings.backupAccountHere,
-                            "fileMode": FileDialog.SaveFile,
-                            "folder": StandardPaths.writableLocation(StandardPaths.DesktopLocation),
-                            "nameFilters": [JamiStrings.jamiAccountFiles, JamiStrings.allFiles],
-                            "defaultSuffix": ".jac"
-                        });
+                        "title": JamiStrings.backupAccountHere,
+                        "fileMode": FileDialog.SaveFile,
+                        "folder": StandardPaths.writableLocation(StandardPaths.DesktopLocation),
+                        "nameFilters": [JamiStrings.jamiAccountFiles, JamiStrings.allFiles],
+                        "defaultSuffix": ".jac"
+                    });
                     dlg.fileAccepted.connect(function (file) {
-                            // is there password? If so, go to password dialog, else, go to following directly
-                            var exportPath = UtilsAdapter.getAbsPath(file.toString());
-                            if (CurrentAccount.hasArchivePassword) {
-                                viewCoordinator.presentDialog(appWindow, "commoncomponents/PasswordDialog.qml", {
-                                        "purpose": PasswordDialog.ExportAccount,
-                                        "path": exportPath
-                                    });
-                                return;
-                            } else if (exportPath.length > 0) {
-                                var success = AccountAdapter.model.exportToFile(LRCInstance.currentAccountId, exportPath);
-                                viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
-                                        "title": success ? JamiStrings.success : JamiStrings.error,
-                                        "infoText": success ? JamiStrings.backupSuccessful : JamiStrings.backupFailed,
-                                        "buttonTitles": [JamiStrings.optionOk],
-                                        "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
-                                        "buttonRoles": [DialogButtonBox.AcceptRole]
-                                    });
-                            }
-                        });
+                        // is there password? If so, go to password dialog, else, go to following directly
+                        var exportPath = UtilsAdapter.getAbsPath(file.toString());
+                        if (CurrentAccount.hasArchivePassword) {
+                            viewCoordinator.presentDialog(appWindow, "commoncomponents/PasswordDialog.qml", {
+                                "purpose": PasswordDialog.ExportAccount,
+                                "path": exportPath
+                            });
+                            return;
+                        } else if (exportPath.length > 0) {
+                            var success = AccountAdapter.model.exportToFile(LRCInstance.currentAccountId, exportPath);
+                            viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+                                "title": success ? JamiStrings.success : JamiStrings.error,
+                                "infoText": success ? JamiStrings.backupSuccessful : JamiStrings.backupFailed,
+                                "buttonTitles": [JamiStrings.optionOk],
+                                "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
+                                "buttonRoles": [DialogButtonBox.AcceptRole]
+                            });
+                        }
+                    });
                 }
             }
         }
@@ -466,8 +466,8 @@ SettingsPageBase {
 
                 onClicked: {
                     var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/DeleteAccountDialog.qml", {
-                            "isSIP": CurrentAccount.type === Profile.Type.SIP
-                        });
+                        "isSIP": CurrentAccount.type === Profile.Type.SIP
+                    });
                     dlg.accepted.connect(navigateToMainView);
                 }
             }
