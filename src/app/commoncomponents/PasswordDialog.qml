@@ -45,6 +45,8 @@ BaseModalDialog {
             return JamiStrings.changePassword;
         case PasswordDialog.SetPassword:
             return JamiStrings.setPassword;
+        default:
+            return JamiStrings.changePassword;
         }
     }
 
@@ -72,7 +74,17 @@ BaseModalDialog {
         done(success, purpose);
     }
 
-    button1.text: (purpose === PasswordDialog.ExportAccount) ? JamiStrings.exportAccount : JamiStrings.change
+    button1.text: switch (purpose) {
+        case PasswordDialog.ExportAccount:
+            return JamiStrings.exportAccount;
+        case PasswordDialog.SetPassword:
+            return JamiStrings.set;
+        case PasswordDialog.ChangePassword:
+            return JamiStrings.change;
+        default:
+            return JamiStrings.change;
+
+    }
     button1Role: DialogButtonBox.ApplyRole
     button1.enabled: purpose === PasswordDialog.SetPassword
 
@@ -94,8 +106,11 @@ BaseModalDialog {
             case PasswordDialog.SetPassword:
                 button1.enabled = passwordEdit.modifiedTextFieldContent.length > 0 && passwordEdit.modifiedTextFieldContent === confirmPasswordEdit.modifiedTextFieldContent;
                 break;
+            case PasswordDialog.ChangePassword:
+                button1.enabled = currentPasswordEdit.modifiedTextFieldContent !== passwordEdit.modifiedTextFieldContent && passwordEdit.modifiedTextFieldContent === confirmPasswordEdit.modifiedTextFieldContent
+                break;
             default:
-                button1.enabled = currentPasswordEdit.modifiedTextFieldContent.length >= 0 && passwordEdit.modifiedTextFieldContent === confirmPasswordEdit.modifiedTextFieldContent;
+                button1.enabled = false;
             }
         }
 
@@ -160,7 +175,7 @@ BaseModalDialog {
 
             visible: purpose === PasswordDialog.ChangePassword || purpose === PasswordDialog.SetPassword
 
-            placeholderText: JamiStrings.enterNewPassword
+            placeholderText: purpose === PasswordDialog.SetPassword ? JamiStrings.enterPassword : JamiStrings.enterNewPassword
 
             onModifiedTextFieldContentChanged: popupContentColumnLayout.validatePassword()
         }
