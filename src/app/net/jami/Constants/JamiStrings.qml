@@ -635,6 +635,7 @@ Item {
     property string enterNewPassword: qsTr("Enter new password")
     property string confirmNewPassword: qsTr("Confirm new password")
     property string change: qsTr("Change")
+    property string set: qsTr("Set")
     property string exportAccount: qsTr("Export")
 
     // PhotoBoothView

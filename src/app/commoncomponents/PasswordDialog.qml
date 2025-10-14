@@ -44,7 +44,9 @@ BaseModalDialog {
         case PasswordDialog.ChangePassword:
             return JamiStrings.changePassword;
         case PasswordDialog.SetPassword:
-            return JamiStrings.setPassword;
+            return JamiStrings.setAPassword;
+        default:
+            return JamiStrings.changePassword;
         }
     }
 
@@ -63,16 +65,27 @@ BaseModalDialog {
             break;
         }
         viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
-                "title": title,
-                "infoText": info,
-                "buttonTitles": [JamiStrings.optionOk],
-                "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
-                "buttonRoles": [DialogButtonBox.AcceptRole]
-            });
+            "title": title,
+            "infoText": info,
+            "buttonTitles": [JamiStrings.optionOk],
+            "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
+            "buttonRoles": [DialogButtonBox.AcceptRole]
+        });
         done(success, purpose);
     }
 
-    button1.text: (purpose === PasswordDialog.ExportAccount) ? JamiStrings.exportAccount : JamiStrings.change
+    button1.text: {
+        switch (purpose) {
+        case PasswordDialog.ExportAccount:
+            return JamiStrings.exportAccount;
+        case PasswordDialog.SetPassword:
+            return JamiStrings.set;
+        case PasswordDialog.ChangePassword:
+            return JamiStrings.change;
+        default:
+            return JamiStrings.change;
+        }
+    }
     button1Role: DialogButtonBox.ApplyRole
     button1.enabled: purpose === PasswordDialog.SetPassword
 
@@ -94,8 +107,11 @@ BaseModalDialog {
             case PasswordDialog.SetPassword:
                 button1.enabled = passwordEdit.dynamicText.length > 0 && passwordEdit.dynamicText === confirmPasswordEdit.dynamicText;
                 break;
+            case PasswordDialog.ChangePassword:
+                button1.enabled = currentPasswordEdit.dynamicText !== passwordEdit.dynamicText && passwordEdit.dynamicText === confirmPasswordEdit.dynamicText;
+                break;
             default:
-                button1.enabled = currentPasswordEdit.dynamicText.length > 0 && passwordEdit.dynamicText === confirmPasswordEdit.dynamicText;
+                button1.enabled = false;
             }
         }
 
@@ -109,7 +125,8 @@ BaseModalDialog {
         }
 
         function savePasswordQML() {
-            var success = AccountAdapter.savePassword(LRCInstance.currentAccountId, currentPasswordEdit.dynamicText, passwordEdit.dynamicText);
+            var currentPwd = purpose === PasswordDialog.SetPassword ? "" : currentPasswordEdit.dynamicText;
+            var success = AccountAdapter.savePassword(LRCInstance.currentAccountId, currentPwd, passwordEdit.dynamicText);
             reportStatus(success);
             close();
         }
@@ -117,7 +134,7 @@ BaseModalDialog {
         onVisibleChanged: validatePassword()
 
         Component.onCompleted: {
-            root.button1.clicked.connect(function() {
+            root.button1.clicked.connect(function () {
                 button1.enabled = false;
                 timerToOperate.restart();
             });
@@ -160,7 +177,7 @@ BaseModalDialog {
 
             visible: purpose === PasswordDialog.ChangePassword || purpose === PasswordDialog.SetPassword
 
-            placeholderText: JamiStrings.enterNewPassword
+            placeholderText: purpose === PasswordDialog.SetPassword ? JamiStrings.enterPassword : JamiStrings.enterNewPassword
 
             onDynamicTextChanged: popupContentColumnLayout.validatePassword()
         }
