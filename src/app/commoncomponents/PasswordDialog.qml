@@ -95,7 +95,7 @@ BaseModalDialog {
                 button1.enabled = passwordEdit.dynamicText.length > 0 && passwordEdit.dynamicText === confirmPasswordEdit.dynamicText;
                 break;
             default:
-                button1.enabled = currentPasswordEdit.dynamicText.length > 0 && passwordEdit.dynamicText === confirmPasswordEdit.dynamicText;
+                button1.enabled = currentPasswordEdit.dynamicText !== passwordEdit.dynamicText && passwordEdit.dynamicText === confirmPasswordEdit.dynamicText;
             }
         }
 
