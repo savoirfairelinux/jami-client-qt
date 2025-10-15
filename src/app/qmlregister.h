@@ -32,6 +32,7 @@
 class SystemTray;
 class LRCInstance;
 class AppSettingsManager;
+class AccountSettingsManager;
 class PreviewEngine;
 class ScreenInfo;
 class MainApplication;
@@ -61,6 +62,7 @@ void registerTypes(QQmlEngine* engine,
                    LRCInstance* lrcInstance,
                    SystemTray* systemTray,
                    AppSettingsManager* appSettingsManager,
+                   AccountSettingsManager* accountSettingsManager,
                    ConnectivityMonitor* connectivityMonitor,
                    PreviewEngine* previewEngine,
                    ScreenInfo* screenInfo,
