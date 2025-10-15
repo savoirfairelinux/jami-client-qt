@@ -16,6 +16,24 @@
       "message": "Maybe update the popup to be a set password instead of a change password.\nAnd have the change password if it already has one.",
       "revId": "784c649db15163d100556481f629cbd7ae599260",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04f6a882_b55f8f33",
+        "filename": "src/app/commoncomponents/PasswordDialog.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1147
+      },
+      "writtenOn": "2025-10-15T13:19:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37126c98_b0b6cc0d",
+      "revId": "784c649db15163d100556481f629cbd7ae599260",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
