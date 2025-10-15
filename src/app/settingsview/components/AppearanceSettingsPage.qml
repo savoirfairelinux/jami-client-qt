@@ -17,6 +17,7 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
+import Qt.labs.platform
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
@@ -139,6 +140,29 @@ SettingsPageBase {
                             UtilsAdapter.setAppValue(Settings.Key.AppTheme, "System");
                     }
                 }
+            }
+
+            FileDialog {
+                id: backgroundImageDialog
+
+                folder: StandardPaths.writableLocation(StandardPaths.PicturesLocation)
+                nameFilters: ["Images (*.png *.jpg *.jpeg)", "All files (*)"]
+                selectedNameFilter.index: 0
+                onAccepted: AccountSettingsManager.accountSettingsPropertyMap.backgroundUri = file.toString()
+            }
+
+            SettingMaterialButton {
+                id: btnBackgroundImageDirSelect
+
+                Layout.fillWidth: true
+
+                enabled: true
+                textField: AccountSettingsManager.accountSettingsPropertyMap.backgroundUri === "" ? JamiStrings.defaultImage : AccountSettingsManager.accountSettingsPropertyMap.backgroundUri
+
+                titleField: JamiStrings.backgroundImage
+                itemWidth: root.itemWidth
+
+                onSettingMaterialButtonClicked: backgroundImageDialog.open();
             }
         }
 
@@ -265,6 +289,7 @@ SettingsPageBase {
                 zoomSpinBox.value = Math.round(UtilsAdapter.getDefault(Settings.BaseZoom) * 100.0);
                 UtilsAdapter.setToDefault(Settings.Key.AppTheme);
                 UtilsAdapter.setToDefault(Settings.Key.BaseZoom);
+                AccountSettingsManager.accountSettingsPropertyMap.backgroundUri = "";
                 themeSettings.isComplete();
             }
         }
