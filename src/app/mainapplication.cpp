@@ -20,6 +20,7 @@
 #include "global.h"
 #include "qmlregister.h"
 #include "appsettingsmanager.h"
+#include "accountsettingsmanager.h"
 #include "connectivitymonitor.h"
 #include "systemtray.h"
 #include "previewengine.h"
@@ -192,6 +193,7 @@ MainApplication::init()
     // enabled.
     settingsManager_ = new AppSettingsManager(this);
     crashReporter_ = new CrashReporter(settingsManager_, this);
+    accountSettingsManager_ = new AccountSettingsManager(this);
 
     // This 2-phase initialisation prevents ephemeral instances from
     // performing unnecessary tasks, like initializing the WebEngine.
@@ -270,6 +272,8 @@ MainApplication::init()
     set_startMinimized(startMinimizedSetting && runOptions_[Option::StartUri].isNull());
 
     initQmlLayer();
+
+    accountSettingsManager_->initalizeAccountSettings();
 
     settingsManager_->setValue(Settings::Key::StartMinimized,
                                runOptions_[Option::StartMinimized].toBool());
@@ -424,6 +428,7 @@ MainApplication::initQmlLayer()
                          lrcInstance_.get(),
                          systemTray_,
                          settingsManager_,
+                         accountSettingsManager_,
                          connectivityMonitor_,
                          previewEngine_,
                          &screenInfo_,
