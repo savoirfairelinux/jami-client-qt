@@ -58,6 +58,7 @@
 #include "avatarimageprovider.h"
 #include "avatarregistry.h"
 #include "appsettingsmanager.h"
+#include "accountsettingsmanager.h"
 #include "mainapplication.h"
 #include "namedirectory.h"
 #include "pluginversionmanager.h"
@@ -120,6 +121,7 @@ registerTypes(QQmlEngine* engine,
               LRCInstance* lrcInstance,
               SystemTray* systemTray,
               AppSettingsManager* settingsManager,
+              AccountSettingsManager* accountSettingsManager,
               ConnectivityMonitor* connectivityMonitor,
               PreviewEngine* previewEngine,
               ScreenInfo* screenInfo,
@@ -206,6 +208,7 @@ registerTypes(QQmlEngine* engine,
     qApp->setProperty("LRCInstance", QVariant::fromValue(lrcInstance));
     qApp->setProperty("SystemTray", QVariant::fromValue(systemTray));
     qApp->setProperty("AppSettingsManager", QVariant::fromValue(settingsManager));
+    qApp->setProperty("AccountSettingsManager", QVariant::fromValue(accountSettingsManager));
     qApp->setProperty("ConnectivityMonitor", QVariant::fromValue(connectivityMonitor));
     qApp->setProperty("PreviewEngine", QVariant::fromValue(previewEngine));
 
@@ -260,6 +263,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, screenInfo, "CurrentScreenInfo")
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, lrcInstance, "LRCInstance")
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, settingsManager, "AppSettingsManager")
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, accountSettingsManager, "AccountSettingsManager")
 
     // Lrc namespaces, models, and singletons
     QML_REGISTERNAMESPACE(NS_MODELS, lrc::api::staticMetaObject, "Lrc");
