@@ -335,6 +335,7 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/screensaver.cpp
   ${APP_SRC_DIR}/systemtray.cpp
   ${APP_SRC_DIR}/appsettingsmanager.cpp
+  ${APP_SRC_DIR}/accountsettingsmanager.cpp
   ${APP_SRC_DIR}/lrcinstance.cpp
   ${APP_SRC_DIR}/selectablelistproxymodel.cpp
   ${APP_SRC_DIR}/conversationlistmodelbase.cpp
@@ -409,6 +410,7 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/screensaver.h
   ${APP_SRC_DIR}/systemtray.h
   ${APP_SRC_DIR}/appsettingsmanager.h
+  ${APP_SRC_DIR}/accountsettingsmanager.h
   ${APP_SRC_DIR}/lrcinstance.h
   ${APP_SRC_DIR}/selectablelistproxymodel.h
   ${APP_SRC_DIR}/conversationlistmodelbase.h
@@ -439,7 +441,9 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/crashreporter.h
   ${APP_SRC_DIR}/linkdevicemodel.h
   ${APP_SRC_DIR}/qrcodescannermodel.h
-  ${APP_SRC_DIR}/spellchecker.h)
+  ${APP_SRC_DIR}/spellchecker.h
+  ${APP_SRC_DIR}/accountsettingspropertymap.h
+)
 
 set(CONTRIB_DARWIN_FOLDER "")
 if(APPLE)

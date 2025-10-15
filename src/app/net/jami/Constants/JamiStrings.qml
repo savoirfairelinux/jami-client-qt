@@ -894,6 +894,9 @@ Item {
     // Appearence
     property string theme: qsTr("Theme")
     property string zoomLevel: qsTr("Text zoom level")
+    property string backgroundImage: qsTr("Background image")
+    property string selectBackgroundImage: qsTr("Select background image")
+    property string defaultImage: qsTr("Default")
 
     // Donation campaign
     property string donationTipBoxText: qsTr("Free and private sharing. <a href=\"https://jami.net/donate/\">Donate</a> to expand it.")
