@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc6be688_920ceedd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1147
+      },
+      "writtenOn": "2025-10-15T13:54:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "224cbd78_f11a9ece",
+      "revId": "b5027a54c0e67f33c255a1bd6fb03d50e1b6e08f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4636c158_2b44fec5",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-09-22T20:07:00Z",
       "side": 1,
       "message": "Seems reasonable. Are these methods also used for sharing the entire screen?",
+      "revId": "b5027a54c0e67f33c255a1bd6fb03d50e1b6e08f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c173de28_07c5ad77",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1147
+      },
+      "writtenOn": "2025-10-15T13:54:30Z",
+      "side": 1,
+      "message": "No, screen sharing uses other methods. These methods are specific to sharing a target window",
+      "parentUuid": "4636c158_2b44fec5",
       "revId": "b5027a54c0e67f33c255a1bd6fb03d50e1b6e08f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
