@@ -66,6 +66,9 @@ ListSelectionView {
     property bool hasLogo: true
     property bool hasTips: true
 
+    property bool hasOverridenBgImage: false
+    property string overridenImageUrl: ""
+
     //logoSize has to be between 0 and 1
     property real logoSize: 1
 
@@ -106,6 +109,8 @@ ListSelectionView {
         description = hasCustomUi && uiCustomization.description !== undefined ? uiCustomization.description : JamiStrings.hereIsIdentifier;
         hasLogo = hasCustomUi ? uiCustomization.logoUrl !== "" : true;
         hasTips = hasCustomUi ? uiCustomization.areTipsEnabled : true;
+        hasOverridenBgImage = (AccountSettingsManager.accountSettingsPropertyMap.backgroundUri !== "");
+        overridenImageUrl = hasOverridenBgImage ? AccountSettingsManager.accountSettingsPropertyMap.backgroundUri : "";
         hasCustomBgImage = (hasCustomUi && uiCustomization.backgroundType === "image");
         customBgUrl = hasCustomBgImage ? (CurrentAccount.managerUri + uiCustomization.backgroundColorOrUrl) : "";
         hasCustomBgColor = (hasCustomUi && uiCustomization.backgroundType === "color");
@@ -148,7 +153,7 @@ ListSelectionView {
 
         CachedImage {
             id: cachedImgLogo
-            downloadUrl: hasCustomBgImage ? customBgUrl : JamiTheme.welcomeBg
+            downloadUrl: (AccountSettingsManager.accountSettingsPropertyMap.backgroundUri === "") ? (hasCustomBgImage ? customBgUrl : JamiTheme.welcomeBg) : (AccountSettingsManager.accountSettingsPropertyMap.backgroundUri)
             visible: !hasCustomBgColor
             anchors.fill: parent
             opacity: visible ? 1 : 0
