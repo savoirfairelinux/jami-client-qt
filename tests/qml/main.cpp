@@ -16,6 +16,7 @@
  */
 
 #include "appsettingsmanager.h"
+#include "accountsettingsmanager.h"
 #include "connectivitymonitor.h"
 #include "mainapplication.h"
 #include "previewengine.h"
@@ -92,6 +93,7 @@ public Q_SLOTS:
 
         connectivityMonitor_.reset(new ConnectivityMonitor(this));
         settingsManager_.reset(new AppSettingsManager(this));
+        accountSettingsManager_.reset(new AccountSettingsManager(this));
         systemTray_.reset(new SystemTray(settingsManager_.get(), this));
         previewEngine_.reset(new PreviewEngine(connectivityMonitor_.get(), this));
 
@@ -152,6 +154,7 @@ public Q_SLOTS:
                              lrcInstance_.get(),
                              systemTray_.get(),
                              settingsManager_.get(),
+                             accountSettingsManager_.get(),
                              connectivityMonitor_.get(),
                              previewEngine_.get(),
                              &screenInfo_,
@@ -169,6 +172,7 @@ private:
 
     QScopedPointer<ConnectivityMonitor> connectivityMonitor_;
     QScopedPointer<AppSettingsManager> settingsManager_;
+    QScopedPointer<AccountSettingsManager> accountSettingsManager_;
     QScopedPointer<SystemTray> systemTray_;
     QScopedPointer<PreviewEngine> previewEngine_;
     ScreenInfo screenInfo_;
