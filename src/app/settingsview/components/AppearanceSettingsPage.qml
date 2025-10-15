@@ -17,6 +17,7 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
+import Qt.labs.platform
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
@@ -138,6 +139,52 @@ SettingsPageBase {
                         if (checked)
                             UtilsAdapter.setAppValue(Settings.Key.AppTheme, "System");
                     }
+                }
+            }
+
+            RowLayout {
+                SettingMaterialButton {
+                    id: btnBackgroundImageDirSelect
+
+                    Layout.fillWidth: true
+
+                    enabled: true
+                    textField: AccountSettingsManager.accountSettingsPropertyMap.backgroundUri === "" ? JamiStrings.defaultImage : UtilsAdapter.getAbsPath(AccountSettingsManager.accountSettingsPropertyMap.backgroundUri)
+
+                    titleField: JamiStrings.backgroundImage
+                    itemWidth: root.itemWidth
+
+                    onSettingMaterialButtonClicked: {
+                        var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+                            title: JamiStrings.selectBackgroundImage,
+                            fileMode: JamiFileDialog.OpenFile,
+                            folder: StandardPaths.writableLocation(StandardPaths.PicturesLocation),
+                            nameFilters: [JamiStrings.imageFiles, JamiStrings.allFiles]
+                        });
+                        dlg.fileAccepted.connect(function (file) {
+                            if (file.toString().length !== 0) {
+                                AccountSettingsManager.accountSettingsPropertyMap.backgroundUri = file;
+                            }
+                        });
+                    }
+                }
+
+                JamiPushButton {
+                    id: shareButton
+
+                    width: visible ? preferredSize : 0
+                    height: visible ? preferredSize : 0
+                    Layout.alignment: Qt.AlignVCenter
+
+                    visible: AccountSettingsManager.accountSettingsPropertyMap.backgroundUri !== ""
+                    toolTipText: JamiStrings.reset
+
+                    source: JamiResources.round_close_24dp_svg
+
+                    normalColor: JamiTheme.transparentColor
+                    imageColor: hovered ? JamiTheme.buttonTintedBlueHovered : JamiTheme.textColor
+
+                    onClicked: AccountSettingsManager.accountSettingsPropertyMap.backgroundUri = ""
                 }
             }
         }
@@ -265,6 +312,7 @@ SettingsPageBase {
                 zoomSpinBox.value = Math.round(UtilsAdapter.getDefault(Settings.BaseZoom) * 100.0);
                 UtilsAdapter.setToDefault(Settings.Key.AppTheme);
                 UtilsAdapter.setToDefault(Settings.Key.BaseZoom);
+                AccountSettingsManager.accountSettingsPropertyMap.backgroundUri = "";
                 themeSettings.isComplete();
             }
         }
