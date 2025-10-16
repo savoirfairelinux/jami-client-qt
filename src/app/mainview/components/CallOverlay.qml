@@ -112,9 +112,9 @@ Item {
 
     function openShareScreen() {
         if (UtilsAdapter.isWayland()) {
-            AvAdapter.shareEntireScreenWayland();
+            AvAdapter.shareEntireScreenWayland(AvAdapter.shareStreamAudio);
         } else if (Qt.application.screens.length === 1) {
-            AvAdapter.shareEntireScreen(0);
+            AvAdapter.shareEntireScreen(0, AvAdapter.shareStreamAudio);
         } else {
             SelectScreenWindowCreation.presentSelectScreenWindow(appWindow, false);
         }
@@ -122,7 +122,7 @@ Item {
 
     function openShareWindow() {
         if (UtilsAdapter.isWayland()) {
-            AvAdapter.shareWindowWayland();
+            AvAdapter.shareWindowWayland(AvAdapter.shareStreamAudio);
             return;
         }
         AvAdapter.getListWindows();
@@ -133,7 +133,7 @@ Item {
 
     function openShareScreenArea() {
         if (Qt.platform.os !== "windows") {
-            AvAdapter.shareScreenArea(0, 0, 0, 0);
+            AvAdapter.shareScreenArea(0, 0, 0, 0, AvAdapter.shareStreamAudio);
         } else {
             ScreenRubberBandCreation.createScreenRubberBandWindowObject();
             ScreenRubberBandCreation.showScreenRubberBandWindow();
