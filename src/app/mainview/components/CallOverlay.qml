@@ -85,12 +85,12 @@ Item {
 
     function openShareFileDialog() {
         var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
-                "fileMode": JamiFileDialog.OpenFile,
-                "nameFilters": [JamiStrings.allFiles]
-            });
+            "fileMode": JamiFileDialog.OpenFile,
+            "nameFilters": [JamiStrings.allFiles]
+        });
         dlg.fileAccepted.connect(function (file) {
-                AvAdapter.shareFile(file);
-            });
+            AvAdapter.shareFile(file);
+        });
     }
 
     ResponsiveImage {
@@ -113,9 +113,9 @@ Item {
 
     function openShareScreen() {
         if (UtilsAdapter.isWayland()) {
-            AvAdapter.shareEntireScreenWayland();
+            AvAdapter.shareEntireScreenWayland(AvAdapter.muteScreenshareAudio);
         } else if (Qt.application.screens.length === 1) {
-            AvAdapter.shareEntireScreen(0);
+            AvAdapter.shareEntireScreen(0, AvAdapter.muteScreenshareAudio);
         } else {
             SelectScreenWindowCreation.presentSelectScreenWindow(appWindow, false);
         }
@@ -123,7 +123,7 @@ Item {
 
     function openShareWindow() {
         if (UtilsAdapter.isWayland()) {
-            AvAdapter.shareWindowWayland();
+            AvAdapter.shareWindowWayland(AvAdapter.muteScreenshareAudio);
             return;
         }
         AvAdapter.getListWindows();
@@ -134,7 +134,7 @@ Item {
 
     function openShareScreenArea() {
         if (Qt.platform.os !== "windows") {
-            AvAdapter.shareScreenArea(0, 0, 0, 0);
+            AvAdapter.shareScreenArea(0, 0, 0, 0, AvAdapter.muteScreenshareAudio);
         } else {
             ScreenRubberBandCreation.createScreenRubberBandWindowObject();
             ScreenRubberBandCreation.showScreenRubberBandWindow();
