@@ -259,7 +259,15 @@ ItemDelegate {
 
                         spacing: 6
                         ResponsiveImage {
-                            source: menuAction.popupMode === CallActionBar.ActionPopupMode.ListElement || menuAction.popupMode === CallActionBar.ActionPopupMode.LayoutOption ? IconSource : (menuItem.ListView.isCurrentItem ? JamiResources.check_box_24dp_svg : JamiResources.check_box_outline_blank_24dp_svg)
+                            source: {
+                                if (menuAction.popupMode === CallActionBar.ActionPopupMode.ListElement) {
+                                    return IconSource || "";
+                                } else if (menuAction.popupMode === CallActionBar.ActionPopupMode.LayoutOption) {
+                                    return IconSource || "";
+                                } else {
+                                    return menuItem.ListView.isCurrentItem ? JamiResources.check_box_24dp_svg : JamiResources.check_box_outline_blank_24dp_svg;
+                                }
+                            }
                             color: "white"
                             width: 20
                             height: 20

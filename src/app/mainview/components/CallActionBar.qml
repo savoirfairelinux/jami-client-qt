@@ -128,50 +128,89 @@ Control {
         },
         Action {
             id: shareMenuAction
-            enabled: !CurrentCall.isSharing
-            text: JamiStrings.selectShareMethod
+            // Only disable the action when sharing a file
+            enabled: !CurrentCall.isSharing || AvAdapter.isSharingScreenOrWindow()
+            text: JamiStrings.sharingOptions
             property int popupMode: CallActionBar.ActionPopupMode.ListElement
             property var listModel: ListModel {
                 id: shareModel
             }
             onTriggered: {
                 shareModel.clear();
-                shareModel.append({
-                        "Name": JamiStrings.shareScreen,
-                        "IconSource": JamiResources.laptop_black_24dp_svg
-                    });
-                if (Qt.platform.os.toString() !== "osx") {
+                
+                if (CurrentCall.isSharing) {
+                    // When sharing screen/window (not file), show audio toggle option
+                    if (AvAdapter.isSharingScreenOrWindow()) {
+                        var audioIconSource = AvAdapter.shareStreamAudio ? 
+                            JamiResources.check_box_24dp_svg : 
+                            JamiResources.check_box_outline_blank_24dp_svg;
+                        shareModel.append({
+                                "Name": JamiStrings.shareStreamAudio,
+                                "IconSource": audioIconSource,
+                                "IsCheckable": true,
+                                "IsChecked": AvAdapter.shareStreamAudio
+                            });
+                    }
+                } else {
+                    // When not sharing, show sharing options
                     shareModel.append({
-                            "Name": JamiStrings.shareWindow,
-                            "IconSource": JamiResources.window_black_24dp_svg
+                            "Name": JamiStrings.shareScreen,
+                            "IconSource": JamiResources.laptop_black_24dp_svg,
+                            "IsCheckable": false
+                        });
+                    if (Qt.platform.os.toString() !== "osx") {
+                        shareModel.append({
+                                "Name": JamiStrings.shareWindow,
+                                "IconSource": JamiResources.window_black_24dp_svg,
+                                "IsCheckable": false
+                            });
+                    }
+                    if (Qt.platform.os.toString() !== "windows" && !UtilsAdapter.isWayland()) {
+                        // temporarily disable for windows
+                        shareModel.append({
+                                "Name": JamiStrings.shareScreenArea,
+                                "IconSource": JamiResources.share_area_black_24dp_svg,
+                                "IsCheckable": false
+                            });
+                    }
+                    shareModel.append({
+                            "Name": JamiStrings.shareFile,
+                            "IconSource": JamiResources.file_black_24dp_svg,
+                            "IsCheckable": false
                         });
                 }
-                if (Qt.platform.os.toString() !== "windows" && !UtilsAdapter.isWayland()) {
-                    // temporarily disable for windows
-                    shareModel.append({
-                            "Name": JamiStrings.shareScreenArea,
-                            "IconSource": JamiResources.share_area_black_24dp_svg
-                        });
-                }
-                shareModel.append({
-                        "Name": JamiStrings.shareFile,
-                        "IconSource": JamiResources.file_black_24dp_svg
-                    });
             }
             function accept(index) {
-                switch (shareModel.get(index).Name) {
-                case JamiStrings.shareScreen:
-                    shareScreenClicked();
-                    break;
-                case JamiStrings.shareWindow:
-                    shareWindowClicked();
-                    break;
-                case JamiStrings.shareScreenArea:
-                    shareScreenAreaClicked();
-                    break;
-                case JamiStrings.shareFile:
-                    shareFileClicked();
-                    break;
+                var item = shareModel.get(index);
+                
+                if (CurrentCall.isSharing) {
+                    if (item.Name == JamiStrings.shareStreamAudio) {
+                        if (AvAdapter.shareStreamAudio == true) {
+                            // If audio is currently being shared, unshare it
+                            AvAdapter.toggleShareAudio(false);
+                            return;
+                        } else {
+                            // If audio is currently not being shared, share it
+                            AvAdapter.toggleShareAudio(true);
+                            return;
+                        }
+                    }
+                } else {
+                    // Handle sharing options
+                    switch (item.Name) {
+                    case JamiStrings.shareScreen:
+                        shareScreenClicked();
+                        break;
+                    case JamiStrings.shareWindow:
+                        shareWindowClicked();
+                        break;
+                    case JamiStrings.shareScreenArea:
+                        shareScreenAreaClicked();
+                        break;
+                    case JamiStrings.shareFile:
+                        shareFileClicked();
+                        break;
+                    }
                 }
             }
         },
