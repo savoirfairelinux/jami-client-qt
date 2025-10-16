@@ -23,6 +23,7 @@ import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import "../js/screenrubberbandcreation.js" as ScreenRubberBandCreation
 import "../../commoncomponents"
+import "../../settingsview/components"
 
 // SelectScreenWindow as a seperate window,
 // is to make user aware of which screen they want to share,
@@ -85,6 +86,9 @@ Window {
         if (!active) {
             selectedScreenNumber = undefined;
         }
+        // Reset audio sharing option to false each time window is opened
+        AvAdapter.shareStreamAudio = false;
+        
         calculateRepeaterModel();
     }
 
@@ -163,12 +167,51 @@ Window {
                 Layout.preferredHeight: childrenRect.height
                 spacing: marginSize
 
+                ToggleSwitch {
+                    id: shareAudioToggle
+
+                    Layout.maximumWidth: 250
+                    Layout.alignment: Qt.AlignLeft
+                    Layout.leftMargin: marginSize
+
+                    labelText: JamiStrings.shareStreamAudio
+                    checked: AvAdapter.shareStreamAudio
+
+                    onSwitchToggled: {
+                        AvAdapter.shareStreamAudio = checked
+                    }
+                }
+
+                // Push buttons to the right
+                Item {
+                    Layout.fillWidth: true
+                }
+
                 MaterialButton {
-                    id: selectButton
+                    id: cancelButton
+
                     Layout.maximumWidth: 200
                     Layout.fillWidth: true
-                    Layout.alignment: Qt.AlignHCenter
-                    Layout.leftMargin: marginSize
+                    Layout.alignment: Qt.AlignRight
+
+                    color: JamiTheme.buttonTintedBlack
+                    hoveredColor: JamiTheme.buttonTintedBlackHovered
+                    pressedColor: JamiTheme.buttonTintedBlackPressed
+                    secondary: true
+                    autoAccelerator: true
+
+                    text: JamiStrings.optionCancel
+
+                    onClicked: root.close()
+                }
+
+                MaterialButton {
+                    id: selectButton
+
+                    Layout.maximumWidth: 200
+                    Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignRight
+                    Layout.rightMargin: marginSize
 
                     enabled: selectedScreenNumber !== undefined
                     opacity: enabled ? 1.0 : 0.5
@@ -183,35 +226,19 @@ Window {
 
                     onClicked: {
                         if (selectAllScreens)
-                            AvAdapter.shareAllScreens();
+                            AvAdapter.shareAllScreens(AvAdapter.shareStreamAudio);
                         else {
                             if (!showWindows)
-                                AvAdapter.shareEntireScreen(selectedScreenNumber);
+                                AvAdapter.shareEntireScreen(selectedScreenNumber, AvAdapter.shareStreamAudio);
                             else {
-                                AvAdapter.shareWindow(AvAdapter.windowsIds[selectedScreenNumber], AvAdapter.windowsNames[selectedScreenNumber]);
+                                AvAdapter.shareWindow(AvAdapter.windowsIds[selectedScreenNumber], 
+                                                    AvAdapter.windowsNames[selectedScreenNumber], 
+                                                    -1, 
+                                                    AvAdapter.shareStreamAudio);
                             }
                         }
                         root.close();
                     }
-                }
-
-                MaterialButton {
-                    id: cancelButton
-
-                    Layout.maximumWidth: 200
-                    Layout.fillWidth: true
-                    Layout.alignment: Qt.AlignHCenter
-                    Layout.rightMargin: marginSize
-
-                    color: JamiTheme.buttonTintedBlack
-                    hoveredColor: JamiTheme.buttonTintedBlackHovered
-                    pressedColor: JamiTheme.buttonTintedBlackPressed
-                    secondary: true
-                    autoAccelerator: true
-
-                    text: JamiStrings.optionCancel
-
-                    onClicked: root.close()
                 }
             }
         }
