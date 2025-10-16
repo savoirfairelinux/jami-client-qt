@@ -518,74 +518,88 @@ CallModel::getProposed(VectorMapStringString mediaList,
                        bool mute,
                        bool shareAudio)
 {
-    QString resource {};
-    auto aid = 0;
-    auto vid = 0;
+    QString newSource {};
+    MapStringString videoMediaAttribute {};
+    MapStringString audioMediaAttribute {};
+    VectorMapStringString proposedList {};
+    // Find the next available audio and video indices and labels
+    int aid = 0, vid = 0;
     for (const auto& media : mediaList) {
         if (media[MediaAttributeKey::SOURCE] == source)
             break;
         if (media[MediaAttributeKey::MEDIA_TYPE] == MediaAttributeValue::AUDIO)
-            aid++;
-        if (media[MediaAttributeKey::MEDIA_TYPE] == MediaAttributeValue::VIDEO)
-            vid++;
+            ++aid;
+        else if (media[MediaAttributeKey::MEDIA_TYPE] == MediaAttributeValue::VIDEO)
+            ++vid;
     }
-    QString alabel = QString("audio_%1").arg(aid);
-    QString vlabel = QString("video_%1").arg(vid);
+    const QString alabel = QStringLiteral("audio_%1").arg(aid);
+    const QString vlabel = QStringLiteral("video_%1").arg(vid);
+    // Build new source and media attributes
     QString sep = libjami::Media::VideoProtocolPrefix::SEPARATOR;
-    MapStringString audioMediaAttribute {};
     switch (type) {
     case MediaRequestType::FILESHARING: {
-        // File sharing
-        resource = !source.isEmpty() ? QString("%1%2%3")
-                                           .arg(libjami::Media::VideoProtocolPrefix::FILE)
-                                           .arg(sep)
-                                           .arg(QUrl(source).toLocalFile())
-                                     : libjami::Media::VideoProtocolPrefix::NONE;
+        newSource = !source.isEmpty() ? QString("%1%2%3")
+                                            .arg(libjami::Media::VideoProtocolPrefix::FILE)
+                                            .arg(sep)
+                                            .arg(QUrl(source).toLocalFile())
+                                      : libjami::Media::VideoProtocolPrefix::NONE;
         if (shareAudio)
             audioMediaAttribute = {{MediaAttributeKey::MEDIA_TYPE, MediaAttributeValue::AUDIO},
                                    {MediaAttributeKey::ENABLED, TRUE_STR},
                                    {MediaAttributeKey::MUTED, mute ? TRUE_STR : FALSE_STR},
-                                   {MediaAttributeKey::SOURCE, resource},
+                                   {MediaAttributeKey::SOURCE, newSource},
                                    {MediaAttributeKey::LABEL, alabel}};
         break;
     }
     case MediaRequestType::SCREENSHARING: {
-        // Screen/window sharing
-        resource = source;
+        newSource = source;
+        audioMediaAttribute = {{MediaAttributeKey::MEDIA_TYPE, MediaAttributeValue::AUDIO},
+                               {MediaAttributeKey::ENABLED, TRUE_STR},
+                               {MediaAttributeKey::MUTED, mute ? TRUE_STR : FALSE_STR},
+                               {MediaAttributeKey::SOURCE, newSource},
+                               {MediaAttributeKey::LABEL, alabel}};
+
+        videoMediaAttribute = {{MediaAttributeKey::MEDIA_TYPE, MediaAttributeValue::VIDEO},
+                               {MediaAttributeKey::ENABLED, TRUE_STR},
+                               {MediaAttributeKey::MUTED, FALSE_STR},
+                               {MediaAttributeKey::SOURCE, newSource},
+                               {MediaAttributeKey::LABEL, vlabel}};
         break;
     }
     case MediaRequestType::CAMERA: {
-        // Camera device
-        resource = not source.isEmpty()
-                       ? QString("%1%2%3").arg(libjami::Media::VideoProtocolPrefix::CAMERA).arg(sep).arg(source)
-                       : libjami::Media::VideoProtocolPrefix::NONE;
+        newSource = !source.isEmpty()
+                        ? QString("%1%2%3").arg(libjami::Media::VideoProtocolPrefix::CAMERA).arg(sep).arg(source)
+                        : libjami::Media::VideoProtocolPrefix::NONE;
         break;
     }
     default:
-        return mediaList;
+        return mediaList; // should not happen
     }
 
-    VectorMapStringString proposedList {};
-    MapStringString videoMediaAttribute = {{MediaAttributeKey::MEDIA_TYPE, MediaAttributeValue::VIDEO},
-                                           {MediaAttributeKey::ENABLED, TRUE_STR},
-                                           {MediaAttributeKey::MUTED, mute ? TRUE_STR : FALSE_STR},
-                                           {MediaAttributeKey::SOURCE, resource},
-                                           {MediaAttributeKey::LABEL, vlabel}};
-    // if we're in a 1:1, we only show one preview, so, limit to 1 video (the new one)
+    if (videoMediaAttribute.isEmpty())
+        videoMediaAttribute = {{MediaAttributeKey::MEDIA_TYPE, MediaAttributeValue::VIDEO},
+                               {MediaAttributeKey::ENABLED, TRUE_STR},
+                               {MediaAttributeKey::MUTED, mute ? TRUE_STR : FALSE_STR},
+                               {MediaAttributeKey::SOURCE, newSource},
+                               {MediaAttributeKey::LABEL, vlabel}};
+
+    // In 1:1 calls, limit to one video preview by replacing the existing video with the new one
     auto participantsModel = pimpl_->participantsModel.find(callId);
     auto isConf = participantsModel != pimpl_->participantsModel.end()
                   && participantsModel->second->getParticipants().size() != 0;
-
     auto replaced = false;
     for (auto& media : mediaList) {
         auto replace = media[MediaAttributeKey::MEDIA_TYPE] == MediaAttributeValue::VIDEO;
-        // In a 1:1 we replace the first video, in a conference we replace only if it's a muted
-        // video or if a new sharing is requested
+        // In 1:1 calls, we replace the first video
+        // In Conference calls we replace only if it's a muted video or if a new sharing is requested
         if (isConf) {
             replace &= media[MediaAttributeKey::MUTED] == TRUE_STR;
-            replace |= (media[MediaAttributeKey::SOURCE].startsWith(libjami::Media::VideoProtocolPrefix::FILE)
-                        || media[MediaAttributeKey::SOURCE].startsWith(libjami::Media::VideoProtocolPrefix::DISPLAY))
-                       && (type == MediaRequestType::FILESHARING || type == MediaRequestType::SCREENSHARING);
+            bool isFileOrDisplay = media[MediaAttributeKey::SOURCE].startsWith(libjami::Media::VideoProtocolPrefix::FILE)
+                                   || media[MediaAttributeKey::SOURCE].startsWith(
+                                       libjami::Media::VideoProtocolPrefix::DISPLAY);
+            bool isSharingRequest = (type == MediaRequestType::FILESHARING)
+                                    || (type == MediaRequestType::SCREENSHARING);
+            replace |= isFileOrDisplay && isSharingRequest;
         }
         if (replace) {
             videoMediaAttribute[MediaAttributeKey::LABEL] = media[MediaAttributeKey::LABEL];
@@ -601,7 +615,6 @@ CallModel::getProposed(VectorMapStringString mediaList,
         proposedList.push_back(videoMediaAttribute);
     if (!audioMediaAttribute.isEmpty())
         proposedList.emplace_back(audioMediaAttribute);
-
     return proposedList;
 }
 
