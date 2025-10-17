@@ -717,6 +717,5 @@ Item {
     property color chatSettingButtonBorderColor: darkTheme ? "#03B9E9" : "#005699"
     property color chatSettingButtonTextColor: textColor
 
-    // QWK
-    property real qwkTitleBarHeight: 50
+    property real titleBarHeight: 50
 }

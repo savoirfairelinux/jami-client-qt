@@ -72,8 +72,7 @@ Item {
         }
     }
 
-    QWKSetParentHitTestVisible {
-    }
+    
 
     TextMetrics {
         id: nameTextMetrics

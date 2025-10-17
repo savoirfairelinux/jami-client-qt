@@ -106,7 +106,7 @@ Item {
             property real windowSize: windowPreferedSize > JamiTheme.minimumMapWidth ? windowPreferedSize : JamiTheme.minimumMapWidth
             property real windowPreferedSize: root.maxWidth > root.maxHeight ? root.maxHeight / 3 : root.maxWidth / 3
             property real xPos: 0
-            property real yPos: root.isUnpin ? 0 : JamiTheme.qwkTitleBarHeight
+            property real yPos: root.isUnpin ? 0 : JamiTheme.titleBarHeight
 
             states: [
                 State {
@@ -124,7 +124,7 @@ Item {
                         target: mapObject
                         parent: parentPin
                         x: xPos
-                        y: JamiTheme.qwkTitleBarHeight
+                        y: JamiTheme.titleBarHeight
                     }
                 }
             ]

@@ -27,6 +27,8 @@ import "../../settingsview/components"
 SidePanelBase {
     id: root
 
+    topPadding: 20
+
     objectName: "SidePanel"
 
     color: JamiTheme.backgroundColor
@@ -173,8 +175,6 @@ SidePanelBase {
 
         header: AccountComboBox {
             id: accountComboBox
-            QWKSetParentHitTestVisible {
-            }
             Shortcut {
                 sequence: "Ctrl+J"
                 context: Qt.ApplicationShortcut
@@ -388,8 +388,6 @@ SidePanelBase {
                     delegate: SmartListItemDelegate {
                         extraButtons.contentItem:  JamiPushButton {
                             id: sendContactRequestButton
-                            QWKSetParentHitTestVisible {
-                            }
 
                             anchors.right: parent.right
                             anchors.verticalCenter: parent.verticalCenter

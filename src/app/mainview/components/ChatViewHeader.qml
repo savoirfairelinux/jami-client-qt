@@ -71,15 +71,12 @@ Rectangle {
         id: messagingHeaderRectRowLayout
 
         anchors.fill: parent
-        // QWK: spacing
-        anchors.leftMargin: layoutManager.qwkSystemButtonSpacing.left
-        anchors.rightMargin: 10 + layoutManager.qwkSystemButtonSpacing.right
+        anchors.leftMargin: 0
+        anchors.rightMargin: 10
         spacing: 16
 
-        JamiPushButton {
+            JamiPushButton {
             id: backToWelcomeViewButton
-            QWKSetParentHitTestVisible {
-            }
 
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
             Layout.leftMargin: 8
@@ -108,8 +105,6 @@ Rectangle {
 
             ColumnLayout {
                 id: userNameOrIdColumnLayout
-                QWKSetParentHitTestVisible {
-                }
                 objectName: "userNameOrIdColumnLayout"
 
                 height: parent.height
@@ -163,8 +158,6 @@ Rectangle {
 
         JamiPushButton {
             id: startAudioCallButton
-            QWKSetParentHitTestVisible {
-            }
 
             visible: interactionButtonsVisibility && (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
             source: JamiResources.place_audiocall_24dp_svg
@@ -175,8 +168,6 @@ Rectangle {
 
         JamiPushButton {
             id: startVideoCallButton
-            QWKSetParentHitTestVisible {
-            }
 
             visible: interactionButtonsVisibility && CurrentAccount.videoEnabled_Video && (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
             source: JamiResources.videocam_24dp_svg
@@ -187,8 +178,6 @@ Rectangle {
 
         JamiPushButton {
             id: inviteMembersButton
-            QWKSetParentHitTestVisible {
-            }
 
             checkable: true
             checked: extrasPanel.isOpen(ChatView.AddMemberPanel)
@@ -201,8 +190,6 @@ Rectangle {
 
         JamiPushButton {
             id: selectExtensionsButton
-            QWKSetParentHitTestVisible {
-            }
 
             visible: PluginAdapter.chatHandlersListCount && interactionButtonsVisibility
             source: JamiResources.plugins_24dp_svg
@@ -213,8 +200,6 @@ Rectangle {
 
         JamiPushButton {
             id: searchMessagesButton
-            QWKSetParentHitTestVisible {
-            }
             objectName: "searchMessagesButton"
 
             checkable: true
@@ -235,8 +220,6 @@ Rectangle {
 
         JamiPushButton {
             id: detailsButton
-            QWKSetParentHitTestVisible {
-            }
             objectName: "detailsButton"
 
             checkable: true

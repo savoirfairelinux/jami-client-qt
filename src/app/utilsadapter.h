@@ -180,7 +180,6 @@ Q_SIGNALS:
     void showExperimentalCallSwarm();
     void changeLanguage();
     void donationCampaignSettingsChanged();
-    void useFramelessWindowChanged();
     void spellLanguageChanged();
     void enableSpellCheckChanged();
     void raiseWhenCalledChanged();
