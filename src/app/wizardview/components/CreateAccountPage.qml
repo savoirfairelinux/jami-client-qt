@@ -369,8 +369,6 @@ Rectangle {
 
     JamiPushButton {
         id: backButton
-        QWKSetParentHitTestVisible {
-        }
 
         objectName: "createAccountPageBackButton"
 

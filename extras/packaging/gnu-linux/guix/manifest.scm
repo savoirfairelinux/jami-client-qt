@@ -109,7 +109,6 @@
   "qtnetworkauth"
   "qtpositioning"
   "qtsvg"
-  "qwindowkit"
   "qttools"
   "qtwebchannel"
   "qtwebengine"

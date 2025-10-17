@@ -90,7 +90,7 @@ BaseView {
         property ScrollBar vScrollBar: ScrollBar.vertical
 
         anchors.fill: parent
-        anchors.topMargin: appWindow.useFrameless && Qt.platform.os.toString() === "osx" ? 16 : 0
+        anchors.topMargin: 30
 
         contentHeight: controlPanelStackView.height
         boundsBehavior: Flickable.StopAtBounds

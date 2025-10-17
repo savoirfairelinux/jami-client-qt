@@ -80,7 +80,7 @@ Popup {
         contentItem: ColumnLayout {
             id: contentLayout
 
-            JamiPushButton { QWKSetParentHitTestVisible {}
+            JamiPushButton {
                 id: closeButton
                 Accessible.role: Accessible.Button
                 Accessible.name: JamiStrings.close

@@ -236,15 +236,6 @@ SettingsPageBase {
             }
         }
 
-        ToggleSwitch {
-            id: useNativeWindowFrameCheckBox
-            Layout.fillWidth: true
-
-            checked: !UtilsAdapter.getAppValue(Settings.Key.UseFramelessWindow)
-            labelText: JamiStrings.useNativeWindowFrame
-            onSwitchToggled: UtilsAdapter.setAppValue(Settings.Key.UseFramelessWindow, !checked)
-        }
-
         MaterialButton {
             id: defaultSettings
 

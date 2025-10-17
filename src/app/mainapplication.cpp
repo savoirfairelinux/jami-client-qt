@@ -25,8 +25,6 @@
 #include "previewengine.h"
 #include "crashreporter.h"
 
-#include <QWKQuick/qwkquickglobal.h>
-
 #include <QAction>
 #include <QCommandLineParser>
 #include <QCoreApplication>
@@ -197,8 +195,6 @@ MainApplication::init()
     // performing unnecessary tasks, like initializing the WebEngine.
     engine_.reset(new QQmlApplicationEngine(this));
 
-    QWK::registerTypes(engine_.get());
-
     connectivityMonitor_ = new ConnectivityMonitor(this);
     systemTray_ = new SystemTray(settingsManager_, this);
     previewEngine_ = new PreviewEngine(connectivityMonitor_, this);
@@ -270,7 +266,6 @@ MainApplication::init()
     set_startMinimized(startMinimizedSetting && runOptions_[Option::StartUri].isNull());
 
     initQmlLayer();
-
     settingsManager_->setValue(Settings::Key::StartMinimized,
                                runOptions_[Option::StartMinimized].toBool());
 

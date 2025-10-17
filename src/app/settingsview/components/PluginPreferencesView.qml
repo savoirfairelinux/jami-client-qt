@@ -79,7 +79,7 @@ Item {
                     }
                 }
                 contentItem: ColumnLayout {
-                    JamiPushButton { QWKSetParentHitTestVisible {}
+                    JamiPushButton {
                         id: closeButton
                         readonly property bool alignLeft: Qt.platform.os.toString() !== "osx"
                         normalColor: Qt.rgba(124, 124, 124, 0.36)

@@ -28,12 +28,14 @@ import "mainview"
 import "mainview/components"
 import "wizardview"
 import "commoncomponents"
-import QWindowKit
 
 ApplicationWindow {
     id: appWindow
 
-    readonly property bool useFrameless: UtilsAdapter.getAppValue(Settings.Key.UseFramelessWindow)
+    topPadding: 0
+
+    flags: Qt.Window | Qt.ExpandedClientAreaHint | Qt.NoTitleBarBackgroundHint
+
     property bool isRTL: UtilsAdapter.isRTL
     LayoutMirroring.enabled: isRTL
     LayoutMirroring.childrenInherit: isRTL
@@ -66,7 +68,23 @@ ApplicationWindow {
         sourceComponent: GenericErrorsRow {
             id: genericError
             text: CurrentAccount.enabled ? JamiStrings.noNetworkConnectivity : JamiStrings.disabledAccount
-            height: visible ? JamiTheme.qwkTitleBarHeight : 0
+            height: visible ? JamiTheme.titleBarHeight : 0
+        }
+    }
+
+    Rectangle {
+        id: titleBar
+        z: 10
+        height: 25
+        width: parent.width
+        color: "transparent"
+        MouseArea {
+            anchors.fill: parent
+            preventStealing: true
+            onPressed:(m) => {
+                appWindow.startSystemMove()
+                m.accepted = false;
+            }
         }
     }
 
@@ -150,18 +168,6 @@ ApplicationWindow {
         // layoutManager to handle as much as possible.
         layoutManager.restoreWindowSettings();
 
-        // QWK: setup
-        if (useFrameless) {
-            windowAgent.setTitleBar(titleBar);
-            // Now register the system buttons (non-macOS).
-            if (sysBtnsLoader.item) {
-                const sysBtns = sysBtnsLoader.item;
-                windowAgent.setSystemButton(WindowAgent.Minimize, sysBtns.minButton);
-                windowAgent.setSystemButton(WindowAgent.Maximize, sysBtns.maxButton);
-                windowAgent.setSystemButton(WindowAgent.Close, sysBtns.closeButton);
-            }
-        }
-
         // Set the viewCoordinator's root item.
         viewCoordinator.init(view);
 
@@ -200,10 +206,6 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
-        // QWK: setup
-        if (useFrameless) {
-            windowAgent.setup(appWindow);
-        }
         mainViewLoader.active = true;
 
         // Dbus error handler for Linux.
@@ -243,37 +245,6 @@ ApplicationWindow {
     Item {
         id: fullscreenContainer
         anchors.fill: parent
-    }
-
-    // QWK: Window Title bar
-    Item {
-        id: titleBar
-        height: JamiTheme.qwkTitleBarHeight
-        anchors {
-            top: parent.top
-            right: parent.right
-            left: parent.left
-        }
-
-        // On Windows and Linux, use custom system buttons.
-        Loader {
-            id: sysBtnsLoader
-            active: Qt.platform.os.toString() !== "osx" && useFrameless
-            height: titleBar.height
-            anchors {
-                top: parent.top
-                right: parent.right
-                // Note: leave these margins, they prevent image scaling artifacts
-                topMargin: 1
-                rightMargin: 1
-            }
-            source: "qrc:/commoncomponents/QWKSystemButtonGroup.qml"
-        }
-    }
-
-    // QWK: Main interop component.
-    WindowAgent {
-        id: windowAgent
     }
 
     Connections {

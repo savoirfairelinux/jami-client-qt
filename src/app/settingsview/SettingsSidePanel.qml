@@ -30,6 +30,8 @@ SidePanelBase {
     id: root
     objectName: "SettingsSidePanel"
 
+    topPadding: 20
+
     color: JamiTheme.backgroundColor
     property int currentIndex
     property bool isSinglePane
@@ -263,7 +265,7 @@ SidePanelBase {
 
         background: null
 
-        header: AccountComboBox { QWKSetParentHitTestVisible {}
+        header: AccountComboBox {
             id: accountComboBox
         }
 
