@@ -18,22 +18,5 @@
 import QtQuick
 
 Item {
-    // Wait for it's parent to be created, then set it to be hit test visible.
-    // This avoids having to edit Component.onCompleted of the parent.
-    // Note: this is experimental. TBD if this is a good way to do this.
-    // This technique makes it clear and simple to implement, but may have
-    // side effects beyond just adding a dummy item component.
-    // Best alternatives:
-    // - Wrap the parent in a custom component that is hit test visible.
-    // - Edit the parent's Component.onCompleted to set it to be hit test visible.
-    Component.onCompleted: Qt.callLater(function() {
-        if (appWindow && appWindow.useFrameless)
-            windowAgent.setHitTestVisible(parent, true);
-    });
-
-    // Likewise, wait for it's parent to be destroyed, then set it to be hit test invisible.
-    Component.onDestruction: {
-        if (appWindow && appWindow.useFrameless)
-            windowAgent.setHitTestVisible(parent, false);
-    }
+    // No-op with native window frame; keep as placeholder to avoid edits elsewhere.
 }

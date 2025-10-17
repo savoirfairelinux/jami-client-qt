@@ -20,8 +20,6 @@ import QtQuick.Controls
 
 import net.jami.Constants 1.1
 
-import QWindowKit
-
 Row {
     id: root
 

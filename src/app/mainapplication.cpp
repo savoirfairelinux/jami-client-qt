@@ -25,8 +25,6 @@
 #include "previewengine.h"
 #include "crashreporter.h"
 
-#include <QWKQuick/qwkquickglobal.h>
-
 #include <QAction>
 #include <QCommandLineParser>
 #include <QCoreApplication>
@@ -196,8 +194,6 @@ MainApplication::init()
     // This 2-phase initialisation prevents ephemeral instances from
     // performing unnecessary tasks, like initializing the WebEngine.
     engine_.reset(new QQmlApplicationEngine(this));
-
-    QWK::registerTypes(engine_.get());
 
     connectivityMonitor_ = new ConnectivityMonitor(this);
     systemTray_ = new SystemTray(settingsManager_, this);

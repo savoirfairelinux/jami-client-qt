@@ -71,12 +71,6 @@ set(CLIENT_LIBS, "")
 include(${PROJECT_SOURCE_DIR}/extras/build/cmake/contrib_tools.cmake)
 set(EXTRA_PATCHES_DIR ${PROJECT_SOURCE_DIR}/extras/patches)
 
-list(APPEND QWINDOWKIT_OPTIONS
-  QWINDOWKIT_BUILD_WIDGETS OFF
-  QWINDOWKIT_INSTALL OFF
-  QWINDOWKIT_BUILD_STATIC ON
-  QWINDOWKIT_BUILD_QUICK ON
-)
 
 if(WIN32)
   # Beta config
@@ -87,9 +81,6 @@ if(WIN32)
   set(JAMI_OUTPUT_DIRECTORY_RELEASE ${PROJECT_SOURCE_DIR}/x64/${CMAKE_BUILD_TYPE})
 endif()
 
-if(WIN32)
-  list(APPEND QWINDOWKIT_OPTIONS QWINDOWKIT_ENABLE_WINDOWS_SYSTEM_BORDERS OFF)
-endif()
 
 # If qwindowkit is unable to find qmsetup via cmake's find_package function, it will install it and
 # then call find_package again. Unfortunately, even the second call to find_package sometimes
@@ -98,17 +89,6 @@ endif()
 if(NOT WIN32)
   list(APPEND QWINDOWKIT_PATCHES ${EXTRA_PATCHES_DIR}/0001-fix-qm_install_package-function.patch)
 endif()
-
-# qwindowkit (frameless window)
-add_fetch_content(
-  TARGET qwindowkit
-  URL https://github.com/stdware/qwindowkit.git
-  BRANCH 758b00cb6c2d924be3a1ea137ec366dc33a5132d
-  PATCHES ${QWINDOWKIT_PATCHES}
-  OPTIONS ${QWINDOWKIT_OPTIONS}
-)
-list(APPEND CLIENT_INCLUDE_DIRS ${QWindowKit_BINARY_DIR}/include)
-list(APPEND CLIENT_LIBS QWindowKit::Quick)
 
 # If ENABLE_CRASHREPORTS is enabled, we will use crashpad_cmake for now.
 if(ENABLE_CRASHREPORTS)

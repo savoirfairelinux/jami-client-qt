@@ -32,12 +32,8 @@ extern const QString defaultDownloadPath;
 
 // clang-format off
 
-// Define USE_FRAMELESS_WINDOW_DEFAULT based on the platform
-#ifdef Q_OS_LINUX
+// Prefer native window frame on all platforms with Qt 6.9+
 #define USE_FRAMELESS_WINDOW_DEFAULT false
-#else
-#define USE_FRAMELESS_WINDOW_DEFAULT true
-#endif
 
 // Common key-value pairs for both APPSTORE and non-APPSTORE builds
 #define COMMON_KEYS \
