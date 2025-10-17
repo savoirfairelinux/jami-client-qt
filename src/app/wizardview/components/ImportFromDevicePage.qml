@@ -465,8 +465,6 @@ Rectangle {
     // Back button
     JamiPushButton {
         id: backButton
-        QWKSetParentHitTestVisible {
-        }
 
         objectName: "importFromDevicePageBackButton"
 

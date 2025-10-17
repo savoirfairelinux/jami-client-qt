@@ -43,19 +43,7 @@ QtObject {
     // Used to store if a WebEngineView component is fullscreened.
     property bool isWebFullscreen: false
 
-    // QWK: Provide spacing for widgets that may be occluded by the system buttons.
-    property QtObject qwkSystemButtonSpacing: QtObject {
-        id: qwkSystemButtonSpacing
-        readonly property bool isMacOS: Qt.platform.os.toString() === "osx"
-        // macOS buttons are on the left.
-        readonly property real left: {
-            appWindow.useFrameless && isMacOS && viewCoordinator.isInSinglePaneMode ? 80 : 0
-        }
-        // Windows and Linux buttons are on the right.
-        readonly property real right: {
-            appWindow.useFrameless && !isMacOS && !root.isFullscreen ? sysBtnsLoader.width + 24 : 0
-        }
-    }
+    // No special spacing needed for native system buttons; keep margins at zero.
 
     // Restore a visible windowed mode.
     function restoreApp() {
@@ -96,15 +84,6 @@ QtObject {
                            priv.windowedGeometry :
                            Qt.rect(appWindow.x, appWindow.y,
                                    appWindow.width, appWindow.height);
-
-        // QWK: Account for the frameless window's offset.
-        if (appWindow.useFrameless) {
-            if (Qt.platform.os.toString() !== "osx") {
-                // Add [7, 30, 0, 0] on Windows and GNU/Linux.
-                geometry.x += 7;
-                geometry.y += 30;
-            }
-        }
 
         console.debug("Saving window: " + JSON.stringify(geometry) + " " + visibilityToSave);
 

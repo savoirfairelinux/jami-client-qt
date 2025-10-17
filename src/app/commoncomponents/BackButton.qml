@@ -41,6 +41,4 @@ PushButton {
             keyEvent.accepted = true;
         }
     }
-
-    QWKSetParentHitTestVisible {}
 }

@@ -117,6 +117,7 @@ AppSettingsManager::loadTranslations()
         installedTr_.append(qtTranslator_lang);
     }
 
+
     if (qtTranslator_name->load("qt_" + locale_name,
                                 QLibraryInfo::path(QLibraryInfo::TranslationsPath))) {
         qApp->installTranslator(qtTranslator_name);
