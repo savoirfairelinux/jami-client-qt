@@ -23,7 +23,8 @@
 // X macro to future proof if other keys are needed
 #define PROPERTY_KEYS \
     /* key            defaultValue */ \
-    X(backgroundUri, "")
+    X(backgroundUri, "") \
+    X(backgroundBlur, 32)
 
 AccountSettingsManager::AccountSettingsManager(QObject* parent)
     : QObject {parent}
@@ -71,16 +72,20 @@ AccountSettingsManager::initalizeAccountSettings()
 
         // Populate the property map
 #define X(key, defaultValue) \
-    accountSettingsPropertyMap_.setAccountSettingProperty( \
-        #key, accountSettings_->value(currentAccountID_ + "/" + #key).toString());
+    accountSettingsPropertyMap_ \
+        .setAccountSettingProperty(#key, \
+                                   accountSettings_->value(currentAccountID_ + "/" + #key, \
+                                                           QVariant(defaultValue)));
         PROPERTY_KEYS
 #undef X
     } else {
         // Populate the map with the current value found in the QSettings config
         // Get the current background URL of the account
 #define X(key, defaultValue) \
-    accountSettingsPropertyMap_.setAccountSettingProperty( \
-        #key, accountSettings_->value(currentAccountID_ + "/" + #key).toString());
+    accountSettingsPropertyMap_ \
+        .setAccountSettingProperty(#key, \
+                                   accountSettings_->value(currentAccountID_ + "/" + #key, \
+                                                           QVariant(defaultValue)));
         PROPERTY_KEYS
 #undef X
         qWarning() << "Loaded existing settings for account:" << currentAccountID_;
@@ -100,8 +105,10 @@ AccountSettingsManager::updateCurrentAccount(const QString& newCurrentAccountID)
 
 // Load existing settings for this account
 #define X(key, defaultValue) \
-    accountSettingsPropertyMap_.setAccountSettingProperty( \
-        #key, accountSettings_->value(currentAccountID_ + "/" + #key).toString());
+    accountSettingsPropertyMap_ \
+        .setAccountSettingProperty(#key, \
+                                   accountSettings_->value(currentAccountID_ + "/" + #key, \
+                                                           QVariant(defaultValue)));
     PROPERTY_KEYS
 #undef X
 }

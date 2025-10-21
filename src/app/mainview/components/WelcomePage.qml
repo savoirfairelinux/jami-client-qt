@@ -172,6 +172,13 @@ ListSelectionView {
             }
         }
 
+        FastBlur {
+            anchors.fill: cachedImgLogo
+            source: cachedImgLogo
+            radius: AccountSettingsManager.accountSettingsPropertyMap.backgroundBlur !== undefined ? Number(AccountSettingsManager.accountSettingsPropertyMap.backgroundBlur) : 32
+            visible: !hasCustomBgColor
+        }
+
         ColumnLayout {
             id: welcomePageLayout
             width: Math.max(300, root.width)
@@ -255,8 +262,8 @@ ListSelectionView {
                     //Making sure the tips are refreshed when changing user
                     loader_tipsRow.active = false;
                     loader_tipsRow.active = Qt.binding(function () {
-                            return viewNode.hasTips && root.height > root.thresholdHeight;
-                        });
+                        return viewNode.hasTips && root.height > root.thresholdHeight;
+                    });
                 }
             }
 
