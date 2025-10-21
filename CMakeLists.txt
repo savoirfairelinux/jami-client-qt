@@ -237,7 +237,7 @@ list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/extras/build/cmake/modules)
 if (NOT JAMICORE_AS_SUBDIR)
   find_package(LibJami REQUIRED)
   if(LIBJAMI_FOUND)
-    include_directories(${LIBJAMI_INCLUDE_DIRS})
+    include_directories(${LIBJAMI_INCLUDE_DIR})
   endif()
 endif()
 
