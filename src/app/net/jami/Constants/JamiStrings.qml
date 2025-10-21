@@ -891,10 +891,11 @@ Item {
     // Moderation
     property string moderation: qsTr("Moderation")
 
-    // Appearence
+    // Appearance
     property string theme: qsTr("Theme")
     property string zoomLevel: qsTr("Text zoom level")
     property string backgroundImage: qsTr("Background image")
+    property string backgroundImageBlur: qsTr("Background blur")
     property string defaultImage: qsTr("Default")
 
     // Donation campaign
