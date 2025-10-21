@@ -48,7 +48,7 @@ Switch {
 
         radius: JamiTheme.switchIndicatorRadius
         color: JamiTheme.switchBackgroundColor
-        border.color: handleBackground.color
+        border.color: JamiTheme.switchBackgroundBorderColor
 
         Rectangle {
             id: handle
