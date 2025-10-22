@@ -101,6 +101,8 @@ if [ -f /etc/os-release ]; then
         ENDTAG="ubuntu_24.04"
     elif [ "${UBUNTU_CODENAME}" = "plucky" ] || [ "${ID}_${VERSION_ID}" = "ubuntu_25.04" ]; then
         ENDTAG="ubuntu_25.04"
+    elif [ "${UBUNTU_CODENAME}" = "questing" ] || [ "${ID}_${VERSION_ID}" = "ubuntu_25.10" ]; then
+        ENDTAG="ubuntu_25.10"
     elif [ "${ID}" = "debian" ] && \
              [ "$(command -v lsb_release)" ] && \
              [ "$(lsb_release -rs)" = "testing" ]; then
