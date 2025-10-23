@@ -17,6 +17,7 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
+import Qt5Compat.GraphicalEffects
 import Qt.labs.platform
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
@@ -50,6 +51,22 @@ SettingsPageBase {
 
             property var nativeDarkThemeShift: UtilsAdapter.hasNativeDarkTheme() ? 1 : 0
 
+            function syncBackgroundBlur(value) {
+                var numericValue;
+                if (value !== undefined) {
+                    numericValue = Number(value);
+                } else {
+                    numericValue = Number(AccountSettingsManager.accountSettingsPropertyMap.backgroundBlur);
+                }
+                if (!isFinite(numericValue)) {
+                    numericValue = 32;
+                }
+                numericValue = Math.max(blurSlider.from, Math.min(blurSlider.to, Math.round(numericValue)));
+                if (blurSlider.value !== numericValue) {
+                    blurSlider.value = numericValue;
+                }
+            }
+
             function isComplete() {
                 var theme = UtilsAdapter.getAppValue(Settings.Key.AppTheme);
                 if (themeSettings.nativeDarkThemeShift && theme === "System")
@@ -59,6 +76,7 @@ SettingsPageBase {
                 } else if (theme === "Dark") {
                     darkThemeButton.checked = true;
                 }
+                themeSettings.syncBackgroundBlur();
             }
 
             Component.onCompleted: themeSettings.isComplete()
@@ -162,7 +180,156 @@ SettingsPageBase {
                 titleField: JamiStrings.backgroundImage
                 itemWidth: root.itemWidth
 
-                onSettingMaterialButtonClicked: backgroundImageDialog.open();
+                onSettingMaterialButtonClicked: backgroundImageDialog.open()
+            }
+
+            RowLayout {
+                Layout.fillWidth: true
+                Layout.minimumHeight: JamiTheme.preferredFieldHeight
+                spacing: JamiTheme.settingsCategorySpacing
+
+                Text {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    text: JamiStrings.backgroundImageBlur
+                    color: JamiTheme.textColor
+                    wrapMode: Text.WordWrap
+                    horizontalAlignment: Text.AlignLeft
+                    verticalAlignment: Text.AlignVCenter
+                    font.pixelSize: JamiTheme.settingsDescriptionPixelSize
+                    font.kerning: true
+                }
+
+                Text {
+                    id: backgroundBlurValueLabel
+                    Layout.alignment: Qt.AlignRight
+                    Layout.fillHeight: true
+                    Layout.rightMargin: JamiTheme.preferredMarginSize / 2
+                    color: JamiTheme.tintedBlue
+                    text: qsTr("%1 px").arg(Math.round(blurSlider.value))
+                    wrapMode: Text.WordWrap
+                    font.pointSize: JamiTheme.settingsFontSize
+                    font.kerning: true
+                    font.weight: Font.Medium
+                    horizontalAlignment: Text.AlignRight
+                    verticalAlignment: Text.AlignVCenter
+                }
+
+                Slider {
+                    id: blurSlider
+
+                    Layout.maximumWidth: root.itemWidth
+                    Layout.alignment: Qt.AlignRight
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+
+                    from: 0
+                    to: 64
+                    stepSize: 1
+                    snapMode: Slider.SnapAlways
+                    useSystemFocusVisuals: false
+                    value: Number(AccountSettingsManager.accountSettingsPropertyMap.backgroundBlur !== undefined ? AccountSettingsManager.accountSettingsPropertyMap.backgroundBlur : 0)
+
+                    onMoved: {
+                        var newValue = Math.round(value);
+                        if (!isFinite(newValue)) {
+                            return;
+                        }
+                        newValue = Math.max(from, Math.min(to, newValue));
+                        if (value !== newValue) {
+                            value = newValue;
+                        }
+                        if (AccountSettingsManager.accountSettingsPropertyMap.backgroundBlur !== newValue) {
+                            AccountSettingsManager.accountSettingsPropertyMap.backgroundBlur = newValue;
+                        }
+                    }
+
+                    background: Rectangle {
+                        y: blurSlider.height / 2
+                        implicitWidth: 200
+                        implicitHeight: 2
+                        width: blurSlider.availableWidth
+                        height: implicitHeight
+                        radius: 2
+                        color: JamiTheme.tintedBlue
+                    }
+
+                    handle: ColumnLayout {
+                        x: blurSlider.visualPosition * blurSlider.availableWidth
+                        y: blurSlider.height / 2
+
+                        Rectangle {
+                            Layout.topMargin: -12
+                            implicitWidth: 6
+                            implicitHeight: 25
+                            radius: implicitWidth
+                            color: JamiTheme.tintedBlue
+                            Layout.alignment: Qt.AlignHCenter
+                        }
+                    }
+
+                    Accessible.role: Accessible.Slider
+                    Accessible.name: JamiStrings.backgroundImageBlur
+                }
+            }
+
+            Rectangle {
+                id: backgroundPreview
+
+                Layout.fillWidth: true
+                Layout.preferredHeight: 150
+                Layout.topMargin: JamiTheme.settingsCategorySpacing / 2
+
+                radius: JamiTheme.settingsBoxRadius
+                color: JamiTheme.transparentColor
+                border.width: 1
+                border.color: JamiTheme.greyBorderColor
+                antialiasing: true
+                clip: true
+
+                Image {
+                    id: backgroundPreviewImage
+
+                    anchors.fill: parent
+                    source: AccountSettingsManager.accountSettingsPropertyMap.backgroundUri !== "" ? AccountSettingsManager.accountSettingsPropertyMap.backgroundUri : JamiTheme.welcomeBg
+                    fillMode: Image.PreserveAspectCrop
+                    asynchronous: true
+                    cache: true
+                    visible: status === Image.Ready
+                    layer.enabled: true
+                    layer.smooth: true
+                    layer.effect: FastBlur {
+                        radius: blurSlider.value
+                        transparentBorder: true
+                    }
+                }
+
+                BusyIndicator {
+                    anchors.centerIn: parent
+                    running: backgroundPreviewImage.status === Image.Loading
+                    visible: running
+                }
+
+                Text {
+                    anchors.centerIn: parent
+                    text: JamiStrings.defaultImage
+                    color: JamiTheme.textColor
+                    font.pixelSize: JamiTheme.settingsDescriptionPixelSize
+                    visible: !backgroundPreviewImage.visible && backgroundPreviewImage.status !== Image.Loading
+                }
+
+                Accessible.role: Accessible.Graphic
+                Accessible.name: JamiStrings.backgroundImage
+                Accessible.description: JamiStrings.backgroundImageBlur
+            }
+        }
+
+        Connections {
+            target: AccountSettingsManager.accountSettingsPropertyMap
+            function onValueChanged(key, value) {
+                if (key === "backgroundBlur") {
+                    themeSettings.syncBackgroundBlur(value);
+                }
             }
         }
 
@@ -290,6 +457,7 @@ SettingsPageBase {
                 UtilsAdapter.setToDefault(Settings.Key.AppTheme);
                 UtilsAdapter.setToDefault(Settings.Key.BaseZoom);
                 AccountSettingsManager.accountSettingsPropertyMap.backgroundUri = "";
+                AccountSettingsManager.accountSettingsPropertyMap.backgroundBlur = 32;
                 themeSettings.isComplete();
             }
         }
