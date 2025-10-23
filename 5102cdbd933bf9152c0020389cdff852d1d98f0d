@@ -16,6 +16,23 @@
       "message": "There is no `Submit` button showing.\n\n@ilyas.erdogan@savoirfairelinux.com can you please remove the `Verified-1` from Jenkins CI?",
       "revId": "5102cdbd933bf9152c0020389cdff852d1d98f0d",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c97e03f1_e0edd47b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-10-23T19:05:52Z",
+      "side": 1,
+      "message": "!build",
+      "revId": "5102cdbd933bf9152c0020389cdff852d1d98f0d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
