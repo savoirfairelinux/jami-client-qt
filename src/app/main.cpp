@@ -68,8 +68,7 @@ main(int argc, char* argv[])
     QApplication::setQuitOnLastWindowClosed(false);
     QCoreApplication::setApplicationVersion(BUILD_VERSION_STRING);
     QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts, true);
-    QApplication::setHighDpiScaleFactorRoundingPolicy(
-        Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
+    QApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
 
 #if WITH_WEBENGINE
     qputenv("QTWEBENGINE_CHROMIUM_FLAGS",
@@ -81,42 +80,7 @@ main(int argc, char* argv[])
     MainApplication app(argc, argv);
 
     app.setDesktopFileName(QStringLiteral("net.jami.Jami"));
-#if defined(Q_OS_MACOS)
-    if (macutils::isMetalSupported()) {
-        QQuickWindow::setGraphicsApi(QSGRendererInterface::MetalRhi);
-    } else {
-        QQuickWindow::setGraphicsApi(QSGRendererInterface::OpenGLRhi);
-    }
-#else
-    if (std::invoke([] {
-#if defined(HAS_VULKAN) && defined(PREFER_VULKAN)
-            // Somehow, several bug reports show that, on Windows, QVulkanInstance
-            // verification  passes, but goes on to fail when creating the QQuickWindow
-            // with "Failed to initialize graphics backend for Vulkan".
-            // Here we allow platform-specific checks using native Vulkan libraries.
-            // Currently only implemented on Windows.
-            try {
-                Utils::testVulkanSupport();
-            } catch (const std::exception& e) {
-                qWarning() << "Vulkan instance cannot be created:" << e.what();
-                return false;
-            }
-
-            // Check using Qt's QVulkanInstance.
-            QVulkanInstance inst;
-            return inst.supportedLayers().contains("VK_LAYER_KHRONOS_validation");
-#else
-            return false;
-#endif
-        })
-        && qEnvironmentVariableIsEmpty("WAYLAND_DISPLAY")) {
-        // https://bugreports.qt.io/browse/QTBUG-99684 - Vulkan on
-        // Wayland is not really supported as window decorations are
-        // removed. So we need to re-implement this (custom controls)
-        // or wait for a future version
-        QQuickWindow::setGraphicsApi(QSGRendererInterface::VulkanRhi);
-    }
-#endif
+    QQuickWindow::setGraphicsApi(QSGRendererInterface::VulkanRhi);
 
     // InstanceManager prevents multiple instances, and will handle
     // IPC termination requests to and from secondary instances, which
