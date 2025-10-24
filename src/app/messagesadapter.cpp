@@ -77,10 +77,7 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     connect(timestampTimer_, &QTimer::timeout, this, &MessagesAdapter::timestampUpdated);
     timestampTimer_->start(timestampUpdateIntervalMs_);
 
-    connect(lrcInstance_,
-            &LRCInstance::currentAccountIdChanged,
-            this,
-            &MessagesAdapter::connectConversationModel);
+    connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, this, &MessagesAdapter::connectConversationModel);
 
     connectConversationModel();
 }
@@ -99,8 +96,7 @@ MessagesAdapter::loadMoreMessages()
     try {
         const auto& convInfo = lrcInstance_->getConversationFromConvUid(convId, accountId);
         if (convInfo.isSwarm())
-            lrcInstance_->getCurrentConversationModel()->loadConversationMessages(convId,
-                                                                                  loadChunkSize_);
+            lrcInstance_->getCurrentConversationModel()->loadConversationMessages(convId, loadChunkSize_);
     } catch (const std::exception& e) {
         qWarning() << e.what();
     }
@@ -185,9 +181,7 @@ MessagesAdapter::editMessage(const QString& convId, const QString& newBody, cons
 }
 
 void
-MessagesAdapter::removeEmojiReaction(const QString& convId,
-                                     const QString& emoji,
-                                     const QString& messageId)
+MessagesAdapter::removeEmojiReaction(const QString& convId, const QString& emoji, const QString& messageId)
 {
     try {
         // check if this emoji has already been added by this author
@@ -198,9 +192,7 @@ MessagesAdapter::removeEmojiReaction(const QString& convId,
 }
 
 void
-MessagesAdapter::addEmojiReaction(const QString& convId,
-                                  const QString& emoji,
-                                  const QString& messageId)
+MessagesAdapter::addEmojiReaction(const QString& convId, const QString& emoji, const QString& messageId)
 {
     try {
         lrcInstance_->getCurrentConversationModel()->reactMessage(convId, emoji, messageId);
@@ -216,10 +208,7 @@ MessagesAdapter::sendFile(const QString& message)
     QString fileName = fi.fileName();
     try {
         auto convUid = lrcInstance_->get_selectedConvUid();
-        lrcInstance_->getCurrentConversationModel()->sendFile(convUid,
-                                                              message,
-                                                              fileName,
-                                                              replyToId_);
+        lrcInstance_->getCurrentConversationModel()->sendFile(convUid, message, fileName, replyToId_);
     } catch (...) {
         qDebug() << "Exception during sendFile";
     }
@@ -231,20 +220,14 @@ MessagesAdapter::sendFileToUid(const QString& message, const QString& convUid)
     QFileInfo fi(message);
     QString fileName = fi.fileName();
     try {
-        lrcInstance_->getCurrentConversationModel()->sendFile(convUid,
-                                                              message,
-                                                              fileName,
-                                                              replyToId_);
+        lrcInstance_->getCurrentConversationModel()->sendFile(convUid, message, fileName, replyToId_);
     } catch (...) {
         qDebug() << "Exception during sendFile";
     }
 }
 
 void
-MessagesAdapter::joinCall(const QString& uri,
-                          const QString& deviceId,
-                          const QString& confId,
-                          bool isAudioOnly)
+MessagesAdapter::joinCall(const QString& uri, const QString& deviceId, const QString& confId, bool isAudioOnly)
 {
     lrcInstance_->getCurrentConversationModel()->joinCall(lrcInstance_->get_selectedConvUid(),
                                                           uri,
@@ -324,9 +307,8 @@ MessagesAdapter::onPaste()
         // Save temp data into a temp file.
         QPixmap pixmap = qvariant_cast<QPixmap>(mimeData->imageData());
 
-        auto img_name_hash
-            = QCryptographicHash::hash(QString::number(pixmap.cacheKey()).toLocal8Bit(),
-                                       QCryptographicHash::Sha1);
+        auto img_name_hash = QCryptographicHash::hash(QString::number(pixmap.cacheKey()).toLocal8Bit(),
+                                                      QCryptographicHash::Sha1);
         QString fileName = "img_" + QString(img_name_hash.toHex()) + ".png";
         QString path = QDir::temp().filePath(fileName);
 
@@ -377,8 +359,7 @@ MessagesAdapter::userIsComposing(bool isComposing)
 {
     if (lrcInstance_->get_selectedConvUid().isEmpty())
         return;
-    lrcInstance_->getCurrentConversationModel()->setIsComposing(lrcInstance_->get_selectedConvUid(),
-                                                                isComposing);
+    lrcInstance_->getCurrentConversationModel()->setIsComposing(lrcInstance_->get_selectedConvUid(), isComposing);
 }
 
 void
@@ -526,19 +507,14 @@ MessagesAdapter::onConversationMessagesLoaded(uint32_t loadingRequestId, const Q
 }
 
 void
-MessagesAdapter::parseMessage(const QString& msgId,
-                              const QString& msg,
-                              bool showPreview,
-                              const QColor& linkColor,
-                              const QColor& backgroundColor)
+MessagesAdapter::parseMessage(
+    const QString& msgId, const QString& msg, bool showPreview, const QColor& linkColor, const QColor& backgroundColor)
 {
     messageParser_->parseMessage(msgId, msg, showPreview, linkColor, backgroundColor);
 }
 
 void
-MessagesAdapter::onComposingStatusChanged(const QString& convId,
-                                          const QString& contactUri,
-                                          bool isComposing)
+MessagesAdapter::onComposingStatusChanged(const QString& convId, const QString& contactUri, bool isComposing)
 {
     Q_UNUSED(contactUri)
     if (lrcInstance_->get_selectedConvUid() == convId) {
@@ -588,9 +564,7 @@ MessagesAdapter::isLocalImage(const QString& mimename)
         QList<QByteArray> supportedFormats = reader.supportedImageFormats();
         auto iterator = std::find_if(supportedFormats.begin(),
                                      supportedFormats.end(),
-                                     [fileFormat](QByteArray format) {
-                                         return format == fileFormat;
-                                     });
+                                     [fileFormat](const QByteArray& format) { return format == fileFormat; });
         if (iterator != supportedFormats.end() && *iterator == "gif") {
             return {{"isAnimatedImage", true}};
         }
@@ -603,11 +577,10 @@ QVariantMap
 MessagesAdapter::getMediaInfo(const QString& msg)
 {
     auto filePath = QFileInfo(msg).absoluteFilePath();
-    static const QString html
-        = "<body style='margin:0;padding:0;'>"
-          "<%1 style='width:100%;height:%2;outline:none;background-color:#f1f3f4;"
-          "object-fit:cover;' "
-          "controls controlsList='nodownload noplaybackrate' src='file://%3' type='%4'/></body>";
+    static const QString html = "<body style='margin:0;padding:0;'>"
+                                "<%1 style='width:100%;height:%2;outline:none;background-color:#f1f3f4;"
+                                "object-fit:cover;' "
+                                "controls controlsList='nodownload noplaybackrate' src='file://%3' type='%4'/></body>";
     QMimeDatabase db;
     QMimeType mime = db.mimeTypeForFile(filePath);
     QVariantMap fileInfo = isLocalImage(mime.name());
@@ -644,9 +617,8 @@ bool
 MessagesAdapter::isRemoteImage(const QString& msg)
 {
     // TODO: test if all these open in the AnimatedImage component
-    const static QRegularExpression
-        imageRe("[^\\s]+(.*?)\\.(jpg|jpeg|png|gif|apng|webp|avif|flif)$",
-                QRegularExpression::CaseInsensitiveOption);
+    const static QRegularExpression imageRe("[^\\s]+(.*?)\\.(jpg|jpeg|png|gif|apng|webp|avif|flif)$",
+                                            QRegularExpression::CaseInsensitiveOption);
     QRegularExpressionMatch match = imageRe.match(msg);
     return match.hasMatch();
 }
@@ -656,15 +628,10 @@ MessagesAdapter::getFormattedTime(const quint64 timestamp)
 {
     const auto currentTime = QDateTime::currentDateTime();
     const auto seconds = currentTime.toSecsSinceEpoch() - timestamp;
-    auto interval = qFloor(seconds / 60);
-
-    if (interval > 1) {
-        auto curLang = settingsManager_->getLanguage();
-        auto curLocal = QLocale(curLang);
+    if (seconds > 60) {
+        auto curLocal = QLocale(settingsManager_->getLanguage());
         auto curTime = QDateTime::fromSecsSinceEpoch(timestamp).time();
-        QString timeLocale;
-        timeLocale = curLocal.toString(curTime, curLocal.ShortFormat).toLower();
-        return timeLocale;
+        return curLocal.toString(curTime, curLocal.ShortFormat).toLower();
     }
     return QObject::tr("Just now");
 }
@@ -711,10 +678,7 @@ MessagesAdapter::startSearch(const QString& text, bool isMedia)
     auto convId = lrcInstance_->get_selectedConvUid();
 
     try {
-        lrcInstance_->getCurrentConversationModel()->getConvMediasInfos(accountId,
-                                                                        convId,
-                                                                        text,
-                                                                        isMedia);
+        lrcInstance_->getCurrentConversationModel()->getConvMediasInfos(accountId, convId, text, isMedia);
     } catch (...) {
         qDebug() << "Exception during startSearch()";
     }
