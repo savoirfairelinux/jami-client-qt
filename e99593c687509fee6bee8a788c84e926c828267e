@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99c8ebf1_bbecf830",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-10-25T09:56:52Z",
+      "side": 1,
+      "message": "This patch is missing the following patches from the \"Localize numbers\" https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/2105 issue:\n\n1. https://git.jami.net/savoirfairelinux/jami-client-qt/-/commit/097f5263f8ec2c7c7801ddab166517b5d473b7f1\n\n2. https://git.jami.net/savoirfairelinux/jami-client-qt/-/commit/e59820eafc875ee48bf3066a404f8de640657d40\n\nHow can this be fixed?\n\nThank you",
+      "revId": "e99593c687509fee6bee8a788c84e926c828267e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
