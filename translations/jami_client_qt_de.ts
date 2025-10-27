@@ -296,7 +296,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="102"/>
         <source>Convert your account into a rendezvous point</source>
-        <translation>Wandeln Sie ihren Benutzernamen in einen Treffpunkt um</translation>
+        <translation>Ihr Konto in einen Treffpunkt umwandeln</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="104"/>
@@ -1704,7 +1704,7 @@ um eine Verbindung herzustellen, um die Unterhaltung zu synchronisieren ...</tra
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="114"/>
         <source>Decline incoming calls when already in a call</source>
-        <translation>Ablehnen eingehender Anrufe während eines laufenden Gesprächs</translation>
+        <translation>Eingehende Anrufe während eines laufenden Anrufs ablehnen</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="123"/>
@@ -2059,7 +2059,7 @@ um eine Verbindung herzustellen, um die Unterhaltung zu synchronisieren ...</tra
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="388"/>
         <source>Creating account…</source>
-        <translation>Erstelle Account …</translation>
+        <translation>Erstelle Konto …</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="391"/>
@@ -3363,12 +3363,12 @@ Durch Klicken auf „Bestätigen“ wird die Kontoübertragung fortgesetzt.</tra
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="709"/>
         <source>I already have an account</source>
-        <translation>Ich habe bereits einen Account</translation>
+        <translation>Ich habe bereits ein Konto</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="710"/>
         <source>Use existing Jami account</source>
-        <translation>Bestehendes Jami-Account verwenden</translation>
+        <translation>Bestehendes Jami-Konto verwenden</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="711"/>
@@ -4443,7 +4443,7 @@ Bitte versuchen Sie es erneut.</translation>
     <message>
         <location filename="../src/app/spellcheckdictionarymanager.cpp" line="56"/>
         <source>None</source>
-        <translation>Kein</translation>
+        <translation>Keines</translation>
     </message>
 </context>
 <context>
@@ -4494,7 +4494,7 @@ Bitte versuchen Sie es erneut.</translation>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="93"/>
         <source>What is the green dot next to my account?</source>
-        <translation>Was ist der grüne Punkt neben meinem Account?</translation>
+        <translation>Was ist der grüne Punkt neben meinem Konto?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="80"/>
@@ -4534,7 +4534,7 @@ Bitte versuchen Sie es erneut.</translation>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="113"/>
         <source>What is a Jami account?</source>
-        <translation>Was ist ein Jami-Account?</translation>
+        <translation>Was ist ein Jami-Konto?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="115"/>
