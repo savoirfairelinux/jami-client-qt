@@ -27,16 +27,16 @@ TabButton {
     property alias acceleratorSequence: accelerator.sequence
     property alias badgeCount: badge.count
 
-    property var backgroundColor: JamiTheme.backgroundColor
-    property var hoverColor: JamiTheme.backgroundColor
-    property var textColor: JamiTheme.textColor
-    property var textColorHovered: JamiTheme.textColorHovered
-    property var underlineColor: textColor
-    property var underlineColorHovered: textColorHovered
+    property color backgroundColor: JamiTheme.backgroundColor
+    property color hoverColor: JamiTheme.backgroundColor
+    property color textColor: JamiTheme.textColor
+    property color textColorHovered: JamiTheme.textColorHovered
+    property color underlineColor: textColor
+    property color underlineColorHovered: textColorHovered
     property real borderWidth: 2
     property real bottomMargin: 1
     property bool underlineContentOnly: false
-    property var fontSize: JamiTheme.filterItemFontSize
+    property int fontSize: JamiTheme.filterItemFontSize
 
     signal selected
 

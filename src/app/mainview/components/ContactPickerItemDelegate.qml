@@ -27,7 +27,7 @@ ItemDelegate {
     width: ListView.view.width
     height: Math.max(contactPickerContactName.height + textMetricsContactPickerContactId.height + 10, avatar.height + 10)
 
-    property var showPresenceIndicator: false
+    property bool showPresenceIndicator: false
 
     signal contactClicked
 
