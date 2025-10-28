@@ -201,7 +201,7 @@ ListView {
                             anchors.leftMargin: 10
                             anchors.top: usernameRect2.bottom
                             anchors.left: parent.left
-                            visible: usernameRect2.visible && (UtilsAdapter.getBestIdForUri(CurrentAccount.id, PeerId) != UtilsAdapter.getBestNameForUri(CurrentAccount.id, PeerId))
+                            visible: usernameRect2.visible && (UtilsAdapter.getBestIdForUri(CurrentAccount.id, PeerId) !== UtilsAdapter.getBestNameForUri(CurrentAccount.id, PeerId))
                             color: JamiTheme.transparentColor
 
                             Text {
@@ -251,7 +251,7 @@ ListView {
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.left: parent.left
                         text: {
-                            if (DeviceId[index] != undefined) {
+                            if (DeviceId[index] !== undefined) {
                                 return DeviceId[index];
                             } else {
                                 return "";
@@ -293,19 +293,19 @@ ListView {
                         id: connectionImage
                         anchors.left: parent.left
                         anchors.verticalCenter: parent.verticalCenter
-                        rotation: connectionRectangle.status == 0 ? 0 : listview.rota
+                        rotation: connectionRectangle.status === 0 ? 0 : listview.rota
                         source: {
-                            if (connectionRectangle.status == 0) {
+                            if (connectionRectangle.status === 0) {
                                 return JamiResources.connected_black_24dp_svg;
                             } else {
                                 return JamiResources.connecting_black_24dp_svg;
                             }
                         }
                         color: {
-                            if (connectionRectangle.status == 0) {
+                            if (connectionRectangle.status === 0) {
                                 return "#009c7f";
                             } else {
-                                if (connectionRectangle.status == 4) {
+                                if (connectionRectangle.status === 4) {
                                     return "red";
                                 } else {
                                     return "#ff8100";
@@ -318,16 +318,16 @@ ListView {
                         anchors.left: connectionImage.right
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.leftMargin: 5
-                        text: if (connectionRectangle.status == 0) {
+                        text: if (connectionRectangle.status === 0) {
                             return JamiStrings.connected;
                         } else {
-                            if (connectionRectangle.status == 1) {
+                            if (connectionRectangle.status === 1) {
                                 return JamiStrings.connectingTLS;
                             } else {
-                                if (connectionRectangle.status == 2) {
+                                if (connectionRectangle.status === 2) {
                                     return JamiStrings.connectingICE;
                                 } else {
-                                    if (connectionRectangle.status == 3) {
+                                    if (connectionRectangle.status === 3) {
                                         return JamiStrings.connecting;
                                     } else {
                                         return JamiStrings.waiting;
@@ -367,7 +367,7 @@ ListView {
                         anchors.leftMargin: 10
                         anchors.left: parent.left
                         text: {
-                            if (Channels[index] != undefined) {
+                            if (Channels[index] !== undefined) {
                                 return Channels[index];
                             } else {
                                 return "";

@@ -23,8 +23,8 @@ import "../../commoncomponents/contextmenu"
 
 ContextMenuAutoLoader {
     id: root
-    property var conversationId: ""
-    property var participantUri: ""
+    property string conversationId: ""
+    property string participantUri: ""
     property var role
 
     property list<GeneralMenuItem> menuItems: [
