@@ -23,8 +23,8 @@ TextField {
 
     property int fontSize: JamiTheme.materialLineEditPointSize
 
-    property var backgroundColor: JamiTheme.secondaryBackgroundColor
-    property var borderColor: JamiTheme.greyBorderColor
+    property color backgroundColor: JamiTheme.secondaryBackgroundColor
+    property color borderColor: JamiTheme.greyBorderColor
 
     property bool loseFocusWhenEnterPressed: false
     property bool underlined: false

@@ -35,9 +35,9 @@ Item {
     width: parent.width
     height: backupLayout.height
 
-    property var iconSize: 26
-    property var margin: 5
-    property var prefWidth: 170
+    property int iconSize: 26
+    property int margin: 5
+    property int prefWidth: 170
 
     property real maxHeight: 250
 

@@ -36,7 +36,7 @@ JamiListView {
 
     property color themeColor: CurrentConversation.color
     property string textFilter: ""
-    property var convId: CurrentConversation.id
+    property string convId: CurrentConversation.id
 
     onVisibleChanged: {
         if (visible) {

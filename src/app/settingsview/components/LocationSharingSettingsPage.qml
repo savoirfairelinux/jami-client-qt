@@ -123,7 +123,7 @@ SettingsPageBase {
             useSystemFocusVisuals: false
 
             function valueLabel() {
-                if (value != Math.log(600)) {
+                if (value !== Math.log(600)) {
                     UtilsAdapter.setAppValue(Settings.PositionShareDuration, Math.floor(Math.exp(value)));
                     timeSharingLocationValueLabel.text = timeSharingLocation.standartCountdown(Math.floor(Math.exp(value)));
                 } else {

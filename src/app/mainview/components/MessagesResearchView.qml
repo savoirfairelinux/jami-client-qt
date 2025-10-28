@@ -47,7 +47,7 @@ ListView {
         }
     }
 
-    property var prompt: MessagesAdapter.searchbarPrompt
+    property string prompt: MessagesAdapter.searchbarPrompt
 
     onPromptChanged: {
         MessagesAdapter.startSearch(prompt, false);

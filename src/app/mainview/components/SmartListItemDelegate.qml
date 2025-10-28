@@ -68,7 +68,7 @@ ItemDelegate {
         // Store to avoid undefined at the end
         root.accountId = Qt.binding(() => CurrentAccount.id);
         root.convId = UID;
-        root.isTemporary = ContactType == Profile.Type.TEMPORARY;
+        root.isTemporary = ContactType === Profile.Type.TEMPORARY;
         root.isBanned = isBanned;
     }
 
