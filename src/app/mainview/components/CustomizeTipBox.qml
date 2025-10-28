@@ -32,9 +32,9 @@ ColumnLayout {
     Accessible.name: tipTitle
     Accessible.description: tipDescription
 
-    property var iconSize: 26
-    property var margin: 5
-    property var prefWidth: 170
+    property int iconSize: 26
+    property int margin: 5
+    property int prefWidth: 170
     property bool opened: root.opened
 
     property color textColor: JamiTheme.textColor

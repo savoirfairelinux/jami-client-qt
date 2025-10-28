@@ -34,9 +34,9 @@ ColumnLayout {
 
     property real maxHeight: 250
 
-    property var iconSize: 26
-    property var margin: 5
-    property var prefWidth: 170
+    property int iconSize: 26
+    property int margin: 5
+    property int prefWidth: 170
 
     property color textColor: JamiTheme.textColor
     property color iconColor: JamiTheme.tintedBlue

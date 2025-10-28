@@ -36,7 +36,7 @@ Window {
     property int selectEnd
 
     property var lineSize: []
-    property var lineCounter: 0
+    property int lineCounter: 0
 
     function monitor(continuous) {
         UtilsAdapter.monitor(continuous);
