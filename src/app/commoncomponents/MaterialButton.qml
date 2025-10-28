@@ -34,11 +34,11 @@ AbstractButton {
     property alias animatedIconSource: icon.animatedSource_
     property alias radius: background.radius
     property real iconSize: 18
-    property var color: JamiTheme.buttonTintedBlue
-    property var hoveredColor: JamiTheme.buttonTintedBlueHovered
-    property var secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
-    property var pressedColor: JamiTheme.buttonTintedBluePressed
-    property var checkedColor: JamiTheme.secAndTertiHoveredBackgroundColor
+    property color color: JamiTheme.buttonTintedBlue
+    property color hoveredColor: JamiTheme.buttonTintedBlueHovered
+    property color secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
+    property color pressedColor: JamiTheme.buttonTintedBluePressed
+    property color checkedColor: JamiTheme.secAndTertiHoveredBackgroundColor
     property bool hasIcon: animatedIconSource.length !== 0 || iconSource.length !== 0
     property var preferredWidth
     property real textLeftPadding
