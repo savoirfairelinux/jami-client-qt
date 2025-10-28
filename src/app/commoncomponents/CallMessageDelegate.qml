@@ -26,7 +26,7 @@ SBSMessageBase {
     id: rootDelegate
 
     property var confId: ConfId
-    property var currentCallId: CurrentCall.id
+    property string currentCallId: CurrentCall.id
     component JoinCallButton: MaterialButton {
         visible: rootDelegate.isActive && rootDelegate.currentCallId !== rootDelegate.confId
         toolTipText: JamiStrings.joinCall
@@ -83,7 +83,7 @@ SBSMessageBase {
     property bool isActive: LRCInstance.indexOfActiveCall(rootDelegate.confId, ActionUri, DeviceId) !== -1
     visible: isActive || rootDelegate.confId === "" || Duration > 0
 
-    property var baseColor: JamiTheme.messageInBgColor
+    property color baseColor: JamiTheme.messageInBgColor
 
     innerContent.children: [
         RowLayout {

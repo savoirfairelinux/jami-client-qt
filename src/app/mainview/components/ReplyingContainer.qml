@@ -27,7 +27,7 @@ Rectangle {
 
     color: JamiTheme.messageOutBgColor
 
-    property var isSelf: false
+    property bool isSelf: false
     property var author: {
         if (MessagesAdapter.replyToId === "")
             return "";
