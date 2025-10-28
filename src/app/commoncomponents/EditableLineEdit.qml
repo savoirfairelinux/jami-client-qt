@@ -48,10 +48,10 @@ Item {
     property alias verticalAlignment: lineEdit.verticalAlignment
     property alias horizontalAlignment: lineEdit.horizontalAlignment
     property alias font: lineEdit.font
-    property var placeholderText: ""
+    property string placeholderText: ""
     property alias placeholderTextColor: lineEdit.placeholderTextColor
     property alias backgroundColor: lineEdit.backgroundColor
-    property var editIconColor: "transparent"
+    property string editIconColor: "transparent"
     property var cancelIconColor: UtilsAdapter.luma(root.color) ? JamiTheme.buttonTintedBlue : "white"
     property string informationToolTip: ""
 

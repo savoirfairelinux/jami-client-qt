@@ -41,7 +41,7 @@ BaseModalDialog {
     button2Role: DialogButtonBox.RejectRole
     button2.onClicked: close()
 
-    property var pwd: ""
+    property string pwd: ""
 
     popupContent: ColumnLayout {
         id: revokeDeviceContentColumnLayout
