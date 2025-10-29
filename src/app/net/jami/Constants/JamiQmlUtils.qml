@@ -111,4 +111,11 @@ Item {
 
     // Track if a fileDialog is opened. Is int to account for eventual future features including multiple FileDialog
     property int openFileDialogCount: 0
+
+    // Minor pane width for split views. Initialized from storage so it's available
+    // before any DualPaneView is created.
+    property real currentMinorPaneWidth: {
+        const savedWidth = UtilsAdapter.getAppValue("minorPaneWidth")
+        return (savedWidth && savedWidth > 0) ? savedWidth : 0
+    }
 }
