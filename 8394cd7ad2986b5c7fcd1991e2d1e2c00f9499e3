@@ -16,6 +16,24 @@
       "message": "If it is a core dialog with another contact (not self) and that contact left, the conversation should be considered ended.",
       "revId": "8394cd7ad2986b5c7fcd1991e2d1e2c00f9499e3",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fb59e77_1fd1ecd1",
+        "filename": "src/app/mainview/components/ChatView.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2025-10-29T18:53:48Z",
+      "side": 1,
+      "message": "maybe name participantRole?",
+      "parentUuid": "a8067ba7_981a48e8",
+      "revId": "8394cd7ad2986b5c7fcd1991e2d1e2c00f9499e3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
