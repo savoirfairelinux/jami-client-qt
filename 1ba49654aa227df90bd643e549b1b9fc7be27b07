@@ -33,6 +33,24 @@
       "message": "when answer swarm call prefix is rdv:",
       "revId": "1ba49654aa227df90bd643e549b1b9fc7be27b07",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5b7b133_7e8c33f1",
+        "filename": "src/libclient/callmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2025-10-29T20:22:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4492aff_ed5943c3",
+      "revId": "1ba49654aa227df90bd643e549b1b9fc7be27b07",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
