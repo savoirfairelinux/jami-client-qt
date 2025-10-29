@@ -1,0 +1,153 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e37e0bee_46377bdd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-10-29T15:32:59Z",
+      "side": 1,
+      "message": "LGTM but need to address the FileDialog afaics",
+      "revId": "d664c40cc1f900cb2dae786954c2b16f4bf319b9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "365d27a0_7a251c3a",
+        "filename": "src/app/accountsettingsmanager.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-10-29T15:32:59Z",
+      "side": 1,
+      "message": "Best to stick to the include guard style used by the rest of the project.",
+      "revId": "d664c40cc1f900cb2dae786954c2b16f4bf319b9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cce4eb2_a162cbc1",
+        "filename": "src/app/accountsettingsmanager.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-10-29T15:32:59Z",
+      "side": 1,
+      "message": "```suggestion\n#pragma once\n```",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 32
+      },
+      "revId": "d664c40cc1f900cb2dae786954c2b16f4bf319b9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52875871_f1610b28",
+        "filename": "src/app/accountsettingsmanager.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-10-29T15:32:59Z",
+      "side": 1,
+      "message": "```suggestion\n};\n```",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 34
+      },
+      "revId": "d664c40cc1f900cb2dae786954c2b16f4bf319b9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d345b1f_9c0c8b82",
+        "filename": "src/app/accountsettingspropertymap.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-10-29T15:32:59Z",
+      "side": 1,
+      "message": "```suggestion\n#pragma once\n```",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 36
+      },
+      "revId": "d664c40cc1f900cb2dae786954c2b16f4bf319b9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34af9995_1561f4ec",
+        "filename": "src/app/accountsettingspropertymap.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-10-29T15:32:59Z",
+      "side": 1,
+      "message": "```suggestion\n};\n```",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 38
+      },
+      "revId": "d664c40cc1f900cb2dae786954c2b16f4bf319b9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7fca442_40765f0b",
+        "filename": "src/app/settingsview/components/AppearanceSettingsPage.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-10-29T15:32:59Z",
+      "side": 1,
+      "message": "use JamiFileDialog (see https://review.jami.net/c/jami-client-qt/+/30403)",
+      "range": {
+        "startLine": 145,
+        "startChar": 12,
+        "endLine": 145,
+        "endChar": 22
+      },
+      "revId": "d664c40cc1f900cb2dae786954c2b16f4bf319b9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
