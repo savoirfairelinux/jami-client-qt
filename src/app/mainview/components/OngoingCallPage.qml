@@ -80,7 +80,7 @@ Rectangle {
     }
 
     onWidthChanged: {
-        if (chatViewContainer.visible && root.width < JamiTheme.mainViewPaneMinWidth * 2) {
+        if (chatViewContainer.visible && root.width < JamiTheme.mainViewMajorPaneMinWidth * 2) {
             callPageMainRect.visible = false;
         } else {
             callPageMainRect.visible = true;
@@ -105,7 +105,7 @@ Rectangle {
             id: callPageMainRect
 
             SplitView.preferredHeight: mainColumnLayout.isHorizontal ? (root.height / 3) * 2 : root.height
-            SplitView.minimumWidth: JamiTheme.mainViewPaneMinWidth
+            SplitView.minimumWidth: JamiTheme.mainViewMajorPaneMinWidth
             SplitView.fillWidth: true
 
             TapHandler {
@@ -259,14 +259,14 @@ Rectangle {
             objectName: "CallViewChatViewContainer"
 
             SplitView.preferredHeight: mainColumnLayout.isHorizontal ? root.height : root.height / 3
-            SplitView.preferredWidth: mainColumnLayout.isHorizontal ? JamiTheme.mainViewPaneMinWidth : root.width
-            SplitView.minimumWidth: JamiTheme.mainViewPaneMinWidth
+            SplitView.preferredWidth: mainColumnLayout.isHorizontal ? JamiTheme.mainViewMajorPaneMinWidth : root.width
+            SplitView.minimumWidth: JamiTheme.mainViewMajorPaneMinWidth
             visible: false
             clip: true
             property bool showDetails: false
 
             onVisibleChanged: {
-                if (visible && root.width < JamiTheme.mainViewPaneMinWidth * 2) {
+                if (visible && root.width < JamiTheme.mainViewMajorPaneMinWidth * 2) {
                     callPageMainRect.visible = false;
                 } else {
                     callPageMainRect.visible = true;

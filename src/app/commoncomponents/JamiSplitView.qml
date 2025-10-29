@@ -50,22 +50,23 @@ SplitView {
         control.restoreState(UtilsAdapter.getAppValue("sv_" + splitViewStateKey));
     }
 
-    onResizingChanged: if (!resizing)
-        saveSplitViewState()
+    onResizingChanged: if (!resizing && !isSinglePane) saveSplitViewState()
     onVisibleChanged: {
         if (!autoManageState)
             return;
-        visible ? restoreSplitViewState() : saveSplitViewState();
+        if (visible) {
+            Qt.callLater(restoreSplitViewState);
+        } else if (!isSinglePane) {
+            // Avoid saving single-pane widths that would clobber preferred widths.
+            saveSplitViewState();
+        }
     }
 
     function swapItems() {
         isSwapped = !isSwapped
-        var qqci = children[0];
-        if (qqci.children.length > 1) {
-            // swap the children
-            var tempPane = qqci.children[0];
-            qqci.children[0] = qqci.children[1];
-            qqci.children.push(tempPane);
+        const children = control.contentChildren
+        if (children.length > 1) {
+            control.moveItem(children[0], 1)
         }
     }
 
@@ -73,6 +74,8 @@ SplitView {
         id: handleRoot
 
         readonly property int defaultSize: control.handleSize
+
+        visible: !control.isSinglePane
 
         implicitWidth: control.orientation === Qt.Horizontal ? handleRoot.defaultSize : control.width
         implicitHeight: control.orientation === Qt.Horizontal ? control.height : handleRoot.defaultSize
