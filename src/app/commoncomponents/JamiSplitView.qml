@@ -74,6 +74,8 @@ SplitView {
 
         readonly property int defaultSize: control.handleSize
 
+        visible: !control.isSinglePane
+
         implicitWidth: control.orientation === Qt.Horizontal ? handleRoot.defaultSize : control.width
         implicitHeight: control.orientation === Qt.Horizontal ? control.height : handleRoot.defaultSize
 

@@ -35,8 +35,6 @@ BaseView {
     property real minorPaneMinWidth: JamiTheme.mainViewLeftPaneMinWidth
     property real majorPaneMinWidth: JamiTheme.mainViewPaneMinWidth
 
-    property real previousMinorPaneWidth: isRTL ? leftPane.width : rightPane.width
-    property real previousMajorPaneWidth: isRTL ? rightPane.width : leftPane.width
 
     property bool isSinglePane
 
@@ -57,7 +55,7 @@ BaseView {
 
     onWidthChanged: resolvePanes()
     function resolvePanes() {
-        isSinglePane = width < majorPaneMinWidth + previousMinorPaneWidth
+        isSinglePane = width < majorPaneMinWidth + minorPaneMinWidth
     }
 
     // Override this if needed.
@@ -86,21 +84,7 @@ BaseView {
         required property bool isMinorPane
         onWidthChanged: {
             if (!isSinglePane && isMinorPane)
-                previousMinorPaneWidth = width
-            if (!isSinglePane && !isMinorPane)
-                previousMajorPaneWidth = width
-            if (isMinorPane)
                 JamiTheme.currentLeftPaneWidth = width
-        }
-
-        Connections {
-            target: UtilsAdapter
-
-            function onIsRTLChanged() {
-                var bck = previousMinorPaneWidth
-                previousMinorPaneWidth = previousMajorPaneWidth
-                previousMajorPaneWidth = bck
-            }
         }
 
         SplitView.minimumWidth: isSinglePane ? undefined : (isMinorPane ? minorPaneMinWidth : majorPaneMinWidth)
