@@ -4494,7 +4494,7 @@ Bitte versuchen Sie es erneut.</translation>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="93"/>
         <source>What is the green dot next to my account?</source>
-        <translation type="unfinished"/>
+        <translation>Was ist der grüne Punkt neben meinem Konto?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="80"/>
@@ -4534,7 +4534,7 @@ Bitte versuchen Sie es erneut.</translation>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="113"/>
         <source>What is a Jami account?</source>
-        <translation type="unfinished"/>
+        <translation>Was ist ein Jami-Konto?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="115"/>
