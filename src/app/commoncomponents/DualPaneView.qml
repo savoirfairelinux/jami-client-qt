@@ -32,8 +32,9 @@ BaseView {
 
     property alias splitViewStateKey: splitView.splitViewStateKey
 
-    property real minorPaneMinWidth: JamiTheme.mainViewLeftPaneMinWidth
-    property real majorPaneMinWidth: JamiTheme.mainViewPaneMinWidth
+    // Can't use aliases for singleton properties
+    readonly property real minorPaneMinWidth: JamiTheme.mainViewMinorPaneMinWidth
+    readonly property real majorPaneMinWidth: JamiTheme.mainViewMajorPaneMinWidth
 
     property real previousMinorPaneWidth: isRTL ? leftPane.width : rightPane.width
     property real previousMajorPaneWidth: isRTL ? rightPane.width : leftPane.width
@@ -45,8 +46,7 @@ BaseView {
             leftPaneItem.parent = leftPane
         if (rightPaneItem)
             rightPaneItem.parent = rightPane
-        splitView.restoreSplitViewState()
-        resolvePanes()
+        Qt.callLater(splitView.restoreSplitViewState)
     }
     onDismissed: splitView.saveSplitViewState()
 
@@ -89,8 +89,6 @@ BaseView {
                 previousMinorPaneWidth = width
             if (!isSinglePane && !isMinorPane)
                 previousMajorPaneWidth = width
-            if (isMinorPane)
-                JamiTheme.currentLeftPaneWidth = width
         }
 
         Connections {
@@ -105,7 +103,6 @@ BaseView {
 
         SplitView.minimumWidth: isSinglePane ? undefined : (isMinorPane ? minorPaneMinWidth : majorPaneMinWidth)
         SplitView.maximumWidth: isSinglePane || !isMinorPane ? undefined : Math.abs(viewNode.width - majorPaneMinWidth)
-        SplitView.preferredWidth: isSinglePane || !isMinorPane ? undefined : JamiTheme.currentLeftPaneWidth
         SplitView.fillWidth: !isMinorPane || isSinglePane
     }
 }

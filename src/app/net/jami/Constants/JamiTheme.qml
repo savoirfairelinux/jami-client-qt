@@ -335,9 +335,8 @@ Item {
     property int smartListTransitionDuration: 120
 
     // Sizes
-    property real mainViewLeftPaneMinWidth: 300
-    property real currentLeftPaneWidth: mainViewLeftPaneMinWidth
-    property real mainViewPaneMinWidth: 490
+    property real mainViewMinorPaneMinWidth: 330
+    property real mainViewMajorPaneMinWidth: 490
     property real qrCodeImageSize: 256
     property real splitViewHandlePreferredWidth: 4
     property real indicatorFontSize: calcSize(6)
@@ -650,15 +649,10 @@ Item {
     property int keyboardShortcutDelegateSize: 50
 
     // Main application spec
-    property real mainViewMinWidth: 490
-    property real mainViewMinHeight: 500
-
-    property real wizardViewMinWidth: 500
-    property real wizardViewMinHeight: 600
-
+    property real mainViewMinWidth: 500
+    property real mainViewMinHeight: 600
     property real mainViewPreferredWidth: 730
     property real mainViewPreferredHeight: 600
-
     property real mainViewMargin: 25
 
     // Extras panel
