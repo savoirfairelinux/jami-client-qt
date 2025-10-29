@@ -176,7 +176,7 @@ Rectangle {
             Layout.fillWidth: true
             Layout.preferredHeight: JamiTheme.qwkTitleBarHeight
             Layout.maximumHeight: JamiTheme.qwkTitleBarHeight
-            Layout.minimumWidth: JamiTheme.mainViewPaneMinWidth
+            Layout.minimumWidth: JamiTheme.mainViewMajorPaneMinWidth
 
             DropArea {
                 anchors.fill: parent
@@ -328,10 +328,9 @@ Rectangle {
                 const isExpanding = width > previousWidth;
 
                 // Provide a detailed log here, as this function seems problematic.
-                console.debug("ChatViewSplitView.resolvePanes: f: %1 w: %2 pw: %3 epw: %4 pepw: %5 ie: %6".arg(force).arg(width).arg(previousWidth).arg(extrasPanelWidth).arg(previousExtrasPanelWidth).arg(isExpanding));
                 const maximizePredicate = (!isExpanding || force) && chatContents.visible;
                 const minimizePredicate = (isExpanding || force) && !chatContents.visible;
-                const mainViewMinWidth = JamiTheme.mainViewPaneMinWidth;
+                const mainViewMinWidth = JamiTheme.mainViewMajorPaneMinWidth;
 
                 // If the SplitView is not wide enough to show both the chatContents
                 // and the details panel, then hide the chatContents.
@@ -345,7 +344,7 @@ Rectangle {
             ColumnLayout {
                 id: chatContents
                 SplitView.maximumWidth: root.width
-                SplitView.minimumWidth: JamiTheme.mainViewPaneMinWidth
+                SplitView.minimumWidth: JamiTheme.mainViewMajorPaneMinWidth
                 SplitView.fillWidth: true
                 spacing: 0
 

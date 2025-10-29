@@ -116,21 +116,53 @@ QtObject {
     function restoreWindowSettings() {
         var geometry = AppSettingsManager.getValue(Settings.WindowGeometry)
 
+        // Determine screen metrics from the primary screen.
+        const screen = Qt.application.primaryScreen || (Qt.application.screens.length > 0 ? Qt.application.screens[0] : null)
+
+        // Compute default dimensions relative to the screen, bounded by theme mins and sensible caps.
+        // Use golden ratio (1.618) as the aspect ratio.
+        const goldenRatio = 1.618;
+        const screenSizeMultiplier = 0.6;
+        const defaultWidth = (function() {
+            if (!screen)
+                return JamiTheme.mainViewPreferredWidth;
+            const maxWidth = Math.round(screen.width * screenSizeMultiplier);
+            const maxHeight = Math.round(screen.height * screenSizeMultiplier);
+            // If the max width would result in a height that's too tall, constrain by height instead
+            if (maxWidth / goldenRatio > maxHeight) {
+                return Math.round(maxHeight * goldenRatio);
+            }
+            return maxWidth;
+        })();
+        const defaultHeight = (function() {
+            if (!screen)
+                return JamiTheme.mainViewPreferredHeight;
+            const maxWidth = Math.round(screen.width * screenSizeMultiplier);
+            const maxHeight = Math.round(screen.height * screenSizeMultiplier);
+            // If the max height would result in a width that's too wide, constrain by width instead
+            if (maxHeight * goldenRatio > maxWidth) {
+                return Math.round(maxWidth / goldenRatio);
+            }
+            return maxHeight;
+        })();
+
+        // Dimensions.
+        const widthToUse = geometry.width && geometry.width > 0 ? geometry.width : defaultWidth
+        const heightToUse = geometry.height && geometry.height > 0 ? geometry.height : defaultHeight
+        appWindow.width = widthToUse
+        appWindow.height = heightToUse
+        appWindow.minimumWidth = JamiTheme.mainViewMinWidth
+        appWindow.minimumHeight = JamiTheme.mainViewMinHeight
+
         // Position.
         if (!isNaN(geometry.x) && !isNaN(geometry.y)) {
             appWindow.x = geometry.x
             appWindow.y = geometry.y
+        } else if (screen) {
+            // No saved position: center on the primary screen.
+            appWindow.x = Math.round(screen.width / 2 - appWindow.width / 2)
+            appWindow.y = Math.round(screen.height / 2 - appWindow.height / 2)
         }
-
-        // Dimensions.
-        appWindow.width = geometry.width ?
-                    geometry.width :
-                    JamiTheme.mainViewPreferredWidth
-        appWindow.height = geometry.height ?
-                    geometry.height :
-                    JamiTheme.mainViewPreferredHeight
-        appWindow.minimumWidth = JamiTheme.mainViewMinWidth
-        appWindow.minimumHeight = JamiTheme.mainViewMinHeight
 
         // State.
         const visibilityStr = AppSettingsManager.getValue(Settings.WindowState)
