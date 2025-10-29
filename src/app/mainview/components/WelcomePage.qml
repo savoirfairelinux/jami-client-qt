@@ -31,7 +31,7 @@ ListSelectionView {
     objectName: "WelcomePage"
 
     splitViewStateKey: "Main"
-    hideRightPaneInSinglePaneMode: true
+    hideMajorPaneInSinglePaneMode: true
 
     color: JamiTheme.secondaryBackgroundColor
 
