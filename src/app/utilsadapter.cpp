@@ -77,6 +77,7 @@ UtilsAdapter::setAppValue(const Settings::Key key, const QVariant& value)
     // If we change the lang preference, reload the translations
     if (key == Settings::Key::LANG) {
         settingsManager_->loadTranslations();
+        C_WARN << "dsadsadsa";
         set_isRTL(isRTL());
         Q_EMIT changeLanguage();
     } else if (key == Settings::Key::BaseZoom)

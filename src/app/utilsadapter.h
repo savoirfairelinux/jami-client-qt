@@ -68,7 +68,7 @@ class UtilsAdapter final : public QmlAdapterBase
     QML_SINGLETON
 
     QML_PROPERTY(QStringList, logList)
-    QML_RO_PROPERTY(bool, isRTL)
+    QML_PROPERTY(bool, isRTL)
 public:
     static UtilsAdapter* create(QQmlEngine*, QJSEngine*)
     {
