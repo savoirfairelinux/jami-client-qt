@@ -20,10 +20,9 @@ import QtQuick
 DualPaneView {
     id: viewNode
 
-    property bool hideRightPaneInSinglePaneMode : false
+    property bool hideMajorPaneInSinglePaneMode : false
 
     Component.onCompleted: {
-        if (hideRightPaneInSinglePaneMode) return
         onIndexChanged.connect(function() {
             if (hasValidSelection) {
                 if (selectionFallback && isSinglePane)
@@ -52,7 +51,7 @@ DualPaneView {
     function dismiss() {
         if (isSinglePane) {
             if (!selectionFallback) viewCoordinator.dismiss(objectName)
-            else if (isSinglePane && leftPane.children.length > 1) {
+            else if (isSinglePane && leftPane && leftPane.children && leftPane.children.length > 1) {
                 rightPaneItem.parent = null
                 leftPaneItem.deselect()
             }
@@ -72,11 +71,11 @@ DualPaneView {
         if (leftPaneItem) leftPaneItem.indexSelected.connect(selectIndex)
     }
     isSinglePaneChangedHandler: () => {
-        if (hideRightPaneInSinglePaneMode) return
-        // When transitioning from split to single pane, we need to move
-        // the right pane item to left stack view if it has a valid index.
+        // When transitioning from split to single pane, place major content appropriately.
         if (isSinglePane) {
-            if (hasValidSelection) {
+            if (hideMajorPaneInSinglePaneMode) {
+                rightPaneItem.parent = null
+            } else if (hasValidSelection) {
                 rightPaneItem.parent = leftPane
             }
         } else {

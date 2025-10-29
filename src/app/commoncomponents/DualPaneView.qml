@@ -29,39 +29,43 @@ BaseView {
 
     property alias leftPane: leftPane
     property alias rightPane: rightPane
-
     property alias splitViewStateKey: splitView.splitViewStateKey
 
-    property real minorPaneMinWidth: JamiTheme.mainViewLeftPaneMinWidth
-    property real majorPaneMinWidth: JamiTheme.mainViewPaneMinWidth
+    readonly property real minorPaneMinWidth: JamiTheme.mainViewMinorPaneMinWidth
+    readonly property real majorPaneMinWidth: JamiTheme.mainViewMajorPaneMinWidth
 
-    property real previousMinorPaneWidth: isRTL ? leftPane.width : rightPane.width
-    property real previousMajorPaneWidth: isRTL ? rightPane.width : leftPane.width
-
-    property bool isSinglePane
+    property real previousMinorPaneWidth: 0
+    property bool isSinglePane: false
 
     onPresented: {
         if (leftPaneItem)
             leftPaneItem.parent = leftPane
         if (rightPaneItem)
             rightPaneItem.parent = rightPane
-        splitView.restoreSplitViewState()
-        resolvePanes()
     }
-    onDismissed: splitView.saveSplitViewState()
 
     Component.onCompleted: {
-        // Avoid double triggering this handler during instantiation.
         onIsSinglePaneChanged.connect(isSinglePaneChangedHandler)
+        resolvePanes()
+        // Restore minor pane width from persistent storage on app start
+        const savedWidth = UtilsAdapter.getAppValue("minorPaneWidth")
+        if (!JamiQmlUtils.currentMinorPaneWidth && savedWidth && savedWidth > 0) {
+            JamiQmlUtils.currentMinorPaneWidth = savedWidth
+            previousMinorPaneWidth = savedWidth
+        } else if (JamiQmlUtils.currentMinorPaneWidth) {
+            previousMinorPaneWidth = JamiQmlUtils.currentMinorPaneWidth
+        }
+        console.warn("************ Loaded minor pane width:", previousMinorPaneWidth)
     }
 
     onWidthChanged: resolvePanes()
     function resolvePanes() {
-        isSinglePane = width < majorPaneMinWidth + previousMinorPaneWidth
+        const threshold = majorPaneMinWidth + (previousMinorPaneWidth || minorPaneMinWidth)
+        isSinglePane = width < threshold
     }
 
-    // Override this if needed.
     property var isSinglePaneChangedHandler: function () {
+        // Move right pane into left when collapsing
         rightPaneItem.parent = isSinglePane ? leftPane : rightPane
     }
 
@@ -75,6 +79,7 @@ BaseView {
             id: leftPane
             isMinorPane: true
         }
+
         SplitPane {
             id: rightPane
             isMinorPane: false
@@ -84,28 +89,29 @@ BaseView {
     component SplitPane: Item {
         clip: true
         required property bool isMinorPane
+
         onWidthChanged: {
-            if (!isSinglePane && isMinorPane)
+            if (!isSinglePane && isMinorPane) {
+                console.warn("!!!!!!!!!!!! Restoring minor pane width:", width)
+                JamiQmlUtils.currentMinorPaneWidth = width
                 previousMinorPaneWidth = width
-            if (!isSinglePane && !isMinorPane)
-                previousMajorPaneWidth = width
-            if (isMinorPane)
-                JamiTheme.currentLeftPaneWidth = width
-        }
-
-        Connections {
-            target: UtilsAdapter
-
-            function onIsRTLChanged() {
-                var bck = previousMinorPaneWidth
-                previousMinorPaneWidth = previousMajorPaneWidth
-                previousMajorPaneWidth = bck
             }
         }
 
-        SplitView.minimumWidth: isSinglePane ? undefined : (isMinorPane ? minorPaneMinWidth : majorPaneMinWidth)
-        SplitView.maximumWidth: isSinglePane || !isMinorPane ? undefined : Math.abs(viewNode.width - majorPaneMinWidth)
-        SplitView.preferredWidth: isSinglePane || !isMinorPane ? undefined : JamiTheme.currentLeftPaneWidth
+        SplitView.minimumWidth: isSinglePane ? undefined
+                                             : (isMinorPane ? minorPaneMinWidth : majorPaneMinWidth)
+        SplitView.maximumWidth: {
+            const mw = isSinglePane || !isMinorPane ? undefined : Math.abs(viewNode.width - majorPaneMinWidth)
+            console.warn("++++++++++", mw)
+            return mw
+        }
+        width: {
+            if (isSinglePane || !isMinorPane) return undefined
+            // Use cached minor pane width from JamiQmlUtils, or fall back to previousMinorPaneWidth or minimum
+            const w = JamiQmlUtils.currentMinorPaneWidth || previousMinorPaneWidth || minorPaneMinWidth
+            console.warn("____________________", w)
+            return w
+        }
         SplitView.fillWidth: !isMinorPane || isSinglePane
     }
 }

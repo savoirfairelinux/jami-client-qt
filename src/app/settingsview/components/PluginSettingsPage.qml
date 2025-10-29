@@ -106,7 +106,7 @@ SettingsPageBase {
             if (!force)
                 previousDetailsWidth = pluginPreferencesView.width;
             pageContainer.visible = false;
-        } else if (width >= JamiTheme.mainViewPaneMinWidth + previousDetailsWidth && (isExpanding || force) && !pageContainer.visible) {
+        } else if (width >= JamiTheme.mainViewMajorPaneMinWidth + previousDetailsWidth && (isExpanding || force) && !pageContainer.visible) {
             pageContainer.visible = true;
         }
         if (!force)
