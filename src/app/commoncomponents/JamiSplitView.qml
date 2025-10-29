@@ -25,47 +25,90 @@ SplitView {
 
     property bool isRTL: UtilsAdapter.isRTL
     property bool isSinglePane: false
-    property bool isSwapped: false
     property real handleSize: 1
-
-    onIsRTLChanged: {
-        if (isRTL && isSinglePane && !isSwapped)
-            return
-        if ((isRTL && !isSwapped) || (!isRTL && isSwapped))
-            swapItems()
-    }
-    onIsSinglePaneChanged: {
-        if (isSwapped || isRTL)
-            swapItems()
-    }
+    property bool completed: false
 
     property string splitViewStateKey: objectName
     property bool autoManageState: !(parent instanceof BaseView)
 
-    function saveSplitViewState() {
-        UtilsAdapter.setAppValue("sv_" + splitViewStateKey, control.saveState());
+    // Add at top-level in SplitView:
+    property bool _reordering: false
+
+    Component.onCompleted: {
+        Qt.callLater(reorderPanes)
     }
 
-    function restoreSplitViewState() {
-        control.restoreState(UtilsAdapter.getAppValue("sv_" + splitViewStateKey));
+    onIsRTLChanged: Qt.callLater(reorderPanes)
+    onIsSinglePaneChanged: reorderPanes(true)
+
+    function _paneRefs() {
+        // Identify panes by role; don't rely on current list order
+        let minor = null, major = null
+        for (let i = 0; i < contentChildren.length; ++i) {
+            const c = contentChildren[i]
+            if (c && c.hasOwnProperty && c.hasOwnProperty("isMinorPane")) {
+                if (c.isMinorPane) minor = c
+                else               major = c
+            }
+        }
+        return { minor, major }
     }
 
-    onResizingChanged: if (!resizing)
-        saveSplitViewState()
+    function _currentOrderPair() {
+        // Return [firstPane, secondPane] considering only panes (exclude handle)
+        const arr = []
+        for (let i = 0; i < contentChildren.length; ++i) {
+            const c = contentChildren[i]
+            if (c && c.hasOwnProperty && c.hasOwnProperty("isMinorPane"))
+                arr.push(c)
+        }
+        return arr.length >= 2 ? [arr[0], arr[1]] : arr
+    }
+
+    function _ordersEqual(a, b) {
+        return a && b && a.length === b.length && a[0] === b[0] && a[1] === b[1]
+    }
+
+    function reorderPanes(immediate) {
+        if (_reordering) return
+        const refs = _paneRefs()
+        if (!refs.minor || !refs.major) return
+
+        const desired = isRTL ?
+                          isSinglePane ? [refs.minor, refs.major] : [refs.major, refs.minor] :
+                          [refs.minor, refs.major]
+        const current = _currentOrderPair()
+        if (_ordersEqual(current, desired)) return
+
+        _reordering = true
+
+        const performReorder = () => {
+            const now = _currentOrderPair()
+            if (_ordersEqual(now, desired)) {
+                _reordering = false
+                return
+            }
+
+            const children = control.contentChildren
+            if (children.length > 1) {
+                control.moveItem(children[0], 1)
+            }
+
+            _reordering = false
+        }
+
+        if (immediate) {
+            performReorder()
+        } else {
+            Qt.callLater(performReorder)
+        }
+    }
+
     onVisibleChanged: {
         if (!autoManageState)
-            return;
-        visible ? restoreSplitViewState() : saveSplitViewState();
-    }
-
-    function swapItems() {
-        isSwapped = !isSwapped
-        var qqci = children[0];
-        if (qqci.children.length > 1) {
-            // swap the children
-            var tempPane = qqci.children[0];
-            qqci.children[0] = qqci.children[1];
-            qqci.children.push(tempPane);
+            return
+        if (visible) {
+            Qt.callLater(reorderPanes)
         }
     }
 
@@ -73,6 +116,7 @@ SplitView {
         id: handleRoot
 
         readonly property int defaultSize: control.handleSize
+        visible: !control.isSinglePane
 
         implicitWidth: control.orientation === Qt.Horizontal ? handleRoot.defaultSize : control.width
         implicitHeight: control.orientation === Qt.Horizontal ? control.height : handleRoot.defaultSize
@@ -80,11 +124,6 @@ SplitView {
         color: JamiTheme.tabbarBorderColor
 
         containmentMask: Item {
-            // In the default configuration, the total handle size is the sum of the default size of the
-            // handle and the extra handle size (4). If the layout is not right-to-left (RTL), the handle
-            // is positioned at 0 on the X-axis, otherwise it's positioned to the left by the extra handle
-            // size (4 pixels). This is done to make it easier to grab small scroll-view handles that are
-            // adjacent to the SplitView handle. Note: vertically oriented handles are not offset.
             readonly property real extraHandleSize: 4
             readonly property real handleXPosition: !UtilsAdapter.isRTL ? 0 : -extraHandleSize
             readonly property real handleSize: handleRoot.defaultSize + extraHandleSize

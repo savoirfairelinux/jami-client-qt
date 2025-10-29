@@ -39,6 +39,21 @@ ApplicationWindow {
     LayoutMirroring.childrenInherit: isRTL
     property var raiseWhenCalled: AppSettingsManager.getValue(Settings.RaiseWhenCalled)
 
+    // DEBUG Button on top left to force switch RTL (toggle between AR and EN
+    Button {
+        id: rtlToggleButton
+        text: UtilsAdapter.isRTL ? "RTL" : "LTR"
+        // To debug RTL:
+        // - use `QML_PROPERTY(bool, isRTL) instead of QML_RO_PROPERTY(bool, isRTL)` in utilsadapter.h
+        // - comment the following line
+        visible: false
+        anchors.bottom: parent.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.margins: 10
+        z: 999
+        onClicked: UtilsAdapter.isRTL = !UtilsAdapter.isRTL;
+    }
+
     onActiveFocusItemChanged: {
         focusOverlay.margin = -5;
         if (activeFocusItem) {
@@ -321,6 +336,10 @@ ApplicationWindow {
         target: MainApplication
 
         function onAboutToQuit() {
+            // Save minor pane width on app exit
+            if (JamiQmlUtils.currentMinorPaneWidth) {
+                UtilsAdapter.setAppValue("minorPaneWidth", JamiQmlUtils.currentMinorPaneWidth)
+            }
             cleanupMainView();
         }
 
