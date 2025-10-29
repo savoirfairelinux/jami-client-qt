@@ -58,6 +58,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "59064a95_f9cc3f79",
+        "filename": "src/app/accountsettingsmanager.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-10-29T18:30:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0cce4eb2_a162cbc1",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 32
+      },
+      "revId": "d664c40cc1f900cb2dae786954c2b16f4bf319b9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "52875871_f1610b28",
@@ -71,6 +95,30 @@
       "writtenOn": "2025-10-29T15:32:59Z",
       "side": 1,
       "message": "```suggestion\n};\n```",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 34
+      },
+      "revId": "d664c40cc1f900cb2dae786954c2b16f4bf319b9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0aea7b17_af52ba2b",
+        "filename": "src/app/accountsettingsmanager.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-10-29T18:30:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "52875871_f1610b28",
       "range": {
         "startLine": 47,
         "startChar": 0,
@@ -104,6 +152,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e20b9a70_86de95ee",
+        "filename": "src/app/accountsettingspropertymap.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-10-29T18:30:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d345b1f_9c0c8b82",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 36
+      },
+      "revId": "d664c40cc1f900cb2dae786954c2b16f4bf319b9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34af9995_1561f4ec",
@@ -127,6 +199,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "98c24de3_8bca89f2",
+        "filename": "src/app/accountsettingspropertymap.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-10-29T18:30:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34af9995_1561f4ec",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 38
+      },
+      "revId": "d664c40cc1f900cb2dae786954c2b16f4bf319b9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d7fca442_40765f0b",
@@ -140,6 +236,30 @@
       "writtenOn": "2025-10-29T15:32:59Z",
       "side": 1,
       "message": "use JamiFileDialog (see https://review.jami.net/c/jami-client-qt/+/30403)",
+      "range": {
+        "startLine": 145,
+        "startChar": 12,
+        "endLine": 145,
+        "endChar": 22
+      },
+      "revId": "d664c40cc1f900cb2dae786954c2b16f4bf319b9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a2906d2_9488ece8",
+        "filename": "src/app/settingsview/components/AppearanceSettingsPage.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-10-29T18:30:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7fca442_40765f0b",
       "range": {
         "startLine": 145,
         "startChar": 12,
