@@ -35,7 +35,6 @@ BaseView {
     property real minorPaneMinWidth: JamiTheme.mainViewLeftPaneMinWidth
     property real majorPaneMinWidth: JamiTheme.mainViewPaneMinWidth
 
-
     property bool isSinglePane
 
     onPresented: {
@@ -51,11 +50,15 @@ BaseView {
     Component.onCompleted: {
         // Avoid double triggering this handler during instantiation.
         onIsSinglePaneChanged.connect(isSinglePaneChangedHandler)
+        // Ensure a sane default preferred width for the minor pane.
+        if (!JamiTheme.currentLeftPaneWidth || JamiTheme.currentLeftPaneWidth < minorPaneMinWidth)
+            JamiTheme.currentLeftPaneWidth = minorPaneMinWidth
     }
 
     onWidthChanged: resolvePanes()
     function resolvePanes() {
-        isSinglePane = width < majorPaneMinWidth + minorPaneMinWidth
+        const preferredMinor = Math.max(minorPaneMinWidth, JamiTheme.currentLeftPaneWidth || minorPaneMinWidth)
+        isSinglePane = width < majorPaneMinWidth + preferredMinor
     }
 
     // Override this if needed.
