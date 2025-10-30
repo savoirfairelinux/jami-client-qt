@@ -32,18 +32,19 @@ BaseView {
 
     property alias splitViewStateKey: splitView.splitViewStateKey
 
-    property real minorPaneMinWidth: JamiTheme.mainViewLeftPaneMinWidth
-    property real majorPaneMinWidth: JamiTheme.mainViewPaneMinWidth
+    // Can't use aliases for singleton properties
+    readonly property real minorPaneMinWidth: JamiTheme.mainViewMinorPaneMinWidth
+    readonly property real majorPaneMinWidth: JamiTheme.mainViewMajorPaneMinWidth
 
-    property bool isSinglePane
+    property real preferredMinor: Math.max(minorPaneMinWidth, JamiQmlUtils.currentMinorPaneWidth || minorPaneMinWidth)
+    property bool isSinglePane: width < majorPaneMinWidth + preferredMinor
 
     onPresented: {
         if (leftPaneItem)
             leftPaneItem.parent = leftPane
         if (rightPaneItem)
             rightPaneItem.parent = rightPane
-        splitView.restoreSplitViewState()
-        resolvePanes()
+        Qt.callLater(splitView.restoreSplitViewState)
     }
     onDismissed: splitView.saveSplitViewState()
 
@@ -51,14 +52,9 @@ BaseView {
         // Avoid double triggering this handler during instantiation.
         onIsSinglePaneChanged.connect(isSinglePaneChangedHandler)
         // Ensure a sane default preferred width for the minor pane.
-        if (!JamiTheme.currentLeftPaneWidth || JamiTheme.currentLeftPaneWidth < minorPaneMinWidth)
-            JamiTheme.currentLeftPaneWidth = minorPaneMinWidth
-    }
-
-    onWidthChanged: resolvePanes()
-    function resolvePanes() {
-        const preferredMinor = Math.max(minorPaneMinWidth, JamiTheme.currentLeftPaneWidth || minorPaneMinWidth)
-        isSinglePane = width < majorPaneMinWidth + preferredMinor
+        if (!JamiQmlUtils.currentMinorPaneWidth || JamiQmlUtils.currentMinorPaneWidth < minorPaneMinWidth) {
+            JamiQmlUtils.currentMinorPaneWidth = minorPaneMinWidth
+        }
     }
 
     // Override this if needed.
@@ -87,12 +83,11 @@ BaseView {
         required property bool isMinorPane
         onWidthChanged: {
             if (!isSinglePane && isMinorPane)
-                JamiTheme.currentLeftPaneWidth = width
+                JamiQmlUtils.currentMinorPaneWidth = width
         }
 
         SplitView.minimumWidth: isSinglePane ? undefined : (isMinorPane ? minorPaneMinWidth : majorPaneMinWidth)
         SplitView.maximumWidth: isSinglePane || !isMinorPane ? undefined : Math.abs(viewNode.width - majorPaneMinWidth)
-        SplitView.preferredWidth: isSinglePane || !isMinorPane ? undefined : JamiTheme.currentLeftPaneWidth
         SplitView.fillWidth: !isMinorPane || isSinglePane
     }
 }
