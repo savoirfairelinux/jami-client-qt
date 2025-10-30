@@ -55,7 +55,7 @@ SplitView {
         if (!autoManageState)
             return;
         if (visible) {
-            restoreSplitViewState();
+            Qt.callLater(restoreSplitViewState);
         } else if (!isSinglePane) {
             // Avoid saving single-pane widths that would clobber preferred widths.
             saveSplitViewState();

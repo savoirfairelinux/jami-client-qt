@@ -111,4 +111,7 @@ Item {
 
     // Track if a fileDialog is opened. Is int to account for eventual future features including multiple FileDialog
     property int openFileDialogCount: 0
+
+    // Tracking for the current side panel (minor pane) width
+    property real currentMinorPaneWidth
 }

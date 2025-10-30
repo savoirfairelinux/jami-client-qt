@@ -335,9 +335,8 @@ Item {
     property int smartListTransitionDuration: 120
 
     // Sizes
-    property real mainViewLeftPaneMinWidth: 300
-    property real currentLeftPaneWidth: mainViewLeftPaneMinWidth
-    property real mainViewPaneMinWidth: 490
+    property real mainViewMinorPaneMinWidth: 330
+    property real mainViewMajorPaneMinWidth: 490
     property real qrCodeImageSize: 256
     property real splitViewHandlePreferredWidth: 4
     property real indicatorFontSize: calcSize(6)
