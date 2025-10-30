@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b21e96e_ab814588",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-10-30T18:53:17Z",
+      "side": 1,
+      "message": "RingNS is still referenced in daemon/src/jami/account_const.h\nShould that be updated as well to reflect these changes?",
+      "revId": "313575b77a073554489e04210c68e3866ff259a3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
