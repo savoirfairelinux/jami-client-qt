@@ -649,15 +649,10 @@ Item {
     property int keyboardShortcutDelegateSize: 50
 
     // Main application spec
-    property real mainViewMinWidth: 490
-    property real mainViewMinHeight: 500
-
-    property real wizardViewMinWidth: 500
-    property real wizardViewMinHeight: 600
-
+    property real mainViewMinWidth: 500
+    property real mainViewMinHeight: 600
     property real mainViewPreferredWidth: 730
     property real mainViewPreferredHeight: 600
-
     property real mainViewMargin: 25
 
     // Extras panel
