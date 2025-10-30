@@ -23,6 +23,8 @@
 #include <api/callparticipantsmodel.h>
 #include <api/devicemodel.h>
 
+#include <algorithm>
+
 CurrentCall::CurrentCall(LRCInstance* lrcInstance, QObject* parent)
     : QObject(parent)
     , lrcInstance_(lrcInstance)
@@ -57,20 +59,43 @@ CurrentCall::CurrentCall(LRCInstance* lrcInstance, QObject* parent)
 void
 CurrentCall::updateId(QString callId)
 {
+    const auto previousId = id_;
+
     auto convId = lrcInstance_->get_selectedConvUid();
     auto optConv = lrcInstance_->getCurrentConversationModel()->getConversationForUid(convId);
     if (!optConv.has_value()) {
         return;
     }
 
+    auto callModel = lrcInstance_->getCurrentCallModel();
+    if (!callModel) {
+        return;
+    }
+
+    const auto& conversation = optConv->get();
+    const auto& baseCallId = conversation.callId;
+
     // If the optional parameter callId is empty, then we've just
     // changed conversation selection and need to check the current
     // conv's callId for an existing call.
-    // Otherwise, return if callId doesn't belong to this conversation.
+    // Otherwise, allow the requested callId when it represents a
+    // conference that contains the conversation's base call.
     if (callId.isEmpty()) {
-        callId = optConv->get().getCallId();
-    } else if (optConv->get().getCallId() != callId) {
-        return;
+        callId = conversation.getCallId();
+    } else if (conversation.getCallId() != callId) {
+        try {
+            const auto& callInfo = callModel->getCall(callId);
+            if (callInfo.type != call::Type::CONFERENCE) {
+                return;
+            }
+        } catch (...) {
+            return;
+        }
+
+        const auto subcalls = callModel->getConferenceSubcalls(callId);
+        if (std::find(subcalls.cbegin(), subcalls.cend(), baseCallId) == subcalls.cend()) {
+            return;
+        }
     }
 
     auto& accInfo = lrcInstance_->getCurrentAccountInfo();
@@ -78,23 +103,33 @@ CurrentCall::updateId(QString callId)
         // Only setCurrentCall if call is actually answered
         try {
             auto callInfo = accInfo.callModel->getCall(callId);
-            if (callInfo.status == call::Status::IN_PROGRESS
-                || callInfo.status == call::Status::PAUSED)
+            if (callInfo.status == call::Status::IN_PROGRESS || callInfo.status == call::Status::PAUSED)
                 accInfo.callModel->setCurrentCall(callId);
         } catch (...) {
         }
     }
-    // Set the current id_ if there is a call.
-    auto hasCall = accInfo.callModel->hasCall(callId);
-    set_id((hasCall ? callId : QString()));
 
-    if (hasCall) {
-        try {
-            auto callInfo = accInfo.callModel->getCall(callId);
-            participantsModel_->setParticipants(id_, getConferencesInfos());
-            participantsModel_->setConferenceLayout(static_cast<int>(callInfo.layout), id_);
-        } catch (...) {
+    auto hasCall = accInfo.callModel->hasCall(callId);
+    if (!hasCall) {
+        if (!id_.isEmpty()) {
+            participantsModel_->setParticipants(id_, {});
+            set_id(QString());
         }
+        return;
+    }
+
+    // Set the current id_ only when necessary to avoid resetting the model on every update
+    if (previousId == callId) {
+        return;
+    }
+
+    set_id(callId);
+
+    try {
+        auto callInfo = accInfo.callModel->getCall(callId);
+        participantsModel_->setParticipants(id_, getConferencesInfos());
+        participantsModel_->setConferenceLayout(static_cast<int>(callInfo.layout), id_);
+    } catch (...) {
     }
 }
 
@@ -397,6 +432,8 @@ CurrentCall::onCurrentCallChanged(const QString& callId)
 void
 CurrentCall::onParticipantsChanged(const QString& callId)
 {
+    updateId(callId);
+
     if (id_ != callId) {
         return;
     }
