@@ -130,23 +130,35 @@ CurrentCall::updateId(QString callId)
 void
 CurrentCall::updateCallStatus()
 {
-    call::Status status {};
     auto callModel = lrcInstance_->getCurrentCallModel();
+    if (!callModel) {
+        set_status(call::Status::INVALID);
+        set_isActive(false);
+        set_isPaused(false);
+        return;
+    }
+
+    auto status = call::Status::INVALID;
     if (callModel->hasCall(id_)) {
-        auto callInfo = callModel->getCall(id_);
-        status = callInfo.status;
+        status = callModel->getCall(id_).status;
     }
 
     set_status(status);
-    set_isActive(status_ == call::Status::CONNECTED || status_ == call::Status::IN_PROGRESS
-                 || status_ == call::Status::PAUSED);
-    set_isPaused(status_ == call::Status::PAUSED);
+    set_isActive(status == call::Status::CONNECTED || status == call::Status::IN_PROGRESS
+                 || status == call::Status::PAUSED);
+    set_isPaused(status == call::Status::PAUSED);
 }
 
 void
 CurrentCall::updateParticipants()
 {
     auto callModel = lrcInstance_->getCurrentCallModel();
+    if (!callModel || id_.isEmpty() || !callModel->hasCall(id_)) {
+        set_uris({});
+        set_isConference(false);
+        return;
+    }
+
     QStringList uris;
     auto& participantsModel = callModel->getParticipantsInfos(id_);
     for (int index = 0; index < participantsModel.getParticipants().size(); index++) {
@@ -154,7 +166,6 @@ CurrentCall::updateParticipants()
         uris.append(participantInfo[ParticipantsInfosStrings::URI].toString());
     }
     set_uris(uris);
-    set_isConference(uris.size());
 }
 
 void
@@ -243,7 +254,13 @@ void
 CurrentCall::updateCallInfo()
 {
     auto callModel = lrcInstance_->getCurrentCallModel();
+    if (!callModel) {
+        set_isConference(false);
+        return;
+    }
+
     if (!callModel->hasCall(id_)) {
+        set_isConference(false);
         return;
     }
 
@@ -252,6 +269,7 @@ CurrentCall::updateCallInfo()
     set_isOutgoing(callInfo.isOutgoing);
     set_isGrid(callInfo.layout == call::Layout::GRID);
     set_isAudioOnly(callInfo.isAudioOnly);
+    set_isConference(callInfo.type == call::Type::CONFERENCE);
 
     auto callInfoEx = callInfo.getCallInfoEx();
     set_previewId(callInfoEx["preview_id"].toString());
@@ -335,11 +353,11 @@ CurrentCall::onCurrentConvIdChanged()
 
     auto callModel = lrcInstance_->getCurrentCallModel();
     QStringList recorders {};
-    if (callModel->hasCall(id_)) {
+    if (callModel && callModel->hasCall(id_)) {
         auto callInfo = callModel->getCall(id_);
         recorders = callInfo.recordingPeers;
     }
-    updateRecordingState(callModel->isRecording(id_));
+    updateRecordingState(callModel ? callModel->isRecording(id_) : false);
     updateRemoteRecorders(recorders);
 }
 
