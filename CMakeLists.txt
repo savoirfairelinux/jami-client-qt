@@ -725,7 +725,7 @@ else()
 endif()
 
 # ZXing-cpp configuration
-set(ZXING_BUILD_EXAMPLES OFF CACHE BOOL "")
+set(ZXING_EXAMPLES OFF CACHE BOOL "")
 set(ZXING_BLACKBOX_TESTS OFF CACHE BOOL "")
 add_subdirectory(3rdparty/zxing-cpp EXCLUDE_FROM_ALL)
 
