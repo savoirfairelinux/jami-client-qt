@@ -17,14 +17,13 @@
 
 #include "connectioninfolistmodel.h"
 
+#include <algorithm>
+
 ConnectionInfoListModel::ConnectionInfoListModel(LRCInstance* instance, QObject* parent)
     : AbstractListModelBase(parent)
 {
     lrcInstance_ = instance;
-    connect(lrcInstance_,
-            &LRCInstance::currentAccountIdChanged,
-            this,
-            &ConnectionInfoListModel::resetData);
+    connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, this, &ConnectionInfoListModel::resetData);
 }
 
 int
@@ -42,16 +41,15 @@ ConnectionInfoListModel::data(const QModelIndex& index, int role) const
         qWarning() << "ConnectionInfoListModel::data: accountId or peerID is empty";
         return {};
     }
-    const auto peerId = peerIds_[index.row()];
-    const auto peerData = peerData_[peerId];
+    const auto& peerId = peerIds_[index.row()];
+    const auto& peerData = peerData_[peerId];
     switch (role) {
     case ConnectionInfoList::ChannelsMap: {
         QVariantMap channelsMapMap;
         int i = 0;
-        for (const auto& device : peerData.keys()) {
-            QString channelsId = peerData[device]["id"].toString();
+        for (const auto& data : peerData) {
             QVariantMap channelsMap;
-            const auto channelInfoList = lrcInstance_->getChannelList(accountId, channelsId);
+            const auto channelInfoList = lrcInstance_->getChannelList(accountId, data["id"].toString());
             for (const auto& channelInfo : channelInfoList) {
                 channelsMap.insert(channelInfo["id"], channelInfo["name"]);
             }
@@ -62,12 +60,12 @@ ConnectionInfoListModel::data(const QModelIndex& index, int role) const
     case ConnectionInfoList::ConnectionDatas: {
         QString peerString;
         peerString += "Peer: " + peerId;
-        for (const auto& device : peerData.keys()) {
+        for (const auto& [device, data] : peerData.asKeyValueRange()) {
             peerString += ",\n    {";
             peerString += "Device: " + device;
-            peerString += ", Status: " + peerData[device]["status"].toString();
-            peerString += ", Channel(s): " + peerData[device]["channels"].toString();
-            peerString += ", Remote IP address: " + peerData[device]["remoteAddress"].toString();
+            peerString += ", Status: " + data["status"].toString();
+            peerString += ", Channel(s): " + data["channels"].toString();
+            peerString += ", Remote IP address: " + data["remoteAddress"].toString();
             peerString += "}";
         }
         return peerString;
@@ -77,8 +75,8 @@ ConnectionInfoListModel::data(const QModelIndex& index, int role) const
     case ConnectionInfoList::RemoteAddress: {
         QVariantMap remoteAddressMap;
         int i = 0;
-        for (const auto& device : peerData.keys()) {
-            remoteAddressMap.insert(QString::number(i++), peerData[device]["remoteAddress"]);
+        for (const auto& data : peerData) {
+            remoteAddressMap.insert(QString::number(i++), data["remoteAddress"]);
         }
         return QVariant(remoteAddressMap);
     }
@@ -93,16 +91,16 @@ ConnectionInfoListModel::data(const QModelIndex& index, int role) const
     case ConnectionInfoList::Status: {
         QVariantMap statusMap;
         int i = 0;
-        for (const auto& device : peerData.keys()) {
-            statusMap.insert(QString::number(i++), peerData[device]["status"]);
+        for (const auto& data : peerData) {
+            statusMap.insert(QString::number(i++), data["status"]);
         }
         return QVariantMap(statusMap);
     }
     case ConnectionInfoList::Channels: {
         QVariantMap channelsMap;
         int i = 0;
-        for (const auto& device : peerData.keys()) {
-            channelsMap.insert(QString::number(i++), peerData[device]["channels"]);
+        for (const auto& data : peerData) {
+            channelsMap.insert(QString::number(i++), data["channels"]);
         }
         return QVariant(channelsMap);
     }
@@ -153,62 +151,55 @@ ConnectionInfoListModel::aggregateData()
     peerData_ = {};
 
     QSet<QString> newPeerIds;
-
     for (const auto& connectionInfo : connectionInfoList_) {
-        if (!connectionInfo["peer"].isEmpty()) {
-            newPeerIds.insert(connectionInfo["peer"]);
-        }
-        const auto channelInfoList = lrcInstance_->getChannelList(accountId, connectionInfo["id"]);
-        peerData_[connectionInfo["peer"]][connectionInfo["device"]] = {};
-        peerData_[connectionInfo["peer"]][connectionInfo["device"]]["status"]
-            = connectionInfo["status"];
-        peerData_[connectionInfo["peer"]][connectionInfo["device"]]["channels"] = channelInfoList
-                                                                                      .size();
-        peerData_[connectionInfo["peer"]][connectionInfo["device"]]["id"] = connectionInfo["id"];
-        peerData_[connectionInfo["peer"]][connectionInfo["device"]]["remoteAddress"]
-            = connectionInfo["remoteAddress"];
+        const auto& peerId = connectionInfo["peer"];
+        if (peerId.isEmpty())
+            continue;
+        newPeerIds.insert(peerId);
+        const auto& id = connectionInfo["id"];
+        peerData_[peerId][connectionInfo["device"]] = {
+            {"id", id},
+            {"status", connectionInfo["status"]},
+            {"channels", lrcInstance_->getChannelList(accountId, id).size()},
+            {"remoteAddress", connectionInfo["remoteAddress"]},
+        };
     }
 
     QVector<QString> oldVector;
+    oldVector.reserve(peerIds_.size());
     for (const auto& peerId : peerIds_) {
         oldVector << peerId;
     }
+    std::sort(oldVector.begin(), oldVector.end());
+
     QVector<QString> newVector;
+    newVector.reserve(newPeerIds.size());
     for (const auto& peerId : newPeerIds) {
         newVector << peerId;
     }
-
-    std::sort(oldVector.begin(), oldVector.end());
     std::sort(newVector.begin(), newVector.end());
 
-    QVector<QString> removed, added;
-    std::tie(added, removed) = getSetDiff(oldVector, newVector);
+    auto [added, removed] = getSetDiff(oldVector, newVector);
+    Q_FOREACH (const auto& key, removed) {
+        auto index = peerIds_.indexOf(key);
+        if (index < 0)
+            continue;
+        beginRemoveRows(QModelIndex(), index, index);
+        peerIds_.remove(index);
+        endRemoveRows();
+    }
     Q_FOREACH (const auto& key, added) {
-        auto index = std::distance(newVector.begin(),
-                                   std::find(newVector.begin(), newVector.end(), key));
+        auto it = std::lower_bound(peerIds_.cbegin(), peerIds_.cend(), key);
+        auto index = std::distance(peerIds_.cbegin(), it);
         beginInsertRows(QModelIndex(), index, index);
         peerIds_.insert(index, key);
         endInsertRows();
-    }
-    Q_FOREACH (const auto& key, removed) {
-        auto index = std::distance(oldVector.begin(),
-                                   std::find(oldVector.begin(), oldVector.end(), key));
-        beginRemoveRows(QModelIndex(), index, index);
-        if (peerIds_.size() > index) {
-            peerIds_.remove(index);
-        } else {
-            qWarning() << "ConnectionInfoListModel::aggregateData: index out of range";
-            qWarning() << "index: " << index;
-            qWarning() << "key: " << key;
-        }
-        endRemoveRows();
     }
 
     // HACK: loop through all the peerIds_ and update the data for each one.
     // This is not efficient, but it works.
     Q_FOREACH (const auto& peerId, peerIds_) {
-        auto index = std::distance(peerIds_.begin(),
-                                   std::find(peerIds_.begin(), peerIds_.end(), peerId));
+        auto index = std::distance(peerIds_.begin(), std::find(peerIds_.begin(), peerIds_.end(), peerId));
         Q_EMIT dataChanged(this->index(index), this->index(index));
     }
 }
