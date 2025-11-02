@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a84a64bd_12abd7e1",
+        "filename": "src/app/mainview/components/CallsButton.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-11-02T09:26:21Z",
+      "side": 1,
+      "message": "2025",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "f2ae36d32c0456c1ce88f3fcba292cabe15e7eb9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6634fd91_d3f3d55a",
+        "filename": "src/app/mainview/components/CallsButton.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-11-02T09:26:21Z",
+      "side": 1,
+      "message": "Should there be a blank line after the comment?",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 3
+      },
+      "revId": "f2ae36d32c0456c1ce88f3fcba292cabe15e7eb9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24859c38_c8090b15",
+        "filename": "src/app/mainview/components/ChatView.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-11-02T09:26:21Z",
+      "side": 1,
+      "message": "Why has the year been changed to last year?",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "f2ae36d32c0456c1ce88f3fcba292cabe15e7eb9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
