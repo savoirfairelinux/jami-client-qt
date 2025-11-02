@@ -3225,24 +3225,16 @@ ConversationModelPimpl::addIncomingMessage(const QString& peerId,
                                            const uint64_t& timestamp,
                                            const QString& daemonId)
 {
+    if (linked.owner.profileInfo.type != profile::Type::SIP)
+        return "";
     auto convIds = storage::getConversationsWithPeer(db, peerId);
-    bool isRequest = false;
     if (convIds.empty()) {
         // in case if we receive a message after removing contact, add a conversation request
         try {
             auto contact = linked.owner.contactModel->getContact(peerId);
-            isRequest = contact.profileInfo.type == profile::Type::PENDING;
-            // if isSip, it will be a contact!
-            auto isSip = linked.owner.profileInfo.type == profile::Type::SIP;
-            if (isSip || (isRequest && !contact.isBanned && peerId != linked.owner.profileInfo.uri)) {
-                if (!isSip)
-                    addContactRequest(peerId);
-                convIds.push_back(storage::beginConversationWithPeer(db, contact.profileInfo.uri));
-                auto& conv = getConversationForPeerUri(contact.profileInfo.uri).get();
-                conv.uid = convIds[0];
-            } else {
-                return "";
-            }
+            convIds.push_back(storage::beginConversationWithPeer(db, contact.profileInfo.uri));
+            auto& conv = getConversationForPeerUri(contact.profileInfo.uri).get();
+            conv.uid = convIds[0];
         } catch (const std::out_of_range&) {
             return "";
         }
@@ -3261,7 +3253,7 @@ ConversationModelPimpl::addIncomingMessage(const QString& peerId,
     auto conversationIdx = indexOf(convIds[0]);
     // Add the conversation if not already here
     if (conversationIdx == -1) {
-        addConversationWith(convIds[0], peerId, isRequest);
+        addConversationWith(convIds[0], peerId, false);
         Q_EMIT linked.newConversation(convIds[0]);
     } else {
         // Maybe check if this is failing?
