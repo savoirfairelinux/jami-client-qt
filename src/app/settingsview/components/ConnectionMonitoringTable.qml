@@ -44,20 +44,20 @@ ListView {
 
     header: Rectangle {
         color: JamiTheme.transparentColor
-        height: 55
+        height: 45
         width: connectionMonitoringTable.width
         Rectangle {
             color: JamiTheme.connectionMonitoringHeaderColor
             anchors.top: parent.top
-            height: 50
+            height: 40
             width: connectionMonitoringTable.width
 
             RowLayout {
                 anchors.fill: parent
                 Rectangle {
                     id: profile
-                    height: 50
-                    Layout.leftMargin: 5
+                    height: 40
+                    Layout.leftMargin: 10
                     Layout.preferredWidth: 200
                     color: JamiTheme.transparentColor
                     Text {
@@ -73,7 +73,7 @@ ListView {
                     id: device
                     Layout.fillWidth: true
                     Layout.minimumWidth: 50
-                    height: 50
+                    height: 40
                     color: JamiTheme.transparentColor
                     Text {
                         id: deviceText
@@ -86,7 +86,7 @@ ListView {
                 Rectangle {
                     id: connection
                     width: 130
-                    height: 50
+                    height: 40
                     radius: 5
                     color: JamiTheme.transparentColor
                     Text {
@@ -100,7 +100,7 @@ ListView {
 
                 Rectangle {
                     id: channel
-                    height: 50
+                    height: 40
                     width: 70
                     color: JamiTheme.transparentColor
                     Text {
@@ -189,6 +189,7 @@ ListView {
                             Text {
                                 id: usernameText
                                 color: JamiTheme.textColor
+                                font.bold: true
                                 anchors.fill: parent
                                 text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, PeerId)
                                 elide: Text.ElideRight
@@ -386,11 +387,11 @@ ListView {
                             }
 
                             onClicked: {
-                                var output = "";
-                                var channelMap = ChannelsMap[index];
-                                for (var key in channelMap) {
-                                    var value = channelMap[key];
-                                    var keyHexa = parseInt(key, 16).toString();
+                                let output = "";
+                                const channelMap = ChannelsMap[index];
+                                for (const key in channelMap) {
+                                    const value = channelMap[key];
+                                    const keyHexa = parseInt(key, 16).toString();
                                     output += keyHexa + " : " + value + "\n";
                                 }
                                 viewCoordinator.presentDialog(parent, "settingsview/components/ChannelsPopup.qml", {
