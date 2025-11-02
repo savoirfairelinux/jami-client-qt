@@ -68,6 +68,52 @@
       },
       "revId": "f2ae36d32c0456c1ce88f3fcba292cabe15e7eb9",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59d2bef6_3a801cdf",
+        "filename": "src/app/mainview/components/ChatView.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-11-02T09:27:31Z",
+      "side": 1,
+      "message": "Should there be a blank line after the comment?",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 3
+      },
+      "revId": "f2ae36d32c0456c1ce88f3fcba292cabe15e7eb9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a9534af_279ba4db",
+        "filename": "src/app/mainview/components/ChatViewHeader.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-11-02T09:27:31Z",
+      "side": 1,
+      "message": "Should there be a blank line after the comment?",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 3
+      },
+      "revId": "f2ae36d32c0456c1ce88f3fcba292cabe15e7eb9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
