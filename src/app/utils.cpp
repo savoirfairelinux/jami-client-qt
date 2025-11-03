@@ -23,7 +23,8 @@
 
 #include <api/contact.h>
 
-#include <qrencode.h>
+#include <BitMatrix.h>
+#include <MultiFormatWriter.h>
 
 #include <QApplication>
 #include <QBitmap>
@@ -54,10 +55,7 @@
 // This is required for custom args as quick_test_main_with_setup() will
 // fail if given an invalid command-line argument.
 void
-Utils::remove_argument(char** argv,
-                       int& argc,
-                       const std::string& arg_to_remove,
-                       std::function<void()> callback)
+Utils::remove_argument(char** argv, int& argc, const std::string& arg_to_remove, std::function<void()> callback)
 {
     // Remove arg_to_remove from argv, as quick_test_main_with_setup() will
     // fail if given an invalid command-line argument.
@@ -101,15 +99,13 @@ Utils::testVulkanSupport()
     } vk {"vulkan-1.dll"};
 
     typedef void*(__stdcall * PFN_vkGetInstanceProcAddr)(void*, const char*);
-    auto vkGetInstanceProcAddr = (PFN_vkGetInstanceProcAddr)
-        GetProcAddress(vk.module, "vkGetInstanceProcAddr");
+    auto vkGetInstanceProcAddr = (PFN_vkGetInstanceProcAddr) GetProcAddress(vk.module, "vkGetInstanceProcAddr");
     if (!vkGetInstanceProcAddr) {
         throw std::runtime_error("Missing vkGetInstanceProcAddr proc.");
     }
 
     typedef int(__stdcall * PFN_vkCreateInstance)(int*, void*, void**);
-    auto vkCreateInstance = (PFN_vkCreateInstance) vkGetInstanceProcAddr(vk.module,
-                                                                         "vkCreateInstance");
+    auto vkCreateInstance = (PFN_vkCreateInstance) vkGetInstanceProcAddr(vk.module, "vkCreateInstance");
     if (!vkCreateInstance) {
         throw std::runtime_error("Missing vkCreateInstance proc.");
     }
@@ -171,8 +167,7 @@ Utils::CreateStartupLink(const std::wstring& wstrAppName)
 
     qDebug() << "Linking autostart file from" << desktopPath;
 
-    QString desktopFile = QStandardPaths::locate(QStandardPaths::ConfigLocation,
-                                                 "autostart/net.jami.Jami.desktop");
+    QString desktopFile = QStandardPaths::locate(QStandardPaths::ConfigLocation, "autostart/net.jami.Jami.desktop");
     if (!desktopFile.isEmpty()) {
         QFileInfo symlinkInfo(desktopFile);
         if (symlinkInfo.isSymLink()) {
@@ -185,8 +180,7 @@ Utils::CreateStartupLink(const std::wstring& wstrAppName)
             }
         }
     } else {
-        QString autoStartDir = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation)
-                               + "/autostart";
+        QString autoStartDir = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/autostart";
 
         if (!QDir(autoStartDir).exists()) {
             if (QDir().mkdir(autoStartDir)) {
@@ -201,8 +195,7 @@ Utils::CreateStartupLink(const std::wstring& wstrAppName)
 
     QFile srcFile(desktopPath);
     bool result = srcFile.link(desktopFile);
-    qDebug() << desktopFile
-             << (result ? "-> " + desktopPath + " created successfully" : "unable to be created");
+    qDebug() << desktopFile << (result ? "-> " + desktopPath + " created successfully" : "unable to be created");
     return result;
 #endif
 }
@@ -214,11 +207,7 @@ Utils::CreateLink(LPCWSTR lpszPathObj, LPCWSTR lpszPathLink)
     HRESULT hres;
     IShellLink* psl;
 
-    hres = CoCreateInstance(CLSID_ShellLink,
-                            NULL,
-                            CLSCTX_INPROC_SERVER,
-                            IID_IShellLink,
-                            (LPVOID*) &psl);
+    hres = CoCreateInstance(CLSID_ShellLink, NULL, CLSCTX_INPROC_SERVER, IID_IShellLink, (LPVOID*) &psl);
     if (SUCCEEDED(hres)) {
         IPersistFile* ppf;
         psl->SetPath(lpszPathObj);
@@ -253,8 +242,7 @@ Utils::DeleteStartupLink(const std::wstring& wstrAppName)
 
 #else
     Q_UNUSED(wstrAppName)
-    QString desktopFile = QStandardPaths::locate(QStandardPaths::ConfigLocation,
-                                                 "autostart/net.jami.Jami.desktop");
+    QString desktopFile = QStandardPaths::locate(QStandardPaths::ConfigLocation, "autostart/net.jami.Jami.desktop");
     if (!desktopFile.isEmpty()) {
         try {
             QFile::remove(desktopFile);
@@ -280,9 +268,7 @@ Utils::CheckStartupLink(const std::wstring& wstrAppName)
     return PathFileExists(linkPath.c_str());
 #else
     Q_UNUSED(wstrAppName)
-    return (
-        !QStandardPaths::locate(QStandardPaths::ConfigLocation, "autostart/net.jami.Jami.desktop")
-             .isEmpty());
+    return (!QStandardPaths::locate(QStandardPaths::ConfigLocation, "autostart/net.jami.Jami.desktop").isEmpty());
 #endif
 }
 
@@ -385,8 +371,8 @@ Utils::accountPhoto(LRCInstance* instance, const QString& accountId, const QSize
 {
     QImage photo;
     try {
-        auto& accInfo = instance->accountModel().getAccountInfo(
-            accountId.isEmpty() ? instance->get_currentAccountId() : accountId);
+        auto& accInfo = instance->accountModel().getAccountInfo(accountId.isEmpty() ? instance->get_currentAccountId()
+                                                                                    : accountId);
         auto bestName = instance->accountModel().bestNameForAccount(accInfo.id);
         if (!accInfo.profileInfo.avatar.isEmpty()) {
             photo = imageFromBase64String(accInfo.profileInfo.avatar);
@@ -407,15 +393,12 @@ Utils::accountPhoto(LRCInstance* instance, const QString& accountId, const QSize
 }
 
 QImage
-Utils::contactPhoto(LRCInstance* instance,
-                    const QString& contactUri,
-                    const QSize& size,
-                    const QString& accountId)
+Utils::contactPhoto(LRCInstance* instance, const QString& contactUri, const QSize& size, const QString& accountId)
 {
     QImage photo;
     try {
-        auto& accInfo = instance->accountModel().getAccountInfo(
-            accountId.isEmpty() ? instance->get_currentAccountId() : accountId);
+        auto& accInfo = instance->accountModel().getAccountInfo(accountId.isEmpty() ? instance->get_currentAccountId()
+                                                                                    : accountId);
         auto contactPhoto = accInfo.contactModel->avatar(contactUri);
         if (!contactPhoto.isEmpty()) {
             photo = imageFromBase64String(contactPhoto);
@@ -425,11 +408,9 @@ Utils::contactPhoto(LRCInstance* instance,
         // If no avatar is found, generate one
         auto contactInfo = accInfo.contactModel->getContact(contactUri);
         auto bestName = accInfo.contactModel->bestNameForContact(contactUri);
-        if (accInfo.profileInfo.type == profile::Type::SIP
-            && contactInfo.profileInfo.type == profile::Type::TEMPORARY) {
+        if (accInfo.profileInfo.type == profile::Type::SIP && contactInfo.profileInfo.type == profile::Type::TEMPORARY) {
             photo = Utils::fallbackAvatar(QString(), QString());
-        } else if (contactInfo.profileInfo.type == profile::Type::TEMPORARY
-                   && contactInfo.profileInfo.uri.isEmpty()) {
+        } else if (contactInfo.profileInfo.type == profile::Type::TEMPORARY && contactInfo.profileInfo.uri.isEmpty()) {
             photo = Utils::fallbackAvatar(QString(), QString());
         } else {
             auto avatarName = contactInfo.profileInfo.uri == bestName ? QString() : bestName;
@@ -442,18 +423,15 @@ Utils::contactPhoto(LRCInstance* instance,
 }
 
 QImage
-Utils::conversationAvatar(LRCInstance* instance,
-                          const QString& convId,
-                          const QSize& size,
-                          const QString& accountId)
+Utils::conversationAvatar(LRCInstance* instance, const QString& convId, const QSize& size, const QString& accountId)
 {
     QImage avatar(size, QImage::Format_ARGB32_Premultiplied);
     avatar.fill(Qt::transparent);
     QPainter painter(&avatar);
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     try {
-        auto& accInfo = instance->accountModel().getAccountInfo(
-            accountId.isEmpty() ? instance->get_currentAccountId() : accountId);
+        auto& accInfo = instance->accountModel().getAccountInfo(accountId.isEmpty() ? instance->get_currentAccountId()
+                                                                                    : accountId);
         auto* convModel = accInfo.conversationModel.get();
         auto avatarb64 = convModel->avatar(convId);
         if (!avatarb64.isEmpty()) {
@@ -530,11 +508,7 @@ Utils::getCirclePhoto(const QImage original, int sizePhoto)
     QPainter painter(&target);
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     painter.setBrush(QBrush(Qt::white));
-    auto scaledPhoto = original
-                           .scaled(sizePhoto,
-                                   sizePhoto,
-                                   Qt::KeepAspectRatioByExpanding,
-                                   Qt::SmoothTransformation)
+    auto scaledPhoto = original.scaled(sizePhoto, sizePhoto, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation)
                            .convertToFormat(QImage::Format_ARGB32_Premultiplied);
     int marginX = 0;
     int marginY = 0;
@@ -576,9 +550,7 @@ Utils::getRealSize(QScreen* screen)
 #ifdef Q_OS_WIN
     DEVMODE dmThisScreen;
     ZeroMemory(&dmThisScreen, sizeof(dmThisScreen));
-    EnumDisplaySettings((const wchar_t*) screen->name().utf16(),
-                        ENUM_CURRENT_SETTINGS,
-                        (DEVMODE*) &dmThisScreen);
+    EnumDisplaySettings((const wchar_t*) screen->name().utf16(), ENUM_CURRENT_SETTINGS, (DEVMODE*) &dmThisScreen);
     return QSize(dmThisScreen.dmPelsWidth, dmThisScreen.dmPelsHeight);
 #else
     Q_UNUSED(screen)
@@ -621,10 +593,9 @@ Utils::getProjectCredits()
                             QObject::tr("Media"),
                             QObject::tr("Community Management"),
                             QObject::tr("Special thanks to"),
-                            QObject::tr(
-                                "This is a list of people who have made a significant investment "
-                                "of time, with useful results, into Jami. Any such contributors "
-                                "who want to be added to the list should contact us."));
+                            QObject::tr("This is a list of people who have made a significant investment "
+                                        "of time, with useful results, into Jami. Any such contributors "
+                                        "who want to be added to the list should contact us."));
 }
 
 QString
@@ -648,8 +619,7 @@ removeEndlines(const QString& str)
 }
 
 lrc::api::profile::Type
-Utils::profileType(const lrc::api::conversation::Info& conv,
-                   const lrc::api::ConversationModel& model)
+Utils::profileType(const lrc::api::conversation::Info& conv, const lrc::api::ConversationModel& model)
 {
     try {
         auto contact = model.owner.contactModel->getContact(conv.participants[0].uri);
@@ -663,8 +633,7 @@ Utils::profileType(const lrc::api::conversation::Info& conv,
 bool
 Utils::isInteractionGenerated(const lrc::api::interaction::Type& type)
 {
-    return type == lrc::api::interaction::Type::CALL
-           || type == lrc::api::interaction::Type::CONTACT;
+    return type == lrc::api::interaction::Type::CALL || type == lrc::api::interaction::Type::CONTACT;
 }
 
 bool
@@ -686,8 +655,7 @@ Utils::isContactValid(const QString& contactUid, const lrc::api::ConversationMod
 bool
 Utils::getReplyMessageBox(QWidget* widget, const QString& title, const QString& text)
 {
-    if (QMessageBox::question(widget, title, text, QMessageBox::Yes | QMessageBox::No)
-        == QMessageBox::Yes)
+    if (QMessageBox::question(widget, title, text, QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes)
         return true;
     return false;
 }
@@ -698,8 +666,7 @@ Utils::getAvatarColor(const QString& canonicalUri)
     if (canonicalUri.isEmpty()) {
         return JamiAvatarTheme::defaultAvatarColor_;
     }
-    auto h = QString(
-        QCryptographicHash::hash(canonicalUri.toLocal8Bit(), QCryptographicHash::Md5).toHex());
+    auto h = QString(QCryptographicHash::hash(canonicalUri.toLocal8Bit(), QCryptographicHash::Md5).toHex());
     if (h.isEmpty() || h.isNull()) {
         return JamiAvatarTheme::defaultAvatarColor_;
     }
@@ -741,9 +708,7 @@ Utils::fallbackAvatar(const QString& canonicalUri, const QString& name, const QS
         if (unicode >= 0x1F000 && unicode <= 0x1FFFF) {
             // emoticon
             auto letter = QString::fromUcs4(reinterpret_cast<char32_t*>(&unicode), 1);
-            QFont font(QString("Segoe UI Emoji").split(QLatin1Char(',')),
-                       avatar.height() / 2.66667,
-                       QFont::Medium);
+            QFont font(QString("Segoe UI Emoji").split(QLatin1Char(',')), avatar.height() / 2.66667, QFont::Medium);
             painter.setFont(font);
             QRect emojiRect(avatar.rect());
             emojiRect.moveTop(-6);
@@ -751,17 +716,13 @@ Utils::fallbackAvatar(const QString& canonicalUri, const QString& name, const QS
         } else if (unicode >= 0x0000 && unicode <= 0x00FF) {
             // basic Latin
             auto letter = trimmedName.at(0).toUpper();
-            QFont font(QString("Arial").split(QLatin1Char(',')),
-                       avatar.height() / 2.66667,
-                       QFont::Medium);
+            QFont font(QString("Arial").split(QLatin1Char(',')), avatar.height() / 2.66667, QFont::Medium);
             painter.setFont(font);
             painter.setPen(Qt::white);
             painter.drawText(avatar.rect(), QString(letter), QTextOption(Qt::AlignCenter));
         } else {
             auto letter = QString::fromUcs4(reinterpret_cast<char32_t*>(&unicode), 1);
-            QFont font(QString("Arial").split(QLatin1Char(',')),
-                       avatar.height() / 2.66667,
-                       QFont::Medium);
+            QFont font(QString("Arial").split(QLatin1Char(',')), avatar.height() / 2.66667, QFont::Medium);
             painter.setFont(font);
             painter.setPen(Qt::white);
             painter.drawText(avatar.rect(), QString(letter), QTextOption(Qt::AlignCenter));
@@ -832,37 +793,41 @@ Utils::pixmapFromSvg(const QString& svg_resource, const QSize& size)
 QImage
 Utils::getQRCodeImage(QString data, int margin)
 {
-    auto qrcode = QRcode_encodeString(data.toStdString().c_str(),
-                                      0,            // Let the version be decided by libqrencode
-                                      QR_ECLEVEL_L, // Lowest level of error correction
-                                      QR_MODE_8,    // 8-bit data mode
-                                      1);
-    if (not qrcode) {
-        qWarning() << "Failed to generate QR code";
-        return QImage();
-    }
+    try {
+        ZXing::MultiFormatWriter writer(ZXing::BarcodeFormat::QRCode);
+        writer.setEccLevel(0);
+        writer.setMargin(margin);
 
-    int qrwidth = qrcode->width + margin * 2;
-    QImage result(QSize(qrwidth, qrwidth), QImage::Format_Mono);
-    QPainter painter;
-    painter.begin(&result);
-    painter.setClipRect(QRect(0, 0, qrwidth, qrwidth));
-    painter.setPen(QPen(Qt::black, 0.1, Qt::SolidLine, Qt::FlatCap, Qt::MiterJoin));
-    painter.setBrush(Qt::black);
-    painter.fillRect(QRect(0, 0, qrwidth, qrwidth), Qt::white);
-    unsigned char* p;
-    p = qrcode->data;
-    for (int y = 0; y < qrcode->width; y++) {
-        unsigned char* row = (p + (y * qrcode->width));
-        for (int x = 0; x < qrcode->width; x++) {
-            if (*(row + x) & 0x1) {
-                painter.drawRect(margin + x, margin + y, 1, 1);
+        auto bitMatrix = writer.encode(data.toStdString(), 0, 0);
+
+        auto bitmap = ZXing::ToMatrix<uint8_t>(bitMatrix);
+
+        int qrwidth = bitmap.width();
+        int qrheight = bitmap.height();
+
+        // Create QImage with the QR code data
+        QImage result(qrwidth, qrheight, QImage::Format_Mono);
+        result.fill(1); // Fill with white
+
+        // Copy the bitmap data to QImage
+        // In Format_Mono, 0 = black, 1 = white
+        // ZXing: 0 = black, 255 = white
+        for (int y = 0; y < qrheight; y++) {
+            for (int x = 0; x < qrwidth; x++) {
+                // If bitmap has black (0), set pixel to black (0)
+                // If bitmap has white (255), set pixel to white (1)
+                if (bitmap.get(x, y) == 0) {
+                    result.setPixel(x, y, 0); // Black
+                } else {
+                    result.setPixel(x, y, 1); // White
+                }
             }
         }
+        return result;
+    } catch (const std::exception& e) {
+        qWarning() << "Failed to generate QR code:" << e.what();
+        return QImage();
     }
-    painter.end();
-    QRcode_free(qrcode);
-    return result;
 }
 
 QByteArray
@@ -960,8 +925,7 @@ Utils::generateUid()
 QString
 Utils::getTempSwarmAvatarPath()
 {
-    return QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QDir::separator()
-           + "tmpSwarmImage";
+    return QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QDir::separator() + "tmpSwarmImage";
 }
 
 QVariantMap
