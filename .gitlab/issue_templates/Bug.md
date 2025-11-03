@@ -1,39 +1,28 @@
-How to report a bug
--------------------
+## Bug report
 
-## One bug = one bug report
+- Platform: 
 
-If you have multiple issues, please file separate bug reports. It will be much easier to track bugs that way.
+- OS version: 
 
-## Avoid duplicates
+- Jami version: 
 
-Search for similar problem - update existing issue instead of creating new one.
+- Distribution channel: [Jami.net | Jami.net Beta | Snap | Flathub | other (please specify)]
 
-Bug report form
----------------
+- Account-related devices: [single | multiple]
 
-## Describe your environment
+- Can you reproduce the bug: [at will | intermittently | not at all]
 
-Please specify the following:
+## Steps to reproduce (STR)
+1.
+2.
+3.
 
-- OS:
-- Jami version:
-- What build you are using: [jami.net | A store | your own (please specify commit for daemon/lrc/client-qt)...]
-
-## Steps to reproduce
-
-Note: Better the scenario is, better we will be able to reproduce and debug.
-
-- Can you reproduce the bug: [at will | occasionally | not at all]
-- Steps:
-	1.
-        2.
-        ...
 - Actual result:
+
+
+
 - Expected result:
 
-## Additional information
 
-Screenshots/videos/logs/etc
 
-For retrieving logs, cf [this page](https://git.jami.net/savoirfairelinux/ring-project/wikis/tutorials/Bug-report-guide#logs).
+## Relevant logs, screenshots or video
