@@ -16,6 +16,29 @@
       "message": "Should the blank lines between the dot points be removed?\n\n```\n- Platform: \n- OS version: \n- Jami version: \n- Distribution channel: [Jami.net | Jami.net Beta | Snap | Flathub | other (please specify)]\n- Account-related devices: [single | multiple]\n- Can you reproduce the bug: [at will | intermittently | not at all]\n```",
       "revId": "f95cf542e751cecd21927bec90a12b0d52f468ed",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d09ac7dd_e13dc6c0",
+        "filename": ".gitlab/issue_templates/Bug.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-11-03T21:11:56Z",
+      "side": 1,
+      "message": "`Relevant logs, screenshots, or videos`",
+      "range": {
+        "startLine": 28,
+        "startChar": 3,
+        "endLine": 28,
+        "endChar": 38
+      },
+      "revId": "f95cf542e751cecd21927bec90a12b0d52f468ed",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
