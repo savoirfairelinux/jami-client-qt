@@ -47,6 +47,54 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "606adc95_8e9b16a6",
+        "filename": ".gitlab/issue_templates/Bug.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-11-03T19:54:06Z",
+      "side": 1,
+      "message": "See https://www.sussex.ac.uk/informatics/punctuation/colonandsemi/colon",
+      "parentUuid": "78a9c274_647b76d9",
+      "range": {
+        "startLine": 9,
+        "startChar": 22,
+        "endLine": 9,
+        "endChar": 23
+      },
+      "revId": "72fb4c1222f89ec9b39e7ecb0cfb089508697a90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "987e2c92_9f53615a",
+        "filename": ".gitlab/issue_templates/Bug.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-11-03T19:54:06Z",
+      "side": 1,
+      "message": "Acknowledged, but for the sake of brevity we will keep it as one line.",
+      "parentUuid": "30620c5f_99da7710",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 93
+      },
+      "revId": "72fb4c1222f89ec9b39e7ecb0cfb089508697a90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d8e52bbf_569b7a36",
@@ -60,6 +108,30 @@
       "writtenOn": "2025-11-03T19:32:23Z",
       "side": 1,
       "message": "Should `-` be changed to `##`?",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 2
+      },
+      "revId": "72fb4c1222f89ec9b39e7ecb0cfb089508697a90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbab79f7_695666d7",
+        "filename": ".gitlab/issue_templates/Bug.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-11-03T19:54:06Z",
+      "side": 1,
+      "message": "Actual result is part of the STR, hence the lack of heading.",
+      "parentUuid": "d8e52bbf_569b7a36",
       "range": {
         "startLine": 20,
         "startChar": 0,
@@ -93,6 +165,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d725ff30_820f8948",
+        "filename": ".gitlab/issue_templates/Bug.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-11-03T19:54:06Z",
+      "side": 1,
+      "message": "See previous comment",
+      "parentUuid": "fb751c90_ae112e72",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 18
+      },
+      "revId": "72fb4c1222f89ec9b39e7ecb0cfb089508697a90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a3fec94_699ec0be",
@@ -106,6 +202,30 @@
       "writtenOn": "2025-11-03T19:32:23Z",
       "side": 1,
       "message": "Add a blank line at the end?",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 40
+      },
+      "revId": "72fb4c1222f89ec9b39e7ecb0cfb089508697a90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2f1eb41_32603601",
+        "filename": ".gitlab/issue_templates/Bug.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-11-03T19:54:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a3fec94_699ec0be",
       "range": {
         "startLine": 24,
         "startChar": 0,
