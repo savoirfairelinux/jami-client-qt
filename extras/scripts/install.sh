@@ -241,11 +241,6 @@ fi
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
     client_cmake_flags+=(-DCMAKE_OSX_ARCHITECTURES="${CMAKE_OSX_ARCHITECTURES}")
-    # build qrencode
-    (
-        cd ${TOP}
-        ./extras/scripts/build_qrencode.sh -a "$arch"
-    )
 fi
 
 if [ "${global}" = "true" ]; then
