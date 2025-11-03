@@ -104,9 +104,7 @@ rm -rfv %{buildroot}/%{_libdir}/*.la
 %defattr(-,root,root,-)
 %{_libdir}/libjami.so*
 %{_libdir}/pkgconfig/jami.pc
-# XXX: Use %%{_libexecdir}/jamid after there's no more OpenSUSE Leap
-# < 16 (see https://en.opensuse.org/openSUSE:Specfile_guidelines).
-/usr/libexec/jamid
+%{_libexecdir}/jamid
 %{_datadir}/jami/ringtones
 %{_datadir}/dbus-1/services/*
 %{_datadir}/dbus-1/interfaces/*
