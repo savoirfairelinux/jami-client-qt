@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30620c5f_99da7710",
+        "filename": ".gitlab/issue_templates/Bug.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-11-03T19:32:23Z",
+      "side": 1,
+      "message": "Perhaps have a list? More than one option can be selected?\n\n```\n- Distribution channel(s):\n  - Jami.net\n  - Jami.net Beta\n  - Snap\n  - Flathub\n  - other (please specify)\n```",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 93
+      },
+      "revId": "72fb4c1222f89ec9b39e7ecb0cfb089508697a90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78a9c274_647b76d9",
+        "filename": ".gitlab/issue_templates/Bug.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-11-03T19:32:23Z",
+      "side": 1,
+      "message": "Remove the space (` `) before the colon (`:`)?",
+      "range": {
+        "startLine": 9,
+        "startChar": 22,
+        "endLine": 9,
+        "endChar": 23
+      },
+      "revId": "72fb4c1222f89ec9b39e7ecb0cfb089508697a90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8e52bbf_569b7a36",
+        "filename": ".gitlab/issue_templates/Bug.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-11-03T19:32:23Z",
+      "side": 1,
+      "message": "Should `-` be changed to `##`?",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 2
+      },
+      "revId": "72fb4c1222f89ec9b39e7ecb0cfb089508697a90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb751c90_ae112e72",
+        "filename": ".gitlab/issue_templates/Bug.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-11-03T19:32:23Z",
+      "side": 1,
+      "message": "Should `-` be changed to `##`?",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 18
+      },
+      "revId": "72fb4c1222f89ec9b39e7ecb0cfb089508697a90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a3fec94_699ec0be",
+        "filename": ".gitlab/issue_templates/Bug.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-11-03T19:32:23Z",
+      "side": 1,
+      "message": "Add a blank line at the end?",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 40
+      },
+      "revId": "72fb4c1222f89ec9b39e7ecb0cfb089508697a90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
