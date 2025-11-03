@@ -81,8 +81,8 @@ public:
      * @param searchResultIncluded if need to search in contacts and userSearch
      * @return a reference to a conversation with given uid
      */
-    std::reference_wrapper<conversation::Info> getConversation(
-        const FilterPredicate& pred, const bool searchResultIncluded = false) const;
+    std::reference_wrapper<conversation::Info> getConversation(const FilterPredicate& pred,
+                                                               const bool searchResultIncluded = false) const;
 
     /**
      * return a reference to a conversation with given uid.
@@ -90,8 +90,8 @@ public:
      * @param searchResultIncluded if need to search in contacts and userSearch.
      * @return a reference to a conversation with the given uid.
      */
-    std::reference_wrapper<conversation::Info> getConversationForUid(
-        const QString& uid, const bool searchResultIncluded = false) const;
+    std::reference_wrapper<conversation::Info> getConversationForUid(const QString& uid,
+                                                                     const bool searchResultIncluded = false) const;
 
     /**
      * return a reference to a conversation with participant.
@@ -101,8 +101,8 @@ public:
      * @warning we could  have multiple swarm conversations for the same peer. This function will
      * return an active one-to-one conversation.
      */
-    std::reference_wrapper<conversation::Info> getConversationForPeerUri(
-        const QString& uri, const bool searchResultIncluded = false) const;
+    std::reference_wrapper<conversation::Info> getConversationForPeerUri(const QString& uri,
+                                                                         const bool searchResultIncluded = false) const;
     /**
      * return a vector of conversation indices for the given contact uri empty
      * if no index is found
@@ -227,6 +227,8 @@ public:
     ConversationModel::ConversationQueueProxy filteredConversations;
     ConversationModel::ConversationQueueProxy customFilteredConversations;
 
+    std::map<QString, int> conversationMap;
+
     QString currentFilter;
     FilterType typeFilter;
     FilterType customTypeFilter;
@@ -262,10 +264,7 @@ public Q_SLOTS:
      * @param isOutgoing
      * @param toUri
      */
-    void slotNewCall(const QString& fromId,
-                     const QString& callId,
-                     bool isOutgoing,
-                     const QString& toUri);
+    void slotNewCall(const QString& fromId, const QString& callId, bool isOutgoing, const QString& toUri);
     /**
      * Listen from callmodel for calls status changed.
      * @param callId
@@ -356,12 +355,8 @@ public Q_SLOTS:
                            const QString& accountId,
                            const QString& conversationId,
                            const VectorMapStringString& messages);
-    void slotMessageReceived(const QString& accountId,
-                             const QString& conversationId,
-                             const SwarmMessage& message);
-    void slotMessageUpdated(const QString& accountId,
-                            const QString& conversationId,
-                            const SwarmMessage& message);
+    void slotMessageReceived(const QString& accountId, const QString& conversationId, const SwarmMessage& message);
+    void slotMessageUpdated(const QString& accountId, const QString& conversationId, const SwarmMessage& message);
     void slotReactionAdded(const QString& accountId,
                            const QString& conversationId,
                            const QString& messageId,
@@ -380,10 +375,7 @@ public Q_SLOTS:
                                      const QString& conversationId,
                                      const QString& memberUri,
                                      int event);
-    void slotOnConversationError(const QString& accountId,
-                                 const QString& conversationId,
-                                 int code,
-                                 const QString& what);
+    void slotOnConversationError(const QString& accountId, const QString& conversationId, int code, const QString& what);
     void slotActiveCallsChanged(const QString& accountId,
                                 const QString& conversationId,
                                 const VectorMapStringString& activeCalls);
@@ -400,11 +392,7 @@ ConversationModel::ConversationModel(const account::Info& owner,
                                      const CallbacksHandler& callbacksHandler,
                                      const BehaviorController& behaviorController)
     : QObject(nullptr)
-    , pimpl_(std::make_unique<ConversationModelPimpl>(*this,
-                                                      lrc,
-                                                      db,
-                                                      callbacksHandler,
-                                                      behaviorController))
+    , pimpl_(std::make_unique<ConversationModelPimpl>(*this, lrc, db, callbacksHandler, behaviorController))
     , owner(owner)
 {}
 
@@ -434,15 +422,16 @@ ConversationModel::allFilteredConversations() const
 QMap<ConferenceableItem, ConferenceableValue>
 ConversationModel::getConferenceableConversations(const QString& convId, const QString& filter) const
 {
-    auto conversationIdx = pimpl_->indexOf(convId);
-    if (conversationIdx == -1 || !owner.enabled) {
+    auto conversationIt = pimpl_->conversationMap.find(convId);
+    if (conversationIt == pimpl_->conversationMap.end() || !owner.enabled) {
         return {};
     }
+    auto& conversation = pimpl_->conversations.at(conversationIt->second);
     QMap<ConferenceableItem, ConferenceableValue> result;
     ConferenceableValue callsVector, contactsVector;
 
-    auto currentConfId = pimpl_->conversations.at(conversationIdx).confId;
-    auto currentCallId = pimpl_->conversations.at(conversationIdx).callId;
+    auto& currentConfId = conversation.confId;
+    auto& currentCallId = conversation.callId;
     auto calls = pimpl_->lrc.getCalls();
     auto conferences = pimpl_->lrc.getConferences(owner.id);
     auto& conversations = pimpl_->conversations;
@@ -452,8 +441,7 @@ ConversationModel::getConferenceableConversations(const QString& convId, const Q
         // conversations with calls will be added in call section
         // we want to add only contacts non-swarm or one-to-one conversation
         auto& peers = pimpl_->peersForConversation(conv);
-        if (!conv.callId.isEmpty() || !conv.confId.isEmpty() || !conv.isCoreDialog()
-            || peers.empty()) {
+        if (!conv.callId.isEmpty() || !conv.confId.isEmpty() || !conv.isCoreDialog() || peers.empty()) {
             continue;
         }
         try {
@@ -500,8 +488,7 @@ ConversationModel::getConferenceableConversations(const QString& convId, const Q
     for (const auto& account_id : pimpl_->lrc.getAccountModel().getAccountList()) {
         try {
             auto& accountInfo = pimpl_->lrc.getAccountModel().getAccountInfo(account_id);
-            auto type = accountInfo.profileInfo.type == profile::Type::SIP ? FilterType::SIP
-                                                                           : FilterType::JAMI;
+            auto type = accountInfo.profileInfo.type == profile::Type::SIP ? FilterType::SIP : FilterType::JAMI;
             auto accountConv = accountInfo.conversationModel->getFilteredConversations(type);
             accountConv.for_each([this,
                                   filter,
@@ -514,13 +501,10 @@ ConversationModel::getConferenceableConversations(const QString& convId, const Q
                                   &tempConferences,
                                   &callsVector](const conversation::Info& conv) {
                 bool confFilterPredicate = !conv.confId.isEmpty() && conv.confId != currentConfId
-                                           && std::find(conferences.begin(),
-                                                        conferences.end(),
-                                                        conv.confId)
+                                           && std::find(conferences.begin(), conferences.end(), conv.confId)
                                                   != conferences.end();
                 bool callFilterPredicate = !conv.callId.isEmpty() && conv.callId != currentCallId
-                                           && std::find(calls.begin(), calls.end(), conv.callId)
-                                                  != calls.end();
+                                           && std::find(calls.begin(), calls.end(), conv.callId) != calls.end();
                 auto& peers = pimpl_->peersForConversation(conv);
                 if ((!confFilterPredicate && !callFilterPredicate) || !conv.isCoreDialog()) {
                     return;
@@ -543,11 +527,10 @@ ConversationModel::getConferenceableConversations(const QString& convId, const Q
 
                 auto contact = accountInfo.contactModel->getContact(peers.front());
                 // check if contact satisfy filter
-                bool result = (filter.isEmpty() || isConference)
-                                  ? true
-                                  : (contact.profileInfo.alias.contains(filter)
-                                     || contact.profileInfo.uri.contains(filter)
-                                     || contact.registeredName.contains(filter));
+                bool result = (filter.isEmpty() || isConference) ? true
+                                                                 : (contact.profileInfo.alias.contains(filter)
+                                                                    || contact.profileInfo.uri.contains(filter)
+                                                                    || contact.registeredName.contains(filter));
                 if (!result) {
                     return;
                 }
@@ -597,12 +580,9 @@ ConversationModel::getAllSearchResults() const
 }
 
 const ConversationModel::ConversationQueueProxy&
-ConversationModel::getFilteredConversations(const FilterType& filter,
-                                            bool forceUpdate,
-                                            const bool includeBanned) const
+ConversationModel::getFilteredConversations(const FilterType& filter, bool forceUpdate, const bool includeBanned) const
 {
-    if (pimpl_->customTypeFilter == filter && !pimpl_->customFilteredConversations.isDirty()
-        && !forceUpdate)
+    if (pimpl_->customTypeFilter == filter && !pimpl_->customFilteredConversations.isDirty() && !forceUpdate)
         return pimpl_->customFilteredConversations;
 
     pimpl_->customTypeFilter = filter;
@@ -696,11 +676,10 @@ OptRef<conversation::Info>
 ConversationModel::getConversationForCallId(const QString& callId) const
 {
     try {
-        return std::make_optional(pimpl_->getConversation(
-            [callId](const conversation::Info& conv) -> bool {
-                return (callId == conv.callId || callId == conv.confId);
-            },
-            true));
+        return std::make_optional(
+            pimpl_->getConversation([callId](const conversation::Info& conv)
+                                        -> bool { return (callId == conv.callId || callId == conv.confId); },
+                                    true));
     } catch (const std::out_of_range&) {
         return std::nullopt;
     }
@@ -783,8 +762,7 @@ ConversationModel::selectConversation(const QString& uid) const
                 case call::Status::CONNECTING:
                 case call::Status::SEARCHING:
                     // We are currently in a call
-                    Q_EMIT pimpl_->behaviorController.showIncomingCallView(owner.id,
-                                                                           conversation.uid);
+                    Q_EMIT pimpl_->behaviorController.showIncomingCallView(owner.id, conversation.uid);
                     break;
                 case call::Status::PAUSED:
                 case call::Status::CONNECTED:
@@ -793,8 +771,7 @@ ConversationModel::selectConversation(const QString& uid) const
                     Q_EMIT pimpl_->behaviorController.showCallView(owner.id, conversation.uid);
                     break;
                 case call::Status::PEER_BUSY:
-                    Q_EMIT pimpl_->behaviorController.showLeaveMessageView(owner.id,
-                                                                           conversation.uid);
+                    Q_EMIT pimpl_->behaviorController.showLeaveMessageView(owner.id, conversation.uid);
                     break;
                 case call::Status::TIMEOUT:
                 case call::Status::TERMINATING:
@@ -867,11 +844,8 @@ ConversationModel::deleteObsoleteHistory(int days)
 }
 
 void
-ConversationModel::joinCall(const QString& uid,
-                            const QString& uri,
-                            const QString& deviceId,
-                            const QString& confId,
-                            bool isAudioOnly)
+ConversationModel::joinCall(
+    const QString& uid, const QString& uri, const QString& deviceId, const QString& confId, bool isAudioOnly)
 {
     try {
         auto& conversation = pimpl_->getConversationForUid(uid, true).get();
@@ -879,8 +853,7 @@ ConversationModel::joinCall(const QString& uid,
             qWarning() << "Already in a call for swarm:" + uid;
             return;
         }
-        conversation.callId = owner.callModel->createCall("rdv:" + uid + "/" + uri + "/" + deviceId
-                                                              + "/" + confId,
+        conversation.callId = owner.callModel->createCall("rdv:" + uid + "/" + uri + "/" + deviceId + "/" + confId,
                                                           isAudioOnly);
         // Update interaction status
         pimpl_->invalidateModel();
@@ -897,8 +870,7 @@ ConversationModelPimpl::placeCall(const QString& uid, bool isAudioOnly)
         auto& conversation = getConversationForUid(uid, true).get();
         if (conversation.participants.empty()) {
             // Should not
-            qDebug()
-                << "ConversationModel::placeCall cannot call a conversation without participants.";
+            qDebug() << "ConversationModel::placeCall cannot call a conversation without participants.";
             return;
         }
 
@@ -971,8 +943,7 @@ ConversationModelPimpl::placeCall(const QString& uid, bool isAudioOnly)
                 return;
             }
 
-            auto& newConv = isTemporary ? getConversationForUid(conversationId).get()
-                                        : conversation;
+            auto& newConv = isTemporary ? getConversationForUid(conversationId).get() : conversation;
 
             newConv.callId = linked.owner.callModel->createCall(uri, isAudioOnly);
             if (newConv.callId.isEmpty()) {
@@ -989,8 +960,7 @@ ConversationModelPimpl::placeCall(const QString& uid, bool isAudioOnly)
             QMetaObject::Connection* const connection = new QMetaObject::Connection;
             *connection = connect(&this->linked,
                                   &ConversationModel::conversationReady,
-                                  [cb, connection, convId](QString conversationId,
-                                                           QString participantId) {
+                                  [cb, connection, convId](QString conversationId, QString participantId) {
                                       if (participantId != convId && convId != "SEARCHSIP") {
                                           return;
                                       }
@@ -1027,16 +997,14 @@ ConversationModel::placeCall(const QString& uid)
 MapStringString
 ConversationModel::getConversationInfos(const QString& conversationId)
 {
-    MapStringString ret = ConfigurationManager::instance().conversationInfos(owner.id,
-                                                                             conversationId);
+    MapStringString ret = ConfigurationManager::instance().conversationInfos(owner.id, conversationId);
     return ret;
 }
 
 MapStringString
 ConversationModel::getConversationPreferences(const QString& conversationId)
 {
-    MapStringString ret = ConfigurationManager::instance()
-                              .getConversationPreferences(owner.id, conversationId);
+    MapStringString ret = ConfigurationManager::instance().getConversationPreferences(owner.id, conversationId);
     return ret;
 }
 
@@ -1056,8 +1024,7 @@ ConversationModel::createConversation(const VectorString& participants, const Ma
 }
 
 void
-ConversationModel::updateConversationInfos(const QString& conversationId,
-                                           const MapStringString infos)
+ConversationModel::updateConversationInfos(const QString& conversationId, const MapStringString infos)
 {
     auto conversationOpt = getConversationForUid(conversationId);
     if (!conversationOpt.has_value())
@@ -1109,8 +1076,7 @@ ConversationModel::ignoreActiveCall(const QString& conversationId,
 }
 
 void
-ConversationModel::setConversationPreferences(const QString& conversationId,
-                                              const MapStringString prefs)
+ConversationModel::setConversationPreferences(const QString& conversationId, const MapStringString prefs)
 {
     ConfigurationManager::instance().setConversationPreferences(owner.id, conversationId, prefs);
 }
@@ -1125,9 +1091,9 @@ int
 ConversationModel::pendingRequestCount() const
 {
     int pendingRequestCount = 0;
-    std::for_each(pimpl_->conversations.begin(),
-                  pimpl_->conversations.end(),
-                  [&pendingRequestCount](const auto& c) { pendingRequestCount += c.isRequest; });
+    std::for_each(pimpl_->conversations.begin(), pimpl_->conversations.end(), [&pendingRequestCount](const auto& c) {
+        pendingRequestCount += c.isRequest;
+    });
     return pendingRequestCount;
 }
 
@@ -1135,31 +1101,27 @@ int
 ConversationModel::notificationsCount() const
 {
     int notificationsCount = 0;
-    std::for_each(pimpl_->conversations.begin(),
-                  pimpl_->conversations.end(),
-                  [&notificationsCount](const auto& c) {
-                      if (c.preferences["ignoreNotifications"] == "true") {
-                          return;
-                      }
-                      if (c.isRequest)
-                          notificationsCount += 1;
-                      else {
-                          notificationsCount += c.unreadMessages;
-                      }
-                  });
+    std::for_each(pimpl_->conversations.begin(), pimpl_->conversations.end(), [&notificationsCount](const auto& c) {
+        if (c.preferences["ignoreNotifications"] == "true") {
+            return;
+        }
+        if (c.isRequest)
+            notificationsCount += 1;
+        else {
+            notificationsCount += c.unreadMessages;
+        }
+    });
     return notificationsCount;
 }
 
 void
 ConversationModel::reloadHistory() const
 {
-    std::for_each(pimpl_->conversations.begin(),
-                  pimpl_->conversations.end(),
-                  [&](const conversation::Info& c) {
-                      c.interactions->reloadHistory();
-                      Q_EMIT conversationUpdated(c.uid);
-                      Q_EMIT dataChanged(pimpl_->indexOf(c.uid));
-                  });
+    std::for_each(pimpl_->conversations.begin(), pimpl_->conversations.end(), [&](const conversation::Info& c) {
+        c.interactions->reloadHistory();
+        Q_EMIT conversationUpdated(c.uid);
+        Q_EMIT dataChanged(pimpl_->indexOf(c.uid));
+    });
 }
 
 QString
@@ -1285,13 +1247,11 @@ ConversationModel::sendMessage(const QString& uid, const QString& body, const QS
         auto& peerId = peers.front();
         bool isTemporary = peerId == convId || convId == "SEARCHSIP";
 
-        auto cb = ([this, isTemporary, body, &conversation, parentId, convId](
-                       QString conversationId) {
+        auto cb = ([this, isTemporary, body, &conversation, parentId, convId](QString conversationId) {
             if (pimpl_->indexOf(conversationId) < 0) {
                 return;
             }
-            auto& newConv = isTemporary ? pimpl_->getConversationForUid(conversationId).get()
-                                        : conversation;
+            auto& newConv = isTemporary ? pimpl_->getConversationForUid(conversationId).get() : conversation;
 
             if (newConv.isSwarm()) {
                 ConfigurationManager::instance().sendMessage(owner.id,
@@ -1317,8 +1277,7 @@ ConversationModel::sendMessage(const QString& uid, const QString& body, const QS
             if (not newConv.callId.isEmpty() and not callLists.contains(newConv.callId))
                 newConv.callId.clear();
 
-            if (not newConv.callId.isEmpty()
-                and call::canSendSIPMessage(owner.callModel->getCall(newConv.callId))) {
+            if (not newConv.callId.isEmpty() and call::canSendSIPMessage(owner.callModel->getCall(newConv.callId))) {
                 status = interaction::Status::UNKNOWN;
                 owner.callModel->sendSipMessage(newConv.callId, body);
 
@@ -1327,13 +1286,8 @@ ConversationModel::sendMessage(const QString& uid, const QString& body, const QS
             }
 
             // Add interaction to database
-            interaction::Info msg {owner.profileInfo.uri,
-                                   body,
-                                   std::time(nullptr),
-                                   0,
-                                   interaction::Type::TEXT,
-                                   status,
-                                   true};
+            interaction::Info
+                msg {owner.profileInfo.uri, body, std::time(nullptr), 0, interaction::Type::TEXT, status, true};
             auto msgId = storage::addMessageToConversation(pimpl_->db, convId, msg);
 
             // Update conversation
@@ -1361,8 +1315,7 @@ ConversationModel::sendMessage(const QString& uid, const QString& body, const QS
             QMetaObject::Connection* const connection = new QMetaObject::Connection;
             *connection = connect(this,
                                   &ConversationModel::conversationReady,
-                                  [cb, connection, convId](QString conversationId,
-                                                           QString participantId) {
+                                  [cb, connection, convId](QString conversationId, QString participantId) {
                                       if (participantId != convId && convId != "SEARCHSIP") {
                                           return;
                                       }
@@ -1383,9 +1336,7 @@ ConversationModel::sendMessage(const QString& uid, const QString& body, const QS
 }
 
 void
-ConversationModel::editMessage(const QString& convId,
-                               const QString& newBody,
-                               const QString& messageId)
+ConversationModel::editMessage(const QString& convId, const QString& newBody, const QString& messageId)
 {
     auto conversationOpt = getConversationForUid(convId);
     if (!conversationOpt.has_value()) {
@@ -1399,9 +1350,7 @@ ConversationModel::editMessage(const QString& convId,
 }
 
 void
-ConversationModel::reactMessage(const QString& convId,
-                                const QString& emoji,
-                                const QString& messageId)
+ConversationModel::reactMessage(const QString& convId, const QString& emoji, const QString& messageId)
 {
     auto conversationOpt = getConversationForUid(convId);
     if (!conversationOpt.has_value()) {
@@ -1500,9 +1449,7 @@ ConversationModel::clearHistory(const QString& uid)
 }
 
 bool
-ConversationModel::isLastDisplayed(const QString& convId,
-                                   const QString& interactionId,
-                                   const QString participant)
+ConversationModel::isLastDisplayed(const QString& convId, const QString& interactionId, const QString participant)
 {
     auto conversationIdx = pimpl_->indexOf(convId);
     try {
@@ -1544,8 +1491,7 @@ ConversationModel::clearUnreadInteractions(const QString& convId)
     QString lastDisplayedId;
     if (conversation.isSwarm()) {
         updated = true;
-        conversation.interactions->withLast(
-            [&](const QString& id, interaction::Info&) { lastDisplayedId = id; });
+        conversation.interactions->withLast([&](const QString& id, interaction::Info&) { lastDisplayedId = id; });
     } else {
         conversation.interactions->forEach([&](const QString& id, interaction::Info& interaction) {
             if (interaction.isRead)
@@ -1558,9 +1504,8 @@ ConversationModel::clearUnreadInteractions(const QString& convId)
         });
     }
     if (!lastDisplayedId.isEmpty()) {
-        auto to = conversation.isSwarm()
-                      ? "swarm:" + convId
-                      : "jami:" + pimpl_->peersForConversation(conversation).front();
+        auto to = conversation.isSwarm() ? "swarm:" + convId
+                                         : "jami:" + pimpl_->peersForConversation(conversation).front();
         ConfigurationManager::instance().setMessageDisplayed(owner.id, to, lastDisplayedId, 3);
     }
     if (updated) {
@@ -1583,12 +1528,8 @@ ConversationModel::loadConversationMessages(const QString& conversationId, const
         return -1;
     }
     QString lastMsgId;
-    conversation.interactions->withLast(
-        [&lastMsgId](const QString& id, interaction::Info&) { lastMsgId = id; });
-    return ConfigurationManager::instance().loadConversation(owner.id,
-                                                             conversationId,
-                                                             lastMsgId,
-                                                             size);
+    conversation.interactions->withLast([&lastMsgId](const QString& id, interaction::Info&) { lastMsgId = id; });
+    return ConfigurationManager::instance().loadConversation(owner.id, conversationId, lastMsgId, size);
 }
 
 void
@@ -1671,10 +1612,7 @@ ConversationModelPimpl::ConversationModelPimpl(const ConversationModel& linked,
             &ContactModel::contactUpdated,
             this,
             &ConversationModelPimpl::slotContactUpdated);
-    connect(&*linked.owner.contactModel,
-            &ContactModel::contactAdded,
-            this,
-            &ConversationModelPimpl::slotContactAdded);
+    connect(&*linked.owner.contactModel, &ContactModel::contactAdded, this, &ConversationModelPimpl::slotContactAdded);
     connect(&*linked.owner.contactModel,
             &ContactModel::pendingContactAccepted,
             this,
@@ -1699,22 +1637,13 @@ ConversationModelPimpl::ConversationModelPimpl(const ConversationModel& linked,
             &ConversationModelPimpl::updateInteractionStatus);
 
     // Call related
-    connect(&*linked.owner.contactModel,
-            &ContactModel::newCall,
-            this,
-            &ConversationModelPimpl::slotNewCall);
+    connect(&*linked.owner.contactModel, &ContactModel::newCall, this, &ConversationModelPimpl::slotNewCall);
     connect(&*linked.owner.callModel,
             &lrc::api::CallModel::callStatusChanged,
             this,
             &ConversationModelPimpl::slotCallStatusChanged);
-    connect(&*linked.owner.callModel,
-            &lrc::api::CallModel::callStarted,
-            this,
-            &ConversationModelPimpl::slotCallStarted);
-    connect(&*linked.owner.callModel,
-            &lrc::api::CallModel::callEnded,
-            this,
-            &ConversationModelPimpl::slotCallEnded);
+    connect(&*linked.owner.callModel, &lrc::api::CallModel::callStarted, this, &ConversationModelPimpl::slotCallStarted);
+    connect(&*linked.owner.callModel, &lrc::api::CallModel::callEnded, this, &ConversationModelPimpl::slotCallEnded);
     connect(&*linked.owner.callModel,
             &lrc::api::CallModel::callAddedToConference,
             this,
@@ -1771,30 +1700,12 @@ ConversationModelPimpl::ConversationModelPimpl(const ConversationModel& linked,
             this,
             &ConversationModelPimpl::slotTransferStatusUnjoinable);
     // swarm conversations
-    connect(&callbacksHandler,
-            &CallbacksHandler::swarmLoaded,
-            this,
-            &ConversationModelPimpl::slotSwarmLoaded);
-    connect(&callbacksHandler,
-            &CallbacksHandler::messagesFound,
-            this,
-            &ConversationModelPimpl::slotMessagesFound);
-    connect(&callbacksHandler,
-            &CallbacksHandler::messageReceived,
-            this,
-            &ConversationModelPimpl::slotMessageReceived);
-    connect(&callbacksHandler,
-            &CallbacksHandler::messageUpdated,
-            this,
-            &ConversationModelPimpl::slotMessageUpdated);
-    connect(&callbacksHandler,
-            &CallbacksHandler::reactionAdded,
-            this,
-            &ConversationModelPimpl::slotReactionAdded);
-    connect(&callbacksHandler,
-            &CallbacksHandler::reactionRemoved,
-            this,
-            &ConversationModelPimpl::slotReactionRemoved);
+    connect(&callbacksHandler, &CallbacksHandler::swarmLoaded, this, &ConversationModelPimpl::slotSwarmLoaded);
+    connect(&callbacksHandler, &CallbacksHandler::messagesFound, this, &ConversationModelPimpl::slotMessagesFound);
+    connect(&callbacksHandler, &CallbacksHandler::messageReceived, this, &ConversationModelPimpl::slotMessageReceived);
+    connect(&callbacksHandler, &CallbacksHandler::messageUpdated, this, &ConversationModelPimpl::slotMessageUpdated);
+    connect(&callbacksHandler, &CallbacksHandler::reactionAdded, this, &ConversationModelPimpl::slotReactionAdded);
+    connect(&callbacksHandler, &CallbacksHandler::reactionRemoved, this, &ConversationModelPimpl::slotReactionRemoved);
     connect(&callbacksHandler,
             &CallbacksHandler::conversationProfileUpdated,
             this,
@@ -1868,10 +1779,7 @@ ConversationModelPimpl::~ConversationModelPimpl()
                &ConversationModelPimpl::updateInteractionStatus);
 
     // Call related
-    disconnect(&*linked.owner.contactModel,
-               &ContactModel::newCall,
-               this,
-               &ConversationModelPimpl::slotNewCall);
+    disconnect(&*linked.owner.contactModel, &ContactModel::newCall, this, &ConversationModelPimpl::slotNewCall);
     disconnect(&*linked.owner.callModel,
                &lrc::api::CallModel::callStatusChanged,
                this,
@@ -1880,10 +1788,7 @@ ConversationModelPimpl::~ConversationModelPimpl()
                &lrc::api::CallModel::callStarted,
                this,
                &ConversationModelPimpl::slotCallStarted);
-    disconnect(&*linked.owner.callModel,
-               &lrc::api::CallModel::callEnded,
-               this,
-               &ConversationModelPimpl::slotCallEnded);
+    disconnect(&*linked.owner.callModel, &lrc::api::CallModel::callEnded, this, &ConversationModelPimpl::slotCallEnded);
     disconnect(&*linked.owner.callModel,
                &lrc::api::CallModel::callAddedToConference,
                this,
@@ -1935,26 +1840,14 @@ ConversationModelPimpl::~ConversationModelPimpl()
                this,
                &ConversationModelPimpl::slotTransferStatusUnjoinable);
     // swarm conversations
-    disconnect(&callbacksHandler,
-               &CallbacksHandler::swarmLoaded,
-               this,
-               &ConversationModelPimpl::slotSwarmLoaded);
-    disconnect(&callbacksHandler,
-               &CallbacksHandler::messagesFound,
-               this,
-               &ConversationModelPimpl::slotMessagesFound);
+    disconnect(&callbacksHandler, &CallbacksHandler::swarmLoaded, this, &ConversationModelPimpl::slotSwarmLoaded);
+    disconnect(&callbacksHandler, &CallbacksHandler::messagesFound, this, &ConversationModelPimpl::slotMessagesFound);
     disconnect(&callbacksHandler,
                &CallbacksHandler::messageReceived,
                this,
                &ConversationModelPimpl::slotMessageReceived);
-    disconnect(&callbacksHandler,
-               &CallbacksHandler::messageUpdated,
-               this,
-               &ConversationModelPimpl::slotMessageUpdated);
-    disconnect(&callbacksHandler,
-               &CallbacksHandler::reactionAdded,
-               this,
-               &ConversationModelPimpl::slotReactionAdded);
+    disconnect(&callbacksHandler, &CallbacksHandler::messageUpdated, this, &ConversationModelPimpl::slotMessageUpdated);
+    disconnect(&callbacksHandler, &CallbacksHandler::reactionAdded, this, &ConversationModelPimpl::slotReactionAdded);
     disconnect(&callbacksHandler,
                &CallbacksHandler::reactionRemoved,
                this,
@@ -2000,8 +1893,7 @@ ConversationModelPimpl::~ConversationModelPimpl()
 void
 ConversationModelPimpl::initConversations()
 {
-    const MapStringString accountDetails = ConfigurationManager::instance().getAccountDetails(
-        linked.owner.id);
+    const MapStringString accountDetails = ConfigurationManager::instance().getAccountDetails(linked.owner.id);
     if (accountDetails.empty())
         return;
 
@@ -2014,8 +1906,8 @@ ConversationModelPimpl::initConversations()
             addSwarmConversation(swarmConv);
         }
 
-        VectorMapStringString conversationsRequests = ConfigurationManager::instance()
-                                                        .getConversationRequests(linked.owner.id);
+        VectorMapStringString conversationsRequests = ConfigurationManager::instance().getConversationRequests(
+            linked.owner.id);
         for (auto& request : conversationsRequests) {
             addConversationRequest(request);
         }
@@ -2043,10 +1935,10 @@ ConversationModelPimpl::initConversations()
                     continue;
                 }
                 conv.push_back(storage::beginConversationWithPeer(db,
-                                                                c.second.profileInfo.uri,
-                                                                true,
-                                                                linked.owner.contactModel->getAddedTs(
-                                                                    c.second.profileInfo.uri)));
+                                                                  c.second.profileInfo.uri,
+                                                                  true,
+                                                                  linked.owner.contactModel->getAddedTs(
+                                                                      c.second.profileInfo.uri)));
             }
             addConversationWith(conv[0], c.first, isRequest);
 
@@ -2075,8 +1967,8 @@ ConversationModelPimpl::initConversations()
     filteredConversations.reset(conversations).sort();
 
     // Load all non treated messages for this account
-    QVector<Message> messages = ConfigurationManager::instance()
-                                    .getLastMessages(linked.owner.id, storage::getLastTimestamp(db));
+    QVector<Message> messages = ConfigurationManager::instance().getLastMessages(linked.owner.id,
+                                                                                 storage::getLastTimestamp(db));
     for (const auto& message : messages) {
         uint64_t timestamp = 0;
         try {
@@ -2132,8 +2024,7 @@ ConversationModelPimpl::filter(const conversation::Info& entry)
 
         auto uri = URI(currentFilter);
         bool stripScheme = (uri.schemeType() < URI::SchemeType::COUNT__);
-        FlagPack<URI::Section> flags = URI::Section::USER_INFO | URI::Section::HOSTNAME
-                                       | URI::Section::PORT;
+        FlagPack<URI::Section> flags = URI::Section::USER_INFO | URI::Section::HOSTNAME | URI::Section::PORT;
         if (!stripScheme) {
             flags |= URI::Section::SCHEME;
         }
@@ -2146,8 +2037,7 @@ ConversationModelPimpl::filter(const conversation::Info& entry)
         if (contactInfo.isBanned && peers.size() == 1) {
             if (currentFilter == "")
                 return false;
-            return contactInfo.profileInfo.uri == currentFilter
-                   || contactInfo.profileInfo.alias == currentFilter
+            return contactInfo.profileInfo.uri == currentFilter || contactInfo.profileInfo.alias == currentFilter
                    || contactInfo.registeredName == currentFilter;
         }
 
@@ -2160,15 +2050,12 @@ ConversationModelPimpl::filter(const conversation::Info& entry)
         }
 
         auto filterUriAndReg = [regexFilter, isValidReFilter](auto contact, auto filter) {
-            auto result = contact.profileInfo.uri.contains(filter)
-                          || contact.registeredName.contains(filter);
+            auto result = contact.profileInfo.uri.contains(filter) || contact.registeredName.contains(filter);
             if (!result) {
                 auto regexFound = isValidReFilter
                                       ? (!contact.profileInfo.uri.isEmpty()
-                                         && std::regex_search(contact.profileInfo.uri.toStdString(),
-                                                              regexFilter))
-                                            || std::regex_search(contact.registeredName.toStdString(),
-                                                                 regexFilter)
+                                         && std::regex_search(contact.profileInfo.uri.toStdString(), regexFilter))
+                                            || std::regex_search(contact.registeredName.toStdString(), regexFilter)
                                       : false;
                 result |= regexFound;
             }
@@ -2246,12 +2133,10 @@ ConversationModelPimpl::sort(const conversation::Info& convA, const conversation
         return true;
     // Sort by last Interaction
     time_t timestampA, timestampB;
-    historyA->withLast([&](const QString&, const interaction::Info& interaction) {
-        timestampA = interaction.timestamp;
-    });
-    historyB->withLast([&](const QString&, const interaction::Info& interaction) {
-        timestampB = interaction.timestamp;
-    });
+    historyA->withLast(
+        [&](const QString&, const interaction::Info& interaction) { timestampA = interaction.timestamp; });
+    historyB->withLast(
+        [&](const QString&, const interaction::Info& interaction) { timestampB = interaction.timestamp; });
     return timestampA > timestampB;
 }
 
@@ -2298,14 +2183,11 @@ ConversationModelPimpl::slotSwarmLoaded(uint32_t requestId,
             }
 
             if (downloadFile) {
-                handleIncomingFile(conversationId,
-                                   msgId,
-                                   QString(message.body.value("totalSize")).toInt());
+                handleIncomingFile(conversationId, msgId, QString(message.body.value("totalSize")).toInt());
             }
         }
 
-        conversation.lastSelfMessageId = conversation.interactions->lastSelfMessageId(
-            linked.owner.profileInfo.uri);
+        conversation.lastSelfMessageId = conversation.interactions->lastSelfMessageId(linked.owner.profileInfo.uri);
         invalidateModel();
         Q_EMIT linked.modelChanged();
         Q_EMIT linked.newMessagesAvailable(linked.owner.id, conversationId);
@@ -2364,9 +2246,7 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
         auto msg = interaction::Info(message, linked.owner.profileInfo.uri, accountId, conversationId);
 
         if (msg.type == interaction::Type::CALL) {
-            msg.body = interaction::getCallInteractionString(msg.authorUri
-                                                                 == linked.owner.profileInfo.uri,
-                                                             msg);
+            msg.body = interaction::getCallInteractionString(msg.authorUri == linked.owner.profileInfo.uri, msg);
         } else if (msg.type == interaction::Type::DATA_TRANSFER) {
             QString fileId = message.body.value("fileId");
             linked.owner.dataTransferModel->registerTransferId(fileId, msgId);
@@ -2380,21 +2260,15 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
         auto updateUnread = msg.authorUri != linked.owner.profileInfo.uri;
         if (updateUnread)
             conversation.unreadMessages++;
-        conversation.lastSelfMessageId = conversation.interactions->lastSelfMessageId(
-            linked.owner.profileInfo.uri);
+        conversation.lastSelfMessageId = conversation.interactions->lastSelfMessageId(linked.owner.profileInfo.uri);
         invalidateModel();
         if (!interaction::isOutgoing(msg) && updateUnread) {
-            Q_EMIT behaviorController.newUnreadInteraction(linked.owner.id,
-                                                           conversationId,
-                                                           msgId,
-                                                           msg);
+            Q_EMIT behaviorController.newUnreadInteraction(linked.owner.id, conversationId, msgId, msg);
         }
         Q_EMIT linked.newInteraction(conversationId, msgId, msg);
         Q_EMIT linked.modelChanged();
         if (msg.transferStatus == interaction::TransferStatus::TRANSFER_AWAITING_HOST) {
-            handleIncomingFile(conversationId,
-                               msgId,
-                               QString(message.body.value("totalSize")).toInt());
+            handleIncomingFile(conversationId, msgId, QString(message.body.value("totalSize")).toInt());
         }
         Q_EMIT linked.dataChanged(indexOf(conversationId));
         // Update status
@@ -2498,16 +2372,15 @@ ConversationModelPimpl::slotConversationRequestReceived(const QString& accountId
 }
 
 void
-ConversationModelPimpl::slotConversationReady(const QString& accountId,
-                                              const QString& conversationId)
+ConversationModelPimpl::slotConversationReady(const QString& accountId, const QString& conversationId)
 {
     // we receive this signal after we accept or after we send a conversation request
     if (accountId != linked.owner.id) {
         return;
     }
     // remove non swarm conversation that was added from slotContactAdded
-    const VectorMapStringString& members = ConfigurationManager::instance()
-                                               .getConversationMembers(accountId, conversationId);
+    const VectorMapStringString& members = ConfigurationManager::instance().getConversationMembers(accountId,
+                                                                                                   conversationId);
     QVector<member::Member> participants;
     // it means conversation with one participant. In this case we could have non swarm conversation
     bool shouldRemoveNonSwarmConversation = members.size() == 2;
@@ -2529,27 +2402,30 @@ ConversationModelPimpl::slotConversationReady(const QString& accountId,
         }
     }
 
-    int conversationIdx = indexOf(conversationId);
-    bool conversationExists = conversationIdx >= 0;
+    auto conversationIt = conversationMap.find(conversationId);
+    bool conversationExists = conversationIt != conversationMap.end();
 
-    if (!conversationExists)
+    if (!conversationExists) {
         addSwarmConversation(conversationId);
-    auto& conversation = getConversationForUid(conversationId).get();
+        conversationIt = conversationMap.find(conversationId);
+        if (conversationIt == conversationMap.end()) {
+            return;
+        }
+    }
+    auto& conversation = conversations.at(conversationIt->second);
     if (conversationExists) {
         // if swarm request already exists, update participnts
-        auto& conversation = getConversationForUid(conversationId).get();
         conversation.participants = participants;
-        const MapStringString& details = ConfigurationManager::instance()
-                                             .conversationInfos(accountId, conversationId);
+        const MapStringString& details = ConfigurationManager::instance().conversationInfos(accountId, conversationId);
         conversation.infos = details;
-        const MapStringString& preferences
-            = ConfigurationManager::instance().getConversationPreferences(accountId, conversationId);
+        const MapStringString& preferences = ConfigurationManager::instance().getConversationPreferences(accountId,
+                                                                                                         conversationId);
         conversation.preferences = preferences;
         conversation.mode = conversation::to_mode(details["mode"].toInt());
         conversation.isRequest = false;
         conversation.needsSyncing = false;
         Q_EMIT linked.conversationUpdated(conversationId);
-        Q_EMIT linked.dataChanged(conversationIdx);
+        Q_EMIT linked.dataChanged(indexOf(conversationId));
         ConfigurationManager::instance().loadConversation(linked.owner.id, conversationId, "", 0);
         auto& peers = peersForConversation(conversation);
         if (peers.size() == 1)
@@ -2567,55 +2443,14 @@ ConversationModelPimpl::slotConversationReady(const QString& accountId,
 }
 
 void
-ConversationModelPimpl::slotConversationRemoved(const QString& accountId,
-                                                const QString& conversationId)
+ConversationModelPimpl::slotConversationRemoved(const QString& accountId, const QString& conversationId)
 {
-    auto conversationIndex = indexOf(conversationId);
-    if (accountId != linked.owner.id || conversationIndex < 0)
+    if (accountId != linked.owner.id)
         return;
     try {
-        auto removeConversation = [&]() {
-            // remove swarm conversation
-            eraseConversation(conversationIndex);
-            invalidateModel();
-            Q_EMIT linked.conversationRemoved(conversationId);
-        };
-
-        auto& conversation = getConversationForUid(conversationId).get();
-        auto& peers = peersForConversation(conversation);
-        if (peers.isEmpty()) {
-            removeConversation();
-            return;
-        }
-        auto contactUri = peers.first();
-        auto mode = conversation.mode;
-        contact::Info contact;
-        try {
-            contact = linked.owner.contactModel->getContact(contactUri);
-        } catch (...) {
-        }
-
-        removeConversation();
-
-        if (mode == conversation::Mode::ONE_TO_ONE) {
-            // If it's a 1:1 conversation and we don't have any more conversation
-            // we can remove the contact
-            auto contactRemoved = true;
-            try {
-                auto& conv = getConversationForPeerUri(contactUri).get();
-                contactRemoved = !conv.isSwarm();
-            } catch (...) {
-            }
-
-            if (contact.isBanned && contactRemoved) {
-                // Add 1:1 conv for banned
-                auto c = storage::beginConversationWithPeer(db, contactUri);
-                addConversationWith(c, contactUri, false);
-                Q_EMIT linked.conversationReady(c, contactUri);
-                Q_EMIT linked.newConversation(c);
-            }
-        }
-
+        eraseConversation(conversationId);
+        invalidateModel();
+        Q_EMIT linked.conversationRemoved(conversationId);
     } catch (const std::exception& e) {
         qWarning() << e.what();
     }
@@ -2638,18 +2473,21 @@ ConversationModelPimpl::slotConversationMemberEvent(const QString& accountId,
         }
     }
     // update participants
-    auto& conversation = getConversationForUid(conversationId).get();
-    const VectorMapStringString& members
-        = ConfigurationManager::instance().getConversationMembers(linked.owner.id, conversationId);
-    QVector<member::Member> participants;
-    VectorString membersRemaining;
-    for (auto& member : members) {
-        participants.append(member::Member {member["uri"], member::to_role(member["role"])});
-        if (member["role"] != "left")
-            membersRemaining.append(member["uri"]);
+    try {
+        auto& conversation = getConversationForUid(conversationId).get();
+        const VectorMapStringString& members = ConfigurationManager::instance().getConversationMembers(linked.owner.id,
+                                                                                                       conversationId);
+        QVector<member::Member> participants;
+        VectorString membersRemaining;
+        for (auto& member : members) {
+            participants.append(member::Member {member["uri"], member::to_role(member["role"])});
+            if (member["role"] != "left")
+                membersRemaining.append(member["uri"]);
+        }
+        conversation.participants = participants;
+        invalidateModel();
+    } catch (...) {
     }
-    conversation.participants = participants;
-    invalidateModel();
     Q_EMIT linked.modelChanged();
     Q_EMIT linked.conversationUpdated(conversationId);
     Q_EMIT linked.dataChanged(indexOf(conversationId));
@@ -2708,8 +2546,7 @@ ConversationModelPimpl::slotContactAdded(const QString& contactUri)
             auto convId = storage::beginConversationWithPeer(db,
                                                              contactUri,
                                                              true,
-                                                             linked.owner.contactModel->getAddedTs(
-                                                                 contactUri));
+                                                             linked.owner.contactModel->getAddedTs(contactUri));
             addConversationWith(convId, contactUri, false);
             Q_EMIT linked.conversationReady(convId, contactUri);
             Q_EMIT linked.newConversation(convId);
@@ -2719,8 +2556,7 @@ ConversationModelPimpl::slotContactAdded(const QString& contactUri)
     convId = conv[0];
     try {
         auto& conversation = getConversationForUid(convId).get();
-        MapStringString details = ConfigurationManager::instance()
-                                      .conversationInfos(linked.owner.id, conversation.uid);
+        MapStringString details = ConfigurationManager::instance().conversationInfos(linked.owner.id, conversation.uid);
         bool needsSyncing = details["syncing"] == "true";
         if (conversation.needsSyncing != needsSyncing) {
             conversation.isRequest = false;
@@ -2768,14 +2604,12 @@ ConversationModelPimpl::addConversationRequest(const MapStringString& convReques
     auto peerUri = convRequest["from"];
     auto mode = conversation::to_mode(convRequest["mode"].toInt());
     QString callId, confId;
-    const MapStringString& details = ConfigurationManager::instance()
-                                         .conversationInfos(linked.owner.id, convId);
+    const MapStringString& details = ConfigurationManager::instance().conversationInfos(linked.owner.id, convId);
     conversation::Info conversation(convId, &linked.owner);
     conversation.infos = details;
     conversation.callId = callId;
     conversation.confId = confId;
-    conversation.participants = {{linked.owner.profileInfo.uri, member::Role::INVITED},
-                                 {peerUri, member::Role::MEMBER}};
+    conversation.participants = {{linked.owner.profileInfo.uri, member::Role::INVITED}, {peerUri, member::Role::MEMBER}};
     conversation.mode = mode;
     conversation.isRequest = true;
 
@@ -2844,8 +2678,7 @@ ConversationModelPimpl::slotPendingContactAccepted(const QString& uri)
                                                   interaction::Status::SUCCESS,
                                                   true};
             auto msgId = storage::addMessageToConversation(db, convs[0], interaction);
-            interaction.body = storage::getContactInteractionString(uri,
-                                                                    interaction::Status::SUCCESS);
+            interaction.body = storage::getContactInteractionString(uri, interaction::Status::SUCCESS);
             auto convIdx = indexOf(convs[0]);
             if (convIdx >= 0) {
                 conversations[convIdx].interactions->append(msgId, interaction);
@@ -2905,14 +2738,12 @@ ConversationModelPimpl::slotContactUpdated(const QString& uri)
     searchResults.clear();
     auto users = linked.owner.contactModel->getSearchResults();
     for (auto& user : users) {
-        auto uid = linked.owner.profileInfo.type == profile::Type::SIP ? "SEARCHSIP"
-                                                                       : user.profileInfo.uri;
+        auto uid = linked.owner.profileInfo.type == profile::Type::SIP ? "SEARCHSIP" : user.profileInfo.uri;
         conversation::Info conversationInfo(uid, &linked.owner);
         // For SIP, we always got one search result, so "" is ok as there is no empty uri
         // For Jami accounts, the nameserver can return several results, so we use the uniqueness of
         // the id as id for a temporary conversation.
-        conversationInfo.participants.append(
-            member::Member {user.profileInfo.uri, member::Role::MEMBER});
+        conversationInfo.participants.append(member::Member {user.profileInfo.uri, member::Role::MEMBER});
         searchResults.emplace_front(std::move(conversationInfo));
     }
     Q_EMIT linked.searchResultUpdated();
@@ -2928,17 +2759,15 @@ ConversationModelPimpl::addSwarmConversation(const QString& convId)
         ConfigurationManager::instance().clearCache(linked.owner.id, convId);
     }
     QVector<member::Member> participants;
-    const VectorMapStringString& members = ConfigurationManager::instance()
-                                               .getConversationMembers(linked.owner.id, convId);
+    const VectorMapStringString& members = ConfigurationManager::instance().getConversationMembers(linked.owner.id,
+                                                                                                   convId);
     auto accountURI = linked.owner.profileInfo.uri;
     QString otherMember;
-    const MapStringString& details = ConfigurationManager::instance()
-                                         .conversationInfos(linked.owner.id, convId);
+    const MapStringString& details = ConfigurationManager::instance().conversationInfos(linked.owner.id, convId);
     auto mode = conversation::to_mode(details["mode"].toInt());
     conversation::Info conversation(convId, &linked.owner);
     conversation.infos = details;
-    VectorMapStringString activeCalls = ConfigurationManager::instance()
-                                            .getActiveCalls(linked.owner.id, convId);
+    VectorMapStringString activeCalls = ConfigurationManager::instance().getActiveCalls(linked.owner.id, convId);
     conversation.activeCalls = activeCalls;
     QString lastRead;
     VectorString membersLeft;
@@ -2963,8 +2792,8 @@ ConversationModelPimpl::addSwarmConversation(const QString& convId)
     }
     conversation.participants = participants;
     conversation.mode = mode;
-    const MapStringString& preferences = ConfigurationManager::instance()
-                                             .getConversationPreferences(linked.owner.id, convId);
+    const MapStringString& preferences = ConfigurationManager::instance().getConversationPreferences(linked.owner.id,
+                                                                                                     convId);
     conversation.preferences = preferences;
     conversation.unreadMessages = ConfigurationManager::instance().countInteractions(linked.owner.id,
                                                                                      convId,
@@ -3017,9 +2846,7 @@ ConversationModelPimpl::addSwarmConversation(const QString& convId)
 }
 
 void
-ConversationModelPimpl::addConversationWith(const QString& convId,
-                                            const QString& contactUri,
-                                            bool isRequest)
+ConversationModelPimpl::addConversationWith(const QString& convId, const QString& contactUri, bool isRequest)
 {
     conversation::Info conversation(convId, &linked.owner);
     conversation.participants = {{contactUri, member::Role::MEMBER}};
@@ -3076,16 +2903,15 @@ ConversationModelPimpl::addConversationWith(const QString& convId,
 int
 ConversationModelPimpl::indexOf(const QString& uid) const
 {
-    for (unsigned int i = 0; i < conversations.size(); ++i) {
-        if (conversations.at(i).uid == uid)
-            return i;
+    auto it = conversationMap.find(uid);
+    if (it != conversationMap.end()) {
+        return it->second;
     }
     return -1;
 }
 
 std::reference_wrapper<conversation::Info>
-ConversationModelPimpl::getConversation(const FilterPredicate& pred,
-                                        const bool searchResultIncluded) const
+ConversationModelPimpl::getConversation(const FilterPredicate& pred, const bool searchResultIncluded) const
 {
     auto conv = std::find_if(conversations.cbegin(), conversations.cend(), pred);
     if (conv != conversations.cend()) {
@@ -3099,20 +2925,28 @@ ConversationModelPimpl::getConversation(const FilterPredicate& pred,
         }
     }
 
-    throw std::out_of_range("Conversation out of range");
+    throw std::out_of_range("Conversation not found");
 }
 
 std::reference_wrapper<conversation::Info>
-ConversationModelPimpl::getConversationForUid(const QString& uid,
-                                              const bool searchResultIncluded) const
+ConversationModelPimpl::getConversationForUid(const QString& uid, const bool searchResultIncluded) const
 {
-    return getConversation([uid](const conversation::Info& conv) -> bool { return uid == conv.uid; },
-                           searchResultIncluded);
+    auto it = conversationMap.find(uid);
+    if (it != conversationMap.end())
+        return std::remove_const_t<conversation::Info&>(conversations.at(it->second));
+    if (searchResultIncluded) {
+        auto sr = std::find_if(searchResults.begin(), searchResults.end(), [&](const auto& conv) {
+            return conv.uid == uid;
+        });
+        if (sr != searchResults.end()) {
+            return std::remove_const_t<conversation::Info&>(*sr);
+        }
+    }
+    throw std::out_of_range("Conversation not found");
 }
 
 std::reference_wrapper<conversation::Info>
-ConversationModelPimpl::getConversationForPeerUri(const QString& uri,
-                                                  const bool searchResultIncluded) const
+ConversationModelPimpl::getConversationForPeerUri(const QString& uri, const bool searchResultIncluded) const
 {
     return getConversation(
         [this, uri](const conversation::Info& conv) -> bool {
@@ -3145,10 +2979,7 @@ ConversationModelPimpl::getIndicesForContact(const QString& uri) const
 }
 
 void
-ConversationModelPimpl::slotNewCall(const QString& fromId,
-                                    const QString& callId,
-                                    bool isOutgoing,
-                                    const QString& toUri)
+ConversationModelPimpl::slotNewCall(const QString& fromId, const QString& callId, bool isOutgoing, const QString& toUri)
 {
     if (isOutgoing) {
         // search contact
@@ -3196,18 +3027,15 @@ ConversationModelPimpl::slotCallStatusChanged(const QString& accountId, const QS
 {
     Q_UNUSED(code)
     // Get conversation
-    auto i = std::find_if(conversations.begin(),
-                          conversations.end(),
-                          [callId](const conversation::Info& conversation) {
-                              return conversation.callId == callId;
-                          });
+    auto i = std::find_if(conversations.begin(), conversations.end(), [callId](const conversation::Info& conversation) {
+        return conversation.callId == callId;
+    });
 
     try {
         auto accountProperties = lrc.getAccountModel().getAccountConfig(accountId);
         auto call = linked.owner.callModel->getCall(callId);
         if (i != conversations.end()
-            && (!accountProperties.denySecondCall
-                || call.status == call::Status::IN_PROGRESS)) {
+            && (!accountProperties.denySecondCall || call.status == call::Status::IN_PROGRESS)) {
             // Update interaction status
             invalidateModel();
             linked.selectConversation(i->uid);
@@ -3298,8 +3126,7 @@ ConversationModelPimpl::addOrUpdateCallMessage(const QString& callId,
     }
     if (!isSip || conv_it == conversations.end() || conv_it->isSwarm())
         return;
-    auto uriString = incoming ? storage::prepareUri(from, linked.owner.profileInfo.type)
-                              : linked.owner.profileInfo.uri;
+    auto uriString = incoming ? storage::prepareUri(from, linked.owner.profileInfo.type) : linked.owner.profileInfo.uri;
     auto msg = interaction::Info {uriString,
                                   {},
                                   std::time(nullptr),
@@ -3310,8 +3137,7 @@ ConversationModelPimpl::addOrUpdateCallMessage(const QString& callId,
     // update the db
     auto msgId = storage::addOrUpdateMessage(db, conv_it->uid, msg, callId);
     // now set the formatted call message string in memory only
-    msg.body = interaction::getCallInteractionString(msg.authorUri == linked.owner.profileInfo.uri,
-                                                     msg);
+    msg.body = interaction::getCallInteractionString(msg.authorUri == linked.owner.profileInfo.uri, msg);
     auto [added, success] = conv_it->interactions->addOrUpdate(msgId, msg);
     if (!success) {
         qWarning() << Q_FUNC_INFO << QString("Failed: to %1 msg").arg(added ? "add" : "update");
@@ -3422,7 +3248,9 @@ ConversationModelPimpl::addIncomingMessage(const QString& peerId,
 }
 
 void
-ConversationModelPimpl::slotCallAddedToConference(const QString& callId, const QString& conversationId, const QString& confId)
+ConversationModelPimpl::slotCallAddedToConference(const QString& callId,
+                                                  const QString& conversationId,
+                                                  const QString& confId)
 {
     for (auto& conversation : conversations) {
         if ((conversationId == conversation.uid)
@@ -3430,8 +3258,7 @@ ConversationModelPimpl::slotCallAddedToConference(const QString& callId, const Q
             conversation.confId = confId;
             invalidateModel();
             // Refresh the conference status only if attached
-            MapStringString confDetails = CallManager::instance()
-                                              .getConferenceDetails(linked.owner.id, confId);
+            MapStringString confDetails = CallManager::instance().getConferenceDetails(linked.owner.id, confId);
             if (confDetails["STATE"] == "ACTIVE_ATTACHED")
                 linked.selectConversation(conversation.uid);
             return;
@@ -3471,8 +3298,7 @@ ConversationModelPimpl::updateInteractionStatus(const QString& accountId,
             } else {
                 return;
             }
-            if (interactions->updateStatus(id, newState)
-                && newState == interaction::Status::DISPLAYED) {
+            if (interactions->updateStatus(id, newState) && newState == interaction::Status::DISPLAYED) {
                 emitDisplayed = true;
             }
         });
@@ -3539,10 +3365,7 @@ ConversationModel::setIsComposing(const QString& convUid, bool isComposing)
 }
 
 void
-ConversationModel::sendFile(const QString& convUid,
-                            const QString& path,
-                            const QString& filename,
-                            const QString& parent)
+ConversationModel::sendFile(const QString& convUid, const QString& path, const QString& filename, const QString& parent)
 {
     try {
         auto& conversation = pimpl_->getConversationForUid(convUid, true).get();
@@ -3592,8 +3415,7 @@ ConversationModel::sendFile(const QString& convUid,
             QMetaObject::Connection* const connection = new QMetaObject::Connection;
             *connection = connect(this,
                                   &ConversationModel::conversationReady,
-                                  [cb, connection, convUidCopy](QString conversationId,
-                                                                QString participantId) {
+                                  [cb, connection, convUidCopy](QString conversationId, QString participantId) {
                                       if (participantId != convUidCopy) {
                                           return;
                                       }
@@ -3644,9 +3466,7 @@ ConversationModel::cancelTransfer(const QString& convUid, const QString& fileId)
         auto& interactions = pimpl_->conversations[conversationIdx].interactions;
         if (interactions->updateTransferStatus(fileId, interaction::TransferStatus::TRANSFER_CANCELED)) {
             // update information in the db
-            storage::updateInteractionTransferStatus(pimpl_->db,
-                                             fileId,
-                                             interaction::TransferStatus::TRANSFER_CANCELED);
+            storage::updateInteractionTransferStatus(pimpl_->db, fileId, interaction::TransferStatus::TRANSFER_CANCELED);
             emitUpdated = true;
         }
     }
@@ -3676,8 +3496,7 @@ ConversationModel::getTransferInfo(const QString& conversationId,
     } else {
         QString path;
         qlonglong bytesProgress = 0, totalSize = 0;
-        owner.dataTransferModel
-            ->fileTransferInfo(owner.id, conversationId, fileId, path, totalSize, bytesProgress);
+        owner.dataTransferModel->fileTransferInfo(owner.id, conversationId, fileId, path, totalSize, bytesProgress);
         info.path = path;
         info.totalSize = totalSize;
         info.progress = bytesProgress;
@@ -3685,9 +3504,7 @@ ConversationModel::getTransferInfo(const QString& conversationId,
 }
 
 void
-ConversationModel::removeFile(const QString& conversationId,
-                              const QString& interactionId,
-                              const QString& path)
+ConversationModel::removeFile(const QString& conversationId, const QString& interactionId, const QString& path)
 {
     auto convOpt = getConversationForUid(conversationId);
     if (!convOpt)
@@ -3713,9 +3530,8 @@ ConversationModelPimpl::usefulDataFromDataTransfer(const QString& fileId,
         return false;
     try {
         interactionId = linked.owner.dataTransferModel->getInteractionIdFromFileId(fileId);
-        conversationId = info.conversationId.isEmpty()
-                             ? storage::conversationIdFromInteractionId(db, interactionId)
-                             : info.conversationId;
+        conversationId = info.conversationId.isEmpty() ? storage::conversationIdFromInteractionId(db, interactionId)
+                                                       : info.conversationId;
     } catch (const std::out_of_range& e) {
         qWarning() << "Couldn't get interaction from daemon Id: " << fileId;
         return false;
@@ -3731,8 +3547,7 @@ ConversationModelPimpl::slotTransferStatusCreated(const QString& fileId, datatra
     if (info.accountId != linked.owner.id)
         return;
 
-    const MapStringString accountDetails = ConfigurationManager::instance().getAccountDetails(
-        linked.owner.id);
+    const MapStringString accountDetails = ConfigurationManager::instance().getAccountDetails(linked.owner.id);
     if (accountDetails.empty())
         return;
     // create a new conversation if needed
@@ -3784,10 +3599,7 @@ ConversationModelPimpl::slotTransferStatusCreated(const QString& fileId, datatra
         conversations[conversationIdx].interactions->append(interactionId, interaction);
         conversations[conversationIdx].unreadMessages = getNumberOfUnreadMessagesFor(convId);
     }
-    Q_EMIT behaviorController.newUnreadInteraction(linked.owner.id,
-                                                   convId,
-                                                   interactionId,
-                                                   interaction);
+    Q_EMIT behaviorController.newUnreadInteraction(linked.owner.id, convId, interactionId, interaction);
     Q_EMIT linked.newInteraction(convId, interactionId, interaction);
 
     invalidateModel();
@@ -3796,8 +3608,7 @@ ConversationModelPimpl::slotTransferStatusCreated(const QString& fileId, datatra
 }
 
 void
-ConversationModelPimpl::slotTransferStatusAwaitingPeer(const QString& fileId,
-                                                       datatransfer::Info info)
+ConversationModelPimpl::slotTransferStatusAwaitingPeer(const QString& fileId, datatransfer::Info info)
 {
     if (info.accountId != linked.owner.id)
         return;
@@ -3806,8 +3617,7 @@ ConversationModelPimpl::slotTransferStatusAwaitingPeer(const QString& fileId,
 }
 
 void
-ConversationModelPimpl::slotTransferStatusAwaitingHost(const QString& fileId,
-                                                       datatransfer::Info info)
+ConversationModelPimpl::slotTransferStatusAwaitingHost(const QString& fileId, datatransfer::Info info)
 {
     if (info.accountId != linked.owner.id)
         return;
@@ -3839,10 +3649,7 @@ ConversationModelPimpl::awaitingHost(const QString& fileId, datatransfer::Info i
 
     bool intUpdated;
 
-    if (!updateTransferStatus(fileId,
-                              info,
-                              interaction::TransferStatus::TRANSFER_AWAITING_HOST,
-                              intUpdated)) {
+    if (!updateTransferStatus(fileId, info, interaction::TransferStatus::TRANSFER_AWAITING_HOST, intUpdated)) {
         return;
     }
     if (!intUpdated) {
@@ -3854,9 +3661,7 @@ ConversationModelPimpl::awaitingHost(const QString& fileId, datatransfer::Info i
 }
 
 void
-ConversationModelPimpl::handleIncomingFile(const QString& convId,
-                                           const QString& interactionId,
-                                           int totalSize)
+ConversationModelPimpl::handleIncomingFile(const QString& convId, const QString& interactionId, int totalSize)
 {
     // If it's an accepted file type and less than 20 MB, accept transfer.
     if (linked.owner.accountModel->autoTransferFromTrusted) {
@@ -3883,10 +3688,7 @@ ConversationModelPimpl::acceptTransfer(const QString& convUid, const QString& in
                 qWarning() << "Cannot download file without fileId";
                 return;
             }
-            linked.owner.dataTransferModel->download(linked.owner.id,
-                                                     convUid,
-                                                     interactionId,
-                                                     fileId);
+            linked.owner.dataTransferModel->download(linked.owner.id, convUid, interactionId, fileId);
         })) {
         qWarning() << "Cannot download file without valid interaction";
     }
@@ -3902,24 +3704,41 @@ ConversationModelPimpl::invalidateModel()
 void
 ConversationModelPimpl::emplaceBackConversation(conversation::Info&& conversation)
 {
-    if (indexOf(conversation.uid) != -1)
+    if (conversationMap.find(conversation.uid) != conversationMap.end())
         return;
     Q_EMIT linked.beginInsertRows(conversations.size());
     conversations.emplace_back(std::move(conversation));
+    auto newIndex = static_cast<int>(conversations.size() - 1);
+    auto& newConv = conversations.back();
+    conversationMap.emplace(newConv.uid, newIndex);
     Q_EMIT linked.endInsertRows();
 }
 
 void
 ConversationModelPimpl::eraseConversation(const QString& convId)
 {
-    eraseConversation(indexOf(convId));
+    auto it = conversationMap.find(convId);
+    if (it == conversationMap.end())
+        return;
+    auto index = it->second;
+    conversationMap.erase(it);
+    eraseConversation(index);
 }
 
 void
 ConversationModelPimpl::eraseConversation(int index)
 {
+    if (index < 0 || index >= static_cast<int>(conversations.size()))
+        return;
+    auto uid = conversations.at(index).uid;
+    conversationMap.erase(uid);
     Q_EMIT linked.beginRemoveRows(index);
     conversations.erase(conversations.begin() + index);
+    for (auto& entry : conversationMap) {
+        if (entry.second > index) {
+            entry.second--;
+        }
+    }
     Q_EMIT linked.endRemoveRows();
 }
 
@@ -3942,9 +3761,7 @@ ConversationModelPimpl::slotTransferStatusOngoing(const QString& fileId, datatra
     }
     auto conversationIdx = indexOf(conversationId);
     auto* timer = new QTimer();
-    connect(timer, &QTimer::timeout, this, [=] {
-        updateTransferProgress(timer, conversationIdx, interactionId);
-    });
+    connect(timer, &QTimer::timeout, this, [=] { updateTransferProgress(timer, conversationIdx, interactionId); });
     timer->start(1000);
 }
 
@@ -4014,8 +3831,7 @@ ConversationModelPimpl::slotTransferStatusUnjoinable(const QString& fileId, data
 }
 
 void
-ConversationModelPimpl::slotTransferStatusTimeoutExpired(const QString& fileId,
-                                                         datatransfer::Info info)
+ConversationModelPimpl::slotTransferStatusTimeoutExpired(const QString& fileId, datatransfer::Info info)
 {
     if (info.accountId != linked.owner.id)
         return;
@@ -4043,10 +3859,10 @@ ConversationModelPimpl::updateTransferStatus(const QString& fileId,
     if (conversation.isLegacy()) {
         storage::updateInteractionTransferStatus(db, interactionId, newStatus);
     }
-    auto& interactions = conversations[conversationIdx].interactions;
+    auto& interactions = conversation.interactions;
     bool emitUpdated = interactions->updateTransferStatus(interactionId,
-                                                  newStatus,
-                                                  conversation.isSwarm() ? info.path : QString());
+                                                          newStatus,
+                                                          conversation.isSwarm() ? info.path : QString());
     if (emitUpdated) {
         invalidateModel();
     }
@@ -4055,9 +3871,7 @@ ConversationModelPimpl::updateTransferStatus(const QString& fileId,
 }
 
 void
-ConversationModelPimpl::updateTransferProgress(QTimer* timer,
-                                               int conversationIdx,
-                                               const QString& interactionId)
+ConversationModelPimpl::updateTransferProgress(QTimer* timer, int conversationIdx, const QString& interactionId)
 {
     try {
         bool emitUpdated = false;
@@ -4084,12 +3898,12 @@ ConversationModelPimpl::slotConversationPreferencesUpdated(const QString&,
                                                            const QString& conversationId,
                                                            const MapStringString& preferences)
 {
-    auto conversationIdx = indexOf(conversationId);
-    if (conversationIdx < 0)
-        return;
-    auto& conversation = conversations[conversationIdx];
-    conversation.preferences = preferences;
-    Q_EMIT linked.conversationPreferencesUpdated(conversationId);
+    try {
+        auto& conversation = getConversationForUid(conversationId).get();
+        conversation.preferences = preferences;
+        Q_EMIT linked.conversationPreferencesUpdated(conversationId);
+    } catch (const std::out_of_range&) {
+    }
 }
 
 } // namespace lrc
