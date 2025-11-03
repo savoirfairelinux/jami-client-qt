@@ -618,8 +618,6 @@ else() # APPLE
     ${myApp_ICON}
     PROPERTIES
     MACOSX_PACKAGE_LOCATION Resources)
-  INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/3rdparty/libqrencode/include)
-  LINK_DIRECTORIES(${PROJECT_SOURCE_DIR}/3rdparty/libqrencode/lib)
   if(ENABLE_SPARKLE)
     message("Sparkle auto-update enabled")
     set(sparkle_dir "${PACKAGING_DIR}/update/sparkle")
@@ -938,7 +936,7 @@ elseif (NOT APPLE)
 else()
   set(resources
     ${CMAKE_CURRENT_SOURCE_DIR}/resources/images/jami.icns)
-  set(libs ${QT_LIBS} ${SYSTEM_CONFIGURATUION} qrencode ${LIBCLIENT_NAME})
+  set(libs ${QT_LIBS} ${SYSTEM_CONFIGURATUION} ${LIBCLIENT_NAME})
   if(ENABLE_SPARKLE)
     set(resources ${resources} ${SPARKLE_FRAMEWORK})
     set(libs ${libs} ${SPARKLE_FRAMEWORK})
