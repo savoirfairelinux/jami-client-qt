@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "712bdddd_0671158f",
+        "filename": ".gitlab/issue_templates/Bug.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-11-03T21:15:16Z",
+      "side": 1,
+      "message": "```\nJami release name: \nJami Build ID: \n```\n\nIf there is another Jami string, like commit ID, used in say the Flathub build, please add.",
+      "revId": "f95cf542e751cecd21927bec90a12b0d52f468ed",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d09ac7dd_e13dc6c0",
         "filename": ".gitlab/issue_templates/Bug.md",
         "patchSetId": 4
