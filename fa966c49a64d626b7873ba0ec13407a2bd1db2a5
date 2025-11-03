@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa3ff915_11aa6a27",
+        "filename": "src/app/utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 841,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2025-11-03T23:59:52Z",
+      "side": 1,
+      "message": "probably not necessary, the boolean value could be used directly.",
+      "range": {
+        "startLine": 841,
+        "startChar": 8,
+        "endLine": 841,
+        "endChar": 58
+      },
+      "revId": "fa966c49a64d626b7873ba0ec13407a2bd1db2a5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d993bb04_3a8fdf79",
+        "filename": "src/app/utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 847,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2025-11-03T23:59:52Z",
+      "side": 1,
+      "message": "Qt::white",
+      "range": {
+        "startLine": 847,
+        "startChar": 20,
+        "endLine": 847,
+        "endChar": 21
+      },
+      "revId": "fa966c49a64d626b7873ba0ec13407a2bd1db2a5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afe7aed7_8b2d210a",
+        "filename": "src/app/utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 858,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2025-11-03T23:59:52Z",
+      "side": 1,
+      "message": "from https://github.com/zxing-cpp/zxing-cpp?tab\u003dreadme-ov-file#to-write-barcodes :\n\n    This returns a BitMatrix which is a binary image of the barcode\n    where true \u003d\u003d visual black and false \u003d\u003d visual white.\n\nHowever, the comment \"Fill with white\" seems to imply that white is considered true.\n\n```suggestion\n        result.fill(Qt::white);\n        \n        // Copy the bitmap data to QImage\n        for (int y \u003d 0; y \u003c qrheight; y++) {\n            for (int x \u003d 0; x \u003c qrwidth; x++) {\n                if (bitmap.get(x, y)) {\n                    result.setPixel(x, y, Qt::black);\n                }\n            }\n        }\n```",
+      "range": {
+        "startLine": 847,
+        "startChar": 8,
+        "endLine": 858,
+        "endChar": 9
+      },
+      "revId": "fa966c49a64d626b7873ba0ec13407a2bd1db2a5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
