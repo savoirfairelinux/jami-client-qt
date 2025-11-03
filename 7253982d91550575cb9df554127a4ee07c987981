@@ -26,6 +26,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c8d3d7e4_921ad643",
+        "filename": ".gitlab/issue_templates/Bug.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-11-03T20:07:30Z",
+      "side": 1,
+      "message": "Should there be 3 blank lines after `Actual result` to type the response?",
+      "revId": "7253982d91550575cb9df554127a4ee07c987981",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48464536_0e6ee84b",
+        "filename": ".gitlab/issue_templates/Bug.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-11-03T20:07:30Z",
+      "side": 1,
+      "message": "Should there be 3 blank lines after `Expected result` to type the response?",
+      "range": {
+        "startLine": 22,
+        "startChar": 2,
+        "endLine": 22,
+        "endChar": 17
+      },
+      "revId": "7253982d91550575cb9df554127a4ee07c987981",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e1e32c60_4dfdcc48",
         "filename": ".gitlab/issue_templates/Bug.md",
         "patchSetId": 2
