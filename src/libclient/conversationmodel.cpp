@@ -227,6 +227,8 @@ public:
     ConversationModel::ConversationQueueProxy filteredConversations;
     ConversationModel::ConversationQueueProxy customFilteredConversations;
 
+    std::map<QString, int> conversationMap;
+
     QString currentFilter;
     FilterType typeFilter;
     FilterType customTypeFilter;
@@ -420,15 +422,16 @@ ConversationModel::allFilteredConversations() const
 QMap<ConferenceableItem, ConferenceableValue>
 ConversationModel::getConferenceableConversations(const QString& convId, const QString& filter) const
 {
-    auto conversationIdx = pimpl_->indexOf(convId);
-    if (conversationIdx == -1 || !owner.enabled) {
+    auto conversationIt = pimpl_->conversationMap.find(convId);
+    if (conversationIt == pimpl_->conversationMap.end() || !owner.enabled) {
         return {};
     }
+    auto& conversation = pimpl_->conversations.at(conversationIt->second);
     QMap<ConferenceableItem, ConferenceableValue> result;
     ConferenceableValue callsVector, contactsVector;
 
-    auto currentConfId = pimpl_->conversations.at(conversationIdx).confId;
-    auto currentCallId = pimpl_->conversations.at(conversationIdx).callId;
+    auto& currentConfId = conversation.confId;
+    auto& currentCallId = conversation.callId;
     auto calls = pimpl_->lrc.getCalls();
     auto conferences = pimpl_->lrc.getConferences(owner.id);
     auto& conversations = pimpl_->conversations;
@@ -2399,15 +2402,19 @@ ConversationModelPimpl::slotConversationReady(const QString& accountId, const QS
         }
     }
 
-    int conversationIdx = indexOf(conversationId);
-    bool conversationExists = conversationIdx >= 0;
+    auto conversationIt = conversationMap.find(conversationId);
+    bool conversationExists = conversationIt != conversationMap.end();
 
-    if (!conversationExists)
+    if (!conversationExists) {
         addSwarmConversation(conversationId);
-    auto& conversation = getConversationForUid(conversationId).get();
+        conversationIt = conversationMap.find(conversationId);
+        if (conversationIt == conversationMap.end()) {
+            return;
+        }
+    }
+    auto& conversation = conversations.at(conversationIt->second);
     if (conversationExists) {
         // if swarm request already exists, update participnts
-        auto& conversation = getConversationForUid(conversationId).get();
         conversation.participants = participants;
         const MapStringString& details = ConfigurationManager::instance().conversationInfos(accountId, conversationId);
         conversation.infos = details;
@@ -2418,7 +2425,7 @@ ConversationModelPimpl::slotConversationReady(const QString& accountId, const QS
         conversation.isRequest = false;
         conversation.needsSyncing = false;
         Q_EMIT linked.conversationUpdated(conversationId);
-        Q_EMIT linked.dataChanged(conversationIdx);
+        Q_EMIT linked.dataChanged(indexOf(conversationId));
         ConfigurationManager::instance().loadConversation(linked.owner.id, conversationId, "", 0);
         auto& peers = peersForConversation(conversation);
         if (peers.size() == 1)
@@ -2438,52 +2445,12 @@ ConversationModelPimpl::slotConversationReady(const QString& accountId, const QS
 void
 ConversationModelPimpl::slotConversationRemoved(const QString& accountId, const QString& conversationId)
 {
-    auto conversationIndex = indexOf(conversationId);
-    if (accountId != linked.owner.id || conversationIndex < 0)
+    if (accountId != linked.owner.id)
         return;
     try {
-        auto removeConversation = [&]() {
-            // remove swarm conversation
-            eraseConversation(conversationIndex);
-            invalidateModel();
-            Q_EMIT linked.conversationRemoved(conversationId);
-        };
-
-        auto& conversation = getConversationForUid(conversationId).get();
-        auto& peers = peersForConversation(conversation);
-        if (peers.isEmpty()) {
-            removeConversation();
-            return;
-        }
-        auto contactUri = peers.first();
-        auto mode = conversation.mode;
-        contact::Info contact;
-        try {
-            contact = linked.owner.contactModel->getContact(contactUri);
-        } catch (...) {
-        }
-
-        removeConversation();
-
-        if (mode == conversation::Mode::ONE_TO_ONE) {
-            // If it's a 1:1 conversation and we don't have any more conversation
-            // we can remove the contact
-            auto contactRemoved = true;
-            try {
-                auto& conv = getConversationForPeerUri(contactUri).get();
-                contactRemoved = !conv.isSwarm();
-            } catch (...) {
-            }
-
-            if (contact.isBanned && contactRemoved) {
-                // Add 1:1 conv for banned
-                auto c = storage::beginConversationWithPeer(db, contactUri);
-                addConversationWith(c, contactUri, false);
-                Q_EMIT linked.conversationReady(c, contactUri);
-                Q_EMIT linked.newConversation(c);
-            }
-        }
-
+        eraseConversation(conversationId);
+        invalidateModel();
+        Q_EMIT linked.conversationRemoved(conversationId);
     } catch (const std::exception& e) {
         qWarning() << e.what();
     }
@@ -2506,18 +2473,21 @@ ConversationModelPimpl::slotConversationMemberEvent(const QString& accountId,
         }
     }
     // update participants
-    auto& conversation = getConversationForUid(conversationId).get();
-    const VectorMapStringString& members = ConfigurationManager::instance().getConversationMembers(linked.owner.id,
-                                                                                                   conversationId);
-    QVector<member::Member> participants;
-    VectorString membersRemaining;
-    for (auto& member : members) {
-        participants.append(member::Member {member["uri"], member::to_role(member["role"])});
-        if (member["role"] != "left")
-            membersRemaining.append(member["uri"]);
+    try {
+        auto& conversation = getConversationForUid(conversationId).get();
+        const VectorMapStringString& members = ConfigurationManager::instance().getConversationMembers(linked.owner.id,
+                                                                                                       conversationId);
+        QVector<member::Member> participants;
+        VectorString membersRemaining;
+        for (auto& member : members) {
+            participants.append(member::Member {member["uri"], member::to_role(member["role"])});
+            if (member["role"] != "left")
+                membersRemaining.append(member["uri"]);
+        }
+        conversation.participants = participants;
+        invalidateModel();
+    } catch (...) {
     }
-    conversation.participants = participants;
-    invalidateModel();
     Q_EMIT linked.modelChanged();
     Q_EMIT linked.conversationUpdated(conversationId);
     Q_EMIT linked.dataChanged(indexOf(conversationId));
@@ -2937,9 +2907,9 @@ ConversationModelPimpl::addConversationWith(const QString& convId, const QString
 int
 ConversationModelPimpl::indexOf(const QString& uid) const
 {
-    for (unsigned int i = 0; i < conversations.size(); ++i) {
-        if (conversations.at(i).uid == uid)
-            return i;
+    auto it = conversationMap.find(uid);
+    if (it != conversationMap.end()) {
+        return it->second;
     }
     return -1;
 }
@@ -2959,14 +2929,24 @@ ConversationModelPimpl::getConversation(const FilterPredicate& pred, const bool 
         }
     }
 
-    throw std::out_of_range("Conversation out of range");
+    throw std::out_of_range("Conversation not found");
 }
 
 std::reference_wrapper<conversation::Info>
 ConversationModelPimpl::getConversationForUid(const QString& uid, const bool searchResultIncluded) const
 {
-    return getConversation([uid](const conversation::Info& conv) -> bool { return uid == conv.uid; },
-                           searchResultIncluded);
+    auto it = conversationMap.find(uid);
+    if (it != conversationMap.end())
+        return std::remove_const_t<conversation::Info&>(conversations.at(it->second));
+    if (searchResultIncluded) {
+        auto sr = std::find_if(searchResults.begin(), searchResults.end(), [&](const auto& conv) {
+            return conv.uid == uid;
+        });
+        if (sr != searchResults.end()) {
+            return std::remove_const_t<conversation::Info&>(*sr);
+        }
+    }
+    throw std::out_of_range("Conversation not found");
 }
 
 std::reference_wrapper<conversation::Info>
@@ -3728,24 +3708,41 @@ ConversationModelPimpl::invalidateModel()
 void
 ConversationModelPimpl::emplaceBackConversation(conversation::Info&& conversation)
 {
-    if (indexOf(conversation.uid) != -1)
+    if (conversationMap.find(conversation.uid) != conversationMap.end())
         return;
     Q_EMIT linked.beginInsertRows(conversations.size());
     conversations.emplace_back(std::move(conversation));
+    auto newIndex = static_cast<int>(conversations.size() - 1);
+    auto& newConv = conversations.back();
+    conversationMap.emplace(newConv.uid, newIndex);
     Q_EMIT linked.endInsertRows();
 }
 
 void
 ConversationModelPimpl::eraseConversation(const QString& convId)
 {
-    eraseConversation(indexOf(convId));
+    auto it = conversationMap.find(convId);
+    if (it == conversationMap.end())
+        return;
+    auto index = it->second;
+    conversationMap.erase(it);
+    eraseConversation(index);
 }
 
 void
 ConversationModelPimpl::eraseConversation(int index)
 {
+    if (index < 0 || index >= static_cast<int>(conversations.size()))
+        return;
+    auto uid = conversations.at(index).uid;
+    conversationMap.erase(uid);
     Q_EMIT linked.beginRemoveRows(index);
     conversations.erase(conversations.begin() + index);
+    for (auto& entry : conversationMap) {
+        if (entry.second > index) {
+            entry.second--;
+        }
+    }
     Q_EMIT linked.endRemoveRows();
 }
 
@@ -3866,7 +3863,7 @@ ConversationModelPimpl::updateTransferStatus(const QString& fileId,
     if (conversation.isLegacy()) {
         storage::updateInteractionTransferStatus(db, interactionId, newStatus);
     }
-    auto& interactions = conversations[conversationIdx].interactions;
+    auto& interactions = conversation.interactions;
     bool emitUpdated = interactions->updateTransferStatus(interactionId,
                                                           newStatus,
                                                           conversation.isSwarm() ? info.path : QString());
@@ -3905,12 +3902,12 @@ ConversationModelPimpl::slotConversationPreferencesUpdated(const QString&,
                                                            const QString& conversationId,
                                                            const MapStringString& preferences)
 {
-    auto conversationIdx = indexOf(conversationId);
-    if (conversationIdx < 0)
-        return;
-    auto& conversation = conversations[conversationIdx];
-    conversation.preferences = preferences;
-    Q_EMIT linked.conversationPreferencesUpdated(conversationId);
+    try {
+        auto& conversation = getConversationForUid(conversationId).get();
+        conversation.preferences = preferences;
+        Q_EMIT linked.conversationPreferencesUpdated(conversationId);
+    } catch (const std::out_of_range&) {
+    }
 }
 
 } // namespace lrc
