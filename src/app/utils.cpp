@@ -23,7 +23,8 @@
 
 #include <api/contact.h>
 
-#include <qrencode.h>
+#include <BitMatrix.h>
+#include <MultiFormatWriter.h>
 
 #include <QApplication>
 #include <QBitmap>
@@ -832,37 +833,31 @@ Utils::pixmapFromSvg(const QString& svg_resource, const QSize& size)
 QImage
 Utils::getQRCodeImage(QString data, int margin)
 {
-    auto qrcode = QRcode_encodeString(data.toStdString().c_str(),
-                                      0,            // Let the version be decided by libqrencode
-                                      QR_ECLEVEL_L, // Lowest level of error correction
-                                      QR_MODE_8,    // 8-bit data mode
-                                      1);
-    if (not qrcode) {
-        qWarning() << "Failed to generate QR code";
-        return QImage();
-    }
+    try {
+        ZXing::MultiFormatWriter writer(ZXing::BarcodeFormat::QRCode);
+        writer.setEccLevel(0);
+        writer.setMargin(margin);
+        auto bitMatrix = writer.encode(data.toStdString(), 0, 0);
+        int qrwidth = bitMatrix.width();
+        int qrheight = bitMatrix.height();
 
-    int qrwidth = qrcode->width + margin * 2;
-    QImage result(QSize(qrwidth, qrwidth), QImage::Format_Mono);
-    QPainter painter;
-    painter.begin(&result);
-    painter.setClipRect(QRect(0, 0, qrwidth, qrwidth));
-    painter.setPen(QPen(Qt::black, 0.1, Qt::SolidLine, Qt::FlatCap, Qt::MiterJoin));
-    painter.setBrush(Qt::black);
-    painter.fillRect(QRect(0, 0, qrwidth, qrwidth), Qt::white);
-    unsigned char* p;
-    p = qrcode->data;
-    for (int y = 0; y < qrcode->width; y++) {
-        unsigned char* row = (p + (y * qrcode->width));
-        for (int x = 0; x < qrcode->width; x++) {
-            if (*(row + x) & 0x1) {
-                painter.drawRect(margin + x, margin + y, 1, 1);
+        // Create QImage with the QR code data
+        QImage result(qrwidth, qrheight, QImage::Format_Mono);
+        result.fill(1); // Fill with white
+
+        // Copy the bitmap data to QImage
+        for (int y = 0; y < qrheight; y++) {
+            for (int x = 0; x < qrwidth; x++) {
+                if (bitMatrix.get(x, y)) {
+                    result.setPixel(x, y, 0);
+                }
             }
         }
+        return result;
+    } catch (const std::exception& e) {
+        qWarning() << "Failed to generate QR code:" << e.what();
+        return QImage();
     }
-    painter.end();
-    QRcode_free(qrcode);
-    return result;
 }
 
 QByteArray

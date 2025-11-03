@@ -533,12 +533,6 @@ if(MSVC)
     "/LTCG"
     "/NODEFAULTLIB:LIBCMT")
 
-  # client deps
-  set(QRENCODE_DIR ${PROJECT_SOURCE_DIR}/3rdparty/qrencode-win32/qrencode-win32)
-  file(GLOB_RECURSE QRENCODE_LIB ${QRENCODE_DIR}/qrcodelib.lib)
-  file(GLOB_RECURSE QRENCODE_INCLUDE ${QRENCODE_DIR}/qrencode.h)
-  get_filename_component(QRENCODE_INCLUDE_DIR ${QRENCODE_INCLUDE} DIRECTORY)
-
   # daemon
   set(JAMID_SRC_PATH ${DAEMON_DIR}/contrib/msvc/include)
   set(GNUTLS_LIB ${DAEMON_DIR}/contrib/msvc/lib/x64/libgnutls.lib)
@@ -546,7 +540,7 @@ if(MSVC)
   include_directories(
     ${JAMID_SRC_PATH}
     ${LIBCLIENT_SRC_DIR}
-    ${QRENCODE_INCLUDE_DIR})
+  )
 elseif (NOT APPLE)
   list(APPEND COMMON_SOURCES
     ${APP_SRC_DIR}/xrectsel.c
@@ -598,7 +592,6 @@ elseif (NOT APPLE)
   set(JAMI_DATA_PREFIX "${CMAKE_INSTALL_PREFIX}/share")
 
   find_library(${LIBCLIENT_NAME} ${LIBCLIENT_NAME} NO_DEFAULT_PATH)
-  find_library(qrencode qrencode)
   find_library(X11 X11)
 else() # APPLE
   list(APPEND COMMON_SOURCES
@@ -618,8 +611,6 @@ else() # APPLE
     ${myApp_ICON}
     PROPERTIES
     MACOSX_PACKAGE_LOCATION Resources)
-  INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/3rdparty/libqrencode/include)
-  LINK_DIRECTORIES(${PROJECT_SOURCE_DIR}/3rdparty/libqrencode/lib)
   if(ENABLE_SPARKLE)
     message("Sparkle auto-update enabled")
     set(sparkle_dir "${PACKAGING_DIR}/update/sparkle")
@@ -766,7 +757,6 @@ if(MSVC)
     ${GNUTLS_LIB}
     ${LIBCLIENT_NAME}
     ${QT_LIBS}
-    ${QRENCODE_LIB}
     ${WINDOWS_SYS_LIBS})
 
   # specify output executable files
@@ -801,7 +791,6 @@ elseif (NOT APPLE)
   list(APPEND CLIENT_LIBS
     ${QT_LIBS}
     ${LIBCLIENT_NAME}
-    ${qrencode}
     ${X11}
     ${LIBNM_LIBRARIES}
     ${LIBNOTIFY_LIBRARIES}
@@ -938,7 +927,7 @@ elseif (NOT APPLE)
 else()
   set(resources
     ${CMAKE_CURRENT_SOURCE_DIR}/resources/images/jami.icns)
-  set(libs ${QT_LIBS} ${SYSTEM_CONFIGURATUION} qrencode ${LIBCLIENT_NAME})
+  set(libs ${QT_LIBS} ${SYSTEM_CONFIGURATUION} ${LIBCLIENT_NAME})
   if(ENABLE_SPARKLE)
     set(resources ${resources} ${SPARKLE_FRAMEWORK})
     set(libs ${libs} ${SPARKLE_FRAMEWORK})
