@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e776b224_f443a20a",
+        "filename": ".gitlab/issue_templates/Bug.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-11-03T20:05:15Z",
+      "side": 1,
+      "message": "https://www.sussex.ac.uk/informatics/punctuation/colonandsemi/colon\n\u003e You should **not** use a colon, or any other mark, at the end of a heading which introduces a new section of a document:",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 28
+      },
+      "revId": "7253982d91550575cb9df554127a4ee07c987981",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1e32c60_4dfdcc48",
+        "filename": ".gitlab/issue_templates/Bug.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-11-03T20:05:15Z",
+      "side": 1,
+      "message": "https://www.sussex.ac.uk/informatics/punctuation/colonandsemi/colon\n\u003e You should **not** use a colon, or any other mark, at the end of a heading which introduces a new section of a document:",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 40
+      },
+      "revId": "7253982d91550575cb9df554127a4ee07c987981",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}

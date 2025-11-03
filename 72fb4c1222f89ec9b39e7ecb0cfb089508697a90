@@ -95,6 +95,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9dbdec57_7116f749",
+        "filename": ".gitlab/issue_templates/Bug.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-11-03T20:05:15Z",
+      "side": 1,
+      "message": "Unable to see the reference in your provided link.\n\nShould\n`Distribution channel :`\nbe\n`Distribution channel:`\n?",
+      "parentUuid": "606adc95_8e9b16a6",
+      "range": {
+        "startLine": 9,
+        "startChar": 22,
+        "endLine": 9,
+        "endChar": 23
+      },
+      "revId": "72fb4c1222f89ec9b39e7ecb0cfb089508697a90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d8e52bbf_569b7a36",
@@ -142,6 +166,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0e066a4_65248334",
+        "filename": ".gitlab/issue_templates/Bug.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-11-03T20:05:15Z",
+      "side": 1,
+      "message": "Should `-` be changed to `###`?",
+      "parentUuid": "fbab79f7_695666d7",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 2
+      },
+      "revId": "72fb4c1222f89ec9b39e7ecb0cfb089508697a90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb751c90_ae112e72",
@@ -179,6 +227,30 @@
       "side": 1,
       "message": "See previous comment",
       "parentUuid": "fb751c90_ae112e72",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 18
+      },
+      "revId": "72fb4c1222f89ec9b39e7ecb0cfb089508697a90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "869331ec_7d2b46b1",
+        "filename": ".gitlab/issue_templates/Bug.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-11-03T20:05:15Z",
+      "side": 1,
+      "message": "Should `-` be changed to `###`?",
+      "parentUuid": "d725ff30_820f8948",
       "range": {
         "startLine": 22,
         "startChar": 0,
