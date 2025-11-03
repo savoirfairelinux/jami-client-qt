@@ -1,0 +1,98 @@
+FROM opensuse/leap:16.0
+
+RUN zypper --gpg-auto-import-keys refresh
+
+RUN zypper --non-interactive install -y \
+        dnf \
+        rpmdevtools \
+        Mesa-dri-devel Mesa-dri \
+        git \
+        gcc-c++ \
+        rpm-build \
+        tar \
+        make \
+        autoconf \
+        automake \
+        nasm \
+        speexdsp-devel \
+        libpulse-devel \
+        libcanberra-devel \
+        libcurl-devel \
+        libtool \
+        pcre-devel \
+        yaml-cpp-devel \
+        libXext-devel \
+        libXfixes-devel \
+        yasm \
+        speex-devel \
+        libgsm-devel \
+        chrpath \
+        check-devel \
+        astyle \
+        gettext-tools \
+        which \
+        alsa-devel \
+        systemd-devel \
+        libuuid-devel \
+        uuid-devel \
+        libopus-devel \
+        patch \
+        jsoncpp-devel \
+        webkit2gtk3-devel \
+        libcryptopp-devel \
+        libva-devel \
+        libvdpau-devel \
+        msgpack-c-devel \
+        msgpack-cxx-devel \
+        clutter-devel \
+        libopenssl-devel \
+        clutter-gtk-devel \
+        libnma-devel \
+        libcryptopp-devel \
+        libexpat-devel \
+        libgsm-devel \
+        gtk3-devel \
+        libappindicator3-devel \
+        sqlite3-devel \
+        python313-html5lib \
+        qrencode-devel \
+        libsndfile-devel \
+        libdrm-devel \
+        gperf \
+        bison \
+        flex \
+        nodejs22 \
+        mozilla-nss-devel \
+        libxcb* \
+        libxkb* \
+        libX11-devel \
+        libXrender-devel \
+        libfreetype6 \
+        xcb-util-image-devel \
+        xcb-util-keysyms-devel \
+        xcb-util-renderutil-devel \
+        xcb-util-wm-devel \
+        xz \
+        xkeyboard-config \
+        libnotify-devel \
+        argon2-devel \
+        libxshmfence-devel \
+        xcb-proto-devel \
+        xcb-* \
+        xorg-* \
+        vulkan-devel \
+        ninja \
+        gstreamer-devel \
+        gstreamer-plugins-good \
+        gstreamer-plugins-bad-devel \
+        gstreamer-plugins-base-devel \
+        cmake \
+        wget \
+        pipewire-devel
+
+ADD extras/packaging/gnu-linux/scripts/install-ffmpeg-for-qt.sh /opt/install-ffmpeg-for-qt.sh
+ADD extras/packaging/gnu-linux/scripts/build-package-rpm.sh /opt/build-package-rpm.sh
+
+ENV CC=gcc
+ENV CXX=g++
+CMD ["/opt/build-package-rpm.sh"]

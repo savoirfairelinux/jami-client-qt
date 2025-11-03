@@ -47,9 +47,6 @@ BuildRequires: gperf
 BuildRequires: flex
 BuildRequires: vulkan-devel
 %if %{defined suse_version}
-BuildRequires: ffmpeg-devel
-BuildRequires: ffmpeg
-BuildRequires: python-xml
 BuildRequires: mozilla-nss-devel
 %else
 BuildRequires: python-six
