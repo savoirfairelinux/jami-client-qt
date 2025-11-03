@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "abec1698_93536584",
+        "filename": ".gitlab/issue_templates/Bug.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-11-03T20:27:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e776b224_f443a20a",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 28
+      },
+      "revId": "7253982d91550575cb9df554127a4ee07c987981",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c8d3d7e4_921ad643",
@@ -37,6 +61,24 @@
       "writtenOn": "2025-11-03T20:07:30Z",
       "side": 1,
       "message": "Should there be 3 blank lines after `Actual result` to type the response?",
+      "revId": "7253982d91550575cb9df554127a4ee07c987981",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9465d2a_f0830b61",
+        "filename": ".gitlab/issue_templates/Bug.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-11-03T20:27:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8d3d7e4_921ad643",
       "revId": "7253982d91550575cb9df554127a4ee07c987981",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -64,6 +106,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b72bd7a2_8c09f45b",
+        "filename": ".gitlab/issue_templates/Bug.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-11-03T20:27:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48464536_0e6ee84b",
+      "range": {
+        "startLine": 22,
+        "startChar": 2,
+        "endLine": 22,
+        "endChar": 17
+      },
+      "revId": "7253982d91550575cb9df554127a4ee07c987981",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e1e32c60_4dfdcc48",
@@ -77,6 +143,30 @@
       "writtenOn": "2025-11-03T20:05:15Z",
       "side": 1,
       "message": "https://www.sussex.ac.uk/informatics/punctuation/colonandsemi/colon\n\u003e You should **not** use a colon, or any other mark, at the end of a heading which introduces a new section of a document:",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 40
+      },
+      "revId": "7253982d91550575cb9df554127a4ee07c987981",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9e8e38d_c04c3bd8",
+        "filename": ".gitlab/issue_templates/Bug.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-11-03T20:27:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e1e32c60_4dfdcc48",
       "range": {
         "startLine": 24,
         "startChar": 0,
