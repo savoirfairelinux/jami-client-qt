@@ -34,6 +34,24 @@
       "parentUuid": "a8067ba7_981a48e8",
       "revId": "8394cd7ad2986b5c7fcd1991e2d1e2c00f9499e3",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75f9a9db_dc6e3faa",
+        "filename": "src/app/mainview/components/ChatView.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-11-03T17:07:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1fb59e77_1fd1ecd1",
+      "revId": "8394cd7ad2986b5c7fcd1991e2d1e2c00f9499e3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
