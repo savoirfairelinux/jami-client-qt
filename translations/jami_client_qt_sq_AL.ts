@@ -602,7 +602,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="208"/>
         <source>Devices</source>
-        <translation type="unfinished"/>
+        <translation>Pajisje</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="209"/>
@@ -1712,7 +1712,7 @@ të lidhet për të njëkohësuar bisedën…</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="289"/>
         <source>Remove conversation</source>
-        <translation type="unfinished"/>
+        <translation>Hiqe bisedën</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="291"/>
@@ -1732,7 +1732,7 @@ të lidhet për të njëkohësuar bisedën…</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="294"/>
         <source>Do you want to block this contact?</source>
-        <translation type="unfinished"/>
+        <translation>Doni të bllokohet ky kontakt?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="295"/>
@@ -2534,7 +2534,7 @@ Vendndodhja e anëtarëve të tjerë mund të merret, sido qoftë.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="520"/>
         <source>Typing indicator</source>
-        <translation type="unfinished"/>
+        <translation>Tregues shtypjeje në tastierë</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="521"/>
@@ -2544,12 +2544,12 @@ Vendndodhja e anëtarëve të tjerë mund të merret, sido qoftë.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="522"/>
         <source>Read receipts</source>
-        <translation type="unfinished"/>
+        <translation>Dëshmi leximi</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="523"/>
         <source>Send and request delivery and read receipts to be sent when messages are delivered or read.</source>
-        <translation type="unfinished"/>
+        <translation>Dërgoni dhe kërkoni që të dërgohet dëshmi dërgimi dhe leximi, kur mesazhet dorëzohen, ose lexohen.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="535"/>
@@ -3824,7 +3824,7 @@ Ju lutemi, ripohoni importimin te pajisja e re.</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="120"/>
         <source>Accept call</source>
-        <translation type="unfinished"/>
+        <translation>Pranoje thirrjen</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="132"/>
@@ -4272,7 +4272,7 @@ Ju lutemi, ripohoni importimin te pajisja e re.</translation>
         <location filename="../src/libclient/avmodel.cpp" line="496"/>
         <location filename="../src/libclient/avmodel.cpp" line="512"/>
         <source>Disabled</source>
-        <translation type="unfinished"/>
+        <translation>Çaktivizuar</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="70"/>
@@ -4625,12 +4625,12 @@ Ju lutemi, ripohoni importimin te pajisja e re.</translation>
     <message>
         <location filename="../src/libclient/api/account.h" line="238"/>
         <source>An authentication error occurred while linking the device. Please check credentials and try again.</source>
-        <translation type="unfinished"/>
+        <translation>Ndodhi një gabim mirëfilltësimi teksa lidhej pajisja. Ju lutemi, kontrolloni kredencialet dhe riprovoni.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/account.h" line="241"/>
         <source>A network error occurred while linking the account. Please verify your connection and try again.</source>
-        <translation type="unfinished"/>
+        <translation>Ndodhi një gabim teksa lidhej llogaria. Ju lutemi, kontrolloni lidhjen tuaj dhe riprovoni.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/account.h" line="243"/>
@@ -4640,7 +4640,7 @@ Ju lutemi, ripohoni importimin te pajisja e re.</translation>
     <message>
         <location filename="../src/libclient/api/account.h" line="245"/>
         <source>An error occurred while exporting the account. Please try again.</source>
-        <translation type="unfinished"/>
+        <translation>Ndodhi një gabim teksa eksportohej llogaria. Ju lutemi, riprovoni.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/account.h" line="247"/>

@@ -602,7 +602,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="208"/>
         <source>Devices</source>
-        <translation type="unfinished"/>
+        <translation>Утасны хэрэгсэл</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="209"/>
@@ -1707,7 +1707,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="289"/>
         <source>Remove conversation</source>
-        <translation type="unfinished"/>
+        <translation>Хэлэлцүүлгийг устгах</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="291"/>
@@ -2526,7 +2526,7 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="520"/>
         <source>Typing indicator</source>
-        <translation type="unfinished"/>
+        <translation>Тайплэрын үзүүлэлт</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="521"/>
@@ -4261,7 +4261,7 @@ Please confirm the import on the new device.</source>
         <location filename="../src/libclient/avmodel.cpp" line="496"/>
         <location filename="../src/libclient/avmodel.cpp" line="512"/>
         <source>Disabled</source>
-        <translation type="unfinished"/>
+        <translation>Хөгжлийн бэрхшээлтэй</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="70"/>

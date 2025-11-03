@@ -602,7 +602,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="208"/>
         <source>Devices</source>
-        <translation type="unfinished"/>
+        <translation>Zařízení</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="209"/>
@@ -1707,12 +1707,12 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="289"/>
         <source>Remove conversation</source>
-        <translation type="unfinished"/>
+        <translation>Odstranit konverzaci</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="291"/>
         <source>Leave group</source>
-        <translation type="unfinished"/>
+        <translation>Opustit skupinu</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="292"/>
@@ -2526,7 +2526,7 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="520"/>
         <source>Typing indicator</source>
-        <translation type="unfinished"/>
+        <translation>Indikátor psaní</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="521"/>
@@ -2975,7 +2975,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="948"/>
         <source>More</source>
-        <translation type="unfinished"/>
+        <translation>Více</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="949"/>
@@ -3045,7 +3045,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="962"/>
         <source>Status</source>
-        <translation type="unfinished"/>
+        <translation>Status</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="963"/>
@@ -3814,7 +3814,7 @@ Potvrďte import na novém zařízení.</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="120"/>
         <source>Accept call</source>
-        <translation type="unfinished"/>
+        <translation>Přijmout hovor</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="132"/>
@@ -4262,7 +4262,7 @@ Potvrďte import na novém zařízení.</translation>
         <location filename="../src/libclient/avmodel.cpp" line="496"/>
         <location filename="../src/libclient/avmodel.cpp" line="512"/>
         <source>Disabled</source>
-        <translation type="unfinished"/>
+        <translation>zakázáno</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="70"/>
@@ -4671,7 +4671,7 @@ Potvrďte import na novém zařízení.</translation>
     <message>
         <location filename="../src/app/systemtray.cpp" line="224"/>
         <source>Accept call</source>
-        <translation type="unfinished"/>
+        <translation>Přijmout hovor</translation>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="225"/>
