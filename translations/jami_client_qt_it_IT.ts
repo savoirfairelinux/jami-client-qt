@@ -1693,7 +1693,7 @@ si connetta per sincronizzare la conversazione…</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="86"/>
         <source>An authentication error occurred while linking the device. Please check credentials and try again.</source>
-        <translation type="unfinished"/>
+        <translation>Si è verificato un errore di autenticazione durante l&apos;associazione del dispositivo. Controllare le credenziali e riprovare.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="113"/>
@@ -2508,7 +2508,7 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="512"/>
         <source>Send and receive typing indicators showing when messages are being typed.</source>
-        <translation>Invia e ricevi indicatori di scrittura quando si sta scrivendo un messagio.</translation>
+        <translation>Invia e ricevi indicatori di scrittura quando si sta scrivendo un messaggio.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="524"/>
