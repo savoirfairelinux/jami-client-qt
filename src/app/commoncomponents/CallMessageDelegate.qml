@@ -27,6 +27,12 @@ SBSMessageBase {
 
     property var confId: ConfId
     property string currentCallId: CurrentCall.id
+    property bool isRemoteImage
+    property color baseColor: JamiTheme.messageInBgColor
+    property bool isActive: LRCInstance.indexOfActiveCall(root.confId, ActionUri, DeviceId) !== -1
+
+    visible: isActive || root.confId === "" || Duration > 0
+    height: visible ? implicitHeight : 0
 
     isOutgoing: Author === CurrentAccount.uri
     author: Author
@@ -47,16 +53,17 @@ SBSMessageBase {
             }).join(", ") : "");
     }
 
-    property bool isRemoteImage
-    property color baseColor: JamiTheme.messageInBgColor
-    property bool isActive: LRCInstance.indexOfActiveCall(root.confId, ActionUri, DeviceId) !== -1
-
     bubble.border.color: CurrentConversation.color
     bubble.border.width: 0
     bubble.color: JamiTheme.messageInBgColor
     bubble.opacity: 1
 
-    visible: isActive || root.confId === "" || Duration > 0
+    Connections {
+        target: CurrentConversation
+        function onActiveCallsChanged() {
+            root.isActive = LRCInstance.indexOfActiveCall(root.confId, ActionUri, DeviceId) !== -1;
+        }
+    }
 
     component JoinCallButton: PushButton {
         visible: root.isActive && root.currentCallId !== root.confId
@@ -77,11 +84,12 @@ SBSMessageBase {
 
             Image {
                 id: statusIcon
+                visible: !root.isActive
+
                 Layout.leftMargin: 8
                 width: 10
                 height: 10
                 verticalAlignment: Qt.AlignVCenter
-                visible: !root.isActive
 
                 source: {
                     if (root.isOutgoing) {
@@ -110,7 +118,7 @@ SBSMessageBase {
             }
 
             Text {
-                visible: isActive
+                visible: root.isActive
                 text: JamiStrings.callStarted
                 Layout.leftMargin: 10
                 color: UtilsAdapter.luma(root.baseColor) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
@@ -128,7 +136,7 @@ SBSMessageBase {
 
                 Layout.leftMargin: root.isActive ? 10 : 5
 
-                text: isActive ? bubble.timestampItem.formattedTime : Body
+                text: root.isActive ? bubble.timestampItem.formattedTime : Body
 
                 verticalAlignment: Qt.AlignVCenter
                 horizontalAlignment: Qt.AlignHCenter
@@ -143,6 +151,7 @@ SBSMessageBase {
 
             JoinCallButton {
                 id: joinCallWithAudio
+                visible: root.isActive
                 Layout.topMargin: 0.5 // For better sub-pixel rendering
                 objectName: "joinCallWithAudio"
                 source: JamiResources.place_audiocall_24dp_svg
