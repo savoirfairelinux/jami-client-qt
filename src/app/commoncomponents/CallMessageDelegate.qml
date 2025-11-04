@@ -62,6 +62,11 @@ SBSMessageBase {
         target: CurrentConversation
         function onActiveCallsChanged() {
             root.isActive = LRCInstance.indexOfActiveCall(root.confId, ActionUri, DeviceId) !== -1;
+            if (rootDelegate.isActive) {
+                bubble.mask.border.color = "#FF0000";
+                bubble.mask.border.width = 1.5;
+                bubble.mask.z = -2;
+            }
         }
     }
 
@@ -166,7 +171,7 @@ SBSMessageBase {
                 Layout.topMargin: 0.5 // For better sub-pixel rendering
                 objectName: "joinCallWithVideo"
                 source: JamiResources.videocam_24dp_svg
-                onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, root.confId, true)
+                onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, root.confId, false)
 
                 layer.enabled: true
                 layer.effect: OpacityMask {
