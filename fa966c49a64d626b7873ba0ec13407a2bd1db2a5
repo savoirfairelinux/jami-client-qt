@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae19f00d_d69a6c42",
+        "filename": "src/app/utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 841,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2025-11-04T16:51:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa3ff915_11aa6a27",
+      "range": {
+        "startLine": 841,
+        "startChar": 8,
+        "endLine": 841,
+        "endChar": 58
+      },
+      "revId": "fa966c49a64d626b7873ba0ec13407a2bd1db2a5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d993bb04_3a8fdf79",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-11-03T23:59:52Z",
       "side": 1,
       "message": "Qt::white",
+      "range": {
+        "startLine": 847,
+        "startChar": 20,
+        "endLine": 847,
+        "endChar": 21
+      },
+      "revId": "fa966c49a64d626b7873ba0ec13407a2bd1db2a5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77f9fce5_1cbc8bf7",
+        "filename": "src/app/utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 847,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2025-11-04T16:51:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d993bb04_3a8fdf79",
       "range": {
         "startLine": 847,
         "startChar": 20,
@@ -84,6 +132,30 @@
       "side": 1,
       "message": "Just noticed that ToMatrix handle the conversion, but the intermediate bitmap could still be avoided.",
       "parentUuid": "afe7aed7_8b2d210a",
+      "range": {
+        "startLine": 847,
+        "startChar": 8,
+        "endLine": 858,
+        "endChar": 9
+      },
+      "revId": "fa966c49a64d626b7873ba0ec13407a2bd1db2a5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8fd9f80e_2cd294e9",
+        "filename": "src/app/utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 858,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2025-11-04T16:51:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4ce982e_27cd86b4",
       "range": {
         "startLine": 847,
         "startChar": 8,
