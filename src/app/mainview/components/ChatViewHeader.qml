@@ -166,7 +166,7 @@ Rectangle {
             id: startAudioCallButton
             QWKSetParentHitTestVisible {
             }
-            visible: CurrentConversation.activeCalls.length === 0 && interactionButtonsVisibility && (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
+            visible: CurrentConversation.activeCalls.length === 0 && interactionButtonsVisibility
             source: JamiResources.place_audiocall_24dp_svg
             toolTipText: JamiStrings.startAudioCall
             onClicked: CallAdapter.placeAudioOnlyCall()
@@ -175,7 +175,7 @@ Rectangle {
             id: startVideoCallButton
             QWKSetParentHitTestVisible {
             }
-            visible: CurrentConversation.activeCalls.length === 0 && interactionButtonsVisibility && CurrentAccount.videoEnabled_Video && (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
+            visible: CurrentConversation.activeCalls.length === 0 && interactionButtonsVisibility && CurrentAccount.videoEnabled_Video
             source: JamiResources.videocam_24dp_svg
             toolTipText: JamiStrings.startVideoCall
             onClicked: CallAdapter.placeCall()
@@ -186,7 +186,7 @@ Rectangle {
             }
             Layout.preferredHeight: 36
             Layout.alignment: Qt.AlignVCenter
-            visible: CurrentConversation.activeCalls.length > 0 && interactionButtonsVisibility && (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
+            visible: CurrentConversation.activeCalls.length > 0 && interactionButtonsVisibility
         }
 
         JamiPushButton {
