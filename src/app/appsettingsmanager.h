@@ -156,6 +156,7 @@ public:
 Q_SIGNALS:
     void retranslate();
     void reloadHistory();
+    void localeChanged();
 
 private:
     QSettings* settings_;

@@ -203,4 +203,5 @@ private:
     QTimer* timestampTimer_;
     static constexpr const int loadChunkSize_ {20};
     static constexpr const int timestampUpdateIntervalMs_ {1000};
+    QLocale curLocale_;
 };

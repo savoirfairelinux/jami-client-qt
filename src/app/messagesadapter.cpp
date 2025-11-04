@@ -49,6 +49,7 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     , filteredMsgListModel_(new FilteredMsgListModel(this))
     , mediaInteractions_(std::make_unique<MessageListModel>(nullptr))
     , timestampTimer_(new QTimer(this))
+    , curLocale_(QLocale(settingsManager_->getLanguage()))
 {
     setObjectName(typeid(*this).name());
 
@@ -74,6 +75,9 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     connect(messageParser_, &MessageParser::messageParsed, this, &MessagesAdapter::onMessageParsed);
     connect(messageParser_, &MessageParser::linkInfoReady, this, &MessagesAdapter::onLinkInfoReady);
 
+    connect(settingsManager_, &AppSettingsManager::localeChanged, this, [this]() {
+        curLocale_ = QLocale((settingsManager_->getLanguage()));
+    });
     connect(timestampTimer_, &QTimer::timeout, this, &MessagesAdapter::timestampUpdated);
     timestampTimer_->start(timestampUpdateIntervalMs_);
 
@@ -629,9 +633,8 @@ MessagesAdapter::getFormattedTime(const quint64 timestamp)
     const auto currentTime = QDateTime::currentDateTime();
     const auto seconds = currentTime.toSecsSinceEpoch() - timestamp;
     if (seconds > 60) {
-        auto curLocal = QLocale(settingsManager_->getLanguage());
         auto curTime = QDateTime::fromSecsSinceEpoch(timestamp).time();
-        return curLocal.toString(curTime, curLocal.ShortFormat).toLower();
+        return curLocale_.toString(curTime, curLocale_.ShortFormat).toLower();
     }
     return QObject::tr("Just now");
 }
@@ -656,8 +659,7 @@ MessagesAdapter::getFormattedDay(const quint64 timestamp)
     if (timestampDate.daysTo(currentDate) == 1)
         return QObject::tr("Yesterday");
 
-    auto curLocal = QLocale(settingsManager_->getLanguage());
-    return curLocal.toString(timestampDate, curLocal.ShortFormat);
+    return curLocale_.toString(timestampDate, curLocale_.ShortFormat);
 }
 
 void

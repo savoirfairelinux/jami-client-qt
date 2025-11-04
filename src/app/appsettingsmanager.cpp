@@ -59,6 +59,10 @@ void
 AppSettingsManager::setValue(const QString& key, const QVariant& value)
 {
     settings_->setValue(key, value);
+
+    if (key == QString("LANG")) {
+        Q_EMIT localeChanged();
+    }
 }
 
 QVariant
