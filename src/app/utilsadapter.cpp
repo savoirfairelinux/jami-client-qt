@@ -83,8 +83,6 @@ UtilsAdapter::setAppValue(const Settings::Key key, const QVariant& value)
         Q_EMIT changeFontSize();
     else if (key == Settings::Key::DisplayHyperlinkPreviews)
         settingsManager_->loadHistory();
-    else if (key == Settings::Key::EnableExperimentalSwarm)
-        Q_EMIT showExperimentalCallSwarm();
     else if (key == Settings::Key::ShowChatviewHorizontally)
         Q_EMIT chatviewPositionChanged();
     else if (key == Settings::Key::AppTheme)
@@ -209,8 +207,7 @@ UtilsAdapter::getBestName(const QString& accountId, const QString& uid)
 {
     const auto& conv = lrcInstance_->getConversationFromConvUid(uid);
     if (!conv.participants.isEmpty())
-        return lrcInstance_->getAccountInfo(accountId).contactModel->bestNameForContact(
-            conv.participants[0].uri);
+        return lrcInstance_->getAccountInfo(accountId).contactModel->bestNameForContact(conv.participants[0].uri);
     return QString();
 }
 
