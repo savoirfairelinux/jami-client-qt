@@ -16,74 +16,73 @@ RUN rm -f /etc/apt/sources.list /etc/apt/sources.list.d/* && \
 
 RUN apt-get update && \
     apt-get install -y \
-        devscripts \
-        equivs \
-        gnupg \
-        dirmngr \
-        curl
+    devscripts \
+    equivs \
+    gnupg \
+    dirmngr \
+    curl
 
 RUN curl -s https://dl.jami.net/public-key.gpg | tee /usr/share/keyrings/jami-archive-keyring.gpg > /dev/null
 RUN sh -c "echo 'deb [signed-by=/usr/share/keyrings/jami-archive-keyring.gpg] https://dl.jami.net/internal/ubuntu_22.04/ jami main' > /etc/apt/sources.list.d/jami.list"
 RUN apt-get update && apt-get install libqt-jami -y
 
 RUN apt-get install -y -o Acquire::Retries=10 \
-        python3 \
-        git \
-        autoconf \
-        automake \
-        autopoint \
-        cmake \
-        libtool \
-        libdbus-1-dev \
-        libsystemd-dev \
-        libargon2-0-dev \
-        libcanberra-gtk3-dev \
-        libclutter-gtk-1.0-dev \
-        libclutter-1.0-dev \
-        libglib2.0-dev \
-        libgtk-3-dev \
-        libnotify-dev \
-        yasm \
-        nasm \
-        autotools-dev \
-        gettext \
-        libpulse-dev \
-        libasound2-dev \
-        libexpat1-dev \
-        libpcre3-dev \
-        libyaml-cpp-dev \
-        libboost-dev \
-        libxext-dev \
-        libxfixes-dev \
-        libspeex-dev \
-        libspeexdsp-dev \
-        uuid-dev \
-        libavcodec-dev \
-        libavutil-dev \
-        libavformat-dev \
-        libswscale-dev \
-        libavdevice-dev \
-        libopus-dev \
-        libpipewire-0.3-dev \
-        libudev-dev \
-        libgsm1-dev \
-        libjsoncpp-dev \
-        libmsgpack-dev \
-        libnatpmp-dev \
-        libappindicator3-dev \
-        libqrencode-dev \
-        libnm-dev \
-        libwebkit2gtk-4.0-dev \
-        libcrypto++-dev \
-        libva-dev \
-        libvdpau-dev \
-        libssl-dev
+    python3 \
+    git \
+    autoconf \
+    automake \
+    autopoint \
+    cmake \
+    libtool \
+    libdbus-1-dev \
+    libsystemd-dev \
+    libargon2-0-dev \
+    libcanberra-gtk3-dev \
+    libclutter-gtk-1.0-dev \
+    libclutter-1.0-dev \
+    libglib2.0-dev \
+    libgtk-3-dev \
+    libnotify-dev \
+    yasm \
+    nasm \
+    autotools-dev \
+    gettext \
+    libpulse-dev \
+    libasound2-dev \
+    libexpat1-dev \
+    libpcre3-dev \
+    libyaml-cpp-dev \
+    libboost-dev \
+    libxext-dev \
+    libxfixes-dev \
+    libspeex-dev \
+    libspeexdsp-dev \
+    uuid-dev \
+    libavcodec-dev \
+    libavutil-dev \
+    libavformat-dev \
+    libswscale-dev \
+    libavdevice-dev \
+    libopus-dev \
+    libpipewire-0.3-dev \
+    libudev-dev \
+    libgsm1-dev \
+    libjsoncpp-dev \
+    libmsgpack-dev \
+    libnatpmp-dev \
+    libappindicator3-dev \
+    libnm-dev \
+    libwebkit2gtk-4.0-dev \
+    libcrypto++-dev \
+    libva-dev \
+    libvdpau-dev \
+    libssl-dev
 RUN apt-get install -y pandoc \
-        libcppunit-dev \
-        googletest \
-        libgtest-dev \
-        wget && \
-        rm -rf /var/lib/apt/lists/*
+    libcppunit-dev \
+    googletest \
+    libgtest-dev \
+    wget && \
+    rm -rf /var/lib/apt/lists/*
 
 # Install a recent version of CMake
 ADD extras/packaging/gnu-linux/scripts/install-cmake.sh /opt/install-cmake.sh

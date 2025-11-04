@@ -207,7 +207,6 @@ def init_submodules():
 
     # Init the client submodules for Windows other than the daemon.
     submodules = [
-        "3rdparty/qrencode-win32",
         "3rdparty/SortFilterProxyModel",
         "3rdparty/md4c",
         "3rdparty/tidy-html5",
@@ -218,21 +217,6 @@ def init_submodules():
                    False):
         print("Submodule initialization error.")
         sys.exit(1)
-
-
-def build_deps():
-    """Build the dependencies for the project."""
-    print('Building qrencode')
-    qrencode_dir = os.path.join(repo_root_dir, '3rdparty', 'qrencode-win32')
-    vs_env_vars = {}
-    vs_env_vars.update(get_vs_env())
-    toolset = get_latest_toolset_version()
-    print(f'Using toolset {toolset}')
-    msbuild_args = get_ms_build_args("x64", "Release-Lib", toolset)
-    proj_path = os.path.join(
-        qrencode_dir, "qrencode-win32", "vc15", "qrcodelib", "qrcodelib.vcxproj"
-    )
-    build_project(msbuild_args, proj_path, vs_env_vars)
 
 
 def cmake_generate(options, env_vars, cmake_build_dir):
@@ -549,7 +533,6 @@ def main():
 
     if parsed_args.init:
         init_submodules()
-        build_deps()
         sys.exit(0)
 
     config_str = ('Release', 'Beta')[parsed_args.beta]

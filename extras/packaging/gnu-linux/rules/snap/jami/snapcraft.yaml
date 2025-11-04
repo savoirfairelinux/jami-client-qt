@@ -321,7 +321,6 @@ parts:
     - gzip
     - libnotify-dev
     - libpipewire-0.3-dev
-    - libqrencode-dev
     - libspeex-dev
     - python3
     - python3-dev
@@ -358,7 +357,6 @@ parts:
     - libopus0
     - libpcre2-8-0
     - pipewire-bin
-    - libqrencode4
     - libqt-jami
     - libsnappy1v5
     - libspeex1
