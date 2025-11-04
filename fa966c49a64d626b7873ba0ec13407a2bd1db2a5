@@ -68,6 +68,30 @@
       },
       "revId": "fa966c49a64d626b7873ba0ec13407a2bd1db2a5",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4ce982e_27cd86b4",
+        "filename": "src/app/utils.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 858,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2025-11-04T05:21:08Z",
+      "side": 1,
+      "message": "Just noticed that ToMatrix handle the conversion, but the intermediate bitmap could still be avoided.",
+      "parentUuid": "afe7aed7_8b2d210a",
+      "range": {
+        "startLine": 847,
+        "startChar": 8,
+        "endLine": 858,
+        "endChar": 9
+      },
+      "revId": "fa966c49a64d626b7873ba0ec13407a2bd1db2a5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
