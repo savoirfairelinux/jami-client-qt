@@ -177,7 +177,6 @@ Q_SIGNALS:
     void changeFontSize();
     void chatviewPositionChanged();
     void appThemeChanged();
-    void showExperimentalCallSwarm();
     void changeLanguage();
     void donationCampaignSettingsChanged();
     void useFramelessWindowChanged();

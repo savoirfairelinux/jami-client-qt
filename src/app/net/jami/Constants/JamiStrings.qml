@@ -569,9 +569,6 @@ Item {
     property string troubleshootButton: qsTr("Open logs")
     property string troubleshootText: qsTr("Get logs")
 
-    property string experimentalCallSwarm: qsTr("(Experimental) Enable call support for groups")
-    property string experimentalCallSwarmTooltip: qsTr("This feature will enable the audio and video call buttons in group conversations.")
-
     // Recording Settings
     property string quality: qsTr("Quality")
     property string saveRecordingsTo: qsTr("Save recordings to")
