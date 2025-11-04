@@ -65,36 +65,22 @@ users.
 %build
 CFLAGS="${CFLAGS} -fno-lto"
 CXXFLAGS="${CXXFLAGS} -fno-lto"
-# Configure the Jami bundled libraries (ffmpeg & pjproject).
-mkdir -p daemon/contrib/native
-cd %{_builddir}/jami-%{version}/daemon/contrib/native && \
-    ../bootstrap \
-        --no-checksums \
-        --disable-ogg \
-        --disable-flac \
-        --disable-vorbis \
-        --disable-vorbisenc \
-        --disable-speex \
-        --disable-sndfile \
-        --disable-gsm \
-        --disable-speexdsp \
-        --disable-natpmp && \
-    make list && \
-    make fetch && \
-    make %{_smp_mflags} V=1 && \
-# Configure the daemon.
-cd %{_builddir}/jami-%{version}/daemon && \
-    ./autogen.sh && \
-    ./configure \
-        --prefix=%{_prefix} \
-        --libdir=%{_libdir}
 # Build the daemon.
-make -C %{_builddir}/jami-%{version}/daemon %{_smp_mflags} V=1
+mkdir -p %{_builddir}/jami-%{version}/daemon/build
+cd %{_builddir}/jami-%{version}/daemon/build && \
+cmake \
+    -DCMAKE_INSTALL_PREFIX=%{_prefix} \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DJAMI_DBUS=On \
+    -DBUILD_TESTING=Off \
+    ..
+make -C %{_builddir}/jami-%{version}/daemon/build %{_smp_mflags} V=1
 pod2man %{_builddir}/jami-%{version}/daemon/man/jamid.pod \
         > %{_builddir}/jami-%{version}/daemon/jamid.1
 
 %install
-DESTDIR=%{buildroot} make -C daemon install
+DESTDIR=%{buildroot} make -C daemon/build install
+mkdir -p %{buildroot}/%{_mandir}/man1
 cp %{_builddir}/jami-%{version}/daemon/jamid.1 \
    %{buildroot}/%{_mandir}/man1/jamid.1
 rm -rfv %{buildroot}/%{_libdir}/*.a
@@ -102,7 +88,7 @@ rm -rfv %{buildroot}/%{_libdir}/*.la
 
 %files
 %defattr(-,root,root,-)
-%{_libdir}/libjami.so*
+%{_libdir}/libjami-core.*
 %{_libdir}/pkgconfig/jami.pc
 # XXX: Use %%{_libexecdir}/jamid after there's no more OpenSUSE Leap
 # < 16 (see https://en.opensuse.org/openSUSE:Specfile_guidelines).
