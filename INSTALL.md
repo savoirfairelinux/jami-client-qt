@@ -56,7 +56,7 @@ It should be (For now qt5 only is packaged by distributions, so names can change
 #### Dependencies, Debian based
 
 ```bash
-sudo apt-get install cmake make doxygen g++ gettext libnotify-dev pandoc nasm libqrencode-dev \
+sudo apt-get install cmake make doxygen g++ gettext libnotify-dev pandoc nasm \
                      libnotify-dev libnm-dev \
                      qt6-base-dev \
                      qtmultimedia5-dev libqt6svg6-dev qt6-webengine-dev \
@@ -73,7 +73,7 @@ sudo apt-get install cmake make doxygen g++ gettext libnotify-dev pandoc nasm li
 #### Dependencies, Fedora based
 
 ```bash
-sudo dnf install qt6-qtsvg-devel qt6-qtwebengine-devel qt6-qtmultimedia-devel qt6-qtdeclarative-devel qt6-qtquickcontrols2-devel qt6-qtquickcontrols qrencode-devel NetworkManager-libnm-devel
+sudo dnf install qt6-qtsvg-devel qt6-qtwebengine-devel qt6-qtmultimedia-devel qt6-qtdeclarative-devel qt6-qtquickcontrols2-devel qt6-qtquickcontrols NetworkManager-libnm-devel
 ```
 
 ### Qt from sources

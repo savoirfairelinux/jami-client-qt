@@ -75,7 +75,6 @@ RUN dnf install -y \
         pipewire-devel \
         pulseaudio-libs-devel \
         python3-html5lib \
-        qrencode-devel \
         speex-devel \
         speexdsp-devel \
         sqlite-devel \

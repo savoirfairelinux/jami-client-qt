@@ -12,7 +12,6 @@ Build-Depends: debhelper (>= 9),
                python3,
                libnm-dev,
                libnotify-dev,
-               libqrencode-dev,
                libayatana-appindicator3-dev | libappindicator3-dev,
 # daemon
                libdbus-1-dev,

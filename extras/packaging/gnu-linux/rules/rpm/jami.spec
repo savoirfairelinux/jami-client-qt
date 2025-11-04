@@ -31,9 +31,6 @@ BuildRequires: make
 # For generating resources.qrc in build time.
 BuildRequires: python3
 
-# Build and runtime dependencies.
-BuildRequires: qrencode-devel
-
 %description
 This package contains the Qt desktop client of Jami. Jami is a free
 software for universal communication which respects freedoms and

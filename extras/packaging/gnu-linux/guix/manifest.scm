@@ -101,7 +101,6 @@
   "libxkbcommon"
   "md4c"
   "network-manager"                     ;libnm
-  "qrencode"
   "qtbase"
   "qt5compat"
   "qtdeclarative"
