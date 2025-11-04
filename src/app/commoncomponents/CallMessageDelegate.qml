@@ -166,7 +166,7 @@ SBSMessageBase {
                 Layout.topMargin: 0.5 // For better sub-pixel rendering
                 objectName: "joinCallWithVideo"
                 source: JamiResources.videocam_24dp_svg
-                onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, root.confId, true)
+                onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, root.confId, false)
 
                 layer.enabled: true
                 layer.effect: OpacityMask {
