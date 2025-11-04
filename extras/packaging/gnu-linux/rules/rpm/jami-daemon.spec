@@ -65,31 +65,15 @@ users.
 %build
 CFLAGS="${CFLAGS} -fno-lto"
 CXXFLAGS="${CXXFLAGS} -fno-lto"
-# Configure the Jami bundled libraries (ffmpeg & pjproject).
-mkdir -p daemon/contrib/native
-cd %{_builddir}/jami-%{version}/daemon/contrib/native && \
-    ../bootstrap \
-        --no-checksums \
-        --disable-ogg \
-        --disable-flac \
-        --disable-vorbis \
-        --disable-vorbisenc \
-        --disable-speex \
-        --disable-sndfile \
-        --disable-gsm \
-        --disable-speexdsp \
-        --disable-natpmp && \
-    make list && \
-    make fetch && \
-    make %{_smp_mflags} V=1 && \
-# Configure the daemon.
-cd %{_builddir}/jami-%{version}/daemon && \
-    ./autogen.sh && \
-    ./configure \
-        --prefix=%{_prefix} \
-        --libdir=%{_libdir}
 # Build the daemon.
-make -C %{_builddir}/jami-%{version}/daemon %{_smp_mflags} V=1
+mkdir -p %{_builddir}/jami-%{version}/daemon/build
+cd %{_builddir}/jami-%{version}/daemon/build && \
+cmake \
+    -DCMAKE_INSTALL_PREFIX=%{_prefix} \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DBUILD_TESTING=Off \
+    ..
+make -C %{_builddir}/jami-%{version}/daemon/build %{_smp_mflags} V=1
 pod2man %{_builddir}/jami-%{version}/daemon/man/jamid.pod \
         > %{_builddir}/jami-%{version}/daemon/jamid.1
 
