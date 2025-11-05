@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8a6934e_d219740d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-11-05T14:09:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d53002c7_e489edbe",
+      "revId": "cbba1e7cb1d0578f78ce788fc160a7b8ce84e84f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa0c92cc_be0c6046",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-11-05T00:22:47Z",
       "side": 1,
       "message": "Should this line, the previous line, and the next line be removed?",
+      "revId": "cbba1e7cb1d0578f78ce788fc160a7b8ce84e84f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "305ed6bd_8d56edb4",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 880,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-11-05T14:09:07Z",
+      "side": 1,
+      "message": "We are keeping it for now as there may be other experimental features produced later in time.",
+      "parentUuid": "aa0c92cc_be0c6046",
       "revId": "cbba1e7cb1d0578f78ce788fc160a7b8ce84e84f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
