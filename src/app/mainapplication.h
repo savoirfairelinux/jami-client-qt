@@ -66,14 +66,7 @@ public:
 
     Q_INVOKABLE void handleUriAction(const QString& uri = {});
 
-    enum class Option {
-        StartMinimized = 0,
-        Debug,
-        UpdateUrl,
-        MuteDaemon,
-        TerminationRequested,
-        StartUri
-    };
+    enum class Option { StartMinimized = 0, Debug, UpdateUrl, MuteDaemon, TerminationRequested, StartUri };
     QVariant getOpt(const Option opt)
     {
         return runOptions_[opt];
@@ -99,10 +92,7 @@ Q_SIGNALS:
     void searchAndSelect(const QString& request);
 
 private:
-    void initLrc(const QString& downloadUrl,
-                 ConnectivityMonitor* cm,
-                 bool debugMode,
-                 bool muteDaemon);
+    void initLrc(const QString& downloadUrl, ConnectivityMonitor* cm, bool debugMode, bool muteDaemon);
     void parseArguments();
     void setApplicationFont();
     void initQmlLayer();

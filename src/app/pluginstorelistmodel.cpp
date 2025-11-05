@@ -205,11 +205,9 @@ PluginStoreListModel::onVersionStatusChanged(const QString& pluginId, PluginStat
 int
 PluginStoreListModel::rowFromPluginId(const QString& pluginId) const
 {
-    const auto it = std::find_if(plugins_.begin(),
-                                 plugins_.end(),
-                                 [&pluginId](const QVariantMap& p) {
-                                     return p["id"].toString() == pluginId;
-                                 });
+    const auto it = std::find_if(plugins_.begin(), plugins_.end(), [&pluginId](const QVariantMap& p) {
+        return p["id"].toString() == pluginId;
+    });
     if (it != plugins_.end()) {
         return std::distance(plugins_.begin(), it);
     }

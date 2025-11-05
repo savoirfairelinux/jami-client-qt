@@ -150,7 +150,7 @@ compressedAvatar(const QString& image)
 
     auto size = qMin(qimage.width(), qimage.height());
     auto rect = QRect((qimage.width() - size) / 2, (qimage.height() - size) / 2, size, size);
-    constexpr auto quality = 88; // Same as android, between 80 and 90 jpeg compression changes a lot
+    constexpr auto quality = 88;        // Same as android, between 80 and 90 jpeg compression changes a lot
     constexpr auto maxSize = 16000 * 8; // Because 16*3 (rgb) = 48k, which is a valid size for the
                                         // DHT and * 8 because typical jpeg compression
     // divides the size per 8
@@ -223,12 +223,7 @@ setProfile(const QString& accountId, const api::profile::Info& profileInfo, bool
 VectorString
 getConversationsWithPeer(Database& db, const QString& participant_uri)
 {
-    return db
-        .select("id",
-                "conversations",
-                "participant=:participant",
-                {{":participant", participant_uri}})
-        .payloads;
+    return db.select("id", "conversations", "participant=:participant", {{":participant", participant_uri}}).payloads;
 }
 
 VectorString
@@ -301,9 +296,7 @@ getOverridenInfos(const QString& accountId, const QString& peerUri)
 }
 
 api::contact::Info
-buildContactFromProfile(const QString& accountId,
-                        const QString& peerUri,
-                        const api::profile::Type& type)
+buildContactFromProfile(const QString& accountId, const QString& peerUri, const api::profile::Type& type)
 {
     // Get base contact info
     lrc::api::profile::Info profileInfo;
@@ -341,11 +334,8 @@ buildContactFromProfile(const QString& accountId,
 }
 
 bool
-withProfile(const QString& accountId,
-            const QString& peerUri,
-            QIODevice::OpenMode flags,
-            ProfileLoadedCb&& callback,
-            bool ov)
+withProfile(
+    const QString& accountId, const QString& peerUri, QIODevice::OpenMode flags, ProfileLoadedCb&& callback, bool ov)
 {
     QString path = profileVcardPath(accountId, !peerUri.isEmpty() ? peerUri : "", ov);
 
@@ -467,14 +457,10 @@ getConversationsBetween(Database& db, const QString& peer1_uri, const QString& p
 }
 
 QString
-beginConversationWithPeer(Database& db,
-                          const QString& peer_uri,
-                          const bool isOutgoing,
-                          time_t timestamp)
+beginConversationWithPeer(Database& db, const QString& peer_uri, const bool isOutgoing, time_t timestamp)
 {
     // Add conversation between account and profile
-    auto newConversationsId = db.select("IFNULL(MAX(id), 0) + 1", "conversations", "1=1", {})
-                                  .payloads[0];
+    auto newConversationsId = db.select("IFNULL(MAX(id), 0) + 1", "conversations", "1=1", {}).payloads[0];
     db.insertInto("conversations",
                   {{":id", "id"}, {":participant", "participant"}},
                   {{":id", newConversationsId}, {":participant", peer_uri}});
@@ -502,11 +488,10 @@ getContactInteractionString(const QString& authorUri, const api::interaction::St
 void
 getHistory(Database& db, api::conversation::Info& conversation, const QString& localUri)
 {
-    auto interactionsResult
-        = db.select("id, author, body, timestamp, type, status, is_read, extra_data",
-                    "interactions",
-                    "conversation=:conversation",
-                    {{":conversation", conversation.uid}});
+    auto interactionsResult = db.select("id, author, body, timestamp, type, status, is_read, extra_data",
+                                        "interactions",
+                                        "conversation=:conversation",
+                                        {{":conversation", conversation.uid}});
     auto nCols = 8;
     if (interactionsResult.nbrOfCols != nCols)
         return;
@@ -521,12 +506,10 @@ getHistory(Database& db, api::conversation::Info& conversation, const QString& l
         }
         auto body = payloads[i + 2];
         auto type = api::interaction::to_type(payloads[i + 4]);
-        std::time_t duration = durationString.isEmpty() ? 0
-                                                        : std::stoi(durationString.toStdString());
+        std::time_t duration = durationString.isEmpty() ? 0 : std::stoi(durationString.toStdString());
         auto status = api::interaction::to_status(payloads[i + 5]);
         if (type == api::interaction::Type::CALL) {
-            body = api::interaction::getCallInteractionStringNonSwarm(payloads[i + 1] == localUri,
-                                                                      duration);
+            body = api::interaction::getCallInteractionStringNonSwarm(payloads[i + 1] == localUri, duration);
         } else if (type == api::interaction::Type::CONTACT) {
             body = storage::getContactInteractionString(payloads[i + 1], status);
         }
@@ -546,9 +529,7 @@ getHistory(Database& db, api::conversation::Info& conversation, const QString& l
 }
 
 QString
-addMessageToConversation(Database& db,
-                         const QString& conversationId,
-                         const api::interaction::Info& msg)
+addMessageToConversation(Database& db, const QString& conversationId, const api::interaction::Info& msg)
 {
     return db.insertInto("interactions",
                          {{":author", "author"},
@@ -622,9 +603,7 @@ addOrUpdateMessage(Database& db,
 }
 
 QString
-addDataTransferToConversation(Database& db,
-                              const QString& conversationId,
-                              const api::datatransfer::Info& infoFromDaemon)
+addDataTransferToConversation(Database& db, const QString& conversationId, const api::datatransfer::Info& infoFromDaemon)
 {
     auto convId = conversationId.isEmpty() ? NULL : conversationId;
     return db.insertInto("interactions",
@@ -649,11 +628,7 @@ addDataTransferToConversation(Database& db,
 void
 addDaemonMsgId(Database& db, const QString& interactionId, const QString& daemonId)
 {
-    db.update("interactions",
-              "daemon_id=:daemon_id",
-              {{":daemon_id", daemonId}},
-              "id=:id",
-              {{":id", interactionId}});
+    db.update("interactions", "daemon_id=:daemon_id", {{":daemon_id", daemonId}}, "id=:id", {{":id", interactionId}});
 }
 
 QString
@@ -666,21 +641,14 @@ getDaemonIdByInteractionId(Database& db, const QString& id)
 QString
 getInteractionIdByDaemonId(Database& db, const QString& daemon_id)
 {
-    auto ids = db.select("id", "interactions", "daemon_id=:daemon_id", {{":daemon_id", daemon_id}})
-                   .payloads;
+    auto ids = db.select("id", "interactions", "daemon_id=:daemon_id", {{":daemon_id", daemon_id}}).payloads;
     return ids.empty() ? "" : ids[0];
 }
 
 void
-updateDataTransferInteractionForDaemonId(Database& db,
-                                         const QString& daemonId,
-                                         api::interaction::Info& interaction)
+updateDataTransferInteractionForDaemonId(Database& db, const QString& daemonId, api::interaction::Info& interaction)
 {
-    auto result = db.select("body, status",
-                            "interactions",
-                            "daemon_id=:daemon_id",
-                            {{":daemon_id", daemonId}})
-                      .payloads;
+    auto result = db.select("body, status", "interactions", "daemon_id=:daemon_id", {{":daemon_id", daemonId}}).payloads;
     if (result.size() < 2) {
         return;
     }
@@ -750,9 +718,7 @@ void
 clearHistory(Database& db, const QString& conversationId)
 {
     try {
-        db.deleteFrom("interactions",
-                      "conversation=:conversation",
-                      {{":conversation", conversationId}});
+        db.deleteFrom("interactions", "conversation=:conversation", {{":conversation", conversationId}});
     } catch (Database::QueryDeleteError& e) {
         qWarning() << "deleteFrom error: " << e.details();
     }
@@ -815,11 +781,9 @@ getLastTimestamp(Database& db)
             result = std::stoull(timestamps[0].toStdString());
         }
     } catch (const std::out_of_range& e) {
-        qDebug() << "storage::getLastTimestamp, stoull throws an out_of_range exception: "
-                 << e.what();
+        qDebug() << "storage::getLastTimestamp, stoull throws an out_of_range exception: " << e.what();
     } catch (const std::invalid_argument& e) {
-        qDebug() << "storage::getLastTimestamp, stoull throws an invalid_argument exception: "
-                 << e.what();
+        qDebug() << "storage::getLastTimestamp, stoull throws an invalid_argument exception: " << e.what();
     }
     return result;
 }

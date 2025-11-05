@@ -52,8 +52,7 @@ public Q_SLOTS:
                                   const QString& displayname);
 };
 
-PeerDiscoveryModel::PeerDiscoveryModel(const CallbacksHandler& callbacksHandler,
-                                       const QString& accountID)
+PeerDiscoveryModel::PeerDiscoveryModel(const CallbacksHandler& callbacksHandler, const QString& accountID)
     : QObject()
     , pimpl_(std::make_unique<PeerDiscoveryModelPimpl>(*this, callbacksHandler, accountID))
 {}
@@ -91,16 +90,15 @@ PeerDiscoveryModelPimpl::slotPeerMapStatusChanged(const QString& accountID,
         return;
     }
     Q_EMIT linked_.modelChanged(contactUri,
-                              state == 0 ? PeerModelChanged::INSERT : PeerModelChanged::REMOVE,
-                              displayname);
+                                state == 0 ? PeerModelChanged::INSERT : PeerModelChanged::REMOVE,
+                                displayname);
 }
 
 std::vector<PeerContact>
 PeerDiscoveryModel::getNearbyPeers() const
 {
     std::vector<PeerContact> result;
-    const MapStringString nearbyPeers = ConfigurationManager::instance().getNearbyPeers(
-        pimpl_->accountID_);
+    const MapStringString nearbyPeers = ConfigurationManager::instance().getNearbyPeers(pimpl_->accountID_);
     result.reserve(nearbyPeers.size());
 
     QMap<QString, QString>::const_iterator i = nearbyPeers.constBegin();

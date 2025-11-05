@@ -58,22 +58,16 @@ public:
 
         setObjectName("ConfigurationManagerInterface");
         confHandlers = {
-            exportable_callback<ConfigurationSignal::VolumeChanged>(
-                [this](const std::string& device, double value) {
-                    Q_EMIT this->volumeChanged(QString(device.c_str()), value);
-                }),
-            exportable_callback<ConfigurationSignal::AccountsChanged>(
-                [this]() { Q_EMIT this->accountsChanged(); }),
+            exportable_callback<ConfigurationSignal::VolumeChanged>([this](const std::string& device, double value) {
+                Q_EMIT this->volumeChanged(QString(device.c_str()), value);
+            }),
+            exportable_callback<ConfigurationSignal::AccountsChanged>([this]() { Q_EMIT this->accountsChanged(); }),
             exportable_callback<ConfigurationSignal::AccountDetailsChanged>(
-                [this](const std::string& account_id,
-                       const std::map<std::string, std::string>& details) {
-                    Q_EMIT this->accountDetailsChanged(QString(account_id.c_str()),
-                                                       convertMap(details));
+                [this](const std::string& account_id, const std::map<std::string, std::string>& details) {
+                    Q_EMIT this->accountDetailsChanged(QString(account_id.c_str()), convertMap(details));
                 }),
             exportable_callback<ConfigurationSignal::StunStatusFailed>(
-                [this](const std::string& reason) {
-                    Q_EMIT this->stunStatusFailure(QString(reason.c_str()));
-                }),
+                [this](const std::string& reason) { Q_EMIT this->stunStatusFailure(QString(reason.c_str())); }),
             exportable_callback<ConfigurationSignal::RegistrationStateChanged>(
                 [this](const std::string& accountId,
                        const std::string& registration_state,
@@ -85,28 +79,19 @@ public:
                                                           QString(detail_str.c_str()));
                 }),
             exportable_callback<ConfigurationSignal::VolatileDetailsChanged>(
-                [this](const std::string& accountId,
-                       const std::map<std::string, std::string>& details) {
-                    Q_EMIT this->volatileAccountDetailsChanged(QString(accountId.c_str()),
-                                                               convertMap(details));
+                [this](const std::string& accountId, const std::map<std::string, std::string>& details) {
+                    Q_EMIT this->volatileAccountDetailsChanged(QString(accountId.c_str()), convertMap(details));
                 }),
             exportable_callback<ConfigurationSignal::CertificateExpired>(
-                [this](const std::string& certId) {
-                    Q_EMIT this->certificateExpired(QString(certId.c_str()));
-                }),
+                [this](const std::string& certId) { Q_EMIT this->certificateExpired(QString(certId.c_str())); }),
             exportable_callback<ConfigurationSignal::CertificatePinned>(
-                [this](const std::string& certId) {
-                    Q_EMIT this->certificatePinned(QString(certId.c_str()));
-                }),
+                [this](const std::string& certId) { Q_EMIT this->certificatePinned(QString(certId.c_str())); }),
             exportable_callback<ConfigurationSignal::CertificatePathPinned>(
                 [this](const std::string& certPath, const std::vector<std::string>& list) {
-                    Q_EMIT this->certificatePathPinned(QString(certPath.c_str()),
-                                                       convertStringList(list));
+                    Q_EMIT this->certificatePathPinned(QString(certPath.c_str()), convertStringList(list));
                 }),
             exportable_callback<ConfigurationSignal::CertificateStateChanged>(
-                [this](const std::string& accountId,
-                       const std::string& certId,
-                       const std::string& state) {
+                [this](const std::string& accountId, const std::string& certId, const std::string& state) {
                     QTimer::singleShot(0, [this, accountId, certId, state] {
                         Q_EMIT this->certificateStateChanged(QString(accountId.c_str()),
                                                              QString(certId.c_str()),
@@ -127,25 +112,18 @@ public:
                 }),
             exportable_callback<libjami::ConfigurationSignal::NeedsHost>(
                 [this](const std::string& account_id, const std::string& conversation_id) {
-                    Q_EMIT this->needsHost(QString(account_id.c_str()),
-                                           QString(conversation_id.c_str()));
+                    Q_EMIT this->needsHost(QString(account_id.c_str()), QString(conversation_id.c_str()));
                 }),
             exportable_callback<ConfigurationSignal::KnownDevicesChanged>(
-                [this](const std::string& accountId,
-                       const std::map<std::string, std::string>& devices) {
-                    Q_EMIT this->knownDevicesChanged(QString(accountId.c_str()),
-                                                     convertMap(devices));
+                [this](const std::string& accountId, const std::map<std::string, std::string>& devices) {
+                    Q_EMIT this->knownDevicesChanged(QString(accountId.c_str()), convertMap(devices));
                 }),
             exportable_callback<ConfigurationSignal::DeviceRevocationEnded>(
                 [this](const std::string& accountId, const std::string& device, int status) {
-                    Q_EMIT this->deviceRevocationEnded(QString(accountId.c_str()),
-                                                       QString(device.c_str()),
-                                                       status);
+                    Q_EMIT this->deviceRevocationEnded(QString(accountId.c_str()), QString(device.c_str()), status);
                 }),
             exportable_callback<ConfigurationSignal::AccountProfileReceived>(
-                [this](const std::string& accountId,
-                       const std::string& displayName,
-                       const std::string& userPhoto) {
+                [this](const std::string& accountId, const std::string& displayName, const std::string& userPhoto) {
                     Q_EMIT this->accountProfileReceived(QString(accountId.c_str()),
                                                         QString(displayName.c_str()),
                                                         QString(userPhoto.c_str()));
@@ -161,31 +139,24 @@ public:
                                                        convertMap(details));
                 }),
             exportable_callback<ConfigurationSignal::DeviceAuthStateChanged>(
-                [this](const std::string& accountId,
-                       int state,
-                       const std::map<std::string, std::string>& details) {
-                    Q_EMIT this->deviceAuthStateChanged(QString(accountId.c_str()),
-                                                        state,
-                                                        convertMap(details));
+                [this](const std::string& accountId, int state, const std::map<std::string, std::string>& details) {
+                    Q_EMIT this->deviceAuthStateChanged(QString(accountId.c_str()), state, convertMap(details));
                 }),
             exportable_callback<ConfigurationSignal::NameRegistrationEnded>(
                 [this](const std::string& accountId, int status, const std::string& name) {
-                    Q_EMIT this->nameRegistrationEnded(QString(accountId.c_str()),
-                                                       status,
-                                                       QString(name.c_str()));
+                    Q_EMIT this->nameRegistrationEnded(QString(accountId.c_str()), status, QString(name.c_str()));
                 }),
-            exportable_callback<ConfigurationSignal::RegisteredNameFound>(
-                [this](const std::string& accountId,
-                       const std::string& requestedName,
-                       int status,
-                       const std::string& address,
-                       const std::string& name) {
-                    Q_EMIT this->registeredNameFound(QString(accountId.c_str()),
-                                                     QString(requestedName.c_str()),
-                                                     status,
-                                                     QString(address.c_str()),
-                                                     QString(name.c_str()));
-                }),
+            exportable_callback<ConfigurationSignal::RegisteredNameFound>([this](const std::string& accountId,
+                                                                                 const std::string& requestedName,
+                                                                                 int status,
+                                                                                 const std::string& address,
+                                                                                 const std::string& name) {
+                Q_EMIT this->registeredNameFound(QString(accountId.c_str()),
+                                                 QString(requestedName.c_str()),
+                                                 status,
+                                                 QString(address.c_str()),
+                                                 QString(name.c_str()));
+            }),
             exportable_callback<ConfigurationSignal::IncomingAccountMessage>(
                 [this](const std::string& account_id,
                        const std::string& from,
@@ -196,49 +167,33 @@ public:
                                                         QString(msgId.c_str()),
                                                         convertMap(payloads));
                 }),
-            exportable_callback<ConfigurationSignal::MediaParametersChanged>(
-                [this](const std::string& account_id) {
-                    Q_EMIT this->mediaParametersChanged(QString(account_id.c_str()));
-                }),
-            exportable_callback<AudioSignal::DeviceEvent>(
-                [this]() { Q_EMIT this->audioDeviceEvent(); }),
-            exportable_callback<AudioSignal::AudioMeter>([this](const std::string& id, float level) {
-                Q_EMIT this->audioMeter(QString(id.c_str()), level);
+            exportable_callback<ConfigurationSignal::MediaParametersChanged>([this](const std::string& account_id) {
+                Q_EMIT this->mediaParametersChanged(QString(account_id.c_str()));
             }),
+            exportable_callback<AudioSignal::DeviceEvent>([this]() { Q_EMIT this->audioDeviceEvent(); }),
+            exportable_callback<AudioSignal::AudioMeter>(
+                [this](const std::string& id, float level) { Q_EMIT this->audioMeter(QString(id.c_str()), level); }),
             exportable_callback<ConfigurationSignal::MigrationEnded>(
                 [this](const std::string& account_id, const std::string& result) {
-                    Q_EMIT this->migrationEnded(QString(account_id.c_str()),
-                                                QString(result.c_str()));
+                    Q_EMIT this->migrationEnded(QString(account_id.c_str()), QString(result.c_str()));
                 }),
             exportable_callback<ConfigurationSignal::ContactAdded>(
                 [this](const std::string& account_id, const std::string& uri, const bool& confirmed) {
-                    Q_EMIT this->contactAdded(QString(account_id.c_str()),
-                                              QString(uri.c_str()),
-                                              confirmed);
+                    Q_EMIT this->contactAdded(QString(account_id.c_str()), QString(uri.c_str()), confirmed);
                 }),
-            exportable_callback<ConfigurationSignal::ProfileReceived>(
-                [this](const std::string& accountId,
-                       const std::string& peer,
-                       const std::string& vCard) {
-                    Q_EMIT this->profileReceived(QString(accountId.c_str()),
-                                                 QString(peer.c_str()),
-                                                 QString(vCard.c_str()));
-                }),
+            exportable_callback<ConfigurationSignal::ProfileReceived>([this](const std::string& accountId,
+                                                                             const std::string& peer,
+                                                                             const std::string& vCard) {
+                Q_EMIT this->profileReceived(QString(accountId.c_str()), QString(peer.c_str()), QString(vCard.c_str()));
+            }),
             exportable_callback<ConfigurationSignal::ContactRemoved>(
                 [this](const std::string& account_id, const std::string& uri, const bool& banned) {
-                    Q_EMIT this->contactRemoved(QString(account_id.c_str()),
-                                                QString(uri.c_str()),
-                                                banned);
+                    Q_EMIT this->contactRemoved(QString(account_id.c_str()), QString(uri.c_str()), banned);
                 }),
             exportable_callback<ConfigurationSignal::MessageSend>(
-                [this](const std::string& message) {
-                    Q_EMIT this->messageSend(QString(message.c_str()));
-                }),
+                [this](const std::string& message) { Q_EMIT this->messageSend(QString(message.c_str())); }),
             exportable_callback<ConfigurationSignal::ComposingStatusChanged>(
-                [this](const std::string& account_id,
-                       const std::string& convId,
-                       const std::string& from,
-                       int status) {
+                [this](const std::string& account_id, const std::string& convId, const std::string& from, int status) {
                     Q_EMIT this->composingStatusChanged(QString(account_id.c_str()),
                                                         QString(convId.c_str()),
                                                         QString(from.c_str()),
@@ -257,168 +212,152 @@ public:
         };
 
         dataXferHandlers = {
-            exportable_callback<DataTransferSignal::DataTransferEvent>(
+            exportable_callback<DataTransferSignal::DataTransferEvent>([this](const std::string& accountId,
+                                                                              const std::string& conversationId,
+                                                                              const std::string& interactionId,
+                                                                              const std::string& fileId,
+                                                                              const uint32_t& code) {
+                Q_EMIT this->dataTransferEvent(QString(accountId.c_str()),
+                                               QString(conversationId.c_str()),
+                                               QString(interactionId.c_str()),
+                                               QString(fileId.c_str()),
+                                               code);
+            }),
+        };
+        conversationsHandlers = {
+            exportable_callback<ConversationSignal::SwarmLoaded>(
+                [this](uint32_t id,
+                       const std::string& accountId,
+                       const std::string& conversationId,
+                       const std::vector<libjami::SwarmMessage>& messages) {
+                    VectorSwarmMessage vec;
+                    for (const auto& msg : messages) {
+                        vec.push_back({msg.id.c_str(),
+                                       msg.type.c_str(),
+                                       msg.linearizedParent.c_str(),
+                                       convertMap(msg.body),
+                                       convertVecMap(msg.reactions),
+                                       convertVecMap(msg.editions),
+                                       convertMap(msg.status)});
+                    }
+
+                    Q_EMIT swarmLoaded(id, QString(accountId.c_str()), QString(conversationId.c_str()), vec);
+                }),
+            exportable_callback<ConversationSignal::MessagesFound>(
+                [this](uint32_t id,
+                       const std::string& accountId,
+                       const std::string& conversationId,
+                       const std::vector<std::map<std::string, std::string>>& messages) {
+                    Q_EMIT messagesFound(id,
+                                         QString(accountId.c_str()),
+                                         QString(conversationId.c_str()),
+                                         convertVecMap(messages));
+                }),
+            exportable_callback<ConversationSignal::SwarmMessageReceived>([this](const std::string& accountId,
+                                                                                 const std::string& conversationId,
+                                                                                 const libjami::SwarmMessage& message) {
+                ::SwarmMessage msg = {message.id.c_str(),
+                                      message.type.c_str(),
+                                      message.linearizedParent.c_str(),
+                                      convertMap(message.body),
+                                      convertVecMap(message.reactions),
+                                      convertVecMap(message.editions),
+                                      convertMap(message.status)};
+                Q_EMIT swarmMessageReceived(QString(accountId.c_str()), QString(conversationId.c_str()), msg);
+            }),
+            exportable_callback<ConversationSignal::SwarmMessageUpdated>([this](const std::string& accountId,
+                                                                                const std::string& conversationId,
+                                                                                const libjami::SwarmMessage& message) {
+                ::SwarmMessage msg = {message.id.c_str(),
+                                      message.type.c_str(),
+                                      message.linearizedParent.c_str(),
+                                      convertMap(message.body),
+                                      convertVecMap(message.reactions),
+                                      convertVecMap(message.editions),
+                                      convertMap(message.status)};
+                Q_EMIT swarmMessageUpdated(QString(accountId.c_str()), QString(conversationId.c_str()), msg);
+            }),
+            exportable_callback<ConversationSignal::ReactionAdded>(
                 [this](const std::string& accountId,
                        const std::string& conversationId,
-                       const std::string& interactionId,
-                       const std::string& fileId,
-                       const uint32_t& code) {
-                    Q_EMIT this->dataTransferEvent(QString(accountId.c_str()),
-                                                   QString(conversationId.c_str()),
-                                                   QString(interactionId.c_str()),
-                                                   QString(fileId.c_str()),
-                                                   code);
+                       const std::string& messageId,
+                       const std::map<std::string, std::string>& reaction) {
+                    Q_EMIT reactionAdded(QString(accountId.c_str()),
+                                         QString(conversationId.c_str()),
+                                         QString(messageId.c_str()),
+                                         convertMap(reaction));
                 }),
-        };
-        conversationsHandlers
-            = {exportable_callback<ConversationSignal::SwarmLoaded>(
-                   [this](uint32_t id,
-                          const std::string& accountId,
-                          const std::string& conversationId,
-                          const std::vector<libjami::SwarmMessage>& messages) {
-                       VectorSwarmMessage vec;
-                       for (const auto& msg : messages) {
-                           vec.push_back({msg.id.c_str(),
-                                          msg.type.c_str(),
-                                          msg.linearizedParent.c_str(),
-                                          convertMap(msg.body),
-                                          convertVecMap(msg.reactions),
-                                          convertVecMap(msg.editions),
-                                          convertMap(msg.status)});
-                       }
-
-                       Q_EMIT swarmLoaded(id,
-                                          QString(accountId.c_str()),
-                                          QString(conversationId.c_str()),
-                                          vec);
-                   }),
-               exportable_callback<ConversationSignal::MessagesFound>(
-                   [this](uint32_t id,
-                          const std::string& accountId,
-                          const std::string& conversationId,
-                          const std::vector<std::map<std::string, std::string>>& messages) {
-                       Q_EMIT messagesFound(id,
-                                            QString(accountId.c_str()),
-                                            QString(conversationId.c_str()),
-                                            convertVecMap(messages));
-                   }),
-               exportable_callback<ConversationSignal::SwarmMessageReceived>(
-                   [this](const std::string& accountId,
-                          const std::string& conversationId,
-                          const libjami::SwarmMessage& message) {
-                       ::SwarmMessage msg = {message.id.c_str(),
-                                             message.type.c_str(),
-                                             message.linearizedParent.c_str(),
-                                             convertMap(message.body),
-                                             convertVecMap(message.reactions),
-                                             convertVecMap(message.editions),
-                                             convertMap(message.status)};
-                       Q_EMIT swarmMessageReceived(QString(accountId.c_str()),
-                                                   QString(conversationId.c_str()),
-                                                   msg);
-                   }),
-               exportable_callback<ConversationSignal::SwarmMessageUpdated>(
-                   [this](const std::string& accountId,
-                          const std::string& conversationId,
-                          const libjami::SwarmMessage& message) {
-                       ::SwarmMessage msg = {message.id.c_str(),
-                                             message.type.c_str(),
-                                             message.linearizedParent.c_str(),
-                                             convertMap(message.body),
-                                             convertVecMap(message.reactions),
-                                             convertVecMap(message.editions),
-                                             convertMap(message.status)};
-                       Q_EMIT swarmMessageUpdated(QString(accountId.c_str()),
-                                                  QString(conversationId.c_str()),
-                                                  msg);
-                   }),
-               exportable_callback<ConversationSignal::ReactionAdded>(
-                   [this](const std::string& accountId,
-                          const std::string& conversationId,
-                          const std::string& messageId,
-                          const std::map<std::string, std::string>& reaction) {
-                       Q_EMIT reactionAdded(QString(accountId.c_str()),
-                                            QString(conversationId.c_str()),
-                                            QString(messageId.c_str()),
-                                            convertMap(reaction));
-                   }),
-               exportable_callback<ConversationSignal::ReactionRemoved>(
-                   [this](const std::string& accountId,
-                          const std::string& conversationId,
-                          const std::string& messageId,
-                          const std::string& reactionId) {
-                       Q_EMIT reactionRemoved(QString(accountId.c_str()),
-                                              QString(conversationId.c_str()),
-                                              QString(messageId.c_str()),
-                                              QString(reactionId.c_str()));
-                   }),
-               exportable_callback<ConversationSignal::ConversationProfileUpdated>(
-                   [this](const std::string& accountId,
-                          const std::string& conversationId,
-                          const std::map<std::string, std::string>& profile) {
-                       Q_EMIT conversationProfileUpdated(QString(accountId.c_str()),
-                                                         QString(conversationId.c_str()),
-                                                         convertMap(profile));
-                   }),
-               exportable_callback<ConversationSignal::ConversationRequestReceived>(
-                   [this](const std::string& accountId,
-                          const std::string& conversationId,
-                          const std::map<std::string, std::string>& metadata) {
-                       Q_EMIT conversationRequestReceived(QString(accountId.c_str()),
-                                                          QString(conversationId.c_str()),
-                                                          convertMap(metadata));
-                   }),
-               exportable_callback<ConversationSignal::ConversationRequestDeclined>(
-                   [this](const std::string& accountId, const std::string& conversationId) {
-                       Q_EMIT conversationRequestDeclined(QString(accountId.c_str()),
-                                                          QString(conversationId.c_str()));
-                   }),
-               exportable_callback<ConversationSignal::ConversationReady>(
-                   [this](const std::string& accountId, const std::string& conversationId) {
-                       Q_EMIT conversationReady(QString(accountId.c_str()),
-                                                QString(conversationId.c_str()));
-                   }),
-               exportable_callback<ConversationSignal::ConversationRemoved>(
-                   [this](const std::string& accountId, const std::string& conversationId) {
-                       Q_EMIT conversationRemoved(QString(accountId.c_str()),
-                                                  QString(conversationId.c_str()));
-                   }),
-               exportable_callback<ConversationSignal::ConversationPreferencesUpdated>(
-                   [this](const std::string& accountId,
-                          const std::string& conversationId,
-                          const std::map<std::string, std::string>& preferences) {
-                       Q_EMIT conversationPreferencesUpdated(QString(accountId.c_str()),
-                                                             QString(conversationId.c_str()),
-                                                             convertMap(preferences));
-                   }),
-               exportable_callback<ConversationSignal::ConversationMemberEvent>(
-                   [this](const std::string& accountId,
-                          const std::string& conversationId,
-                          const std::string& memberId,
-                          int event) {
-                       Q_EMIT conversationMemberEvent(QString(accountId.c_str()),
+            exportable_callback<ConversationSignal::ReactionRemoved>([this](const std::string& accountId,
+                                                                            const std::string& conversationId,
+                                                                            const std::string& messageId,
+                                                                            const std::string& reactionId) {
+                Q_EMIT reactionRemoved(QString(accountId.c_str()),
+                                       QString(conversationId.c_str()),
+                                       QString(messageId.c_str()),
+                                       QString(reactionId.c_str()));
+            }),
+            exportable_callback<ConversationSignal::ConversationProfileUpdated>(
+                [this](const std::string& accountId,
+                       const std::string& conversationId,
+                       const std::map<std::string, std::string>& profile) {
+                    Q_EMIT conversationProfileUpdated(QString(accountId.c_str()),
                                                       QString(conversationId.c_str()),
-                                                      QString(memberId.c_str()),
-                                                      event);
-                   }),
-               exportable_callback<ConversationSignal::OnConversationError>(
-                   [this](const std::string& accountId,
-                          const std::string& conversationId,
-                          int code,
-                          const std::string& what) {
-                       Q_EMIT onConversationError(QString(accountId.c_str()),
-                                                  QString(conversationId.c_str()),
-                                                  code,
-                                                  QString(what.c_str()));
-                   }),
-               exportable_callback<ConfigurationSignal::ActiveCallsChanged>(
-                   [this](const std::string& accountId,
-                          const std::string& conversationId,
-                          const std::vector<std::map<std::string, std::string>>& activeCalls) {
-                       Q_EMIT activeCallsChanged(QString(accountId.c_str()),
-                                                 QString(conversationId.c_str()),
-                                                 convertVecMap(activeCalls));
-                   })};
+                                                      convertMap(profile));
+                }),
+            exportable_callback<ConversationSignal::ConversationRequestReceived>(
+                [this](const std::string& accountId,
+                       const std::string& conversationId,
+                       const std::map<std::string, std::string>& metadata) {
+                    Q_EMIT conversationRequestReceived(QString(accountId.c_str()),
+                                                       QString(conversationId.c_str()),
+                                                       convertMap(metadata));
+                }),
+            exportable_callback<ConversationSignal::ConversationRequestDeclined>(
+                [this](const std::string& accountId, const std::string& conversationId) {
+                    Q_EMIT conversationRequestDeclined(QString(accountId.c_str()), QString(conversationId.c_str()));
+                }),
+            exportable_callback<ConversationSignal::ConversationReady>(
+                [this](const std::string& accountId, const std::string& conversationId) {
+                    Q_EMIT conversationReady(QString(accountId.c_str()), QString(conversationId.c_str()));
+                }),
+            exportable_callback<ConversationSignal::ConversationRemoved>(
+                [this](const std::string& accountId, const std::string& conversationId) {
+                    Q_EMIT conversationRemoved(QString(accountId.c_str()), QString(conversationId.c_str()));
+                }),
+            exportable_callback<ConversationSignal::ConversationPreferencesUpdated>(
+                [this](const std::string& accountId,
+                       const std::string& conversationId,
+                       const std::map<std::string, std::string>& preferences) {
+                    Q_EMIT conversationPreferencesUpdated(QString(accountId.c_str()),
+                                                          QString(conversationId.c_str()),
+                                                          convertMap(preferences));
+                }),
+            exportable_callback<ConversationSignal::ConversationMemberEvent>([this](const std::string& accountId,
+                                                                                    const std::string& conversationId,
+                                                                                    const std::string& memberId,
+                                                                                    int event) {
+                Q_EMIT conversationMemberEvent(QString(accountId.c_str()),
+                                               QString(conversationId.c_str()),
+                                               QString(memberId.c_str()),
+                                               event);
+            }),
+            exportable_callback<ConversationSignal::OnConversationError>([this](const std::string& accountId,
+                                                                                const std::string& conversationId,
+                                                                                int code,
+                                                                                const std::string& what) {
+                Q_EMIT onConversationError(QString(accountId.c_str()),
+                                           QString(conversationId.c_str()),
+                                           code,
+                                           QString(what.c_str()));
+            }),
+            exportable_callback<ConfigurationSignal::ActiveCallsChanged>(
+                [this](const std::string& accountId,
+                       const std::string& conversationId,
+                       const std::vector<std::map<std::string, std::string>>& activeCalls) {
+                    Q_EMIT activeCallsChanged(QString(accountId.c_str()),
+                                              QString(conversationId.c_str()),
+                                              convertVecMap(activeCalls));
+                })};
     }
 
     ~ConfigurationManagerInterface() {}
@@ -486,24 +425,15 @@ public Q_SLOTS: // METHODS
 
     bool lookupName(const QString& accountId, const QString& nameServiceURL, const QString& name)
     {
-        return libjami::lookupName(accountId.toStdString(),
-                                   nameServiceURL.toStdString(),
-                                   name.toStdString());
+        return libjami::lookupName(accountId.toStdString(), nameServiceURL.toStdString(), name.toStdString());
     }
 
-    bool lookupAddress(const QString& accountId,
-                       const QString& nameServiceURL,
-                       const QString& address)
+    bool lookupAddress(const QString& accountId, const QString& nameServiceURL, const QString& address)
     {
-        return libjami::lookupAddress(accountId.toStdString(),
-                                      nameServiceURL.toStdString(),
-                                      address.toStdString());
+        return libjami::lookupAddress(accountId.toStdString(), nameServiceURL.toStdString(), address.toStdString());
     }
 
-    bool registerName(const QString& accountId,
-                      const QString& name,
-                      const QString& scheme,
-                      const QString& password)
+    bool registerName(const QString& accountId, const QString& name, const QString& scheme, const QString& password)
     {
         return libjami::registerName(accountId.toStdString(),
                                      name.toStdString(),
@@ -540,8 +470,7 @@ public Q_SLOTS: // METHODS
     VectorMapStringString getActiveCalls(const QString& accountId, const QString& convId)
     {
         VectorMapStringString temp;
-        for (const auto& x :
-             libjami::getActiveCalls(accountId.toStdString(), convId.toStdString())) {
+        for (const auto& x : libjami::getActiveCalls(accountId.toStdString(), convId.toStdString())) {
             temp.push_back(convertMap(x));
         }
         return temp;
@@ -580,8 +509,7 @@ public Q_SLOTS: // METHODS
 
     MapStringString getCodecDetails(const QString& accountId, int payload)
     {
-        MapStringString temp = convertMap(
-            libjami::getCodecDetails(accountId.toStdString().c_str(), payload));
+        MapStringString temp = convertMap(libjami::getCodecDetails(accountId.toStdString().c_str(), payload));
         return temp;
     }
 
@@ -756,9 +684,7 @@ public Q_SLOTS: // METHODS
         libjami::removeAccount(accountId.toStdString());
     }
 
-    bool changeAccountPassword(const QString& id,
-                               const QString& currentPassword,
-                               const QString& newPassword)
+    bool changeAccountPassword(const QString& id, const QString& currentPassword, const QString& newPassword)
     {
         return libjami::changeAccountPassword(id.toStdString(),
                                               currentPassword.toStdString(),
@@ -783,8 +709,7 @@ public Q_SLOTS: // METHODS
     void setActiveCodecList(const QString& accountId, VectorUInt& list)
     {
         // const std::vector<unsigned int> converted = convertStringList(list);
-        libjami::setActiveCodecList(accountId.toStdString(),
-                                    std::vector<unsigned>(list.begin(), list.end()));
+        libjami::setActiveCodecList(accountId.toStdString(), std::vector<unsigned>(list.begin(), list.end()));
     }
 
     void setAgcState(bool enabled)
@@ -883,8 +808,7 @@ public Q_SLOTS: // METHODS
 
     MapStringString getVolatileAccountDetails(const QString& accountId)
     {
-        MapStringString temp = convertMap(
-            libjami::getVolatileAccountDetails(accountId.toStdString()));
+        MapStringString temp = convertMap(libjami::getVolatileAccountDetails(accountId.toStdString()));
         return temp;
     }
 
@@ -904,10 +828,7 @@ public Q_SLOTS: // METHODS
         libjami::removeContact(accountId.toStdString(), uri.toStdString(), ban);
     }
 
-    void revokeDevice(const QString& accountId,
-                      const QString& deviceId,
-                      const QString& scheme,
-                      const QString& password)
+    void revokeDevice(const QString& accountId, const QString& deviceId, const QString& scheme, const QString& password)
     {
         libjami::revokeDevice(accountId.toStdString(),
                               deviceId.toStdString(),
@@ -925,10 +846,7 @@ public Q_SLOTS: // METHODS
                              const QMap<QString, QString>& payloads,
                              int flag)
     {
-        return libjami::sendAccountTextMessage(accountId.toStdString(),
-                                               to.toStdString(),
-                                               convertMap(payloads),
-                                               flag);
+        return libjami::sendAccountTextMessage(accountId.toStdString(), to.toStdString(), convertMap(payloads), flag);
     }
 
     QVector<Message> getLastMessages(const QString& accountId, const uint64_t& base_timestamp)
@@ -940,9 +858,7 @@ public Q_SLOTS: // METHODS
         return result;
     }
 
-    bool setCodecDetails(const QString& accountId,
-                         unsigned int codecId,
-                         const MapStringString& details)
+    bool setCodecDetails(const QString& accountId, unsigned int codecId, const MapStringString& details)
     {
         return libjami::setCodecDetails(accountId.toStdString(), codecId, convertMap(details));
     }
@@ -980,12 +896,8 @@ public Q_SLOTS: // METHODS
                           parent.toStdString());
     }
 
-    uint64_t fileTransferInfo(QString accountId,
-                              QString conversationId,
-                              QString fileId,
-                              QString& path,
-                              qlonglong& total,
-                              qlonglong& progress)
+    uint64_t fileTransferInfo(
+        QString accountId, QString conversationId, QString fileId, QString& path, qlonglong& total, qlonglong& progress)
     {
         std::string pathstr;
         auto result = uint32_t(libjami::fileTransferInfo(accountId.toStdString(),
@@ -1020,10 +932,7 @@ public Q_SLOTS: // METHODS
         libjami::setIsComposing(accountId.toStdString(), contactId.toStdString(), isComposing);
     }
 
-    bool setMessageDisplayed(const QString& accountId,
-                             const QString& contactId,
-                             const QString& messageId,
-                             int status)
+    bool setMessageDisplayed(const QString& accountId, const QString& contactId, const QString& messageId, int status)
     {
         return libjami::setMessageDisplayed(accountId.toStdString(),
                                             contactId.toStdString(),
@@ -1063,27 +972,17 @@ public Q_SLOTS: // METHODS
         auto requests = libjami::getConversationRequests(accountId.toStdString());
         return convertVecMap(requests);
     }
-    void addConversationMember(const QString& accountId,
-                               const QString& conversationId,
-                               const QString& memberId)
+    void addConversationMember(const QString& accountId, const QString& conversationId, const QString& memberId)
     {
-        libjami::addConversationMember(accountId.toStdString(),
-                                       conversationId.toStdString(),
-                                       memberId.toStdString());
+        libjami::addConversationMember(accountId.toStdString(), conversationId.toStdString(), memberId.toStdString());
     }
-    void removeConversationMember(const QString& accountId,
-                                  const QString& conversationId,
-                                  const QString& memberId)
+    void removeConversationMember(const QString& accountId, const QString& conversationId, const QString& memberId)
     {
-        libjami::removeConversationMember(accountId.toStdString(),
-                                          conversationId.toStdString(),
-                                          memberId.toStdString());
+        libjami::removeConversationMember(accountId.toStdString(), conversationId.toStdString(), memberId.toStdString());
     }
-    VectorMapStringString getConversationMembers(const QString& accountId,
-                                                 const QString& conversationId)
+    VectorMapStringString getConversationMembers(const QString& accountId, const QString& conversationId)
     {
-        auto members = libjami::getConversationMembers(accountId.toStdString(),
-                                                       conversationId.toStdString());
+        auto members = libjami::getConversationMembers(accountId.toStdString(), conversationId.toStdString());
         return convertVecMap(members);
     }
     void sendMessage(const QString& accountId,
@@ -1160,33 +1059,24 @@ public Q_SLOTS: // METHODS
 
     MapStringString conversationInfos(const QString& accountId, const QString& conversationId)
     {
-        return convertMap(
-            libjami::conversationInfos(accountId.toStdString(), conversationId.toStdString()));
+        return convertMap(libjami::conversationInfos(accountId.toStdString(), conversationId.toStdString()));
     }
 
-    MapStringString getConversationPreferences(const QString& accountId,
-                                               const QString& conversationId)
+    MapStringString getConversationPreferences(const QString& accountId, const QString& conversationId)
     {
-        return convertMap(libjami::getConversationPreferences(accountId.toStdString(),
-                                                              conversationId.toStdString()));
+        return convertMap(libjami::getConversationPreferences(accountId.toStdString(), conversationId.toStdString()));
     }
 
-    void updateConversationInfos(const QString& accountId,
-                                 const QString& conversationId,
-                                 const MapStringString& info)
+    void updateConversationInfos(const QString& accountId, const QString& conversationId, const MapStringString& info)
     {
-        libjami::updateConversationInfos(accountId.toStdString(),
-                                         conversationId.toStdString(),
-                                         convertMap(info));
+        libjami::updateConversationInfos(accountId.toStdString(), conversationId.toStdString(), convertMap(info));
     }
 
     void setConversationPreferences(const QString& accountId,
                                     const QString& conversationId,
                                     const MapStringString& prefs)
     {
-        libjami::setConversationPreferences(accountId.toStdString(),
-                                            conversationId.toStdString(),
-                                            convertMap(prefs));
+        libjami::setConversationPreferences(accountId.toStdString(), conversationId.toStdString(), convertMap(prefs));
     }
 
     void clearCache(const QString& accountId, const QString& conversationId)
@@ -1243,9 +1133,7 @@ Q_SIGNALS: // SIGNALS
     void certificatePinned(const QString& certId);
     void certificatePathPinned(const QString& path, const QStringList& certIds);
     void certificateExpired(const QString& certId);
-    void certificateStateChanged(const QString& accountId,
-                                 const QString& certId,
-                                 const QString& status);
+    void certificateStateChanged(const QString& accountId, const QString& certId, const QString& status);
     void knownDevicesChanged(const QString& accountId, const MapStringString& devices);
     void addDeviceStateChanged(const QString& accountId,
                                uint32_t operationId,
@@ -1281,18 +1169,13 @@ Q_SIGNALS: // SIGNALS
                            const QString& fileId,
                            uint code);
     void deviceRevocationEnded(const QString& accountId, const QString& deviceId, int status);
-    void accountProfileReceived(const QString& accountId,
-                                const QString& displayName,
-                                const QString& userPhoto);
+    void accountProfileReceived(const QString& accountId, const QString& displayName, const QString& userPhoto);
     void messageSend(const QString& message);
     void composingStatusChanged(const QString& accountId,
                                 const QString& convId,
                                 const QString& contactId,
                                 bool isComposing);
-    void userSearchEnded(const QString& accountId,
-                         int status,
-                         const QString& query,
-                         VectorMapStringString results);
+    void userSearchEnded(const QString& accountId, int status, const QString& query, VectorMapStringString results);
     // swarm
     void conversationLoaded(uint32_t requestId,
                             const QString& accountId,
@@ -1302,12 +1185,8 @@ Q_SIGNALS: // SIGNALS
                      const QString& accountId,
                      const QString& conversationId,
                      const VectorSwarmMessage& messages);
-    void swarmMessageReceived(const QString& accountId,
-                              const QString& conversationId,
-                              const SwarmMessage& message);
-    void swarmMessageUpdated(const QString& accountId,
-                             const QString& conversationId,
-                             const SwarmMessage& message);
+    void swarmMessageReceived(const QString& accountId, const QString& conversationId, const SwarmMessage& message);
+    void swarmMessageUpdated(const QString& accountId, const QString& conversationId, const SwarmMessage& message);
     void reactionAdded(const QString& accountId,
                        const QString& conversationId,
                        const QString& messageId,
@@ -1333,10 +1212,7 @@ Q_SIGNALS: // SIGNALS
                                  const QString& conversationId,
                                  const QString& memberId,
                                  int event);
-    void onConversationError(const QString& accountId,
-                             const QString& conversationId,
-                             int code,
-                             const QString& what);
+    void onConversationError(const QString& accountId, const QString& conversationId, int code, const QString& what);
     void activeCallsChanged(const QString& accountId,
                             const QString& conversationId,
                             const VectorMapStringString& activeCalls);

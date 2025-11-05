@@ -71,11 +71,7 @@ LRCInstance::LRCInstance(const QString& updateUrl,
         set_currentAccountAvatarSet(!getCurrentAccountInfo().profileInfo.avatar.isEmpty());
     });
 
-    connect(&accountModel(),
-            &AccountModel::accountRemoved,
-            this,
-            &LRCInstance::onAccountRemoved,
-            Qt::DirectConnection);
+    connect(&accountModel(), &AccountModel::accountRemoved, this, &LRCInstance::onAccountRemoved, Qt::DirectConnection);
 
     // set the current account if any
     auto accountList = accountModel().getAccountList();
@@ -209,9 +205,7 @@ LRCInstance::getCallInfoForConversation(const conversation::Info& convInfo, bool
     try {
         auto accountId = convInfo.accountId;
         auto& accInfo = accountModel().getAccountInfo(accountId);
-        auto callId = forceCallOnly
-                          ? convInfo.callId
-                          : (convInfo.confId.isEmpty() ? convInfo.callId : convInfo.confId);
+        auto callId = forceCallOnly ? convInfo.callId : (convInfo.confId.isEmpty() ? convInfo.callId : convInfo.confId);
         if (!accInfo.callModel->hasCall(callId))
             return nullptr;
         return &accInfo.callModel->getCall(callId);
@@ -223,8 +217,7 @@ LRCInstance::getCallInfoForConversation(const conversation::Info& convInfo, bool
 const conversation::Info&
 LRCInstance::getConversationFromConvUid(const QString& convUid, const QString& accountId)
 {
-    auto& accInfo = accountModel().getAccountInfo(!accountId.isEmpty() ? accountId
-                                                                       : get_currentAccountId());
+    auto& accInfo = accountModel().getAccountInfo(!accountId.isEmpty() ? accountId : get_currentAccountId());
     auto& convModel = accInfo.conversationModel;
     return convModel->getConversationForUid(convUid).value_or(invalid);
 }
@@ -232,8 +225,7 @@ LRCInstance::getConversationFromConvUid(const QString& convUid, const QString& a
 const conversation::Info&
 LRCInstance::getConversationFromPeerUri(const QString& peerUri, const QString& accountId)
 {
-    auto& accInfo = accountModel().getAccountInfo(!accountId.isEmpty() ? accountId
-                                                                       : get_currentAccountId());
+    auto& accInfo = accountModel().getAccountInfo(!accountId.isEmpty() ? accountId : get_currentAccountId());
     auto& convModel = accInfo.conversationModel;
     return convModel->getConversationForPeerUri(peerUri).value_or(invalid);
 }
@@ -241,8 +233,7 @@ LRCInstance::getConversationFromPeerUri(const QString& peerUri, const QString& a
 const conversation::Info&
 LRCInstance::getConversationFromCallId(const QString& callId, const QString& accountId)
 {
-    auto& accInfo = accountModel().getAccountInfo(!accountId.isEmpty() ? accountId
-                                                                       : get_currentAccountId());
+    auto& accInfo = accountModel().getAccountInfo(!accountId.isEmpty() ? accountId : get_currentAccountId());
     auto& convModel = accInfo.conversationModel;
     return convModel->getConversationForCallId(callId).value_or(invalid);
 }
@@ -313,11 +304,9 @@ int
 LRCInstance::indexOf(const QString& convId)
 {
     auto& convs = getCurrentConversationModel()->getConversations();
-    auto it = std::find_if(convs.begin(),
-                           convs.end(),
-                           [convId](const lrc::api::conversation::Info& conv) {
-                               return conv.uid == convId;
-                           });
+    auto it = std::find_if(convs.begin(), convs.end(), [convId](const lrc::api::conversation::Info& conv) {
+        return conv.uid == convId;
+    });
     return it != convs.end() ? std::distance(convs.begin(), it) : -1;
 }
 

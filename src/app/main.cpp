@@ -68,8 +68,7 @@ main(int argc, char* argv[])
     QApplication::setQuitOnLastWindowClosed(false);
     QCoreApplication::setApplicationVersion(BUILD_VERSION_STRING);
     QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts, true);
-    QApplication::setHighDpiScaleFactorRoundingPolicy(
-        Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
+    QApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
 
 #if WITH_WEBENGINE
     qputenv("QTWEBENGINE_CHROMIUM_FLAGS",

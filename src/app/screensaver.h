@@ -43,13 +43,9 @@ public:
 #ifdef Q_OS_LINUX
 private:
     bool createInterface(void);
-    QString services_[N_SERVICES] = {"org.freedesktop.ScreenSaver",
-                                     "org.gnome.ScreenSaver",
-                                     "org.mate.ScreenSaver"};
+    QString services_[N_SERVICES] = {"org.freedesktop.ScreenSaver", "org.gnome.ScreenSaver", "org.mate.ScreenSaver"};
 
-    QString paths_[N_SERVICES] = {"/org/freedesktop/ScreenSaver",
-                                  "/org/gnome/ScreenSaver",
-                                  "/org/mate/ScreenSaver"};
+    QString paths_[N_SERVICES] = {"/org/freedesktop/ScreenSaver", "/org/gnome/ScreenSaver", "/org/mate/ScreenSaver"};
 
     uint request_;
     QDBusConnection sessionBus_;

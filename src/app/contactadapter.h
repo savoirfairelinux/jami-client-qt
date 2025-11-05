@@ -113,6 +113,5 @@ private:
 
     QStringList defaultModerators_;
 
-    bool hasDifferentMembers(const VectorString& currentMembers,
-                             const VectorString& convMembers) const;
+    bool hasDifferentMembers(const VectorString& currentMembers, const VectorString& convMembers) const;
 };

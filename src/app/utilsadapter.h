@@ -138,12 +138,9 @@ public:
     Q_INVOKABLE void monitor(const bool& continuous);
     Q_INVOKABLE QVariantMap supportedLang();
     Q_INVOKABLE QString tempCreationImage(const QString& imageId = "temp") const;
-    Q_INVOKABLE void setTempCreationImageFromString(const QString& image = "",
-                                                    const QString& imageId = "temp");
-    Q_INVOKABLE void setTempCreationImageFromFile(const QString& path,
-                                                  const QString& imageId = "temp");
-    Q_INVOKABLE void setTempCreationImageFromImage(const QImage& image,
-                                                   const QString& imageId = "temp");
+    Q_INVOKABLE void setTempCreationImageFromString(const QString& image = "", const QString& imageId = "temp");
+    Q_INVOKABLE void setTempCreationImageFromFile(const QString& path, const QString& imageId = "temp");
+    Q_INVOKABLE void setTempCreationImageFromImage(const QImage& image, const QString& imageId = "temp");
 
     // For Swarm details page
     Q_INVOKABLE int getContactPresence(const QString& accountId, const QString& uri);

@@ -33,9 +33,7 @@
 #include <QDir>
 #include <QString>
 
-PluginAdapter::PluginAdapter(LRCInstance* instance,
-                             AppSettingsManager* settingsManager,
-                             QObject* parent)
+PluginAdapter::PluginAdapter(LRCInstance* instance, AppSettingsManager* settingsManager, QObject* parent)
     : QmlAdapterBase(instance, parent)
     , pluginStoreListModel_(new PluginStoreListModel(instance, this))
     , pluginVersionManager_(new PluginVersionManager(instance, settingsManager, this))
@@ -59,10 +57,7 @@ PluginAdapter::PluginAdapter(LRCInstance* instance,
             &PluginVersionManager::versionStatusChanged,
             pluginStoreListModel_,
             &PluginStoreListModel::onVersionStatusChanged);
-    connect(pluginStoreListModel_,
-            &PluginStoreListModel::pluginAdded,
-            this,
-            &PluginAdapter::getPluginDetails);
+    connect(pluginStoreListModel_, &PluginStoreListModel::pluginAdded, this, &PluginAdapter::getPluginDetails);
     connect(pluginListModel_,
             &PluginListModel::versionCheckRequested,
             pluginVersionManager_,
@@ -94,31 +89,30 @@ PluginAdapter::getPluginsFromStore()
     QMap<QString, QByteArray> header;
     const auto& language = settingsManager_->getLanguage();
     header["Accept-Language"] = QByteArray(language.toStdString().c_str(), language.size());
-    pluginVersionManager_
-        ->sendGetRequest(QUrl(baseUrl()
-                              + "?arch=" + lrcInstance_->pluginModel().getPlatformInfo()["os"]),
-                         header,
-                         [this, errorHandler](const QByteArray& data) {
-                             auto result = QJsonDocument::fromJson(data).array();
-                             auto pluginsInstalled = lrcInstance_->pluginModel().getPluginsId();
-                             QList<QVariantMap> plugins;
-                             if (result.size() == 0) {
-                                 Q_EMIT storeNotAvailableForPlatform();
-                                 return;
-                             }
-                             for (const auto& plugin : result) {
-                                 auto qPlugin = plugin.toVariant().toMap();
+    pluginVersionManager_->sendGetRequest(QUrl(baseUrl()
+                                               + "?arch=" + lrcInstance_->pluginModel().getPlatformInfo()["os"]),
+                                          header,
+                                          [this, errorHandler](const QByteArray& data) {
+                                              auto result = QJsonDocument::fromJson(data).array();
+                                              auto pluginsInstalled = lrcInstance_->pluginModel().getPluginsId();
+                                              QList<QVariantMap> plugins;
+                                              if (result.size() == 0) {
+                                                  Q_EMIT storeNotAvailableForPlatform();
+                                                  return;
+                                              }
+                                              for (const auto& plugin : result) {
+                                                  auto qPlugin = plugin.toVariant().toMap();
 
-                                 if (!qPlugin.contains("id")) {
-                                     qPlugin["id"] = qPlugin["name"];
-                                 }
-                                 if (!pluginsInstalled.contains(qPlugin["id"].toString())) {
-                                     plugins.append(qPlugin);
-                                 }
-                             }
-                             pluginStoreListModel_->setPlugins(plugins);
-                             disconnect(errorHandler);
-                         });
+                                                  if (!qPlugin.contains("id")) {
+                                                      qPlugin["id"] = qPlugin["name"];
+                                                  }
+                                                  if (!pluginsInstalled.contains(qPlugin["id"].toString())) {
+                                                      plugins.append(qPlugin);
+                                                  }
+                                              }
+                                              pluginStoreListModel_->setPlugins(plugins);
+                                              disconnect(errorHandler);
+                                          });
 }
 
 void
@@ -127,20 +121,19 @@ PluginAdapter::getPluginDetails(const QString& pluginId)
     QMap<QString, QByteArray> header;
     const auto& language = settingsManager_->getLanguage();
     header["Accept-Language"] = QByteArray(language.toStdString().c_str(), language.size());
-    pluginVersionManager_
-        ->sendGetRequest(QUrl(baseUrl() + "/details/" + pluginId
-                              + "?arch=" + lrcInstance_->pluginModel().getPlatformInfo()["os"]),
-                         header,
-                         [this](const QByteArray& data) {
-                             auto result = QJsonDocument::fromJson(data).object();
-                             // my response is a json object and I want to convert
-                             // it to a QVariantMap
-                             auto plugin = result.toVariantMap();
-                             if (!plugin.contains("id")) {
-                                 plugin["id"] = plugin["name"];
-                             }
-                             pluginStoreListModel_->addPlugin(plugin);
-                         });
+    pluginVersionManager_->sendGetRequest(QUrl(baseUrl() + "/details/" + pluginId
+                                               + "?arch=" + lrcInstance_->pluginModel().getPlatformInfo()["os"]),
+                                          header,
+                                          [this](const QByteArray& data) {
+                                              auto result = QJsonDocument::fromJson(data).object();
+                                              // my response is a json object and I want to convert
+                                              // it to a QVariantMap
+                                              auto plugin = result.toVariantMap();
+                                              if (!plugin.contains("id")) {
+                                                  plugin["id"] = plugin["name"];
+                                              }
+                                              pluginStoreListModel_->addPlugin(plugin);
+                                          });
 }
 
 void
@@ -170,8 +163,7 @@ PluginAdapter::cancelDownload(const QString& pluginId)
 QVariant
 PluginAdapter::getMediaHandlerSelectableModel(const QString& callId)
 {
-    pluginHandlerListModel_.reset(
-        new PluginHandlerListModel(this, callId, QString(""), lrcInstance_));
+    pluginHandlerListModel_.reset(new PluginHandlerListModel(this, callId, QString(""), lrcInstance_));
     return QVariant::fromValue(pluginHandlerListModel_.get());
 }
 
@@ -183,9 +175,7 @@ PluginAdapter::getChatHandlerSelectableModel(const QString& accountId, const QSt
 }
 
 QVariant
-PluginAdapter::getPluginPreferencesCategories(const QString& pluginId,
-                                              const QString& accountId,
-                                              bool removeLast)
+PluginAdapter::getPluginPreferencesCategories(const QString& pluginId, const QString& accountId, bool removeLast)
 {
     QStringList categories;
     auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId, accountId);
@@ -221,13 +211,11 @@ PluginAdapter::baseUrl() const
 QString
 PluginAdapter::getIconUrl(const QString& pluginId) const
 {
-    return baseUrl() + "/icons/" + pluginId
-           + "?arch=" + lrcInstance_->pluginModel().getPlatformInfo()["os"];
+    return baseUrl() + "/icons/" + pluginId + "?arch=" + lrcInstance_->pluginModel().getPlatformInfo()["os"];
 }
 
 QString
 PluginAdapter::getBackgroundImageUrl(const QString& pluginId) const
 {
-    return baseUrl() + "/backgrounds/" + pluginId
-           + "?arch=" + lrcInstance_->pluginModel().getPlatformInfo()["os"];
+    return baseUrl() + "/backgrounds/" + pluginId + "?arch=" + lrcInstance_->pluginModel().getPlatformInfo()["os"];
 }

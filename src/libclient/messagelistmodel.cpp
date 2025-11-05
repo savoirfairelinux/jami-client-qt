@@ -102,9 +102,9 @@ int
 MessageListModel::indexOfMessage(const QString& messageId) const
 {
     std::lock_guard<std::recursive_mutex> lk(mutex_);
-    auto it = std::find_if(interactions_.rbegin(),
-                           interactions_.rend(),
-                           [&messageId](const auto& it) { return it.first == messageId; });
+    auto it = std::find_if(interactions_.rbegin(), interactions_.rend(), [&messageId](const auto& it) {
+        return it.first == messageId;
+    });
     if (it == interactions_.rend()) {
         return -1;
     }
@@ -206,16 +206,12 @@ MessageListModel::update(const QString& id, const interaction::Info& interaction
     current.previousBodies = interaction.previousBodies;
     current.parsedBody = interaction.parsedBody;
     auto modelIndex = QAbstractListModel::index(indexOfMessage(id), 0);
-    Q_EMIT dataChanged(modelIndex,
-                       modelIndex,
-                       {Role::TID, Role::Body, Role::PreviousBodies, Role::ParsedBody});
+    Q_EMIT dataChanged(modelIndex, modelIndex, {Role::TID, Role::Body, Role::PreviousBodies, Role::ParsedBody});
     return true;
 }
 
 bool
-MessageListModel::updateStatus(const QString& id,
-                               interaction::Status newStatus,
-                               const QString& newBody)
+MessageListModel::updateStatus(const QString& id, interaction::Status newStatus, const QString& newBody)
 {
     const std::lock_guard<std::recursive_mutex> lk(mutex_);
     auto it = find(id);
@@ -248,9 +244,7 @@ MessageListModel::updateStatus(const QString& id,
 }
 
 bool
-MessageListModel::updateTransferStatus(const QString& id,
-                                       interaction::TransferStatus newStatus,
-                                       const QString& newBody)
+MessageListModel::updateTransferStatus(const QString& id, interaction::TransferStatus newStatus, const QString& newBody)
 {
     VectorInt roles;
     with(id, [&](const QString&, interaction::Info& interaction) {
@@ -519,19 +513,15 @@ MessageListModel::dataForItem(const item_t& item, int, int role) const
     case Role::Body: {
         if (account_) {
             if (item.second.type == lrc::api::interaction::Type::CALL) {
-                return QVariant(
-                    interaction::getCallInteractionString(item.second.authorUri
-                                                              == account_->profileInfo.uri,
-                                                          item.second));
+                return QVariant(interaction::getCallInteractionString(item.second.authorUri == account_->profileInfo.uri,
+                                                                      item.second));
             } else if (item.second.type == lrc::api::interaction::Type::CONTACT) {
                 auto bestName = item.second.authorUri == account_->profileInfo.uri
                                     ? account_->accountModel->bestNameForAccount(account_->id)
-                                    : account_->contactModel->bestNameForContact(
-                                          item.second.authorUri);
+                                    : account_->contactModel->bestNameForContact(item.second.authorUri);
                 return QVariant(
                     interaction::getContactInteractionString(bestName,
-                                                             interaction::to_action(
-                                                                 item.second.commit["action"])));
+                                                             interaction::to_action(item.second.commit["action"])));
             }
         }
         return QVariant(item.second.body);
@@ -602,8 +592,8 @@ MessageListModel::dataForItem(const item_t& item, int, int role) const
     case Role::Readers:
         return QVariant(messageToReaders_[item.first]);
     case Role::IsEmojiOnly:
-        return QVariant(item.second.commit["reply-to"].isEmpty()
-                        && item.second.previousBodies.isEmpty() && isOnlyEmoji(item.second.body));
+        return QVariant(item.second.commit["reply-to"].isEmpty() && item.second.previousBodies.isEmpty()
+                        && isOnlyEmoji(item.second.body));
     case Role::Reactions:
         return QVariant(item.second.reactions);
     case Role::Index:

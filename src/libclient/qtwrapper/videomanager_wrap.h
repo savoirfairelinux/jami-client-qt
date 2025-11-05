@@ -183,8 +183,7 @@ public Q_SLOTS: // METHODS
 
     QString startLocalMediaRecorder(const QString& videoInputId, const QString& path)
     {
-        return QString::fromStdString(
-            libjami::startLocalMediaRecorder(videoInputId.toStdString(), path.toStdString()));
+        return QString::fromStdString(libjami::startLocalMediaRecorder(videoInputId.toStdString(), path.toStdString()));
     }
 
     MapStringString getRenderer(const QString& id)
@@ -234,8 +233,7 @@ public Q_SLOTS: // METHODS
 
 Q_SIGNALS: // SIGNALS
     void deviceEvent();
-    void decodingStarted(
-        const QString& id, const QString& shmPath, int width, int height, bool isMixer);
+    void decodingStarted(const QString& id, const QString& shmPath, int width, int height, bool isMixer);
     void decodingStopped(const QString& id, const QString& shmPath, bool isMixer);
     void fileOpened(const QString& path, const MapStringString& info);
 };

@@ -81,8 +81,7 @@ messageHandler(QtMsgType type, const QMessageLogContext& context, const QString&
     }
 #endif
 
-    const auto fmtMsg = QString("[%1][%2][%3]:%4 %5")
-                            .arg(ts, fmt[type].c_str(), tid, fileLineInfo, localMsg.constData());
+    const auto fmtMsg = QString("[%1][%2][%3]:%4 %5").arg(ts, fmt[type].c_str(), tid, fileLineInfo, localMsg.constData());
 
     (*QT_DEFAULT_MESSAGE_HANDLER)(type, context, fmtMsg);
 }
@@ -259,8 +258,7 @@ MainApplication::init()
 
     auto downloadPath = settingsManager_->getValue(Settings::Key::DownloadPath);
     auto screenshotPath = settingsManager_->getValue(Settings::Key::ScreenshotPath);
-    auto allowTransferFromTrusted = settingsManager_->getValue(Settings::Key::AutoAcceptFiles)
-                                        .toBool();
+    auto allowTransferFromTrusted = settingsManager_->getValue(Settings::Key::AutoAcceptFiles).toBool();
     auto acceptTransferBelow = settingsManager_->getValue(Settings::Key::AcceptTransferBelow).toInt();
     lrcInstance_->accountModel().downloadDirectory = downloadPath.toString() + "/";
     lrcInstance_->accountModel().screenshotDirectory = screenshotPath.toString();
@@ -275,8 +273,7 @@ MainApplication::init()
 
     accountSettingsManager_->initalizeAccountSettings();
 
-    settingsManager_->setValue(Settings::Key::StartMinimized,
-                               runOptions_[Option::StartMinimized].toBool());
+    settingsManager_->setValue(Settings::Key::StartMinimized, runOptions_[Option::StartMinimized].toBool());
 
     initSystray();
 
@@ -304,10 +301,7 @@ MainApplication::handleUriAction(const QString& arg)
 }
 
 void
-MainApplication::initLrc(const QString& downloadUrl,
-                         ConnectivityMonitor* cm,
-                         bool debugMode,
-                         bool muteDaemon)
+MainApplication::initLrc(const QString& downloadUrl, ConnectivityMonitor* cm, bool debugMode, bool muteDaemon)
 {
     lrcInstance_.reset(new LRCInstance(downloadUrl, cm, debugMode, muteDaemon));
     lrcInstance_->subscribeToDebugReceived();
@@ -326,9 +320,7 @@ MainApplication::parseArguments()
     parser_.addHelpOption();
     parser_.addVersionOption();
 
-    QCommandLineOption webDebugOption(QStringList() << "remote-debugging-port",
-                                      "Web debugging port.",
-                                      "port");
+    QCommandLineOption webDebugOption(QStringList() << "remote-debugging-port", "Web debugging port.", "port");
     parser_.addOption(webDebugOption);
 
     QCommandLineOption minimizedOption({"m", "minimized"}, "Start minimized.");
@@ -396,8 +388,7 @@ findResource(const QString& targetBasename, const QString& basePath = ":/")
 {
     QDir dir(basePath);
     // List all entries in the directory excluding special entries '.' and '..'
-    QStringList entries = dir.entryList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot,
-                                        QDir::DirsFirst);
+    QStringList entries = dir.entryList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot, QDir::DirsFirst);
 
     Q_FOREACH (const QString& entry, entries) {
         QString fullPath = basePath + "/" + entry;
@@ -409,8 +400,7 @@ findResource(const QString& targetBasename, const QString& basePath = ":/")
             if (!found.isEmpty()) {
                 return found; // Return the first match found in any subdirectory
             }
-        } else if (fileInfo.isFile()
-                   && fileInfo.fileName().contains(targetBasename, Qt::CaseInsensitive)) {
+        } else if (fileInfo.isFile() && fileInfo.fileName().contains(targetBasename, Qt::CaseInsensitive)) {
             // Match found, return the full path but remove the leading ":/".
             return fileInfo.absoluteFilePath().mid(2);
         }
@@ -492,13 +482,10 @@ MainApplication::initSystray()
     QAction* restoreAction = new QAction(tr("&Show Jami"), this);
     connect(restoreAction, &QAction::triggered, this, &MainApplication::restoreApp);
 
-    connect(systemTray_,
-            &QSystemTrayIcon::activated,
-            this,
-            [this](QSystemTrayIcon::ActivationReason reason) {
-                if (reason != QSystemTrayIcon::ActivationReason::Context) {
+    connect(systemTray_, &QSystemTrayIcon::activated, this, [this](QSystemTrayIcon::ActivationReason reason) {
+        if (reason != QSystemTrayIcon::ActivationReason::Context) {
 #ifdef Q_OS_WINDOWS
-                    restoreApp();
+            restoreApp();
 #elif !defined(Q_OS_MACOS)
                     QWindow* window = focusWindow();
                     if (window)
@@ -506,8 +493,8 @@ MainApplication::initSystray()
                     else
                         restoreApp();
 #endif
-                }
-            });
+        }
+    });
 
     menu->addAction(restoreAction);
     menu->addAction(quitAction);

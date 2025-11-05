@@ -56,9 +56,7 @@ PendingConferenceesListModel::PendingConferenceesListModel(LRCInstance* instance
     , lrcInstance_(instance)
 {
     connectSignals();
-    connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, this, [this]() {
-        connectSignals();
-    });
+    connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, this, [this]() { connectSignals(); });
 }
 
 int
@@ -136,18 +134,14 @@ PendingConferenceesListModel::connectSignals()
                                   &CallModel::callStatusChanged,
                                   this,
                                   [this](const QString&, const QString&, int) {
-                                      Q_EMIT dataChanged(index(0, 0),
-                                                         index(rowCount() - 1),
-                                                         {Role::CallStatus});
+                                      Q_EMIT dataChanged(index(0, 0), index(rowCount() - 1), {Role::CallStatus});
                                   });
 
     beginInsertPendingConferencesRows_ = connect(
         currentCallModel,
         &CallModel::beginInsertPendingConferenceesRows,
         this,
-        [this](int position, int rows) {
-            beginInsertRows(QModelIndex(), position, position + (rows - 1));
-        },
+        [this](int position, int rows) { beginInsertRows(QModelIndex(), position, position + (rows - 1)); },
         Qt::DirectConnection);
 
     endInsertPendingConferencesRows_ = connect(
@@ -161,9 +155,7 @@ PendingConferenceesListModel::connectSignals()
         currentCallModel,
         &CallModel::beginRemovePendingConferenceesRows,
         this,
-        [this](int position, int rows) {
-            beginRemoveRows(QModelIndex(), position, position + (rows - 1));
-        },
+        [this](int position, int rows) { beginRemoveRows(QModelIndex(), position, position + (rows - 1)); },
         Qt::DirectConnection);
 
     endRemovePendingConferencesRows_ = connect(
@@ -224,9 +216,7 @@ void
 CallControlListModel::setUrgentCount(QVariant item, int count)
 {
     const auto* obj = item.value<QObject*>();
-    auto it = std::find_if(data_.cbegin(), data_.cend(), [obj](const auto& item) {
-        return item.itemAction == obj;
-    });
+    auto it = std::find_if(data_.cbegin(), data_.cend(), [obj](const auto& item) { return item.itemAction == obj; });
     if (it != data_.cend()) {
         auto row = std::distance(data_.cbegin(), it);
         if (row >= rowCount())
@@ -241,9 +231,7 @@ void
 CallControlListModel::setEnabled(QObject* obj, bool enabled)
 {
     beginResetModel();
-    auto it = std::find_if(data_.cbegin(), data_.cend(), [obj](const auto& item) {
-        return item.itemAction == obj;
-    });
+    auto it = std::find_if(data_.cbegin(), data_.cend(), [obj](const auto& item) { return item.itemAction == obj; });
     if (it != data_.cend()) {
         auto row = std::distance(data_.cbegin(), it);
         if (row >= rowCount())
@@ -279,10 +267,7 @@ CallOverlayModel::CallOverlayModel(LRCInstance* instance, PTTListener* listener,
     , overflowHiddenModel_(new IndexRangeFilterProxyModel(secondaryModel_))
     , pendingConferenceesModel_(new PendingConferenceesListModel(instance, this))
 {
-    connect(this,
-            &CallOverlayModel::overflowIndexChanged,
-            this,
-            &CallOverlayModel::setControlRanges);
+    connect(this, &CallOverlayModel::overflowIndexChanged, this, &CallOverlayModel::setControlRanges);
     overflowVisibleModel_->setFilterRole(CallControl::Role::UrgentCount);
 
 #ifndef HAVE_GLOBAL_PTT
@@ -364,8 +349,8 @@ CallOverlayModel::setEventFilterActive(QObject* object, QQuickItem* item, bool i
 {
     QQuickWindow* window = qobject_cast<QQuickWindow*>(object);
     if (!window || !item) {
-        C_WARN << "Attempting to" << (isActive ? "register" : "unregister")
-               << "an invalid object or item" << window << item;
+        C_WARN << "Attempting to" << (isActive ? "register" : "unregister") << "an invalid object or item" << window
+               << item;
         return;
     }
     if (isActive) {

@@ -52,9 +52,7 @@ Q_SIGNALS:
     void acceptCallActivated(const QString& accountId, const QString&);
     void declineCallActivated(const QString& accountId, const QString&);
 #else
-    void showNotification(const QString& message,
-                          const QString& from,
-                          std::function<void()> const& onClickedCb);
+    void showNotification(const QString& message, const QString& from, std::function<void()> const& onClickedCb);
 
     template<typename Func>
     void setOnClickedCallback(Func&& onClickedCb);

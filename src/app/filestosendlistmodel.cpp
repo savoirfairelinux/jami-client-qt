@@ -64,11 +64,7 @@ FilesToSendListModel::addToPending(QString filePath)
         isImage = true;
 
     beginInsertRows(QModelIndex(), pendingFiles_.size(), pendingFiles_.size());
-    auto item = FilesToSend::Item(filePath,
-                                  fileInfo.baseName(),
-                                  fileInfo.suffix(),
-                                  isImage,
-                                  fileInfo.size());
+    auto item = FilesToSend::Item(filePath, fileInfo.baseName(), fileInfo.suffix(), isImage, fileInfo.size());
     pendingFiles_.append(item);
     endInsertRows();
 }

@@ -96,12 +96,8 @@ Info::init(const MapStringString& message,
     } else if (type == Type::DATA_TRANSFER) {
         QString path;
         qlonglong bytesProgress, totalSize;
-        ConfigurationManager::instance().fileTransferInfo(accountId,
-                                                          conversationId,
-                                                          message["fileId"],
-                                                          path,
-                                                          totalSize,
-                                                          bytesProgress);
+        ConfigurationManager::instance()
+            .fileTransferInfo(accountId, conversationId, message["fileId"], path, totalSize, bytesProgress);
         QFileInfo fi(path);
         body = fi.isSymLink() ? fi.symLinkTarget() : path;
         transferStatus = bytesProgress == 0           ? TransferStatus::TRANSFER_AWAITING_HOST
@@ -119,10 +115,7 @@ Info::Info(const MapStringString& message,
     init(message, accountURI, accountId, conversationId);
 }
 
-Info::Info(const SwarmMessage& msg,
-           const QString& accountUri,
-           const QString& accountId,
-           const QString& conversationId)
+Info::Info(const SwarmMessage& msg, const QString& accountUri, const QString& accountId, const QString& conversationId)
 {
     MapStringString msgBody;
     for (auto it = msg.body.cbegin(); it != msg.body.cend(); ++it) {
@@ -134,9 +127,8 @@ Info::Info(const SwarmMessage& msg,
     parentId = msg.linearizedParent;
     type = to_type(msg.type);
     for (const auto& edition : msg.editions)
-        previousBodies.append(Body {edition.value("id"),
-                                    edition.value("body"),
-                                    QString(edition.value("timestamp")).toInt()});
+        previousBodies.append(
+            Body {edition.value("id"), edition.value("body"), QString(edition.value("timestamp")).toInt()});
     QMap<QString, QVariantList> mapStringEmoji;
     for (const auto& reaction : msg.reactions) {
         auto author = reaction.value("author");
@@ -159,8 +151,7 @@ Info::Info(const SwarmMessage& msg,
         auto stValue = msg.status.value(member);
         if (stValue > maxStatus) {
             maxStatus = stValue;
-            status = maxStatus <= 1 ? Status::SENDING
-                                    : (stValue == 2 ? Status::SUCCESS : Status::DISPLAYED);
+            status = maxStatus <= 1 ? Status::SENDING : (stValue == 2 ? Status::SUCCESS : Status::DISPLAYED);
         }
         if (maxStatus == 3)
             break;

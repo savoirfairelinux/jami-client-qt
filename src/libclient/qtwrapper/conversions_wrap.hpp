@@ -29,9 +29,8 @@
 
 // Print all call to some signals
 #ifdef VERBOSE_IPC
-#define LOG_LIBJAMI_SIGNAL(name, arg) qDebug() << "\033[22;34m >>>>>> \033[0m" << name << arg;
-#define LOG_LIBJAMI_SIGNAL2(name, arg, arg2) \
-    qDebug() << "\033[22;34m >>>>>> \033[0m" << name << arg << arg2;
+#define LOG_LIBJAMI_SIGNAL(name, arg)        qDebug() << "\033[22;34m >>>>>> \033[0m" << name << arg;
+#define LOG_LIBJAMI_SIGNAL2(name, arg, arg2) qDebug() << "\033[22;34m >>>>>> \033[0m" << name << arg << arg2;
 #define LOG_LIBJAMI_SIGNAL3(name, arg, arg2, arg3) \
     qDebug() << "\033[22;34m >>>>>> \033[0m" << name << arg << arg2 << arg3;
 #define LOG_LIBJAMI_SIGNAL4(name, arg, arg2, arg3, arg4) \

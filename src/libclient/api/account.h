@@ -205,11 +205,11 @@ Q_ENUM_NS(DeviceAuthState)
 
 enum class DeviceLinkError {
     WRONG_DEVICE_PASSWORD, // auth_error, invalid_credentials
-    NETWORK,        // network
-    TIMEOUT,        // timeout
-    STATE,          // state
-    CANCELED,       // canceled
-    UNKNOWN         // fallback
+    NETWORK,               // network
+    TIMEOUT,               // timeout
+    STATE,                 // state
+    CANCELED,              // canceled
+    UNKNOWN                // fallback
 };
 
 Q_ENUM_NS(DeviceLinkError)
@@ -238,7 +238,8 @@ getLinkDeviceString(DeviceLinkError error)
         return QObject::tr(
             "An authentication error occurred while linking the device. Please check credentials and try again.");
     case DeviceLinkError::NETWORK:
-        return QObject::tr("A network error occurred while linking the account. Please verify your connection and try again.");
+        return QObject::tr(
+            "A network error occurred while linking the account. Please verify your connection and try again.");
     case DeviceLinkError::TIMEOUT:
         return QObject::tr("The operation timed out. Please try again.");
     case DeviceLinkError::STATE:

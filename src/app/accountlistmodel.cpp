@@ -44,18 +44,9 @@ AccountListModel::AccountListModel(LRCInstance* instance, QObject* parent)
     // of computing the difference. The same goes for accounts being added and removed.
     // These operations will only occur when the list is hidden, unless dbus is used while
     // the list is visible.
-    QObject::connect(&lrcInstance_->accountModel(),
-                     &AccountModel::accountsReordered,
-                     this,
-                     &AccountListModel::reset);
-    QObject::connect(&lrcInstance_->accountModel(),
-                     &AccountModel::accountAdded,
-                     this,
-                     &AccountListModel::reset);
-    QObject::connect(&lrcInstance_->accountModel(),
-                     &AccountModel::accountRemoved,
-                     this,
-                     &AccountListModel::reset);
+    QObject::connect(&lrcInstance_->accountModel(), &AccountModel::accountsReordered, this, &AccountListModel::reset);
+    QObject::connect(&lrcInstance_->accountModel(), &AccountModel::accountAdded, this, &AccountListModel::reset);
+    QObject::connect(&lrcInstance_->accountModel(), &AccountModel::accountRemoved, this, &AccountListModel::reset);
 }
 
 int

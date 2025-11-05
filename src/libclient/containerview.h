@@ -53,8 +53,7 @@ struct is_container<T,
 template<class BaseType, class Enable = void>
 struct ContainerView
 {
-    static_assert(detail::is_container<BaseType>::value == true,
-                  "Template parameter is probably not a container!");
+    static_assert(detail::is_container<BaseType>::value == true, "Template parameter is probably not a container!");
 };
 
 template<class BaseType>
@@ -206,13 +205,25 @@ public:
     }
 
     // Basic container operations should be avoided.
-    size_t size() const { return view_.size(); }
-    const_reference at(size_t pos) const { return view_.at(pos); }
-    void clear() { view_.clear(); }
+    size_t size() const
+    {
+        return view_.size();
+    }
+    const_reference at(size_t pos) const
+    {
+        return view_.at(pos);
+    }
+    void clear()
+    {
+        view_.clear();
+    }
 
     // TODO: re-filtering ?? should maybe observe underlying data in order to
     // not track this manually.
-    bool isDirty() const noexcept { return dirty_; };
+    bool isDirty() const noexcept
+    {
+        return dirty_;
+    };
     ContainerView& invalidate() noexcept
     {
         dirty_ = true;
@@ -226,11 +237,20 @@ public:
 
     // Returns whether or not this view has a concrete data source
     // or is just a view of a view.
-    constexpr bool hasUnderlyingData() const noexcept { return data_.has_value(); }
+    constexpr bool hasUnderlyingData() const noexcept
+    {
+        return data_.has_value();
+    }
 
     // Access the view.
-    constexpr const view_type& operator()() const noexcept { return view_; }
-    constexpr const view_type& get() const noexcept { return view_; }
+    constexpr const view_type& operator()() const noexcept
+    {
+        return view_;
+    }
+    constexpr const view_type& get() const noexcept
+    {
+        return view_;
+    }
 
 private:
     // A reference to the optional underlying container data source.
@@ -264,7 +284,8 @@ private:
     }
 
     // Hard unbox and unwrap underlying data container.
-    const BaseType& data() {
+    const BaseType& data()
+    {
         return data_.value().get();
     }
 

@@ -72,8 +72,7 @@ PreviewEngine::~PreviewEngine()
 void
 PreviewEngine::onParseLink(const QString& id, const QString& link)
 {
-    sendGetRequest(link,
-                   [this, id, link](const QByteArray& html) { Q_EMIT htmlReady(id, link, html); });
+    sendGetRequest(link, [this, id, link](const QByteArray& html) { Q_EMIT htmlReady(id, link, html); });
 }
 
 PreviewEngine::Parser::Parser(QObject* parent)
@@ -85,8 +84,7 @@ QString
 PreviewEngine::Parser::getTagContent(const QList<QString>& tags, const QString& value)
 {
     Q_FOREACH (auto tag, tags) {
-        const QRegularExpression re("(property|name)=\"(og:|twitter:|)" + value
-                                    + "\".*?content=\"([^\"]+)\"");
+        const QRegularExpression re("(property|name)=\"(og:|twitter:|)" + value + "\".*?content=\"([^\"]+)\"");
         const auto match = re.match(tag.remove(newlineRe));
         if (match.hasMatch()) {
             return match.captured(3);
