@@ -1,19 +1,20 @@
-/******************************************************************************
- *   Copyright (C) 2014-2025 Savoir-faire Linux Inc.                          *
- *                                                                            *
- *   This library is free software; you can redistribute it and/or            *
- *   modify it under the terms of the GNU Lesser General Public               *
- *   License as published by the Free Software Foundation; either             *
- *   version 2.1 of the License, or (at your option) any later version.       *
- *                                                                            *
- *   This library is distributed in the hope that it will be useful,          *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of           *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU        *
- *   Lesser General Public License for more details.                          *
- *                                                                            *
- *   You should have received a copy of the Lesser GNU General Public License *
- *   along with this program.  If not, see <http://www.gnu.org/licenses/>.    *
- *****************************************************************************/
+/*
+ * Copyright (C) 2014-2025 Savoir-faire Linux Inc.
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the Lesser GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #pragma once
 
 #include <QtCore/QObject>
@@ -427,14 +428,14 @@ public Q_SLOTS: // METHODS
         return libjami::transfer(accountId.toStdString(), callId.toStdString(), to.toStdString());
     }
 
-    bool unhold(const QString& accountId, const QString& callId)
+    bool resume(const QString& accountId, const QString& callId)
     {
-        return libjami::unhold(accountId.toStdString(), callId.toStdString());
+        return libjami::resume(accountId.toStdString(), callId.toStdString());
     }
 
-    bool unholdConference(const QString& accountId, const QString& confId)
+    bool resumeConference(const QString& accountId, const QString& confId)
     {
-        return libjami::unholdConference(accountId.toStdString(), confId.toStdString());
+        return libjami::resumeConference(accountId.toStdString(), confId.toStdString());
     }
 
     bool muteLocalMedia(const QString& accountId, const QString& callId, const QString& mediaType, bool mute)
