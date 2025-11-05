@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "115c8466_3a2f64f5",
+        "filename": "src/app/mainview/components/CallsButton.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-11-05T14:10:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a84a64bd_12abd7e1",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "f2ae36d32c0456c1ce88f3fcba292cabe15e7eb9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6634fd91_d3f3d55a",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-11-02T09:26:21Z",
       "side": 1,
       "message": "Should there be a blank line after the comment?",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 3
+      },
+      "revId": "f2ae36d32c0456c1ce88f3fcba292cabe15e7eb9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71c242eb_8ad3af39",
+        "filename": "src/app/mainview/components/CallsButton.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-11-05T14:10:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6634fd91_d3f3d55a",
       "range": {
         "startLine": 16,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbff6852_254f9be9",
+        "filename": "src/app/mainview/components/ChatView.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-11-05T14:10:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24859c38_c8090b15",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "f2ae36d32c0456c1ce88f3fcba292cabe15e7eb9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "59d2bef6_3a801cdf",
@@ -93,6 +165,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de4ada92_57cc62fd",
+        "filename": "src/app/mainview/components/ChatView.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-11-05T14:10:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "59d2bef6_3a801cdf",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 3
+      },
+      "revId": "f2ae36d32c0456c1ce88f3fcba292cabe15e7eb9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4a9534af_279ba4db",
@@ -106,6 +202,30 @@
       "writtenOn": "2025-11-02T09:27:31Z",
       "side": 1,
       "message": "Should there be a blank line after the comment?",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 3
+      },
+      "revId": "f2ae36d32c0456c1ce88f3fcba292cabe15e7eb9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "241273f6_6c2cf195",
+        "filename": "src/app/mainview/components/ChatViewHeader.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-11-05T14:10:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a9534af_279ba4db",
       "range": {
         "startLine": 16,
         "startChar": 0,
