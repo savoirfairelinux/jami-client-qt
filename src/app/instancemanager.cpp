@@ -85,10 +85,7 @@ public:
         server_ = new QLocalServer();
         server_->setSocketOptions(QLocalServer::UserAccessOption);
         server_->listen(key_);
-        QObject::connect(server_,
-                         &QLocalServer::newConnection,
-                         this,
-                         &Impl::handleIncomingConnection);
+        QObject::connect(server_, &QLocalServer::newConnection, this, &Impl::handleIncomingConnection);
 
         return true;
     };
@@ -124,8 +121,7 @@ private Q_SLOTS:
             socket_ = new QLocalSocket();
         if (!socket_)
             return false;
-        if (socket_->state() == QLocalSocket::UnconnectedState
-            || socket_->state() == QLocalSocket::ClosingState) {
+        if (socket_->state() == QLocalSocket::UnconnectedState || socket_->state() == QLocalSocket::ClosingState) {
             socket_->connectToServer(key_);
         }
         if (socket_->state() == QLocalSocket::ConnectingState) {

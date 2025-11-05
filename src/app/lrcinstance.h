@@ -49,8 +49,7 @@ using getConvPredicate = std::function<bool(const conversation::Info& conv)>;
 class LRCInstance : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString selectedConvUid READ get_selectedConvUid WRITE set_selectedConvUid NOTIFY
-                   selectedConvUidChanged)
+    Q_PROPERTY(QString selectedConvUid READ get_selectedConvUid WRITE set_selectedConvUid NOTIFY selectedConvUidChanged)
     QML_PROPERTY(QString, currentAccountId)
     QML_RO_PROPERTY(lrc::api::profile::Type, currentAccountType)
     QML_PROPERTY(bool, currentAccountAvatarSet)
@@ -86,28 +85,21 @@ public:
     QString getCurrentCallId(bool forceCallOnly = false);
     QString getCallIdForConversationUid(const QString& convUid, const QString& accountId);
     const call::Info* getCallInfo(const QString& callId, const QString& accountId);
-    const call::Info* getCallInfoForConversation(const conversation::Info& convInfo,
-                                                 bool forceCallOnly = false);
-    const conversation::Info& getConversationFromConvUid(const QString& convUid,
-                                                         const QString& accountId = {});
-    const conversation::Info& getConversationFromPeerUri(const QString& peerUri,
-                                                         const QString& accountId = {});
-    const conversation::Info& getConversationFromCallId(const QString& callId,
-                                                        const QString& accountId = {});
+    const call::Info* getCallInfoForConversation(const conversation::Info& convInfo, bool forceCallOnly = false);
+    const conversation::Info& getConversationFromConvUid(const QString& convUid, const QString& accountId = {});
+    const conversation::Info& getConversationFromPeerUri(const QString& peerUri, const QString& accountId = {});
+    const conversation::Info& getConversationFromCallId(const QString& callId, const QString& accountId = {});
 
     Q_INVOKABLE void selectConversation(const QString& convId, const QString& accountId = {});
     Q_INVOKABLE void deselectConversation();
-    Q_INVOKABLE void makeConversationPermanent(const QString& convId = {},
-                                               const QString& accountId = {});
+    Q_INVOKABLE void makeConversationPermanent(const QString& convId = {}, const QString& accountId = {});
     Q_INVOKABLE QVariantMap getContentDraft(const QString& convUid, const QString& accountId);
     Q_INVOKABLE void setContentDraft(const QString& convUid,
                                      const QString& accountId,
                                      const QString& textDraft,
                                      const QList<QString>& filePathDraft);
 
-    Q_INVOKABLE int indexOfActiveCall(const QString& confId,
-                                      const QString& uri,
-                                      const QString& deviceId);
+    Q_INVOKABLE int indexOfActiveCall(const QString& confId, const QString& uri, const QString& deviceId);
 
     int getCurrentAccountIndex();
     void setCurrAccDisplayName(const QString& displayName);

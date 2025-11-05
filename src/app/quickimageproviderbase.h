@@ -28,9 +28,7 @@ class AsyncImageResponseRunnable : public QObject, public QRunnable
 {
     Q_OBJECT
 public:
-    AsyncImageResponseRunnable(const QString& id,
-                               const QSize& requestedSize,
-                               LRCInstance* lrcInstance)
+    AsyncImageResponseRunnable(const QString& id, const QSize& requestedSize, LRCInstance* lrcInstance)
         : id_(id)
         , requestedSize_(requestedSize)
         , lrcInstance_(lrcInstance)
@@ -48,10 +46,7 @@ template<typename T_Runnable>
 class AsyncImageResponse : public QQuickImageResponse
 {
 public:
-    AsyncImageResponse(const QString& id,
-                       const QSize& requestedSize,
-                       QThreadPool* pool,
-                       LRCInstance* instance)
+    AsyncImageResponse(const QString& id, const QSize& requestedSize, QThreadPool* pool, LRCInstance* instance)
     {
         auto runnable = new T_Runnable(id, requestedSize, instance);
         connect(runnable, &T_Runnable::done, this, &AsyncImageResponse::handleDone);

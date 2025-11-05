@@ -31,17 +31,11 @@ CurrentConversation::CurrentConversation(LRCInstance* lrcInstance, QObject* pare
 
     // whenever the account changes, reconnect the new conversation model
     // for updates to the conversation and call state/id
-    connect(lrcInstance_,
-            &LRCInstance::currentAccountIdChanged,
-            this,
-            &CurrentConversation::connectModel);
+    connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, this, &CurrentConversation::connectModel);
     connectModel();
 
     // update when the conversation itself changes
-    connect(lrcInstance_,
-            &LRCInstance::selectedConvUidChanged,
-            this,
-            &CurrentConversation::updateData);
+    connect(lrcInstance_, &LRCInstance::selectedConvUidChanged, this, &CurrentConversation::updateData);
 
     connect(&lrcInstance_->behaviorController(),
             &BehaviorController::showIncomingCallView,
@@ -292,12 +286,8 @@ CurrentConversation::connectModel()
     connectObjectSignal(currentConversationModel,
                         &ConversationModel::conversationPreferencesUpdated,
                         &CurrentConversation::updateConversationPreferences);
-    connectObjectSignal(currentConversationModel,
-                        &ConversationModel::needsHost,
-                        &CurrentConversation::onNeedsHost);
-    connectObjectSignal(currentCallModel,
-                        &CallModel::callStatusChanged,
-                        &CurrentConversation::onCallStatusChanged);
+    connectObjectSignal(currentConversationModel, &ConversationModel::needsHost, &CurrentConversation::onNeedsHost);
+    connectObjectSignal(currentCallModel, &CallModel::callStatusChanged, &CurrentConversation::onCallStatusChanged);
 }
 
 void

@@ -50,8 +50,7 @@ public:
     void sendGetRequest(const QUrl& url,
                         const QMap<QString, QByteArray>& header,
                         std::function<void(const QByteArray&)>&& onDoneCallback);
-    void sendGetRequest(const QNetworkRequest& request,
-                        std::function<void(const QByteArray&)>&& onDoneCallback);
+    void sendGetRequest(const QNetworkRequest& request, std::function<void(const QByteArray&)>&& onDoneCallback);
     int downloadFile(const QUrl& url,
                      int replyId,
                      std::function<void(bool, const QString&)>&& onDoneCallback,

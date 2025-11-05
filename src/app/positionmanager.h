@@ -68,9 +68,7 @@ Q_SIGNALS:
 
 protected:
     QString getAvatar(const QString& accountId, const QString& peerId);
-    QVariantMap parseJsonPosition(const QString& accountId,
-                                  const QString& peerId,
-                                  const QString& body);
+    QVariantMap parseJsonPosition(const QString& accountId, const QString& peerId, const QString& body);
     void addPositionToMap(PositionKey key, QVariantMap position);
     void addPositionToMemory(PositionKey key, QVariantMap positionReceived);
     void updatePositionInMemory(PositionKey key, QVariantMap positionReceived);

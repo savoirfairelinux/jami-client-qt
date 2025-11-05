@@ -47,8 +47,7 @@ QStringList
 SpellChecker::suggest(const QString& word)
 {
     // Encode from Unicode to the encoding used by current dictionary
-    std::vector<std::string> numSuggestions = hunspell_->suggest(
-        codec_->fromUnicode(word).constData());
+    std::vector<std::string> numSuggestions = hunspell_->suggest(codec_->fromUnicode(word).constData());
     QStringList suggestions;
 
     for (const auto& suggestion : numSuggestions) {
@@ -88,8 +87,7 @@ SpellChecker::replaceDictionary(const QString& dictionaryPath)
     QByteArray dictFilePath = dictFile.toLocal8Bit();
     QByteArray affixFilePath = affixFile.toLocal8Bit();
 
-    std::unique_ptr<Hunspell> hunspell(
-        new Hunspell(affixFilePath.constData(), dictFilePath.constData()));
+    std::unique_ptr<Hunspell> hunspell(new Hunspell(affixFilePath.constData(), dictFilePath.constData()));
     auto encoding = hunspell->get_dic_encoding();
     auto codec = QTextCodec::codecForName(encoding);
     if (!codec) {

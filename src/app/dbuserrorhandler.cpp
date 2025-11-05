@@ -37,8 +37,7 @@ DBusErrorHandler::errorCallback()
             qDebug() << "An error occurred while attempting to reconnect to the daemon.";
             Q_EMIT daemonReconnectFailed();
         } else {
-            static_cast<DBusErrorHandler&>(GlobalInstances::dBusErrorHandler())
-                .finishedHandlingError();
+            static_cast<DBusErrorHandler&>(GlobalInstances::dBusErrorHandler()).finishedHandlingError();
         }
     });
 }

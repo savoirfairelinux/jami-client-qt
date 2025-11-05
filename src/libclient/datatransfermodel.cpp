@@ -136,11 +136,7 @@ DataTransferModel::sendFile(const QString& accountId,
                             const QString& displayName,
                             const QString& parent)
 {
-    ConfigurationManager::instance().sendFile(accountId,
-                                              conversationId,
-                                              filePath,
-                                              displayName,
-                                              parent);
+    ConfigurationManager::instance().sendFile(accountId, conversationId, filePath, displayName, parent);
 }
 
 void
@@ -151,8 +147,7 @@ DataTransferModel::fileTransferInfo(const QString& accountId,
                                     qlonglong& total,
                                     qlonglong& progress)
 {
-    ConfigurationManager::instance()
-        .fileTransferInfo(accountId, conversationId, fileId, path, total, progress);
+    ConfigurationManager::instance().fileTransferInfo(accountId, conversationId, fileId, path, total, progress);
 }
 
 void
@@ -201,9 +196,7 @@ DataTransferModel::copyTo(const QString& accountId,
 }
 
 void
-DataTransferModel::cancel(const QString& accountId,
-                          const QString& conversationId,
-                          const QString& interactionId)
+DataTransferModel::cancel(const QString& accountId, const QString& conversationId, const QString& interactionId)
 {
     ConfigurationManager::instance().cancelDataTransfer(accountId,
                                                         conversationId,
@@ -225,8 +218,7 @@ DataTransferModel::getFileIdFromInteractionId(const QString& interactionId)
 QString
 DataTransferModel::createDefaultDirectory()
 {
-    auto defaultDirectory = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation)
-                            + "/Jami";
+    auto defaultDirectory = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation) + "/Jami";
     QDir dir(defaultDirectory);
     if (!dir.exists())
         dir.mkpath(".");

@@ -33,9 +33,9 @@ CallManager::instance()
                                                      QDBusConnection::sessionBus());
 
     if (!interface->connection().isConnected()) {
-        GlobalInstances::dBusErrorHandler().connectionError(
-            "Error : jamid not connected. Service " + interface->service()
-            + " not connected. From call manager interface.");
+        GlobalInstances::dBusErrorHandler().connectionError("Error : jamid not connected. Service "
+                                                            + interface->service()
+                                                            + " not connected. From call manager interface.");
     }
     if (!interface->isValid()) {
         GlobalInstances::dBusErrorHandler().invalidInterfaceError(

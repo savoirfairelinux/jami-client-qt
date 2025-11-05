@@ -78,9 +78,7 @@ public:
      * @param  isAudioOnly, set to false by default
      * @return the call uid created. Empty string is returned if call is unable to be created.
      */
-    QString createCall(const QString& uri,
-                       bool isAudioOnly = false,
-                       VectorMapStringString mediaList = {});
+    QString createCall(const QString& uri, bool isAudioOnly = false, VectorMapStringString mediaList = {});
     /**
      * Add a new media to the current list
      * @param callId
@@ -125,11 +123,8 @@ public:
      * @param mute
      * @param removeAll     Remove Audio/Video
      */
-    void removeMedia(const QString& callId,
-                     const QString& mediaType,
-                     const QString& type,
-                     bool muteCamera,
-                     bool removeAll);
+    void removeMedia(
+        const QString& callId, const QString& mediaType, const QString& type, bool muteCamera, bool removeAll);
 
     /**
      * Get the call from its call id
@@ -305,11 +300,8 @@ public:
      * @param sinkId        Peer's sinkId
      * @param state         new state wanted
      */
-    void setActiveStream(const QString& confId,
-                         const QString& accountUri,
-                         const QString& deviceId,
-                         const QString& sinkId,
-                         bool state);
+    void setActiveStream(
+        const QString& confId, const QString& accountUri, const QString& deviceId, const QString& sinkId, bool state);
 
     /**
      * Check if a participant is a moderator or not
@@ -342,10 +334,7 @@ public:
      * @param deviceId      DeviceId of the participant to change
      * @param state         State of the change (true set hand raised / false unset hand raised)
      */
-    void raiseHand(const QString& confId,
-                   const QString& accountUri,
-                   const QString& deviceId,
-                   bool state);
+    void raiseHand(const QString& confId, const QString& accountUri, const QString& deviceId, bool state);
 
     /**
      * Mute/unmute sink
@@ -367,9 +356,7 @@ public:
      * @param accountUri    Uri of the participant to mute
      * @param deviceId      Device Id of the participant to mute
      */
-    void hangupParticipant(const QString& confId,
-                           const QString& accountUri,
-                           const QString& deviceId);
+    void hangupParticipant(const QString& confId, const QString& accountUri, const QString& deviceId);
 
     /**
      * Check if a call is a conference or not
@@ -406,9 +393,7 @@ public:
      * @param windowProcessId
      * @param windowId
      */
-    QString getDisplay(const QString& windowProcessId,
-                       const QString& windowId,
-                       const int fps = -1);
+    QString getDisplay(const QString& windowProcessId, const QString& windowId, const int fps = -1);
 
     void emplaceConversationConference(const QString& callId);
 
@@ -483,9 +468,7 @@ Q_SIGNALS:
      * @param conversationId
      * @param confId
      */
-    void callAddedToConference(const QString& callId,
-                               const QString& conversationId,
-                               const QString& confId) const;
+    void callAddedToConference(const QString& callId, const QString& conversationId, const QString& confId) const;
 
     /**
      * Emitted when a voice mail notice arrives
@@ -494,10 +477,7 @@ Q_SIGNALS:
      * @param oldCount
      * @param urgentCount
      */
-    void voiceMailNotify(const QString& accountId,
-                         int newCount,
-                         int oldCount,
-                         int urgentCount) const;
+    void voiceMailNotify(const QString& accountId, int newCount, int oldCount, int urgentCount) const;
 
     /**
      * Provides notification of a new set of recording peers once a change has occured,

@@ -65,10 +65,7 @@ public Q_SLOTS: // METHODS
 
     QStringList getChatHandlers();
 
-    void toggleChatHandler(const QString& chatHandlerId,
-                           const QString& accountId,
-                           const QString& peerId,
-                           bool toggle);
+    void toggleChatHandler(const QString& chatHandlerId, const QString& accountId, const QString& peerId, bool toggle);
 
     QStringList getCallMediaHandlerStatus(const QString& callId);
 
@@ -80,10 +77,7 @@ public Q_SLOTS: // METHODS
 
     VectorMapStringString getPluginPreferences(const QString& path, const QString& accountId);
 
-    bool setPluginPreference(const QString& path,
-                             const QString& accountId,
-                             const QString& key,
-                             const QString& value);
+    bool setPluginPreference(const QString& path, const QString& accountId, const QString& key, const QString& value);
 
     MapStringString getPluginPreferencesValues(const QString& path, const QString& accountId);
 

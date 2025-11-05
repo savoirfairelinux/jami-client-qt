@@ -68,9 +68,9 @@ CallInformationListModel::addElement(QPair<QString, MapStringString> callInfo)
 void
 CallInformationListModel::editElement(QPair<QString, MapStringString> callInfo)
 {
-    auto it = std::find_if(callsInfolist_.begin(),
-                           callsInfolist_.end(),
-                           [&callInfo](const auto& c) { return callInfo.first == c.first; });
+    auto it = std::find_if(callsInfolist_.begin(), callsInfolist_.end(), [&callInfo](const auto& c) {
+        return callInfo.first == c.first;
+    });
     if (it != callsInfolist_.end()) {
         // update infos
         auto index = std::distance(callsInfolist_.begin(), it);

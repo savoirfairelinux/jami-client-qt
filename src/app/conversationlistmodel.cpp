@@ -29,29 +29,17 @@ ConversationListModel::ConversationListModel(LRCInstance* instance, QObject* par
         model_,
         &ConversationModel::beginInsertRows,
         this,
-        [this](int position, int rows) {
-            beginInsertRows(QModelIndex(), position, position + (rows - 1));
-        },
+        [this](int position, int rows) { beginInsertRows(QModelIndex(), position, position + (rows - 1)); },
         Qt::DirectConnection);
-    connect(model_,
-            &ConversationModel::endInsertRows,
-            this,
-            &ConversationListModel::endInsertRows,
-            Qt::DirectConnection);
+    connect(model_, &ConversationModel::endInsertRows, this, &ConversationListModel::endInsertRows, Qt::DirectConnection);
 
     connect(
         model_,
         &ConversationModel::beginRemoveRows,
         this,
-        [this](int position, int rows) {
-            beginRemoveRows(QModelIndex(), position, position + (rows - 1));
-        },
+        [this](int position, int rows) { beginRemoveRows(QModelIndex(), position, position + (rows - 1)); },
         Qt::DirectConnection);
-    connect(model_,
-            &ConversationModel::endRemoveRows,
-            this,
-            &ConversationListModel::endRemoveRows,
-            Qt::DirectConnection);
+    connect(model_, &ConversationModel::endRemoveRows, this, &ConversationListModel::endRemoveRows, Qt::DirectConnection);
 
     connect(
         model_,
@@ -100,8 +88,7 @@ ConversationListProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& s
     auto rx = filterRegularExpression();
     auto uriStripper = URI(rx.pattern());
     bool stripScheme = (uriStripper.schemeType() < URI::SchemeType::COUNT__);
-    FlagPack<URI::Section> flags = URI::Section::USER_INFO | URI::Section::HOSTNAME
-                                   | URI::Section::PORT;
+    FlagPack<URI::Section> flags = URI::Section::USER_INFO | URI::Section::HOSTNAME | URI::Section::PORT;
     if (!stripScheme) {
         flags |= URI::Section::SCHEME;
     }
@@ -110,8 +97,7 @@ ConversationListProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& s
     using namespace ConversationList;
     if (index.data(Role::Uris).toStringList().isEmpty()) {
         // TODO: Find out why, and fix in libjami/libjamiclient.
-        qCritical() << "Filtering 0 member conversation. Fix me"
-                    << index.data(Role::UID).toString();
+        qCritical() << "Filtering 0 member conversation. Fix me" << index.data(Role::UID).toString();
         return false;
     }
 

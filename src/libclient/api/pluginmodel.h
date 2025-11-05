@@ -135,9 +135,7 @@ public:
     /**
      * Toggle media handler
      */
-    Q_INVOKABLE void toggleCallMediaHandler(const QString& mediaHandlerId,
-                                            const QString& callId,
-                                            bool toggle);
+    Q_INVOKABLE void toggleCallMediaHandler(const QString& mediaHandlerId, const QString& callId, bool toggle);
 
     VectorString getChatHandlers() const;
 
@@ -169,8 +167,7 @@ public:
      * Get preferences map of installed plugin
      * @return Plugin preferences infos vector
      */
-    Q_INVOKABLE VectorMapStringString getPluginPreferences(const QString& path,
-                                                           const QString& accountId);
+    Q_INVOKABLE VectorMapStringString getPluginPreferences(const QString& path, const QString& accountId);
 
     /**
      * Modify preference of installed plugin

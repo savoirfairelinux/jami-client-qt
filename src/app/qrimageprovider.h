@@ -52,8 +52,7 @@ public:
                 const auto& convInfo = lrcInstance_->getConversationFromConvUid(list[1]);
                 if (convInfo.uid.isEmpty())
                     return {QrType::Contact, list[1]};
-                if (convInfo.mode == conversation::Mode::ONE_TO_ONE
-                    || convInfo.mode == conversation::Mode::NON_SWARM) {
+                if (convInfo.mode == conversation::Mode::ONE_TO_ONE || convInfo.mode == conversation::Mode::NON_SWARM) {
                     auto peerUri = lrcInstance_->getCurrentAccountInfo()
                                        .conversationModel->peersForConversation(convInfo.uid)
                                        .at(0);

@@ -58,10 +58,7 @@ struct AppVersionManager::Impl : public QObject
         parent_.disconnect();
         // Fail without UI if this is a programmatic check.
         if (!quiet)
-            connect(&parent_,
-                    &NetworkManager::errorOccurred,
-                    &parent_,
-                    &AppVersionManager::networkErrorOccurred);
+            connect(&parent_, &NetworkManager::errorOccurred, &parent_, &AppVersionManager::networkErrorOccurred);
 
         cleanUpdateFiles();
         const QUrl versionUrl {isBeta ? QUrl::fromUserInput(baseUrlString_ + betaVersionSubUrl)
@@ -91,14 +88,10 @@ struct AppVersionManager::Impl : public QObject
     void applyUpdates(bool beta = false)
     {
         parent_.disconnect();
-        connect(&parent_,
-                &NetworkManager::errorOccurred,
-                &parent_,
-                &AppVersionManager::networkErrorOccurred);
+        connect(&parent_, &NetworkManager::errorOccurred, &parent_, &AppVersionManager::networkErrorOccurred);
 
-        const QUrl downloadUrl {(beta || isBeta)
-                                    ? QUrl::fromUserInput(baseUrlString_ + betaMsiSubUrl)
-                                    : QUrl::fromUserInput(baseUrlString_ + msiSubUrl)};
+        const QUrl downloadUrl {(beta || isBeta) ? QUrl::fromUserInput(baseUrlString_ + betaMsiSubUrl)
+                                                 : QUrl::fromUserInput(baseUrlString_ + msiSubUrl)};
 
         const auto lastDownloadReplyId = parent_.replyId_;
         parent_.replyId_ = parent_.downloadFile(
@@ -112,10 +105,8 @@ struct AppVersionManager::Impl : public QObject
                 auto msiPath = QDir::toNativeSeparators(basePath + downloadUrl.fileName());
                 auto logPath = QDir::toNativeSeparators(basePath + "jami_x64_install.log");
                 process.startDetached("msiexec",
-                                      QStringList() << "/i" << msiPath << "/passive"
-                                                    << "/norestart"
-                                                    << "WIXNONUILAUNCH=1"
-                                                    << "/L*V" << logPath);
+                                      QStringList() << "/i" << msiPath << "/passive" << "/norestart"
+                                                    << "WIXNONUILAUNCH=1" << "/L*V" << logPath);
             },
             QDir::tempPath());
     };
@@ -160,10 +151,7 @@ struct AppVersionManager::Impl : public QObject
     QTimer* updateTimer_;
 };
 
-AppVersionManager::AppVersionManager(const QString& url,
-                                     ConnectivityMonitor* cm,
-                                     LRCInstance* instance,
-                                     QObject* parent)
+AppVersionManager::AppVersionManager(const QString& url, ConnectivityMonitor* cm, LRCInstance* instance, QObject* parent)
     : NetworkManager(cm, parent)
     , replyId_(0)
     , pimpl_(std::make_unique<Impl>(url, instance, *this))

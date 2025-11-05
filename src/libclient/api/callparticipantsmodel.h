@@ -116,13 +116,11 @@ struct ParticipantInfos
     bool operator==(const ParticipantInfos& other) const
     {
         return uri == other.uri && sinkId == other.sinkId && active == other.active
-               && audioLocalMuted == other.audioLocalMuted
-               && audioModeratorMuted == other.audioModeratorMuted && avatar == other.avatar
-               && bestName == other.bestName && isContact == other.isContact
-               && islocal == other.islocal && videoMuted == other.videoMuted
-               && isModerator == other.isModerator && voiceActivity == other.voiceActivity
-               && handRaised == other.handRaised && isRecording == other.isRecording
-               && device == other.device;
+               && audioLocalMuted == other.audioLocalMuted && audioModeratorMuted == other.audioModeratorMuted
+               && avatar == other.avatar && bestName == other.bestName && isContact == other.isContact
+               && islocal == other.islocal && videoMuted == other.videoMuted && isModerator == other.isModerator
+               && voiceActivity == other.voiceActivity && handRaised == other.handRaised
+               && isRecording == other.isRecording && device == other.device;
     }
 };
 
@@ -131,9 +129,7 @@ class LIB_EXPORT CallParticipants : public QObject
     Q_OBJECT
 
 public:
-    CallParticipants(const VectorMapStringString& infos,
-                     const QString& callId,
-                     const CallModel& linked);
+    CallParticipants(const VectorMapStringString& infos, const QString& callId, const CallModel& linked);
     ~CallParticipants() {}
 
     /**

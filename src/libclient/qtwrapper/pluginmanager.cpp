@@ -72,9 +72,7 @@ PluginManagerInterface::getCallMediaHandlers()
 }
 
 void
-PluginManagerInterface::toggleCallMediaHandler(const QString& mediaHandlerId,
-                                               const QString& callId,
-                                               bool toggle)
+PluginManagerInterface::toggleCallMediaHandler(const QString& mediaHandlerId, const QString& callId, bool toggle)
 {
     libjami::toggleCallMediaHandler(mediaHandlerId.toStdString(), callId.toStdString(), toggle);
 }
@@ -91,10 +89,7 @@ PluginManagerInterface::toggleChatHandler(const QString& chatHandlerId,
                                           const QString& peerId,
                                           bool toggle)
 {
-    libjami::toggleChatHandler(chatHandlerId.toStdString(),
-                               accountId.toStdString(),
-                               peerId.toStdString(),
-                               toggle);
+    libjami::toggleChatHandler(chatHandlerId.toStdString(), accountId.toStdString(), peerId.toStdString(), toggle);
 }
 
 QStringList
@@ -112,8 +107,7 @@ PluginManagerInterface::getCallMediaHandlerDetails(const QString& mediaHandlerId
 QStringList
 PluginManagerInterface::getChatHandlerStatus(const QString& accountId, const QString& peerId)
 {
-    return convertStringList(
-        libjami::getChatHandlerStatus(accountId.toStdString(), peerId.toStdString()));
+    return convertStringList(libjami::getChatHandlerStatus(accountId.toStdString(), peerId.toStdString()));
 }
 
 MapStringString
@@ -147,8 +141,7 @@ PluginManagerInterface::setPluginPreference(const QString& path,
 MapStringString
 PluginManagerInterface::getPluginPreferencesValues(const QString& path, const QString& accountId)
 {
-    return convertMap(
-        libjami::getPluginPreferencesValues(path.toStdString(), accountId.toStdString()));
+    return convertMap(libjami::getPluginPreferencesValues(path.toStdString(), accountId.toStdString()));
 }
 
 bool

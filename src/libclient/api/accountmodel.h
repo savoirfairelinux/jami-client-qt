@@ -47,9 +47,7 @@ class LIB_EXPORT AccountModel : public QObject
     Q_OBJECT
     Q_PROPERTY(QString downloadDirectory_qml MEMBER downloadDirectory)
 public:
-    AccountModel(Lrc& lrc,
-                 const CallbacksHandler& callbackHandler,
-                 const api::BehaviorController& behaviorController);
+    AccountModel(Lrc& lrc, const CallbacksHandler& callbackHandler, const api::BehaviorController& behaviorController);
 
     ~AccountModel();
     /**
@@ -94,8 +92,7 @@ public:
      * @param accountId.
      * @param reference to the confProperties
      */
-    void setAccountConfig(const QString& accountID,
-                          const account::ConfProperties_t& confProperties) const;
+    void setAccountConfig(const QString& accountID, const account::ConfProperties_t& confProperties) const;
     /**
      * gets a copy of the accounts config
      * @param accountId.
@@ -109,9 +106,7 @@ public:
      * @param password
      * @return if the file is exported with success
      */
-    Q_INVOKABLE bool exportToFile(const QString& accountId,
-                                  const QString& path,
-                                  const QString& password = {}) const;
+    Q_INVOKABLE bool exportToFile(const QString& accountId, const QString& path, const QString& password = {}) const;
 
     /**
      * Provide authentication for an account
@@ -119,8 +114,7 @@ public:
      * @param credentialsFromUser
      * @return if the authentication is successful
      */
-    Q_INVOKABLE bool provideAccountAuthentication(const QString& accountId,
-                                                  const QString& credentialsFromUser) const;
+    Q_INVOKABLE bool provideAccountAuthentication(const QString& accountId, const QString& credentialsFromUser) const;
 
     /**
      * @param accountId
@@ -180,9 +174,7 @@ public:
      * @param username
      * @return if operation started
      */
-    Q_INVOKABLE bool registerName(const QString& accountId,
-                                  const QString& password,
-                                  const QString& username);
+    Q_INVOKABLE bool registerName(const QString& accountId, const QString& password, const QString& username);
 
     /**
      * Create a new Ring or SIP account
@@ -353,9 +345,7 @@ Q_SIGNALS:
      * @param status
      * @param name
      */
-    void nameRegistrationEnded(const QString& accountId,
-                               account::RegisterNameStatus status,
-                               const QString& name);
+    void nameRegistrationEnded(const QString& accountId, account::RegisterNameStatus status, const QString& name);
 
     /**
      * Name registration has been found
