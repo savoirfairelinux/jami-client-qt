@@ -103,7 +103,7 @@ to_status(const QString& status)
         return Status::CONNECTING;
     else if (status == "RINGING")
         return Status::OUTGOING_RINGING;
-    else if (status == "HUNGUP" || status == "FAILURE")
+    else if (status == "END" || status == "FAILURE")
         return Status::TERMINATING;
     else if (status == "HOLD" || status == "ACTIVE_DETACHED")
         return Status::PAUSED;
