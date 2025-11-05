@@ -41,10 +41,7 @@ AccountAdapter::AccountAdapter(AppSettingsManager* settingsManager,
             this,
             &AccountAdapter::accountStatusChanged);
 
-    connect(&lrcInstance_->accountModel(),
-            &AccountModel::profileUpdated,
-            this,
-            &AccountAdapter::accountStatusChanged);
+    connect(&lrcInstance_->accountModel(), &AccountModel::profileUpdated, this, &AccountAdapter::accountStatusChanged);
 
     connect(systemTray_,
             &SystemTray::countChanged,
@@ -52,9 +49,7 @@ AccountAdapter::AccountAdapter(AppSettingsManager* settingsManager,
             &AccountListModel::updateNotifications);
 
     // Switch account to the specified index when an account is added.
-    connect(this, &AccountAdapter::accountAdded, this, [this](const QString&, int index) {
-        changeAccount(index);
-    });
+    connect(this, &AccountAdapter::accountAdded, this, [this](const QString&, int index) { changeAccount(index); });
 }
 
 AccountModel*
@@ -114,10 +109,7 @@ AccountAdapter::createJamiAccount(const QVariantMap& settings)
         &lrcInstance_->accountModel(),
         &lrc::api::AccountModel::accountAdded,
         [this, registeredName, settings](const QString& accountId) {
-            lrcInstance_->accountModel().setAvatar(accountId,
-                                                   settings["avatar"].toString(),
-                                                   true,
-                                                   1);
+            lrcInstance_->accountModel().setAvatar(accountId, settings["avatar"].toString(), true, 1);
             Utils::oneShotConnect(&lrcInstance_->accountModel(),
                                   &lrc::api::AccountModel::accountDetailsChanged,
                                   [this](const QString& accountId) {
@@ -143,21 +135,16 @@ AccountAdapter::createJamiAccount(const QVariantMap& settings)
                                   if (addedAccountId == accountId) {
                                       Q_EMIT lrcInstance_->accountListChanged();
                                       Q_EMIT accountAdded(accountId,
-                                                          lrcInstance_->accountModel()
-                                                              .getAccountList()
-                                                              .indexOf(accountId));
+                                                          lrcInstance_->accountModel().getAccountList().indexOf(
+                                                              accountId));
                                       QObject::disconnect(registeredNameSavedConnection_);
                                   }
                               });
 
-                lrcInstance_->accountModel().registerName(accountId,
-                                                          settings["password"].toString(),
-                                                          registeredName);
+                lrcInstance_->accountModel().registerName(accountId, settings["password"].toString(), registeredName);
             } else {
                 Q_EMIT lrcInstance_->accountListChanged();
-                Q_EMIT accountAdded(accountId,
-                                    lrcInstance_->accountModel().getAccountList().indexOf(
-                                        accountId));
+                Q_EMIT accountAdded(accountId, lrcInstance_->accountModel().getAccountList().indexOf(accountId));
             }
         },
         this,
@@ -204,8 +191,7 @@ AccountAdapter::createSIPAccount(const QVariantMap& settings)
             lrcInstance_->accountModel().setAccountConfig(accountId, confProps);
 
             Q_EMIT lrcInstance_->accountListChanged();
-            Q_EMIT accountAdded(accountId,
-                                lrcInstance_->accountModel().getAccountList().indexOf(accountId));
+            Q_EMIT accountAdded(accountId, lrcInstance_->accountModel().getAccountList().indexOf(accountId));
         },
         this,
         &AccountAdapter::accountCreationFailed);
@@ -246,8 +232,7 @@ AccountAdapter::createJAMSAccount(const QVariantMap& settings)
 #endif
             lrcInstance_->accountModel().setAccountConfig(accountId, confProps);
 
-            Q_EMIT accountAdded(accountId,
-                                lrcInstance_->accountModel().getAccountList().indexOf(accountId));
+            Q_EMIT accountAdded(accountId, lrcInstance_->accountModel().getAccountList().indexOf(accountId));
             Q_EMIT lrcInstance_->accountListChanged();
         },
         this,
@@ -276,9 +261,7 @@ AccountAdapter::deleteCurrentAccount()
 }
 
 bool
-AccountAdapter::savePassword(const QString& accountId,
-                             const QString& oldPassword,
-                             const QString& newPassword)
+AccountAdapter::savePassword(const QString& accountId, const QString& oldPassword, const QString& newPassword)
 {
     return lrcInstance_->accountModel().changeAccountPassword(accountId, oldPassword, newPassword);
 }
@@ -320,9 +303,7 @@ AccountAdapter::setCurrentAccountAvatarBase64(const QString& data)
 }
 
 void
-AccountAdapter::setDefaultModerator(const QString& accountId,
-                                    const QString& peerURI,
-                                    const bool& state)
+AccountAdapter::setDefaultModerator(const QString& accountId, const QString& peerURI, const bool& state)
 {
     lrcInstance_->accountModel().setDefaultModerator(accountId, peerURI, state);
 }
@@ -334,9 +315,7 @@ AccountAdapter::getDefaultModerators(const QString& accountId)
 }
 
 bool
-AccountAdapter::exportToFile(const QString& accountId,
-                             const QString& path,
-                             const QString& password) const
+AccountAdapter::exportToFile(const QString& accountId, const QString& path, const QString& password) const
 {
     return lrcInstance_->accountModel().exportToFile(accountId, path, password);
 }
@@ -378,17 +357,15 @@ AccountAdapter::provideAccountAuthentication(const QString& password)
         &lrc::api::AccountModel::accountAdded,
         [this](const QString& accountId) {
             Q_EMIT lrcInstance_->accountListChanged();
-            Q_EMIT accountAdded(accountId,
-                                lrcInstance_->accountModel().getAccountList().indexOf(accountId));
+            Q_EMIT accountAdded(accountId, lrcInstance_->accountModel().getAccountList().indexOf(accountId));
         },
         this,
         &AccountAdapter::accountCreationFailed);
 
     connectFailure();
 
-    QThreadPool::globalInstance()->start([this, password] {
-        lrcInstance_->accountModel().provideAccountAuthentication(importAccountId_, password);
-    });
+    QThreadPool::globalInstance()->start(
+        [this, password] { lrcInstance_->accountModel().provideAccountAuthentication(importAccountId_, password); });
 }
 
 QString

@@ -173,8 +173,8 @@ struct Info
                         previewId = media[MediaAttributeKey::SOURCE];
                     }
                 }
-                if (media[MediaAttributeKey::ENABLED] == TRUE_STR
-                    && media[MediaAttributeKey::MUTED] == FALSE_STR && previewId.isEmpty()) {
+                if (media[MediaAttributeKey::ENABLED] == TRUE_STR && media[MediaAttributeKey::MUTED] == FALSE_STR
+                    && previewId.isEmpty()) {
                     previewId = media[libjami::Media::MediaAttributeKey::SOURCE];
                 }
                 if (media[libjami::Media::MediaAttributeKey::SOURCE].startsWith(

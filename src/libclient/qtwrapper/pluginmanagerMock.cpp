@@ -73,9 +73,7 @@ PluginManagerInterface::getCallMediaHandlers()
 }
 
 void
-PluginManagerInterface::toggleCallMediaHandler(const QString& mediaHandlerId,
-                                               const QString& callId,
-                                               bool toggle)
+PluginManagerInterface::toggleCallMediaHandler(const QString& mediaHandlerId, const QString& callId, bool toggle)
 {}
 
 QStringList

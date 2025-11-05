@@ -91,11 +91,7 @@ ConnectivityMonitor::ConnectivityMonitor(QObject* parent)
 
     IUnknown* pUnknown = NULL;
 
-    HRESULT hr = CoCreateInstance(CLSID_NetworkListManager,
-                                  NULL,
-                                  CLSCTX_ALL,
-                                  IID_IUnknown,
-                                  (void**) &pUnknown);
+    HRESULT hr = CoCreateInstance(CLSID_NetworkListManager, NULL, CLSCTX_ALL, IID_IUnknown, (void**) &pUnknown);
     if (FAILED(hr)) {
         return;
     }
@@ -109,8 +105,7 @@ ConnectivityMonitor::ConnectivityMonitor(QObject* parent)
     }
 
     pCPContainer_ = NULL;
-    hr = pNetworkListManager_->QueryInterface(IID_IConnectionPointContainer,
-                                              (void**) &pCPContainer_);
+    hr = pNetworkListManager_->QueryInterface(IID_IConnectionPointContainer, (void**) &pCPContainer_);
     if (FAILED(hr)) {
         destroy();
         pUnknown->Release();
@@ -194,15 +189,11 @@ nmClientCallback(G_GNUC_UNUSED GObject* source_object, GAsyncResult* result, Con
     if (auto nm_client = nm_client_new_finish(result, &error)) {
         C_INFO << "NetworkManager client initialized, version:" << nm_client_get_version(nm_client)
                << ", daemon running:" << (nm_client_get_nm_running(nm_client) ? "yes" : "no")
-               << ", networking enabled:"
-               << (nm_client_networking_get_enabled(nm_client) ? "yes" : "no");
+               << ", networking enabled:" << (nm_client_networking_get_enabled(nm_client) ? "yes" : "no");
 
         auto connection = nm_client_get_primary_connection(nm_client);
         logConnectionInfo(connection);
-        g_signal_connect(nm_client,
-                         "notify::active-connections",
-                         G_CALLBACK(primaryConnectionChanged),
-                         cm);
+        g_signal_connect(nm_client, "notify::active-connections", G_CALLBACK(primaryConnectionChanged), cm);
 
     } else {
         C_WARN << "Error initializing NetworkManager client:" << error->message;

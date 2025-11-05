@@ -63,10 +63,8 @@ CallParticipantsModel::data(const QModelIndex& index, int role) const
     case Role::Active:
         return QVariant(item.value(ACTIVE).toBool());
     case Role::HideSpectators:
-        return QVariant((item.value(AUDIOLOCALMUTED).toBool()
-                        || item.value(AUDIOMODERATORMUTED).toBool())
-                        && item.value(VIDEOMUTED).toBool()
-                        && !item.value(HANDRAISED).toBool());
+        return QVariant((item.value(AUDIOLOCALMUTED).toBool() || item.value(AUDIOMODERATORMUTED).toBool())
+                        && item.value(VIDEOMUTED).toBool() && !item.value(HANDRAISED).toBool());
     case Role::AudioLocalMuted:
         return QVariant(item.value(AUDIOLOCALMUTED).toBool());
     case Role::AudioModeratorMuted:
@@ -95,7 +93,8 @@ CallParticipantsModel::data(const QModelIndex& index, int role) const
         return QVariant(item.value(ISRECORDING).toBool());
     case Role::IsSharing:
         // this only works when using local sinks in conference
-        return QVariant(item.value(STREAMID).toString().startsWith("file://") || item.value(STREAMID).toString().startsWith("display://"));
+        return QVariant(item.value(STREAMID).toString().startsWith("file://")
+                        || item.value(STREAMID).toString().startsWith("display://"));
     }
     return QVariant();
 }

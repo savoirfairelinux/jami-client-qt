@@ -250,8 +250,7 @@ ContactModel::getAllContacts() const
 time_t
 ContactModel::getAddedTs(const QString& contactUri) const
 {
-    MapStringString details = ConfigurationManager::instance().getContactDetails(owner.id,
-                                                                                 contactUri);
+    MapStringString details = ConfigurationManager::instance().getContactDetails(owner.id, contactUri);
     auto itAdded = details.find("added");
     if (itAdded == details.end())
         return 0;
@@ -277,14 +276,12 @@ ContactModel::addContact(contact::Info contactInfo)
         return;
     }
 
-    MapStringString details = ConfigurationManager::instance()
-                                  .getContactDetails(owner.id, contactInfo.profileInfo.uri);
+    MapStringString details = ConfigurationManager::instance().getContactDetails(owner.id, contactInfo.profileInfo.uri);
 
     // if contactInfo is already a contact for the daemon, type should be equals to RING
     // if the user add a temporary item for a SIP account, should be directly transformed
     if ((!details.empty() && details.value("removed") == "0")
-        || (profile.type == profile::Type::TEMPORARY
-            && owner.profileInfo.type == profile::Type::SIP))
+        || (profile.type == profile::Type::TEMPORARY && owner.profileInfo.type == profile::Type::SIP))
         profile.type = owner.profileInfo.type;
 
     switch (profile.type) {
@@ -295,10 +292,9 @@ ContactModel::addContact(contact::Info contactInfo)
         contactInfo.profileInfo.type = profile::Type::PENDING;
         pimpl_->contacts.insert(contactInfo.profileInfo.uri, contactInfo);
         ConfigurationManager::instance().addContact(owner.id, profile.uri);
-        ConfigurationManager::instance()
-            .sendTrustRequest(owner.id,
-                              profile.uri,
-                              owner.accountModel->accountVCard(owner.id).toUtf8());
+        ConfigurationManager::instance().sendTrustRequest(owner.id,
+                                                          profile.uri,
+                                                          owner.accountModel->accountVCard(owner.id).toUtf8());
         return;
     }
     case profile::Type::PENDING:
@@ -436,8 +432,7 @@ ContactModel::searchContact(const QString& query)
     pimpl_->searchResult.clear();
 
     auto uri = URI(query);
-    QString uriId = uri.format(URI::Section::USER_INFO | URI::Section::HOSTNAME
-                               | URI::Section::PORT);
+    QString uriId = uri.format(URI::Section::USER_INFO | URI::Section::HOSTNAME | URI::Section::PORT);
     pimpl_->searchQuery = uriId;
 
     auto uriScheme = uri.schemeType();
@@ -470,8 +465,7 @@ ContactModelPimpl::updateTemporaryMessage(const QString& mes)
 void
 ContactModelPimpl::searchContact(const URI& query)
 {
-    QString uriId = query.format(URI::Section::USER_INFO | URI::Section::HOSTNAME
-                                 | URI::Section::PORT);
+    QString uriId = query.format(URI::Section::USER_INFO | URI::Section::HOSTNAME | URI::Section::PORT);
     if (query.isEmpty()) {
         // This will remove the temporary item
         Q_EMIT linked.contactUpdated(uriId);
@@ -505,8 +499,7 @@ ContactModelPimpl::searchContact(const URI& query)
 void
 ContactModelPimpl::searchSipContact(const URI& query)
 {
-    QString uriId = query.format(URI::Section::USER_INFO | URI::Section::HOSTNAME
-                                 | URI::Section::PORT);
+    QString uriId = query.format(URI::Section::USER_INFO | URI::Section::HOSTNAME | URI::Section::PORT);
     if (query.isEmpty()) {
         // This will remove the temporary item
         Q_EMIT linked.contactUpdated(uriId);
@@ -528,10 +521,7 @@ ContactModelPimpl::searchSipContact(const URI& query)
 }
 
 uint64_t
-ContactModel::sendDhtMessage(const QString& contactUri,
-                             const QString& body,
-                             const QString& mimeType,
-                             int flag) const
+ContactModel::sendDhtMessage(const QString& contactUri, const QString& body, const QString& mimeType, int flag) const
 {
     // Send interaction
     QMap<QString, QString> payloads;
@@ -586,17 +576,13 @@ ContactModel::bestNameForContact(const QString& contactUri) const
 QString
 ContactModel::avatar(const QString& contactUri) const
 {
-    return pimpl_->getCachedProfileProperty(contactUri, [](const profile::Info& profile) {
-        return profile.avatar;
-    });
+    return pimpl_->getCachedProfileProperty(contactUri, [](const profile::Info& profile) { return profile.avatar; });
 }
 
 QString
 ContactModel::displayName(const QString& contactUri) const
 {
-    return pimpl_->getCachedProfileProperty(contactUri, [](const profile::Info& profile) {
-        return profile.alias;
-    });
+    return pimpl_->getCachedProfileProperty(contactUri, [](const profile::Info& profile) { return profile.alias; });
 }
 
 const QString
@@ -636,14 +622,8 @@ ContactModelPimpl::ContactModelPimpl(const ContactModel& linked,
             &CallbacksHandler::newBuddySubscription,
             this,
             &ContactModelPimpl::slotNewBuddySubscription);
-    connect(&callbacksHandler,
-            &CallbacksHandler::contactAdded,
-            this,
-            &ContactModelPimpl::slotContactAdded);
-    connect(&callbacksHandler,
-            &CallbacksHandler::contactRemoved,
-            this,
-            &ContactModelPimpl::slotContactRemoved);
+    connect(&callbacksHandler, &CallbacksHandler::contactAdded, this, &ContactModelPimpl::slotContactAdded);
+    connect(&callbacksHandler, &CallbacksHandler::contactRemoved, this, &ContactModelPimpl::slotContactRemoved);
     connect(&callbacksHandler,
             &CallbacksHandler::registeredNameFound,
             this,
@@ -680,9 +660,7 @@ ContactModelPimpl::fillWithSIPContacts()
         auto otherParticipants = storage::getPeerParticipantsForConversation(db, convId);
         for (const auto& participant : otherParticipants) {
             // for each conversations get the other profile id
-            auto contactInfo = storage::buildContactFromProfile(linked.owner.id,
-                                                                participant,
-                                                                profile::Type::SIP);
+            auto contactInfo = storage::buildContactFromProfile(linked.owner.id, participant, profile::Type::SIP);
             {
                 std::lock_guard<std::mutex> lk(contactsMtx_);
                 contacts.insert(contactInfo.profileInfo.uri, contactInfo);
@@ -698,8 +676,7 @@ ContactModelPimpl::fillWithJamiContacts()
 {
     // Add existing contacts from libjami
     // Note: explicit type is required here for DBus build
-    const VectorMapStringString& contacts_vector = ConfigurationManager::instance().getContacts(
-        linked.owner.id);
+    const VectorMapStringString& contacts_vector = ConfigurationManager::instance().getContacts(linked.owner.id);
     for (auto contact_info : contacts_vector)
         addToContacts(contact_info["id"],
                       linked.owner.profileInfo.type,
@@ -708,8 +685,7 @@ ContactModelPimpl::fillWithJamiContacts()
                       contact_info["conversationId"]);
 
     // Add pending contacts
-    const VectorMapStringString& pending_tr {
-        ConfigurationManager::instance().getTrustRequests(linked.owner.id)};
+    const VectorMapStringString& pending_tr {ConfigurationManager::instance().getTrustRequests(linked.owner.id)};
     for (const auto& tr_info : pending_tr) {
         // Get pending requests.
         auto payload = tr_info[libjami::Account::TrustRequest::PAYLOAD].toUtf8();
@@ -718,9 +694,7 @@ ContactModelPimpl::fillWithJamiContacts()
         if (!convId.isEmpty())
             continue; // This will be added via getConversationsRequests
 
-        auto contactInfo = storage::buildContactFromProfile(linked.owner.id,
-                                                            contactUri,
-                                                            profile::Type::PENDING);
+        auto contactInfo = storage::buildContactFromProfile(linked.owner.id, contactUri, profile::Type::PENDING);
 
         const auto vCard = lrc::vCard::utils::toHashMap(payload);
         const auto alias = vCard["FN"];
@@ -741,8 +715,7 @@ ContactModelPimpl::fillWithJamiContacts()
 
     // Update presence
     // TODO fix this map. This is dumb for now. The map contains values as keys, and empty values.
-    const VectorMapStringString& subscriptions {
-        PresenceManager::instance().getSubscriptions(linked.owner.id)};
+    const VectorMapStringString& subscriptions {PresenceManager::instance().getSubscriptions(linked.owner.id)};
     for (const auto& subscription : subscriptions) {
         auto first = true;
         QString uri = "";
@@ -767,9 +740,7 @@ ContactModelPimpl::fillWithJamiContacts()
 }
 
 void
-ContactModelPimpl::slotNewBuddySubscription(const QString& accountId,
-                                            const QString& contactUri,
-                                            int state)
+ContactModelPimpl::slotNewBuddySubscription(const QString& accountId, const QString& contactUri, int state)
 {
     // LC_WARN << "ContactModelPimpl::slotNewBuddySubscription" << accountId << contactUri << state;
     if (accountId != linked.owner.id)
@@ -830,8 +801,7 @@ ContactModelPimpl::slotContactAdded(const QString& accountId, const QString& con
     }
 
     // Note: explicit type is required here for DBus build
-    MapStringString details = ConfigurationManager::instance().getContactDetails(linked.owner.id,
-                                                                                 contactUri);
+    MapStringString details = ConfigurationManager::instance().getContactDetails(linked.owner.id, contactUri);
     addToContacts(contactUri, linked.owner.profileInfo.type, "", false, details["conversationId"]);
 
     if (isBanned) {
@@ -844,9 +814,7 @@ ContactModelPimpl::slotContactAdded(const QString& accountId, const QString& con
 }
 
 void
-ContactModelPimpl::slotContactRemoved(const QString& accountId,
-                                      const QString& contactUri,
-                                      bool banned)
+ContactModelPimpl::slotContactRemoved(const QString& accountId, const QString& contactUri, bool banned)
 {
     if (accountId != linked.owner.id)
         return;
@@ -875,9 +843,7 @@ ContactModelPimpl::slotContactRemoved(const QString& accountId,
             if (contact->isBanned) {
                 // Contact was banned, update bannedContacts
                 std::lock_guard<std::mutex> lk(bannedContactsMtx_);
-                auto it = std::find(bannedContacts.cbegin(),
-                                    bannedContacts.cend(),
-                                    contact->profileInfo.uri);
+                auto it = std::find(bannedContacts.cbegin(), bannedContacts.cend(), contact->profileInfo.uri);
                 if (it == bannedContacts.cend()) {
                     // should not happen
                     LC_DBG << "Contact is banned but not present in bannedContacts. This is most "
@@ -1003,11 +969,8 @@ ContactModelPimpl::slotRegisteredNameFound(const QString& accountId,
 }
 
 void
-ContactModelPimpl::slotNewCall(const QString& fromId,
-                               const QString& callId,
-                               const QString& displayname,
-                               bool isOutgoing,
-                               const QString& toUri)
+ContactModelPimpl::slotNewCall(
+    const QString& fromId, const QString& callId, const QString& displayname, bool isOutgoing, const QString& toUri)
 {
     if (!isOutgoing && toUri == linked.owner.profileInfo.uri) {
         bool addContact = false;
@@ -1028,9 +991,8 @@ ContactModelPimpl::slotNewCall(const QString& fromId,
             }
         }
         if (addContact) {
-            auto type = (linked.owner.profileInfo.type == profile::Type::JAMI)
-                            ? profile::Type::PENDING
-                            : profile::Type::SIP;
+            auto type = (linked.owner.profileInfo.type == profile::Type::JAMI) ? profile::Type::PENDING
+                                                                               : profile::Type::SIP;
             addToContacts(fromId, type, displayname, false);
 
             if (linked.owner.profileInfo.type == profile::Type::SIP)
@@ -1161,8 +1123,7 @@ ContactModelPimpl::slotNewAccountTransfer(const QString& fileId, datatransfer::I
     {
         std::lock_guard<std::mutex> lk(contactsMtx_);
         // Note: just add a contact for compatibility (so not for swarm).
-        if (info.conversationId.isEmpty() && !info.peerUri.isEmpty()
-            && contacts.find(info.peerUri) == contacts.end()) {
+        if (info.conversationId.isEmpty() && !info.peerUri.isEmpty() && contacts.find(info.peerUri) == contacts.end()) {
             // Contact not found, load profile from database.
             // The conversation model will create an entry and link the incomingCall.
             addContact = true;
@@ -1180,9 +1141,7 @@ ContactModelPimpl::slotNewAccountTransfer(const QString& fileId, datatransfer::I
 }
 
 void
-ContactModelPimpl::slotProfileReceived(const QString& accountId,
-                                       const QString& peer,
-                                       const QString& path)
+ContactModelPimpl::slotProfileReceived(const QString& accountId, const QString& peer, const QString& path)
 {
     Q_UNUSED(path);
 

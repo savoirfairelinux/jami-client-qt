@@ -70,24 +70,22 @@ public:
 constexpr const char URIPimpl::Constants::TRANSPORT[];
 constexpr const char URIPimpl::Constants::TAG[];
 
-const std::map<URI::Transport, const char*> URIPimpl::transportNames
-    = {{URI::Transport::NOT_SET, "NOT_SET"},
-       {URI::Transport::TLS, "TLS"},
-       {URI::Transport::tls, "tls"},
-       {URI::Transport::TCP, "TCP"},
-       {URI::Transport::tcp, "tcp"},
-       {URI::Transport::UDP, "UDP"},
-       {URI::Transport::udp, "udp"},
-       {URI::Transport::SCTP, "SCTP"},
-       {URI::Transport::sctp, "sctp"},
-       {URI::Transport::DTLS, "DTLS"},
-       {URI::Transport::dtls, "dtls"}};
+const std::map<URI::Transport, const char*> URIPimpl::transportNames = {{URI::Transport::NOT_SET, "NOT_SET"},
+                                                                        {URI::Transport::TLS, "TLS"},
+                                                                        {URI::Transport::tls, "tls"},
+                                                                        {URI::Transport::TCP, "TCP"},
+                                                                        {URI::Transport::tcp, "tcp"},
+                                                                        {URI::Transport::UDP, "UDP"},
+                                                                        {URI::Transport::udp, "udp"},
+                                                                        {URI::Transport::SCTP, "SCTP"},
+                                                                        {URI::Transport::sctp, "sctp"},
+                                                                        {URI::Transport::DTLS, "DTLS"},
+                                                                        {URI::Transport::dtls, "dtls"}};
 
-const std::map<URI::SchemeType, const char*> URIPimpl::schemeNames
-    = {{URI::SchemeType::NONE, ""},
-       {URI::SchemeType::SIP, "sip:"},
-       {URI::SchemeType::SIPS, "sips:"},
-       {URI::SchemeType::RING, "ring:"}};
+const std::map<URI::SchemeType, const char*> URIPimpl::schemeNames = {{URI::SchemeType::NONE, ""},
+                                                                      {URI::SchemeType::SIP, "sip:"},
+                                                                      {URI::SchemeType::SIPS, "sips:"},
+                                                                      {URI::SchemeType::RING, "ring:"}};
 
 URIPimpl::URIPimpl(const URI& uri)
     : linked(uri)
@@ -180,9 +178,7 @@ URIPimpl::strip(const QString& uri, URI::SchemeType& schemeType, QString& scheme
         std::string uri_to_match_unrecognized = uri_to_match;
         std::smatch match_unrecognized;
 
-        if (std::regex_search(uri_to_match_unrecognized,
-                              match_unrecognized,
-                              uri_regex_unrecognized)) {
+        if (std::regex_search(uri_to_match_unrecognized, match_unrecognized, uri_regex_unrecognized)) {
             if (match_unrecognized.ready()) {
                 std::string scheme_unrecognized = match_unrecognized.str(0).c_str();
                 if (!scheme_unrecognized.empty()) {
@@ -587,8 +583,7 @@ URI::format(FlagPack<URI::Section> sections) const
 QString
 URI::full() const
 {
-    return format(URI::Section::SCHEME | URI::Section::USER_INFO | URI::Section::HOSTNAME
-                  | URI::Section::PORT);
+    return format(URI::Section::SCHEME | URI::Section::USER_INFO | URI::Section::HOSTNAME | URI::Section::PORT);
 }
 
 QDataStream&

@@ -40,9 +40,7 @@ public:
 
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
-    QModelIndex index(int row,
-                      int column = 0,
-                      const QModelIndex& parent = QModelIndex()) const override;
+    QModelIndex index(int row, int column = 0, const QModelIndex& parent = QModelIndex()) const override;
     Qt::ItemFlags flags(const QModelIndex& index) const override;
 
     Q_INVOKABLE void setConferenceableFilter(const QString& filter = {});

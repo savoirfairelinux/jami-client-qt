@@ -42,11 +42,10 @@ class ConversationsAdapter final : public QmlAdapterBase
 public:
     static ConversationsAdapter* create(QQmlEngine*, QJSEngine*)
     {
-        return new ConversationsAdapter(
-            qApp->property("SystemTray").value<SystemTray*>(),
-            qApp->property("LRCInstance").value<LRCInstance*>(),
-            qApp->property("ConvListProxyModel").value<ConversationListProxyModel*>(),
-            qApp->property("ConvSearchListProxyModel").value<SelectableListProxyModel*>());
+        return new ConversationsAdapter(qApp->property("SystemTray").value<SystemTray*>(),
+                                        qApp->property("LRCInstance").value<LRCInstance*>(),
+                                        qApp->property("ConvListProxyModel").value<ConversationListProxyModel*>(),
+                                        qApp->property("ConvSearchListProxyModel").value<SelectableListProxyModel*>());
     }
 
     explicit ConversationsAdapter(SystemTray* systemTray,
@@ -74,8 +73,7 @@ public:
                                       const QString& id,
                                       const QString& uri,
                                       const QString& device);
-    Q_INVOKABLE void updateConversationDescription(const QString& convId,
-                                                   const QString& newDescription);
+    Q_INVOKABLE void updateConversationDescription(const QString& convId, const QString& newDescription);
 
     Q_INVOKABLE QString dialogId(const QString& peerUri);
     Q_INVOKABLE void openDialogConversationWith(const QString& peerUri);
@@ -96,9 +94,7 @@ private Q_SLOTS:
                                 const QString& convUid,
                                 const QString& interactionId,
                                 const interaction::Info& interaction);
-    void onNewReadInteraction(const QString& accountId,
-                              const QString& convUid,
-                              const QString& interactionId);
+    void onNewReadInteraction(const QString& accountId, const QString& convUid, const QString& interactionId);
     void onNewTrustRequest(const QString& accountId, const QString& convId, const QString& peerUri);
     void onTrustRequestTreated(const QString& accountId, const QString& peerUri);
 

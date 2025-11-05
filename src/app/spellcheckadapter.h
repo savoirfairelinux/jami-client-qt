@@ -38,10 +38,10 @@ class SpellCheckAdapter final : public QObject
 public:
     static SpellCheckAdapter* create(QQmlEngine* engine, QJSEngine*)
     {
-        return new SpellCheckAdapter(
-            qApp->property("SpellCheckDictionaryListModel").value<SpellCheckDictionaryListModel*>(),
-            qApp->property("AppSettingsManager").value<AppSettingsManager*>(),
-            engine);
+        return new SpellCheckAdapter(qApp->property("SpellCheckDictionaryListModel")
+                                         .value<SpellCheckDictionaryListModel*>(),
+                                     qApp->property("AppSettingsManager").value<AppSettingsManager*>(),
+                                     engine);
     }
 
     explicit SpellCheckAdapter(SpellCheckDictionaryListModel* dictionaryListModel,

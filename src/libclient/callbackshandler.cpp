@@ -429,10 +429,7 @@ CallbacksHandler::slotNearbyPeerSubscription(const QString& accountId,
 }
 
 void
-CallbacksHandler::slotVoiceMailNotify(const QString& accountId,
-                                      int newCount,
-                                      int oldCount,
-                                      int urgentCount)
+CallbacksHandler::slotVoiceMailNotify(const QString& accountId, int newCount, int oldCount, int urgentCount)
 {
     Q_EMIT voiceMailNotify(accountId, newCount, oldCount, urgentCount);
 }
@@ -444,17 +441,13 @@ CallbacksHandler::slotRecordPlaybackStopped(const QString& filePath)
 }
 
 void
-CallbacksHandler::slotContactAdded(const QString& accountId,
-                                   const QString& contactUri,
-                                   bool confirmed)
+CallbacksHandler::slotContactAdded(const QString& accountId, const QString& contactUri, bool confirmed)
 {
     Q_EMIT contactAdded(accountId, contactUri, confirmed);
 }
 
 void
-CallbacksHandler::slotContactRemoved(const QString& accountId,
-                                     const QString& contactUri,
-                                     bool banned)
+CallbacksHandler::slotContactRemoved(const QString& accountId, const QString& contactUri, bool banned)
 {
     Q_EMIT contactRemoved(accountId, contactUri, banned);
 }
@@ -468,10 +461,7 @@ CallbacksHandler::slotMediaChangeRequested(const QString& accountId,
 }
 
 void
-CallbacksHandler::slotCallStateChanged(const QString& accountId,
-                                       const QString& callId,
-                                       const QString& state,
-                                       int code)
+CallbacksHandler::slotCallStateChanged(const QString& accountId, const QString& callId, const QString& state, int code)
 {
     Q_EMIT callStateChanged(accountId, callId, state, code);
 }
@@ -491,8 +481,7 @@ CallbacksHandler::slotAccountDetailsChanged(const QString& accountId, const MapS
 }
 
 void
-CallbacksHandler::slotVolatileAccountDetailsChanged(const QString& accountId,
-                                                    const MapStringString& details)
+CallbacksHandler::slotVolatileAccountDetailsChanged(const QString& accountId, const MapStringString& details)
 {
     Q_EMIT volatileAccountDetailsChanged(accountId, details);
 }
@@ -532,8 +521,7 @@ CallbacksHandler::slotIncomingMessage(const QString& accountId,
     for (auto& e : interaction.toStdMap()) {
         if (e.first.contains("x-ring/ring.profile.vcard")) {
             auto decodedHead = QUrl::fromPercentEncoding(e.first.toLatin1());
-            QRegularExpression re(
-                "x-ring/ring.profile.vcard;id=([A-z0-9]+),part=([0-9]+),of=([0-9]+)");
+            QRegularExpression re("x-ring/ring.profile.vcard;id=([A-z0-9]+),part=([0-9]+),of=([0-9]+)");
             auto match = re.match(decodedHead);
 
             if (!match.hasMatch())
@@ -552,9 +540,7 @@ CallbacksHandler::slotIncomingMessage(const QString& accountId,
 }
 
 void
-CallbacksHandler::slotConferenceCreated(const QString& accountId,
-                                        const QString& convId,
-                                        const QString& callId)
+CallbacksHandler::slotConferenceCreated(const QString& accountId, const QString& convId, const QString& callId)
 {
     Q_EMIT conferenceCreated(accountId, convId, callId);
 }
@@ -566,20 +552,15 @@ CallbacksHandler::slotConferenceRemoved(const QString& accountId, const QString&
 }
 
 void
-CallbacksHandler::slotConferenceChanged(const QString& accountId,
-                                        const QString& callId,
-                                        const QString& state)
+CallbacksHandler::slotConferenceChanged(const QString& accountId, const QString& callId, const QString& state)
 {
     Q_EMIT conferenceChanged(accountId, callId, state);
     slotCallStateChanged(accountId, callId, state, 0);
 }
 
 void
-CallbacksHandler::slotAccountMessageStatusChanged(const QString& accountId,
-                                                  const QString& conversationId,
-                                                  const QString& peer,
-                                                  const QString& messageId,
-                                                  int status)
+CallbacksHandler::slotAccountMessageStatusChanged(
+    const QString& accountId, const QString& conversationId, const QString& peer, const QString& messageId, int status)
 {
     Q_EMIT accountMessageStatusChanged(accountId, conversationId, peer, messageId, status);
 }
@@ -591,11 +572,8 @@ CallbacksHandler::slotNeedsHost(const QString& accountId, const QString& convers
 }
 
 void
-CallbacksHandler::slotDataTransferEvent(const QString& accountId,
-                                        const QString& conversationId,
-                                        const QString&,
-                                        const QString& fileId,
-                                        uint codeStatus)
+CallbacksHandler::slotDataTransferEvent(
+    const QString& accountId, const QString& conversationId, const QString&, const QString& fileId, uint codeStatus)
 {
     auto event = libjami::DataTransferEventCode(codeStatus);
 
@@ -610,8 +588,12 @@ CallbacksHandler::slotDataTransferEvent(const QString& accountId,
         qlonglong totalSize, progress;
         QString path;
         try {
-            parent.getAccountModel().getAccountInfo(accountId).dataTransferModel->fileTransferInfo(
-                accountId, conversationId, fileId, path, totalSize, progress);
+            parent.getAccountModel().getAccountInfo(accountId).dataTransferModel->fileTransferInfo(accountId,
+                                                                                                   conversationId,
+                                                                                                   fileId,
+                                                                                                   path,
+                                                                                                   totalSize,
+                                                                                                   progress);
         } catch (...) {
             return;
         }
@@ -678,17 +660,13 @@ CallbacksHandler::slotAccountProfileReceived(const QString& accountId,
 }
 
 void
-CallbacksHandler::slotDeviceRevokationEnded(const QString& accountId,
-                                            const QString& deviceId,
-                                            const int status)
+CallbacksHandler::slotDeviceRevokationEnded(const QString& accountId, const QString& deviceId, const int status)
 {
     Q_EMIT deviceRevocationEnded(accountId, deviceId, status);
 }
 
 void
-CallbacksHandler::slotDeviceAuthStateChanged(const QString& accountId,
-                                             int state,
-                                             const MapStringString& details)
+CallbacksHandler::slotDeviceAuthStateChanged(const QString& accountId, int state, const MapStringString& details)
 {
     Q_EMIT deviceAuthStateChanged(accountId, state, details);
 }
@@ -703,9 +681,7 @@ CallbacksHandler::slotAddDeviceStateChanged(const QString& accountId,
 }
 
 void
-CallbacksHandler::slotNameRegistrationEnded(const QString& accountId,
-                                            int status,
-                                            const QString& name)
+CallbacksHandler::slotNameRegistrationEnded(const QString& accountId, int status, const QString& name)
 {
     Q_EMIT nameRegistrationEnded(accountId, status, name);
 }
@@ -745,9 +721,7 @@ CallbacksHandler::slotAudioMeterReceived(const QString& id, float level)
 }
 
 void
-CallbacksHandler::slotRemoteRecordingChanged(const QString& callId,
-                                             const QString& peerNumber,
-                                             bool state)
+CallbacksHandler::slotRemoteRecordingChanged(const QString& callId, const QString& peerNumber, bool state)
 {
     Q_EMIT remoteRecordingChanged(callId, peerNumber, state);
 }
@@ -821,8 +795,7 @@ CallbacksHandler::slotConversationRequestReceived(const QString& accountId,
 }
 
 void
-CallbacksHandler::slotConversationRequestDeclined(const QString& accountId,
-                                                  const QString& conversationId)
+CallbacksHandler::slotConversationRequestDeclined(const QString& accountId, const QString& conversationId)
 {
     Q_EMIT conversationRequestDeclined(accountId, conversationId);
 }

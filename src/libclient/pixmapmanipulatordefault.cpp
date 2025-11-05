@@ -28,10 +28,7 @@
 namespace Interfaces {
 
 QVariant
-PixmapManipulatorDefault::numberCategoryIcon(const QVariant& p,
-                                             const QSize& size,
-                                             bool displayPresence,
-                                             int presence)
+PixmapManipulatorDefault::numberCategoryIcon(const QVariant& p, const QSize& size, bool displayPresence, int presence)
 {
     Q_UNUSED(p)
     Q_UNUSED(size)

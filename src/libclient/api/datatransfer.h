@@ -32,7 +32,7 @@ Q_NAMESPACE
 Q_CLASSINFO("RegisterEnumClassesUnscoped", "false")
 
 enum class Status {
-    on_connection, // outgoing tx: wait for connection/acceptance, incoming tx: wait for local acceptance
+    on_connection,    // outgoing tx: wait for connection/acceptance, incoming tx: wait for local acceptance
     on_progress,      // connected, data transfer progress reporting
     success,          // transfer finished with success, all data sent
     stop_by_peer,     // error: transfer terminated by peer

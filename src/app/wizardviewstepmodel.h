@@ -82,8 +82,7 @@ public:
     static WizardViewStepModel* create(QQmlEngine*, QJSEngine*)
     {
         return new WizardViewStepModel(qApp->property("LRCInstance").value<LRCInstance*>(),
-                                       qApp->property("AppSettingsManager")
-                                           .value<AppSettingsManager*>());
+                                       qApp->property("AppSettingsManager").value<AppSettingsManager*>());
     }
 
     explicit WizardViewStepModel(LRCInstance* lrcInstance,

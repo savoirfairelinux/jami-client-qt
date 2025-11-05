@@ -129,8 +129,7 @@ Database::createTables()
                                     extra_data TEXT \
                                 )";
 
-    auto indexConversations
-        = "CREATE INDEX `idx_conversations_uri` ON `conversations` (`participant`)";
+    auto indexConversations = "CREATE INDEX `idx_conversations_uri` ON `conversations` (`participant`)";
 
     auto tableInteractions = "CREATE TABLE interactions ( \
                                     id INTEGER PRIMARY KEY, \
@@ -187,8 +186,7 @@ void
 Database::migrateFromVersion(const QString& currentVersion)
 {
     // If we ever have a new version, we can migrate the database here.
-    LC_WARN << "Database migration from version " << currentVersion << " to " << version_
-            << " not implemented.";
+    LC_WARN << "Database migration from version " << currentVersion << " to " << version_ << " not implemented.";
 }
 
 void
@@ -217,9 +215,8 @@ Database::getVersion()
 
 QString
 Database::insertInto(
-    const QString& table, // "tests"
-    const MapStringString&
-        bindCol, // {{":id", "id"}, {":forename", "colforname"}, {":name", "colname"}}
+    const QString& table,            // "tests"
+    const MapStringString& bindCol,  // {{":id", "id"}, {":forename", "colforname"}, {":name", "colname"}}
     const MapStringString& bindsSet) // {{":id", "7"}, {":forename", "alice"}, {":name", "cooper"}}
 {
     QSqlQuery query(db_);
@@ -285,8 +282,7 @@ Database::select(const QString& select,             // "id", "body", ...
     QSqlQuery query(db_);
     QString columnsSelect;
 
-    auto prepareStr = QString("SELECT " + select + " FROM " + table
-                              + (where.isEmpty() ? "" : (" WHERE " + where)));
+    auto prepareStr = QString("SELECT " + select + " FROM " + table + (where.isEmpty() ? "" : (" WHERE " + where)));
     query.prepare(prepareStr);
 
     for (const auto& entry : bindsWhere.toStdMap())

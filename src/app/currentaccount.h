@@ -35,8 +35,7 @@
             if (!initialize) { \
                 auto confProps = lrcInstance_->getCurrAccConfig(); \
                 confProps.prop = x; \
-                lrcInstance_->accountModel().setAccountConfig(lrcInstance_->get_currentAccountId(), \
-                                                              confProps); \
+                lrcInstance_->accountModel().setAccountConfig(lrcInstance_->get_currentAccountId(), confProps); \
             } \
             Q_EMIT prop##Changed(); \
         } \
@@ -72,8 +71,7 @@ public: \
             if (!initialize) { \
                 auto confProps = lrcInstance_->getCurrAccConfig(); \
                 confProps.cate.prop = x; \
-                lrcInstance_->accountModel().setAccountConfig(lrcInstance_->get_currentAccountId(), \
-                                                              confProps); \
+                lrcInstance_->accountModel().setAccountConfig(lrcInstance_->get_currentAccountId(), confProps); \
             } \
             Q_EMIT prop##cate##Changed(); \
         } \
@@ -86,8 +84,7 @@ private: \
 
 #define QML_ACCOUNT_CONFIG_CATEGORY_SETTINGS_PROPERTY(type, prop, cate) \
 private: \
-    Q_PROPERTY(type prop##_##cate READ get_##prop##cate WRITE set_##prop##cate NOTIFY \
-                   prop##cate##Changed); \
+    Q_PROPERTY(type prop##_##cate READ get_##prop##cate WRITE set_##prop##cate NOTIFY prop##cate##Changed); \
     ACCOUNT_CONFIG_CATEGORY_SETTINGS_PROPERTY_BASE(type, prop, cate)
 
 #define QML_NEW_ACCOUNT_MODEL_SETTINGS_PROPERTY(type, prop, appSettingName) \
@@ -143,10 +140,10 @@ class CurrentAccount final : public QObject
     QML_RO_PROPERTY(bool, hasArchivePassword)
 
     // Moderator settings
-    Q_PROPERTY(bool isAllModeratorsEnabled READ get_isAllModeratorsEnabled WRITE
-                   set_isAllModeratorsEnabled NOTIFY isAllModeratorsEnabledChanged)
-    Q_PROPERTY(bool isLocalModeratorsEnabled READ get_isLocalModeratorsEnabled WRITE
-                   set_isLocalModeratorsEnabled NOTIFY isLocalModeratorsEnabledChanged)
+    Q_PROPERTY(bool isAllModeratorsEnabled READ get_isAllModeratorsEnabled WRITE set_isAllModeratorsEnabled NOTIFY
+                   isAllModeratorsEnabledChanged)
+    Q_PROPERTY(bool isLocalModeratorsEnabled READ get_isLocalModeratorsEnabled WRITE set_isLocalModeratorsEnabled NOTIFY
+                   isLocalModeratorsEnabledChanged)
 
     // Nameserver setting
     QML_ACCOUNT_CONFIG_CATEGORY_SETTINGS_PROPERTY(QString, uri, Nameserver)
@@ -167,9 +164,7 @@ class CurrentAccount final : public QObject
 
     // SRTP settings
     QML_ACCOUNT_CONFIG_CATEGORY_SETTINGS_PROPERTY(bool, enable, SRTP)
-    QML_ACCOUNT_CONFIG_CATEGORY_SETTINGS_PROPERTY(lrc::api::account::KeyExchangeProtocol,
-                                                  keyExchange,
-                                                  SRTP)
+    QML_ACCOUNT_CONFIG_CATEGORY_SETTINGS_PROPERTY(lrc::api::account::KeyExchangeProtocol, keyExchange, SRTP)
 
     // TURN settings
     QML_ACCOUNT_CONFIG_CATEGORY_SETTINGS_PROPERTY(bool, enable, TURN)
@@ -207,9 +202,7 @@ public:
                                   qApp->property("AppSettingsManager").value<AppSettingsManager*>());
     }
 
-    explicit CurrentAccount(LRCInstance* lrcInstance,
-                            AppSettingsManager* settingsManager,
-                            QObject* parent = nullptr);
+    explicit CurrentAccount(LRCInstance* lrcInstance, AppSettingsManager* settingsManager, QObject* parent = nullptr);
     ~CurrentAccount() = default;
 
     void set_isAllModeratorsEnabled(bool enabled, bool initialize = false);

@@ -49,9 +49,7 @@ public:
                                                   this);
 
         if (eventTap) {
-            CFRunLoopSourceRef runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault,
-                                                                             eventTap,
-                                                                             0);
+            CFRunLoopSourceRef runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, eventTap, 0);
             CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, kCFRunLoopDefaultMode);
             CFRelease(runLoopSource);
 
@@ -69,10 +67,7 @@ public:
         }
     }
 
-    static CGEventRef CGEventCallback(CGEventTapProxy proxy,
-                                      CGEventType type,
-                                      CGEventRef event,
-                                      void* refcon)
+    static CGEventRef CGEventCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void* refcon)
     {
         auto* pThis = qApp->property("PTTListener").value<PTTListener*>();
         CGKeyCode keycode = (CGKeyCode) CGEventGetIntegerValueField(event, kCGKeyboardEventKeycode);
@@ -230,8 +225,7 @@ PTTListener::Impl::qtKeyTokVKey(Qt::Key key)
     if (currentKeyboard == nullptr)
         return 0;
 
-    currentLayoutData = (CFDataRef) TISGetInputSourceProperty(currentKeyboard,
-                                                              kTISPropertyUnicodeKeyLayoutData);
+    currentLayoutData = (CFDataRef) TISGetInputSourceProperty(currentKeyboard, kTISPropertyUnicodeKeyLayoutData);
     CFRelease(currentKeyboard);
     if (currentLayoutData == nullptr)
         return 0;
@@ -244,8 +238,7 @@ PTTListener::Impl::qtKeyTokVKey(Qt::Key key)
     for (quint32 i = 0; i < header->keyboardTypeCount; i++) {
         UCKeyStateRecordsIndex* stateRec = 0;
         if (table[i].keyStateRecordsIndexOffset != 0) {
-            stateRec = reinterpret_cast<UCKeyStateRecordsIndex*>(
-                data + table[i].keyStateRecordsIndexOffset);
+            stateRec = reinterpret_cast<UCKeyStateRecordsIndex*>(data + table[i].keyStateRecordsIndexOffset);
             if (stateRec->keyStateRecordsIndexFormat != kUCKeyStateRecordsIndexFormat)
                 stateRec = 0;
         }
@@ -256,8 +249,7 @@ PTTListener::Impl::qtKeyTokVKey(Qt::Key key)
             continue;
 
         for (quint32 j = 0; j < charTable->keyToCharTableCount; j++) {
-            UCKeyOutput* keyToChar = reinterpret_cast<UCKeyOutput*>(
-                data + charTable->keyToCharTableOffsets[j]);
+            UCKeyOutput* keyToChar = reinterpret_cast<UCKeyOutput*>(data + charTable->keyToCharTableOffsets[j]);
             for (quint32 k = 0; k < charTable->keyToCharTableSize; k++) {
                 if (keyToChar[k] & kUCKeyOutputTestForIndexMask) {
                     long idx = keyToChar[k] & kUCKeyOutputGetIndexMask;
@@ -267,14 +259,13 @@ PTTListener::Impl::qtKeyTokVKey(Qt::Key key)
                         if (rec->stateZeroCharData == ch)
                             return k;
                     }
-                } else if (!(keyToChar[k] & kUCKeyOutputSequenceIndexMask)
-                           && keyToChar[k] < 0xFFFE) {
+                } else if (!(keyToChar[k] & kUCKeyOutputSequenceIndexMask) && keyToChar[k] < 0xFFFE) {
                     if (keyToChar[k] == ch)
                         return k;
                 }
             } // for k
-        }     // for j
-    }         // for i
+        } // for j
+    } // for i
 
     // The code above fails to translate keys like semicolon with Qt 5.7.1.
     // Last resort is to try mapping the rest of the keys directly.

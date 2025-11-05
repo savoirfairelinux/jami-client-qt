@@ -41,24 +41,15 @@ AvAdapter::AvAdapter(LRCInstance* instance, QObject* parent)
     , rendererInformationListModel_(std::make_unique<RendererInformationListModel>())
 {
     set_renderersInfoList(QVariant::fromValue(rendererInformationListModel_.get()));
-    connect(&lrcInstance_->avModel(),
-            &lrc::api::AVModel::audioDeviceEvent,
-            this,
-            &AvAdapter::onAudioDeviceEvent);
+    connect(&lrcInstance_->avModel(), &lrc::api::AVModel::audioDeviceEvent, this, &AvAdapter::onAudioDeviceEvent);
     // QueuedConnection mandatory to avoid deadlock
     connect(&lrcInstance_->avModel(),
             &lrc::api::AVModel::rendererStarted,
             this,
             &AvAdapter::onRendererStarted,
             Qt::QueuedConnection);
-    connect(&lrcInstance_->avModel(),
-            &lrc::api::AVModel::rendererStopped,
-            this,
-            &AvAdapter::onRendererStopped);
-    connect(&lrcInstance_->avModel(),
-            &lrc::api::AVModel::onRendererFpsChange,
-            this,
-            &AvAdapter::updateRenderersFPSInfo);
+    connect(&lrcInstance_->avModel(), &lrc::api::AVModel::rendererStopped, this, &AvAdapter::onRendererStopped);
+    connect(&lrcInstance_->avModel(), &lrc::api::AVModel::onRendererFpsChange, this, &AvAdapter::updateRenderersFPSInfo);
 #ifdef Q_OS_LINUX
     connect(&lrcInstance_->behaviorController(),
             &BehaviorController::callStatusChanged,
@@ -86,14 +77,12 @@ AvAdapter::getAllScreensBoundingRect()
 
         if (screenRect.y() < 0 && p1.y() < abs(screenRect.y()))
             p1.setY(abs(screenRect.y()));
-        else if (screenRect.y() >= 0
-                 && p1.x() < screenRect.y() + screenRect.height() * devicePixelRatio)
+        else if (screenRect.y() >= 0 && p1.x() < screenRect.y() + screenRect.height() * devicePixelRatio)
             p1.setX(screenRect.y() + screenRect.height() * devicePixelRatio);
 
         if (screenRect.x() < 0 && p0.y() < abs(screenRect.x()))
             p0.setY(abs(screenRect.x()));
-        else if (screenRect.x() >= 0
-                 && p0.x() < screenRect.x() + screenRect.width() * devicePixelRatio)
+        else if (screenRect.x() >= 0 && p0.x() < screenRect.x() + screenRect.width() * devicePixelRatio)
             p0.setX(screenRect.x() + screenRect.width() * devicePixelRatio);
     }
 
@@ -114,16 +103,16 @@ AvAdapter::shareEntireScreen(int screenNumber)
     rect.moveTop(0);
 #endif
 
-    auto resource = lrcInstance_->getCurrentCallModel()
-                        ->getDisplay(getScreenNumber(screenNumber),
-                                     rect.x(),
-                                     rect.y(),
-                                     rect.width() * screen->devicePixelRatio(),
-                                     rect.height() * screen->devicePixelRatio());
+    auto resource = lrcInstance_->getCurrentCallModel()->getDisplay(getScreenNumber(screenNumber),
+                                                                    rect.x(),
+                                                                    rect.y(),
+                                                                    rect.width() * screen->devicePixelRatio(),
+                                                                    rect.height() * screen->devicePixelRatio());
     auto callId = lrcInstance_->getCurrentCallId();
     muteCamera_ = !isCapturing();
-    lrcInstance_->getCurrentCallModel()
-        ->addMedia(callId, resource, lrc::api::CallModel::MediaRequestType::SCREENSHARING);
+    lrcInstance_->getCurrentCallModel()->addMedia(callId,
+                                                  resource,
+                                                  lrc::api::CallModel::MediaRequestType::SCREENSHARING);
 }
 
 #ifdef Q_OS_LINUX
@@ -156,8 +145,7 @@ AvAdapter::shareWayland(bool entireScreen)
     QString callId = lrcInstance_->getCurrentCallId();
     closePortal(callId);
 
-    PortalCaptureType captureType = entireScreen ? PortalCaptureType::SCREEN
-                                                 : PortalCaptureType::WINDOW;
+    PortalCaptureType captureType = entireScreen ? PortalCaptureType::SCREEN : PortalCaptureType::WINDOW;
     auto portal = std::make_unique<ScreenCastPortal>(captureType);
 
     int err = portal->getPipewireFd();
@@ -196,8 +184,9 @@ AvAdapter::shareWayland(bool entireScreen)
 
     callPortal[callId] = std::move(portal);
     muteCamera_ = !isCapturing();
-    lrcInstance_->getCurrentCallModel()
-        ->addMedia(callId, resource, lrc::api::CallModel::MediaRequestType::SCREENSHARING);
+    lrcInstance_->getCurrentCallModel()->addMedia(callId,
+                                                  resource,
+                                                  lrc::api::CallModel::MediaRequestType::SCREENSHARING);
 }
 
 void
@@ -225,8 +214,9 @@ AvAdapter::shareAllScreens()
                                                                     arrangementRect.height());
     auto callId = lrcInstance_->getCurrentCallId();
     muteCamera_ = !isCapturing();
-    lrcInstance_->getCurrentCallModel()
-        ->addMedia(callId, resource, lrc::api::CallModel::MediaRequestType::SCREENSHARING);
+    lrcInstance_->getCurrentCallModel()->addMedia(callId,
+                                                  resource,
+                                                  lrc::api::CallModel::MediaRequestType::SCREENSHARING);
 }
 
 void
@@ -329,8 +319,9 @@ AvAdapter::shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned heig
                                                                         width < 128 ? 128 : width,
                                                                         height < 128 ? 128 : height);
         auto callId = lrcInstance_->getCurrentCallId();
-        lrcInstance_->getCurrentCallModel()
-            ->addMedia(callId, resource, lrc::api::CallModel::MediaRequestType::SCREENSHARING);
+        lrcInstance_->getCurrentCallModel()->addMedia(callId,
+                                                      resource,
+                                                      lrc::api::CallModel::MediaRequestType::SCREENSHARING);
     });
 #else
     auto resource = lrcInstance_->getCurrentCallModel()->getDisplay(getScreenNumber(),
@@ -339,29 +330,26 @@ AvAdapter::shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned heig
                                                                     width < 128 ? 128 : width,
                                                                     height < 128 ? 128 : height);
     auto callId = lrcInstance_->getCurrentCallId();
-    lrcInstance_->getCurrentCallModel()
-        ->addMedia(callId, resource, lrc::api::CallModel::MediaRequestType::SCREENSHARING);
+    lrcInstance_->getCurrentCallModel()->addMedia(callId,
+                                                  resource,
+                                                  lrc::api::CallModel::MediaRequestType::SCREENSHARING);
 #endif
 }
 
 void
 AvAdapter::shareWindow(const QString& windowProcessId, const QString& windowId, const int fps)
 {
-    auto resource = lrcInstance_->getCurrentCallModel()->getDisplay(windowProcessId,
-                                                                    windowId,
-                                                                    fps);
+    auto resource = lrcInstance_->getCurrentCallModel()->getDisplay(windowProcessId, windowId, fps);
     auto callId = lrcInstance_->getCurrentCallId();
 
     muteCamera_ = !isCapturing();
-    lrcInstance_->getCurrentCallModel()
-        ->addMedia(callId, resource, lrc::api::CallModel::MediaRequestType::SCREENSHARING);
+    lrcInstance_->getCurrentCallModel()->addMedia(callId,
+                                                  resource,
+                                                  lrc::api::CallModel::MediaRequestType::SCREENSHARING);
 }
 
 QString
-AvAdapter::getSharingResource(int screenId,
-                              const QString& windowProcessId,
-                              const QString& windowId,
-                              const int fps)
+AvAdapter::getSharingResource(int screenId, const QString& windowProcessId, const QString& windowId, const int fps)
 {
     if (screenId == -1) {
         const auto arrangementRect = getAllScreensBoundingRect();
@@ -387,10 +375,8 @@ AvAdapter::getSharingResource(int screenId,
         return lrcInstance_->getCurrentCallModel()->getDisplay(getScreenNumber(screenId),
                                                                rect.x(),
                                                                rect.y(),
-                                                               rect.width()
-                                                                   * screen->devicePixelRatio(),
-                                                               rect.height()
-                                                                   * screen->devicePixelRatio());
+                                                               rect.width() * screen->devicePixelRatio(),
+                                                               rect.height() * screen->devicePixelRatio());
     } else if (!windowId.isEmpty()) {
         return lrcInstance_->getCurrentCallModel()->getDisplay(windowProcessId, windowId, fps);
     }
@@ -416,20 +402,18 @@ AvAdapter::stopSharing(const QString& source)
     if (!source.isEmpty() && !callId.isEmpty()) {
         if (source.startsWith(libjami::Media::VideoProtocolPrefix::DISPLAY)) {
             qDebug() << "Stopping display: " << source;
-            lrcInstance_->getCurrentCallModel()
-                ->removeMedia(callId,
-                              libjami::Media::Details::MEDIA_TYPE_VIDEO,
-                              libjami::Media::VideoProtocolPrefix::DISPLAY,
-                              muteCamera_,
-                              true);
+            lrcInstance_->getCurrentCallModel()->removeMedia(callId,
+                                                             libjami::Media::Details::MEDIA_TYPE_VIDEO,
+                                                             libjami::Media::VideoProtocolPrefix::DISPLAY,
+                                                             muteCamera_,
+                                                             true);
         } else {
             qDebug() << "Stopping file: " << source;
-            lrcInstance_->getCurrentCallModel()
-                ->removeMedia(callId,
-                              libjami::Media::Details::MEDIA_TYPE_VIDEO,
-                              libjami::Media::VideoProtocolPrefix::FILE,
-                              muteCamera_,
-                              true);
+            lrcInstance_->getCurrentCallModel()->removeMedia(callId,
+                                                             libjami::Media::Details::MEDIA_TYPE_VIDEO,
+                                                             libjami::Media::VideoProtocolPrefix::FILE,
+                                                             muteCamera_,
+                                                             true);
         }
     }
 }
@@ -503,10 +487,8 @@ AvAdapter::isCapturing() const
         auto callModel = lrcInstance_->getCurrentCallModel();
         auto call = callModel->getCall(callId);
         for (const auto& m : call.mediaList) {
-            if (m[libjami::Media::MediaAttributeKey::SOURCE].startsWith(
-                    libjami::Media::VideoProtocolPrefix::CAMERA)
-                && m[libjami::Media::MediaAttributeKey::MEDIA_TYPE]
-                       == libjami::Media::Details::MEDIA_TYPE_VIDEO)
+            if (m[libjami::Media::MediaAttributeKey::SOURCE].startsWith(libjami::Media::VideoProtocolPrefix::CAMERA)
+                && m[libjami::Media::MediaAttributeKey::MEDIA_TYPE] == libjami::Media::Details::MEDIA_TYPE_VIDEO)
                 return m[libjami::Media::MediaAttributeKey::MUTED] == FALSE_STR;
         }
         return false;
@@ -524,10 +506,8 @@ AvAdapter::hasCamera() const
         auto call = callModel->getCall(callId);
         // TODO enum
         for (const auto& m : call.mediaList) {
-            if (m[libjami::Media::MediaAttributeKey::SOURCE].startsWith(
-                    libjami::Media::VideoProtocolPrefix::CAMERA)
-                && m[libjami::Media::MediaAttributeKey::MEDIA_TYPE]
-                       == libjami::Media::Details::MEDIA_TYPE_VIDEO)
+            if (m[libjami::Media::MediaAttributeKey::SOURCE].startsWith(libjami::Media::VideoProtocolPrefix::CAMERA)
+                && m[libjami::Media::MediaAttributeKey::MEDIA_TYPE] == libjami::Media::Details::MEDIA_TYPE_VIDEO)
                 return true;
         }
         return false;
@@ -606,8 +586,7 @@ AvAdapter::setRendererInfo()
 {
     auto& avModel = lrcInstance_->avModel();
     for (auto rendererInfo : avModel.getRenderersInfo()) {
-        rendererInformationListModel_->addElement(
-            qMakePair(rendererInfo["RENDERER_ID"], rendererInfo));
+        rendererInformationListModel_->addElement(qMakePair(rendererInfo["RENDERER_ID"], rendererInfo));
     }
 }
 

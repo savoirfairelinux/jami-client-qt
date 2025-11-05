@@ -195,11 +195,9 @@ void
 AVModel::updateRenderersFPSInfo(QString rendererId)
 {
     QReadLocker lk(&pimpl_->renderersMutex_);
-    auto it = std::find_if(pimpl_->renderers_.begin(),
-                           pimpl_->renderers_.end(),
-                           [&rendererId](const auto& c) {
-                               return rendererId == c.second->getInfos()["RENDERER_ID"];
-                           });
+    auto it = std::find_if(pimpl_->renderers_.begin(), pimpl_->renderers_.end(), [&rendererId](const auto& c) {
+        return rendererId == c.second->getInfos()["RENDERER_ID"];
+    });
     if (it != pimpl_->renderers_.end()) {
         auto fpsInfo = qMakePair(rendererId, it->second->getInfos()["FPS"]);
         lk.unlock();
@@ -292,8 +290,7 @@ Capabilities
 AVModel::getDeviceCapabilities(const QString& deviceId) const
 {
     // Channel x Resolution x Framerate
-    QMap<QString, QMap<QString, QVector<QString>>> capabilites = VideoManager::instance()
-                                                                     .getCapabilities(deviceId);
+    QMap<QString, QMap<QString, QVector<QString>>> capabilites = VideoManager::instance().getCapabilities(deviceId);
     video::Capabilities result;
     for (auto& channel : capabilites.toStdMap()) {
         video::ResRateList channelCapabilities;
@@ -711,9 +708,7 @@ AVModel::getListWindows() const
 
 #if defined(Q_OS_UNIX) && !defined(__APPLE__)
     std::unique_ptr<xcb_connection_t, void (*)(xcb_connection_t*)> c(xcb_connect(nullptr, nullptr),
-                                                                     [](xcb_connection_t* ptr) {
-                                                                         xcb_disconnect(ptr);
-                                                                     });
+                                                                     [](xcb_connection_t* ptr) { xcb_disconnect(ptr); });
 
     if (xcb_connection_has_error(c.get())) {
         LC_DBG << "xcb connection has error";
@@ -727,20 +722,13 @@ AVModel::getListWindows() const
 
     auto* screen = xcb_setup_roots_iterator(xcb_get_setup(c.get())).data;
 
-    xcb_get_property_cookie_t propCookieList = xcb_get_property(c.get(),
-                                                                0,
-                                                                screen->root,
-                                                                atomNetClient,
-                                                                XCB_GET_PROPERTY_TYPE_ANY,
-                                                                0,
-                                                                100);
+    xcb_get_property_cookie_t propCookieList
+        = xcb_get_property(c.get(), 0, screen->root, atomNetClient, XCB_GET_PROPERTY_TYPE_ANY, 0, 100);
 
-    using propertyPtr
-        = std::unique_ptr<xcb_get_property_reply_t, void (*)(xcb_get_property_reply_t*)>;
+    using propertyPtr = std::unique_ptr<xcb_get_property_reply_t, void (*)(xcb_get_property_reply_t*)>;
 
     xcb_generic_error_t* e;
-    propertyPtr replyPropList(xcb_get_property_reply(c.get(), propCookieList, &e),
-                              [](auto* ptr) { free(ptr); });
+    propertyPtr replyPropList(xcb_get_property_reply(c.get(), propCookieList, &e), [](auto* ptr) { free(ptr); });
     if (e) {
         LC_DBG << "Error: " << e->error_code;
         free(e);
@@ -750,15 +738,9 @@ AVModel::getListWindows() const
         if (valueLegth) {
             auto* win = static_cast<xcb_window_t*>(xcb_get_property_value(replyPropList.get()));
             for (int i = 0; i < valueLegth / 4; i++) {
-                xcb_get_property_cookie_t prop_cookie = xcb_get_property(c.get(),
-                                                                         0,
-                                                                         win[i],
-                                                                         atomWMVisibleName,
-                                                                         XCB_GET_PROPERTY_TYPE_ANY,
-                                                                         0,
-                                                                         1000);
-                propertyPtr replyProp {xcb_get_property_reply(c.get(), prop_cookie, &e),
-                                       [](auto* ptr) {
+                xcb_get_property_cookie_t prop_cookie
+                    = xcb_get_property(c.get(), 0, win[i], atomWMVisibleName, XCB_GET_PROPERTY_TYPE_ANY, 0, 1000);
+                propertyPtr replyProp {xcb_get_property_reply(c.get(), prop_cookie, &e), [](auto* ptr) {
                                            free(ptr);
                                        }};
                 if (e) {
@@ -768,9 +750,7 @@ AVModel::getListWindows() const
                 if (replyProp.get()) {
                     int v_size = xcb_get_property_value_length(replyProp.get());
                     if (v_size) {
-                        auto v = std::string(reinterpret_cast<char*>(
-                                                 xcb_get_property_value(replyProp.get())),
-                                             v_size);
+                        auto v = std::string(reinterpret_cast<char*>(xcb_get_property_value(replyProp.get())), v_size);
                         auto name = QString::fromUtf8(v.c_str());
                         if (ret.find(name) != ret.end())
                             name += QString(" - 0x%1").arg(win[i], 0, 16);
@@ -904,15 +884,9 @@ AVModelPimpl::AVModelPimpl(AVModel& linked, const CallbacksHandler& callbacksHan
     SIZE_RENDERER = renderers_.size();
 #endif
     connect(&callbacksHandler, &CallbacksHandler::deviceEvent, this, &AVModelPimpl::slotDeviceEvent);
-    connect(&callbacksHandler,
-            &CallbacksHandler::audioDeviceEvent,
-            this,
-            &AVModelPimpl::slotAudioDeviceEvent);
+    connect(&callbacksHandler, &CallbacksHandler::audioDeviceEvent, this, &AVModelPimpl::slotAudioDeviceEvent);
     connect(&callbacksHandler, &CallbacksHandler::audioMeter, this, &AVModelPimpl::slotAudioMeter);
-    connect(&callbacksHandler,
-            &CallbacksHandler::recordPlaybackStopped,
-            this,
-            &AVModelPimpl::slotRecordPlaybackStopped);
+    connect(&callbacksHandler, &CallbacksHandler::recordPlaybackStopped, this, &AVModelPimpl::slotRecordPlaybackStopped);
 
     // render connections
     connect(&callbacksHandler,
@@ -927,15 +901,12 @@ AVModelPimpl::AVModelPimpl(AVModel& linked, const CallbacksHandler& callbacksHan
             Qt::DirectConnection);
 
     // Media player connection
-    connect(&callbacksHandler,
-            &CallbacksHandler::fileOpened,
-            this,
-            [this](const QString& path, MapStringString info) {
-                Q_UNUSED(path);
-                bool hasAudio = info["audio_stream"].toInt() >= 0;
-                bool hasVideo = info["video_stream"].toInt() >= 0;
-                Q_EMIT linked_.fileOpened(hasAudio, hasVideo);
-            });
+    connect(&callbacksHandler, &CallbacksHandler::fileOpened, this, [this](const QString& path, MapStringString info) {
+        Q_UNUSED(path);
+        bool hasAudio = info["audio_stream"].toInt() >= 0;
+        bool hasVideo = info["video_stream"].toInt() >= 0;
+        Q_EMIT linked_.fileOpened(hasAudio, hasVideo);
+    });
 
     auto startedPreview = false;
     auto restartRenderers = [&](const QStringList& callList) {
@@ -1096,11 +1067,7 @@ AVModelPimpl::addRenderer(const QString& id, const QSize& res, const QString& sh
             [this, id] { Q_EMIT linked_.frameUpdated(id); },
             Qt::DirectConnection);
         connect(
-            renderer,
-            &Renderer::stopped,
-            this,
-            [this, id] { Q_EMIT linked_.rendererStopped(id); },
-            Qt::DirectConnection);
+            renderer, &Renderer::stopped, this, [this, id] { Q_EMIT linked_.rendererStopped(id); }, Qt::DirectConnection);
 
         renderer->startRendering();
     }

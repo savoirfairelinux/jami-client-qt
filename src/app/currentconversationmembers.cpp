@@ -34,9 +34,7 @@ CurrentConversationMembers::rowCount(const QModelIndex& parent) const
 }
 
 void
-CurrentConversationMembers::setMembers(const QString& accountId,
-                                       const QString& convId,
-                                       const QStringList& members)
+CurrentConversationMembers::setMembers(const QString& accountId, const QString& convId, const QStringList& members)
 {
     beginResetModel();
     accountId_ = accountId;
