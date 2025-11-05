@@ -431,12 +431,12 @@ public Q_SLOTS: // METHODS
 
     bool resume(const QString& accountId, const QString& callId)
     {
-        return libjami::unhold(accountId.toStdString(), callId.toStdString());
+        return libjami::resume(accountId.toStdString(), callId.toStdString());
     }
 
     bool resumeConference(const QString& accountId, const QString& confId)
     {
-        return libjami::unholdConference(accountId.toStdString(), confId.toStdString());
+        return libjami::resumeConference(accountId.toStdString(), confId.toStdString());
     }
 
     bool muteLocalMedia(const QString& accountId, const QString& callId, const QString& mediaType, bool mute)
