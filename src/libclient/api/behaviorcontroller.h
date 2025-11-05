@@ -85,9 +85,7 @@ Q_SIGNALS:
     /**
      * Emitted when the unread interaction is now read
      */
-    void newReadInteraction(const QString& accountId,
-                            const QString& conversation,
-                            const QString& interactionId) const;
+    void newReadInteraction(const QString& accountId, const QString& conversation, const QString& interactionId) const;
     /**
      * Emitted debugMessageReceived
      */

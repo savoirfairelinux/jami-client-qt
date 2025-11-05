@@ -49,10 +49,7 @@ class LRCInstance;
 namespace Utils {
 
 // Helper used to remove app arguments.
-void remove_argument(char** argv,
-                     int& argc,
-                     const std::string& arg_to_remove,
-                     std::function<void()> callback);
+void remove_argument(char** argv, int& argc, const std::string& arg_to_remove, std::function<void()> callback);
 
 // Throws if Vulkan cannot be instantiated.
 void testVulkanSupport();
@@ -72,8 +69,7 @@ QString getAvailableDictionariesJson();
 void removeOldVersions();
 
 // LRC helpers
-lrc::api::profile::Type profileType(const lrc::api::conversation::Info& conv,
-                                    const lrc::api::ConversationModel& model);
+lrc::api::profile::Type profileType(const lrc::api::conversation::Info& conv, const lrc::api::ConversationModel& model);
 bool isInteractionGenerated(const lrc::api::interaction::Type& interaction);
 bool isContactValid(const QString& contactUid, const lrc::api::ConversationModel& model);
 bool getReplyMessageBox(QWidget* widget, const QString& title, const QString& text);
@@ -82,9 +78,7 @@ bool getReplyMessageBox(QWidget* widget, const QString& title, const QString& te
 constexpr static const QSize defaultAvatarSize {128, 128};
 QImage imageFromBase64String(const QString& str, bool circleCrop = true);
 QImage imageFromBase64Data(const QByteArray& data, bool circleCrop = true);
-QImage accountPhoto(LRCInstance* instance,
-                    const QString& accountId,
-                    const QSize& size = defaultAvatarSize);
+QImage accountPhoto(LRCInstance* instance, const QString& accountId, const QSize& size = defaultAvatarSize);
 QImage contactPhoto(LRCInstance* instance,
                     const QString& contactUri,
                     const QSize& size = defaultAvatarSize,
@@ -101,9 +95,7 @@ QString getTempSwarmAvatarPath();
 QImage fallbackAvatar(const QString& canonicalUriStr,
                       const QString& letterStr = {},
                       const QSize& size = defaultAvatarSize);
-QImage fallbackAvatar(const std::string& alias,
-                      const std::string& uri,
-                      const QSize& size = defaultAvatarSize);
+QImage fallbackAvatar(const std::string& alias, const std::string& uri, const QSize& size = defaultAvatarSize);
 QByteArray QImageToByteArray(QImage image);
 QString byteArrayToBase64String(QByteArray byteArray);
 QByteArray base64StringToByteArray(QString base64);

@@ -39,8 +39,7 @@ PluginListPreferenceModel::populateLists()
         preferences.append(lrcInstance_->pluginModel().getPluginPreferences(pluginId_, accountId_));
     for (const auto& preference : preferences) {
         if (preference["key"] == preferenceKey_) {
-            if (preference.find("entries") != preference.end()
-                && preference.find("entryValues") != preference.end())
+            if (preference.find("entries") != preference.end() && preference.find("entryValues") != preference.end())
                 preferenceList_ = preference["entries"].split(",");
             preferenceValuesList_ = preference["entryValues"].split(",");
             break;

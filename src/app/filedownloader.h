@@ -34,8 +34,7 @@ class FileDownloader : public NetworkManager
 public:
     static FileDownloader* create(QQmlEngine*, QJSEngine*)
     {
-        return new FileDownloader(
-            qApp->property("ConnectivityMonitor").value<ConnectivityMonitor*>());
+        return new FileDownloader(qApp->property("ConnectivityMonitor").value<ConnectivityMonitor*>());
     }
 
     explicit FileDownloader(ConnectivityMonitor* cm, QObject* parent = nullptr);

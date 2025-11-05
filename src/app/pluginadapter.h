@@ -46,9 +46,7 @@ public:
                                  qApp->property("AppSettingsManager").value<AppSettingsManager*>());
     }
 
-    explicit PluginAdapter(LRCInstance* instance,
-                           AppSettingsManager* settingsManager,
-                           QObject* parent = nullptr);
+    explicit PluginAdapter(LRCInstance* instance, AppSettingsManager* settingsManager, QObject* parent = nullptr);
     ~PluginAdapter() = default;
 
     Q_INVOKABLE void getPluginsFromStore();
@@ -64,8 +62,7 @@ public:
 
 protected:
     Q_INVOKABLE QVariant getMediaHandlerSelectableModel(const QString& callId);
-    Q_INVOKABLE QVariant getChatHandlerSelectableModel(const QString& accountId,
-                                                       const QString& peerId);
+    Q_INVOKABLE QVariant getChatHandlerSelectableModel(const QString& accountId, const QString& peerId);
     Q_INVOKABLE QVariant getPluginPreferencesCategories(const QString& pluginId,
                                                         const QString& accountId,
                                                         bool removeLast = false);

@@ -167,9 +167,9 @@ CrashPadClient::startHandler()
                                         crashReportUrl_.toStdString(), // url to upload reports
                                         annotations,                   // Annotations
                                         arguments,                     // Arguments
-                                        false, // restartable (this doesn't do anything)
-                                        false, // asynchronous_start (this doesn't do anything)
-                                        std::vector<base::FilePath>() // Attachments
+                                        false,                         // restartable (this doesn't do anything)
+                                        false,                         // asynchronous_start (this doesn't do anything)
+                                        std::vector<base::FilePath>()  // Attachments
     );
 
     if (!success) {
@@ -191,8 +191,7 @@ CrashPadClient::syncHandlerWithSettings()
 
     // Optionally disable crashpad handler.
     auto enableReportsAppSetting = settingsManager_->getValue(key::EnableCrashReporting).toBool();
-    crashpad_info->set_crashpad_handler_behavior(enableReportsAppSetting ? TriState::kEnabled
-                                                                         : TriState::kDisabled);
+    crashpad_info->set_crashpad_handler_behavior(enableReportsAppSetting ? TriState::kEnabled : TriState::kDisabled);
 
     // Enable automatic crash reporting if the user has opted in.
     auto automaticReporting = settingsManager_->getValue(key::EnableAutomaticCrashReporting).toBool();
@@ -292,8 +291,7 @@ CrashPadClient::uploadLastReport()
         while (attempts++ < maxAttempts) {
             CrashReportDatabase::Report report;
             if (database->LookUpCrashReport(uuid, &report) == CrashReportDatabase::kNoError) {
-                if (report.uploaded
-                    && database->DeleteReport(uuid) == CrashReportDatabase::kNoError) {
+                if (report.uploaded && database->DeleteReport(uuid) == CrashReportDatabase::kNoError) {
                     C_INFO << "Report uploaded and deleted successfully";
                     return;
                 }

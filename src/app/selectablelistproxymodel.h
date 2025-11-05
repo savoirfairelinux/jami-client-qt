@@ -76,7 +76,6 @@ class SelectableListProxyGroupModel : public QObject
 {
     Q_OBJECT
 public:
-    explicit SelectableListProxyGroupModel(QList<SelectableListProxyModel*> models,
-                                           QObject* parent = nullptr);
+    explicit SelectableListProxyGroupModel(QList<SelectableListProxyModel*> models, QObject* parent = nullptr);
     QList<SelectableListProxyModel*> models_;
 };

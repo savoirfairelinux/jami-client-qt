@@ -58,9 +58,7 @@ public Q_SLOTS:
      * @param deviceId
      * @param status SUCCESS = 0, WRONG_PASSWORD = 1, UNKNOWN_DEVICE = 2
      */
-    void slotDeviceRevocationEnded(const QString& accountId,
-                                   const QString& deviceId,
-                                   const int status);
+    void slotDeviceRevocationEnded(const QString& accountId, const QString& deviceId, const int status);
 };
 
 DeviceModel::DeviceModel(const account::Info& owner, const CallbacksHandler& callbacksHandler)
@@ -115,17 +113,14 @@ DeviceModel::setCurrentDeviceName(const QString& newName)
     }
 }
 
-DeviceModelPimpl::DeviceModelPimpl(const DeviceModel& linked,
-                                   const CallbacksHandler& callbacksHandler)
+DeviceModelPimpl::DeviceModelPimpl(const DeviceModel& linked, const CallbacksHandler& callbacksHandler)
     : linked(linked)
     , callbacksHandler(callbacksHandler)
     , devices_({})
 {
-    const MapStringString aDetails = ConfigurationManager::instance().getVolatileAccountDetails(
-        linked.owner.id);
+    const MapStringString aDetails = ConfigurationManager::instance().getVolatileAccountDetails(linked.owner.id);
     currentDeviceId_ = aDetails.value(libjami::Account::ConfProperties::DEVICE_ID);
-    const MapStringString accountDevices = ConfigurationManager::instance().getKnownRingDevices(
-        linked.owner.id);
+    const MapStringString accountDevices = ConfigurationManager::instance().getKnownRingDevices(linked.owner.id);
     auto it = accountDevices.begin();
     while (it != accountDevices.end()) {
         {
@@ -143,10 +138,7 @@ DeviceModelPimpl::DeviceModelPimpl(const DeviceModel& linked,
         ++it;
     }
 
-    connect(&callbacksHandler,
-            &CallbacksHandler::knownDevicesChanged,
-            this,
-            &DeviceModelPimpl::slotKnownDevicesChanged);
+    connect(&callbacksHandler, &CallbacksHandler::knownDevicesChanged, this, &DeviceModelPimpl::slotKnownDevicesChanged);
     connect(&callbacksHandler,
             &CallbacksHandler::deviceRevocationEnded,
             this,
@@ -206,9 +198,7 @@ DeviceModelPimpl::slotKnownDevicesChanged(const QString& accountId, const MapStr
 }
 
 void
-DeviceModelPimpl::slotDeviceRevocationEnded(const QString& accountId,
-                                            const QString& deviceId,
-                                            const int status)
+DeviceModelPimpl::slotDeviceRevocationEnded(const QString& accountId, const QString& deviceId, const int status)
 {
     if (accountId != linked.owner.id)
         return;

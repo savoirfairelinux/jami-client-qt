@@ -25,8 +25,7 @@
 #include <QLibraryInfo>
 #include <QDir>
 
-const QString defaultDownloadPath = QStandardPaths::writableLocation(
-    QStandardPaths::DownloadLocation);
+const QString defaultDownloadPath = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation);
 
 AppSettingsManager::AppSettingsManager(QObject* parent)
     : QObject(parent)
@@ -34,7 +33,7 @@ AppSettingsManager::AppSettingsManager(QObject* parent)
 {
     for (int i = 0; i < static_cast<int>(Settings::Key::COUNT__); ++i) {
         auto key = static_cast<Settings::Key>(i);
-        auto strKey= Settings::toString(key);
+        auto strKey = Settings::toString(key);
         // If the setting is written in the settings file and is equal to the default value,
         // remove it from the settings file.
         // This allow us to change default values without risking to remove user settings
@@ -48,8 +47,7 @@ AppSettingsManager::getValue(const QString& key, const QVariant& defaultValue)
 {
     auto value = settings_->value(key, defaultValue);
 
-    if (QString(value.typeName()) == "QString"
-        && (value.toString() == "false" || value.toString() == "true"))
+    if (QString(value.typeName()) == "QString" && (value.toString() == "false" || value.toString() == "true"))
         return value.toBool();
 
     return value;
@@ -115,14 +113,12 @@ AppSettingsManager::loadTranslations()
     QTranslator* qtTranslator_lang = new QTranslator(qApp);
     QTranslator* qtTranslator_name = new QTranslator(qApp);
     if (locale_name != locale_lang) {
-        if (qtTranslator_lang->load("qt_" + locale_lang,
-                                    QLibraryInfo::path(QLibraryInfo::TranslationsPath)))
+        if (qtTranslator_lang->load("qt_" + locale_lang, QLibraryInfo::path(QLibraryInfo::TranslationsPath)))
             qApp->installTranslator(qtTranslator_lang);
         installedTr_.append(qtTranslator_lang);
     }
 
-    if (qtTranslator_name->load("qt_" + locale_name,
-                                QLibraryInfo::path(QLibraryInfo::TranslationsPath))) {
+    if (qtTranslator_name->load("qt_" + locale_name, QLibraryInfo::path(QLibraryInfo::TranslationsPath))) {
         qApp->installTranslator(qtTranslator_name);
         installedTr_.append(qtTranslator_name);
     }
@@ -130,16 +126,14 @@ AppSettingsManager::loadTranslations()
     QTranslator* mainTranslator_lang = new QTranslator(qApp);
     QTranslator* mainTranslator_name = new QTranslator(qApp);
     if (locale_name != locale_lang) {
-        if (mainTranslator_lang->load(appDir + QDir::separator() + "jami" + QDir::separator()
-                                      + "translations" + QDir::separator() + "jami_client_qt_"
-                                      + locale_lang)) {
+        if (mainTranslator_lang->load(appDir + QDir::separator() + "jami" + QDir::separator() + "translations"
+                                      + QDir::separator() + "jami_client_qt_" + locale_lang)) {
             qApp->installTranslator(mainTranslator_lang);
             installedTr_.append(mainTranslator_lang);
         }
     }
-    if (mainTranslator_name->load(appDir + QDir::separator() + "jami" + QDir::separator()
-                                  + "translations" + QDir::separator() + "jami_client_qt_"
-                                  + locale_name)) {
+    if (mainTranslator_name->load(appDir + QDir::separator() + "jami" + QDir::separator() + "translations"
+                                  + QDir::separator() + "jami_client_qt_" + locale_name)) {
         qApp->installTranslator(mainTranslator_name);
         installedTr_.append(mainTranslator_name);
     }

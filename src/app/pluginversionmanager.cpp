@@ -103,20 +103,20 @@ public:
             Q_EMIT parent_.versionStatusChanged(plugin.id, PluginStatus::Role::FAILED);
             return;
         }
-        parent_.sendGetRequest(
-            QUrl(settingsManager_->getValue(Settings::Key::PluginStoreEndpoint).toString() + "/versions/"
-                 + plugin.id + "?arch=" + lrcInstance_->pluginModel().getPlatformInfo()["os"]),
-            [this, plugin](const QByteArray& data) {
-                // `data` represents the version in this case.
-                auto result = QJsonDocument::fromJson(data).array().toVariantList()[0].toMap();
-                if (parent_.checkVersion(plugin.version, result["version"].toString())) {
-                    if (isAutoUpdaterEnabled()) {
-                        installRemotePlugin(plugin.id);
-                        return;
-                    }
-                    parent_.versionStatusChanged(plugin.id, PluginStatus::Role::UPDATABLE);
-                }
-            });
+        parent_.sendGetRequest(QUrl(settingsManager_->getValue(Settings::Key::PluginStoreEndpoint).toString()
+                                    + "/versions/" + plugin.id
+                                    + "?arch=" + lrcInstance_->pluginModel().getPlatformInfo()["os"]),
+                               [this, plugin](const QByteArray& data) {
+                                   // `data` represents the version in this case.
+                                   auto result = QJsonDocument::fromJson(data).array().toVariantList()[0].toMap();
+                                   if (parent_.checkVersion(plugin.version, result["version"].toString())) {
+                                       if (isAutoUpdaterEnabled()) {
+                                           installRemotePlugin(plugin.id);
+                                           return;
+                                       }
+                                       parent_.versionStatusChanged(plugin.id, PluginStatus::Role::UPDATABLE);
+                                   }
+                               });
     }
 
     void installRemotePlugin(const QString& pluginId)
@@ -134,8 +134,7 @@ public:
                 }
                 QThreadPool::globalInstance()->start([this, pluginId] {
                     auto res = lrcInstance_->pluginModel()
-                                   .installPlugin(QDir(QDir::tempPath()).filePath(pluginId + ".jpl"),
-                                                  false);
+                                   .installPlugin(QDir(QDir::tempPath()).filePath(pluginId + ".jpl"), false);
                     if (res) {
                         parent_.versionStatusChanged(pluginId, PluginStatus::Role::INSTALLED);
                     } else {
@@ -164,9 +163,7 @@ public:
     QTimer* updateTimer_;
 };
 
-PluginVersionManager::PluginVersionManager(LRCInstance* instance,
-                                           AppSettingsManager* settingsManager,
-                                           QObject* parent)
+PluginVersionManager::PluginVersionManager(LRCInstance* instance, AppSettingsManager* settingsManager, QObject* parent)
     : NetworkManager(&instance->connectivityMonitor(), parent)
     , pimpl_(std::make_unique<Impl>(instance, settingsManager, *this))
 {}
@@ -205,11 +202,7 @@ PluginVersionManager::downloadFile(const QUrl& url,
                                    const QString& filePath,
                                    const QString& extension)
 {
-    auto reply = NetworkManager::downloadFile(url,
-                                              replyId,
-                                              std::move(onDoneCallback),
-                                              filePath,
-                                              extension);
+    auto reply = NetworkManager::downloadFile(url, replyId, std::move(onDoneCallback), filePath, extension);
     pluginRepliesId[pluginId] = reply;
     return reply;
 }
@@ -227,8 +220,7 @@ PluginVersionManager::installRemotePlugin(const QString& pluginId)
 }
 
 bool
-PluginVersionManager::checkVersion(const QString& installedVersion,
-                                   const QString& remoteVersion) const
+PluginVersionManager::checkVersion(const QString& installedVersion, const QString& remoteVersion) const
 {
     auto installedVersionDetails = installedVersion.split(".");
     auto remoteVersionDetails = remoteVersion.split(".");

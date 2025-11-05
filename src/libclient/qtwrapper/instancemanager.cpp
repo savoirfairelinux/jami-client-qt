@@ -38,7 +38,7 @@ InstanceManagerInterface::InstanceManagerInterface(bool muteDaemon)
     // On macOS, the resource directory is set to the application bundle's path + "/Resources".
     // The application bundle's path is the application's directory.
     QDir execDir(qApp->applicationDirPath()); // executable directory points to the app bundle + /Contents/MacOS/
-    execDir.cdUp(); // navigate up to add resources to /Contents
+    execDir.cdUp();                           // navigate up to add resources to /Contents
     auto resourceDir = execDir.absolutePath() + QDir::separator() + "Resources";
     libjami::setResourceDirPath(resourceDir.toStdString());
 #endif

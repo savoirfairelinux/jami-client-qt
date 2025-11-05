@@ -164,8 +164,7 @@ SpellCheckDictionaryListModel::populateDictionaries()
     const auto object = doc.object();
 
     // Get installed dictionaries to check status
-    QString hunspellDataDir = QStandardPaths::writableLocation(QStandardPaths::CacheLocation)
-                              + "/dictionaries/";
+    QString hunspellDataDir = QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + "/dictionaries/";
     QDir dictionariesDir(hunspellDataDir);
     QRegExp regex("(.*).dic");
     QStringList installedLocales;
@@ -181,8 +180,7 @@ SpellCheckDictionaryListModel::populateDictionaries()
     }
 
     // Check for dictionary files in the system directory
-    QStringList systemDicFiles = QDir(systemDictionariesPath_)
-                                     .entryList(QStringList() << "*.dic", QDir::Files);
+    QStringList systemDicFiles = QDir(systemDictionariesPath_).entryList(QStringList() << "*.dic", QDir::Files);
     for (const auto& dicFile : systemDicFiles) {
         regex.indexIn(dicFile);
         auto captured = regex.capturedTexts();
@@ -296,8 +294,7 @@ SpellCheckDictionaryListModel::getInstalledDictionaries() const
     for (const auto& dict : dictionaries_) {
         const auto dictObj = dict.toObject();
         if (dictObj.value("installed").toBool()) {
-            installedDictionaries.insert(dictObj.value("locale").toString(),
-                                         dictObj.value("nativeName").toString());
+            installedDictionaries.insert(dictObj.value("locale").toString(), dictObj.value("nativeName").toString());
         }
     }
     return installedDictionaries;
@@ -369,8 +366,7 @@ SpellCheckDictionaryListModel::downloadDictionaryFiles(const QString& locale)
 }
 
 void
-SpellCheckDictionaryListModel::updateDictionaryInstallationStatus(const QString& locale,
-                                                                  bool installed)
+SpellCheckDictionaryListModel::updateDictionaryInstallationStatus(const QString& locale, bool installed)
 {
     const auto index = getDictionaryIndex(locale);
     if (!index.isValid()) {

@@ -19,27 +19,16 @@
 
 #include "utils.h"
 
-CurrentAccount::CurrentAccount(LRCInstance* lrcInstance,
-                               AppSettingsManager* settingsManager,
-                               QObject* parent)
+CurrentAccount::CurrentAccount(LRCInstance* lrcInstance, AppSettingsManager* settingsManager, QObject* parent)
     : QObject(parent)
     , settingsManager_(settingsManager)
     , lrcInstance_(lrcInstance)
 {
-    connect(&lrcInstance_->accountModel(),
-            &AccountModel::accountStatusChanged,
-            this,
-            &CurrentAccount::onAccountUpdated);
+    connect(&lrcInstance_->accountModel(), &AccountModel::accountStatusChanged, this, &CurrentAccount::onAccountUpdated);
 
-    connect(&lrcInstance_->accountModel(),
-            &AccountModel::profileUpdated,
-            this,
-            &CurrentAccount::onAccountUpdated);
+    connect(&lrcInstance_->accountModel(), &AccountModel::profileUpdated, this, &CurrentAccount::onAccountUpdated);
 
-    connect(lrcInstance_,
-            &LRCInstance::currentAccountIdChanged,
-            this,
-            &CurrentAccount::setupForAccount);
+    connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, this, &CurrentAccount::setupForAccount);
 
     setupForAccount();
 }
@@ -56,8 +45,7 @@ CurrentAccount::set_isAllModeratorsEnabled(bool enabled, bool initialize)
     if (enabled != isAllModeratorsEnabled_) {
         isAllModeratorsEnabled_ = enabled;
         if (!initialize)
-            lrcInstance_->accountModel().setAllModerators(lrcInstance_->get_currentAccountId(),
-                                                          enabled);
+            lrcInstance_->accountModel().setAllModerators(lrcInstance_->get_currentAccountId(), enabled);
         Q_EMIT isAllModeratorsEnabledChanged();
     }
 }
@@ -74,8 +62,7 @@ CurrentAccount::set_isLocalModeratorsEnabled(bool enabled, bool initialize)
     if (enabled != isLocalModeratorsEnabled_) {
         isLocalModeratorsEnabled_ = enabled;
         if (!initialize)
-            lrcInstance_->accountModel().enableLocalModerators(lrcInstance_->get_currentAccountId(),
-                                                               enabled);
+            lrcInstance_->accountModel().enableLocalModerators(lrcInstance_->get_currentAccountId(), enabled);
         Q_EMIT isLocalModeratorsEnabledChanged();
     }
 }
@@ -114,8 +101,7 @@ CurrentAccount::onBannedStatusChanged(const QString& contactUri, bool banned)
 {
     Q_UNUSED(contactUri)
     Q_UNUSED(banned)
-    set_hasBannedContacts(
-        lrcInstance_->getCurrentAccountInfo().contactModel->getBannedContacts().size());
+    set_hasBannedContacts(lrcInstance_->getCurrentAccountInfo().contactModel->getBannedContacts().size());
 }
 
 void
@@ -132,8 +118,7 @@ CurrentAccount::updateData()
         set_bestId(lrcInstance_->accountModel().bestIdForAccount(id_));
         set_bestName(lrcInstance_->accountModel().bestNameForAccount(id_));
         set_hasAvatarSet(!accInfo.profileInfo.avatar.isEmpty());
-        set_hasBannedContacts(
-            lrcInstance_->getCurrentAccountInfo().contactModel->getBannedContacts().size());
+        set_hasBannedContacts(lrcInstance_->getCurrentAccountInfo().contactModel->getBannedContacts().size());
         set_status(accInfo.status);
         set_type(accInfo.profileInfo.type);
 
@@ -215,20 +200,15 @@ CurrentAccount::updateData()
         }
 
         // Moderators
-        set_isAllModeratorsEnabled(lrcInstance_->accountModel().isAllModerators(
-                                       lrcInstance_->get_currentAccountId()),
+        set_isAllModeratorsEnabled(lrcInstance_->accountModel().isAllModerators(lrcInstance_->get_currentAccountId()),
                                    true);
         set_isLocalModeratorsEnabled(lrcInstance_->accountModel().isLocalModeratorsEnabled(
                                          lrcInstance_->get_currentAccountId()),
                                      true);
 
         // NewAccount model
-        set_autoTransferFromTrusted(settingsManager_->getValue(Settings::Key::AutoAcceptFiles)
-                                        .toBool(),
-                                    true);
-        set_autoTransferSizeThreshold(settingsManager_->getValue(Settings::Key::AcceptTransferBelow)
-                                          .toInt(),
-                                      true);
+        set_autoTransferFromTrusted(settingsManager_->getValue(Settings::Key::AutoAcceptFiles).toBool(), true);
+        set_autoTransferSizeThreshold(settingsManager_->getValue(Settings::Key::AcceptTransferBelow).toInt(), true);
 
         // UI Customization settings
         set_uiCustomization(accConfig.uiCustomization, true);
