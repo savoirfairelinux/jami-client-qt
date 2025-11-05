@@ -1,19 +1,19 @@
-/****************************************************************************
- *   Copyright (C) 2017-2025 Savoir-faire Linux Inc.                        *
- *                                                                          *
- *   This library is free software; you can redistribute it and/or          *
- *   modify it under the terms of the GNU Lesser General Public             *
- *   License as published by the Free Software Foundation; either           *
- *   version 2.1 of the License, or (at your option) any later version.     *
- *                                                                          *
- *   This library is distributed in the hope that it will be useful,        *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of         *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU      *
- *   Lesser General Public License for more details.                        *
- *                                                                          *
- *   You should have received a copy of the GNU General Public License      *
- *   along with this program.  If not, see <http://www.gnu.org/licenses/>.  *
- ***************************************************************************/
+/*
+ * Copyright (C) 2017-2025 Savoir-faire Linux Inc.
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "api/callmodel.h"
 
@@ -753,9 +753,9 @@ CallModel::togglePause(const QString& callId) const
 
     if (call->status == call::Status::PAUSED) {
         if (call->type == call::Type::DIALOG) {
-            CallManager::instance().unhold(owner.id, callId);
+            CallManager::instance().resume(owner.id, callId);
         } else {
-            CallManager::instance().unholdConference(owner.id, callId);
+            CallManager::instance().resumeConference(owner.id, callId);
         }
     } else if (call->status == call::Status::IN_PROGRESS) {
         if (call->type == call::Type::DIALOG)
@@ -836,7 +836,7 @@ CallModel::joinCalls(const QString& callIdA, const QString& callIdB) const
         auto call = call1.type == call::Type::CONFERENCE ? callIdB : callIdA;
         auto conf = call1.type == call::Type::CONFERENCE ? callIdA : callIdB;
         // Unpause conference if conference was not active
-        CallManager::instance().unholdConference(owner.id, conf);
+        CallManager::instance().resumeConference(owner.id, conf);
         auto accountCall = call1.type == call::Type::CONFERENCE ? accountIdCall2 : accountIdCall1;
 
         bool joined = CallManager::instance().addParticipant(accountCall, call, accountCall, conf);
@@ -1217,14 +1217,14 @@ CallModel::setCurrentCall(const QString& callId) const
         return;
     pimpl_->currentCall_ = callId;
 
-    // Unhold call
+    // Resume call
     auto& call = pimpl_->calls[callId];
     if (call->status == call::Status::PAUSED) {
         auto& call = pimpl_->calls[callId];
         if (call->type == call::Type::DIALOG) {
-            CallManager::instance().unhold(owner.id, callId);
+            CallManager::instance().resume(owner.id, callId);
         } else {
-            CallManager::instance().unholdConference(owner.id, callId);
+            CallManager::instance().resumeConference(owner.id, callId);
         }
     }
 
