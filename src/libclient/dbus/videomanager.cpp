@@ -32,9 +32,9 @@ VideoManager::instance()
                                                       "/cx/ring/Ring/VideoManager",
                                                       QDBusConnection::sessionBus());
     if (!interface->connection().isConnected()) {
-        GlobalInstances::dBusErrorHandler().connectionError(
-            "Error : jamid not connected. Service " + interface->service()
-            + " not connected. From video manager interface.");
+        GlobalInstances::dBusErrorHandler().connectionError("Error : jamid not connected. Service "
+                                                            + interface->service()
+                                                            + " not connected. From video manager interface.");
     }
     if (!interface->isValid()) {
         GlobalInstances::dBusErrorHandler().invalidInterfaceError(

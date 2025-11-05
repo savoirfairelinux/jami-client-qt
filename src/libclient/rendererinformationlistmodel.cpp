@@ -51,9 +51,9 @@ RendererInformationListModel::data(const QModelIndex& index, int role) const
 void
 RendererInformationListModel::updateFps(QString rendererId, QString fps)
 {
-    auto it = std::find_if(renderersInfoList_.begin(),
-                           renderersInfoList_.end(),
-                           [&rendererId](const auto& c) { return rendererId == c.first; });
+    auto it = std::find_if(renderersInfoList_.begin(), renderersInfoList_.end(), [&rendererId](const auto& c) {
+        return rendererId == c.first;
+    });
     if (it != renderersInfoList_.end()) {
         // update fps
         auto index = std::distance(renderersInfoList_.begin(), it);
@@ -68,9 +68,9 @@ RendererInformationListModel::addElement(QPair<QString, MapStringString> rendere
 {
     // check element existence
     auto rendererId = rendererInfo.first;
-    auto it = std::find_if(renderersInfoList_.begin(),
-                           renderersInfoList_.end(),
-                           [&rendererId](const auto& c) { return rendererId == c.first; });
+    auto it = std::find_if(renderersInfoList_.begin(), renderersInfoList_.end(), [&rendererId](const auto& c) {
+        return rendererId == c.first;
+    });
     // if element doesn't exist
     if (it == renderersInfoList_.end()) {
         beginInsertRows(QModelIndex(), rowCount(), rowCount());
@@ -82,9 +82,9 @@ RendererInformationListModel::addElement(QPair<QString, MapStringString> rendere
 void
 RendererInformationListModel::removeElement(QString rendererId)
 {
-    auto it = std::find_if(renderersInfoList_.begin(),
-                           renderersInfoList_.end(),
-                           [&rendererId](const auto& c) { return rendererId == c.first; });
+    auto it = std::find_if(renderersInfoList_.begin(), renderersInfoList_.end(), [&rendererId](const auto& c) {
+        return rendererId == c.first;
+    });
     if (it != renderersInfoList_.end()) {
         auto elementIndex = std::distance(renderersInfoList_.begin(), it);
         beginRemoveRows(QModelIndex(), elementIndex, elementIndex);

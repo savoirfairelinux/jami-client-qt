@@ -131,10 +131,7 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
             this,
             &ConversationsAdapter::onTrustRequestTreated);
 
-    connect(lrcInstance_,
-            &LRCInstance::currentAccountIdChanged,
-            this,
-            &ConversationsAdapter::onCurrentAccountIdChanged);
+    connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, this, &ConversationsAdapter::onCurrentAccountIdChanged);
 
     connect(lrcInstance_,
             &LRCInstance::currentAccountRemoved,
@@ -193,10 +190,7 @@ ConversationsAdapter::onNewUnreadInteraction(const QString& accountId,
             return;
 #ifdef Q_OS_LINUX
         auto to = lrcInstance_->accountModel().bestNameForAccount(accountId);
-        auto contactPhoto = Utils::contactPhoto(lrcInstance_,
-                                                interaction.authorUri,
-                                                QSize(50, 50),
-                                                accountId);
+        auto contactPhoto = Utils::contactPhoto(lrcInstance_, interaction.authorUri, QSize(50, 50), accountId);
         auto notifId = QString("%1;%2;%3").arg(accountId, convUid, interactionId);
         systemTray_->showNotification(notifId,
                                       tr("%1 received a new message").arg(to),
@@ -236,9 +230,7 @@ ConversationsAdapter::onNewReadInteraction(const QString& accountId,
 }
 
 void
-ConversationsAdapter::onNewTrustRequest(const QString& accountId,
-                                        const QString& convId,
-                                        const QString& peerUri)
+ConversationsAdapter::onNewTrustRequest(const QString& accountId, const QString& convId, const QString& peerUri)
 {
 #ifdef Q_OS_LINUX
     if (!QApplication::focusWindow() || accountId != lrcInstance_->get_currentAccountId()) {
@@ -528,28 +520,26 @@ ConversationsAdapter::restartConversation(const QString& convId)
     auto contactInfo = accInfo.contactModel->getContact(peerUri);
     contactInfo.profileInfo.type = profile::Type::TEMPORARY;
 
-    Utils::oneShotConnect(
-        accInfo.contactModel.get(),
-        &ContactModel::contactRemoved,
-        [this, &accInfo, contactInfo](const QString& peerUri) {
-            // setup a callback to select another ONE_TO_ONE conversation for this peer
-            // once the new conversation becomes ready
-            Utils::oneShotConnect(
-                accInfo.conversationModel.get(),
-                &ConversationModel::conversationReady,
-                [this, peerUri, &accInfo](const QString& convId) {
-                    const auto& convInfo = lrcInstance_->getConversationFromConvUid(convId);
-                    // 3. filter for the correct contact-conversation and select it
-                    if (!convInfo.uid.isEmpty() && convInfo.isCoreDialog()
-                        && peerUri
-                               == accInfo.conversationModel->peersForConversation(convId).at(0)) {
-                        lrcInstance_->selectConversation(convId);
-                    }
-                });
+    Utils::oneShotConnect(accInfo.contactModel.get(),
+                          &ContactModel::contactRemoved,
+                          [this, &accInfo, contactInfo](const QString& peerUri) {
+                              // setup a callback to select another ONE_TO_ONE conversation for this peer
+                              // once the new conversation becomes ready
+                              Utils::oneShotConnect(
+                                  accInfo.conversationModel.get(),
+                                  &ConversationModel::conversationReady,
+                                  [this, peerUri, &accInfo](const QString& convId) {
+                                      const auto& convInfo = lrcInstance_->getConversationFromConvUid(convId);
+                                      // 3. filter for the correct contact-conversation and select it
+                                      if (!convInfo.uid.isEmpty() && convInfo.isCoreDialog()
+                                          && peerUri == accInfo.conversationModel->peersForConversation(convId).at(0)) {
+                                          lrcInstance_->selectConversation(convId);
+                                      }
+                                  });
 
-            // 2. add the contact and await the conversationReady signal
-            accInfo.contactModel->addContact(contactInfo);
-        });
+                              // 2. add the contact and await the conversationReady signal
+                              accInfo.contactModel->addContact(contactInfo);
+                          });
 
     // 1. remove the contact and await the contactRemoved signal
     accInfo.contactModel->removeContact(peerUri);
@@ -582,8 +572,7 @@ ConversationsAdapter::ignoreActiveCall(const QString& convId,
 }
 
 void
-ConversationsAdapter::updateConversationDescription(const QString& convId,
-                                                    const QString& newDescription)
+ConversationsAdapter::updateConversationDescription(const QString& convId, const QString& newDescription)
 {
     auto convModel = lrcInstance_->getCurrentConversationModel();
     QMap<QString, QString> details;
@@ -632,36 +621,16 @@ ConversationsAdapter::connectConversationModel()
         connect(obj, signal, this, slot, Qt::UniqueConnection);
     };
 
-    connectObjectSignal(model,
-                        &ConversationModel::modelChanged,
-                        &ConversationsAdapter::onModelChanged);
-    connectObjectSignal(model,
-                        &ConversationModel::profileUpdated,
-                        &ConversationsAdapter::onProfileUpdated);
-    connectObjectSignal(model,
-                        &ConversationModel::conversationUpdated,
-                        &ConversationsAdapter::onConversationUpdated);
-    connectObjectSignal(model,
-                        &ConversationModel::conversationRemoved,
-                        &ConversationsAdapter::onConversationRemoved);
-    connectObjectSignal(model,
-                        &ConversationModel::filterChanged,
-                        &ConversationsAdapter::onFilterChanged);
-    connectObjectSignal(model,
-                        &ConversationModel::conversationCleared,
-                        &ConversationsAdapter::onConversationCleared);
-    connectObjectSignal(model,
-                        &ConversationModel::searchStatusChanged,
-                        &ConversationsAdapter::onSearchStatusChanged);
-    connectObjectSignal(model,
-                        &ConversationModel::searchResultUpdated,
-                        &ConversationsAdapter::onSearchResultUpdated);
-    connectObjectSignal(model,
-                        &ConversationModel::searchResultEnded,
-                        &ConversationsAdapter::onSearchResultEnded);
-    connectObjectSignal(model,
-                        &ConversationModel::conversationReady,
-                        &ConversationsAdapter::onConversationReady);
+    connectObjectSignal(model, &ConversationModel::modelChanged, &ConversationsAdapter::onModelChanged);
+    connectObjectSignal(model, &ConversationModel::profileUpdated, &ConversationsAdapter::onProfileUpdated);
+    connectObjectSignal(model, &ConversationModel::conversationUpdated, &ConversationsAdapter::onConversationUpdated);
+    connectObjectSignal(model, &ConversationModel::conversationRemoved, &ConversationsAdapter::onConversationRemoved);
+    connectObjectSignal(model, &ConversationModel::filterChanged, &ConversationsAdapter::onFilterChanged);
+    connectObjectSignal(model, &ConversationModel::conversationCleared, &ConversationsAdapter::onConversationCleared);
+    connectObjectSignal(model, &ConversationModel::searchStatusChanged, &ConversationsAdapter::onSearchStatusChanged);
+    connectObjectSignal(model, &ConversationModel::searchResultUpdated, &ConversationsAdapter::onSearchResultUpdated);
+    connectObjectSignal(model, &ConversationModel::searchResultEnded, &ConversationsAdapter::onSearchResultEnded);
+    connectObjectSignal(model, &ConversationModel::conversationReady, &ConversationsAdapter::onConversationReady);
 
     connectObjectSignal(lrcInstance_->getCurrentContactModel(),
                         &ContactModel::bannedStatusChanged,

@@ -95,20 +95,17 @@ TipsModel::reset()
                    tr("A red dot means that your account is disconnected from the network; it "
                       "turns green when it’s connected.")},
                   {"type", "tip"}});
-    tips_.append(
-        {{"id", "3"},
-         {"title", tr("Why should I back up my account?")},
-         {"desc",
-          tr("Jami is distributed and your account is only stored locally on your device. If "
-             "you lose your password or your local account data, you WILL NOT be able to "
-             "recover your account if you did not back it up earlier.")},
-         {"type", "tip"}});
-    tips_.append(
-        {{"id", "4"},
-         {"title", tr("Can I make a conference call?")},
-         {"desc",
-          tr("In a call, you can click on “Invite members” to add a contact to a call.")},
-         {"type", "tip"}});
+    tips_.append({{"id", "3"},
+                  {"title", tr("Why should I back up my account?")},
+                  {"desc",
+                   tr("Jami is distributed and your account is only stored locally on your device. If "
+                      "you lose your password or your local account data, you WILL NOT be able to "
+                      "recover your account if you did not back it up earlier.")},
+                  {"type", "tip"}});
+    tips_.append({{"id", "4"},
+                  {"title", tr("Can I make a conference call?")},
+                  {"desc", tr("In a call, you can click on “Invite members” to add a contact to a call.")},
+                  {"type", "tip"}});
     tips_.append({{"id", "6"},
                   {"title", tr("What is a Jami account?")},
                   {"desc",
@@ -121,33 +118,29 @@ TipsModel::reset()
                    tr("When you create a new Jami account, you do not have to provide any private "
                       "information like an email, address, or phone number.")},
                   {"type", "tip"}});
-    tips_.append(
-        {{"id", "8"},
-         {"title", tr("Why don’t I have to use a password?")},
-         {"desc",
-          tr("With Jami, your account is stored in a directory on your device. The password "
-             "is only used to encrypt your account in order to protect you from someone "
-             "who has physical access to your device.")},
-         {"type", "tip"}});
-    tips_.append(
-        {{"id", "9"},
-         {"title", tr("Why don’t I have to register a username?")},
-         {"desc",
-          tr("The most permanent, secure identifier is your Jami ID, but since these are difficult "
-             "to use for some people, you also have the option of registering a username.")},
-         {"type", "tip"}});
-    tips_.append(
-        {{"id", "10"},
-         {"title", tr("How can I back up my account?")},
-         {"desc", tr("In Account Settings, a button is available to create a backup your account.")},
-         {"type", "tip"}});
-    tips_.append(
-        {{"id", "11"},
-         {"title", tr("What happens when I delete my account?")},
-         {"desc",
-          tr("Your account is only stored on your own devices. If you delete your account "
-             "from all of your devices, the account is gone forever and you CANNOT recover it.")},
-         {"type", "tip"}});
+    tips_.append({{"id", "8"},
+                  {"title", tr("Why don’t I have to use a password?")},
+                  {"desc",
+                   tr("With Jami, your account is stored in a directory on your device. The password "
+                      "is only used to encrypt your account in order to protect you from someone "
+                      "who has physical access to your device.")},
+                  {"type", "tip"}});
+    tips_.append({{"id", "9"},
+                  {"title", tr("Why don’t I have to register a username?")},
+                  {"desc",
+                   tr("The most permanent, secure identifier is your Jami ID, but since these are difficult "
+                      "to use for some people, you also have the option of registering a username.")},
+                  {"type", "tip"}});
+    tips_.append({{"id", "10"},
+                  {"title", tr("How can I back up my account?")},
+                  {"desc", tr("In Account Settings, a button is available to create a backup your account.")},
+                  {"type", "tip"}});
+    tips_.append({{"id", "11"},
+                  {"title", tr("What happens when I delete my account?")},
+                  {"desc",
+                   tr("Your account is only stored on your own devices. If you delete your account "
+                      "from all of your devices, the account is gone forever and you CANNOT recover it.")},
+                  {"type", "tip"}});
     tips_.append({{"id", "12"},
                   {"title", tr("Can I use my account on multiple devices?")},
                   {"desc",

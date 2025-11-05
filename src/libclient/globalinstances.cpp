@@ -98,7 +98,10 @@ setPixmapManipulator(std::unique_ptr<Interfaces::PixmapManipulatorI> instance)
  *    collection APIs.
  */
 #define REGISTER_INTERFACE(I, m) \
-    void setInterfaceInternal(I* i) { instanceManager().m = std::unique_ptr<I>(i); }
+    void setInterfaceInternal(I* i) \
+    { \
+        instanceManager().m = std::unique_ptr<I>(i); \
+    }
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wmissing-declarations"

@@ -122,9 +122,7 @@ public Q_SLOTS:
      * @param state
      * @param details map
      */
-    void slotDeviceAuthStateChanged(const QString& accountID,
-                                    int state,
-                                    const MapStringString& details);
+    void slotDeviceAuthStateChanged(const QString& accountID, int state, const MapStringString& details);
 
     /**
      * Emit addDeviceStateChanged.
@@ -184,9 +182,7 @@ public Q_SLOTS:
      * @param displayName
      * @param userPhoto
      */
-    void slotAccountProfileReceived(const QString& accountId,
-                                    const QString& displayName,
-                                    const QString& userPhoto);
+    void slotAccountProfileReceived(const QString& accountId, const QString& displayName, const QString& userPhoto);
     /**
      * Emit new position
      * @param accountId
@@ -232,8 +228,7 @@ AccountModel::setAccountEnabled(const QString& accountId, bool enabled) const
 }
 
 void
-AccountModel::setAccountConfig(const QString& accountId,
-                               const account::ConfProperties_t& confProperties) const
+AccountModel::setAccountConfig(const QString& accountId, const account::ConfProperties_t& confProperties) const
 {
     auto& accountInfo = pimpl_->getAccountInfo(accountId);
     auto& configurationManager = ConfigurationManager::instance();
@@ -244,9 +239,8 @@ AccountModel::setAccountConfig(const QString& accountId,
     details[ConfProperties::ENABLED] = accountInfo.enabled ? QString("true") : QString("false");
     details[ConfProperties::ALIAS] = accountInfo.profileInfo.alias;
     details[ConfProperties::DISPLAYNAME] = accountInfo.profileInfo.alias;
-    details[ConfProperties::TYPE] = (accountInfo.profileInfo.type == profile::Type::JAMI)
-                                        ? QString(ProtocolNames::RING)
-                                        : QString(ProtocolNames::SIP);
+    details[ConfProperties::TYPE] = (accountInfo.profileInfo.type == profile::Type::JAMI) ? QString(ProtocolNames::RING)
+                                                                                          : QString(ProtocolNames::SIP);
     if (accountInfo.profileInfo.type == profile::Type::JAMI) {
         details[ConfProperties::USERNAME] = accountInfo.profileInfo.uri;
     } else if (accountInfo.profileInfo.type == profile::Type::SIP) {
@@ -255,8 +249,7 @@ AccountModel::setAccountConfig(const QString& accountId,
         MapStringString credentials;
         credentials[ConfProperties::USERNAME] = confProperties.username;
         credentials[ConfProperties::PASSWORD] = confProperties.password;
-        credentials[ConfProperties::REALM] = confProperties.realm.isEmpty() ? "*"
-                                                                            : confProperties.realm;
+        credentials[ConfProperties::REALM] = confProperties.realm.isEmpty() ? "*" : confProperties.realm;
 
         auto credentialsVec = confProperties.credentials;
         credentialsVec[0] = credentials;
@@ -268,8 +261,7 @@ AccountModel::setAccountConfig(const QString& accountId,
             finalCred.append(credMap);
         }
 
-        VectorMapStringString oldCredentials = ConfigurationManager::instance().getCredentials(
-            accountId);
+        VectorMapStringString oldCredentials = ConfigurationManager::instance().getCredentials(accountId);
         if (oldCredentials.empty() || finalCred.empty()
             || oldCredentials[0][ConfProperties::PASSWORD] != finalCred[0][ConfProperties::PASSWORD]
             || oldCredentials[0][ConfProperties::REALM] != finalCred[0][ConfProperties::REALM]
@@ -296,12 +288,11 @@ AccountModel::setAlias(const QString& accountId, const QString& alias, bool save
     accountInfo.profileInfo.alias = alias;
 
     if (save)
-        ConfigurationManager::instance()
-            .updateProfile(accountId,
-                           alias,
-                           "",
-                           "",
-                           5); // flag out of range to avoid updating avatar
+        ConfigurationManager::instance().updateProfile(accountId,
+                                                       alias,
+                                                       "",
+                                                       "",
+                                                       5); // flag out of range to avoid updating avatar
     Q_EMIT profileUpdated(accountId);
 }
 
@@ -313,37 +304,26 @@ AccountModel::setAvatar(const QString& accountId, const QString& avatar, bool sa
         return;
     accountInfo.profileInfo.avatar = avatar;
     if (save)
-        ConfigurationManager::instance().updateProfile(accountId,
-                                                       accountInfo.profileInfo.alias,
-                                                       avatar,
-                                                       "PNG",
-                                                       flag);
+        ConfigurationManager::instance().updateProfile(accountId, accountInfo.profileInfo.alias, avatar, "PNG", flag);
     Q_EMIT profileUpdated(accountId);
 }
 
 bool
-AccountModel::registerName(const QString& accountId,
-                           const QString& password,
-                           const QString& username)
+AccountModel::registerName(const QString& accountId, const QString& password, const QString& username)
 {
     return ConfigurationManager::instance().registerName(accountId, username, "password", password);
 }
 
 bool
-AccountModel::exportToFile(const QString& accountId,
-                           const QString& path,
-                           const QString& password) const
+AccountModel::exportToFile(const QString& accountId, const QString& path, const QString& password) const
 {
     return ConfigurationManager::instance().exportToFile(accountId, path, "password", password);
 }
 
 bool
-AccountModel::provideAccountAuthentication(const QString& accountId,
-                                           const QString& credentialsFromUser) const
+AccountModel::provideAccountAuthentication(const QString& accountId, const QString& credentialsFromUser) const
 {
-    return ConfigurationManager::instance().provideAccountAuthentication(accountId,
-                                                                         credentialsFromUser,
-                                                                         "password");
+    return ConfigurationManager::instance().provideAccountAuthentication(accountId, credentialsFromUser, "password");
 }
 
 int32_t
@@ -381,9 +361,7 @@ AccountModel::changeAccountPassword(const QString& accountId,
                                     const QString& currentPassword,
                                     const QString& newPassword) const
 {
-    return ConfigurationManager::instance().changeAccountPassword(accountId,
-                                                                  currentPassword,
-                                                                  newPassword);
+    return ConfigurationManager::instance().changeAccountPassword(accountId, currentPassword, newPassword);
 }
 
 const account::Info&
@@ -391,8 +369,7 @@ AccountModel::getAccountInfo(const QString& accountId) const
 {
     auto accountInfo = pimpl_->accounts.find(accountId);
     if (accountInfo == pimpl_->accounts.end())
-        throw std::out_of_range("AccountModel::getAccountInfo, unable to find account "
-                                + accountId.toStdString());
+        throw std::out_of_range("AccountModel::getAccountInfo, unable to find account " + accountId.toStdString());
 
     return accountInfo->second.first;
 }
@@ -422,10 +399,7 @@ AccountModelPimpl::AccountModelPimpl(AccountModel& linked,
         addToAccounts(id);
     }
 
-    connect(&callbacksHandler,
-            &CallbacksHandler::accountsChanged,
-            this,
-            &AccountModelPimpl::updateAccounts);
+    connect(&callbacksHandler, &CallbacksHandler::accountsChanged, this, &AccountModelPimpl::updateAccounts);
     connect(&callbacksHandler,
             &CallbacksHandler::accountStatusChanged,
             this,
@@ -442,10 +416,7 @@ AccountModelPimpl::AccountModelPimpl(AccountModel& linked,
             &CallbacksHandler::deviceAuthStateChanged,
             &linked,
             &AccountModel::deviceAuthStateChanged);
-    connect(&callbacksHandler,
-            &CallbacksHandler::addDeviceStateChanged,
-            &linked,
-            &AccountModel::addDeviceStateChanged);
+    connect(&callbacksHandler, &CallbacksHandler::addDeviceStateChanged, &linked, &AccountModel::addDeviceStateChanged);
     connect(&callbacksHandler,
             &CallbacksHandler::nameRegistrationEnded,
             this,
@@ -454,14 +425,8 @@ AccountModelPimpl::AccountModelPimpl(AccountModel& linked,
             &CallbacksHandler::registeredNameFound,
             this,
             &AccountModelPimpl::slotRegisteredNameFound);
-    connect(&callbacksHandler,
-            &CallbacksHandler::migrationEnded,
-            this,
-            &AccountModelPimpl::slotMigrationEnded);
-    connect(&callbacksHandler,
-            &CallbacksHandler::newPosition,
-            this,
-            &AccountModelPimpl::slotNewPosition);
+    connect(&callbacksHandler, &CallbacksHandler::migrationEnded, this, &AccountModelPimpl::slotMigrationEnded);
+    connect(&callbacksHandler, &CallbacksHandler::newPosition, this, &AccountModelPimpl::slotNewPosition);
 }
 
 AccountModelPimpl::~AccountModelPimpl() {}
@@ -544,15 +509,13 @@ AccountModelPimpl::getAccountInfo(const QString& accountId)
 {
     auto account = accounts.find(accountId);
     if (account == accounts.end()) {
-        throw std::out_of_range("AccountModelPimpl::getAccountInfo, unable to find "
-                                + accountId.toStdString());
+        throw std::out_of_range("AccountModelPimpl::getAccountInfo, unable to find " + accountId.toStdString());
     }
     return account->second.first;
 }
 
 void
-AccountModelPimpl::slotAccountStatusChanged(const QString& accountID,
-                                            const api::account::Status status)
+AccountModelPimpl::slotAccountStatusChanged(const QString& accountID, const api::account::Status status)
 {
     if (status == api::account::Status::STATUS_INVALID) {
         Q_EMIT linked.invalidAccountDetected(accountID);
@@ -568,8 +531,7 @@ AccountModelPimpl::slotAccountStatusChanged(const QString& accountID,
     auto& accountInfo = it->second.first;
 
     if (accountInfo.profileInfo.type != profile::Type::SIP) {
-        if (status != api::account::Status::INITIALIZING
-            && accountInfo.status == api::account::Status::INITIALIZING) {
+        if (status != api::account::Status::INITIALIZING && accountInfo.status == api::account::Status::INITIALIZING) {
             // Detect when a new account is generated (keys are ready). During
             // the generation, an account got the "INITIALIZING" status.
             // When keys are generated, the status will change.
@@ -590,8 +552,7 @@ AccountModelPimpl::slotAccountStatusChanged(const QString& accountID,
 }
 
 void
-AccountModelPimpl::slotAccountDetailsChanged(const QString& accountId,
-                                             const MapStringString& details)
+AccountModelPimpl::slotAccountDetailsChanged(const QString& accountId, const MapStringString& details)
 {
     auto account = accounts.find(accountId);
     if (account == accounts.end()) {
@@ -611,8 +572,7 @@ AccountModelPimpl::slotAccountDetailsChanged(const QString& accountId,
 }
 
 void
-AccountModelPimpl::slotVolatileAccountDetailsChanged(const QString& accountId,
-                                                     const MapStringString& details)
+AccountModelPimpl::slotVolatileAccountDetailsChanged(const QString& accountId, const MapStringString& details)
 {
     auto account = accounts.find(accountId);
     if (account == accounts.end()) {
@@ -638,9 +598,7 @@ AccountModelPimpl::slotVolatileAccountDetailsChanged(const QString& accountId,
 }
 
 void
-AccountModelPimpl::slotDeviceAuthStateChanged(const QString& accountId,
-                                              int state,
-                                              const MapStringString& details)
+AccountModelPimpl::slotDeviceAuthStateChanged(const QString& accountId, int state, const MapStringString& details)
 {
     // implement business logic here
     // can be bypassed with a signal to signal
@@ -657,9 +615,7 @@ AccountModelPimpl::slotAddDeviceStateChanged(const QString& accountId,
 }
 
 void
-AccountModelPimpl::slotNameRegistrationEnded(const QString& accountId,
-                                             int status,
-                                             const QString& name)
+AccountModelPimpl::slotNameRegistrationEnded(const QString& accountId, int status, const QString& name)
 {
     account::RegisterNameStatus convertedStatus = account::RegisterNameStatus::RNS_INVALID;
     switch (status) {
@@ -716,11 +672,7 @@ AccountModelPimpl::slotRegisteredNameFound(const QString& accountId,
     default:
         break;
     }
-    Q_EMIT linked.registeredNameFound(accountId,
-                                      requestedName,
-                                      convertedStatus,
-                                      address,
-                                      registeredName);
+    Q_EMIT linked.registeredNameFound(accountId, requestedName, convertedStatus, address, registeredName);
 }
 
 void
@@ -802,21 +754,14 @@ AccountModelPimpl::addToAccounts(const QString& accountId)
 
     // Initialize models for this account.
     newAccInfo.accountModel = &linked;
-    newAccInfo.callModel = std::make_unique<CallModel>(newAccInfo,
-                                                       lrc,
-                                                       callbacksHandler,
-                                                       behaviorController);
-    newAccInfo.contactModel = std::make_unique<ContactModel>(newAccInfo,
-                                                             *db,
-                                                             callbacksHandler,
-                                                             behaviorController);
+    newAccInfo.callModel = std::make_unique<CallModel>(newAccInfo, lrc, callbacksHandler, behaviorController);
+    newAccInfo.contactModel = std::make_unique<ContactModel>(newAccInfo, *db, callbacksHandler, behaviorController);
     newAccInfo.conversationModel = std::make_unique<ConversationModel>(newAccInfo,
                                                                        lrc,
                                                                        *db,
                                                                        callbacksHandler,
                                                                        behaviorController);
-    newAccInfo.peerDiscoveryModel = std::make_unique<PeerDiscoveryModel>(callbacksHandler,
-                                                                         accountId);
+    newAccInfo.peerDiscoveryModel = std::make_unique<PeerDiscoveryModel>(callbacksHandler, accountId);
     newAccInfo.deviceModel = std::make_unique<DeviceModel>(newAccInfo, callbacksHandler);
     newAccInfo.codecModel = std::make_unique<CodecModel>(newAccInfo, callbacksHandler);
     newAccInfo.dataTransferModel = std::make_unique<DataTransferModel>();
@@ -851,21 +796,17 @@ void
 account::Info::fromDetails(const MapStringString& details)
 {
     using namespace libjami::Account;
-    const MapStringString volatileDetails = ConfigurationManager::instance()
-                                                .getVolatileAccountDetails(id);
+    const MapStringString volatileDetails = ConfigurationManager::instance().getVolatileAccountDetails(id);
 
     // General
     if (details[ConfProperties::TYPE] != "")
-        profileInfo.type = details[ConfProperties::TYPE] == QString(ProtocolNames::RING)
-                               ? profile::Type::JAMI
-                               : profile::Type::SIP;
-    registeredName = profileInfo.type == profile::Type::JAMI
-                         ? volatileDetails[VolatileProperties::REGISTERED_NAME]
-                         : "";
+        profileInfo.type = details[ConfProperties::TYPE] == QString(ProtocolNames::RING) ? profile::Type::JAMI
+                                                                                         : profile::Type::SIP;
+    registeredName = profileInfo.type == profile::Type::JAMI ? volatileDetails[VolatileProperties::REGISTERED_NAME]
+                                                             : "";
     profileInfo.alias = details[ConfProperties::DISPLAYNAME];
     enabled = toBool(details[ConfProperties::ENABLED]);
-    status = lrc::api::account::to_status(
-        volatileDetails[libjami::Account::ConfProperties::Registration::STATUS]);
+    status = lrc::api::account::to_status(volatileDetails[libjami::Account::ConfProperties::Registration::STATUS]);
     confProperties.mailbox = details[ConfProperties::MAILBOX];
     confProperties.dtmfType = details[ConfProperties::DTMF_TYPE];
     confProperties.autoAnswer = toBool(details[ConfProperties::AUTOANSWER]);
@@ -875,8 +816,7 @@ account::Info::fromDetails(const MapStringString& details)
     confProperties.isRendezVous = toBool(details[ConfProperties::ISRENDEZVOUS]);
     confProperties.activeCallLimit = toInt(details[ConfProperties::ACTIVE_CALL_LIMIT]);
     confProperties.hostname = details[ConfProperties::HOSTNAME];
-    profileInfo.uri = (profileInfo.type == profile::Type::JAMI
-                       and details[ConfProperties::USERNAME].contains("ring:"))
+    profileInfo.uri = (profileInfo.type == profile::Type::JAMI and details[ConfProperties::USERNAME].contains("ring:"))
                           ? QString(details[ConfProperties::USERNAME]).remove(QString("ring:"))
                           : details[ConfProperties::USERNAME];
     confProperties.username = details[ConfProperties::USERNAME];
@@ -913,8 +853,7 @@ account::Info::fromDetails(const MapStringString& details)
     confProperties.dhtProxyListUrl = QString(details[ConfProperties::DHT_PROXY_LIST_URL]);
     confProperties.proxyListEnabled = toBool(details[ConfProperties::PROXY_LIST_ENABLED]);
     confProperties.defaultModerators = QString(details[ConfProperties::DEFAULT_MODERATORS]);
-    confProperties.localModeratorsEnabled = toBool(
-        details[ConfProperties::LOCAL_MODERATORS_ENABLED]);
+    confProperties.localModeratorsEnabled = toBool(details[ConfProperties::LOCAL_MODERATORS_ENABLED]);
     // Audio
     confProperties.Audio.audioPortMax = toInt(details[ConfProperties::Audio::PORT_MAX]);
     confProperties.Audio.audioPortMin = toInt(details[ConfProperties::Audio::PORT_MIN]);
@@ -932,10 +871,8 @@ account::Info::fromDetails(const MapStringString& details)
     confProperties.TURN.password = details[ConfProperties::TURN::SERVER_PWD];
     confProperties.TURN.realm = details[ConfProperties::TURN::SERVER_REALM];
     // Presence
-    confProperties.Presence.presencePublishSupported = toBool(
-        details[ConfProperties::Presence::SUPPORT_PUBLISH]);
-    confProperties.Presence.presenceSubscribeSupported = toBool(
-        details[ConfProperties::Presence::SUPPORT_SUBSCRIBE]);
+    confProperties.Presence.presencePublishSupported = toBool(details[ConfProperties::Presence::SUPPORT_PUBLISH]);
+    confProperties.Presence.presenceSubscribeSupported = toBool(details[ConfProperties::Presence::SUPPORT_SUBSCRIBE]);
     confProperties.Presence.presenceEnabled = toBool(details[ConfProperties::Presence::ENABLED]);
     // Ringtone
     confProperties.Ringtone.ringtonePath = details[ConfProperties::Ringtone::PATH];
@@ -957,10 +894,8 @@ account::Info::fromDetails(const MapStringString& details)
     confProperties.TLS.password = details[ConfProperties::TLS::PASSWORD];
     confProperties.TLS.verifyServer = toBool(details[ConfProperties::TLS::VERIFY_SERVER]);
     confProperties.TLS.verifyClient = toBool(details[ConfProperties::TLS::VERIFY_CLIENT]);
-    confProperties.TLS.requireClientCertificate = toBool(
-        details[ConfProperties::TLS::REQUIRE_CLIENT_CERTIFICATE]);
-    confProperties.TLS.disableSecureDlgCheck = toBool(
-        details[ConfProperties::TLS::DISABLE_SECURE_DLG_CHECK]);
+    confProperties.TLS.requireClientCertificate = toBool(details[ConfProperties::TLS::REQUIRE_CLIENT_CERTIFICATE]);
+    confProperties.TLS.disableSecureDlgCheck = toBool(details[ConfProperties::TLS::DISABLE_SECURE_DLG_CHECK]);
     // DHT
     confProperties.DHT.PublicInCalls = toBool(details[ConfProperties::DHT::PUBLIC_IN_CALLS]);
     confProperties.DHT.AllowFromTrusted = toBool(details[ConfProperties::DHT::ALLOW_FROM_TRUSTED]);
@@ -1044,19 +979,15 @@ account::ConfProperties_t::toDetails() const
     details[ConfProperties::TURN::SERVER_PWD] = this->TURN.password;
     details[ConfProperties::TURN::SERVER_REALM] = this->TURN.realm;
     // Presence
-    details[ConfProperties::Presence::SUPPORT_PUBLISH] = toQString(
-        this->Presence.presencePublishSupported);
-    details[ConfProperties::Presence::SUPPORT_SUBSCRIBE] = toQString(
-        this->Presence.presenceSubscribeSupported);
+    details[ConfProperties::Presence::SUPPORT_PUBLISH] = toQString(this->Presence.presencePublishSupported);
+    details[ConfProperties::Presence::SUPPORT_SUBSCRIBE] = toQString(this->Presence.presenceSubscribeSupported);
     details[ConfProperties::Presence::ENABLED] = toQString(this->Presence.presenceEnabled);
     // Ringtone
     details[ConfProperties::Ringtone::PATH] = this->Ringtone.ringtonePath;
     details[ConfProperties::Ringtone::ENABLED] = toQString(this->Ringtone.ringtoneEnabled);
     // SRTP
-    details[ConfProperties::SRTP::KEY_EXCHANGE] = this->SRTP.keyExchange
-                                                          == account::KeyExchangeProtocol::NONE
-                                                      ? ""
-                                                      : "sdes";
+    details[ConfProperties::SRTP::KEY_EXCHANGE] = this->SRTP.keyExchange == account::KeyExchangeProtocol::NONE ? ""
+                                                                                                               : "sdes";
     details[ConfProperties::SRTP::ENABLED] = toQString(this->SRTP.enable);
     // TLS
     details[ConfProperties::TLS::LISTENER_PORT] = toQString(this->TLS.listenerPort);
@@ -1068,10 +999,8 @@ account::ConfProperties_t::toDetails() const
     details[ConfProperties::TLS::PASSWORD] = this->TLS.password;
     details[ConfProperties::TLS::VERIFY_SERVER] = toQString(this->TLS.verifyServer);
     details[ConfProperties::TLS::VERIFY_CLIENT] = toQString(this->TLS.verifyClient);
-    details[ConfProperties::TLS::REQUIRE_CLIENT_CERTIFICATE] = toQString(
-        this->TLS.requireClientCertificate);
-    details[ConfProperties::TLS::DISABLE_SECURE_DLG_CHECK] = toQString(
-        this->TLS.disableSecureDlgCheck);
+    details[ConfProperties::TLS::REQUIRE_CLIENT_CERTIFICATE] = toQString(this->TLS.requireClientCertificate);
+    details[ConfProperties::TLS::DISABLE_SECURE_DLG_CHECK] = toQString(this->TLS.disableSecureDlgCheck);
     // DHT
     details[ConfProperties::DHT::PUBLIC_IN_CALLS] = toQString(this->DHT.PublicInCalls);
     details[ConfProperties::DHT::ALLOW_FROM_TRUSTED] = toQString(this->DHT.AllowFromTrusted);
@@ -1097,9 +1026,8 @@ AccountModel::createNewAccount(profile::Type type,
                                const QString& uri)
 {
     // Get the template for the account type to prefill the details
-    MapStringString details = type == profile::Type::SIP
-                                  ? ConfigurationManager::instance().getAccountTemplate("SIP")
-                                  : ConfigurationManager::instance().getAccountTemplate("RING");
+    MapStringString details = type == profile::Type::SIP ? ConfigurationManager::instance().getAccountTemplate("SIP")
+                                                         : ConfigurationManager::instance().getAccountTemplate("RING");
 
     // Add the supplied config to the details
     if (!config.isEmpty()) {
@@ -1113,8 +1041,7 @@ AccountModel::createNewAccount(profile::Type type,
     // Add the rest of the details if we are not creating an ephemeral account for linking
     // in which case the ARCHIVE_URL was set to "jami-auth" or the MANAGER_URI was set to
     // the account manager URI in the case of a remote account manager connection
-    if (details[ConfProperties::ARCHIVE_URL].isEmpty()
-        && details[ConfProperties::MANAGER_URI].isEmpty()) {
+    if (details[ConfProperties::ARCHIVE_URL].isEmpty() && details[ConfProperties::MANAGER_URI].isEmpty()) {
         details[ConfProperties::TYPE] = type == profile::Type::SIP ? "SIP" : "RING";
         details[ConfProperties::DISPLAYNAME] = displayName;
         details[ConfProperties::ALIAS] = displayName;
@@ -1218,9 +1145,7 @@ AccountModel::bestIdForAccount(const QString& accountID)
 }
 
 void
-AccountModel::setDefaultModerator(const QString& accountID,
-                                  const QString& peerURI,
-                                  const bool& state)
+AccountModel::setDefaultModerator(const QString& accountID, const QString& peerURI, const bool& state)
 {
     ConfigurationManager::instance().setDefaultModerator(accountID, peerURI, state);
 }

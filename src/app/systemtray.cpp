@@ -106,8 +106,7 @@ SystemTray::SystemTray(AppSettingsManager* settingsManager, QObject* parent)
     char* spec = nullptr;
 
     if (notify_get_server_info(&name, &vendor, &version, &spec)) {
-        C_INFO << QString("notify server name: %1, vendor: %2, version: %3, spec: %4")
-                      .arg(name, vendor, version, spec);
+        C_INFO << QString("notify server name: %1, vendor: %2, version: %3, spec: %4").arg(name, vendor, version, spec);
     }
 
     // check  notify server capabilities
@@ -180,11 +179,8 @@ SystemTray::hideNotification(const QString& id)
 }
 
 void
-SystemTray::showNotification(const QString& id,
-                             const QString& title,
-                             const QString& body,
-                             NotificationType type,
-                             const QByteArray& avatar)
+SystemTray::showNotification(
+    const QString& id, const QString& title, const QString& body, NotificationType type, const QByteArray& avatar)
 {
     if (!settingsManager_->getValue(Settings::Key::EnableNotifications).toBool())
         return;
@@ -194,9 +190,10 @@ SystemTray::showNotification(const QString& id,
     if (pimpl_->notifications.find(id) != pimpl_->notifications.end())
         hideNotification(id);
 
-    std::shared_ptr<NotifyNotification> notification(
-        notify_notification_new(title.toStdString().c_str(), body.toStdString().c_str(), nullptr),
-        g_object_unref);
+    std::shared_ptr<NotifyNotification> notification(notify_notification_new(title.toStdString().c_str(),
+                                                                             body.toStdString().c_str(),
+                                                                             nullptr),
+                                                     g_object_unref);
     Notification n = {notification, id};
 
     pimpl_->notifications.emplace(id, n);
@@ -248,9 +245,7 @@ SystemTray::showNotification(const QString& id,
 
 #else
 void
-SystemTray::showNotification(const QString& message,
-                             const QString& from,
-                             std::function<void()> const& onClickedCb)
+SystemTray::showNotification(const QString& message, const QString& from, std::function<void()> const& onClickedCb)
 {
     if (!settingsManager_->getValue(Settings::Key::EnableNotifications).toBool())
         return;

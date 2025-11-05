@@ -133,24 +133,22 @@ public:
      * @param  search name filter
      * @return filtered conversations
      */
-    QMap<ConferenceableItem, ConferenceableValue> getConferenceableConversations(
-        const QString& convId, const QString& filter = {}) const;
+    QMap<ConferenceableItem, ConferenceableValue> getConferenceableConversations(const QString& convId,
+                                                                                 const QString& filter = {}) const;
     /**
      * Get a custom filtered set of conversations
      * @return conversations filtered
      */
-    const ConversationQueueProxy& getFilteredConversations(
-        const FilterType& filter = FilterType::INVALID,
-        bool forceUpdate = false,
-        const bool includeBanned = false) const;
+    const ConversationQueueProxy& getFilteredConversations(const FilterType& filter = FilterType::INVALID,
+                                                           bool forceUpdate = false,
+                                                           const bool includeBanned = false) const;
     /**
      * Get a custom filtered set of conversations from profile type
      * @return conversations filtered
      */
-    const ConversationQueueProxy& getFilteredConversations(
-        const profile::Type& profileType = profile::Type::INVALID,
-        bool forceUpdate = false,
-        const bool includeBanned = false) const;
+    const ConversationQueueProxy& getFilteredConversations(const profile::Type& profileType = profile::Type::INVALID,
+                                                           bool forceUpdate = false,
+                                                           const bool includeBanned = false) const;
     /**
      * Get the conversation at row in the filtered conversations
      * @param  row
@@ -193,7 +191,7 @@ public:
      * @param banned if we want to ban the contact.
      * @param keepContact if we want to keep the contact. New conversation could be created
      */
-    void removeConversation(const QString& uid, bool banned = false,  bool keepContact = false);
+    void removeConversation(const QString& uid, bool banned = false, bool keepContact = false);
     /**
      * Get the action wanted by the user when they click on the conversation
      * @param uid of the conversation
@@ -209,11 +207,8 @@ public:
      * @param uid of the conversation
      */
     void placeAudioOnlyCall(const QString& uid);
-    void joinCall(const QString& uid,
-                  const QString& confId,
-                  const QString& uri,
-                  const QString& deviceId,
-                  bool isAudioOnly);
+    void joinCall(
+        const QString& uid, const QString& confId, const QString& uri, const QString& deviceId, bool isAudioOnly);
     /**
      * Send a message to the conversation
      * @param uid of the conversation
@@ -273,19 +268,14 @@ public:
      * @param participant uri
      * @return whether the interaction is last displayed for the conversation
      */
-    bool isLastDisplayed(const QString& convId,
-                         const QString& interactionId,
-                         const QString participant);
+    bool isLastDisplayed(const QString& convId, const QString& interactionId, const QString participant);
     /**
      * delete obsolete history from the database
      * @param days, number of days from today. Below this date, interactions will be deleted
      */
     void deleteObsoleteHistory(int date);
 
-    void sendFile(const QString& convUid,
-                  const QString& path,
-                  const QString& filename,
-                  const QString& parent);
+    void sendFile(const QString& convUid, const QString& path, const QString& filename, const QString& parent);
 
     void acceptTransfer(const QString& convUid, const QString& interactionId);
 
@@ -294,17 +284,12 @@ public:
     void getTransferInfo(const QString& conversationId,
                          const QString& interactionId,
                          api::datatransfer::Info& info) const;
-    void removeFile(const QString& conversationId,
-                    const QString& interactionId,
-                    const QString& path);
+    void removeFile(const QString& conversationId, const QString& interactionId, const QString& path);
 
     /**
      * Starts a search of all medias in a conversation
      */
-    void getConvMediasInfos(const QString& accountId,
-                            const QString& conversationId,
-                            const QString& text,
-                            bool isMedia);
+    void getConvMediasInfos(const QString& accountId, const QString& conversationId, const QString& text, bool isMedia);
     /**
      * @param convUid, uid of the conversation
      * @return the number of unread messages for the conversation
@@ -383,10 +368,7 @@ public:
      * @param uri
      * @param device
      */
-    void ignoreActiveCall(const QString& convId,
-                          const QString& id,
-                          const QString& uri,
-                          const QString& device);
+    void ignoreActiveCall(const QString& convId, const QString& id, const QString& uri, const QString& device);
 
     /**
      * @return if conversations requests exists.
@@ -440,9 +422,7 @@ Q_SIGNALS:
      * @param interactionId
      * @param interactionInfo
      */
-    void newInteraction(const QString& uid,
-                        QString& interactionId,
-                        const interaction::Info& interactionInfo) const;
+    void newInteraction(const QString& uid, QString& interactionId, const interaction::Info& interactionInfo) const;
     /**
      * Emitted when an interaction got removed from the conversation
      * @param convUid conversation which owns the interaction
@@ -509,9 +489,7 @@ Q_SIGNALS:
      * @param contactUri    contact's uri
      * @param isComposing   if contact is composing a message
      */
-    void composingStatusChanged(const QString& uid,
-                                const QString& contactUri,
-                                bool isComposing) const;
+    void composingStatusChanged(const QString& uid, const QString& contactUri, bool isComposing) const;
 
     /**
      * Emitted when search status changed

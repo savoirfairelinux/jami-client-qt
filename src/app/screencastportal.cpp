@@ -57,8 +57,7 @@ ScreenCastPortal::dbusCallDataFree(DbusCallData* ptr_dbus_call_data)
         return;
 
     if (ptr_dbus_call_data->signal_id)
-        g_dbus_connection_signal_unsubscribe(ptr_dbus_call_data->portal->connection,
-                                             ptr_dbus_call_data->signal_id);
+        g_dbus_connection_signal_unsubscribe(ptr_dbus_call_data->portal->connection, ptr_dbus_call_data->signal_id);
 
     g_clear_pointer(&ptr_dbus_call_data->request_path, g_free);
 }
@@ -97,9 +96,7 @@ ScreenCastPortal::openPipewireRemote()
 
     result = g_dbus_proxy_call_with_unix_fd_list_sync(proxy,
                                                       "OpenPipeWireRemote",
-                                                      g_variant_new("(oa{sv})",
-                                                                    session_handle,
-                                                                    &builder),
+                                                      g_variant_new("(oa{sv})", session_handle, &builder),
                                                       G_DBUS_CALL_FLAGS_NONE,
                                                       -1,
                                                       NULL,
@@ -175,13 +172,7 @@ ScreenCastPortal::callDBusMethod(const gchar* method_name, GVariant* parameters)
     GVariant* result;
     GError* error = NULL;
 
-    result = g_dbus_proxy_call_sync(proxy,
-                                    method_name,
-                                    parameters,
-                                    G_DBUS_CALL_FLAGS_NONE,
-                                    -1,
-                                    NULL,
-                                    &error);
+    result = g_dbus_proxy_call_sync(proxy, method_name, parameters, G_DBUS_CALL_FLAGS_NONE, -1, NULL, &error);
     if (error) {
         qWarning() << "Call to DBus method" << method_name << "failed:" << error->message;
         g_error_free(error);
@@ -272,15 +263,9 @@ ScreenCastPortal::selectSources()
     g_variant_builder_add(&builder, "{sv}", "handle_token", g_variant_new_string(request_token));
 
     if ((available_cursor_modes & PORTAL_CURSOR_MODE_EMBEDDED) && draw_mouse)
-        g_variant_builder_add(&builder,
-                              "{sv}",
-                              "cursor_mode",
-                              g_variant_new_uint32(PORTAL_CURSOR_MODE_EMBEDDED));
+        g_variant_builder_add(&builder, "{sv}", "cursor_mode", g_variant_new_uint32(PORTAL_CURSOR_MODE_EMBEDDED));
     else
-        g_variant_builder_add(&builder,
-                              "{sv}",
-                              "cursor_mode",
-                              g_variant_new_uint32(PORTAL_CURSOR_MODE_HIDDEN));
+        g_variant_builder_add(&builder, "{sv}", "cursor_mode", g_variant_new_uint32(PORTAL_CURSOR_MODE_HIDDEN));
     parameters = g_variant_new("(oa{sv})", session_handle, &builder);
 
     ret = callDBusMethod("SelectSources", parameters);
@@ -341,10 +326,7 @@ ScreenCastPortal::createSession()
 
     g_variant_builder_init(&builder, G_VARIANT_TYPE_VARDICT);
     g_variant_builder_add(&builder, "{sv}", "handle_token", g_variant_new_string(request_token));
-    g_variant_builder_add(&builder,
-                          "{sv}",
-                          "session_handle_token",
-                          g_variant_new_string("pipewiregrab"));
+    g_variant_builder_add(&builder, "{sv}", "session_handle_token", g_variant_new_string("pipewiregrab"));
     parameters = g_variant_new("(a{sv})", &builder);
 
     ret = callDBusMethod("CreateSession", parameters);
@@ -512,8 +494,7 @@ ScreenCastPortal::~ScreenCastPortal()
     // file descriptor needs to be closed by the client.
     if (close(pipewireFd) != 0) {
         int err = errno;
-        qWarning() << "Error while attempting to close PipeWire file descriptor: errno ="
-                   << err;
+        qWarning() << "Error while attempting to close PipeWire file descriptor: errno =" << err;
     } else {
         qInfo() << "PipeWire file descriptor closed successfully.";
     }

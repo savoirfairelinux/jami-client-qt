@@ -19,8 +19,7 @@
 
 #include "global.h"
 
-VideoInputDeviceModel::VideoInputDeviceModel(LRCInstance* lrcInstance,
-                                             VideoDevices* videoDeviceInstance)
+VideoInputDeviceModel::VideoInputDeviceModel(LRCInstance* lrcInstance, VideoDevices* videoDeviceInstance)
     : QAbstractListModel(videoDeviceInstance)
     , lrcInstance_(lrcInstance)
     , videoDevices_(videoDeviceInstance)
@@ -74,8 +73,7 @@ VideoInputDeviceModel::getCurrentIndex() const
 }
 
 // VideoFormatResolutionModel
-VideoFormatResolutionModel::VideoFormatResolutionModel(LRCInstance* lrcInstance,
-                                                       VideoDevices* videoDeviceInstance)
+VideoFormatResolutionModel::VideoFormatResolutionModel(LRCInstance* lrcInstance, VideoDevices* videoDeviceInstance)
     : QAbstractListModel(videoDeviceInstance)
     , lrcInstance_(lrcInstance)
     , videoDevices_(videoDeviceInstance)
@@ -184,10 +182,7 @@ VideoDevices::VideoDevices(LRCInstance* lrcInstance, QObject* parent)
     resListModel_ = new VideoFormatResolutionModel(lrcInstance, this);
     fpsListModel_ = new VideoFormatFpsModel(lrcInstance, this);
 
-    connect(&lrcInstance_->avModel(),
-            &lrc::api::AVModel::deviceEvent,
-            this,
-            &VideoDevices::onVideoDeviceEvent);
+    connect(&lrcInstance_->avModel(), &lrc::api::AVModel::deviceEvent, this, &VideoDevices::onVideoDeviceEvent);
 
     auto displaySettings = lrcInstance_->avModel().getDeviceSettings(DEVICE_DESKTOP);
 
@@ -210,9 +205,7 @@ VideoDevices::setDefaultDevice(int index)
     QString deviceId {};
     auto callId = lrcInstance_->getCurrentCallId();
 
-    deviceId = deviceListModel_
-                   ->data(deviceListModel_->index(index, 0), VideoInputDeviceModel::DeviceId)
-                   .toString();
+    deviceId = deviceListModel_->data(deviceListModel_->index(index, 0), VideoInputDeviceModel::DeviceId).toString();
 
     lrcInstance_->avModel().setDefaultDevice(deviceId);
 
@@ -227,8 +220,7 @@ VideoDevices::getDefaultDevice()
 {
     auto idx = deviceListModel_->getCurrentIndex();
     auto rendererId = QString("camera://")
-                      + deviceListModel_
-                            ->data(deviceListModel_->index(idx, 0), VideoInputDeviceModel::DeviceId)
+                      + deviceListModel_->data(deviceListModel_->index(idx, 0), VideoInputDeviceModel::DeviceId)
                             .toString();
     return rendererId;
 }
@@ -271,9 +263,7 @@ VideoDevices::setDefaultDeviceRes(int index)
 {
     auto& channelCaps = get_defaultResRateList();
     auto settings = lrcInstance_->avModel().getDeviceSettings(get_defaultId());
-    settings.size = resListModel_
-                        ->data(resListModel_->index(index, 0),
-                               VideoFormatResolutionModel::Resolution)
+    settings.size = resListModel_->data(resListModel_->index(index, 0), VideoFormatResolutionModel::Resolution)
                         .toString();
 
     for (int i = 0; i < channelCaps.size(); i++) {
@@ -292,9 +282,7 @@ VideoDevices::setDefaultDeviceFps(int index)
 {
     auto settings = lrcInstance_->avModel().getDeviceSettings(get_defaultId());
     settings.size = get_defaultRes();
-    settings.rate = fpsListModel_
-                        ->data(fpsListModel_->index(index, 0), VideoFormatFpsModel::FPS_Float)
-                        .toFloat();
+    settings.rate = fpsListModel_->data(fpsListModel_->index(index, 0), VideoFormatFpsModel::FPS_Float).toFloat();
 
     lrcInstance_->avModel().setDeviceSettings(settings);
 
@@ -320,9 +308,8 @@ VideoDevices::updateData()
         auto defaultDevice = lrcInstance_->avModel().getDefaultDevice();
         auto defaultDeviceSettings = lrcInstance_->avModel().getDeviceSettings(defaultDevice);
         auto defaultDeviceCap = lrcInstance_->avModel().getDeviceCapabilities(defaultDevice);
-        auto currentResRateList = defaultDeviceCap[defaultDeviceSettings.channel.isEmpty()
-                                                       ? CHANNEL_DEFAULT
-                                                       : defaultDeviceSettings.channel];
+        auto currentResRateList
+            = defaultDeviceCap[defaultDeviceSettings.channel.isEmpty() ? CHANNEL_DEFAULT : defaultDeviceSettings.channel];
         lrc::api::video::FrameratesList fpsList;
         for (int i = 0; i < currentResRateList.size(); i++) {
             if (currentResRateList[i].first == defaultDeviceSettings.size) {

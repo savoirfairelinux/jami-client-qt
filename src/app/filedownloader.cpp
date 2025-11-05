@@ -31,9 +31,7 @@ FileDownloader::downloadFile(const QUrl& url, const QString& localPath)
         onDownloadFileFinished({}, localPath);
     });
 
-    sendGetRequest(url, [this, localPath](const QByteArray& fileData) {
-        onDownloadFileFinished(fileData, localPath);
-    });
+    sendGetRequest(url, [this, localPath](const QByteArray& fileData) { onDownloadFileFinished(fileData, localPath); });
 }
 
 void

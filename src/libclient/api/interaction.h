@@ -112,15 +112,7 @@ to_type(const QString& type)
         return interaction::Type::INVALID;
 }
 
-enum class Status {
-    INVALID,
-    UNKNOWN,
-    SENDING,
-    FAILURE,
-    SUCCESS,
-    DISPLAYED,
-    COUNT__
-};
+enum class Status { INVALID, UNKNOWN, SENDING, FAILURE, SUCCESS, DISPLAYED, COUNT__ };
 Q_ENUM_NS(Status)
 
 enum class TransferStatus {
@@ -317,24 +309,14 @@ getFormattedCallDuration(const std::time_t duration)
     if (days > 0) {
         hours = hours % 24;
         minutes = minutes % 60;
-        return QObject::tr("%L4d %L3h %L2m %L1s")
-            .arg(seconds)
-            .arg(minutes)
-            .arg(hours)
-            .arg(days);
+        return QObject::tr("%L4d %L3h %L2m %L1s").arg(seconds).arg(minutes).arg(hours).arg(days);
     } else if (hours > 0) {
         minutes = minutes % 60;
-        return QObject::tr("%L3h %L2m %L1s")
-            .arg(seconds)
-            .arg(minutes)
-            .arg(hours);
+        return QObject::tr("%L3h %L2m %L1s").arg(seconds).arg(minutes).arg(hours);
     } else if (minutes > 0) {
-        return QObject::tr("%L2m %L1s")
-            .arg(seconds)
-            .arg(minutes);
+        return QObject::tr("%L2m %L1s").arg(seconds).arg(minutes);
     } else {
-        return QObject::tr("%L1s")
-            .arg(seconds);
+        return QObject::tr("%L1s").arg(seconds);
     }
 }
 
@@ -345,9 +327,7 @@ getFormattedCallDuration(const std::time_t duration)
  * @return the formatted and translated call message string
  */
 static inline QString
-getCallInteractionStringNonSwarm(bool isSelf,
-                                 const std::time_t& duration,
-                                 const QString& reason = "")
+getCallInteractionStringNonSwarm(bool isSelf, const std::time_t& duration, const QString& reason = "")
 {
     if (reason == "busy") {
         return QObject::tr("Busy");
@@ -469,10 +449,7 @@ struct Info
          const QString& accountId = "",
          const QString& conversationId = "");
 
-    Info(const SwarmMessage& msg,
-         const QString& accountUri,
-         const QString& accountId,
-         const QString& conversationId);
+    Info(const SwarmMessage& msg, const QString& accountUri, const QString& accountId, const QString& conversationId);
 };
 
 static inline bool

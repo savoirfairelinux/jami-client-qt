@@ -24,27 +24,17 @@ VideoManagerInterface::VideoManagerInterface()
     using libjami::MediaPlayerSignal;
     videoHandlers
         = {exportable_callback<VideoSignal::DeviceEvent>([this]() { Q_EMIT deviceEvent(); }),
-           exportable_callback<VideoSignal::DecodingStarted>([this](const std::string& id,
-                                                                    const std::string& shmPath,
-                                                                    int width,
-                                                                    int height,
-                                                                    bool isMixer) {
-               Q_EMIT decodingStarted(QString(id.c_str()),
-                                      QString(shmPath.c_str()),
-                                      width,
-                                      height,
-                                      isMixer);
-           }),
+           exportable_callback<VideoSignal::DecodingStarted>(
+               [this](const std::string& id, const std::string& shmPath, int width, int height, bool isMixer) {
+                   Q_EMIT decodingStarted(QString(id.c_str()), QString(shmPath.c_str()), width, height, isMixer);
+               }),
            exportable_callback<VideoSignal::DecodingStopped>(
                [this](const std::string& id, const std::string& shmPath, bool isMixer) {
-                   Q_EMIT decodingStopped(QString(id.c_str()),
-                                          QString(shmPath.c_str()),
-                                          isMixer);
+                   Q_EMIT decodingStopped(QString(id.c_str()), QString(shmPath.c_str()), isMixer);
                }),
            exportable_callback<MediaPlayerSignal::FileOpened>(
                [this](const std::string& path, const std::map<std::string, std::string>& info) {
-                   Q_EMIT fileOpened(QString(path.c_str()),
-                                     convertMap(info));
+                   Q_EMIT fileOpened(QString(path.c_str()), convertMap(info));
                })};
 #endif
 }

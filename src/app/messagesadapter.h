@@ -50,8 +50,7 @@ public:
     bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override
     {
         auto index = sourceModel()->index(sourceRow, 0, sourceParent);
-        auto type = static_cast<interaction::Type>(
-            sourceModel()->data(index, MessageList::Role::Type).toInt());
+        auto type = static_cast<interaction::Type>(sourceModel()->data(index, MessageList::Role::Type).toInt());
         return interaction::isTypeDisplayable(type);
     };
     bool lessThan(const QModelIndex& left, const QModelIndex& right) const override
@@ -125,15 +124,9 @@ public:
     Q_INVOKABLE void unbanConversation(const QString& convUid);
     Q_INVOKABLE void sendMessage(const QString& message);
     Q_INVOKABLE void sendMessageToUid(const QString& message, const QString& convUid);
-    Q_INVOKABLE void editMessage(const QString& convId,
-                                 const QString& newBody,
-                                 const QString& messageId = "");
-    Q_INVOKABLE void addEmojiReaction(const QString& convId,
-                                      const QString& emoji,
-                                      const QString& messageId = "");
-    Q_INVOKABLE void removeEmojiReaction(const QString& convId,
-                                         const QString& emoji,
-                                         const QString& messageId);
+    Q_INVOKABLE void editMessage(const QString& convId, const QString& newBody, const QString& messageId = "");
+    Q_INVOKABLE void addEmojiReaction(const QString& convId, const QString& emoji, const QString& messageId = "");
+    Q_INVOKABLE void removeEmojiReaction(const QString& convId, const QString& emoji, const QString& messageId);
     Q_INVOKABLE void sendFile(const QString& message);
     Q_INVOKABLE void sendFileToUid(const QString& message, const QString& convUid);
     Q_INVOKABLE void acceptFile(const QString& arg);
@@ -160,8 +153,7 @@ public:
                                   const QColor& backgroundColor = QColor(0x0, 0x0, 0x0));
     Q_INVOKABLE void onPaste();
     Q_INVOKABLE QVariantMap getTransferStats(const QString& messageId, int);
-    Q_INVOKABLE QVariant dataForInteraction(const QString& interactionId,
-                                            int role = Qt::DisplayRole) const;
+    Q_INVOKABLE QVariant dataForInteraction(const QString& interactionId, int role = Qt::DisplayRole) const;
     Q_INVOKABLE void startSearch(const QString& text, bool isMedia);
 
     // Run corrsponding js functions, c++ to qml.
@@ -181,17 +173,12 @@ Q_SIGNALS:
     void messageParsed(const QString& msgId, const QString& msg);
 
 private Q_SLOTS:
-    void onNewInteraction(const QString& convUid,
-                          const QString& interactionId,
-                          const interaction::Info& interaction);
+    void onNewInteraction(const QString& convUid, const QString& interactionId, const interaction::Info& interaction);
     void onMessageParsed(const QString& messageId, const QString& parsed);
     void onLinkInfoReady(const QString& messageIndex, const QVariantMap& info);
     void onConversationMessagesLoaded(uint32_t requestId, const QString& convId);
-    void onComposingStatusChanged(const QString& convId,
-                                  const QString& contactUri,
-                                  bool isComposing);
-    void onMessagesFoundProcessed(const QString& accountId,
-                                  const QMap<QString, interaction::Info>& messageInformation);
+    void onComposingStatusChanged(const QString& convId, const QString& contactUri, bool isComposing);
+    void onMessagesFoundProcessed(const QString& accountId, const QMap<QString, interaction::Info>& messageInformation);
 
 private:
     QList<QString> conversationTypersUrlToName(const QSet<QString>& typersSet);

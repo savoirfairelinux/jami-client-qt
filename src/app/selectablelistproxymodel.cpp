@@ -150,8 +150,7 @@ SelectableListProxyModel::onModelTrimmed()
     updateSelection(true);
 }
 
-SelectableListProxyGroupModel::SelectableListProxyGroupModel(QList<SelectableListProxyModel*> models,
-                                                             QObject* parent)
+SelectableListProxyGroupModel::SelectableListProxyGroupModel(QList<SelectableListProxyModel*> models, QObject* parent)
     : QObject(parent)
     , models_(models)
 {

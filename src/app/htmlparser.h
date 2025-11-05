@@ -63,10 +63,7 @@ public:
     {
         TagNodeList result;
         traverseNode(
-            tidyGetRoot(doc_),
-            tags,
-            [&result](TidyNode node, TidyTagId tag) { result[tag].append(node); },
-            maxDepth);
+            tidyGetRoot(doc_), tags, [&result](TidyNode node, TidyTagId tag) { result[tag].append(node); }, maxDepth);
 
         return result;
     }
@@ -75,11 +72,7 @@ public:
     TidyNode getFirstTagNode(TidyTagId tag, int maxDepth = -1)
     {
         TidyNode result = nullptr;
-        traverseNode(
-            tidyGetRoot(doc_),
-            {tag},
-            [&result](TidyNode node, TidyTagId) { result = node; },
-            maxDepth);
+        traverseNode(tidyGetRoot(doc_), {tag}, [&result](TidyNode node, TidyTagId) { result = node; }, maxDepth);
         return result;
     }
 

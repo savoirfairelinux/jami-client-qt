@@ -290,8 +290,7 @@ CodecModelPimpl::loadFromDaemon()
         std::unique_lock<std::mutex> lock(videoCodecsMtx);
         videoCodecs.clear();
     }
-    QVector<unsigned int> activeCodecs = ConfigurationManager::instance().getActiveCodecList(
-        linked.owner.id);
+    QVector<unsigned int> activeCodecs = ConfigurationManager::instance().getActiveCodecList(linked.owner.id);
     for (const auto& id : activeCodecs) {
         addCodec(id, activeCodecs);
     }
@@ -343,8 +342,7 @@ CodecModelPimpl::addCodec(const unsigned int& id, const QVector<unsigned int>& a
     codec.quality = details[libjami::Account::ConfProperties::CodecInfo::QUALITY];
     codec.min_quality = details[libjami::Account::ConfProperties::CodecInfo::MIN_QUALITY];
     codec.max_quality = details[libjami::Account::ConfProperties::CodecInfo::MAX_QUALITY];
-    codec.auto_quality_enabled
-        = details[libjami::Account::ConfProperties::CodecInfo::AUTO_QUALITY_ENABLED] == "true";
+    codec.auto_quality_enabled = details[libjami::Account::ConfProperties::CodecInfo::AUTO_QUALITY_ENABLED] == "true";
     if (codec.type == "AUDIO") {
         std::unique_lock<std::mutex> lock(audioCodecsMtx);
         audioCodecs.push_back(codec);
@@ -367,8 +365,8 @@ CodecModelPimpl::setCodecDetails(const Codec& codec, bool isAudio)
     details[libjami::Account::ConfProperties::CodecInfo::QUALITY] = codec.quality;
     details[libjami::Account::ConfProperties::CodecInfo::MIN_QUALITY] = codec.min_quality;
     details[libjami::Account::ConfProperties::CodecInfo::MAX_QUALITY] = codec.max_quality;
-    details[libjami::Account::ConfProperties::CodecInfo::AUTO_QUALITY_ENABLED]
-        = codec.auto_quality_enabled ? "true" : "false";
+    details[libjami::Account::ConfProperties::CodecInfo::AUTO_QUALITY_ENABLED] = codec.auto_quality_enabled ? "true"
+                                                                                                            : "false";
     ConfigurationManager::instance().setCodecDetails(linked.owner.id, codec.id, details);
 }
 

@@ -61,8 +61,7 @@ PreferenceItemListModel::data(const QModelIndex& index, int role) const
     bool checkImage = false;
 
     auto details = preferenceList_.at(index.row());
-    preferenceCurrent = lrcInstance_->pluginModel()
-                            .getPluginPreferencesValues(pluginId_, accountId_)[details["key"]];
+    preferenceCurrent = lrcInstance_->pluginModel().getPluginPreferencesValues(pluginId_, accountId_)[details["key"]];
     auto it = mapType.find(details["type"]);
     if (it != mapType.end()) {
         type = mapType[details["type"]];
@@ -80,8 +79,7 @@ PreferenceItemListModel::data(const QModelIndex& index, int role) const
     }
     const auto dependsOn = details["dependsOn"].split(",");
     const auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId_, accountId_);
-    const auto prefValues = lrcInstance_->pluginModel().getPluginPreferencesValues(pluginId_,
-                                                                                   accountId_);
+    const auto prefValues = lrcInstance_->pluginModel().getPluginPreferencesValues(pluginId_, accountId_);
     bool enabled = true;
     for (auto& preference : preferences) {
         auto key = preference["key"];

@@ -80,7 +80,10 @@ public:
     {
     public:
         explicit QueryError(QSqlQuery&& query);
-        virtual QString details() { return {}; }
+        virtual QString details()
+        {
+            return {};
+        }
 
         const QSqlQuery query;
     };
@@ -189,9 +192,7 @@ public:
      *
      * @note usually the identifiers has to be the same between bindCol and bindsSet
      */
-    QString insertInto(const QString& table,
-                       const MapStringString& bindCol,
-                       const MapStringString& bindsSet);
+    QString insertInto(const QString& table, const MapStringString& bindCol, const MapStringString& bindsSet);
     /**
      * Update value(s) inside a table.
      * @param table where to perfom the action on.
@@ -247,10 +248,7 @@ public:
      * @param bindsWhere specifies the value(s) to test using the identifier(s). The key is the
      * identifier, it should begin by ':'. The value is the value to test.
      */
-    int count(const QString& count,
-              const QString& table,
-              const QString& where,
-              const MapStringString& bindsWhere);
+    int count(const QString& count, const QString& table, const QString& where, const MapStringString& bindsWhere);
 
     QString basePath_;
 

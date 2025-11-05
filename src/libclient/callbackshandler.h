@@ -72,10 +72,7 @@ Q_SIGNALS:
      * @param contactUri the peer.
      * @param state is 0 if the peer is added.
      */
-    void newPeerSubscription(const QString& accountId,
-                             const QString& contactUri,
-                             int state,
-                             const QString& displayname);
+    void newPeerSubscription(const QString& accountId, const QString& contactUri, int state, const QString& displayname);
     /**
      * Connect this signal to know when a contact is removed by the daemon.
      * @param accountId the one who lost a contact.
@@ -96,9 +93,7 @@ Q_SIGNALS:
      * @param callId the call id
      * @param mediaList new media received
      */
-    void mediaChangeRequested(const QString& accountId,
-                              const QString& callId,
-                              const VectorMapStringString& mediaList);
+    void mediaChangeRequested(const QString& accountId, const QString& callId, const VectorMapStringString& mediaList);
     /**
      * Connect this signal to know when a call is updated
      * @param accountId
@@ -106,19 +101,14 @@ Q_SIGNALS:
      * @param state the new state
      * @param code
      */
-    void callStateChanged(const QString& accountId,
-                          const QString& callId,
-                          const QString& state,
-                          int code);
+    void callStateChanged(const QString& accountId, const QString& callId, const QString& state, int code);
     /**
      * Connect this signal to know when a call medias are available
      * @param callId the call id
      * @param event
      * @param mediaList new mediaList for the call
      */
-    void mediaNegotiationStatus(const QString& callId,
-                                const QString& event,
-                                const VectorMapStringString& mediaList);
+    void mediaNegotiationStatus(const QString& callId, const QString& event, const VectorMapStringString& mediaList);
     /**
      * Connect this signal to know when the account details have changed
      * @param accountId the one who changes
@@ -171,9 +161,7 @@ Q_SIGNALS:
      * Connect this signal to know when a new conference is created
      * @param callId of the conference
      */
-    void conferenceCreated(const QString& accountId,
-                           const QString& conversationId,
-                           const QString& callId);
+    void conferenceCreated(const QString& accountId, const QString& conversationId, const QString& callId);
     void conferenceChanged(const QString& accountId, const QString& confId, const QString& state);
     /**
      * Connect this signal to know when a conference is removed
@@ -232,9 +220,7 @@ Q_SIGNALS:
      * @param displayName
      * @param userPhoto
      */
-    void accountProfileReceived(const QString& accountId,
-                                const QString& displayName,
-                                const QString& userPhoto);
+    void accountProfileReceived(const QString& accountId, const QString& displayName, const QString& userPhoto);
 
     /**
      * Device authentication state has changed
@@ -361,12 +347,8 @@ Q_SIGNALS:
                        const QString& accountId,
                        const QString& conversationId,
                        const VectorMapStringString& messages);
-    void messageReceived(const QString& accountId,
-                         const QString& conversationId,
-                         const SwarmMessage& message);
-    void messageUpdated(const QString& accountId,
-                        const QString& conversationId,
-                        const SwarmMessage& message);
+    void messageReceived(const QString& accountId, const QString& conversationId, const SwarmMessage& message);
+    void messageUpdated(const QString& accountId, const QString& conversationId, const SwarmMessage& message);
     void reactionAdded(const QString& accountId,
                        const QString& conversationId,
                        const QString& messageId,
@@ -388,10 +370,7 @@ Q_SIGNALS:
                                  const QString& conversationId,
                                  const QString& memberId,
                                  int event);
-    void conversationError(const QString& accountId,
-                           const QString& conversationId,
-                           int code,
-                           const QString& what);
+    void conversationError(const QString& accountId, const QString& conversationId, int code, const QString& what);
     void activeCallsChanged(const QString& accountId,
                             const QString& conversationId,
                             const VectorMapStringString& activeCalls);
@@ -488,19 +467,14 @@ private Q_SLOTS:
      * @param state the new state
      * @param code unused for now
      */
-    void slotCallStateChanged(const QString& accountId,
-                              const QString& callId,
-                              const QString& state,
-                              int code);
+    void slotCallStateChanged(const QString& accountId, const QString& callId, const QString& state, int code);
     /**
      * Emit mediaNegotiationStatus
      * @param callId the call which changes.
      * @param eventstate the new state
      * @param mediaList new mediaList for the call
      */
-    void slotMediaNegotiationStatus(const QString& callId,
-                                    const QString& event,
-                                    const VectorMapStringString& mediaList);
+    void slotMediaNegotiationStatus(const QString& callId, const QString& event, const VectorMapStringString& mediaList);
     /**
      * Parse a call message and emit incomingVCardChunk if it's a VCard chunk
      * else incomingCallMessage if it's a text message
@@ -519,9 +493,7 @@ private Q_SLOTS:
      * @param callId         of the conference
      * @param conversationId of the conference
      */
-    void slotConferenceCreated(const QString& accountId,
-                               const QString& conversationId,
-                               const QString& callId);
+    void slotConferenceCreated(const QString& accountId, const QString& conversationId, const QString& callId);
     /**
      * Emit conferenceRemove
      * @param accountId
@@ -534,9 +506,7 @@ private Q_SLOTS:
      * @param callId of the conference
      * @param state, new state
      */
-    void slotConferenceChanged(const QString& accountId,
-                               const QString& callId,
-                               const QString& state);
+    void slotConferenceChanged(const QString& accountId, const QString& callId, const QString& state);
     /**
      * Emit accountMessageStatusChanged
      * @param accountId, account linked
@@ -576,9 +546,7 @@ private Q_SLOTS:
      * @param deviceId
      * @param status SUCCESS = 0, WRONG_PASSWORD = 1, UNKNOWN_DEVICE = 2
      */
-    void slotDeviceRevokationEnded(const QString& accountId,
-                                   const QString& deviceId,
-                                   const int status);
+    void slotDeviceRevokationEnded(const QString& accountId, const QString& deviceId, const int status);
 
     /**
      * Emit account avatar has been received
@@ -586,9 +554,7 @@ private Q_SLOTS:
      * @param displayName
      * @param userPhoto
      */
-    void slotAccountProfileReceived(const QString& accountId,
-                                    const QString& displayName,
-                                    const QString& userPhoto);
+    void slotAccountProfileReceived(const QString& accountId, const QString& displayName, const QString& userPhoto);
 
     /**
      * Device authentication state has changed
@@ -596,9 +562,7 @@ private Q_SLOTS:
      * @param state
      * @param details map
      */
-    void slotDeviceAuthStateChanged(const QString& accountId,
-                                    int state,
-                                    const MapStringString& details);
+    void slotDeviceAuthStateChanged(const QString& accountId, int state, const MapStringString& details);
 
     /**
      * Add device state has changed
@@ -700,12 +664,8 @@ private Q_SLOTS:
                            const QString& accountId,
                            const QString& conversationId,
                            const VectorMapStringString& messages);
-    void slotMessageReceived(const QString& accountId,
-                             const QString& conversationId,
-                             const SwarmMessage& message);
-    void slotMessageUpdated(const QString& accountId,
-                            const QString& conversationId,
-                            const SwarmMessage& message);
+    void slotMessageReceived(const QString& accountId, const QString& conversationId, const SwarmMessage& message);
+    void slotMessageUpdated(const QString& accountId, const QString& conversationId, const SwarmMessage& message);
     void slotReactionAdded(const QString& accountId,
                            const QString& conversationId,
                            const QString& messageId,
@@ -730,10 +690,7 @@ private Q_SLOTS:
                                      const QString& conversationId,
                                      const QString& memberId,
                                      int event);
-    void slotOnConversationError(const QString& accountId,
-                                 const QString& conversationId,
-                                 int code,
-                                 const QString& what);
+    void slotOnConversationError(const QString& accountId, const QString& conversationId, int code, const QString& what);
     void slotActiveCallsChanged(const QString& accountId,
                                 const QString& conversationId,
                                 const VectorMapStringString& activeCalls);

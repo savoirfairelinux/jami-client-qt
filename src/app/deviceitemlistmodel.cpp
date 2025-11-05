@@ -110,21 +110,9 @@ DeviceItemListModel::connectAccount()
 
     auto* deviceModel = lrcInstance_->getCurrentAccountInfo().deviceModel.get();
 
-    connect(deviceModel,
-            &lrc::api::DeviceModel::deviceAdded,
-            this,
-            &DeviceItemListModel::reset,
-            Qt::UniqueConnection);
+    connect(deviceModel, &lrc::api::DeviceModel::deviceAdded, this, &DeviceItemListModel::reset, Qt::UniqueConnection);
 
-    connect(deviceModel,
-            &lrc::api::DeviceModel::deviceRevoked,
-            this,
-            &DeviceItemListModel::reset,
-            Qt::UniqueConnection);
+    connect(deviceModel, &lrc::api::DeviceModel::deviceRevoked, this, &DeviceItemListModel::reset, Qt::UniqueConnection);
 
-    connect(deviceModel,
-            &lrc::api::DeviceModel::deviceUpdated,
-            this,
-            &DeviceItemListModel::reset,
-            Qt::UniqueConnection);
+    connect(deviceModel, &lrc::api::DeviceModel::deviceUpdated, this, &DeviceItemListModel::reset, Qt::UniqueConnection);
 }

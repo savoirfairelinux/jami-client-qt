@@ -84,10 +84,8 @@ PluginHandlerListModel::data(const QModelIndex& index, int role) const
             return QVariant();
         }
 
-        auto details = lrcInstance_->pluginModel().getCallMediaHandlerDetails(
-            mediahandlerList.at(index.row()));
-        for (const auto& mediaHandler :
-             lrcInstance_->pluginModel().getCallMediaHandlerStatus(callId_))
+        auto details = lrcInstance_->pluginModel().getCallMediaHandlerDetails(mediahandlerList.at(index.row()));
+        for (const auto& mediaHandler : lrcInstance_->pluginModel().getCallMediaHandlerStatus(callId_))
             if (mediaHandler == details.id)
                 loaded = true;
         if (!details.pluginId.isEmpty()) {
@@ -105,10 +103,8 @@ PluginHandlerListModel::data(const QModelIndex& index, int role) const
             return QVariant();
         }
 
-        auto details = lrcInstance_->pluginModel().getChatHandlerDetails(
-            chathandlerList.at(index.row()));
-        for (const auto& chatHandler :
-             lrcInstance_->pluginModel().getChatHandlerStatus(accountId_, peerId_))
+        auto details = lrcInstance_->pluginModel().getChatHandlerDetails(chathandlerList.at(index.row()));
+        for (const auto& chatHandler : lrcInstance_->pluginModel().getChatHandlerStatus(accountId_, peerId_))
             if (chatHandler == details.id)
                 loaded = true;
         if (!details.pluginId.isEmpty()) {

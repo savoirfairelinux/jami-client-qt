@@ -58,8 +58,7 @@ QString prepareUri(const QString& uri, api::profile::Type type);
  * @param status
  * @return the formatted and translated call message string
  */
-QString getContactInteractionString(const QString& authorUri,
-                                    const api::interaction::Status& status);
+QString getContactInteractionString(const QString& authorUri, const api::interaction::Status& status);
 
 namespace vcard {
 
@@ -81,10 +80,7 @@ QString profileToVcard(const api::profile::Info& profileInfo, bool compressImage
  * @param ov  If from daemon override must be false, if the client want to override the vcard
  * should be true
  */
-void setProfile(const QString& accountId,
-                const api::profile::Info& profileInfo,
-                bool isPeer = false,
-                bool ov = false);
+void setProfile(const QString& accountId, const api::profile::Info& profileInfo, bool isPeer = false, bool ov = false);
 
 } // namespace vcard
 
@@ -110,9 +106,7 @@ VectorString getPeerParticipantsForConversation(Database& db, const QString& con
  * @param  onCompleted callback to invoke when the profile has been created or updated
  * @param  ov if the client is storing a new vcard
  */
-void createOrUpdateProfile(const QString& accountId,
-                           const api::profile::Info& profileInfo,
-                           bool ov = false);
+void createOrUpdateProfile(const QString& accountId, const api::profile::Info& profileInfo, bool ov = false);
 
 /**
  * Remove a profile vCard
@@ -159,12 +153,11 @@ QMap<QString, QString> getProfileData(const QString& accountId, const QString& p
  * @param ov if we want to use an override vcard
  * @return true if the profile was loaded successfully
  */
-bool
-withProfile(const QString& accountId,
-            const QString& peerUri,
-            QIODevice::OpenMode flags,
-            ProfileLoadedCb&& onLoadedCb,
-            bool ov = false);
+bool withProfile(const QString& accountId,
+                 const QString& peerUri,
+                 QIODevice::OpenMode flags,
+                 ProfileLoadedCb&& onLoadedCb,
+                 bool ov = false);
 
 /**
  * Get a contact's avatar
@@ -188,9 +181,7 @@ VectorString getAllConversations(Database& db);
  * @param contactProfile the id of the contact in the database
  * @return conversations id for conversations between account and contact
  */
-VectorString getConversationsBetween(Database& db,
-                                     const QString& accountProfile,
-                                     const QString& contactProfile);
+VectorString getConversationsBetween(Database& db, const QString& accountProfile, const QString& contactProfile);
 
 /**
  * Start a conversation between account and contact. Creates an entry in the conversations table
@@ -220,9 +211,7 @@ void getHistory(Database& db, api::conversation::Info& conversation, const QStri
  * @param  msg
  * @return the id of the inserted interaction
  */
-QString addMessageToConversation(Database& db,
-                                 const QString& conversationId,
-                                 const api::interaction::Info& msg);
+QString addMessageToConversation(Database& db, const QString& conversationId, const api::interaction::Info& msg);
 
 /**
  * Add or update an entry into interactions linked to a conversation.

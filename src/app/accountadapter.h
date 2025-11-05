@@ -63,22 +63,16 @@ public:
     Q_INVOKABLE void deleteCurrentAccount();
 
     // Conf property
-    Q_INVOKABLE bool exportToFile(const QString& accountId,
-                                  const QString& path,
-                                  const QString& password = {}) const;
+    Q_INVOKABLE bool exportToFile(const QString& accountId, const QString& path, const QString& password = {}) const;
     Q_INVOKABLE void setArchivePasswordAsync(const QString& accountID, const QString& password);
 
     // Lrc instances functions wrappers
-    Q_INVOKABLE bool savePassword(const QString& accountId,
-                                  const QString& oldPassword,
-                                  const QString& newPassword);
+    Q_INVOKABLE bool savePassword(const QString& accountId, const QString& oldPassword, const QString& newPassword);
     Q_INVOKABLE bool hasVideoCall();
     Q_INVOKABLE void setCurrAccDisplayName(const QString& text);
     Q_INVOKABLE void setCurrentAccountAvatarFile(const QString& source);
     Q_INVOKABLE void setCurrentAccountAvatarBase64(const QString& source = {});
-    Q_INVOKABLE void setDefaultModerator(const QString& accountId,
-                                         const QString& peerURI,
-                                         const bool& state);
+    Q_INVOKABLE void setDefaultModerator(const QString& accountId, const QString& peerURI, const bool& state);
     Q_INVOKABLE QStringList getDefaultModerators(const QString& accountId);
 
     // New import account / link device functions

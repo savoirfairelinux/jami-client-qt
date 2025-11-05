@@ -49,8 +49,7 @@ SpellCheckAdapter::SpellCheckAdapter(SpellCheckDictionaryListModel* dictionaryLi
             this,
             [this](const QModelIndex&, const QModelIndex&, const QList<int>& roles) {
                 if (roles.contains(SpellCheckDictionaryList::Installed)) {
-                    set_installedDictionaryCount(
-                        dictionaryListModel_->getInstalledDictionaries().size());
+                    set_installedDictionaryCount(dictionaryListModel_->getInstalledDictionaries().size());
                 }
             });
 
