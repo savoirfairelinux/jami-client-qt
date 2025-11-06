@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb72d540_e4797875",
+        "filename": "src/app/mainview/components/ChatView.qml",
+        "patchSetId": 22
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-11-06T18:25:58Z",
+      "side": 0,
+      "message": "is this component no longer used? if not, remove it",
+      "range": {
+        "startLine": 268,
+        "startChar": 8,
+        "endLine": 273,
+        "endChar": 9
+      },
+      "revId": "7e5e29e43e7992473f506b9306f9ef6a0806c719",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}

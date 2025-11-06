@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a2baed3_c9d709e4",
+        "filename": "src/app/mainview/components/CallsButton.qml",
+        "patchSetId": 22
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-11-06T18:25:58Z",
+      "side": 1,
+      "message": "this should just use a built-in or customized built-in component",
+      "range": {
+        "startLine": 70,
+        "startChar": 16,
+        "endLine": 104,
+        "endChar": 17
+      },
+      "revId": "8630e36e5e7ed8d4a2ce8a50ad744c860d16fef4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e33ff07_f30404b3",
+        "filename": "src/app/mainview/components/CallsButton.qml",
+        "patchSetId": 22
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-11-06T18:25:58Z",
+      "side": 1,
+      "message": "what\u0027s this?",
+      "range": {
+        "startLine": 192,
+        "startChar": 24,
+        "endLine": 204,
+        "endChar": 25
+      },
+      "revId": "8630e36e5e7ed8d4a2ce8a50ad744c860d16fef4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb3cd2f1_aa3d896e",
+        "filename": "src/app/mainview/components/CallsButton.qml",
+        "patchSetId": 22
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-11-06T18:25:58Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 217,
+        "startChar": 0,
+        "endLine": 217,
+        "endChar": 87
+      },
+      "revId": "8630e36e5e7ed8d4a2ce8a50ad744c860d16fef4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbeb8b9b_aa508198",
+        "filename": "src/app/mainview/components/ChatView.qml",
+        "patchSetId": 22
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-11-06T18:25:58Z",
+      "side": 1,
+      "message": "what\u0027s this doing?",
+      "range": {
+        "startLine": 218,
+        "startChar": 12,
+        "endLine": 223,
+        "endChar": 13
+      },
+      "revId": "8630e36e5e7ed8d4a2ce8a50ad744c860d16fef4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
