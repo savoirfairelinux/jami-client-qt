@@ -229,12 +229,9 @@ public Q_SLOTS:
      * Listen from CallbacksHandler when a conference is created.
      * @param callId
      */
-    void slotConferenceCreated(const QString& accountId,
-                               const QString& conversationId,
-                               const QString& callId);
-    void slotConferenceChanged(const QString& accountId,
-                               const QString& callId,
-                               const QString& state);
+    void slotConferenceCreated(const QString& accountId, const QString& conversationId, const QString& callId);
+    void slotConferenceChanged(const QString& accountId, const QString& callId, const QString& state);
+    void slotConferenceRemoved(const QString& accountId, const QString& confId);
     /**
      * Listen from CallbacksHandler when a voice mail notice is incoming
      * @param accountId
@@ -262,6 +259,9 @@ public Q_SLOTS:
      * @param state the new state
      */
     void onRecordingStateChanged(const QString& callId, bool state);
+
+private:
+    void downgradeConference(const QString& confId, const QString& fallbackCallId = {});
 };
 
 CallModel::CallModel(const account::Info& owner,
@@ -1028,34 +1028,17 @@ CallModelPimpl::CallModelPimpl(const CallModel& linked,
     , callbacksHandler(callbacksHandler)
     , behaviorController(behaviorController)
 {
-    connect(&callbacksHandler,
-            &CallbacksHandler::mediaChangeRequested,
-            this,
-            &CallModelPimpl::slotMediaChangeRequested);
-    connect(&callbacksHandler,
-            &CallbacksHandler::callStateChanged,
-            this,
-            &CallModelPimpl::slotCallStateChanged);
+    connect(&callbacksHandler, &CallbacksHandler::mediaChangeRequested, this, &CallModelPimpl::slotMediaChangeRequested);
+    connect(&callbacksHandler, &CallbacksHandler::callStateChanged, this, &CallModelPimpl::slotCallStateChanged);
     connect(&callbacksHandler,
             &CallbacksHandler::mediaNegotiationStatus,
             this,
             &CallModelPimpl::slotMediaNegotiationStatus);
-    connect(&callbacksHandler,
-            &CallbacksHandler::incomingVCardChunk,
-            this,
-            &CallModelPimpl::slotincomingVCardChunk);
-    connect(&callbacksHandler,
-            &CallbacksHandler::conferenceCreated,
-            this,
-            &CallModelPimpl::slotConferenceCreated);
-    connect(&callbacksHandler,
-            &CallbacksHandler::conferenceChanged,
-            this,
-            &CallModelPimpl::slotConferenceChanged);
-    connect(&callbacksHandler,
-            &CallbacksHandler::voiceMailNotify,
-            this,
-            &CallModelPimpl::slotVoiceMailNotify);
+    connect(&callbacksHandler, &CallbacksHandler::incomingVCardChunk, this, &CallModelPimpl::slotincomingVCardChunk);
+    connect(&callbacksHandler, &CallbacksHandler::conferenceCreated, this, &CallModelPimpl::slotConferenceCreated);
+    connect(&callbacksHandler, &CallbacksHandler::conferenceChanged, this, &CallModelPimpl::slotConferenceChanged);
+    connect(&callbacksHandler, &CallbacksHandler::conferenceRemoved, this, &CallModelPimpl::slotConferenceRemoved);
+    connect(&callbacksHandler, &CallbacksHandler::voiceMailNotify, this, &CallModelPimpl::slotVoiceMailNotify);
     connect(&CallManager::instance(),
             &CallManagerInterface::onConferenceInfosUpdated,
             this,
@@ -1064,10 +1047,7 @@ CallModelPimpl::CallModelPimpl(const CallModel& linked,
             &CallbacksHandler::remoteRecordingChanged,
             this,
             &CallModelPimpl::onRemoteRecordingChanged);
-    connect(&callbacksHandler,
-            &CallbacksHandler::recordingStateChanged,
-            this,
-            &CallModelPimpl::onRecordingStateChanged);
+    connect(&callbacksHandler, &CallbacksHandler::recordingStateChanged, this, &CallModelPimpl::onRecordingStateChanged);
 
 #ifndef ENABLE_LIBWRAP
     // Only necessary with D-Bus since the daemon runs separately
@@ -1655,8 +1635,7 @@ CallModelPimpl::slotVoiceMailNotify(const QString& accountId,
 }
 
 void
-CallModelPimpl::slotOnConferenceInfosUpdated(const QString& confId,
-                                             const VectorMapStringString& infos)
+CallModelPimpl::slotOnConferenceInfosUpdated(const QString& confId, const VectorMapStringString& infos)
 {
     auto it = calls.find(confId);
     if (it == calls.end() or not it->second)
@@ -1665,8 +1644,8 @@ CallModelPimpl::slotOnConferenceInfosUpdated(const QString& confId,
     // TODO: remove when the rendez-vous UI will be done
     // For now, the rendez-vous account can see ongoing calls
     // And must be notified when a new
-    QStringList callList = CallManager::instance().getParticipantList(linked.owner.id, confId);
-    Q_FOREACH (const auto& call, callList) {
+    QStringList participantsList = CallManager::instance().getParticipantList(linked.owner.id, confId);
+    Q_FOREACH (const auto& call, participantsList) {
         Q_EMIT linked.callAddedToConference(call, "", confId);
         if (calls.find(call) == calls.end()) {
             qWarning() << "Call not found";
@@ -1679,9 +1658,7 @@ CallModelPimpl::slotOnConferenceInfosUpdated(const QString& confId,
 
     auto participantIt = participantsModel.find(confId);
     if (participantIt == participantsModel.end())
-        participantIt = participantsModel
-                            .emplace(confId,
-                                     std::make_shared<CallParticipants>(infos, confId, linked))
+        participantIt = participantsModel.emplace(confId, std::make_shared<CallParticipants>(infos, confId, linked))
                             .first;
     else
         participantIt->second->update(infos);
@@ -1706,8 +1683,21 @@ CallModelPimpl::slotOnConferenceInfosUpdated(const QString& confId,
         }
     }
 
-    Q_EMIT linked.callInfosChanged(linked.owner.id, confId);
-    Q_EMIT linked.participantsChanged(confId);
+    QStringList activeParticipants;
+    for (const auto& call : participantsList) {
+        auto callIt = calls.find(call);
+        if (callIt != calls.end() && callIt->second && !call::isTerminating(callIt->second->status)) {
+            activeParticipants.push_back(call);
+        }
+    }
+
+    if (activeParticipants.size() <= 1) {
+        const auto fallback = activeParticipants.isEmpty() ? QString() : activeParticipants.front();
+        downgradeConference(confId, fallback);
+    } else {
+        Q_EMIT linked.callInfosChanged(linked.owner.id, confId);
+        Q_EMIT linked.participantsChanged(confId);
+    }
 }
 
 bool
@@ -1788,6 +1778,25 @@ CallModelPimpl::slotConferenceChanged(const QString& accountId,
 }
 
 void
+CallModelPimpl::slotConferenceRemoved(const QString& accountId, const QString& confId)
+{
+    if (accountId != linked.owner.id)
+        return;
+
+    QString fallback;
+    QStringList callList = CallManager::instance().getParticipantList(linked.owner.id, confId);
+    for (const auto& callId : callList) {
+        auto callIt = calls.find(callId);
+        if (callIt != calls.end() && callIt->second && !call::isTerminating(callIt->second->status)) {
+            fallback = callId;
+            break;
+        }
+    }
+
+    downgradeConference(confId, fallback);
+}
+
+void
 CallModelPimpl::onRemoteRecordingChanged(const QString& callId, const QString& peerUri, bool state)
 {
     auto it = calls.find(callId);
@@ -1817,6 +1826,44 @@ void
 CallModelPimpl::onRecordingStateChanged(const QString& callId, bool state)
 {
     Q_EMIT linked.recordingStateChanged(callId, state);
+}
+
+void
+CallModelPimpl::downgradeConference(const QString& confId, const QString& fallbackCallId)
+{
+    auto confIt = calls.find(confId);
+    if (confIt == calls.end() || !confIt->second)
+        return;
+
+    QString fallback = fallbackCallId;
+    bool wasCurrent = currentCall_ == confId;
+
+    if (linked.owner.conversationModel) {
+        if (auto conversation = linked.owner.conversationModel->getConversationForCallId(confId)) {
+            conversation->get().confId.clear();
+            if (fallback.isEmpty()) {
+                fallback = conversation->get().callId;
+            }
+        }
+    }
+
+    participantsModel.erase(confId);
+    calls.erase(confIt);
+
+    Q_EMIT linked.participantsChanged(confId);
+
+    if (!fallback.isEmpty() && fallback != confId) {
+        auto fallbackIt = calls.find(fallback);
+        if (fallbackIt != calls.end() && fallbackIt->second && fallbackIt->second->type == call::Type::DIALOG) {
+            Q_EMIT linked.callInfosChanged(linked.owner.id, fallback);
+            Q_EMIT linked.participantsChanged(fallback);
+        }
+    }
+
+    if (wasCurrent) {
+        currentCall_ = fallback;
+        Q_EMIT linked.currentCallChanged(currentCall_);
+    }
 }
 
 } // namespace lrc
