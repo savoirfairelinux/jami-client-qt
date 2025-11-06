@@ -41,9 +41,10 @@ Rectangle {
         anchors.fill: parent
         Layout.fillWidth: false
         spacing: 0
-        visible: uniqueActiveCall
+        visible: uniqueActiveCall || activeCalls
 
         Item {
+            id: activeCallButton
 
             implicitWidth: 36
 
@@ -57,53 +58,14 @@ Rectangle {
                 preferredSize: 36
                 anchors.verticalCenter: parent.verticalCenter
                 onClicked: CallAdapter.placeAudioOnlyCall()
-
             }
 
-            Loader {
-                id: spinnerLoader
-                sourceComponent: spinner
-                anchors.centerIn: callButton
-            }
-
-            Component {
-                id: spinner
-
-                Canvas {
-                    id: loadingWheel
-                    antialiasing: true
-                    property real centerWidth: spinnerLoader.width / 2
-                    property real centerHeight: spinnerLoader.height / 2
-                    property real radius: Math.min(spinnerLoader.width, spinnerLoader.height) / 2
-                    property real lineWidth: 2
-                    width: 44
-                    height: 44
-
-                    onPaint: {
-                        const ctx = getContext("2d");
-                        ctx.clearRect(0, 0, width, height);
-                        var radius = (Math.min(spinnerLoader.width, spinnerLoader.height) / 2) - 3;
-                        const startAngle = animationAngle * Math.PI / 180;
-                        const endAngle = startAngle + Math.PI / 2;
-                        const gradient = ctx.createLinearGradient(width / 2 + radius * Math.cos(startAngle), height / 2 + radius * Math.sin(startAngle), width / 2 + radius * Math.cos(endAngle), height / 2 + radius * Math.sin(endAngle));
-                        gradient.addColorStop(0, "rgba(32, 198, 141, 0)");
-                        gradient.addColorStop(1, "rgba(32, 198, 141, 1)");
-                        ctx.beginPath();
-                        ctx.lineWidth = lineWidth;
-                        ctx.strokeStyle = gradient;
-                        ctx.arc(centerWidth, centerHeight, radius, startAngle, endAngle, false);
-                        ctx.stroke();
-                    }
-
-                    property real animationAngle: 0
-                    onAnimationAngleChanged: requestPaint()
-                    NumberAnimation on animationAngle {
-                        from: 0
-                        to: 360
-                        duration: 2000
-                        loops: Animation.Infinite
-                    }
-                }
+            SpinningAnimation {
+                id: animation
+                anchors.fill: callButton
+                mode: SpinningAnimation.Mode.Radial
+                color: callButton.hovered ? JamiTheme.buttonCallLightGreen : JamiTheme.buttonCallDarkGreen
+                spinningAnimationWidth: 2
             }
         }
 
@@ -127,8 +89,9 @@ Rectangle {
             Layout.rightMargin: 5
 
             onClicked: {
-                dropdownPopup.open()
+                dropdownPopup.open();
             }
+            Component.onCompleted: console.warn("ACTIVE CALLS:", activeCalls)
         }
     }
 
@@ -199,12 +162,14 @@ Rectangle {
                     JamiPushButton {
                         Layout.preferredWidth: 35
                         Layout.preferredHeight: 35
-                        source: CurrentCall.isAudioOnly ? JamiResources.place_audiocall_24dp_svg : JamiResources.videocam_24dp_svg
+                        source: JamiResources.place_audiocall_24dp_svg
                         normalColor: JamiTheme.buttonCallLightGreen
-                        imageColor: JamiTheme.blackColor
+                        imageColor: darkTheme ? JamiTheme.whiteColor : JamiTheme.blackColor
                         radius: 35
-                        onClicked: MessagesAdapter.joinCall(modelData.uri, modelData.device, modelData.id, true); //CurrentCall.isAudioOnly
-
+                        onClicked: {
+                            MessagesAdapter.joinCall(modelData.uri, modelData.device, modelData.id, true); //CurrentCall.isAudioOnly
+                            dropdownPopup.close();
+                        }
                     }
                 }
 
