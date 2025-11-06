@@ -22,6 +22,30 @@
       },
       "revId": "7e5e29e43e7992473f506b9306f9ef6a0806c719",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c3e6e06_642a7119",
+        "filename": "src/app/mainview/components/ChatView.qml",
+        "patchSetId": 22
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-11-06T21:19:59Z",
+      "side": 0,
+      "message": "Old banner for join swarm call, hence the removal",
+      "parentUuid": "bb72d540_e4797875",
+      "range": {
+        "startLine": 268,
+        "startChar": 8,
+        "endLine": 273,
+        "endChar": 9
+      },
+      "revId": "7e5e29e43e7992473f506b9306f9ef6a0806c719",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }

@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "01cfba3f_46f51d4a",
+        "filename": "src/app/mainview/components/CallsButton.qml",
+        "patchSetId": 22
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-11-06T21:19:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a2baed3_c9d709e4",
+      "range": {
+        "startLine": 70,
+        "startChar": 16,
+        "endLine": 104,
+        "endChar": 17
+      },
+      "revId": "8630e36e5e7ed8d4a2ce8a50ad744c860d16fef4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3e33ff07_f30404b3",
@@ -94,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c711bd61_8635bf74",
+        "filename": "src/app/mainview/components/CallsButton.qml",
+        "patchSetId": 22
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-11-06T21:19:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb3cd2f1_aa3d896e",
+      "range": {
+        "startLine": 217,
+        "startChar": 0,
+        "endLine": 217,
+        "endChar": 87
+      },
+      "revId": "8630e36e5e7ed8d4a2ce8a50ad744c860d16fef4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cbeb8b9b_aa508198",
@@ -107,6 +155,30 @@
       "writtenOn": "2025-11-06T18:25:58Z",
       "side": 1,
       "message": "what\u0027s this doing?",
+      "range": {
+        "startLine": 218,
+        "startChar": 12,
+        "endLine": 223,
+        "endChar": 13
+      },
+      "revId": "8630e36e5e7ed8d4a2ce8a50ad744c860d16fef4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f52a14f2_e901f448",
+        "filename": "src/app/mainview/components/ChatView.qml",
+        "patchSetId": 22
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-11-06T21:19:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cbeb8b9b_aa508198",
       "range": {
         "startLine": 218,
         "startChar": 12,
