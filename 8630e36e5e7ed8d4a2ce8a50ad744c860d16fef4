@@ -47,6 +47,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "508ce11c_1f15d8a2",
+        "filename": "src/app/mainview/components/CallsButton.qml",
+        "patchSetId": 22
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-11-06T18:29:07Z",
+      "side": 1,
+      "message": "Addressed in subsequent commit",
+      "parentUuid": "3e33ff07_f30404b3",
+      "range": {
+        "startLine": 192,
+        "startChar": 24,
+        "endLine": 204,
+        "endChar": 25
+      },
+      "revId": "8630e36e5e7ed8d4a2ce8a50ad744c860d16fef4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb3cd2f1_aa3d896e",
