@@ -226,6 +226,7 @@ public Q_SLOTS:
      */
     void slotConferenceCreated(const QString& accountId, const QString& conversationId, const QString& callId);
     void slotConferenceChanged(const QString& accountId, const QString& callId, const QString& state);
+    void slotConferenceRemoved(const QString& accountId, const QString& confId);
     /**
      * Listen from CallbacksHandler when a voice mail notice is incoming
      * @param accountId
@@ -1007,6 +1008,7 @@ CallModelPimpl::CallModelPimpl(const CallModel& linked,
     connect(&callbacksHandler, &CallbacksHandler::incomingVCardChunk, this, &CallModelPimpl::slotincomingVCardChunk);
     connect(&callbacksHandler, &CallbacksHandler::conferenceCreated, this, &CallModelPimpl::slotConferenceCreated);
     connect(&callbacksHandler, &CallbacksHandler::conferenceChanged, this, &CallModelPimpl::slotConferenceChanged);
+    connect(&callbacksHandler, &CallbacksHandler::conferenceRemoved, this, &CallModelPimpl::slotConferenceRemoved);
     connect(&callbacksHandler, &CallbacksHandler::voiceMailNotify, this, &CallModelPimpl::slotVoiceMailNotify);
     connect(&CallManager::instance(),
             &CallManagerInterface::onConferenceInfosUpdated,
@@ -1577,8 +1579,8 @@ CallModelPimpl::slotOnConferenceInfosUpdated(const QString& confId, const Vector
     // TODO: remove when the rendez-vous UI will be done
     // For now, the rendez-vous account can see ongoing calls
     // And must be notified when a new
-    QStringList callList = CallManager::instance().getParticipantList(linked.owner.id, confId);
-    Q_FOREACH (const auto& call, callList) {
+    QStringList participantsList = CallManager::instance().getParticipantList(linked.owner.id, confId);
+    Q_FOREACH (const auto& call, participantsList) {
         Q_EMIT linked.callAddedToConference(call, "", confId);
         if (calls.find(call) == calls.end()) {
             qWarning() << "Call not found";
@@ -1616,8 +1618,22 @@ CallModelPimpl::slotOnConferenceInfosUpdated(const QString& confId, const Vector
         }
     }
 
+    // QStringList activeParticipants;
+    // for (const auto& call : participantsList) {
+    //     auto callIt = calls.find(call);
+    //     if (callIt != calls.end() && callIt->second && !call::isTerminating(callIt->second->status)) {
+    //         activeParticipants.push_back(call);
+    //     }
+    // }
+
+    // if (activeParticipants.size() <= 1) {
+    //     const auto fallback = activeParticipants.isEmpty() ? QString() : activeParticipants.front();
+    //     qWarning() << "downgradeConference: " << confId << "to" << fallback;
+    //     downgradeConference(confId, fallback);
+    // } else {
     Q_EMIT linked.callInfosChanged(linked.owner.id, confId);
     Q_EMIT linked.participantsChanged(confId);
+    // }
 }
 
 bool
@@ -1689,6 +1705,57 @@ CallModelPimpl::slotConferenceChanged(const QString& accountId, const QString& c
             currentCall_ = confId;
     }
     Q_EMIT linked.currentCallChanged(currentCall_);
+}
+
+void
+CallModelPimpl::slotConferenceRemoved(const QString& accountId, const QString& confId)
+{
+    qWarning() << "slotConferenceRemoved: " << confId;
+    if (accountId != linked.owner.id)
+        return;
+
+    QString fallback;
+    QStringList callList = CallManager::instance().getParticipantList(linked.owner.id, confId);
+    for (const auto& callId : callList) {
+        auto callIt = calls.find(callId);
+        if (callIt != calls.end() && callIt->second && !call::isTerminating(callIt->second->status)) {
+            fallback = callId;
+            break;
+        }
+    }
+
+    auto confIt = calls.find(confId);
+    if (confIt == calls.end() || !confIt->second)
+        return;
+
+    bool wasCurrent = currentCall_ == confId;
+
+    if (linked.owner.conversationModel) {
+        if (auto conversation = linked.owner.conversationModel->getConversationForCallId(confId)) {
+            conversation->get().confId.clear();
+            if (fallback.isEmpty()) {
+                fallback = conversation->get().callId;
+            }
+        }
+    }
+
+    participantsModel.erase(confId);
+    calls.erase(confIt);
+
+    Q_EMIT linked.participantsChanged(confId);
+
+    if (!fallback.isEmpty() && fallback != confId) {
+        auto fallbackIt = calls.find(fallback);
+        if (fallbackIt != calls.end() && fallbackIt->second && fallbackIt->second->type == call::Type::DIALOG) {
+            Q_EMIT linked.callInfosChanged(linked.owner.id, fallback);
+            Q_EMIT linked.participantsChanged(fallback);
+        }
+    }
+
+    if (wasCurrent) {
+        currentCall_ = fallback;
+        Q_EMIT linked.currentCallChanged(currentCall_);
+    }
 }
 
 void

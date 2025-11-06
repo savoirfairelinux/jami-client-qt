@@ -61,9 +61,17 @@ Item {
         opacity: isRendering
         visible: opacity
 
+        Text {
+            text: root.rendererId ? root.rendererId : qsTr("No video")
+            color: "white"
+            font.pixelSize: 12
+            anchors.centerIn: parent
+            z: 100
+        }
+
         fillMode: crop ? VideoOutput.PreserveAspectCrop : VideoOutput.PreserveAspectFit
 
-        Behavior on opacity  {
+        Behavior on opacity {
             NumberAnimation {
                 duration: 150
             }

@@ -47,7 +47,13 @@ Item {
 
         ParticipantOverlay {
             id: overlay
-
+            Text {
+                text: sinkId_ ? sinkId_ : qsTr("No video")
+                color: "white"
+                font.pixelSize: 12
+                anchors.centerIn: parent
+                z: 100
+            }
             anchors.fill: parent
             anchors.leftMargin: leftMargin_
             isScreenshotButtonHovered: screenshotButtonHovered && hoveredOverlaySinkId === sinkId_
