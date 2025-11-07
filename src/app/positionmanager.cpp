@@ -80,8 +80,7 @@ PositionManager::stopPositioning()
 bool
 PositionManager::isConvSharingPosition(const QString& accountId, const QString& convUri)
 {
-    const auto& convParticipants = lrcInstance_->getConversationFromConvUid(convUri)
-                                       .participantsUris();
+    const auto& convParticipants = lrcInstance_->getConversationFromConvUid(convUri).participantsUris();
     Q_FOREACH (const auto& id, convParticipants) {
         if (id != lrcInstance_->getCurrentAccountInfo().profileInfo.uri) {
             if (objectListSharingUris_.contains(PositionKey {accountId, id})) {
@@ -146,8 +145,7 @@ PositionManager::sendPosition(const QString& body, bool triggersLocalPosition)
             auto accountUri = lrcInstance_->getAccountInfo(key.first).profileInfo.uri;
             Q_FOREACH (const QString& uri, convInfo.participantsUris()) {
                 if (uri != accountUri) {
-                    lrcInstance_->getAccountInfo(key.first)
-                        .contactModel->sendDhtMessage(uri, body, APPLICATION_GEO, 1);
+                    lrcInstance_->getAccountInfo(key.first).contactModel->sendDhtMessage(uri, body, APPLICATION_GEO, 1);
                 }
             }
         }
@@ -158,9 +156,7 @@ PositionManager::sendPosition(const QString& body, bool triggersLocalPosition)
         // send own position to every account with an opened map
         QMutexLocker lk(&mapStatusMutex_);
         for (auto it = mapStatus_.begin(); it != mapStatus_.end(); it++) {
-            Q_EMIT localPositionReceived(it.key(),
-                                         lrcInstance_->getAccountInfo(it.key()).profileInfo.uri,
-                                         body);
+            Q_EMIT localPositionReceived(it.key(), lrcInstance_->getAccountInfo(it.key()).profileInfo.uri, body);
         }
     }
 }
@@ -169,9 +165,9 @@ void
 PositionManager::onWatchdogTimeout()
 {
     QObject* obj = sender();
-    auto it = std::find_if(objectListSharingUris_.cbegin(),
-                           objectListSharingUris_.cend(),
-                           [obj](const auto& it) { return it == obj; });
+    auto it = std::find_if(objectListSharingUris_.cbegin(), objectListSharingUris_.cend(), [obj](const auto& it) {
+        return it == obj;
+    });
     if (it != objectListSharingUris_.cend()) {
         QString stopMsg("{\"type\":\"Stop\"}");
         onPositionReceived(it.key().first, it.key().second, stopMsg, -1, "");
@@ -239,10 +235,7 @@ PositionManager::sendStopMessage(QString accountId, const QString convId)
         const auto& convInfo = lrcInstance_->getConversationFromConvUid(convId, accountId);
         Q_FOREACH (const QString& uri, convInfo.participantsUris()) {
             if (lrcInstance_->getCurrentAccountInfo().profileInfo.uri != uri) {
-                lrcInstance_->getCurrentAccountInfo().contactModel->sendDhtMessage(uri,
-                                                                                   stopMsg,
-                                                                                   APPLICATION_GEO,
-                                                                                   1);
+                lrcInstance_->getCurrentAccountInfo().contactModel->sendDhtMessage(uri, stopMsg, APPLICATION_GEO, 1);
             }
         }
     }
@@ -322,8 +315,7 @@ PositionManager::getAvatar(const QString& accountId, const QString& uri)
     QByteArray ba;
     QBuffer bu(&ba);
 
-    auto& accInfo = accountId == "" ? lrcInstance_->getCurrentAccountInfo()
-                                    : lrcInstance_->getAccountInfo(accountId);
+    auto& accInfo = accountId == "" ? lrcInstance_->getCurrentAccountInfo() : lrcInstance_->getAccountInfo(accountId);
     auto currentAccountUri = accInfo.profileInfo.uri;
     if (currentAccountUri == uri || accountId.isEmpty()) {
         // use accountPhoto
@@ -336,9 +328,7 @@ PositionManager::getAvatar(const QString& accountId, const QString& uri)
 }
 
 QVariantMap
-PositionManager::parseJsonPosition(const QString& accountId,
-                                   const QString& peerId,
-                                   const QString& body)
+PositionManager::parseJsonPosition(const QString& accountId, const QString& peerId, const QString& body)
 {
     QJsonDocument temp = QJsonDocument::fromJson(body.toUtf8());
     QJsonObject jsonObject = temp.object();
@@ -400,14 +390,11 @@ PositionManager::onNewPosition(const QString& body)
 }
 
 void
-PositionManager::showNotification(const QString& accountId,
-                                  const QString& convId,
-                                  const QString& from)
+PositionManager::showNotification(const QString& accountId, const QString& convId, const QString& from)
 {
     QString bestName;
     if (from == lrcInstance_->getAccountInfo(accountId).profileInfo.uri)
-        bestName = lrcInstance_->getAccountInfo(accountId).accountModel->bestNameForAccount(
-            accountId);
+        bestName = lrcInstance_->getAccountInfo(accountId).accountModel->bestNameForAccount(accountId);
     else
         bestName = lrcInstance_->getAccountInfo(accountId).contactModel->bestNameForContact(from);
 
@@ -455,9 +442,7 @@ PositionManager::onNewAccount()
 }
 
 bool
-PositionManager::isNewMessageTriggersMap(bool endSharing,
-                                         const QString& uri,
-                                         const QString& accountId)
+PositionManager::isNewMessageTriggersMap(bool endSharing, const QString& uri, const QString& accountId)
 {
     QMutexLocker lk(&mapStatusMutex_);
     return !endSharing && (accountId == lrcInstance_->get_currentAccountId()) && mapAutoOpening_
@@ -469,9 +454,9 @@ void
 PositionManager::countdownUpdate()
 {
     // First removal of timers and shared position
-    auto end = std::find_if(mapTimerCountDown_.begin(),
-                            mapTimerCountDown_.end(),
-                            [](const auto& end) { return end == 0; });
+    auto end = std::find_if(mapTimerCountDown_.begin(), mapTimerCountDown_.end(), [](const auto& end) {
+        return end == 0;
+    });
     if (end != mapTimerCountDown_.end()) {
         Q_EMIT sendCountdownUpdate(end.key().first + "_" + end.key().second, end.value());
         stopSharingPosition(end.key().first, end.key().second);
@@ -520,11 +505,7 @@ PositionManager::addPositionToMemory(PositionKey key, QVariantMap positionReceiv
     set_sharingUrisCount(objectListSharingUris_.size());
 
     // watchdog
-    connect(obj,
-            &PositionObject::timeout,
-            this,
-            &PositionManager::onWatchdogTimeout,
-            Qt::DirectConnection);
+    connect(obj, &PositionObject::timeout, this, &PositionManager::onWatchdogTimeout, Qt::DirectConnection);
 
     auto& accountId = key.first;
     auto& uri = key.second;
@@ -557,8 +538,7 @@ PositionManager::updatePositionInMemory(PositionKey key, QVariantMap positionRec
             qWarning() << "error in PositionManager::updatePositionInMemory(), it.value() is null";
         }
     } else {
-        qWarning()
-            << "Error: A position intented to be updated while not in objectListSharingUris_ ";
+        qWarning() << "Error: A position intented to be updated while not in objectListSharingUris_ ";
     }
 
     // update position on the map (if needed)
@@ -578,8 +558,7 @@ PositionManager::removePositionFromMemory(PositionKey key, QVariantMap positionR
         // update list count for qml
         set_sharingUrisCount(objectListSharingUris_.size());
     } else {
-        qWarning()
-            << "Error: A position intented to be removed while not in objectListSharingUris_ ";
+        qWarning() << "Error: A position intented to be removed while not in objectListSharingUris_ ";
         return;
     }
     // if needed, remove from map
@@ -587,8 +566,7 @@ PositionManager::removePositionFromMemory(PositionKey key, QVariantMap positionR
     // close the map if you're not sharing and you don't receive position anymore
     if (!positionShareConvIds_.length()
         && ((sharingUrisCount_ == 1
-             && objectListSharingUris_.begin().key().second
-                    == lrcInstance_->getCurrentAccountInfo().profileInfo.uri)
+             && objectListSharingUris_.begin().key().second == lrcInstance_->getCurrentAccountInfo().profileInfo.uri)
             || sharingUrisCount_ == 0)) {
         setMapInactive(lrcInstance_->get_currentAccountId());
     }

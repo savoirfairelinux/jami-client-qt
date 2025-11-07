@@ -28,9 +28,7 @@ class AsyncAvatarImageResponseRunnable : public AsyncImageResponseRunnable
 {
     Q_OBJECT
 public:
-    AsyncAvatarImageResponseRunnable(const QString& id,
-                                     const QSize& requestedSize,
-                                     LRCInstance* lrcInstance)
+    AsyncAvatarImageResponseRunnable(const QString& id, const QSize& requestedSize, LRCInstance* lrcInstance)
         : AsyncImageResponseRunnable(id, requestedSize, lrcInstance)
     {}
 

@@ -53,15 +53,11 @@ NameDirectory::instance()
 
 // Name registration ended
 void
-NameDirectoryPrivate::slotNameRegistrationEnded(const QString& accountId,
-                                                int status,
-                                                const QString& name)
+NameDirectoryPrivate::slotNameRegistrationEnded(const QString& accountId, int status, const QString& name)
 {
-    LC_DBG << "Name registration ended. Account:" << accountId << "status:" << status
-           << "name:" << name;
+    LC_DBG << "Name registration ended. Account:" << accountId << "status:" << status << "name:" << name;
 
-    Q_EMIT q_ptr->nameRegistrationEnded(static_cast<NameDirectory::RegisterNameStatus>(status),
-                                        name);
+    Q_EMIT q_ptr->nameRegistrationEnded(static_cast<NameDirectory::RegisterNameStatus>(status), name);
 }
 
 // Registered Name found
@@ -97,18 +93,14 @@ NameDirectoryPrivate::slotRegisteredNameFound(const QString& accountId,
 
 // Lookup a name
 bool
-NameDirectory::lookupName(const QString& accountId,
-                          const QString& name,
-                          const QString& nameServiceURL) const
+NameDirectory::lookupName(const QString& accountId, const QString& name, const QString& nameServiceURL) const
 {
     return ConfigurationManager::instance().lookupName(accountId, nameServiceURL, name);
 }
 
 // Lookup an address
 bool
-NameDirectory::lookupAddress(const QString& accountId,
-                             const QString& address,
-                             const QString& nameServiceURL) const
+NameDirectory::lookupAddress(const QString& accountId, const QString& address, const QString& nameServiceURL) const
 {
     return ConfigurationManager::instance().lookupAddress(accountId, nameServiceURL, address);
 }

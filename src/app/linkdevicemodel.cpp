@@ -31,10 +31,7 @@ LinkDeviceModel::LinkDeviceModel(LRCInstance* lrcInstance, QObject* parent)
     connect(&lrcInstance_->accountModel(),
             &lrc::api::AccountModel::addDeviceStateChanged,
             this,
-            [this](const QString& accountId,
-                   uint32_t operationId,
-                   int state,
-                   const MapStringString& details) {
+            [this](const QString& accountId, uint32_t operationId, int state, const MapStringString& details) {
                 if (operationId != operationId_)
                     return;
 
@@ -63,16 +60,14 @@ void
 LinkDeviceModel::addDevice(const QString& token)
 {
     set_tokenErrorMessage("");
-    auto errorMessage = QObject::tr(
-        "Unrecognized new device identifier. Please follow the instructions above.");
+    auto errorMessage = QObject::tr("Unrecognized new device identifier. Please follow the instructions above.");
 
     if (!token.startsWith("jami-auth://") || (token.length() != 59)) {
         set_tokenErrorMessage(errorMessage);
         return;
     }
 
-    int32_t result = lrcInstance_->accountModel().addDevice(lrcInstance_->getCurrentAccountInfo().id,
-                                                            token);
+    int32_t result = lrcInstance_->accountModel().addDevice(lrcInstance_->getCurrentAccountInfo().id, token);
     if (result > 0) {
         operationId_ = result;
     } else {
@@ -117,16 +112,14 @@ void
 LinkDeviceModel::confirmAddDevice()
 {
     handleInProgressSignal();
-    lrcInstance_->accountModel().confirmAddDevice(lrcInstance_->getCurrentAccountInfo().id,
-                                                  operationId_);
+    lrcInstance_->accountModel().confirmAddDevice(lrcInstance_->getCurrentAccountInfo().id, operationId_);
 }
 
 void
 LinkDeviceModel::cancelAddDevice()
 {
     handleInProgressSignal();
-    lrcInstance_->accountModel().cancelAddDevice(lrcInstance_->getCurrentAccountInfo().id,
-                                                 operationId_);
+    lrcInstance_->accountModel().cancelAddDevice(lrcInstance_->getCurrentAccountInfo().id, operationId_);
 }
 
 void

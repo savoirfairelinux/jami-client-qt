@@ -29,10 +29,10 @@
 #include <QtCore/QLoggingCategory>
 
 Q_DECLARE_LOGGING_CATEGORY(libclientLog)
-#define LC_DBG  qCDebug(libclientLog)
-#define LC_INFO qCInfo(libclientLog)
-#define LC_WARN qCWarning(libclientLog)
-#define LC_ERR  qCCritical(libclientLog)
+#define LC_DBG   qCDebug(libclientLog)
+#define LC_INFO  qCInfo(libclientLog)
+#define LC_WARN  qCWarning(libclientLog)
+#define LC_ERR   qCCritical(libclientLog)
 #define LC_FATAL qCFatal(libclientLog)
 
 // Typedefs (required to avoid '<' and '>' in the DBus XML)
@@ -127,9 +127,8 @@ enum_class_size()
 
 // Doesn't work
 #if ((__GNUC_MINOR__ > 8) || (__GNUC_MINOR__ == 8))
-#define STRINGIFY(x) #x
-#define IGNORE_NULL(content) \
-    _Pragma(STRINGIFY(GCC diagnostic ignored "-Wzero-as-null-pointer-constant")) content
+#define STRINGIFY(x)         #x
+#define IGNORE_NULL(content) _Pragma(STRINGIFY(GCC diagnostic ignored "-Wzero-as-null-pointer-constant")) content
 #else
 #define IGNORE_NULL(content) content
 #endif // ENABLE_IGNORE_NULL

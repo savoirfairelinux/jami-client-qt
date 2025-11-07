@@ -31,22 +31,19 @@ WizardViewStepModel::WizardViewStepModel(LRCInstance* lrcInstance,
     , appSettingsManager_(appSettingsManager)
 {
     reset();
-    connect(&lrcInstance_->accountModel(),
-            &AccountModel::accountAdded,
-            this,
-            [this](const QString& accountId) {
-                auto accountCreationOption = get_accountCreationOption();
-                if (accountCreationOption == AccountCreationOption::ConnectToAccountManager
-                    || accountCreationOption == AccountCreationOption::CreateSipAccount) {
-                    reset();
-                } else if ((accountCreationOption != AccountCreationOption::None)
-                           && mainStep_ != MainSteps::ProfileCustomization) {
-                    Q_EMIT closeWizardView();
-                    reset();
-                }
+    connect(&lrcInstance_->accountModel(), &AccountModel::accountAdded, this, [this](const QString& accountId) {
+        auto accountCreationOption = get_accountCreationOption();
+        if (accountCreationOption == AccountCreationOption::ConnectToAccountManager
+            || accountCreationOption == AccountCreationOption::CreateSipAccount) {
+            reset();
+        } else if ((accountCreationOption != AccountCreationOption::None)
+                   && mainStep_ != MainSteps::ProfileCustomization) {
+            Q_EMIT closeWizardView();
+            reset();
+        }
 
-                Q_EMIT accountIsReady(accountId);
-            });
+        Q_EMIT accountIsReady(accountId);
+    });
 
     // Connect to account model signals to track import progress
     connect(&lrcInstance_->accountModel(),
@@ -78,20 +75,19 @@ void
 WizardViewStepModel::nextStep()
 {
     switch (mainStep_) {
-        case MainSteps::Initial:
-            break;
-        case MainSteps::ProfileCustomization:
-            Q_EMIT closeWizardView();
-            break;
-        case MainSteps::NameRegistration:
-            Q_EMIT createAccountRequested(accountCreationOption_);
-            set_mainStep(MainSteps::ProfileCustomization);
-            break;
-        default:
-            Q_EMIT createAccountRequested(accountCreationOption_);
-            Q_EMIT closeWizardView();
-            break;
-
+    case MainSteps::Initial:
+        break;
+    case MainSteps::ProfileCustomization:
+        Q_EMIT closeWizardView();
+        break;
+    case MainSteps::NameRegistration:
+        Q_EMIT createAccountRequested(accountCreationOption_);
+        set_mainStep(MainSteps::ProfileCustomization);
+        break;
+    default:
+        Q_EMIT createAccountRequested(accountCreationOption_);
+        Q_EMIT closeWizardView();
+        break;
     }
 }
 

@@ -45,19 +45,14 @@ public:
         using libjami::CallSignal;
 
         callHandlers = {
-            exportable_callback<CallSignal::StateChange>([this](const std::string& accountId,
-                                                                const std::string& callId,
-                                                                const std::string& state,
-                                                                int code) {
-                LOG_LIBJAMI_SIGNAL3("callStateChanged",
-                                    QString(callId.c_str()),
-                                    QString(state.c_str()),
-                                    code);
-                Q_EMIT callStateChanged(QString(accountId.c_str()),
-                                        QString(callId.c_str()),
-                                        QString(state.c_str()),
-                                        code);
-            }),
+            exportable_callback<CallSignal::StateChange>(
+                [this](const std::string& accountId, const std::string& callId, const std::string& state, int code) {
+                    LOG_LIBJAMI_SIGNAL3("callStateChanged", QString(callId.c_str()), QString(state.c_str()), code);
+                    Q_EMIT callStateChanged(QString(accountId.c_str()),
+                                            QString(callId.c_str()),
+                                            QString(state.c_str()),
+                                            code);
+                }),
             exportable_callback<CallSignal::MediaNegotiationStatus>(
                 [this](const std::string& callId,
                        const std::string& event,
@@ -78,49 +73,37 @@ public:
                 LOG_LIBJAMI_SIGNAL("transferSucceeded", "");
                 Q_EMIT transferSucceeded();
             }),
-            exportable_callback<CallSignal::RecordPlaybackStopped>(
-                [this](const std::string& filepath) {
-                    LOG_LIBJAMI_SIGNAL("recordPlaybackStopped", QString(filepath.c_str()));
-                    Q_EMIT recordPlaybackStopped(QString(filepath.c_str()));
-                }),
+            exportable_callback<CallSignal::RecordPlaybackStopped>([this](const std::string& filepath) {
+                LOG_LIBJAMI_SIGNAL("recordPlaybackStopped", QString(filepath.c_str()));
+                Q_EMIT recordPlaybackStopped(QString(filepath.c_str()));
+            }),
             exportable_callback<CallSignal::VoiceMailNotify>(
                 [this](const std::string& accountId, int newCount, int oldCount, int urgentCount) {
-                    LOG_LIBJAMI_SIGNAL4("voiceMailNotify",
-                                        QString(accountId.c_str()),
-                                        newCount,
-                                        oldCount,
-                                        urgentCount);
-                    Q_EMIT voiceMailNotify(QString(accountId.c_str()),
-                                           newCount,
-                                           oldCount,
-                                           urgentCount);
+                    LOG_LIBJAMI_SIGNAL4("voiceMailNotify", QString(accountId.c_str()), newCount, oldCount, urgentCount);
+                    Q_EMIT voiceMailNotify(QString(accountId.c_str()), newCount, oldCount, urgentCount);
                 }),
-            exportable_callback<CallSignal::IncomingMessage>(
-                [this](const std::string& accountId,
-                       const std::string& callId,
-                       const std::string& from,
-                       const std::map<std::string, std::string>& message) {
-                    LOG_LIBJAMI_SIGNAL4("incomingMessage",
-                                        QString(accountId.c_str()),
-                                        QString(callId.c_str()),
-                                        QString(from.c_str()),
-                                        convertMap(message));
-                    Q_EMIT incomingMessage(QString(accountId.c_str()),
-                                           QString(callId.c_str()),
-                                           QString(from.c_str()),
-                                           convertMap(message));
-                }),
-            exportable_callback<CallSignal::IncomingCall>([this](const std::string& accountId,
-                                                                 const std::string& callId,
-                                                                 const std::string& from) {
-                LOG_LIBJAMI_SIGNAL3("incomingCall",
+            exportable_callback<CallSignal::IncomingMessage>([this](const std::string& accountId,
+                                                                    const std::string& callId,
+                                                                    const std::string& from,
+                                                                    const std::map<std::string, std::string>& message) {
+                LOG_LIBJAMI_SIGNAL4("incomingMessage",
                                     QString(accountId.c_str()),
                                     QString(callId.c_str()),
-                                    QString(from.c_str()));
-                Q_EMIT incomingCall(QString(accountId.c_str()),
-                                    QString(callId.c_str()),
-                                    QString(from.c_str()));
+                                    QString(from.c_str()),
+                                    convertMap(message));
+                Q_EMIT incomingMessage(QString(accountId.c_str()),
+                                       QString(callId.c_str()),
+                                       QString(from.c_str()),
+                                       convertMap(message));
             }),
+            exportable_callback<CallSignal::IncomingCall>(
+                [this](const std::string& accountId, const std::string& callId, const std::string& from) {
+                    LOG_LIBJAMI_SIGNAL3("incomingCall",
+                                        QString(accountId.c_str()),
+                                        QString(callId.c_str()),
+                                        QString(from.c_str()));
+                    Q_EMIT incomingCall(QString(accountId.c_str()), QString(callId.c_str()), QString(from.c_str()));
+                }),
             exportable_callback<CallSignal::MediaChangeRequested>(
                 [this](const std::string& accountId,
                        const std::string& callId,
@@ -135,11 +118,8 @@ public:
                 }),
             exportable_callback<CallSignal::RecordPlaybackFilepath>(
                 [this](const std::string& callId, const std::string& filepath) {
-                    LOG_LIBJAMI_SIGNAL2("recordPlaybackFilepath",
-                                        QString(callId.c_str()),
-                                        QString(filepath.c_str()));
-                    Q_EMIT recordPlaybackFilepath(QString(callId.c_str()),
-                                                  QString(filepath.c_str()));
+                    LOG_LIBJAMI_SIGNAL2("recordPlaybackFilepath", QString(callId.c_str()), QString(filepath.c_str()));
+                    Q_EMIT recordPlaybackFilepath(QString(callId.c_str()), QString(filepath.c_str()));
                 }),
             exportable_callback<CallSignal::ConferenceCreated>(
                 [this](const std::string& accountId, const std::string& conversationId, const std::string& confId) {
@@ -147,7 +127,9 @@ public:
                                         QString(accountId.c_str()),
                                         QString(conversationId.c_str()),
                                         QString(confId.c_str()));
-                    Q_EMIT conferenceCreated(QString(accountId.c_str()), QString(conversationId.c_str()), QString(confId.c_str()));
+                    Q_EMIT conferenceCreated(QString(accountId.c_str()),
+                                             QString(conversationId.c_str()),
+                                             QString(confId.c_str()));
                 }),
             exportable_callback<CallSignal::ConferenceChanged>([this](const std::string& accountId,
                                                                       const std::string& confId,
@@ -156,75 +138,56 @@ public:
                                     QString(accountId.c_str()),
                                     QString(confId.c_str()),
                                     QString(state.c_str()));
-                Q_EMIT conferenceChanged(QString(accountId.c_str()),
-                                         QString(confId.c_str()),
-                                         QString(state.c_str()));
+                Q_EMIT conferenceChanged(QString(accountId.c_str()), QString(confId.c_str()), QString(state.c_str()));
             }),
             exportable_callback<CallSignal::UpdatePlaybackScale>(
                 [this](const std::string& filepath, int position, int size) {
-                    LOG_LIBJAMI_SIGNAL3("updatePlaybackScale",
-                                        QString(filepath.c_str()),
-                                        position,
-                                        size);
+                    LOG_LIBJAMI_SIGNAL3("updatePlaybackScale", QString(filepath.c_str()), position, size);
                     Q_EMIT updatePlaybackScale(QString(filepath.c_str()), position, size);
                 }),
             exportable_callback<CallSignal::ConferenceRemoved>(
                 [this](const std::string& accountId, const std::string& confId) {
-                    LOG_LIBJAMI_SIGNAL2("conferenceRemoved",
-                                        QString(accountId.c_str()),
-                                        QString(confId.c_str()));
+                    LOG_LIBJAMI_SIGNAL2("conferenceRemoved", QString(accountId.c_str()), QString(confId.c_str()));
                     Q_EMIT conferenceRemoved(QString(accountId.c_str()), QString(confId.c_str()));
                 }),
             exportable_callback<CallSignal::RecordingStateChanged>(
                 [this](const std::string& callId, bool recordingState) {
-                    LOG_LIBJAMI_SIGNAL2("recordingStateChanged",
-                                        QString(callId.c_str()),
-                                        recordingState);
+                    LOG_LIBJAMI_SIGNAL2("recordingStateChanged", QString(callId.c_str()), recordingState);
                     Q_EMIT recordingStateChanged(QString(callId.c_str()), recordingState);
                 }),
             exportable_callback<CallSignal::RtcpReportReceived>(
                 [this](const std::string& callId, const std::map<std::string, int>& report) {
-                    LOG_LIBJAMI_SIGNAL2("onRtcpReportReceived",
-                                        QString(callId.c_str()),
-                                        convertStringInt(report));
+                    LOG_LIBJAMI_SIGNAL2("onRtcpReportReceived", QString(callId.c_str()), convertStringInt(report));
                     Q_EMIT onRtcpReportReceived(QString(callId.c_str()), convertStringInt(report));
                 }),
             exportable_callback<CallSignal::OnConferenceInfosUpdated>(
-                [this](const std::string& confId,
-                       const std::vector<std::map<std::string, std::string>>& infos) {
-                    LOG_LIBJAMI_SIGNAL2("onConferenceInfosUpdated",
-                                        QString(confId.c_str()),
-                                        convertVecMap(infos));
+                [this](const std::string& confId, const std::vector<std::map<std::string, std::string>>& infos) {
+                    LOG_LIBJAMI_SIGNAL2("onConferenceInfosUpdated", QString(confId.c_str()), convertVecMap(infos));
                     Q_EMIT onConferenceInfosUpdated(QString(confId.c_str()), convertVecMap(infos));
                 }),
             exportable_callback<CallSignal::PeerHold>([this](const std::string& callId, bool state) {
                 LOG_LIBJAMI_SIGNAL2("peerHold", QString(callId.c_str()), state);
                 Q_EMIT peerHold(QString(callId.c_str()), state);
             }),
-            exportable_callback<CallSignal::AudioMuted>(
-                [this](const std::string& callId, bool state) {
-                    LOG_LIBJAMI_SIGNAL2("audioMuted", QString(callId.c_str()), state);
-                    Q_EMIT audioMuted(QString(callId.c_str()), state);
-                }),
-            exportable_callback<CallSignal::VideoMuted>(
-                [this](const std::string& callId, bool state) {
-                    LOG_LIBJAMI_SIGNAL2("videoMuted", QString(callId.c_str()), state);
-                    Q_EMIT videoMuted(QString(callId.c_str()), state);
-                }),
-            exportable_callback<CallSignal::SmartInfo>(
-                [this](const std::map<std::string, std::string>& info) {
-                    LOG_LIBJAMI_SIGNAL("SmartInfo", "");
-                    Q_EMIT SmartInfo(convertMap(info));
-                }),
+            exportable_callback<CallSignal::AudioMuted>([this](const std::string& callId, bool state) {
+                LOG_LIBJAMI_SIGNAL2("audioMuted", QString(callId.c_str()), state);
+                Q_EMIT audioMuted(QString(callId.c_str()), state);
+            }),
+            exportable_callback<CallSignal::VideoMuted>([this](const std::string& callId, bool state) {
+                LOG_LIBJAMI_SIGNAL2("videoMuted", QString(callId.c_str()), state);
+                Q_EMIT videoMuted(QString(callId.c_str()), state);
+            }),
+            exportable_callback<CallSignal::SmartInfo>([this](const std::map<std::string, std::string>& info) {
+                LOG_LIBJAMI_SIGNAL("SmartInfo", "");
+                Q_EMIT SmartInfo(convertMap(info));
+            }),
             exportable_callback<CallSignal::RemoteRecordingChanged>(
                 [this](const std::string& callId, const std::string& contactId, bool state) {
                     LOG_LIBJAMI_SIGNAL3("remoteRecordingChanged",
                                         QString(callId.c_str()),
                                         QString(contactId.c_str()),
                                         state);
-                    Q_EMIT remoteRecordingChanged(QString(callId.c_str()),
-                                                  QString(contactId.c_str()),
-                                                  state);
+                    Q_EMIT remoteRecordingChanged(QString(callId.c_str()), QString(contactId.c_str()), state);
                 })};
     }
 
@@ -257,19 +220,14 @@ public Q_SLOTS: // METHODS
                                        confId.toStdString());
     }
 
-    bool attendedTransfer(const QString& accountId,
-                          const QString& transferId,
-                          const QString& targetId)
+    bool attendedTransfer(const QString& accountId, const QString& transferId, const QString& targetId)
     {
-        return libjami::attendedTransfer(accountId.toStdString(),
-                                         transferId.toStdString(),
-                                         targetId.toStdString());
+        return libjami::attendedTransfer(accountId.toStdString(), transferId.toStdString(), targetId.toStdString());
     }
 
     void createConfFromParticipantList(const QString& accountId, const QStringList& participants)
     {
-        libjami::createConfFromParticipantList(accountId.toStdString(),
-                                               convertStringList(participants));
+        libjami::createConfFromParticipantList(accountId.toStdString(), convertStringList(participants));
     }
 
     bool detachParticipant(const QString& accountId, const QString& callId)
@@ -279,8 +237,7 @@ public Q_SLOTS: // METHODS
 
     MapStringString getCallDetails(const QString& accountId, const QString& callId)
     {
-        MapStringString temp = convertMap(
-            libjami::getCallDetails(accountId.toStdString(), callId.toStdString()));
+        MapStringString temp = convertMap(libjami::getCallDetails(accountId.toStdString(), callId.toStdString()));
         return temp;
     }
 
@@ -292,8 +249,7 @@ public Q_SLOTS: // METHODS
 
     MapStringString getConferenceDetails(const QString& accountId, const QString& callId)
     {
-        MapStringString temp = convertMap(
-            libjami::getConferenceDetails(accountId.toStdString(), callId.toStdString()));
+        MapStringString temp = convertMap(libjami::getConferenceDetails(accountId.toStdString(), callId.toStdString()));
         return temp;
     }
 
@@ -313,8 +269,7 @@ public Q_SLOTS: // METHODS
 
     QString getConferenceId(const QString& accountId, const QString& callId)
     {
-        QString temp(
-            libjami::getConferenceId(accountId.toStdString(), callId.toStdString()).c_str());
+        QString temp(libjami::getConferenceId(accountId.toStdString(), callId.toStdString()).c_str());
         return temp;
     }
 
@@ -331,8 +286,7 @@ public Q_SLOTS: // METHODS
 
     QStringList getParticipantList(const QString& accountId, const QString& confId)
     {
-        QStringList temp = convertStringList(
-            libjami::getParticipantList(accountId.toStdString(), confId.toStdString()));
+        QStringList temp = convertStringList(libjami::getParticipantList(accountId.toStdString(), confId.toStdString()));
         return temp;
     }
 
@@ -390,35 +344,23 @@ public Q_SLOTS: // METHODS
     }
 
     // MULTISTREAM FUNCTIONS
-    QString placeCallWithMedia(const QString& accountId,
-                               const QString& to,
-                               const VectorMapStringString& mediaList)
+    QString placeCallWithMedia(const QString& accountId, const QString& to, const VectorMapStringString& mediaList)
     {
-        QString temp(libjami::placeCallWithMedia(accountId.toStdString(),
-                                                 to.toStdString(),
-                                                 convertVecMap(mediaList))
-                         .c_str());
+        QString temp(
+            libjami::placeCallWithMedia(accountId.toStdString(), to.toStdString(), convertVecMap(mediaList)).c_str());
         return temp;
     }
 
     // If peer doesn't support multiple ice, keep only the last audio/video
     // This keep the old behaviour (if sharing both camera + sharing a file, will keep the shared file)
-    bool requestMediaChange(const QString& accountId,
-                            const QString& callId,
-                            const VectorMapStringString& mediaList)
+    bool requestMediaChange(const QString& accountId, const QString& callId, const VectorMapStringString& mediaList)
     {
-        return libjami::requestMediaChange(accountId.toStdString(),
-                                           callId.toStdString(),
-                                           convertVecMap(mediaList));
+        return libjami::requestMediaChange(accountId.toStdString(), callId.toStdString(), convertVecMap(mediaList));
     }
 
-    bool acceptWithMedia(const QString& accountId,
-                         const QString& callId,
-                         const VectorMapStringString& mediaList)
+    bool acceptWithMedia(const QString& accountId, const QString& callId, const VectorMapStringString& mediaList)
     {
-        return libjami::acceptWithMedia(accountId.toStdString(),
-                                        callId.toStdString(),
-                                        convertVecMap(mediaList));
+        return libjami::acceptWithMedia(accountId.toStdString(), callId.toStdString(), convertVecMap(mediaList));
     }
 
     bool answerMediaChangeRequest(const QString& accountId,
@@ -494,15 +436,9 @@ public Q_SLOTS: // METHODS
         return libjami::unholdConference(accountId.toStdString(), confId.toStdString());
     }
 
-    bool muteLocalMedia(const QString& accountId,
-                        const QString& callId,
-                        const QString& mediaType,
-                        bool mute)
+    bool muteLocalMedia(const QString& accountId, const QString& callId, const QString& mediaType, bool mute)
     {
-        return libjami::muteLocalMedia(accountId.toStdString(),
-                                       callId.toStdString(),
-                                       mediaType.toStdString(),
-                                       mute);
+        return libjami::muteLocalMedia(accountId.toStdString(), callId.toStdString(), mediaType.toStdString(), mute);
     }
 
     void startSmartInfo(int refresh)
@@ -537,17 +473,13 @@ public Q_SLOTS: // METHODS
 
     void setActiveParticipant(const QString& accountId, const QString& confId, const QString& callId)
     {
-        libjami::setActiveParticipant(accountId.toStdString(),
-                                      confId.toStdString(),
-                                      callId.toStdString());
+        libjami::setActiveParticipant(accountId.toStdString(), confId.toStdString(), callId.toStdString());
     }
 
     bool switchInput(const QString& accountId, const QString& callId, const QString& resource)
     {
 #ifdef ENABLE_VIDEO
-        return libjami::switchInput(accountId.toStdString(),
-                                    callId.toStdString(),
-                                    resource.toStdString());
+        return libjami::switchInput(accountId.toStdString(), callId.toStdString(), resource.toStdString());
 #else
         Q_UNUSED(accountId)
         Q_UNUSED(callId)
@@ -556,15 +488,9 @@ public Q_SLOTS: // METHODS
 #endif
     }
 
-    void setModerator(const QString& accountId,
-                      const QString& confId,
-                      const QString& peerId,
-                      const bool& state)
+    void setModerator(const QString& accountId, const QString& confId, const QString& peerId, const bool& state)
     {
-        libjami::setModerator(accountId.toStdString(),
-                              confId.toStdString(),
-                              peerId.toStdString(),
-                              state);
+        libjami::setModerator(accountId.toStdString(), confId.toStdString(), peerId.toStdString(), state);
     }
 
     void muteStream(const QString& accountId,
@@ -607,13 +533,8 @@ public Q_SLOTS: // METHODS
     }
 
 Q_SIGNALS: // SIGNALS
-    void callStateChanged(const QString& accountId,
-                          const QString& callId,
-                          const QString& state,
-                          int code);
-    void mediaNegotiationStatus(const QString& callId,
-                                const QString& event,
-                                const VectorMapStringString& mediaList);
+    void callStateChanged(const QString& accountId, const QString& callId, const QString& state, int code);
+    void mediaNegotiationStatus(const QString& callId, const QString& event, const VectorMapStringString& mediaList);
     void transferFailed();
     void transferSucceeded();
     void recordPlaybackStopped(const QString& filepath);
@@ -623,9 +544,7 @@ Q_SIGNALS: // SIGNALS
                          const QString& from,
                          const MapStringString& message);
     void incomingCall(const QString& accountId, const QString& callId, const QString& from);
-    void mediaChangeRequested(const QString& accountId,
-                              const QString& callId,
-                              const VectorMapStringString& mediaList);
+    void mediaChangeRequested(const QString& accountId, const QString& callId, const VectorMapStringString& mediaList);
     void recordPlaybackFilepath(const QString& callId, const QString& filepath);
     void conferenceCreated(const QString& accountId, const QString& conversationId, const QString& confId);
     void conferenceChanged(const QString& accountId, const QString& confId, const QString& state);
@@ -638,9 +557,7 @@ Q_SIGNALS: // SIGNALS
     void videoMuted(const QString& callId, bool state);
     void peerHold(const QString& callId, bool state);
     void SmartInfo(const MapStringString& info);
-    void remoteRecordingChanged(const QString& callId,
-                                const QString& peerNumber,
-                                bool remoteRecordingState);
+    void remoteRecordingChanged(const QString& callId, const QString& peerNumber, bool remoteRecordingState);
 };
 
 namespace org {

@@ -33,10 +33,7 @@ Positioning::Positioning(QObject* parent)
     // we would like to listen to system signals to know when location services are activated.
     if (source_) {
         connect(source_, &QGeoPositionInfoSource::errorOccurred, this, &Positioning::slotError);
-        connect(source_,
-                &QGeoPositionInfoSource::positionUpdated,
-                this,
-                &Positioning::positionUpdated);
+        connect(source_, &QGeoPositionInfoSource::positionUpdated, this, &Positioning::positionUpdated);
         // If location services are activated, positioning will be activated automatically.
         connect(source_,
                 &QGeoPositionInfoSource::supportedPositioningMethodsChanged,

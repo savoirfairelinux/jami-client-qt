@@ -105,10 +105,7 @@ public:
      * @param body
      * @return id from daemon
      */
-    uint64_t sendDhtMessage(const QString& uri,
-                            const QString& body,
-                            const QString& mimeType = {},
-                            int flag = 0) const;
+    uint64_t sendDhtMessage(const QString& uri, const QString& body, const QString& mimeType = {}, int flag = 0) const;
     /**
      * Get best id for contact
      * @param contactUri
@@ -159,10 +156,7 @@ Q_SIGNALS:
      * @param isOutgoing
      * @param toUri
      */
-    void newCall(const QString& from,
-                 const QString& callId,
-                 bool isOutgoing,
-                 const QString& toUri) const;
+    void newCall(const QString& from, const QString& callId, bool isOutgoing, const QString& toUri) const;
     /**
      * Connect this signal to know when a text message arrives for this account
      * @param accountId

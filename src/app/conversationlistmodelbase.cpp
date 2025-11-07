@@ -79,8 +79,7 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
             const auto& call = accInfo.callModel->getCall(convInfo.callId);
             return QVariant(accInfo.callModel->hasCall(convInfo.callId)
                             && ((!call.isOutgoing
-                                 && (call.status == call::Status::IN_PROGRESS
-                                     || call.status == call::Status::PAUSED
+                                 && (call.status == call::Status::IN_PROGRESS || call.status == call::Status::PAUSED
                                      || call.status == call::Status::INCOMING_RINGING))
                                 || (call.isOutgoing && call.status != call::Status::ENDED)));
         }
@@ -111,9 +110,8 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
         return QVariant(item.unreadMessages);
     case Role::LastInteractionTimeStamp: {
         qint32 ts = 0;
-        item.interactions->withLast([&ts](const QString&, const interaction::Info& interaction) {
-            ts = interaction.timestamp;
-        });
+        item.interactions->withLast(
+            [&ts](const QString&, const interaction::Info& interaction) { ts = interaction.timestamp; });
         return QVariant(ts);
     }
     case Role::LastInteraction: {
@@ -134,15 +132,12 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
             } else if (interaction.type == lrc::api::interaction::Type::CONTACT) {
                 auto bestName = interaction.authorUri == accInfo.profileInfo.uri
                                     ? accInfo.accountModel->bestNameForAccount(accInfo.id)
-                                    : accInfo.contactModel->bestNameForContact(
-                                          interaction.authorUri);
-                lastInteractionBody
-                    = interaction::getContactInteractionString(bestName,
-                                                               interaction::to_action(
-                                                                   interaction.commit["action"]));
+                                    : accInfo.contactModel->bestNameForContact(interaction.authorUri);
+                lastInteractionBody = interaction::getContactInteractionString(bestName,
+                                                                               interaction::to_action(
+                                                                                   interaction.commit["action"]));
             } else {
-                lastInteractionBody = interaction.body.isEmpty() ? tr("(deleted message)")
-                                                                 : interaction.body;
+                lastInteractionBody = interaction.body.isEmpty() ? tr("(deleted message)") : interaction.body;
             }
         });
         return QVariant(lastInteractionBody);
@@ -223,8 +218,7 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
             contact = contactModel->getContact(peerUri);
         } catch (const std::exception&) {
             C_WARN << "Unable to find contact" << peerUri << "for account"
-                   << lrcInstance_->accountModel().bestNameForAccount(accInfo.id)
-                   << "- Conv:" << item.uid;
+                   << lrcInstance_->accountModel().bestNameForAccount(accInfo.id) << "- Conv:" << item.uid;
         }
 
         switch (role) {

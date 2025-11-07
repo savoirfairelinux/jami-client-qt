@@ -27,26 +27,14 @@ VideoProvider::VideoProvider(AVModel& avModel, QObject* parent)
     : QObject(parent)
     , avModel_(avModel)
 {
-    connect(&avModel_,
-            &AVModel::rendererStarted,
-            this,
-            &VideoProvider::onRendererStarted,
-            Qt::DirectConnection);
+    connect(&avModel_, &AVModel::rendererStarted, this, &VideoProvider::onRendererStarted, Qt::DirectConnection);
     connect(&avModel_,
             &AVModel::frameBufferRequested,
             this,
             &VideoProvider::onFrameBufferRequested,
             Qt::DirectConnection);
-    connect(&avModel_,
-            &AVModel::frameUpdated,
-            this,
-            &VideoProvider::onFrameUpdated,
-            Qt::DirectConnection);
-    connect(&avModel_,
-            &AVModel::rendererStopped,
-            this,
-            &VideoProvider::onRendererStopped,
-            Qt::DirectConnection);
+    connect(&avModel_, &AVModel::frameUpdated, this, &VideoProvider::onFrameUpdated, Qt::DirectConnection);
+    connect(&avModel_, &AVModel::rendererStopped, this, &VideoProvider::onRendererStopped, Qt::DirectConnection);
 }
 
 void
@@ -132,8 +120,7 @@ VideoProvider::captureRawVideoFrame(const QString& id)
         QReadLocker lock(&it->second.frameMutex);
         QVideoFrame& videoFrame = it->second.videoFrame;
         if (videoFrame.map(QVideoFrame::ReadOnly)) {
-            auto imageFormat = QVideoFrameFormat::imageFormatFromPixelFormat(
-                QVideoFrameFormat::Format_RGBA8888);
+            auto imageFormat = QVideoFrameFormat::imageFormatFromPixelFormat(QVideoFrameFormat::Format_RGBA8888);
             // Create a temporary QImage that wraps the video frame data
             QImage tempImage(videoFrame.bits(0),
                              videoFrame.width(),
@@ -151,9 +138,8 @@ VideoProvider::captureRawVideoFrame(const QString& id)
 void
 VideoProvider::onRendererStarted(const QString& id, const QSize& size)
 {
-    static const auto pixelFormat = avModel_.useDirectRenderer()
-                                        ? QVideoFrameFormat::Format_RGBA8888
-                                        : QVideoFrameFormat::Format_BGRA8888;
+    static const auto pixelFormat = avModel_.useDirectRenderer() ? QVideoFrameFormat::Format_RGBA8888
+                                                                 : QVideoFrameFormat::Format_BGRA8888;
     auto frameFormat = QVideoFrameFormat(size, pixelFormat);
 
     renderersMutex_.lockForWrite();

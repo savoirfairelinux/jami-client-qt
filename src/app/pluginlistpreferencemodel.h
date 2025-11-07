@@ -24,8 +24,8 @@
 class PluginListPreferenceModel : public AbstractListModelBase
 {
     Q_OBJECT
-    Q_PROPERTY(QString preferenceNewValue READ preferenceNewValue WRITE setPreferenceNewValue NOTIFY
-                   preferenceNewValueChanged)
+    Q_PROPERTY(
+        QString preferenceNewValue READ preferenceNewValue WRITE setPreferenceNewValue NOTIFY preferenceNewValueChanged)
     Q_PROPERTY(QString pluginId READ pluginId WRITE setPluginId NOTIFY pluginIdChanged)
     QML_PROPERTY(QString, preferenceKey)
     QML_PROPERTY(int, idx)
@@ -69,8 +69,7 @@ public:
 
     QString preferenceCurrentValue()
     {
-        return lrcInstance_->pluginModel().getPluginPreferencesValues(pluginId_,
-                                                                      accountId_)[preferenceKey_];
+        return lrcInstance_->pluginModel().getPluginPreferencesValues(pluginId_, accountId_)[preferenceKey_];
     }
 
     QString preferenceNewValue()

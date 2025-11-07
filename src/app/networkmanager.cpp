@@ -80,8 +80,7 @@ NetworkManager::NetworkManager(ConnectivityMonitor* cm, QObject* parent)
 }
 
 void
-NetworkManager::sendGetRequest(const QUrl& url,
-                               std::function<void(const QByteArray&)>&& onDoneCallback)
+NetworkManager::sendGetRequest(const QUrl& url, std::function<void(const QByteArray&)>&& onDoneCallback)
 {
     const QNetworkRequest request = QNetworkRequest(url);
     sendGetRequest(request, std::move(onDoneCallback));
@@ -94,15 +93,13 @@ NetworkManager::sendGetRequest(const QUrl& url,
 {
     QNetworkRequest request = QNetworkRequest(url);
     for (auto it = header.begin(); it != header.end(); ++it) {
-        request.setRawHeader(QByteArray(it.key().toStdString().c_str(), it.key().size()),
-                             it.value());
+        request.setRawHeader(QByteArray(it.key().toStdString().c_str(), it.key().size()), it.value());
     }
     sendGetRequest(request, std::move(onDoneCallback));
 }
 
 void
-NetworkManager::sendGetRequest(const QNetworkRequest& request,
-                               std::function<void(const QByteArray&)>&& onDoneCallback)
+NetworkManager::sendGetRequest(const QNetworkRequest& request, std::function<void(const QByteArray&)>&& onDoneCallback)
 {
     auto* const reply = manager_->get(request);
     QObject::connect(reply, &QNetworkReply::finished, this, [reply, onDoneCallback, this]() {
@@ -176,12 +173,9 @@ NetworkManager::downloadFile(const QUrl& url,
         }
     });
 
-    connect(reply,
-            &QNetworkReply::downloadProgress,
-            this,
-            [this](qint64 bytesReceived, qint64 bytesTotal) {
-                Q_EMIT downloadProgressChanged(bytesReceived, bytesTotal);
-            });
+    connect(reply, &QNetworkReply::downloadProgress, this, [this](qint64 bytesReceived, qint64 bytesTotal) {
+        Q_EMIT downloadProgressChanged(bytesReceived, bytesTotal);
+    });
 
     connect(reply,
             QOverload<QNetworkReply::NetworkError>::of(&QNetworkReply::errorOccurred),
@@ -189,8 +183,7 @@ NetworkManager::downloadFile(const QUrl& url,
             [this, uuid, reply](QNetworkReply::NetworkError error) {
                 reply->disconnect();
                 resetDownload(uuid);
-                qDebug() << Q_FUNC_INFO
-                         << QMetaEnum::fromType<QNetworkReply::NetworkError>().valueToKey(error);
+                qDebug() << Q_FUNC_INFO << QMetaEnum::fromType<QNetworkReply::NetworkError>().valueToKey(error);
                 Q_EMIT errorOccurred(translateErrorCode(error));
             });
 

@@ -27,9 +27,7 @@ namespace lrc {
 
 namespace api {
 
-CallParticipants::CallParticipants(const VectorMapStringString& infos,
-                                   const QString& callId,
-                                   const CallModel& linked)
+CallParticipants::CallParticipants(const VectorMapStringString& infos, const QString& callId, const CallModel& linked)
     : linked_(linked)
     , callId_(callId)
 {
@@ -80,9 +78,7 @@ CallParticipants::verifyLayout()
     std::lock_guard<std::mutex> lk(participantsMtx_);
     auto it = std::find_if(participants_.begin(),
                            participants_.end(),
-                           [](const lrc::api::ParticipantInfos& participant) -> bool {
-                               return participant.active;
-                           });
+                           [](const lrc::api::ParticipantInfos& participant) -> bool { return participant.active; });
     auto newLayout = call::Layout::GRID;
     if (it != participants_.end())
         if (participants_.size() == 1)
@@ -114,9 +110,7 @@ CallParticipants::addParticipant(const ParticipantInfos& participant)
         std::lock_guard<std::mutex> lk(participantsMtx_);
         auto it = participants_.find(participant.sinkId);
         if (it == participants_.end()) {
-            participants_.insert(std::next(participants_.begin(), idx_),
-                                 participant.sinkId,
-                                 participant);
+            participants_.insert(std::next(participants_.begin(), idx_), participant.sinkId, participant);
             added = true;
         } else {
             if (participant == (*it))
@@ -152,8 +146,7 @@ CallParticipants::filterCandidates(const VectorMapStringString& infos)
             }
         }
         auto media = candidate[ParticipantsInfosStrings::STREAMID];
-        if (candidate[ParticipantsInfosStrings::W].toInt() != 0
-            && candidate[ParticipantsInfosStrings::H].toInt() != 0) {
+        if (candidate[ParticipantsInfosStrings::W].toInt() != 0 && candidate[ParticipantsInfosStrings::H].toInt() != 0) {
             validMedias_.append(media);
             candidates_.insert(media, ParticipantInfos(candidate, callId_, peerId));
         }
@@ -166,9 +159,7 @@ CallParticipants::checkModerator(const QString& uri) const
     std::lock_guard<std::mutex> lk(participantsMtx_);
     return std::find_if(participants_.cbegin(),
                         participants_.cend(),
-                        [&](auto participant) {
-                            return participant.uri == uri && participant.isModerator;
-                        })
+                        [&](auto participant) { return participant.uri == uri && participant.isModerator; })
            != participants_.cend();
 }
 

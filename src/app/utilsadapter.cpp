@@ -97,8 +97,7 @@ UtilsAdapter::setAppValue(const Settings::Key key, const QVariant& value)
         Q_EMIT raiseWhenCalledChanged();
 #if !APPSTORE
     // Any donation campaign-related keys can trigger a donation campaign check
-    else if (key == Settings::Key::IsDonationVisible
-             || key == Settings::Key::Donation2025StartDate
+    else if (key == Settings::Key::IsDonationVisible || key == Settings::Key::Donation2025StartDate
              || key == Settings::Key::Donation2025EndDate)
         Q_EMIT donationCampaignSettingsChanged();
 #endif
@@ -176,8 +175,7 @@ UtilsAdapter::getCachePath()
 QString
 UtilsAdapter::getDefaultRecordPath() const
 {
-    auto defaultDirectory = QStandardPaths::writableLocation(QStandardPaths::MoviesLocation)
-                            + "/Jami";
+    auto defaultDirectory = QStandardPaths::writableLocation(QStandardPaths::MoviesLocation) + "/Jami";
     QDir dir(defaultDirectory);
     if (!dir.exists())
         dir.mkpath(".");
@@ -264,8 +262,7 @@ UtilsAdapter::getBestId(const QString& accountId, const QString& uid)
 {
     const auto& conv = lrcInstance_->getConversationFromConvUid(uid);
     if (!conv.participants.isEmpty())
-        return lrcInstance_->getAccountInfo(accountId).contactModel->bestIdForContact(
-            conv.participants[0].uri);
+        return lrcInstance_->getAccountInfo(accountId).contactModel->bestIdForContact(conv.participants[0].uri);
     return QString();
 }
 
@@ -437,8 +434,7 @@ UtilsAdapter::setSystemTrayIconVisible(bool visible)
 QString
 UtilsAdapter::getDirDocument()
 {
-    return QDir::toNativeSeparators(
-        QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation));
+    return QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation));
 }
 
 QString
@@ -511,17 +507,16 @@ UtilsAdapter::monitor(const bool& continuous)
 {
     disconnect(debugMessageReceivedConnection_);
     if (continuous)
-        debugMessageReceivedConnection_
-            = QObject::connect(&lrcInstance_->behaviorController(),
-                               &lrc::api::BehaviorController::debugMessageReceived,
-                               this,
-                               [this](const QString& data) {
-                                   logList_.append(data);
-                                   if (logList_.size() >= LOGSLIMIT) {
-                                       logList_.removeFirst();
-                                   }
-                                   Q_EMIT debugMessageReceived(data);
-                               });
+        debugMessageReceivedConnection_ = QObject::connect(&lrcInstance_->behaviorController(),
+                                                           &lrc::api::BehaviorController::debugMessageReceived,
+                                                           this,
+                                                           [this](const QString& data) {
+                                                               logList_.append(data);
+                                                               if (logList_.size() >= LOGSLIMIT) {
+                                                                   logList_.removeFirst();
+                                                               }
+                                                               Q_EMIT debugMessageReceived(data);
+                                                           });
     lrcInstance_->monitor(continuous);
 }
 
@@ -606,9 +601,7 @@ UtilsAdapter::setTempCreationImageFromImage(const QImage& image, const QString& 
         file.close();
         Q_EMIT lrcInstance_->base64SwarmAvatarChanged();
     } else {
-        lrcInstance_->getCurrentConversationModel()->updateConversationInfos(imageId,
-                                                                             {{"avatar",
-                                                                               ba.toBase64()}});
+        lrcInstance_->getCurrentConversationModel()->updateConversationInfos(imageId, {{"avatar", ba.toBase64()}});
     }
 }
 
@@ -630,8 +623,7 @@ UtilsAdapter::getContactBestName(const QString& accountId, const QString& uri)
 {
     try {
         if (lrcInstance_->getAccountInfo(accountId).profileInfo.uri == uri)
-            return lrcInstance_->accountModel().bestNameForAccount(
-                accountId); // It's the same account
+            return lrcInstance_->accountModel().bestNameForAccount(accountId); // It's the same account
         return lrcInstance_->getAccountInfo(accountId).contactModel->bestNameForContact(uri);
     } catch (...) {
     }
@@ -651,8 +643,7 @@ UtilsAdapter::getParticipantRole(const QString& accountId, const QString& convId
 bool
 UtilsAdapter::luma(const QColor& color) const
 {
-    return (0.2126 * color.red() + 0.7152 * color.green() + 0.0722 * color.blue())
-           < 153 /* .6 * 256 */;
+    return (0.2126 * color.red() + 0.7152 * color.green() + 0.0722 * color.blue()) < 153 /* .6 * 256 */;
 }
 
 #if __has_include(<gio/gio.h>)
@@ -672,12 +663,11 @@ readAppsUseLightThemeRegistry(bool getValue)
 {
     auto returnValue = true;
     HKEY hKey;
-    auto lResult
-        = RegOpenKeyEx(HKEY_CURRENT_USER,
-                       TEXT("Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize"),
-                       0,
-                       KEY_READ,
-                       &hKey);
+    auto lResult = RegOpenKeyEx(HKEY_CURRENT_USER,
+                                TEXT("Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize"),
+                                0,
+                                KEY_READ,
+                                &hKey);
 
     if (lResult != ERROR_SUCCESS) {
         RegCloseKey(hKey);
@@ -732,8 +722,7 @@ UtilsAdapter::isSystemThemeDark()
             if (auto* valueCstr = g_settings_get_string(settings, key.c_str())) {
                 QString value = valueCstr;
                 if (!value.isEmpty()) {
-                    return value.contains("dark", Qt::CaseInsensitive)
-                           || value.contains("black", Qt::CaseInsensitive);
+                    return value.contains("dark", Qt::CaseInsensitive) || value.contains("black", Qt::CaseInsensitive);
                 }
             }
         }
@@ -793,12 +782,11 @@ UtilsAdapter::getOneline(const QString& input)
 QVariantMap
 UtilsAdapter::getVideoPlayer(const QString& resource, const QString& bgColor)
 {
-    static const QString htmlVideo
-        = "<body style='margin:0;padding:0;'>"
-          "<video autoplay muted loop "
-          "style='width:100%;height:100%;outline:none;background-color:%2;"
-          "object-fit:cover;' "
-          "src='%1' type='video/webm'/></body>";
+    static const QString htmlVideo = "<body style='margin:0;padding:0;'>"
+                                     "<video autoplay muted loop "
+                                     "style='width:100%;height:100%;outline:none;background-color:%2;"
+                                     "object-fit:cover;' "
+                                     "src='%1' type='video/webm'/></body>";
     return {
         {"isVideo", true},
         {"html", htmlVideo.arg(resource, bgColor)},
@@ -852,8 +840,7 @@ UtilsAdapter::fileExists(const QString& filePath)
 QString
 UtilsAdapter::getStandardTempLocation()
 {
-    return QStandardPaths::writableLocation(
-        static_cast<QStandardPaths::StandardLocation>(QStandardPaths::TempLocation));
+    return QStandardPaths::writableLocation(static_cast<QStandardPaths::StandardLocation>(QStandardPaths::TempLocation));
 }
 
 QString

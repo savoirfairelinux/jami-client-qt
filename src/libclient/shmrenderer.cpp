@@ -193,8 +193,7 @@ public:
                 return false;
             }
 
-            shmArea
-                = (SHMHeader*) ::mmap(nullptr, mapSize, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
+            shmArea = (SHMHeader*) ::mmap(nullptr, mapSize, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
 
             if (shmArea == MAP_FAILED) {
                 qDebug() << "An error occurred remapping shared area:" << strerror(errno);
@@ -259,16 +258,13 @@ ShmRenderer::startShm()
     pimpl_->fd = ::shm_open(pimpl_->path.toLatin1(), O_RDWR, 0);
 
     if (pimpl_->fd < 0) {
-        qWarning() << "An error occurred opening shm area"
-                   << pimpl_->path << ", shm_open failed:"
-                   << strerror(errno);
+        qWarning() << "An error occurred opening shm area" << pimpl_->path << ", shm_open failed:" << strerror(errno);
         return false;
     }
 
     // Map only header data
     const auto mapSize = sizeof(SHMHeader);
-    pimpl_->shmArea
-        = (SHMHeader*) ::mmap(nullptr, mapSize, PROT_READ | PROT_WRITE, MAP_SHARED, pimpl_->fd, 0);
+    pimpl_->shmArea = (SHMHeader*) ::mmap(nullptr, mapSize, PROT_READ | PROT_WRITE, MAP_SHARED, pimpl_->fd, 0);
 
     if (pimpl_->shmArea == MAP_FAILED) {
         qWarning() << "An error occurred while remapping shared area.";

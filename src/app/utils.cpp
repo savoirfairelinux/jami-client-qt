@@ -304,10 +304,7 @@ Utils::removeOldVersions()
         qDebug() << "Found startup link for Ring. Removing it and killing Ring.exe.";
         Utils::DeleteStartupLink(TEXT("Ring"));
         QProcess process;
-        process.start("taskkill",
-                      QStringList() << "/im"
-                                    << "Ring.exe"
-                                    << "/f");
+        process.start("taskkill", QStringList() << "/im" << "Ring.exe" << "/f");
         process.waitForFinished();
     }
 

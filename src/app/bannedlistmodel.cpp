@@ -28,10 +28,7 @@ BannedListModel::BannedListModel(QObject* parent)
 {
     connect(this, &BannedListModel::lrcInstanceChanged, [this]() {
         // Listen for account change and reconnect to the new account contact model.
-        connect(lrcInstance_,
-                &LRCInstance::currentAccountIdChanged,
-                this,
-                &BannedListModel::setupForAccount);
+        connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, this, &BannedListModel::setupForAccount);
         setupForAccount();
     });
 }
@@ -55,8 +52,7 @@ BannedListModel::data(const QModelIndex& index, int role) const
             return QVariant();
         }
 
-        auto contactInfo = lrcInstance_->getCurrentAccountInfo().contactModel->getContact(
-            contactList.at(index.row()));
+        auto contactInfo = lrcInstance_->getCurrentAccountInfo().contactModel->getContact(contactList.at(index.row()));
 
         switch (role) {
         case Role::ContactName:
@@ -140,9 +136,7 @@ BannedListModel::onBannedStatusChanged(const QString& uri, bool banned)
         endInsertRows();
         set_count(rowCount());
     } else {
-        auto it = std::find_if(bannedlist_.begin(), bannedlist_.end(), [&uri](const auto& c) {
-            return uri == c;
-        });
+        auto it = std::find_if(bannedlist_.begin(), bannedlist_.end(), [&uri](const auto& c) { return uri == c; });
         if (it != bannedlist_.end()) {
             auto elementIndex = std::distance(bannedlist_.begin(), it);
             beginRemoveRows(QModelIndex(), elementIndex, elementIndex);

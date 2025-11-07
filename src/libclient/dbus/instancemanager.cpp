@@ -39,9 +39,9 @@ InstanceManager::instance(bool muteDaemon)
                                                          QDBusConnection::sessionBus());
 
     if (!interface->connection().isConnected()) {
-        GlobalInstances::dBusErrorHandler().connectionError(
-            "Error : jamid not connected. Service " + interface->service()
-            + " not connected. From instance interface.");
+        GlobalInstances::dBusErrorHandler().connectionError("Error : jamid not connected. Service "
+                                                            + interface->service()
+                                                            + " not connected. From instance interface.");
     }
     static bool registered = false;
     if (!registered) {

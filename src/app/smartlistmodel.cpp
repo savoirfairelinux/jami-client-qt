@@ -25,24 +25,12 @@
 
 #include <QDateTime>
 
-SmartListModel::SmartListModel(QObject* parent,
-                               SmartListModel::Type listModelType,
-                               LRCInstance* instance)
+SmartListModel::SmartListModel(QObject* parent, SmartListModel::Type listModelType, LRCInstance* instance)
     : ConversationListModelBase(instance, parent)
     , listModelType_(listModelType)
 {
-    connect(
-        model_,
-        &ConversationModel::newConversation,
-        this,
-        [this] { updateModels(); },
-        Qt::DirectConnection);
-    connect(
-        model_,
-        &ConversationModel::conversationRemoved,
-        this,
-        [this] { updateModels(); },
-        Qt::DirectConnection);
+    connect(model_, &ConversationModel::newConversation, this, [this] { updateModels(); }, Qt::DirectConnection);
+    connect(model_, &ConversationModel::conversationRemoved, this, [this] { updateModels(); }, Qt::DirectConnection);
 
     updateModels();
 }
@@ -51,8 +39,7 @@ int
 SmartListModel::rowCount(const QModelIndex& parent) const
 {
     if (!parent.isValid() && lrcInstance_) {
-        auto& accInfo = lrcInstance_->accountModel().getAccountInfo(
-            lrcInstance_->get_currentAccountId());
+        auto& accInfo = lrcInstance_->accountModel().getAccountInfo(lrcInstance_->get_currentAccountId());
         auto& convModel = accInfo.conversationModel;
         if (listModelType_ == Type::TRANSFER) {
             return convModel->getFilteredConversations(accInfo.profileInfo.type).size();
@@ -82,12 +69,10 @@ SmartListModel::data(const QModelIndex& index, int role) const
     switch (listModelType_) {
     case Type::TRANSFER: {
         try {
-            auto& currentAccountInfo = lrcInstance_->accountModel().getAccountInfo(
-                lrcInstance_->get_currentAccountId());
+            auto& currentAccountInfo = lrcInstance_->accountModel().getAccountInfo(lrcInstance_->get_currentAccountId());
             auto& convModel = currentAccountInfo.conversationModel;
 
-            auto& item = convModel->getFilteredConversations(currentAccountInfo.profileInfo.type)
-                             .at(index.row());
+            auto& item = convModel->getFilteredConversations(currentAccountInfo.profileInfo.type).at(index.row());
             return dataForItem(item, role);
         } catch (const std::exception& e) {
             qWarning() << e.what();
@@ -104,13 +89,10 @@ SmartListModel::data(const QModelIndex& index, int role) const
             bool callsOpen = sectionState_[tr("Calls")];
             bool contactsOpen = sectionState_[tr("Contacts")];
             auto callSectionEnd = callsOpen ? calls.size() + 1 : 1;
-            auto contactSectionEnd = contactsOpen ? callSectionEnd + contacts.size() + 1
-                                                  : callSectionEnd + 1;
+            auto contactSectionEnd = contactsOpen ? callSectionEnd + contacts.size() + 1 : callSectionEnd + 1;
             if (index.row() < callSectionEnd) {
                 if (index.row() == 0) {
-                    return QVariant(role == Role::SectionName
-                                        ? (callsOpen ? "➖ " : "➕ ") + QString(tr("Calls"))
-                                        : "");
+                    return QVariant(role == Role::SectionName ? (callsOpen ? "➖ " : "➕ ") + QString(tr("Calls")) : "");
                 } else {
                     auto idx = index.row() - 1;
                     itemConvUid = calls.at(idx).at(0).convId;
@@ -118,9 +100,8 @@ SmartListModel::data(const QModelIndex& index, int role) const
                 }
             } else if (index.row() < contactSectionEnd) {
                 if (index.row() == callSectionEnd) {
-                    return QVariant(role == Role::SectionName
-                                        ? (contactsOpen ? "➖ " : "➕ ") + QString(tr("Contacts"))
-                                        : "");
+                    return QVariant(role == Role::SectionName ? (contactsOpen ? "➖ " : "➕ ") + QString(tr("Contacts"))
+                                                              : "");
                 } else {
                     auto idx = index.row() - (callSectionEnd + 1);
                     itemConvUid = contacts.at(idx).at(0).convId;
@@ -150,11 +131,9 @@ void
 SmartListModel::setConferenceableFilter(const QString& filter)
 {
     beginResetModel();
-    auto& accountInfo = lrcInstance_->accountModel().getAccountInfo(
-        lrcInstance_->get_currentAccountId());
+    auto& accountInfo = lrcInstance_->accountModel().getAccountInfo(lrcInstance_->get_currentAccountId());
     auto& convModel = accountInfo.conversationModel;
-    conferenceables_ = convModel->getConferenceableConversations(lrcInstance_->get_selectedConvUid(),
-                                                                 filter);
+    conferenceables_ = convModel->getConferenceableConversations(lrcInstance_->get_selectedConvUid(), filter);
     sectionState_[tr("Calls")] = true;
     sectionState_[tr("Contacts")] = true;
     endResetModel();
@@ -166,8 +145,7 @@ SmartListModel::fillConversationsList()
     beginResetModel();
     auto* convModel = lrcInstance_->getCurrentConversationModel();
     using ConversationList = ConversationModel::ConversationQueueProxy;
-    conversations_ = ConversationList(convModel->getAllSearchResults())
-                     + convModel->allFilteredConversations();
+    conversations_ = ConversationList(convModel->getAllSearchResults()) + convModel->allFilteredConversations();
     endResetModel();
 }
 

@@ -44,43 +44,37 @@ public:
         using libjami::PresenceSignal;
 
         presHandlers
-            = {exportable_callback<PresenceSignal::NewServerSubscriptionRequest>(
-                   [this](const std::string& buddyUri) {
-                       Q_EMIT this->newServerSubscriptionRequest(QString(buddyUri.c_str()));
-                   }),
+            = {exportable_callback<PresenceSignal::NewServerSubscriptionRequest>([this](const std::string& buddyUri) {
+                   Q_EMIT this->newServerSubscriptionRequest(QString(buddyUri.c_str()));
+               }),
                exportable_callback<PresenceSignal::ServerError>([this](const std::string& accountID,
                                                                        const std::string& error,
                                                                        const std::string& msg) {
-                   Q_EMIT this->serverError(QString(accountID.c_str()),
-                                            QString(error.c_str()),
-                                            QString(msg.c_str()));
+                   Q_EMIT this->serverError(QString(accountID.c_str()), QString(error.c_str()), QString(msg.c_str()));
                }),
-               exportable_callback<PresenceSignal::NewBuddyNotification>(
-                   [this](const std::string& accountID,
-                          const std::string& buddyUri,
-                          int status,
-                          const std::string& lineStatus) {
-                       Q_EMIT this->newBuddyNotification(QString(accountID.c_str()),
-                                                         QString(buddyUri.c_str()),
-                                                         status,
-                                                         QString(lineStatus.c_str()));
-                   }),
-               exportable_callback<PresenceSignal::SubscriptionStateChanged>(
-                   [this](const std::string& accountID, const std::string& buddyUri, bool state) {
-                       Q_EMIT this->subscriptionStateChanged(QString(accountID.c_str()),
-                                                             QString(buddyUri.c_str()),
-                                                             state);
-                   }),
-               exportable_callback<PresenceSignal::NearbyPeerNotification>(
-                   [this](const std::string& accountID,
-                          const std::string& buddyUri,
-                          int status,
-                          const std::string& displayname) {
-                       Q_EMIT this->nearbyPeerNotification(QString(accountID.c_str()),
-                                                           QString(buddyUri.c_str()),
-                                                           status,
-                                                           QString(displayname.c_str()));
-                   })};
+               exportable_callback<PresenceSignal::NewBuddyNotification>([this](const std::string& accountID,
+                                                                                const std::string& buddyUri,
+                                                                                int status,
+                                                                                const std::string& lineStatus) {
+                   Q_EMIT this->newBuddyNotification(QString(accountID.c_str()),
+                                                     QString(buddyUri.c_str()),
+                                                     status,
+                                                     QString(lineStatus.c_str()));
+               }),
+               exportable_callback<PresenceSignal::SubscriptionStateChanged>([this](const std::string& accountID,
+                                                                                    const std::string& buddyUri,
+                                                                                    bool state) {
+                   Q_EMIT this->subscriptionStateChanged(QString(accountID.c_str()), QString(buddyUri.c_str()), state);
+               }),
+               exportable_callback<PresenceSignal::NearbyPeerNotification>([this](const std::string& accountID,
+                                                                                  const std::string& buddyUri,
+                                                                                  int status,
+                                                                                  const std::string& displayname) {
+                   Q_EMIT this->nearbyPeerNotification(QString(accountID.c_str()),
+                                                       QString(buddyUri.c_str()),
+                                                       status,
+                                                       QString(displayname.c_str()));
+               })};
     }
 
     ~PresenceManagerInterface() {}
@@ -122,10 +116,7 @@ Q_SIGNALS: // SIGNALS
                                 const QString& displayname);
     void newServerSubscriptionRequest(const QString& buddyUri);
     void serverError(const QString& accountID, const QString& error, const QString& msg);
-    void newBuddyNotification(const QString& accountID,
-                              const QString& buddyUri,
-                              int status,
-                              const QString& lineStatus);
+    void newBuddyNotification(const QString& accountID, const QString& buddyUri, int status, const QString& lineStatus);
     void subscriptionStateChanged(const QString& accountID, const QString& buddyUri, bool state);
 };
 

@@ -29,15 +29,9 @@ CurrentCall::CurrentCall(LRCInstance* lrcInstance, QObject* parent)
 {
     participantsModel_ = qApp->property("CallParticipantsModel").value<CallParticipantsModel*>();
 
-    connect(lrcInstance_,
-            &LRCInstance::currentAccountIdChanged,
-            this,
-            &CurrentCall::onCurrentAccountIdChanged);
+    connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, this, &CurrentCall::onCurrentAccountIdChanged);
 
-    connect(lrcInstance_,
-            &LRCInstance::selectedConvUidChanged,
-            this,
-            &CurrentCall::onCurrentConvIdChanged);
+    connect(lrcInstance_, &LRCInstance::selectedConvUidChanged, this, &CurrentCall::onCurrentConvIdChanged);
 
     connect(&lrcInstance_->behaviorController(),
             &BehaviorController::showIncomingCallView,
@@ -78,8 +72,7 @@ CurrentCall::updateId(QString callId)
         // Only setCurrentCall if call is actually answered
         try {
             auto callInfo = accInfo.callModel->getCall(callId);
-            if (callInfo.status == call::Status::IN_PROGRESS
-                || callInfo.status == call::Status::PAUSED)
+            if (callInfo.status == call::Status::IN_PROGRESS || callInfo.status == call::Status::PAUSED)
                 accInfo.callModel->setCurrentCall(callId);
         } catch (...) {
         }
@@ -163,9 +156,9 @@ CurrentCall::fillParticipantData(QJsonObject& participant) const
     //       should be read accessible through LRCInstance ??
     auto getCurrentDeviceId = [](const account::Info& accInfo) -> QString {
         const auto& deviceList = accInfo.deviceModel->getAllDevices();
-        auto devIt = std::find_if(std::cbegin(deviceList),
-                                  std::cend(deviceList),
-                                  [](const Device& dev) { return dev.isCurrent; });
+        auto devIt = std::find_if(std::cbegin(deviceList), std::cend(deviceList), [](const Device& dev) {
+            return dev.isCurrent;
+        });
         return devIt != deviceList.cend() ? devIt->id : QString();
     };
 
@@ -277,26 +270,10 @@ CurrentCall::connectModel()
         return;
     }
 
-    connect(callModel,
-            &CallModel::callStatusChanged,
-            this,
-            &CurrentCall::onCallStatusChanged,
-            Qt::UniqueConnection);
-    connect(callModel,
-            &CallModel::callInfosChanged,
-            this,
-            &CurrentCall::onCallInfosChanged,
-            Qt::UniqueConnection);
-    connect(callModel,
-            &CallModel::currentCallChanged,
-            this,
-            &CurrentCall::onCurrentCallChanged,
-            Qt::UniqueConnection);
-    connect(callModel,
-            &CallModel::participantsChanged,
-            this,
-            &CurrentCall::onParticipantsChanged,
-            Qt::UniqueConnection);
+    connect(callModel, &CallModel::callStatusChanged, this, &CurrentCall::onCallStatusChanged, Qt::UniqueConnection);
+    connect(callModel, &CallModel::callInfosChanged, this, &CurrentCall::onCallInfosChanged, Qt::UniqueConnection);
+    connect(callModel, &CallModel::currentCallChanged, this, &CurrentCall::onCurrentCallChanged, Qt::UniqueConnection);
+    connect(callModel, &CallModel::participantsChanged, this, &CurrentCall::onParticipantsChanged, Qt::UniqueConnection);
     connect(callModel,
             &CallModel::remoteRecordersChanged,
             this,
@@ -307,21 +284,9 @@ CurrentCall::connectModel()
             this,
             &CurrentCall::onRecordingStateChanged,
             Qt::UniqueConnection);
-    connect(callModel,
-            &CallModel::participantAdded,
-            this,
-            &CurrentCall::onParticipantAdded,
-            Qt::UniqueConnection);
-    connect(callModel,
-            &CallModel::participantRemoved,
-            this,
-            &CurrentCall::onParticipantRemoved,
-            Qt::UniqueConnection);
-    connect(callModel,
-            &CallModel::participantUpdated,
-            this,
-            &CurrentCall::onParticipantUpdated,
-            Qt::UniqueConnection);
+    connect(callModel, &CallModel::participantAdded, this, &CurrentCall::onParticipantAdded, Qt::UniqueConnection);
+    connect(callModel, &CallModel::participantRemoved, this, &CurrentCall::onParticipantRemoved, Qt::UniqueConnection);
+    connect(callModel, &CallModel::participantUpdated, this, &CurrentCall::onParticipantUpdated, Qt::UniqueConnection);
 }
 
 void
@@ -427,8 +392,7 @@ CurrentCall::onRecordingStateChanged(const QString& callId, bool state)
 void
 CurrentCall::onShowIncomingCallView(const QString& accountId, const QString& convUid)
 {
-    if (accountId != lrcInstance_->get_currentAccountId()
-        || convUid != lrcInstance_->get_selectedConvUid()) {
+    if (accountId != lrcInstance_->get_currentAccountId() || convUid != lrcInstance_->get_selectedConvUid()) {
         return;
     }
 

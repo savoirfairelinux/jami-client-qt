@@ -56,9 +56,7 @@ namespace Utils {
 
 template<typename Func1, typename Func2>
 void
-oneShotConnect(const typename QtPrivate::FunctionPointer<Func1>::Object* sender,
-               Func1 signal,
-               Func2 slot)
+oneShotConnect(const typename QtPrivate::FunctionPointer<Func1>::Object* sender, Func1 signal, Func2 slot)
 {
     QMetaObject::Connection* const connection = new QMetaObject::Connection;
     *connection = QObject::connect(sender, signal, slot);

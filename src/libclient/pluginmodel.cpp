@@ -205,9 +205,7 @@ PluginModel::getCallMediaHandlers() const
 }
 
 void
-PluginModel::toggleCallMediaHandler(const QString& mediaHandlerId,
-                                    const QString& callId,
-                                    bool toggle)
+PluginModel::toggleCallMediaHandler(const QString& mediaHandlerId, const QString& callId, bool toggle)
 {
     PluginManager::instance().toggleCallMediaHandler(mediaHandlerId, callId, toggle);
     Q_EMIT modelUpdated();
@@ -241,8 +239,7 @@ PluginModel::getCallMediaHandlerDetails(const QString& mediaHandlerId)
     if (mediaHandlerId.isEmpty()) {
         return plugin::PluginHandlerDetails();
     }
-    MapStringString mediaHandlerDetails = PluginManager::instance().getCallMediaHandlerDetails(
-        mediaHandlerId);
+    MapStringString mediaHandlerDetails = PluginManager::instance().getCallMediaHandlerDetails(mediaHandlerId);
     plugin::PluginHandlerDetails result;
     if (!mediaHandlerDetails.empty()) {
         result.id = mediaHandlerId;
@@ -266,8 +263,7 @@ PluginModel::getChatHandlerDetails(const QString& chatHandlerId)
     if (chatHandlerId.isEmpty()) {
         return plugin::PluginHandlerDetails();
     }
-    MapStringString chatHandlerDetails = PluginManager::instance().getChatHandlerDetails(
-        chatHandlerId);
+    MapStringString chatHandlerDetails = PluginManager::instance().getChatHandlerDetails(chatHandlerId);
     plugin::PluginHandlerDetails result;
     if (!chatHandlerDetails.empty()) {
         result.id = chatHandlerId;
@@ -286,10 +282,7 @@ PluginModel::getPluginPreferences(const QString& path, const QString& accountId)
 }
 
 bool
-PluginModel::setPluginPreference(const QString& path,
-                                 const QString& accountId,
-                                 const QString& key,
-                                 const QString& value)
+PluginModel::setPluginPreference(const QString& path, const QString& accountId, const QString& key, const QString& value)
 {
     auto result = PluginManager::instance().setPluginPreference(path, accountId, key, value);
     Q_EMIT modelUpdated();

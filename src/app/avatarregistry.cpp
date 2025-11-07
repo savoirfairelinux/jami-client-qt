@@ -29,14 +29,9 @@ AvatarRegistry::AvatarRegistry(LRCInstance* instance, QObject* parent)
             &AvatarRegistry::connectAccount,
             Qt::DirectConnection);
 
-    connect(&lrcInstance_->accountModel(),
-            &AccountModel::profileUpdated,
-            this,
-            &AvatarRegistry::addOrUpdateImage);
+    connect(&lrcInstance_->accountModel(), &AccountModel::profileUpdated, this, &AvatarRegistry::addOrUpdateImage);
 
-    connect(lrcInstance_, &LRCInstance::base64SwarmAvatarChanged, this, [&] {
-        addOrUpdateImage("temp");
-    });
+    connect(lrcInstance_, &LRCInstance::base64SwarmAvatarChanged, this, [&] { addOrUpdateImage("temp"); });
 
     if (!lrcInstance_->get_currentAccountId().isEmpty())
         connectAccount();

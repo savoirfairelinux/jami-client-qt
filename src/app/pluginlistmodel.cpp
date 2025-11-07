@@ -170,9 +170,8 @@ PluginListModel::filterPlugins(VectorString& list) const
     list.erase(std::remove_if(list.begin(), // clazy:exclude=strict-iterators
                               list.end(),
                               [&](const QString& pluginName) -> bool {
-                                  const auto prefs = lrcInstance_->pluginModel()
-                                                         .getPluginPreferences(pluginName,
-                                                                               accountId);
+                                  const auto prefs = lrcInstance_->pluginModel().getPluginPreferences(pluginName,
+                                                                                                      accountId);
                                   return prefs.empty();
                               }),
                list.cend());
