@@ -21,9 +21,12 @@
 #include "global.h"
 
 #include <api/callparticipantsmodel.h>
+#include <api/call.h>
 #include <api/devicemodel.h>
 
 #include <algorithm>
+#include <QJsonObject>
+#include <QSet>
 
 CurrentCall::CurrentCall(LRCInstance* lrcInstance, QObject* parent)
     : QObject(parent)
@@ -111,6 +114,7 @@ CurrentCall::updateId(QString callId)
 
     auto hasCall = accInfo.callModel->hasCall(callId);
     if (!hasCall) {
+        set_primaryRendererId({});
         if (!id_.isEmpty()) {
             participantsModel_->setParticipants(id_, {});
             set_id(QString());
@@ -124,6 +128,7 @@ CurrentCall::updateId(QString callId)
     }
 
     set_id(callId);
+    set_primaryRendererId(callId);
 
     try {
         auto callInfo = accInfo.callModel->getCall(callId);
@@ -162,16 +167,25 @@ CurrentCall::updateParticipants()
     if (!callModel || id_.isEmpty() || !callModel->hasCall(id_)) {
         set_uris({});
         set_isConference(false);
+        set_primaryRendererId({});
         return;
     }
 
+    const auto participants = getConferencesInfos();
+
     QStringList uris;
-    auto& participantsModel = callModel->getParticipantsInfos(id_);
-    for (int index = 0; index < participantsModel.getParticipants().size(); index++) {
-        auto participantInfo = participantsModel.toQJsonObject(index);
-        uris.append(participantInfo[ParticipantsInfosStrings::URI].toString());
+    using namespace lrc::api::ParticipantsInfosStrings;
+    for (const auto& participantVariant : participants) {
+        const auto participantInfo = participantVariant.toJsonObject();
+        uris.append(participantInfo[URI].toString());
     }
     set_uris(uris);
+
+    try {
+        auto callInfo = callModel->getCall(id_);
+        updateConferenceState(callInfo, participants);
+    } catch (...) {
+    }
 }
 
 void
@@ -257,25 +271,81 @@ CurrentCall::getConferencesInfos() const
 }
 
 void
+CurrentCall::updateConferenceState(const lrc::api::call::Info& callInfo, const QVariantList& participants)
+{
+    using namespace lrc::api::ParticipantsInfosStrings;
+
+    bool treatAsConference = callInfo.type == call::Type::CONFERENCE;
+    QString mainRendererId = callInfo.id;
+
+    if (treatAsConference) {
+        QSet<QString> remoteUris;
+        QSet<QString> remoteStreams;
+        bool hasLocalParticipant = false;
+        QString firstRemoteStream;
+
+        for (const auto& participantVariant : participants) {
+            const auto participant = participantVariant.toJsonObject();
+            if (participant.isEmpty()) {
+                continue;
+            }
+
+            if (participant[ISLOCAL].toBool()) {
+                hasLocalParticipant = true;
+                continue;
+            }
+
+            const auto streamId = participant[STREAMID].toString();
+            if (!streamId.isEmpty()) {
+                remoteStreams.insert(streamId);
+                if (firstRemoteStream.isEmpty()) {
+                    firstRemoteStream = streamId;
+                }
+            }
+
+            auto uri = participant[URI].toString();
+            if (uri.isEmpty()) {
+                uri = !streamId.isEmpty() ? streamId : QStringLiteral("_remote");
+            }
+            remoteUris.insert(uri);
+        }
+
+        const int uniqueParticipantCount = remoteUris.size() + (hasLocalParticipant ? 1 : 0);
+        if (remoteUris.size() <= 1 && remoteStreams.size() <= 1 && uniqueParticipantCount <= 2) {
+            treatAsConference = false;
+            if (!firstRemoteStream.isEmpty()) {
+                mainRendererId = firstRemoteStream;
+            }
+        }
+    }
+
+    set_isGrid(treatAsConference && callInfo.layout == call::Layout::GRID);
+    set_isConference(treatAsConference);
+    set_primaryRendererId(mainRendererId);
+}
+
+void
 CurrentCall::updateCallInfo()
 {
     auto callModel = lrcInstance_->getCurrentCallModel();
     if (!callModel) {
         set_isConference(false);
+        set_primaryRendererId({});
         return;
     }
 
     if (!callModel->hasCall(id_)) {
         set_isConference(false);
+        set_primaryRendererId({});
         return;
     }
 
     auto callInfo = callModel->getCall(id_);
+    const auto participants = getConferencesInfos();
 
     set_isOutgoing(callInfo.isOutgoing);
-    set_isGrid(callInfo.layout == call::Layout::GRID);
     set_isAudioOnly(callInfo.isAudioOnly);
-    set_isConference(callInfo.type == call::Type::CONFERENCE);
+    updateConferenceState(callInfo, participants);
 
     auto callInfoEx = callInfo.getCallInfoEx();
     set_previewId(callInfoEx["preview_id"].toString());
@@ -288,12 +358,8 @@ CurrentCall::updateCallInfo()
     set_isHandRaised(callModel->isHandRaised(id_));
     set_isModerator(callModel->isModerator(id_));
 
-    QStringList recorders {};
-    if (callModel->hasCall(id_)) {
-        auto callInfo = callModel->getCall(id_);
-        participantsModel_->setConferenceLayout(static_cast<int>(callInfo.layout), id_);
-        recorders = callInfo.recordingPeers;
-    }
+    participantsModel_->setConferenceLayout(static_cast<int>(callInfo.layout), id_);
+    QStringList recorders = callInfo.recordingPeers;
     updateRecordingState(callModel->isRecording(id_));
     updateRemoteRecorders(recorders);
 }

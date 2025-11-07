@@ -130,7 +130,7 @@ Rectangle {
             VideoView {
                 id: distantRenderer
 
-                rendererId: CurrentCall.id
+                rendererId: CurrentCall.primaryRendererId
                 anchors.centerIn: parent
                 anchors.fill: parent
                 z: -1
