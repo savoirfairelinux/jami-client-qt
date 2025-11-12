@@ -715,10 +715,10 @@ CallModel::refuse(const QString& callId) const
     CallManager::instance().refuse(owner.id, callId);
 }
 
-void
+bool
 CallModel::toggleAudioRecord(const QString& callId) const
 {
-    CallManager::instance().toggleRecording(owner.id, callId);
+    return CallManager::instance().toggleRecording(owner.id, callId);
 }
 
 void

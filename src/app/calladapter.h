@@ -82,7 +82,7 @@ public:
     Q_INVOKABLE bool isHandRaised(const QString& uri = {}) const;
     Q_INVOKABLE void raiseHand(const QString& uri, const QString& deviceId, bool state);
     Q_INVOKABLE void holdThisCallToggle();
-    Q_INVOKABLE void recordThisCallToggle();
+    Q_INVOKABLE bool recordThisCallToggle();
     Q_INVOKABLE void muteAudioToggle();
     Q_INVOKABLE bool isMuted(const QString& callId);
     Q_INVOKABLE void connectPtt();

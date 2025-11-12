@@ -161,6 +161,7 @@ public:
 
     Q_INVOKABLE QString base64Encode(const QString& input);
     Q_INVOKABLE bool fileExists(const QString& filePath);
+    Q_INVOKABLE bool isPathWritable(const QString& path);
     Q_INVOKABLE QString getStandardTempLocation();
     Q_INVOKABLE QString getMimeNameForUrl(const QUrl& fileUrl) const;
     Q_INVOKABLE QUrl urlFromLocalPath(const QString& filePath) const;

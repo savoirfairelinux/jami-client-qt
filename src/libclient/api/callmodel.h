@@ -199,7 +199,7 @@ public:
      * Toggle audio record on a call
      * @param callId
      */
-    void toggleAudioRecord(const QString& callId) const;
+    bool toggleAudioRecord(const QString& callId) const;
 
     /**
      * Play DTMF in a call

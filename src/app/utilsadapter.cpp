@@ -889,3 +889,31 @@ UtilsAdapter::isWayland() const
 {
     return !qEnvironmentVariableIsEmpty("WAYLAND_DISPLAY");
 }
+
+bool
+UtilsAdapter::isPathWritable(const QString& path)
+{
+    if (path.isEmpty()) {
+        return false;
+    }
+    QFileInfo pathInfo(path);
+
+    QString testPath;
+    if (pathInfo.exists() && pathInfo.isDir()) {
+        QDir dir(path);
+        testPath = dir.filePath(".jami_write_test_" + QString::number(QDateTime::currentMSecsSinceEpoch()));
+    } else {
+        return false;
+    }
+
+    QFile testFile(testPath);
+    bool canWrite = testFile.open(QIODevice::WriteOnly);
+    if (canWrite) {
+        testFile.write("test");
+        testFile.close();
+        QFile::remove(testPath);
+        return true;
+    }
+
+    return false;
+}
