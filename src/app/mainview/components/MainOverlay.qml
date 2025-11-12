@@ -160,6 +160,7 @@ Item {
 
             Text {
                 id: jamiBestNameText
+                visible: !CurrentCall.isConference
 
                 Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
                 Layout.preferredWidth: overlayUpperPartRect.width / 2
