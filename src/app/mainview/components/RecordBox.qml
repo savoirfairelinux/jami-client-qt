@@ -100,6 +100,18 @@ Popup {
         pathRecorder = AVModel.startLocalMediaRecorder(isVideo ? VideoDevices.getDefaultDevice() : "");
         if (pathRecorder == "") {
             timer.stop();
+            // Show alert on macOS if recording path is unavailable (likely due to sandbox restrictions)
+            if (Qt.platform.os.toString() === "osx" && viewCoordinator && appWindow) {
+                var message = "Please verify download directory in Settings";
+                viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+                    "title": "Unable to create recording directory.",
+                    "infoText": message,
+                    "buttonTitles": [JamiStrings.optionOk],
+                    "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
+                    "buttonCallBacks": [],
+                    "buttonRoles": [DialogButtonBox.AcceptRole]
+                });
+            }
         }
     }
 
