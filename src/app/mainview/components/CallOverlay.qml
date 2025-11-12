@@ -15,6 +15,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import QtQuick
+import QtQuick.Controls
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -84,12 +85,12 @@ Item {
 
     function openShareFileDialog() {
         var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
-                "fileMode": JamiFileDialog.OpenFile,
-                "nameFilters": [JamiStrings.allFiles]
-            });
+            "fileMode": JamiFileDialog.OpenFile,
+            "nameFilters": [JamiStrings.allFiles]
+        });
         dlg.fileAccepted.connect(function (file) {
-                AvAdapter.shareFile(file);
-            });
+            AvAdapter.shareFile(file);
+        });
     }
 
     ResponsiveImage {
@@ -145,6 +146,43 @@ Item {
         PluginHandlerPickerCreation.openPluginHandlerPicker();
     }
 
+    function handleRecordCall() {
+
+        // Before starting recording, validate path on macOS
+        if (Qt.platform.os.toString() === "osx") {
+            var recordPath = AVModel.getRecordPath();
+            var isWritable = UtilsAdapter.isPathWritable(recordPath);
+
+            if (recordPath === "" || !isWritable) {
+                var message = "This may be due to insufficient permissions or sandbox restrictions.\n\nYou can change the recording path in Settings > Call Recording.";
+                viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+                    "title": "Unable to record call.",
+                    "infoText": message,
+                    "buttonTitles": [JamiStrings.optionOk],
+                    "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
+                    "buttonCallBacks": [],
+                    "buttonRoles": [DialogButtonBox.AcceptRole]
+                });
+                return false;
+            }
+        }
+
+        var startResult = CallAdapter.recordThisCallToggle();
+
+        if (!startResult) {
+            var errorMessage = "Unable to start recording. Please try again or check your settings.";
+            viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+                "title": "Recording Failed",
+                "infoText": errorMessage,
+                "buttonTitles": [JamiStrings.optionOk],
+                "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
+                "buttonCallBacks": [],
+                "buttonRoles": [DialogButtonBox.AcceptRole]
+            });
+        }
+        return startResult;
+    }
+
     MainOverlay {
         id: mainOverlay
 
@@ -182,7 +220,7 @@ Item {
                 openShareScreenArea();
             }
             function onRecordCallClicked() {
-                CallAdapter.recordThisCallToggle();
+                handleRecordCall();
             }
             function onShareFileClicked() {
                 openShareFileDialog();
