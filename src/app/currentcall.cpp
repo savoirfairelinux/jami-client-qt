@@ -132,7 +132,7 @@ CurrentCall::updateCallStatus()
 {
     call::Status status {};
     auto callModel = lrcInstance_->getCurrentCallModel();
-    if (callModel->hasCall(id_)) {
+    if (callModel && callModel->hasCall(id_)) {
         auto callInfo = callModel->getCall(id_);
         status = callInfo.status;
     }
@@ -148,10 +148,12 @@ CurrentCall::updateParticipants()
 {
     auto callModel = lrcInstance_->getCurrentCallModel();
     QStringList uris;
-    auto& participantsModel = callModel->getParticipantsInfos(id_);
-    for (int index = 0; index < participantsModel.getParticipants().size(); index++) {
-        auto participantInfo = participantsModel.toQJsonObject(index);
-        uris.append(participantInfo[ParticipantsInfosStrings::URI].toString());
+    if (callModel) {
+        auto& participantsModel = callModel->getParticipantsInfos(id_);
+        for (int index = 0; index < participantsModel.getParticipants().size(); index++) {
+            auto participantInfo = participantsModel.toQJsonObject(index);
+            uris.append(participantInfo[ParticipantsInfosStrings::URI].toString());
+        }
     }
     set_uris(uris);
     set_isConference(uris.size());
@@ -243,7 +245,7 @@ void
 CurrentCall::updateCallInfo()
 {
     auto callModel = lrcInstance_->getCurrentCallModel();
-    if (!callModel->hasCall(id_)) {
+    if (!callModel || !callModel->hasCall(id_)) {
         return;
     }
 
@@ -252,6 +254,7 @@ CurrentCall::updateCallInfo()
     set_isOutgoing(callInfo.isOutgoing);
     set_isGrid(callInfo.layout == call::Layout::GRID);
     set_isAudioOnly(callInfo.isAudioOnly);
+    set_isConference(callInfo.type == call::Type::CONFERENCE);
 
     auto callInfoEx = callInfo.getCallInfoEx();
     set_previewId(callInfoEx["preview_id"].toString());
@@ -335,11 +338,11 @@ CurrentCall::onCurrentConvIdChanged()
 
     auto callModel = lrcInstance_->getCurrentCallModel();
     QStringList recorders {};
-    if (callModel->hasCall(id_)) {
+    if (callModel && callModel->hasCall(id_)) {
         auto callInfo = callModel->getCall(id_);
         recorders = callInfo.recordingPeers;
     }
-    updateRecordingState(callModel->isRecording(id_));
+    updateRecordingState(callModel ? callModel->isRecording(id_) : false);
     updateRemoteRecorders(recorders);
 }
 
