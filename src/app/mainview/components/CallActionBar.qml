@@ -438,7 +438,7 @@ Control {
         Action {
             id: recordAction
             onTriggered: root.recordCallClicked()
-            checkable: true
+            checkable: false  // Don't let Action auto-toggle, we control it via binding
             icon.source: JamiResources.record_black_24dp_svg
             icon.color: checked ? "red" : "white"
             text: !checked ? JamiStrings.startRec : JamiStrings.stopRec

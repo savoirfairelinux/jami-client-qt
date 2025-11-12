@@ -249,6 +249,9 @@ Item {
     // CallOverlay
     property string isRecording: qsTr("%1 is recording")
     property string areRecording: qsTr("%1 are recording")
+    property string recordingErrorTitle: qsTr("Unable to Start Recording")
+    property string recordingGeneralErrorMessage: qsTr("Please verify your recording settings and try again.")
+    property string recordingPathErrorMessage: qsTr("The app can’t access the recording folder. This may be caused by permission or sandboxing restrictions. You can update the recording folder in Settings > Call Recording.")
     property string mute: qsTr("Mute microphone")
     property string unmute: qsTr("Unmute microphone")
     property string pauseCall: qsTr("Pause call")
