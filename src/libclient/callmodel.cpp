@@ -226,6 +226,7 @@ public Q_SLOTS:
      */
     void slotConferenceCreated(const QString& accountId, const QString& conversationId, const QString& callId);
     void slotConferenceChanged(const QString& accountId, const QString& callId, const QString& state);
+    void slotConferenceRemoved(const QString& accountId, const QString& confId);
     /**
      * Listen from CallbacksHandler when a voice mail notice is incoming
      * @param accountId
@@ -1007,6 +1008,7 @@ CallModelPimpl::CallModelPimpl(const CallModel& linked,
     connect(&callbacksHandler, &CallbacksHandler::incomingVCardChunk, this, &CallModelPimpl::slotincomingVCardChunk);
     connect(&callbacksHandler, &CallbacksHandler::conferenceCreated, this, &CallModelPimpl::slotConferenceCreated);
     connect(&callbacksHandler, &CallbacksHandler::conferenceChanged, this, &CallModelPimpl::slotConferenceChanged);
+    connect(&callbacksHandler, &CallbacksHandler::conferenceRemoved, this, &CallModelPimpl::slotConferenceRemoved);
     connect(&callbacksHandler, &CallbacksHandler::voiceMailNotify, this, &CallModelPimpl::slotVoiceMailNotify);
     connect(&CallManager::instance(),
             &CallManagerInterface::onConferenceInfosUpdated,
@@ -1688,6 +1690,42 @@ CallModelPimpl::slotConferenceChanged(const QString& accountId, const QString& c
         if (call == currentCall_)
             currentCall_ = confId;
     }
+    Q_EMIT linked.currentCallChanged(currentCall_);
+}
+
+void
+CallModelPimpl::slotConferenceRemoved(const QString& accountId, const QString& confId)
+{
+    if (accountId != linked.owner.id)
+        return;
+
+    QString fallback;
+
+    auto confIt = calls.find(confId);
+    if (confIt == calls.end() || !confIt->second)
+        return;
+
+    if (linked.owner.conversationModel) {
+        if (auto conversation = linked.owner.conversationModel->getConversationForCallId(confId)) {
+            conversation->get().confId.clear();
+            fallback = conversation->get().callId;
+        }
+    }
+
+    participantsModel.erase(confId);
+    calls.erase(confIt);
+    Q_EMIT linked.participantsChanged(confId);
+
+    if (!fallback.isEmpty() && fallback != confId) {
+        auto fallbackIt = calls.find(fallback);
+        if (fallbackIt != calls.end() && fallbackIt->second && fallbackIt->second->type == call::Type::DIALOG) {
+            Q_EMIT linked.callInfosChanged(linked.owner.id, fallback);
+            Q_EMIT linked.participantsChanged(fallback);
+        }
+    }
+
+    currentCall_ = fallback;
+    qWarning() << "Conference removed, setting current call to: " << currentCall_;
     Q_EMIT linked.currentCallChanged(currentCall_);
 }
 
