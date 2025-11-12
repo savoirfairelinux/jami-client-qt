@@ -930,18 +930,19 @@ CallAdapter::muteAudioToggle()
     }
 }
 
-void
+bool
 CallAdapter::recordThisCallToggle()
 {
     const auto callId = lrcInstance_->getCallIdForConversationUid(lrcInstance_->get_selectedConvUid(),
                                                                   accountId_);
     if (callId.isEmpty() || !lrcInstance_->getCurrentCallModel()->hasCall(callId)) {
-        return;
+        return false;
     }
     auto* callModel = lrcInstance_->getCurrentCallModel();
     if (callModel->hasCall(callId)) {
-        callModel->toggleAudioRecord(callId);
+        return callModel->toggleAudioRecord(callId);
     }
+    return false;
 }
 
 void

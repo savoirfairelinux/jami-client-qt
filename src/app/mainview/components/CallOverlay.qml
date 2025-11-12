@@ -15,6 +15,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import QtQuick
+import QtQuick.Controls
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -84,12 +85,12 @@ Item {
 
     function openShareFileDialog() {
         var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
-                "fileMode": JamiFileDialog.OpenFile,
-                "nameFilters": [JamiStrings.allFiles]
-            });
+            "fileMode": JamiFileDialog.OpenFile,
+            "nameFilters": [JamiStrings.allFiles]
+        });
         dlg.fileAccepted.connect(function (file) {
-                AvAdapter.shareFile(file);
-            });
+            AvAdapter.shareFile(file);
+        });
     }
 
     ResponsiveImage {
@@ -145,6 +146,45 @@ Item {
         PluginHandlerPickerCreation.openPluginHandlerPicker();
     }
 
+    function handleRecordCall() {
+        if (CurrentCall.isRecordingLocally) {
+            CallAdapter.recordThisCallToggle();
+            return true;
+        }
+
+        // Before starting recording, validate path on macOS
+        if (Qt.platform.os.toString() === "osx") {
+            var recordPath = AVModel.getRecordPath();
+            var isWritable = UtilsAdapter.isPathWritable(recordPath);
+
+            if (recordPath === "" || !isWritable) {
+                viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+                    "title": JamiStrings.recordingErrorTitle,
+                    "infoText": JamiStrings.recordingPathErrorMessage,
+                    "buttonTitles": [JamiStrings.optionOk],
+                    "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
+                    "buttonCallBacks": [],
+                    "buttonRoles": [DialogButtonBox.AcceptRole]
+                });
+                return false;
+            }
+        }
+
+        var startResult = CallAdapter.recordThisCallToggle();
+
+        if (!startResult) {
+            viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+                "title": JamiStrings.recordingErrorTitle,
+                "infoText": JamiStrings.recordingGeneralErrorMessage,
+                "buttonTitles": [JamiStrings.optionOk],
+                "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
+                "buttonCallBacks": [],
+                "buttonRoles": [DialogButtonBox.AcceptRole]
+            });
+        }
+        return startResult;
+    }
+
     MainOverlay {
         id: mainOverlay
 
@@ -182,7 +222,7 @@ Item {
                 openShareScreenArea();
             }
             function onRecordCallClicked() {
-                CallAdapter.recordThisCallToggle();
+                handleRecordCall();
             }
             function onShareFileClicked() {
                 openShareFileDialog();
