@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "934d7145_49c82cc0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2025-11-12T19:13:48Z",
+      "side": 1,
+      "message": "Will this patch also report errors for recording SIP calls? For example, the following: https://git.jami.net/savoirfairelinux/jami-daemon/-/issues/872",
+      "revId": "87c534c47c8ec808b08bc80c76c00808d9e465b5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
