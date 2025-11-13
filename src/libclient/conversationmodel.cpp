@@ -2645,6 +2645,7 @@ ConversationModelPimpl::addConversationRequest(const MapStringString& convReques
 
     MapStringString messageMap = {
         {"type", "initial"},
+        {"mode", QString::number(static_cast<int>(mode))},
         {"author", peerUri},
         {"timestamp", convRequest["received"]},
         {"linearizedParent", ""},
