@@ -2633,6 +2633,7 @@ ConversationModelPimpl::addConversationRequest(const MapStringString& convReques
 
     auto peerUri = convRequest["from"];
     auto mode = conversation::to_mode(convRequest["mode"].toInt());
+
     QString callId, confId;
     const MapStringString& details = ConfigurationManager::instance().conversationInfos(linked.owner.id, convId);
     conversation::Info conversation(convId, &linked.owner);
@@ -2645,6 +2646,7 @@ ConversationModelPimpl::addConversationRequest(const MapStringString& convReques
 
     MapStringString messageMap = {
         {"type", "initial"},
+        {"mode", QString::number(static_cast<int>(mode))},
         {"author", peerUri},
         {"timestamp", convRequest["received"]},
         {"linearizedParent", ""},
