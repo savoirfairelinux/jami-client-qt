@@ -481,7 +481,6 @@ SidePanelBase {
                             root.clearContactSearchBar();
                         }
                     }
-                    currentIndex: model.currentFilteredRow
 
                     Timer {
                         id: locationIconTimer
