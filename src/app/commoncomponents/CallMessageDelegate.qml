@@ -151,7 +151,6 @@ SBSMessageBase {
 
             JoinCallButton {
                 id: joinCallWithAudio
-                visible: root.isActive
                 Layout.topMargin: 0.5 // For better sub-pixel rendering
                 objectName: "joinCallWithAudio"
                 source: JamiResources.place_audiocall_24dp_svg
