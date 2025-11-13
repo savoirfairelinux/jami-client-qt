@@ -102,14 +102,6 @@ pipeline {
                             def dockerTopDir = '/foo/'
                             ansiColor('css') {
                                 exec_cmd("""
-                                    cd ${dockerTopDir}/daemon/contrib
-                                    mkdir native
-                                    cd native
-                                    ../bootstrap --cache-dir=/var/cache/jami --cache-builds
-                                    make list
-                                    make fetch
-                                """)
-                                exec_cmd("""
                                     cd ${dockerTopDir}
                                     ./build.py --install --qt /usr/lib/libqt-jami/
                                     cd build
