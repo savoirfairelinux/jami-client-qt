@@ -16,6 +16,24 @@
       "message": "Will this patch also report errors for recording SIP calls? For example, the following: https://git.jami.net/savoirfairelinux/jami-daemon/-/issues/872",
       "revId": "87c534c47c8ec808b08bc80c76c00808d9e465b5",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aaf7d78f_824d8e4a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2025-11-17T15:23:21Z",
+      "side": 1,
+      "message": "It will also report errors for SIP calls. However, it only reports issues that occur when starting the recording (for example, when the path is not writable). It does not report errors if the recording has started but is not working as expected. (like in example)",
+      "parentUuid": "934d7145_49c82cc0",
+      "revId": "87c534c47c8ec808b08bc80c76c00808d9e465b5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
