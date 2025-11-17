@@ -159,7 +159,7 @@ ConnectionInfoListModel::aggregateData()
         const auto& id = connectionInfo["id"];
         peerData_[peerId][connectionInfo["device"]] = {
             {"id", id},
-            {"status", connectionInfo["status"]},
+            {"status", connectionInfo["status"].toUInt()},
             {"channels", lrcInstance_->getChannelList(accountId, id).size()},
             {"remoteAddress", connectionInfo["remoteAddress"]},
         };
