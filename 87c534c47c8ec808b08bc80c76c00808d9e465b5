@@ -34,6 +34,24 @@
       "parentUuid": "934d7145_49c82cc0",
       "revId": "87c534c47c8ec808b08bc80c76c00808d9e465b5",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54abf63f_40805c29",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2025-11-17T21:06:00Z",
+      "side": 1,
+      "message": "\u003e  It does not report errors if the recording has started but is not working as expected. \n\nCould such a feature also be implemented? Because it would be very useful if you get a notification if recording fails.",
+      "parentUuid": "aaf7d78f_824d8e4a",
+      "revId": "87c534c47c8ec808b08bc80c76c00808d9e465b5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
