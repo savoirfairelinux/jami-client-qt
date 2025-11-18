@@ -52,6 +52,7 @@
 #include <chrono>
 #include <random>
 #include <map>
+#include <algorithm>
 
 #ifdef WIN32
 #define NOMINMAX
@@ -1675,6 +1676,7 @@ CallModelPimpl::slotConferenceCreated(const QString& accountId, const QString& c
         if (currentCallId != currentCall_)
             Q_EMIT linked.currentCallChanged(confId);
     }
+    qWarning() << "Conference created, current callId:" << currentCall_;
 }
 
 void
@@ -1691,6 +1693,7 @@ CallModelPimpl::slotConferenceChanged(const QString& accountId, const QString& c
             currentCall_ = confId;
     }
     Q_EMIT linked.currentCallChanged(currentCall_);
+    qWarning() << "Conference changed, current callId:" << currentCall_;
 }
 
 void
@@ -1699,16 +1702,52 @@ CallModelPimpl::slotConferenceRemoved(const QString& accountId, const QString& c
     if (accountId != linked.owner.id)
         return;
 
-    QString fallback;
-
     auto confIt = calls.find(confId);
     if (confIt == calls.end() || !confIt->second)
         return;
 
-    if (linked.owner.conversationModel) {
-        if (auto conversation = linked.owner.conversationModel->getConversationForCallId(confId)) {
-            conversation->get().confId.clear();
-            fallback = conversation->get().callId;
+    if (!linked.owner.conversationModel)
+        return;
+
+    const auto& currentConv = linked.owner.conversationModel->getConversationForCallId(confId);
+    QString fallbackCallId;
+    std::shared_ptr<call::Info> fallbackCallInfo;
+
+    // at this point there should only be 1 dialog call remaining
+    for (const auto& entry : calls) {
+        const auto& candidateId = entry.first;
+        const auto& info = entry.second;
+        if (candidateId == confId || !info)
+            continue;
+        if (info->type != call::Type::DIALOG)
+            continue;
+        fallbackCallId = candidateId;
+        fallbackCallInfo = info;
+        break;
+    }
+
+    if (currentConv) {
+        currentConv->get().confId.clear();
+    }
+
+    QString conversationToSelect;
+    if (!fallbackCallId.isEmpty()) {
+        // setup fallback conversation
+        if (auto conversation = linked.owner.conversationModel->getConversationForCallId(fallbackCallId)) {
+            // found conversation by callId
+            auto& conv = conversation->get();
+            conv.callId = fallbackCallId;
+            conv.confId.clear();
+            conversationToSelect = conv.uid;
+        } else if (fallbackCallInfo && !fallbackCallInfo->peerUri.isEmpty()) {
+            // if not found by callId, try by peerUri
+            if (auto conversation = linked.owner.conversationModel->getConversationForPeerUri(
+                    fallbackCallInfo->peerUri)) {
+                auto& conv = conversation->get();
+                conv.callId = fallbackCallId;
+                conv.confId.clear();
+                conversationToSelect = conv.uid;
+            }
         }
     }
 
@@ -1717,16 +1756,22 @@ CallModelPimpl::slotConferenceRemoved(const QString& accountId, const QString& c
 
     Q_EMIT linked.participantsChanged(confId);
 
-    if (!fallback.isEmpty() && fallback != confId) {
-        auto fallbackIt = calls.find(fallback);
+    if (!fallbackCallId.isEmpty() && fallbackCallId != confId) {
+        auto fallbackIt = calls.find(fallbackCallId);
         if (fallbackIt != calls.end() && fallbackIt->second && fallbackIt->second->type == call::Type::DIALOG) {
-            Q_EMIT linked.callInfosChanged(linked.owner.id, fallback);
-            Q_EMIT linked.participantsChanged(fallback);
+            Q_EMIT linked.callInfosChanged(linked.owner.id, fallbackCallId);
+            Q_EMIT linked.participantsChanged(fallbackCallId);
         }
     }
 
-    currentCall_ = fallback;
+    currentCall_ = fallbackCallId;
     Q_EMIT linked.currentCallChanged(currentCall_);
+
+    if (!conversationToSelect.isEmpty() && conversationToSelect != currentConv->get().uid) {
+        linked.owner.conversationModel->selectConversation(conversationToSelect);
+        qWarning() << "Conference removed, selecting conversation:" << conversationToSelect;
+        Q_EMIT linked.owner.conversationModel->conversationUpdated(conversationToSelect);
+    }
 }
 
 void
