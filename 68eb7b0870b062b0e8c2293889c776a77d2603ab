@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c56bcd2b_d0f9420c",
+        "filename": "src/app/mainview/components/AccountComboBox.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2025-11-19T21:55:04Z",
+      "side": 1,
+      "message": "check this",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 55
+      },
+      "revId": "68eb7b0870b062b0e8c2293889c776a77d2603ab",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
