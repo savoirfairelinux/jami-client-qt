@@ -18,6 +18,7 @@
 #include "api/callmodel.h"
 
 // Lrc
+#include "call_const.h"
 #include "callbackshandler.h"
 #include "api/avmodel.h"
 #include "api/behaviorcontroller.h"
@@ -226,6 +227,7 @@ public Q_SLOTS:
      */
     void slotConferenceCreated(const QString& accountId, const QString& conversationId, const QString& callId);
     void slotConferenceChanged(const QString& accountId, const QString& callId, const QString& state);
+    void slotConferenceRemoved(const QString& accountId, const QString& confId);
     /**
      * Listen from CallbacksHandler when a voice mail notice is incoming
      * @param accountId
@@ -1007,6 +1009,7 @@ CallModelPimpl::CallModelPimpl(const CallModel& linked,
     connect(&callbacksHandler, &CallbacksHandler::incomingVCardChunk, this, &CallModelPimpl::slotincomingVCardChunk);
     connect(&callbacksHandler, &CallbacksHandler::conferenceCreated, this, &CallModelPimpl::slotConferenceCreated);
     connect(&callbacksHandler, &CallbacksHandler::conferenceChanged, this, &CallModelPimpl::slotConferenceChanged);
+    connect(&callbacksHandler, &CallbacksHandler::conferenceRemoved, this, &CallModelPimpl::slotConferenceRemoved);
     connect(&callbacksHandler, &CallbacksHandler::voiceMailNotify, this, &CallModelPimpl::slotVoiceMailNotify);
     connect(&CallManager::instance(),
             &CallManagerInterface::onConferenceInfosUpdated,
@@ -1689,6 +1692,142 @@ CallModelPimpl::slotConferenceChanged(const QString& accountId, const QString& c
             currentCall_ = confId;
     }
     Q_EMIT linked.currentCallChanged(currentCall_);
+}
+
+void
+CallModelPimpl::slotConferenceRemoved(const QString& accountId, const QString& confId)
+{
+    if (accountId != linked.owner.id || !linked.owner.conversationModel) {
+        return;
+    }
+
+    auto confIt = calls.find(confId);
+    if (confIt == calls.end() || !confIt->second) {
+        return;
+    }
+
+    qDebug() << "Attempting to remove conference:" << confId;
+
+    const auto participantCallIds = CallManager::instance().getParticipantList(linked.owner.id, confId);
+
+    participantsModel.erase(confId);
+    calls.erase(confIt);
+
+    auto currentConversation = linked.owner.conversationModel->getConversationForCallId(confId);
+    if (currentConversation) {
+        currentConversation->get().confId.clear();
+    } else {
+        qWarning() << "Conversation object not found for confId:" << confId;
+    }
+
+    QString remainingPeerUri;
+    QString remainingCallId;
+    OptRef<conversation::Info> fallbackConversation {};
+
+    auto selectRemainingCall = [&](bool preferCurrentConversation) -> bool {
+        if (participantCallIds.isEmpty()) {
+            return false;
+        }
+
+        for (const auto& participantCallId : participantCallIds) {
+            OptRef<conversation::Info> participantConversation = linked.owner.conversationModel
+                                                                     ->getConversationForCallId(participantCallId);
+
+            if (preferCurrentConversation) {
+                if (!currentConversation || !participantConversation
+                    || participantConversation->get().uid != currentConversation->get().uid) {
+                    continue;
+                }
+            }
+
+            QString peerUriCandidate;
+            auto participantIt = calls.find(participantCallId);
+            if (participantIt != calls.end() && participantIt->second
+                && participantIt->second->type == call::Type::DIALOG) {
+                peerUriCandidate = participantIt->second->peerUri;
+            } else {
+                MapStringString details = CallManager::instance().getCallDetails(linked.owner.id, participantCallId);
+                if (details.isEmpty()) {
+                    continue;
+                }
+                const auto state = call::to_status(details[libjami::Call::Details::CALL_STATE]);
+                if (state == call::Status::ENDED || state == call::Status::INVALID) {
+                    continue;
+                }
+                peerUriCandidate = details[libjami::Call::Details::PEER_NUMBER];
+            }
+
+            if (peerUriCandidate.isEmpty()) {
+                continue;
+            }
+
+            remainingCallId = participantCallId;
+            remainingPeerUri = peerUriCandidate;
+            fallbackConversation = participantConversation;
+            return true;
+        }
+
+        return false;
+    };
+
+    auto resolvedFromParticipants = selectRemainingCall(true);
+    if (!resolvedFromParticipants) {
+        resolvedFromParticipants = selectRemainingCall(false);
+    }
+
+    if (!resolvedFromParticipants) {
+        for (const auto& entry : linked.getAdvancedInformation()) {
+            remainingPeerUri = entry.toMap().value(libjami::Call::Details::PEER_NUMBER).toString();
+            remainingCallId = entry.toMap().value(CALL_ID).toString();
+            break;
+        }
+    }
+
+    if (!fallbackConversation && !remainingPeerUri.isEmpty()) {
+        fallbackConversation = linked.owner.conversationModel->getConversationForPeerUri(remainingPeerUri);
+    }
+
+    if (fallbackConversation) {
+        fallbackConversation->get().confId.clear();
+        fallbackConversation->get().callId = remainingCallId;
+    } else if (!resolvedFromParticipants) {
+        if (!remainingPeerUri.isEmpty()) {
+            qWarning() << "Fallback conversation object not found for peerUri:" << remainingPeerUri;
+        } else {
+            qWarning() << "Unable to resolve fallback conversation after conference removal for callId:" << confId;
+        }
+    }
+
+    Q_EMIT linked.participantsChanged(confId);
+
+    if (!remainingCallId.isEmpty() && remainingCallId != confId) {
+        auto fallbackIt = calls.find(remainingCallId);
+        if (fallbackIt != calls.end() && fallbackIt->second && fallbackIt->second->type == call::Type::DIALOG) {
+            Q_EMIT linked.callInfosChanged(linked.owner.id, remainingCallId);
+            Q_EMIT linked.participantsChanged(remainingCallId);
+        }
+    }
+
+    currentCall_ = remainingCallId;
+    qDebug() << "Conference removed, set current callId to:" << currentCall_;
+    Q_EMIT linked.currentCallChanged(currentCall_);
+
+    const auto currentConvUid = currentConversation ? currentConversation->get().uid : QString {};
+    const auto fallbackConvUid = fallbackConversation ? fallbackConversation->get().uid : QString {};
+
+    if (!currentConvUid.isEmpty() && !fallbackConvUid.isEmpty() && currentConvUid == fallbackConvUid) {
+        qDebug() << "Current conversation is correct, staying on it";
+        linked.owner.conversationModel->conversationUpdated(currentConvUid);
+    } else if (!fallbackConvUid.isEmpty()) {
+        qDebug() << "Selecting fallback conversation" << fallbackConvUid;
+        linked.owner.conversationModel->selectConversation(fallbackConvUid);
+        linked.owner.conversationModel->conversationUpdated(fallbackConvUid);
+    } else if (!currentConvUid.isEmpty()) {
+        qDebug() << "No fallback conversation, updating current conversation" << currentConvUid;
+        linked.owner.conversationModel->conversationUpdated(currentConvUid);
+    } else {
+        qWarning() << "No conversation available to update after conference removal for callId:" << confId;
+    }
 }
 
 void
