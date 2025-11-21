@@ -32,6 +32,7 @@
 #include <QRegularExpression>
 #include <QMimeData>
 #include <QMimeDatabase>
+#include <QStyleHints>
 
 UtilsAdapter::UtilsAdapter(AppSettingsManager* settingsManager,
                            SystemTray* systemTray,
@@ -728,8 +729,7 @@ UtilsAdapter::isSystemThemeDark()
         }
     }
     return false;
-#else
-#if defined(WIN32) && __has_include(<winrt/Windows.Foundation.h>)
+#elif defined(WIN32) && __has_include(<winrt/Windows.Foundation.h>)
 #if WATCHSYSTEMTHEME
     if (!settings) {
         settings = UISettings();
@@ -737,10 +737,12 @@ UtilsAdapter::isSystemThemeDark()
     }
 #endif
     return readAppsUseLightThemeRegistry(true);
+#elif defined(Q_OS_MACOS) || defined(Q_OS_MAC)
+    QObject::connect(qApp->styleHints(), &QStyleHints::colorSchemeChanged, this, [this]() { Q_EMIT appThemeChanged(); });
+    return qApp->styleHints()->colorScheme() == Qt::ColorScheme::Dark;
 #else
     C_WARN << "System theme detection is not implemented or is not supported";
     return false;
-#endif // WIN32
 #endif // __has_include(<gio/gio.h>)
 }
 
@@ -760,12 +762,12 @@ UtilsAdapter::hasNativeDarkTheme() const
 {
 #if __has_include(<gio/gio.h>)
     return true;
-#else
-#if defined(WIN32) && __has_include(<winrt/Windows.Foundation.h>)
+#elif defined(WIN32) && __has_include(<winrt/Windows.Foundation.h>)
     return readAppsUseLightThemeRegistry(false);
+#elif defined(Q_OS_MACOS) || defined(Q_OS_MAC)
+    return true;
 #else
     return false;
-#endif
 #endif
 }
 
