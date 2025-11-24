@@ -16,6 +16,24 @@
       "message": "pls add some comments to explain the steps in slotConferenceRemoved",
       "revId": "ef8064cf5aa81d017cc1c14c6b8d4dd191e6af5e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f64bfe3_43d14a7e",
+        "filename": "src/libclient/callmodel.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1147
+      },
+      "writtenOn": "2025-11-24T14:58:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a204634_5dfc147e",
+      "revId": "ef8064cf5aa81d017cc1c14c6b8d4dd191e6af5e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
