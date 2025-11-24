@@ -87,6 +87,9 @@
   </developer>
 
   <releases>
+    <release version="20251124.0" date="2025-11-24">
+      <url type="details">https://git.jami.net/savoirfairelinux/jami-client-qt/-/wikis/Changelog#nightlystable-20251124</url>
+    </release>
     <release version="20251106.0" date="2025-11-06">
       <url type="details">https://git.jami.net/savoirfairelinux/jami-client-qt/-/wikis/Changelog#nightlystable-20251106</url>
     </release>
