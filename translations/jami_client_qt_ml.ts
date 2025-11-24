@@ -557,7 +557,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="188"/>
         <source>Proxy list URL</source>
-        <translation type="unfinished"/>
+        <translation>പ്രോക്സി ലിസ്റ്റ് URL</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="189"/>
@@ -567,12 +567,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="190"/>
         <source>Using proxy:</source>
-        <translation type="unfinished"/>
+        <translation>പ്രോക്സി ഉപയോഗിക്കുന്നു:</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="191"/>
         <source>Proxy disabled</source>
-        <translation type="unfinished"/>
+        <translation>പ്രോക്സി അസാധ്യമാക്കി</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="194"/>
@@ -642,17 +642,17 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="217"/>
         <source>Noise reduction</source>
-        <translation type="unfinished"/>
+        <translation>നോയിസ് കുറയ്ക്കൽ</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="218"/>
         <source>Echo suppression</source>
-        <translation type="unfinished"/>
+        <translation>എക്കോ കളയൽ</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="219"/>
         <source>Voice activity detection</source>
-        <translation type="unfinished"/>
+        <translation>വോയ്സ് ആക്റ്റിവിറ്റി തിരിച്ചറിയൽ</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="222"/>
@@ -922,7 +922,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="809"/>
         <source>Call started</source>
-        <translation type="unfinished"/>
+        <translation>കോൾ തുടങ്ങി</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="813"/>
@@ -967,7 +967,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="895"/>
         <source>Select background image</source>
-        <translation type="unfinished"/>
+        <translation>പശ്ചാത്തല ചിത്രം തിരഞ്ഞെടുക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="896"/>
@@ -977,7 +977,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="899"/>
         <source>Free and private sharing. &lt;a href=&quot;https://jami.net/donate/&quot;&gt;Donate&lt;/a&gt; to expand it.</source>
-        <translation type="unfinished"/>
+        <translation>സ്വതന്ത്രവും സ്വകാര്യവുമായ പങ്കിടൽ. ഇതു വളർത്താനായി &lt;a href=&quot;https://jami.net/donate/&quot;&gt;ഡൊണേറ്റ് ചെയ്യുക&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="900"/>
@@ -1022,12 +1022,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="925"/>
         <source>Check spelling while typing</source>
-        <translation type="unfinished"/>
+        <translation>ടൈപ്പു ചെയ്യുമ്പോൾ സ്പെല്ലിങ് പരിശോധിക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="927"/>
         <source>Text language</source>
-        <translation type="unfinished"/>
+        <translation>ടെക്സ്റ്റിന്റെ ഭാഷ</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="909"/>
@@ -1717,12 +1717,12 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="113"/>
         <source>Bring the application to the front for incoming calls</source>
-        <translation type="unfinished"/>
+        <translation>കോൾ വരുമ്പോൾ ഈ ആപ്ലിക്കേഷനെ മുന്നിലാക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="114"/>
         <source>Decline incoming calls when already in a call</source>
-        <translation type="unfinished"/>
+        <translation>മറ്റൊരു കോളിലായിരിക്കുമ്പോൾ, വരുന്ന കോൾ നിരസിക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="288"/>
@@ -1737,27 +1737,27 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="291"/>
         <source>Leave group</source>
-        <translation type="unfinished"/>
+        <translation>ഗ്രൂപ്പ് വിടുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="292"/>
         <source>Are you sure you want to leave this group?</source>
-        <translation type="unfinished"/>
+        <translation>ഈ ഗ്രൂപ്പ് വിടണമെന്ന് ഉറപ്പാണോ?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="293"/>
         <source>Do you want to remove this contact? The existing conversation will be deleted.</source>
-        <translation type="unfinished"/>
+        <translation>ഈ കോണ്ടാക്ട് കളയണമോള? നിലവിലുള്ള സംഭാഷണം ഡിലീറ്റു ചെയ്യപ്പെടും.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="294"/>
         <source>Do you want to block this contact?</source>
-        <translation type="unfinished"/>
+        <translation>ഈ കോണ്ടാക്ടിനെ തടയണമോ?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="295"/>
         <source>Are you sure you want to remove this conversation? The contact will not be removed.</source>
-        <translation type="unfinished"/>
+        <translation>ഈ സംഭാഷണം കളയണമെന്നുറപ്പാണോ? ഈ കോണ്ടാക്ട് കളയപ്പെടില്ല.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="296"/>
@@ -2093,12 +2093,13 @@ to connect to synchronize the conversation…</source>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="412"/>
         <source>- 32 characters maximum
 - Special characters allowed: dash (-)</source>
-        <translation type="unfinished"/>
+        <translation>- പരമാവധി 32 ക്യാരക്ടറുകൾ
+- അനുവദനീയമായ പ്രത്യേക ക്യാരക്ടർ: ‍ഡാഷ് (-)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="413"/>
         <source>Customize your profile (optional)</source>
-        <translation type="unfinished"/>
+        <translation> പ്രൊഫൈൽ ക്രമീകരിക്കുക (ഓപ്ഷണൽ)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="414"/>
@@ -2108,7 +2109,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="415"/>
         <source>Skip profile configuration</source>
-        <translation type="unfinished"/>
+        <translation>പ്രൊഫൈൽ ക്രമീകരണം ഒഴിവാക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="416"/>
@@ -2118,7 +2119,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="424"/>
         <source>Setting a profile picture and display name is optional, and can also be changed later in the settings.</source>
-        <translation type="unfinished"/>
+        <translation>പ്രൊഫൈൽ ചിത്രവും പ്രദർശന പേരും ഓപ്ഷണലാണ്, അവ പിന്നീടും സെറ്റിങ്സിൽ മാറ്റാവുന്നതാണ്.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="430"/>
@@ -2179,7 +2180,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="928"/>
         <source>Spell checker</source>
-        <translation type="unfinished"/>
+        <translation>സ്പെൽ ചെക്കർ</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="403"/>
@@ -2343,32 +2344,32 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="358"/>
         <source>1m</source>
-        <translation type="unfinished"/>
+        <translation>1 മി.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="360"/>
         <source>%L1s</source>
-        <translation type="unfinished"/>
+        <translation>%L1 സെ.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="361"/>
         <source>%L1m</source>
-        <translation type="unfinished"/>
+        <translation>%L1 മി.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="362"/>
         <source>%L1m %L2s</source>
-        <translation type="unfinished"/>
+        <translation>%L1 മി. %L2 സെ.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="363"/>
         <source>%L1h</source>
-        <translation type="unfinished"/>
+        <translation>%L1 മ.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="364"/>
         <source>%L1h %L2m</source>
-        <translation type="unfinished"/>
+        <translation>%L1 മ. %L2 മി.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="368"/>
@@ -2388,7 +2389,7 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="378"/>
         <source>This conversation has ended.</source>
-        <translation type="unfinished"/>
+        <translation>ഈ സംഭാഷണം അവസാനിച്ചു.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="405"/>
@@ -2463,12 +2464,12 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="438"/>
         <source>Your profile is only shared with your contacts. You can customize your profile at any time.</source>
-        <translation type="unfinished"/>
+        <translation>ഈ പ്രൊഫൈൽ താങ്കളുടെ കോണ്ടാക്ടുകളുമായി മാത്രമേ പങ്കുവെച്ചിട്ടുള്ളൂ. മാത്രമല്ല, ഏതുസമയത്തു വേണമെങ്കിലും താങ്കൾക്ക് പ്രൊഫൈൽ ക്രമീകരിക്കാവുന്നതാണ്.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="439"/>
         <source>A chosen username can help to be found more easily on Jami. If a username is not chosen, a randomly generated 40-character identifier will be assigned to this account as a username. It is more difficult to be found and reached with this identifier.</source>
-        <translation type="unfinished"/>
+        <translation>ഒരു യൂസർനെയിം ജാമിയിൽ എളുപ്പത്തിൽ ബന്ധപ്പെടാൻ സഹായിക്കുന്നു. ഒരു യൂസർനെയിം തിരഞ്ഞെടുക്കുന്നില്ലെങ്കിൽ, ക്രമരഹിതമായി സൃഷ്ടിച്ച 40 ക്യാരക്ടറുകളുള്ള ഒരു ഐഡന്റിഫയർ യൂസർനെയിം ആയി ഈ അക്കൗണ്ടിനു കൊടുക്കും. ഈ ഐഡന്റിഫയർ ഉപയോഗിച്ച് കണ്ടുപിടിക്കപ്പെടാനും ബന്ധപ്പെടാനും ബുദ്ധിമുട്ടാണ്.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="441"/>
@@ -2558,17 +2559,17 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="521"/>
         <source>Send and receive typing indicators showing when messages are being typed.</source>
-        <translation type="unfinished"/>
+        <translation>ഒരു സന്ദേശം ടൈപ്പുചെയ്യുമ്പോൾ കാണിക്കുന്ന ടൈപ്പിങ് സൂചകങ്ങൾ അയയ്ക്കുകയും സ്വീകരിക്കുകയും ചെയ്യുക.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="522"/>
         <source>Read receipts</source>
-        <translation type="unfinished"/>
+        <translation>വായന രസീതുകൾ</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="523"/>
         <source>Send and request delivery and read receipts to be sent when messages are delivered or read.</source>
-        <translation type="unfinished"/>
+        <translation>സന്ദേശങ്ങൾ അയയ്ക്കുമ്പോഴും വായിക്കുമ്പോഴും ഉള്ള വിതരണ, വായന രസീതുകൾ അയയ്ക്കുകയും അഭ്യർത്ഥിക്കുകയും ചെയ്യുക.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="535"/>
@@ -2645,7 +2646,7 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="617"/>
         <source>Connecting to the new device…</source>
-        <translation type="unfinished"/>
+        <translation>പുതിയ ഡിവൈസുമായി ബന്ധിപ്പിക്കുന്നു...</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="619"/>
@@ -2832,7 +2833,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="800"/>
         <source>you</source>
-        <translation type="unfinished"/>
+        <translation>താങ്കൾ</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="803"/>
@@ -2842,7 +2843,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="829"/>
         <source>%L1 members</source>
-        <translation type="unfinished"/>
+        <translation>%L1 അംഗങ്ങൾ</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="864"/>
@@ -2902,72 +2903,72 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="929"/>
         <source>Search text languages</source>
-        <translation type="unfinished"/>
+        <translation>ടെക്സ്റ്റിനുള്ള ഭാഷകൾ തിരയുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="930"/>
         <source>Search for available text languages</source>
-        <translation type="unfinished"/>
+        <translation>ടെക്സ്റ്റിനു ലഭ്യമായ ഭാഷകൾക്കായി തിരയുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="931"/>
         <source>No dictionary found for %1.</source>
-        <translation type="unfinished"/>
+        <translation>%1 എന്നതിനുള്ള നിഘണ്ടു കാണുന്നില്ല.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="932"/>
         <source>No dictionary is available.</source>
-        <translation type="unfinished"/>
+        <translation>നിഘണ്ടു ലഭ്യമല്ല.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="933"/>
         <source>Dictionary manager</source>
-        <translation type="unfinished"/>
+        <translation>നിഘണ്ടു മാനേജർ</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="934"/>
         <source>An error occurred while downloading the %1 dictionary.</source>
-        <translation type="unfinished"/>
+        <translation>%1 നിഘണ്ടു ഡൗൺലോഡു ചെയ്യുമ്പോൾ ഒരു പ്രശ്നം വന്നിരിക്കുന്നു.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="935"/>
         <source>Show installed dictionaries</source>
-        <translation type="unfinished"/>
+        <translation>ഇൻസ്റ്റാളുചെയ്ത നിഘണ്ടുകൾ കാണുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="936"/>
         <source>Only show dictionaries that are currently installed</source>
-        <translation type="unfinished"/>
+        <translation>നിലവിൽ ഇൻസ്റ്റാളുചെയ്ത നിഘണ്ടുകൾ മാത്രം കാണുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="939"/>
         <source>Press enter to switch to this account</source>
-        <translation type="unfinished"/>
+        <translation>ഈ അക്കൗണ്ടിലേക്കു മാറാനായി എന്റർ അമർത്തുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="940"/>
         <source>Display your QR code to allow other users to scan it and add you as a contact</source>
-        <translation type="unfinished"/>
+        <translation>സ്കാനു ചെയ്ത് താങ്കളെ മറ്റ് ഉപയോക്താക്കളുടെ കോണ്ടാക്ടായി ചേർക്കാൻ അനുവദിക്കുന്ന QR കോഡ് കാണിക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="941"/>
         <source>Account list</source>
-        <translation type="unfinished"/>
+        <translation>അക്കൗണ്ടുകൾ</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="942"/>
         <source>Use arrows to switch between available account</source>
-        <translation type="unfinished"/>
+        <translation>ആരോകൾ ഉപയോഗിച്ച് ലഭ്യമായ അക്കൗണ്ട് തമ്മിൽ മാറുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="943"/>
         <source>Select the user interface language</source>
-        <translation type="unfinished"/>
+        <translation>യൂസർ ഇന്റർഫേസിനുള്ള ഭാഷ തിരഞ്ഞെടുക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="944"/>
         <source>Go back to the previous page</source>
-        <translation type="unfinished"/>
+        <translation>മുമ്പത്തെ പേജിലേക്കു പോവുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="945"/>
@@ -2977,7 +2978,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="946"/>
         <source>Back button</source>
-        <translation type="unfinished"/>
+        <translation>ബാക്ക് ബട്ടൺ</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="947"/>
@@ -2992,52 +2993,52 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="949"/>
         <source>Press to %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 ചെയ്യാൻ അമർത്തുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="950"/>
         <source>Press to toggle %1 (%2)</source>
-        <translation type="unfinished"/>
+        <translation>%1 ടോഗിൾ ചെയ്യാൻ അമർത്തുക (%2)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="951"/>
         <source>active</source>
-        <translation type="unfinished"/>
+        <translation>സജീവം</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="952"/>
         <source>inactive</source>
-        <translation type="unfinished"/>
+        <translation>സജീവമല്ല</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="953"/>
         <source>Minimize application</source>
-        <translation type="unfinished"/>
+        <translation>ആപ്ലിക്കേഷൻ ചുരുക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="954"/>
         <source>Maximize application</source>
-        <translation type="unfinished"/>
+        <translation>ആപ്ലിക്കേഷൻ വലുതാക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="955"/>
         <source>Close application</source>
-        <translation type="unfinished"/>
+        <translation>ആപ്ലിക്കേഷൻ നിർത്തുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="956"/>
         <source>Dismiss this tip</source>
-        <translation type="unfinished"/>
+        <translation>ഈ ടിപ്പ് നീക്കം ചെയ്യുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="957"/>
         <source>Tips to help you use Jami more effectively</source>
-        <translation type="unfinished"/>
+        <translation>ജാമി ഫലപ്രദമായി ഉപയോഗിക്കാൻ സഹായിക്കുന്ന ടിപ്പുകൾ</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="958"/>
         <source>Show more messaging options</source>
-        <translation type="unfinished"/>
+        <translation>സന്ദേശമയക്കാനുള്ള കൂടുതൽ ഓപ്ഷനുകൾ കാണിക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="959"/>
@@ -3057,11 +3058,26 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="962"/>
         <source>Status</source>
-        <translation type="unfinished"/>
+        <translation>സ്റ്റാറ്റസ്</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="963"/>
         <source>Read by</source>
+        <translation>വായിച്ചത്</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="964"/>
+        <source>Currently selected: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="965"/>
+        <source>%1 has been selected for %2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="966"/>
+        <source>Available option for %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3092,7 +3108,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="103"/>
         <source>Automatically accept calls</source>
-        <translation type="unfinished"/>
+        <translation>കോളുകൾ ഓട്ടോമാറ്റിക്കായി സ്വീകരിക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="462"/>
@@ -3440,12 +3456,12 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="625"/>
         <source>Do you want to exit?</source>
-        <translation type="unfinished"/>
+        <translation>നിർത്തണമോ?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="626"/>
         <source>Exiting will cancel the import account operation.</source>
-        <translation type="unfinished"/>
+        <translation>നി‍ർത്തിയാൽ അക്കൗണ്ട് ഇമ്പോർട്ട് ചെയ്യുന്നത് റദ്ധാവും.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="669"/>
@@ -3826,7 +3842,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="120"/>
         <source>Accept call</source>
-        <translation type="unfinished"/>
+        <translation>കോൾ സ്വീകരിക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="132"/>
@@ -3906,7 +3922,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="128"/>
         <source>Decline call</source>
-        <translation type="unfinished"/>
+        <translation>കോൾ നിരസിക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="136"/>
@@ -3971,7 +3987,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="188"/>
         <source>Show/hide formatting</source>
-        <translation type="unfinished"/>
+        <translation>ഫോർമാറ്റിങ് കാണിക്കുക/മറയ്ക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="192"/>
@@ -3981,7 +3997,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="200"/>
         <source>Open account settings</source>
-        <translation type="unfinished"/>
+        <translation>അക്കൗണ്ട് സെറ്റിങ്സ് തുറക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="204"/>
@@ -4132,12 +4148,12 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/libclient/interaction.cpp" line="88"/>
         <source>Private conversation created</source>
-        <translation type="unfinished"/>
+        <translation>സ്വകാര്യ സംഭാഷണം നിർമ്മിച്ചു</translation>
     </message>
     <message>
         <location filename="../src/libclient/interaction.cpp" line="90"/>
         <source>Group conversation created</source>
-        <translation type="unfinished"/>
+        <translation>ഗ്രൂപ്പ് സംഭാഷണം നിർമ്മിച്ചു</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="277"/>
@@ -4147,7 +4163,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="280"/>
         <source>You joined the conversation.</source>
-        <translation type="unfinished"/>
+        <translation>താങ്കൾ സംഭാഷണത്തിൽ ചേർന്നിരിക്കുന്നു.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="282"/>
@@ -4157,7 +4173,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="285"/>
         <source>You left the conversation.</source>
-        <translation type="unfinished"/>
+        <translation>താങ്കൾ സംഭാഷണത്തിൽ നിന്നു പോയിരിക്കുന്നു.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="287"/>
@@ -4192,7 +4208,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="319"/>
         <source>%L1s</source>
-        <translation type="unfinished"/>
+        <translation>%L1 സെ.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="335"/>
@@ -4587,7 +4603,7 @@ Please confirm the import on the new device.</source>
         <location filename="../src/libclient/conversationmodel.cpp" line="1138"/>
         <location filename="../src/libclient/conversationmodel.cpp" line="1151"/>
         <source>%1 (you)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (താങ്കൾ)</translation>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="587"/>
@@ -4683,12 +4699,12 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/systemtray.cpp" line="221"/>
         <source>Accept call</source>
-        <translation type="unfinished"/>
+        <translation>കോൾ സ്വീകരിക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="222"/>
         <source>Decline call</source>
-        <translation type="unfinished"/>
+        <translation>കോൾ നരിസിക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="224"/>

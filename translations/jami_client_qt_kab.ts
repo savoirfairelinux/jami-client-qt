@@ -266,7 +266,7 @@
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="93"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="443"/>
         <source>Delete account</source>
-        <translation type="unfinished"/>
+        <translation>Kkes amiḍan</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="94"/>
@@ -286,7 +286,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="98"/>
         <source>Alias</source>
-        <translation type="unfinished"/>
+        <translation>Mefferisem </translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="101"/>
@@ -411,7 +411,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="144"/>
         <source>Connectivity</source>
-        <translation type="unfinished"/>
+        <translation> Tuqqna </translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="145"/>
@@ -562,7 +562,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="189"/>
         <source>Bootstrap</source>
-        <translation type="unfinished"/>
+        <translation>Asali</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="190"/>
@@ -957,7 +957,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="877"/>
         <source>Appearance</source>
-        <translation type="unfinished"/>
+        <translation> Timeẓriwt </translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="894"/>
@@ -1142,7 +1142,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="743"/>
         <source>Unblock</source>
-        <translation type="unfinished"/>
+        <translation>Kkes asewḥel </translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="750"/>
@@ -1200,7 +1200,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="524"/>
         <source>Web link previews</source>
-        <translation type="unfinished"/>
+        <translation>Taskant n useɣwen web</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="534"/>
@@ -1313,7 +1313,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="915"/>
         <source>Connecting</source>
-        <translation type="unfinished"/>
+        <translation>Tuqqna</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="916"/>
@@ -1469,7 +1469,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="171"/>
         <source>Name server</source>
-        <translation type="unfinished"/>
+        <translation>Isem n uqeddac</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="185"/>
@@ -1601,7 +1601,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="268"/>
         <source>Moderator</source>
-        <translation type="unfinished"/>
+        <translation>amḍebbeṛ</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="269"/>
@@ -1902,7 +1902,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="332"/>
         <source>Video bitrate</source>
-        <translation type="unfinished"/>
+        <translation>Aktum n uvidyu </translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="333"/>
@@ -2401,7 +2401,7 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="408"/>
         <source>Invalid username</source>
-        <translation type="unfinished"/>
+        <translation>Isem n useqdac mačči d ameɣtu</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="409"/>
@@ -2411,7 +2411,7 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="410"/>
         <source>Username already taken</source>
-        <translation type="unfinished"/>
+        <translation>Isem n useqdac ittwaṭṭef yakan</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="418"/>
@@ -2476,7 +2476,7 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="445"/>
         <source>This device</source>
-        <translation type="unfinished"/>
+        <translation>Ibenk-a</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="446"/>
@@ -2546,7 +2546,7 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="520"/>
         <source>Typing indicator</source>
-        <translation type="unfinished"/>
+        <translation>Anamal n tira</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="521"/>
@@ -2561,7 +2561,7 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="523"/>
         <source>Send and request delivery and read receipts to be sent when messages are delivered or read.</source>
-        <translation type="unfinished"/>
+        <translation>Azen arnu suter asiweḍ d tɣuṛi n irmasen mi ara ilin yiznan ttwaznen neɣ ttwaɣran.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="535"/>
@@ -3058,6 +3058,21 @@ When ready, scan the QR code.</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="964"/>
+        <source>Currently selected: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="965"/>
+        <source>%1 has been selected for %2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="966"/>
+        <source>Available option for %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="457"/>
         <source>Set a password</source>
         <translation type="unfinished"/>
@@ -3131,7 +3146,7 @@ When ready, scan the QR code.</source>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="505"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="926"/>
         <source>System</source>
-        <translation type="unfinished"/>
+        <translation>Anagraw</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="508"/>
@@ -3156,7 +3171,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="525"/>
         <source>Preview requires downloading content from third-party servers.</source>
-        <translation type="unfinished"/>
+        <translation>Taskant teḥwaǧ asider n ugbur n yiqeddacen n wis kraḍ.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="527"/>
@@ -4050,12 +4065,12 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/libclient/api/call.h" line="60"/>
         <source>Hold</source>
-        <translation type="unfinished"/>
+        <translation>Ṭṭef</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="62"/>
         <source>Talking</source>
-        <translation type="unfinished"/>
+        <translation>Ameslay</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="64"/>
@@ -4065,7 +4080,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/libclient/api/call.h" line="66"/>
         <source>Incoming</source>
-        <translation type="unfinished"/>
+        <translation>unekcum</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="68"/>
@@ -4075,12 +4090,12 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/libclient/api/call.h" line="70"/>
         <source>Connecting</source>
-        <translation type="unfinished"/>
+        <translation>Tuqqna</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="72"/>
         <source>Searching</source>
-        <translation type="unfinished"/>
+        <translation>Anadi</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="74"/>
@@ -4281,7 +4296,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="72"/>
         <source>Ringing</source>
-        <translation type="unfinished"/>
+        <translation>Asṭenṭen</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="73"/>
@@ -4458,7 +4473,7 @@ Please confirm the import on the new device.</source>
         <location filename="../src/libclient/api/interaction.h" line="333"/>
         <location filename="../src/libclient/callmodel.cpp" line="107"/>
         <source>Busy</source>
-        <translation type="unfinished"/>
+        <translation>Yecɣel</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="108"/>
@@ -4854,7 +4869,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/utilsadapter.cpp" line="538"/>
         <source>System</source>
-        <translation type="unfinished"/>
+        <translation>Anagraw</translation>
     </message>
 </context>
 <context>

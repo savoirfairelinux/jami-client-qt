@@ -972,7 +972,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="896"/>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>Defaŭlta</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="899"/>
@@ -3055,6 +3055,21 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="963"/>
         <source>Read by</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="964"/>
+        <source>Currently selected: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="965"/>
+        <source>%1 has been selected for %2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="966"/>
+        <source>Available option for %1</source>
         <translation type="unfinished"/>
     </message>
     <message>

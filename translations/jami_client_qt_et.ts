@@ -3068,6 +3068,21 @@ Kui see on tehtud, siis skaneeri QR-koodi.</translation>
         <translation>Luges:</translation>
     </message>
     <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="964"/>
+        <source>Currently selected: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="965"/>
+        <source>%1 has been selected for %2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="966"/>
+        <source>Available option for %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="457"/>
         <source>Set a password</source>
         <translation>Määra salasõna</translation>

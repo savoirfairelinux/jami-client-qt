@@ -3068,6 +3068,21 @@ Cuando esté listo, escanee el código QR.</translation>
         <translation>Leído por</translation>
     </message>
     <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="964"/>
+        <source>Currently selected: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="965"/>
+        <source>%1 has been selected for %2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="966"/>
+        <source>Available option for %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="457"/>
         <source>Set a password</source>
         <translation>Establecer una contraseña</translation>
