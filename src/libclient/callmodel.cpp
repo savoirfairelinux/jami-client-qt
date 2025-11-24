@@ -47,6 +47,7 @@
 #include <QString>
 #include <QUrl>
 #include <QSize>
+#include <qlogging.h>
 
 // std
 #include <chrono>
@@ -226,6 +227,7 @@ public Q_SLOTS:
      */
     void slotConferenceCreated(const QString& accountId, const QString& conversationId, const QString& callId);
     void slotConferenceChanged(const QString& accountId, const QString& callId, const QString& state);
+    void slotConferenceRemoved(const QString& accountId, const QString& confId);
     /**
      * Listen from CallbacksHandler when a voice mail notice is incoming
      * @param accountId
@@ -1007,6 +1009,7 @@ CallModelPimpl::CallModelPimpl(const CallModel& linked,
     connect(&callbacksHandler, &CallbacksHandler::incomingVCardChunk, this, &CallModelPimpl::slotincomingVCardChunk);
     connect(&callbacksHandler, &CallbacksHandler::conferenceCreated, this, &CallModelPimpl::slotConferenceCreated);
     connect(&callbacksHandler, &CallbacksHandler::conferenceChanged, this, &CallModelPimpl::slotConferenceChanged);
+    connect(&callbacksHandler, &CallbacksHandler::conferenceRemoved, this, &CallModelPimpl::slotConferenceRemoved);
     connect(&callbacksHandler, &CallbacksHandler::voiceMailNotify, this, &CallModelPimpl::slotVoiceMailNotify);
     connect(&CallManager::instance(),
             &CallManagerInterface::onConferenceInfosUpdated,
@@ -1689,6 +1692,94 @@ CallModelPimpl::slotConferenceChanged(const QString& accountId, const QString& c
             currentCall_ = confId;
     }
     Q_EMIT linked.currentCallChanged(currentCall_);
+}
+
+void
+CallModelPimpl::slotConferenceRemoved(const QString& accountId, const QString& confId)
+{
+    if (accountId != linked.owner.id || !linked.owner.conversationModel) {
+        return;
+    }
+    auto confIt = calls.find(confId);
+    if (confIt == calls.end() || !confIt->second) {
+        return;
+    }
+
+    qWarning() << "Attempting to remove conference:" << confId;
+
+    QString remainingPeerUri;
+    QString remainingCallId;
+
+    auto participantsIt = participantsModel.find(confId);
+    if (participantsIt != participantsModel.end()) {
+        const auto participants = participantsIt->second->getParticipants();
+        // Assuming the participants model is up to date, it should contain all remaining participants in the conference
+        // Which should be 2: the host and the remaining remote peer
+        // Therefore, we look for the participant which is not ourselves
+        qWarning() << "Found" << participants.size() << "participants in conference:" << confId;
+        for (const auto& participant : participants) {
+            qWarning() << "Participant URI:" << participant.uri;
+            if (participant.uri != linked.owner.profileInfo.uri) {
+                remainingPeerUri = participant.uri;
+                try {
+                    remainingCallId = linked.getCallFromURI(remainingPeerUri, true).id;
+                    qWarning() << "Found remaining peerUri:" << remainingPeerUri << "with callId:" << remainingCallId;
+                } catch (const std::exception& e) {
+                    qWarning() << "Could not find call for peerUri:" << remainingPeerUri << ":" << e.what();
+                }
+                break;
+            }
+        }
+    } else {
+        qWarning() << "Participants model not found for conference:" << confId;
+    }
+
+    auto currentConversation = linked.owner.conversationModel->getConversationForCallId(confId);
+    if (currentConversation) {
+        currentConversation->get().confId.clear();
+    } else {
+        qWarning() << "Conversation object not found for confId:" << confId;
+    }
+
+    // We need to check if the client needs to switch conversations
+    // For instance in a setup where A, B and C were in a conference
+    // And from A's POV the conference was taking place in their conversation with B
+    // Then if B leaves the conference, A's client should display the call with C in the conversation with C
+    OptRef<conversation::Info> fallbackConversation {};
+    if (!remainingPeerUri.isEmpty()) {
+        fallbackConversation = linked.owner.conversationModel->getConversationForPeerUri(remainingPeerUri);
+        if (!fallbackConversation) {
+            qWarning() << "Fallback conversation object not found for peerUri:" << remainingPeerUri;
+        } else {
+            fallbackConversation->get().confId.clear();
+            fallbackConversation->get().callId = remainingCallId;
+        }
+    } else {
+        qWarning() << "Advanced information did not provide peer uri";
+    }
+
+    // Now remove the conference from our models and list of calls then update currentCall_
+    participantsModel.erase(confId);
+    calls.erase(confIt);
+
+    currentCall_ = remainingCallId;
+    Q_EMIT linked.currentCallChanged(currentCall_);
+
+    qWarning() << "Conference removed, set current callId to:" << currentCall_;
+
+    const auto currentConvUid = currentConversation ? currentConversation->get().uid : QString {};
+    const auto fallbackConvUid = fallbackConversation ? fallbackConversation->get().uid : QString {};
+    // Decide whether we need to switch conversation
+    if (!currentConvUid.isEmpty() && !fallbackConvUid.isEmpty() && currentConvUid == fallbackConvUid) {
+        qWarning() << "Current conversation is correct, staying on it";
+    } else if (!fallbackConvUid.isEmpty()) {
+        qWarning() << "Selecting fallback conversation:" << fallbackConvUid;
+        linked.owner.conversationModel->selectConversation(fallbackConvUid);
+    } else if (!currentConvUid.isEmpty()) {
+        qWarning() << "No fallback conversation available to switch to. Staying on:" << currentConvUid;
+    } else {
+        qWarning() << "No conversation available to update after conference removal for callId:" << confId;
+    }
 }
 
 void
