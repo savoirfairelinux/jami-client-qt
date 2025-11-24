@@ -41,8 +41,8 @@ AbstractButton {
     property color checkedColor: JamiTheme.secAndTertiHoveredBackgroundColor
     property bool hasIcon: animatedIconSource.length !== 0 || iconSource.length !== 0
     property var preferredWidth
-    property real textLeftPadding
-    property real textRightPadding
+    property real textLeftPadding: JamiTheme.buttontextWizzardPadding
+    property real textRightPadding: JamiTheme.buttontextWizzardPadding
     property real fontSize: JamiTheme.buttontextFontPixelSize
     property real textAlignment: Text.AlignHCenter
     property real textOpacity: 1

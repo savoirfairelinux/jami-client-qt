@@ -333,7 +333,6 @@ Rectangle {
 
                         Layout.alignment: Qt.AlignCenter
                         Layout.topMargin: 2 * JamiTheme.wizardViewBlocMarginSize
-
                         text: JamiStrings.setPassword
                         toolTipText: JamiStrings.encryptWithPassword
 
