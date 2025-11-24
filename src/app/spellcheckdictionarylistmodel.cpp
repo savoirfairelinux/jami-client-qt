@@ -400,7 +400,32 @@ SpellCheckDictionaryListModel::onDownloadFileFinished(const QString& localPath)
     QFileInfo fileInfo(localPath);
     QString locale = fileInfo.baseName();
 
-    static auto handleDownloadComplete = [this, &locale](const QString& localPath) {
+    // We need both a .dic file and a .aff file.
+    // Check which one we downloaded and whether we already have the other one.
+    bool haveBothFiles = false;
+    if (localPath.endsWith(".dic")) {
+        QString affFilePath = localPath;
+        affFilePath.chop(4); // Remove ".dic"
+        affFilePath += ".aff";
+
+        if (QFile::exists(affFilePath)) {
+            haveBothFiles = true;
+        } else {
+            C_DBG << "Waiting for .aff file for:" << locale;
+        }
+    } else if (localPath.endsWith(".aff")) {
+        QString dicFilePath = localPath;
+        dicFilePath.chop(4); // Remove ".aff"
+        dicFilePath += ".dic";
+
+        if (QFile::exists(dicFilePath)) {
+            haveBothFiles = true;
+        } else {
+            C_DBG << "Waiting for .dic file for:" << locale;
+        }
+    }
+
+    if (haveBothFiles) {
         // Both files are now available, mark as installed
         updateDictionaryInstallationStatus(locale, true);
         pendingDownloads_.removeAll(locale);
@@ -413,29 +438,6 @@ SpellCheckDictionaryListModel::onDownloadFileFinished(const QString& localPath)
         Q_EMIT newDictionaryAvailable(locale);
         if (!dictionariesAvailable_) {
             dictionariesAvailable_ = true;
-        }
-    };
-
-    // Check if this is a .dic file and if the corresponding .aff file exists
-    if (localPath.endsWith(".dic")) {
-        QString affFilePath = localPath;
-        affFilePath.chop(4); // Remove ".dic"
-        affFilePath += ".aff";
-
-        if (QFile::exists(affFilePath)) {
-            handleDownloadComplete(affFilePath);
-        } else {
-            C_DBG << "Waiting for .aff file for:" << locale;
-        }
-    } else if (localPath.endsWith(".aff")) {
-        QString dicFilePath = localPath;
-        dicFilePath.chop(4); // Remove ".aff"
-        dicFilePath += ".dic";
-
-        if (QFile::exists(dicFilePath)) {
-            handleDownloadComplete(dicFilePath);
-        } else {
-            C_DBG << "Waiting for .dic file for:" << locale;
         }
     }
 }
