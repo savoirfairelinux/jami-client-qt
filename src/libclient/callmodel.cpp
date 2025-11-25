@@ -1639,6 +1639,7 @@ CallModelPimpl::slotOnConferenceInfosUpdated(const QString& confId, const Vector
     // For now, the rendez-vous account can see ongoing calls
     // And must be notified when a new
     QStringList callList = CallManager::instance().getParticipantList(linked.owner.id, confId);
+    qWarning() << "Conference infos updated. Calls in conference:" << callList.size();
     Q_FOREACH (const auto& call, callList) {
         Q_EMIT linked.callAddedToConference(call, "", confId);
         if (calls.find(call) == calls.end()) {
@@ -1657,6 +1658,23 @@ CallModelPimpl::slotOnConferenceInfosUpdated(const QString& confId, const Vector
     else
         participantIt->second->update(infos);
     it->second->layout = participantIt->second->getLayout();
+
+    // Check if we need to switch conversation
+    auto currentConversation = linked.owner.conversationModel->getConversationForCallId(confId);
+    if (currentConversation && callList.size() > 2 && participantIt != participantsModel.end()) {
+        qDebug() << "Checking if client should switch to another conversation for conference:" << confId;
+        auto fallbackConversation = getFallbackConversationForConference(confId);
+        // If fallback conversation is not nullopt, switch to it
+        if (!fallbackConversation) {
+            qWarning() << "No fallback conversation found for conference ID:" << confId;
+        } else {
+            currentConversation->get().confId.clear();
+            fallbackConversation->get().confId = confId;
+            fallbackConversation->get().callId = confId;
+            linked.owner.conversationModel->selectConversation(fallbackConversation->get().uid);
+            qWarning() << "Switched to fallback conversation with UID:" << fallbackConversation->get().uid;
+        }
+    }
 
     // if Jami, remove @ring.dht
     for (auto& i : participantIt->second->getParticipants()) {
@@ -1745,6 +1763,7 @@ CallModelPimpl::slotConferenceChanged(const QString& accountId, const QString& c
     QStringList callList = CallManager::instance().getParticipantList(linked.owner.id, confId);
     QString currentCallId = currentCall_;
     Q_FOREACH (const auto& call, callList) {
+        qWarning() << "Adding call to conference:" << call << "->" << confId;
         Q_EMIT linked.callAddedToConference(call, "", confId);
         if (call == currentCall_)
             currentCall_ = confId;
