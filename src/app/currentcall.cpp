@@ -118,7 +118,6 @@ CurrentCall::updateParticipants()
         uris.append(participantInfo[ParticipantsInfosStrings::URI].toString());
     }
     set_uris(uris);
-    set_isConference(uris.size());
 }
 
 void
@@ -216,6 +215,7 @@ CurrentCall::updateCallInfo()
     set_isOutgoing(callInfo.isOutgoing);
     set_isGrid(callInfo.layout == call::Layout::GRID);
     set_isAudioOnly(callInfo.isAudioOnly);
+    set_isConference(callInfo.type == call::Type::CONFERENCE);
 
     auto callInfoEx = callInfo.getCallInfoEx();
     set_previewId(callInfoEx["preview_id"].toString());
