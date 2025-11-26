@@ -310,12 +310,6 @@ public Q_SLOTS:
      */
     void slotCallAddedToConference(const QString& callId, const QString& conversationId, const QString& confId);
     /**
-     * Listen from CallbacksHandler when a conference is deleted.
-     * @param accountId
-     * @param confId
-     */
-    void slotConferenceRemoved(const QString& accountId, const QString& confId);
-    /**
      * Listen for when a contact is composing
      * @param accountId
      * @param contactUri
@@ -1648,10 +1642,6 @@ ConversationModelPimpl::ConversationModelPimpl(const ConversationModel& linked,
             &lrc::api::CallModel::callAddedToConference,
             this,
             &ConversationModelPimpl::slotCallAddedToConference);
-    connect(&callbacksHandler,
-            &CallbacksHandler::conferenceRemoved,
-            this,
-            &ConversationModelPimpl::slotConferenceRemoved);
     connect(&ConfigurationManager::instance(),
             &ConfigurationManagerInterface::composingStatusChanged,
             this,
@@ -1793,10 +1783,6 @@ ConversationModelPimpl::~ConversationModelPimpl()
                &lrc::api::CallModel::callAddedToConference,
                this,
                &ConversationModelPimpl::slotCallAddedToConference);
-    disconnect(&callbacksHandler,
-               &CallbacksHandler::conferenceRemoved,
-               this,
-               &ConversationModelPimpl::slotConferenceRemoved);
     disconnect(&ConfigurationManager::instance(),
                &ConfigurationManagerInterface::composingStatusChanged,
                this,
@@ -3308,19 +3294,6 @@ ConversationModelPimpl::updateInteractionStatus(const QString& accountId,
             conversation.interactions->setRead(peerUri, messageId);
     } catch (const std::out_of_range& e) {
         qDebug() << "Cannot update message status for conversation that does not exist.";
-    }
-}
-
-void
-ConversationModelPimpl::slotConferenceRemoved(const QString& accountId, const QString& confId)
-{
-    if (accountId != linked.owner.id)
-        return;
-    // Get conversation
-    for (auto& i : conversations) {
-        if (i.confId == confId) {
-            i.confId = "";
-        }
     }
 }
 
