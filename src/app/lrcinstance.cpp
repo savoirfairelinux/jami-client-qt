@@ -20,6 +20,8 @@
 #include "global.h"
 #include "connectivitymonitor.h"
 
+#include <api/pluginmodel.h>
+
 #include <QBuffer>
 #include <QMutex>
 #include <QObject>
@@ -72,6 +74,13 @@ LRCInstance::LRCInstance(const QString& updateUrl,
     });
 
     connect(&accountModel(), &AccountModel::accountRemoved, this, &LRCInstance::onAccountRemoved, Qt::DirectConnection);
+
+    connect(&pluginModel(), &lrc::api::PluginModel::modelUpdated, this, [this] {
+        set_callMediaHandlersListCount(pluginModel().getCallMediaHandlers().size());
+        set_chatHandlersListCount(pluginModel().getChatHandlers().size());
+    });
+    set_callMediaHandlersListCount(pluginModel().getCallMediaHandlers().size());
+    set_chatHandlersListCount(pluginModel().getChatHandlers().size());
 
     // set the current account if any
     auto accountList = accountModel().getAccountList();

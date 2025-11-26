@@ -455,7 +455,7 @@ Control {
             icon.source: JamiResources.plugins_24dp_svg
             icon.color: "white"
             text: JamiStrings.viewExtension
-            enabled: PluginAdapter.callMediaHandlersListCount
+            enabled: LRCInstance.callMediaHandlersListCount
             onEnabledChanged: CallOverlayModel.setEnabled(this, pluginsAction.enabled)
         },
         Action {

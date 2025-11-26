@@ -74,7 +74,6 @@ PluginAdapter::PluginAdapter(LRCInstance* instance, AppSettingsManager* settings
             &PluginVersionManager::newVersionAvailable,
             pluginListModel_,
             &PluginListModel::onNewVersionAvailable);
-    getPluginsFromStore();
 }
 
 void

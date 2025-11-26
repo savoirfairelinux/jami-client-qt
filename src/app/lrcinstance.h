@@ -53,6 +53,8 @@ class LRCInstance : public QObject
     QML_PROPERTY(QString, currentAccountId)
     QML_RO_PROPERTY(lrc::api::profile::Type, currentAccountType)
     QML_PROPERTY(bool, currentAccountAvatarSet)
+    QML_RO_PROPERTY(int, callMediaHandlersListCount)
+    QML_RO_PROPERTY(int, chatHandlersListCount)
 
 public:
     explicit LRCInstance(const QString& updateUrl,

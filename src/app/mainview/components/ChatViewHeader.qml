@@ -208,7 +208,7 @@ Rectangle {
             QWKSetParentHitTestVisible {
             }
 
-            visible: PluginAdapter.chatHandlersListCount && interactionButtonsVisibility
+            visible: LRCInstance.chatHandlersListCount && interactionButtonsVisibility
             source: JamiResources.plugins_24dp_svg
             toolTipText: JamiStrings.showExtensions
 
