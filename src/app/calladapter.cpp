@@ -463,7 +463,23 @@ CallAdapter::onShowIncomingCallView(const QString& accountId, const QString& con
 void
 CallAdapter::onShowCallView(const QString& accountId, const QString& convUid)
 {
-    Q_EMIT lrcInstance_->conversationUpdated(convUid, accountId); // This will show the call
+    if (accountId.isEmpty() || convUid.isEmpty()) {
+        qWarning() << "Invalid parameters: (" << accountId << "," << convUid << ")";
+        return;
+    }
+
+    // check if we're already on the correct conversation
+    // selectConversation will emit conversationUpdated if already selected
+    bool alreadySelected = (lrcInstance_->get_selectedConvUid() == convUid
+                            && lrcInstance_->get_currentAccountId() == accountId);
+
+    lrcInstance_->selectConversation(convUid, accountId);
+
+    // if it wasn't selected, selectConversation changed the selection but didn't emit conversationUpdated
+    // we emit it here to make sure the UI reacts to the "Show Call" request specifically
+    if (!alreadySelected) {
+        Q_EMIT lrcInstance_->conversationUpdated(convUid, accountId);
+    }
 }
 
 void
