@@ -1639,6 +1639,7 @@ CallModelPimpl::slotOnConferenceInfosUpdated(const QString& confId, const Vector
     // For now, the rendez-vous account can see ongoing calls
     // And must be notified when a new
     QStringList callList = CallManager::instance().getParticipantList(linked.owner.id, confId);
+    qDebug() << "[conf:" << confId << "] Conference infos updated. Calls remaining:" << callList.size();
     Q_FOREACH (const auto& call, callList) {
         Q_EMIT linked.callAddedToConference(call, "", confId);
         if (calls.find(call) == calls.end()) {
@@ -1657,6 +1658,21 @@ CallModelPimpl::slotOnConferenceInfosUpdated(const QString& confId, const Vector
     else
         participantIt->second->update(infos);
     it->second->layout = participantIt->second->getLayout();
+
+    // Check if we need to switch conversation
+    auto currentConversation = linked.owner.conversationModel->getConversationForCallId(confId);
+    if (currentConversation && callList.size() >= 2 && participantIt != participantsModel.end()) {
+        qDebug() << "[conf:" << confId << "] Checking if client should switch to another conversation";
+        auto fallbackConversation = getFallbackConversationForConference(confId);
+        // If fallback conversation is not nullopt, switch to it
+        if (fallbackConversation) {
+            currentConversation->get().confId.clear();
+            fallbackConversation->get().confId = confId;
+            fallbackConversation->get().callId = confId;
+            linked.owner.conversationModel->selectConversation(fallbackConversation->get().uid);
+            qWarning() << "[conf:" << confId << "] Selected fallback conversation:" << fallbackConversation->get().uid;
+        }
+    }
 
     // if Jami, remove @ring.dht
     for (auto& i : participantIt->second->getParticipants()) {
