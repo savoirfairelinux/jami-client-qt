@@ -27,21 +27,31 @@ ModalTextEdit {
 
     prefixIconSrc: firstEntry ? JamiResources.lock_svg : JamiResources.round_edit_24dp_svg
 
-    suffixBisIconSrc: echoMode == TextInput.Password ? JamiResources.eye_cross_svg : JamiResources.noun_eye_svg
-    suffixBisIconColor: JamiTheme.passwordEyeIconColor
+    suffixIconSrc: echoMode == TextInput.Password ? JamiResources.eye_cross_svg : JamiResources.noun_eye_svg
+    suffixIconColor: JamiTheme.passwordEyeIconColor
 
     placeholderText: JamiStrings.password
     infoTipText: firstEntry ? JamiStrings.password : ""
     staticText: ""
     echoMode: TextInput.Password
 
+    // Forward the suffix icon click to toggle password visibility
+    Connections {
+        target: item
+        enabled: item !== null
+
+        function onSuffixIconClicked() {
+            modalTextEditRoot.onIcoClicked();
+        }
+    }
+
     onIcoClicked: {
         if (echoMode == TextInput.Normal) {
             echoMode = TextInput.Password;
-            suffixBisIconSrc = JamiResources.eye_cross_svg;
+            suffixIconSrc = JamiResources.eye_cross_svg;
         } else {
             echoMode = TextInput.Normal;
-            suffixBisIconSrc = JamiResources.noun_eye_svg;
+            suffixIconSrc = JamiResources.noun_eye_svg;
         }
     }
 

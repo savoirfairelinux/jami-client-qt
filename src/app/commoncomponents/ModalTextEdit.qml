@@ -25,8 +25,7 @@ Loader {
     property color prefixIconColor: JamiTheme.editLineColor
     property string suffixIconSrc: ""
     property color suffixIconColor: JamiTheme.buttonTintedBlue
-    property string suffixBisIconSrc: ""
-    property color suffixBisIconColor: JamiTheme.buttonTintedBlue
+    property int suffixIconRightPadding: 0
     property color textColor: JamiTheme.textColor
 
     required property string placeholderText
@@ -96,11 +95,12 @@ Loader {
             isSwarmDetail: root.isSwarmDetail
             isSettings: root.isSettings
             textColor: root.textColor
-            suffixBisIconSrc: root.suffixBisIconSrc
-            suffixBisIconColor: root.suffixBisIconColor
             placeholderText: root.placeholderText
             prefixIconSrc: isSwarmDetail ? "" : root.prefixIconSrc
             prefixIconColor: root.prefixIconColor
+            suffixIconSrc: root.suffixIconSrc
+            suffixIconColor: root.suffixIconColor
+            suffixIconRightPadding: root.suffixIconRightPadding
         }
     }
 
@@ -118,8 +118,7 @@ Loader {
             prefixIconColor: root.prefixIconColor
             suffixIconSrc: root.suffixIconSrc
             suffixIconColor: root.suffixIconColor
-            suffixBisIconSrc: root.suffixBisIconSrc
-            suffixBisIconColor: root.suffixBisIconColor
+            suffixIconRightPadding: root.suffixIconRightPadding
             textColor: root.textColor
             font.pixelSize: root.fontPixelSize
             font.bold: root.fontBold
