@@ -1759,6 +1759,7 @@ CallModelPimpl::slotConferenceChanged(const QString& accountId, const QString& c
         return;
     // Detect if conference is created for this account
     QStringList callList = CallManager::instance().getParticipantList(linked.owner.id, confId);
+    qDebug() << "[conf:" << confId << "] Conference changed. Calls remaining:" << callList.size();
     QString currentCallId = currentCall_;
     Q_FOREACH (const auto& call, callList) {
         Q_EMIT linked.callAddedToConference(call, "", confId);
