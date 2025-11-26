@@ -48,6 +48,7 @@ ModalTextEdit {
     }
     suffixIconSrc: JamiResources.outline_info_24dp_svg
     suffixIconColor: JamiTheme.buttonTintedBlue
+    suffixIconRightPadding: 20
 
     property bool isActive: false
     property string infohash: CurrentAccount.uri

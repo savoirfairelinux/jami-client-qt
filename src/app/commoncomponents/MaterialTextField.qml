@@ -44,8 +44,7 @@ TextField {
     property alias prefixIconColor: prefixIcon.color
     property string suffixIconSrc
     property alias suffixIconColor: suffixIcon.color
-    property string suffixBisIconSrc
-    property alias suffixBisIconColor: suffixBisIcon.color
+    property int suffixIconRightPadding: 0
     property alias icon: container.data
 
     property color accent:  (isActive || hovered ? prefixIconColor : JamiTheme.passwordBaselineColor)
@@ -56,6 +55,8 @@ TextField {
 
     property alias infoTipText: infoTip.text
     property alias infoTipLineText: infoTipLine.text
+
+    signal suffixIconClicked
 
     //https://doc.qt.io/qt-6/qml-qtquick-textinput.html#maximumLength-prop
     property var maxCharacters: undefined
@@ -74,10 +75,7 @@ TextField {
         if (!readOnly) {
             if (suffixIconSrc !== "")
                 total = +30;
-            if (suffixBisIconSrc !== "")
-                total = +30;
         }
-        return total;
     }
 
     topPadding: 2
@@ -185,11 +183,16 @@ TextField {
         id: container
         width: suffixIcon.width
         height: suffixIcon.height
-        anchors.right: suffixBisIcon.left
-        anchors.rightMargin: suffixBisIconSrc !== '' ? 5 : root.isActive ? 0 : 20
+        anchors.right: parent.right
+        anchors.rightMargin: suffixIconRightPadding
         anchors.verticalCenter: root.verticalCenter
         anchors.verticalCenterOffset: -root.bottomPadding / 2
         visible: !readOnly
+
+        TapHandler {
+            id: suffixTapHandler
+            onTapped: root.suffixIconClicked()
+        }
 
         TextFieldIcon {
             id: suffixIcon
@@ -203,24 +206,6 @@ TextField {
                 backGroundColor: JamiTheme.whiteColor
                 visible: parent.hovered && infoTipText.toString() !== ""
                 delay: Qt.styleHints.mousePressAndHoldInterval
-            }
-        }
-    }
-
-    TextFieldIcon {
-        id: suffixBisIcon
-        size: 16
-        anchors.right: parent.right
-        anchors.verticalCenter: root.verticalCenter
-        anchors.verticalCenterOffset: -root.bottomPadding / 2
-        color: suffixBisIconColor
-        source: suffixBisIconSrc
-        opacity: 1
-
-        TapHandler {
-            cursorShape: Qt.ArrowCursor
-            onTapped: {
-                modalTextEditRoot.icoClicked();
             }
         }
     }
