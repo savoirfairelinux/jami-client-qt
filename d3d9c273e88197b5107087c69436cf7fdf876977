@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5be0d9a7_cc55c723",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 30
+      },
+      "lineNbr": 3907,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-11-26T19:58:47Z",
+      "side": 1,
+      "message": "https://clang.llvm.org/extra/clang-tidy/checks/bugprone/empty-catch.html ?",
+      "range": {
+        "startLine": 3906,
+        "startChar": 6,
+        "endLine": 3907,
+        "endChar": 5
+      },
+      "revId": "d3d9c273e88197b5107087c69436cf7fdf876977",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
