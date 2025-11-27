@@ -94,7 +94,7 @@ pipeline {
                     def jenkinsUser = jenkinsUID+':'+jenkinsGID
                     def cpuCount = sh returnStdout: true, script: 'nproc || echo -n 4'
 
-                    docker.image('client-validation').withRun('-t -u '+jenkinsUser+' -v '+pwd()+':/foo:rw -v /var/cache/jami:/var/cache/jami:rw -w /foo -e BATCH_MODE=1', '/bin/bash') {
+                    docker.image('client-validation').withRun('-t -u '+jenkinsUser+' -v '+pwd()+':/foo:rw -v /var/cache/jami:/var/cache/jami:rw -w /foo -e BATCH_MODE=1 -e TARBALLS=$TARBALLS -e CACHE_DIR=$CACHE_DIR', '/bin/bash') {
                         container -> code:{
                             def base_cmd = 'docker exec -t '+container.id+" sh -c '"
                             def exec_cmd = { cmd -> sh base_cmd+cmd+"'" }
