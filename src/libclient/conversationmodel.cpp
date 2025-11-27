@@ -2157,6 +2157,18 @@ ConversationModelPimpl::slotSwarmLoaded(uint32_t requestId,
     auto allLoaded = false;
     try {
         auto& conversation = getConversationForUid(conversationId).get();
+
+        // If we have accepted a conversation invitation, there will already be an initial message. Seeing as this
+        // initial message is already included in the commits that are being loaded on acceptance of the swarm. We need
+        // to remove it, otherwise it does not get "reparented" appropriately.
+        if (conversation.interactions->rowCount() == 1) {
+            auto idx0 = conversation.interactions->index(0);
+            auto typeVar = conversation.interactions->data(idx0, MessageList::Role::Type);
+            if (static_cast<interaction::Type>(typeVar.toInt()) == interaction::Type::INITIAL) {
+                conversation.interactions->clear();
+            }
+        }
+
         for (const auto& message : messages) {
             QString msgId = message.id;
             auto msg = interaction::Info(message, linked.owner.profileInfo.uri, accountId, conversationId);
@@ -2245,9 +2257,30 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
             linked.owner.dataTransferModel->registerTransferId(fileId, msgId);
         }
 
-        if (!conversation.interactions->append(msgId, msg)) {
-            qDebug() << Q_FUNC_INFO << "Append failed: duplicate ID." << msgId;
-            return;
+        // Check if message already exists
+        if (conversation.interactions->indexOfMessage(msgId) != -1) {
+            // The message exists, update it
+            if (!conversation.interactions->update(msgId, msg)) {
+                qWarning() << "Update failed for" << msgId;
+            }
+        } else {
+            // New mesage, insert right after the parent
+            QString msgParentID = msg.parentId;
+            int msgParentIndex = conversation.interactions->indexOfMessage(msgParentID);
+            qWarning() << "PARENT INDEX IS" << msgParentIndex;
+            if (msgParentIndex != -1) {
+                // Parent exists insert right after the parent
+                if (!conversation.interactions->insert(msgId, msg, msgParentIndex + 1)) {
+                    qWarning() << Q_FUNC_INFO << "Failed to insert message after parent.";
+                    return;
+                }
+            } else {
+                // Parent doesn't exist yet, add the message to the end of the list
+                if (!conversation.interactions->append(msgId, msg)) {
+                    qWarning() << Q_FUNC_INFO << "Append failed: duplicate ID." << msgId;
+                    return;
+                }
+            }
         }
 
         auto updateUnread = msg.authorUri != linked.owner.profileInfo.uri;
