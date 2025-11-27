@@ -2252,9 +2252,30 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
             linked.owner.dataTransferModel->registerTransferId(fileId, msgId);
         }
 
-        if (!conversation.interactions->append(msgId, msg)) {
-            qDebug() << Q_FUNC_INFO << "Append failed: duplicate ID." << msgId;
-            return;
+        // Check if message already exists
+        if (conversation.interactions->indexOfMessage(msgId) != -1) {
+            // The message exists, update it
+            if (!conversation.interactions->update(msgId, msg)) {
+                qDebug() << "Update failed for" << msgId;
+            }
+        } else {
+            // New mesage, insert right after the parent
+            QString msgParentID = msg.parentId;
+            int msgParentIndex = conversation.interactions->indexOfMessage(msgParentID);
+
+            if (msgParentIndex != -1) {
+                // Parent exists insert right after the parent
+                if (!conversation.interactions->insert(msgId, msg, msgParentIndex + 1)) {
+                    qDebug() << Q_FUNC_INFO << "Failed to insert message after parent.";
+                    return;
+                }
+            } else {
+                // Parent doesn't exist yet, add the message to the end of the list
+                if (!conversation.interactions->append(msgId, msg)) {
+                    qDebug() << Q_FUNC_INFO << "Append failed: duplicate ID." << msgId;
+                    return;
+                }
+            }
         }
 
         auto updateUnread = msg.authorUri != linked.owner.profileInfo.uri;
