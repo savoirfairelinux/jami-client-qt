@@ -85,7 +85,7 @@ extern const QString defaultDownloadPath;
 #define KEYS COMMON_KEYS \
     X(Donation2025StartDate, "2025-09-15 00:00") \
     X(IsDonationVisible, true) \
-    X(Donation2025EndDate, "2025-11-16 00:00")
+    X(Donation2025EndDate, "2026-01-01 00:00")
 #endif
 
 /*
