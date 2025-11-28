@@ -16,6 +16,24 @@
       "message": "need to use unified style for all secondary buttons",
       "revId": "05f3b2a4a318afcc5769244d5f0328b3f503b385",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b26968ba_c54da376",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2025-11-28T18:17:57Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "3962993a_833bbc78",
+      "revId": "05f3b2a4a318afcc5769244d5f0328b3f503b385",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
