@@ -3068,17 +3068,17 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="964"/>
         <source>Currently selected: %1</source>
-        <translation type="unfinished"/>
+        <translation>当前选定：%1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="965"/>
         <source>%1 has been selected for %2</source>
-        <translation type="unfinished"/>
+        <translation>%1 已被选定用于 %2</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="966"/>
         <source>Available option for %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 的可用选项</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="457"/>
@@ -4600,8 +4600,8 @@ Please confirm the import on the new device.</source>
         <translation>位置服务发生未知错误</translation>
     </message>
     <message>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1138"/>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1151"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1141"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1154"/>
         <source>%1 (you)</source>
         <translation>%1 (您)</translation>
     </message>

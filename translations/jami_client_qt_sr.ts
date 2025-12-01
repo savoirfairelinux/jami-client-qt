@@ -4593,8 +4593,8 @@ Please confirm the import on the new device.</source>
         <translation>ЛокацијаСвршевиНепознати Грешка</translation>
     </message>
     <message>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1138"/>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1151"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1141"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1154"/>
         <source>%1 (you)</source>
         <translation>%1 (ти)</translation>
     </message>

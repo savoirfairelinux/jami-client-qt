@@ -3070,17 +3070,17 @@ Ha készen áll, olvassa be a QR-kódot.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="964"/>
         <source>Currently selected: %1</source>
-        <translation type="unfinished"/>
+        <translation>Jelenleg kijelölt: %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="965"/>
         <source>%1 has been selected for %2</source>
-        <translation type="unfinished"/>
+        <translation>%1 kijelölt ehhez: %2</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="966"/>
         <source>Available option for %1</source>
-        <translation type="unfinished"/>
+        <translation>Rendelkezésre álló lehetőség ehhez: %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="457"/>
@@ -4602,8 +4602,8 @@ Kérjük, erősítse meg az importálást az új eszközön.</translation>
         <translation>Ismeretlen helymeghatározási szolgáltatások hiba</translation>
     </message>
     <message>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1138"/>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1151"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1141"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1154"/>
         <source>%1 (you)</source>
         <translation>%1 (Ön)</translation>
     </message>

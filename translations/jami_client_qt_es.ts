@@ -3070,17 +3070,17 @@ Cuando esté listo, escanee el código QR.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="964"/>
         <source>Currently selected: %1</source>
-        <translation type="unfinished"/>
+        <translation>Seleccionado actualmente el: %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="965"/>
         <source>%1 has been selected for %2</source>
-        <translation type="unfinished"/>
+        <translation>El %1 se ha seleccionado para el %2</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="966"/>
         <source>Available option for %1</source>
-        <translation type="unfinished"/>
+        <translation>Opción disponible para el %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="457"/>
@@ -4602,8 +4602,8 @@ Confirmar la importación en el nuevo dispositivo.</translation>
         <translation>errorDesconocidodeServiciosdeUbicación</translation>
     </message>
     <message>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1138"/>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1151"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1141"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1154"/>
         <source>%1 (you)</source>
         <translation>%1 (usted)</translation>
     </message>

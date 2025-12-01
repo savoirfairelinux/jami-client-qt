@@ -4591,8 +4591,8 @@ Please confirm the import on the new device.</source>
         <translation>இருப்பிடம் சேவைகள்அறிவிக்கப்படாததுதீர்க்கு</translation>
     </message>
     <message>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1138"/>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1151"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1141"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1154"/>
         <source>%1 (you)</source>
         <translation type="unfinished"/>
     </message>

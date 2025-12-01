@@ -225,7 +225,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="81"/>
         <source>Confirm</source>
-        <translation>സ്ഥിരീകരണം</translation>
+        <translation>സ്ഥിരീകരിക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="82"/>
@@ -266,12 +266,12 @@
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="93"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="443"/>
         <source>Delete account</source>
-        <translation>അക്കൌണ്ട് ഇല്ലാതാക്കുക</translation>
+        <translation>അക്കൗണ്ട് കളയുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="94"/>
         <source>In progress…</source>
-        <translation>നടക്കുന്ന കാര്യങ്ങള്.</translation>
+        <translation>നടക്കുന്നു...</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="96"/>
@@ -296,7 +296,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="102"/>
         <source>Convert your account into a rendezvous point</source>
-        <translation>നിങ്ങളുടെ അക്കൌണ്ട് ഒരു മീറ്റിംഗ് പോയിന്റായി മാറ്റുക</translation>
+        <translation>നിങ്ങളുടെ അക്കൗണ്ട് ഒരു മീറ്റിംഗ് പോയിന്റായി മാറ്റുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="104"/>
@@ -436,22 +436,22 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="149"/>
         <source>Use TURN</source>
-        <translation>ടര് ൻ ഉപയോഗിക്കുക</translation>
+        <translation>TURN ഉപയോഗിക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="150"/>
         <source>TURN address</source>
-        <translation>ടര് ൻ വിലാസം</translation>
+        <translation>TURN വിലാസം</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="151"/>
         <source>TURN username</source>
-        <translation>ടര് ൻ ഉപയോക്തൃനാമം</translation>
+        <translation>TURN യൂസർനെയിം</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="152"/>
         <source>TURN password</source>
-        <translation>ടര് ൻ പാസ്വേഡ്</translation>
+        <translation>TURN പാസ്‍വേർഡ്</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="154"/>
@@ -537,7 +537,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="183"/>
         <source>Enable local peer discovery</source>
-        <translation>പ്രാദേശിക പീക്ക് ഡിസ്കവറി പ്രവർത്തനക്ഷമമാക്കുക</translation>
+        <translation>പ്രാദേശിക പിയ‍ർ ഡിസ്കവറി പ്രവർത്തനക്ഷമമാക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="184"/>
@@ -582,7 +582,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="195"/>
         <source>Account</source>
-        <translation>അക്കൌണ്ട്</translation>
+        <translation>അക്കൗണ്ട്</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="196"/>
@@ -732,7 +732,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="343"/>
         <source>Turn off sharing</source>
-        <translation>പങ്കിടൽ പ്രവർത്തനരഹിതമാക്കുക</translation>
+        <translation>പങ്കിടൽ നിർത്തുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="344"/>
@@ -752,7 +752,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="421"/>
         <source>Your account will be created and stored locally.</source>
-        <translation>നിങ്ങളുടെ അക്കൌണ്ട് സൃഷ്ടിക്കുകയും പ്രാദേശികമായി സൂക്ഷിക്കുകയും ചെയ്യും.</translation>
+        <translation>താങ്കളുടെ അക്കൗണ്ട് സൃഷ്ടിക്കുകയും പ്രാദേശികമായി സൂക്ഷിക്കുകയും ചെയ്യും.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="422"/>
@@ -762,7 +762,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="423"/>
         <source>Encrypting your account with a password is optional, and if the password is lost it CANNOT be recovered later.</source>
-        <translation>നിങ്ങളുടെ അക്കൌണ്ടിലെ പാസ്വേഡ് ഉപയോഗിച്ച് എൻക്രിപ്റ്റ് ചെയ്യേണ്ടത് ഓപ്ഷണലാണ്, പാസ്വേഡ് നഷ്ടപ്പെട്ടാൽ അത് പിന്നീട് വീണ്ടെടുക്കാൻ കഴിയില്ല.</translation>
+        <translation>താങ്കളുടെ അക്കൗണ്ടിന്റെ പാസ്‍വേർഡ് ഉപയോഗിച്ച് എൻക്രിപ്റ്റ് ചെയ്യേണ്ടത് ഓപ്ഷണലാണ്, പാസ്‍വേർഡ് നഷ്ടപ്പെട്ടാൽ അത് പിന്നീട് വീണ്ടെടുക്കാൻ കഴിയില്ല.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="433"/>
@@ -777,7 +777,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="456"/>
         <source>Encrypt account</source>
-        <translation>എൻക്രിപ്റ്റ് ചെയ്ത അക്കൌണ്ട്</translation>
+        <translation>എൻക്രിപ്റ്റ് ചെയ്ത അക്കൗണ്ട്</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="459"/>
@@ -842,7 +842,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="613"/>
         <source>Enter account password</source>
-        <translation>അക്കൌണ്ട് പാസ്വേഡ് നൽകുക</translation>
+        <translation>അക്കൗണ്ട് പാസ്‍വേർഡ് നൽകുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="614"/>
@@ -1449,7 +1449,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="855"/>
         <source>Add a profile picture and nickname to complete your profile</source>
-        <translation>നിങ്ങളുടെ പ്രൊഫൈല് പൂര് ത്തിയാക്കാന് ഒരു പ്രൊഫൈല് ചിത്രം, വിളിപ്പേര് എന്നിവ ചേര് ക്കുക</translation>
+        <translation>താങ്കളുടെ പ്രൊഫൈൽ പൂർത്തിയാക്കാൻ ഒരു പ്രൊഫൈൽ ചിത്രവും വിളിപ്പേരും ചേർക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="201"/>
@@ -1489,7 +1489,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="236"/>
         <source>Why should I back-up this account?</source>
-        <translation>എന്തിന് ഞാനീ അക്കൌണ്ട് ബാക്കപ്പ് ചെയ്യണം?</translation>
+        <translation>എന്തിന് അക്കൗണ്ട് ബാക്കപ്പ് ചെയ്യണം?</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="240"/>
@@ -1540,7 +1540,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="52"/>
         <source>Contribute</source>
-        <translation>സംഭാവന ചെയ്യുക</translation>
+        <translation>കോൺട്രിബ്യൂട് ചെയ്യുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="53"/>
@@ -1556,7 +1556,7 @@ to connect to synchronize the conversation…</source>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="65"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="199"/>
         <source>Manage account</source>
-        <translation>അക്കൌണ്ട് മാനേജുചെയ്യുക</translation>
+        <translation>അക്കൗണ്ട് മാനേജുചെയ്യുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="200"/>
@@ -1862,7 +1862,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="321"/>
         <source>Screenshot saved to %1</source>
-        <translation>% 1 ലേക്ക് സംരക്ഷിച്ച സ്ക്രീൻഷോട്ട്</translation>
+        <translation>% 1 ലേക്ക് സേവുചെയ്ത സ്ക്രീൻഷോട്ട്</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="322"/>
@@ -1882,7 +1882,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="327"/>
         <source>Peer number</source>
-        <translation>തുല്യരായവരുടെ എണ്ണം</translation>
+        <translation>പിയ‍ർ എണ്ണം</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="328"/>
@@ -1937,7 +1937,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="342"/>
         <source>Turn off location sharing</source>
-        <translation>സ്ഥാനം പങ്കിടൽ പ്രവർത്തനരഹിതമാക്കുക</translation>
+        <translation>സ്ഥാനം പങ്കിടൽ നിർത്തുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="345"/>
@@ -2007,7 +2007,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="371"/>
         <source>The account is disabled</source>
-        <translation>അക്കൌണ്ട് പ്രവർത്തനരഹിതമാക്കി</translation>
+        <translation>അക്കൗണ്ട് പ്രവർത്തനരഹിതമാക്കി</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="372"/>
@@ -2052,7 +2052,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="393"/>
         <source>Enter the Jami Account Management Server (JAMS) URL</source>
-        <translation>ജാമി അക്കൌണ്ട് മാനേജ്മെന്റ് സെർവർ (ജാമിസ്) URL നൽകുക</translation>
+        <translation>ജാമി അക്കൗണ്ട് മാനേജ്മെന്റ് സെർവർ (JAMS) URL നൽകുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="394"/>
@@ -2072,7 +2072,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="397"/>
         <source>Creating account…</source>
-        <translation>ഒരു അക്കൌണ്ട് സൃഷ്ടിക്കുന്നു.</translation>
+        <translation>ഒരു അക്കൗണ്ട് സൃഷ്ടിക്കുന്നു...</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="400"/>
@@ -2114,7 +2114,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="416"/>
         <source>Save profile</source>
-        <translation>പ്രൊഫൈല് സംരക്ഷിക്കുക</translation>
+        <translation>പ്രൊഫൈൽ സംരക്ഷിക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="424"/>
@@ -2129,7 +2129,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="435"/>
         <source>Display name</source>
-        <translation>കാണിക്കാനുള്ള പേര്</translation>
+        <translation>ഡിസ്പ്ലേ പേര്</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="440"/>
@@ -2175,7 +2175,7 @@ to connect to synchronize the conversation…</source>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="463"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="465"/>
         <source>Encrypt account with password</source>
-        <translation>പാസ്വേഡ് ഉപയോഗിച്ച് അക്കൌണ്ട് എൻക്രിപ്റ്റ് ചെയ്യുക</translation>
+        <translation>പാസ്‍വേർഡ് ഉപയോഗിച്ച് അക്കൗണ്ട് എൻക്രിപ്റ്റ് ചെയ്യുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="928"/>
@@ -2260,7 +2260,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="153"/>
         <source>TURN realm</source>
-        <translation>ടര് ൻ മേഖല</translation>
+        <translation>TURN മേഖല</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="233"/>
@@ -2439,7 +2439,7 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="427"/>
         <source>SIP account</source>
-        <translation>എസ്ഐപി അക്കൌണ്ട്</translation>
+        <translation>SIP അക്കൗണ്ട്</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="428"/>
@@ -2454,12 +2454,12 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="431"/>
         <source>Personalize account</source>
-        <translation>അക്കൌണ്ട് വ്യക്തിഗതമാക്കൽ</translation>
+        <translation>അക്കൗണ്ട് വ്യക്തിഗതമാക്കൽ</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="432"/>
         <source>Add SIP account</source>
-        <translation>SIP അക്കൌണ്ട് ചേർക്കുക</translation>
+        <translation>SIP അക്കൗണ്ട് ചേർക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="438"/>
@@ -2479,7 +2479,7 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="444"/>
         <source>List of the devices that are linked to this account:</source>
-        <translation>ഈ അക്കൌണ്ടുമായി ബന്ധിപ്പിച്ചിരിക്കുന്ന ഉപകരണങ്ങളുടെ പട്ടികഃ</translation>
+        <translation>ഈ അക്കൗണ്ടുമായി ബന്ധിപ്പിച്ചിരിക്കുന്ന ഉപകരണങ്ങളുടെ പട്ടിക:</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="445"/>
@@ -2544,7 +2544,7 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="491"/>
         <source>Blocked contacts</source>
-        <translation>തടഞ്ഞ കോൺടാക്റ്റുകൾ</translation>
+        <translation>തടഞ്ഞ കോണ്ടാക്ടുകൾ</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="500"/>
@@ -2653,17 +2653,19 @@ The location of other members can still be received.</source>
         <source>On the new device, initiate a new account.
 Select Add account → Connect from another device.
 When ready, scan the QR code.</source>
-        <translation type="unfinished"/>
+        <translation>പുതിയ ഡിവൈസിൽ, ഒരു പുതിയ അക്കൗണ്ട് തുടങ്ങുക.
+&quot;മറ്റൊരു അക്കൗണ്ട് ചേർക്കുക&quot; → &quot;മറ്റൊരു ഡിവൈസിൽ നിന്നും ഇമ്പോർട്ട് ചെയ്യുക&quot; എന്നതു സെലക്ടു ചെയ്യുക.
+എന്നിട്ട്, QR കോഡ് സ്കാൻ ചെയ്യുക.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="620"/>
         <source>Alternatively, enter the authentication code manually.</source>
-        <translation type="unfinished"/>
+        <translation>പകരം ഒതന്റിക്കേഷൻ കോഡ് മാന്വലായി കൊടുക്കാവുന്നതുമാണ്.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="623"/>
         <source>New device connected at the following IP address. Is that you? To continue the export account operation, click Confirm.</source>
-        <translation type="unfinished"/>
+        <translation>പുതിയ ഡിവൈസ് താഴെ കൊടുത്തിരിക്കുന്ന IP അഡ്രസിൽ ബന്ധിച്ചിരിക്കുന്നു. അതു താങ്കളാണോ? അക്കൗണ്ട് എക്സ്പോർട്ട് ചെയ്യുന്നതു തുടരാൻ &quot;സ്ഥിരീകരിക്കുക&quot; എന്നതു ക്ലിക്കു ചെയ്യുക.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="638"/>
@@ -2763,7 +2765,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="712"/>
         <source>Create Jami account</source>
-        <translation>ജാമി അക്കൌണ്ട് സൃഷ്ടിക്കുക</translation>
+        <translation>ജാമി അക്കൗണ്ട് സൃഷ്ടിക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="773"/>
@@ -2868,7 +2870,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="870"/>
         <source>Enabling your account allows you to be contacted on Jami</source>
-        <translation>നിങ്ങളുടെ അക്കൌണ്ട് പ്രവർത്തനക്ഷമമാക്കുന്നത് ജാമി എന്ന സ്ഥലത്ത് നിങ്ങളെ ബന്ധപ്പെടാൻ അനുവദിക്കുന്നു.</translation>
+        <translation>താങ്കളുടെ അക്കൗണ്ട് പ്രവർത്തനക്ഷമമാക്കുന്നത് ജാമിയിൽ താങ്കളെ ബന്ധപ്പെടാൻ അനുവദിക്കുന്നു.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="880"/>
@@ -2973,7 +2975,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="945"/>
         <source>Advice Box</source>
-        <translation type="unfinished"/>
+        <translation>ഉപദേശ പെട്ടി</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="946"/>
@@ -2983,7 +2985,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="947"/>
         <source>Open the advice popup that contains information about Jami</source>
-        <translation type="unfinished"/>
+        <translation>ജാമിയെ കുറിച്ചുള്ള വിവരങ്ങളടങ്ങിയ ഉപദേശ പെട്ടി തുറക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="948"/>
@@ -3043,17 +3045,17 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="959"/>
         <source>Open a menu that allows you to send voice and video messages as well as sharing your location</source>
-        <translation type="unfinished"/>
+        <translation>വോയിസ് വീഡിയോ സന്ദേശങ്ങളും താങ്കളുടെ സ്ഥാനവും അയക്കാൻ കഴിയുന്ന ഒരു മെനു തുറക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="960"/>
         <source>Conversation messages list. Use arrow keys to navigate through messages.</source>
-        <translation type="unfinished"/>
+        <translation>സംഭാഷണ സന്ദേശങ്ങളുടെ ലിസ്റ്റ്. സന്ദേശങ്ങൾ ഓരോന്നായി കാണാൻ ആരോ കീകൾ ഉപയോഗിക്കുക.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="961"/>
         <source>Data transfer</source>
-        <translation type="unfinished"/>
+        <translation>ഡാറ്റ കൈമാറ്റം</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="962"/>
@@ -3068,17 +3070,17 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="964"/>
         <source>Currently selected: %1</source>
-        <translation type="unfinished"/>
+        <translation>ഇപ്പോൾ തിരഞ്ഞെടുത്തത്: %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="965"/>
         <source>%1 has been selected for %2</source>
-        <translation type="unfinished"/>
+        <translation>%2-നുവേണ്ടി %1 തിരഞ്ഞെടുത്തിരിക്കുന്നു</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="966"/>
         <source>Available option for %1</source>
-        <translation type="unfinished"/>
+        <translation>%1-നു ലഭ്യമായ ഓപ്ഷൻ</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="457"/>
@@ -3103,7 +3105,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="198"/>
         <source>Enable account</source>
-        <translation>അക്കൌണ്ട് പ്രവർത്തനക്ഷമമാക്കുക</translation>
+        <translation>അക്കൗണ്ട് പ്രവർത്തനക്ഷമമാക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="103"/>
@@ -3138,12 +3140,12 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="481"/>
         <source>Link a new device to this account</source>
-        <translation>പുതിയ ഉപകരണം ഈ അക്കൌണ്ടിലേക്ക് ബന്ധിപ്പിക്കുക</translation>
+        <translation>പുതിയ ഉപകരണം ഈ അക്കൗണ്ടിലേക്കു ബന്ധിപ്പിക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="482"/>
         <source>Exporting account…</source>
-        <translation>കയറ്റുമതി അക്കൌണ്ട്...</translation>
+        <translation>അക്കൗണ്ട് എക്സ്പോർട്ടു ചെയ്യുന്നു...</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="502"/>
@@ -3179,7 +3181,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="525"/>
         <source>Preview requires downloading content from third-party servers.</source>
-        <translation>പ്രിവ്യൂ മൂന്നാം കക്ഷി സെർവറുകളിൽ നിന്നും ഉള്ളടക്കം ഡൌൺലോഡ് ചെയ്യണം.</translation>
+        <translation>പ്രിവ്യൂവിന് മൂന്നാം കക്ഷി സെർവറുകളിൽ നിന്നും ഉള്ളടക്കം ഡൌൺലോഡ് ചെയ്യണം.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="527"/>
@@ -3320,7 +3322,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="601"/>
         <source>Generating account…</source>
-        <translation>അക്കൌണ്ട് സൃഷ്ടിക്കുന്നതില്...</translation>
+        <translation>അക്കൗണ്ട് ഉണ്ടാക്കുന്നു...</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="602"/>
@@ -3371,7 +3373,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="605"/>
         <source>If the account is encrypted with a password, please fill the following field.</source>
-        <translation>അക്കൌണ്ട് ഒരു പാസ്വേഡ് ഉപയോഗിച്ച് എൻക്രിപ്റ്റ് ചെയ്തിട്ടുണ്ടെങ്കിൽ താഴെ പറയുന്ന ഫീൽഡ് പൂരിപ്പിക്കുക.</translation>
+        <translation>അക്കൗണ്ട് ഒരു പാസ്‍വേർഡ് ഉപയോഗിച്ച് എൻക്രിപ്റ്റ് ചെയ്തിട്ടുണ്ടെങ്കിൽ താഴെ പറയുന്ന ഫീൽഡ് പൂരിപ്പിക്കുക.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="609"/>
@@ -3496,12 +3498,12 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="684"/>
         <source>Profile</source>
-        <translation>പ്രൊഫൈല്</translation>
+        <translation>പ്രൊഫൈൽ</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="687"/>
         <source>Enter the account password to confirm the removal of this device</source>
-        <translation>ഈ ഉപകരണം നീക്കം ചെയ്തതായി സ്ഥിരീകരിക്കാനായി അക്കൌണ്ട് പാസ്വേഡ് നൽകുക</translation>
+        <translation>ഈ ഉപകരണം നീക്കം ചെയ്യുന്നതു സ്ഥിരീകരിക്കാനായി അക്കൗണ്ട് പാസ്‍വേർഡ് നൽകുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="693"/>
@@ -3526,7 +3528,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="701"/>
         <source>Link this device to an existing account</source>
-        <translation>ഈ ഉപകരണം നിലവിലുള്ള ഒരു അക്കൌണ്ടിലേക്ക് ബന്ധിപ്പിക്കുക</translation>
+        <translation>ഈ ഉപകരണം നിലവിലുള്ള ഒരു അക്കൗണ്ടിലേക്കു ബന്ധിപ്പിക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="702"/>
@@ -3561,12 +3563,12 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="708"/>
         <source>Create account from Jami Account Management Server (JAMS)</source>
-        <translation>ജാമി അക്കൌണ്ട് മാനേജ്മെന്റ് സെർവറിൽ (ജാമി അക്കൌണ്ട് മാനേജ്മെന്റ് സെർവർ) നിന്ന് അക്കൌണ്ട് സൃഷ്ടിക്കുക</translation>
+        <translation>ജാമി അക്കൌണ്ട് മാനേജ്മെന്റ് സെർവറിൽ (JAMS) നിന്ന് അക്കൗണ്ട് സൃഷ്ടിക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="709"/>
         <source>Configure a SIP account</source>
-        <translation>ഒരു SIP അക്കൌണ്ട് ക്രമീകരിക്കുക</translation>
+        <translation>ഒരു SIP അക്കൗണ്ട് ക്രമീകരിക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="711"/>
@@ -3576,12 +3578,12 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="713"/>
         <source>Create new Jami account</source>
-        <translation>പുതിയ ജാമി അക്കൌണ്ട് സൃഷ്ടിക്കുക</translation>
+        <translation>പുതിയ ജാമി അക്കൗണ്ട് സൃഷ്ടിക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="714"/>
         <source>Create new SIP account</source>
-        <translation>പുതിയ SIP അക്കൌണ്ട് സൃഷ്ടിക്കുക</translation>
+        <translation>പുതിയ SIP അക്കൗണ്ട് സൃഷ്ടിക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="715"/>
@@ -3591,12 +3593,12 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="717"/>
         <source>I already have an account</source>
-        <translation>എനിക്ക് ഒരു അക്കൌണ്ട് ഉണ്ട്</translation>
+        <translation>എനിക്ക് ഒരു അക്കൗണ്ട് ഉണ്ട്</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="718"/>
         <source>Use existing Jami account</source>
-        <translation>നിലവിലുള്ള ജാമി അക്കൌണ്ട് ഉപയോഗിക്കുക</translation>
+        <translation>നിലവിലുള്ള ജാമി അക്കൗണ്ട് ഉപയോഗിക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="719"/>
@@ -3739,17 +3741,17 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="599"/>
         <source>Create account from backup</source>
-        <translation>ബാക്കപ്പ് അക്കൌണ്ടിൽ നിന്നും അക്കൌണ്ട് സൃഷ്ടിക്കുക</translation>
+        <translation>ബാക്കപിൽ നിന്നും അക്കൗണ്ട് സൃഷ്ടിക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="600"/>
         <source>Restore account from backup</source>
-        <translation>ബാക്കപ്പ് അക്കൌണ്ടിൽ നിന്നും അക്കൌണ്ട് പുനഃസ്ഥാപിക്കുക</translation>
+        <translation>ബാക്കപിൽ നിന്നും അക്കൗണ്ട് പുനഃസ്ഥാപിക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="603"/>
         <source>Import Jami account from local archive file.</source>
-        <translation>ജാമി അക്കൌണ്ട് പ്രാദേശിക ആർക്കൈവ് ഫയലിൽ നിന്നും ഇറക്കുമതി ചെയ്യുക.</translation>
+        <translation>ജാമി അക്കൗണ്ട് പ്രാദേശിക ആർക്കൈവ് ഫയലിൽ നിന്നും ഇമ്പോർട്ട് ചെയ്യുക.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="802"/>
@@ -3804,7 +3806,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="856"/>
         <source>Your profile is only shared with your contacts</source>
-        <translation>നിങ്ങളുടെ പ്രൊഫൈല് നിങ്ങളുടെ കോൺടാക്റ്റുകളുമായി മാത്രമേ പങ്കിടാന് കഴിയൂ</translation>
+        <translation>താങ്കളുടെ പ്രൊഫൈൽ താങ്കളുടെ കോൺടാക്റ്റുകളുമായി മാത്രമേ പങ്കിട്ടിട്ടുള്ളൂ</translation>
     </message>
 </context>
 <context>
@@ -3812,7 +3814,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="40"/>
         <source>Open account list</source>
-        <translation>തുറന്ന അക്കൌണ്ട് പട്ടിക</translation>
+        <translation>അക്കൗണ്ടിന്റെ പട്ടിക തുറക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="44"/>
@@ -3897,7 +3899,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="216"/>
         <source>Open account creation wizard</source>
-        <translation>അക്കൌണ്ട് സൃഷ്ടി വിസാർഡ് തുറക്കുക</translation>
+        <translation>അക്കൗണ്ട് സൃഷ്ടിക്കാനുള്ള വിസാർഡ് തുറക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="124"/>
@@ -3992,7 +3994,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="192"/>
         <source>Show preview/Continue editing</source>
-        <translation type="unfinished"/>
+        <translation>പ്രിവ്യൂ കാണിക്കുക/എഡിറ്റിങ് തുടരുക</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="200"/>
@@ -4002,22 +4004,22 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="204"/>
         <source>Open general settings</source>
-        <translation type="unfinished"/>
+        <translation>ജനറൽ സെറ്റിങ്സ് തുറക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="208"/>
         <source>Open media settings</source>
-        <translation type="unfinished"/>
+        <translation>മാധ്യമ സെറ്റിങ്സ് തുറക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="212"/>
         <source>Open extensions settings</source>
-        <translation type="unfinished"/>
+        <translation>എക്സ്റ്റൻഷനുകളുടെ സെറ്റിങ്സ് തുറക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="221"/>
         <source>View keyboard shortcuts</source>
-        <translation type="unfinished"/>
+        <translation>കീബോർഡ് ഷോർട്കട്ടുകൾ കാണുക</translation>
     </message>
 </context>
 <context>
@@ -4043,7 +4045,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="401"/>
         <source>%1 is sharing their location</source>
-        <translation type="unfinished"/>
+        <translation>%1 സ്ഥാനം പങ്കു വെയ്ക്കുന്നു</translation>
     </message>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="406"/>
@@ -4125,7 +4127,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/libclient/api/call.h" line="80"/>
         <source>Peer busy</source>
-        <translation>കൂട്ടുകാരന് തിരക്കാണ്</translation>
+        <translation>പിയ‍ർ ബിസിയാണ്</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="84"/>
@@ -4135,7 +4137,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="480"/>
         <source>Invitation received</source>
-        <translation>ക്ഷണം ലഭിച്ചത്</translation>
+        <translation>ക്ഷണം ലഭിച്ചു</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="275"/>
@@ -4158,7 +4160,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="277"/>
         <source>%1 was invited to join the conversation.</source>
-        <translation type="unfinished"/>
+        <translation>%1 സംഭാഷണത്തിൽ ചേരാനായി ക്ഷണിക്കപ്പെട്ടിട്ടുണ്ട്.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="280"/>
@@ -4183,27 +4185,27 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="289"/>
         <source>%1 was blocked from the conversation.</source>
-        <translation type="unfinished"/>
+        <translation>%1 സംഭാഷണത്തിൽ നിന്നും തടയപ്പെട്ടു.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="291"/>
         <source>%1 was unblocked from the conversation.</source>
-        <translation type="unfinished"/>
+        <translation>%1-ന്/ക്ക് സംഭാഷണത്തിൽ നിന്നുമുള്ള തടസം മാറ്റിയിരിക്കുന്നു.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="312"/>
         <source>%L4d %L3h %L2m %L1s</source>
-        <translation type="unfinished"/>
+        <translation>%L4 ദി. %L3 മ. %L2 മി. %L1 സെ.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="315"/>
         <source>%L3h %L2m %L1s</source>
-        <translation type="unfinished"/>
+        <translation>%L3 മ. %L2 മി. %L1 സെ.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="317"/>
         <source>%L2m %L1s</source>
-        <translation type="unfinished"/>
+        <translation>%L2 മി. %L1 സെ.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="319"/>
@@ -4213,12 +4215,12 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="335"/>
         <source>Call declined</source>
-        <translation type="unfinished"/>
+        <translation>കോൾ നിരസിക്കപ്പെട്ടു</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="337"/>
         <source>Unreachable peer</source>
-        <translation type="unfinished"/>
+        <translation>എത്താനാകാത്ത പിയർ</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="342"/>
@@ -4250,7 +4252,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="476"/>
         <source>(Profile updated)</source>
-        <translation type="unfinished"/>
+        <translation>(പ്രൊഫൈൽ പുതുക്കി)</translation>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="482"/>
@@ -4266,25 +4268,25 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/libclient/avmodel.cpp" line="486"/>
         <source>auto</source>
-        <translation type="unfinished"/>
+        <translation>ഓട്ടോമാറ്റിക്</translation>
     </message>
     <message>
         <location filename="../src/libclient/avmodel.cpp" line="487"/>
         <location filename="../src/libclient/avmodel.cpp" line="503"/>
         <source>System (if available)</source>
-        <translation type="unfinished"/>
+        <translation>സിസ്റ്റം (ലഭ്യമാണെങ്കിൽ)</translation>
     </message>
     <message>
         <location filename="../src/libclient/avmodel.cpp" line="489"/>
         <location filename="../src/libclient/avmodel.cpp" line="505"/>
         <source>Built-in</source>
-        <translation type="unfinished"/>
+        <translation>ബിൽറ്റ്-ഇൻ</translation>
     </message>
     <message>
         <location filename="../src/libclient/avmodel.cpp" line="491"/>
         <location filename="../src/libclient/avmodel.cpp" line="507"/>
         <source>Auto (default)</source>
-        <translation type="unfinished"/>
+        <translation>ഓട്ടോമാറ്റിക് (ഡിഫോൾട്ട്)</translation>
     </message>
     <message>
         <location filename="../src/libclient/avmodel.cpp" line="493"/>
@@ -4600,20 +4602,20 @@ Please confirm the import on the new device.</source>
         <translation>locationServicesUnknownError</translation>
     </message>
     <message>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1138"/>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1151"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1141"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1154"/>
         <source>%1 (you)</source>
         <translation>%1 (താങ്കൾ)</translation>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="587"/>
         <source>We would like to thank our contributors, whose efforts over many years have made this software what it is.</source>
-        <translation type="unfinished"/>
+        <translation>ഈ സോഫ്റ്റ്‍വെയറിനെ ഇവിടെ വരെ എത്തിച്ച എല്ലാ കോൺട്രിബ്യൂട്ടർമാർക്കും ഞങ്ങളുടെ നന്ദി.</translation>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="589"/>
         <source>Developers</source>
-        <translation type="unfinished"/>
+        <translation>ഡവലപ്പർമാർ</translation>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="590"/>
@@ -4623,22 +4625,22 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/utils.cpp" line="591"/>
         <source>Community Management</source>
-        <translation type="unfinished"/>
+        <translation>കമ്മ്യൂണിറ്റി മാനേജ്മെന്റ്</translation>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="592"/>
         <source>Special thanks to</source>
-        <translation type="unfinished"/>
+        <translation>പ്രത്യേക നന്ദി</translation>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="593"/>
         <source>This is a list of people who have made a significant investment of time, with useful results, into Jami. Any such contributors who want to be added to the list should contact us.</source>
-        <translation type="unfinished"/>
+        <translation>ജാമിക്കു വേണ്ടി ഒരുപാടു സമയം ചിലവഴിക്കുകയും ഫലപ്രദമായ സംഭാവനകൾ ചെയ്യുകയും ചെയ്ത ആളുകളുടെ പട്ടികയാണിത്. ഈ പട്ടികയിലേക്കു ചേരണമെന്ന് ആഗ്രഹിക്കുന്ന ഇത്തരം കോൺട്രിബ്യൂട്ടർമാർ ഞങ്ങളുമായി ബന്ധപ്പെടേണ്ടതാണ്.</translation>
     </message>
     <message>
         <location filename="../src/app/linkdevicemodel.cpp" line="63"/>
         <source>Unrecognized new device identifier. Please follow the instructions above.</source>
-        <translation type="unfinished"/>
+        <translation>തിരിച്ചറിയാത്ത പുതിയ ഡിവൈസ് ഐഡന്റിഫയർ. മുകളിൽ കൊടുത്ത നിർദ്ദേശങ്ങൾ പിന്തുടരുക.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/account.h" line="238"/>
@@ -4648,27 +4650,27 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/libclient/api/account.h" line="241"/>
         <source>A network error occurred while linking the account. Please verify your connection and try again.</source>
-        <translation type="unfinished"/>
+        <translation>ഈ അക്കൗണ്ടുമായി ബന്ധിപ്പിക്കുമ്പോൾ നെറ്റ്‍വർക്കിനു പ്രശ്നം വന്നിരിക്കുന്നു. താങ്കളുടെ ഇന്റർനെറ്റ് കണക്ഷൻ പരിശോധിച്ച് ദയവായി വീണ്ടും ശ്രമിക്കുക.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/account.h" line="244"/>
         <source>The operation timed out. Please try again.</source>
-        <translation type="unfinished"/>
+        <translation>ഓപ്പറേഷനുള്ള സമയം കഴിഞ്ഞു. ദയവായി വീണ്ടും ശ്രമിക്കുക.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/account.h" line="246"/>
         <source>An error occurred while exporting the account. Please try again.</source>
-        <translation type="unfinished"/>
+        <translation>അക്കൗണ്ട് എക്സ്പോർട്ടു ചെയ്യുമ്പോൾ ഒരു പ്രശ്നം വന്നിരിക്കുന്നു. ദയവായി വീണ്ടും ശ്രമിക്കുക.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/account.h" line="248"/>
         <source>The operation was canceled by the user.</source>
-        <translation type="unfinished"/>
+        <translation>യൂസർ ഓപ്പറേഷൻ റദ്ദാക്കി.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/account.h" line="251"/>
         <source>An unexpected error occurred while linking the device. Please try again.</source>
-        <translation type="unfinished"/>
+        <translation>ഈ ഉപകരണം ബന്ധിപ്പിക്കുമ്പോൾ അപ്രതീക്ഷിതമായ ഒരു പ്രശ്നം വന്നിരിക്കുന്നു. ദയവായി വീണ്ടും ശ്രമിക്കുക.</translation>
     </message>
 </context>
 <context>
@@ -4737,7 +4739,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="89"/>
         <source>The choice of the name Jami was inspired by the Swahili word “jamii”, which means “community” as a noun and “together” as an adverb.</source>
-        <translation type="unfinished"/>
+        <translation>ജാമി എന്ന പേര് സ്വഹിലി വാക്കായ “jamii” എന്നതിൽ നിന്നും പ്രചോദനം ഉൾക്കൊണ്ടതാണ്. ഇതിനർത്ഥം നാമമായി ഉപയോഗിക്കുമ്പോൾ “കമ്മ്യൂണിറ്റി” എന്നും ക്രിയവിശേഷണമായി ഉപയോഗിക്കുമ്പോൾ “ഒരുമിച്ച്” എന്നുമാണ്.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="93"/>
@@ -4752,22 +4754,22 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="85"/>
         <source>Backup account</source>
-        <translation>ബാക്കപ്പ് അക്കൌണ്ട്</translation>
+        <translation>ബാക്കപ് അക്കൗണ്ട്</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="95"/>
         <source>A red dot means that your account is disconnected from the network; it turns green when it’s connected.</source>
-        <translation type="unfinished"/>
+        <translation>ചുവന്ന കുത്ത് താങ്കളുടെ അക്കൗണ്ട് നെറ്റ്‍വർക്കുമായി ബന്ധിപ്പിച്ചിട്ടില്ല എന്നും, അതു പച്ചയാകുമ്പോൾ ബന്ധിപ്പിച്ചുവെന്നുമാണ് അർത്ഥം.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="99"/>
         <source>Why should I back up my account?</source>
-        <translation>എന്തിന് ഞാനെന്റെ അക്കൌണ്ട് ബാക്കപ്പ് ചെയ്യണം?</translation>
+        <translation>എന്തിന് ഞാനെന്റെ അക്കൗണ്ട് ബാക്കപ് ചെയ്യണം?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="101"/>
         <source>Jami is distributed and your account is only stored locally on your device. If you lose your password or your local account data, you WILL NOT be able to recover your account if you did not back it up earlier.</source>
-        <translation>ജാമി വിതരണം ചെയ്യപ്പെടുന്നു, നിങ്ങളുടെ അക്കൌണ്ട് നിങ്ങളുടെ ഉപകരണത്തിൽ പ്രാദേശികമായി മാത്രമേ സൂക്ഷിക്കുകയുള്ളൂ. നിങ്ങളുടെ പാസ്വേഡ് അല്ലെങ്കിൽ പ്രാദേശിക അക്കൌണ്ട് ഡാറ്റ നഷ്ടപ്പെടുകയാണെങ്കിൽ, നിങ്ങൾ നേരത്തെ ബാക്കപ്പ് ചെയ്തില്ലെങ്കിൽ നിങ്ങളുടെ അക്കൌണ്ട് വീണ്ടെടുക്കാൻ കഴിയില്ല.</translation>
+        <translation>ജാമി ഡിസ്ട്രിബ്യൂട്ടഡാണ്. മാത്രമല്ല, താങ്കളുടെ അക്കൗണ്ട് താങ്കളുടെ ഉപകരണത്തിൽ പ്രാദേശികമായി മാത്രമേ സൂക്ഷിക്കുകയുള്ളൂ. താങ്കളുടെ പാസ്‍വേർഡ് അല്ലെങ്കിൽ പ്രാദേശിക അക്കൗണ്ട് ഡാറ്റ നഷ്ടപ്പെടുകയാണെങ്കിൽ, നേരത്തെ ബാക്കപ് ചെയ്തിട്ടില്ലാത്ത അക്കൗണ്ട് വീണ്ടെടുക്കാൻ കഴിയില്ല.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="106"/>
@@ -4777,57 +4779,57 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="107"/>
         <source>In a call, you can click on “Invite members” to add a contact to a call.</source>
-        <translation type="unfinished"/>
+        <translation>ഒരു കോളിലേക്ക് ഒരു കോണ്ടാക്ടിനെ ചേർക്കാൻ “അംഗങ്ങളെ ക്ഷണിക്കുക” എന്നതിൽ ക്ലിക്കു ചെയ്യുക.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="110"/>
         <source>What is a Jami account?</source>
-        <translation>ജാമി അക്കൌണ്ട് എന്താണ്?</translation>
+        <translation>ജാമി അക്കൗണ്ട് എന്താണ്?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="112"/>
         <source>A Jami account is an asymmetric encryption key. Your account is identified by a Jami ID, which is a fingerprint of your public key.</source>
-        <translation>ജാമി അക്കൌണ്ട് ഒരു അസ്യാമിതരായ എൻക്രിപ്ഷൻ കീ ആണ്. നിങ്ങളുടെ അക്കൌണ്ട് ജാമി ഐഡി ഉപയോഗിച്ച് തിരിച്ചറിയപ്പെടുന്നു, അത് നിങ്ങളുടെ പൊതു കീയുടെ വിരലടയാളമാണ്.</translation>
+        <translation>ജാമി അക്കൗണ്ട് ഒരു അസിമെട്രിക് എൻക്രിപ്ഷൻ കീ ആണ്. താങ്കളുടെ അക്കൗണ്ട് ജാമി ഐഡി ഉപയോഗിച്ച് തിരിച്ചറിയപ്പെടുന്നു, അത് താങ്കളുടെ പബ്ലിക് കീയുടെ ഫിങ്കർപ്രിന്റാണ്.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="116"/>
         <source>What information do I need to provide to create a Jami account?</source>
-        <translation>ജാമി അക്കൌണ്ട് സൃഷ്ടിക്കുന്നതിന് എനിക്ക് എന്ത് വിവരങ്ങളാണ് നല് കേണ്ടത്?</translation>
+        <translation>ജാമി അക്കൗണ്ട് സൃഷ്ടിക്കുന്നതിന് എന്ത് വിവരങ്ങളാണ് നല്കേണ്ടത്?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="118"/>
         <source>When you create a new Jami account, you do not have to provide any private information like an email, address, or phone number.</source>
-        <translation>പുതിയ ജാമി അക്കൌണ്ട് സൃഷ്ടിക്കുമ്പോൾ ഇമെയിൽ, വിലാസം, ഫോൺ നമ്പർ തുടങ്ങിയ സ്വകാര്യ വിവരങ്ങൾ നൽകേണ്ടതില്ല.</translation>
+        <translation>പുതിയ ജാമി അക്കൗണ്ട് സൃഷ്ടിക്കുമ്പോൾ ഇമെയിൽ, വിലാസം, ഫോൺ നമ്പർ തുടങ്ങിയ സ്വകാര്യ വിവരങ്ങൾ നൽകേണ്ടതില്ല.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="122"/>
         <source>Why don’t I have to use a password?</source>
-        <translation type="unfinished"/>
+        <translation>എന്തുകൊണ്ട് ഒരു പാസ്‍വേർഡ് ഉപയോഗിക്കേണ്ടതില്ല?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="124"/>
         <source>With Jami, your account is stored in a directory on your device. The password is only used to encrypt your account in order to protect you from someone who has physical access to your device.</source>
-        <translation>ജാമി ഉപയോഗിച്ച് നിങ്ങളുടെ അക്കൌണ്ട് നിങ്ങളുടെ ഉപകരണത്തിലെ ഒരു ഡയറക്ടറിയിൽ സൂക്ഷിക്കുന്നു. നിങ്ങളുടെ ഉപകരണത്തിലേക്ക് ശാരീരികമായി പ്രവേശനം ഉള്ള ഒരാളിൽ നിന്ന് നിങ്ങളെ സംരക്ഷിക്കുന്നതിനായി നിങ്ങളുടെ അക്കൌണ്ട് എൻക്രിപ്റ്റ് ചെയ്യുന്നതിന് മാത്രമേ പാസ്വേഡ് ഉപയോഗിക്കൂ.</translation>
+        <translation>ജാമി ഉപയോഗിക്കുമ്പോൾ താങ്കളുടെ അക്കൗണ്ട് താങ്കളുടെ ഉപകരണത്തിലെ ഒരു ഡയറക്ടറിയിൽ സൂക്ഷിക്കുന്നു. താങ്കളുടെ ഉപകരണവുമായി ശാരീരികമായി ബന്ധപ്പെടാൻ പറ്റുന്ന ഒരാളിൽ നിന്ന് സംരക്ഷിക്കുന്നതിനായി മാത്രമാണ് അക്കൗണ്ട് എൻക്രിപ്റ്റ് ചെയ്യുന്നതിനായി പാസ്‍വേർഡ് ഉപയോഗിച്ചിരിക്കുന്നത്.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="129"/>
         <source>Why don’t I have to register a username?</source>
-        <translation type="unfinished"/>
+        <translation>എന്തുകൊണ്ട് ഒരു യൂസർനെയിം രജിസ്റ്റർ ചെയ്യേണ്ടതില്ല?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="141"/>
         <source>Your account is only stored on your own devices. If you delete your account from all of your devices, the account is gone forever and you CANNOT recover it.</source>
-        <translation>നിങ്ങളുടെ അക്കൌണ്ട് നിങ്ങളുടെ സ്വന്തം ഉപകരണങ്ങളിൽ മാത്രമേ സൂക്ഷിക്കുകയുള്ളൂ. നിങ്ങളുടെ എല്ലാ ഉപകരണങ്ങളിൽ നിന്നും അക്കൌണ്ട് ഇല്ലാതാക്കുകയാണെങ്കിൽ അക്കൌണ്ട് എന്നെന്നേക്കുമായി ഇല്ലാതാകും. അത് വീണ്ടെടുക്കാൻ നിങ്ങൾക്ക് കഴിയില്ല.</translation>
+        <translation>താങ്കളുടെ അക്കൗണ്ട് സ്വന്തം ഉപകരണങ്ങളിൽ മാത്രമേ സൂക്ഷിക്കുകയുള്ളൂ. താങ്കളുടെ എല്ലാ ഉപകരണങ്ങളിൽ നിന്നും അക്കൗണ്ട് ഇല്ലാതാക്കുകയാണെങ്കിൽ, അക്കൗണ്ട് എന്നന്നേക്കുമായി വീണ്ടെടുക്കാൻ കഴിയാത്ത വിധത്തിൽ നഷ്ടമാകും.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="145"/>
         <source>Can I use my account on multiple devices?</source>
-        <translation>എനിക്ക് ഒന്നിലധികം ഉപകരണങ്ങളില് എന്റെ അക്കൌണ്ട് ഉപയോഗിക്കാമോ?</translation>
+        <translation>എനിക്ക് ഒന്നിലധികം ഉപകരണങ്ങളിൽ എന്റെ അക്കൗണ്ട് ഉപയോഗിക്കാമോ?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="147"/>
         <source>Yes, you can link your account from the settings, or you can import your backup on another device.</source>
-        <translation>അതെ, ക്രമീകരണങ്ങളിൽ നിന്നും നിങ്ങളുടെ അക്കൌണ്ടിനെ ലിങ്കുചെയ്യാം, അല്ലെങ്കിൽ മറ്റൊരു ഉപകരണത്തിലേക്ക് നിങ്ങളുടെ ബാക്കപ്പ് ഇറക്കുമതി ചെയ്യാം.</translation>
+        <translation>ഉപയോഗിക്കാം. ക്രമീകരണങ്ങളിൽ നിന്നും അക്കൗണ്ട് ലിങ്കുചെയ്യുകയോ മറ്റൊരു ഉപകരണത്തിലേക്ക് താങ്കളുടെ ബാക്കപ് ഇമ്പോർട്ട് ചെയ്യുകയോ ചെയ്യാം.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="131"/>
@@ -4837,17 +4839,17 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="135"/>
         <source>How can I back up my account?</source>
-        <translation>എനിക്ക് എങ്ങനെയാണ് എന്റെ അക്കൌണ്ട് ബാക്കപ്പ് ചെയ്യാനാവുക?</translation>
+        <translation>എനിക്ക് എങ്ങനെയാണ് എന്റെ അക്കൗണ്ട് ബാക്കപ് ചെയ്യാനാവുക?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="136"/>
         <source>In Account Settings, a button is available to create a backup your account.</source>
-        <translation>അക്കൌണ്ട് ക്രമീകരണങ്ങളിൽ നിങ്ങളുടെ അക്കൌണ്ട് ബാക്കപ്പ് ചെയ്യുന്നതിനുള്ള ഒരു ബട്ടൺ ലഭ്യമാണ്.</translation>
+        <translation>അക്കൗണ്ട് സെറ്റിങ്സിൽ താങ്കളുടെ അക്കൗണ്ട് ബാക്കപ് ചെയ്യുന്നതിനുള്ള ഒരു ബട്ടൺ ലഭ്യമാണ്.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="139"/>
         <source>What happens when I delete my account?</source>
-        <translation>ഞാന് എന്റെ അക്കൌണ്ട് ഇല്ലാതാക്കുമ്പോള് എന്ത് സംഭവിക്കും?</translation>
+        <translation>ഞാൻ എന്റെ അക്കൗണ്ട് കളയുമ്പോൾ എന്ത് സംഭവിക്കും?</translation>
     </message>
 </context>
 <context>
@@ -4855,12 +4857,12 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/settingsview/components/TroubleshootSettingsPage.qml" line="59"/>
         <source>Enable crash reports</source>
-        <translation type="unfinished"/>
+        <translation>ക്രാഷ് റിപ്പോർട്ടുകൾ സാധ്യമാക്കുക</translation>
     </message>
     <message>
         <location filename="../src/app/settingsview/components/TroubleshootSettingsPage.qml" line="73"/>
         <source>Automatically send crash reports</source>
-        <translation type="unfinished"/>
+        <translation>ഓട്ടോമാറ്റിക്കായി ക്രാഷ് റിപ്പോർട്ടുകൾ അയക്കുക</translation>
     </message>
 </context>
 <context>
@@ -4901,7 +4903,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="961"/>
         <source>Unable to lookup…</source>
-        <translation type="unfinished"/>
+        <translation>തിരയാൻ കഴിയുന്നില്ല...</translation>
     </message>
 </context>
 <context>

@@ -4601,8 +4601,8 @@ Confirmă importarea în noul aparat</translation>
         <translation>EroareNecunoscutăServiciiDeLocalizare</translation>
     </message>
     <message>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1138"/>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1151"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1141"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1154"/>
         <source>%1 (you)</source>
         <translation>%1 (tu)</translation>
     </message>

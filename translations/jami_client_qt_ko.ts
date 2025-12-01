@@ -4591,8 +4591,8 @@ Please confirm the import on the new device.</source>
         <translation>위치서비스 알려지지 않은 오류</translation>
     </message>
     <message>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1138"/>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1151"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1141"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1154"/>
         <source>%1 (you)</source>
         <translation type="unfinished"/>
     </message>
