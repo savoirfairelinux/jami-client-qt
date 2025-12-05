@@ -15,9 +15,13 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+.pragma library
+
 // Global select screen window component, object variable for creation.
 var logViewWindowComponent
 var logViewWindowObject
+
+const Component = { Ready: 1, Error: 3 };
 
 function createlogViewWindowObject() {
     if (logViewWindowObject)
