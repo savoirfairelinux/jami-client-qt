@@ -43,8 +43,8 @@ Window {
     }
 
     title: JamiStrings.logsViewTitle
-    width: 600
-    height: 500
+    minimumWidth: 600
+    minimumHeight: 500
 
     Connections {
         target: UtilsAdapter
