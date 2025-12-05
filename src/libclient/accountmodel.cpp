@@ -843,6 +843,7 @@ account::Info::fromDetails(const MapStringString& details)
     confProperties.archivePath = details[ConfProperties::ARCHIVE_PATH];
     confProperties.proxyEnabled = toBool(details[ConfProperties::PROXY_ENABLED]);
     confProperties.proxyServer = details[ConfProperties::PROXY_SERVER];
+    confProperties.currentProxyServer = volatileDetails[ConfProperties::PROXY_SERVER];
     confProperties.proxyPushToken = details[ConfProperties::PROXY_PUSH_TOKEN];
     confProperties.dhtPort = toInt(details[ConfProperties::DHT_PORT]);
     confProperties.peerDiscovery = toBool(details[ConfProperties::DHT_PEER_DISCOVERY]);
