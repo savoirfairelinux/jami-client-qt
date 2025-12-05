@@ -97,11 +97,12 @@ public:
                                        convertMap(message));
             }),
             exportable_callback<CallSignal::IncomingCall>(
-                [this](const std::string& accountId, const std::string& callId, const std::string& from) {
-                    LOG_LIBJAMI_SIGNAL3("incomingCall",
-                                        QString(accountId.c_str()),
-                                        QString(callId.c_str()),
-                                        QString(from.c_str()));
+                [this](const std::string& accountId,
+                       const std::string& callId,
+                       const std::string& from,
+                       const std::vector<std::map<std::string, std::string>>& mediaList) {
+                    LOG_LIBJAMI_SIGNAL3(
+                        "incomingCall", QString(accountId.c_str()), QString(callId.c_str()), QString(from.c_str()));
                     Q_EMIT incomingCall(QString(accountId.c_str()), QString(callId.c_str()), QString(from.c_str()));
                 }),
             exportable_callback<CallSignal::MediaChangeRequested>(
