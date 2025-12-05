@@ -168,17 +168,11 @@ Window {
                     copiedToolTip.open();
                 }
 
-                ToolTip {
+                MaterialToolTip {
                     id: copiedToolTip
 
-                    height: JamiTheme.preferredFieldHeight
-                    TextArea {
-                        text: JamiStrings.logsViewCopied
-                        color: JamiTheme.textColor
-                    }
-                    background: Rectangle {
-                        color: JamiTheme.primaryBackgroundColor
-                    }
+                    parent: copyButton
+                    text: JamiStrings.logsViewCopied
                 }
             }
 
