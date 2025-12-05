@@ -15,9 +15,13 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+.pragma library
+
 // Global select screen window component, object variable for creation.
 var logViewWindowComponent
 var logViewWindowObject
+
+const Component = { Ready: 1, Error: 3 };
 
 function createlogViewWindowObject() {
     if (logViewWindowObject)
@@ -54,6 +58,7 @@ function showLogViewWindow() {
 
 // Destroy and reset selectScreenWindowObject when window is closed.
 function destroyLogViewWindow() {
+    console.warn("Destroying log view window");
     if(!logViewWindowObject)
         return
     logViewWindowObject.destroy()
