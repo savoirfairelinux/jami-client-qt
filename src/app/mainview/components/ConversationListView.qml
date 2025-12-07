@@ -129,7 +129,7 @@ JamiListView {
         sequence: "Ctrl+Shift+C"
         context: Qt.ApplicationShortcut
         enabled: root.visible
-        onActivated: CallAdapter.placeAudioOnlyCall()
+        onActivated: CallAdapter.startAudioOnlyCall()
     }
 
     Shortcut {

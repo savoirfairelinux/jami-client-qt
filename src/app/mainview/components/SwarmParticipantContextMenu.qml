@@ -45,7 +45,7 @@ ContextMenuAutoLoader {
             iconSource: JamiResources.place_audiocall_24dp_svg
             onClicked: {
                 ConversationsAdapter.openDialogConversationWith(participantUri);
-                CallAdapter.placeAudioOnlyCall();
+                CallAdapter.startAudioOnlyCall();
             }
         },
         GeneralMenuItem {

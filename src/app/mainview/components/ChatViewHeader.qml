@@ -169,7 +169,7 @@ Rectangle {
             visible: CurrentConversation.activeCalls.length === 0 && interactionButtonsVisibility
             source: JamiResources.place_audiocall_24dp_svg
             toolTipText: JamiStrings.startAudioCall
-            onClicked: CallAdapter.placeAudioOnlyCall()
+            onClicked: CallAdapter.startAudioOnlyCall()
         }
         JamiPushButton {
             id: startVideoCallButton

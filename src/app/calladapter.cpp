@@ -338,11 +338,11 @@ CallAdapter::onCallAddedToConference(const QString& callId, const QString& conve
 }
 
 void
-CallAdapter::placeAudioOnlyCall()
+CallAdapter::startAudioOnlyCall()
 {
     const auto convUid = lrcInstance_->get_selectedConvUid();
     if (!convUid.isEmpty()) {
-        lrcInstance_->getCurrentConversationModel()->placeAudioOnlyCall(convUid);
+        lrcInstance_->getCurrentConversationModel()->startAudioOnlyCall(convUid);
     }
 }
 
@@ -351,7 +351,7 @@ CallAdapter::placeCall()
 {
     const auto convUid = lrcInstance_->get_selectedConvUid();
     if (!convUid.isEmpty()) {
-        lrcInstance_->getCurrentConversationModel()->placeCall(convUid);
+        lrcInstance_->getCurrentConversationModel()->startCall(convUid);
     }
 }
 

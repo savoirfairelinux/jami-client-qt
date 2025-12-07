@@ -278,7 +278,7 @@ ItemDelegate {
         if (CurrentConversation.isSwarm && !CurrentConversation.isCoreDialog)
             return; // For now disable calls for swarm with multiple participants
         if (LRCInstance.currentAccountType === Profile.Type.SIP || !CurrentAccount.videoEnabled_Video)
-            CallAdapter.placeAudioOnlyCall();
+            CallAdapter.startAudioOnlyCall();
         else {
             if (!CurrentConversation.readOnly) {
                 CallAdapter.placeCall();

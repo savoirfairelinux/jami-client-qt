@@ -201,12 +201,12 @@ public:
      * Call contacts linked to this conversation
      * @param uid of the conversation
      */
-    void placeCall(const QString& uid);
+    void startCall(const QString& uid);
     /**
      * Perform an audio call with contacts linked to this conversation
      * @param uid of the conversation
      */
-    void placeAudioOnlyCall(const QString& uid);
+    void startAudioOnlyCall(const QString& uid);
     void joinCall(
         const QString& uid, const QString& confId, const QString& uri, const QString& deviceId, bool isAudioOnly);
     /**

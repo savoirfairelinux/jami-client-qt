@@ -61,7 +61,7 @@ ContextMenuAutoLoader {
             iconSource: JamiResources.place_audiocall_24dp_svg
             onClicked: {
                 LRCInstance.selectConversation(responsibleConvUid, responsibleAccountId);
-                CallAdapter.placeAudioOnlyCall();
+                CallAdapter.startAudioOnlyCall();
             }
         },
         GeneralMenuItem {

@@ -57,7 +57,7 @@ Rectangle {
                 radius: 35
                 preferredSize: 36
                 anchors.verticalCenter: parent.verticalCenter
-                onClicked: CallAdapter.placeAudioOnlyCall()
+                onClicked: CallAdapter.startAudioOnlyCall()
             }
 
             SpinningAnimation {
