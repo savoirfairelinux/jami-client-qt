@@ -1,19 +1,20 @@
-/****************************************************************************
- *   Copyright (C) 2017-2025 Savoir-faire Linux Inc.                        *
- *                                                                          *
- *   This library is free software; you can redistribute it and/or          *
- *   modify it under the terms of the GNU Lesser General Public             *
- *   License as published by the Free Software Foundation; either           *
- *   version 2.1 of the License, or (at your option) any later version.     *
- *                                                                          *
- *   This library is distributed in the hope that it will be useful,        *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of         *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU      *
- *   Lesser General Public License for more details.                        *
- *                                                                          *
- *   You should have received a copy of the GNU General Public License      *
- *   along with this program.  If not, see <http://www.gnu.org/licenses/>.  *
- ***************************************************************************/
+/*
+ * Copyright (C) 2017-2025 Savoir-faire Linux Inc.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include "api/conversationmodel.h"
 
 // LRC
@@ -174,11 +175,11 @@ public:
                                  int status);
 
     /**
-     * place a call
+     * Start call
      * @param uid, conversation id
      * @param isAudioOnly, allow to specify if the call is only audio. Set to false by default.
      */
-    void placeCall(const QString& uid, bool isAudioOnly = false);
+    void startCall(const QString& uid, bool isAudioOnly = false);
 
     /**
      * get number of unread messages
@@ -707,8 +708,8 @@ ConversationModel::makePermanent(const QString& uid)
 
         if (conversation.participants.empty()) {
             // Should not
-            qDebug() << "ConversationModel::addConversation cannot add a conversation with no "
-                        "participant.";
+            qDebug() << "ConversationModel::addConversation is unable to add a conversation "
+                        "with no participant.";
             return;
         }
 
@@ -804,8 +805,8 @@ ConversationModel::removeConversation(const QString& uid, bool banned, bool keep
     auto& peers = pimpl_->peersForConversation(conversation);
     if (peers.empty()) {
         // Should not
-        qDebug() << "ConversationModel::removeConversation cannot remove a conversation without "
-                    "participant.";
+        qDebug() << "ConversationModel::removeConversation is unable to remove a conversation "
+                    "without a participant.";
         return;
     }
     if (conversation.isSwarm() && !banned && (!conversation.isCoreDialog() || keepContact)) {
@@ -831,7 +832,7 @@ ConversationModel::deleteObsoleteHistory(int days)
     if (days < 1)
         return; // unlimited history
 
-    auto currentTime = static_cast<long int>(std::time(nullptr)); // since epoch, in seconds...
+    auto currentTime = static_cast<long int>(std::time(nullptr)); // since epoch, in seconds…
     auto date = currentTime - (days * 86400);
 
     storage::deleteObsoleteHistory(pimpl_->db, date);
@@ -858,13 +859,13 @@ ConversationModel::joinCall(
 }
 
 void
-ConversationModelPimpl::placeCall(const QString& uid, bool isAudioOnly)
+ConversationModelPimpl::startCall(const QString& uid, bool isAudioOnly)
 {
     try {
         auto& conversation = getConversationForUid(uid, true).get();
         if (conversation.participants.empty()) {
             // Should not
-            qDebug() << "ConversationModel::placeCall cannot call a conversation without participants.";
+            qDebug() << "ConversationModel::startCall is unable to call a conversation without participants.";
             return;
         }
 
@@ -921,19 +922,19 @@ ConversationModelPimpl::placeCall(const QString& uid, bool isAudioOnly)
         if (uri.isEmpty())
             return; // Incorrect item
 
-        // Don't call banned contact
+        // Don't call blocked contact
         if (contactInfo.isBanned) {
-            qDebug() << "ContactModel::placeCall: denied, contact is banned.";
+            qDebug() << "ContactModel::startCall: denied, contact is blocked.";
             return;
         }
 
         if (linked.owner.profileInfo.type != profile::Type::SIP) {
-            uri = "ring:" + uri; // Add the ring: before or it will fail.
+            uri = "jami:" + uri; // Add jami: before or it will fail.
         }
 
         auto cb = ([this, isTemporary, uri, isAudioOnly, &conversation](QString conversationId) {
             if (indexOf(conversationId) < 0) {
-                qDebug() << "Cannot place call: conversation does not exist.";
+                qDebug() << "Unable to start call: conversation does not exist.";
                 return;
             }
 
@@ -941,7 +942,7 @@ ConversationModelPimpl::placeCall(const QString& uid, bool isAudioOnly)
 
             newConv.callId = linked.owner.callModel->createCall(uri, isAudioOnly);
             if (newConv.callId.isEmpty()) {
-                qDebug() << "Cannot place call (daemon side failure?)";
+                qDebug() << "Unable to start call (daemon side failure?)";
                 return;
             }
 
@@ -972,20 +973,20 @@ ConversationModelPimpl::placeCall(const QString& uid, bool isAudioOnly)
             cb(convId);
         }
     } catch (const std::out_of_range& e) {
-        qDebug() << "Cannot place call as conversation does not exist.";
+        qDebug() << "Unable to start call as conversation does not exist.";
     }
 }
 
 void
-ConversationModel::placeAudioOnlyCall(const QString& uid)
+ConversationModel::startAudioOnlyCall(const QString& uid)
 {
-    pimpl_->placeCall(uid, true);
+    pimpl_->startCall(uid, true);
 }
 
 void
-ConversationModel::placeCall(const QString& uid)
+ConversationModel::startCall(const QString& uid)
 {
-    pimpl_->placeCall(uid);
+    pimpl_->startCall(uid);
 }
 
 MapStringString
@@ -1233,8 +1234,8 @@ ConversationModel::sendMessage(const QString& uid, const QString& body, const QS
         auto& peers = pimpl_->peersForConversation(conversation);
         if (peers.isEmpty()) {
             // Should not
-            qDebug() << "ConversationModel::sendMessage cannot send an interaction to a conversation "
-                        "with no participants.";
+            qDebug() << "ConversationModel::sendMessage is unable to send an interaction to a "
+                        "conversation with no participants.";
             return;
         }
         auto convId = uid;
@@ -1325,7 +1326,7 @@ ConversationModel::sendMessage(const QString& uid, const QString& body, const QS
             cb(convId);
         }
     } catch (const std::out_of_range& e) {
-        qDebug() << "Cannot send message as conversation does not exist.";
+        qDebug() << "Unable to send message as conversation does not exist.";
     }
 }
 
@@ -2018,8 +2019,8 @@ ConversationModelPimpl::filter(const conversation::Info& entry)
         currentFilter = uri.format(flags);
 
         // Check contact
-        // If contact is banned, only match if filter is a perfect match
-        // do not check banned contact for conversation with multiple participants
+        // If contact is blocked, only match if filter is a perfect match
+        // do not check blocked contact for conversation with multiple participants
         if (contactInfo.isBanned && peers.size() == 1) {
             if (currentFilter == "")
                 return false;
@@ -2283,7 +2284,7 @@ ConversationModelPimpl::slotMessageUpdated(const QString& accountId,
         auto msg = interaction::Info(message, linked.owner.profileInfo.uri, accountId, conversationId);
 
         if (!conversation.interactions->update(msgId, msg)) {
-            qDebug() << "Message not found or cannot be reparented.";
+            qDebug() << "Message not found or unable to be reparented.";
             return;
         }
         // The conversation is updated, so we need to notify the view.
@@ -2674,7 +2675,7 @@ ConversationModelPimpl::slotPendingContactAccepted(const QString& uri)
             Q_EMIT linked.newInteraction(convs[0], msgId, interaction);
             Q_EMIT linked.dataChanged(convIdx);
         } catch (std::out_of_range& e) {
-            qDebug() << "ConversationModelPimpl::slotContactAdded cannot find contact.";
+            qDebug() << "ConversationModelPimpl::slotContactAdded is unable to find contact.";
         }
     }
 }
@@ -3030,7 +3031,7 @@ ConversationModelPimpl::slotCallStatusChanged(const QString& accountId, const QS
             Q_EMIT linked.dataChanged(indexOf(i->uid));
         }
     } catch (std::out_of_range& e) {
-        qDebug() << "ConversationModelPimpl::slotCallStatusChanged cannot get nonexistent call.";
+        qDebug() << "ConversationModelPimpl::slotCallStatusChanged is unable to get nonexistent call.";
     }
 }
 
@@ -3039,9 +3040,9 @@ ConversationModelPimpl::slotCallStarted(const QString& callId)
 {
     try {
         auto call = linked.owner.callModel->getCall(callId);
-        addOrUpdateCallMessage(callId, call.peerUri.remove("ring:"), !call.isOutgoing);
+        addOrUpdateCallMessage(callId, call.peerUri.remove("jami:"), !call.isOutgoing);
     } catch (std::out_of_range& e) {
-        qDebug() << "ConversationModelPimpl::slotCallStarted cannot start nonexistent call.";
+        qDebug() << "ConversationModelPimpl::slotCallStarted is unable to start nonexistent call.";
     }
 }
 
@@ -3057,7 +3058,7 @@ ConversationModelPimpl::slotCallEnded(const QString& callId)
             duration = std::chrono::duration_cast<std::chrono::seconds>(duration_ns).count();
         }
         // add or update call interaction with duration
-        addOrUpdateCallMessage(callId, call.peerUri.remove("ring:"), !call.isOutgoing, duration);
+        addOrUpdateCallMessage(callId, call.peerUri.remove("jami:"), !call.isOutgoing, duration);
         /* Reset the callId stored in the conversation.
            Do not call selectConversation() since it is already done in slotCallStatusChanged. */
         size_t idx = 0;
@@ -3072,7 +3073,7 @@ ConversationModelPimpl::slotCallEnded(const QString& callId)
             ++idx;
         }
     } catch (std::out_of_range& e) {
-        qDebug() << "ConversationModelPimpl::slotCallEnded cannot end nonexistent call.";
+        qDebug() << "ConversationModelPimpl::slotCallEnded is unable to end nonexistent call.";
     }
 }
 
@@ -3293,7 +3294,7 @@ ConversationModelPimpl::updateInteractionStatus(const QString& accountId,
         if (emitDisplayed)
             conversation.interactions->setRead(peerUri, messageId);
     } catch (const std::out_of_range& e) {
-        qDebug() << "Cannot update message status for conversation that does not exist.";
+        qDebug() << "Unable to update message status for conversation that does not exist.";
     }
 }
 
@@ -3313,7 +3314,7 @@ ConversationModelPimpl::slotComposingStatusChanged(const QString& accountId,
         else
             conversation.typers.remove(contactUri);
     } catch (const std::out_of_range& e) {
-        qDebug() << "Cannot update message status for conversation that does not exist.";
+        qDebug() << "Unable to update message status for conversation that does not exist.";
     }
 
     Q_EMIT linked.composingStatusChanged(convId, contactUri, isComposing);
@@ -3349,7 +3350,7 @@ ConversationModel::sendFile(const QString& convUid, const QString& path, const Q
         }
         auto peers = pimpl_->peersForConversation(conversation);
         if (peers.size() < 1) {
-            qDebug() << "Send file error: cannot send file in conversation with no participants.";
+            qDebug() << "Send file error: unable to send file in conversation with no participants.";
             return;
         }
         /* isTemporary, and conversationReady callback used only for non-swarm conversation,
@@ -3372,12 +3373,12 @@ ConversationModel::sendFile(const QString& convUid, const QString& path, const Q
             try {
                 auto conversationOpt = getConversationForUid(conversationId);
                 if (!conversationOpt.has_value()) {
-                    qDebug() << "Cannot send file.";
+                    qDebug() << "Unable to send file.";
                     return;
                 }
                 auto contactInfo = owner.contactModel->getContact(peerId);
                 if (contactInfo.isBanned) {
-                    qDebug() << "ContactModel::sendFile: denied, contact is banned.";
+                    qDebug() << "ContactModel::sendFile: denied, contact is blocked.";
                     return;
                 }
                 owner.dataTransferModel->sendFile(owner.id, conversationId, path, filename, parent);
@@ -3403,7 +3404,7 @@ ConversationModel::sendFile(const QString& convUid, const QString& path, const Q
             cb(convUidCopy);
         }
     } catch (const std::out_of_range& e) {
-        qDebug() << "Cannot send file to conversation that does not exist.";
+        qDebug() << "Unable to send file to conversation that does not exist.";
     }
 }
 
@@ -3659,12 +3660,12 @@ ConversationModelPimpl::acceptTransfer(const QString& convUid, const QString& in
     if (!interactions->with(interactionId, [&](const QString&, interaction::Info& interaction) {
             auto fileId = interaction.commit["fileId"];
             if (fileId.isEmpty()) {
-                qWarning() << "Cannot download file without fileId";
+                qWarning() << "Unable to download file without fileId";
                 return;
             }
             linked.owner.dataTransferModel->download(linked.owner.id, convUid, interactionId, fileId);
         })) {
-        qWarning() << "Cannot download file without valid interaction";
+        qWarning() << "Unable to download file without valid interaction";
     }
 }
 
