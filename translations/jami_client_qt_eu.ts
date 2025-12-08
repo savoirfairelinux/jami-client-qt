@@ -12,22 +12,22 @@
         <translation>%1 dei huts egin du</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="512"/>
+        <location filename="../src/app/calladapter.cpp" line="528"/>
         <source>Incoming call</source>
         <translation>Sarrera-deia</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="513"/>
+        <location filename="../src/app/calladapter.cpp" line="529"/>
         <source>%1 is calling you</source>
         <translation>%1k deitzen dizu.</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="524"/>
+        <location filename="../src/app/calladapter.cpp" line="540"/>
         <source>is calling you</source>
         <translation>Deika ari zaizu.</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="990"/>
+        <location filename="../src/app/calladapter.cpp" line="1006"/>
         <source>Screenshot</source>
         <translation>Giltza</translation>
     </message>
@@ -4058,7 +4058,7 @@ Please confirm the import on the new device.</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="399"/>
+        <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="400"/>
         <source>Me</source>
         <translation>Ni</translation>
     </message>
@@ -4284,279 +4284,279 @@ Please confirm the import on the new device.</source>
         <translation>Desgaituta</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="70"/>
+        <location filename="../src/libclient/callmodel.cpp" line="72"/>
         <source>Null</source>
         <translation>Ez dago ezer.</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="71"/>
+        <location filename="../src/libclient/callmodel.cpp" line="73"/>
         <source>Trying</source>
         <translation>Saiatzen ari naiz.</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="72"/>
+        <location filename="../src/libclient/callmodel.cpp" line="74"/>
         <source>Ringing</source>
         <translation>Deitzen</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="73"/>
+        <location filename="../src/libclient/callmodel.cpp" line="75"/>
         <source>Being Forwarded</source>
         <translation>Bidaliko naute</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="74"/>
+        <location filename="../src/libclient/callmodel.cpp" line="76"/>
         <source>Queued</source>
         <translation>Ilara</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="75"/>
+        <location filename="../src/libclient/callmodel.cpp" line="77"/>
         <source>Progress</source>
         <translation>Aurrerapenak</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="76"/>
+        <location filename="../src/libclient/callmodel.cpp" line="78"/>
         <source>OK</source>
         <translation>Ados</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="77"/>
+        <location filename="../src/libclient/callmodel.cpp" line="79"/>
         <source>Accepted</source>
         <translation>Onartzen da</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="78"/>
+        <location filename="../src/libclient/callmodel.cpp" line="80"/>
         <source>Multiple Choices</source>
         <translation>Aukera ugari</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="79"/>
+        <location filename="../src/libclient/callmodel.cpp" line="81"/>
         <source>Moved Permanently</source>
         <translation>Beti mugitzen dira</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="80"/>
+        <location filename="../src/libclient/callmodel.cpp" line="82"/>
         <source>Moved Temporarily</source>
         <translation>Aldi baterako mugitu</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="81"/>
+        <location filename="../src/libclient/callmodel.cpp" line="83"/>
         <source>Use Proxy</source>
         <translation>Erabili ordezkari bat</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="82"/>
+        <location filename="../src/libclient/callmodel.cpp" line="84"/>
         <source>Alternative Service</source>
         <translation>Zerbitzu alternatiboa</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="83"/>
+        <location filename="../src/libclient/callmodel.cpp" line="85"/>
         <source>Bad Request</source>
         <translation>Eskari txarra</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="84"/>
+        <location filename="../src/libclient/callmodel.cpp" line="86"/>
         <source>Unauthorized</source>
         <translation>Baimendua ez.</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="85"/>
+        <location filename="../src/libclient/callmodel.cpp" line="87"/>
         <source>Payment Required</source>
         <translation>Ordainketa beharrezkoa</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="86"/>
+        <location filename="../src/libclient/callmodel.cpp" line="88"/>
         <source>Forbidden</source>
         <translation>Debekatuta dago.</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="87"/>
+        <location filename="../src/libclient/callmodel.cpp" line="89"/>
         <source>Not Found</source>
         <translation>Ez dago aurkitu</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="88"/>
+        <location filename="../src/libclient/callmodel.cpp" line="90"/>
         <source>Method Not Allowed</source>
         <translation>Ez da baimenduta</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="89"/>
-        <location filename="../src/libclient/callmodel.cpp" line="109"/>
+        <location filename="../src/libclient/callmodel.cpp" line="91"/>
+        <location filename="../src/libclient/callmodel.cpp" line="111"/>
         <source>Not Acceptable</source>
         <translation>Ez da onargarria.</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="90"/>
+        <location filename="../src/libclient/callmodel.cpp" line="92"/>
         <source>Proxy Authentication Required</source>
         <translation>Agintearen egiaztagiria beharrezkoa</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="91"/>
+        <location filename="../src/libclient/callmodel.cpp" line="93"/>
         <source>Request Timeout</source>
         <translation>Epe bat eskatu</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="92"/>
+        <location filename="../src/libclient/callmodel.cpp" line="94"/>
         <source>Gone</source>
         <translation>Joan egin da.</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="93"/>
+        <location filename="../src/libclient/callmodel.cpp" line="95"/>
         <source>Request Entity Too Large</source>
         <translation>Eskatu Entitate Handiegia</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="94"/>
+        <location filename="../src/libclient/callmodel.cpp" line="96"/>
         <source>Request URI Too Long</source>
         <translation>Urriaren erreferentzia gehiegi eskatzen da</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="95"/>
+        <location filename="../src/libclient/callmodel.cpp" line="97"/>
         <source>Unsupported Media Type</source>
         <translation>Mediaren mota ez da babesten</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="96"/>
+        <location filename="../src/libclient/callmodel.cpp" line="98"/>
         <source>Unsupported URI Scheme</source>
         <translation>URIren laguntza ez duten erregimena</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="97"/>
+        <location filename="../src/libclient/callmodel.cpp" line="99"/>
         <source>Bad Extension</source>
         <translation>Luze ez egiteagatik</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="98"/>
+        <location filename="../src/libclient/callmodel.cpp" line="100"/>
         <source>Extension Required</source>
         <translation>Luzea behar da</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="99"/>
+        <location filename="../src/libclient/callmodel.cpp" line="101"/>
         <source>Session Timer Too Small</source>
         <translation>Saioak oso gutxi dira.</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="100"/>
+        <location filename="../src/libclient/callmodel.cpp" line="102"/>
         <source>Interval Too Brief</source>
         <translation>Intervalo laburra da</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="101"/>
+        <location filename="../src/libclient/callmodel.cpp" line="103"/>
         <source>Temporarily Unavailable</source>
         <translation>Aldi baterako ez dago</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="102"/>
+        <location filename="../src/libclient/callmodel.cpp" line="104"/>
         <source>Call TSX Does Not Exist</source>
         <translation>TSX deiak ez du existitzen</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="103"/>
+        <location filename="../src/libclient/callmodel.cpp" line="105"/>
         <source>Loop Detected</source>
         <translation>Zirkuluak detektatuta</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="104"/>
+        <location filename="../src/libclient/callmodel.cpp" line="106"/>
         <source>Too Many Hops</source>
         <translation>Txapel gehiegi</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="105"/>
+        <location filename="../src/libclient/callmodel.cpp" line="107"/>
         <source>Address Incomplete</source>
         <translation>Helbideak ez dira osatuak</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="106"/>
+        <location filename="../src/libclient/callmodel.cpp" line="108"/>
         <source>Ambiguous</source>
         <translation>Ez dago argi.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="333"/>
-        <location filename="../src/libclient/callmodel.cpp" line="107"/>
+        <location filename="../src/libclient/callmodel.cpp" line="109"/>
         <source>Busy</source>
         <translation>Lanpetuta</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="108"/>
+        <location filename="../src/libclient/callmodel.cpp" line="110"/>
         <source>Request Terminated</source>
         <translation>Eskariari ezabatu</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="110"/>
+        <location filename="../src/libclient/callmodel.cpp" line="112"/>
         <source>Bad Event</source>
         <translation>Gertaera txarra</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="111"/>
+        <location filename="../src/libclient/callmodel.cpp" line="113"/>
         <source>Request Updated</source>
         <translation>Eskari eguneratua</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="112"/>
+        <location filename="../src/libclient/callmodel.cpp" line="114"/>
         <source>Request Pending</source>
         <translation>Eskariak itxaron</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="113"/>
+        <location filename="../src/libclient/callmodel.cpp" line="115"/>
         <source>Undecipherable</source>
         <translation>Deszifratu ezin dena.</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="114"/>
+        <location filename="../src/libclient/callmodel.cpp" line="116"/>
         <source>Internal Server Error</source>
         <translation>Serbitorearen barne akatsa</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="115"/>
+        <location filename="../src/libclient/callmodel.cpp" line="117"/>
         <source>Not Implemented</source>
         <translation>Ez da gauzatu</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="116"/>
+        <location filename="../src/libclient/callmodel.cpp" line="118"/>
         <source>Bad Gateway</source>
         <translation>Ate txarra.</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="117"/>
+        <location filename="../src/libclient/callmodel.cpp" line="119"/>
         <source>Service Unavailable</source>
         <translation>Zerbitzua ez dago eskura</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="118"/>
+        <location filename="../src/libclient/callmodel.cpp" line="120"/>
         <source>Server Timeout</source>
         <translation>Zerbitzariaren denbora-aldaketa</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="119"/>
+        <location filename="../src/libclient/callmodel.cpp" line="121"/>
         <source>Version Not Supported</source>
         <translation>Bertsioak ez du laguntzarik</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="120"/>
+        <location filename="../src/libclient/callmodel.cpp" line="122"/>
         <source>Message Too Large</source>
         <translation>Mezu handia</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="121"/>
+        <location filename="../src/libclient/callmodel.cpp" line="123"/>
         <source>Precondition Failure</source>
         <translation>Lehen baldintzak huts egin dute</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="122"/>
+        <location filename="../src/libclient/callmodel.cpp" line="124"/>
         <source>Busy Everywhere</source>
         <translation>Leku guztietan lanpetuta</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="123"/>
+        <location filename="../src/libclient/callmodel.cpp" line="125"/>
         <source>Call Refused</source>
         <translation>Deiak ez du balio</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="124"/>
+        <location filename="../src/libclient/callmodel.cpp" line="126"/>
         <source>Does Not Exist Anywhere</source>
         <translation>Ez dago inon</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="125"/>
+        <location filename="../src/libclient/callmodel.cpp" line="127"/>
         <source>Not Acceptable Anywhere</source>
         <translation>Ez da onargarria inon.</translation>
     </message>
@@ -4591,8 +4591,8 @@ Please confirm the import on the new device.</source>
         <translation>kokapena zerbitzuak ezezagunaAkats bat</translation>
     </message>
     <message>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1141"/>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1154"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1136"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1149"/>
         <source>%1 (you)</source>
         <translation type="unfinished"/>
     </message>

@@ -12,22 +12,22 @@
         <translation>Cailleadh glao le %1</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="512"/>
+        <location filename="../src/app/calladapter.cpp" line="528"/>
         <source>Incoming call</source>
         <translation>Glacadh isteach</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="513"/>
+        <location filename="../src/app/calladapter.cpp" line="529"/>
         <source>%1 is calling you</source>
         <translation>Tá %1 ag glaoch ort</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="524"/>
+        <location filename="../src/app/calladapter.cpp" line="540"/>
         <source>is calling you</source>
         <translation>Tá sé ag glaoch ort</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="990"/>
+        <location filename="../src/app/calladapter.cpp" line="1006"/>
         <source>Screenshot</source>
         <translation>Scáileán</translation>
     </message>
@@ -4058,7 +4058,7 @@ Please confirm the import on the new device.</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="399"/>
+        <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="400"/>
         <source>Me</source>
         <translation>Mé féin</translation>
     </message>
@@ -4284,279 +4284,279 @@ Please confirm the import on the new device.</source>
         <translation>An duine atá faoi mhíchumas</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="70"/>
+        <location filename="../src/libclient/callmodel.cpp" line="72"/>
         <source>Null</source>
         <translation>Ní dhéanfaidh sé</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="71"/>
+        <location filename="../src/libclient/callmodel.cpp" line="73"/>
         <source>Trying</source>
         <translation>Ag iarraidh</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="72"/>
+        <location filename="../src/libclient/callmodel.cpp" line="74"/>
         <source>Ringing</source>
         <translation>Ag an gcruinn</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="73"/>
+        <location filename="../src/libclient/callmodel.cpp" line="75"/>
         <source>Being Forwarded</source>
         <translation>A chur ar aghaidh</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="74"/>
+        <location filename="../src/libclient/callmodel.cpp" line="76"/>
         <source>Queued</source>
         <translation>Rannóg</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="75"/>
+        <location filename="../src/libclient/callmodel.cpp" line="77"/>
         <source>Progress</source>
         <translation>Tosaíocht</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="76"/>
+        <location filename="../src/libclient/callmodel.cpp" line="78"/>
         <source>OK</source>
         <translation>Ceart go leor</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="77"/>
+        <location filename="../src/libclient/callmodel.cpp" line="79"/>
         <source>Accepted</source>
         <translation>Tagraíodh</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="78"/>
+        <location filename="../src/libclient/callmodel.cpp" line="80"/>
         <source>Multiple Choices</source>
         <translation>Roghanna Mór</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="79"/>
+        <location filename="../src/libclient/callmodel.cpp" line="81"/>
         <source>Moved Permanently</source>
         <translation>Ag Dul go Daingean</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="80"/>
+        <location filename="../src/libclient/callmodel.cpp" line="82"/>
         <source>Moved Temporarily</source>
         <translation>Áite a Chluasad</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="81"/>
+        <location filename="../src/libclient/callmodel.cpp" line="83"/>
         <source>Use Proxy</source>
         <translation>Úsáid Proxy</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="82"/>
+        <location filename="../src/libclient/callmodel.cpp" line="84"/>
         <source>Alternative Service</source>
         <translation>Seirbhís Athsheirbhís</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="83"/>
+        <location filename="../src/libclient/callmodel.cpp" line="85"/>
         <source>Bad Request</source>
         <translation>Éileamh Mara</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="84"/>
+        <location filename="../src/libclient/callmodel.cpp" line="86"/>
         <source>Unauthorized</source>
         <translation>Ní cheadaítear</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="85"/>
+        <location filename="../src/libclient/callmodel.cpp" line="87"/>
         <source>Payment Required</source>
         <translation>Íocadh</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="86"/>
+        <location filename="../src/libclient/callmodel.cpp" line="88"/>
         <source>Forbidden</source>
         <translation>Forbidden</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="87"/>
+        <location filename="../src/libclient/callmodel.cpp" line="89"/>
         <source>Not Found</source>
         <translation>Ní fhaightear</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="88"/>
+        <location filename="../src/libclient/callmodel.cpp" line="90"/>
         <source>Method Not Allowed</source>
         <translation>Mhodh Ní Cheadaítear</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="89"/>
-        <location filename="../src/libclient/callmodel.cpp" line="109"/>
+        <location filename="../src/libclient/callmodel.cpp" line="91"/>
+        <location filename="../src/libclient/callmodel.cpp" line="111"/>
         <source>Not Acceptable</source>
         <translation>Ní Dhéanta</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="90"/>
+        <location filename="../src/libclient/callmodel.cpp" line="92"/>
         <source>Proxy Authentication Required</source>
         <translation>Éilítear Authentication Proxy</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="91"/>
+        <location filename="../src/libclient/callmodel.cpp" line="93"/>
         <source>Request Timeout</source>
         <translation>Tar éis an tréimhse a iarraidh</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="92"/>
+        <location filename="../src/libclient/callmodel.cpp" line="94"/>
         <source>Gone</source>
         <translation>Tá sé imithe</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="93"/>
+        <location filename="../src/libclient/callmodel.cpp" line="95"/>
         <source>Request Entity Too Large</source>
         <translation>An t-Eintiteas Éileamh ró-mhór</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="94"/>
+        <location filename="../src/libclient/callmodel.cpp" line="96"/>
         <source>Request URI Too Long</source>
         <translation>Iarrtar URI ró-fhada</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="95"/>
+        <location filename="../src/libclient/callmodel.cpp" line="97"/>
         <source>Unsupported Media Type</source>
         <translation>Meánfhocal nach bhfuil tacaíocht aige</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="96"/>
+        <location filename="../src/libclient/callmodel.cpp" line="98"/>
         <source>Unsupported URI Scheme</source>
         <translation>Scéim URI gan tacaíocht</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="97"/>
+        <location filename="../src/libclient/callmodel.cpp" line="99"/>
         <source>Bad Extension</source>
         <translation>An droch-éireacht</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="98"/>
+        <location filename="../src/libclient/callmodel.cpp" line="100"/>
         <source>Extension Required</source>
         <translation>Éileamh a Chónaítear</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="99"/>
+        <location filename="../src/libclient/callmodel.cpp" line="101"/>
         <source>Session Timer Too Small</source>
         <translation>An t-am-aisteán an-bheag</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="100"/>
+        <location filename="../src/libclient/callmodel.cpp" line="102"/>
         <source>Interval Too Brief</source>
         <translation>An t-am atá ró-ghearr</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="101"/>
+        <location filename="../src/libclient/callmodel.cpp" line="103"/>
         <source>Temporarily Unavailable</source>
         <translation>Ní bheidh sé ar fáil go sealadach</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="102"/>
+        <location filename="../src/libclient/callmodel.cpp" line="104"/>
         <source>Call TSX Does Not Exist</source>
         <translation>Ní Fágann TSE</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="103"/>
+        <location filename="../src/libclient/callmodel.cpp" line="105"/>
         <source>Loop Detected</source>
         <translation>Lúpa A Chonaic</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="104"/>
+        <location filename="../src/libclient/callmodel.cpp" line="106"/>
         <source>Too Many Hops</source>
         <translation>An iomarca de Hops</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="105"/>
+        <location filename="../src/libclient/callmodel.cpp" line="107"/>
         <source>Address Incomplete</source>
         <translation>Seoladh Níl iomlán</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="106"/>
+        <location filename="../src/libclient/callmodel.cpp" line="108"/>
         <source>Ambiguous</source>
         <translation>An t-airgead</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="333"/>
-        <location filename="../src/libclient/callmodel.cpp" line="107"/>
+        <location filename="../src/libclient/callmodel.cpp" line="109"/>
         <source>Busy</source>
         <translation>Ag obair</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="108"/>
+        <location filename="../src/libclient/callmodel.cpp" line="110"/>
         <source>Request Terminated</source>
         <translation>Iarrta an iarraidh</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="110"/>
+        <location filename="../src/libclient/callmodel.cpp" line="112"/>
         <source>Bad Event</source>
         <translation>Tuairiscí olc</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="111"/>
+        <location filename="../src/libclient/callmodel.cpp" line="113"/>
         <source>Request Updated</source>
         <translation>Iarratais Athnuaite</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="112"/>
+        <location filename="../src/libclient/callmodel.cpp" line="114"/>
         <source>Request Pending</source>
         <translation>Iarrtar ar an iarratas</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="113"/>
+        <location filename="../src/libclient/callmodel.cpp" line="115"/>
         <source>Undecipherable</source>
         <translation>Ní féidir a thuiscint</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="114"/>
+        <location filename="../src/libclient/callmodel.cpp" line="116"/>
         <source>Internal Server Error</source>
         <translation>Mearachta Seirbhíseach Interne</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="115"/>
+        <location filename="../src/libclient/callmodel.cpp" line="117"/>
         <source>Not Implemented</source>
         <translation>Ní dhéantar an t-iarratas a chur chun feidhme</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="116"/>
+        <location filename="../src/libclient/callmodel.cpp" line="118"/>
         <source>Bad Gateway</source>
         <translation>Gléas olc</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="117"/>
+        <location filename="../src/libclient/callmodel.cpp" line="119"/>
         <source>Service Unavailable</source>
         <translation>Seirbhís Ní Lorg</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="118"/>
+        <location filename="../src/libclient/callmodel.cpp" line="120"/>
         <source>Server Timeout</source>
         <translation>Timeout Seirbhíseach</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="119"/>
+        <location filename="../src/libclient/callmodel.cpp" line="121"/>
         <source>Version Not Supported</source>
         <translation>Versiún Ní Tacaítear leis</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="120"/>
+        <location filename="../src/libclient/callmodel.cpp" line="122"/>
         <source>Message Too Large</source>
         <translation>Teachtaireacht ró-mhór</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="121"/>
+        <location filename="../src/libclient/callmodel.cpp" line="123"/>
         <source>Precondition Failure</source>
         <translation>Fágáil réamhchoinníollacha</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="122"/>
+        <location filename="../src/libclient/callmodel.cpp" line="124"/>
         <source>Busy Everywhere</source>
         <translation>I ngach áit</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="123"/>
+        <location filename="../src/libclient/callmodel.cpp" line="125"/>
         <source>Call Refused</source>
         <translation>Glao a dhiúltú</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="124"/>
+        <location filename="../src/libclient/callmodel.cpp" line="126"/>
         <source>Does Not Exist Anywhere</source>
         <translation>Ní Fhiannaíonn sé áit ar bith</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="125"/>
+        <location filename="../src/libclient/callmodel.cpp" line="127"/>
         <source>Not Acceptable Anywhere</source>
         <translation>Ní Dhéanta I ngach áit</translation>
     </message>
@@ -4591,8 +4591,8 @@ Please confirm the import on the new device.</source>
         <translation>suíomhServicesUnknownEarring</translation>
     </message>
     <message>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1141"/>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1154"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1136"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1149"/>
         <source>%1 (you)</source>
         <translation type="unfinished"/>
     </message>

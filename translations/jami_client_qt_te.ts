@@ -12,22 +12,22 @@
         <translation>%1తో మిస్డ్ కాల్</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="512"/>
+        <location filename="../src/app/calladapter.cpp" line="528"/>
         <source>Incoming call</source>
         <translation>ఇన్కమింగ్ కాల్</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="513"/>
+        <location filename="../src/app/calladapter.cpp" line="529"/>
         <source>%1 is calling you</source>
         <translation>%1 మీకు ఫోన్ చేస్తోంది</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="524"/>
+        <location filename="../src/app/calladapter.cpp" line="540"/>
         <source>is calling you</source>
         <translation>మీరు కాల్ చేస్తుంది</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="990"/>
+        <location filename="../src/app/calladapter.cpp" line="1006"/>
         <source>Screenshot</source>
         <translation>స్క్రీన్ షాట్</translation>
     </message>
@@ -4058,7 +4058,7 @@ Please confirm the import on the new device.</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="399"/>
+        <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="400"/>
         <source>Me</source>
         <translation>నేను</translation>
     </message>
@@ -4284,279 +4284,279 @@ Please confirm the import on the new device.</source>
         <translation>వైకల్యాలు</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="70"/>
+        <location filename="../src/libclient/callmodel.cpp" line="72"/>
         <source>Null</source>
         <translation>ఎగువన</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="71"/>
+        <location filename="../src/libclient/callmodel.cpp" line="73"/>
         <source>Trying</source>
         <translation>ప్రయత్నిస్తున్న</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="72"/>
+        <location filename="../src/libclient/callmodel.cpp" line="74"/>
         <source>Ringing</source>
         <translation>రింగ్</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="73"/>
+        <location filename="../src/libclient/callmodel.cpp" line="75"/>
         <source>Being Forwarded</source>
         <translation>పంపబడటం</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="74"/>
+        <location filename="../src/libclient/callmodel.cpp" line="76"/>
         <source>Queued</source>
         <translation>క్యూ</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="75"/>
+        <location filename="../src/libclient/callmodel.cpp" line="77"/>
         <source>Progress</source>
         <translation>పురోగతి</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="76"/>
+        <location filename="../src/libclient/callmodel.cpp" line="78"/>
         <source>OK</source>
         <translation>సరే</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="77"/>
+        <location filename="../src/libclient/callmodel.cpp" line="79"/>
         <source>Accepted</source>
         <translation>ఆమోదము</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="78"/>
+        <location filename="../src/libclient/callmodel.cpp" line="80"/>
         <source>Multiple Choices</source>
         <translation>బహుళ ఎంపికలు</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="79"/>
+        <location filename="../src/libclient/callmodel.cpp" line="81"/>
         <source>Moved Permanently</source>
         <translation>శాశ్వతంగా తరలింపు</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="80"/>
+        <location filename="../src/libclient/callmodel.cpp" line="82"/>
         <source>Moved Temporarily</source>
         <translation>తాత్కాలికంగా తరలింపు</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="81"/>
+        <location filename="../src/libclient/callmodel.cpp" line="83"/>
         <source>Use Proxy</source>
         <translation>ప్రాక్సీని ఉపయోగించు</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="82"/>
+        <location filename="../src/libclient/callmodel.cpp" line="84"/>
         <source>Alternative Service</source>
         <translation>ప్రత్యామ్నాయ సేవ</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="83"/>
+        <location filename="../src/libclient/callmodel.cpp" line="85"/>
         <source>Bad Request</source>
         <translation>చెడ్డ అభ్యర్థన</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="84"/>
+        <location filename="../src/libclient/callmodel.cpp" line="86"/>
         <source>Unauthorized</source>
         <translation>అనుమతి లేనిది</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="85"/>
+        <location filename="../src/libclient/callmodel.cpp" line="87"/>
         <source>Payment Required</source>
         <translation>చెల్లింపు అవసరం</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="86"/>
+        <location filename="../src/libclient/callmodel.cpp" line="88"/>
         <source>Forbidden</source>
         <translation>నిషేధించబడింది</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="87"/>
+        <location filename="../src/libclient/callmodel.cpp" line="89"/>
         <source>Not Found</source>
         <translation>కనుగొనబడలేదు</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="88"/>
+        <location filename="../src/libclient/callmodel.cpp" line="90"/>
         <source>Method Not Allowed</source>
         <translation>పద్ధతి అనుమతించబడదు</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="89"/>
-        <location filename="../src/libclient/callmodel.cpp" line="109"/>
+        <location filename="../src/libclient/callmodel.cpp" line="91"/>
+        <location filename="../src/libclient/callmodel.cpp" line="111"/>
         <source>Not Acceptable</source>
         <translation>ఆమోదయోగ్యం కాదు</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="90"/>
+        <location filename="../src/libclient/callmodel.cpp" line="92"/>
         <source>Proxy Authentication Required</source>
         <translation>ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ ప్రాక్సీ</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="91"/>
+        <location filename="../src/libclient/callmodel.cpp" line="93"/>
         <source>Request Timeout</source>
         <translation>టైమ్అవుట్ కోసం అభ్యర్థన</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="92"/>
+        <location filename="../src/libclient/callmodel.cpp" line="94"/>
         <source>Gone</source>
         <translation>పోయింది</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="93"/>
+        <location filename="../src/libclient/callmodel.cpp" line="95"/>
         <source>Request Entity Too Large</source>
         <translation>చాలా పెద్ద అభ్యర్థన సంస్థ</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="94"/>
+        <location filename="../src/libclient/callmodel.cpp" line="96"/>
         <source>Request URI Too Long</source>
         <translation>URI ని చాలా కాలం అభ్యర్థించండి</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="95"/>
+        <location filename="../src/libclient/callmodel.cpp" line="97"/>
         <source>Unsupported Media Type</source>
         <translation>మద్దతు లేని మీడియా రకం</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="96"/>
+        <location filename="../src/libclient/callmodel.cpp" line="98"/>
         <source>Unsupported URI Scheme</source>
         <translation>మద్దతు లేని URI పథకం</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="97"/>
+        <location filename="../src/libclient/callmodel.cpp" line="99"/>
         <source>Bad Extension</source>
         <translation>చెడు పొడిగింపు</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="98"/>
+        <location filename="../src/libclient/callmodel.cpp" line="100"/>
         <source>Extension Required</source>
         <translation>విస్తరణ అవసరం</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="99"/>
+        <location filename="../src/libclient/callmodel.cpp" line="101"/>
         <source>Session Timer Too Small</source>
         <translation>సెషన్ టైమర్ చాలా చిన్నది</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="100"/>
+        <location filename="../src/libclient/callmodel.cpp" line="102"/>
         <source>Interval Too Brief</source>
         <translation>అంతరాయం చాలా చిన్నది</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="101"/>
+        <location filename="../src/libclient/callmodel.cpp" line="103"/>
         <source>Temporarily Unavailable</source>
         <translation>తాత్కాలికంగా అందుబాటులో లేదు</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="102"/>
+        <location filename="../src/libclient/callmodel.cpp" line="104"/>
         <source>Call TSX Does Not Exist</source>
         <translation>కాల్ TSX లేదు</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="103"/>
+        <location filename="../src/libclient/callmodel.cpp" line="105"/>
         <source>Loop Detected</source>
         <translation>లూప్ గుర్తించబడింది</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="104"/>
+        <location filename="../src/libclient/callmodel.cpp" line="106"/>
         <source>Too Many Hops</source>
         <translation>చాలా జుట్టు</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="105"/>
+        <location filename="../src/libclient/callmodel.cpp" line="107"/>
         <source>Address Incomplete</source>
         <translation>చిరునామా అసంపూర్ణము</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="106"/>
+        <location filename="../src/libclient/callmodel.cpp" line="108"/>
         <source>Ambiguous</source>
         <translation>అస్పష్టమైనవి</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="333"/>
-        <location filename="../src/libclient/callmodel.cpp" line="107"/>
+        <location filename="../src/libclient/callmodel.cpp" line="109"/>
         <source>Busy</source>
         <translation>బిజీగా</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="108"/>
+        <location filename="../src/libclient/callmodel.cpp" line="110"/>
         <source>Request Terminated</source>
         <translation>అభ్యర్థన రద్దు</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="110"/>
+        <location filename="../src/libclient/callmodel.cpp" line="112"/>
         <source>Bad Event</source>
         <translation>చెడ్డ సంఘటన</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="111"/>
+        <location filename="../src/libclient/callmodel.cpp" line="113"/>
         <source>Request Updated</source>
         <translation>అభ్యర్థన నవీకరించబడింది</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="112"/>
+        <location filename="../src/libclient/callmodel.cpp" line="114"/>
         <source>Request Pending</source>
         <translation>అభ్యర్థన వేచి ఉంది</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="113"/>
+        <location filename="../src/libclient/callmodel.cpp" line="115"/>
         <source>Undecipherable</source>
         <translation>విఘాతం చేయలేనిది</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="114"/>
+        <location filename="../src/libclient/callmodel.cpp" line="116"/>
         <source>Internal Server Error</source>
         <translation>అంతర్గత సర్వర్ లోపం</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="115"/>
+        <location filename="../src/libclient/callmodel.cpp" line="117"/>
         <source>Not Implemented</source>
         <translation>అమలు చేయబడలేదు</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="116"/>
+        <location filename="../src/libclient/callmodel.cpp" line="118"/>
         <source>Bad Gateway</source>
         <translation>చెడ్డ గేట్వే</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="117"/>
+        <location filename="../src/libclient/callmodel.cpp" line="119"/>
         <source>Service Unavailable</source>
         <translation>సేవ అందుబాటులో లేదు</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="118"/>
+        <location filename="../src/libclient/callmodel.cpp" line="120"/>
         <source>Server Timeout</source>
         <translation>సర్వర్ టైమ్అవుట్</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="119"/>
+        <location filename="../src/libclient/callmodel.cpp" line="121"/>
         <source>Version Not Supported</source>
         <translation>వెర్షన్ మద్దతు లేదు</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="120"/>
+        <location filename="../src/libclient/callmodel.cpp" line="122"/>
         <source>Message Too Large</source>
         <translation>సందేశం చాలా పెద్దది</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="121"/>
+        <location filename="../src/libclient/callmodel.cpp" line="123"/>
         <source>Precondition Failure</source>
         <translation>ముందస్తు పరిస్థితులు విఫలమయ్యాయి</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="122"/>
+        <location filename="../src/libclient/callmodel.cpp" line="124"/>
         <source>Busy Everywhere</source>
         <translation>ప్రతిచోటా బిజీగా</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="123"/>
+        <location filename="../src/libclient/callmodel.cpp" line="125"/>
         <source>Call Refused</source>
         <translation>కాల్ తిరస్కరించబడింది</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="124"/>
+        <location filename="../src/libclient/callmodel.cpp" line="126"/>
         <source>Does Not Exist Anywhere</source>
         <translation>ఎక్కడా లేదు</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="125"/>
+        <location filename="../src/libclient/callmodel.cpp" line="127"/>
         <source>Not Acceptable Anywhere</source>
         <translation>ఎక్కడైనా ఆమోదయోగ్యం కాదు</translation>
     </message>
@@ -4591,8 +4591,8 @@ Please confirm the import on the new device.</source>
         <translation>స్థానంసేవలుతెలియనితప్పు</translation>
     </message>
     <message>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1141"/>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1154"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1136"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1149"/>
         <source>%1 (you)</source>
         <translation type="unfinished"/>
     </message>
