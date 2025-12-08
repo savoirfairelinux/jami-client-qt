@@ -101,9 +101,14 @@ public:
                        const std::string& callId,
                        const std::string& from,
                        const std::vector<std::map<std::string, std::string>>& mediaList) {
-                    LOG_LIBJAMI_SIGNAL3(
-                        "incomingCall", QString(accountId.c_str()), QString(callId.c_str()), QString(from.c_str()));
-                    Q_EMIT incomingCall(QString(accountId.c_str()), QString(callId.c_str()), QString(from.c_str()));
+                    LOG_LIBJAMI_SIGNAL3("incomingCall",
+                                        QString(accountId.c_str()),
+                                        QString(callId.c_str()),
+                                        QString(from.c_str()));
+                    Q_EMIT incomingCall(QString(accountId.c_str()),
+                                        QString(callId.c_str()),
+                                        QString(from.c_str()),
+                                        convertVecMap(mediaList));
                 }),
             exportable_callback<CallSignal::MediaChangeRequested>(
                 [this](const std::string& accountId,
@@ -544,7 +549,10 @@ Q_SIGNALS: // SIGNALS
                          const QString& callId,
                          const QString& from,
                          const MapStringString& message);
-    void incomingCall(const QString& accountId, const QString& callId, const QString& from);
+    void incomingCall(const QString& accountId,
+                      const QString& callId,
+                      const QString& from,
+                      const VectorMapStringString& mediaList);
     void mediaChangeRequested(const QString& accountId, const QString& callId, const VectorMapStringString& mediaList);
     void recordPlaybackFilepath(const QString& callId, const QString& filepath);
     void conferenceCreated(const QString& accountId, const QString& conversationId, const QString& confId);
