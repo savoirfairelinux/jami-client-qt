@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -32,7 +33,7 @@ Item {
     property bool showModeratorUnmute: false
     property bool showMaximize: false
     property bool showMinimize: false
-    property bool showHangup: false
+    property bool showDisconnect: false
 
     property int shapeHeight: 30
     property int shapeRadius: 10

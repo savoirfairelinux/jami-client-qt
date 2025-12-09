@@ -62,20 +62,20 @@ public:
     Q_INVOKABLE void startTimerInformation();
     Q_INVOKABLE void stopTimerInformation();
     Q_INVOKABLE void startAudioOnlyCall();
-    Q_INVOKABLE void placeCall();
-    Q_INVOKABLE void hangUpACall(const QString& accountId, const QString& convUid);
+    Q_INVOKABLE void startCall();
+    Q_INVOKABLE void endACall(const QString& accountId, const QString& convUid);
     Q_INVOKABLE void setCallMedia(const QString& accountId, const QString& convUid, bool videoMuted);
-    Q_INVOKABLE void acceptACall(const QString& accountId, const QString& convUid);
+    Q_INVOKABLE void acceptCall(const QString& accountId, const QString& convUid);
 
     Q_INVOKABLE void connectCallModel(const QString& accountId);
     Q_INVOKABLE void sipInputPanelPlayDTMF(const QString& key);
 
     // For Call Overlay
-    Q_INVOKABLE void hangUpCall(const QString& callId);
+    Q_INVOKABLE void endCall(const QString& callId);
     Q_INVOKABLE void setActiveStream(const QString& uri, const QString& deviceId, const QString& streamId);
     Q_INVOKABLE void minimizeParticipant(const QString& uri);
     Q_INVOKABLE void showGridConferenceLayout();
-    Q_INVOKABLE void hangUpThisCall();
+    Q_INVOKABLE void disconnectCall();
     Q_INVOKABLE bool isCurrentHost() const;
     Q_INVOKABLE bool participantIsHost(const QString& uri) const;
     Q_INVOKABLE void setModerator(const QString& uri, const bool state);
@@ -94,7 +94,7 @@ public:
                                      const QString& sinkId,
                                      const bool state);
     Q_INVOKABLE MuteStates getMuteState(const QString& uri) const;
-    Q_INVOKABLE void hangupParticipant(const QString& uri, const QString& deviceId);
+    Q_INVOKABLE void disconnectParticipant(const QString& uri, const QString& deviceId);
     Q_INVOKABLE void updateCall(const QString& convUid = {}, const QString& accountId = {}, bool forceCallOnly = false);
     Q_INVOKABLE QString getCallDurationTime(const QString& accountId, const QString& convUid);
     Q_INVOKABLE void resetCallInfo();

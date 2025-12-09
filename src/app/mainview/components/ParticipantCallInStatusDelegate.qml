@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 import QtQuick
 import QtQuick.Layouts
 import net.jami.Adapters 1.1
@@ -114,16 +115,16 @@ SpinningAnimation {
 
             preferredSize: 40
 
-            pressedColor: JamiTheme.refuseRed
-            hoveredColor: JamiTheme.refuseRed
-            normalColor: JamiTheme.refuseRedTransparent
+            pressedColor: JamiTheme.declineRed
+            hoveredColor: JamiTheme.declineRed
+            normalColor: JamiTheme.declineRedTransparent
 
             source: JamiResources.cross_black_24dp_svg
             imageColor: JamiTheme.whiteColor
 
             toolTipText: JamiStrings.optionCancel
 
-            onClicked: CallAdapter.hangUpCall(PendingConferenceeCallId)
+            onClicked: CallAdapter.endCall(PendingConferenceeCallId)
         }
     }
 }
