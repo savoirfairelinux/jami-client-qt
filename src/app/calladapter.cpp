@@ -347,7 +347,7 @@ CallAdapter::startAudioOnlyCall()
 }
 
 void
-CallAdapter::placeCall()
+CallAdapter::startCall()
 {
     const auto convUid = lrcInstance_->get_selectedConvUid();
     if (!convUid.isEmpty()) {

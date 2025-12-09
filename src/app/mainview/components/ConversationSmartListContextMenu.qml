@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 import QtQuick
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
@@ -50,7 +51,7 @@ ContextMenuAutoLoader {
             onClicked: {
                 LRCInstance.selectConversation(responsibleConvUid, responsibleAccountId);
                 if (CurrentAccount.videoEnabled_Video)
-                    CallAdapter.placeCall();
+                    CallAdapter.startCall();
             }
         },
         GeneralMenuItem {
@@ -58,7 +59,7 @@ ContextMenuAutoLoader {
 
             canTrigger: !hasCall && !readOnly
             itemName: JamiStrings.startAudioCall
-            iconSource: JamiResources.place_audiocall_24dp_svg
+            iconSource: JamiResources.start_audiocall_24dp_svg
             onClicked: {
                 LRCInstance.selectConversation(responsibleConvUid, responsibleAccountId);
                 CallAdapter.startAudioOnlyCall();

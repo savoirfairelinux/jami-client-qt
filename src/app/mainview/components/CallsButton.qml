@@ -50,7 +50,7 @@ Rectangle {
 
             JamiPushButton {
                 id: callButton
-                source: JamiResources.place_audiocall_24dp_svg
+                source: JamiResources.start_audiocall_24dp_svg
                 normalColor: JamiTheme.buttonCallLightGreen
                 hoveredColor: JamiTheme.buttonCallDarkGreen
                 imageColor: hovered ? JamiTheme.buttonCallLightGreen : JamiTheme.blackColor
@@ -162,7 +162,7 @@ Rectangle {
                     JamiPushButton {
                         Layout.preferredWidth: 35
                         Layout.preferredHeight: 35
-                        source: JamiResources.place_audiocall_24dp_svg
+                        source: JamiResources.start_audiocall_24dp_svg
                         normalColor: JamiTheme.buttonCallLightGreen
                         imageColor: darkTheme ? JamiTheme.whiteColor : JamiTheme.blackColor
                         radius: 35

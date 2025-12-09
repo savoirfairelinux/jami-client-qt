@@ -62,7 +62,7 @@ public:
     Q_INVOKABLE void startTimerInformation();
     Q_INVOKABLE void stopTimerInformation();
     Q_INVOKABLE void startAudioOnlyCall();
-    Q_INVOKABLE void placeCall();
+    Q_INVOKABLE void startCall();
     Q_INVOKABLE void hangUpACall(const QString& accountId, const QString& convUid);
     Q_INVOKABLE void setCallMedia(const QString& accountId, const QString& convUid, bool videoMuted);
     Q_INVOKABLE void acceptACall(const QString& accountId, const QString& convUid);

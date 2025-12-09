@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 import QtQuick
 import QtQuick.Controls
 import net.jami.Adapters 1.1
@@ -121,7 +122,7 @@ JamiListView {
         enabled: CurrentAccount.videoEnabled_Video && root.visible
         onActivated: {
             if (CurrentAccount.videoEnabled_Video)
-                CallAdapter.placeCall();
+                CallAdapter.startCall();
         }
     }
 
