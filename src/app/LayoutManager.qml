@@ -263,7 +263,7 @@ QtObject {
                 .length : 0
         }
 
-        // Listen for a hangup combined with a fullscreen call state and
+        // Listen for an "end" call combined with a fullscreen call state and
         // remove the OngoingCallPage component.
         property var data: Connections {
             target: CallAdapter

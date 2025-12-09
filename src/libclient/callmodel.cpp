@@ -1,19 +1,19 @@
-/****************************************************************************
- *   Copyright (C) 2017-2025 Savoir-faire Linux Inc.                        *
- *                                                                          *
- *   This library is free software; you can redistribute it and/or          *
- *   modify it under the terms of the GNU Lesser General Public             *
- *   License as published by the Free Software Foundation; either           *
- *   version 2.1 of the License, or (at your option) any later version.     *
- *                                                                          *
- *   This library is distributed in the hope that it will be useful,        *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of         *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU      *
- *   Lesser General Public License for more details.                        *
- *                                                                          *
- *   You should have received a copy of the GNU General Public License      *
- *   along with this program.  If not, see <http://www.gnu.org/licenses/>.  *
- ***************************************************************************/
+/*
+ * Copyright (C) 2017-2025 Savoir-faire Linux Inc.
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "api/callmodel.h"
 
@@ -122,7 +122,7 @@ static const std::map<short, QString>
                               {513, QObject::tr("Message Too Large")},
                               {580, QObject::tr("Precondition Failure")},
                               {600, QObject::tr("Busy Everywhere")},
-                              {603, QObject::tr("Call Refused")},
+                              {603, QObject::tr("Call Declined")},
                               {604, QObject::tr("Does Not Exist Anywhere")},
                               {606, QObject::tr("Not Acceptable Anywhere")}};
 
@@ -695,23 +695,23 @@ CallModel::accept(const QString& callId) const
 }
 
 void
-CallModel::hangUp(const QString& callId) const
+CallModel::end(const QString& callId) const
 {
     if (!hasCall(callId))
         return;
     auto& call = pimpl_->calls[callId];
 
     if (call->status == call::Status::INCOMING_RINGING) {
-        CallManager::instance().refuse(owner.id, callId);
+        CallManager::instance().decline(owner.id, callId);
         return;
     }
 
     switch (call->type) {
     case call::Type::DIALOG:
-        CallManager::instance().hangUp(owner.id, callId);
+        CallManager::instance().end(owner.id, callId);
         break;
     case call::Type::CONFERENCE:
-        CallManager::instance().hangUpConference(owner.id, callId);
+        CallManager::instance().disconnectConference(owner.id, callId);
         break;
     case call::Type::INVALID:
     default:
@@ -720,11 +720,11 @@ CallModel::hangUp(const QString& callId) const
 }
 
 void
-CallModel::refuse(const QString& callId) const
+CallModel::decline(const QString& callId) const
 {
     if (!hasCall(callId))
         return;
-    CallManager::instance().refuse(owner.id, callId);
+    CallManager::instance().decline(owner.id, callId);
 }
 
 void
@@ -1370,9 +1370,9 @@ CallModel::muteStream(const QString& confId,
 }
 
 void
-CallModel::hangupParticipant(const QString& confId, const QString& accountUri, const QString& deviceId)
+CallModel::disconnectParticipant(const QString& confId, const QString& accountUri, const QString& deviceId)
 {
-    CallManager::instance().hangupParticipant(owner.id, confId, accountUri, deviceId);
+    CallManager::instance().disconnectParticipant(owner.id, confId, accountUri, deviceId);
 }
 
 void
@@ -1458,7 +1458,7 @@ CallModelPimpl::slotCallStateChanged(const QString& accountId, const QString& ca
 
         if (!(details["CALL_TYPE"] == "1") && !linked.owner.confProperties.allowIncoming
             && linked.owner.profileInfo.type == profile::Type::JAMI) {
-            linked.refuse(callId);
+            linked.decline(callId);
             return;
         }
 

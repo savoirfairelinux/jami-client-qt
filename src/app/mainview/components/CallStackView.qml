@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -36,8 +37,8 @@ Item {
     Shortcut {
         sequence: "Ctrl+D"
         context: Qt.ApplicationShortcut
-        onActivated: CallAdapter.hangUpThisCall()
-        onActivatedAmbiguously: CallAdapter.hangUpThisCall()
+        onActivated: CallAdapter.disconnectCall()
+        onActivatedAmbiguously: CallAdapter.disconnectCall()
     }
 
     Shortcut {
