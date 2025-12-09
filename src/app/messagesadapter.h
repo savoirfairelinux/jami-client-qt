@@ -118,7 +118,7 @@ public:
     Q_INVOKABLE void removeContact(const QString& convUid, bool banContact = false);
     Q_INVOKABLE void clearConversationHistory(const QString& accountId, const QString& convUid);
     Q_INVOKABLE void acceptInvitation(const QString& convId = {});
-    Q_INVOKABLE void refuseInvitation(const QString& convUid = "");
+    Q_INVOKABLE void declineInvitation(const QString& convUid = "");
     Q_INVOKABLE void blockConversation(const QString& convUid = "");
     Q_INVOKABLE void unbanContact(int index);
     Q_INVOKABLE void unbanConversation(const QString& convUid);

@@ -148,8 +148,8 @@ Rectangle {
     Shortcut {
         sequence: "Ctrl+D"
         context: Qt.ApplicationShortcut
-        onActivated: CallAdapter.hangUpThisCall()
-        onActivatedAmbiguously: CallAdapter.hangUpThisCall()
+        onActivated: CallAdapter.endCall()
+        onActivatedAmbiguously: CallAdapter.endCall()
     }
 
     Shortcut {

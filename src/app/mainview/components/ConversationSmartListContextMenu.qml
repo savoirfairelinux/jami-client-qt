@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 import QtQuick
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
@@ -50,7 +51,7 @@ ContextMenuAutoLoader {
             onClicked: {
                 LRCInstance.selectConversation(responsibleConvUid, responsibleAccountId);
                 if (CurrentAccount.videoEnabled_Video)
-                    CallAdapter.placeCall();
+                    CallAdapter.startCall();
             }
         },
         GeneralMenuItem {
@@ -58,7 +59,7 @@ ContextMenuAutoLoader {
 
             canTrigger: !hasCall && !readOnly
             itemName: JamiStrings.startAudioCall
-            iconSource: JamiResources.place_audiocall_24dp_svg
+            iconSource: JamiResources.start_audiocall_24dp_svg
             onClicked: {
                 LRCInstance.selectConversation(responsibleConvUid, responsibleAccountId);
                 CallAdapter.startAudioOnlyCall();
@@ -77,7 +78,7 @@ ContextMenuAutoLoader {
 
             canTrigger: !hasCall && !root.isBanned
             itemName: mode === Conversation.Mode.ONE_TO_ONE ? JamiStrings.removeConversation : JamiStrings.leaveGroup
-            iconSource: JamiResources.ic_hangup_participant_24dp_svg
+            iconSource: JamiResources.ic_disconnect_participant_24dp_svg
             onClicked: {
                 var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
                     "title": JamiStrings.confirmAction,
@@ -107,12 +108,12 @@ ContextMenuAutoLoader {
             }
         },
         GeneralMenuItem {
-            id: hangup
+            id: endCall
 
             canTrigger: hasCall
             itemName: JamiStrings.endCall
             iconSource: JamiResources.ic_call_end_white_24dp_svg
-            onClicked: CallAdapter.hangUpACall(responsibleAccountId, responsibleConvUid)
+            onClicked: CallAdapter.endCall(responsibleAccountId, responsibleConvUid)
         },
         GeneralMenuItem {
             id: acceptContactRequest
@@ -128,7 +129,7 @@ ContextMenuAutoLoader {
             canTrigger: contactType === Profile.Type.PENDING
             itemName: JamiStrings.declineContactRequest
             iconSource: JamiResources.round_close_24dp_svg
-            onClicked: MessagesAdapter.refuseInvitation(responsibleConvUid)
+            onClicked: MessagesAdapter.declineInvitation(responsibleConvUid)
         },
         GeneralMenuItem {
             id: blockContact

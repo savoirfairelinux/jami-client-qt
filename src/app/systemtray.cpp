@@ -46,10 +46,10 @@ acceptPending(NotifyNotification*, char* action, SystemTray* nm)
 }
 
 static void
-refusePending(NotifyNotification*, char* action, SystemTray* nm)
+declinePending(NotifyNotification*, char* action, SystemTray* nm)
 {
     QStringList sl = QString(action).split(";");
-    Q_EMIT nm->refusePendingActivated(sl.at(1), sl.at(2));
+    Q_EMIT nm->declinePendingActivated(sl.at(1), sl.at(2));
 }
 
 void
@@ -224,7 +224,7 @@ SystemTray::showNotification(
             pimpl_->addNotificationAction(n, tr("Open conversation"), (void*) openConversation);
             if (type != NotificationType::CHAT) {
                 pimpl_->addNotificationAction(n, tr("Accept invitation"), (void*) acceptPending);
-                pimpl_->addNotificationAction(n, tr("Decline invitation"), (void*) refusePending);
+                pimpl_->addNotificationAction(n, tr("Decline invitation"), (void*) declinePending);
             }
         }
     }

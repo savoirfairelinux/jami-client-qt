@@ -103,7 +103,7 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
                 accInfo.conversationModel->acceptConversationRequest(convUid);
             });
     connect(systemTray_,
-            &SystemTray::refusePendingActivated,
+            &SystemTray::declinePendingActivated,
             this,
             [this](const QString& accountId, const QString& convUid) {
                 auto& accInfo = lrcInstance_->getAccountInfo(accountId);

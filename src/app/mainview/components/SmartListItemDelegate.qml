@@ -281,7 +281,7 @@ ItemDelegate {
             CallAdapter.startAudioOnlyCall();
         else {
             if (!CurrentConversation.readOnly) {
-                CallAdapter.placeCall();
+                CallAdapter.startCall();
             }
         }
     }

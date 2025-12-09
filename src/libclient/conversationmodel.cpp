@@ -741,7 +741,7 @@ ConversationModel::selectConversation(const QString& uid) const
         if (!conversation.confId.isEmpty() && owner.confProperties.isRendezVous) {
             // If we are on a rendez vous account and we select the conversation,
             // attach to the call.
-            CallManager::instance().unholdConference(owner.id, conversation.confId);
+            CallManager::instance().resumeConference(owner.id, conversation.confId);
         }
 
         if (not callEnded and not conversation.confId.isEmpty()) {

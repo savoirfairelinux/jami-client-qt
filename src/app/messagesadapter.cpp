@@ -416,7 +416,7 @@ MessagesAdapter::acceptInvitation(const QString& convId)
 }
 
 void
-MessagesAdapter::refuseInvitation(const QString& convUid)
+MessagesAdapter::declineInvitation(const QString& convUid)
 {
     const auto currentConvUid = convUid.isEmpty() ? lrcInstance_->get_selectedConvUid() : convUid;
     lrcInstance_->getCurrentConversationModel()->removeConversation(currentConvUid, false);
