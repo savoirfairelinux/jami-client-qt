@@ -60,9 +60,9 @@ ConnectionInfoListModel::data(const QModelIndex& index, int role) const
     case ConnectionInfoList::ConnectionDatas: {
         QString peerString;
         peerString += "Peer: " + peerId;
-        for (const auto& [device, data] : peerData.asKeyValueRange()) {
+        for (const auto& [connectionId, data] : peerData.asKeyValueRange()) {
             peerString += ",\n    {";
-            peerString += "Device: " + device;
+            peerString += "Device: " + data["device"].toString();
             peerString += ", Status: " + data["status"].toString();
             peerString += ", Channel(s): " + data["channels"].toString();
             peerString += ", Remote IP address: " + data["remoteAddress"].toString();
@@ -83,8 +83,8 @@ ConnectionInfoListModel::data(const QModelIndex& index, int role) const
     case ConnectionInfoList::DeviceId: {
         QVariantMap deviceMap;
         int i = 0;
-        for (const auto& device : peerData.keys()) {
-            deviceMap.insert(QString::number(i++), device);
+        for (const auto& data : peerData) {
+            deviceMap.insert(QString::number(i++), data["device"]);
         }
         return QVariant(deviceMap);
     }
@@ -157,8 +157,9 @@ ConnectionInfoListModel::aggregateData()
             continue;
         newPeerIds.insert(peerId);
         const auto& id = connectionInfo["id"];
-        peerData_[peerId][connectionInfo["device"]] = {
+        peerData_[peerId][id] = {
             {"id", id},
+            {"device", connectionInfo["device"]},
             {"status", connectionInfo["status"].toUInt()},
             {"channels", lrcInstance_->getChannelList(accountId, id).size()},
             {"remoteAddress", connectionInfo["remoteAddress"]},
