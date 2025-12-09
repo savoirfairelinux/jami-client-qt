@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -99,7 +100,7 @@ ItemDelegate {
         id: supplimentaryBackground
 
         visible: ItemAction.hasBg !== undefined
-        color: root.down ? Qt.lighter(JamiTheme.refuseRed, 1.5) : root.hovered && !menu.hovered ? JamiTheme.refuseRed : JamiTheme.refuseRedTransparent
+        color: root.down ? Qt.lighter(JamiTheme.declineRed, 1.5) : root.hovered && !menu.hovered ? JamiTheme.declineRed : JamiTheme.declineRedTransparent
         anchors.fill: parent
         radius: isLast ? 5 : width / 2
         type: isLast ? HalfPill.Right : HalfPill.None

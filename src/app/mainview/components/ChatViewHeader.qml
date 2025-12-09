@@ -167,7 +167,7 @@ Rectangle {
             QWKSetParentHitTestVisible {
             }
             visible: CurrentConversation.activeCalls.length === 0 && interactionButtonsVisibility
-            source: JamiResources.place_audiocall_24dp_svg
+            source: JamiResources.start_audiocall_24dp_svg
             toolTipText: JamiStrings.startAudioCall
             onClicked: CallAdapter.startAudioOnlyCall()
         }
@@ -178,7 +178,7 @@ Rectangle {
             visible: CurrentConversation.activeCalls.length === 0 && interactionButtonsVisibility && CurrentAccount.videoEnabled_Video
             source: JamiResources.videocam_24dp_svg
             toolTipText: JamiStrings.startVideoCall
-            onClicked: CallAdapter.placeCall()
+            onClicked: CallAdapter.startCall()
         }
 
         CallsButton {

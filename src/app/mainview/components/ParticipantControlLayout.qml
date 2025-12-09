@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 import QtQuick.Layouts
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -22,7 +23,7 @@ import "../../commoncomponents"
 RowLayout {
     id: root
 
-    property int visibleButtons: toggleModerator.visible + toggleMute.visible + maximizeParticipant.visible + minimizeParticipant.visible + hangupParticipant.visible
+    property int visibleButtons: toggleModerator.visible + toggleMute.visible + maximizeParticipant.visible + minimizeParticipant.visible + disconnectParticipant.visible
 
     spacing: 8
 
@@ -96,15 +97,15 @@ RowLayout {
     }
 
     ParticipantOverlayButton {
-        id: hangupParticipant
+        id: disconnectParticipant
 
-        visible: showHangup
+        visible: showDisconnect
         preferredSize: iconButtonPreferredSize
         Layout.preferredHeight: buttonPreferredSize
         Layout.preferredWidth: buttonPreferredSize
         Layout.alignment: Qt.AlignVCenter
-        source: JamiResources.ic_hangup_participant_24dp_svg
-        onClicked: CallAdapter.hangupParticipant(uri, deviceId)
-        toolTipText: JamiStrings.hangupParticipant
+        source: JamiResources.ic_disconnect_participant_24dp_svg
+        onClicked: CallAdapter.disconnectParticipant(uri, deviceId)
+        toolTipText: JamiStrings.disconnectParticipant
     }
 }

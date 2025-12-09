@@ -1,19 +1,20 @@
-/****************************************************************************
- *   Copyright (C) 2017-2025 Savoir-faire Linux Inc.                        *
- *                                                                          *
- *   This library is free software; you can redistribute it and/or          *
- *   modify it under the terms of the GNU Lesser General Public             *
- *   License as published by the Free Software Foundation; either           *
- *   version 2.1 of the License, or (at your option) any later version.     *
- *                                                                          *
- *   This library is distributed in the hope that it will be useful,        *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of         *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU      *
- *   Lesser General Public License for more details.                        *
- *                                                                          *
- *   You should have received a copy of the GNU General Public License      *
- *   along with this program.  If not, see <http://www.gnu.org/licenses/>.  *
- ***************************************************************************/
+/*
+ * Copyright (C) 2017-2025 Savoir-faire Linux Inc.
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #pragma once
 
 #include "api/behaviorcontroller.h"
@@ -143,7 +144,7 @@ public:
     const CallParticipants& getParticipantsInfos(const QString& callId);
 
     /**
-     * Get the call from the peer uri
+     * Get the call from the peer URI
      * @param  uri
      * @param  notOver search for a non finished call
      * @return the callInfo
@@ -178,22 +179,22 @@ public:
     void sendSipMessage(const QString& callId, const QString& body) const;
 
     /**
-     * Accept a call
+     * Accept call
      * @param callId
      */
     void accept(const QString& callId) const;
 
     /**
-     * Hang up a call
+     * End call
      * @param callId
      */
-    void hangUp(const QString& callId) const;
+    void end(const QString& callId) const;
 
     /**
-     * Refuse a call
+     * Decline call
      * @param callId
      */
-    void refuse(const QString& callId) const;
+    void decline(const QString& callId) const;
 
     /**
      * Toggle audio record on a call
@@ -351,12 +352,12 @@ public:
                     const bool& state);
 
     /**
-     * Hangup participant from the conference
+     * Disconnect participant from the conference
      * @param confId        The call to change
-     * @param accountUri    Uri of the participant to mute
-     * @param deviceId      Device Id of the participant to mute
+     * @param accountUri    URI of the participant to mute
+     * @param deviceId      Device ID of the participant to mute
      */
-    void hangupParticipant(const QString& confId, const QString& accountUri, const QString& deviceId);
+    void disconnectParticipant(const QString& confId, const QString& accountUri, const QString& deviceId);
 
     /**
      * Check if a call is a conference or not

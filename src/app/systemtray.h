@@ -48,7 +48,7 @@ public:
 Q_SIGNALS:
     void openConversationActivated(const QString& accountId, const QString& convUid);
     void acceptPendingActivated(const QString& accountId, const QString& peerUri);
-    void refusePendingActivated(const QString& accountId, const QString&);
+    void declinePendingActivated(const QString& accountId, const QString&);
     void acceptCallActivated(const QString& accountId, const QString&);
     void declineCallActivated(const QString& accountId, const QString&);
 #else

@@ -64,7 +64,7 @@ CallAdapter::CallAdapter(AppSettingsManager* settingsManager,
             &SystemTray::acceptCallActivated,
             this,
             [this](const QString& accountId, const QString& convUid) {
-                acceptACall(accountId, convUid);
+                acceptCall(accountId, convUid);
                 Q_EMIT lrcInstance_->notificationClicked();
                 lrcInstance_->selectConversation(convUid, accountId);
                 updateCall(convUid, accountId);
@@ -73,7 +73,7 @@ CallAdapter::CallAdapter(AppSettingsManager* settingsManager,
     connect(systemTray_,
             &SystemTray::declineCallActivated,
             this,
-            [this](const QString& accountId, const QString& convUid) { hangUpACall(accountId, convUid); });
+            [this](const QString& accountId, const QString& convUid) { endACall(accountId, convUid); });
 #endif
 
     connect(&lrcInstance_->behaviorController(),
@@ -347,7 +347,7 @@ CallAdapter::startAudioOnlyCall()
 }
 
 void
-CallAdapter::placeCall()
+CallAdapter::startCall()
 {
     const auto convUid = lrcInstance_->get_selectedConvUid();
     if (!convUid.isEmpty()) {
@@ -356,11 +356,11 @@ CallAdapter::placeCall()
 }
 
 void
-CallAdapter::hangUpACall(const QString& accountId, const QString& convUid)
+CallAdapter::endACall(const QString& accountId, const QString& convUid)
 {
     const auto& convInfo = lrcInstance_->getConversationFromConvUid(convUid, accountId);
     if (!convInfo.uid.isEmpty()) {
-        lrcInstance_->getAccountInfo(accountId).callModel->hangUp(convInfo.callId);
+        lrcInstance_->getAccountInfo(accountId).callModel->end(convInfo.callId);
     }
 }
 
@@ -375,7 +375,7 @@ CallAdapter::setCallMedia(const QString& accountId, const QString& convUid, bool
 }
 
 void
-CallAdapter::acceptACall(const QString& accountId, const QString& convUid)
+CallAdapter::acceptCall(const QString& accountId, const QString& convUid)
 {
     const auto& convInfo = lrcInstance_->getConversationFromConvUid(convUid, accountId);
     if (convInfo.uid.isEmpty())
@@ -594,9 +594,9 @@ CallAdapter::saveConferenceSubcalls()
 }
 
 void
-CallAdapter::hangUpCall(const QString& callId)
+CallAdapter::endCall(const QString& callId)
 {
-    lrcInstance_->getCurrentCallModel()->hangUp(callId);
+    lrcInstance_->getCurrentCallModel()->end(callId);
 }
 
 void
@@ -686,15 +686,15 @@ CallAdapter::showGridConferenceLayout()
 }
 
 void
-CallAdapter::hangUpThisCall()
+CallAdapter::endCall()
 {
     const auto& convInfo = lrcInstance_->getConversationFromConvUid(lrcInstance_->get_selectedConvUid(), accountId_);
     if (!convInfo.uid.isEmpty()) {
         auto* callModel = lrcInstance_->getAccountInfo(accountId_).callModel.get();
         if (!convInfo.confId.isEmpty() && callModel->hasCall(convInfo.confId)) {
-            callModel->hangUp(convInfo.confId);
+            callModel->end(convInfo.confId);
         } else if (callModel->hasCall(convInfo.callId)) {
-            callModel->hangUp(convInfo.callId);
+            callModel->end(convInfo.callId);
         }
     }
 }
@@ -841,7 +841,7 @@ CallAdapter::getMuteState(const QString& uri) const
 }
 
 void
-CallAdapter::hangupParticipant(const QString& uri, const QString& deviceId)
+CallAdapter::disconnectParticipant(const QString& uri, const QString& deviceId)
 {
     auto* callModel = lrcInstance_->getAccountInfo(accountId_).callModel.get();
     const auto& convInfo = lrcInstance_->getConversationFromConvUid(lrcInstance_->get_selectedConvUid());
@@ -851,7 +851,7 @@ CallAdapter::hangupParticipant(const QString& uri, const QString& deviceId)
         confId = convInfo.callId;
     try {
         const auto call = callModel->getCall(confId);
-        callModel->hangupParticipant(confId, uri, deviceId);
+        callModel->disconnectParticipant(confId, uri, deviceId);
     } catch (...) {
     }
 }

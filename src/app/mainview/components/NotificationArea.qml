@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -53,7 +54,7 @@ Rectangle {
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
             Layout.rightMargin: JamiTheme.preferredMarginSize
 
-            source: JamiResources.place_audiocall_24dp_svg
+            source: JamiResources.start_audiocall_24dp_svg
             toolTipText: JamiStrings.joinCall
 
             imageColor: root.textColor
