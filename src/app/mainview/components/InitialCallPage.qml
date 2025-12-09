@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -28,8 +29,8 @@ Rectangle {
     signal callCanceled
     signal callAccepted
 
-    onCallAccepted: CallAdapter.acceptACall(CurrentAccount.id, CurrentConversation.id)
-    onCallCanceled: CallAdapter.hangUpACall(CurrentAccount.id, CurrentConversation.id)
+    onCallAccepted: CallAdapter.acceptCall(CurrentAccount.id, CurrentConversation.id)
+    onCallCanceled: CallAdapter.endACall(CurrentAccount.id, CurrentConversation.id)
 
     color: "black"
 
@@ -84,12 +85,12 @@ Rectangle {
     function fillIncomingControls() {
         incomingControlsModel.clear();
         incomingControlsModel.append({
-                "type": "refuse",
+                "type": "decline",
                 "image": JamiResources.round_close_24dp_svg
             });
         incomingControlsModel.append({
                 "type": "mic",
-                "image": JamiResources.place_audiocall_24dp_svg
+                "image": JamiResources.start_audiocall_24dp_svg
             });
         if (CurrentAccount.videoEnabled_Video && VideoDevices.listSize !== 0)
             incomingControlsModel.append({
@@ -193,17 +194,17 @@ Rectangle {
                         pressedColor: {
                             if (type === "cam" || type === "mic")
                                 return JamiTheme.acceptGreen;
-                            return JamiTheme.refuseRed;
+                            return JamiTheme.declineRed;
                         }
                         hoveredColor: {
                             if (type === "cam" || type === "mic")
                                 return JamiTheme.acceptGreen;
-                            return JamiTheme.refuseRed;
+                            return JamiTheme.declineRed;
                         }
                         normalColor: {
                             if (type === "cam" || type === "mic")
                                 return JamiTheme.acceptGreenTransparency;
-                            return JamiTheme.refuseRedTransparent;
+                            return JamiTheme.declineRedTransparent;
                         }
 
                         source: image
@@ -231,8 +232,8 @@ Rectangle {
                         color: actionButton.hovered ? JamiTheme.whiteColor : JamiTheme.whiteColorTransparent
 
                         text: {
-                            if (type === "refuse")
-                                return JamiStrings.refuse;
+                            if (type === "decline")
+                                return JamiStrings.decline;
                             else if (type === "cam")
                                 return JamiStrings.acceptVideo;
                             else if (type === "mic")
@@ -254,14 +255,14 @@ Rectangle {
     Shortcut {
         sequence: "Ctrl+Y"
         context: Qt.ApplicationShortcut
-        onActivated: CallAdapter.acceptACall(CurrentAccount.id, CurrentConversation.id)
+        onActivated: CallAdapter.acceptCall(CurrentAccount.id, CurrentConversation.id)
     }
 
     Shortcut {
         sequence: "Ctrl+Shift+D"
         context: Qt.ApplicationShortcut
         onActivated: {
-            CallAdapter.hangUpACall(CurrentAccount.id, CurrentConversation.id);
+            CallAdapter.endACall(CurrentAccount.id, CurrentConversation.id);
         }
     }
 }

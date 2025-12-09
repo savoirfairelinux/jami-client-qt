@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 import QtQuick
 import QtQuick.Layouts
 import net.jami.Adapters 1.1
@@ -142,7 +143,7 @@ Rectangle {
             }
 
             PushButton {
-                id: refuseButton
+                id: declineButton
 
                 Layout.alignment: Qt.AlignHCenter
                 Layout.preferredHeight: JamiTheme.invitationViewButtonSize
@@ -156,11 +157,11 @@ Rectangle {
                 source: JamiResources.cross_black_24dp_svg
                 imageColor: JamiTheme.primaryBackgroundColor
 
-                normalColor: JamiTheme.refuseRedTransparent
-                pressedColor: JamiTheme.refuseRed
-                hoveredColor: JamiTheme.refuseRed
+                normalColor: JamiTheme.declineRedTransparent
+                pressedColor: JamiTheme.declineRed
+                hoveredColor: JamiTheme.declineRed
 
-                onClicked: MessagesAdapter.refuseInvitation()
+                onClicked: MessagesAdapter.declineInvitation()
             }
 
             PushButton {

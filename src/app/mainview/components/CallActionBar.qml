@@ -302,8 +302,8 @@ Control {
             property var menuAction: audioInputMenuAction
         },
         Action {
-            id: hangupAction
-            onTriggered: CallAdapter.hangUpThisCall()
+            id: disconnectCallAction
+            onTriggered: CallAdapter.disconnectCall()
             icon.source: JamiResources.ic_call_end_white_24dp_svg
             icon.color: "white"
             text: JamiStrings.endCall
@@ -484,7 +484,7 @@ Control {
 
         // centered controls
         CallOverlayModel.addPrimaryControl(muteAudioAction, muteAudioAction.enabled);
-        CallOverlayModel.addPrimaryControl(hangupAction, hangupAction.enabled);
+        CallOverlayModel.addPrimaryControl(endCallAction, endCallAction.enabled);
         CallOverlayModel.addPrimaryControl(muteVideoAction, muteVideoAction.enabled);
 
         // overflow controls

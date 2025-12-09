@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 import QtQuick
 import Qt5Compat.GraphicalEffects
 import QtQuick.Layouts
@@ -198,7 +199,7 @@ Item {
                     showModeratorUnmute: (CurrentCall.isModerator || root.isMe) && root.participantIsModeratorMuted
                     showMaximize: root.canMaximize
                     showMinimize: CurrentCall.isModerator && root.participantIsActive
-                    showHangup: CurrentCall.isModerator && !root.isMe && !root.participantIsHost
+                    showDisconnect: CurrentCall.isModerator && !root.isMe && !root.participantIsHost
                 }
 
                 // Participant footer with host, moderator and mute indicators

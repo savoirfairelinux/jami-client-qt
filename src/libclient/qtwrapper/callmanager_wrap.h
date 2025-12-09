@@ -1,19 +1,20 @@
-/******************************************************************************
- *   Copyright (C) 2014-2025 Savoir-faire Linux Inc.                          *
- *                                                                            *
- *   This library is free software; you can redistribute it and/or            *
- *   modify it under the terms of the GNU Lesser General Public               *
- *   License as published by the Free Software Foundation; either             *
- *   version 2.1 of the License, or (at your option) any later version.       *
- *                                                                            *
- *   This library is distributed in the hope that it will be useful,          *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of           *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU        *
- *   Lesser General Public License for more details.                          *
- *                                                                            *
- *   You should have received a copy of the Lesser GNU General Public License *
- *   along with this program.  If not, see <http://www.gnu.org/licenses/>.    *
- *****************************************************************************/
+/*
+ * Copyright (C) 2014-2025 Savoir-faire Linux Inc.
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the Lesser GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #pragma once
 
 #include <QtCore/QObject>
@@ -291,14 +292,14 @@ public Q_SLOTS: // METHODS
         return temp;
     }
 
-    bool hangUp(const QString& accountId, const QString& callId)
+    bool end(const QString& accountId, const QString& callId)
     {
-        return libjami::hangUp(accountId.toStdString(), callId.toStdString());
+        return libjami::end(accountId.toStdString(), callId.toStdString());
     }
 
-    bool hangUpConference(const QString& accountId, const QString& confId)
+    bool disconnectConference(const QString& accountId, const QString& confId)
     {
-        return libjami::hangUpConference(accountId.toStdString(), confId.toStdString());
+        return libjami::disconnectConference(accountId.toStdString(), confId.toStdString());
     }
 
     bool hold(const QString& accountId, const QString& callId)
@@ -384,9 +385,9 @@ public Q_SLOTS: // METHODS
         libjami::recordPlaybackSeek(value);
     }
 
-    bool refuse(const QString& accountId, const QString& callId)
+    bool decline(const QString& accountId, const QString& callId)
     {
-        return libjami::refuse(accountId.toStdString(), callId.toStdString());
+        return libjami::decline(accountId.toStdString(), callId.toStdString());
     }
 
     void sendTextMessage(const QString& accountId,
@@ -509,15 +510,15 @@ public Q_SLOTS: // METHODS
                             state);
     }
 
-    void hangupParticipant(const QString& accountId,
-                           const QString& confId,
-                           const QString& accountUri,
-                           const QString& deviceId)
+    void disconnectParticipant(const QString& accountId,
+                               const QString& confId,
+                               const QString& accountUri,
+                               const QString& deviceId)
     {
-        libjami::hangupParticipant(accountId.toStdString(),
-                                   confId.toStdString(),
-                                   accountUri.toStdString(),
-                                   deviceId.toStdString());
+        libjami::disconnectParticipant(accountId.toStdString(),
+                                       confId.toStdString(),
+                                       accountUri.toStdString(),
+                                       deviceId.toStdString());
     }
 
     void raiseHand(const QString& accountId,

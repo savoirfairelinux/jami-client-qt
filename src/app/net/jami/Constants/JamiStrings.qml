@@ -28,7 +28,7 @@ Item {
     property string accept: qsTr("Accept")
     property string acceptAudio: qsTr("Accept with audio")
     property string acceptVideo: qsTr("Accept with video")
-    property string refuse: qsTr("Decline")
+    property string decline: qsTr("Decline")
     property string endCall: qsTr("End call")
     property string incomingAudioCallFrom: qsTr("Incoming audio call from %1")
     property string incomingVideoCallFrom: qsTr("Incoming video call from %1")
@@ -749,9 +749,9 @@ Item {
     property string unsetModerator: qsTr("Unset moderator")
     property string muteParticipant: qsTr("Mute participant")
     property string unmuteParticipant: qsTr("Unmute participant")
-    property string maximizeParticipant: qsTr("Maximize")
-    property string minimizeParticipant: qsTr("Minimize")
-    property string hangupParticipant: qsTr("Hangup")
+    property string maximizeParticipant: qsTr("Maximize participant")
+    property string minimizeParticipant: qsTr("Minimize participant")
+    property string disconnectParticipant: qsTr("Disconnect participant")
     property string localMuted: qsTr("Local muted")
 
     // Settings moderation
