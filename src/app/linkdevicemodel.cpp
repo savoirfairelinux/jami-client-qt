@@ -62,12 +62,13 @@ LinkDeviceModel::addDevice(const QString& token)
     set_tokenErrorMessage("");
     auto errorMessage = QObject::tr("Unrecognized new device identifier. Please follow the instructions above.");
 
-    if (!token.startsWith("jami-auth://") || (token.length() != 59)) {
+    QString trimmedToken = token.trimmed();
+    if (!trimmedToken.startsWith("jami-auth://") || (trimmedToken.length() != 59) || (trimmedToken.length() != 83)) {
         set_tokenErrorMessage(errorMessage);
         return;
     }
 
-    int32_t result = lrcInstance_->accountModel().addDevice(lrcInstance_->getCurrentAccountInfo().id, token);
+    int32_t result = lrcInstance_->accountModel().addDevice(lrcInstance_->getCurrentAccountInfo().id, trimmedToken);
     if (result > 0) {
         operationId_ = result;
     } else {
