@@ -194,10 +194,6 @@ Item {
     property color declineButtonHoverRed: "#f5554a"
     property color declineButtonPressedRed: "#db3c30"
 
-    property color sipInputButtonBackgroundColor: "#336699"
-    property color sipInputButtonHoverColor: "#4477aa"
-    property color sipInputButtonPressColor: "#5588bb"
-
     property string buttonConference: "transparent"
     property string buttonConferenceHovered: "#110000"
     property string buttonConferencePressed: "#110000"
