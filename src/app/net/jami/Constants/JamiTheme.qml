@@ -70,7 +70,6 @@ Item {
     property color primaryForegroundColor: darkTheme ? whiteColor : blackColor
     property color primaryBackgroundColor: darkTheme ? bgDarkMode_ : whiteColor
     property color backgroundColor: darkTheme ? bgSideBarDarkMode_ : lightGrey_
-    property color shadowColor: "#80000000"
     property color secondaryBackgroundColor: darkTheme ? bgDarkMode_ : whiteColor
     property color greyBorderColor: "#333"
     property color selectionBlue: darkTheme ? "#0061a5" : "#109ede"
@@ -193,10 +192,6 @@ Item {
     property color declineButtonRed: "#f44336"
     property color declineButtonHoverRed: "#f5554a"
     property color declineButtonPressedRed: "#db3c30"
-
-    property color sipInputButtonBackgroundColor: "#336699"
-    property color sipInputButtonHoverColor: "#4477aa"
-    property color sipInputButtonPressColor: "#5588bb"
 
     property string buttonConference: "transparent"
     property string buttonConferenceHovered: "#110000"
@@ -718,4 +713,15 @@ Item {
 
     // QWK
     property real qwkTitleBarHeight: 50
+
+    // Generalized shadows
+    property real shadowBlur: 0.5
+    property color shadowColor: JamiTheme.blackColor
+    property real shadowHorizontalOffset: 0
+    property real shadowVerticalOffset: 1.5
+    property real shadowOpacity: 0.5
+
+    // Sip Input Panel (dialpad)
+    property int sipInputPanelRadius: 30
+    property int sipInputPanelKeyDiameter: 40
 }
