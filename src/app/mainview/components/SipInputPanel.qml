@@ -17,59 +17,117 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtQuick.Effects
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import "../../commoncomponents"
 
-// SipInputPanel is a key pad that is designed to be
-// used in sip calls.
-Popup {
-    id: sipInputPanelPopUp
+Item {
+    id: root
 
-    // Space between sipInputPanelRect and grid layout
-    property int sipPanelPadding: 20
+    readonly property var digitToLetters: {
+        "1": "",
+        "2": "ABC",
+        "3": "DEF",
+        "4": "GHI",
+        "5": "JKL",
+        "6": "MNO",
+        "7": "PQRS",
+        "8": "TUV",
+        "9": "WXYZ",
+        "0": "+",
+        "*": "",
+        "#": ""
+    }
 
-    contentWidth: sipInputPanelRectGridLayout.implicitWidth + 20
-    contentHeight: sipInputPanelRectGridLayout.implicitHeight + 20
+    property alias radius: inputPanelContent.radius
+    property alias topRightRadius: inputPanelContent.topRightRadius
+    property alias bottomRightRadius: inputPanelContent.bottomRightRadius
 
-    padding: 0
+    implicitWidth: inputPanelContent.implicitWidth
+    implicitHeight: inputPanelContent.implicitHeight
 
-    modal: true
+    Rectangle {
+        id: inputPanelContent
 
-    contentItem: Rectangle {
-        id: sipInputPanelRect
+        implicitWidth: sipInputPanelRectGridLayout.implicitWidth + 20
+        implicitHeight: sipInputPanelRectGridLayout.implicitHeight + 20
 
-        radius: 10
+        topLeftRadius: JamiTheme.sipInputPanelRadius
+        bottomLeftRadius: JamiTheme.sipInputPanelRadius
+        topRightRadius: JamiTheme.sipInputPanelRadius
+        bottomRightRadius: JamiTheme.sipInputPanelRadius
+
+        anchors.fill: parent
+
+        color: Qt.rgba(JamiTheme.backgroundColor.r, JamiTheme.backgroundColor.g, JamiTheme.backgroundColor.b, 0.9)
+
+        layer.enabled: true
+        layer.effect: MultiEffect {
+            autoPaddingEnabled: true
+
+            shadowEnabled: true
+            shadowBlur: JamiTheme.shadowBlur
+            shadowColor: JamiTheme.shadowColor
+            shadowHorizontalOffset: JamiTheme.shadowHorizontalOffset
+            shadowVerticalOffset: JamiTheme.shadowVerticalOffset
+            shadowOpacity: JamiTheme.shadowOpacity
+        }
 
         GridLayout {
             id: sipInputPanelRectGridLayout
 
             anchors.centerIn: parent
 
-            columns: 4
+            columns: 3
 
             Repeater {
                 id: sipInputPanelRectGridLayoutRepeater
-                model: ["1", "2", "3", "A", "4", "5", "6", "B", "7", "8", "9", "C", "*", "0", "#", "D"]
+                model: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "*", "0", "#"]
 
-                PushButton {
+                RoundButton {
                     id: sipInputPanelButton
 
-                    Layout.preferredWidth: 30
-                    Layout.preferredHeight: 30
+                    Layout.preferredWidth: JamiTheme.sipInputPanelKeyDiameter
+                    Layout.preferredHeight: JamiTheme.sipInputPanelKeyDiameter
 
-                    preferredLeftMargin: 8
-                    preferredRightMargin: 8
-                    buttonText: modelData
-                    buttonTextColor: "white"
-                    checkable: false
+                    contentItem: Item {
+                        anchors.fill: parent
 
-                    pressedColor: JamiTheme.sipInputButtonPressColor
-                    hoveredColor: JamiTheme.sipInputButtonHoverColor
-                    normalColor: JamiTheme.sipInputButtonBackgroundColor
+                        Text {
+                            text: modelData
+                            font.pointSize: 12
+                            horizontalAlignment: Text.AlignHCenter
 
-                    toolTipText: modelData
+                            color: JamiTheme.textColor
+
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            anchors.top: digitToLetters[modelData] !== "" ? parent.top : null
+                            anchors.centerIn: digitToLetters[modelData] === "" ? parent : null
+                            anchors.topMargin: 6
+                        }
+                        Text {
+                            text: digitToLetters[modelData]
+                            font.pointSize: 6
+                            horizontalAlignment: Text.AlignHCenter
+
+                            color: JamiTheme.textColor
+                            opacity: 0.8
+
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            anchors.bottom: parent.bottom
+                            anchors.bottomMargin: 6
+
+                            visible: text !== ""
+                        }
+                    }
+
+                    background: Rectangle {
+                        id: circle
+                        radius: width / 2
+                        color: sipInputPanelButton.down ? (JamiTheme.pressedButtonColor) : (sipInputPanelButton.hovered ? JamiTheme.hoveredButtonColor : JamiTheme.normalButtonColor)
+                    }
 
                     onClicked: {
                         CallAdapter.sipInputPanelPlayDTMF(modelData);
@@ -77,9 +135,5 @@ Popup {
                 }
             }
         }
-    }
-
-    background: Rectangle {
-        color: "transparent"
     }
 }
