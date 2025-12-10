@@ -16,6 +16,7 @@
  */
 
 import QtQuick
+import QtQuick.Controls
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -38,7 +39,6 @@ Item {
     signal swarmDetailsClicked
 
     function closeContextMenuAndRelatedWindows() {
-        sipInputPanel.close();
         ScreenRubberBandCreation.destroyScreenRubberBandWindow();
         PluginHandlerPickerCreation.closePluginHandlerPicker();
         root.closeClicked();
@@ -67,8 +67,71 @@ Item {
     SipInputPanel {
         id: sipInputPanel
 
-        x: root.width / 2 - sipInputPanel.width / 2
+        x: root.width
         y: root.height / 2 - sipInputPanel.height / 2
+
+        topRightRadius: 10
+        bottomRightRadius: 10
+        property bool shown: false
+        visible: false
+
+        states: [
+            State {
+                name: "visible"
+                when: sipInputPanel.shown
+                PropertyChanges {
+                    target: sipInputPanel
+                    x: root.width - sipInputPanel.width
+                    visible: true
+                }
+            },
+            State {
+                name: "hidden"
+                when: !sipInputPanel.shown
+                PropertyChanges {
+                    target: sipInputPanel
+                    x: root.width
+                    visible: false
+                }
+            }
+        ]
+
+        transitions: [
+            Transition {
+                from: "hidden"
+                to: "visible"
+                SequentialAnimation {
+                    PropertyAction {
+                        target: sipInputPanel
+                        property: "visible"
+                        value: true
+                    }
+                    NumberAnimation {
+                        target: sipInputPanel
+                        property: "x"
+                        duration: 750
+                        easing.type: Easing.OutCubic
+                    }
+                }
+            },
+            Transition {
+                from: "visible"
+                to: "hidden"
+                SequentialAnimation {
+                    NumberAnimation {
+                        target: sipInputPanel
+                        property: "x"
+                        duration: 750
+                        easing.type: Easing.InCubic
+                    }
+                    PropertyAction {
+                        target: sipInputPanel
+                        property: "visible"
+                        value: false
+                    }
+                }
+            }
+        ]
     }
 
     CallInformationOverlay {
@@ -85,12 +148,12 @@ Item {
 
     function openShareFileDialog() {
         var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
-                "fileMode": JamiFileDialog.OpenFile,
-                "nameFilters": [JamiStrings.allFiles]
-            });
+            "fileMode": JamiFileDialog.OpenFile,
+            "nameFilters": [JamiStrings.allFiles]
+        });
         dlg.fileAccepted.connect(function (file) {
-                AvAdapter.shareFile(file);
-            });
+            AvAdapter.shareFile(file);
+        });
     }
 
     ResponsiveImage {
@@ -168,7 +231,7 @@ Item {
                 CallAdapter.holdThisCallToggle();
             }
             function onShowInputPanelClicked() {
-                sipInputPanel.open();
+                sipInputPanel.shown = !sipInputPanel.shown;
             }
             function onShareScreenClicked() {
                 openShareScreen();
