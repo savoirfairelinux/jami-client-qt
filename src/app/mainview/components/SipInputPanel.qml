@@ -24,62 +24,92 @@ import "../../commoncomponents"
 
 // SipInputPanel is a key pad that is designed to be
 // used in sip calls.
-Popup {
-    id: sipInputPanelPopUp
 
-    // Space between sipInputPanelRect and grid layout
-    property int sipPanelPadding: 20
+Rectangle {
+    id: root
 
-    contentWidth: sipInputPanelRectGridLayout.implicitWidth + 20
-    contentHeight: sipInputPanelRectGridLayout.implicitHeight + 20
+    readonly property var digitToLetters: {
+        "1": "",
+        "2": "ABC",
+        "3": "DEF",
+        "4": "GHI",
+        "5": "JKL",
+        "6": "MNO",
+        "7": "PQRS",
+        "8": "TUV",
+        "9": "WXYZ",
+        "0": "+",
+        "*": "",
+        "#": ""
+    }
 
-    padding: 0
+    function getLetters(letter) {
+        return digitToLetters[letter];
+    }
 
-    modal: true
+    implicitWidth: sipInputPanelRectGridLayout.implicitWidth + 20
+    implicitHeight: sipInputPanelRectGridLayout.implicitHeight + 20
+    color: JamiTheme.backgroundColor
 
-    contentItem: Rectangle {
-        id: sipInputPanelRect
+    GridLayout {
+        id: sipInputPanelRectGridLayout
 
-        radius: 10
+        anchors.centerIn: parent
 
-        GridLayout {
-            id: sipInputPanelRectGridLayout
+        columns: 3
 
-            anchors.centerIn: parent
+        Repeater {
+            id: sipInputPanelRectGridLayoutRepeater
+            model: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "*", "0", "#"]
 
-            columns: 4
+            RoundButton {
+                id: sipInputPanelButton
 
-            Repeater {
-                id: sipInputPanelRectGridLayoutRepeater
-                model: ["1", "2", "3", "A", "4", "5", "6", "B", "7", "8", "9", "C", "*", "0", "#", "D"]
+                Layout.preferredWidth: 40
+                Layout.preferredHeight: 40
 
-                PushButton {
-                    id: sipInputPanelButton
+                contentItem: Item {
+                    anchors.fill: parent
 
-                    Layout.preferredWidth: 30
-                    Layout.preferredHeight: 30
+                    Text {
+                        text: modelData
+                        font.pointSize: 12
+                        horizontalAlignment: Text.AlignHCenter
 
-                    preferredLeftMargin: 8
-                    preferredRightMargin: 8
-                    buttonText: modelData
-                    buttonTextColor: "white"
-                    checkable: false
+                        color: JamiTheme.textColor
 
-                    pressedColor: JamiTheme.sipInputButtonPressColor
-                    hoveredColor: JamiTheme.sipInputButtonHoverColor
-                    normalColor: JamiTheme.sipInputButtonBackgroundColor
-
-                    toolTipText: modelData
-
-                    onClicked: {
-                        CallAdapter.sipInputPanelPlayDTMF(modelData);
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.top: getLetters(modelData) !== "" ? parent.top : null
+                        anchors.centerIn: getLetters(modelData) === "" ? parent : null
+                        anchors.topMargin: 6
                     }
+
+                    Text {
+                        text: getLetters(modelData)
+                        font.pointSize: 6
+                        horizontalAlignment: Text.AlignHCenter
+
+                        color: JamiTheme.textColor
+                        opacity: 0.8
+
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.bottom: parent.bottom
+                        anchors.bottomMargin: 6
+
+                        visible: text !== ""
+                    }
+                }
+
+                background: Rectangle {
+                    radius: width / 2
+                    color: sipInputPanelButton.down ? (JamiTheme.buttonTintedGreyPressed) : (sipInputPanelButton.hovered ? JamiTheme.buttonTintedGreyHovered : JamiTheme.buttonTintedGrey)
+                    border.color: JamiTheme.tintedBlue
+                    border.width: sipInputPanelButton.hovered ? 2 : 1
+                }
+                onClicked: {
+                    CallAdapter.sipInputPanelPlayDTMF(modelData);
                 }
             }
         }
-    }
-
-    background: Rectangle {
-        color: "transparent"
     }
 }
