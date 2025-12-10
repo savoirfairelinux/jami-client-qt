@@ -29,6 +29,24 @@ Popup {
 
     // Space between sipInputPanelRect and grid layout
     property int sipPanelPadding: 20
+    readonly property var digitToLetters: {
+        "1": "",
+        "2": "ABC",
+        "3": "DEF",
+        "4": "GHI",
+        "5": "JKL",
+        "6": "MNO",
+        "7": "PQRS",
+        "8": "TUV",
+        "9": "WXYZ",
+        "0": "+",
+        "*": "",
+        "#": ""
+    }
+
+    function getLetters(letter) {
+        return digitToLetters[letter];
+    }
 
     contentWidth: sipInputPanelRectGridLayout.implicitWidth + 20
     contentHeight: sipInputPanelRectGridLayout.implicitHeight + 20
@@ -41,36 +59,63 @@ Popup {
         id: sipInputPanelRect
 
         radius: 10
+        color: JamiTheme.backgroundColor
 
         GridLayout {
             id: sipInputPanelRectGridLayout
 
             anchors.centerIn: parent
 
-            columns: 4
+            columns: 3
 
             Repeater {
                 id: sipInputPanelRectGridLayoutRepeater
-                model: ["1", "2", "3", "A", "4", "5", "6", "B", "7", "8", "9", "C", "*", "0", "#", "D"]
+                model: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "*", "0", "#"]
 
-                PushButton {
+                RoundButton {
                     id: sipInputPanelButton
 
-                    Layout.preferredWidth: 30
-                    Layout.preferredHeight: 30
+                    Layout.preferredWidth: 40
+                    Layout.preferredHeight: 40
 
-                    preferredLeftMargin: 8
-                    preferredRightMargin: 8
-                    buttonText: modelData
-                    buttonTextColor: "white"
-                    checkable: false
+                    contentItem: Item {
+                        anchors.fill: parent
 
-                    pressedColor: JamiTheme.sipInputButtonPressColor
-                    hoveredColor: JamiTheme.sipInputButtonHoverColor
-                    normalColor: JamiTheme.sipInputButtonBackgroundColor
+                        Text {
+                            text: modelData
+                            font.pointSize: 12
+                            horizontalAlignment: Text.AlignHCenter
 
-                    toolTipText: modelData
+                            color: JamiTheme.textColor
 
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            anchors.top: getLetters(modelData) !== "" ? parent.top : null
+                            anchors.centerIn: getLetters(modelData) === "" ? parent : null
+                            anchors.topMargin: 6
+                        }
+
+                        Text {
+                            text: getLetters(modelData)
+                            font.pointSize: 6
+                            horizontalAlignment: Text.AlignHCenter
+
+                            color: JamiTheme.textColor
+                            opacity: 0.8
+
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            anchors.bottom: parent.bottom
+                            anchors.bottomMargin: 6
+
+                            visible: text !== ""
+                        }
+                    }
+
+                    background: Rectangle {
+                        radius: width / 2
+                        color: sipInputPanelButton.down ? (JamiTheme.buttonTintedGreyPressed) : (sipInputPanelButton.hovered ? JamiTheme.buttonTintedGreyHovered : JamiTheme.buttonTintedGrey)
+                        border.color: JamiTheme.tintedBlue
+                        border.width: sipInputPanelButton.hovered ? 2 : 1
+                    }
                     onClicked: {
                         CallAdapter.sipInputPanelPlayDTMF(modelData);
                     }
@@ -80,6 +125,6 @@ Popup {
     }
 
     background: Rectangle {
-        color: "transparent"
+        color: JamiTheme.transparentColor
     }
 }
