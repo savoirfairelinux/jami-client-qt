@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8aa2a43_dc69b202",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2025-12-11T22:54:37Z",
+      "side": 1,
+      "message": "Are non-numbers - letters also supported? Issue: https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/2136#note_56415",
+      "revId": "22d7e22a24e89b32d2fbb94b2c8e9e5360550bc1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
