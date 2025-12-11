@@ -7,8 +7,8 @@ RUN zypper --non-interactive install -y \
         rpmdevtools \
         Mesa-dri-devel Mesa-dri \
         git \
-        gcc10 \
-        gcc10-c++ \
+        gcc12 \
+        gcc12-c++ \
         rpm-build \
         tar \
         make \
@@ -103,8 +103,8 @@ RUN zypper --non-interactive install -y \
 # but we need at least 3.7 to compile Qt 6.8.3
 RUN rm /usr/bin/python3 && ln -s /usr/bin/python3.11 /usr/bin/python3
 
-RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 50
-RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 50
+RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-12 50
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-12 50
 
 ADD extras/packaging/gnu-linux/scripts/install-ffmpeg-for-qt.sh /opt/install-ffmpeg-for-qt.sh
 ADD extras/packaging/gnu-linux/scripts/build-package-rpm.sh /opt/build-package-rpm.sh
