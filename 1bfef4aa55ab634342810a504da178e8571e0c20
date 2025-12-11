@@ -16,6 +16,24 @@
       "message": "This would also work if a user goes offline while the profile should be updated?\n\nSo, what if the internet connection drops right during the profile is updated and the internet only works again later? Or what if the user has a different image in the meantime? And should it also work during an ongoing call?",
       "revId": "1bfef4aa55ab634342810a504da178e8571e0c20",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62507b5b_3023a469",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-12-11T22:02:19Z",
+      "side": 1,
+      "message": "This patch is completely unrelated to networking issues, it\u0027s addressing a purely local bug where data that\u0027s already been received from the peer is not displayed in the UI.",
+      "parentUuid": "40ae8f83_3069aa37",
+      "revId": "1bfef4aa55ab634342810a504da178e8571e0c20",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
