@@ -1607,6 +1607,10 @@ ConversationModelPimpl::ConversationModelPimpl(const ConversationModel& linked,
             &ContactModel::contactUpdated,
             this,
             &ConversationModelPimpl::slotContactUpdated);
+    connect(&*linked.owner.contactModel,
+            &ContactModel::profileUpdated,
+            this,
+            &ConversationModelPimpl::slotContactUpdated);
     connect(&*linked.owner.contactModel, &ContactModel::contactAdded, this, &ConversationModelPimpl::slotContactAdded);
     connect(&*linked.owner.contactModel,
             &ContactModel::pendingContactAccepted,
