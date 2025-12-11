@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40ae8f83_3069aa37",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 943
+      },
+      "writtenOn": "2025-12-11T21:50:41Z",
+      "side": 1,
+      "message": "This would also work if a user goes offline while the profile should be updated?\n\nSo, what if the internet connection drops right during the profile is updated and the internet only works again later? Or what if the user has a different image in the meantime? And should it also work during an ongoing call?",
+      "revId": "1bfef4aa55ab634342810a504da178e8571e0c20",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
