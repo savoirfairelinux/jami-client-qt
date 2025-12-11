@@ -1162,6 +1162,7 @@ ContactModelPimpl::slotProfileReceived(const QString& accountId, const QString& 
     cachedProfiles.remove(peer);
     // This signal should be listened to in order to update contact display names
     // and avatars in the client.
+    Q_EMIT linked.contactUpdated(peer);
     Q_EMIT linked.profileUpdated(peer);
 }
 
