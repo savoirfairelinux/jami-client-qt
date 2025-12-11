@@ -563,9 +563,9 @@ MessagesAdapter::isLocalImage(const QString& mimename)
 {
     if (mimename.startsWith("image/")) {
         QString fileFormat = mimename;
-        fileFormat.replace("image/", "");
+
         QImageReader reader;
-        QList<QByteArray> supportedFormats = reader.supportedImageFormats();
+        QList<QByteArray> supportedFormats = reader.supportedMimeTypes();
         auto iterator = std::find_if(supportedFormats.begin(),
                                      supportedFormats.end(),
                                      [fileFormat](const QByteArray& format) { return format == fileFormat; });
