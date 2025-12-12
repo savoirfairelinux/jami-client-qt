@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a6de4df_a4415253",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 572,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2025-12-12T16:44:50Z",
+      "side": 1,
+      "message": "\"image/gif\"",
+      "range": {
+        "startLine": 572,
+        "startChar": 63,
+        "endLine": 572,
+        "endChar": 68
+      },
+      "revId": "5c676bb8d2289562199dd3112074b056e6d83ca9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
