@@ -73,10 +73,12 @@ ItemDelegate {
     }
 
     RowLayout {
-        anchors.fill: parent
-        anchors.leftMargin: 15
-        anchors.rightMargin: 15
-        spacing: 10
+        id: rowLayout
+
+        anchors.fill: contentRect
+        anchors.margins: JamiTheme.itemPadding
+
+        spacing: 16
 
         ConversationAvatar {
             id: avatar
@@ -89,14 +91,13 @@ ItemDelegate {
             Layout.preferredWidth: JamiTheme.smartListAvatarSize
             Layout.preferredHeight: JamiTheme.smartListAvatarSize
 
-
             Rectangle {
                 id: overlayHighlighted
                 visible: highlighted && !interactive
 
                 anchors.fill: parent
                 color: Qt.rgba(0, 0, 0, 0.5)
-                radius: JamiTheme.smartListAvatarSize / 2
+                radius: JamiTheme.avatarRadius
 
                 Image {
                     id: highlightedImage
@@ -254,14 +255,68 @@ ItemDelegate {
     }
 
     background: Rectangle {
-        color: {
-            if (root.pressed || root.highlighted)
-                return JamiTheme.smartListSelectedColor;
-            else if (root.hovered)
-                return JamiTheme.smartListHoveredColor;
-            else
-                return "transparent";
-        }
+        id: contentRect
+
+        anchors.fill: root
+        anchors.topMargin: JamiTheme.itemMarginVertical
+        anchors.bottomMargin: JamiTheme.itemMarginVertical
+        anchors.leftMargin: JamiTheme.itemMarginHorizontal
+        anchors.rightMargin: JamiTheme.itemMarginHorizontal
+
+        radius: JamiTheme.avatarRadius + JamiTheme.itemPadding
+
+        color: JamiTheme.backgroundColor
+
+        states: [
+            State {
+                name: "normal"
+                when: !hovered && !highlighted
+                PropertyChanges {
+                    target: contentRect
+                    color: JamiTheme.backgroundColor
+                }
+            },
+            State {
+                name: "hovered"
+                when: hovered
+                PropertyChanges {
+                    target: contentRect
+                    color: JamiTheme.smartListHoveredColor
+                }
+            },
+            State {
+                name: "highlighted"
+                when: highlighted
+                PropertyChanges {
+                    target: contentRect
+                    color: JamiTheme.smartListSelectedColor
+                }
+            }
+        ]
+
+        transitions: [
+            Transition {
+                to: "normal"
+                reversible: true
+                ColorAnimation {
+                    duration: JamiTheme.shortFadeDuration
+                }
+            },
+            Transition {
+                to: "hovered"
+                reversible: true
+                ColorAnimation {
+                    duration: JamiTheme.shortFadeDuration
+                }
+            },
+            Transition {
+                to: "highlighted"
+                reversible: true
+                ColorAnimation {
+                    duration: JamiTheme.shortFadeDuration * 0.5
+                }
+            }
+        ]
     }
 
     onClicked: {
