@@ -771,7 +771,7 @@ def parse_args():
     ap.add_argument('--enable-crash-reports',
                     action='store_true', default=False,
                     help='Enable crash reporting')
-    ap.add_argument('--ignore_system_libs', dest='ignore_system_libs',
+    ap.add_argument('--ignore-system-libs', dest='ignore_system_libs',
                     default=False, action='store_true',
                     help='Build contrib packages regardless of system detection')
 
