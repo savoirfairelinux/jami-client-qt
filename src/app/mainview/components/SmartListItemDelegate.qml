@@ -74,9 +74,9 @@ ItemDelegate {
 
     RowLayout {
         anchors.fill: parent
-        anchors.leftMargin: 15
-        anchors.rightMargin: 15
-        spacing: 10
+        anchors.leftMargin: 12
+        anchors.rightMargin: 12
+        spacing: 16
 
         ConversationAvatar {
             id: avatar
@@ -88,7 +88,6 @@ ItemDelegate {
 
             Layout.preferredWidth: JamiTheme.smartListAvatarSize
             Layout.preferredHeight: JamiTheme.smartListAvatarSize
-
 
             Rectangle {
                 id: overlayHighlighted
@@ -254,6 +253,13 @@ ItemDelegate {
     }
 
     background: Rectangle {
+        anchors.fill: parent
+        anchors.leftMargin: 4
+        anchors.rightMargin: 4
+        anchors.topMargin: 2
+        anchors.bottomMargin: 2
+
+        radius: overlayHighlighted.radius + 4
         color: {
             if (root.pressed || root.highlighted)
                 return JamiTheme.smartListSelectedColor;
@@ -261,6 +267,12 @@ ItemDelegate {
                 return JamiTheme.smartListHoveredColor;
             else
                 return "transparent";
+        }
+
+        Behavior on color {
+            ColorAnimation {
+                duration: JamiTheme.shortFadeDuration
+            }
         }
     }
 
