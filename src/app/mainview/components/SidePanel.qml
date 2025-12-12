@@ -292,18 +292,12 @@ SidePanelBase {
 
                     preferredSize: startBar.height
 
-                    visible: !swarmMemberSearchList.visible && !contactSearchBar.textContent
+                    visible: !swarmMemberSearchList.visible && CurrentAccount.type !== Profile.Type.SIP && !contactSearchBar.textContent
 
-                    source: smartListLayout.visible ? (CurrentAccount.type !== Profile.Type.SIP ? JamiResources.create_swarm_svg : JamiResources.ic_keypad_svg) : JamiResources.round_close_24dp_svg
+                    source: smartListLayout.visible ? JamiResources.create_swarm_svg : JamiResources.round_close_24dp_svg
                     toolTipText: smartListLayout.visible ? JamiStrings.newGroup : JamiStrings.cancel
 
-                    onClicked: {
-                        if (CurrentAccount.type === Profile.Type.SIP) {
-                            sipInputPanelPopUp.shown = !sipInputPanelPopUp.shown;
-                        } else {
-                            toggleCreateSwarmView()
-                        }
-                    }
+                    onClicked: toggleCreateSwarmView()
                 }
             }
 
@@ -504,107 +498,6 @@ SidePanelBase {
                     }
                 }
             }
-        }
-        SipInputPanel {
-            id: sipInputPanelPopUp
-
-            x: startConversation.x - sipInputPanelPopUp.width / 2 - 20
-            y: startConversation.y + startConversation.height
-            width: sipInputPanelPopUp.implicitWidth
-            height: sipInputPanelPopUp.implicitHeight
-
-            opacity: 0
-
-            transform: Translate {
-                id: sipTranslate
-                y: -10
-            }
-
-            property bool shown: false
-            visible: false
-
-            states: [
-                State {
-                    name: "visible"
-                    when: sipInputPanelPopUp.shown
-                    PropertyChanges {
-                        target: sipInputPanelPopUp
-                        opacity: 1.0
-                        visible: true
-                    }
-                    PropertyChanges {
-                        target: sipTranslate
-                        y: 0
-                    }
-                },
-                State {
-                    name: "hidden"
-                    when: !sipInputPanelPopUp.shown
-                    PropertyChanges {
-                        target: sipInputPanelPopUp
-                        opacity: 0.0
-                        visible: false
-                    }
-                    PropertyChanges {
-                        target: sipTranslate
-                        y: -10
-                    }
-                }
-            ]
-
-
-            transitions: [
-                Transition {
-                    from: "hidden"
-                    to: "visible"
-                    SequentialAnimation {
-                        PropertyAction {
-                            target: sipInputPanelPopUp
-                            property: "visible"
-                            value: true
-                        }
-                        ParallelAnimation {
-                            NumberAnimation {
-                                target: sipInputPanelPopUp
-                                property: "opacity"
-                                duration: 250
-                                easing.type: Easing.OutCubic
-                            }
-                            NumberAnimation {
-                                target: sipTranslate
-                                property: "y"
-                                duration: 250
-                                easing.type: Easing.OutCubic
-                            }
-                        }
-                    }
-                },
-                Transition {
-                    from: "visible"
-                    to: "hidden"
-                    SequentialAnimation {
-                        ParallelAnimation {
-                            NumberAnimation {
-                                target: sipInputPanelPopUp
-                                property: "opacity"
-                                duration: 250
-                                easing.type: Easing.InCubic
-                            }
-                            NumberAnimation {
-                                target: sipTranslate
-                                property: "y"
-                                duration: 250
-                                easing.type: Easing.InCubic
-                            }
-                        }
-                        PropertyAction {
-                            target: sipInputPanelPopUp
-                            property: "visible"
-                            value: false
-                        }
-                    }
-                }
-            ]
         }
     }
 }
