@@ -361,8 +361,8 @@ Item {
     property real editedFontSize: calcSize(8)
     property real accountListItemHeight: 64
     property real accountListAvatarSize: 40
-    property real smartListItemHeight: 64
-    property real smartListAvatarSize: 52
+
+    property real smartListAvatarSize: 48
     property real avatarSizeInCall: 130
     property real aboutButtonPreferredWidth: 150
     property real aboutLogoPreferredWidth: 183
@@ -724,4 +724,14 @@ Item {
     // Sip Input Panel (dialpad)
     property int sipInputPanelRadius: 30
     property int sipInputPanelKeyDiameter: 40
+
+    // SmartListItems
+    property int itemPadding: 4
+    property int itemMarginHorizontal: 8
+    property int itemMarginVertical: 2
+    property int avatarRadius: JamiTheme.smartListAvatarSize / 2
+    property real smartListItemHeight: 60//JamiTheme.smarListAvatarSize + JamiTheme.itemPadding * 2 + JamiTheme.itemMarginVertical * 2
+
+    // Side panel
+    property int sidePanelRadius: JamiTheme.avatarRadius + JamiTheme.itemPadding * 2
 }

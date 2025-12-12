@@ -73,10 +73,12 @@ ItemDelegate {
     }
 
     RowLayout {
-        anchors.fill: parent
-        anchors.leftMargin: 15
-        anchors.rightMargin: 15
-        spacing: 10
+        id: rowLayout
+
+        anchors.fill: contentRect
+        anchors.margins: JamiTheme.itemPadding
+
+        spacing: 16
 
         ConversationAvatar {
             id: avatar
@@ -89,14 +91,13 @@ ItemDelegate {
             Layout.preferredWidth: JamiTheme.smartListAvatarSize
             Layout.preferredHeight: JamiTheme.smartListAvatarSize
 
-
             Rectangle {
                 id: overlayHighlighted
                 visible: highlighted && !interactive
 
                 anchors.fill: parent
                 color: Qt.rgba(0, 0, 0, 0.5)
-                radius: JamiTheme.smartListAvatarSize / 2
+                radius: JamiTheme.avatarRadius
 
                 Image {
                     id: highlightedImage
@@ -254,14 +255,17 @@ ItemDelegate {
     }
 
     background: Rectangle {
-        color: {
-            if (root.pressed || root.highlighted)
-                return JamiTheme.smartListSelectedColor;
-            else if (root.hovered)
-                return JamiTheme.smartListHoveredColor;
-            else
-                return "transparent";
-        }
+        id: contentRect
+
+        anchors.fill: root
+        anchors.topMargin: JamiTheme.itemMarginVertical
+        anchors.bottomMargin: JamiTheme.itemMarginVertical
+        anchors.leftMargin: JamiTheme.itemMarginHorizontal
+        anchors.rightMargin: JamiTheme.itemMarginHorizontal
+
+        radius: JamiTheme.avatarRadius + JamiTheme.itemPadding
+
+        color: JamiTheme.backgroundColor
     }
 
     onClicked: {
@@ -299,4 +303,82 @@ ItemDelegate {
             root.ListView.view.openContextMenuAt(mouse.x, mouse.y, root);
         }
     }
+
+    states: [
+        State {
+            name: "normal"
+            when: !highlighted && !hovered
+            PropertyChanges {
+                target: contentRect
+                color: JamiTheme.backgroundColor
+            }
+            PropertyChanges {
+                target: root
+                scale: 1.0
+            }
+        },
+        State {
+            name: "hovered"
+            when: !highlighted && hovered
+            PropertyChanges {
+                target: contentRect
+                color: JamiTheme.smartListHoveredColor
+            }
+            PropertyChanges {
+                target: root
+                scale: ListView.view.width / contentRect.width
+            }
+        },
+        State {
+            name: "highlighted"
+            when: (highlighted && !hovered) || (highlighted && hovered)
+            PropertyChanges {
+                target: contentRect
+                color: JamiTheme.smartListSelectedColor
+            }
+            PropertyChanges {
+                target: root
+                scale: 1.0
+            }
+        }
+    ]
+
+    // Animations within a transition run in parallel
+    transitions: [
+        Transition {
+            from: "normal"
+            to: "hovered"
+            reversible: true
+            ColorAnimation {
+                duration: JamiTheme.shortFadeDuration
+            }
+            NumberAnimation {
+                target: root
+                property: "scale"
+                duration: JamiTheme.shortFadeDuration
+                easing.type: Easing.OutCubic
+            }
+        },
+        Transition {
+            from: "highlighted"
+            to: "normal"
+            ColorAnimation {
+                duration: JamiTheme.shortFadeDuration
+            }
+        },
+        Transition {
+            from: "hovered"
+            to: "highlighted"
+
+            ColorAnimation {
+                duration: JamiTheme.shortFadeDuration
+            }
+            NumberAnimation {
+                target: root
+                property: "scale"
+                duration: JamiTheme.shortFadeDuration - 50
+                easing.type: Easing.OutCubic
+            }
+        }
+    ]
 }
