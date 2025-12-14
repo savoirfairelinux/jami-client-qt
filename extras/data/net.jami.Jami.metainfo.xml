@@ -228,7 +228,7 @@
     <p xml:lang="he">Jami היא הדרך הפשוטה והקלה ביותר להתחבר לאנשים (והתקנים) באמצעות הודעות מיידיות, שיחות אודיו ווידאו דרך האינטרנט ואינטראנט LAN/WAN.</p>
     <p xml:lang="hi">Jami इंटरनेट और LAN/WAN इंट्रानेट पर त्वरित संदेश, ऑडियो और वीडियो कॉल के साथ लोगों (और उपकरणों) से जुड़ने का सबसे सरल और आसान तरीका है।</p>
     <p xml:lang="hr">Jami je najjednostavniji i najlakši način povezivanja s ljudima (i uređajima) putem izravnih poruka, audio i video poziva putem interneta i LAN/WAN intraneta.</p>
-    <p xml:lang="hu">A Jami a legegyszerűbb és legegyszerűbb módja annak, hogy azonnali üzenetküldéssel, hang- és videohívásokkal kapcsolódjon az emberekhez (és eszközökhöz) az interneten és a LAN/WAN intraneten keresztül.</p>
+    <p xml:lang="hu">A Jami a legegyszerűbb és legbiztonságosabb módja annak, hogy azonnali üzenetküldéssel, hang- és videohívásokkal kapcsolódjon az emberekhez (és eszközökhöz) az interneten és a LAN/WAN intraneten keresztül.</p>
     <p xml:lang="hy">Jami-ն մարդկանց (և սարքերի) հետ կապվելու ամենապարզ և ամենադյուրին միջոցն է ինտերնետի և LAN/WAN ինտրանետների միջոցով ակնթարթային հաղորդագրությունների, աուդիո և տեսազանգերի միջոցով:</p>
     <p xml:lang="id">Jami adalah cara paling sederhana dan mudah untuk terhubung dengan orang (dan perangkat) melalui pesan instan, panggilan audio, dan video melalui Internet dan intranet LAN/WAN.</p>
     <p xml:lang="is">Jami er einfaldasta og auðveldasta leiðin til að tengjast fólki (og tækjum) með spjallskilaboðum, hljóð- og myndsímtölum í gegnum internetið og LAN/WAN innra neti.</p>
@@ -1310,7 +1310,7 @@
   <url type="faq">https://docs.jami.net/user/faq.html</url>
   <url type="translate">https://explore.transifex.com/savoirfairelinux/</url>
   <url type="contribute">https://jami.net/contribute/</url>
-  <url type="help">https://docs.jami.net/</url>
+  <url type="help">https://forum.jami.net/</url>
   <url type="vcs-browser">https://git.jami.net/savoirfairelinux</url>
 
   <provides>
