@@ -1310,7 +1310,7 @@
   <url type="faq">https://docs.jami.net/user/faq.html</url>
   <url type="translate">https://explore.transifex.com/savoirfairelinux/</url>
   <url type="contribute">https://jami.net/contribute/</url>
-  <url type="help">https://docs.jami.net/</url>
+  <url type="help">https://forum.jami.net/</url>
   <url type="vcs-browser">https://git.jami.net/savoirfairelinux</url>
 
   <provides>
