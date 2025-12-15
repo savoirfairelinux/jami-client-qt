@@ -212,6 +212,17 @@ public Q_SLOTS:
                                   const QString& callId,
                                   const VectorMapStringString& mediaList);
     /**
+     * Listen from CallbacksHandler when a call arrives
+     * @param accountId
+     * @param callId
+     * @param from
+     * @param mediaList
+     */
+    void slotIncomingCall(const QString& accountId,
+                          const QString& callId,
+                          const QString& from,
+                          const VectorMapStringString& mediaList);
+    /**
      * Listen from CallbacksHandler when a call got a new state
      * @param accountId
      * @param callId
@@ -1071,6 +1082,7 @@ CallModelPimpl::CallModelPimpl(const CallModel& linked,
     , behaviorController(behaviorController)
 {
     connect(&callbacksHandler, &CallbacksHandler::mediaChangeRequested, this, &CallModelPimpl::slotMediaChangeRequested);
+    connect(&callbacksHandler, &CallbacksHandler::incomingCall, this, &CallModelPimpl::slotIncomingCall);
     connect(&callbacksHandler, &CallbacksHandler::callStateChanged, this, &CallModelPimpl::slotCallStateChanged);
     connect(&callbacksHandler,
             &CallbacksHandler::mediaNegotiationStatus,
@@ -1524,60 +1536,96 @@ CallModelPimpl::slotMediaChangeRequested(const QString& accountId,
 }
 
 void
+CallModelPimpl::slotIncomingCall(const QString& accountId,
+                                 const QString& callId,
+                                 const QString& from,
+                                 const VectorMapStringString& mediaList)
+{
+    if (accountId != linked.owner.id)
+        return;
+
+    if (linked.hasCall(callId)) {
+        qWarning() << "Did not initialize incoming call" << callId << "because it already exists";
+        return;
+    }
+
+    auto callInfo = std::make_shared<call::Info>();
+    callInfo->id = callId;
+
+    MapStringString details = CallManager::instance().getCallDetails(linked.owner.id, callId);
+
+    if (details.isEmpty()) {
+        callInfo->peerUri = from;
+        callInfo->isOutgoing = false;
+        callInfo->status = call::Status::INCOMING_RINGING;
+        callInfo->type = call::Type::DIALOG;
+        bool hasVideo = false;
+        for (const auto& media : mediaList) {
+            if (media.value(MediaAttributeKey::MEDIA_TYPE) == MediaAttributeValue::VIDEO) {
+                hasVideo = true;
+                break;
+            }
+        }
+        callInfo->isAudioOnly = !hasVideo;
+        callInfo->videoMuted = !hasVideo;
+        initializeMediaList(callInfo->mediaList, callInfo->isAudioOnly, callInfo->videoMuted);
+    } else {
+        auto endId = details["PEER_NUMBER"].indexOf("@");
+        callInfo->peerUri = details["PEER_NUMBER"].left(endId);
+        callInfo->isOutgoing = details["CALL_TYPE"] == "1";
+        callInfo->status = call::Status::INCOMING_RINGING;
+        callInfo->type = call::Type::DIALOG;
+        callInfo->isAudioOnly = details["AUDIO_ONLY"] == TRUE_STR;
+        callInfo->videoMuted = details["VIDEO_MUTED"] == TRUE_STR;
+        initializeMediaList(callInfo->mediaList, callInfo->isAudioOnly, callInfo->videoMuted);
+    }
+
+    calls.emplace(callId, std::move(callInfo));
+
+    if (!(details["CALL_TYPE"] == "1") && !linked.owner.confProperties.allowIncoming
+        && linked.owner.profileInfo.type == profile::Type::JAMI) {
+        linked.decline(callId);
+        return;
+    }
+
+    QString displayname;
+    QString peerId;
+    QString peerUri = details.isEmpty() ? from : details["PEER_NUMBER"];
+    QString toUsername = details.isEmpty() ? "" : details["TO_USERNAME"];
+
+    if (peerUri.contains("ring.dht")) {
+        peerId = peerUri.right(50);
+        peerId = peerId.left(40);
+        if (!details.isEmpty())
+            displayname = details["REGISTERED_NAME"];
+    } else {
+        auto left = std::max(peerUri.indexOf("<"), peerUri.indexOf(":")) + 1;
+        auto right = peerUri.indexOf("@");
+        right = std::max(right, peerUri.indexOf(">"));
+        peerId = peerUri.mid(left, right - left);
+        if (!details.isEmpty())
+            displayname = details["DISPLAY_NAME"];
+        if (displayname.isEmpty())
+            displayname = peerId;
+    }
+
+    qWarning() << "Initialized incoming call" << callId << "from peer" << peerId;
+
+    Q_EMIT linked.newCall(peerId, callId, displayname, false, toUsername);
+
+    Q_EMIT linked.callStatusChanged(accountId, callId, 0);
+    Q_EMIT behaviorController.callStatusChanged(linked.owner.id, callId);
+}
+
+void
 CallModelPimpl::slotCallStateChanged(const QString& accountId, const QString& callId, const QString& state, int code)
 {
     if (accountId != linked.owner.id)
         return;
 
     if (!linked.hasCall(callId)) {
-        auto callInfo = std::make_shared<call::Info>();
-        callInfo->id = callId;
-        MapStringString details = CallManager::instance().getCallDetails(linked.owner.id, callId);
-        qDebug() << details;
-
-        auto endId = details["PEER_NUMBER"].indexOf("@");
-        callInfo->peerUri = details["PEER_NUMBER"].left(endId);
-        callInfo->isOutgoing = details["CALL_TYPE"] == "1";
-        callInfo->status = call::to_status(state);
-        callInfo->type = call::Type::DIALOG;
-        callInfo->isAudioOnly = details["AUDIO_ONLY"] == TRUE_STR;
-        callInfo->videoMuted = details["VIDEO_MUTED"] == TRUE_STR;
-        // NOTE: The CallModel::setVideoMuted function currently relies on callInfo->mediaList
-        // having been initialized. Not doing so leads to a bug where the user's camera wrongly
-        // gets turned on when they receive a call and click on "Answer in audio".
-        initializeMediaList(callInfo->mediaList, callInfo->isAudioOnly, callInfo->videoMuted);
-        calls.emplace(callId, std::move(callInfo));
-
-        if (!(details["CALL_TYPE"] == "1") && !linked.owner.confProperties.allowIncoming
-            && linked.owner.profileInfo.type == profile::Type::JAMI) {
-            linked.decline(callId);
-            return;
-        }
-
-        QString displayname = details["DISPLAY_NAME"];
-        QString peerId;
-        QString peerUri = details["PEER_NUMBER"];
-        if (peerUri.contains("ring.dht")) {
-            peerId = peerUri.right(50);
-            peerId = peerId.left(40);
-            if (displayname.isEmpty())
-                displayname = details["REGISTERED_NAME"];
-        } else {
-            auto left = std::max(peerUri.indexOf("<"), peerUri.indexOf(":")) + 1;
-            auto right = peerUri.indexOf("@");
-            right = std::max(right, peerUri.indexOf(">"));
-            peerId = peerUri.mid(left, right - left);
-            if (displayname.isEmpty())
-                displayname = peerId;
-        }
-        qDebug() << displayname;
-        qDebug() << peerId;
-
-        Q_EMIT linked.newCall(peerId, callId, displayname, details["CALL_TYPE"] == "1", details["TO_USERNAME"]);
-
-        // NOTE: signal emission order matters, always emit CallStatusChanged before CallEnded
-        Q_EMIT linked.callStatusChanged(accountId, callId, code);
-        Q_EMIT behaviorController.callStatusChanged(linked.owner.id, callId);
+        qWarning() << "slotCallStateChanged: unknown callId " << callId;
+        return;
     }
 
     auto status = call::to_status(state);

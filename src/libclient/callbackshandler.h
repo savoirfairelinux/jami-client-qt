@@ -95,6 +95,17 @@ Q_SIGNALS:
      */
     void mediaChangeRequested(const QString& accountId, const QString& callId, const VectorMapStringString& mediaList);
     /**
+     * Connect this signal to know when a call arrives
+     * @param accountId the one who receives the call
+     * @param callId the call id
+     * @param from the caller
+     * @param mediaList new media received
+     */
+    void incomingCall(const QString& accountId,
+                      const QString& callId,
+                      const QString& from,
+                      const VectorMapStringString& mediaList);
+    /**
      * Connect this signal to know when a call is updated
      * @param accountId
      * @param callId the call id
@@ -460,6 +471,17 @@ private Q_SLOTS:
     void slotMediaChangeRequested(const QString& accountId,
                                   const QString& callId,
                                   const VectorMapStringString& mediaList);
+    /**
+     * Emit incomingCall
+     * @param accountId account linked
+     * @param callId the incoming call id
+     * @param from the caller
+     * @param mediaList the mediaList received
+     */
+    void slotIncomingCall(const QString& accountId,
+                          const QString& callId,
+                          const QString& from,
+                          const VectorMapStringString& mediaList);
     /**
      * Emit callStateChanged
      * @param accountId
