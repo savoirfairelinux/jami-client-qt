@@ -17,6 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtQuick.Effects
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
@@ -67,20 +68,20 @@ SidePanelBase {
             viewCoordinator.present("NewSwarmPage");
             const newSwarmPage = viewCoordinator.getView("NewSwarmPage");
             newSwarmPage.removeMember.connect((convId, member) => {
-                    removeMember(convId, member);
-                });
+                removeMember(convId, member);
+            });
             newSwarmPage.createSwarmClicked.connect((title, description, avatar) => {
-                    var uris = [];
-                    for (var idx in newSwarmPage.members) {
-                        var uri = newSwarmPage.members[idx].uri;
-                        if (uris.indexOf(uri) === -1) {
-                            uris.push(uri);
-                        }
+                var uris = [];
+                for (var idx in newSwarmPage.members) {
+                    var uri = newSwarmPage.members[idx].uri;
+                    if (uris.indexOf(uri) === -1) {
+                        uris.push(uri);
                     }
-                    let convuid = ConversationsAdapter.createSwarm(title, description, avatar, uris);
-                    viewCoordinator.dismiss("NewSwarmPage");
-                    LRCInstance.selectConversation(convuid);
-                });
+                }
+                let convuid = ConversationsAdapter.createSwarm(title, description, avatar, uris);
+                viewCoordinator.dismiss("NewSwarmPage");
+                LRCInstance.selectConversation(convuid);
+            });
         } else {
             viewCoordinator.dismiss("NewSwarmPage");
         }
@@ -115,9 +116,9 @@ SidePanelBase {
                 var uri = item.uris[idx];
                 if (!Array.from(newHm).find(r => r.uri === uri) && uri !== CurrentAccount.uri) {
                     newHm.push({
-                            "uri": uri,
-                            "convId": convId
-                        });
+                        "uri": uri,
+                        "convId": convId
+                    });
                     added = true;
                 }
             }
@@ -162,449 +163,484 @@ SidePanelBase {
         }
     }
 
-    Page {
-        id: page
-
+    Item {
         anchors.fill: parent
+        anchors.margins: JamiTheme.itemPadding * 2
 
-        background: Rectangle {
-            color: JamiTheme.backgroundColor
-        }
+        Rectangle {
+            id: contentRect
 
-        header: AccountComboBox {
-            id: accountComboBox
-            QWKSetParentHitTestVisible {
-            }
-            Shortcut {
-                sequence: "Ctrl+J"
-                context: Qt.ApplicationShortcut
-                onActivated: accountComboBox.togglePopup()
-            }
-        }
-
-        topPadding: 10
-
-        ColumnLayout {
             anchors.fill: parent
-            spacing: 10
 
-            // We use this to update the donation banner visibility, instead of a timer.
-            onVisibleChanged: JamiQmlUtils.updateIsDonationBannerVisible()
-
-            // Label/button to create a new swarm.
-            RowLayout {
-                id: createSwarmToggle
-
-                visible: swarmMemberSearchList.visible
-
-                width: parent.width
-                height: 40
-
-                Layout.leftMargin: 15
-                Layout.rightMargin: 15
-                Layout.alignment: Qt.AlignTop
-
-                Label {
-                    height: parent.height
-                    Layout.fillWidth: true
-                    Layout.alignment: Qt.AlignVCenter
-
-                    color: JamiTheme.textColor
-
-                    font.bold: true
-                    font.pointSize: JamiTheme.contactEventPointSize
-
-                    text: JamiStrings.newGroup
-                }
-
-                PushButton {
-                    radius: JamiTheme.primaryRadius
-
-                    imageColor: JamiTheme.textColor
-                    imagePadding: 8
-                    normalColor: JamiTheme.secondaryBackgroundColor
-
-                    preferredSize: createSwarmToggle.height
-
-                    source: JamiResources.round_close_24dp_svg
-                    toolTipText: JamiStrings.cancel
-
-                    onClicked: toggleCreateSwarmView()
-                }
+            color: JamiTheme.backgroundColor
+            radius: JamiTheme.sidePanelRadius
+            layer.enabled: true
+            layer.effect: MultiEffect {
+                anchors.fill: parent
+                shadowEnabled: true
+                shadowBlur: JamiTheme.shadowBlur
+                shadowColor: JamiTheme.shadowColor
+                shadowHorizontalOffset: JamiTheme.shadowHorizontalOffset
+                shadowVerticalOffset: JamiTheme.shadowVerticalOffset
+                shadowOpacity: JamiTheme.shadowOpacity
             }
+        }
 
-            // Search conversations, start new conversations, etc.
-            RowLayout {
-                id: startBar
+        Page {
+            id: page
 
-                width: parent.width
-                height: 40
-
-                Layout.leftMargin: 15
-                Layout.rightMargin: 15
-                Layout.alignment: Qt.AlignTop
-
-                Shortcut {
-                    sequence: "Ctrl+F"
-                    context: Qt.ApplicationShortcut
-                    onActivated: {
-                        contactSearchBar.forceActiveFocus();
-                    }
-                }
-
-                Searchbar {
-                    id: contactSearchBar
-
-                    height: parent.height
-                    Layout.fillWidth: true
-
-                    Behavior on width {
-                        NumberAnimation {
-                            duration: 1000
-                            easing.type: Easing.InOutQuad
-                        }
-                    }
-
-                    onSearchBarTextChanged: function (text) {
-                        // not calling positionViewAtBeginning will cause
-                        // sort animation visual bugs
-                        conversationListView.positionViewAtBeginning();
-                        ConversationsAdapter.ignoreFiltering(root.highlighted);
-                        ConversationsAdapter.setFilter(text);
-                    }
-
-                    onReturnPressedWhileSearching: {
-                        var listView = searchResultsListView.count ? searchResultsListView : conversationListView;
-                        if (listView.count)
-                            listView.model.select(0);
-                    }
-                }
-
-                PushButton {
-                    id: startConversation
-
-                    Layout.alignment: Qt.AlignLeft
-                    radius: JamiTheme.primaryRadius
-
-                    imageColor: JamiTheme.textColor
-                    imagePadding: 8
-                    normalColor: JamiTheme.secondaryBackgroundColor
-
-                    preferredSize: startBar.height
-
-                    visible: !swarmMemberSearchList.visible && !contactSearchBar.textContent
-
-                    source: smartListLayout.visible ? (CurrentAccount.type !== Profile.Type.SIP ? JamiResources.create_swarm_svg : JamiResources.ic_keypad_svg) : JamiResources.round_close_24dp_svg
-                    toolTipText: smartListLayout.visible ? JamiStrings.newGroup : JamiStrings.cancel
-
-                    onClicked: {
-                        if (CurrentAccount.type === Profile.Type.SIP) {
-                            sipInputPanelPopUp.shown = !sipInputPanelPopUp.shown;
-                        } else {
-                            toggleCreateSwarmView()
-                        }
-                    }
-                }
-            }
-
-            SidePanelTabBar {
-                id: sidePanelTabBar
-
-                visible: ConversationsAdapter.pendingRequestCount && !contactSearchBar.textContent && smartListLayout.visible
-
-                contentHeight: childrenRect.height
-                width: page.width
-                Layout.preferredHeight: 42
-
-                Layout.fillWidth: true
-                Layout.alignment: Qt.AlignTop
-
-                Layout.bottomMargin: -10
-            }
-
-            Rectangle {
-                id: searchStatusRect
-
-                visible: searchStatusText.text !== "" && smartListLayout.visible
-
-                width: parent.width
-                height: 42
-
-                Layout.bottomMargin: -10
-                Layout.alignment: Qt.AlignTop
-
+            background: Rectangle {
+                anchors.fill: parent
                 color: JamiTheme.backgroundColor
-                Text {
-                    id: searchStatusText
-
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.left: parent.left
-                    anchors.leftMargin: 32
-                    anchors.right: parent.right
-                    anchors.rightMargin: 32
-                    color: JamiTheme.textColor
-                    wrapMode: Text.WordWrap
-                    font.pointSize: JamiTheme.filterItemFontSize
+            }
+            anchors.fill: contentRect
+            layer.enabled: true
+            layer.effect: MultiEffect {
+                anchors.fill: parent
+                maskEnabled: true
+                maskSource: ShaderEffectSource {
+                    sourceItem: Rectangle {
+                        width: page.width
+                        height: page.height
+                        radius: JamiTheme.sidePanelRadius
+                    }
                 }
             }
 
-            DonationBanner {
-                Layout.fillWidth: true
-                Layout.leftMargin: 15
-                Layout.rightMargin: 15
-                Layout.topMargin: sidePanelTabBar.visible ? 10 : 0
-
-                visible: JamiQmlUtils.isDonationBannerVisible
+            header: AccountComboBox {
+                id: accountComboBox
+                QWKSetParentHitTestVisible {}
+                Shortcut {
+                    sequence: "Ctrl+J"
+                    context: Qt.ApplicationShortcut
+                    onActivated: accountComboBox.togglePopup()
+                }
             }
+
+            topPadding: 10
 
             ColumnLayout {
-                id: smartListLayout
+                id: mainLayout
+                anchors.fill: parent
+                spacing: 10
 
-                width: parent.width
-                Layout.fillHeight: true
+                // We use this to update the donation banner visibility, instead of a timer.
+                onVisibleChanged: JamiQmlUtils.updateIsDonationBannerVisible()
 
-                spacing: 4
+                // Label/button to create a new swarm.
+                RowLayout {
+                    id: createSwarmToggle
 
-                visible: !swarmMemberSearchList.visible
+                    visible: swarmMemberSearchList.visible
 
-                ConversationListView {
-                    id: searchResultsListView
+                    width: parent.width
+                    height: 40
 
-                    visible: count
-                    opacity: visible ? 1 : 0
-
-                    Layout.topMargin: 10
+                    Layout.leftMargin: 15
+                    Layout.rightMargin: 15
                     Layout.alignment: Qt.AlignTop
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: visible ? contentHeight : 0
 
-                    Layout.maximumHeight: {
-                        var otherContentHeight = conversationListView.contentHeight + 16;
-                        if (conversationListView.visible)
-                            if (otherContentHeight < parent.height / 2)
-                                return parent.height - otherContentHeight;
-                            else
-                                return parent.height / 2;
-                        else
-                            return parent.height;
+                    Label {
+                        height: parent.height
+                        Layout.fillWidth: true
+                        Layout.alignment: Qt.AlignVCenter
+
+                        color: JamiTheme.textColor
+
+                        font.bold: true
+                        font.pointSize: JamiTheme.contactEventPointSize
+
+                        text: JamiStrings.newGroup
                     }
 
-                    model: ConversationsAdapter.searchListProxyModel
+                    PushButton {
+                        radius: JamiTheme.primaryRadius
 
-                    delegate: SmartListItemDelegate {
-                        extraButtons.contentItem:  JamiPushButton {
-                            id: sendContactRequestButton
-                            QWKSetParentHitTestVisible {
+                        imageColor: JamiTheme.textColor
+                        imagePadding: 8
+                        normalColor: JamiTheme.secondaryBackgroundColor
+
+                        preferredSize: createSwarmToggle.height
+
+                        source: JamiResources.round_close_24dp_svg
+                        toolTipText: JamiStrings.cancel
+
+                        onClicked: toggleCreateSwarmView()
+                    }
+                }
+
+                // Search conversations, start new conversations, etc.
+                RowLayout {
+                    id: startBar
+
+                    width: parent.width
+                    height: 40
+
+                    Layout.leftMargin: 15
+                    Layout.rightMargin: 15
+                    Layout.alignment: Qt.AlignTop
+
+                    Shortcut {
+                        sequence: "Ctrl+F"
+                        context: Qt.ApplicationShortcut
+                        onActivated: {
+                            contactSearchBar.forceActiveFocus();
+                        }
+                    }
+
+                    Searchbar {
+                        id: contactSearchBar
+
+                        height: parent.height
+                        Layout.fillWidth: true
+
+                        Behavior on width {
+                            NumberAnimation {
+                                duration: 1000
+                                easing.type: Easing.InOutQuad
                             }
+                        }
 
-                            anchors.right: parent.right
-                            anchors.verticalCenter: parent.verticalCenter
-                            visible: isTemporary || isBanned
-                            source: JamiResources.add_people_24dp_svg
-                            toolTipText: JamiStrings.addToConversations
+                        onSearchBarTextChanged: function (text) {
+                            // not calling positionViewAtBeginning will cause
+                            // sort animation visual bugs
+                            conversationListView.positionViewAtBeginning();
+                            ConversationsAdapter.ignoreFiltering(root.highlighted);
+                            ConversationsAdapter.setFilter(text);
+                        }
 
-                            onClicked: {
-                                console.log(isBanned);
-                                if (isBanned) {
-                                    LRCInstance.selectConversation(UID);
-                                    MessagesAdapter.unbanConversation(CurrentConversation.id);
-                                } else {
-                                    LRCInstance.selectConversation(UID);
-                                    MessagesAdapter.sendConversationRequest();
+                        onReturnPressedWhileSearching: {
+                            var listView = searchResultsListView.count ? searchResultsListView : conversationListView;
+                            if (listView.count)
+                                listView.model.select(0);
+                        }
+                    }
+
+                    PushButton {
+                        id: startConversation
+
+                        Layout.alignment: Qt.AlignLeft
+                        radius: JamiTheme.primaryRadius
+
+                        imageColor: JamiTheme.textColor
+                        imagePadding: 8
+                        normalColor: JamiTheme.secondaryBackgroundColor
+
+                        preferredSize: startBar.height
+
+                        visible: !swarmMemberSearchList.visible && !contactSearchBar.textContent
+
+                        source: smartListLayout.visible ? (CurrentAccount.type !== Profile.Type.SIP ? JamiResources.create_swarm_svg : JamiResources.ic_keypad_svg) : JamiResources.round_close_24dp_svg
+                        toolTipText: smartListLayout.visible ? JamiStrings.newGroup : JamiStrings.cancel
+
+                        onClicked: {
+                            if (CurrentAccount.type === Profile.Type.SIP) {
+                                sipInputPanelPopUp.shown = !sipInputPanelPopUp.shown;
+                            } else {
+                                toggleCreateSwarmView();
+                            }
+                        }
+                    }
+                }
+
+                SidePanelTabBar {
+                    id: sidePanelTabBar
+
+                    visible: ConversationsAdapter.pendingRequestCount && !contactSearchBar.textContent && smartListLayout.visible
+
+                    contentHeight: childrenRect.height
+                    width: page.width
+                    Layout.preferredHeight: 42
+
+                    Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignTop
+
+                    Layout.bottomMargin: -10
+                }
+
+                Rectangle {
+                    id: searchStatusRect
+
+                    visible: searchStatusText.text !== "" && smartListLayout.visible
+
+                    width: parent.width
+                    height: 42
+
+                    Layout.bottomMargin: -10
+                    Layout.alignment: Qt.AlignTop
+
+                    color: JamiTheme.backgroundColor
+                    Text {
+                        id: searchStatusText
+
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.left: parent.left
+                        anchors.leftMargin: 32
+                        anchors.right: parent.right
+                        anchors.rightMargin: 32
+                        color: JamiTheme.textColor
+                        wrapMode: Text.WordWrap
+                        font.pointSize: JamiTheme.filterItemFontSize
+                    }
+                }
+
+                DonationBanner {
+                    Layout.fillWidth: true
+                    Layout.leftMargin: 15
+                    Layout.rightMargin: 15
+                    Layout.topMargin: sidePanelTabBar.visible ? 10 : 0
+
+                    visible: JamiQmlUtils.isDonationBannerVisible
+                }
+
+                ColumnLayout {
+                    id: smartListLayout
+
+                    width: parent.width
+                    Layout.fillHeight: true
+
+                    spacing: 4
+
+                    visible: !swarmMemberSearchList.visible
+
+                    ConversationListView {
+                        id: searchResultsListView
+
+                        visible: count
+                        opacity: visible ? 1 : 0
+
+                        Layout.topMargin: 10
+                        Layout.alignment: Qt.AlignTop
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: visible ? contentHeight : 0
+
+                        Layout.maximumHeight: {
+                            var otherContentHeight = conversationListView.contentHeight + 16;
+                            if (conversationListView.visible)
+                                if (otherContentHeight < parent.height / 2)
+                                    return parent.height - otherContentHeight;
+                                else
+                                    return parent.height / 2;
+                            else
+                                return parent.height;
+                        }
+
+                        model: ConversationsAdapter.searchListProxyModel
+
+                        delegate: SmartListItemDelegate {
+                            extraButtons.contentItem: JamiPushButton {
+                                id: sendContactRequestButton
+                                QWKSetParentHitTestVisible {}
+
+                                anchors.right: parent.right
+                                anchors.verticalCenter: parent.verticalCenter
+                                visible: isTemporary || isBanned
+                                source: JamiResources.add_people_24dp_svg
+                                toolTipText: JamiStrings.addToConversations
+
+                                onClicked: {
+                                    console.log(isBanned);
+                                    if (isBanned) {
+                                        LRCInstance.selectConversation(UID);
+                                        MessagesAdapter.unbanConversation(CurrentConversation.id);
+                                    } else {
+                                        LRCInstance.selectConversation(UID);
+                                        MessagesAdapter.sendConversationRequest();
+                                    }
                                 }
                             }
+                            extraButtons.height: sendContactRequestButton.height
+                            extraButtons.width: sendContactRequestButton.width
                         }
-                        extraButtons.height: sendContactRequestButton.height;
-                        extraButtons.width: sendContactRequestButton.width;
-                    }
-                    headerLabel: JamiStrings.searchResults
-                    headerVisible: true
-                }
-
-                ConversationListView {
-                    id: conversationListView
-
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-
-                    model: ConversationsAdapter.convListProxyModel
-                    headerLabel: JamiStrings.conversations
-                    headerVisible: count && searchResultsListView.visible
-                }
-            }
-
-            ColumnLayout {
-                id: swarmMemberSearchList
-
-                visible: inNewSwarm
-
-                width: parent.width
-                Layout.fillHeight: true
-
-                spacing: 4
-
-                JamiListView {
-                    id: swarmCurrentConversationList
-
-                    Layout.preferredWidth: parent.width
-                    Layout.fillHeight: true
-
-                    model: ConversationsAdapter.convListProxyModel
-                    delegate: SmartListItemDelegate {
-                        interactive: false
-
-                        onVisibleChanged: {
-                            if (!swarmCurrentConversationList.visible) {
-                                highlighted = false;
-                                root.clearHighlighted();
-                            }
-                        }
-
-                        Component.onCompleted: {
-                            // Note: when scrolled down, this delegate will be
-                            // destroyed from the memory. So, re-add the highlighted
-                            // status if necessary
-                            if (Array.from(root.highlighted).find(r => r === UID)) {
-                                highlighted = true;
-                            }
-                        }
-
-                        onHighlightedChanged: function onHighlightedChanged() {
-                            if (highlighted && Array.from(root.highlighted).find(r => r === UID)) {
-                                // Due to scrolling destruction/reconstruction
-                                return;
-                            }
-                            var currentHighlighted = root.highlighted;
-                            if (!root.refreshHighlighted(UID, highlighted)) {
-                                highlighted = false;
-                                return;
-                            }
-                            if (highlighted) {
-                                root.highlighted.push(UID);
-                            } else {
-                                root.highlighted = Array.from(root.highlighted).filter(r => r !== UID);
-                            }
-                            root.clearContactSearchBar();
-                        }
+                        headerLabel: JamiStrings.searchResults
+                        headerVisible: true
                     }
 
-                    Timer {
-                        id: locationIconTimer
+                    ConversationListView {
+                        id: conversationListView
 
-                        property bool showIconArrow: true
-                        property bool isSharingPosition: PositionManager.positionShareConvIdsCount !== 0
-                        property bool isReceivingPosition: PositionManager.sharingUrisCount !== 0
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
 
-                        interval: 750
-                        running: isSharingPosition || isReceivingPosition
-                        repeat: true
-                        onTriggered: {
-                            showIconArrow = !showIconArrow;
+                        model: ConversationsAdapter.convListProxyModel
+                        headerLabel: JamiStrings.conversations
+                        headerVisible: count && searchResultsListView.visible
+                    }
+                }
+
+                ColumnLayout {
+                    id: swarmMemberSearchList
+
+                    visible: inNewSwarm
+
+                    width: parent.width
+                    Layout.fillHeight: true
+
+                    spacing: 4
+
+                    JamiListView {
+                        id: swarmCurrentConversationList
+
+                        Layout.preferredWidth: parent.width
+                        Layout.fillHeight: true
+
+                        model: ConversationsAdapter.convListProxyModel
+                        delegate: SmartListItemDelegate {
+                            interactive: false
+
+                            onVisibleChanged: {
+                                if (!swarmCurrentConversationList.visible) {
+                                    highlighted = false;
+                                    root.clearHighlighted();
+                                }
+                            }
+
+                            Component.onCompleted: {
+                                // Note: when scrolled down, this delegate will be
+                                // destroyed from the memory. So, re-add the highlighted
+                                // status if necessary
+                                if (Array.from(root.highlighted).find(r => r === UID)) {
+                                    highlighted = true;
+                                }
+                            }
+
+                            onHighlightedChanged: function onHighlightedChanged() {
+                                if (highlighted && Array.from(root.highlighted).find(r => r === UID)) {
+                                    // Due to scrolling destruction/reconstruction
+                                    return;
+                                }
+                                var currentHighlighted = root.highlighted;
+                                if (!root.refreshHighlighted(UID, highlighted)) {
+                                    highlighted = false;
+                                    return;
+                                }
+                                if (highlighted) {
+                                    root.highlighted.push(UID);
+                                } else {
+                                    root.highlighted = Array.from(root.highlighted).filter(r => r !== UID);
+                                }
+                                root.clearContactSearchBar();
+                            }
+                        }
+
+                        Timer {
+                            id: locationIconTimer
+
+                            property bool showIconArrow: true
+                            property bool isSharingPosition: PositionManager.positionShareConvIdsCount !== 0
+                            property bool isReceivingPosition: PositionManager.sharingUrisCount !== 0
+
+                            interval: 750
+                            running: isSharingPosition || isReceivingPosition
+                            repeat: true
+                            onTriggered: {
+                                showIconArrow = !showIconArrow;
+                            }
                         }
                     }
                 }
             }
         }
-        SipInputPanel {
-            id: sipInputPanelPopUp
+    }
 
-            x: startConversation.x - sipInputPanelPopUp.width / 2 - 20
-            y: startConversation.y + startConversation.height
-            width: sipInputPanelPopUp.implicitWidth
-            height: sipInputPanelPopUp.implicitHeight
+    SipInputPanel {
+        id: sipInputPanelPopUp
 
-            opacity: 0
+        x: startConversation.x - sipInputPanelPopUp.width / 2 - 20
+        y: startConversation.y + startConversation.height
+        width: sipInputPanelPopUp.implicitWidth
+        height: sipInputPanelPopUp.implicitHeight
 
-            transform: Translate {
-                id: sipTranslate
-                y: -10
-            }
+        opacity: 0
 
-            property bool shown: false
-            visible: false
-
-            states: [
-                State {
-                    name: "visible"
-                    when: sipInputPanelPopUp.shown
-                    PropertyChanges {
-                        target: sipInputPanelPopUp
-                        opacity: 1.0
-                        visible: true
-                    }
-                    PropertyChanges {
-                        target: sipTranslate
-                        y: 0
-                    }
-                },
-                State {
-                    name: "hidden"
-                    when: !sipInputPanelPopUp.shown
-                    PropertyChanges {
-                        target: sipInputPanelPopUp
-                        opacity: 0.0
-                        visible: false
-                    }
-                    PropertyChanges {
-                        target: sipTranslate
-                        y: -10
-                    }
-                }
-            ]
-
-
-            transitions: [
-                Transition {
-                    from: "hidden"
-                    to: "visible"
-                    SequentialAnimation {
-                        PropertyAction {
-                            target: sipInputPanelPopUp
-                            property: "visible"
-                            value: true
-                        }
-                        ParallelAnimation {
-                            NumberAnimation {
-                                target: sipInputPanelPopUp
-                                property: "opacity"
-                                duration: 250
-                                easing.type: Easing.OutCubic
-                            }
-                            NumberAnimation {
-                                target: sipTranslate
-                                property: "y"
-                                duration: 250
-                                easing.type: Easing.OutCubic
-                            }
-                        }
-                    }
-                },
-                Transition {
-                    from: "visible"
-                    to: "hidden"
-                    SequentialAnimation {
-                        ParallelAnimation {
-                            NumberAnimation {
-                                target: sipInputPanelPopUp
-                                property: "opacity"
-                                duration: 250
-                                easing.type: Easing.InCubic
-                            }
-                            NumberAnimation {
-                                target: sipTranslate
-                                property: "y"
-                                duration: 250
-                                easing.type: Easing.InCubic
-                            }
-                        }
-                        PropertyAction {
-                            target: sipInputPanelPopUp
-                            property: "visible"
-                            value: false
-                        }
-                    }
-                }
-            ]
+        transform: Translate {
+            id: sipTranslate
+            y: -10
         }
+
+        property bool shown: false
+        visible: false
+
+        states: [
+            State {
+                name: "visible"
+                when: sipInputPanelPopUp.shown
+                PropertyChanges {
+                    target: sipInputPanelPopUp
+                    opacity: 1.0
+                    visible: true
+                }
+                PropertyChanges {
+                    target: sipTranslate
+                    y: 0
+                }
+            },
+            State {
+                name: "hidden"
+                when: !sipInputPanelPopUp.shown
+                PropertyChanges {
+                    target: sipInputPanelPopUp
+                    opacity: 0.0
+                    visible: false
+                }
+                PropertyChanges {
+                    target: sipTranslate
+                    y: -10
+                }
+            }
+        ]
+
+        transitions: [
+            Transition {
+                from: "hidden"
+                to: "visible"
+                SequentialAnimation {
+                    PropertyAction {
+                        target: sipInputPanelPopUp
+                        property: "visible"
+                        value: true
+                    }
+                    ParallelAnimation {
+                        NumberAnimation {
+                            target: sipInputPanelPopUp
+                            property: "opacity"
+                            duration: 250
+                            easing.type: Easing.OutCubic
+                        }
+                        NumberAnimation {
+                            target: sipTranslate
+                            property: "y"
+                            duration: 250
+                            easing.type: Easing.OutCubic
+                        }
+                    }
+                }
+            },
+            Transition {
+                from: "visible"
+                to: "hidden"
+                SequentialAnimation {
+                    ParallelAnimation {
+                        NumberAnimation {
+                            target: sipInputPanelPopUp
+                            property: "opacity"
+                            duration: 250
+                            easing.type: Easing.InCubic
+                        }
+                        NumberAnimation {
+                            target: sipTranslate
+                            property: "y"
+                            duration: 250
+                            easing.type: Easing.InCubic
+                        }
+                    }
+                    PropertyAction {
+                        target: sipInputPanelPopUp
+                        property: "visible"
+                        value: false
+                    }
+                }
+            }
+        ]
     }
 }
