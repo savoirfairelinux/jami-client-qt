@@ -16,6 +16,7 @@
  */
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Effects
 import net.jami.Constants 1.1
 
 // PushButton contains the following configurable properties:
@@ -36,7 +37,7 @@ AbstractButton {
     property int preferredRightMargin: 16
     // Note the radius will default to preferredSize
     property bool circled: true
-    property alias radius: background.radius
+    property int radius: 5
     property alias border: background.border
 
     // Text properties
@@ -74,6 +75,8 @@ AbstractButton {
     property alias imageOffset: image.offset
 
     property alias mirror: image.mirror
+
+    property bool elevated: false
 
     width: preferredWidth ? preferredWidth : preferredSize
     height: preferredHeight ? preferredHeight : preferredSize
@@ -149,7 +152,20 @@ AbstractButton {
     background: Rectangle {
         id: background
 
-        radius: circled ? preferredSize : 5
+        layer.enabled: elevated
+        layer.effect: MultiEffect {
+            anchors.fill: background
+            shadowEnabled: true
+            shadowBlur: JamiTheme.shadowBlur
+            shadowColor: JamiTheme.shadowColor
+            shadowHorizontalOffset: JamiTheme.shadowHorizontalOffset
+            shadowVerticalOffset: JamiTheme.shadowVerticalOffset
+            shadowOpacity: JamiTheme.shadowOpacity
+        }
+
+        width: root.width
+        height: root.height
+        radius: circled ? height / 2 : root.radius
         color: normalColor
 
         states: [
