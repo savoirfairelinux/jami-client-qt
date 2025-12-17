@@ -354,7 +354,7 @@ Control {
         Action {
             id: addPersonAction
             onTriggered: root.addToConferenceClicked()
-            icon.source: JamiResources.add_people_black_24dp_svg
+            icon.source: JamiResources.add_people_24dp_svg
             icon.color: "white"
             text: JamiStrings.inviteMembers
             enabled: CurrentCall.isModerator && !CurrentCall.isSIP
