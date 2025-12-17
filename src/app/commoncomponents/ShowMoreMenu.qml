@@ -159,7 +159,7 @@ BaseContextMenu {
             id: removeLocally
 
             canTrigger: type === Interaction.Type.DATA_TRANSFER && TransferStatus === Interaction.TransferStatus.TRANSFER_FINISHED
-            iconSource: JamiResources.trash_black_24dp_svg
+            iconSource: JamiResources.delete_svg
             itemName: JamiStrings.removeLocally
             onClicked: {
                 MessagesAdapter.removeFile(msgId, root.location);
@@ -191,7 +191,7 @@ BaseContextMenu {
             id: copyMessage
 
             canTrigger: true
-            iconSource: JamiResources.copy_svg
+            iconSource: JamiResources.content_copy_24dp_svg
             itemName: JamiStrings.copy
             onClicked: {
                 UtilsAdapter.setClipboardText(msgBody);
