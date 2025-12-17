@@ -216,7 +216,7 @@ FocusScope {
             normalColor: "transparent"
             toolTipText: JamiStrings.dismiss
 
-            source: JamiResources.trash_black_24dp_svg
+            source: JamiResources.delete_svg
 
             onClicked: root.ignoreClicked()
         }

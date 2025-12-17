@@ -101,7 +101,7 @@ BaseModalDialog {
             normalColor: "transparent"
             imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
             toolTipText: JamiStrings.takePhoto
-            source: JamiResources.add_a_photo_black_24dp_svg
+            source: JamiResources.add_a_photo_24dp_svg
 
             Keys.onPressed: function (keyEvent) {
                 if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
