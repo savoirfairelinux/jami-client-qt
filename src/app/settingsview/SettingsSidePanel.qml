@@ -61,7 +61,7 @@ SidePanelBase {
                         }]
                 }, {
                     "title": JamiStrings.generalSettingsTitle,
-                    "icon": JamiResources.gear_black_24dp_svg,
+                    "icon": JamiResources.settings_24dp_svg,
                     "first": 5,
                     "last": 11,
                     "children": [{
@@ -137,7 +137,7 @@ SidePanelBase {
                         }]
                 }, {
                     "title": JamiStrings.generalSettingsTitle,
-                    "icon": JamiResources.gear_black_24dp_svg,
+                    "icon": JamiResources.settings_24dp_svg,
                     "first": 5,
                     "last": 11,
                     "children": [{
