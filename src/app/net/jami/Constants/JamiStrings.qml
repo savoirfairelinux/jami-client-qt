@@ -935,6 +935,9 @@ Item {
     property string showInstalledDictionaries: qsTr("Show installed dictionaries")
     property string showInstalledDictionariesDescription: qsTr("Only show dictionaries that are currently installed")
 
+    // Search bar
+    property string searchOrAdd: qsTr("Search/add")
+
     // Accessibility
     property string switchToAccount: qsTr("Press enter to switch to this account")
     property string qrCodeExplanation: qsTr("Display your QR code to allow other users to scan it and add you as a contact")

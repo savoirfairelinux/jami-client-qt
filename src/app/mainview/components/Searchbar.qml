@@ -38,12 +38,12 @@ Rectangle {
     }
 
     function setTextAreaFocus() {
-        if (visible){
+        if (visible) {
             textArea.forceActiveFocus();
         }
     }
 
-    radius: JamiTheme.primaryRadius
+    radius: JamiTheme.sidePanelRadius
     color: JamiTheme.secondaryBackgroundColor
 
     onFocusChanged: {
@@ -58,22 +58,13 @@ Rectangle {
         lineEditObj: textArea
     }
 
-    ResponsiveImage {
-        id: startSearch
-
-        anchors.verticalCenter: root.verticalCenter
-        anchors.left: root.left
-        anchors.leftMargin: 10
-        source: JamiResources.ic_baseline_search_24dp_svg
-        color: JamiTheme.chatviewButtonColor
-    }
-
     Rectangle {
         id: rectTextArea
 
         height: root.height - 5
-        anchors.left: startSearch.right
-        anchors.right: root.right
+        anchors.left: root.left
+        anchors.leftMargin: 4
+        anchors.right: actionButton.left
         anchors.verticalCenter: root.verticalCenter
         color: "transparent"
         width: JamiTheme.searchbarSize
@@ -87,7 +78,7 @@ Rectangle {
 
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
-            anchors.right: textArea.text.length ? clearTextButton.left : parent.right
+            anchors.right: parent.right
 
             color: JamiTheme.chatviewTextColor
 
@@ -105,33 +96,35 @@ Rectangle {
                     lineEditContextMenu.openMenuAt(event);
             }
         }
+    }
 
-        PushButton {
-            id: clearTextButton
+    PushButton {
+        id: actionButton
 
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.right: parent.right
-            anchors.rightMargin: 15
+        enabled: textArea.text.length
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.right: root.right
+        anchors.rightMargin: 12
 
-            preferredSize: 15
-            radius: JamiTheme.primaryRadius
+        hoverEnabled: textArea.text.length
+        preferredSize: textArea.text.length ? 15 : 24
+        radius: JamiTheme.primaryRadius
+        opacity: textArea.activeFocus || textArea.text.length ? 1 : 0.6
 
-            visible: textArea.text.length
-            opacity: visible ? 1 : 0
+        normalColor: root.color
+        imageColor: JamiTheme.primaryForegroundColor
 
-            normalColor: root.color
-            imageColor: JamiTheme.primaryForegroundColor
+        source: textArea.text.length ? JamiResources.ic_clear_24dp_svg : JamiResources.ic_baseline_search_24dp_svg
+        toolTipText: textArea.text.length ? JamiStrings.clearText : ""
+        onClicked: {
+            if (textArea.text.length)
+                textArea.clear();
+        }
 
-            source: JamiResources.ic_clear_24dp_svg
-            toolTipText: JamiStrings.clearText
-
-            onClicked: textArea.clear()
-
-            Behavior on opacity  {
-                NumberAnimation {
-                    duration: 500
-                    easing.type: Easing.OutCubic
-                }
+        Behavior on opacity {
+            NumberAnimation {
+                duration: 500
+                easing.type: Easing.OutCubic
             }
         }
     }
