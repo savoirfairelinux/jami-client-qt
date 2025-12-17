@@ -300,7 +300,7 @@ CallModel::getConferenceFromURI(const QString& uri) const
 {
     for (const auto& call : pimpl_->calls) {
         if (call.second->type == call::Type::CONFERENCE) {
-            QStringList callList = CallManager::instance().getParticipantList(owner.id, call.first);
+            QStringList callList = CallManager::instance().getConferenceSubCalls(owner.id, call.first);
             Q_FOREACH (const auto& callId, callList) {
                 try {
                     if (pimpl_->calls.find(callId) != pimpl_->calls.end() && pimpl_->calls[callId]->peerUri == uri) {
@@ -317,7 +317,7 @@ CallModel::getConferenceFromURI(const QString& uri) const
 VectorString
 CallModel::getConferenceSubcalls(const QString& confId)
 {
-    QStringList callList = CallManager::instance().getParticipantList(owner.id, confId);
+    QStringList callList = CallManager::instance().getConferenceSubCalls(owner.id, confId);
     VectorString result;
     result.reserve(callList.size());
     Q_FOREACH (const auto& callId, callList) {
@@ -1173,7 +1173,7 @@ CallModelPimpl::initConferencesFromDaemon()
         QMap<QString, QString> details = CallManager::instance().getConferenceDetails(linked.owner.id, callId);
         auto callInfo = std::make_shared<call::Info>();
         callInfo->id = callId;
-        QStringList callList = CallManager::instance().getParticipantList(linked.owner.id, callId);
+        QStringList callList = CallManager::instance().getConferenceSubCalls(linked.owner.id, callId);
         Q_FOREACH (const auto& call, callList) {
             MapStringString callDetails = CallManager::instance().getCallDetails(linked.owner.id, call);
             auto now = std::chrono::steady_clock::now();
@@ -1237,7 +1237,7 @@ CallModel::setCurrentCall(const QString& callId) const
         // For each account, we should not hold calls linked to a conference
         QStringList conferences = CallManager::instance().getConferenceList(acc);
         for (const auto& confId : conferences) {
-            QStringList callList = CallManager::instance().getParticipantList(acc, confId);
+            QStringList callList = CallManager::instance().getConferenceSubCalls(acc, confId);
             Q_FOREACH (const auto& cid, callList) {
                 filterCalls.push_back(cid);
             }
@@ -1262,7 +1262,7 @@ CallModel::setCurrentCall(const QString& callId) const
                 // Only hold conference if attached
                 if (confDetails["CALL_STATE"] == "ACTIVE_DETACHED")
                     continue;
-                QStringList callList = CallManager::instance().getParticipantList(acc, confId);
+                QStringList callList = CallManager::instance().getConferenceSubCalls(acc, confId);
                 if (callList.indexOf(callId) == -1)
                     CallManager::instance().holdConference(acc, confId);
             }
@@ -1640,7 +1640,7 @@ CallModelPimpl::slotOnConferenceInfosUpdated(const QString& confId, const Vector
     // TODO: remove when the rendez-vous UI will be done
     // For now, the rendez-vous account can see ongoing calls
     // And must be notified when a new
-    QStringList callList = CallManager::instance().getParticipantList(linked.owner.id, confId);
+    QStringList callList = CallManager::instance().getConferenceSubCalls(linked.owner.id, confId);
     qDebug() << "[conf:" << confId << "] Conference infos updated. Calls remaining:" << callList.size();
     Q_FOREACH (const auto& call, callList) {
         Q_EMIT linked.callAddedToConference(call, "", confId);
@@ -1657,22 +1657,27 @@ CallModelPimpl::slotOnConferenceInfosUpdated(const QString& confId, const Vector
     if (participantIt == participantsModel.end())
         participantIt = participantsModel.emplace(confId, std::make_shared<CallParticipants>(infos, confId, linked))
                             .first;
-    else
+    else {
+        qWarning() << "[DEBUG] Before update, participants count:" << participantIt->second->getParticipants().size();
         participantIt->second->update(infos);
+        qWarning() << "[DEBUG] After update, participants count:" << participantIt->second->getParticipants().size();
+    }
+
     it->second->layout = participantIt->second->getLayout();
 
     // Check if we need to switch conversation
-    auto currentConversation = linked.owner.conversationModel->getConversationForCallId(confId);
-    if (currentConversation && callList.size() >= 2) {
-        auto fallbackConversation = getFallbackConversationForConference(confId);
-        // If a fallback conversation was returned, switch to it
-        if (fallbackConversation) {
-            currentConversation->get().confId.clear();
-            fallbackConversation->get().confId = confId;
-            fallbackConversation->get().callId = confId;
-            qWarning() << "[conf:" << confId
-                       << "] Switching to fallback conversation:" << fallbackConversation->get().uid;
-            linked.owner.conversationModel->selectConversation(fallbackConversation->get().uid);
+    if (callList.size() >= 2) {
+        if (auto currentConversation = linked.owner.conversationModel->getConversationForCallId(confId)) {
+            auto fallbackConversation = getFallbackConversationForConference(confId);
+            // If a fallback conversation was returned, switch to it
+            if (fallbackConversation) {
+                currentConversation->get().confId.clear();
+                fallbackConversation->get().confId = confId;
+                fallbackConversation->get().callId = confId;
+                qWarning() << "[conf:" << confId
+                           << "] Switching to fallback conversation:" << fallbackConversation->get().uid;
+                linked.owner.conversationModel->selectConversation(fallbackConversation->get().uid);
+            }
         }
     }
 
@@ -1734,7 +1739,7 @@ CallModelPimpl::slotConferenceCreated(const QString& accountId, const QString& c
             Q_EMIT linked.currentCallChanged(confId);
         }
     } else {
-        QStringList callList = CallManager::instance().getParticipantList(linked.owner.id, confId);
+        QStringList callList = CallManager::instance().getConferenceSubCalls(linked.owner.id, confId);
         Q_FOREACH (const auto& call, callList) {
             Q_EMIT linked.callAddedToConference(call, "", confId);
             // Remove call from pendingConferences_
@@ -1760,7 +1765,7 @@ CallModelPimpl::slotConferenceChanged(const QString& accountId, const QString& c
     if (accountId != linked.owner.id)
         return;
     // Detect if conference is created for this account
-    QStringList callList = CallManager::instance().getParticipantList(linked.owner.id, confId);
+    QStringList callList = CallManager::instance().getConferenceSubCalls(linked.owner.id, confId);
     QString currentCallId = currentCall_;
     Q_FOREACH (const auto& call, callList) {
         Q_EMIT linked.callAddedToConference(call, "", confId);
@@ -1793,6 +1798,11 @@ CallModelPimpl::slotConferenceRemoved(const QString& accountId, const QString& c
         // Assuming the participants model is up to date, it should contain all remaining participants in the conference
         // Which should be 2: the host and the remaining remote peer
         // Therefore, we look for the participant which is not ourselves
+        if (participants.size() != 2) {
+            qWarning() << "NOT 2 PARTICIPANTS WEEEWOOOWEEEWOOO:" << participants.size();
+            // return;
+        }
+
         for (const auto& participant : participants) {
             if (participant.uri != linked.owner.profileInfo.uri) {
                 remainingPeerUri = participant.uri;
