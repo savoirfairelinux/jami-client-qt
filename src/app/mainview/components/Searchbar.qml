@@ -16,6 +16,7 @@
  */
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Effects
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -38,12 +39,24 @@ Rectangle {
     }
 
     function setTextAreaFocus() {
-        if (visible){
+        if (visible) {
             textArea.forceActiveFocus();
         }
     }
 
-    radius: JamiTheme.primaryRadius
+    layer.enabled: true
+    layer.effect: MultiEffect {
+        id: searchBarMultiEffect
+        anchors.fill: parent
+        shadowEnabled: true
+        shadowBlur: JamiTheme.shadowBlur
+        shadowColor: JamiTheme.shadowColor
+        shadowHorizontalOffset: JamiTheme.shadowHorizontalOffset
+        shadowVerticalOffset: JamiTheme.shadowVerticalOffset
+        shadowOpacity: JamiTheme.shadowOpacity
+    }
+
+    radius: JamiTheme.sidePanelRadius
     color: JamiTheme.secondaryBackgroundColor
 
     onFocusChanged: {
@@ -59,24 +72,36 @@ Rectangle {
     }
 
     ResponsiveImage {
-        id: startSearch
+        id: startSearchIcon
 
         anchors.verticalCenter: root.verticalCenter
-        anchors.left: root.left
-        anchors.leftMargin: 10
         source: JamiResources.ic_baseline_search_24dp_svg
-        color: JamiTheme.chatviewButtonColor
+        color: JamiTheme.searchBarIconIdle
+
+        visible: textArea.text.length === 0
+
+        transform: [
+            Rotation {
+                id: startSearchRotator
+                origin.x: startSearchIcon.width / 2
+                origin.y: startSearchIcon.height / 2
+                angle: 0
+            },
+            Translate {
+                id: startSearchTranslator
+                x: root.width - startSearchIcon.width - JamiTheme.searchBarIconPadding
+            }
+        ]
     }
 
     Rectangle {
         id: rectTextArea
 
+        x: 0
         height: root.height - 5
-        anchors.left: startSearch.right
-        anchors.right: root.right
         anchors.verticalCenter: root.verticalCenter
         color: "transparent"
-        width: JamiTheme.searchbarSize
+        width: root.width - x
 
         TextField {
             id: textArea
@@ -85,15 +110,15 @@ Rectangle {
 
             background.visible: false
 
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            anchors.right: textArea.text.length ? clearTextButton.left : parent.right
+            anchors.fill: parent
+            anchors.verticalCenter: root.verticalCenter
 
             color: JamiTheme.chatviewTextColor
 
-            placeholderText: JamiStrings.search
+            placeholderText: JamiStrings.searchOrAdd
             placeholderTextColor: JamiTheme.chatviewTextColor
 
+            width: parent.width
             height: root.height - 5
 
             font.pointSize: JamiTheme.textFontSize
@@ -112,7 +137,6 @@ Rectangle {
             anchors.verticalCenter: parent.verticalCenter
             anchors.right: parent.right
             anchors.rightMargin: 15
-
             preferredSize: 15
             radius: JamiTheme.primaryRadius
 
@@ -126,15 +150,108 @@ Rectangle {
             toolTipText: JamiStrings.clearText
 
             onClicked: textArea.clear()
-
-            Behavior on opacity  {
-                NumberAnimation {
-                    duration: 500
-                    easing.type: Easing.OutCubic
-                }
-            }
         }
     }
+
+    states: [
+        State {
+            name: "idle"
+            when: !textArea.activeFocus
+            PropertyChanges {
+                target: startSearchIcon
+                color: JamiTheme.searchBarIconIdle
+                visible: textArea.text.length === 0
+            }
+            PropertyChanges {
+                target: startSearchTranslator
+                x: root.width - startSearchIcon.width - JamiTheme.searchBarIconPadding
+            }
+            PropertyChanges {
+                target: startSearchRotator
+                angle: 0
+            }
+            PropertyChanges {
+                target: rectTextArea
+                x: 0
+            }
+        },
+        State {
+            name: "searching"
+            when: textArea.activeFocus
+            PropertyChanges {
+                target: startSearchIcon
+                color: JamiTheme.searchBarIconActive
+                visible: true
+            }
+            PropertyChanges {
+                target: startSearchTranslator
+                x: JamiTheme.searchBarIconPadding
+            }
+            PropertyChanges {
+                target: startSearchRotator
+                angle: 90
+            }
+            PropertyChanges {
+                target: rectTextArea
+                x: startSearchIcon.width
+            }
+        }
+    ]
+
+    transitions: [
+        Transition {
+            from: "idle"
+            to: "searching"
+            ColorAnimation {
+                target: startSearchIcon
+                duration: JamiTheme.shortFadeDuration
+            }
+            NumberAnimation {
+                target: startSearchTranslator
+                property: "x"
+                duration: JamiTheme.shortFadeDuration
+                easing.type: Easing.OutCubic
+            }
+            NumberAnimation {
+                target: startSearchRotator
+                property: "angle"
+                duration: JamiTheme.shortFadeDuration
+                easing.type: Easing.OutCubic
+            }
+            NumberAnimation {
+                target: rectTextArea
+                property: "x"
+                duration: JamiTheme.shortFadeDuration
+                easing.type: Easing.OutCubic
+            }
+        },
+        Transition {
+            from: "searching"
+            to: "idle"
+            ColorAnimation {
+                target: startSearchIcon
+                duration: JamiTheme.shortFadeDuration
+            }
+            NumberAnimation {
+                target: startSearchTranslator
+                property: "x"
+                duration: JamiTheme.shortFadeDuration
+                easing.type: Easing.InCubic
+            }
+            NumberAnimation {
+                target: startSearchRotator
+                property: "angle"
+                duration: JamiTheme.shortFadeDuration
+                easing.type: Easing.InCubic
+            }
+            NumberAnimation {
+                target: rectTextArea
+                property: "x"
+                duration: JamiTheme.shortFadeDuration
+                easing.type: Easing.InCubic
+            }
+        }
+    ]
 
     Keys.onPressed: function (keyEvent) {
         if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
