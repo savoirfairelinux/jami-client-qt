@@ -235,7 +235,7 @@ BaseModalDialog {
                         radius: 3
 
                         toolTipText: JamiStrings.copy
-                        source: JamiResources.copy_svg
+                        source: JamiResources.content_copy_24dp_svg
 
                         onClicked: {
                             contactId.selectAll();
