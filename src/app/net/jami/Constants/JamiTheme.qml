@@ -734,4 +734,9 @@ Item {
 
     // Side panel
     property int sidePanelRadius: JamiTheme.avatarRadius + JamiTheme.itemPadding * 2
+
+    // Search Bar
+    property int searchBarIconPadding: 8
+    property color searchBarIconActive: darkTheme ? whiteColor : blackColor
+    property color searchBarIconIdle: darkTheme ? "#909090" : "#7e7e7e"
 }
