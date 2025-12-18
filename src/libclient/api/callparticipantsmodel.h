@@ -15,6 +15,29 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * @file callparticipantsmodel.h
+ * @brief Client-side model for STREAM-level participant information in conferences.
+ *
+ * This file provides models for managing video/audio stream data received from the
+ * daemon's OnConferenceInfosUpdated signal. Data is keyed by streamId (sinkId), not
+ * participant URI - a single participant may have multiple streams (e.g., camera + screen share).
+ *
+ * The data tracked here is primarily for video layout rendering:
+ * - Stream position and dimensions (x, y, width, height) for video tile compositing
+ * - Audio/video mute states for UI indicators
+ * - Active speaker state for layout decisions (grid vs. spotlight)
+ * - Moderator status, hand raised state, voice activity, etc.
+ *
+ * IMPORTANT: Stream count can fluctuate briefly during audio-only ↔ video transitions
+ * due to timing in the daemon's VideoMixer. For a stable participant count or list of
+ * participant URIs (independent of stream state), use CallManager::getConferenceParticipantsUri()
+ * instead.
+ *
+ * @see CallManager::getConferenceParticipantsUri() for stable participant-level data
+ * @see VideoMixer::sourcesInfo for the daemon-side source of this data
+ */
+
 #pragma once
 
 // std
