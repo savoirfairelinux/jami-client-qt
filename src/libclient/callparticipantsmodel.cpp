@@ -38,34 +38,35 @@ QList<ParticipantInfos>
 CallParticipants::getParticipants() const
 {
     std::lock_guard<std::mutex> lk(participantsMtx_);
-    return participants_.values();
+    return streamIdToParticipantMap_.values();
 }
 
 void
 CallParticipants::update(const VectorMapStringString& infos)
 {
     std::lock_guard<std::mutex> lk(updateMtx_);
-    validMedias_.clear();
-    filterCandidates(infos);
-    validMedias_.sort();
+
+    buildCandidatesAndStreams(infos);
 
     idx_ = 0;
-    QList<QString> keys {};
+
+    QList<QString> streamIds {};
     {
         std::lock_guard<std::mutex> lk(participantsMtx_);
-        keys = participants_.keys();
+        streamIds = streamIdToParticipantMap_.keys();
     }
-    for (const auto& key : keys) {
-        auto keyIdx = validMedias_.indexOf(key);
-        if (keyIdx < 0 || keyIdx >= validMedias_.size())
+
+    for (const auto& streamId : streamIds) {
+        auto streamIndex = validStreamIds_.indexOf(streamId);
+        if (streamIndex == -1 or streamIndex >= validStreamIds_.size())
             removeParticipant(idx_);
         else
             idx_++;
     }
 
     idx_ = 0;
-    for (const auto& partMedia : validMedias_) {
-        addParticipant(candidates_[partMedia]);
+    for (const auto& validStreamId : validStreamIds_) {
+        addParticipant(streamIdToCandidateMap_[validStreamId]);
         idx_++;
     }
 
@@ -76,12 +77,12 @@ void
 CallParticipants::verifyLayout()
 {
     std::lock_guard<std::mutex> lk(participantsMtx_);
-    auto it = std::find_if(participants_.begin(),
-                           participants_.end(),
+    auto it = std::find_if(streamIdToParticipantMap_.begin(),
+                           streamIdToParticipantMap_.end(),
                            [](const lrc::api::ParticipantInfos& participant) -> bool { return participant.active; });
     auto newLayout = call::Layout::GRID;
-    if (it != participants_.end())
-        if (participants_.size() == 1)
+    if (it != streamIdToParticipantMap_.end())
+        if (streamIdToParticipantMap_.size() == 1)
             newLayout = call::Layout::ONE;
         else
             newLayout = call::Layout::ONE_WITH_SMALL;
@@ -96,8 +97,8 @@ CallParticipants::removeParticipant(int index)
 {
     {
         std::lock_guard<std::mutex> lk(participantsMtx_);
-        auto it = std::next(participants_.begin(), index);
-        participants_.erase(it);
+        auto it = std::next(streamIdToParticipantMap_.begin(), index);
+        streamIdToParticipantMap_.erase(it);
     }
     Q_EMIT linked_.participantRemoved(callId_, idx_);
 }
@@ -108,9 +109,11 @@ CallParticipants::addParticipant(const ParticipantInfos& participant)
     bool added {false};
     {
         std::lock_guard<std::mutex> lk(participantsMtx_);
-        auto it = participants_.find(participant.sinkId);
-        if (it == participants_.end()) {
-            participants_.insert(std::next(participants_.begin(), idx_), participant.sinkId, participant);
+        auto it = streamIdToParticipantMap_.find(participant.sinkId);
+        if (it == streamIdToParticipantMap_.end()) {
+            streamIdToParticipantMap_.insert(std::next(streamIdToParticipantMap_.begin(), idx_),
+                                             participant.sinkId,
+                                             participant);
             added = true;
         } else {
             if (participant == (*it))
@@ -125,10 +128,11 @@ CallParticipants::addParticipant(const ParticipantInfos& participant)
 }
 
 void
-CallParticipants::filterCandidates(const VectorMapStringString& infos)
+CallParticipants::buildCandidatesAndStreams(const VectorMapStringString& infos)
 {
     std::lock_guard<std::mutex> lk(participantsMtx_);
-    candidates_.clear();
+    validStreamIds_.clear();
+    streamIdToCandidateMap_.clear();
     for (const auto& candidate : infos) {
         if (!candidate.contains(ParticipantsInfosStrings::URI))
             continue;
@@ -145,33 +149,35 @@ CallParticipants::filterCandidates(const VectorMapStringString& infos)
                 }
             }
         }
-        auto media = candidate[ParticipantsInfosStrings::STREAMID];
         if (candidate[ParticipantsInfosStrings::W].toInt() != 0 && candidate[ParticipantsInfosStrings::H].toInt() != 0) {
-            validMedias_.append(media);
-            candidates_.insert(media, ParticipantInfos(candidate, callId_, peerId));
+            auto streamId = candidate[ParticipantsInfosStrings::STREAMID];
+            validStreamIds_.append(streamId);
+            streamIdToCandidateMap_.insert(streamId, ParticipantInfos(candidate, callId_, peerId));
         }
     }
+
+    validStreamIds_.sort();
 }
 
 bool
 CallParticipants::checkModerator(const QString& uri) const
 {
     std::lock_guard<std::mutex> lk(participantsMtx_);
-    return std::find_if(participants_.cbegin(),
-                        participants_.cend(),
+    return std::find_if(streamIdToParticipantMap_.cbegin(),
+                        streamIdToParticipantMap_.cend(),
                         [&](auto participant) { return participant.uri == uri && participant.isModerator; })
-           != participants_.cend();
+           != streamIdToParticipantMap_.cend();
 }
 
 QJsonObject
 CallParticipants::toQJsonObject(uint index) const
 {
     std::lock_guard<std::mutex> lk(participantsMtx_);
-    if (index >= participants_.size())
+    if (index >= streamIdToParticipantMap_.size())
         return {};
 
     QJsonObject ret;
-    const auto& participant = std::next(participants_.begin(), index);
+    const auto& participant = std::next(streamIdToParticipantMap_.begin(), index);
 
     ret[ParticipantsInfosStrings::URI] = participant->uri;
     ret[ParticipantsInfosStrings::DEVICE] = participant->device;
