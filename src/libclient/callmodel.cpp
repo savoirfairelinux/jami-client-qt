@@ -1685,37 +1685,39 @@ CallModelPimpl::slotOnConferenceInfosUpdated(const QString& confId, const Vector
         participantIt->second->update(infos);
     it->second->layout = participantIt->second->getLayout();
 
-    // Check if we need to switch conversation
-    auto currentConversation = linked.owner.conversationModel->getConversationForCallId(confId);
-    if (currentConversation && callList.size() >= 2) {
-        auto fallbackConversation = getFallbackConversationForConference(confId);
-        // If a fallback conversation was returned, switch to it
-        if (fallbackConversation) {
-            currentConversation->get().confId.clear();
-            fallbackConversation->get().confId = confId;
-            fallbackConversation->get().callId = confId;
-            qWarning() << "[conf:" << confId
-                       << "] Switching to fallback conversation:" << fallbackConversation->get().uid;
-            linked.owner.conversationModel->selectConversation(fallbackConversation->get().uid);
-        }
-    }
-
-    // if Jami, remove @ring.dht
-    for (auto& i : participantIt->second->getParticipants()) {
-        i.uri.replace("@ring.dht", "");
-        if (i.uri.isEmpty()) {
-            if (it->second->type == call::Type::CONFERENCE) {
-                i.uri = linked.owner.profileInfo.uri;
-            } else {
-                i.uri = it->second->peerUri.replace("ring:", "");
+    // If the conference only has 1 subcall left, the daemon will emit conferenceRemoved soon after
+    // So we only need to handle the case where there are multiple subcalls, since the case size == 1
+    // will be handled in slotConferenceRemoved
+    if (callList.size() > 1) {
+        if (auto currentConversation = linked.owner.conversationModel->getConversationForCallId(confId)) {
+            // If a fallback conversation was returned, switch to it
+            if (auto fallbackConversation = getFallbackConversationForConference(confId)) {
+                currentConversation->get().confId.clear();
+                fallbackConversation->get().confId = confId;
+                fallbackConversation->get().callId = confId;
+                qWarning() << "[conf:" << confId
+                           << "] Switching to fallback conversation:" << fallbackConversation->get().uid;
+                linked.owner.conversationModel->selectConversation(fallbackConversation->get().uid);
             }
         }
     }
 
-    for (auto& info : infos) {
-        if (info["uri"].isEmpty()) {
-            it->second->videoMuted = info["videoMuted"] == TRUE_STR;
-            it->second->audioMuted = info["audioLocalMuted"] == TRUE_STR;
+    // if Jami, remove @ring.dht
+    for (auto& participant : participantIt->second->getParticipants()) {
+        participant.uri.replace("@ring.dht", "");
+        if (participant.uri.isEmpty()) {
+            if (it->second->type == call::Type::CONFERENCE) {
+                participant.uri = linked.owner.profileInfo.uri;
+            } else {
+                participant.uri = it->second->peerUri.replace("ring:", "");
+            }
+        }
+    }
+
+    for (auto& participantInfo : infos) {
+        if (participantInfo["uri"].isEmpty()) {
+            it->second->videoMuted = participantInfo["videoMuted"] == TRUE_STR;
+            it->second->audioMuted = participantInfo["audioLocalMuted"] == TRUE_STR;
         }
     }
 
