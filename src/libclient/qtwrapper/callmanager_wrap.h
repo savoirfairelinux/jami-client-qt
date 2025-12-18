@@ -294,6 +294,13 @@ public Q_SLOTS: // METHODS
         return temp;
     }
 
+    QStringList getConferenceParticipantsUri(const QString& accountId, const QString& confId)
+    {
+        QStringList temp = convertStringList(
+            libjami::getConferenceParticipantsUri(accountId.toStdString(), confId.toStdString()));
+        return temp;
+    }
+
     bool end(const QString& accountId, const QString& callId)
     {
         return libjami::hangUp(accountId.toStdString(), callId.toStdString());
