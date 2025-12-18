@@ -47,7 +47,7 @@ Rectangle {
     layer.enabled: true
     layer.effect: MultiEffect {
         id: searchBarMultiEffect
-        anchors.fill: parent
+        anchors.fill: root
         shadowEnabled: true
         shadowBlur: JamiTheme.shadowBlur
         shadowColor: JamiTheme.shadowColor
