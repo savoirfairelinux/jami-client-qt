@@ -163,70 +163,57 @@ SidePanelBase {
         }
     }
 
-    Item {
+    ColumnLayout {
+
         anchors.fill: parent
-        anchors.margins: JamiTheme.itemPadding * 2
+        // Creates The floating rectangle itself
+        anchors.margins: JamiTheme.sidePanelIslandsPadding
 
-        Rectangle {
-            id: contentRect
+        Item {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
 
-            anchors.fill: parent
+            Rectangle {
+                id: conversationListRect
 
-            color: JamiTheme.backgroundColor
-            radius: JamiTheme.sidePanelRadius
-            layer.enabled: true
-            layer.effect: MultiEffect {
                 anchors.fill: parent
-                shadowEnabled: true
-                shadowBlur: JamiTheme.shadowBlur
-                shadowColor: JamiTheme.shadowColor
-                shadowHorizontalOffset: JamiTheme.shadowHorizontalOffset
-                shadowVerticalOffset: JamiTheme.shadowVerticalOffset
-                shadowOpacity: JamiTheme.shadowOpacity
-            }
-        }
 
-        Page {
-            id: page
-
-            background: Rectangle {
-                anchors.fill: parent
                 color: JamiTheme.backgroundColor
-            }
-            anchors.fill: contentRect
-            layer.enabled: true
-            layer.effect: MultiEffect {
-                anchors.fill: parent
-                maskEnabled: true
-                maskSource: ShaderEffectSource {
-                    sourceItem: Rectangle {
-                        width: page.width
-                        height: page.height
-                        radius: JamiTheme.sidePanelRadius
-                    }
+                radius: JamiTheme.sidePanelRadius
+                layer.enabled: true
+                layer.effect: MultiEffect {
+                    id: searchBarMultiEffect
+                    anchors.fill: conversationListRect
+                    shadowEnabled: true
+                    shadowBlur: JamiTheme.shadowBlur
+                    shadowColor: JamiTheme.shadowColor
+                    shadowHorizontalOffset: JamiTheme.shadowHorizontalOffset
+                    shadowVerticalOffset: JamiTheme.shadowVerticalOffset
+                    shadowOpacity: JamiTheme.shadowOpacity
                 }
             }
-
-            header: AccountComboBox {
-                id: accountComboBox
-                QWKSetParentHitTestVisible {}
-                Shortcut {
-                    sequence: "Ctrl+J"
-                    context: Qt.ApplicationShortcut
-                    onActivated: accountComboBox.togglePopup()
-                }
-            }
-
-            topPadding: 10
 
             ColumnLayout {
-                id: mainLayout
-                anchors.fill: parent
+                id: conversationLayout
+
+                anchors.fill: conversationListRect
                 spacing: 10
 
                 // We use this to update the donation banner visibility, instead of a timer.
                 onVisibleChanged: JamiQmlUtils.updateIsDonationBannerVisible()
 
+                layer.enabled: true
+                layer.effect: MultiEffect {
+                    anchors.fill: conversationListRect
+                    maskEnabled: true
+                    maskSource: ShaderEffectSource {
+                        sourceItem: Rectangle {
+                            width: conversationLayout.width
+                            height: conversationLayout.height
+                            radius: JamiTheme.sidePanelRadius
+                        }
+                    }
+                }
                 // Label/button to create a new swarm.
                 RowLayout {
                     id: createSwarmToggle
@@ -236,6 +223,7 @@ SidePanelBase {
                     width: parent.width
                     height: 40
 
+                    Layout.topMargin: JamiTheme.sidePanelConversationsIslandTopPadding
                     Layout.leftMargin: 15
                     Layout.rightMargin: 15
                     Layout.alignment: Qt.AlignTop
@@ -276,6 +264,7 @@ SidePanelBase {
                     width: parent.width
                     height: 40
 
+                    Layout.topMargin: JamiTheme.sidePanelConversationsIslandTopPadding
                     Layout.leftMargin: 15
                     Layout.rightMargin: 15
                     Layout.alignment: Qt.AlignTop
@@ -351,7 +340,7 @@ SidePanelBase {
                     visible: ConversationsAdapter.pendingRequestCount && !contactSearchBar.textContent && smartListLayout.visible
 
                     contentHeight: childrenRect.height
-                    width: page.width
+                    width: parent.width
                     Layout.preferredHeight: 42
 
                     Layout.fillWidth: true
@@ -543,106 +532,19 @@ SidePanelBase {
                 }
             }
         }
-    }
 
-    SipInputPanel {
-        id: sipInputPanelPopUp
+        AccountComboBox {
+            id: accountComboBox
 
-        x: startConversation.x - sipInputPanelPopUp.width / 2 - 20
-        y: startConversation.y + startConversation.height
-        width: sipInputPanelPopUp.implicitWidth
-        height: sipInputPanelPopUp.implicitHeight
+            Layout.fillWidth: true
+            Layout.preferredHeight: JamiTheme.accountListItemHeight
+            Layout.alignment: Qt.AlignBottom
 
-        opacity: 0
-
-        transform: Translate {
-            id: sipTranslate
-            y: -10
+            Shortcut {
+                sequence: "Ctrl+J"
+                context: Qt.ApplicationShortcut
+                onActivated: accountComboBox.togglePopup()
+            }
         }
-
-        property bool shown: false
-        visible: false
-
-        states: [
-            State {
-                name: "visible"
-                when: sipInputPanelPopUp.shown
-                PropertyChanges {
-                    target: sipInputPanelPopUp
-                    opacity: 1.0
-                    visible: true
-                }
-                PropertyChanges {
-                    target: sipTranslate
-                    y: 0
-                }
-            },
-            State {
-                name: "hidden"
-                when: !sipInputPanelPopUp.shown
-                PropertyChanges {
-                    target: sipInputPanelPopUp
-                    opacity: 0.0
-                    visible: false
-                }
-                PropertyChanges {
-                    target: sipTranslate
-                    y: -10
-                }
-            }
-        ]
-
-        transitions: [
-            Transition {
-                from: "hidden"
-                to: "visible"
-                SequentialAnimation {
-                    PropertyAction {
-                        target: sipInputPanelPopUp
-                        property: "visible"
-                        value: true
-                    }
-                    ParallelAnimation {
-                        NumberAnimation {
-                            target: sipInputPanelPopUp
-                            property: "opacity"
-                            duration: 250
-                            easing.type: Easing.OutCubic
-                        }
-                        NumberAnimation {
-                            target: sipTranslate
-                            property: "y"
-                            duration: 250
-                            easing.type: Easing.OutCubic
-                        }
-                    }
-                }
-            },
-            Transition {
-                from: "visible"
-                to: "hidden"
-                SequentialAnimation {
-                    ParallelAnimation {
-                        NumberAnimation {
-                            target: sipInputPanelPopUp
-                            property: "opacity"
-                            duration: 250
-                            easing.type: Easing.InCubic
-                        }
-                        NumberAnimation {
-                            target: sipTranslate
-                            property: "y"
-                            duration: 250
-                            easing.type: Easing.InCubic
-                        }
-                    }
-                    PropertyAction {
-                        target: sipInputPanelPopUp
-                        property: "visible"
-                        value: false
-                    }
-                }
-            }
-        ]
     }
 }
