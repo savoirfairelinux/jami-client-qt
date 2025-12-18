@@ -288,9 +288,10 @@ public Q_SLOTS: // METHODS
         return libjami::getIsRecording(accountId.toStdString(), callId.toStdString());
     }
 
-    QStringList getParticipantList(const QString& accountId, const QString& confId)
+    QStringList getConferenceSubCalls(const QString& accountId, const QString& confId)
     {
-        QStringList temp = convertStringList(libjami::getParticipantList(accountId.toStdString(), confId.toStdString()));
+        QStringList temp = convertStringList(
+            libjami::getConferenceSubCalls(accountId.toStdString(), confId.toStdString()));
         return temp;
     }
 
