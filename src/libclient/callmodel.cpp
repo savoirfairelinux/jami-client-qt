@@ -1083,24 +1083,48 @@ CallModelPimpl::getFallbackConversationForConference(const QString& confId)
         return std::nullopt;
     }
 
-    const auto participantsIt = participantsModel.find(confId);
-    if (participantsIt == participantsModel.end()) {
-        qWarning() << "No participants model found for conference ID:" << confId;
-        return std::nullopt;
+    auto normalizeUri = [](QString uri) {
+        if (uri.lastIndexOf("@") > 0)
+            uri.truncate(uri.lastIndexOf("@"));
+        return uri;
+    };
+
+    // Get participant URIs from daemon first because it is based on the actual subcalls of the conference.
+    // participantsModel's list is solely based on the existing streams processed by the videomixer (go figure why).
+    // Since the daemon has cleared conference data by the time slotConferenceRemoved is called, participantsModel is
+    // our next option. However it is prone to race conditions when, for example, this method is called while a 'source'
+    // is being modified in the videomixer.
+    // Ideally the participantsModel should be the unique source of truth, but a patch is needed in the daemon to ensure
+    // it is, which is out of scope for now due to time constraints.
+    QStringList remoteParticipantsUris;
+    const auto daemonUris = CallManager::instance().getConferenceParticipantsUri(linked.owner.id, confId);
+    if (!daemonUris.isEmpty()) {
+        for (const auto& uri : daemonUris) {
+            if (uri != "") // in the daemon, empty uri represents the local host
+                remoteParticipantsUris.append(normalizeUri(uri));
+        }
+    } else {
+        auto participantIt = participantsModel.find(confId);
+        if (participantIt != participantsModel.end() && participantIt->second) {
+            for (const auto& participant : participantIt->second->getParticipants()) {
+                auto uri = participant.uri; // already normalized
+                if (uri != linked.owner.profileInfo.uri && !remoteParticipantsUris.contains(uri)) {
+                    remoteParticipantsUris.append(uri);
+                }
+            }
+        }
     }
 
-    // There should always be at least 2 participants in a SIP call/conference
-    const auto participants = participantsIt->second->getParticipants();
-    if (participants.size() <= 1) {
-        qWarning() << participants.size() << "participants found in conference" << confId
-                   << ", no fallback conversation available.";
+    if (remoteParticipantsUris.empty()) {
+        // It's the caller's responsibility to ensure there is at least 1 participant (otherwise, why a conference?)
+        qWarning() << "No remaining remote participant found in conference" << confId << ". Expected 1 or more.";
         return std::nullopt;
     }
 
     // Check if any participant matches the current conversation
-    // If yes, then no need to switch conversation, so return nullopt
-    for (const auto& participant : participants) {
-        const auto conv = linked.owner.conversationModel->getConversationForPeerUri(participant.uri);
+    // If yes, then no need to switch conversation
+    for (const auto& uri : remoteParticipantsUris) {
+        const auto conv = linked.owner.conversationModel->getConversationForPeerUri(uri);
         if (conv && currentConversation->get().uid == conv->get().uid) {
             qDebug() << "Current conversation matches a participant. No fallback needed.";
             return std::nullopt;
@@ -1108,12 +1132,10 @@ CallModelPimpl::getFallbackConversationForConference(const QString& confId)
     }
 
     OptRef<conversation::Info> fallbackConversation = std::nullopt;
-    for (const auto& participant : participants) {
-        if (participant.uri != linked.owner.profileInfo.uri) {
-            fallbackConversation = linked.owner.conversationModel->getConversationForPeerUri(participant.uri);
-            qDebug() << "Fallback conversation found with URI:" << participant.uri;
-            break;
-        }
+    for (const auto& uri : remoteParticipantsUris) {
+        fallbackConversation = linked.owner.conversationModel->getConversationForPeerUri(uri);
+        qDebug() << "Fallback conversation found with URI:" << uri;
+        break;
     }
 
     return fallbackConversation;
