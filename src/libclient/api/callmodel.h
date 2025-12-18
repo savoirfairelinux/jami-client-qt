@@ -27,6 +27,7 @@
 
 #include <memory>
 #include <map>
+#include <optional>
 
 namespace lrc {
 
@@ -529,9 +530,21 @@ Q_SIGNALS:
      */
     void currentCallChanged(const QString& callId) const;
 
+    /**
+     * Decision helper to pick a fallback conversation UID.
+     * Exposed for unit tests.
+     */
+#ifndef Q_MOC_RUN
+    static std::optional<QString> computeFallbackConversation(bool currentIsCoreDialog,
+                                                              const QString& currentConversationUid,
+                                                              const QStringList& remoteParticipantUris,
+                                                              const QMap<QString, QString>& peerUriToConversationUid);
+#endif
+
 private:
     std::unique_ptr<CallModelPimpl> pimpl_;
 };
 } // namespace api
 } // namespace lrc
+
 Q_DECLARE_METATYPE(lrc::api::CallModel*)
