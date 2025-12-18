@@ -17,6 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtQuick.Effects
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -45,6 +46,18 @@ Label {
         anchors.fill: parent
 
         color: JamiTheme.backgroundColor
+        radius: JamiTheme.sidePanelRadius
+        layer.enabled: true
+        layer.effect: MultiEffect {
+            id: searchBarMultiEffect
+            anchors.fill: background
+            shadowEnabled: true
+            shadowBlur: JamiTheme.shadowBlur
+            shadowColor: JamiTheme.shadowColor
+            shadowHorizontalOffset: JamiTheme.shadowHorizontalOffset
+            shadowVerticalOffset: JamiTheme.shadowVerticalOffset
+            shadowOpacity: JamiTheme.shadowOpacity
+        }
         Behavior on color {
             ColorAnimation {
                 duration: JamiTheme.shortFadeDuration
