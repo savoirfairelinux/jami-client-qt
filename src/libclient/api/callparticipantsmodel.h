@@ -124,6 +124,29 @@ struct ParticipantInfos
     }
 };
 
+/**
+ * CallParticipants
+ * @brief Client-side model for STREAM-level participant information in conferences.
+ *
+ * This class manages video/audio stream data received from the daemon's OnConferenceInfosUpdated
+ * signal. Data is keyed by streamId (sinkId), not participant URI because a single participant
+ * may have multiple streams (e.g., camera + screen share).
+ *
+ * The data tracked here is primarily for video layout rendering. The class was added in the
+ * following patch: https://review.jami.net/c/jami-libclient/+/18614
+ *
+ * IMPORTANT: Stream count can fluctuate briefly during audio-only ↔ video transitions
+ * due to timing in the daemon's VideoMixer. To be precise, when an audio-only participant
+ * adds a video source, there may be a short period where the participant is neither considered
+ * audio-only nor video-enabled while waiting for the first frame of the video Rtp session.
+ * This results in the participant's temporary disappearance from this model.
+ * For a stable participant count or list of participant URIs (independent of stream state),
+ * use CallManager::getConferenceParticipantsUri() instead.
+ * Whether the participant data in this class should be stable or not is TBD.
+ *
+ * @see CallManager::getConferenceParticipantsUri() for stable participant-level data
+ * @see VideoMixer::process for the daemon-side source of this data
+ */
 class LIB_EXPORT CallParticipants : public QObject
 {
     Q_OBJECT
@@ -133,12 +156,12 @@ public:
     ~CallParticipants() {}
 
     /**
-     * @return The list of participants that can have a widget in the client
+     * @return The list of participants that should be displayed by the client
      */
     QList<ParticipantInfos> getParticipants() const;
 
     /**
-     * Update the participants
+     * Update the list of candidates and participants based on the infos sent by the daemon
      */
     void update(const VectorMapStringString& infos);
 
@@ -169,25 +192,29 @@ public:
 
 private:
     /**
-     * Filter the participants that might appear for the end user
+     * Build the streamIdToCandidateMap_ and validStreamIds_ attributes from infos sent by the daemon
+     * The attributes are built only with candidates that have a URI
      */
-    void filterCandidates(const VectorMapStringString& infos);
+    void buildCandidatesAndStreams(const VectorMapStringString& infos);
 
     void removeParticipant(int index);
 
     void addParticipant(const ParticipantInfos& participant);
 
-    // Participants in the conference
-    QMap<QString, ParticipantInfos> candidates_;
-    // Participants ordered
-    QMap<QString, ParticipantInfos> participants_;
-    QList<QString> validMedias_;
+    // Contains all potential participants from the raw daemon data that have a URI
+    QMap<QString, ParticipantInfos> streamIdToCandidateMap_;
+
+    // Contains the actual participants being tracked and displayed in the client
+    QMap<QString, ParticipantInfos> streamIdToParticipantMap_;
+
+    // Protects changes into the paticipants_ variable
+    mutable std::mutex participantsMtx_ {};
+
+    QList<QString> validStreamIds_;
     int idx_ = 0;
 
     const CallModel& linked_;
 
-    // Protects changes into the paticipants_ variable
-    mutable std::mutex participantsMtx_ {};
     // Protects calls to the update function
     std::mutex updateMtx_ {};
 
