@@ -733,10 +733,20 @@ Item {
     property real smartListItemHeight: 60//JamiTheme.smarListAvatarSize + JamiTheme.itemPadding * 2 + JamiTheme.itemMarginVertical * 2
 
     // Side panel
-    property int sidePanelRadius: JamiTheme.avatarRadius + JamiTheme.itemPadding * 2
+    property int sidePanelRadius: JamiTheme.avatarRadius + 8
+    property int sidePanelIslandsPadding: 8
+    property int sidePanelConversationsIslandTopPadding: 16
+    property int sidePanelConversationsIslandHorizontalPadding: 4
 
     // Search Bar
     property int searchBarIconPadding: 8
     property color searchBarIconActive: darkTheme ? whiteColor : blackColor
     property color searchBarIconIdle: darkTheme ? "#909090" : "#7e7e7e"
+
+    // Account combo box
+    property int accountComboBoxRadius: JamiTheme.avatarRadius + 8
+    property int accountComboBoxPadding: 4
+    // property int accountComboBoxAvatarRadius: accountListAvatarSize.width / 2
+    // property int accountComboBoxRectangleRadius: accountComboBoxAvatarRadius + 4
+
 }
