@@ -263,7 +263,7 @@ ItemDelegate {
         anchors.leftMargin: JamiTheme.itemMarginHorizontal
         anchors.rightMargin: JamiTheme.itemMarginHorizontal
 
-        radius: JamiTheme.avatarRadius + JamiTheme.itemPadding
+        radius: JamiTheme.commonRadius
 
         color: JamiTheme.backgroundColor
     }
