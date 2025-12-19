@@ -89,13 +89,13 @@ BaseModalDialog {
         function validatePassword() {
             switch (purpose) {
             case PasswordDialog.ExportAccount:
-                button1.enabled = currentPasswordEdit.dynamicText.length > 0;
+                button1.enabled = currentPasswordEdit.dynamicText.length >= 0;
                 break;
             case PasswordDialog.SetPassword:
                 button1.enabled = passwordEdit.dynamicText.length > 0 && passwordEdit.dynamicText === confirmPasswordEdit.dynamicText;
                 break;
             default:
-                button1.enabled = currentPasswordEdit.dynamicText.length > 0 && passwordEdit.dynamicText === confirmPasswordEdit.dynamicText;
+                button1.enabled = currentPasswordEdit.dynamicText.length >= 0 && passwordEdit.dynamicText === confirmPasswordEdit.dynamicText;
             }
         }
 
