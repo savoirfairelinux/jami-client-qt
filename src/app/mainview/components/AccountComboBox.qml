@@ -46,7 +46,7 @@ Label {
         anchors.fill: parent
 
         color: JamiTheme.backgroundColor
-        radius: JamiTheme.sidePanelRadius
+        radius: JamiTheme.commonRadius
         layer.enabled: true
         layer.effect: MultiEffect {
             id: searchBarMultiEffect
@@ -80,7 +80,7 @@ Label {
             Layout.fillWidth: true
             Layout.fillHeight: true
 
-            radius: JamiTheme.accountComboBoxRadius
+            radius: JamiTheme.commonRadius
             color: accountBlockContentMouseArea.containsMouse ? Qt.darker(JamiTheme.backgroundColor, 1.1) : JamiTheme.backgroundColor
 
             RowLayout {

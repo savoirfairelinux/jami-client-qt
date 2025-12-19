@@ -179,7 +179,7 @@ SidePanelBase {
                 anchors.fill: parent
 
                 color: JamiTheme.backgroundColor
-                radius: JamiTheme.sidePanelRadius
+                radius: JamiTheme.commonRadius
                 layer.enabled: true
                 layer.effect: MultiEffect {
                     id: searchBarMultiEffect
@@ -210,7 +210,7 @@ SidePanelBase {
                         sourceItem: Rectangle {
                             width: conversationLayout.width
                             height: conversationLayout.height
-                            radius: JamiTheme.sidePanelRadius
+                            radius: JamiTheme.commonRadius
                         }
                     }
                 }
