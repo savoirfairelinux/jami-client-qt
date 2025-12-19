@@ -93,6 +93,17 @@ Rectangle {
             onClicked: root.backClicked()
         }
 
+        Avatar {
+            id: userAvatar
+
+            width: JamiTheme.accountListAvatarSize
+            height: JamiTheme.accountListAvatarSize
+
+            mode: CurrentConversation.isSwarm ? Avatar.Mode.Conversation : Avatar.Mode.Contact
+            imageId: CurrentConversation.id
+            showPresenceIndicator: false
+        }
+
         Rectangle {
             id: userNameOrIdRect
 
@@ -103,7 +114,7 @@ Rectangle {
             Layout.fillWidth: true
             Layout.topMargin: 7
             Layout.bottomMargin: 7
-            Layout.leftMargin: 8
+            Layout.leftMargin: 4
 
             color: JamiTheme.transparentColor
 
