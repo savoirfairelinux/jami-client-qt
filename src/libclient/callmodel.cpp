@@ -1436,6 +1436,9 @@ CallModelPimpl::slotMediaChangeRequested(const QString& accountId,
 void
 CallModelPimpl::slotCallStateChanged(const QString& accountId, const QString& callId, const QString& state, int code)
 {
+    if (code != 0)
+        qWarning() << "00000 Call " << callId << " state changed with code " << code;
+
     if (accountId != linked.owner.id)
         return;
 
@@ -1490,6 +1493,9 @@ CallModelPimpl::slotCallStateChanged(const QString& accountId, const QString& ca
         Q_EMIT behaviorController.callStatusChanged(linked.owner.id, callId);
     }
 
+    if (code != 0)
+        qWarning() << "00000 Call " << callId << " state changed to " << state << " with code " << code;
+
     auto status = call::to_status(state);
     auto& call = calls[callId];
     if (!call)
@@ -1504,6 +1510,9 @@ CallModelPimpl::slotCallStateChanged(const QString& accountId, const QString& ca
     // proper state transition
     auto previousStatus = call->status;
     call->status = status;
+
+    qWarning() << "00000 Call " << callId << " status changed from " << call::to_string(previousStatus) << " to "
+               << call::to_string(status);
 
     if (previousStatus == call->status) {
         // call state didn't change, simply ignore signal
@@ -1520,6 +1529,7 @@ CallModelPimpl::slotCallStateChanged(const QString& accountId, const QString& ca
     Q_EMIT behaviorController.callStatusChanged(linked.owner.id, callId);
 
     if (call->status == call::Status::ENDED) {
+        qWarning() << "00000 Call " << callId << " has ended with code" << code;
         Q_EMIT linked.callEnded(callId);
 
         // Remove from pendingConferences_
