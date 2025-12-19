@@ -43,7 +43,8 @@ Rectangle {
         }
     }
 
-    radius: JamiTheme.sidePanelRadius
+    radius: JamiTheme.commonRadius
+
     color: JamiTheme.secondaryBackgroundColor
 
     onFocusChanged: {
