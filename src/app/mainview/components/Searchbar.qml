@@ -56,7 +56,7 @@ Rectangle {
         shadowOpacity: JamiTheme.shadowOpacity
     }
 
-    radius: JamiTheme.sidePanelRadius
+    radius: JamiTheme.commonRadius
     color: JamiTheme.secondaryBackgroundColor
 
     onFocusChanged: {
