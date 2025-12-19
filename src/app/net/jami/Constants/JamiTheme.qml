@@ -714,6 +714,9 @@ Item {
     // QWK
     property real qwkTitleBarHeight: 50
 
+    // Common radius
+    property int commonRadius: JamiTheme.smartListAvatarSize / 2 + 8
+
     // Generalized shadows
     property real shadowBlur: 0.5
     property color shadowColor: JamiTheme.blackColor
@@ -733,7 +736,6 @@ Item {
     property real smartListItemHeight: 60//JamiTheme.smarListAvatarSize + JamiTheme.itemPadding * 2 + JamiTheme.itemMarginVertical * 2
 
     // Side panel
-    property int sidePanelRadius: JamiTheme.avatarRadius + 8
     property int sidePanelIslandsPadding: 8
     property int sidePanelConversationsIslandTopPadding: 16
     property int sidePanelConversationsIslandHorizontalPadding: 4
@@ -746,7 +748,4 @@ Item {
     // Account combo box
     property int accountComboBoxRadius: JamiTheme.avatarRadius + 8
     property int accountComboBoxPadding: 4
-    // property int accountComboBoxAvatarRadius: accountListAvatarSize.width / 2
-    // property int accountComboBoxRectangleRadius: accountComboBoxAvatarRadius + 4
-
 }
