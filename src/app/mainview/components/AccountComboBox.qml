@@ -17,6 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtQuick.Effects
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -45,6 +46,18 @@ Label {
         anchors.fill: parent
 
         color: JamiTheme.backgroundColor
+        radius: JamiTheme.sidePanelRadius
+        layer.enabled: true
+        layer.effect: MultiEffect {
+            id: searchBarMultiEffect
+            anchors.fill: background
+            shadowEnabled: true
+            shadowBlur: JamiTheme.shadowBlur
+            shadowColor: JamiTheme.shadowColor
+            shadowHorizontalOffset: JamiTheme.shadowHorizontalOffset
+            shadowVerticalOffset: JamiTheme.shadowVerticalOffset
+            shadowOpacity: JamiTheme.shadowOpacity
+        }
         Behavior on color {
             ColorAnimation {
                 duration: JamiTheme.shortFadeDuration
@@ -57,44 +70,32 @@ Label {
     }
 
     RowLayout {
-        id: mainLayout
         anchors.fill: parent
-        anchors.leftMargin: 5
-        anchors.rightMargin: 15
-        spacing: 10
+        anchors.margins: JamiTheme.accountComboBoxPadding
+        spacing: JamiTheme.accountComboBoxPadding
 
         Rectangle {
+            id: accountBlock
+
             Layout.fillWidth: true
             Layout.fillHeight: true
-            color: root.popup.opened ? Qt.lighter(JamiTheme.hoverColor, 1.0) : mouseArea.containsMouse ? Qt.lighter(JamiTheme.hoverColor, 1.0) : JamiTheme.backgroundColor
-            radius: 5
-            Layout.topMargin: 5
 
-            MouseArea {
-                id: mouseArea
-                enabled: visible
-                anchors.fill: parent
-                hoverEnabled: true
-                onClicked: {
-                    root.forceActiveFocus();
-                    togglePopup();
-                }
-            }
+            radius: JamiTheme.accountComboBoxRadius
+            color: accountBlockContentMouseArea.containsMouse ? Qt.darker(JamiTheme.backgroundColor, 1.1) : JamiTheme.backgroundColor
 
             RowLayout {
+                id: accountBlockContent
                 anchors.fill: parent
-                anchors.leftMargin: 10
-                anchors.rightMargin: 15
-
                 spacing: 10
 
                 Avatar {
-                    id: avatar
+                    id: accountBlockAvatar
                     objectName: "accountComboBoxAvatar"
 
                     Layout.preferredWidth: JamiTheme.accountListAvatarSize
                     Layout.preferredHeight: JamiTheme.accountListAvatarSize
                     Layout.alignment: Qt.AlignVCenter
+                    Layout.leftMargin: 10
 
                     mode: Avatar.Mode.Account
                     imageId: CurrentAccount.id
@@ -102,9 +103,9 @@ Label {
                 }
 
                 ColumnLayout {
+                    id: accountBlockInformation
+
                     Layout.fillWidth: true
-                    Layout.fillHeight: true
-                    spacing: 2
 
                     Text {
                         id: bestNameText
@@ -139,50 +140,178 @@ Label {
                     }
                 }
             }
+
+            MouseArea {
+                id: accountBlockContentMouseArea
+                anchors.fill: accountBlockContent
+                hoverEnabled: true
+            }
         }
 
-        Row {
-            id: controlRow
+        JamiPushButton {
+            id: shareButton
 
-            spacing: 10
+            width: visible ? preferredSize : 0
+            height: visible ? preferredSize : 0
+            Layout.alignment: Qt.AlignVCenter
 
-            Layout.preferredHeight: parent.height
+            visible: LRCInstance.currentAccountType === Profile.Type.JAMI
+            toolTipText: JamiStrings.displayQRCode
 
-            JamiPushButton {
-                id: shareButton
+            source: JamiResources.share_24dp_svg
 
-                width: visible ? preferredSize : 0
-                height: visible ? preferredSize : 0
-                anchors.verticalCenter: parent.verticalCenter
+            normalColor: JamiTheme.backgroundColor
+            imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
 
-                visible: LRCInstance.currentAccountType === Profile.Type.JAMI
-                toolTipText: JamiStrings.displayQRCode
+            onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/WelcomePageQrDialog.qml")
+        }
 
-                source: JamiResources.share_24dp_svg
+        JamiPushButton {
+            id: settingsButton
 
-                normalColor: JamiTheme.backgroundColor
-                imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
+            Layout.alignment: Qt.AlignVCenter
+            source: !inSettings ? JamiResources.settings_24dp_svg : JamiResources.round_close_24dp_svg
 
-                onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/WelcomePageQrDialog.qml")
-            }
+            imageContainerWidth: inSettings ? 30 : 24
 
-            JamiPushButton {
-                id: settingsButton
+            normalColor: JamiTheme.backgroundColor
+            imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
+            toolTipText: !inSettings ? JamiStrings.openSettings : JamiStrings.closeSettings
 
-                anchors.verticalCenter: parent.verticalCenter
-                source: !inSettings ? JamiResources.settings_24dp_svg : JamiResources.round_close_24dp_svg
-
-                imageContainerWidth: inSettings ? 30 : 24
-
-                normalColor: JamiTheme.backgroundColor
-                imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
-                toolTipText: !inSettings ? JamiStrings.openSettings : JamiStrings.closeSettings
-
-                onClicked: {
-                    !inSettings ? viewCoordinator.present("SettingsView") : viewCoordinator.dismiss("SettingsView");
-                    background.state = "normal";
-                }
+            onClicked: {
+                !inSettings ? viewCoordinator.present("SettingsView") : viewCoordinator.dismiss("SettingsView");
+                background.state = "normal";
             }
         }
     }
+
+    // RowLayout {
+    //     id: mainLayout
+    //     anchors.fill: parent
+    //     anchors.leftMargin: 5
+    //     anchors.rightMargin: 15
+    //     spacing: 10
+
+    //     Rectangle {
+    //         Layout.fillWidth: true
+    //         Layout.fillHeight: true
+    //         color: root.popup.opened ? Qt.lighter(JamiTheme.hoverColor, 1.0) : mouseArea.containsMouse ? Qt.lighter(JamiTheme.hoverColor, 1.0) : JamiTheme.backgroundColor
+    //         radius: 5
+    //         Layout.topMargin: 5
+
+    //         MouseArea {
+    //             id: mouseArea
+    //             enabled: visible
+    //             anchors.fill: parent
+    //             hoverEnabled: true
+    //             onClicked: {
+    //                 root.forceActiveFocus();
+    //                 togglePopup();
+    //             }
+    //         }
+
+    //         RowLayout {
+    //             anchors.fill: parent
+    //             anchors.leftMargin: 10
+    //             anchors.rightMargin: 15
+
+    //             spacing: 10
+
+    //             Avatar {
+    //                 id: avatar
+    //                 objectName: "accountComboBoxAvatar"
+
+    //                 Layout.preferredWidth: JamiTheme.accountListAvatarSize
+    //                 Layout.preferredHeight: JamiTheme.accountListAvatarSize
+    //                 Layout.alignment: Qt.AlignVCenter
+
+    //                 mode: Avatar.Mode.Account
+    //                 imageId: CurrentAccount.id
+    //                 presenceStatus: CurrentAccount.status
+    //             }
+
+    //             ColumnLayout {
+    //                 Layout.fillWidth: true
+    //                 Layout.fillHeight: true
+    //                 spacing: 2
+
+    //                 Text {
+    //                     id: bestNameText
+
+    //                     Layout.fillWidth: true
+    //                     Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+
+    //                     text: CurrentAccount.bestName
+    //                     textFormat: TextEdit.PlainText
+
+    //                     font.pointSize: JamiTheme.textFontSize
+    //                     color: JamiTheme.textColor
+    //                     elide: Text.ElideRight
+    //                     horizontalAlignment: Text.AlignLeft
+    //                 }
+
+    //                 Text {
+    //                     id: bestIdText
+
+    //                     Layout.fillWidth: true
+    //                     Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+
+    //                     visible: text.length && text !== bestNameText.text
+
+    //                     text: CurrentAccount.bestId
+    //                     textFormat: TextEdit.PlainText
+
+    //                     font.pointSize: JamiTheme.tinyFontSize
+    //                     color: JamiTheme.faddedLastInteractionFontColor
+    //                     elide: Text.ElideRight
+    //                     horizontalAlignment: Text.AlignLeft
+    //                 }
+    //             }
+    //         }
+    //     }
+
+    //     Row {
+    //         id: controlRow
+
+    //         spacing: 10
+
+    //         Layout.preferredHeight: parent.height
+
+    //         JamiPushButton {
+    //             id: shareButton
+
+    //             width: visible ? preferredSize : 0
+    //             height: visible ? preferredSize : 0
+    //             anchors.verticalCenter: parent.verticalCenter
+
+    //             visible: LRCInstance.currentAccountType === Profile.Type.JAMI
+    //             toolTipText: JamiStrings.displayQRCode
+
+    //             source: JamiResources.share_24dp_svg
+
+    //             normalColor: JamiTheme.backgroundColor
+    //             imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
+
+    //             onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/WelcomePageQrDialog.qml")
+    //         }
+
+    //         JamiPushButton {
+    //             id: settingsButton
+
+    //             anchors.verticalCenter: parent.verticalCenter
+    //             source: !inSettings ? JamiResources.settings_24dp_svg : JamiResources.round_close_24dp_svg
+
+    //             imageContainerWidth: inSettings ? 30 : 24
+
+    //             normalColor: JamiTheme.backgroundColor
+    //             imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
+    //             toolTipText: !inSettings ? JamiStrings.openSettings : JamiStrings.closeSettings
+
+    //             onClicked: {
+    //                 !inSettings ? viewCoordinator.present("SettingsView") : viewCoordinator.dismiss("SettingsView");
+    //                 background.state = "normal";
+    //             }
+    //         }
+    //     }
+    // }
 }
