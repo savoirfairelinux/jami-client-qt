@@ -2766,6 +2766,21 @@ When ready, scan the QR code.</source>
         <translation>创建 Jami 账号</translation>
     </message>
     <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="752"/>
+        <source>Maximize participant</source>
+        <translation>最大化参与者</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="753"/>
+        <source>Minimize participant</source>
+        <translation>最小化参与者</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="754"/>
+        <source>Disconnect participant</source>
+        <translation>挂断通话</translation>
+    </message>
+    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="773"/>
         <source>Audio message</source>
         <translation>音频消息</translation>
@@ -3651,19 +3666,8 @@ Please confirm the import on the new device.</source>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="349"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="752"/>
         <source>Maximize</source>
         <translation>最大化</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="753"/>
-        <source>Minimize</source>
-        <translation>最小化</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="754"/>
-        <source>Hangup</source>
-        <translation>挂断</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="755"/>
@@ -4067,7 +4071,7 @@ Please confirm the import on the new device.</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="400"/>
+        <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="403"/>
         <source>Me</source>
         <translation>我</translation>
     </message>
@@ -4479,6 +4483,11 @@ Please confirm the import on the new device.</source>
         <translation>URI不明确</translation>
     </message>
     <message>
+        <location filename="../src/libclient/callmodel.cpp" line="125"/>
+        <source>Call Declined</source>
+        <translation>通话被拒</translation>
+    </message>
+    <message>
         <location filename="../src/libclient/api/interaction.h" line="333"/>
         <location filename="../src/libclient/callmodel.cpp" line="109"/>
         <source>Busy</source>
@@ -4553,11 +4562,6 @@ Please confirm the import on the new device.</source>
         <location filename="../src/libclient/callmodel.cpp" line="124"/>
         <source>Busy Everywhere</source>
         <translation>服务器繁忙</translation>
-    </message>
-    <message>
-        <location filename="../src/libclient/callmodel.cpp" line="125"/>
-        <source>Call Refused</source>
-        <translation>呼叫已被拒绝</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="126"/>

@@ -29,7 +29,7 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="1006"/>
         <source>Screenshot</source>
-        <translation>Captură de ecran</translation>
+        <translation>Instantaneu de ecran</translation>
     </message>
 </context>
 <context>
@@ -1352,7 +1352,7 @@ să se conecteze pentru a sincroniza conversația…</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="575"/>
         <source>Save screenshots to</source>
-        <translation>Salvează capturile de ecran în</translation>
+        <translation>Salvează instantaneele în</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="716"/>
@@ -1856,12 +1856,12 @@ să se conecteze pentru a sincroniza conversația…</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="320"/>
         <source>Take tile screenshot</source>
-        <translation>Fă o captură de ecran</translation>
+        <translation>Fă un instantaneu de ecran</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="321"/>
         <source>Screenshot saved to %1</source>
-        <translation>Captură de ecran salvată în %1</translation>
+        <translation>Instantaneu de ecran salvat în %1</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="322"/>
@@ -2767,6 +2767,21 @@ Apoi, scanează codul QR.</translation>
         <translation>Creează un cont Jami</translation>
     </message>
     <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="752"/>
+        <source>Maximize participant</source>
+        <translation>Maximizează participantul</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="753"/>
+        <source>Minimize participant</source>
+        <translation>Minimizează participantul</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="754"/>
+        <source>Disconnect participant</source>
+        <translation>Deconectează participantul</translation>
+    </message>
+    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="773"/>
         <source>Audio message</source>
         <translation>Mesaj vocal</translation>
@@ -3652,19 +3667,8 @@ Confirmă importarea în noul aparat</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="349"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="752"/>
         <source>Maximize</source>
         <translation>Maximizează</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="753"/>
-        <source>Minimize</source>
-        <translation>Minimizează</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="754"/>
-        <source>Hangup</source>
-        <translation>Închide</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="755"/>
@@ -3938,7 +3942,7 @@ Confirmă importarea în noul aparat</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="144"/>
         <source>Take tile screenshot</source>
-        <translation>Fă o captură de ecran</translation>
+        <translation>Fă un instantaneu de ecran</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="152"/>
@@ -4068,7 +4072,7 @@ Confirmă importarea în noul aparat</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="400"/>
+        <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="403"/>
         <source>Me</source>
         <translation>Eu</translation>
     </message>
@@ -4480,6 +4484,11 @@ Confirmă importarea în noul aparat</translation>
         <translation>Neclar</translation>
     </message>
     <message>
+        <location filename="../src/libclient/callmodel.cpp" line="125"/>
+        <source>Call Declined</source>
+        <translation>Apel refuzat</translation>
+    </message>
+    <message>
         <location filename="../src/libclient/api/interaction.h" line="333"/>
         <location filename="../src/libclient/callmodel.cpp" line="109"/>
         <source>Busy</source>
@@ -4554,11 +4563,6 @@ Confirmă importarea în noul aparat</translation>
         <location filename="../src/libclient/callmodel.cpp" line="124"/>
         <source>Busy Everywhere</source>
         <translation>Ocupat peste tot</translation>
-    </message>
-    <message>
-        <location filename="../src/libclient/callmodel.cpp" line="125"/>
-        <source>Call Refused</source>
-        <translation>Apel refuzat</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="126"/>
