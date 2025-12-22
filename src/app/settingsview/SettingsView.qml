@@ -58,7 +58,25 @@ ListSelectionView {
 
     Component.onCompleted: {
         leftPaneItem.updateModel();
-        leftPaneItem.currentIndex = rightPaneItem.currentIndex;
+    }
+
+    // The base class onPresented may trigger selectionFallback before isSinglePane is set.
+    // We correct the state here after initialization is complete.
+    onPresented: {
+        Qt.callLater(function() {
+            leftPaneItem.isSinglePane = viewNode.isSinglePane;
+            if (viewNode.isSinglePane) {
+                // In single pane mode, clear selection so menus collapse.
+                leftPaneItem.deselect();
+                // Also ensure the content pane is not shown (move out of leftPane).
+                rightPaneItem.parent = rightPane;
+            } else {
+                // In dual pane mode, ensure a selection exists.
+                if (viewNode.index < 0) {
+                    leftPaneItem.currentIndex = rightPaneItem.currentIndex;
+                }
+            }
+        });
     }
 
     Connections {
@@ -66,6 +84,17 @@ ListSelectionView {
 
         function onIsSinglePaneChanged() {
             leftPaneItem.isSinglePane = viewNode.isSinglePane;
+            // When switching to dual pane, sync the selection.
+            // When switching to single pane, clear it so menus collapse.
+            if (!viewNode.isSinglePane) {
+                if (viewNode.index < 0) {
+                    leftPaneItem.select(0);
+                }
+            } else if (viewNode.index < 0) {
+                // Single pane mode with no selection: collapse menus and hide content.
+                leftPaneItem.currentIndex = -1;
+                rightPaneItem.parent = rightPane;
+            }
         }
     }
 
