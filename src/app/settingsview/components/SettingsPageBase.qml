@@ -37,9 +37,7 @@ JamiSplitView {
         SplitView.maximumWidth: root.width
         SplitView.fillWidth: true
         SplitView.minimumWidth: 500
-        Rectangle {
-            width: parent.width
-            height: parent.height
+        background: Rectangle {
             color: backgroundColor
         }
         header: Rectangle {
@@ -51,6 +49,7 @@ JamiSplitView {
                 id: settingsHeader
                 title: root.title
                 anchors.fill: parent
+                anchors.leftMargin: JamiTheme.preferredSettingsMarginSize
                 onBackArrowClicked: viewNode.dismiss()
             }
         }
