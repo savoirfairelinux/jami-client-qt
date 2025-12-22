@@ -537,7 +537,7 @@ SidePanelBase {
             id: accountComboBox
 
             Layout.fillWidth: true
-            Layout.preferredHeight: JamiTheme.accountListItemHeight
+            Layout.minimumHeight: accountComboBox.height
             Layout.alignment: Qt.AlignBottom
 
             Shortcut {
