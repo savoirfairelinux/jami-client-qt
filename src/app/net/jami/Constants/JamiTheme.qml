@@ -748,4 +748,7 @@ Item {
     // Account combo box
     property int accountComboBoxRadius: JamiTheme.avatarRadius + 8
     property int accountComboBoxPadding: 4
+
+    // Donation banner
+    property int donationBannerRadius: JamiTheme.smartListAvatarSize / 2
 }
