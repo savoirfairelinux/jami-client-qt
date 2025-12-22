@@ -922,7 +922,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="809"/>
         <source>Call started</source>
-        <translation type="unfinished"/>
+        <translation>அழைப்பு தொடங்கியது</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="813"/>
@@ -2184,12 +2184,12 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="29"/>
         <source>Accept with audio</source>
-        <translation type="unfinished"/>
+        <translation>ஆடியோவுடன் ஏற்றுக்கொள்ளுங்கள்</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="30"/>
         <source>Accept with video</source>
-        <translation type="unfinished"/>
+        <translation>வீடியோவுடன் ஏற்றுக்கொள்ளுங்கள்</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="31"/>
@@ -2199,7 +2199,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="35"/>
         <source>Create new group</source>
-        <translation type="unfinished"/>
+        <translation>ஒரு புதிய குழுவை உருவாக்கவும்</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="46"/>
@@ -2756,6 +2756,21 @@ When ready, scan the QR code.</source>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="712"/>
         <source>Create Jami account</source>
         <translation>ஜாமி கணக்கை உருவாக்கவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="752"/>
+        <source>Maximize participant</source>
+        <translation>பங்கேற்பாளரை அதிகரிக்கவும்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="753"/>
+        <source>Minimize participant</source>
+        <translation>பங்கேற்பாளர்களை குறைத்தல்</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="754"/>
+        <source>Disconnect participant</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="773"/>
@@ -3642,19 +3657,8 @@ Please confirm the import on the new device.</source>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="349"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="752"/>
         <source>Maximize</source>
         <translation>அதிகபட்சமாக</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="753"/>
-        <source>Minimize</source>
-        <translation>குறைக்கவும்</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="754"/>
-        <source>Hangup</source>
-        <translation>தொங்க</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="755"/>
@@ -3833,7 +3837,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="120"/>
         <source>Accept call</source>
-        <translation type="unfinished"/>
+        <translation>அழைப்பை ஏற்கவும்</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="132"/>
@@ -4058,7 +4062,7 @@ Please confirm the import on the new device.</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="400"/>
+        <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="403"/>
         <source>Me</source>
         <translation>நான்</translation>
     </message>
@@ -4470,6 +4474,11 @@ Please confirm the import on the new device.</source>
         <translation>தெளிவற்றது</translation>
     </message>
     <message>
+        <location filename="../src/libclient/callmodel.cpp" line="125"/>
+        <source>Call Declined</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/libclient/api/interaction.h" line="333"/>
         <location filename="../src/libclient/callmodel.cpp" line="109"/>
         <source>Busy</source>
@@ -4546,11 +4555,6 @@ Please confirm the import on the new device.</source>
         <translation>எல்லா இடங்களிலும் பிஸியாக</translation>
     </message>
     <message>
-        <location filename="../src/libclient/callmodel.cpp" line="125"/>
-        <source>Call Refused</source>
-        <translation>அழைப்பு மறுப்பு</translation>
-    </message>
-    <message>
         <location filename="../src/libclient/callmodel.cpp" line="126"/>
         <source>Does Not Exist Anywhere</source>
         <translation>எங்கும் இல்லை</translation>
@@ -4619,7 +4623,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/utils.cpp" line="592"/>
         <source>Special thanks to</source>
-        <translation type="unfinished"/>
+        <translation>சிறப்பு நன்றி</translation>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="593"/>
@@ -4690,7 +4694,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/systemtray.cpp" line="221"/>
         <source>Accept call</source>
-        <translation type="unfinished"/>
+        <translation>அழைப்பை ஏற்கவும்</translation>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="222"/>

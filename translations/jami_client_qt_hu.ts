@@ -2768,6 +2768,21 @@ Ha készen áll, olvassa be a QR-kódot.</translation>
         <translation>Jami-fiók létrehozása</translation>
     </message>
     <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="752"/>
+        <source>Maximize participant</source>
+        <translation>Résztvevő teljes méretűvé tétele</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="753"/>
+        <source>Minimize participant</source>
+        <translation>Résztvevő kis méretűre állítása</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="754"/>
+        <source>Disconnect participant</source>
+        <translation>Résztvevő leválasztása</translation>
+    </message>
+    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="773"/>
         <source>Audio message</source>
         <translation>Hangüzenet</translation>
@@ -3653,19 +3668,8 @@ Kérjük, erősítse meg az importálást az új eszközön.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="349"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="752"/>
         <source>Maximize</source>
         <translation>Teljes méret</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="753"/>
-        <source>Minimize</source>
-        <translation>Kis méret</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="754"/>
-        <source>Hangup</source>
-        <translation>Hívás befejezése</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="755"/>
@@ -4069,7 +4073,7 @@ Kérjük, erősítse meg az importálást az új eszközön.</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="400"/>
+        <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="403"/>
         <source>Me</source>
         <translation>Én</translation>
     </message>
@@ -4481,6 +4485,11 @@ Kérjük, erősítse meg az importálást az új eszközön.</translation>
         <translation>Kétértelmű</translation>
     </message>
     <message>
+        <location filename="../src/libclient/callmodel.cpp" line="125"/>
+        <source>Call Declined</source>
+        <translation>Hívás elutasítva</translation>
+    </message>
+    <message>
         <location filename="../src/libclient/api/interaction.h" line="333"/>
         <location filename="../src/libclient/callmodel.cpp" line="109"/>
         <source>Busy</source>
@@ -4555,11 +4564,6 @@ Kérjük, erősítse meg az importálást az új eszközön.</translation>
         <location filename="../src/libclient/callmodel.cpp" line="124"/>
         <source>Busy Everywhere</source>
         <translation>Mindenhol elfoglalt</translation>
-    </message>
-    <message>
-        <location filename="../src/libclient/callmodel.cpp" line="125"/>
-        <source>Call Refused</source>
-        <translation>Hívás visszautasított</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="126"/>

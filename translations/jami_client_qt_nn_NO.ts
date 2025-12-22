@@ -1,35 +1,35 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="bn" sourcelanguage="en">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="nn_NO" sourcelanguage="en">
 <context>
     <name>CallAdapter</name>
     <message>
         <location filename="../src/app/calladapter.cpp" line="193"/>
         <source>Missed call</source>
-        <translation>মিস কল</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="194"/>
         <source>Missed call with %1</source>
-        <translation>% 1 এর সাথে মিস কল</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="528"/>
         <source>Incoming call</source>
-        <translation>ইনকামিং কল</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="529"/>
         <source>%1 is calling you</source>
-        <translation>%1 আপনাকে কল করছে</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="540"/>
         <source>is calling you</source>
-        <translation>তোমাকে ডাকছে</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="1006"/>
         <source>Screenshot</source>
-        <translation>স্ক্রিনশট</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -60,7 +60,7 @@
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="196"/>
         <source>%1 received a new message</source>
-        <translation>% 1 নতুন বার্তা পেয়েছে</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/conversationsadapter.cpp" line="249"/>
@@ -73,7 +73,7 @@
     <message>
         <location filename="../src/app/currentcall.cpp" line="179"/>
         <source>Me</source>
-        <translation>আমি</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -81,22 +81,22 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="135"/>
         <source>Private</source>
-        <translation>ব্যক্তিগত</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="137"/>
         <source>Private group (restricted invites)</source>
-        <translation>ব্যক্তিগত গ্রুপ (সীমাবদ্ধ আমন্ত্রণ)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="139"/>
         <source>Private group</source>
-        <translation>ব্যক্তিগত গ্রুপ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="141"/>
         <source>Public group</source>
-        <translation>জনগোষ্ঠী</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="306"/>
@@ -129,32 +129,32 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="28"/>
         <source>Accept</source>
-        <translation>গ্রহণ করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="32"/>
         <source>End call</source>
-        <translation>কল শেষ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="36"/>
         <source>Invitations</source>
-        <translation>আমন্ত্রণ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="37"/>
         <source>Jami is a universal communication platform, with privacy as its foundation, that relies on a free distributed network for everyone.</source>
-        <translation>জামি একটি সার্বজনীন যোগাযোগ প্ল্যাটফর্ম, যার ভিত্তি গোপনীয়তা, যা সবার জন্য একটি বিনামূল্যে বিতরণ নেটওয়ার্কের উপর নির্ভর করে।</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="38"/>
         <source>Migrating to the Swarm technology will enable synchronizing this conversation across multiple devices and improve reliability. The legacy conversation history will be cleared in the process.</source>
-        <translation>Swarm প্রযুক্তিতে মাইগ্রেশন একাধিক ডিভাইসে এই কথোপকথন সিঙ্ক্রোনাইজ করতে সক্ষম করবে এবং নির্ভরযোগ্যতা উন্নত করবে। এই প্রক্রিয়াতে পুরানো কথোপকথন ইতিহাস পরিষ্কার করা হবে।</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="47"/>
         <source>Version</source>
-        <translation>সংস্করণ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="43"/>
@@ -170,47 +170,47 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="61"/>
         <source>Display QR code</source>
-        <translation>QR কোড প্রদর্শন করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="62"/>
         <source>Open settings</source>
-        <translation>খোলা সেটিংস</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="63"/>
         <source>Close settings</source>
-        <translation>বন্ধ সেটিং</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="68"/>
         <source>Add to conference</source>
-        <translation>সম্মেলনে যোগ করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="69"/>
         <source>Add to conversation</source>
-        <translation>কথোপকথনে যোগ করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="70"/>
         <source>Transfer this call</source>
-        <translation>এই কলটি স্থানান্তর করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="71"/>
         <source>Transfer to</source>
-        <translation>স্থানান্তর</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="75"/>
         <source>Please wait…</source>
-        <translation>দয়া করে অপেক্ষা করুন...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="76"/>
         <source>Scan QR code</source>
-        <translation>QR কোড স্ক্যান করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="78"/>
@@ -225,12 +225,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="81"/>
         <source>Confirm</source>
-        <translation>নিশ্চিত করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="82"/>
         <source>Try again</source>
-        <translation>আবার চেষ্টা করো</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="84"/>
@@ -245,73 +245,73 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="89"/>
         <source>Authentication required</source>
-        <translation>প্রমানের প্রয়োজনীয়তা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="90"/>
         <source>Your session has expired or been revoked on this device. Please enter your password.</source>
-        <translation>এই ডিভাইসে আপনার সেশন শেষ হয়েছে অথবা বাতিল করা হয়েছে. দয়া করে আপনার পাসওয়ার্ড লিখুন।</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="91"/>
         <source>JAMS server</source>
-        <translation>জেমস সার্ভার</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="92"/>
         <source>Authenticate</source>
-        <translation>সত্যতা প্রমাণিত করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="93"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="443"/>
         <source>Delete account</source>
-        <translation>অ্যাকাউন্ট মুছে ফেলুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="94"/>
         <source>In progress…</source>
-        <translation>প্রগতিশীল...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="96"/>
         <source>Password</source>
-        <translation>পাসওয়ার্ড</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="97"/>
         <source>Username</source>
-        <translation>ব্যবহারকারীর নাম</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="98"/>
         <source>Alias</source>
-        <translation>উপনাম</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="101"/>
         <source>Allow incoming calls from unknown contacts</source>
-        <translation>অজানা পরিচিতি থেকে ইনকামিং কলগুলিকে অনুমতি দিন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="102"/>
         <source>Convert your account into a rendezvous point</source>
-        <translation>আপনার অ্যাকাউন্টকে একটি মিটিং পয়েন্টে রূপান্তর করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="104"/>
         <source>Enable custom ringtone</source>
-        <translation>কাস্টম রিংটোন সক্ষম করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="105"/>
         <source>Select custom ringtone</source>
-        <translation>কাস্টম রিংটোন নির্বাচন করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="106"/>
         <source>Select a new ringtone</source>
-        <translation>একটি নতুন রিংটোন নির্বাচন করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="109"/>
@@ -351,183 +351,183 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="122"/>
         <source>Voicemail</source>
-        <translation>ভয়েস মেইল</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="123"/>
         <source>Voicemail dial code</source>
-        <translation>ভয়েস মেইল ডায়াল কোড</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="126"/>
         <source>Security</source>
-        <translation>নিরাপত্তা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="127"/>
         <source>Enable SDES key exchange</source>
-        <translation>SDES কী বিনিময় সক্ষম করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="128"/>
         <source>Encrypt negotiation (TLS)</source>
-        <translation>এনক্রিপ্ট চুক্তি (TLS)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="129"/>
         <source>CA certificate</source>
-        <translation>সিএ শংসাপত্র</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="130"/>
         <source>User certificate</source>
-        <translation>ব্যবহারকারীর সার্টিফিকেট</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="131"/>
         <source>Private key</source>
-        <translation>ব্যক্তিগত চাবি</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="132"/>
         <source>Private key password</source>
-        <translation>ব্যক্তিগত কী পাসওয়ার্ড</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="133"/>
         <source>Verify certificates for incoming TLS connections</source>
-        <translation>ইনকামিং টিএলএস সংযোগের জন্য শংসাপত্রগুলি যাচাই করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="134"/>
         <source>Verify server TLS certificates</source>
-        <translation>সার্ভার টিএলএস সার্টিফিকেট যাচাই করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="135"/>
         <source>Require certificate for incoming TLS connections</source>
-        <translation>ইনকামিং টিএলএস সংযোগের জন্য সার্টিফিকেট প্রয়োজন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="144"/>
         <source>Connectivity</source>
-        <translation>সংযোগ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="145"/>
         <source>Auto Registration After Expired</source>
-        <translation>মেয়াদ শেষ হওয়ার পর অটো রেজিস্ট্রেশন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="146"/>
         <source>Registration expiration time (seconds)</source>
-        <translation>নিবন্ধনের মেয়াদ শেষ হওয়ার সময় (সেকেন্ড)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="147"/>
         <source>Network interface</source>
-        <translation>নেটওয়ার্ক ইন্টারফেস</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="148"/>
         <source>Use UPnP</source>
-        <translation>UPnP ব্যবহার করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="149"/>
         <source>Use TURN</source>
-        <translation>TURN ব্যবহার করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="150"/>
         <source>TURN address</source>
-        <translation>টার্ন ঠিকানা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="151"/>
         <source>TURN username</source>
-        <translation>ইউজার নাম TURN</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="152"/>
         <source>TURN password</source>
-        <translation>টার্ন পাসওয়ার্ড</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="154"/>
         <source>Use STUN</source>
-        <translation>STUN ব্যবহার করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="155"/>
         <source>STUN address</source>
-        <translation>STUN ঠিকানা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="158"/>
         <source>Allow IP Auto Rewrite</source>
-        <translation>আইপি অটো পুনরায় লেখার অনুমতি দিন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="159"/>
         <source>Public address</source>
-        <translation>জনসাধারণের উদ্দেশে ভাষণ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="160"/>
         <source>Use custom address and port</source>
-        <translation>কাস্টম ঠিকানা এবং পোর্ট ব্যবহার করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="161"/>
         <source>Address</source>
-        <translation>ঠিকানা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="162"/>
         <source>Port</source>
-        <translation>বন্দর</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="165"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="204"/>
         <source>Media</source>
-        <translation>মিডিয়া</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="166"/>
         <source>Enable video</source>
-        <translation>ভিডিও সক্ষম করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="174"/>
         <source>SDP Session Negotiation (ICE Fallback)</source>
-        <translation>এসডিপি অধিবেশনের আলোচনার (আইসিই ফ্যালব্যাক)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="175"/>
         <source>Only used during negotiation in case ICE is not supported</source>
-        <translation>শুধুমাত্র আইসিই সমর্থিত না হলে আলোচনার সময় ব্যবহৃত</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="176"/>
         <source>Audio RTP minimum Port</source>
-        <translation>অডিও RTP ন্যূনতম পোর্ট</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="177"/>
         <source>Audio RTP maximum Port</source>
-        <translation>অডিও RTP সর্বোচ্চ পোর্ট</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="178"/>
         <source>Video RTP minimum Port</source>
-        <translation>ভিডিও RTP ন্যূনতম পোর্ট</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="179"/>
         <source>Video RTP maximum port</source>
-        <translation>ভিডিও RTP সর্বাধিক পোর্ট</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="182"/>
@@ -537,22 +537,22 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="183"/>
         <source>Enable local peer discovery</source>
-        <translation>স্থানীয় সমকক্ষ আবিষ্কার সক্ষম করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="184"/>
         <source>Connect to other DHT nodes advertising on your local network.</source>
-        <translation>আপনার স্থানীয় নেটওয়ার্কে বিজ্ঞাপন দেওয়া অন্যান্য DHT নোডের সাথে সংযোগ করুন।</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="186"/>
         <source>Enable proxy</source>
-        <translation>প্রক্সি সক্ষম করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="187"/>
         <source>Proxy address</source>
-        <translation>প্রক্সি ঠিকানা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="188"/>
@@ -562,7 +562,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="189"/>
         <source>Bootstrap</source>
-        <translation>বুটস্ট্র্যাপ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="190"/>
@@ -577,17 +577,17 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="194"/>
         <source>Back</source>
-        <translation>ফিরে</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="195"/>
         <source>Account</source>
-        <translation>অ্যাকাউন্ট</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="196"/>
         <source>General</source>
-        <translation>সাধারণ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="197"/>
@@ -597,47 +597,47 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="207"/>
         <source>Audio</source>
-        <translation>অডিও</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="208"/>
         <source>Devices</source>
-        <translation>ডিভাইস</translation>
+        <translation>Enhet</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="209"/>
         <source>Microphone</source>
-        <translation>মাইক্রোফোন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="210"/>
         <source>Select audio input device</source>
-        <translation>অডিও ইনপুট ডিভাইস নির্বাচন করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="211"/>
         <source>Output device</source>
-        <translation>আউটপুট ডিভাইস</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="212"/>
         <source>Select audio output device</source>
-        <translation>অডিও আউটপুট ডিভাইস নির্বাচন করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="213"/>
         <source>Ringtone device</source>
-        <translation>রিংটোন ডিভাইস</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="214"/>
         <source>Select ringtone output device</source>
-        <translation>রিংটোন আউটপুট ডিভাইস নির্বাচন করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="215"/>
         <source>Audio manager</source>
-        <translation>অডিও ম্যানেজার</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="217"/>
@@ -657,57 +657,57 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="222"/>
         <source>Video</source>
-        <translation>ভিডিও</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="223"/>
         <source>Select video device</source>
-        <translation>ভিডিও ডিভাইস নির্বাচন করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="224"/>
         <source>Device</source>
-        <translation>ডিভাইস</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="225"/>
         <source>Resolution</source>
-        <translation>প্রস্তাব</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="226"/>
         <source>Select video resolution</source>
-        <translation>ভিডিও রেজোলিউশন নির্বাচন করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="227"/>
         <source>Frames per second</source>
-        <translation>সেকেন্ডে ফ্রেম</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="228"/>
         <source>Select video frame rate (frames per second)</source>
-        <translation>ভিডিও ফ্রেম রেট নির্বাচন করুন (ফ্রেম প্রতি সেকেন্ডে)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="229"/>
         <source>Enable hardware acceleration</source>
-        <translation>হার্ডওয়্যার ত্বরণ সক্ষম করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="232"/>
         <source>Select screen sharing frame rate (frames per second)</source>
-        <translation>স্ক্রিন শেয়ারিং ফ্রেম রেট নির্বাচন করুন (ফ্রেম প্রতি সেকেন্ডে)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="238"/>
         <source>Back up account here</source>
-        <translation>এখানে ব্যাকআপ অ্যাকাউন্ট</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="239"/>
         <source>Back up account</source>
-        <translation>ব্যাকআপ অ্যাকাউন্ট</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="250"/>
@@ -727,77 +727,77 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="316"/>
         <source>Unavailable</source>
-        <translation>পাওয়া যায় না</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="343"/>
         <source>Turn off sharing</source>
-        <translation>শেয়ারিং বন্ধ করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="344"/>
         <source>Stop location sharing in this conversation (%1)</source>
-        <translation>এই কথোপকথনে অবস্থান ভাগ করা বন্ধ করুন (%1)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="367"/>
         <source>Hide chat</source>
-        <translation>লুকিয়ে চ্যাট</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="404"/>
         <source>You can choose a username to help others more easily find and reach you on Jami.</source>
-        <translation>আপনি অন্যদের সহজেই জামিতে আপনার কাছে পৌঁছাতে সাহায্য করার জন্য একটি ব্যবহারকারীর নাম নির্বাচন করতে পারেন।</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="421"/>
         <source>Your account will be created and stored locally.</source>
-        <translation>আপনার অ্যাকাউন্টটি স্থানীয়ভাবে তৈরি এবং সংরক্ষণ করা হবে।</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="422"/>
         <source>Choosing a username is recommended, and a chosen username CANNOT be changed later.</source>
-        <translation>একটি ব্যবহারকারীর নাম নির্বাচন করা সুপারিশ করা হয়, এবং একটি নির্বাচিত ব্যবহারকারীর নাম পরে পরিবর্তন করা যাবে না।</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="423"/>
         <source>Encrypting your account with a password is optional, and if the password is lost it CANNOT be recovered later.</source>
-        <translation>পাসওয়ার্ড দিয়ে আপনার অ্যাকাউন্ট এনক্রিপ্ট করা অপশনাল, এবং যদি পাসওয়ার্ড হারিয়ে যায় তবে এটি পরে পুনরুদ্ধার করা যাবে না।</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="433"/>
         <source>TLS</source>
-        <translation>TLS</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="434"/>
         <source>UDP</source>
-        <translation>ইউডিপি</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="456"/>
         <source>Encrypt account</source>
-        <translation>এনক্রিপ্ট অ্যাকাউন্ট</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="459"/>
         <source>Back up account to a .gz file</source>
-        <translation>. gz ফাইলের জন্য ব্যাকআপ অ্যাকাউন্ট</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="467"/>
         <source>Please note that if you lose your password, it CANNOT be recovered!</source>
-        <translation>দয়া করে মনে রাখবেন যে আপনি যদি আপনার পাসওয়ার্ড হারিয়ে যান তবে এটি পুনরুদ্ধার করা যাবে না!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="506"/>
         <source>Dark</source>
-        <translation>অন্ধকার</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="507"/>
         <source>Light</source>
-        <translation>হালকা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="512"/>
@@ -807,12 +807,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="516"/>
         <source>Include local video in recording</source>
-        <translation>রেকর্ডিংয়ে স্থানীয় ভিডিও অন্তর্ভুক্ত করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="517"/>
         <source>Default settings</source>
-        <translation>ডিফল্ট সেটিংস</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="546"/>
@@ -842,7 +842,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="613"/>
         <source>Enter account password</source>
-        <translation>অ্যাকাউন্টের পাসওয়ার্ড লিখুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="614"/>
@@ -852,7 +852,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="616"/>
         <source>Link new device</source>
-        <translation>নতুন ডিভাইস লিঙ্ক</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="622"/>
@@ -862,7 +862,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="629"/>
         <source>Enter password</source>
-        <translation>পাসওয়ার্ড লিখুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="631"/>
@@ -882,7 +882,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="777"/>
         <source>Show less</source>
-        <translation>কম দেখান</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="779"/>
@@ -897,17 +897,17 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="783"/>
         <source>Strikethrough</source>
-        <translation>রেখান্বিত</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="789"/>
         <source>Unordered list</source>
-        <translation>ক্রমহীন তালিকা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="790"/>
         <source>Ordered list</source>
-        <translation>আদেশের তালিকা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="793"/>
@@ -922,7 +922,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="809"/>
         <source>Call started</source>
-        <translation type="unfinished"/>
+        <translation>Byrja ei samtale</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="813"/>
@@ -957,12 +957,12 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="877"/>
         <source>Appearance</source>
-        <translation>চেহারা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="894"/>
         <source>Background image</source>
-        <translation>পটভূমি চিত্র</translation>
+        <translation>Bakgrunnsbilde</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="895"/>
@@ -972,7 +972,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="896"/>
         <source>Default</source>
-        <translation>ডিফল্ট</translation>
+        <translation>Misligholde</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="899"/>
@@ -987,7 +987,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="902"/>
         <source>Not now</source>
-        <translation>এখন না</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="903"/>
@@ -1112,7 +1112,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="722"/>
         <source>Clear text</source>
-        <translation>পাঠ্য সাফ করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="724"/>
@@ -1132,17 +1132,17 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="734"/>
         <source>OK</source>
-        <translation>ঠিক আছে</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="741"/>
         <source>Leave</source>
-        <translation>চলে যাও</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="743"/>
         <source>Unblock</source>
-        <translation>ব্লক খুলে দিন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="750"/>
@@ -1200,7 +1200,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="524"/>
         <source>Web link previews</source>
-        <translation>ওয়েব সংযোগের প্রাকদর্শন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="534"/>
@@ -1313,7 +1313,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="915"/>
         <source>Connecting</source>
-        <translation>সংযোগ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="916"/>
@@ -1343,204 +1343,204 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="574"/>
         <source>Save recordings to</source>
-        <translation>রেকর্ডিং সংরক্ষণ করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="575"/>
         <source>Save screenshots to</source>
-        <translation>স্ক্রিনশট সংরক্ষণ করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="716"/>
         <source>Share freely and privately with Jami</source>
-        <translation>জামির সাথে অবাধে এবং গোপনে শেয়ার করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="762"/>
         <source>Add</source>
-        <translation>যোগ করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="771"/>
         <source>more emojis</source>
-        <translation>আরো ইমোজি</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="797"/>
         <source>Reply to</source>
-        <translation>উত্তর</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="798"/>
         <source>In reply to</source>
-        <translation>উত্তর</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="801"/>
         <source>Reply</source>
-        <translation>উত্তর</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="499"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="804"/>
         <source>Edit</source>
-        <translation>সম্পাদনা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="805"/>
         <source>Edited</source>
-        <translation>সম্পাদনা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="806"/>
         <source>Join call</source>
-        <translation>যোগদান কল</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="810"/>
         <source>A call is in progress. Do you want to join the call?</source>
-        <translation>একটা কল চলছে, তুমি কি যোগ দিতে চাও?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="815"/>
         <source>Remove current device</source>
-        <translation>বর্তমান ডিভাইস অপসারণ করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="816"/>
         <source>Host only this call</source>
-        <translation>শুধুমাত্র এই কল হোস্ট করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="817"/>
         <source>Host this call</source>
-        <translation>এই কল হোস্ট করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="818"/>
         <source>Make me the default host for future calls</source>
-        <translation>আমাকে ভবিষ্যতে কলের জন্য ডিফল্ট হোস্ট করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="835"/>
         <source>Mute conversation</source>
-        <translation>নিঃশব্দ কথোপকথন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="838"/>
         <source>Default host (calls)</source>
-        <translation>ডিফল্ট হোস্ট (কল)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="840"/>
         <source>None</source>
-        <translation>কোনটিই</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="853"/>
         <source>Tip</source>
-        <translation>টিপ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="855"/>
         <source>Add a profile picture and nickname to complete your profile</source>
-        <translation>আপনার প্রোফাইল সম্পূর্ণ করতে একটি প্রোফাইল ছবি এবং ডাকনাম যোগ করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="201"/>
         <source>Call settings</source>
-        <translation>কল সেটিং</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="136"/>
         <source>Disable secure dialog check for incoming TLS data</source>
-        <translation>ইনকামিং টিএলএস ডেটা জন্য নিরাপদ ডায়ালগ চেক অক্ষম করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="167"/>
         <source>Video codecs</source>
-        <translation>ভিডিও কোডেক</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="168"/>
         <source>Audio codecs</source>
-        <translation>অডিও কোডেক</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="171"/>
         <source>Name server</source>
-        <translation>নাম সার্ভার</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="185"/>
         <source>OpenDHT configuration</source>
-        <translation>ওপেনডিএইচটি কনফিগারেশন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="230"/>
         <source>Mirror local video</source>
-        <translation>স্থানীয় ভিডিও আয়না</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="236"/>
         <source>Why should I back-up this account?</source>
-        <translation>আমি কেন এই অ্যাকাউন্ট ব্যাকআপ করব?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="240"/>
         <source>Success</source>
-        <translation>সাফল্য</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="241"/>
         <source>Error</source>
-        <translation>ত্রুটি</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="243"/>
         <source>All files (*)</source>
-        <translation>সমস্ত ফাইল (*)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="246"/>
         <source>name</source>
-        <translation>নাম</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="247"/>
         <source>Identifier</source>
-        <translation>সনাক্তকরণ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="254"/>
         <source>Pause call</source>
-        <translation>বিরতি কল</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="255"/>
         <source>Resume call</source>
-        <translation>পুনরায় কল</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="260"/>
         <source>Details</source>
-        <translation>বিস্তারিত</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="202"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="261"/>
         <source>Chat</source>
-        <translation>চ্যাট</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="52"/>
         <source>Contribute</source>
-        <translation>অবদান</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="53"/>
         <source>Feedback</source>
-        <translation>প্রতিক্রিয়া</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="64"/>
@@ -1551,27 +1551,27 @@ to connect to synchronize the conversation…</source>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="65"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="199"/>
         <source>Manage account</source>
-        <translation>অ্যাকাউন্ট পরিচালনা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="200"/>
         <source>Linked devices</source>
-        <translation>সংযুক্ত ডিভাইস</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="203"/>
         <source>Advanced settings</source>
-        <translation>উন্নত সেটিংস</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="216"/>
         <source>Sound test</source>
-        <translation>শব্দ পরীক্ষা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="231"/>
         <source>Screen sharing</source>
-        <translation>স্ক্রিন শেয়ারিং</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="237"/>
@@ -1581,98 +1581,98 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="262"/>
         <source>More options</source>
-        <translation>আরও বিকল্প</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="263"/>
         <source>Mosaic</source>
-        <translation>মোজাইক</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="266"/>
         <source>You are still muted by moderator</source>
-        <translation>তুমি এখনো মডারেটর দ্বারা নিরুত্তর</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="267"/>
         <source>You are muted by a moderator</source>
-        <translation>একজন মডারেটর তোমাকে নিঃশব্দ করে দিয়েছে</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="268"/>
         <source>Moderator</source>
-        <translation>মডারেটর</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="269"/>
         <source>Host</source>
-        <translation>হোস্ট</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="270"/>
         <source>Local and Moderator muted</source>
-        <translation>স্থানীয় এবং মডারেটর নিঃশব্দ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="271"/>
         <source>Moderator muted</source>
-        <translation>মডারেটর নিঃশব্দ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="272"/>
         <source>Not muted</source>
-        <translation>নিঃশব্দ নয়</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="273"/>
         <source>On the side</source>
-        <translation>পাশের দিকে</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="274"/>
         <source>On the top</source>
-        <translation>শীর্ষে</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="275"/>
         <source>Hide self</source>
-        <translation>নিজেকে লুকিয়ে রাখো</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="276"/>
         <source>Hide spectators</source>
-        <translation>দর্শকদের লুকিয়ে রাখুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="281"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="589"/>
         <source>Copy</source>
-        <translation>কপি</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="279"/>
         <source>Share</source>
-        <translation>ভাগ করে নেওয়ার</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="280"/>
         <source>Cut</source>
-        <translation>কাটা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="282"/>
         <source>Paste</source>
-        <translation>পেস্ট</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="286"/>
         <source>Start video call</source>
-        <translation>ভিডিও কল শুরু করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="285"/>
         <source>Start audio call</source>
-        <translation>অডিও কল শুরু করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="33"/>
@@ -1722,12 +1722,12 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="288"/>
         <source>Confirm action</source>
-        <translation>কার্যক্রম নিশ্চিত করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="289"/>
         <source>Remove conversation</source>
-        <translation>কথোপকথন মুছে ফেলুন</translation>
+        <translation>Ta vekk samtal</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="291"/>
@@ -1757,107 +1757,107 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="296"/>
         <source>Remove contact</source>
-        <translation>যোগাযোগ অপসারণ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="297"/>
         <source>Block contact</source>
-        <translation>ব্লক যোগাযোগ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="298"/>
         <source>Conversation details</source>
-        <translation>কথোপকথনের বিস্তারিত</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="299"/>
         <source>Contact details</source>
-        <translation>যোগাযোগের তথ্য</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="303"/>
         <source>Transfer call</source>
-        <translation>ট্রান্সফার কল</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="304"/>
         <source>Stop recording</source>
-        <translation>রেকর্ডিং বন্ধ করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="305"/>
         <source>Start recording</source>
-        <translation>রেকর্ডিং শুরু করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="306"/>
         <source>View full screen</source>
-        <translation>পূর্ণ পর্দায় দেখান</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="307"/>
         <source>Share screen</source>
-        <translation>ভাগ পর্দা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="308"/>
         <source>Share window</source>
-        <translation>শেয়ার উইন্ডো</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="309"/>
         <source>Stop sharing screen or file</source>
-        <translation>স্ক্রিন বা ফাইল শেয়ার করা বন্ধ করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="310"/>
         <source>Share screen area</source>
-        <translation>স্ক্রীন এরিয়া শেয়ার করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="311"/>
         <source>Share file</source>
-        <translation>ফাইল শেয়ার করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="312"/>
         <source>Select sharing method</source>
-        <translation>শেয়ারিং পদ্ধতি নির্বাচন করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="314"/>
         <source>Advanced information</source>
-        <translation>উন্নত তথ্য</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="315"/>
         <source>No video device</source>
-        <translation>কোন ভিডিও ডিভাইস নেই</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="317"/>
         <source>Lower hand</source>
-        <translation>নীচের হাত</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="318"/>
         <source>Raise hand</source>
-        <translation>হাত বাড়াও</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="319"/>
         <source>Layout settings</source>
-        <translation>লেআউট সেটিংস</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="320"/>
         <source>Take tile screenshot</source>
-        <translation>টাইল স্ক্রিনশট নিন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="321"/>
         <source>Screenshot saved to %1</source>
-        <translation>% 1 এ সংরক্ষিত স্ক্রিনশট</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="322"/>
@@ -1867,147 +1867,147 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="325"/>
         <source>Renderers information</source>
-        <translation>রেন্ডারারদের তথ্য</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="326"/>
         <source>Call information</source>
-        <translation>কলের তথ্য</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="327"/>
         <source>Peer number</source>
-        <translation>সমকালীন সংখ্যা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="328"/>
         <source>Call id</source>
-        <translation>কল আইডি</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="329"/>
         <source>Sockets</source>
-        <translation>সকেট</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="330"/>
         <source>Video codec</source>
-        <translation>ভিডিও কোডেক</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="331"/>
         <source>Hardware acceleration</source>
-        <translation>হার্ডওয়্যার ত্বরণ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="332"/>
         <source>Video bitrate</source>
-        <translation>ভিডিও বিট রেট</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="333"/>
         <source>Audio codec</source>
-        <translation>অডিও কোডেক</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="334"/>
         <source>Renderer id</source>
-        <translation>রেন্ডার আইডি</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="335"/>
         <source>Fps</source>
-        <translation>FPS</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="338"/>
         <source>Share location</source>
-        <translation>ভাগ করে নেওয়ার অবস্থান</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="339"/>
         <source>Stop sharing</source>
-        <translation>শেয়ারিং বন্ধ করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="342"/>
         <source>Turn off location sharing</source>
-        <translation>অবস্থান ভাগ করে নেওয়া বন্ধ করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="345"/>
         <source>Location is shared in several conversations</source>
-        <translation>বিভিন্ন কথোপকথনে অবস্থান ভাগ করা হয়</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="346"/>
         <source>Pin map to be able to share location or to turn off location in specific conversations</source>
-        <translation>নির্দিষ্ট কথোপকথনে অবস্থান ভাগ করতে বা অবস্থান বন্ধ করতে সক্ষম হওয়ার জন্য পিন ম্যাপ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="347"/>
         <source>Location is shared in several conversations, click to choose how to turn off location sharing</source>
-        <translation>অবস্থানটি বেশ কয়েকটি কথোপকথনে ভাগ করা হয়, কীভাবে অবস্থান ভাগ করা বন্ধ করবেন তা নির্বাচন করতে ক্লিক করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="348"/>
         <source>Share location to participants of this conversation (%1)</source>
-        <translation>এই কথোপকথনের অংশগ্রহণকারীদের সাথে অবস্থান ভাগ করুন (%1)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="350"/>
         <source>Reduce</source>
-        <translation>হ্রাস করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="351"/>
         <source>Drag</source>
-        <translation>টেনে আনুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="352"/>
         <source>Center</source>
-        <translation>কেন্দ্র</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="354"/>
         <source>Unpin</source>
-        <translation>আনপিন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="355"/>
         <source>Pin</source>
-        <translation>পিন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="356"/>
         <source>Position share duration</source>
-        <translation>পজিশন শেয়ারের সময়কাল</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="357"/>
         <source>Location sharing</source>
-        <translation>অবস্থান ভাগ করা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="359"/>
         <source>Unlimited</source>
-        <translation>সীমাহীন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="369"/>
         <source>Add to conversations</source>
-        <translation>কথোপকথনে যোগ করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="371"/>
         <source>The account is disabled</source>
-        <translation>অ্যাকাউন্টটি নিষ্ক্রিয় করা হয়েছে</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="372"/>
         <source>No network connectivity</source>
-        <translation>নেটওয়ার্ক সংযোগ নেই</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="373"/>
@@ -2022,67 +2022,67 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="381"/>
         <source>Jump to</source>
-        <translation>ঝাঁপ দাও</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="382"/>
         <source>Messages</source>
-        <translation>বার্তা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="383"/>
         <source>Files</source>
-        <translation>ফাইল</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="384"/>
         <source>Search</source>
-        <translation>অনুসন্ধান</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="389"/>
         <source>Several people are typing…</source>
-        <translation>অনেক লোক টাইপ করছে...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="393"/>
         <source>Enter the Jami Account Management Server (JAMS) URL</source>
-        <translation>জামি অ্যাকাউন্ট ম্যানেজমেন্ট সার্ভার (জেএএমএস) URL লিখুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="394"/>
         <source>Jami Account Management Server URL</source>
-        <translation>জামি অ্যাকাউন্ট ম্যানেজমেন্ট সার্ভার URL</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="395"/>
         <source>Enter JAMS credentials</source>
-        <translation>JAMS এর শংসাপত্র লিখুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="396"/>
         <source>Connect</source>
-        <translation>সংযুক্ত করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="397"/>
         <source>Creating account…</source>
-        <translation>অ্যাকাউন্ট তৈরি করা...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="400"/>
         <source>Choose name</source>
-        <translation>নাম নির্বাচন করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="401"/>
         <source>Choose username</source>
-        <translation>ব্যবহারকারীর নাম নির্বাচন করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="402"/>
         <source>Choose a username</source>
-        <translation>একটি ব্যবহারকারীর নাম নির্বাচন করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="412"/>
@@ -2098,7 +2098,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="414"/>
         <source>Skip</source>
-        <translation>স্কিপ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="415"/>
@@ -2108,7 +2108,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="416"/>
         <source>Save profile</source>
-        <translation>প্রোফাইল সংরক্ষণ করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="424"/>
@@ -2169,7 +2169,7 @@ to connect to synchronize the conversation…</source>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="463"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="465"/>
         <source>Encrypt account with password</source>
-        <translation>পাসওয়ার্ড দিয়ে অ্যাকাউন্ট এনক্রিপ্ট করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="928"/>
@@ -2179,7 +2179,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="403"/>
         <source>Confirm password</source>
-        <translation>পাসওয়ার্ড নিশ্চিত করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="29"/>
@@ -2194,12 +2194,12 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="31"/>
         <source>Decline</source>
-        <translation>হ্রাস</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="35"/>
         <source>Create new group</source>
-        <translation>নতুন গোষ্ঠী বানান</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="46"/>
@@ -2254,7 +2254,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="153"/>
         <source>TURN realm</source>
-        <translation>টার্ন রিয়াল</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="233"/>
@@ -2269,7 +2269,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="252"/>
         <source>Mute microphone</source>
-        <translation>নিঃশব্দ মাইক্রোফোন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="253"/>
@@ -2279,7 +2279,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="256"/>
         <source>Stop camera</source>
-        <translation>স্টপ ক্যামেরা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="257"/>
@@ -2386,72 +2386,72 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="405"/>
         <source>Choose a name for your rendezvous point</source>
-        <translation>আপনার মিটিং পয়েন্টের জন্য একটি নাম চয়ন করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="406"/>
         <source>Choose a name</source>
-        <translation>নাম নির্বাচন করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="407"/>
         <source>Invalid name</source>
-        <translation>অবৈধ নাম</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="408"/>
         <source>Invalid username</source>
-        <translation>অবৈধ ব্যবহারকারীর নাম</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="409"/>
         <source>Name already taken</source>
-        <translation>নামটি ইতিমধ্যে নেওয়া হয়েছে</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="410"/>
         <source>Username already taken</source>
-        <translation>ব্যবহারকারীর নাম ইতিমধ্যেই নেওয়া হয়েছে</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="418"/>
         <source>Good to know</source>
-        <translation>জেনে ভালো লাগলো</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="419"/>
         <source>Local</source>
-        <translation>স্থানীয়</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="420"/>
         <source>Encrypt</source>
-        <translation>এনক্রিপ্ট করা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="427"/>
         <source>SIP account</source>
-        <translation>এসআইপি অ্যাকাউন্ট</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="428"/>
         <source>Proxy</source>
-        <translation>প্রক্সি</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="429"/>
         <source>Server</source>
-        <translation>সার্ভার</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="431"/>
         <source>Personalize account</source>
-        <translation>অ্যাকাউন্টটি ব্যক্তিগতকৃত করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="432"/>
         <source>Add SIP account</source>
-        <translation>SIP অ্যাকাউন্ট যোগ করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="438"/>
@@ -2466,27 +2466,27 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="441"/>
         <source>Backup account</source>
-        <translation>ব্যাকআপ অ্যাকাউন্ট</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="444"/>
         <source>List of the devices that are linked to this account:</source>
-        <translation>এই অ্যাকাউন্টের সাথে যুক্ত ডিভাইসের তালিকাঃ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="445"/>
         <source>This device</source>
-        <translation>এই ডিভাইস</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="446"/>
         <source>Other linked devices</source>
-        <translation>অন্যান্য সংযুক্ত ডিভাইস</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="455"/>
         <source>Change password</source>
-        <translation>পাসওয়ার্ড পরিবর্তন করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="466"/>
@@ -2526,7 +2526,7 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="489"/>
         <source>Unblock contact</source>
-        <translation>যোগাযোগ বন্ধ করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="490"/>
@@ -2536,7 +2536,7 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="491"/>
         <source>Blocked contacts</source>
-        <translation>বন্ধ করা পরিচিতি</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="500"/>
@@ -2546,7 +2546,7 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="520"/>
         <source>Typing indicator</source>
-        <translation>টাইপিং সূচক</translation>
+        <translation>Typegjennomføringsindikator</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="521"/>
@@ -2618,7 +2618,7 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="585"/>
         <source>Markdown</source>
-        <translation>মার্কডাউন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="590"/>
@@ -2705,7 +2705,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="650"/>
         <source>Installing</source>
-        <translation>ইনস্টলেশন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="651"/>
@@ -2755,17 +2755,17 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="712"/>
         <source>Create Jami account</source>
-        <translation>জামি অ্যাকাউন্ট তৈরি করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="752"/>
         <source>Maximize participant</source>
-        <translation>অংশগ্রহণকারীকে সর্বাধিকীকরণ করুন</translation>
+        <translation>Maksimalisera deltakaren</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="753"/>
         <source>Minimize participant</source>
-        <translation>অংশগ্রহণকারীকে সর্বনিম্ন করুন</translation>
+        <translation>Minimer deltakaren</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="754"/>
@@ -2785,42 +2785,42 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="776"/>
         <source>Show more</source>
-        <translation>আরো দেখান</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="781"/>
         <source>Bold</source>
-        <translation>গাঢ়</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="782"/>
         <source>Italic</source>
-        <translation>ইটালিক</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="784"/>
         <source>Title</source>
-        <translation>শিরোনাম</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="785"/>
         <source>Heading</source>
-        <translation>শিরোনাম</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="786"/>
         <source>Link</source>
-        <translation>লিঙ্ক</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="787"/>
         <source>Code</source>
-        <translation>কোড</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="788"/>
         <source>Quote</source>
-        <translation>উদ্ধৃতি</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="791"/>
@@ -2860,52 +2860,52 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="865"/>
         <source>Jami identity</source>
-        <translation>জামি পরিচয়</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="866"/>
         <source>Show fingerprint</source>
-        <translation>আঙ্গুলের ছাপ দেখান</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="867"/>
         <source>Show registered name</source>
-        <translation>নিবন্ধিত নাম দেখান</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="870"/>
         <source>Enabling your account allows you to be contacted on Jami</source>
-        <translation>আপনার অ্যাকাউন্ট অ্যাক্টিভ করা আপনাকে জ্যামিতে যোগাযোগ করতে দেয়</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="880"/>
         <source>Experimental</source>
-        <translation>পরীক্ষামূলক</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="883"/>
         <source>Ringtone</source>
-        <translation>রিংটোন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="886"/>
         <source>Rendezvous point</source>
-        <translation>রেন্ডেভমেন্ট পয়েন্ট</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="889"/>
         <source>Moderation</source>
-        <translation>পরিমিততা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="892"/>
         <source>Theme</source>
-        <translation>বিষয়</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="893"/>
         <source>Text zoom level</source>
-        <translation>পাঠ্য জুম স্তর</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="929"/>
@@ -2995,7 +2995,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="948"/>
         <source>More</source>
-        <translation>আরো</translation>
+        <translation>Meir om det</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="949"/>
@@ -3090,27 +3090,27 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="457"/>
         <source>Set a password</source>
-        <translation>পাসওয়ার্ড সেট করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="458"/>
         <source>Change current password</source>
-        <translation>বর্তমান পাসওয়ার্ড পরিবর্তন করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="460"/>
         <source>Display advanced settings</source>
-        <translation>উন্নত সেটিংস প্রদর্শন করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="461"/>
         <source>Hide advanced settings</source>
-        <translation>উন্নত সেটিংস লুকান</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="198"/>
         <source>Enable account</source>
-        <translation>অ্যাকাউন্ট সক্ষম করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="103"/>
@@ -3120,328 +3120,328 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="462"/>
         <source>Advanced account settings</source>
-        <translation>অ্যাকাউন্টের উন্নত সেটিংস</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="464"/>
         <source>Customize profile</source>
-        <translation>প্রোফাইল কাস্টমাইজ করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="474"/>
         <source>Set username</source>
-        <translation>ব্যবহারকারীর নাম সেট করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="475"/>
         <source>Registering name</source>
-        <translation>নিবন্ধন নাম</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="478"/>
         <source>Identity</source>
-        <translation>পরিচয়</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="481"/>
         <source>Link a new device to this account</source>
-        <translation>এই অ্যাকাউন্টের সাথে একটি নতুন ডিভাইস লিঙ্ক করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="482"/>
         <source>Exporting account…</source>
-        <translation>রপ্তানি অ্যাকাউন্ট...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="502"/>
         <source>Device Id</source>
-        <translation>ডিভাইস আইডি</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="505"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="926"/>
         <source>System</source>
-        <translation>পদ্ধতি</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="508"/>
         <source>Select a folder</source>
-        <translation>একটি ফোল্ডার নির্বাচন করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="509"/>
         <source>Enable notifications</source>
-        <translation>বিজ্ঞপ্তি সক্ষম করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="514"/>
         <source>Launch at startup</source>
-        <translation>স্টার্টআপের সময় লঞ্চ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="515"/>
         <source>Choose download directory</source>
-        <translation>ডাউনলোড ডিরেক্টরি নির্বাচন করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="525"/>
         <source>Preview requires downloading content from third-party servers.</source>
-        <translation>প্রিভিউতে তৃতীয় পক্ষের সার্ভার থেকে সামগ্রী ডাউনলোড করা প্রয়োজন।</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="527"/>
         <source>User interface language</source>
-        <translation>ইউজার ইন্টারফেস ভাষা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="528"/>
         <source>Vertical view</source>
-        <translation>উল্লম্ব দৃশ্য</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="529"/>
         <source>Horizontal view</source>
-        <translation>অনুভূমিক দৃশ্য</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="532"/>
         <source>File transfer</source>
-        <translation>ফাইল স্থানান্তর</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="533"/>
         <source>Automatically accept incoming files</source>
-        <translation>স্বয়ংক্রিয়ভাবে ইনকাম ফাইল গ্রহণ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="538"/>
         <source>Register</source>
-        <translation>নিবন্ধন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="544"/>
         <source>Save file</source>
-        <translation>ফাইল সংরক্ষণ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="545"/>
         <source>Open location</source>
-        <translation>খোলা অবস্থান</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="549"/>
         <source>Install beta version</source>
-        <translation>বিটা সংস্করণ ইনস্টল করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="550"/>
         <source>Check for updates now</source>
-        <translation>আপডেট এখনই চেক করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="551"/>
         <source>Enable/Disable automatic updates</source>
-        <translation>স্বয়ংক্রিয় আপডেট সক্ষম/অক্ষম করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="552"/>
         <source>Updates</source>
-        <translation>আপডেট</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="553"/>
         <source>Update</source>
-        <translation>আপডেট</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="562"/>
         <source>Network disconnected</source>
-        <translation>নেটওয়ার্ক সংযোগ বিচ্ছিন্ন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="568"/>
         <source>Troubleshoot</source>
-        <translation>সমস্যা সমাধান</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="569"/>
         <source>Open logs</source>
-        <translation>খোলা লগ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="570"/>
         <source>Get logs</source>
-        <translation>লোগস নিয়ে আসুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="573"/>
         <source>Quality</source>
-        <translation>গুণমান</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="577"/>
         <source>Always record calls</source>
-        <translation>সবসময় কল রেকর্ড</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="582"/>
         <source>Conversation</source>
-        <translation>কথোপকথন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="583"/>
         <source>Call</source>
-        <translation>কল</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="584"/>
         <source>Settings</source>
-        <translation>সেটিং</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="588"/>
         <source>Debug</source>
-        <translation>ডিবাগ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="591"/>
         <source>Clear</source>
-        <translation>পরিষ্কার</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="592"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="736"/>
         <source>Cancel</source>
-        <translation>বাতিল করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="597"/>
         <source>Archive</source>
-        <translation>আর্কাইভ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="598"/>
         <source>Open file</source>
-        <translation>খোলা ফাইল</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="601"/>
         <source>Generating account…</source>
-        <translation>অ্যাকাউন্ট তৈরি করা...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="602"/>
         <source>Import from archive backup</source>
-        <translation>সংরক্ষণাগার ব্যাকআপ থেকে আমদানি</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="604"/>
         <source>Select archive file</source>
-        <translation>আর্কাইভ ফাইল নির্বাচন করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="471"/>
         <source>Link device</source>
-        <translation>লিঙ্ক ডিভাইস</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="608"/>
         <source>Import</source>
-        <translation>আমদানি</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="859"/>
         <source>Delete message</source>
-        <translation>বার্তা মুছে ফেলুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="860"/>
         <source>*(Deleted Message)*</source>
-        <translation>*(মোছা মেসেজ মুছে ফেলা হয়েছে) *</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="861"/>
         <source>Edit message</source>
-        <translation>বার্তা সম্পাদনা করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="353"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="612"/>
         <source>Close</source>
-        <translation>বন্ধ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="576"/>
         <source>Call recording</source>
-        <translation>কল রেকর্ডিং</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="605"/>
         <source>If the account is encrypted with a password, please fill the following field.</source>
-        <translation>যদি অ্যাকাউন্টটি পাসওয়ার্ড দিয়ে এনক্রিপ্ট করা হয়, তাহলে দয়া করে নিম্নলিখিত ক্ষেত্রটি পূরণ করুন।</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="609"/>
         <source>Enter the PIN code</source>
-        <translation>পিন কোড লিখুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="615"/>
         <source>Add Device</source>
-        <translation>ডিভাইস যোগ করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="630"/>
         <source>Enter current password</source>
-        <translation>বর্তমান পাসওয়ার্ড লিখুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="632"/>
         <source>Enter new password</source>
-        <translation>নতুন পাসওয়ার্ড লিখুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="633"/>
         <source>Confirm new password</source>
-        <translation>নতুন পাসওয়ার্ড নিশ্চিত করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="634"/>
         <source>Change</source>
-        <translation>পরিবর্তন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="635"/>
         <source>Export</source>
-        <translation>রপ্তানি</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="642"/>
         <source>Take photo</source>
-        <translation>ছবি তুলুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="656"/>
         <source>Preferences</source>
-        <translation>পছন্দসমূহ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="659"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="744"/>
         <source>Reset</source>
-        <translation>রিসেট</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="660"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="745"/>
         <source>Uninstall</source>
-        <translation>আনইনস্টল করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="140"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="668"/>
         <source>Select</source>
-        <translation>নির্বাচন করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="618"/>
@@ -3472,334 +3472,334 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="669"/>
         <source>Choose image file</source>
-        <translation>চিত্র ফাইল নির্বাচন করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="671"/>
         <source>Load/Unload</source>
-        <translation>লোড/ডাউনলোড</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="672"/>
         <source>Select An Image to %1</source>
-        <translation>% 1 এ একটি চিত্র নির্বাচন করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="673"/>
         <source>Edit preference</source>
-        <translation>সম্পাদনা পছন্দ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="674"/>
         <source>On/Off</source>
-        <translation>চালু/বন্ধ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="682"/>
         <source>Information</source>
-        <translation>তথ্য</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="684"/>
         <source>Profile</source>
-        <translation>প্রোফাইল</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="687"/>
         <source>Enter the account password to confirm the removal of this device</source>
-        <translation>এই ডিভাইসটি সরানো নিশ্চিত করার জন্য অ্যাকাউন্ট পাসওয়ার্ড লিখুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="693"/>
         <source>Screens</source>
-        <translation>স্ক্রিন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="694"/>
         <source>Windows</source>
-        <translation>উইন্ডোজ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="695"/>
         <source>Screen %1</source>
-        <translation>পর্দা %1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="698"/>
         <source>QR code</source>
-        <translation>QR কোড</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="701"/>
         <source>Link this device to an existing account</source>
-        <translation>এই ডিভাইসটিকে একটি বিদ্যমান অ্যাকাউন্টের সাথে লিঙ্ক করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="702"/>
         <source>Import from another device</source>
-        <translation>অন্য ডিভাইস থেকে আমদানি</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="703"/>
         <source>Import from an archive backup</source>
-        <translation>একটি সংরক্ষণাগার ব্যাকআপ থেকে আমদানি</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="704"/>
         <source>Advanced features</source>
-        <translation>উন্নত বৈশিষ্ট্য</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="705"/>
         <source>Show advanced features</source>
-        <translation>উন্নত বৈশিষ্ট্য প্রদর্শন করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="706"/>
         <source>Hide advanced features</source>
-        <translation>উন্নত বৈশিষ্ট্য লুকান</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="707"/>
         <source>Connect to a JAMS server</source>
-        <translation>একটি JAMS সার্ভারে সংযোগ করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="708"/>
         <source>Create account from Jami Account Management Server (JAMS)</source>
-        <translation>জামি অ্যাকাউন্ট ম্যানেজমেন্ট সার্ভার (জেএএমএস) থেকে অ্যাকাউন্ট তৈরি করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="709"/>
         <source>Configure a SIP account</source>
-        <translation>একটি SIP অ্যাকাউন্ট কনফিগার করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="711"/>
         <source>Create a rendezvous point</source>
-        <translation>একটি মিটিং পয়েন্ট তৈরি করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="713"/>
         <source>Create new Jami account</source>
-        <translation>নতুন জামি অ্যাকাউন্ট তৈরি করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="714"/>
         <source>Create new SIP account</source>
-        <translation>নতুন SIP অ্যাকাউন্ট তৈরি করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="715"/>
         <source>About Jami</source>
-        <translation>জামি সম্পর্কে</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="717"/>
         <source>I already have an account</source>
-        <translation>আমার একটা একাউন্ট আছে</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="718"/>
         <source>Use existing Jami account</source>
-        <translation>বিদ্যমান জামি অ্যাকাউন্ট ব্যবহার করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="719"/>
         <source>Welcome to Jami</source>
-        <translation>জামিতে স্বাগতম</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="723"/>
         <source>Conversations</source>
-        <translation>কথোপকথন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="731"/>
         <source>Automatically check for updates</source>
-        <translation>আপডেটগুলি স্বয়ংক্রিয়ভাবে চেক করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="498"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="735"/>
         <source>Save</source>
-        <translation>সংরক্ষণ করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="737"/>
         <source>Upgrade</source>
-        <translation>আপগ্রেড</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="738"/>
         <source>Later</source>
-        <translation>পরে</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="739"/>
         <source>Delete</source>
-        <translation>মুছে ফেলুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="742"/>
         <source>Block</source>
-        <translation>ব্লক</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="748"/>
         <source>Set moderator</source>
-        <translation>সেট মডারেটর</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="749"/>
         <source>Unset moderator</source>
-        <translation>অপসারণকারী</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="349"/>
         <source>Maximize</source>
-        <translation>সর্বাধিক</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="755"/>
         <source>Local muted</source>
-        <translation>স্থানীয়ভাবে নিরব</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="758"/>
         <source>Default moderators</source>
-        <translation>ডিফল্ট মডারেটর</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="759"/>
         <source>Enable local moderators</source>
-        <translation>স্থানীয় মডারেটর সক্ষম করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="760"/>
         <source>Make all participants moderators</source>
-        <translation>সকল অংশগ্রহণকারীদের মডারেটর বানান</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="761"/>
         <source>Add default moderator</source>
-        <translation>ডিফল্ট মডারেটর যোগ করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="763"/>
         <source>Remove default moderator</source>
-        <translation>ডিফল্ট মডারেটর অপসারণ করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="770"/>
         <source>Add emoji</source>
-        <translation>ইমোজি যোগ করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="772"/>
         <source>Send file</source>
-        <translation>ফাইল পাঠান</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="795"/>
         <source>Send</source>
-        <translation>পাঠান</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="501"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="740"/>
         <source>Remove</source>
-        <translation>অপসারণ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="39"/>
         <source>Migrate conversation</source>
-        <translation>মাইগ্রেশন কথোপকথন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="510"/>
         <source>Show notifications</source>
-        <translation>বিজ্ঞপ্তি প্রদর্শন করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="511"/>
         <source>Minimize on close</source>
-        <translation>বন্ধের উপর ন্যূনতম</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="513"/>
         <source>Run at system startup</source>
-        <translation>সিস্টেম স্টার্টআপ এ চালান</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="599"/>
         <source>Create account from backup</source>
-        <translation>ব্যাকআপ থেকে অ্যাকাউন্ট তৈরি করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="600"/>
         <source>Restore account from backup</source>
-        <translation>ব্যাকআপ থেকে অ্যাকাউন্ট পুনরুদ্ধার করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="603"/>
         <source>Import Jami account from local archive file.</source>
-        <translation>স্থানীয় আর্কাইভ ফাইল থেকে জামি অ্যাকাউন্ট আমদানি করুন।</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="802"/>
         <source>Write to %1</source>
-        <translation>% 1 এ লিখুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="830"/>
         <source>Member</source>
-        <translation>সদস্য</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="836"/>
         <source>Ignore all notifications from this conversation</source>
-        <translation>এই কথোপকথনের সব বিজ্ঞপ্তি উপেক্ষা করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="843"/>
         <source>Go to conversation</source>
-        <translation>কথোপকথনে যাও</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="846"/>
         <source>Administrator</source>
-        <translation>প্রশাসক</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="847"/>
         <source>Invited</source>
-        <translation>আমন্ত্রিত</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="848"/>
         <source>Remove member</source>
-        <translation>সদস্য অপসারণ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="849"/>
         <source>To:</source>
-        <translation>-</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="852"/>
         <source>Customize</source>
-        <translation>কাস্টমাইজ করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="854"/>
         <source>Dismiss</source>
-        <translation>প্রত্যাখ্যান</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="856"/>
         <source>Your profile is only shared with your contacts</source>
-        <translation>আপনার প্রোফাইল শুধুমাত্র আপনার পরিচিতির সাথে ভাগ করা হয়</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3807,32 +3807,32 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="40"/>
         <source>Open account list</source>
-        <translation>খোলা অ্যাকাউন্টের তালিকা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="44"/>
         <source>Focus conversations list</source>
-        <translation>ফোকাস কথোপকথন তালিকা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="48"/>
         <source>Requests list</source>
-        <translation>অনুরোধ তালিকা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="52"/>
         <source>Previous conversation</source>
-        <translation>পূর্ববর্তী কথোপকথন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="56"/>
         <source>Next conversation</source>
-        <translation>পরবর্তী কথোপকথন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="60"/>
         <source>Search bar</source>
-        <translation>অনুসন্ধান বার</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="120"/>
@@ -3842,77 +3842,77 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="132"/>
         <source>Full screen</source>
-        <translation>পূর্ণ পর্দা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="64"/>
         <source>Increase font size</source>
-        <translation>ফন্টের আকার বাড়ান</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="68"/>
         <source>Decrease font size</source>
-        <translation>ফন্টের আকার হ্রাস করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="72"/>
         <source>Reset font size</source>
-        <translation>ফন্টের আকার রিসেট করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="96"/>
         <source>Clear history</source>
-        <translation>পরিষ্কার ইতিহাস</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="84"/>
         <source>Search messages/files</source>
-        <translation>অনুসন্ধান বার্তা/ফাইল</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="100"/>
         <source>Block contact</source>
-        <translation>ব্লক যোগাযোগ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="80"/>
         <source>Accept contact request</source>
-        <translation>যোগাযোগের অনুরোধ গ্রহণ করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="88"/>
         <source>Edit last message</source>
-        <translation>শেষ বার্তা সম্পাদনা করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="92"/>
         <source>Cancel message edition</source>
-        <translation>বার্তা সম্পাদনা বাতিল করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="216"/>
         <source>Open account creation wizard</source>
-        <translation>অ্যাকাউন্ট খুলুন উইজার্ড</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="124"/>
         <source>End call</source>
-        <translation>কল শেষ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="104"/>
         <source>Leave conversation</source>
-        <translation>কথোপকথন ছেড়ে দিন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="112"/>
         <source>Start audio call</source>
-        <translation>অডিও কল শুরু করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="116"/>
         <source>Start video call</source>
-        <translation>ভিডিও কল শুরু করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="128"/>
@@ -3922,62 +3922,62 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="136"/>
         <source>Mute microphone</source>
-        <translation>নিঃশব্দ মাইক্রোফোন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="140"/>
         <source>Stop camera</source>
-        <translation>স্টপ ক্যামেরা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="144"/>
         <source>Take tile screenshot</source>
-        <translation>টাইল স্ক্রিনশট নিন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="152"/>
         <source>Bold</source>
-        <translation>গাঢ়</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="156"/>
         <source>Italic</source>
-        <translation>ইটালিক</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="160"/>
         <source>Strikethrough</source>
-        <translation>রেখান্বিত</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="164"/>
         <source>Heading</source>
-        <translation>শিরোনাম</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="168"/>
         <source>Link</source>
-        <translation>লিঙ্ক</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="172"/>
         <source>Code</source>
-        <translation>কোড</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="176"/>
         <source>Quote</source>
-        <translation>উদ্ধৃতি</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="180"/>
         <source>Unordered list</source>
-        <translation>ক্রমহীন তালিকা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="184"/>
         <source>Ordered list</source>
-        <translation>আদেশের তালিকা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="188"/>
@@ -4020,17 +4020,17 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="474"/>
         <source>E&amp;xit</source>
-        <translation>ই&amp;এক্সট</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="476"/>
         <source>&amp;Quit</source>
-        <translation>&amp; Quit</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="482"/>
         <source>&amp;Show Jami</source>
-        <translation>&amp;Show Jami</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4043,7 +4043,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/positionmanager.cpp" line="406"/>
         <source>Location sharing</source>
-        <translation>অবস্থান ভাগ করা</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4064,73 +4064,73 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="403"/>
         <source>Me</source>
-        <translation>আমি</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="60"/>
         <source>Hold</source>
-        <translation>থেকো</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="62"/>
         <source>Talking</source>
-        <translation>কথা বলা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="64"/>
         <source>ERROR</source>
-        <translation>ভুল</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="66"/>
         <source>Incoming</source>
-        <translation>আসছে</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="68"/>
         <source>Calling</source>
-        <translation>কলিং</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="70"/>
         <source>Connecting</source>
-        <translation>সংযোগ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="72"/>
         <source>Searching</source>
-        <translation>অনুসন্ধান</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="74"/>
         <source>Inactive</source>
-        <translation>অ্যাক্টিভ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="76"/>
         <location filename="../src/libclient/api/call.h" line="82"/>
         <source>Finished</source>
-        <translation>সমাপ্ত</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="78"/>
         <source>Timeout</source>
-        <translation>টাইমআউট</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="80"/>
         <source>Peer busy</source>
-        <translation>সমকামী ব্যস্ত</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="84"/>
         <source>Communication established</source>
-        <translation>প্রতিষ্ঠিত বার্তা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="480"/>
         <source>Invitation received</source>
-        <translation>আমন্ত্রণ প্রাপ্তি</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="275"/>
@@ -4138,7 +4138,7 @@ Please confirm the import on the new device.</source>
         <location filename="../src/libclient/api/interaction.h" line="295"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="477"/>
         <source>Contact added</source>
-        <translation>যোগ করা হয়েছে যোগাযোগ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/interaction.cpp" line="88"/>
@@ -4219,28 +4219,28 @@ Please confirm the import on the new device.</source>
         <location filename="../src/libclient/api/interaction.h" line="342"/>
         <location filename="../src/libclient/api/interaction.h" line="348"/>
         <source>Outgoing call</source>
-        <translation>প্রস্থান কল</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="344"/>
         <location filename="../src/libclient/api/interaction.h" line="354"/>
         <source>Incoming call</source>
-        <translation>ইনকামিং কল</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="350"/>
         <source>Missed outgoing call</source>
-        <translation>মিস করা কল</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="356"/>
         <source>Missed incoming call</source>
-        <translation>মিস করা ইনকামিং কল</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="466"/>
         <source>Join call</source>
-        <translation>যোগদান কল</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="476"/>
@@ -4250,13 +4250,13 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="482"/>
         <source>Invitation accepted</source>
-        <translation>আমন্ত্রণ গ্রহণ করা হয়েছে</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/avmodel.cpp" line="384"/>
         <location filename="../src/libclient/avmodel.cpp" line="421"/>
         <source>default</source>
-        <translation>ডিফল্ট</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/avmodel.cpp" line="486"/>
@@ -4285,193 +4285,193 @@ Please confirm the import on the new device.</source>
         <location filename="../src/libclient/avmodel.cpp" line="493"/>
         <location filename="../src/libclient/avmodel.cpp" line="509"/>
         <source>Disabled</source>
-        <translation>অক্ষম</translation>
+        <translation>Dei funksjonshemma</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="72"/>
         <source>Null</source>
-        <translation>শূন্য</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="73"/>
         <source>Trying</source>
-        <translation>চেষ্টা করছি</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="74"/>
         <source>Ringing</source>
-        <translation>রিং</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="75"/>
         <source>Being Forwarded</source>
-        <translation>প্রেরণ করা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="76"/>
         <source>Queued</source>
-        <translation>সারিতে</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="77"/>
         <source>Progress</source>
-        <translation>অগ্রগতি</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="78"/>
         <source>OK</source>
-        <translation>ঠিক আছে</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="79"/>
         <source>Accepted</source>
-        <translation>গ্রহণ করা হয়েছে</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="80"/>
         <source>Multiple Choices</source>
-        <translation>একাধিক পছন্দ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="81"/>
         <source>Moved Permanently</source>
-        <translation>স্থায়ীভাবে সরানো</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="82"/>
         <source>Moved Temporarily</source>
-        <translation>অস্থায়ীভাবে সরানো</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="83"/>
         <source>Use Proxy</source>
-        <translation>প্রক্সি ব্যবহার করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="84"/>
         <source>Alternative Service</source>
-        <translation>বিকল্প পরিষেবা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="85"/>
         <source>Bad Request</source>
-        <translation>খারাপ অনুরোধ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="86"/>
         <source>Unauthorized</source>
-        <translation>অনুমোদিত নয়</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="87"/>
         <source>Payment Required</source>
-        <translation>অর্থ প্রদানের প্রয়োজনীয়তা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="88"/>
         <source>Forbidden</source>
-        <translation>নিষিদ্ধ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="89"/>
         <source>Not Found</source>
-        <translation>পাওয়া যায়নি</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="90"/>
         <source>Method Not Allowed</source>
-        <translation>পদ্ধতি অনুমোদিত নয়</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="91"/>
         <location filename="../src/libclient/callmodel.cpp" line="111"/>
         <source>Not Acceptable</source>
-        <translation>গ্রহণযোগ্য নয়</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="92"/>
         <source>Proxy Authentication Required</source>
-        <translation>প্রক্সি প্রমাণীকরণ প্রয়োজন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="93"/>
         <source>Request Timeout</source>
-        <translation>সময়সীমা অনুরোধ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="94"/>
         <source>Gone</source>
-        <translation>চলে গেছে</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="95"/>
         <source>Request Entity Too Large</source>
-        <translation>অনুরোধের পরিমাণ খুব বড়</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="96"/>
         <source>Request URI Too Long</source>
-        <translation>ইউআরআই অনুরোধ করা খুব দীর্ঘ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="97"/>
         <source>Unsupported Media Type</source>
-        <translation>সমর্থিত মিডিয়া টাইপ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="98"/>
         <source>Unsupported URI Scheme</source>
-        <translation>সমর্থিত না হওয়া ইউআরআই স্কিম</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="99"/>
         <source>Bad Extension</source>
-        <translation>খারাপ প্রসারিত</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="100"/>
         <source>Extension Required</source>
-        <translation>প্রসারিত করা প্রয়োজন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="101"/>
         <source>Session Timer Too Small</source>
-        <translation>অধিবেশন টাইমার খুব ছোট</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="102"/>
         <source>Interval Too Brief</source>
-        <translation>খুব সংক্ষিপ্ত সময়কাল</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="103"/>
         <source>Temporarily Unavailable</source>
-        <translation>অস্থায়ীভাবে অক্ষম</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="104"/>
         <source>Call TSX Does Not Exist</source>
-        <translation>কল টিএসএক্স নেই</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="105"/>
         <source>Loop Detected</source>
-        <translation>লুপ সনাক্ত করা হয়েছে</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="106"/>
         <source>Too Many Hops</source>
-        <translation>অনেক বেশি হুপ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="107"/>
         <source>Address Incomplete</source>
-        <translation>ঠিকানা অসম্পূর্ণ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="108"/>
         <source>Ambiguous</source>
-        <translation>দ্বিধাগ্রস্থ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="125"/>
@@ -4482,117 +4482,117 @@ Please confirm the import on the new device.</source>
         <location filename="../src/libclient/api/interaction.h" line="333"/>
         <location filename="../src/libclient/callmodel.cpp" line="109"/>
         <source>Busy</source>
-        <translation>ব্যস্ত</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="110"/>
         <source>Request Terminated</source>
-        <translation>অনুরোধ বাতিল</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="112"/>
         <source>Bad Event</source>
-        <translation>খারাপ ঘটনা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="113"/>
         <source>Request Updated</source>
-        <translation>আপডেট করা অনুরোধ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="114"/>
         <source>Request Pending</source>
-        <translation>অনুরোধ অপেক্ষা করছে</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="115"/>
         <source>Undecipherable</source>
-        <translation>অজ্ঞাত</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="116"/>
         <source>Internal Server Error</source>
-        <translation>অভ্যন্তরীণ সার্ভার ত্রুটি</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="117"/>
         <source>Not Implemented</source>
-        <translation>বাস্তবায়ন করা হয়নি</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="118"/>
         <source>Bad Gateway</source>
-        <translation>খারাপ গেটওয়ে</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="119"/>
         <source>Service Unavailable</source>
-        <translation>পরিষেবা পাওয়া যায় না</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="120"/>
         <source>Server Timeout</source>
-        <translation>সার্ভার টাইমআউট</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="121"/>
         <source>Version Not Supported</source>
-        <translation>সংস্করণ সমর্থিত নয়</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="122"/>
         <source>Message Too Large</source>
-        <translation>বার্তা খুব বড়</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="123"/>
         <source>Precondition Failure</source>
-        <translation>পূর্বশর্ত ব্যর্থতা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="124"/>
         <source>Busy Everywhere</source>
-        <translation>সর্বত্র ব্যস্ত</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="126"/>
         <source>Does Not Exist Anywhere</source>
-        <translation>কোথাও নেই</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="127"/>
         <source>Not Acceptable Anywhere</source>
-        <translation>যে কোন জায়গায় গ্রহণযোগ্য নয়</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="639"/>
         <source>Just now</source>
-        <translation>ঠিক এখনই</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="658"/>
         <source>Today</source>
-        <translation>আজ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="660"/>
         <source>Yesterday</source>
-        <translation>গতকাল</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="105"/>
         <source>locationServicesError</source>
-        <translation>অবস্থানসার্ভিস ত্রুটি</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="108"/>
         <source>locationServicesClosedError</source>
-        <translation>অবস্থানসার্ভিসবন্ধ ত্রুটি</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/positioning.cpp" line="110"/>
         <source>locationServicesUnknownError</source>
-        <translation>অবস্থানসার্ভিসঅজানাError</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/conversationmodel.cpp" line="1136"/>
@@ -4613,7 +4613,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/utils.cpp" line="590"/>
         <source>Media</source>
-        <translation>মিডিয়া</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/utils.cpp" line="591"/>
@@ -4676,7 +4676,7 @@ Please confirm the import on the new device.</source>
         <location filename="../src/app/smartlistmodel.cpp" line="166"/>
         <location filename="../src/app/smartlistmodel.cpp" line="167"/>
         <source>Calls</source>
-        <translation>কল</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/smartlistmodel.cpp" line="53"/>
@@ -4686,7 +4686,7 @@ Please confirm the import on the new device.</source>
         <location filename="../src/app/smartlistmodel.cpp" line="168"/>
         <location filename="../src/app/smartlistmodel.cpp" line="169"/>
         <source>Contacts</source>
-        <translation>পরিচিতি</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4704,7 +4704,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/systemtray.cpp" line="224"/>
         <source>Open conversation</source>
-        <translation>খোলা কথোপকথন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="226"/>
@@ -4722,12 +4722,12 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="84"/>
         <source>Customize</source>
-        <translation>কাস্টমাইজ করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="87"/>
         <source>What does Jami mean?</source>
-        <translation>জামি মানে কি?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="89"/>
@@ -4737,7 +4737,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="93"/>
         <source>What is the green dot next to my account?</source>
-        <translation>আমার অ্যাকাউন্টের পাশে সবুজ বিন্দুটা কী?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="80"/>
@@ -4747,7 +4747,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="85"/>
         <source>Backup account</source>
-        <translation>ব্যাকআপ অ্যাকাউন্ট</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="95"/>
@@ -4757,17 +4757,17 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="99"/>
         <source>Why should I back up my account?</source>
-        <translation>কেন আমার অ্যাকাউন্ট ব্যাকআপ করা উচিত?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="101"/>
         <source>Jami is distributed and your account is only stored locally on your device. If you lose your password or your local account data, you WILL NOT be able to recover your account if you did not back it up earlier.</source>
-        <translation>জামি বিতরণ করা হয় এবং আপনার অ্যাকাউন্টটি কেবলমাত্র স্থানীয়ভাবে আপনার ডিভাইসে সংরক্ষণ করা হয়। আপনি যদি আপনার পাসওয়ার্ড বা আপনার স্থানীয় অ্যাকাউন্টের ডেটা হারাবেন তবে আপনি যদি এটি আগে ব্যাকআপ না করেন তবে আপনি আপনার অ্যাকাউন্টটি পুনরুদ্ধার করতে পারবেন না।</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="106"/>
         <source>Can I make a conference call?</source>
-        <translation>আমি কি কনফারেন্স কল করতে পারি?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="107"/>
@@ -4777,22 +4777,22 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="110"/>
         <source>What is a Jami account?</source>
-        <translation>জামি অ্যাকাউন্ট কি?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="112"/>
         <source>A Jami account is an asymmetric encryption key. Your account is identified by a Jami ID, which is a fingerprint of your public key.</source>
-        <translation>জামি অ্যাকাউন্ট একটি অসামতীকৃত এনক্রিপশন কী। আপনার অ্যাকাউন্টটি একটি জামি আইডি দ্বারা সনাক্ত করা হয়, যা আপনার পাবলিক কীটির একটি আঙ্গুলের ছাপ।</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="116"/>
         <source>What information do I need to provide to create a Jami account?</source>
-        <translation>জামি অ্যাকাউন্ট তৈরি করতে কি তথ্য দিতে হবে?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="118"/>
         <source>When you create a new Jami account, you do not have to provide any private information like an email, address, or phone number.</source>
-        <translation>আপনি যখন নতুন জামি অ্যাকাউন্ট তৈরি করেন, তখন আপনাকে ইমেইল, ঠিকানা বা ফোন নম্বর মত ব্যক্তিগত তথ্য দিতে হবে না।</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="122"/>
@@ -4802,7 +4802,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="124"/>
         <source>With Jami, your account is stored in a directory on your device. The password is only used to encrypt your account in order to protect you from someone who has physical access to your device.</source>
-        <translation>জামিতে, আপনার অ্যাকাউন্ট আপনার ডিভাইসের একটি ডিরেক্টরিতে সংরক্ষিত থাকে। পাসওয়ার্ডটি কেবলমাত্র আপনার অ্যাকাউন্ট এনক্রিপ্ট করার জন্য ব্যবহৃত হয় যাতে আপনার ডিভাইসে শারীরিক অ্যাক্সেস থাকা ব্যক্তির থেকে আপনাকে রক্ষা করতে পারে।</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="129"/>
@@ -4812,37 +4812,37 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="141"/>
         <source>Your account is only stored on your own devices. If you delete your account from all of your devices, the account is gone forever and you CANNOT recover it.</source>
-        <translation>আপনার অ্যাকাউন্টটি শুধুমাত্র আপনার ডিভাইসে সংরক্ষণ করা হয়। আপনি যদি আপনার অ্যাকাউন্টটি আপনার সমস্ত ডিভাইস থেকে মুছে ফেলেন, তাহলে অ্যাকাউন্টটি চিরকালের জন্য চলে যাবে এবং আপনি এটি পুনরুদ্ধার করতে পারবেন না।</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="145"/>
         <source>Can I use my account on multiple devices?</source>
-        <translation>আমি কি একাধিক ডিভাইসে আমার অ্যাকাউন্ট ব্যবহার করতে পারি?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="147"/>
         <source>Yes, you can link your account from the settings, or you can import your backup on another device.</source>
-        <translation>হ্যাঁ, আপনি সেটিংস থেকে আপনার অ্যাকাউন্ট লিঙ্ক করতে পারেন, অথবা আপনি অন্য ডিভাইসে আপনার ব্যাকআপ আমদানি করতে পারেন।</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="131"/>
         <source>The most permanent, secure identifier is your Jami ID, but since these are difficult to use for some people, you also have the option of registering a username.</source>
-        <translation>সবচেয়ে স্থায়ী, নিরাপদ আইডি হল আপনার জামি আইডি, কিন্তু যেহেতু কিছু মানুষের জন্য এটি ব্যবহার করা কঠিন, আপনার একটি ব্যবহারকারীর নাম নিবন্ধনের বিকল্পও রয়েছে।</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="135"/>
         <source>How can I back up my account?</source>
-        <translation>আমি কিভাবে আমার অ্যাকাউন্ট ব্যাকআপ করতে পারি?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="136"/>
         <source>In Account Settings, a button is available to create a backup your account.</source>
-        <translation>অ্যাকাউন্ট সেটিংস-এ, আপনার অ্যাকাউন্টের ব্যাকআপ তৈরি করার জন্য একটি বোতাম উপলব্ধ।</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="139"/>
         <source>What happens when I delete my account?</source>
-        <translation>আমি আমার অ্যাকাউন্ট মুছে ফেললে কি হবে?</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4863,17 +4863,17 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/utilsadapter.cpp" line="346"/>
         <source>%1 Mbps</source>
-        <translation>প্রতি সেকেন্ডে %1 মেগাবিট</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/utilsadapter.cpp" line="346"/>
         <source>Default</source>
-        <translation>ডিফল্ট</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/utilsadapter.cpp" line="538"/>
         <source>System</source>
-        <translation>পদ্ধতি</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4881,17 +4881,17 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="488"/>
         <source>Searching…</source>
-        <translation>খোঁজ...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="955"/>
         <source>Invalid ID</source>
-        <translation>অবৈধ আইডি</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="958"/>
         <source>Username not found</source>
-        <translation>ব্যবহারকারীর নাম পাওয়া যায়নি</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="961"/>
@@ -4904,7 +4904,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="452"/>
         <source>Bad URI scheme</source>
-        <translation>খারাপ ইউআরআই স্কিম</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>
