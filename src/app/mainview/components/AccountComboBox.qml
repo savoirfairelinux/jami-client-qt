@@ -18,39 +18,36 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Effects
+import SortFilterProxyModel 0.2
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
+import net.jami.Helpers 1.1
 import "../../commoncomponents"
 
-Label {
+/* Why is ComboBox not the root item?
+ * To address accessibility, we separate the three main components:
+ * account selection, QR code, and settings to allow focusability on
+ * each individual element.
+ */
+
+Item {
     id: root
 
-    property alias popup: comboBoxPopup
-
-    width: parent ? parent.width : 0
+    width: parent.width
     height: JamiTheme.accountListItemHeight
 
     property bool inSettings: viewCoordinator.currentViewName === "SettingsView"
 
-    function togglePopup() {
-        if (root.popup.opened) {
-            root.popup.close();
-        } else {
-            root.popup.open();
-        }
-    }
+    Rectangle {
+        id: contentRect
 
-    background: Rectangle {
-        id: background
-        anchors.fill: parent
-
+        anchors.fill: root
         color: JamiTheme.backgroundColor
         radius: JamiTheme.commonRadius
         layer.enabled: true
         layer.effect: MultiEffect {
-            id: searchBarMultiEffect
-            anchors.fill: background
+            anchors.fill: root
             shadowEnabled: true
             shadowBlur: JamiTheme.shadowBlur
             shadowColor: JamiTheme.shadowColor
@@ -58,260 +55,191 @@ Label {
             shadowVerticalOffset: JamiTheme.shadowVerticalOffset
             shadowOpacity: JamiTheme.shadowOpacity
         }
-        Behavior on color {
-            ColorAnimation {
-                duration: JamiTheme.shortFadeDuration
-            }
-        }
-    }
 
-    AccountComboBoxPopup {
-        id: comboBoxPopup
-    }
+        RowLayout {
+            anchors.fill: contentRect
+            anchors.margins: JamiTheme.accountComboBoxPadding
 
-    RowLayout {
-        anchors.fill: parent
-        anchors.margins: JamiTheme.accountComboBoxPadding
-        spacing: JamiTheme.accountComboBoxPadding
+            ComboBox {
+                id: accountComboBox
 
-        Rectangle {
-            id: accountBlock
+                Layout.fillWidth: true
+                Layout.fillHeight: true
 
-            Layout.fillWidth: true
-            Layout.fillHeight: true
+                valueRole: "ID"
 
-            radius: JamiTheme.commonRadius
-            color: accountBlockContentMouseArea.containsMouse ? Qt.darker(JamiTheme.backgroundColor, 1.1) : JamiTheme.backgroundColor
-
-            RowLayout {
-                id: accountBlockContent
-                anchors.fill: parent
-                spacing: 10
-
-                Avatar {
-                    id: accountBlockAvatar
-                    objectName: "accountComboBoxAvatar"
-
-                    Layout.preferredWidth: JamiTheme.accountListAvatarSize
-                    Layout.preferredHeight: JamiTheme.accountListAvatarSize
-                    Layout.alignment: Qt.AlignVCenter
-                    Layout.leftMargin: 10
-
-                    mode: Avatar.Mode.Account
-                    imageId: CurrentAccount.id
-                    presenceStatus: CurrentAccount.status
-                }
-
-                ColumnLayout {
-                    id: accountBlockInformation
-
-                    Layout.fillWidth: true
-
-                    Text {
-                        id: bestNameText
-
-                        Layout.fillWidth: true
-                        Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-
-                        text: CurrentAccount.bestName
-                        textFormat: TextEdit.PlainText
-
-                        font.pointSize: JamiTheme.textFontSize
-                        color: JamiTheme.textColor
-                        elide: Text.ElideRight
-                        horizontalAlignment: Text.AlignLeft
-                    }
-
-                    Text {
-                        id: bestIdText
-
-                        Layout.fillWidth: true
-                        Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-
-                        visible: text.length && text !== bestNameText.text
-
-                        text: CurrentAccount.bestId
-                        textFormat: TextEdit.PlainText
-
-                        font.pointSize: JamiTheme.tinyFontSize
-                        color: JamiTheme.faddedLastInteractionFontColor
-                        elide: Text.ElideRight
-                        horizontalAlignment: Text.AlignLeft
+                model: SortFilterProxyModel {
+                    sourceModel: AccountListModel
+                    filters: ValueFilter {
+                        roleName: "ID"
+                        value: LRCInstance.currentAccountId
+                        inverted: true
                     }
                 }
+
+                delegate: AccountItemDelegate {
+                    height: JamiTheme.accountListItemHeight
+                    width: root.width
+
+                    background: Rectangle {
+                        anchors.fill: parent
+                        anchors.margins: JamiTheme.itemMarginVertical
+                        radius: JamiTheme.commonRadius + 4
+                        color: (hovered || highlighted) ? JamiTheme.hoverColor : JamiTheme.backgroundColor
+
+                        Behavior on color {
+                            ColorAnimation {
+                                duration: JamiTheme.shortFadeDuration
+                            }
+                        }
+                    }
+
+                    highlighted: accountComboBox.highlightedIndex === index
+
+                    Accessible.role: Accessible.ListItem
+                    Accessible.name: Alias || Username
+                    Accessible.description: JamiStrings.switchToAccount
+                }
+
+                indicator: Item {}
+
+                contentItem: RowLayout {
+                    width: accountComboBox ? accountComboBox.width : undefined
+                    height: JamiTheme.accountListItemHeight
+
+                    spacing: 10
+
+                    Avatar {
+                        Layout.preferredWidth: JamiTheme.accountListAvatarSize
+                        Layout.preferredHeight: JamiTheme.accountListAvatarSize
+                        Layout.alignment: Qt.AlignVCenter
+                        Layout.leftMargin: 10
+                        mode: Avatar.Mode.Account
+                        imageId: CurrentAccount.id
+                        presenceStatus: CurrentAccount.status
+                    }
+
+                    ColumnLayout {
+                        Layout.fillWidth: true
+
+                        Text {
+                            Layout.fillWidth: true
+                            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                            text: CurrentAccount.bestName
+                            textFormat: TextEdit.PlainText
+                            font.pointSize: JamiTheme.textFontSize
+                            elide: Text.ElideRight
+                            color: JamiTheme.textColor
+                            horizontalAlignment: Text.AlignLeft
+                        }
+
+                        Text {
+                            Layout.fillWidth: true
+                            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                            text: CurrentAccount.bestId
+                            textFormat: TextEdit.PlainText
+                            font.pointSize: JamiTheme.tinyFontSize
+                            elide: Text.ElideRight
+                            horizontalAlignment: Text.AlignLeft
+                            color: JamiTheme.faddedLastInteractionFontColor
+                            visible: text.length && text !== CurrentAccount.bestName
+                        }
+                    }
+                }
+
+                popup: Popup {
+                    id: accountComboBoxPopup
+
+                    y: contentRect.height - 1
+                    width: contentRect.width
+                    height: Math.min(contentItem.implicitHeight, accountComboBox.Window.height - topMargin - bottomMargin)
+
+                    padding: 0
+                    closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
+
+                    contentItem: ListView {
+                        id: listView
+                        clip: true
+                        implicitHeight: contentHeight
+                        currentIndex: accountComboBox.highlightedIndex
+                        model: visible ? accountComboBox.delegateModel : null
+                    }
+
+                    background: Rectangle {
+                        color: JamiTheme.backgroundColor
+                        radius: JamiTheme.commonRadius
+                        layer.enabled: true
+                        layer.effect: MultiEffect {
+                            anchors.fill: accountComboBoxPopup
+                            shadowEnabled: true
+                            shadowBlur: JamiTheme.shadowBlur
+                            shadowColor: JamiTheme.shadowColor
+                            shadowHorizontalOffset: JamiTheme.shadowHorizontalOffset
+                            shadowVerticalOffset: JamiTheme.shadowVerticalOffset
+                            shadowOpacity: JamiTheme.shadowOpacity
+                        }
+                    }
+                }
+
+                background: Rectangle {
+                    id: background
+
+                    anchors.fill: accountComboBox
+                    color: accountComboBox.hovered ? JamiTheme.hoverColor : JamiTheme.backgroundColor
+                    radius: JamiTheme.commonRadius
+                    Behavior on color {
+                        ColorAnimation {
+                            duration: JamiTheme.shortFadeDuration
+                        }
+                    }
+                }
+
+                onActivated: {
+                    // This is a workaround for the synchronicity issue
+                    // in AvatarRegistry::connectAccount()
+                    AvatarRegistry.clearCache();
+                    LRCInstance.currentAccountId = currentValue;
+                }
             }
 
-            MouseArea {
-                id: accountBlockContentMouseArea
-                anchors.fill: accountBlockContent
-                hoverEnabled: true
+            JamiPushButton {
+                id: shareButton
+
+                width: visible ? preferredSize : 0
+                height: visible ? preferredSize : 0
+
+                Layout.alignment: Qt.AlignVCenter
+
+                source: JamiResources.share_24dp_svg
+                normalColor: JamiTheme.backgroundColor
+                imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
+
+                toolTipText: JamiStrings.displayQRCode
+
+                visible: LRCInstance.currentAccountType === Profile.Type.JAMI
+
+                onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/WelcomePageQrDialog.qml")
             }
-        }
 
-        JamiPushButton {
-            id: shareButton
+            JamiPushButton {
+                id: settingsButton
 
-            width: visible ? preferredSize : 0
-            height: visible ? preferredSize : 0
-            Layout.alignment: Qt.AlignVCenter
+                width: visible ? preferredSize : 0
+                height: visible ? preferredSize : 0
 
-            visible: LRCInstance.currentAccountType === Profile.Type.JAMI
-            toolTipText: JamiStrings.displayQRCode
+                Layout.alignment: Qt.AlignVCenter
 
-            source: JamiResources.share_24dp_svg
+                source: !inSettings ? JamiResources.settings_24dp_svg : JamiResources.round_close_24dp_svg
+                normalColor: JamiTheme.backgroundColor
+                imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
 
-            normalColor: JamiTheme.backgroundColor
-            imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
+                toolTipText: !inSettings ? JamiStrings.openSettings : JamiStrings.closeSettings
 
-            onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/WelcomePageQrDialog.qml")
-        }
-
-        JamiPushButton {
-            id: settingsButton
-
-            Layout.alignment: Qt.AlignVCenter
-            source: !inSettings ? JamiResources.settings_24dp_svg : JamiResources.round_close_24dp_svg
-
-            imageContainerWidth: inSettings ? 30 : 24
-
-            normalColor: JamiTheme.backgroundColor
-            imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
-            toolTipText: !inSettings ? JamiStrings.openSettings : JamiStrings.closeSettings
-
-            onClicked: {
-                !inSettings ? viewCoordinator.present("SettingsView") : viewCoordinator.dismiss("SettingsView");
-                background.state = "normal";
+                onClicked: {
+                    !inSettings ? viewCoordinator.present("SettingsView") : viewCoordinator.dismiss("SettingsView");
+                    background.state = "normal";
+                }
             }
         }
     }
-
-    // RowLayout {
-    //     id: mainLayout
-    //     anchors.fill: parent
-    //     anchors.leftMargin: 5
-    //     anchors.rightMargin: 15
-    //     spacing: 10
-
-    //     Rectangle {
-    //         Layout.fillWidth: true
-    //         Layout.fillHeight: true
-    //         color: root.popup.opened ? Qt.lighter(JamiTheme.hoverColor, 1.0) : mouseArea.containsMouse ? Qt.lighter(JamiTheme.hoverColor, 1.0) : JamiTheme.backgroundColor
-    //         radius: 5
-    //         Layout.topMargin: 5
-
-    //         MouseArea {
-    //             id: mouseArea
-    //             enabled: visible
-    //             anchors.fill: parent
-    //             hoverEnabled: true
-    //             onClicked: {
-    //                 root.forceActiveFocus();
-    //                 togglePopup();
-    //             }
-    //         }
-
-    //         RowLayout {
-    //             anchors.fill: parent
-    //             anchors.leftMargin: 10
-    //             anchors.rightMargin: 15
-
-    //             spacing: 10
-
-    //             Avatar {
-    //                 id: avatar
-    //                 objectName: "accountComboBoxAvatar"
-
-    //                 Layout.preferredWidth: JamiTheme.accountListAvatarSize
-    //                 Layout.preferredHeight: JamiTheme.accountListAvatarSize
-    //                 Layout.alignment: Qt.AlignVCenter
-
-    //                 mode: Avatar.Mode.Account
-    //                 imageId: CurrentAccount.id
-    //                 presenceStatus: CurrentAccount.status
-    //             }
-
-    //             ColumnLayout {
-    //                 Layout.fillWidth: true
-    //                 Layout.fillHeight: true
-    //                 spacing: 2
-
-    //                 Text {
-    //                     id: bestNameText
-
-    //                     Layout.fillWidth: true
-    //                     Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-
-    //                     text: CurrentAccount.bestName
-    //                     textFormat: TextEdit.PlainText
-
-    //                     font.pointSize: JamiTheme.textFontSize
-    //                     color: JamiTheme.textColor
-    //                     elide: Text.ElideRight
-    //                     horizontalAlignment: Text.AlignLeft
-    //                 }
-
-    //                 Text {
-    //                     id: bestIdText
-
-    //                     Layout.fillWidth: true
-    //                     Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-
-    //                     visible: text.length && text !== bestNameText.text
-
-    //                     text: CurrentAccount.bestId
-    //                     textFormat: TextEdit.PlainText
-
-    //                     font.pointSize: JamiTheme.tinyFontSize
-    //                     color: JamiTheme.faddedLastInteractionFontColor
-    //                     elide: Text.ElideRight
-    //                     horizontalAlignment: Text.AlignLeft
-    //                 }
-    //             }
-    //         }
-    //     }
-
-    //     Row {
-    //         id: controlRow
-
-    //         spacing: 10
-
-    //         Layout.preferredHeight: parent.height
-
-    //         JamiPushButton {
-    //             id: shareButton
-
-    //             width: visible ? preferredSize : 0
-    //             height: visible ? preferredSize : 0
-    //             anchors.verticalCenter: parent.verticalCenter
-
-    //             visible: LRCInstance.currentAccountType === Profile.Type.JAMI
-    //             toolTipText: JamiStrings.displayQRCode
-
-    //             source: JamiResources.share_24dp_svg
-
-    //             normalColor: JamiTheme.backgroundColor
-    //             imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
-
-    //             onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/WelcomePageQrDialog.qml")
-    //         }
-
-    //         JamiPushButton {
-    //             id: settingsButton
-
-    //             anchors.verticalCenter: parent.verticalCenter
-    //             source: !inSettings ? JamiResources.settings_24dp_svg : JamiResources.round_close_24dp_svg
-
-    //             imageContainerWidth: inSettings ? 30 : 24
-
-    //             normalColor: JamiTheme.backgroundColor
-    //             imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
-    //             toolTipText: !inSettings ? JamiStrings.openSettings : JamiStrings.closeSettings
-
-    //             onClicked: {
-    //                 !inSettings ? viewCoordinator.present("SettingsView") : viewCoordinator.dismiss("SettingsView");
-    //                 background.state = "normal";
-    //             }
-    //         }
-    //     }
-    // }
 }
