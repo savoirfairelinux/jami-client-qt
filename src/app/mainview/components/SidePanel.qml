@@ -218,6 +218,8 @@ SidePanelBase {
                 RowLayout {
                     id: createSwarmToggle
 
+                    QWKSetParentHitTestVisible {}
+
                     visible: swarmMemberSearchList.visible
 
                     width: parent.width
@@ -260,6 +262,8 @@ SidePanelBase {
                 // Search conversations, start new conversations, etc.
                 RowLayout {
                     id: startBar
+
+                    QWKSetParentHitTestVisible {}
 
                     width: parent.width
                     height: 40
