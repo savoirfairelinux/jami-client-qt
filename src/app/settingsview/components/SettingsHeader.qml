@@ -45,7 +45,6 @@ RowLayout {
         font.pixelSize: JamiTheme.settingsHeaderPixelSize
         font.kerning: true
         color: JamiTheme.textColor
-        Layout.leftMargin: backToSettingsMenuButton.visible ? 0 : JamiTheme.preferredSettingsMarginSize
 
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
