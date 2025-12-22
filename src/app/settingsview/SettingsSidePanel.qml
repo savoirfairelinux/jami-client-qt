@@ -31,7 +31,9 @@ SidePanelBase {
     objectName: "SettingsSidePanel"
 
     color: JamiTheme.backgroundColor
-    property int currentIndex
+    // Default to -1 (no selection, all menus collapsed).
+    // In dual pane mode, SettingsView will sync this to the content index.
+    property int currentIndex: -1
     property bool isSinglePane
     signal updated
 
@@ -335,7 +337,8 @@ SidePanelBase {
                         id: childCol
                         width: childListView.width
                         spacing: 0
-                        property bool isSelected: root.currentIndex === modelData.id
+                        // In single pane mode, don't show child selection until user explicitly navigates
+                        property bool isSelected: !root.isSinglePane && root.currentIndex === modelData.id
                         PushButton {
                             visible: modelData.visible !== undefined ? modelData.visible : true
                             buttonText: modelData.title
