@@ -18,6 +18,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtQuick.Effects
 
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -44,7 +45,7 @@ Control {
     padding: 10
     background: Rectangle {
         color: JamiTheme.donationBackgroundColor
-        radius: 5
+        radius: JamiTheme.donationBannerRadius
     }
     contentItem: RowLayout {
         spacing: 16
@@ -72,20 +73,6 @@ Control {
             RowLayout {
                 spacing: 32
                 Layout.alignment: Qt.AlignBaseline
-                component BannerButton : PushButton {
-                    id: bannerButton
-                    contentItem: Text {
-                        text: bannerButton.text
-                        color: JamiTheme.donationButtonTextColor
-                        font.pointSize: JamiTheme.textFontSize
-                        MouseArea {
-                            cursorShape: Qt.PointingHandCursor
-                            anchors.fill: parent
-                            onClicked: bannerButton.clicked()
-                        }
-                    }
-                    background: null
-                }
                 // Clicking "Not now" sets the donation date to 7 days from now.
                 BannerButton {
                     text: JamiStrings.notNow
@@ -97,5 +84,19 @@ Control {
                 }
             }
         }
+    }
+    component BannerButton: PushButton {
+        id: bannerButton
+        contentItem: Text {
+            text: bannerButton.text
+            color: JamiTheme.donationButtonTextColor
+            font.pointSize: JamiTheme.textFontSize
+            MouseArea {
+                cursorShape: Qt.PointingHandCursor
+                anchors.fill: parent
+                onClicked: bannerButton.clicked()
+            }
+        }
+        background: null
     }
 }
