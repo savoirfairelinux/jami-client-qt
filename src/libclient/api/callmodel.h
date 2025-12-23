@@ -33,6 +33,7 @@ namespace lrc {
 class CallbacksHandler;
 class CallModelPimpl;
 
+void initializeMediaList(VectorMapStringString& mediaList, bool audioOnly, bool videoMuted);
 namespace api {
 
 namespace account {
@@ -79,7 +80,10 @@ public:
      * @param  isAudioOnly, set to false by default
      * @return the call uid created. Empty string is returned if call is unable to be created.
      */
-    QString createCall(const QString& uri, bool isAudioOnly = false, VectorMapStringString mediaList = {});
+    QString createCall(const QString& uri,
+                       bool isAudioOnly = false,
+                       VectorMapStringString mediaList = {},
+                       bool videoMuted = true);
     /**
      * Add a new media to the current list
      * @param callId

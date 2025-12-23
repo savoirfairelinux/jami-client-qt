@@ -202,14 +202,15 @@ public:
      * Call contacts linked to this conversation
      * @param uid of the conversation
      */
+    void startAudioOnlyCall(const QString& uid);
     void startCall(const QString& uid);
     /**
      * Perform an audio call with contacts linked to this conversation
      * @param uid of the conversation
      */
-    void startAudioOnlyCall(const QString& uid);
+    void placeAudioOnlyCall(const QString& uid);
     void joinCall(
-        const QString& uid, const QString& confId, const QString& uri, const QString& deviceId, bool isAudioOnly);
+        const QString& uid, const QString& confId, const QString& uri, const QString& deviceId, bool videoMuted);
     /**
      * Send a message to the conversation
      * @param uid of the conversation

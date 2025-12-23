@@ -840,7 +840,7 @@ ConversationModel::deleteObsoleteHistory(int days)
 
 void
 ConversationModel::joinCall(
-    const QString& uid, const QString& uri, const QString& deviceId, const QString& confId, bool isAudioOnly)
+    const QString& uid, const QString& uri, const QString& deviceId, const QString& confId, bool videoMuted)
 {
     try {
         auto& conversation = pimpl_->getConversationForUid(uid, true).get();
@@ -849,7 +849,9 @@ ConversationModel::joinCall(
             return;
         }
         conversation.callId = owner.callModel->createCall("rdv:" + uid + "/" + uri + "/" + deviceId + "/" + confId,
-                                                          isAudioOnly);
+                                                          false,
+                                                          {},
+                                                          videoMuted);
         // Update interaction status
         pimpl_->invalidateModel();
         selectConversation(uid);
@@ -871,7 +873,7 @@ ConversationModelPimpl::startCall(const QString& uid, bool isAudioOnly)
 
         if (!conversation.isCoreDialog() && conversation.isSwarm()) {
             qDebug() << "Start call for swarm:" + uid;
-            conversation.callId = linked.owner.callModel->createCall("swarm:" + uid, isAudioOnly);
+            conversation.callId = linked.owner.callModel->createCall("swarm:" + uid, false, {}, isAudioOnly);
 
             // Update interaction status
             invalidateModel();
@@ -1943,8 +1945,8 @@ ConversationModelPimpl::initConversations()
                     || interaction.transferStatus == interaction::TransferStatus::TRANSFER_AWAITING_PEER
                     || interaction.transferStatus == interaction::TransferStatus::TRANSFER_ONGOING
                     || interaction.transferStatus == interaction::TransferStatus::TRANSFER_ACCEPTED) {
-                    // If a datatransfer was left in a non-terminal status in DB, we switch this status
-                    // to ERROR
+                    // If a datatransfer was left in a non-terminal status in DB, we switch this
+                    // status to ERROR
                     // TODO : Improve for DBus clients as daemon and transfer may still be ongoing
                     storage::updateInteractionTransferStatus(db, id, interaction::TransferStatus::TRANSFER_ERROR);
 

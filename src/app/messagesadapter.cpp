@@ -231,13 +231,13 @@ MessagesAdapter::sendFileToUid(const QString& message, const QString& convUid)
 }
 
 void
-MessagesAdapter::joinCall(const QString& uri, const QString& deviceId, const QString& confId, bool isAudioOnly)
+MessagesAdapter::joinCall(const QString& uri, const QString& deviceId, const QString& confId, bool videoMuted)
 {
     lrcInstance_->getCurrentConversationModel()->joinCall(lrcInstance_->get_selectedConvUid(),
                                                           uri,
                                                           deviceId,
                                                           confId,
-                                                          isAudioOnly);
+                                                          videoMuted);
 }
 
 void

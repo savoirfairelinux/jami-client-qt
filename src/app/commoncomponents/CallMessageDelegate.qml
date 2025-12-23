@@ -71,8 +71,6 @@ SBSMessageBase {
         normalColor: JamiTheme.buttonCallLightGreen
         hoveredColor: JamiTheme.buttonCallDarkGreen
         imageColor: hovered ? JamiTheme.buttonCallLightGreen : JamiTheme.blackColor
-        Layout.fillHeight: true
-        Layout.fillWidth: true
         radius: 0
     }
 
@@ -159,14 +157,25 @@ SBSMessageBase {
 
                 width: 40
                 height: 40
+            }
+
+            JoinCallButton {
+                id: joinCallWithVideo
+                Layout.topMargin: 0.5 // For better sub-pixel rendering
+                objectName: "joinCallWithVideo"
+                source: JamiResources.videocam_24dp_svg
+                onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, root.confId, false)
+
+                width: 40
+                height: 40
 
                 layer.enabled: true
                 layer.effect: OpacityMask {
-                    source: joinCallWithAudio
+                    source: joinCallWithVideo
                     maskSource: Rectangle {
                         radius: 10
-                        width: joinCallWithAudio.width
-                        height: joinCallWithAudio.height
+                        width: joinCallWithVideo.width
+                        height: joinCallWithVideo.height
                         Rectangle {
                             width: parent.width / 2
                             height: parent.height
