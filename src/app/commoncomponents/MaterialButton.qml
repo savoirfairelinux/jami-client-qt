@@ -198,7 +198,7 @@ AbstractButton {
             return root.color;
         }
 
-        radius: JamiTheme.primaryRadius
+        radius: JamiTheme.commonRadius
     }
 
     Keys.onPressed: function (keyEvent) {
