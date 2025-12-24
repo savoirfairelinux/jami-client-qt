@@ -25,7 +25,7 @@ SplitView {
 
     property bool isRTL: UtilsAdapter.isRTL
     property bool isSinglePane: false
-    property real handleSize: 1
+    property real handleSize: 0
     property bool completed: false
 
     property string splitViewStateKey: objectName
@@ -121,7 +121,7 @@ SplitView {
         implicitWidth: control.orientation === Qt.Horizontal ? handleRoot.defaultSize : control.width
         implicitHeight: control.orientation === Qt.Horizontal ? control.height : handleRoot.defaultSize
 
-        color: JamiTheme.tabbarBorderColor
+        color: "transparent"
 
         containmentMask: Item {
             readonly property real extraHandleSize: 4
