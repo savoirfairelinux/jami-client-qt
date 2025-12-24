@@ -64,7 +64,7 @@ Rectangle {
     Layout.alignment: Qt.AlignBottom
     height: Math.min(JamiTheme.chatViewFooterTextAreaMaximumHeight + 2 * marginSize, colLayout.height + 2 * marginSize)
 
-    radius: 5
+    radius: JamiTheme.commonRadius
     color: JamiTheme.transparentColor
     border.color: JamiTheme.chatViewFooterRectangleBorderColor
     border.width: 2
