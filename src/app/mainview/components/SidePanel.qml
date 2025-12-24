@@ -30,7 +30,7 @@ SidePanelBase {
 
     objectName: "SidePanel"
 
-    color: JamiTheme.backgroundColor
+    color: JamiTheme.primaryBackgroundColor
 
     Connections {
         target: LRCInstance
