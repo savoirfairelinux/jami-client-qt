@@ -27,15 +27,6 @@ TabButton {
     property alias acceleratorSequence: accelerator.sequence
     property alias badgeCount: badge.count
 
-    property color backgroundColor: JamiTheme.backgroundColor
-    property color hoverColor: JamiTheme.backgroundColor
-    property color textColor: JamiTheme.textColor
-    property color textColorHovered: JamiTheme.textColorHovered
-    property color underlineColor: textColor
-    property color underlineColorHovered: textColorHovered
-    property real borderWidth: 2
-    property real bottomMargin: 1
-    property bool underlineContentOnly: false
     property int fontSize: JamiTheme.filterItemFontSize
 
     signal selected
@@ -46,53 +37,47 @@ TabButton {
     Accessible.name: root.labelText
     Accessible.role: Accessible.Button
 
-    Rectangle {
-        id: contentRect
+    contentItem: Rectangle {
+        anchors.fill: parent
+        anchors.margins: JamiTheme.itemMarginHorizontal
 
-        anchors.fill: root
+        color: (root.down || root.hovered || root.activeFocus) ? JamiTheme.hoveredButtonColor : JamiTheme.backgroundColor
 
-        color: root.hovered ? root.hoverColor : root.backgroundColor
+        radius: width / 2
 
         RowLayout {
-            id: informations
-            anchors.horizontalCenter: contentRect.horizontalCenter
-            anchors.verticalCenter: contentRect.verticalCenter
-
+            anchors.fill: parent
             Text {
                 id: label
 
-                Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-                Layout.bottomMargin: root.bottomMargin
+                Layout.alignment: Qt.AlignCenter
 
                 font.pointSize: fontSize
-                color: {
-                    if (!root.down && root.hovered)
-                        return root.textColorHovered;
-                    return root.textColor;
-                }
-                opacity: root.down ? 1.0 : 0.5
+
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                elide: Text.ElideRight
+
+                color: (root.hovered || root.activeFocus) ? JamiTheme.textColorHovered : JamiTheme.textColor
             }
 
             BadgeNotifier {
                 id: badge
                 size: 20
-                Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+            }
+        }
+
+        Behavior on color {
+            ColorAnimation {
+                duration: JamiTheme.shortFadeDuration
             }
         }
     }
 
-    Rectangle {
-        width: underlineContentOnly ? informations.width + JamiTheme.menuBorderPreferredHeight : contentRect.width
-        anchors.horizontalCenter: contentRect.horizontalCenter
-        anchors.bottom: contentRect.bottom
-        height: borderWidth
-        color: {
-            if (!root.down && root.hovered)
-                return underlineColorHovered;
-            if (!root.down)
-                return "transparent";
-            return root.underlineColor;
-        }
+    background: Rectangle {
+        id: contentRect
+        anchors.fill: root
+        color: JamiTheme.backgroundColor
     }
 
     Shortcut {

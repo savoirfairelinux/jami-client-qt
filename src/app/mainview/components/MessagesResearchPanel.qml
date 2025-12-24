@@ -71,16 +71,7 @@ Page {
 
             FilterTabButton {
                 id: messagesResearchTabButton
-
-                backgroundColor: "transparent"
-                hoverColor: "transparent"
-                borderWidth: 4
-                bottomMargin: JamiTheme.settingsMarginSize
                 fontSize: JamiTheme.menuFontSize
-                underlineContentOnly: true
-                underlineColor: CurrentConversation.color
-                underlineColorHovered: CurrentConversation.color
-
                 down: researchTabBar.currentIndex === 0
                 labelText: JamiStrings.messages
                 Layout.fillWidth: true
@@ -88,15 +79,7 @@ Page {
 
             FilterTabButton {
                 id: fileResearchTabButton
-                backgroundColor: "transparent"
-                hoverColor: "transparent"
-                borderWidth: 4
-                bottomMargin: JamiTheme.settingsMarginSize
                 fontSize: JamiTheme.menuFontSize
-                underlineContentOnly: true
-                underlineColor: CurrentConversation.color
-                underlineColorHovered: CurrentConversation.color
-
                 down: researchTabBar.currentIndex === 1
                 labelText: JamiStrings.files
                 Layout.fillWidth: true
