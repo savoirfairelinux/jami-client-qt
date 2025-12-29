@@ -2770,7 +2770,7 @@ Scannen Sie anschließend den QR-Code.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="752"/>
         <source>Maximize participant</source>
-        <translation type="unfinished"/>
+        <translation>Teilnehmer vergrößern</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="753"/>
@@ -2780,7 +2780,7 @@ Scannen Sie anschließend den QR-Code.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="754"/>
         <source>Disconnect participant</source>
-        <translation type="unfinished"/>
+        <translation>Teilnehmer trennen</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="773"/>
@@ -4487,7 +4487,7 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="125"/>
         <source>Call Declined</source>
-        <translation type="unfinished"/>
+        <translation>Anruf abgelehnt</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="333"/>
@@ -4606,8 +4606,8 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1136"/>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1149"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1138"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1151"/>
         <source>%1 (you)</source>
         <translation type="unfinished"/>
     </message>

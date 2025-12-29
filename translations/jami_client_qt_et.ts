@@ -4606,8 +4606,8 @@ Jätkamiseks palun kinnita importimine uues seadmes.</translation>
         <translation>asukohtateenusteTeadmataViga</translation>
     </message>
     <message>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1136"/>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1149"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1138"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1151"/>
         <source>%1 (you)</source>
         <translation>%1 (sina)</translation>
     </message>

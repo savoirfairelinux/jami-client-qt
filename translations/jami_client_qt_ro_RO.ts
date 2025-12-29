@@ -4605,8 +4605,8 @@ Confirmă importarea în noul aparat</translation>
         <translation>EroareNecunoscutăServiciiDeLocalizare</translation>
     </message>
     <message>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1136"/>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1149"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1138"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1151"/>
         <source>%1 (you)</source>
         <translation>%1 (tu)</translation>
     </message>
@@ -4638,7 +4638,7 @@ Confirmă importarea în noul aparat</translation>
     <message>
         <location filename="../src/app/utils.cpp" line="593"/>
         <source>This is a list of people who have made a significant investment of time, with useful results, into Jami. Any such contributors who want to be added to the list should contact us.</source>
-        <translation>Aceasta este o listă de oameni care au făcut o investiție semnificativă de timp, cu rezultate utile, în Jami. Orice astfel de colaboratori care doresc să fie adăugați pe listă trebuie să ne contacteze.</translation>
+        <translation>Aceasta este o listă de oameni care au făcut o investiție semnificativă de timp, cu rezultate utile, în Jami. Astfel de colaboratori care doresc să fie adăugați pe listă trebuie să ne contacteze.</translation>
     </message>
     <message>
         <location filename="../src/app/linkdevicemodel.cpp" line="63"/>

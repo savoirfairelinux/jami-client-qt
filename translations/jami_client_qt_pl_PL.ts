@@ -4601,8 +4601,8 @@ Please confirm the import on the new device.</source>
         <translation>lokalizacja UsługiNieznaneError</translation>
     </message>
     <message>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1136"/>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1149"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1138"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1151"/>
         <source>%1 (you)</source>
         <translation>%1 (ty)</translation>
     </message>

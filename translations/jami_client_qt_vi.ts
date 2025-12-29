@@ -592,7 +592,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="197"/>
         <source>Extensions</source>
-        <translation type="unfinished"/>
+        <translation>Tiện ích mở rộng</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="207"/>
@@ -922,7 +922,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="809"/>
         <source>Call started</source>
-        <translation type="unfinished"/>
+        <translation>Đã bắt đầu cuộc gọi</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="813"/>
@@ -982,7 +982,7 @@
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="900"/>
         <source>Donate</source>
-        <translation type="unfinished"/>
+        <translation>Ủng hộ</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="902"/>
@@ -1707,7 +1707,7 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="86"/>
         <source>An authentication error occurred while linking the device. Please check credentials and try again.</source>
-        <translation type="unfinished"/>
+        <translation>Có lỗi xác thực trong quá trình kết nối thiết bị. Vui lòng kiểm tra danh tính và thử lại.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="113"/>
@@ -2118,12 +2118,12 @@ to connect to synchronize the conversation…</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="430"/>
         <source>Configure existing SIP account</source>
-        <translation type="unfinished"/>
+        <translation>Cấu hình tài khoản SIP đã có</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="435"/>
         <source>Display name</source>
-        <translation type="unfinished"/>
+        <translation>Tên hiển thị</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="440"/>
@@ -2556,12 +2556,12 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="522"/>
         <source>Read receipts</source>
-        <translation type="unfinished"/>
+        <translation>Hiển thị đã đọc</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="523"/>
         <source>Send and request delivery and read receipts to be sent when messages are delivered or read.</source>
-        <translation type="unfinished"/>
+        <translation>Báo hiệu nếu tin nhắn được gửi thành công hoặc đã được đọc.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="535"/>
@@ -2571,7 +2571,7 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="539"/>
         <source>Incorrect password.</source>
-        <translation type="unfinished"/>
+        <translation>Sai mật khẩu.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="540"/>
@@ -2623,12 +2623,12 @@ The location of other members can still be received.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="590"/>
         <source>Submit issue</source>
-        <translation type="unfinished"/>
+        <translation>Báo lỗi</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="593"/>
         <source>Copied to clipboard.</source>
-        <translation type="unfinished"/>
+        <translation>Đã sao chép vào clipboard.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="594"/>
@@ -4595,8 +4595,8 @@ Please confirm the import on the new device.</source>
         <translation>vị tríServicesUnknownTrong</translation>
     </message>
     <message>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1136"/>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1149"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1138"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1151"/>
         <source>%1 (you)</source>
         <translation type="unfinished"/>
     </message>
@@ -4638,7 +4638,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/libclient/api/account.h" line="238"/>
         <source>An authentication error occurred while linking the device. Please check credentials and try again.</source>
-        <translation type="unfinished"/>
+        <translation>Có lỗi xác thực trong quá trình kết nối thiết bị. Vui lòng kiểm tra danh tính và thử lại.</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/account.h" line="241"/>
@@ -4742,7 +4742,7 @@ Please confirm the import on the new device.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="80"/>
         <source>Donate</source>
-        <translation type="unfinished"/>
+        <translation>Ủng hộ</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="85"/>

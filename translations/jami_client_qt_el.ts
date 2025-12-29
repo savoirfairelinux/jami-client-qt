@@ -2760,7 +2760,7 @@ When ready, scan the QR code.</source>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="752"/>
         <source>Maximize participant</source>
-        <translation type="unfinished"/>
+        <translation>Μεγιστοποιήστε τον συμμετέχοντα</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="753"/>
@@ -4595,8 +4595,8 @@ Please confirm the import on the new device.</source>
         <translation>ΤοποθεσίαServicesUnknownΕπιχείρηση</translation>
     </message>
     <message>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1136"/>
-        <location filename="../src/libclient/conversationmodel.cpp" line="1149"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1138"/>
+        <location filename="../src/libclient/conversationmodel.cpp" line="1151"/>
         <source>%1 (you)</source>
         <translation>%1 (εσείς)</translation>
     </message>
