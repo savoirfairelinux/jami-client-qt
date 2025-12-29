@@ -17,6 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtQuick.Effects
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
@@ -30,7 +31,7 @@ SidePanelBase {
     id: root
     objectName: "SettingsSidePanel"
 
-    color: JamiTheme.backgroundColor
+    color: JamiTheme.primaryBackgroundColor
     // Default to -1 (no selection, all menus collapsed).
     // In dual pane mode, SettingsView will sync this to the content index.
     property int currentIndex: -1
@@ -39,160 +40,209 @@ SidePanelBase {
 
     function getHeaders() {
         if (AppVersionManager.isUpdaterEnabled()) {
-            return [{
+            return [
+                {
                     "title": JamiStrings.accountSettingsMenuTitle,
                     "icon": JamiResources.account_24dp_svg,
                     "first": 0,
                     "last": 4,
-                    "children": [{
+                    "children": [
+                        {
                             "id": 0,
                             "title": JamiStrings.manageAccountSettingsTitle
-                        }, {
+                        },
+                        {
                             "id": 1,
                             "title": JamiStrings.customizeProfile
-                        }, {
+                        },
+                        {
                             "id": 2,
                             "title": JamiStrings.linkedDevicesSettingsTitle,
                             "visible": CurrentAccount.type !== Profile.Type.SIP
-                        }, {
+                        },
+                        {
                             "id": 3,
                             "title": JamiStrings.callSettingsTitle
-                        }, {
+                        },
+                        {
                             "id": 4,
                             "title": JamiStrings.advancedSettingsTitle
-                        }]
-                }, {
+                        }
+                    ]
+                },
+                {
                     "title": JamiStrings.generalSettingsTitle,
                     "icon": JamiResources.settings_24dp_svg,
                     "first": 5,
                     "last": 11,
-                    "children": [{
+                    "children": [
+                        {
                             "id": 5,
                             "title": JamiStrings.system
-                        }, {
+                        },
+                        {
                             "id": 6,
                             "title": JamiStrings.appearance
-                        }, {
+                        },
+                        {
                             "id": 7,
                             "title": JamiStrings.chatSettingsTitle
-                        }, {
+                        },
+                        {
                             "id": 8,
                             "title": JamiStrings.locationSharingLabel
-                        }, {
+                        },
+                        {
                             "id": 9,
                             "title": JamiStrings.callRecording
-                        }, {
+                        },
+                        {
                             "id": 10,
                             "title": JamiStrings.troubleshootTitle
-                        }, {
+                        },
+                        {
                             "id": 11,
                             "title": JamiStrings.updatesTitle,
                             "visible": AppVersionManager.isUpdaterEnabled()
-                        }]
-                }, {
+                        }
+                    ]
+                },
+                {
                     "title": JamiStrings.mediaSettingsTitle,
                     "icon": JamiResources.media_black_24dp_svg,
                     "first": 12,
                     "last": 14,
-                    "children": [{
+                    "children": [
+                        {
                             "id": 12,
                             "title": JamiStrings.audio
-                        }, {
+                        },
+                        {
                             "id": 13,
                             "title": JamiStrings.video
-                        }, {
+                        },
+                        {
                             "id": 14,
                             "title": JamiStrings.screenSharing
-                        }]
-                }, {
+                        }
+                    ]
+                },
+                {
                     "title": JamiStrings.extensionSettingsTitle,
                     "icon": JamiResources.plugins_24dp_svg,
                     "first": 15,
                     "last": 15,
-                    "children": [{
+                    "children": [
+                        {
                             "id": 15,
                             "title": JamiStrings.extensionSettingsTitle
-                        }]
-                }];
+                        }
+                    ]
+                }
+            ];
         } else {
-            return [{
+            return [
+                {
                     "title": JamiStrings.accountSettingsMenuTitle,
                     "icon": JamiResources.account_24dp_svg,
                     "first": 0,
                     "last": 4,
-                    "children": [{
+                    "children": [
+                        {
                             "id": 0,
                             "title": JamiStrings.manageAccountSettingsTitle
-                        }, {
+                        },
+                        {
                             "id": 1,
                             "title": JamiStrings.customizeProfile
-                        }, {
+                        },
+                        {
                             "id": 2,
                             "title": JamiStrings.linkedDevicesSettingsTitle,
                             "visible": CurrentAccount.type !== Profile.Type.SIP
-                        }, {
+                        },
+                        {
                             "id": 3,
                             "title": JamiStrings.callSettingsTitle
-                        }, {
+                        },
+                        {
                             "id": 4,
                             "title": JamiStrings.advancedSettingsTitle
-                        }]
-                }, {
+                        }
+                    ]
+                },
+                {
                     "title": JamiStrings.generalSettingsTitle,
                     "icon": JamiResources.settings_24dp_svg,
                     "first": 5,
                     "last": 11,
-                    "children": [{
+                    "children": [
+                        {
                             "id": 5,
                             "title": JamiStrings.system
-                        }, {
+                        },
+                        {
                             "id": 6,
                             "title": JamiStrings.appearance
-                        }, {
+                        },
+                        {
                             "id": 7,
                             "title": JamiStrings.chatSettingsTitle
-                        }, {
+                        },
+                        {
                             "id": 8,
                             "title": JamiStrings.locationSharingLabel
-                        }, {
+                        },
+                        {
                             "id": 9,
                             "title": JamiStrings.callRecording
-                        }, {
+                        },
+                        {
                             "id": 10,
                             "title": JamiStrings.troubleshootTitle
-                        }]
-                }, {
+                        }
+                    ]
+                },
+                {
                     "title": JamiStrings.mediaSettingsTitle,
                     "icon": JamiResources.media_black_24dp_svg,
                     "first": 12,
                     "last": 14,
-                    "children": [{
+                    "children": [
+                        {
                             "id": 12,
                             "title": JamiStrings.audio
-                        }, {
+                        },
+                        {
                             "id": 13,
                             "title": JamiStrings.video
-                        }, {
+                        },
+                        {
                             "id": 14,
                             "title": JamiStrings.screenSharing
-                        }]
-                }, {
+                        }
+                    ]
+                },
+                {
                     "title": JamiStrings.extensionSettingsTitle,
                     "icon": JamiResources.plugins_24dp_svg,
                     "first": 15,
                     "last": 15,
-                    "children": [{
+                    "children": [
+                        {
                             "id": 15,
                             "title": JamiStrings.extensionSettingsTitle
-                        }]
-                }];
+                        }
+                    ]
+                }
+            ];
         }
     }
 
     function updateModel() {
         if (visible) {
             listView.model = getHeaders();
-            root.updated()
+            root.updated();
         }
     }
 
@@ -203,7 +253,7 @@ SidePanelBase {
         repeat: false
 
         onTriggered: {
-            updateModel()
+            updateModel();
         }
     }
 
@@ -223,7 +273,7 @@ SidePanelBase {
             // For some reason, under Qt 6.5.3, even if locale is changed before
             // model is not computer correctly.
             // Delaying the update works
-            timerTranslate.restart()
+            timerTranslate.restart();
         }
     }
 
@@ -258,110 +308,84 @@ SidePanelBase {
         root.currentIndex = index;
     }
 
-    Page {
-        id: page
-
+    ColumnLayout {
         anchors.fill: parent
+        anchors.margins: JamiTheme.sidePanelIslandsPadding
 
-        background: null
+        Item {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
 
-        header: AccountComboBox { QWKSetParentHitTestVisible {}
-            id: accountComboBox
-        }
+            Rectangle {
+                id: settingsListRect
 
-        ListView {
-            id: listView
-            objectName: "listView"
+                anchors.fill: parent
 
-            width: page.width
-            height: page.height
-            clip: true
-            contentHeight: contentItem.childrenRect.height
-
-            // HACK: remove after migration to Qt 6.7+
-            boundsBehavior: Flickable.StopAtBounds
-
-            model: getHeaders()
-            delegate: ColumnLayout {
-                id: col
-                width: page.width
-                spacing: 0
-                property bool isChildSelected: root.currentIndex >= modelData.first && root.currentIndex <= modelData.last
-
-                PushButton {
-                    id: sectionHeader
-                    buttonText: modelData.title
-                    circled: false
-                    radius: 0
-
-                    alignement: Text.AlignLeft
-                    Layout.fillWidth: true
-                    Layout.leftMargin: 0
-                    preferredLeftMargin: 25
-
-                    imageContainerWidth: 30
-                    height: JamiTheme.settingsMenuHeaderButtonHeight
-
-                    buttonTextFont.pixelSize: JamiTheme.settingsDescriptionPixelSize
-                    buttonTextColor: isChildSelected ? JamiTheme.tintedBlue : JamiTheme.primaryForegroundColor
-                    buttonTextFont.weight: isChildSelected ? Font.Medium : Font.Normal
-                    buttonTextEnableElide: true
-
-                    normalColor: JamiTheme.backgroundColor
-                    hoveredColor: JamiTheme.smartListHoveredColor
-                    imageColor: JamiTheme.tintedBlue
-
-                    source: modelData.icon
-
-                    onClicked: select(modelData.first)
-                    Keys.onPressed: function (keyEvent) {
-                        if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
-                            clicked();
-                            keyEvent.accepted = true;
-                        }
-                    }
+                color: JamiTheme.backgroundColor
+                radius: JamiTheme.commonRadius
+                layer.enabled: true
+                layer.effect: MultiEffect {
+                    anchors.fill: settingsListRect
+                    shadowEnabled: true
+                    shadowBlur: JamiTheme.shadowBlur
+                    shadowColor: JamiTheme.shadowColor
+                    shadowHorizontalOffset: JamiTheme.shadowHorizontalOffset
+                    shadowVerticalOffset: JamiTheme.shadowVerticalOffset
+                    shadowOpacity: JamiTheme.shadowOpacity
                 }
+            }
 
+            ColumnLayout {
+                id: settingsLayout
+                QWKSetParentHitTestVisible {}
+
+                anchors.fill: settingsListRect
+                anchors.leftMargin: JamiTheme.sidePanelConversationsIslandHorizontalPadding
+                anchors.rightMargin: JamiTheme.sidePanelConversationsIslandHorizontalPadding
                 ListView {
-                    id: childListView
+                    id: listView
+                    objectName: "listView"
+
                     Layout.fillWidth: true
-                    height: childrenRect.height
+                    Layout.fillHeight: true
+                    spacing: 2
                     clip: true
-                    visible: isChildSelected
+                    contentHeight: contentItem.childrenRect.height
 
                     // HACK: remove after migration to Qt 6.7+
                     boundsBehavior: Flickable.StopAtBounds
 
-                    model: modelData.children
+                    model: getHeaders()
                     delegate: ColumnLayout {
-                        id: childCol
-                        width: childListView.width
+                        id: col
+                        width: settingsLayout.width
                         spacing: 0
-                        // In single pane mode, don't show child selection until user explicitly navigates
-                        property bool isSelected: !root.isSinglePane && root.currentIndex === modelData.id
+                        property bool isChildSelected: root.currentIndex >= modelData.first && root.currentIndex <= modelData.last
+
                         PushButton {
-                            visible: modelData.visible !== undefined ? modelData.visible : true
+                            id: sectionHeader
                             buttonText: modelData.title
                             circled: false
-                            radius: 0
+                            radius: width / 2
 
                             alignement: Text.AlignLeft
                             Layout.fillWidth: true
-                            preferredLeftMargin: 74
 
-                            imageContainerWidth: 0
-                            height: JamiTheme.settingsMenuChildrenButtonHeight
+                            imageContainerWidth: 30
+                            height: JamiTheme.settingsMenuHeaderButtonHeight
 
-                            buttonTextFont.pixelSize: JamiTheme.settingMenuPixelSize
-                            buttonTextColor: isSelected ? JamiTheme.tintedBlue : JamiTheme.primaryForegroundColor
-                            buttonTextFont.weight: isSelected ? Font.Medium : Font.Normal
+                            buttonTextFont.pixelSize: JamiTheme.settingsDescriptionPixelSize
+                            buttonTextColor: isChildSelected ? JamiTheme.tintedBlue : JamiTheme.primaryForegroundColor
+                            buttonTextFont.weight: isChildSelected ? Font.Medium : Font.Normal
                             buttonTextEnableElide: true
 
-                            normalColor: isSelected ? JamiTheme.smartListSelectedColor : JamiTheme.backgroundColor
+                            normalColor: JamiTheme.backgroundColor
                             hoveredColor: JamiTheme.smartListHoveredColor
+                            imageColor: JamiTheme.tintedBlue
 
-                            onClicked: open(modelData.id)
+                            source: modelData.icon
 
+                            onClicked: select(modelData.first)
                             Keys.onPressed: function (keyEvent) {
                                 if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
                                     clicked();
@@ -369,8 +393,72 @@ SidePanelBase {
                                 }
                             }
                         }
+
+                        ListView {
+                            id: childListView
+                            Layout.fillWidth: true
+                            height: childrenRect.height
+                            clip: true
+                            visible: isChildSelected
+                            spacing: 2
+
+                            // HACK: remove after migration to Qt 6.7+
+                            boundsBehavior: Flickable.StopAtBounds
+
+                            model: modelData.children
+                            delegate: ColumnLayout {
+                                id: childCol
+                                width: childListView.width
+                                spacing: 0
+                                // In single pane mode, don't show child selection until user explicitly navigates
+                                property bool isSelected: !root.isSinglePane && root.currentIndex === modelData.id
+                                PushButton {
+                                    visible: modelData.visible !== undefined ? modelData.visible : true
+                                    buttonText: modelData.title
+                                    circled: false
+                                    radius: width / 2
+
+                                    alignement: Text.AlignLeft
+                                    Layout.fillWidth: true
+                                    preferredLeftMargin: 54
+
+                                    imageContainerWidth: 0
+                                    height: JamiTheme.settingsMenuChildrenButtonHeight
+
+                                    buttonTextFont.pixelSize: JamiTheme.settingMenuPixelSize
+                                    buttonTextColor: isSelected ? JamiTheme.tintedBlue : JamiTheme.primaryForegroundColor
+                                    buttonTextFont.weight: isSelected ? Font.Medium : Font.Normal
+                                    buttonTextEnableElide: true
+
+                                    normalColor: isSelected ? JamiTheme.smartListSelectedColor : JamiTheme.backgroundColor
+                                    hoveredColor: JamiTheme.smartListHoveredColor
+
+                                    onClicked: open(modelData.id)
+
+                                    Keys.onPressed: function (keyEvent) {
+                                        if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
+                                            clicked();
+                                            keyEvent.accepted = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
+            }
+        }
+        AccountComboBox {
+            id: accountComboBox
+
+            Layout.fillWidth: true
+            Layout.minimumHeight: accountComboBox.height
+            Layout.alignment: Qt.AlignBottom
+
+            Shortcut {
+                sequence: "Ctrl+J"
+                context: Qt.ApplicationShortcut
+                onActivated: accountComboBox.togglePopup()
             }
         }
     }
