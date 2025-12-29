@@ -16,6 +16,7 @@
  */
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Effects
 import net.jami.Constants 1.1
 
 ComboBox {
@@ -47,7 +48,6 @@ ComboBox {
 
     delegate: ItemDelegate {
         width: root.width
-
         contentItem: Text {
             text: {
                 if (index < 0 || !model)
@@ -68,6 +68,7 @@ ComboBox {
 
         background: Rectangle {
             color: hovered ? JamiTheme.comboboxBackgroundColorHovered : JamiTheme.transparentColor
+            radius: JamiTheme.commonRadius
         }
     }
 
@@ -95,7 +96,7 @@ ComboBox {
         anchors.rightMargin: root.indicator.width * 2
         font.pixelSize: JamiTheme.settingsDescriptionPixelSize
         text: root.displayText
-        color: root.enabled ?  JamiTheme.comboboxTextColor : "grey"
+        color: root.enabled ? JamiTheme.comboboxTextColor : "grey"
         font.weight: Font.Medium
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignLeft
@@ -107,13 +108,9 @@ ComboBox {
         color: JamiTheme.transparentColor
         implicitWidth: 120
         implicitHeight: contentItem.implicitHeight + JamiTheme.buttontextHeightMargin
-        border.color: root.enabled ?
-                          (popup.visible ?
-                              JamiTheme.comboboxBorderColorActive :
-                              JamiTheme.comboboxBorderColor) :
-                          "grey"
+        border.color: root.enabled ? (popup.visible ? JamiTheme.comboboxBorderColorActive : JamiTheme.comboboxBorderColor) : "grey"
         border.width: root.visualFocus ? 2 : 1
-        radius: 5
+        radius: width / 2
     }
 
     popup: Popup {
@@ -129,12 +126,25 @@ ComboBox {
 
             implicitHeight: contentHeight
             model: root.delegateModel
+
+            layer.enabled: true
+            layer.effect: MultiEffect {
+                maskEnabled: true
+                maskSource: ShaderEffectSource {
+                    sourceItem: Rectangle {
+                        width: listView.width
+                        height: listView.height
+                        radius: JamiTheme.commonRadius
+                    }
+                }
+            }
         }
 
         background: Rectangle {
             color: JamiTheme.primaryBackgroundColor
             border.color: JamiTheme.comboboxBorderColorActive
-            radius: 5
+
+            radius: JamiTheme.commonRadius
         }
     }
 }
