@@ -37,7 +37,7 @@ ItemDelegate {
 
     background: Rectangle {
         color: isHovered ? JamiTheme.smartListSelectedColor : JamiTheme.editBackgroundColor
-        radius: JamiTheme.settingsBoxRadius
+        radius: height / 2
     }
 
     RowLayout {
