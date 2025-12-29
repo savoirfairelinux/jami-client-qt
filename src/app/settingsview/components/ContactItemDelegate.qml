@@ -34,7 +34,7 @@ ItemDelegate {
     background: Rectangle {
         color: JamiTheme.editBackgroundColor
         height: root.height
-        radius: 5
+        radius: height / 2
     }
 
     RowLayout {
