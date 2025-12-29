@@ -45,7 +45,17 @@ ProgressBar {
             width: root.visualPosition * parent.width
             height: parent.height
             color: JamiTheme.tintedBlue
+            radius: width / 2
         }
+    }
+
+    background: Rectangle {
+        implicitWidth: parent.width
+        implicitHeight: 6
+        height: 6
+
+        color: JamiTheme.grey_
+        radius: width / 2
     }
 
     onVisibleChanged: {
