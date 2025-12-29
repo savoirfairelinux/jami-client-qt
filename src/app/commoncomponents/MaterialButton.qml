@@ -33,7 +33,7 @@ AbstractButton {
     property alias iconSource: icon.source_
     property alias animatedIconSource: icon.animatedSource_
     property alias radius: background.radius
-    property real iconSize: 18
+    property real iconSize: 24
     property color color: JamiTheme.buttonTintedBlue
     property color hoveredColor: JamiTheme.buttonTintedBlueHovered
     property color secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
@@ -63,7 +63,7 @@ AbstractButton {
         value: width
     }
 
-    Binding on Layout.minimumHeight  {
+    Binding on Layout.minimumHeight {
         when: root.preferredHeight !== undefined
         value: height
     }
@@ -96,15 +96,13 @@ AbstractButton {
 
     contentItem: RowLayout {
         anchors.verticalCenter: parent.verticalCenter
-        spacing: hasIcon ? JamiTheme.preferredMarginSize : 0
+        spacing: 0//hasIcon ? JamiTheme.preferredMarginSize : 0
 
         Component {
             id: iconComponent
 
             ResponsiveImage {
                 source: source_
-                Layout.preferredWidth: iconSize
-                Layout.preferredHeight: iconSize
                 color: contentColorProvider
             }
         }
@@ -132,10 +130,12 @@ AbstractButton {
 
             active: hasIcon
 
-            Layout.preferredWidth: active * width
+            Layout.preferredWidth: hasIcon ? iconSize : 0
+            Layout.preferredHeight: hasIcon ? iconSize : 0
 
             Layout.alignment: Qt.AlignVCenter
             Layout.leftMargin: hasIcon ? JamiTheme.preferredMarginSize : undefined
+            Layout.rightMargin: hasIcon ? JamiTheme.preferredMarginSize / 2 : 0  // Add spacing between icon and text
             sourceComponent: animatedSource_.length !== 0 ? animatedIconComponent : iconComponent
         }
 
@@ -151,7 +151,7 @@ AbstractButton {
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignHCenter
 
-            leftPadding: root.primary ? JamiTheme.buttontextWizzardPadding : textLeftPadding
+            leftPadding: hasIcon ? 0 : root.primary ? JamiTheme.buttontextWizzardPadding : textLeftPadding
             rightPadding: root.primary ? JamiTheme.buttontextWizzardPadding : textRightPadding
             text: root.text
             elide: Text.ElideRight
