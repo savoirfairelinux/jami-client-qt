@@ -41,7 +41,7 @@ RadioButton {
     Rectangle {
         anchors.fill: parent
         color: backgroundColor
-        radius: JamiTheme.settingsBoxRadius
+        radius: JamiTheme.commonRadius
 
         border {
             color: borderOuterRectangle
@@ -52,7 +52,7 @@ RadioButton {
     Rectangle {
         anchors.fill: parent
         color: "transparent"
-        radius: JamiTheme.settingsBoxRadius
+        radius: JamiTheme.commonRadius
         visible: checked || hovered
 
         border {
