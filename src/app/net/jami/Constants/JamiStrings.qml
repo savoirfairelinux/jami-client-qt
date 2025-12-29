@@ -274,6 +274,10 @@ Item {
     property string participantsTop: qsTr("On the top")
     property string hideSelf: qsTr("Hide self")
     property string hideSpectators: qsTr("Hide spectators")
+    property string privateConversation: qsTr("Private")
+    property string privateRestrictedGroup: qsTr("Private group (restricted invites)")
+    property string privateGroup: qsTr("Private group")
+    property string publicGroup: qsTr("Public Group")
 
     // LineEditContextMenu
     property string share: qsTr("Share")
@@ -831,8 +835,10 @@ Item {
     property string groupName: qsTr("Group name")
     property string contactName: qsTr("Contact name")
     property string addDescription: qsTr("Add description")
+    property string groupMembers: qsTr("Members")
 
     property string muteConversation: qsTr("Mute conversation")
+    property string unmuteConversation: qsTr("Unmute conversation")
     property string ignoreNotificationsTooltip: qsTr("Ignore all notifications from this conversation")
     property string chooseAColor: qsTr("Color")
     property string defaultCallHost: qsTr("Default host (calls)")

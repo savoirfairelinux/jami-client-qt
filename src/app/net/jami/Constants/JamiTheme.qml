@@ -719,7 +719,7 @@ Item {
 
     // Generalized shadows
     property real shadowBlur: 0.5
-    property color shadowColor: JamiTheme.blackColor
+    property color shadowColor: "#77767B" //JamiTheme.blackColor
     property real shadowHorizontalOffset: 0
     property real shadowVerticalOffset: 1.5
     property real shadowOpacity: 0.5
@@ -751,4 +751,9 @@ Item {
 
     // Donation banner
     property int donationBannerRadius: JamiTheme.smartListAvatarSize / 2
+
+    // Swarm details island
+    property int swarmDetailsIconSize: 24
+    property int swarmDetailsMemberCellWidth: 48
+    property int swarmDetailsMemberCellHeight: 72
 }

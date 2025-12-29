@@ -61,8 +61,6 @@ Item {
     RowLayout {
 
         anchors.fill: root
-        anchors.rightMargin: JamiTheme.preferredMarginSize
-        anchors.leftMargin: JamiTheme.preferredMarginSize
         spacing: 2
 
         Rectangle {
