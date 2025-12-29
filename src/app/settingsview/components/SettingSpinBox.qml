@@ -90,7 +90,7 @@ RowLayout {
             border.color: JamiTheme.spinboxBorderColor
             implicitHeight: textInput.implicitHeight + JamiTheme.buttontextHeightMargin
             color: JamiTheme.transparentColor
-            radius: JamiTheme.primaryRadius
+            radius: height / 2
         }
 
         MaterialToolTip {
