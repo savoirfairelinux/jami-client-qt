@@ -151,6 +151,7 @@ SBSMessageBase {
                 id: joinCallWithAudio
                 Layout.topMargin: 0.5 // For better sub-pixel rendering
                 objectName: "joinCallWithAudio"
+                toolTipText: JamiStrings.joinWithAudio
                 source: JamiResources.start_audiocall_24dp_svg
                 Layout.leftMargin: 10
                 onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, root.confId, true)
@@ -163,6 +164,7 @@ SBSMessageBase {
                 id: joinCallWithVideo
                 Layout.topMargin: 0.5 // For better sub-pixel rendering
                 objectName: "joinCallWithVideo"
+                toolTipText: JamiStrings.joinWithVideo
                 source: JamiResources.videocam_24dp_svg
                 onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, root.confId, false)
 
