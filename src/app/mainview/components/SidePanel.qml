@@ -327,8 +327,6 @@ SidePanelBase {
                             Layout.alignment: Qt.AlignLeft
                             radius: JamiTheme.primaryRadius
 
-                            elevated: true
-
                             imageColor: JamiTheme.textColor
                             imagePadding: 8
                             normalColor: JamiTheme.secondaryBackgroundColor
