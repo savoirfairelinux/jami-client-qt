@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9a85a67_1ee43205",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-12-30T20:50:37Z",
+      "side": 1,
+      "message": "When a group call is in progress and the client has not joined, does the **Join call with video** button also show in the top right of the Jami window?",
+      "revId": "57b10ad6e9e4d394d1eac256ece6a74e0229fdcc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
