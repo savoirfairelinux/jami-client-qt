@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2da57402_e62ac494",
+        "filename": "src/app/commoncomponents/CallMessageDelegate.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-12-30T20:33:09Z",
+      "side": 1,
+      "message": "Rename variable from `joinWithAudio` to `joinCallWithAudio`?",
+      "range": {
+        "startLine": 154,
+        "startChar": 41,
+        "endLine": 154,
+        "endChar": 54
+      },
+      "revId": "ddf057a8379c0f4dcf2eab5be603f1cdd6efc8fe",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30e5d27f_cccffcee",
+        "filename": "src/app/commoncomponents/CallMessageDelegate.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-12-30T20:33:09Z",
+      "side": 1,
+      "message": "Is having a name, `JoinCallButton`, used twice okay?",
+      "range": {
+        "startLine": 163,
+        "startChar": 12,
+        "endLine": 163,
+        "endChar": 26
+      },
+      "revId": "ddf057a8379c0f4dcf2eab5be603f1cdd6efc8fe",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72dc9ec8_de43799f",
+        "filename": "src/app/commoncomponents/CallMessageDelegate.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-12-30T20:33:09Z",
+      "side": 1,
+      "message": "Rename variable from `joinWithVideo` to `joinCallWithVideo`?",
+      "range": {
+        "startLine": 167,
+        "startChar": 41,
+        "endLine": 167,
+        "endChar": 54
+      },
+      "revId": "ddf057a8379c0f4dcf2eab5be603f1cdd6efc8fe",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
