@@ -65,15 +65,6 @@ SBSMessageBase {
         }
     }
 
-    component JoinCallButton: PushButton {
-        visible: root.isActive && root.currentCallId !== root.confId
-        toolTipText: JamiStrings.joinCall
-        normalColor: JamiTheme.buttonCallLightGreen
-        hoveredColor: JamiTheme.buttonCallDarkGreen
-        imageColor: hovered ? JamiTheme.buttonCallLightGreen : JamiTheme.blackColor
-        radius: 0
-    }
-
     innerContent.children: [
         RowLayout {
             id: msg
@@ -150,14 +141,12 @@ SBSMessageBase {
             JoinCallButton {
                 id: joinCallWithAudio
                 Layout.topMargin: 0.5 // For better sub-pixel rendering
+                Layout.leftMargin: 10
                 objectName: "joinCallWithAudio"
                 toolTipText: JamiStrings.joinWithAudio
                 source: JamiResources.start_audiocall_24dp_svg
-                Layout.leftMargin: 10
                 onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, root.confId, true)
-
-                width: 40
-                height: 40
+                visible: root.isActive && root.currentCallId !== root.confId
             }
 
             JoinCallButton {
@@ -167,23 +156,8 @@ SBSMessageBase {
                 toolTipText: JamiStrings.joinWithVideo
                 source: JamiResources.videocam_24dp_svg
                 onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, root.confId, false)
-
-                width: 40
-                height: 40
-
-                layer.enabled: true
-                layer.effect: OpacityMask {
-                    source: joinCallWithVideo
-                    maskSource: Rectangle {
-                        radius: 10
-                        width: joinCallWithVideo.width
-                        height: joinCallWithVideo.height
-                        Rectangle {
-                            width: parent.width / 2
-                            height: parent.height
-                        }
-                    }
-                }
+                visible: root.isActive && root.currentCallId !== root.confId
+                isVideo: true
             }
         }
     ]
