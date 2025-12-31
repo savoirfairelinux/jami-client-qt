@@ -67,6 +67,23 @@
       "message": "Does the order of the elements in the call message display correctly for right-to-left languages?",
       "revId": "57b10ad6e9e4d394d1eac256ece6a74e0229fdcc",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1a55e6f_5322d490",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-12-31T01:26:46Z",
+      "side": 1,
+      "message": "Does the box scale automatically if a translation of \"Call started\" is longer (or shorter)?",
+      "revId": "57b10ad6e9e4d394d1eac256ece6a74e0229fdcc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
