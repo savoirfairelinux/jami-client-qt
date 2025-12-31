@@ -33,6 +33,23 @@
       "message": "Do the background colors change with light and dark themes?",
       "revId": "57b10ad6e9e4d394d1eac256ece6a74e0229fdcc",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbcbca14_9a3b0611",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2025-12-31T00:28:25Z",
+      "side": 1,
+      "message": "Do the elements in the call message (for example, the box and the buttons) scale correctly for different text zoom levels?\n\nJami settings → General → Appearance → Text zoom level \u003d {50%, 200%}",
+      "revId": "57b10ad6e9e4d394d1eac256ece6a74e0229fdcc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
