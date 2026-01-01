@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19f2e2f1_182f4e78",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-01-01T23:10:09Z",
+      "side": 1,
+      "message": "Can the following be added?\n`GitLab: #1675`",
+      "range": {
+        "startLine": 15,
+        "startChar": 8,
+        "endLine": 15,
+        "endChar": 13
+      },
+      "revId": "dc983ca8fff544abbce14f51c34d84eba2fe0143",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d81fdb5_a283e7fb",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-01-01T23:10:09Z",
+      "side": 1,
+      "message": "Should this be changed from `Share stream audio` to `Share audio` (`Hang megosztása` in Hungarian)?\n\nPlease see the description and screenshot at the following link.\nhttps://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/1675#note_50504\n\nThank you",
+      "range": {
+        "startLine": 312,
+        "startChar": 44,
+        "endLine": 312,
+        "endChar": 62
+      },
+      "revId": "dc983ca8fff544abbce14f51c34d84eba2fe0143",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
