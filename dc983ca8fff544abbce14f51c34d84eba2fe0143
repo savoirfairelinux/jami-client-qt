@@ -26,6 +26,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f0b8229c_a09cfac4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-01-01T23:16:57Z",
+      "side": 1,
+      "message": "1. Are both the audio from the screen share and the microphone heard?\n\n2. If the mute button is pressed, does that just mute the microphone, not the screen share audio?\n\nThank you",
+      "revId": "dc983ca8fff544abbce14f51c34d84eba2fe0143",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4d81fdb5_a283e7fb",
         "filename": "src/app/net/jami/Constants/JamiStrings.qml",
         "patchSetId": 6
