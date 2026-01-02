@@ -62,6 +62,17 @@ if(JAMICORE_AS_SUBDIR)
   add_subdirectory(${DAEMON_DIR} EXCLUDE_FROM_ALL)
 endif()
 
+# Ensure the contribs can be found via pkg-config.
+set(LIBJAMI_CONTRIB_DIR "${DAEMON_DIR}/contrib")
+set(TARGET ${CMAKE_LIBRARY_ARCHITECTURE})
+if (NOT TARGET)
+  execute_process(COMMAND gcc -dumpmachine  COMMAND tr -d '\n' OUTPUT_VARIABLE TARGET)
+endif()
+set(LIBJAMI_CONTRIB_PREFIX "${LIBJAMI_CONTRIB_DIR}/${TARGET}")
+set(ENV{PKG_CONFIG_PATH}
+  "${LIBJAMI_CONTRIB_PREFIX}/lib/pkgconfig:$ENV{PKG_CONFIG_PATH}")
+message(DEBUG "PKG_CONFIG_PATH set to $ENV{PKG_CONFIG_PATH}")
+
 # init some variables for includes, libs, etc.
 set(CLIENT_INCLUDE_DIRS, "")
 set(CLIENT_LINK_DIRS, "")
@@ -447,9 +458,6 @@ if(APPLE)
     set(CONTRIB_DARWIN_FOLDER "apple-darwin${CMAKE_SYSTEM_VERSION}")
   endif()
 endif()
-
-# For libavutil/avframe.
-set(LIBJAMI_CONTRIB_DIR "${DAEMON_DIR}/contrib")
 
 find_package(Vulkan)
 if(Vulkan_FOUND)
