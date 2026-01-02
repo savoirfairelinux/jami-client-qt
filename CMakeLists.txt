@@ -60,7 +60,6 @@ endif()
 
 if(JAMICORE_AS_SUBDIR)
   add_subdirectory(${DAEMON_DIR} EXCLUDE_FROM_ALL)
-  set(LIBJAMI_LIB jami-core)
 endif()
 
 # init some variables for includes, libs, etc.
@@ -228,8 +227,8 @@ endif()
 list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/extras/build/cmake/modules)
 if (NOT JAMICORE_AS_SUBDIR)
   find_package(LibJami REQUIRED)
-  if(LIBJAMI_FOUND)
-    include_directories(${LIBJAMI_INCLUDE_DIR})
+  if (NOT TARGET LibJami::LibJami)
+    message(FATAL_ERROR "libjami could not be found")
   endif()
 endif()
 
@@ -755,6 +754,8 @@ foreach(MODULE ${QT_MODULES})
   list(APPEND QT_LIBS "Qt::${MODULE}")
 endforeach()
 
+list(APPEND CLIENT_LIBS LibJami::LibJami)
+
 if(MSVC)
   # Makes it a GUI executable instead of a console application
   set_target_properties(
@@ -763,7 +764,6 @@ if(MSVC)
     WIN32_EXECUTABLE TRUE)
 
   list(APPEND CLIENT_LIBS
-    ${LIBJAMI_LIB}
     ${GNUTLS_LIB}
     ${LIBCLIENT_NAME}
     ${QT_LIBS}
