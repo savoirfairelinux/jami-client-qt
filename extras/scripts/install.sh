@@ -177,8 +177,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     daemon_cmake_flags+=(-DCMAKE_OSX_ARCHITECTURES="${CMAKE_OSX_ARCHITECTURES}")
 fi
 
-cmake .. "${daemon_cmake_flags[@]}"
-make -j"${proc}" V=1
+cmake --log-level=debug .. "${daemon_cmake_flags[@]}"
+make -j"${proc}" VERBOSE=1
 make_install "${global}" "${priv_install}"
 
 # Verify system's version if no path provided.
@@ -256,7 +256,7 @@ if [ -n "${extra_cmake_flags}" ]; then
     client_cmake_flags+=(${extra_cmake_flags})
 fi
 
-echo "info: Configuring $client client with flags: ${client_cmake_flags[*]}"
-cmake .. "${client_cmake_flags[@]}"
-make -j"${proc}" V=1
+echo "info: Configuring client with flags: ${client_cmake_flags[*]}"
+cmake --log-level=debug .. "${client_cmake_flags[@]}"
+make -j"${proc}" VERBOSE=1
 make_install "${global}" "${priv_install}"
