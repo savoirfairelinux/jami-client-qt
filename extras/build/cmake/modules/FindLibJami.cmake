@@ -14,17 +14,31 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301 USA.
 
-# Once done, this find module will set:
-#
-#   LIBJAMI_INCLUDE_DIR - libjami include directory
-#   LIBJAMI_FOUND - whether it was able to find the include directories
-#   LIBJAMI_LIB - path to libjami or libring library
+# Once done, this find module will set the LibJami::LibJami imported
+# target, which references all what is needed (headers, libraries,
+# dependencies).
 
 set(LIBJAMI_FOUND true)
 
 if(WITH_DAEMON_SUBMODULE)
+  if(JAMICORE_AS_SUBDIR)
+    add_library(LibJami::LibJami ALIAS jami-core)
+    message(STATUS "Using jami-core CMake project directly as libjami")
+    return()
+  endif()
   set(LIBJAMI_INCLUDE_DIR ${DAEMON_DIR}/src/jami)
 else()
+  # Preferably find libjami via pkg-config.
+  find_package(PkgConfig QUIET)
+  if(PKG_CONFIG_FOUND)
+    pkg_check_modules(LIBJAMI QUIET IMPORTED_TARGET jami)
+    if(LIBJAMI_FOUND)
+      add_library(LibJami::LibJami ALIAS PkgConfig::LIBJAMI)
+      message(STATUS "Found LibJami via pkg-config")
+      return()
+    endif()
+  endif()
+
   find_path(LIBJAMI_INCLUDE_DIR jami.h PATH_SUFFIXES jami)
   if(NOT LIBJAMI_INCLUDE_DIR)
     message(STATUS "Jami daemon headers not found!
@@ -109,5 +123,16 @@ endif()
 # Restore the original value of CMAKE_FIND_LIBRARY_SUFFIXES.
 set(CMAKE_FIND_LIBRARY_SUFFIXES ${CMAKE_FIND_LIBRARY_SUFFIXES_orig})
 
-message(STATUS "Jami daemon headers are in " ${LIBJAMI_INCLUDE_DIR})
-message(STATUS "Jami daemon library is at " ${LIBJAMI_LIB})
+# Assemble a CMake imported target with the above information gathered
+# by other means than pkg-config.
+if(LIBJAMI_FOUND AND LIBJAMI_LIB AND LIBJAMI_INCLUDE_DIR)
+  add_library(LibJami::LibJami UNKNOWN IMPORTED GLOBAL)
+  set_target_properties(LibJami::LibJami PROPERTIES
+    IMPORTED_LOCATION "${LIBJAMI_LIB}"
+    INTERFACE_INCLUDE_DIRECTORIES "${LIBJAMI_INCLUDE_DIR}"
+  )
+  message(STATUS "Jami daemon headers are in " ${LIBJAMI_INCLUDE_DIR})
+  message(STATUS "Jami daemon library is at " ${LIBJAMI_LIB})
+else()
+  message(WARNING "Could not find Jami library")
+endif()
