@@ -60,7 +60,6 @@ endif()
 
 if(JAMICORE_AS_SUBDIR)
   add_subdirectory(${DAEMON_DIR} EXCLUDE_FROM_ALL)
-  set(LIBJAMI_LIB jami-core)
 endif()
 
 # init some variables for includes, libs, etc.
@@ -236,9 +235,6 @@ endif()
 list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/extras/build/cmake/modules)
 if (NOT JAMICORE_AS_SUBDIR)
   find_package(LibJami REQUIRED)
-  if(LIBJAMI_FOUND)
-    include_directories(${LIBJAMI_INCLUDE_DIR})
-  endif()
 endif()
 
 include(FindPython3)
@@ -756,7 +752,7 @@ if(MSVC)
     WIN32_EXECUTABLE TRUE)
 
   list(APPEND CLIENT_LIBS
-    ${LIBJAMI_LIB}
+    LibJami::LibJami
     ${GNUTLS_LIB}
     ${LIBCLIENT_NAME}
     ${QT_LIBS}
@@ -799,7 +795,8 @@ elseif (NOT APPLE)
     ${LIBNOTIFY_LIBRARIES}
     ${LIBGDKPIXBUF_LIBRARIES}
     ${GLIB_LIBRARIES}
-    ${GIO_LIBRARIES})
+    ${GIO_LIBRARIES}
+    LibJami::LibJami)
 
   install(
     TARGETS ${PROJECT_NAME}
