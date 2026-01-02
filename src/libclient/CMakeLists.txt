@@ -325,6 +325,10 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
 else()
   set(CC_MACHINE "")
 endif()
+find_library(AVUTIL_LIBRARY avutil
+  HINTS
+  ${LIBJAMI_CONTRIB_DIR}/${CC_MACHINE}/lib
+  ${LIBJAMI_CONTRIB_DIR}/apple-darwin/lib)
 
 if(ENABLE_LIBWRAP)
   list(APPEND LIBCLIENT_HEADERS directrenderer.h)
