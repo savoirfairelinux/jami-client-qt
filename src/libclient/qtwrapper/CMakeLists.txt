@@ -39,7 +39,6 @@ else()
 endif()
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
-include_directories(${LIBJAMI_INCLUDE_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../dbus)
 
@@ -49,4 +48,4 @@ add_library(${PROJECT_NAME} STATIC
 
 target_link_libraries(${PROJECT_NAME}
   Qt::Core
-  ${LIBJAMI_LIB})
+  LibJami::LibJami)
