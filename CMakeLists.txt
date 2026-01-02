@@ -95,6 +95,21 @@ if(JAMICORE_AS_SUBDIR)
   get_target_property(JAMICORE_TARGET_TYPE jami-core TYPE)
 endif()
 
+# Ensure the contribs can be found via pkg-config.
+if(NOT MSVC)
+  set(LIBJAMI_CONTRIB_DIR "${DAEMON_DIR}/contrib")
+  set(LIBJAMI_TARGET ${CMAKE_LIBRARY_ARCHITECTURE})
+  if (NOT LIBJAMI_TARGET)
+    execute_process(COMMAND "${CMAKE_C_COMPILER}" -dumpmachine
+      OUTPUT_VARIABLE LIBJAMI_TARGET
+      OUTPUT_STRIP_TRAILING_WHITESPACE)
+  endif()
+  set(LIBJAMI_CONTRIB_PREFIX "${LIBJAMI_CONTRIB_DIR}/${LIBJAMI_TARGET}")
+  set(ENV{PKG_CONFIG_PATH}
+    "${LIBJAMI_CONTRIB_PREFIX}/lib/pkgconfig:$ENV{PKG_CONFIG_PATH}")
+  message(DEBUG "PKG_CONFIG_PATH set to $ENV{PKG_CONFIG_PATH}")
+endif()
+
 # init some variables for includes, libs, etc.
 set(CLIENT_INCLUDE_DIRS, "")
 set(CLIENT_LINK_DIRS, "")
@@ -698,21 +713,6 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/apitokenlistmodel.h
 )
 
-set(CONTRIB_DARWIN_FOLDER "")
-if(APPLE)
-  list(LENGTH CMAKE_OSX_ARCHITECTURES ARCH_LEN)
-  if(ARCH_LEN EQUAL 1)
-    # single-arch -> use <arch>-apple-darwin<ver>
-    set(DARWIN_ARCH "${CMAKE_OSX_ARCHITECTURES}")
-    set(CONTRIB_DARWIN_FOLDER "${DARWIN_ARCH}-apple-darwin${CMAKE_SYSTEM_VERSION}")
-  else() # multi-arch -> use apple-darwin<ver>
-    set(CONTRIB_DARWIN_FOLDER "apple-darwin${CMAKE_SYSTEM_VERSION}")
-  endif()
-endif()
-
-# For libavutil/avframe.
-set(LIBJAMI_CONTRIB_DIR "${DAEMON_DIR}/contrib")
-
 find_package(Vulkan)
 if(Vulkan_FOUND)
   add_definitions(-DHAS_VULKAN)
@@ -1161,7 +1161,9 @@ if(MSVC)
 
   # executable name
   set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "Jami")
-elseif (NOT APPLE)
+elseif (NOT APPLE)              # GNU/Linux
+  pkg_search_module(LIBAVUTIL REQUIRED IMPORTED_TARGET libavutil)
+
   list(APPEND CLIENT_LIBS
     ${QT_LIBS}
     ${X11}
@@ -1169,7 +1171,8 @@ elseif (NOT APPLE)
     ${LIBNOTIFY_LIBRARIES}
     ${LIBGDKPIXBUF_LIBRARIES}
     ${GLIB_LIBRARIES}
-    ${GIO_LIBRARIES})
+    ${GIO_LIBRARIES}
+    PkgConfig::LIBAVUTIL)
 
   install(
     TARGETS ${PROJECT_NAME}
@@ -1297,7 +1300,7 @@ elseif (NOT APPLE)
     uninstall
     COMMAND
     ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
-else()
+else()                          # Apple
   set(resources
     ${CMAKE_CURRENT_SOURCE_DIR}/resources/images/jami.icns
     ${CMAKE_CURRENT_SOURCE_DIR}/resources/images/Assets.car)
