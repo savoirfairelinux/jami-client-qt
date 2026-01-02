@@ -294,22 +294,6 @@ set(LIBCLIENT_HEADERS_API
   api/profile.h
   api/video.h)
 
-# For libavutil/avframe.
-set(LIBJAMI_CONTRIB_DIR
-  "${DAEMON_DIR}/contrib")
-
-set(CONTRIB_DARWIN_FOLDER "")
-if(APPLE)
-  list(LENGTH CMAKE_OSX_ARCHITECTURES ARCH_LEN)
-  if(ARCH_LEN EQUAL 1)
-    # single-arch -> use <arch>-apple-darwin<ver>
-    set(DARWIN_ARCH "${CMAKE_OSX_ARCHITECTURES}")
-    set(CONTRIB_DARWIN_FOLDER "${DARWIN_ARCH}-apple-darwin${CMAKE_SYSTEM_VERSION}")
-  else() # multi-arch -> use apple-darwin<ver>
-    set(CONTRIB_DARWIN_FOLDER "apple-darwin${CMAKE_SYSTEM_VERSION}")
-  endif()
-endif()
-
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
   execute_process(COMMAND ${CMAKE_CXX_COMPILER} -dumpmachine
     OUTPUT_STRIP_TRAILING_WHITESPACE
@@ -319,6 +303,7 @@ else()
 endif()
 
 if(ENABLE_LIBWRAP)
+  pkg_search_module(LIBAVUTIL REQUIRED IMPORTED_TARGET libavutil)
   list(APPEND LIBCLIENT_HEADERS directrenderer.h)
   list(APPEND LIBCLIENT_SOURCES directrenderer.cpp)
 else()
@@ -459,7 +444,7 @@ endif()
 if(ENABLE_LIBWRAP)
   target_link_libraries(${LIBCLIENT_NAME} qtwrapper)
   if (NOT (CMAKE_CXX_COMPILER_ID MATCHES "MSVC"))
-    target_link_libraries(${LIBCLIENT_NAME} ${AVUTIL_LIBRARY})
+    target_link_libraries(${LIBCLIENT_NAME} PkgConfig::LIBAVUTIL)
   endif()
 else()
   target_link_libraries(${LIBCLIENT_NAME} LibJami::LibJami)
