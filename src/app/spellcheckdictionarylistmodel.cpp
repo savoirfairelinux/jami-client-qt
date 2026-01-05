@@ -23,7 +23,7 @@
 #include <QBuffer>
 #include <QClipboard>
 #include <QFileInfo>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QMimeData>
 #include <QDir>
 #include <QMimeDatabase>
@@ -166,14 +166,14 @@ SpellCheckDictionaryListModel::populateDictionaries()
     // Get installed dictionaries to check status
     QString hunspellDataDir = QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + "/dictionaries/";
     QDir dictionariesDir(hunspellDataDir);
-    QRegExp regex("(.*).dic");
+    static const QRegularExpression regex("(.*).dic");
     QStringList installedLocales;
 
     // Check for dictionary files in the base directory
     QStringList rootDicFiles = dictionariesDir.entryList(QStringList() << "*.dic", QDir::Files);
     for (const auto& dicFile : rootDicFiles) {
-        regex.indexIn(dicFile);
-        auto captured = regex.capturedTexts();
+        auto match = regex.match(dicFile);
+        auto captured = match.capturedTexts();
         if (captured.size() == 2) {
             installedLocales << captured[1];
         }
@@ -182,8 +182,8 @@ SpellCheckDictionaryListModel::populateDictionaries()
     // Check for dictionary files in the system directory
     QStringList systemDicFiles = QDir(systemDictionariesPath_).entryList(QStringList() << "*.dic", QDir::Files);
     for (const auto& dicFile : systemDicFiles) {
-        regex.indexIn(dicFile);
-        auto captured = regex.capturedTexts();
+        auto match = regex.match(dicFile);
+        auto captured = match.capturedTexts();
         if (captured.size() == 2) {
             installedLocales << captured[1];
         }

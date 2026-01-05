@@ -25,7 +25,6 @@
 #include <QTextCodec>
 #include <QStringList>
 #include <QDebug>
-#include <QRegExp>
 #include <QRegularExpression>
 #include <QRegularExpressionMatchIterator>
 
@@ -105,7 +104,7 @@ SpellChecker::findWords(const QString& text)
 {
     // This is in the C++ part of the code because QML regex does not support unicode
     QList<WordInfo> results;
-    QRegularExpression regex("\\p{L}+");
+    static const QRegularExpression regex("\\p{L}+");
     QRegularExpressionMatchIterator iter = regex.globalMatch(text);
 
     while (iter.hasNext()) {
