@@ -84,6 +84,23 @@
       "message": "Does the box scale automatically if a translation of \"Call started\" is longer (or shorter)?",
       "revId": "57b10ad6e9e4d394d1eac256ece6a74e0229fdcc",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08e51b57_63d02705",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-01-05T00:51:40Z",
+      "side": 1,
+      "message": "1. Open the **Keyboard shortcuts** (F10) window.\n2. Click the **Call** tab.\n3. Can a **Join call** row please be added under the **Accept call** row with the same `Ctrl+Y` shortcut?\n\nShould the **Accept call** row be changed into two rows, that is, **Accept call with audio** and **Accept call with video**?\n\nShould the **Join call with audio** and the **Join call with video** be added instead of just **Join call**?\n\nThank you",
+      "revId": "57b10ad6e9e4d394d1eac256ece6a74e0229fdcc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
