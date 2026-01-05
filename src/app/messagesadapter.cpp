@@ -37,7 +37,7 @@
 #include <QMimeDatabase>
 #include <QUrl>
 #include <QtMath>
-#include <QRegExp>
+#include <QRegularExpression>
 
 MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
                                  PreviewEngine* previewEngine,
@@ -591,9 +591,9 @@ MessagesAdapter::getMediaInfo(const QString& msg)
     if (fileInfo["isImage"].toBool() || fileInfo["isAnimatedImage"].toBool()) {
         return fileInfo;
     }
-    static const QRegExp vPattern("(video/)(avi|mov|webm|webp|rmvb)$", Qt::CaseInsensitive);
-    vPattern.indexIn(mime.name());
-    auto captured = vPattern.capturedTexts();
+    static const QRegularExpression vPattern("(video/)(avi|mov|webm|webp|rmvb)$", QRegularExpression::CaseInsensitiveOption);
+    auto match = vPattern.match(mime.name());
+    auto captured = match.capturedTexts();
     QString type = captured.size() == 3 ? captured[1] : "";
     if (!type.isEmpty()) {
         return {
@@ -602,9 +602,9 @@ MessagesAdapter::getMediaInfo(const QString& msg)
             {"html", html.arg("video", "100%", filePath, mime.name())},
         };
     } else {
-        static const QRegExp aPattern("(audio/)(ogg|flac|wav|mpeg|mp3)$", Qt::CaseInsensitive);
-        aPattern.indexIn(mime.name());
-        captured = aPattern.capturedTexts();
+        static const QRegularExpression aPattern("(audio/)(ogg|flac|wav|mpeg|mp3)$", QRegularExpression::CaseInsensitiveOption);
+        match = aPattern.match(mime.name());
+        captured = match.capturedTexts();
         type = captured.size() == 3 ? captured[1] : "";
         if (!type.isEmpty()) {
             return {

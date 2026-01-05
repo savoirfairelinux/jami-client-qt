@@ -521,7 +521,7 @@ CallbacksHandler::slotIncomingMessage(const QString& accountId,
     for (auto& e : interaction.toStdMap()) {
         if (e.first.contains("x-ring/ring.profile.vcard")) {
             auto decodedHead = QUrl::fromPercentEncoding(e.first.toLatin1());
-            QRegularExpression re("x-ring/ring.profile.vcard;id=([A-z0-9]+),part=([0-9]+),of=([0-9]+)");
+            static const QRegularExpression re("x-ring/ring.profile.vcard;id=([A-z0-9]+),part=([0-9]+),of=([0-9]+)");
             auto match = re.match(decodedHead);
 
             if (!match.hasMatch())
