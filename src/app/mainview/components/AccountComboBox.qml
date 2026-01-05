@@ -202,18 +202,13 @@ Item {
                 }
             }
 
-            JamiPushButton {
+            NewIconButton {
                 id: shareButton
-
-                width: visible ? preferredSize : 0
-                height: visible ? preferredSize : 0
 
                 Layout.alignment: Qt.AlignVCenter
 
-                source: JamiResources.share_24dp_svg
-                normalColor: JamiTheme.backgroundColor
-                imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
-
+                iconSize: JamiTheme.iconButtonMedium
+                iconSource: JamiResources.share_24dp_svg
                 toolTipText: JamiStrings.displayQRCode
 
                 visible: LRCInstance.currentAccountType === Profile.Type.JAMI
@@ -221,18 +216,13 @@ Item {
                 onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/WelcomePageQrDialog.qml")
             }
 
-            JamiPushButton {
+            NewIconButton {
                 id: settingsButton
-
-                width: visible ? preferredSize : 0
-                height: visible ? preferredSize : 0
 
                 Layout.alignment: Qt.AlignVCenter
 
-                source: !inSettings ? JamiResources.settings_24dp_svg : JamiResources.round_close_24dp_svg
-                normalColor: JamiTheme.backgroundColor
-                imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
-
+                iconSize: JamiTheme.iconButtonMedium
+                iconSource: !inSettings ? JamiResources.settings_24dp_svg : JamiResources.round_close_24dp_svg
                 toolTipText: !inSettings ? JamiStrings.openSettings : JamiStrings.closeSettings
 
                 onClicked: {
