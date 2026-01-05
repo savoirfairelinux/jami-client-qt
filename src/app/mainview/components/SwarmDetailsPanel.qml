@@ -89,53 +89,34 @@ Rectangle {
                     Layout.bottomMargin: 8
                     Layout.topMargin: 8
 
-                    JamiPushButton {
+                    NewIconButton {
                         id: muteConversation
 
-                        width: 24
-                        height: 24
-
+                        iconSize: JamiTheme.iconButtonSmall
+                        iconSource: CurrentConversation.ignoreNotifications ? JamiResources.notifications_off_24dp_svg : JamiResources.notifications_active_24dp_svg
                         toolTipText: CurrentConversation.ignoreNotifications ? JamiStrings.muteConversation : JamiStrings.unmuteConversation
 
-                        source: CurrentConversation.ignoreNotifications ? JamiResources.notifications_off_24dp_svg : JamiResources.notifications_active_24dp_svg
-                        imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
-                        normalColor: JamiTheme.backgroundColor
-
-                        onClicked: {
-                            CurrentConversation.setPreference("ignoreNotifications", !CurrentConversation.ignoreNotifications);
-                        }
+                        onClicked: CurrentConversation.setPreference("ignoreNotifications", !CurrentConversation.ignoreNotifications)
                     }
 
-                    ResponsiveImage {
+                    NewIconButton {
                         id: conversationType
 
-                        width: JamiTheme.swarmDetailsIconSize
-                        height: JamiTheme.swarmDetailsIconSize
-
-                        source: {
-                            switch (CurrentConversation.modeString) {
-                            case JamiStrings.publicGroup:
-                                JamiResources.public_24dp_svg;
-                                break;
-                            case JamiStrings.privateConversation:
-                                JamiResources.lock_svg;
-                                break;
-                            case JamiStrings.privateRestrictedGroup:
-                                JamiResources.mail_lock_24dp_svg;
-                                break;
-                            case JamiStrings.privateGroup:
-                                JamiResources.create_swarm_svg;
-                            }
+                        iconSize: JamiTheme.iconButtonSmall
+                        iconSource: switch (CurrentConversation.modeString) {
+                        case JamiStrings.publicGroup:
+                            JamiResources.public_24dp_svg;
+                            break;
+                        case JamiStrings.privateConversation:
+                            JamiResources.lock_svg;
+                            break;
+                        case JamiStrings.privateRestrictedGroup:
+                            JamiResources.mail_lock_24dp_svg;
+                            break;
+                        case JamiStrings.privateGroup:
+                            JamiResources.create_swarm_svg;
                         }
-
-                        MaterialToolTip {
-                            parent: parent
-                            visible: conversationType.hovered
-                            delay: Qt.styleHints.mousePressAndHoldInterval
-                            text: CurrentConversation.modeString
-                        }
-
-                        color: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
+                        toolTipText: CurrentConversation.modeString
                     }
 
                     Rectangle {
@@ -143,8 +124,8 @@ Rectangle {
 
                         property bool hovered: false
 
-                        width: JamiTheme.swarmDetailsIconSize
-                        height: JamiTheme.swarmDetailsIconSize
+                        width: JamiTheme.iconButtonSmall
+                        height: JamiTheme.iconButtonSmall
                         radius: width / 2
                         color: CurrentConversation.color
 

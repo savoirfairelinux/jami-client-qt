@@ -756,4 +756,9 @@ Item {
     property int swarmDetailsIconSize: 24
     property int swarmDetailsMemberCellWidth: 48
     property int swarmDetailsMemberCellHeight: 72
+
+    // NewIconButton fixed sizes
+    property int iconButtonSmall: 24
+    property int iconButtonMedium: 40
+    property int iconButtonLarge: 48
 }
