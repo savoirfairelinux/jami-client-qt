@@ -79,8 +79,7 @@ Rectangle {
 
         JamiPushButton {
             id: backToWelcomeViewButton
-            QWKSetParentHitTestVisible {
-            }
+            QWKSetParentHitTestVisible {}
 
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
             Layout.leftMargin: 8
@@ -120,8 +119,7 @@ Rectangle {
 
             ColumnLayout {
                 id: userNameOrIdColumnLayout
-                QWKSetParentHitTestVisible {
-                }
+                QWKSetParentHitTestVisible {}
                 objectName: "userNameOrIdColumnLayout"
 
                 height: parent.height
@@ -173,70 +171,81 @@ Rectangle {
             }
         }
 
-        JamiPushButton {
+        NewIconButton {
             id: startAudioCallButton
-            QWKSetParentHitTestVisible {
-            }
-            visible: CurrentConversation.activeCalls.length === 0 && interactionButtonsVisibility
-            source: JamiResources.start_audiocall_24dp_svg
+            QWKSetParentHitTestVisible {}
+
+            iconSize: JamiTheme.iconButtonMedium
+            iconSource: JamiResources.start_audiocall_24dp_svg
             toolTipText: JamiStrings.startAudioCall
+
             onClicked: CallAdapter.startAudioOnlyCall()
         }
-        JamiPushButton {
+
+        NewIconButton {
             id: startVideoCallButton
-            QWKSetParentHitTestVisible {
-            }
+            QWKSetParentHitTestVisible {}
+
+            iconSize: JamiTheme.iconButtonMedium
+            iconSource: JamiResources.videocam_24dp_svg
+            toolTipText: JamiStrings.startAudioCall
+
             visible: CurrentConversation.activeCalls.length === 0 && interactionButtonsVisibility && CurrentAccount.videoEnabled_Video
-            source: JamiResources.videocam_24dp_svg
-            toolTipText: JamiStrings.startVideoCall
+
             onClicked: CallAdapter.startCall()
         }
 
+        // Custom component (DNR: DO NOT REPLACE)
         CallsButton {
-            QWKSetParentHitTestVisible {
-            }
+            QWKSetParentHitTestVisible {}
             Layout.preferredHeight: 36
             Layout.alignment: Qt.AlignVCenter
             visible: CurrentConversation.activeCalls.length > 0 && interactionButtonsVisibility
         }
 
-        JamiPushButton {
+        NewIconButton {
             id: inviteMembersButton
-            QWKSetParentHitTestVisible {
-            }
+            QWKSetParentHitTestVisible {}
+
+            iconSize: JamiTheme.iconButtonMedium
+            iconSource: JamiResources.add_people_24dp_svg
+            toolTipText: JamiStrings.inviteMembers
 
             checkable: true
             checked: extrasPanel.isOpen(ChatView.AddMemberPanel)
+
             visible: interactionButtonsVisibility && addMemberVisibility
-            source: JamiResources.add_people_24dp_svg
-            toolTipText: JamiStrings.inviteMembers
 
             onClicked: extrasPanel.switchToPanel(ChatView.AddMemberPanel)
         }
 
-        JamiPushButton {
+        NewIconButton {
             id: selectExtensionsButton
-            QWKSetParentHitTestVisible {
-            }
+            QWKSetParentHitTestVisible {}
+
+            iconSize: JamiTheme.iconButtonMedium
+            iconSource: JamiResources.plugins_24dp_svg
+            toolTipText: JamiStrings.showExtensions
 
             visible: LRCInstance.chatHandlersListCount && interactionButtonsVisibility
-            source: JamiResources.plugins_24dp_svg
-            toolTipText: JamiStrings.showExtensions
 
             onClicked: pluginSelector()
         }
 
-        JamiPushButton {
+        NewIconButton {
             id: searchMessagesButton
-            QWKSetParentHitTestVisible {
-            }
+            QWKSetParentHitTestVisible {}
+
             objectName: "searchMessagesButton"
+
+            iconSize: JamiTheme.iconButtonMedium
+            iconSource: JamiResources.ic_baseline_search_24dp_svg
+            toolTipText: JamiStrings.search
 
             checkable: true
             checked: extrasPanel.isOpen(ChatView.MessagesResearchPanel)
+
             visible: root.swarmDetailsVisibility
-            source: JamiResources.ic_baseline_search_24dp_svg
-            toolTipText: JamiStrings.search
 
             onClicked: extrasPanel.switchToPanel(ChatView.MessagesResearchPanel)
 
@@ -248,17 +257,20 @@ Rectangle {
             }
         }
 
-        JamiPushButton {
+        NewIconButton {
             id: detailsButton
-            QWKSetParentHitTestVisible {
-            }
+            QWKSetParentHitTestVisible {}
+
             objectName: "detailsButton"
+
+            iconSize: JamiTheme.iconButtonMedium
+            iconSource: JamiResources.swarm_details_panel_svg
+            toolTipText: JamiStrings.details
 
             checkable: true
             checked: extrasPanel.isOpen(ChatView.SwarmDetailsPanel)
+
             visible: (swarmDetailsVisibility || LRCInstance.currentAccountType === Profile.Type.SIP)
-            source: JamiResources.swarm_details_panel_svg
-            toolTipText: JamiStrings.details
 
             onClicked: extrasPanel.switchToPanel(ChatView.SwarmDetailsPanel)
         }
