@@ -127,7 +127,7 @@ SettingsPageBase {
 
         Rectangle {
             id: connectionMonitoringTable
-            height: listview.childrenRect.height + 60
+            height: listview.height + 60
             width: Math.min(JamiTheme.maximumWidthSettingsView * 2, pageContainer.width - 2 * JamiTheme.preferredSettingsMarginSize)
             color: JamiTheme.transparentColor
 

@@ -29,7 +29,7 @@ import "../js/logviewwindowcreation.js" as LogViewWindowCreation
 
 ListView {
     id: listview
-    height: contentItem.childrenRect.height
+    height: contentHeight
     anchors.top: parent.top
     anchors.topMargin: 10
     width: parent.width
@@ -45,12 +45,12 @@ ListView {
     header: Rectangle {
         color: JamiTheme.transparentColor
         height: 45
-        width: connectionMonitoringTable.width
+        width: listview.width
         Rectangle {
             color: JamiTheme.connectionMonitoringHeaderColor
             anchors.top: parent.top
             height: 40
-            width: connectionMonitoringTable.width
+            width: listview.width
 
             RowLayout {
                 anchors.fill: parent
@@ -130,7 +130,7 @@ ListView {
     delegate: Rectangle {
         id: delegate
         height: Count == 0 ? 0 : 10 + 40 * Count
-        width: connectionMonitoringTable.width
+        width: listview.width
         color: index % 2 === 0 ? JamiTheme.connectionMonitoringTableColor1 : JamiTheme.connectionMonitoringTableColor2
 
         ListView {
@@ -150,7 +150,7 @@ ListView {
             delegate: RowLayout {
                 id: rowLayoutDelegate
                 height: 40
-                width: connectionMonitoringTable.width
+                width: listview.width
 
                 Rectangle {
                     id: profile
@@ -396,7 +396,7 @@ ListView {
                                 }
                                 viewCoordinator.presentDialog(parent, "settingsview/components/ChannelsPopup.qml", {
                                         "text": output,
-                                        "maxWidth": connectionMonitoringTable.width
+                                        "maxWidth": listview.width
                                     });
                             }
                         }
