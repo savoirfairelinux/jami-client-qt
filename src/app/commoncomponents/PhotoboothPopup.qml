@@ -84,114 +84,76 @@ BaseModalDialog {
 
         spacing: 18
 
-        JamiPushButton {
+        NewIconButton {
             id: takePhotoButton
-            Accessible.name: objectName
-
-            objectName: "takePhotoButton"
 
             Layout.alignment: Qt.AlignHCenter
 
-            height: buttonSize
-            width: buttonSize
+            objectName: "takePhotoButton"
+
+            iconSize: JamiTheme.iconButtonMedium
+            iconSource: JamiResources.add_a_photo_24dp_svg
+            toolTipText: JamiStrings.takePhoto
 
             enabled: VideoDevices.listSize !== 0
-            hoverEnabled: enabled
-
-            normalColor: "transparent"
-            imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
-            toolTipText: JamiStrings.takePhoto
-            source: JamiResources.add_a_photo_24dp_svg
-
-            Keys.onPressed: function (keyEvent) {
-                if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
-                    clicked();
-                    keyEvent.accepted = true;
-                } else if (keyEvent.key === Qt.Key_Up) {
-                    root.focusOnPreviousItem();
-                    keyEvent.accepted = true;
-                }
-            }
-
-            KeyNavigation.tab: {
-                if (clearButton.visible)
-                    return clearButton;
-                return importButton;
-            }
-            KeyNavigation.down: KeyNavigation.tab
 
             onClicked: {
                 recordBox.parent = buttonsRowLayout;
                 startBooth();
             }
+
+            Accessible.name: objectName
         }
 
-        JamiPushButton {
+        NewIconButton {
             id: importButton
+
+            Layout.alignment: Qt.AlignHCenter
 
             objectName: "photoboothViewImportButton"
 
-            Layout.alignment: Qt.AlignHCenter
-            visible: parent.visible
+            iconSize: JamiTheme.iconButtonMedium
+            iconSource: JamiResources.add_photo_alternate_black_24dp_svg
+            toolTipText: JamiStrings.importFromFile
 
-            height: buttonSize
-            width: buttonSize
+            visible: parent.visible
 
             Accessible.name: objectName
 
-            normalColor: "transparent"
-            source: JamiResources.add_photo_alternate_black_24dp_svg
-            imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
-            toolTipText: JamiStrings.importFromFile
-
-            Keys.onPressed: function (keyEvent) {
-                if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
-                    clicked();
-                    keyEvent.accepted = true;
-                } else if (keyEvent.key === Qt.Key_Down || keyEvent.key === Qt.Key_Tab) {
-                    clearButton.forceActiveFocus();
-                    keyEvent.accepted = true;
-                }
-            }
-
-            KeyNavigation.up: takePhotoButton
+            // KeyNavigation.tab: clearButton
 
             onClicked: {
                 stopBooth();
                 var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
-                        title: JamiStrings.selectProfilePicture,
-                        fileMode: JamiFileDialog.OpenFile,
-                        folder: StandardPaths.writableLocation(StandardPaths.PicturesLocation),
-                        nameFilters: [JamiStrings.imageFiles, JamiStrings.allFiles]
-                    });
+                    title: JamiStrings.selectProfilePicture,
+                    fileMode: JamiFileDialog.OpenFile,
+                    folder: StandardPaths.writableLocation(StandardPaths.PicturesLocation),
+                    nameFilters: [JamiStrings.imageFiles, JamiStrings.allFiles]
+                });
                 dlg.fileAccepted.connect(function (file) {
-                        var filePath = UtilsAdapter.getAbsPath(file);
-                        if (!root.newItem) {
-                            AccountAdapter.setCurrentAccountAvatarFile(filePath);
-                            imageTemporaryValidated();
-                        } else {
-                            UtilsAdapter.setTempCreationImageFromFile(filePath, root.imageId);
-                            imageValidated();
-                        }
-                        root.close();
-                    });
+                    var filePath = UtilsAdapter.getAbsPath(file);
+                    if (!root.newItem) {
+                        AccountAdapter.setCurrentAccountAvatarFile(filePath);
+                        imageTemporaryValidated();
+                    } else {
+                        UtilsAdapter.setTempCreationImageFromFile(filePath, root.imageId);
+                        imageValidated();
+                    }
+                    root.close();
+                });
             }
         }
 
-        JamiPushButton {
+        NewIconButton {
             id: clearButton
-
-            objectName: "photoboothViewClearButton"
 
             Layout.alignment: Qt.AlignHCenter
 
-            height: buttonSize
-            width: buttonSize
+            objectName: "photoboothViewClearButton"
 
-            normalColor: "transparent"
-            source: JamiResources.remove_circle_outline_black_24dp_svg
+            iconSize: JamiTheme.iconButtonMedium
+            iconSource: JamiResources.remove_circle_outline_black_24dp_svg
             toolTipText: JamiStrings.removeImage
-            imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
 
             visible: {
                 if (!newItem && LRCInstance.currentAccountAvatarSet)
@@ -199,19 +161,6 @@ BaseModalDialog {
                 if (newItem && UtilsAdapter.tempCreationImage(imageId).length !== 0)
                     return true;
                 return false;
-            }
-
-            KeyNavigation.up: importButton
-
-            Keys.onPressed: function (keyEvent) {
-                if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
-                    clicked();
-                    importButton.forceActiveFocus();
-                    keyEvent.accepted = true;
-                } else if (keyEvent.key === Qt.Key_Down || keyEvent.key === Qt.Key_Tab) {
-                    btnCancel.forceActiveFocus();
-                    keyEvent.accepted = true;
-                }
             }
 
             onClicked: {
