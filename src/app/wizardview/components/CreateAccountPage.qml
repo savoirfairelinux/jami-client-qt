@@ -299,12 +299,12 @@ Rectangle {
 
                     onClicked: {
                         WizardViewStepModel.accountCreationInfo = JamiQmlUtils.setUpAccountCreationInputPara({
-                                "registeredName": usernameEdit.dynamicText,
-                                "alias": root.chosenDisplayName,
-                                "password": advancedButtons.chosenPassword,
-                                "avatar": UtilsAdapter.tempCreationImage(),
-                                "isRendezVous": root.isRendezVous
-                            });
+                            "registeredName": usernameEdit.dynamicText,
+                            "alias": root.chosenDisplayName,
+                            "password": advancedButtons.chosenPassword,
+                            "avatar": UtilsAdapter.tempCreationImage(),
+                            "isRendezVous": root.isRendezVous
+                        });
                         if (usernameEdit.nameRegistrationState === UsernameTextEdit.NameRegistrationState.FREE) {
                             enabled = false;
                             encryptButton.enabled = false;
@@ -344,8 +344,8 @@ Rectangle {
                         onClicked: {
                             var dlg = viewCoordinator.presentDialog(appWindow, "wizardview/components/EncryptAccountPopup.qml");
                             dlg.accepted.connect(function (password) {
-                                    advancedButtons.chosenPassword = password;
-                                });
+                                advancedButtons.chosenPassword = password;
+                            });
                         }
                     }
                 }
@@ -368,8 +368,7 @@ Rectangle {
 
     JamiPushButton {
         id: backButton
-        QWKSetParentHitTestVisible {
-        }
+        QWKSetParentHitTestVisible {}
 
         objectName: "createAccountPageBackButton"
 
@@ -425,9 +424,9 @@ Rectangle {
                 helpOpened = true;
                 var dlg = viewCoordinator.presentDialog(appWindow, "wizardview/components/GoodToKnowPopup.qml");
                 dlg.accepted.connect(function () {
-                        checked = false;
-                        helpOpened = false;
-                    });
+                    checked = false;
+                    helpOpened = false;
+                });
             }
         }
 
@@ -435,5 +434,6 @@ Rectangle {
         KeyNavigation.up: backButton
         KeyNavigation.down: KeyNavigation.tab
     }
+
     Component.onDestruction: UtilsAdapter.setTempCreationImageFromString("", "temp")
 }

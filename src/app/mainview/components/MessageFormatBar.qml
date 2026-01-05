@@ -33,6 +33,7 @@ Rectangle {
 
     Row {
         id: firstRow
+
         anchors.left: messageBarRowLayout.left
         anchors.bottom: messageBarRowLayout.bottom
 
@@ -110,45 +111,15 @@ Rectangle {
 
                 model: menuTypoActionsFirst
 
-                delegate: PushButton {
+                delegate: NewIconButton {
                     anchors.verticalCenter: parent ? parent.verticalCenter : undefined
-                    preferredSize: JamiTheme.chatViewFooterButtonSize
-                    imageContainerWidth: 15
-                    imageContainerHeight: 15
-                    radius: 5
 
-                    hoverEnabled: !showPreview
                     enabled: !showPreview
 
+                    iconSize: JamiTheme.iconButtonSmall
+                    iconSource: modelData.iconSrc
                     toolTipText: modelData.shortcutText
-                    shortcutKey: modelData.shortcutKey
-                    hasShortcut: true
-
-                    source: modelData.iconSrc
-                    focusPolicy: Qt.TabFocus
-
-                    normalColor: {
-                        if (showPreview) {
-                            return JamiTheme.primaryBackgroundColor;
-                        } else if (modelData.isStyle) {
-                            return JamiTheme.hoveredButtonColor;
-                        } else {
-                            return JamiTheme.primaryBackgroundColor;
-                        }
-                    }
-                    imageColor: {
-                        if (showPreview) {
-                            return JamiTheme.chatViewFooterImgDisableColor;
-                        } else if (hovered) {
-                            return JamiTheme.chatViewFooterImgHoverColor;
-                        } else if (modelData.isStyle) {
-                            return JamiTheme.chatViewFooterImgHoverColor;
-                        } else {
-                            return JamiTheme.chatViewFooterImgColor;
-                        }
-                    }
-                    hoveredColor: JamiTheme.hoveredButtonColor
-                    pressedColor: hoveredColor
+                    toolTipShortcutKey: modelData.shortcutKey
 
                     action: modelData
                 }
@@ -180,41 +151,27 @@ Rectangle {
 
                 ComboBox {
                     id: showMoreTypoButton
+
                     width: JamiTheme.chatViewFooterButtonSize
                     height: width
+
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.horizontalCenter: parent.horizontalCenter
 
                     enabled: !showPreview
                     hoverEnabled: !showPreview
 
-                    MaterialToolTip {
-                        id: toolTip
-                        parent: showMoreTypoButton
-                        visible: showMoreTypoButton.hovered && (text.length > 0)
-                        delay: Qt.styleHints.mousePressAndHoldInterval
-                        text: markdownPopup.visible ? JamiStrings.showLess : JamiStrings.showMore
-                    }
-
                     background: Rectangle {
                         implicitWidth: showMoreTypoButton.width
                         implicitHeight: showMoreTypoButton.height
-                        radius: 5
+                        radius: JamiTheme.commonRadius
                         color: showPreview ? JamiTheme.transparentColor : (parent && parent.hovered ? JamiTheme.hoveredButtonColor : JamiTheme.transparentColor)
                     }
 
-                    indicator: ResponsiveImage {
-                        containerHeight: 20
-                        containerWidth: 20
-                        width: 18
-                        height: 18
-
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.horizontalCenter: parent.horizontalCenter
-
-                        source: JamiResources.more_vert_24dp_svg
-
-                        color: showPreview ? JamiTheme.chatViewFooterImgDisableColor : (parent && parent.hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor)
+                    indicator: NewIconButton {
+                        iconSize: JamiTheme.iconButtonMedium
+                        iconSource: JamiResources.more_vert_24dp_svg
+                        toolTipText: markdownPopup.visible ? JamiStrings.showLess : JamiStrings.showMore
                     }
 
                     popup: MarkdownPopup {
@@ -273,46 +230,16 @@ Rectangle {
 
                 model: menuTypoActionsSecond
 
-                delegate: PushButton {
-                    anchors.verticalCenter: parent ? parent.verticalCenter : undefined
-                    preferredSize: JamiTheme.chatViewFooterButtonSize
-                    imageContainerWidth: 20
-                    imageContainerHeight: 20
-                    radius: 5
+                delegate: NewIconButton {
 
-                    hoverEnabled: !showPreview
+                    anchors.verticalCenter: parent.verticalCenter
+
                     enabled: !showPreview
 
+                    iconSize: JamiTheme.iconButtonSmall
+                    iconSource: modelData.iconSrc
                     toolTipText: modelData.shortcutText
-                    shortcutKey: modelData.shortcutKey
-                    hasShortcut: modelData.hasShortcut ? true : false
-                    source: modelData.iconSrc
-                    focusPolicy: Qt.TabFocus
-
-                    normalColor: {
-                        if (showPreview) {
-                            return JamiTheme.primaryBackgroundColor;
-                        } else if (modelData.normalColor) {
-                            return modelData.normalColor;
-                        } else if (modelData.isStyle) {
-                            return JamiTheme.hoveredButtonColor;
-                        } else {
-                            return JamiTheme.primaryBackgroundColor;
-                        }
-                    }
-                    imageColor: {
-                        if (showPreview) {
-                            return JamiTheme.chatViewFooterImgDisableColor;
-                        } else if (hovered) {
-                            return JamiTheme.chatViewFooterImgHoverColor;
-                        } else if (modelData.isStyle) {
-                            return JamiTheme.chatViewFooterImgHoverColor;
-                        } else {
-                            return JamiTheme.chatViewFooterImgColor;
-                        }
-                    }
-                    hoveredColor: JamiTheme.hoveredButtonColor
-                    pressedColor: hoveredColor
+                    toolTipShortcutKey: modelData.shortcutKey
 
                     action: modelData
                 }
@@ -322,28 +249,18 @@ Rectangle {
 
     Row {
         id: secondRow
+
         anchors.right: messageBarRowLayout.right
         anchors.bottom: messageBarRowLayout.bottom
 
-        PushButton {
+        NewIconButton {
             id: typoButton
 
-            preferredSize: JamiTheme.chatViewFooterButtonSize
-            imageContainerWidth: 24
-            imageContainerHeight: 24
+            anchors.verticalCenter: parent.verticalCenter
 
-            radius: JamiTheme.chatViewFooterButtonRadius
-
-            hoverEnabled: !showPreview
-            enabled: !showPreview
-
+            iconSize: JamiTheme.iconButtonMedium
+            iconSource: JamiResources.text_edit_black_24dp_svg
             toolTipText: showTypo ? JamiStrings.hideFormatting : JamiStrings.showFormatting
-            source: JamiResources.text_edit_black_24dp_svg
-
-            normalColor: showPreview ? JamiTheme.primaryBackgroundColor : (showTypo ? JamiTheme.hoveredButtonColor : JamiTheme.primaryBackgroundColor)
-            imageColor: showPreview ? JamiTheme.chatViewFooterImgDisableColor : (hovered || showTypo ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor)
-            hoveredColor: JamiTheme.hoveredButtonColor
-            pressedColor: hoveredColor
 
             onClicked: {
                 showTypo = !showTypo;
@@ -417,8 +334,8 @@ Rectangle {
                 Component.onCompleted: {
                     for (var i = 0; i < listViewMoreButton.menuMoreButton.length; i++) {
                         append({
-                                "menuAction": listViewMoreButton.menuMoreButton[i]
-                            });
+                            "menuAction": listViewMoreButton.menuMoreButton[i]
+                        });
                     }
                 }
             }
@@ -445,40 +362,41 @@ Rectangle {
                 ]
             }
 
-            delegate: PushButton {
+            delegate: NewIconButton {
                 id: buttonDelegateMoreButton
-                anchors.verticalCenter: parent ? parent.verticalCenter : undefined
-                preferredSize: JamiTheme.chatViewFooterButtonSize
-                imageContainerWidth: 20
-                imageContainerHeight: 20
-                radius: 5
-                enabled: !showPreview
-                hoverEnabled: !showPreview
-                toolTipText: modelData.toolTip
-                source: modelData.iconSrc
 
-                normalColor: showPreview ? JamiTheme.primaryBackgroundColor : (showTypo ? JamiTheme.hoveredButtonColor : JamiTheme.primaryBackgroundColor)
-                imageColor: showPreview ? JamiTheme.chatViewFooterImgDisableColor : (hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor)
-                hoveredColor: JamiTheme.hoveredButtonColor
-                pressedColor: hoveredColor
+                anchors.verticalCenter: parent ? parent.verticalCenter : undefined
+
+                enabled: !showPreview
+
+                iconSize: JamiTheme.iconButtonMedium
+                iconSource: modelData.iconSrc
+                toolTipText: modelData.toolTip
+
                 action: modelData
             }
         }
 
         Rectangle {
+            Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+
             height: JamiTheme.chatViewFooterButtonSize
             width: JamiTheme.chatViewFooterButtonSize
-            Layout.alignment: Qt.AlignRight
-            visible: !CurrentConversation.isSip
+
             color: JamiTheme.transparentColor
+
+            visible: !CurrentConversation.isSip
+
             ComboBox {
                 id: showMoreButton
+
                 focus: true
                 width: JamiTheme.chatViewFooterButtonSize
                 height: JamiTheme.chatViewFooterButtonSize
                 anchors.bottom: parent.bottom
                 enabled: !showPreview
                 hoverEnabled: !showPreview
+
                 Accessible.name: JamiStrings.showMoreMessagingOptions
                 Accessible.role: Accessible.ComboBox
                 Accessible.description: JamiStrings.showMoreMessagingOptionsDescription
@@ -486,34 +404,16 @@ Rectangle {
                 // Used to choose the correct color for the button.
                 readonly property bool highlight: down || hovered
 
-                background: Rectangle {
-                    implicitWidth: showMoreButton.width
-                    implicitHeight: showMoreButton.height
-                    radius: 5
-                    color: showMoreButton.highlight ? JamiTheme.hoveredButtonColor : JamiTheme.transparentColor
-                }
+                background: Item {}
 
-                MaterialToolTip {
-                    id: toolTipMoreButton
-
-                    parent: showMoreButton
-                    visible: showMoreButton.hovered && (text.length > 0)
-                    delay: Qt.styleHints.mousePressAndHoldInterval
-                    text: showMoreButton.popup.visible ? JamiStrings.showLess : JamiStrings.showMore
-                }
-
-
-                indicator: ResponsiveImage {
-
-                    width: 20
-                    height: 20
-
+                indicator: NewIconButton {
                     anchors.verticalCenter: parent.verticalCenter
-                    anchors.horizontalCenter: parent.horizontalCenter
 
-                    source: JamiResources.more_menu_black_24dp_svg
+                    iconSize: JamiTheme.iconButtonMedium
+                    iconSource: JamiResources.more_menu_black_24dp_svg
+                    toolTipText: showMoreButton.popup.visible ? JamiStrings.showLess : JamiStrings.showMore
 
-                    color: showPreview ? JamiTheme.chatViewFooterImgDisableColor : (hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor)
+                    onClicked: sharePopup.visible ? sharePopup.close() : sharePopup.open()
                 }
 
                 Component {
@@ -589,8 +489,8 @@ Rectangle {
                 Component.onCompleted: {
                     for (var i = 0; i < listViewAction.menuActions.length; i++) {
                         append({
-                                "menuAction": listViewAction.menuActions[i]
-                            });
+                            "menuAction": listViewAction.menuActions[i]
+                        });
                     }
                 }
             }
@@ -617,24 +517,16 @@ Rectangle {
                 ]
             }
 
-            delegate: PushButton {
+            delegate: NewIconButton {
                 id: buttonDelegate
-                anchors.verticalCenter: parent ? parent.verticalCenter : undefined
-                preferredSize: JamiTheme.chatViewFooterButtonSize
-                imageContainerWidth: 25
-                imageContainerHeight: 25
-                radius: 5
 
-                hoverEnabled: !showPreview
+                anchors.verticalCenter: parent ? parent.verticalCenter : undefined
+
                 enabled: !showPreview
 
+                iconSize: JamiTheme.iconButtonMedium
+                iconSource: modelData.iconSrc
                 toolTipText: modelData.toolTip
-                source: modelData.iconSrc
-
-                normalColor: JamiTheme.primaryBackgroundColor
-                imageColor: showPreview ? JamiTheme.chatViewFooterImgDisableColor : (hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor)
-                hoveredColor: JamiTheme.hoveredButtonColor
-                pressedColor: hoveredColor
 
                 action: modelData
             }

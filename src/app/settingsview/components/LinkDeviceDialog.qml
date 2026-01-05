@@ -39,26 +39,24 @@ BaseModalDialog {
 
     // Function to check if dialog can be closed directly
     function canCloseDirectly() {
-        return LinkDeviceModel.deviceAuthState === DeviceAuthStateEnum.INIT ||
-               LinkDeviceModel.deviceAuthState === DeviceAuthStateEnum.DONE
+        return LinkDeviceModel.deviceAuthState === DeviceAuthStateEnum.INIT || LinkDeviceModel.deviceAuthState === DeviceAuthStateEnum.DONE;
     }
 
     // Close button. Use custom close button to show a confirmation dialog.
-    JamiPushButton {
+    NewIconButton {
+        id: closeButton
+
         anchors {
             top: parent.top
             right: parent.right
             topMargin: 5
-            rightMargin: 5
+            rightMargin: 6
         }
 
-        Layout.preferredHeight: 20
-        Layout.preferredWidth: 20
+        iconSize: JamiTheme.iconButtonMedium
+        iconSource: JamiResources.round_close_24dp_svg
+        toolTipText: JamiStrings.close
 
-        imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
-        normalColor: "transparent"
-
-        source: JamiResources.round_close_24dp_svg
         onClicked: {
             if (canCloseDirectly()) {
                 root.close();
@@ -66,6 +64,9 @@ BaseModalDialog {
                 confirmCloseDialog.open();
             }
         }
+
+        Accessible.role: Accessible.Button
+        Accessible.name: JamiStrings.close
     }
 
     MessageDialog {
@@ -75,7 +76,7 @@ BaseModalDialog {
         informativeText: JamiStrings.linkDeviceCloseWarningMessage
         buttons: MessageDialog.Ok | MessageDialog.Cancel
 
-        onOkClicked: function(button) {
+        onOkClicked: function (button) {
             root.close();
         }
     }
@@ -112,52 +113,29 @@ BaseModalDialog {
                     function onDeviceAuthStateChanged() {
                         switch (LinkDeviceModel.deviceAuthState) {
                         case DeviceAuthStateEnum.INIT:
-                            stackLayout.currentIndex = scanAndEnterCodeView.index
-                            break
+                            stackLayout.currentIndex = scanAndEnterCodeView.index;
+                            break;
                         case DeviceAuthStateEnum.CONNECTING:
-                            stackLayout.currentIndex = deviceLinkLoadingView.index
-                            deviceLinkLoadingView.loadingText = JamiStrings.linkDeviceConnecting
-                            break
+                            stackLayout.currentIndex = deviceLinkLoadingView.index;
+                            deviceLinkLoadingView.loadingText = JamiStrings.linkDeviceConnecting;
+                            break;
                         case DeviceAuthStateEnum.AUTHENTICATING:
-                            stackLayout.currentIndex = deviceConfirmationView.index
-                            break
+                            stackLayout.currentIndex = deviceConfirmationView.index;
+                            break;
                         case DeviceAuthStateEnum.IN_PROGRESS:
-                            stackLayout.currentIndex = deviceLinkLoadingView.index
-                            deviceLinkLoadingView.loadingText = JamiStrings.linkDeviceInProgress
-                            break
+                            stackLayout.currentIndex = deviceLinkLoadingView.index;
+                            deviceLinkLoadingView.loadingText = JamiStrings.linkDeviceInProgress;
+                            break;
                         case DeviceAuthStateEnum.DONE:
                             if (LinkDeviceModel.linkDeviceError.length > 0) {
-                                stackLayout.currentIndex = deviceLinkErrorView.index
+                                stackLayout.currentIndex = deviceLinkErrorView.index;
                             } else {
-                                stackLayout.currentIndex = deviceLinkSuccessView.index
+                                stackLayout.currentIndex = deviceLinkSuccessView.index;
                             }
-                            break
+                            break;
                         default:
-                            break
+                            break;
                         }
-                    }
-                }
-
-                // Common base component for stack layout items
-                component StackViewBase: Item {
-                    id: baseItem
-
-                    required property string title
-                    default property alias content: contentLayout.data
-
-                    Layout.fillWidth: true
-                    Layout.alignment: Qt.AlignHCenter
-                    implicitHeight: contentLayout.implicitHeight
-
-                    ColumnLayout {
-                        id: contentLayout
-                        anchors {
-                            left: parent.left
-                            right: parent.right
-                            verticalCenter: parent.verticalCenter
-                        }
-                        Layout.preferredWidth: scrollView.width
-                        spacing: 20
                     }
                 }
 
@@ -280,7 +258,7 @@ BaseModalDialog {
                             text: JamiStrings.optionConfirm
                             toolTipText: JamiStrings.optionConfirm
                             onClicked: {
-                                LinkDeviceModel.confirmAddDevice()
+                                LinkDeviceModel.confirmAddDevice();
                             }
                         }
 
@@ -293,7 +271,7 @@ BaseModalDialog {
                             textRightPadding: JamiTheme.buttontextWizzardPadding / 2
                             text: JamiStrings.cancel
                             onClicked: {
-                                LinkDeviceModel.cancelAddDevice()
+                                LinkDeviceModel.cancelAddDevice();
                             }
                         }
                     }
@@ -306,7 +284,7 @@ BaseModalDialog {
 
                     Component.onDestruction: {
                         if (qrScanner) {
-                            qrScanner.stopScanner()
+                            qrScanner.stopScanner();
                         }
                     }
 
@@ -329,9 +307,9 @@ BaseModalDialog {
                         height: width * aspectRatio
                         visible: VideoDevices.listSize !== 0
 
-                        onQrCodeDetected: function(code) {
-                            console.log("QR code detected:", code)
-                            LinkDeviceModel.addDevice(code)
+                        onQrCodeDetected: function (code) {
+                            console.log("QR code detected:", code);
+                            LinkDeviceModel.addDevice(code);
                         }
                     }
 
@@ -381,7 +359,7 @@ BaseModalDialog {
                         toolTipText: JamiStrings.connect
                         enabled: codeInput.dynamicText.length > 0
                         onClicked: {
-                            LinkDeviceModel.addDevice(codeInput.dynamicText)
+                            LinkDeviceModel.addDevice(codeInput.dynamicText);
                         }
                     }
                 }
@@ -389,8 +367,31 @@ BaseModalDialog {
         }
     }
 
+    // Common base component for stack layout items
+    component StackViewBase: Item {
+        id: baseItem
+
+        required property string title
+        default property alias content: contentLayout.data
+
+        Layout.fillWidth: true
+        Layout.alignment: Qt.AlignHCenter
+        implicitHeight: contentLayout.implicitHeight
+
+        ColumnLayout {
+            id: contentLayout
+            anchors {
+                left: parent.left
+                right: parent.right
+                verticalCenter: parent.verticalCenter
+            }
+            Layout.preferredWidth: scrollView.width
+            spacing: 20
+        }
+    }
+
     //Reset everything when dialog is closed
     onClosed: {
-        LinkDeviceModel.reset()
+        LinkDeviceModel.reset();
     }
 }
