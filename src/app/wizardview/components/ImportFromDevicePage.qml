@@ -38,26 +38,21 @@ Rectangle {
     property string jamiId: ""
 
     function isPasswordWrong() {
-        return WizardViewStepModel.deviceLinkDetails["auth_error"] !== undefined &&
-                WizardViewStepModel.deviceLinkDetails["auth_error"] !== "" &&
-                WizardViewStepModel.deviceLinkDetails["auth_error"] !== "none"
+        return WizardViewStepModel.deviceLinkDetails["auth_error"] !== undefined && WizardViewStepModel.deviceLinkDetails["auth_error"] !== "" && WizardViewStepModel.deviceLinkDetails["auth_error"] !== "none";
     }
 
     function requiresPassword() {
-        return WizardViewStepModel.deviceLinkDetails["auth_scheme"] === "password"
+        return WizardViewStepModel.deviceLinkDetails["auth_scheme"] === "password";
     }
 
     function requiresConfirmationBeforeClosing() {
-        const state = WizardViewStepModel.deviceAuthState
-        return state !== DeviceAuthStateEnum.INIT &&
-               state !== DeviceAuthStateEnum.DONE
+        const state = WizardViewStepModel.deviceAuthState;
+        return state !== DeviceAuthStateEnum.INIT && state !== DeviceAuthStateEnum.DONE;
     }
 
     function isLoadingState() {
-        const state = WizardViewStepModel.deviceAuthState
-        return state === DeviceAuthStateEnum.INIT ||
-               state === DeviceAuthStateEnum.CONNECTING ||
-               state === DeviceAuthStateEnum.IN_PROGRESS
+        const state = WizardViewStepModel.deviceAuthState;
+        return state === DeviceAuthStateEnum.INIT || state === DeviceAuthStateEnum.CONNECTING || state === DeviceAuthStateEnum.IN_PROGRESS;
     }
 
     signal showThisPage
@@ -77,7 +72,7 @@ Rectangle {
         informativeText: JamiStrings.linkDeviceCloseWarningMessage
         buttons: MessageDialog.Ok | MessageDialog.Cancel
 
-        onOkClicked: function(button) {
+        onOkClicked: function (button) {
             AccountAdapter.cancelImportAccount();
             WizardViewStepModel.previousStep();
         }
@@ -106,7 +101,7 @@ Rectangle {
             case DeviceAuthStateEnum.AUTHENTICATING:
                 jamiId = WizardViewStepModel.deviceLinkDetails["peer_id"] || "";
                 if (jamiId.length > 0) {
-                    NameDirectory.lookupAddress(CurrentAccount.id, jamiId)
+                    NameDirectory.lookupAddress(CurrentAccount.id, jamiId);
                 }
                 break;
             case DeviceAuthStateEnum.IN_PROGRESS:
@@ -117,7 +112,7 @@ Rectangle {
                 // Final state - check for specific errors
                 const error = AccountAdapter.getImportErrorMessage(WizardViewStepModel.deviceLinkDetails);
                 if (error.length > 0) {
-                    errorOccurred(error)
+                    errorOccurred(error);
                 }
                 break;
             }
@@ -363,7 +358,7 @@ Rectangle {
                     Layout.alignment: Qt.AlignHCenter
                     Layout.preferredWidth: contentRow.implicitWidth + 40
                     Layout.preferredHeight: contentRow.implicitHeight + 20
-                    color:  JamiTheme.jamiIdBackgroundColor
+                    color: JamiTheme.jamiIdBackgroundColor
                     radius: 5
 
                     RowLayout {
@@ -410,10 +405,10 @@ Rectangle {
                     acceptedButtons: Qt.RightButton
                     propagateComposedEvents: true
 
-                    onClicked: function(mouse) {
+                    onClicked: function (mouse) {
                         if (mouse.button === Qt.RightButton) {
-                            mouse.accepted = true
-                            contextMenu.open()
+                            mouse.accepted = true;
+                            contextMenu.open();
                         }
                     }
                 }
@@ -463,20 +458,19 @@ Rectangle {
     }
 
     // Back button
-    JamiPushButton {
+    NewIconButton {
         id: backButton
-        QWKSetParentHitTestVisible {
-        }
-
-        objectName: "importFromDevicePageBackButton"
+        QWKSetParentHitTestVisible {}
 
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.margins: JamiTheme.wizardViewPageBackButtonMargins
 
-        preferredSize: 36
-        imageContainerWidth: 20
-        source: JamiResources.ic_arrow_back_24dp_svg
+        objectName: "importFromDevicePageBackButton"
+
+        iconSize: JamiTheme.iconButtonMedium
+        iconSource: JamiResources.ic_arrow_back_24dp_svg
+        toolTipText: JamiStrings.close
 
         visible: WizardViewStepModel.deviceAuthState !== DeviceAuthStateEnum.IN_PROGRESS
 
@@ -487,5 +481,8 @@ Rectangle {
                 WizardViewStepModel.previousStep();
             }
         }
+
+        Accessible.role: Accessible.Button
+        Accessible.name: JamiStrings.close
     }
 }

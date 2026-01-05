@@ -756,4 +756,11 @@ Item {
     property int swarmDetailsIconSize: 24
     property int swarmDetailsMemberCellWidth: 48
     property int swarmDetailsMemberCellHeight: 72
+
+    // NewIconButton fixed sizes
+    // Reference: https://developers.google.com/fonts/docs/material_icons#sizing
+    property int iconButtonSmall: 18
+    property int iconButtonMedium: 24
+    property int iconButtonLarge: 36
+    property int iconButtonExtraLarge: 48
 }
