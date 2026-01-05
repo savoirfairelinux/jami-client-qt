@@ -80,24 +80,24 @@ Popup {
         contentItem: ColumnLayout {
             id: contentLayout
 
-            JamiPushButton { QWKSetParentHitTestVisible {}
+            NewIconButton {
                 id: closeButton
-                Accessible.role: Accessible.Button
-                Accessible.name: JamiStrings.close
-
-                visible: closeButtonVisible
+                QWKSetParentHitTestVisible {}
 
                 Layout.alignment: Qt.AlignRight | Qt.AlignTop
-                Layout.preferredHeight: 20
-                Layout.preferredWidth: 20
                 Layout.topMargin: 5
                 Layout.rightMargin: 5
 
-                imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
-                normalColor: "transparent"
+                iconSize: JamiTheme.iconButtonMedium
+                iconSource: JamiResources.round_close_24dp_svg
+                toolTipText: JamiStrings.close
 
-                source: JamiResources.round_close_24dp_svg
+                visible: closeButtonVisible
+
                 onClicked: close()
+
+                Accessible.role: Accessible.Button
+                Accessible.name: JamiStrings.close
             }
 
             Label {
@@ -174,7 +174,7 @@ Popup {
                     autoAccelerator: true
 
                     DialogButtonBox.buttonRole: root.button3Role
-               }
+                }
             }
         }
     }
