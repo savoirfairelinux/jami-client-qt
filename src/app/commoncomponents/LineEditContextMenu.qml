@@ -50,7 +50,6 @@ ContextMenuAutoLoader {
             canTrigger: true
             isActif: lineEditObj.selectedText.length && !selectOnly
             itemName: JamiStrings.cut
-            hasIcon: false
             onClicked: lineEditObj.cut()
         },
         GeneralMenuItem {
@@ -59,7 +58,6 @@ ContextMenuAutoLoader {
             canTrigger: true
             isActif: lineEditObj.selectedText.length
             itemName: JamiStrings.copy
-            hasIcon: false
             onClicked: lineEditObj.copy()
         },
         GeneralMenuItem {
@@ -67,7 +65,6 @@ ContextMenuAutoLoader {
 
             canTrigger: !selectOnly
             itemName: JamiStrings.paste
-            hasIcon: false
             onClicked: {
                 if (customizePaste)
                     root.contextMenuRequirePaste();
@@ -79,7 +76,6 @@ ContextMenuAutoLoader {
             id: textLanguage
             canTrigger: isSpellCheckActive() && SpellCheckAdapter.installedDictionaryCount > 0
             itemName: JamiStrings.textLanguage
-            hasIcon: false
             onClicked: {
                 spellLanguageContextMenu.openMenu();
             }
@@ -88,7 +84,6 @@ ContextMenuAutoLoader {
             id: manageLanguages
             itemName: JamiStrings.dictionaryManager
             canTrigger: isSpellCheckActive()
-            hasIcon: false
             onClicked: {
                 viewCoordinator.presentDialog(appWindow, "commoncomponents/DictionaryManagerDialog.qml");
             }
@@ -109,7 +104,6 @@ ContextMenuAutoLoader {
                 isActif: true
                 itemName: model.name
                 bold: true
-                hasIcon: false
                 onClicked: {
                     replaceWord(model.name);
                 }
@@ -135,8 +129,8 @@ ContextMenuAutoLoader {
         suggestionList = wordList;
         for (var i = 0; i < suggestionList.length; ++i) {
             suggestionListModel.append({
-                    "name": suggestionList[i]
-                });
+                "name": suggestionList[i]
+            });
         }
     }
 

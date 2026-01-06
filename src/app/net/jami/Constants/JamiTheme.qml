@@ -763,4 +763,7 @@ Item {
     property int iconButtonMedium: 24
     property int iconButtonLarge: 36
     property int iconButtonExtraLarge: 48
+
+    // GeneralMenuItem
+    property int generalMenuItemPadding: 8
 }
