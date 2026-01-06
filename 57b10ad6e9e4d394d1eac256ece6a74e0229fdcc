@@ -101,6 +101,114 @@
       "message": "1. Open the **Keyboard shortcuts** (F10) window.\n2. Click the **Call** tab.\n3. Can a **Join call** row please be added under the **Accept call** row with the same `Ctrl+Y` shortcut?\n\nShould the **Accept call** row be changed into two rows, that is, **Accept call with audio** and **Accept call with video**?\n\nShould the **Join call with audio** and the **Join call with video** be added instead of just **Join call**?\n\nThank you",
       "revId": "57b10ad6e9e4d394d1eac256ece6a74e0229fdcc",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c18a22f_ef3d96e0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1147
+      },
+      "writtenOn": "2026-01-06T18:44:40Z",
+      "side": 1,
+      "message": "Yes",
+      "parentUuid": "c1a55e6f_5322d490",
+      "revId": "57b10ad6e9e4d394d1eac256ece6a74e0229fdcc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15be09fe_4465d27e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1147
+      },
+      "writtenOn": "2026-01-06T18:44:40Z",
+      "side": 1,
+      "message": "Thank you for pointing this out. Will be handled in a separate patch",
+      "parentUuid": "08e51b57_63d02705",
+      "revId": "57b10ad6e9e4d394d1eac256ece6a74e0229fdcc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c74e1e63_19ad73de",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1147
+      },
+      "writtenOn": "2026-01-06T18:44:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37e7a137_ab64150f",
+      "revId": "57b10ad6e9e4d394d1eac256ece6a74e0229fdcc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68595b49_2eb5ca35",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1147
+      },
+      "writtenOn": "2026-01-06T18:44:40Z",
+      "side": 1,
+      "message": "The colors remain the same in light mode and dark mode. The Join call buttons have a light green background. When they are hovered, the background becomes a darker green. This looks good on both light mode and dark mode so we currently do not have separate behavior based on the color theme",
+      "parentUuid": "2dc5f4b0_ef747d9f",
+      "revId": "57b10ad6e9e4d394d1eac256ece6a74e0229fdcc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "872b54d6_17238835",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1147
+      },
+      "writtenOn": "2026-01-06T18:44:40Z",
+      "side": 1,
+      "message": "It currently does not, it will be implemented in a separate patch",
+      "parentUuid": "e9a85a67_1ee43205",
+      "revId": "57b10ad6e9e4d394d1eac256ece6a74e0229fdcc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "819c0b48_215f2677",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1147
+      },
+      "writtenOn": "2026-01-06T18:44:40Z",
+      "side": 1,
+      "message": "The buttons do scale correctly, but the text does not scale correctly. I\u0027m going to edit the patch to fix it. Thank you for bringing this up",
+      "parentUuid": "bbcbca14_9a3b0611",
+      "revId": "57b10ad6e9e4d394d1eac256ece6a74e0229fdcc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
