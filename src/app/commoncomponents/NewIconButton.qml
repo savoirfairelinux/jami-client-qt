@@ -37,16 +37,19 @@ Button {
     // the Button component
     icon.width: iconSize
     icon.height: iconSize
-    icon.color: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
+    icon.color: enabled ? hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered : JamiTheme.buttonTintedGreyHovered
     icon.source: iconSource
 
     Behavior on icon.color {
+        enabled: root.enabled
         ColorAnimation {
             duration: 200
         }
     }
 
     background: Rectangle {
+        visible: root.enabled
+
         width: icon.width + (iconSize / 2)
         height: icon.height + (iconSize / 2)
 
@@ -63,7 +66,7 @@ Button {
 
         hasShortcut: shortcutKey.length > 0
 
-        visible: (root.hovered || root.activeFocus) && (toolTipText.length > 0)
+        visible: root.enabled && (root.hovered || root.activeFocus) && (toolTipText.length > 0)
         delay: Qt.styleHints.mousePressAndHoldInterval
     }
 }
