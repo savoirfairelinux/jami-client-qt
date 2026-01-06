@@ -28,19 +28,20 @@ Rectangle {
     id: root
 
     radius: 35
-    color: darkTheme ? JamiTheme.blackColor : JamiTheme.backgroundColor
-    width: activeCalls ? 80 : 36
+    color: showVideoJoin ? "transparent" : (darkTheme ? JamiTheme.blackColor : JamiTheme.backgroundColor)
+    implicitWidth: activeCalls ? 80 : (showVideoJoin ? 82 : 36)
 
     property bool darkTheme: UtilsAdapter.useApplicationTheme()
     property bool isDropDownOpen: false
     property bool uniqueActiveCall: CurrentConversation.activeCalls.length === 1
     property bool activeCalls: CurrentConversation.activeCalls.length > 1
+    property bool showVideoJoin: uniqueActiveCall && CurrentAccount.videoEnabled_Video
 
     RowLayout {
 
         anchors.fill: parent
         Layout.fillWidth: false
-        spacing: 0
+        spacing: showVideoJoin ? 10 : 0
         visible: uniqueActiveCall || activeCalls
 
         Item {
@@ -56,8 +57,17 @@ Rectangle {
                 imageColor: hovered ? JamiTheme.buttonCallLightGreen : JamiTheme.blackColor
                 radius: 35
                 preferredSize: 36
+                imagePadding: 4
                 anchors.verticalCenter: parent.verticalCenter
-                onClicked: CallAdapter.startAudioOnlyCall()
+                toolTipText: JamiStrings.joinWithAudio
+                onClicked: {
+                    if (root.uniqueActiveCall && CurrentConversation.activeCalls.length > 0) {
+                        var call = CurrentConversation.activeCalls[0];
+                        MessagesAdapter.joinCall(call.uri, call.device, call.id, true);
+                    } else {
+                        CallAdapter.startAudioOnlyCall();
+                    }
+                }
             }
 
             SpinningAnimation {
@@ -65,6 +75,40 @@ Rectangle {
                 anchors.fill: callButton
                 mode: SpinningAnimation.Mode.Radial
                 color: callButton.hovered ? JamiTheme.buttonCallLightGreen : JamiTheme.buttonCallDarkGreen
+                spinningAnimationWidth: 2
+            }
+        }
+
+        Item {
+            id: videoCallButton
+
+            implicitWidth: 36
+            visible: showVideoJoin
+
+            JamiPushButton {
+                id: vCallButton
+                source: JamiResources.videocam_24dp_svg
+                normalColor: JamiTheme.buttonCallLightGreen
+                hoveredColor: JamiTheme.buttonCallDarkGreen
+                imageColor: hovered ? JamiTheme.buttonCallLightGreen : JamiTheme.blackColor
+                radius: 35
+                preferredSize: 36
+                imagePadding: 4
+                anchors.verticalCenter: parent.verticalCenter
+                toolTipText: JamiStrings.joinWithVideo
+                onClicked: {
+                    if (root.uniqueActiveCall && CurrentConversation.activeCalls.length > 0) {
+                        var call = CurrentConversation.activeCalls[0];
+                        MessagesAdapter.joinCall(call.uri, call.device, call.id, false);
+                    }
+                }
+            }
+
+            SpinningAnimation {
+                id: vAnimation
+                anchors.fill: vCallButton
+                mode: SpinningAnimation.Mode.Radial
+                color: vCallButton.hovered ? JamiTheme.buttonCallLightGreen : JamiTheme.buttonCallDarkGreen
                 spinningAnimationWidth: 2
             }
         }
