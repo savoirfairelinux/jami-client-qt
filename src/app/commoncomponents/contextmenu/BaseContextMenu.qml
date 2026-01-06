@@ -71,9 +71,9 @@ Menu {
                 if (menuItems[i].addMenuSeparatorAfter) {
                     menuSeparatorComponent = Qt.createComponent("GeneralMenuSeparator.qml", Component.PreferSynchronous, root);
                     menuSeparatorComponentObj = menuSeparatorComponent.createObject(null, {
-                            "separatorColor": JamiTheme.menuSeparatorColor,
-                            "separatorPreferredHeight": 0
-                        });
+                        "separatorColor": JamiTheme.menuSeparatorColor,
+                        "separatorPreferredHeight": 0
+                    });
                     generalMenuSeparatorList.push(menuSeparatorComponentObj);
                     root.addItem(menuSeparatorComponentObj);
                     menuSeparatorComponentObj = menuSeparatorComponent.createObject();
@@ -92,7 +92,7 @@ Menu {
         implicitWidth: menuPreferredWidth ? menuPreferredWidth : JamiTheme.menuItemsPreferredWidth
 
         color: JamiTheme.primaryBackgroundColor
-        radius: 5
+        radius: JamiTheme.commonRadius
 
         layer.enabled: true
         layer.effect: DropShadow {
