@@ -58,8 +58,8 @@ Rectangle {
         return true;
     }
 
-    property bool addMemberVisibility: {
-        return swarmDetailsVisibility && !CurrentConversation.isCoreDialog && !CurrentConversation.isRequest;
+    property bool inviteMembersVisibility: {
+        return swarmDetailsVisibility && !CurrentConversation.isCoreDialog && !CurrentConversation.needsSyncing;
     }
 
     property bool swarmDetailsVisibility: {
@@ -196,7 +196,7 @@ Rectangle {
 
             checkable: true
             checked: extrasPanel.isOpen(ChatView.AddMemberPanel)
-            visible: interactionButtonsVisibility && addMemberVisibility
+            visible: inviteMembersVisibility
             source: JamiResources.add_people_24dp_svg
             toolTipText: JamiStrings.inviteMembers
 
