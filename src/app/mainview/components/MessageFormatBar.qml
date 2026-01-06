@@ -258,9 +258,21 @@ Rectangle {
 
             anchors.verticalCenter: parent.verticalCenter
 
-            iconSize: JamiTheme.iconButtonMedium
+            iconSize: JamiTheme.iconButtonMedium - 4
             iconSource: JamiResources.text_edit_black_24dp_svg
             toolTipText: showTypo ? JamiStrings.hideFormatting : JamiStrings.showFormatting
+
+            background: Rectangle {
+                visible: root.enabled
+
+                width: JamiTheme.iconButtonMedium + (JamiTheme.iconButtonMedium / 2)
+                height: JamiTheme.iconButtonMedium + (JamiTheme.iconButtonMedium / 2)
+
+                radius: width / 2
+                anchors.centerIn: parent
+
+                color: parent.hovered ? JamiTheme.hoveredButtonColor : JamiTheme.transparentColor
+            }
 
             onClicked: {
                 showTypo = !showTypo;
