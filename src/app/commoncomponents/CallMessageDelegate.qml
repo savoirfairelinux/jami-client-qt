@@ -151,6 +151,7 @@ SBSMessageBase {
                 source: JamiResources.start_audiocall_24dp_svg
                 onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, root.confId, true)
                 visible: root.isActive && root.currentCallId !== root.confId
+                roundedRight: !joinCallWithVideo.visible
             }
 
             JoinCallButton {
@@ -161,7 +162,7 @@ SBSMessageBase {
                 toolTipText: JamiStrings.joinWithVideo
                 source: JamiResources.videocam_24dp_svg
                 onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, root.confId, false)
-                visible: root.isActive && root.currentCallId !== root.confId
+                visible: root.isActive && root.currentCallId !== root.confId && CurrentAccount.videoEnabled_Video
                 isVideo: true
             }
         }

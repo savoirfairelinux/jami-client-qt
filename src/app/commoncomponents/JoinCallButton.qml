@@ -32,6 +32,7 @@ Item {
     signal clicked
 
     property bool isVideo: false
+    property bool roundedRight: isVideo
 
     implicitWidth: height
 
@@ -49,7 +50,7 @@ Item {
 
         onClicked: root.clicked()
 
-        layer.enabled: root.isVideo
+        layer.enabled: root.roundedRight
         layer.effect: OpacityMask {
             maskSource: maskRect
         }
