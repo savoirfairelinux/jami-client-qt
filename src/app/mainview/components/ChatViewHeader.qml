@@ -282,6 +282,6 @@ Rectangle {
         rBorderwidth: 0
         tBorderwidth: 0
         bBorderwidth: JamiTheme.chatViewHairLineSize
-        borderColor: JamiTheme.tabbarBorderColor
+        borderColor: JamiTheme.chatViewFooterRectangleBorderColor
     }
 }

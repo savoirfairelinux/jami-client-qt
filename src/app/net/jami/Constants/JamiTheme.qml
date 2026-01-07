@@ -472,7 +472,7 @@ Item {
     property real searchbarSize: 200
 
     // MessageWebView
-    property real chatViewHairLineSize: 1
+    property real chatViewHairLineSize: 2
     property real chatViewMaximumWidth: 900
     property real chatViewFooterPreferredHeight: 35
     property real chatViewFooterMaximumHeight: 315
