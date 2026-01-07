@@ -62,7 +62,7 @@ ColumnLayout {
     }
     MaterialButton {
         id: installManually
-        radius: JamiTheme.chatViewHeaderButtonRadius
+
         TextMetrics {
             id: textSize
             font.weight: Font.Black
