@@ -63,7 +63,7 @@ Popup {
         background: Rectangle {
             id: bgRect
 
-            radius: 5
+            radius: JamiTheme.commonRadius
             color: container.color
             layer.enabled: true
             layer.effect: DropShadow {
@@ -85,8 +85,8 @@ Popup {
                 QWKSetParentHitTestVisible {}
 
                 Layout.alignment: Qt.AlignRight | Qt.AlignTop
-                Layout.topMargin: 5
-                Layout.rightMargin: 5
+                Layout.topMargin: 14
+                Layout.rightMargin: 12
 
                 iconSize: JamiTheme.iconButtonMedium
                 iconSource: JamiResources.round_close_24dp_svg

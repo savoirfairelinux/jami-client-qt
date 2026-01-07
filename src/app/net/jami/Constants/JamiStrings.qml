@@ -495,7 +495,7 @@ Item {
     property string blockedContacts: qsTr("Blocked contacts")
 
     // DeleteAccountDialog
-    property string confirmDeleteAccount: qsTr("Do you want to delete the account? To continue, click Delete.")
+    property string confirmDeleteAccount: qsTr("Do you want to delete this account? To continue, click Delete.")
     property string deleteAccountInfo: qsTr("If the account has not been backed up or added to another device, the account and registered username will be IRREVOCABLY LOST.")
 
     // DeviceItemDelegate
