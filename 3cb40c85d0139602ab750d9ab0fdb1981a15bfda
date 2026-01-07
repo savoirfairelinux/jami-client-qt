@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31c3fcc1_a4147fb8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-01-07T19:46:08Z",
+      "side": 1,
+      "message": "LGTM but revisit the commit msg pls",
+      "revId": "3cb40c85d0139602ab750d9ab0fdb1981a15bfda",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
