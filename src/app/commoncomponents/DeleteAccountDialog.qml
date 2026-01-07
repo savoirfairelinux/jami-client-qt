@@ -88,7 +88,7 @@ BaseModalDialog {
             Layout.preferredHeight: userProfileDialogLayout.height
             Layout.maximumWidth: root.width - 80
 
-            radius: 5
+            radius: JamiTheme.commonRadius
 
             ColumnLayout {
                 id: userProfileDialogLayout
@@ -182,7 +182,7 @@ BaseModalDialog {
 
                     visible: !isSIP
 
-                    radius: 5
+                    radius: width / 2
                     color: root.backgroundColor
 
                     Layout.preferredHeight: accountId.height + 10
@@ -235,7 +235,7 @@ BaseModalDialog {
             Layout.preferredHeight: labelWarning.height + 20
             Layout.maximumWidth: root.width - 80
 
-            radius: 5
+            radius: JamiTheme.commonRadius
 
             RowLayout {
                 id: warningLayout
