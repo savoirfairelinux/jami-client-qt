@@ -142,23 +142,20 @@ AbstractButton {
         Text {
             id: textButton
 
-            Layout.rightMargin: {
-                if ((!hasIcon || root.preferredWidth === undefined) && !root.Layout.fillWidth)
-                    return undefined;
-                return icon.width + JamiTheme.preferredMarginSize / 2 + parent.spacing;
-            }
-
             Layout.fillWidth: true
+            Layout.leftMargin: hasIcon ? 0 : background.radius
+            Layout.rightMargin: background.radius
             Layout.alignment: Qt.AlignHCenter
 
-            leftPadding: hasIcon ? 0 : root.primary ? JamiTheme.buttontextWizzardPadding : textLeftPadding
-            rightPadding: root.primary ? JamiTheme.buttontextWizzardPadding : textRightPadding
             text: root.text
-            elide: Text.ElideRight
+
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: root.textAlignment
-            color: contentColorProvider
+
+            elide: Text.ElideRight
             font.pixelSize: fontSize
+
+            color: contentColorProvider
             opacity: root.textOpacity
         }
     }
@@ -198,7 +195,7 @@ AbstractButton {
             return root.color;
         }
 
-        radius: JamiTheme.commonRadius
+        radius: height / 2
     }
 
     Keys.onPressed: function (keyEvent) {

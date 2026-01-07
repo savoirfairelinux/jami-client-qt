@@ -285,7 +285,7 @@ ListSelectionView {
                     tertiary: true
                     secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
                     anchors.horizontalCenter: parent.horizontalCenter
-                    preferredWidth: textSize.width + 2 * JamiTheme.preferredMarginSize
+                    preferredWidth: 125
                     text: JamiStrings.aboutJami
 
                     Accessible.role: Accessible.Button
