@@ -37,53 +37,121 @@ TabButton {
     Accessible.name: root.labelText
     Accessible.role: Accessible.Button
 
-    contentItem: Rectangle {
-        anchors.fill: parent
-        anchors.margins: JamiTheme.itemMarginHorizontal
+    contentItem: RowLayout {
+        anchors.centerIn: background
+
+        Text {
+            id: label
+
+            Layout.alignment: Qt.AlignCenter
+
+            font.pointSize: fontSize
+
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            elide: Text.ElideRight
+
+            color: (root.hovered || root.activeFocus) ? JamiTheme.textColorHovered : JamiTheme.textColor
+        }
+
+        BadgeNotifier {
+            id: badge
+            size: 20
+        }
+    }
+
+    background: Rectangle {
+        id: background
+
+        anchors.fill: root
+        anchors.margins: 8
 
         color: (root.down || root.hovered || root.activeFocus) ? JamiTheme.hoveredButtonColor : JamiTheme.backgroundColor
-
-        radius: width / 2
-
-        RowLayout {
-            anchors.fill: parent
-            Text {
-                id: label
-
-                Layout.alignment: Qt.AlignCenter
-
-                font.pointSize: fontSize
-
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-
-                color: (root.hovered || root.activeFocus) ? JamiTheme.textColorHovered : JamiTheme.textColor
-            }
-
-            BadgeNotifier {
-                id: badge
-                size: 20
-            }
-        }
+        opacity: (root.down || root.hovered || root.activeFocus) ? 1.0 : 0.0
+        radius: height / 2
 
         Behavior on color {
             ColorAnimation {
                 duration: JamiTheme.shortFadeDuration
             }
         }
-    }
 
-    background: Rectangle {
-        id: contentRect
-        anchors.fill: root
-        color: JamiTheme.backgroundColor
+        Behavior on opacity {
+            NumberAnimation {
+                duration: JamiTheme.shortFadeDuration
+            }
+        }
     }
 
     Shortcut {
         id: accelerator
         context: Qt.ApplicationShortcut
-        enabled: contentRect.visible
+        enabled: background.visible
         onActivated: selected()
     }
 }
+
+// contentItem: Rectangle {
+//     anchors.fill: parent
+//     anchors.margins: JamiTheme.itemMarginHorizontal
+
+//     color: (root.down || root.hovered || root.activeFocus) ? JamiTheme.hoveredButtonColor : JamiTheme.backgroundColor
+
+//     radius: width / 2
+
+//     Text {
+//         id: label
+
+//         // Layout.alignment: Qt.AlignCenter
+
+//         font.pointSize: fontSize
+
+//         horizontalAlignment: Text.AlignHCenter
+//         verticalAlignment: Text.AlignVCenter
+//         elide: Text.ElideRight
+
+//         color: (root.hovered || root.activeFocus) ? JamiTheme.textColorHovered : JamiTheme.textColor
+//     }
+
+//         BadgeNotifier {
+//             visible: false
+//             id: badge
+//             size: 20
+//         }
+
+//     // RowLayout {
+//     //     anchors.fill: parent
+
+//     //     Text {
+//     //         id: label
+
+//     //         Layout.alignment: Qt.AlignCenter
+
+//     //         font.pointSize: fontSize
+
+//     //         horizontalAlignment: Text.AlignHCenter
+//     //         verticalAlignment: Text.AlignVCenter
+//     //         elide: Text.ElideRight
+
+//     //         color: (root.hovered || root.activeFocus) ? JamiTheme.textColorHovered : JamiTheme.textColor
+//     //     }
+
+//     //     BadgeNotifier {
+//     //         id: badge
+//     //         size: 20
+//     //     }
+//     // }
+
+//     Behavior on color {
+//         ColorAnimation {
+//             duration: JamiTheme.shortFadeDuration
+//         }
+//     }
+// }
+
+// background: Rectangle {
+//     id: contentRect
+//     anchors.fill: root
+//     color: JamiTheme.transparentColor//JamiTheme.backgroundColor
+// }
+
