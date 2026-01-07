@@ -78,12 +78,6 @@ StackLayout {
 
     SwarmDetailsPanel {
         id: detailsPanel
-
-        property int parentIndex: root.currentIndex
-        // When we change to the details panel we should load the tab index.
-        //onParentIndexChanged: tabBarIndex = Math.min(tabBarItemsLength - 1, Math.max(0, root.detailsIndex))
-        // Save it when it changes.
-        //onTabBarIndexChanged: root.detailsIndex = tabBarIndex
     }
     MessagesResearchPanel {}
     AddMemberPanel {}

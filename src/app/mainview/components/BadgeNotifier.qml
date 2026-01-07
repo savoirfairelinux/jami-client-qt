@@ -29,7 +29,7 @@ Rectangle {
     width: size
     height: size
 
-    radius: JamiTheme.primaryRadius
+    radius: height / 2
     color: JamiTheme.filterBadgeColor
 
     visible: count > 0

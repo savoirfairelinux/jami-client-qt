@@ -944,6 +944,9 @@ Item {
     // Search bar
     property string searchOrAdd: qsTr("Search/add")
 
+    // Files
+    property string noFilesInConversation: qsTr("This conversation has no files.")
+
     // Accessibility
     property string switchToAccount: qsTr("Press enter to switch to this account")
     property string qrCodeExplanation: qsTr("Display your QR code to allow other users to scan it and add you as a contact")
