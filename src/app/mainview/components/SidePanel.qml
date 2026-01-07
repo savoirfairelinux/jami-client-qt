@@ -167,13 +167,15 @@ SidePanelBase {
         anchors.fill: parent
 
         Rectangle {
+            id: chatViewHairLineExtension
             anchors.top: parent.top
             anchors.topMargin: JamiTheme.qwkTitleBarHeight
             anchors.left: parent.left
             anchors.leftMargin: JamiTheme.sidePanelIslandsPadding
             width: parent.width
             height: JamiTheme.chatViewHairLineSize
-            color: JamiTheme.tabbarBorderColor
+            color: JamiTheme.chatViewFooterRectangleBorderColor
+            visible: CurrentConversation.id !== ""
         }
 
         ColumnLayout {
