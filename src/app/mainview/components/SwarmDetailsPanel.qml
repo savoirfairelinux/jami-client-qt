@@ -32,9 +32,6 @@ import "../../settingsview/components"
 Rectangle {
     id: root
 
-    //property alias tabBarIndex: tabBar.currentIndex
-    // property int tabBarItemsLength: tabBar.contentChildren.length
-
     anchors.fill: parent
     anchors.margins: JamiTheme.sidePanelIslandsPadding
 
@@ -44,38 +41,31 @@ Rectangle {
 
     property string textColor: UtilsAdapter.luma(root.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
 
-    // Component {
-    //     id: memberDelegate
-
-    // }
-
     ColumnLayout {
         id: rectangleContent
 
         anchors.fill: parent
         anchors.margins: 24
 
-        ColumnLayout {
-            id: swarmDetailsPrimaryColumn
-
+        Item {
             Layout.fillWidth: true
-            Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-            Layout.preferredHeight: photoboothRow.height
-            spacing: 0
+            Layout.preferredHeight: currentSwarmAvatar.height
+            Layout.alignment: Qt.AlignTop
 
             RowLayout {
                 id: photoboothRow
 
-                Layout.fillWidth: true
-                Layout.preferredHeight: currentSwarmAvatar.avatarSize
-                Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+                anchors.centerIn: parent
+                spacing: 8
 
                 PhotoboothView {
                     id: currentSwarmAvatar
 
+                    Layout.preferredWidth: avatarSize
+                    Layout.preferredHeight: avatarSize
+                    Layout.alignment: Qt.AlignVCenter
+
                     readOnly: !root.isAdmin
-                    width: avatarSize
-                    height: avatarSize
 
                     newItem: true
                     imageId: LRCInstance.selectedConvUid
@@ -84,10 +74,8 @@ Rectangle {
 
                 ColumnLayout {
                     Layout.preferredHeight: currentSwarmAvatar.height
+                    Layout.preferredWidth: JamiTheme.iconButtonMedium
                     Layout.alignment: Qt.AlignVCenter
-                    Layout.leftMargin: 8
-                    Layout.bottomMargin: 8
-                    Layout.topMargin: 8
 
                     NewIconButton {
                         id: muteConversation
@@ -124,6 +112,8 @@ Rectangle {
 
                         property bool hovered: false
 
+                        Layout.alignment: Qt.AlignHCenter
+
                         width: JamiTheme.iconButtonMedium
                         height: JamiTheme.iconButtonMedium
                         radius: width / 2
@@ -132,7 +122,7 @@ Rectangle {
                         MaterialToolTip {
                             id: conversationColorPickerToolTip
                             parent: parent
-                            visible: conversationColorPickerMouseArea.hovered
+                            visible: conversationColorPickerMouseArea.containsMouse
                             delay: Qt.styleHints.mousePressAndHoldInterval
                             text: JamiStrings.chooseAColor
                         }
@@ -163,197 +153,233 @@ Rectangle {
             }
         }
 
-        ColumnLayout {
-            id: middleContent
+        Item {
+            id: centerContent
+
             Layout.fillWidth: true
-            Layout.minimumHeight: JamiTheme.swarmDetailsMemberCellHeight
-            Layout.maximumHeight: JamiTheme.swarmDetailsMemberCellHeight * 3
+            Layout.preferredHeight: 42
+            Layout.bottomMargin: CurrentConversation.isCoreDialog ? 0 : 8
+            Layout.alignment: Qt.AlignTop
 
-            ModalTextEdit {
-                id: titleLine
+            ColumnLayout {
+                anchors.fill: parent
 
-                Layout.alignment: Qt.AlignHCenter
-                Layout.preferredWidth: currentSwarmAvatar.avatarSize
+                TabBar {
+                    id: swarmDetailsPanelTabBar
 
-                TextMetrics {
-                    id: titleLineTextSize
-                    text: CurrentConversation.title
-                    elide: Text.ElideRight
-                    elideWidth: titleLine.width
-                }
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    Layout.alignment: Qt.AlignTop
 
-                maxCharacters: JamiTheme.maximumCharacters
-                fontPixelSize: JamiTheme.materialLineEditPixelSize
+                    visible: !CurrentConversation.isCoreDialog
 
-                isSwarmDetail: true
-                readOnly: !isAdmin
+                    padding: 4
 
-                staticText: CurrentConversation.title
-                elidedText: titleLineTextSize.elidedText
+                    currentIndex: 0
 
-                textColor: root.textColor
-                prefixIconColor: root.textColor
+                    FilterTabButton {
+                        id: membersTabButton
 
-                onAccepted: {
-                    ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, dynamicText);
-                }
-
-                editMode: false
-
-                placeholderText: JamiStrings.title
-
-                onActiveFocusChanged: {
-                    if (!activeFocus) {
-                        ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, dynamicText);
-                    }
-                    titleLine.editMode = activeFocus;
-                }
-
-                infoTipLineText: CurrentConversation.isCoreDialog ? JamiStrings.contactName : JamiStrings.groupName
-            }
-
-            ModalTextEdit {
-                id: descriptionLineButton
-
-                Layout.fillWidth: true
-
-                TextMetrics {
-                    id: descriptionLineButtonTextSize
-                    text: CurrentConversation.description
-                    elide: Text.ElideRight
-                    elideWidth: descriptionLineButton.width
-                }
-
-                maxCharacters: JamiTheme.maximumCharacters
-                fontPixelSize: JamiTheme.materialLineEditSelectedPixelSize
-
-                isSwarmDetail: true
-
-                readOnly: !isAdmin || CurrentConversation.isCoreDialog
-
-                staticText: CurrentConversation.description
-                placeholderText: JamiStrings.addDescription
-                elidedText: descriptionLineButtonTextSize.elidedText
-
-                textColor: root.textColor
-                prefixIconColor: root.textColor
-
-                onAccepted: ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, dynamicText)
-
-                editMode: false
-
-                onActiveFocusChanged: {
-                    if (!activeFocus) {
-                        ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, dynamicText);
-                    }
-                    descriptionLineButton.editMode = activeFocus;
-                }
-
-                infoTipLineText: JamiStrings.addDescription
-            }
-
-            Text {
-                id: membersText
-                text: JamiStrings.groupMembers
-                Layout.fillWidth: true
-            }
-
-            GridLayout {
-                id: swarmDetailsMembersGrid
-
-                Layout.fillWidth: true
-                columns: CurrentConversation.members.length < 3 ? CurrentConversation.members.length : 4
-                uniformCellWidths: true
-                uniformCellHeights: true
-                Repeater {
-                    model: CurrentConversation.members
-                    delegate: ColumnLayout {
-                        // Note: Layout.* refers to Items in the context of the swarmDetailsMemberGrid GridLayout
-                        Layout.fillWidth: true
-                        Layout.preferredHeight: JamiTheme.swarmDetailsMemberCellHeight
-
-                        Avatar {
-                            id: memberDelegateAvatar
-                            Layout.alignment: Qt.AlignHCenter
-                            Layout.preferredWidth: JamiTheme.smartListAvatarSize
-                            Layout.preferredHeight: JamiTheme.smartListAvatarSize
-                            opacity: (MemberRole === Member.Role.INVITED || MemberRole === Member.Role.BANNED) ? 0.5 : 1
-
-                            imageId: CurrentAccount.uri === MemberUri ? CurrentAccount.id : MemberUri
-                            presenceStatus: UtilsAdapter.getContactPresence(CurrentAccount.id, MemberUri)
-                            showPresenceIndicator: presenceStatus > 0
-                            mode: CurrentAccount.uri === MemberUri ? Avatar.Mode.Account : Avatar.Mode.Contact
+                        down: swarmDetailsPanelTabBar.currentIndex === TabBar.index
+                        labelText: {
+                            var membersNb = CurrentConversation.members.count;
+                            if (membersNb > 1)
+                                return JamiStrings.members.arg(membersNb);
+                            return JamiStrings.member;
                         }
+                    }
 
-                        ElidedTextLabel {
-                            id: nameTextEdit
+                    FilterTabButton {
+                        id: filesTabButton
 
-                            Layout.fillWidth: true
-                            eText: UtilsAdapter.getContactBestName(CurrentAccount.id, MemberUri)
-                            maxWidth: width
+                        down: swarmDetailsPanelTabBar.currentIndex === TabBar.index
+                        labelText: JamiStrings.files
+                    }
 
-                            font.pointSize: JamiTheme.participantFontSize
-                            color: JamiTheme.primaryForegroundColor
-                            opacity: (MemberRole === Member.Role.INVITED || MemberRole === Member.Role.BANNED) ? 0.5 : 1
-                            font.kerning: true
+                    background: Rectangle {
+                        id: swarmDetailsPanelTabBarBackground
 
-                            verticalAlignment: Text.AlignVCenter
-                            horizontalAlignment: Text.AlignHCenter
+                        anchors.fill: parent
+                        color: JamiTheme.transparentColor
+                    }
+                }
 
-                            HoverHandler {
-                                id: nameTextEditHover
+                Text {
+                    id: filesText
+
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    Layout.alignment: Qt.AlignTop
+
+                    visible: CurrentConversation.isCoreDialog
+
+                    text: JamiStrings.files
+                    horizontalAlignment: Text.AlignLeft
+                    verticalAlignment: Text.AlignVCenter
+                }
+            }
+        }
+        Item {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+
+            ScrollView {
+                id: scrollView
+
+                anchors.fill: parent
+
+                contentWidth: availableWidth
+                clip: true
+
+                visible: !CurrentConversation.isCoreDialog && (!CurrentConversation.isCoreDialog && swarmDetailsPanelTabBar.currentIndex === 0)
+
+                Grid {
+                    id: membersGrid
+                    width: parent.width
+                    columns: CurrentConversation.members.length < 3 ? CurrentConversation.members.length : 4
+                    spacing: 4
+
+                    SwarmParticipantContextMenu {
+                        id: contextMenu
+                        role: UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri)
+
+                        function openMenuAt(x, y, participantUri) {
+                            contextMenu.x = x;
+                            contextMenu.y = y;
+                            contextMenu.conversationId = CurrentConversation.id;
+                            contextMenu.participantUri = participantUri;
+                            openMenu();
+                        }
+                    }
+
+                    Repeater {
+                        model: CurrentConversation.members
+                        delegate: ColumnLayout {
+                            id: memberDelegate
+
+                            width: (scrollView.width - (membersGrid.columns - 1) * membersGrid.spacing) / membersGrid.columns
+
+                            Item {
+                                Layout.alignment: Qt.AlignHCenter
+                                Layout.preferredWidth: JamiTheme.smartListAvatarSize
+                                Layout.preferredHeight: JamiTheme.smartListAvatarSize
+
+                                Avatar {
+                                    id: memberDelegateAvatar
+                                    anchors.fill: parent
+                                    opacity: (MemberRole === Member.Role.INVITED || MemberRole === Member.Role.BANNED) ? 0.5 : 1
+
+                                    imageId: CurrentAccount.uri === MemberUri ? CurrentAccount.id : MemberUri
+                                    presenceStatus: UtilsAdapter.getContactPresence(CurrentAccount.id, MemberUri)
+                                    showPresenceIndicator: presenceStatus > 0
+                                    mode: CurrentAccount.uri === MemberUri ? Avatar.Mode.Account : Avatar.Mode.Contact
+
+                                    MouseArea {
+                                        id: memberDelegateMouseArea
+
+                                        anchors.fill: parent
+
+                                        acceptedButtons: Qt.RightButton
+                                        hoverEnabled: true
+
+                                        onClicked: function (mouse) {
+                                            const position = mapToItem(membersGrid, mouse.x, mouse.y);
+                                            contextMenu.openMenuAt(position.x, position.y, MemberUri);
+                                        }
+                                    }
+
+                                    MaterialToolTip {
+                                        parent: memberDelegateMouseArea
+                                        property string tip: (MemberRole === Member.Role.ADMIN) ? JamiStrings.administrator : (MemberRole === Member.Role.INVITED) ? JamiStrings.invited : (MemberRole === Member.Role.BANNED) ? JamiStrings.blocked : ""
+                                        text: tip
+                                        visible: parent.containsMouse && tip.length > 0
+                                        delay: Qt.styleHints.mousePressAndHoldInterval
+                                    }
+                                }
+
+                                ResponsiveImage {
+                                    id: memberDelegateIcon
+
+                                    anchors.top: parent.top
+                                    anchors.right: parent.right
+
+                                    visible: MemberRole !== undefined
+
+                                    containerHeight: JamiTheme.iconButtonSmall
+                                    containerWidth: JamiTheme.iconButtonSmall
+
+                                    source: {
+                                        switch (MemberRole) {
+                                        case Member.Role.ADMIN:
+                                            return JamiResources.moderator_filled_svg;
+                                        case Member.Role.BANNED:
+                                            return JamiResources.ic_disconnect_participant_24dp_svg;
+                                        case Member.Role.INVITED:
+                                            return JamiResources.mail_24dp_svg;
+                                        default:
+                                            return "";
+                                        }
+                                    }
+                                    color: {
+                                        switch (MemberRole) {
+                                        case Member.Role.ADMIN:
+                                            return "#bf9b30";
+                                        case Member.Role.BANNED:
+                                            return JamiTheme.redColor;
+                                        case Member.Role.INVITED:
+                                            return JamiTheme.tintedBlue;
+                                        default:
+                                            return JamiTheme.transparentColor;
+                                        }
+                                    }
+                                }
+                            }
+
+                            ElidedTextLabel {
+                                id: nameTextEdit
+
+                                Layout.fillWidth: true
+                                eText: UtilsAdapter.getContactBestName(CurrentAccount.id, MemberUri)
+                                maxWidth: width
+
+                                font.pointSize: JamiTheme.participantFontSize
+                                color: JamiTheme.primaryForegroundColor
+                                opacity: (MemberRole === Member.Role.INVITED || MemberRole === Member.Role.BANNED) ? 0.5 : 1
+                                font.kerning: true
+
+                                verticalAlignment: Text.AlignVCenter
+                                horizontalAlignment: Text.AlignHCenter
                             }
                         }
                     }
                 }
             }
-        }
-
-        ColumnLayout {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-
-            Text {
-                Layout.alignment: Qt.AlignTop
-                text: JamiStrings.files
-            }
 
             DocumentsScrollview {
                 id: documents
-                Layout.fillWidth: true
-                Layout.fillHeight: true
+
+                anchors.fill: parent
+
+                visible: CurrentConversation.isCoreDialog || (!CurrentConversation.isCoreDialog && swarmDetailsPanelTabBar.currentIndex === 1)
+            }
+
+            Text {
+                anchors.fill: parent
+
+                text: JamiStrings.noFilesInConversation
+
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignTop
+
+                wrapMode: Text.WordWrap
+
+                visible: documents.visible && documents.model.count === 0
             }
         }
 
-        // Item { Scaffold {}
-        //     Layout.fillWidth: true
-        //     Layout.fillHeight: true
-
-        //     Text {
-        //         text: "HEY"
-        //     }
-
-        //     ColumnLayout {
-        //         width: parent.width
-        //         height: parent.height
-        //         Text {
-        //             id: filesText
-        //             text: JamiStrings.files
-        //             Layout.fillWidth: true
-        //             horizontalAlignment: Text.AlignLeft
-        //         }
-
-        //         DocumentsScrollview {
-        //             id: documents
-
-        //             visible: visible
-        //             Layout.fillWidth: true
-        //         }
-        //     }
-        // }
-
         MaterialButton {
             id: deleteAccount
+
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignBottom
 
