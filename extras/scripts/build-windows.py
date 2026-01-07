@@ -319,7 +319,8 @@ def deploy_runtimes(qt_dir):
         (".ul", ".ogg", ".wav", ".opus"))]
     ringtone_files = [os.path.join(ringtone_dir, f) for f in ringtone_files]
     default_ringtone = os.path.join(ringtone_dir, "default.opus")
-    ringtone_files.remove(default_ringtone)
+    if default_ringtone in ringtone_files:
+        ringtone_files.remove(default_ringtone)
     ringtone_dir_out = os.path.join(runtime_dir, "ringtones")
     if os.path.exists(ringtone_dir_out):
         shutil.rmtree(ringtone_dir_out)
