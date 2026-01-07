@@ -18,6 +18,8 @@ import QtQuick
 import QtQuick.Layouts
 import Qt.labs.platform
 import Qt5Compat.GraphicalEffects
+import QtQuick.Effects
+import QtQuick.Controls
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -58,33 +60,54 @@ Item {
             showPresenceIndicator: false
         }
 
-        JamiPushButton {
+        Button {
             id: editImage
 
-            width: doubleEditAvatar ? avatar.width / 2 : avatar.width / 4
-            height: doubleEditAvatar ? avatar.height / 2 : avatar.height / 4
             anchors.top: parent.top
             anchors.right: parent.right
             anchors.margins: doubleEditAvatar ? height / 4 : avatar.width / 22
 
-            source: JamiResources.round_edit_24dp_svg
+            icon.width: JamiTheme.iconButtonMedium
+            icon.height: JamiTheme.iconButtonMedium
+            icon.color: enabled ? hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered : JamiTheme.buttonTintedGreyHovered
+            icon.source: JamiResources.round_edit_24dp_svg
 
-            preferredSize: doubleEditAvatar ? avatar.width / 3 : avatar.width / 6
+            Behavior on icon.color {
+                enabled: root.enabled
+                ColorAnimation {
+                    duration: 200
+                }
+            }
 
-            normalColor: JamiTheme.secondaryBackgroundColor
-            hoveredColor: JamiTheme.hoveredButtonColorWizard
-            border.color: JamiTheme.editButtonBorderColor
-            border.width: 2
-            imageColor: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
+            background: Rectangle {
+                visible: editImage.enabled
 
-            enabled: avatar.visible && !root.readOnly
-            visible: enabled
+                width: parent.icon.width + (parent.icon.width / 2)
+                height: parent.icon.height + (parent.icon.height / 2)
+
+                radius: width / 2
+                anchors.centerIn: parent.contentItem
+
+                color: parent.hovered ? JamiTheme.hoveredButtonColor : JamiTheme.primaryBackgroundColor
+
+                // layer.enabled: true
+                // layer.effect: MultiEffect {
+                //     id: searchBarMultiEffect
+                //     anchors.fill: parent
+                //     shadowEnabled: true
+                //     shadowBlur: JamiTheme.shadowBlur
+                //     shadowColor: JamiTheme.shadowColor
+                //     shadowHorizontalOffset: JamiTheme.shadowHorizontalOffset
+                //     shadowVerticalOffset: JamiTheme.shadowVerticalOffset
+                //     shadowOpacity: JamiTheme.shadowOpacity
+                // }
+            }
 
             onClicked: viewCoordinator.presentDialog(parent, "commoncomponents/PhotoboothPopup.qml", {
-                    "parent": editImage,
-                    "imageId": root.imageId,
-                    "newItem": root.newItem
-                })
+                "parent": editImage,
+                "imageId": root.imageId,
+                "newItem": root.newItem
+            })
         }
     }
 }
