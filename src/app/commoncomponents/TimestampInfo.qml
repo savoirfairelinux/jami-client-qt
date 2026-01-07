@@ -67,7 +67,7 @@ ColumnLayout {
 
             width: formattedDayLabel.width + JamiTheme.dayTimestampVPadding
             height: formattedDayLabel.height + JamiTheme.dayTimestampHPadding
-            radius: 5
+            radius: height / 2
             color: JamiTheme.chatviewBgColor
             Layout.fillHeight: true
             anchors.centerIn: parent
