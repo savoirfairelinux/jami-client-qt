@@ -454,6 +454,7 @@ SidePanelBase {
             Layout.fillWidth: true
             Layout.minimumHeight: accountComboBox.height
             Layout.alignment: Qt.AlignBottom
+            Layout.topMargin: 8
 
             Shortcut {
                 sequence: "Ctrl+J"

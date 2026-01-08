@@ -45,7 +45,7 @@ Rectangle {
 
     radius: JamiTheme.commonRadius
 
-    color: JamiTheme.secondaryBackgroundColor
+    color: JamiTheme.searchBarColor
 
     onFocusChanged: {
         if (focus) {
