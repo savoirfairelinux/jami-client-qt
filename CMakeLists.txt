@@ -1034,3 +1034,6 @@ if(BUILD_TESTING)
   enable_testing()
   add_subdirectory(${TESTS_DIR})
 endif()
+
+# Jami Modern Client
+add_subdirectory(src/modern)

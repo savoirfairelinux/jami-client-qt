@@ -28,7 +28,10 @@ endif()
 
 set(QTWRAPPER_SOURCES
   instancemanager.cpp
-  videomanager_wrap.cpp)
+  videomanager_wrap.cpp
+  instancemanager_wrap.h)
+
+set_source_files_properties(videomanager_wrap.cpp PROPERTIES SKIP_AUTOMOC ON)
 
 if(ENABLE_PLUGIN)
   message("Adding pluginmanager.cpp")
