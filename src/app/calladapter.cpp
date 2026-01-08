@@ -364,6 +364,41 @@ CallAdapter::startCall()
 }
 
 void
+CallAdapter::startOrJoinCall(const QString& callId, bool videoMuted)
+{
+    const auto convUid = lrcInstance_->get_selectedConvUid();
+    if (convUid.isEmpty())
+        return;
+    const auto accountId = lrcInstance_->get_currentAccountId();
+    const auto& convInfo = lrcInstance_->getConversationFromConvUid(convUid, accountId);
+
+    if (!convInfo.activeCalls.empty()) {
+        // If there is an active call, try to join it by matching it against the provided callId
+        const auto& calls = convInfo.activeCalls;
+        for (const auto& call : calls) {
+            QString currentCallId = call.value("id");
+            if (!callId.isEmpty() && currentCallId == callId) {
+                lrcInstance_->getCurrentConversationModel()->joinCall(convUid,
+                                                                      call.value("uri"),
+                                                                      call.value("device"),
+                                                                      currentCallId,
+                                                                      videoMuted);
+                return;
+            }
+        }
+        // No matching callId found
+        qWarning() << "Could not join call: no active call with callId:" << callId << "found.";
+    } else {
+        // If there is no active call in the conversation, start a new one
+        if (videoMuted) {
+            startAudioOnlyCall();
+        } else {
+            startCall();
+        }
+    }
+}
+
+void
 CallAdapter::endCall(const QString& accountId, const QString& convUid)
 {
     const auto& convInfo = lrcInstance_->getConversationFromConvUid(convUid, accountId);
