@@ -319,7 +319,7 @@ ItemDelegate {
         },
         State {
             name: "hovered"
-            when: !highlighted && hovered
+            when: root.activeFocus || (!highlighted && hovered)
             PropertyChanges {
                 target: contentRect
                 color: JamiTheme.smartListHoveredColor
