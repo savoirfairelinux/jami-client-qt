@@ -63,6 +63,15 @@ public:
     Q_INVOKABLE void stopTimerInformation();
     Q_INVOKABLE void startAudioOnlyCall();
     Q_INVOKABLE void startCall();
+
+    // Method designed for QML components that want to either start or join a call
+    // with audio only depending on whether there is an active call or not
+    Q_INVOKABLE void startOrJoinAudioOnlyCall(const QString& callId = {});
+
+    // Method designed for QML components that want to either start or join a call
+    // with video depending on whether there is an active call or not
+    Q_INVOKABLE void startOrJoinCall(const QString& callId = {});
+
     Q_INVOKABLE void endCall(const QString& accountId, const QString& convUid);
     Q_INVOKABLE void setCallMedia(const QString& accountId, const QString& convUid, bool videoMuted);
     Q_INVOKABLE void acceptCall(const QString& accountId, const QString& convUid);
