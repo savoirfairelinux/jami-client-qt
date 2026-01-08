@@ -37,6 +37,6 @@ ListView {
     // HACK: remove after migration to Qt 6.7+
     boundsBehavior: Flickable.StopAtBounds
 
-    Keys.onUpPressed: verticalScrollBar.decrease()
-    Keys.onDownPressed: verticalScrollBar.increase()
+    keyNavigationEnabled: true
+    keyNavigationWraps: true
 }

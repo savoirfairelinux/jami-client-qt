@@ -231,6 +231,7 @@ SidePanelBase {
                             }
                         }
                     }
+
                     // Label/button to create a new swarm.
                     RowLayout {
                         id: createSwarmToggle
@@ -366,6 +367,9 @@ SidePanelBase {
                         Layout.alignment: Qt.AlignTop
 
                         Layout.bottomMargin: -10
+
+                        // We need to propogate the active to the smartListLayout
+                        onCurrentIndexChanged: smartListLayout.forceActiveFocus()
                     }
 
                     Rectangle {
@@ -413,8 +417,20 @@ SidePanelBase {
 
                         visible: !swarmMemberSearchList.visible
 
+                        onActiveFocusChanged: {
+                            // We need to defer to the focus to the appropriate list
+                            if (smartListLayout.activeFocus) {
+                                if (searchResultsListView.visible)
+                                    conversationListView.forceActiveFocus();
+                                if (conversationListView.visible)
+                                    conversationListView.forceActiveFocus();
+                            }
+                        }
+
                         ConversationListView {
                             id: searchResultsListView
+
+                            activeFocusOnTab: true
 
                             visible: count
                             opacity: visible ? 1 : 0
@@ -444,6 +460,8 @@ SidePanelBase {
 
                                     anchors.right: parent.right
                                     anchors.verticalCenter: parent.verticalCenter
+                                    normalColor: JamiTheme.globalIslandColor
+
                                     visible: isTemporary || isBanned
                                     source: JamiResources.add_people_24dp_svg
                                     toolTipText: JamiStrings.addToConversations
@@ -468,6 +486,8 @@ SidePanelBase {
 
                         ConversationListView {
                             id: conversationListView
+
+                            activeFocusOnTab: true
 
                             Layout.fillWidth: true
                             Layout.fillHeight: true
