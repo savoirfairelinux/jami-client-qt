@@ -33,7 +33,9 @@ ContextMenuAutoLoader {
     property bool isCoreDialog: false
     property var mode: undefined
     property int contactType: Profile.Type.INVALID
-    property bool hasCall: false
+    property bool hasActiveCall: false
+    property string callId: ""
+    property bool hasJoinedCall: false
     property bool readOnly: false
 
     // For UserProfile dialog.
@@ -42,33 +44,42 @@ ContextMenuAutoLoader {
     property string idText
 
     property list<GeneralMenuItem> menuItems: [
+        // The audioCall and videoCall items display "Start ..." if there is no active call,
+        // and "Join ..." if there is an active call
         GeneralMenuItem {
-            id: startVideoCall
+            id: audioCall
 
-            canTrigger: CurrentAccount.videoEnabled_Video && !hasCall && !readOnly
-            itemName: JamiStrings.startVideoCall
-            iconSource: JamiResources.videocam_24dp_svg
-            onClicked: {
-                LRCInstance.selectConversation(responsibleConvUid, responsibleAccountId);
-                if (CurrentAccount.videoEnabled_Video)
-                    CallAdapter.startCall();
-            }
-        },
-        GeneralMenuItem {
-            id: startAudioCall
-
-            canTrigger: !hasCall && !readOnly
-            itemName: JamiStrings.startAudioCall
+            canTrigger: !readOnly && !hasJoinedCall
+            itemName: hasActiveCall ? JamiStrings.joinWithAudio : JamiStrings.startAudioCall
             iconSource: JamiResources.start_audiocall_24dp_svg
             onClicked: {
                 LRCInstance.selectConversation(responsibleConvUid, responsibleAccountId);
-                CallAdapter.startAudioOnlyCall();
+                CallAdapter.startOrJoinCall(root.callId, true);
             }
+        },
+        GeneralMenuItem {
+            id: videoCall
+
+            canTrigger: CurrentAccount.videoEnabled_Video && !readOnly && !hasJoinedCall
+            itemName: hasActiveCall ? JamiStrings.joinWithVideo : JamiStrings.startVideoCall
+            iconSource: JamiResources.videocam_24dp_svg
+            onClicked: {
+                LRCInstance.selectConversation(responsibleConvUid, responsibleAccountId);
+                CallAdapter.startOrJoinCall(root.callId, false);
+            }
+        },
+        GeneralMenuItem {
+            id: endCall
+
+            canTrigger: hasJoinedCall
+            itemName: JamiStrings.endCall
+            iconSource: JamiResources.ic_call_end_white_24dp_svg
+            onClicked: CallAdapter.endCall(responsibleAccountId, responsibleConvUid)
         },
         GeneralMenuItem {
             id: deleteConversation
 
-            canTrigger: mode === Conversation.Mode.NON_SWARM && !hasCall && !root.isBanned
+            canTrigger: mode === Conversation.Mode.NON_SWARM && !hasActiveCall && !root.isBanned
             itemName: JamiStrings.deleteConversation
             iconSource: JamiResources.ic_clear_24dp_svg
             onClicked: MessagesAdapter.clearConversationHistory(responsibleAccountId, responsibleConvUid)
@@ -76,7 +87,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: removeConversation
 
-            canTrigger: !hasCall && !root.isBanned
+            canTrigger: !hasActiveCall && !root.isBanned
             itemName: mode === Conversation.Mode.ONE_TO_ONE ? JamiStrings.removeConversation : JamiStrings.leaveGroup
             iconSource: JamiResources.ic_disconnect_participant_24dp_svg
             onClicked: {
@@ -93,7 +104,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: removeContact
 
-            canTrigger: !hasCall && !root.isBanned && mode === Conversation.Mode.ONE_TO_ONE
+            canTrigger: !hasActiveCall && !root.isBanned && mode === Conversation.Mode.ONE_TO_ONE
             itemName: JamiStrings.removeContact
             iconSource: JamiResources.kick_member_svg
             onClicked: {
@@ -106,14 +117,6 @@ ContextMenuAutoLoader {
                     MessagesAdapter.removeContact(responsibleConvUid);
                 });
             }
-        },
-        GeneralMenuItem {
-            id: endCall
-
-            canTrigger: hasCall
-            itemName: JamiStrings.endCall
-            iconSource: JamiResources.ic_call_end_white_24dp_svg
-            onClicked: CallAdapter.endCall(responsibleAccountId, responsibleConvUid)
         },
         GeneralMenuItem {
             id: acceptContactRequest
@@ -134,7 +137,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: blockContact
 
-            canTrigger: !hasCall && contactType !== Profile.Type.SIP && !root.isBanned && isCoreDialog && root.idText !== CurrentAccount.uri
+            canTrigger: !hasActiveCall && contactType !== Profile.Type.SIP && !root.isBanned && isCoreDialog && root.idText !== CurrentAccount.uri
             itemName: JamiStrings.blockContact
             iconSource: JamiResources.block_black_24dp_svg
             onClicked: {
