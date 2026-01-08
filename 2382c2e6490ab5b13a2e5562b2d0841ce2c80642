@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad778ff2_7340ab82",
+        "filename": "src/app/mainview/components/ConversationSmartListContextMenu.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1147
+      },
+      "writtenOn": "2026-01-08T20:28:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b26a903_b0f2ae11",
+      "range": {
+        "startLine": 38,
+        "startChar": 18,
+        "endLine": 38,
+        "endChar": 30
+      },
+      "revId": "2382c2e6490ab5b13a2e5562b2d0841ce2c80642",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "53fabe1a_8dc9de13",
@@ -41,6 +65,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9b41b19_979ea726",
+        "filename": "src/app/mainview/components/ConversationSmartListContextMenu.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1147
+      },
+      "writtenOn": "2026-01-08T20:28:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53fabe1a_8dc9de13",
+      "revId": "2382c2e6490ab5b13a2e5562b2d0841ce2c80642",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "534b4471_6248fdf5",
@@ -54,6 +96,30 @@
       "writtenOn": "2026-01-08T20:09:04Z",
       "side": 1,
       "message": "const",
+      "range": {
+        "startLine": 81,
+        "startChar": 20,
+        "endLine": 81,
+        "endChar": 23
+      },
+      "revId": "2382c2e6490ab5b13a2e5562b2d0841ce2c80642",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8e8b207_7091a98f",
+        "filename": "src/app/mainview/components/ConversationSmartListContextMenu.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1147
+      },
+      "writtenOn": "2026-01-08T20:28:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "534b4471_6248fdf5",
       "range": {
         "startLine": 81,
         "startChar": 20,
