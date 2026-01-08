@@ -69,4 +69,7 @@ Button {
         visible: root.enabled && (root.hovered || root.activeFocus) && (toolTipText.length > 0)
         delay: Qt.styleHints.mousePressAndHoldInterval
     }
+
+    Accessible.role: Accessible.Button
+    Accessible.name: iconButtonToolTip.text
 }
