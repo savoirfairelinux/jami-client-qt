@@ -310,7 +310,7 @@ ItemDelegate {
             when: !highlighted && !hovered
             PropertyChanges {
                 target: contentRect
-                color: JamiTheme.backgroundColor
+                color: JamiTheme.globalIslandColor
             }
             PropertyChanges {
                 target: root
