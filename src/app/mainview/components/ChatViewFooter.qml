@@ -39,7 +39,7 @@ Rectangle {
 
     implicitHeight: footerColumnLayout.implicitHeight
 
-    color: JamiTheme.primaryBackgroundColor
+    color: JamiTheme.globalBackgroundColor
 
     function updateMessageDraft() {
         // Store the current files that have not been sent, if any. Do the same for the message draft.

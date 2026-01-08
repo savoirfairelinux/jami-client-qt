@@ -30,7 +30,7 @@ SidePanelBase {
 
     objectName: "SidePanel"
 
-    color: JamiTheme.primaryBackgroundColor
+    color: JamiTheme.globalBackgroundColor
 
     Connections {
         target: LRCInstance
@@ -181,7 +181,10 @@ SidePanelBase {
         ColumnLayout {
             anchors.fill: parent
             // Creates The floating rectangle itself
-            anchors.margins: JamiTheme.sidePanelIslandsPadding
+            anchors.leftMargin: JamiTheme.sidePanelIslandsPadding
+            anchors.topMargin: JamiTheme.sidePanelIslandsPadding
+            anchors.bottomMargin: JamiTheme.sidePanelIslandsPadding
+            anchors.rightMargin: JamiTheme.sidePanelIslandsPadding * 2
 
             Item {
                 Layout.fillWidth: true
@@ -192,7 +195,7 @@ SidePanelBase {
 
                     anchors.fill: parent
 
-                    color: JamiTheme.backgroundColor
+                    color: JamiTheme.globalIslandColor
                     radius: JamiTheme.commonRadius
                     layer.enabled: true
                     layer.effect: MultiEffect {
@@ -262,7 +265,7 @@ SidePanelBase {
 
                             imageColor: JamiTheme.textColor
                             imagePadding: 8
-                            normalColor: JamiTheme.secondaryBackgroundColor
+                            normalColor: JamiTheme.newSwarmButtonColor
 
                             preferredSize: createSwarmToggle.height
 
@@ -331,7 +334,7 @@ SidePanelBase {
 
                             imageColor: JamiTheme.textColor
                             imagePadding: 8
-                            normalColor: JamiTheme.secondaryBackgroundColor
+                            normalColor: JamiTheme.newSwarmButtonColor
 
                             preferredSize: startBar.height
 
@@ -555,6 +558,7 @@ SidePanelBase {
                 Layout.fillWidth: true
                 Layout.minimumHeight: accountComboBox.height
                 Layout.alignment: Qt.AlignBottom
+                Layout.topMargin: 8
 
                 Shortcut {
                     sequence: "Ctrl+J"
