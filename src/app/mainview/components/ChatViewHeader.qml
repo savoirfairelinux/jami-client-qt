@@ -66,7 +66,7 @@ Rectangle {
         return CurrentConversation.isSwarm && !CurrentConversation.isRequest;
     }
 
-    color: JamiTheme.chatviewBgColor
+    color: JamiTheme.globalBackgroundColor
 
     RowLayout {
         id: messagingHeaderRectRowLayout
@@ -83,6 +83,8 @@ Rectangle {
 
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
             Layout.leftMargin: 8
+
+            normalColor: JamiTheme.globalBackgroundColor
 
             mirror: UtilsAdapter.isRTL
 

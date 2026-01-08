@@ -20,7 +20,7 @@ import QtQuick.Controls
 import net.jami.Constants 1.1
 
 /* NOTE: This is a high-level imlpementation of the icon button.
- *      Use the standard fixed icon button size (small, medium, large)
+ *      Use the standard fixed icon button size (small, medium, large, extra large)
  *      as found in JamiTheme. If using a custom size, add a comment
  *      explaining why.
  */

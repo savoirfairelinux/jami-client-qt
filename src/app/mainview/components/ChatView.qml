@@ -43,7 +43,7 @@ Rectangle {
         AddMemberPanel
     }
 
-    color: JamiTheme.chatviewBgColor
+    color: JamiTheme.globalBackgroundColor
 
     property var mapPositions: PositionManager.mapStatus
     property bool isConversationEndedFlag: false
