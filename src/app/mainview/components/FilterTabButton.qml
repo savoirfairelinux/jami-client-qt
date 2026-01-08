@@ -66,7 +66,7 @@ TabButton {
         anchors.fill: root
         anchors.margins: 8
 
-        color: (root.down || root.hovered || root.activeFocus) ? JamiTheme.hoveredButtonColor : JamiTheme.backgroundColor
+        color: (root.down || root.hovered || root.activeFocus) ? JamiTheme.hoveredButtonColor : JamiTheme.globalBackgroundColor
         opacity: (root.down || root.hovered || root.activeFocus) ? 1.0 : 0.0
         radius: height / 2
 
@@ -90,68 +90,3 @@ TabButton {
         onActivated: selected()
     }
 }
-
-// contentItem: Rectangle {
-//     anchors.fill: parent
-//     anchors.margins: JamiTheme.itemMarginHorizontal
-
-//     color: (root.down || root.hovered || root.activeFocus) ? JamiTheme.hoveredButtonColor : JamiTheme.backgroundColor
-
-//     radius: width / 2
-
-//     Text {
-//         id: label
-
-//         // Layout.alignment: Qt.AlignCenter
-
-//         font.pointSize: fontSize
-
-//         horizontalAlignment: Text.AlignHCenter
-//         verticalAlignment: Text.AlignVCenter
-//         elide: Text.ElideRight
-
-//         color: (root.hovered || root.activeFocus) ? JamiTheme.textColorHovered : JamiTheme.textColor
-//     }
-
-//         BadgeNotifier {
-//             visible: false
-//             id: badge
-//             size: 20
-//         }
-
-//     // RowLayout {
-//     //     anchors.fill: parent
-
-//     //     Text {
-//     //         id: label
-
-//     //         Layout.alignment: Qt.AlignCenter
-
-//     //         font.pointSize: fontSize
-
-//     //         horizontalAlignment: Text.AlignHCenter
-//     //         verticalAlignment: Text.AlignVCenter
-//     //         elide: Text.ElideRight
-
-//     //         color: (root.hovered || root.activeFocus) ? JamiTheme.textColorHovered : JamiTheme.textColor
-//     //     }
-
-//     //     BadgeNotifier {
-//     //         id: badge
-//     //         size: 20
-//     //     }
-//     // }
-
-//     Behavior on color {
-//         ColorAnimation {
-//             duration: JamiTheme.shortFadeDuration
-//         }
-//     }
-// }
-
-// background: Rectangle {
-//     id: contentRect
-//     anchors.fill: root
-//     color: JamiTheme.transparentColor//JamiTheme.backgroundColor
-// }
-

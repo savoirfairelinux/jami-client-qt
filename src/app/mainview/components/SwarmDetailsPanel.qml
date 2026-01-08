@@ -35,7 +35,7 @@ Rectangle {
     anchors.fill: parent
     anchors.margins: JamiTheme.sidePanelIslandsPadding
 
-    color: JamiTheme.backgroundColor
+    color: JamiTheme.globalIslandColor
     radius: JamiTheme.commonRadius
     property var isAdmin: UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri) === Member.Role.ADMIN || CurrentConversation.isCoreDialog
 
@@ -214,6 +214,7 @@ Rectangle {
                     visible: CurrentConversation.isCoreDialog
 
                     text: JamiStrings.files
+                    color: JamiTheme.textColor
                     horizontalAlignment: Text.AlignLeft
                     verticalAlignment: Text.AlignVCenter
                 }
@@ -367,6 +368,7 @@ Rectangle {
                 anchors.fill: parent
 
                 text: JamiStrings.noFilesInConversation
+                color: JamiTheme.textColor
 
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignTop

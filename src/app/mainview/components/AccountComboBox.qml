@@ -43,7 +43,7 @@ Item {
         id: contentRect
 
         anchors.fill: root
-        color: JamiTheme.backgroundColor
+        color: JamiTheme.globalIslandColor
         radius: JamiTheme.commonRadius
         layer.enabled: true
         layer.effect: MultiEffect {
@@ -185,7 +185,7 @@ Item {
                     id: background
 
                     anchors.fill: accountComboBox
-                    color: accountComboBox.hovered ? JamiTheme.hoverColor : JamiTheme.backgroundColor
+                    color: accountComboBox.hovered ? JamiTheme.hoverColor : JamiTheme.globalIslandColor
                     radius: JamiTheme.commonRadius
                     Behavior on color {
                         ColorAnimation {

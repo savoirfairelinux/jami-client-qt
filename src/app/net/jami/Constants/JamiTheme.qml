@@ -718,11 +718,11 @@ Item {
     property int commonRadius: JamiTheme.smartListAvatarSize / 2 + 8
 
     // Generalized shadows
-    property real shadowBlur: 0.5
-    property color shadowColor: "#77767B" //JamiTheme.blackColor
+    property real shadowBlur: 1.0
+    property color shadowColor: darkTheme ? "#000000" : "#77767B"
     property real shadowHorizontalOffset: 0
-    property real shadowVerticalOffset: 1.5
-    property real shadowOpacity: 0.5
+    property real shadowVerticalOffset: 4
+    property real shadowOpacity: 0.6
 
     // Sip Input Panel (dialpad)
     property int sipInputPanelRadius: 30
@@ -744,6 +744,10 @@ Item {
     property int searchBarIconPadding: 8
     property color searchBarIconActive: darkTheme ? whiteColor : blackColor
     property color searchBarIconIdle: darkTheme ? "#909090" : "#7e7e7e"
+    property color searchBarColor: darkTheme ? "#3c3b3b" : "#ffffff"
+
+    // Create new swarm push button
+    property color newSwarmButtonColor: searchBarColor
 
     // Account combo box
     property int accountComboBoxRadius: JamiTheme.avatarRadius + 8
@@ -766,4 +770,10 @@ Item {
 
     // GeneralMenuItem
     property int generalMenuItemPadding: 8
+
+    // Global background color
+    property color globalBackgroundColor: darkTheme ? "#201f1f" : "#FFFFFF"
+
+    // Global Island color
+    property color globalIslandColor: darkTheme ? "#201f1f" : "#f4f0ef"
 }
