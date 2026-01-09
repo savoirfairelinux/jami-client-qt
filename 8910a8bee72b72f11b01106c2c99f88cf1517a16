@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "5818800c_33ce6b00",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-01-09T00:05:13Z",
+      "side": 1,
+      "message": "Does this patch also fix https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/2154? If so, should the following be added?\n`GitLab: #2154`\n\nThank you",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 13
+      },
+      "revId": "8910a8bee72b72f11b01106c2c99f88cf1517a16",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "56e9678f_8a09baa5",
