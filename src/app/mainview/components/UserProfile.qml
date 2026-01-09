@@ -32,7 +32,7 @@ BaseModalDialog {
 
     title: JamiStrings.contactDetails
 
-    popupContent: Rectangle {
+    dialogContent: Rectangle {
         color: JamiTheme.backgroundRectangleColor
         width: idRectangle.width + 20
         height: userProfileDialogLayout.height + 10

@@ -49,7 +49,7 @@ BaseModalDialog {
 
     title: JamiStrings.changeShortcut
 
-    popupContent: ColumnLayout {
+    dialogContent: ColumnLayout {
         id: deleteAccountContentColumnLayout
         anchors.centerIn: parent
         spacing: 20

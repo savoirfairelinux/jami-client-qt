@@ -27,7 +27,7 @@ BaseModalDialog {
 
     title: JamiStrings.dictionaryManager
 
-    popupContent: DictionaryInstallView {
+    dialogContent: DictionaryInstallView {
         Accessible.name: JamiStrings.dictionaryManager
         Accessible.role: Accessible.PopupMenu
         width: 400

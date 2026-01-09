@@ -31,9 +31,10 @@ BaseModalDialog {
     title: JamiStrings.deleteAccount
 
     closeButtonVisible: false
-    button1.text: JamiStrings.optionDelete
 
+    button1.text: JamiStrings.optionDelete
     button1Role: DialogButtonBox.DestructiveRole
+    button1.contentColorProvider: JamiTheme.deleteRedButton
     button1.onClicked: {
         button1.enabled = false;
         busyInd.running = true;
@@ -45,7 +46,6 @@ BaseModalDialog {
     button2.text: JamiStrings.optionCancel
     button2Role: DialogButtonBox.RejectRole
     button2.onClicked: close()
-    button1.contentColorProvider: JamiTheme.deleteRedButton
 
     BusyIndicator {
         id: busyInd
@@ -58,7 +58,7 @@ BaseModalDialog {
         }
     }
 
-    popupContent: ColumnLayout {
+    dialogContent: ColumnLayout {
         id: deleteAccountContentColumnLayout
         anchors.centerIn: parent
         spacing: 10
@@ -67,7 +67,7 @@ BaseModalDialog {
             id: labelDeletion
 
             Layout.alignment: Qt.AlignLeft
-            Layout.maximumWidth: root.width - 4 * JamiTheme.preferredMarginSize
+            Layout.fillWidth: true
             Layout.bottomMargin: 5
 
             color: JamiTheme.textColor
@@ -84,9 +84,9 @@ BaseModalDialog {
 
             color: JamiTheme.backgroundRectangleColor
 
+            Layout.fillWidth: true
             Layout.preferredWidth: parent.width
             Layout.preferredHeight: userProfileDialogLayout.height
-            Layout.maximumWidth: root.width - 80
 
             radius: JamiTheme.commonRadius
 
@@ -232,8 +232,8 @@ BaseModalDialog {
             color: JamiTheme.warningRedRectangle
 
             Layout.preferredWidth: parent.width
+            Layout.fillWidth: true
             Layout.preferredHeight: labelWarning.height + 20
-            Layout.maximumWidth: root.width - 80
 
             radius: JamiTheme.commonRadius
 

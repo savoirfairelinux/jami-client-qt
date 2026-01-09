@@ -33,7 +33,7 @@ BaseModalDialog {
 
     button2.onClicked: close()
 
-    popupContent: StackLayout {
+    dialogContent: StackLayout {
         id: stackedWidget
 
         width: children[currentIndex].width

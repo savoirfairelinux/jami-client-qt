@@ -21,15 +21,14 @@ import Qt5Compat.GraphicalEffects
 import net.jami.Constants 1.1
 import "../mainview/components"
 
-Popup {
+Dialog {
     id: root
 
     // convient access to closePolicy
     property bool autoClose: true
-    property alias backgroundColor: container.color
-    property alias backgroundOpacity: container.background.opacity
-    property alias title: titleText.text
-    property var popupcontainerSubContentLoader: containerSubContentLoader
+    property alias backgroundColor: background.color
+    property alias backgroundOpacity: background.opacity
+    property var dialogContentSubContentLoader: dialogContentSubContentLoader
 
     property bool closeButtonVisible: true
     property int button1Role
@@ -40,8 +39,8 @@ Popup {
     property alias button2: action2
     property alias button3: action3
 
-    property alias popupContentLoadStatus: containerSubContentLoader.status
-    property alias popupContent: containerSubContentLoader.sourceComponent
+    property alias dialogContentLoadStatus: dialogContentSubContentLoader.status
+    property alias dialogContent: root.contentItem// dialogContentSubContentLoader.sourceComponent
 
     property int popupMargins: 30
     property int buttonMargin: 20
@@ -54,39 +53,30 @@ Popup {
     focus: true
     closePolicy: autoClose ? (Popup.CloseOnEscape | Popup.CloseOnPressOutside) : Popup.NoAutoClose
 
-    contentItem: Control {
-        id: container
+    header: Control {
+        padding: JamiTheme.preferredMarginSize
+        
+        contentItem: RowLayout {
+            Text {
+                id: titleText
 
-        property color color: JamiTheme.secondaryBackgroundColor
-        bottomPadding: action1.visible || action2.visible ? 10 : popupMargins
+                Layout.fillWidth: true
+                Layout.alignment: Qt.AlignLeft
 
-        background: Rectangle {
-            id: bgRect
+                text: title
+                verticalAlignment: Text.AlignVCenter
+                font.pointSize: JamiTheme.menuFontSize
+                font.bold: true
+                color: JamiTheme.textColor
 
-            radius: JamiTheme.commonRadius
-            color: container.color
-            layer.enabled: true
-            layer.effect: DropShadow {
-                horizontalOffset: 3.0
-                verticalOffset: 3.0
-                radius: bgRect.radius * 4
-                color: JamiTheme.shadowColor
-                source: bgRect
-                transparentBorder: true
-                samples: radius + 1
+                visible: text.length > 0
             }
-        }
-
-        contentItem: ColumnLayout {
-            id: contentLayout
 
             NewIconButton {
                 id: closeButton
                 QWKSetParentHitTestVisible {}
 
-                Layout.alignment: Qt.AlignRight | Qt.AlignTop
-                Layout.topMargin: 5
-                Layout.rightMargin: 5
+                Layout.alignment: Qt.AlignRight
 
                 iconSize: JamiTheme.iconButtonMedium
                 iconSource: JamiResources.round_close_24dp_svg
@@ -99,88 +89,80 @@ Popup {
                 Accessible.role: Accessible.Button
                 Accessible.name: JamiStrings.close
             }
+        }
+    }
 
-            Label {
-                id: titleText
+    contentItem: ColumnLayout {
+        id: dialogContent
 
-                Layout.leftMargin: popupMargins
-                Layout.rightMargin: popupMargins
-                Layout.bottomMargin: 20
-                Layout.topMargin: closeButtonVisible ? 0 : 30
-                Layout.alignment: Qt.AlignLeft
+        Layout.fillWidth: true
+        Layout.fillHeight: true
 
-                font.pointSize: JamiTheme.menuFontSize
-                color: JamiTheme.textColor
-                font.bold: true
+        JamiFlickable {
+            id: flickable
+
+            Layout.fillHeight: true
+            Layout.preferredHeight: Math.min(contentHeight, root.height)
+            Layout.fillWidth: true
+            Layout.alignment: Qt.AlignCenter
+
+            contentHeight: contentItem.childrenRect.height
+
+            contentItem.children: Loader {
+                id: dialogContentSubContentLoader
+            }
+
+            ScrollBar.horizontal.visible: false
+        }
+    }
+
+    footer: Control {
+        padding: JamiTheme.preferredMarginSize
+        
+        contentItem: RowLayout {
+            MaterialButton {
+                id: action1
+
+                Layout.fillWidth: true
+
+                tertiary: true
+                autoAccelerator: true
+                DialogButtonBox.buttonRole: root.button1Role
 
                 visible: text.length > 0
             }
 
-            JamiFlickable {
-                id: flickable
-
-                Layout.fillHeight: true
-                Layout.preferredHeight: Math.min(contentHeight, root.height)
-                Layout.preferredWidth: contentItem.childrenRect.width + ScrollBar.vertical.width
-                Layout.leftMargin: popupMargins
-                Layout.rightMargin: popupMargins
-                Layout.alignment: Qt.AlignCenter
-
-                contentHeight: contentItem.childrenRect.height
-
-                contentItem.children: Loader {
-                    id: containerSubContentLoader
-                }
-
-                ScrollBar.horizontal.visible: false
-            }
-
-            RowLayout {
-                id: buttonBox
+            MaterialButton {
+                id: action2
 
                 Layout.fillWidth: true
-                Layout.alignment: (action1.visible && action2.visible && action3.visible) ? Qt.AlignHCenter : Qt.AlignRight
-                Layout.rightMargin: !(action1.visible && action2.visible && action3.visible) ? buttonMargin : 0
-                spacing: 1.5
 
-                MaterialButton {
-                    id: action1
+                tertiary: true
+                autoAccelerator: true
+                DialogButtonBox.buttonRole: root.button2Role
 
-                    visible: text.length > 0
-                    horizontalPadding: buttonMargin
-                    tertiary: true
-                    autoAccelerator: true
+                visible: text.length > 0
+            }
 
-                    DialogButtonBox.buttonRole: root.button1Role
-                }
+            MaterialButton {
+                id: action3
 
-                MaterialButton {
-                    id: action2
+                Layout.fillWidth: true
 
-                    visible: text.length > 0
-                    horizontalPadding: buttonMargin
-                    tertiary: true
-                    autoAccelerator: true
+                tertiary: true
+                autoAccelerator: true
+                DialogButtonBox.buttonRole: root.button3Role
 
-                    DialogButtonBox.buttonRole: root.button2Role
-                }
-
-                MaterialButton {
-                    id: action3
-
-                    visible: text.length > 0
-                    horizontalPadding: buttonMargin
-                    tertiary: true
-                    autoAccelerator: true
-
-                    DialogButtonBox.buttonRole: root.button3Role
-                }
+                visible: text.length > 0
             }
         }
     }
 
     background: Rectangle {
-        color: JamiTheme.transparentColor
+        id: background
+
+        color: JamiTheme.globalBackgroundColor
+        radius: JamiTheme.commonRadius
     }
 
     Overlay.modal: Rectangle {

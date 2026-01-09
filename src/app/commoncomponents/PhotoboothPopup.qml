@@ -79,7 +79,7 @@ BaseModalDialog {
         }
     }
 
-    popupContent: RowLayout {
+    dialogContent: RowLayout {
         id: buttonsRowLayout
 
         spacing: 18

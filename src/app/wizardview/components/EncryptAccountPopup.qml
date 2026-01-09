@@ -36,7 +36,7 @@ BaseModalDialog {
     button2.text: JamiStrings.optionCancel
     button2.onClicked: close()
 
-    popupContent: ColumnLayout {
+    dialogContent: ColumnLayout {
 
         id: passwordColumnLayout
         anchors.bottomMargin: 30

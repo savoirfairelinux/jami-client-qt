@@ -83,7 +83,7 @@ BaseModalDialog {
         }
     }
 
-    popupContent: ColumnLayout {
+    dialogContent: ColumnLayout {
         Label {
             id: infoTextLabel
 

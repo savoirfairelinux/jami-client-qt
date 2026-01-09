@@ -28,7 +28,7 @@ BaseModalDialog {
 
     onClosed: accepted()
 
-    popupContent: Column {
+    dialogContent: Column {
         spacing: 5
         width: 400 - 2 * root.popupMargins
 
