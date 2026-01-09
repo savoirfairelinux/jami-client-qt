@@ -154,6 +154,102 @@ Rectangle {
         }
 
         Item {
+            id: textEditContents
+
+            Layout.fillWidth: true
+            Layout.preferredHeight: 80
+            Layout.alignment: Qt.AlignTop
+
+            ColumnLayout {
+                anchors.fill: parent
+                spacing: 0
+                ModalTextEdit {
+                    id: titleLine
+
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+
+                    TextMetrics {
+                        id: titleLineTextSize
+                        text: CurrentConversation.title
+                        elide: Text.ElideRight
+                        elideWidth: titleLine.width
+                    }
+
+                    maxCharacters: JamiTheme.maximumCharacters
+                    fontPixelSize: JamiTheme.materialLineEditPixelSize
+
+                    isSwarmDetail: true
+                    readOnly: !isAdmin
+
+                    staticText: CurrentConversation.title
+                    elidedText: titleLineTextSize.elidedText
+
+                    textColor: root.textColor
+                    prefixIconColor: root.textColor
+
+                    onAccepted: {
+                        ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, dynamicText);
+                    }
+
+                    editMode: false
+
+                    placeholderText: JamiStrings.title
+
+                    onActiveFocusChanged: {
+                        if (!activeFocus) {
+                            ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, dynamicText);
+                        }
+                        titleLine.editMode = activeFocus;
+                    }
+
+                    infoTipLineText: CurrentConversation.isCoreDialog ? JamiStrings.contactName : JamiStrings.groupName
+                }
+
+                ModalTextEdit {
+                    id: descriptionLineButton
+
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+
+                    TextMetrics {
+                        id: descriptionLineButtonTextSize
+                        text: CurrentConversation.description
+                        elide: Text.ElideRight
+                        elideWidth: descriptionLineButton.width
+                    }
+
+                    maxCharacters: JamiTheme.maximumCharacters
+                    fontPixelSize: JamiTheme.materialLineEditSelectedPixelSize
+
+                    isSwarmDetail: true
+
+                    readOnly: !isAdmin || CurrentConversation.isCoreDialog
+
+                    staticText: CurrentConversation.description
+                    placeholderText: JamiStrings.addDescription
+                    elidedText: descriptionLineButtonTextSize.elidedText
+
+                    textColor: root.textColor
+                    prefixIconColor: root.textColor
+
+                    onAccepted: ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, dynamicText)
+
+                    editMode: false
+
+                    onActiveFocusChanged: {
+                        if (!activeFocus) {
+                            ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, dynamicText);
+                        }
+                        descriptionLineButton.editMode = activeFocus;
+                    }
+
+                    infoTipLineText: JamiStrings.addDescription
+                }
+            }
+        }
+
+        Item {
             id: centerContent
 
             Layout.fillWidth: true
