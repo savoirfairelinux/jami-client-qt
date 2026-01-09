@@ -435,7 +435,8 @@ CallAdapter::endCall(const QString& accountId, const QString& convUid)
 {
     const auto& convInfo = lrcInstance_->getConversationFromConvUid(convUid, accountId);
     if (!convInfo.uid.isEmpty()) {
-        lrcInstance_->getAccountInfo(accountId).callModel->end(convInfo.callId);
+        auto callId = convInfo.confId.isEmpty() ? convInfo.callId : convInfo.confId;
+        lrcInstance_->getAccountInfo(accountId).callModel->end(callId);
     }
 }
 
