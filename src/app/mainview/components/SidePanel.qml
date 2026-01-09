@@ -68,20 +68,20 @@ SidePanelBase {
             viewCoordinator.present("NewSwarmPage");
             const newSwarmPage = viewCoordinator.getView("NewSwarmPage");
             newSwarmPage.removeMember.connect((convId, member) => {
-                removeMember(convId, member);
-            });
+                                                  removeMember(convId, member);
+                                              });
             newSwarmPage.createSwarmClicked.connect((title, description, avatar) => {
-                var uris = [];
-                for (var idx in newSwarmPage.members) {
-                    var uri = newSwarmPage.members[idx].uri;
-                    if (uris.indexOf(uri) === -1) {
-                        uris.push(uri);
-                    }
-                }
-                let convuid = ConversationsAdapter.createSwarm(title, description, avatar, uris);
-                viewCoordinator.dismiss("NewSwarmPage");
-                LRCInstance.selectConversation(convuid);
-            });
+                                                        var uris = [];
+                                                        for (var idx in newSwarmPage.members) {
+                                                            var uri = newSwarmPage.members[idx].uri;
+                                                            if (uris.indexOf(uri) === -1) {
+                                                                uris.push(uri);
+                                                            }
+                                                        }
+                                                        let convuid = ConversationsAdapter.createSwarm(title, description, avatar, uris);
+                                                        viewCoordinator.dismiss("NewSwarmPage");
+                                                        LRCInstance.selectConversation(convuid);
+                                                    });
         } else {
             viewCoordinator.dismiss("NewSwarmPage");
         }
@@ -116,9 +116,9 @@ SidePanelBase {
                 var uri = item.uris[idx];
                 if (!Array.from(newHm).find(r => r.uri === uri) && uri !== CurrentAccount.uri) {
                     newHm.push({
-                        "uri": uri,
-                        "convId": convId
-                    });
+                                   "uri": uri,
+                                   "convId": convId
+                               });
                     added = true;
                 }
             }
@@ -339,10 +339,10 @@ SidePanelBase {
 
                             preferredSize: startBar.height
 
-                            visible: !swarmMemberSearchList.visible && !contactSearchBar.textContent
+                            visible: !swarmMemberSearchList.visible && (!contactSearchBar.textContent || CurrentAccount.type === Profile.Type.SIP)
 
                             source: smartListLayout.visible ? (CurrentAccount.type !== Profile.Type.SIP ? JamiResources.create_swarm_svg : JamiResources.ic_keypad_svg) : JamiResources.round_close_24dp_svg
-                            toolTipText: smartListLayout.visible ? JamiStrings.newGroup : JamiStrings.cancel
+                            toolTipText: smartListLayout.visible ? ((CurrentAccount.type !== Profile.Type.SIP) ? JamiStrings.newGroup : JamiStrings.openKeypad) : JamiStrings.cancel
 
                             onClicked: {
                                 if (CurrentAccount.type === Profile.Type.SIP) {
@@ -430,6 +430,8 @@ SidePanelBase {
                         ConversationListView {
                             id: searchResultsListView
 
+                            enabled: !sipInputPanelPopUp.visible
+
                             activeFocusOnTab: true
 
                             visible: count
@@ -486,6 +488,8 @@ SidePanelBase {
 
                         ConversationListView {
                             id: conversationListView
+
+                            enabled: !sipInputPanelPopUp.visible
 
                             activeFocusOnTab: true
 
@@ -585,6 +589,117 @@ SidePanelBase {
                     context: Qt.ApplicationShortcut
                     onActivated: accountComboBox.togglePopup()
                 }
+            }
+        }
+
+        SipInputPanel {
+            id: sipInputPanelPopUp
+            onDigitPressed: {
+                contactSearchBar.textContent += digit;
+            }
+            x: startConversation.x - sipInputPanelPopUp.width / 2 - 10
+            y: startConversation.y + startConversation.height + 24
+            z: parent.z + 1
+            width: sipInputPanelPopUp.implicitWidth
+            height: sipInputPanelPopUp.implicitHeight
+            opacity: 0
+            transform: Translate {
+                id: sipTranslate
+                y: -10
+            }
+            property bool shown: false
+            visible: false
+            states: [
+                State {
+                    name: "visible"
+                    when: sipInputPanelPopUp.shown
+                    PropertyChanges {
+                        target: sipInputPanelPopUp
+                        opacity: 1.0
+                        visible: true
+                    }
+                    PropertyChanges {
+                        target: sipTranslate
+                        y: 0
+                    }
+                },
+                State {
+                    name: "hidden"
+                    when: !sipInputPanelPopUp.shown
+                    PropertyChanges {
+                        target: sipInputPanelPopUp
+                        opacity: 0.0
+                        // Do not set visible: false here; let the transition handle it
+                    }
+                    PropertyChanges {
+                        target: sipTranslate
+                        y: -10
+                    }
+                }
+            ]
+            transitions: [
+                Transition {
+                    from: "hidden"
+                    to: "visible"
+                    SequentialAnimation {
+                        PropertyAction {
+                            target: sipInputPanelPopUp
+                            property: "visible"
+                            value: true
+                        }
+                        ParallelAnimation {
+                            NumberAnimation {
+                                target: sipInputPanelPopUp
+                                property: "opacity"
+                                duration: 250
+                                easing.type: Easing.OutCubic
+                            }
+                            NumberAnimation {
+                                target: sipTranslate
+                                property: "y"
+                                duration: 250
+                                easing.type: Easing.OutCubic
+                            }
+                        }
+                    }
+                },
+                Transition {
+                    from: "visible"
+                    to: "hidden"
+                    SequentialAnimation {
+                        ParallelAnimation {
+                            NumberAnimation {
+                                target: sipInputPanelPopUp
+                                property: "opacity"
+                                duration: 250
+                                easing.type: Easing.InCubic
+                            }
+                            NumberAnimation {
+                                target: sipTranslate
+                                property: "y"
+                                duration: 250
+                                easing.type: Easing.InCubic
+                            }
+                        }
+                        PropertyAction {
+                            target: sipInputPanelPopUp
+                            property: "visible"
+                            value: false
+                        }
+                    }
+                }
+            ]
+        }
+    }
+
+    MouseArea {
+        anchors.fill: parent
+        enabled: sipInputPanelPopUp.visible || sipInputPanelPopUp.shown
+        hoverEnabled: true
+        onClicked: {
+            if ((mouseX < sipInputPanelPopUp.x || mouseX > sipInputPanelPopUp.x + sipInputPanelPopUp.width) ||
+                    (mouseY < sipInputPanelPopUp.y || mouseY > sipInputPanelPopUp.y + sipInputPanelPopUp.height)) {
+                sipInputPanelPopUp.shown = false;
             }
         }
     }
