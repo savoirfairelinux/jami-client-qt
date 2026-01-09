@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "a63cdd87_3d816dfd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1147
+      },
+      "writtenOn": "2026-01-09T15:29:40Z",
+      "side": 1,
+      "message": "No, this patch does not fix issue #2154. However I have looked into that issue and will submit a patch for it soon.",
+      "parentUuid": "5818800c_33ce6b00",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 13
+      },
+      "revId": "8910a8bee72b72f11b01106c2c99f88cf1517a16",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "56e9678f_8a09baa5",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 4
