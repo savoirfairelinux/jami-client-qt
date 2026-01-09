@@ -59,7 +59,9 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
     case Role::InCall: {
         const auto& convInfo = lrcInstance_->getConversationFromConvUid(item.uid);
         if (!convInfo.uid.isEmpty()) {
-            return QVariant(accInfo.callModel->hasCall(convInfo.callId));
+            auto callId = convInfo.confId.isEmpty() ? convInfo.callId : convInfo.confId;
+            if (accInfo.callModel->hasCall(callId))
+                return QVariant(true);
         }
         return QVariant(false);
     }
