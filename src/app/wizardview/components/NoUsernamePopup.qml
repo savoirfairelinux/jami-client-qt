@@ -51,10 +51,11 @@ BaseModalDialog {
     button1.onClicked: root.close()
     button2.Accessible.name: JamiStrings.chooseAUsername
     button2.Accessible.description: JamiStrings.joinJamiNoPassword
-    popupContent: Text {
+    dialogContent: Text {
         Accessible.role: Accessible.Dialog
         Accessible.name: title
         Accessible.description: JamiStrings.joinJamiNoPassword
+        padding: JamiTheme.preferredMarginSize
         width: 400 - 2 * popupMargins
         font.pixelSize: JamiTheme.popuptextSize
 

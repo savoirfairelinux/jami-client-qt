@@ -81,7 +81,7 @@ BaseModalDialog {
         }
     }
 
-    popupContent: Item {
+    dialogContent: Item {
         id: content
         width: 400
         height: 450

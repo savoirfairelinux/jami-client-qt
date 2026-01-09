@@ -80,7 +80,7 @@ BaseModalDialog {
     button2Role: DialogButtonBox.RejectRole
     button2.onClicked: close()
 
-    popupContent: ColumnLayout {
+    dialogContent: ColumnLayout {
         id: popupContentColumnLayout
         width: JamiTheme.preferredDialogWidth
 

@@ -53,7 +53,7 @@ BaseModalDialog {
         close();
     }
 
-    popupContent: ColumnLayout {
+    dialogContent: ColumnLayout {
             id: mainLayout
 
             anchors.centerIn: parent

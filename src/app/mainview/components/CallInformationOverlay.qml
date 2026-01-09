@@ -31,7 +31,7 @@ BaseModalDialog {
 
     property var advancedList
     property var fps
-    maximumPopupWidth: popupContent.width + 2 * popupMargins
+    maximumPopupWidth: dialogContent.width + 2 * popupMargins
     closePolicy: Popup.NoAutoClosed
 
     onClosed: {
@@ -48,7 +48,7 @@ BaseModalDialog {
     backgroundColor: JamiTheme.darkGreyColor
     backgroundOpacity: 0.77
 
-    popupContent: RowLayout {
+    dialogContent: RowLayout {
         id: windowContent
         spacing: JamiTheme.callInformationBlockSpacing
 

@@ -85,7 +85,7 @@ Item {
                         anchors.fill: parent
                         anchors.margins: JamiTheme.itemMarginVertical
                         radius: JamiTheme.commonRadius + 4
-                        color: (hovered || highlighted) ? JamiTheme.hoverColor : JamiTheme.backgroundColor
+                        color: (hovered || highlighted) && !listView.headerHovered ? JamiTheme.hoverColor : JamiTheme.backgroundColor
 
                         Behavior on color {
                             ColorAnimation {
@@ -157,12 +157,83 @@ Item {
                     padding: 0
                     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
 
+
                     contentItem: ListView {
                         id: listView
                         clip: true
                         implicitHeight: contentHeight
                         currentIndex: accountComboBox.highlightedIndex
                         model: visible ? accountComboBox.delegateModel : null
+
+                        property bool headerHovered: false
+
+                        header: ItemDelegate {
+                            id: addAccountItem
+
+                            height: JamiTheme.accountListItemHeight
+                            width: root.width
+
+                            background: ColumnLayout {
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+                                Rectangle {
+                                    id: addAccountItemRect
+                                    anchors.fill: parent
+                                    anchors.margins: JamiTheme.itemMarginVertical
+
+                                    color: (addAccountItem.hovered || addAccountItem.highlighted || addAccountItem.activeFocus) ? JamiTheme.hoverColor : JamiTheme.backgroundColor
+                                    radius: JamiTheme.commonRadius + 4
+
+                                    Behavior on color {
+                                        ColorAnimation {
+                                            duration: JamiTheme.shortFadeDuration
+                                        }
+                                    }
+
+                                    RowLayout {
+                                        anchors.fill: parent
+
+                                        NewIconButton {
+                                            id: addAccountIcon
+
+                                            Layout.alignment: Qt.AlignVCenter
+                                            Layout.leftMargin: 16
+
+                                            iconSize: JamiTheme.iconButtonSmall
+                                            iconSource: JamiResources.person_add_24dp_svg
+
+                                            enabled: false
+                                        }
+
+                                        Text {
+                                            Layout.fillWidth: true
+                                            Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+
+                                            text: JamiStrings.addAccount
+                                            verticalAlignment: Text.AlignVCenter
+
+                                            font.pointSize: JamiTheme.textFontSize
+                                            color: JamiTheme.textColor
+                                            elide: Text.ElideRight
+                                        }
+                                    }
+                                }
+
+                                Rectangle {
+                                    anchors.top: addAccountItemRect.bottom
+                                    anchors.left: parent.left
+                                    anchors.leftMargin: 8
+                                    anchors.right: parent.right
+                                    anchors.rightMargin: 8
+                                    height: 2
+                                    color: JamiTheme.hoverColor
+                                }
+                            }
+
+                            onClicked: viewCoordinator.present("WizardView");
+
+                            onHoveredChanged: listView.headerHovered = hovered;
+                        }
                     }
 
                     background: Rectangle {
@@ -185,7 +256,7 @@ Item {
                     id: background
 
                     anchors.fill: accountComboBox
-                    color: accountComboBox.hovered ? JamiTheme.hoverColor : JamiTheme.globalIslandColor
+                    color: accountComboBox.hovered || accountComboBoxPopup.visible ? JamiTheme.hoverColor : JamiTheme.globalIslandColor
                     radius: JamiTheme.commonRadius
                     Behavior on color {
                         ColorAnimation {

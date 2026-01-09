@@ -40,7 +40,7 @@ BaseModalDialog {
         }
     }
 
-    popupContent: ColumnLayout {
+    dialogContent: ColumnLayout {
         id: contactPickerPopupRectColumnLayout
         anchors.centerIn: parent
         width: 400

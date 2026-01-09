@@ -43,7 +43,7 @@ BaseModalDialog {
 
     property string pwd: ""
 
-    popupContent: ColumnLayout {
+    dialogContent: ColumnLayout {
         id: revokeDeviceContentColumnLayout
 
         spacing: 16

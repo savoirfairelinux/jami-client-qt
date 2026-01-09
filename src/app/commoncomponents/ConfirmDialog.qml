@@ -50,7 +50,7 @@ BaseModalDialog {
     button1Role: DialogButtonBox.AcceptRole
     button2Role: DialogButtonBox.RejectRole
 
-    popupContent: ColumnLayout {
+    dialogContent: ColumnLayout {
         id: column
 
         Label {

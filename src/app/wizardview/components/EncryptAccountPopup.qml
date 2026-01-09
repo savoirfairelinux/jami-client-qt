@@ -36,7 +36,7 @@ BaseModalDialog {
     button2.text: JamiStrings.optionCancel
     button2.onClicked: close()
 
-    popupContent: ColumnLayout {
+    dialogContent: ColumnLayout {
 
         id: passwordColumnLayout
         anchors.bottomMargin: 30
@@ -99,7 +99,7 @@ BaseModalDialog {
             padding: 14
 
             background: Rectangle {
-                radius: 5
+                radius: JamiTheme.commonRadius
                 color: JamiTheme.infoRectangleColor
             }
 

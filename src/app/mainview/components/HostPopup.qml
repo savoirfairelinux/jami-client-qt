@@ -49,7 +49,7 @@ BaseModalDialog {
         close();
     }
 
-    popupContent: ColumnLayout {
+    dialogContent: ColumnLayout {
         id: mainLayout
 
         Label {

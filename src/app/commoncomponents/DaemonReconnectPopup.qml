@@ -53,17 +53,17 @@ BaseModalDialog {
     }
 
     onPopupContentLoadStatusChanged: {
-        if (popupContentLoadStatus === Loader.Ready) {
+        if (dialogContentLoadStatus === Loader.Ready) {
             root.height = Qt.binding(function () {
-                    return popupContent.implicitHeight + 50;
+                    return dialogContent.implicitHeight + 50;
                 });
             root.width = Qt.binding(function () {
-                    return popupContent.implicitWidth + 50;
+                    return dialogContent.implicitWidth + 50;
                 });
         }
     }
 
-    popupContent: ColumnLayout {
+    dialogContent: ColumnLayout {
         id: daemonReconnectPopupColumnLayout
 
         spacing: 0

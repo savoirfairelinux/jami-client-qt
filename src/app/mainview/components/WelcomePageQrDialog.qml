@@ -25,7 +25,7 @@ BaseModalDialog {
 
     backgroundColor: JamiTheme.darkTheme ? JamiTheme.blackColor : JamiTheme.whiteColor
 
-    popupContent:  Rectangle{
+    dialogContent:  Rectangle{
         anchors.centerIn: parent
         width: userQrImage.width + 10
         height: userQrImage.height + 10
