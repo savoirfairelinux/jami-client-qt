@@ -304,6 +304,7 @@ Item {
 
     // CallViewContextMenu
     property string sipInputPanel: qsTr("DTMF input panel")
+    property string openKeypad: qsTr("Open keypad")
     property string transferCall: qsTr("Transfer call")
     property string stopRec: qsTr("Stop recording")
     property string startRec: qsTr("Start recording")

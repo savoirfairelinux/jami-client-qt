@@ -26,6 +26,8 @@ import "../../commoncomponents"
 Item {
     id: root
 
+    signal digitPressed(string digit)
+
     readonly property var digitToLetters: {
         "1": "",
         "2": "ABC",
@@ -36,9 +38,10 @@ Item {
         "7": "PQRS",
         "8": "TUV",
         "9": "WXYZ",
-        "0": "+",
         "*": "",
-        "#": ""
+        "0": "",
+        "#": "",
+        "+": ""
     }
 
     property alias radius: inputPanelContent.radius
@@ -61,7 +64,7 @@ Item {
 
         anchors.fill: parent
 
-        color: Qt.rgba(JamiTheme.backgroundColor.r, JamiTheme.backgroundColor.g, JamiTheme.backgroundColor.b, 0.9)
+        color: Qt.rgba(JamiTheme.globalIslandColor.r, JamiTheme.globalIslandColor.g, JamiTheme.globalIslandColor.b, 0.9)
 
         layer.enabled: true
         layer.effect: MultiEffect {
@@ -84,13 +87,16 @@ Item {
 
             Repeater {
                 id: sipInputPanelRectGridLayoutRepeater
-                model: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "*", "0", "#"]
+                model: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "*", "0", "#", "+"]
 
                 RoundButton {
                     id: sipInputPanelButton
 
                     Layout.preferredWidth: JamiTheme.sipInputPanelKeyDiameter
                     Layout.preferredHeight: JamiTheme.sipInputPanelKeyDiameter
+                    // Center the '+' button in its row
+                    Layout.columnSpan: modelData === "+" ? 3 : 1
+                    Layout.alignment: modelData === "+" ? Qt.AlignHCenter : undefined
 
                     contentItem: Item {
                         anchors.fill: parent
@@ -100,7 +106,7 @@ Item {
                             font.pointSize: 12
                             horizontalAlignment: Text.AlignHCenter
 
-                            color: JamiTheme.textColor
+                            color: JamiTheme.blackColor
 
                             anchors.horizontalCenter: parent.horizontalCenter
                             anchors.top: digitToLetters[modelData] !== "" ? parent.top : null
@@ -112,7 +118,7 @@ Item {
                             font.pointSize: 6
                             horizontalAlignment: Text.AlignHCenter
 
-                            color: JamiTheme.textColor
+                            color: JamiTheme.blackColor
                             opacity: 0.8
 
                             anchors.horizontalCenter: parent.horizontalCenter
@@ -131,6 +137,7 @@ Item {
 
                     onClicked: {
                         CallAdapter.sipInputPanelPlayDTMF(modelData);
+                        root.digitPressed(modelData);
                     }
                 }
             }
