@@ -427,7 +427,11 @@ CallAdapter::endCall(const QString& accountId, const QString& convUid)
 {
     const auto& convInfo = lrcInstance_->getConversationFromConvUid(convUid, accountId);
     if (!convInfo.uid.isEmpty()) {
-        lrcInstance_->getAccountInfo(accountId).callModel->end(convInfo.callId);
+        if (auto* call = lrcInstance_->getCallInfoForConversation(convInfo)) {
+            lrcInstance_->getAccountInfo(accountId).callModel->end(call->id);
+        } else {
+            qWarning() << Q_FUNC_INFO << "No call found for conversation" << convUid;
+        }
     }
 }
 
