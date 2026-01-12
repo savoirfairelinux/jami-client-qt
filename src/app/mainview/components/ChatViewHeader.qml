@@ -75,7 +75,7 @@ Rectangle {
         // QWK: spacing
         anchors.leftMargin: layoutManager.qwkSystemButtonSpacing.left
         anchors.rightMargin: 10 + layoutManager.qwkSystemButtonSpacing.right
-        spacing: 16
+        spacing: 8
 
         JamiPushButton {
             id: backToWelcomeViewButton
