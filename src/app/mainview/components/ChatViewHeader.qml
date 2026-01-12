@@ -97,8 +97,8 @@ Rectangle {
         Avatar {
             id: userAvatar
 
-            width: JamiTheme.accountListAvatarSize
-            height: JamiTheme.accountListAvatarSize
+            width: JamiTheme.iconButtonLarge
+            height: JamiTheme.iconButtonLarge
 
             mode: CurrentConversation.isSwarm ? Avatar.Mode.Conversation : Avatar.Mode.Contact
             imageId: CurrentConversation.id
