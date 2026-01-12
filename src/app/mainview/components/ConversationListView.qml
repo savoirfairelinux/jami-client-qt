@@ -45,7 +45,7 @@ JamiListView {
     headerPositioning: ListView.OverlayHeader
     header: Rectangle {
         z: 2
-        color: JamiTheme.backgroundColor
+        color: JamiTheme.globalIslandColor
         visible: root.headerVisible
         width: root.width
         height: root.headerVisible ? 20 : 0
