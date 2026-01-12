@@ -64,8 +64,8 @@ Rectangle {
     Layout.alignment: Qt.AlignBottom
     height: Math.min(JamiTheme.chatViewFooterTextAreaMaximumHeight + 2 * marginSize, colLayout.height + 2 * marginSize)
 
-    radius: JamiTheme.commonRadius
-    color: JamiTheme.transparentColor
+    radius: JamiTheme.messageBarRadius
+    color: JamiTheme.globalBackgroundColor
     border.color: JamiTheme.chatViewFooterRectangleBorderColor
     border.width: 2
 
@@ -80,7 +80,7 @@ Rectangle {
     GridLayout {
         id: colLayout
         columns: 2
-        rows: 3
+        rows: 4
 
         anchors {
             left: parent.left
@@ -90,12 +90,157 @@ Rectangle {
         }
 
         Rectangle {
+            id: replyOrEditContainer
+
+            visible: MessagesAdapter.replyToId !== "" || MessagesAdapter.editId !== ""
+
+            Layout.fillWidth: true
+            Layout.preferredHeight: 50
+            Layout.row: 0
+            Layout.column: 0
+            Layout.columnSpan: 2
+
+            Layout.alignment: Qt.AlignTop
+
+            color: JamiTheme.transparentColor
+
+            Rectangle {
+                anchors.left: parent.left
+                anchors.leftMargin: -marginSize + rectangle.border.width
+                anchors.right: parent.right
+                anchors.rightMargin: -marginSize + rectangle.border.width
+                anchors.top: parent.top
+                anchors.topMargin: -marginSize + rectangle.border.width
+
+                height: 50
+
+                color: JamiTheme.chatViewFooterRectangleBorderColor
+
+                topRightRadius: JamiTheme.messageBarRadius
+                topLeftRadius: JamiTheme.messageBarRadius
+
+                RowLayout {
+
+                    anchors.fill: parent
+
+                    Item {
+                        id: containerContent
+
+                        Layout.fillWidth: true
+                        Layout.leftMargin: 16
+                        Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+
+                        property bool isSelf: false
+                        property var author: {
+                            if (MessagesAdapter.replyToId === "")
+                                return "";
+                            var author = MessagesAdapter.dataForInteraction(MessagesAdapter.replyToId, MessageList.Author);
+                            isSelf = author === "" || author === undefined;
+                            if (isSelf) {
+                                containerLabelAvatar.mode = Avatar.Mode.Account;
+                                containerLabelAvatar.imageId = CurrentAccount.id;
+                            } else {
+                                containerLabelAvatar.mode = Avatar.Mode.Contact;
+                                containerLabelAvatar.imageId = author;
+                            }
+                            return isSelf ? CurrentAccount.uri : author;
+                        }
+
+                        Label {
+                            id: containerLabel
+
+                            anchors.verticalCenter: parent.verticalCenter
+
+                            text: {
+                                if (MessagesAdapter.replyToId !== "") {
+                                    return JamiStrings.replyTo;
+                                } else if (MessagesAdapter.editId !== "") {
+                                    return JamiStrings.editMessage;
+                                }
+                                return "";
+                            }
+                            textFormat: Text.MarkdownText
+                            color: UtilsAdapter.luma(root.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
+
+                            font.pointSize: JamiTheme.textFontSize
+                            font.kerning: true
+                            font.bold: true
+                        }
+
+                        Avatar {
+                            id: containerLabelAvatar
+
+                            anchors.verticalCenter: parent.verticalCenter
+                            anchors.left: containerLabel.right
+                            anchors.leftMargin: 12
+
+                            visible: MessagesAdapter.replyToId !== ""
+
+                            width: JamiTheme.messageBarReplyToAvatarSize
+                            height: JamiTheme.messageBarReplyToAvatarSize
+
+                            showPresenceIndicator: false
+
+                            imageId: ""
+
+                            mode: Avatar.Mode.Account
+                        }
+
+                        Label {
+                            id: username
+
+                            anchors.verticalCenter: parent.verticalCenter
+                            anchors.left: containerLabelAvatar.right
+                            anchors.leftMargin: 8
+
+                            TextMetrics {
+                                id: textMetricsUsername
+                                text: containerContent.author === CurrentAccount.uri ? CurrentAccount.bestName : UtilsAdapter.getBestNameForUri(CurrentAccount.id, containerContent.author)
+                                elideWidth: 200
+                                elide: Qt.ElideMiddle
+                            }
+
+                            text: textMetricsUsername.elidedText
+
+                            wrapMode: Text.NoWrap
+
+                            color: UtilsAdapter.luma(root.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
+
+                            font.pointSize: JamiTheme.textFontSize
+                            font.kerning: true
+                            font.bold: true
+                        }
+                    }
+
+                    NewIconButton {
+                        id: closeContainerButton
+
+                        Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+                        Layout.rightMargin: 12
+
+                        iconSize: JamiTheme.iconButtonMedium
+                        iconSource: JamiResources.close_black_24dp_svg
+                        toolTipText: JamiStrings.cancel
+
+                        onClicked: {
+                            if (MessagesAdapter.replyToId !== "") {
+                                MessagesAdapter.replyToId = "";
+                            } else if (MessagesAdapter.editId !== "") {
+                                MessagesAdapter.editId = "";
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        Rectangle {
             id: messageRow
 
             property bool isExpanding: !(showTypo && dataTransferSendContainer.visible) && (textAreaObj.textWidth >= rectangle.width - formatRow.width - 8 * marginSize)
 
             Layout.fillWidth: true
-            Layout.row: maximized || isExpanding ? 0 : 2
+            Layout.row: maximized || isExpanding ? 1 : 2
             Layout.column: 0
             Layout.columnSpan: maximized || isExpanding ? 2 : 1
 
@@ -132,32 +277,32 @@ Rectangle {
                 property var markdownShortCut: {
                     "Bold": function () {
                         if (!showPreview) {
-                            listViewTypoFirst.itemAtIndex(0).action.triggered();
+                            formatRow.listViewTypoFirst.itemAtIndex(0).action.triggered();
                         }
                     },
                     "Italic": function () {
                         if (!showPreview) {
-                            listViewTypoFirst.itemAtIndex(1).action.triggered();
+                            formatRow.listViewTypoFirst.itemAtIndex(1).action.triggered();
                         }
                     },
                     "Barre": function () {
                         if (!showPreview) {
-                            listViewTypoFirst.itemAtIndex(2).action.triggered();
+                            formatRow.listViewTypoFirst.itemAtIndex(2).action.triggered();
                         }
                     },
                     "Heading": function () {
                         if (!showPreview) {
-                            listViewTypoFirst.itemAtIndex(3).action.triggered();
+                            formatRow.listViewTypoFirst.itemAtIndex(3).action.triggered();
                         }
                     },
                     "Link": function () {
                         if (!showPreview) {
-                            listViewTypoFirst.itemAtIndex(4).action.triggered();
+                            formatRow.listViewTypoFirst.itemAtIndex(4).action.triggered();
                         }
                     },
                     "Code": function () {
                         if (!showPreview) {
-                            listViewTypoFirst.itemAtIndex(5).action.triggered();
+                            formatRow.listViewTypoFirst.itemAtIndex(5).action.triggered();
                         }
                     },
                     "Quote": function () {
