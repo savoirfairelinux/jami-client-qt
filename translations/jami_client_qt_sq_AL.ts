@@ -2920,7 +2920,7 @@ Kur të jeni gati, skanoni kodin QR.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="929"/>
         <source>Search text languages</source>
-        <translation>Kërkoni gjuhë teksti</translation>
+        <translation>Kërkoni gjuhë</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="930"/>
@@ -3015,7 +3015,7 @@ Kur të jeni gati, skanoni kodin QR.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="950"/>
         <source>Press to toggle %1 (%2)</source>
-        <translation type="unfinished"/>
+        <translation>Shtypeni që të hapet/mbyllet %1 (%2)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="951"/>
