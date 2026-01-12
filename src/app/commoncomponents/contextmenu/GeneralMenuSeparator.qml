@@ -23,7 +23,7 @@ MenuSeparator {
 
     property int separatorPreferredWidth: JamiTheme.menuItemsPreferredWidth
     property int separatorPreferredHeight: 5
-    property string separatorColor: JamiTheme.primaryBackgroundColor
+    property string separatorColor: JamiTheme.globalIslandColor
 
     padding: 0
     topPadding: 1

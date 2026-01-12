@@ -84,17 +84,17 @@ BaseContextMenu {
     function openEmojiPicker() {
         var component = WITH_WEBENGINE ? Qt.createComponent("qrc:/webengine/emojipicker/EmojiPicker.qml") : Qt.createComponent("qrc:/nowebengine/EmojiPicker.qml");
         emojiPicker = component.createObject(root.parent, {
-                "listView": listView
-            });
+            "listView": listView
+        });
         emojiPicker.emojiIsPicked.connect(function (content) {
-                if (emojiReplied.includes(content)) {
-                    MessagesAdapter.removeEmojiReaction(CurrentConversation.id, content, msgId);
-                    parent.setBindings();
-                } else {
-                    MessagesAdapter.addEmojiReaction(CurrentConversation.id, content, msgId);
-                    parent.setBindings();
-                }
-            });
+            if (emojiReplied.includes(content)) {
+                MessagesAdapter.removeEmojiReaction(CurrentConversation.id, content, msgId);
+                parent.setBindings();
+            } else {
+                MessagesAdapter.addEmojiReaction(CurrentConversation.id, content, msgId);
+                parent.setBindings();
+            }
+        });
         if (emojiPicker !== null) {
             root.opacity = 0;
             emojiPicker.x = xPositionProvider(JamiTheme.emojiPickerWidth);
@@ -134,6 +134,7 @@ BaseContextMenu {
             itemName: JamiStrings.copy
             addMenuSeparatorAfter: true
             messageId: msgId
+            itemRealWidth: JamiTheme.menuItemsPreferredWidth
         },
         GeneralMenuItem {
             id: saveFile
