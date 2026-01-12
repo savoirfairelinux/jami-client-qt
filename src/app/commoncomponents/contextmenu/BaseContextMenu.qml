@@ -88,12 +88,10 @@ Menu {
     font.pointSize: JamiTheme.menuFontSize
 
     background: Rectangle {
-
         implicitWidth: menuPreferredWidth ? menuPreferredWidth : JamiTheme.menuItemsPreferredWidth
 
-        color: JamiTheme.primaryBackgroundColor
-        radius: JamiTheme.commonRadius
-
+        color: JamiTheme.globalIslandColor
+        radius: JamiTheme.baseContextMenuRadius
         layer.enabled: true
         layer.effect: DropShadow {
             z: -1
