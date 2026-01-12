@@ -44,7 +44,7 @@ MenuItem {
 
     property int itemPreferredWidth: 207
     property int itemRealWidth: itemPreferredWidth
-    property int itemPreferredHeight: JamiTheme.menuItemsPreferredHeight
+    property int itemPreferredHeight: JamiTheme.generalMenuItemHeight
     property int leftBorderWidth: JamiTheme.menuItemsCommonBorderWidth
     property int rightBorderWidth: JamiTheme.menuItemsCommonBorderWidth
 
@@ -53,6 +53,7 @@ MenuItem {
     signal clicked
 
     width: itemRealWidth
+    height: JamiTheme.generalMenuItemHeight
 
     contentItem: Item {
         id: menuItemContentRect
@@ -68,11 +69,11 @@ MenuItem {
                 id: contextMenuItemImage
                 Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
                 Layout.leftMargin: itemImageLeftMargin
-                height: 36
-                width: 36
-                color: emojiReplied.includes(modelList[0]) ? JamiTheme.hoveredButtonColor : JamiTheme.primaryBackgroundColor
-                radius: 5
-                Behavior on color  {
+                height: JamiTheme.generalMenuItemListIconWidth
+                width: JamiTheme.generalMenuItemListIconHeight
+                color: emojiReplied.includes(modelList[0]) ? JamiTheme.hoveredButtonColor : JamiTheme.transparentColor
+                radius: JamiTheme.generalMenuItemListIconRadius
+                Behavior on color {
                     ColorAnimation {
                         duration: JamiTheme.shortFadeDuration
                     }
@@ -91,7 +92,7 @@ MenuItem {
                         contextMenuItemImage.color = JamiTheme.hoveredButtonColor;
                     }
                     onExited: {
-                        contextMenuItemImage.color = emojiReplied.includes(modelList[0]) ? JamiTheme.hoveredButtonColor : JamiTheme.primaryBackgroundColor;
+                        contextMenuItemImage.color = emojiReplied.includes(modelList[0]) ? JamiTheme.hoveredButtonColor : JamiTheme.transparentColor;
                     }
                     onClicked: {
                         if (emojiReplied.includes(modelList[0])) {
@@ -108,11 +109,11 @@ MenuItem {
                 id: contextMenuItemImage2
                 Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
                 Layout.leftMargin: itemImageLeftMargin / 2
-                height: 36
-                width: 36
-                color: emojiReplied.includes(modelList[1]) ? JamiTheme.hoveredButtonColor : JamiTheme.primaryBackgroundColor
-                radius: 5
-                Behavior on color  {
+                height: JamiTheme.generalMenuItemListIconWidth
+                width: JamiTheme.generalMenuItemListIconHeight
+                color: emojiReplied.includes(modelList[1]) ? JamiTheme.hoveredButtonColor : JamiTheme.transparentColor
+                radius: JamiTheme.generalMenuItemListIconRadius
+                Behavior on color {
                     ColorAnimation {
                         duration: JamiTheme.shortFadeDuration
                     }
@@ -131,7 +132,7 @@ MenuItem {
                         contextMenuItemImage2.color = JamiTheme.hoveredButtonColor;
                     }
                     onExited: {
-                        contextMenuItemImage2.color = emojiReplied.includes(modelList[1]) ? JamiTheme.hoveredButtonColor : JamiTheme.primaryBackgroundColor;
+                        contextMenuItemImage2.color = emojiReplied.includes(modelList[1]) ? JamiTheme.hoveredButtonColor : JamiTheme.transparentColor;
                     }
                     onClicked: {
                         if (emojiReplied.includes(modelList[1])) {
@@ -148,11 +149,11 @@ MenuItem {
                 id: contextMenuItemImage3
                 Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
                 Layout.leftMargin: itemImageLeftMargin / 2
-                height: 36
-                width: 36
-                color: emojiReplied.includes(modelList[2]) ? JamiTheme.hoveredButtonColor : JamiTheme.primaryBackgroundColor
-                radius: 5
-                Behavior on color  {
+                height: JamiTheme.generalMenuItemListIconWidth
+                width: JamiTheme.generalMenuItemListIconHeight
+                color: emojiReplied.includes(modelList[2]) ? JamiTheme.hoveredButtonColor : JamiTheme.transparentColor
+                radius: JamiTheme.generalMenuItemListIconRadius
+                Behavior on color {
                     ColorAnimation {
                         duration: JamiTheme.shortFadeDuration
                     }
@@ -171,7 +172,7 @@ MenuItem {
                         contextMenuItemImage3.color = JamiTheme.hoveredButtonColor;
                     }
                     onExited: {
-                        contextMenuItemImage3.color = emojiReplied.includes(modelList[2]) ? JamiTheme.hoveredButtonColor : JamiTheme.primaryBackgroundColor;
+                        contextMenuItemImage3.color = emojiReplied.includes(modelList[2]) ? JamiTheme.hoveredButtonColor : JamiTheme.transparentColor;
                     }
                     onClicked: {
                         if (emojiReplied.includes(modelList[2])) {
@@ -184,20 +185,20 @@ MenuItem {
                 }
             }
 
-            PushButton {
+            NewIconButton {
                 id: contextMenuItemImage4
+
                 Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
                 Layout.leftMargin: itemImageLeftMargin / 2
                 Layout.rightMargin: itemImageLeftMargin
-                height: 36
-                width: 36
-                imageColor: hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor
-                normalColor: JamiTheme.primaryBackgroundColor
-                radius: 5
-                source: iconSource
-                onClicked: {
-                    root.addMoreEmoji();
-                }
+                Layout.preferredWidth: JamiTheme.generalMenuItemListIconWidth
+                Layout.preferredHeight: JamiTheme.generalMenuItemListIconHeight
+
+                iconSize: JamiTheme.iconButtonMedium
+                iconSource: menuItem.iconSource
+                toolTipText: JamiStrings.addEmoji
+
+                onClicked: root.addMoreEmoji()
             }
         }
     }
@@ -211,12 +212,11 @@ MenuItem {
         anchors.leftMargin: leftBorderWidth
         anchors.rightMargin: rightBorderWidth
 
-        color: JamiTheme.primaryBackgroundColor
+        color: JamiTheme.globalIslandColor
+        radius: JamiTheme.generalMenuItemRadius
 
         implicitWidth: itemRealWidth
         implicitHeight: itemPreferredHeight
-
-        border.width: 0
 
         CustomBorder {
             commonBorder: false
@@ -224,7 +224,8 @@ MenuItem {
             rBorderwidth: rightBorderWidth
             tBorderwidth: 0
             bBorderwidth: 0
-            borderColor: JamiTheme.primaryBackgroundColor
+            borderColor: parent.color
+            radius: parent.radius
         }
     }
 }
