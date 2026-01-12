@@ -30,13 +30,13 @@ Menu {
 
     property GeneralMenuSeparator menuTopBorder: GeneralMenuSeparator {
         separatorPreferredWidth: menuPreferredWidth ? menuPreferredWidth : JamiTheme.menuItemsPreferredWidth
-        separatorPreferredHeight: menuSeparatorPreferredHeight ? menuSeparatorPreferredHeight : JamiTheme.menuBorderPreferredHeight
+        separatorPreferredHeight: menuSeparatorPreferredHeight ? menuSeparatorPreferredHeight : JamiTheme.menuBorderPreferredHeight - 1
         separatorColor: "transparent"
     }
 
     property GeneralMenuSeparator menuBottomBorder: GeneralMenuSeparator {
         separatorPreferredWidth: menuPreferredWidth ? menuPreferredWidth : JamiTheme.menuItemsPreferredWidth
-        separatorPreferredHeight: menuSeparatorPreferredHeight ? menuSeparatorPreferredHeight : JamiTheme.menuBorderPreferredHeight
+        separatorPreferredHeight: menuSeparatorPreferredHeight ? menuSeparatorPreferredHeight : JamiTheme.menuBorderPreferredHeight - 1
         separatorColor: "transparent"
     }
 
@@ -88,12 +88,10 @@ Menu {
     font.pointSize: JamiTheme.menuFontSize
 
     background: Rectangle {
-
         implicitWidth: menuPreferredWidth ? menuPreferredWidth : JamiTheme.menuItemsPreferredWidth
 
-        color: JamiTheme.primaryBackgroundColor
-        radius: JamiTheme.commonRadius
-
+        color: JamiTheme.globalIslandColor
+        radius: JamiTheme.baseContextMenuRadius
         layer.enabled: true
         layer.effect: DropShadow {
             z: -1

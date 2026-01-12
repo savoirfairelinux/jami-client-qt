@@ -392,9 +392,11 @@ Item {
     property int avatarReadReceiptSize: 15
 
     property int menuItemsPreferredWidth: 220
-    property int menuItemsPreferredHeight: 36
+    //property int menuItemsPreferredHeight: 36
     property int menuItemsCommonBorderWidth: 1
-    property int menuBorderPreferredHeight: 5
+    // HACK: BaseContextMenu seems to have a vertical one-off pixel issue.
+    // This value should be 4 ideally
+    property int menuBorderPreferredHeight: 4
 
     property real maximumWidthSettingsView: 516
     property real settingsHeaderpreferredHeight: 64
@@ -722,7 +724,7 @@ Item {
     property color shadowColor: darkTheme ? "#000000" : "#77767B"
     property real shadowHorizontalOffset: 0
     property real shadowVerticalOffset: 4
-    property real shadowOpacity: 0.6
+    property real shadowOpacity: 0.4
 
     // Sip Input Panel (dialpad)
     property int sipInputPanelRadius: 30
@@ -769,7 +771,19 @@ Item {
     property int iconButtonExtraLarge: 48
 
     // GeneralMenuItem
-    property int generalMenuItemPadding: 8
+    property int generalMenuItemIndicatorWidth: JamiTheme.iconButtonMedium
+    property int generalMenuItemIndicatorHeight: JamiTheme.iconButtonMedium
+    property int generalMenuItemHeight: generalMenuItemIndicatorHeight + generalMenuItemPadding + 12
+    property int generalMenuItemPadding: menuBorderPreferredHeight
+    property int generalMenuItemRadius: generalMenuItemHeight / 2
+
+    // Base Context Menu
+    property int baseContextMenuRadius: generalMenuItemRadius + generalMenuItemPadding
+
+    // General Menu Item List
+    property int generalMenuItemListIconWidth: JamiTheme.iconButtonLarge
+    property int generalMenuItemListIconHeight: JamiTheme.iconButtonLarge
+    property int generalMenuItemListIconRadius: generalMenuItemListIconHeight / 2
 
     // Global background color
     property color globalBackgroundColor: darkTheme ? "#201f1f" : "#FFFFFF"
