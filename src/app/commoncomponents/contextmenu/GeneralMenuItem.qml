@@ -33,9 +33,10 @@ MenuItem {
     property bool canTrigger: true
     property bool dangerous: false
     property BaseContextMenu parentMenu
+    property int itemRealWidth: implicitWidth
     property alias isActif: root.enabled
 
-    height: indicator.height + JamiTheme.generalMenuItemPadding
+    height: JamiTheme.generalMenuItemHeight
 
     indicator: Button {
         anchors.left: root.left
@@ -46,6 +47,8 @@ MenuItem {
         icon.height: JamiTheme.iconButtonMedium
         icon.source: iconSource
         icon.color: JamiTheme.textColor
+
+        enabled: false
 
         opacity: root.hovered ? 1.0 : 0.6
 
@@ -67,6 +70,8 @@ MenuItem {
         anchors.verticalCenter: root.verticalCenter
 
         text: itemName
+        elide: Text.ElideRight
+        font.pointSize: JamiTheme.textFontSize
         font.bold: root.bold
         verticalAlignment: Text.AlignVCenter
         color: dangerous ? JamiTheme.redColor : JamiTheme.textColor
@@ -79,8 +84,8 @@ MenuItem {
         anchors.leftMargin: JamiTheme.generalMenuItemPadding
         anchors.rightMargin: JamiTheme.generalMenuItemPadding
 
-        radius: width / 2
-        color: root.hovered ? JamiTheme.hoveredButtonColor : JamiTheme.primaryBackgroundColor
+        radius: JamiTheme.generalMenuItemRadius
+        color: root.hovered || root.activeFocus ? JamiTheme.hoveredButtonColor : JamiTheme.globalIslandColor
 
         Behavior on color {
             ColorAnimation {
@@ -91,7 +96,6 @@ MenuItem {
 
     onReleased: {
         if (canTrigger) {
-            Qt.callLater(root.clicked());
             parentMenu.close();
         }
     }
