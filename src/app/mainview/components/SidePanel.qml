@@ -68,20 +68,20 @@ SidePanelBase {
             viewCoordinator.present("NewSwarmPage");
             const newSwarmPage = viewCoordinator.getView("NewSwarmPage");
             newSwarmPage.removeMember.connect((convId, member) => {
-                                                  removeMember(convId, member);
-                                              });
+                removeMember(convId, member);
+            });
             newSwarmPage.createSwarmClicked.connect((title, description, avatar) => {
-                                                        var uris = [];
-                                                        for (var idx in newSwarmPage.members) {
-                                                            var uri = newSwarmPage.members[idx].uri;
-                                                            if (uris.indexOf(uri) === -1) {
-                                                                uris.push(uri);
-                                                            }
-                                                        }
-                                                        let convuid = ConversationsAdapter.createSwarm(title, description, avatar, uris);
-                                                        viewCoordinator.dismiss("NewSwarmPage");
-                                                        LRCInstance.selectConversation(convuid);
-                                                    });
+                var uris = [];
+                for (var idx in newSwarmPage.members) {
+                    var uri = newSwarmPage.members[idx].uri;
+                    if (uris.indexOf(uri) === -1) {
+                        uris.push(uri);
+                    }
+                }
+                let convuid = ConversationsAdapter.createSwarm(title, description, avatar, uris);
+                viewCoordinator.dismiss("NewSwarmPage");
+                LRCInstance.selectConversation(convuid);
+            });
         } else {
             viewCoordinator.dismiss("NewSwarmPage");
         }
@@ -116,9 +116,9 @@ SidePanelBase {
                 var uri = item.uris[idx];
                 if (!Array.from(newHm).find(r => r.uri === uri) && uri !== CurrentAccount.uri) {
                     newHm.push({
-                                   "uri": uri,
-                                   "convId": convId
-                               });
+                        "uri": uri,
+                        "convId": convId
+                    });
                     added = true;
                 }
             }
@@ -383,7 +383,7 @@ SidePanelBase {
                         Layout.bottomMargin: -10
                         Layout.alignment: Qt.AlignTop
 
-                        color: JamiTheme.backgroundColor
+                        color: JamiTheme.globalIslandColor
                         Text {
                             id: searchStatusText
 
@@ -456,17 +456,21 @@ SidePanelBase {
                             model: ConversationsAdapter.searchListProxyModel
 
                             delegate: SmartListItemDelegate {
-                                extraButtons.contentItem: JamiPushButton {
+                                extraButtons.contentItem: NewIconButton {
                                     id: sendContactRequestButton
                                     QWKSetParentHitTestVisible {}
 
                                     anchors.right: parent.right
                                     anchors.verticalCenter: parent.verticalCenter
-                                    normalColor: JamiTheme.globalIslandColor
+
+                                    iconSize: JamiTheme.iconButtonMedium
+                                    iconSource: JamiResources.add_people_24dp_svg
+                                    toolTipText: JamiStrings.addToConversations
+
+                                    // Disalbe due to fading issues
+                                    background.visible: false
 
                                     visible: isTemporary || isBanned
-                                    source: JamiResources.add_people_24dp_svg
-                                    toolTipText: JamiStrings.addToConversations
 
                                     onClicked: {
                                         console.log(isBanned);
@@ -479,6 +483,7 @@ SidePanelBase {
                                         }
                                     }
                                 }
+
                                 extraButtons.height: sendContactRequestButton.height
                                 extraButtons.width: sendContactRequestButton.width
                             }
@@ -697,8 +702,7 @@ SidePanelBase {
         enabled: sipInputPanelPopUp.visible || sipInputPanelPopUp.shown
         hoverEnabled: true
         onClicked: {
-            if ((mouseX < sipInputPanelPopUp.x || mouseX > sipInputPanelPopUp.x + sipInputPanelPopUp.width) ||
-                    (mouseY < sipInputPanelPopUp.y || mouseY > sipInputPanelPopUp.y + sipInputPanelPopUp.height)) {
+            if ((mouseX < sipInputPanelPopUp.x || mouseX > sipInputPanelPopUp.x + sipInputPanelPopUp.width) || (mouseY < sipInputPanelPopUp.y || mouseY > sipInputPanelPopUp.y + sipInputPanelPopUp.height)) {
                 sipInputPanelPopUp.shown = false;
             }
         }
