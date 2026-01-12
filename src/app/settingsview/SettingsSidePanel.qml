@@ -310,7 +310,10 @@ SidePanelBase {
 
     ColumnLayout {
         anchors.fill: parent
-        anchors.margins: JamiTheme.sidePanelIslandsPadding
+        anchors.leftMargin: JamiTheme.sidePanelIslandsPadding
+        anchors.topMargin: JamiTheme.sidePanelIslandsPadding
+        anchors.bottomMargin: JamiTheme.sidePanelIslandsPadding
+        anchors.rightMargin: JamiTheme.sidePanelIslandsPadding * 2
 
         Item {
             Layout.fillWidth: true
@@ -321,7 +324,7 @@ SidePanelBase {
 
                 anchors.fill: parent
 
-                color: JamiTheme.backgroundColor
+                color: JamiTheme.globalIslandColor
                 radius: JamiTheme.commonRadius
                 layer.enabled: true
                 layer.effect: MultiEffect {
@@ -379,7 +382,7 @@ SidePanelBase {
                             buttonTextFont.weight: isChildSelected ? Font.Medium : Font.Normal
                             buttonTextEnableElide: true
 
-                            normalColor: JamiTheme.backgroundColor
+                            normalColor: JamiTheme.globalIslandColor
                             hoveredColor: JamiTheme.smartListHoveredColor
                             imageColor: JamiTheme.tintedBlue
 
@@ -390,6 +393,12 @@ SidePanelBase {
                                 if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
                                     clicked();
                                     keyEvent.accepted = true;
+                                }
+                            }
+
+                            Behavior on buttonTextColor {
+                                ColorAnimation {
+                                    duration: JamiTheme.shortFadeDuration
                                 }
                             }
                         }
@@ -430,7 +439,7 @@ SidePanelBase {
                                     buttonTextFont.weight: isSelected ? Font.Medium : Font.Normal
                                     buttonTextEnableElide: true
 
-                                    normalColor: isSelected ? JamiTheme.smartListSelectedColor : JamiTheme.backgroundColor
+                                    normalColor: isSelected ? JamiTheme.smartListSelectedColor : JamiTheme.globalIslandColor
                                     hoveredColor: JamiTheme.smartListHoveredColor
 
                                     onClicked: open(modelData.id)
@@ -439,6 +448,12 @@ SidePanelBase {
                                         if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
                                             clicked();
                                             keyEvent.accepted = true;
+                                        }
+                                    }
+
+                                    Behavior on buttonTextColor {
+                                        ColorAnimation {
+                                            duration: JamiTheme.shortFadeDuration
                                         }
                                     }
                                 }

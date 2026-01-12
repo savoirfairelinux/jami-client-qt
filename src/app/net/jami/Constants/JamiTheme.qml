@@ -775,5 +775,6 @@ Item {
     property color globalBackgroundColor: darkTheme ? "#201f1f" : "#FFFFFF"
 
     // Global Island color
-    property color globalIslandColor: darkTheme ? "#201f1f" : "#f4f0ef"
+    //"#201f1f"
+    property color globalIslandColor: darkTheme ? JamiTheme.backgroundColor : "#f4f0ef"
 }
