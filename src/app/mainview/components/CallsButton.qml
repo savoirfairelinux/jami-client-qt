@@ -135,7 +135,6 @@ Rectangle {
             onClicked: {
                 dropdownPopup.open();
             }
-            Component.onCompleted: console.warn("ACTIVE CALLS:", activeCalls)
         }
     }
 
