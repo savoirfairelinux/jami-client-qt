@@ -777,4 +777,8 @@ Item {
     // Global Island color
     //"#201f1f"
     property color globalIslandColor: darkTheme ? JamiTheme.backgroundColor : "#f4f0ef"
+
+    // Message Bar
+    property int messageBarRadius: 28
+    property int messageBarReplyToAvatarSize: 24
 }

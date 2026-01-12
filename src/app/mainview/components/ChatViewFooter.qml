@@ -29,6 +29,7 @@ Rectangle {
     property string previousConvId
     property string previousAccountId
     property bool showTypo: messageBar.showTypo
+    property real marginSize: JamiTheme.messageBarMarginSize
 
     function setFilePathsToSend(filePaths) {
         for (var index = 0; index < filePaths.length; ++index) {
@@ -37,9 +38,10 @@ Rectangle {
         }
     }
 
-    implicitHeight: footerColumnLayout.implicitHeight
+    implicitHeight: messageBar.height + 2 * marginSize
+    height: implicitHeight
 
-    color: JamiTheme.globalBackgroundColor
+    color: JamiTheme.transparentColor//JamiTheme.globalBackgroundColor
 
     function updateMessageDraft() {
         // Store the current files that have not been sent, if any. Do the same for the message draft.
@@ -112,138 +114,107 @@ Rectangle {
         y: isVideo ? -165 : -65
     }
 
-    ColumnLayout {
-        id: footerColumnLayout
-        anchors.centerIn: root
+    MessageBar {
+        id: messageBar
 
-        width: root.width
+        anchors.bottom: root.bottom
+        anchors.bottomMargin: marginSize
+        anchors.horizontalCenter: root.horizontalCenter
 
-        spacing: 0
+        width: root.width - 2 * marginSize
 
-        ReplyingContainer {
-            id: replyingContainer
+        property var emojiPicker
 
-            Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: footerColumnLayout.width
-            Layout.maximumWidth: JamiTheme.chatViewMaximumWidth
-            Layout.minimumHeight: 36
-            Layout.preferredHeight: 36 * JamiTheme.baseZoom
-            visible: MessagesAdapter.replyToId !== ""
+        Connections {
+            target: messageBar.emojiPicker ? messageBar.emojiPicker : null
+            function onEmojiIsPicked(content) {
+                messageBar.textAreaObj.insertText(content);
+            }
         }
 
-        EditContainer {
-            id: editContainer
-            Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: footerColumnLayout.width
-            Layout.maximumWidth: JamiTheme.chatViewMaximumWidth
-            Layout.minimumHeight: 36
-            Layout.preferredHeight: 36 * JamiTheme.baseZoom
-            visible: MessagesAdapter.editId !== ""
+        function openEmojiPicker() {
+            var component = WITH_WEBENGINE ? Qt.createComponent("qrc:/webengine/emojipicker/EmojiPicker.qml") : Qt.createComponent("qrc:/nowebengine/EmojiPicker.qml");
+            messageBar.emojiPicker = component.createObject(messageBar, {
+                "x": setXposition(),
+                "y": setYposition(),
+                "listView": null
+            });
+            if (messageBar.emojiPicker === null) {
+                console.log("Error creating emojiPicker in chatViewFooter");
+            }
+        }
+        onWidthChanged: {
+            if (emojiPicker)
+                emojiPicker.x = setXposition();
         }
 
-        MessageBar {
-            id: messageBar
+        function setXposition() {
+            return messageBar.width - JamiTheme.emojiPickerWidth;
+        }
 
-            Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: footerColumnLayout.width
-            Layout.leftMargin: marginSize
-            Layout.rightMargin: marginSize
-            Layout.bottomMargin: marginSize
-            Layout.preferredHeight: height
+        function setYposition() {
+            return -JamiTheme.emojiPickerHeight;
+        }
 
-            property var emojiPicker
+        sendButtonVisibility: text || messageBar.fileContainer.filesToSendCount
 
-            Connections {
-                target: messageBar.emojiPicker ? messageBar.emojiPicker : null
-                function onEmojiIsPicked(content) {
-                    messageBar.textAreaObj.insertText(content);
-                }
+        onEmojiButtonClicked: {
+            if (emojiPicker && emojiPicker.opened) {
+                emojiPicker.closeEmojiPicker();
+            } else {
+                openEmojiPicker();
             }
+        }
 
-            function openEmojiPicker() {
-                var component = WITH_WEBENGINE ? Qt.createComponent("qrc:/webengine/emojipicker/EmojiPicker.qml") : Qt.createComponent("qrc:/nowebengine/EmojiPicker.qml");
-                messageBar.emojiPicker = component.createObject(messageBar, {
-                        "x": setXposition(),
-                        "y": setYposition(),
-                        "listView": null
-                    });
-                if (messageBar.emojiPicker === null) {
-                    console.log("Error creating emojiPicker in chatViewFooter");
-                }
+        onShowMapClicked: {
+            PositionManager.setMapActive(CurrentAccount.id);
+        }
+
+        onSendFileButtonClicked: {
+            var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+                "fileMode": JamiFileDialog.OpenFiles,
+                "nameFilters": [JamiStrings.allFiles]
+            }, true); // is a single instance
+            dlg.filesAccepted.connect(function (files) {
+                setFilePathsToSend(files);
+            });
+        }
+
+        onVideoRecordMessageButtonClicked: {
+            recordBox.openRecorder(true);
+        }
+
+        onAudioRecordMessageButtonClicked: {
+            recordBox.openRecorder(false);
+        }
+
+        onSendMessageButtonClicked: {
+            // Send file messages
+            var fileCounts = messageBar.fileContainer.filesToSendListModel.rowCount();
+            for (var i = 0; i < fileCounts; i++) {
+                var currentIndex = messageBar.fileContainer.filesToSendListModel.index(i, 0);
+                var filePath = messageBar.fileContainer.filesToSendListModel.data(currentIndex, FilesToSend.FilePath);
+                MessagesAdapter.sendFile(filePath);
             }
-            onWidthChanged: {
-                if (emojiPicker)
-                    emojiPicker.x = setXposition();
-            }
-
-            function setXposition() {
-                return messageBar.width - JamiTheme.emojiPickerWidth;
-            }
-
-            function setYposition() {
-                return -JamiTheme.emojiPickerHeight;
-            }
-
-            sendButtonVisibility: text || messageBar.fileContainer.filesToSendCount
-
-            onEmojiButtonClicked: {
-                if (emojiPicker && emojiPicker.opened) {
-                    emojiPicker.closeEmojiPicker();
+            messageBar.fileContainer.filesToSendListModel.flush();
+            // Send text message
+            if (messageBar.text) {
+                if (MessagesAdapter.editId !== "") {
+                    MessagesAdapter.editMessage(CurrentConversation.id, messageBar.text);
                 } else {
-                    openEmojiPicker();
+                    MessagesAdapter.sendMessage(messageBar.text);
                 }
             }
+            messageBar.textAreaObj.clearText();
+            MessagesAdapter.replyToId = "";
+        }
 
-            onShowMapClicked: {
-                PositionManager.setMapActive(CurrentAccount.id);
-            }
-
-            onSendFileButtonClicked: {
-                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
-                        "fileMode": JamiFileDialog.OpenFiles,
-                        "nameFilters": [JamiStrings.allFiles]
-                    }, true); // is a single instance
-                dlg.filesAccepted.connect(function (files) {
-                        setFilePathsToSend(files);
-                    });
-            }
-
-            onVideoRecordMessageButtonClicked: {
-                recordBox.openRecorder(true);
-            }
-
-            onAudioRecordMessageButtonClicked: {
-                recordBox.openRecorder(false);
-            }
-
-            onSendMessageButtonClicked: {
-                // Send file messages
-                var fileCounts = messageBar.fileContainer.filesToSendListModel.rowCount();
-                for (var i = 0; i < fileCounts; i++) {
-                    var currentIndex = messageBar.fileContainer.filesToSendListModel.index(i, 0);
-                    var filePath = messageBar.fileContainer.filesToSendListModel.data(currentIndex, FilesToSend.FilePath);
-                    MessagesAdapter.sendFile(filePath);
-                }
-                messageBar.fileContainer.filesToSendListModel.flush();
-                // Send text message
-                if (messageBar.text) {
-                    if (MessagesAdapter.editId !== "") {
-                        MessagesAdapter.editMessage(CurrentConversation.id, messageBar.text);
-                    } else {
-                        MessagesAdapter.sendMessage(messageBar.text);
-                    }
-                }
-                messageBar.textAreaObj.clearText();
-                MessagesAdapter.replyToId = "";
-            }
-
-            Keys.onShortcutOverride: function (keyEvent) {
-                if (keyEvent.key === Qt.Key_Escape) {
-                    if (recordBox != null && recordBox.opened) {
-                        recordBox.closeRecorder();
-                    } else if (PositionManager.isMapActive(CurrentAccount.id)) {
-                        PositionManager.setMapInactive(CurrentAccount.id);
-                    }
+        Keys.onShortcutOverride: function (keyEvent) {
+            if (keyEvent.key === Qt.Key_Escape) {
+                if (recordBox != null && recordBox.opened) {
+                    recordBox.closeRecorder();
+                } else if (PositionManager.isMapActive(CurrentAccount.id)) {
+                    PositionManager.setMapInactive(CurrentAccount.id);
                 }
             }
         }
