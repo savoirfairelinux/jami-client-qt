@@ -110,6 +110,7 @@ Item {
                     spacing: 10
 
                     Avatar {
+                        id: accountAvatar
                         Layout.preferredWidth: JamiTheme.accountListAvatarSize
                         Layout.preferredHeight: JamiTheme.accountListAvatarSize
                         Layout.alignment: Qt.AlignVCenter
@@ -220,7 +221,8 @@ Item {
                 id: settingsButton
 
                 Layout.alignment: Qt.AlignVCenter
-                Layout.rightMargin: 4
+                // Layout.rightMargin: 4
+                Layout.rightMargin: 10
 
                 iconSize: JamiTheme.iconButtonMedium
                 iconSource: !inSettings ? JamiResources.settings_24dp_svg : JamiResources.round_close_24dp_svg
