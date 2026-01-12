@@ -392,7 +392,7 @@ Item {
     property int avatarReadReceiptSize: 15
 
     property int menuItemsPreferredWidth: 220
-    property int menuItemsPreferredHeight: 36
+    //property int menuItemsPreferredHeight: 36
     property int menuItemsCommonBorderWidth: 1
     property int menuBorderPreferredHeight: 5
 
@@ -769,7 +769,20 @@ Item {
     property int iconButtonExtraLarge: 48
 
     // GeneralMenuItem
-    property int generalMenuItemPadding: 8
+    property int generalMenuItemIndicatorWidth: JamiTheme.iconButtonMedium
+    property int generalMenuItemIndicatorHeight: JamiTheme.iconButtonMedium
+    property int generalMenuItemHeight: generalMenuItemIndicatorHeight + generalMenuItemPadding + 12
+    property int generalMenuItemPadding: menuBorderPreferredHeight
+    property int generalMenuItemRadius: generalMenuItemHeight / 2
+
+    // Base Context Menu
+    property int baseContextMenuRadius: generalMenuItemRadius
+    property int baseContextMenuPadding: 16
+
+    // General Menu Item List
+    property int generalMenuItemListIconWidth: JamiTheme.iconButtonLarge
+    property int generalMenuItemListIconHeight: JamiTheme.iconButtonLarge
+    property int generalMenuItemListIconRadius: generalMenuItemListIconHeight / 2
 
     // Global background color
     property color globalBackgroundColor: darkTheme ? "#201f1f" : "#FFFFFF"
