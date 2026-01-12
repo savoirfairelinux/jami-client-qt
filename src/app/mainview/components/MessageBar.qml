@@ -132,32 +132,32 @@ Rectangle {
                 property var markdownShortCut: {
                     "Bold": function () {
                         if (!showPreview) {
-                            listViewTypoFirst.itemAtIndex(0).action.triggered();
+                            formatRow.listViewTypoFirst.itemAtIndex(0).action.triggered();
                         }
                     },
                     "Italic": function () {
                         if (!showPreview) {
-                            listViewTypoFirst.itemAtIndex(1).action.triggered();
+                            formatRow.listViewTypoFirst.itemAtIndex(1).action.triggered();
                         }
                     },
                     "Barre": function () {
                         if (!showPreview) {
-                            listViewTypoFirst.itemAtIndex(2).action.triggered();
+                            formatRow.listViewTypoFirst.itemAtIndex(2).action.triggered();
                         }
                     },
                     "Heading": function () {
                         if (!showPreview) {
-                            listViewTypoFirst.itemAtIndex(3).action.triggered();
+                            formatRow.listViewTypoFirst.itemAtIndex(3).action.triggered();
                         }
                     },
                     "Link": function () {
                         if (!showPreview) {
-                            listViewTypoFirst.itemAtIndex(4).action.triggered();
+                            formatRow.listViewTypoFirst.itemAtIndex(4).action.triggered();
                         }
                     },
                     "Code": function () {
                         if (!showPreview) {
-                            listViewTypoFirst.itemAtIndex(5).action.triggered();
+                            formatRow.listViewTypoFirst.itemAtIndex(5).action.triggered();
                         }
                     },
                     "Quote": function () {
