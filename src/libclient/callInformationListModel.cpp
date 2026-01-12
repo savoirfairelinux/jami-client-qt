@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2024-2025 Savoir-faire Linux Inc.
+ *  Copyright (C) 2024-2026 Savoir-faire Linux Inc.
  *
  *  Author: Nicolas Vengeon <nicolas.vengeon@savoirfairelinux.com>
  *  This program is free software; you can redistribute it and/or modify
