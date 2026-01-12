@@ -31,6 +31,7 @@ Rectangle {
     LayoutMirroring.enabled: UtilsAdapter.isRTL
     LayoutMirroring.childrenInherit: true
 
+    property alias listViewTypoFirst: listViewTypoFirst
     Row {
         id: firstRow
 
