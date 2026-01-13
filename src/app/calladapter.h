@@ -106,6 +106,8 @@ public:
 Q_SIGNALS:
     void callStatusChanged(int index, const QString& accountId, const QString& convUid);
 
+    void callEndedonMismatchedCodec(const QString& accountId, const QString& callId);
+
     // For Call Overlay
     void updateTimeText(const QString& time);
 
@@ -115,6 +117,7 @@ public Q_SLOTS:
     void onAccountChanged();
     void onCallStatusChanged(const QString& accountId, const QString& callId);
     void onCallStatusChanged(const QString& accountId, const QString& callId, int code);
+    void onCallEndedonMismatchedCodec(const QString& accountId, const QString& callId);
     void onCallAddedToConference(const QString& callId, const QString& conversationId, const QString& confId);
     void onCallStarted(const QString& callId);
     void onCallEnded(const QString& callId);

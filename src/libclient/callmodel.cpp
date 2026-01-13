@@ -52,6 +52,7 @@
 
 // std
 #include <chrono>
+#include <pjsip/sip_msg.h>
 #include <random>
 #include <map>
 
@@ -1531,6 +1532,19 @@ CallModelPimpl::slotCallStateChanged(const QString& accountId, const QString& ca
     Q_EMIT behaviorController.callStatusChanged(linked.owner.id, callId);
 
     if (call->status == call::Status::ENDED) {
+        // print code for debugging purpose
+        qDebug() << QString("OSOSE: Call ended with code:") << code;
+
+        switch(code) {
+            case pjsip_status_code::PJSIP_SC_UNSUPPORTED_MEDIA_TYPE:
+                qWarning() << "OSOSE: Call ended due to unsupported media type";
+                // bring up a pop-up to inform the user
+                Q_EMIT linked.callEndedonMismatchedCodec(accountId, callId);
+                break;
+            default:
+                break;
+        }
+
         Q_EMIT linked.callEnded(callId);
 
         // Remove from pendingConferences_
