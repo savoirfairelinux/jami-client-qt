@@ -52,6 +52,7 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     , curLocale_(QLocale(settingsManager_->getLanguage()))
 {
     setObjectName(typeid(*this).name());
+    updateDateFormats();
 
     set_messageListModel(QVariant::fromValue(filteredMsgListModel_));
 
@@ -77,6 +78,7 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
 
     connect(settingsManager_, &AppSettingsManager::localeChanged, this, [this]() {
         curLocale_ = QLocale((settingsManager_->getLanguage()));
+        updateDateFormats();
     });
     connect(timestampTimer_, &QTimer::timeout, this, &MessagesAdapter::timestampUpdated);
     timestampTimer_->start(timestampUpdateIntervalMs_);
@@ -591,7 +593,8 @@ MessagesAdapter::getMediaInfo(const QString& msg)
     if (fileInfo["isImage"].toBool() || fileInfo["isAnimatedImage"].toBool()) {
         return fileInfo;
     }
-    static const QRegularExpression vPattern("(video/)(avi|mov|webm|webp|rmvb)$", QRegularExpression::CaseInsensitiveOption);
+    static const QRegularExpression vPattern("(video/)(avi|mov|webm|webp|rmvb)$",
+                                             QRegularExpression::CaseInsensitiveOption);
     auto match = vPattern.match(mime.name());
     auto captured = match.capturedTexts();
     QString type = captured.size() == 3 ? captured[1] : "";
@@ -602,7 +605,8 @@ MessagesAdapter::getMediaInfo(const QString& msg)
             {"html", html.arg("video", "100%", filePath, mime.name())},
         };
     } else {
-        static const QRegularExpression aPattern("(audio/)(ogg|flac|wav|mpeg|mp3)$", QRegularExpression::CaseInsensitiveOption);
+        static const QRegularExpression aPattern("(audio/)(ogg|flac|wav|mpeg|mp3)$",
+                                                 QRegularExpression::CaseInsensitiveOption);
         match = aPattern.match(mime.name());
         captured = match.capturedTexts();
         type = captured.size() == 3 ? captured[1] : "";
@@ -649,6 +653,38 @@ MessagesAdapter::getBestFormattedDate(const quint64 timestamp)
     return getFormattedDay(timestamp);
 }
 
+void
+MessagesAdapter::updateDateFormats()
+{
+    // Derive the preferred field order from the LongFormat (e.g., "Sunday, 5 October 2025").
+    // This avoids issues with ShortFormat reflecting numeric preferences (like ISO in English)
+    // rather than the cultural text convention.
+    QString pattern = curLocale_.dateFormat(QLocale::LongFormat);
+
+    // Remove Day-Of-Week tokens to avoid counting 'd' from 'dddd' as the day of month position.
+    // We remove "dddd" first, then "ddd" to handle longest match.
+    pattern.remove("dddd");
+    pattern.remove("ddd");
+
+    int idxY = pattern.indexOf('y');
+    int idxM = pattern.indexOf('M');
+    int idxD = pattern.indexOf('d');
+
+    if (idxY != -1 && idxY < idxM && idxY < idxD) {
+        // Year first (e.g. CJK, Hungarian)
+        dateFormatCurrentYear_ = "MMM d";
+        dateFormatOtherYears_ = "yyyy MMM d";
+    } else if (idxD != -1 && idxM != -1 && idxD < idxM) {
+        // Day before Month (e.g. European, Persian)
+        dateFormatCurrentYear_ = "d MMM";
+        dateFormatOtherYears_ = "d MMM yyyy";
+    } else {
+        // Month before Day (e.g. US)
+        dateFormatCurrentYear_ = "MMM d";
+        dateFormatOtherYears_ = "MMM d, yyyy";
+    }
+}
+
 QString
 MessagesAdapter::getFormattedDay(const quint64 timestamp)
 {
@@ -656,10 +692,17 @@ MessagesAdapter::getFormattedDay(const quint64 timestamp)
     auto timestampDate = QDateTime::fromSecsSinceEpoch(timestamp).date();
     if (timestampDate == currentDate)
         return QObject::tr("Today");
-    if (timestampDate.daysTo(currentDate) == 1)
+
+    auto daysDiff = timestampDate.daysTo(currentDate);
+    if (daysDiff == 1)
         return QObject::tr("Yesterday");
 
-    return curLocale_.toString(timestampDate, curLocale_.ShortFormat);
+    if (daysDiff < 7 && daysDiff > 0)
+        return curLocale_.dayName(timestampDate.dayOfWeek());
+
+    if (timestampDate.year() == currentDate.year())
+        return curLocale_.toString(timestampDate, dateFormatCurrentYear_);
+    return curLocale_.toString(timestampDate, dateFormatOtherYears_);
 }
 
 void
