@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1373f989_fce8076f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1147
+      },
+      "writtenOn": "2026-01-13T18:54:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19f2e2f1_182f4e78",
+      "range": {
+        "startLine": 15,
+        "startChar": 8,
+        "endLine": 15,
+        "endChar": 13
+      },
+      "revId": "dc983ca8fff544abbce14f51c34d84eba2fe0143",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f0b8229c_a09cfac4",
@@ -41,6 +65,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2b140d3_adf75355",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1147
+      },
+      "writtenOn": "2026-01-13T18:54:03Z",
+      "side": 1,
+      "message": "1. Yes\n2. Yes it only mutes microphone",
+      "parentUuid": "f0b8229c_a09cfac4",
+      "revId": "dc983ca8fff544abbce14f51c34d84eba2fe0143",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d81fdb5_a283e7fb",
@@ -54,6 +96,30 @@
       "writtenOn": "2026-01-01T23:10:09Z",
       "side": 1,
       "message": "Should this be changed from `Share stream audio` to `Share audio` (`Hang megosztása` in Hungarian)?\n\nPlease see the description and screenshot at the following link.\nhttps://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/1675#note_50504\n\nThank you",
+      "range": {
+        "startLine": 312,
+        "startChar": 44,
+        "endLine": 312,
+        "endChar": 62
+      },
+      "revId": "dc983ca8fff544abbce14f51c34d84eba2fe0143",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "449cf74a_3b977319",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1147
+      },
+      "writtenOn": "2026-01-13T18:54:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d81fdb5_a283e7fb",
       "range": {
         "startLine": 312,
         "startChar": 44,
