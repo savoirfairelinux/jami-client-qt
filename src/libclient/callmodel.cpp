@@ -1531,6 +1531,13 @@ CallModelPimpl::slotCallStateChanged(const QString& accountId, const QString& ca
     Q_EMIT behaviorController.callStatusChanged(linked.owner.id, callId);
 
     if (call->status == call::Status::ENDED) {
+        auto element = sip_call_status_code_map.find(code);
+        if (element != sip_call_status_code_map.end() && element->second == "Unsupported Media Type") {
+            qDebug() << "Call ended due to Unsupported Media Type (codec mismatch). Code 415.";
+            // Bring up a pop-up to inform user of codec mismatch
+            Q_EMIT linked.callEndedOnMismatchedCodec(accountId, callId);
+        }
+
         Q_EMIT linked.callEnded(callId);
 
         // Remove from pendingConferences_

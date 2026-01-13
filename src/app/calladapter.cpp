@@ -320,6 +320,13 @@ CallAdapter::onCallStatusChanged(const QString& accountId, const QString& callId
 }
 
 void
+CallAdapter::oncallEndedOnMismatchedCodec(const QString& accountId, const QString& callId)
+{
+    // Emit signal to QML to show the popup
+    Q_EMIT callEndedOnMismatchedCodec(accountId, callId);
+}
+
+void
 CallAdapter::onCallInfosChanged(const QString& accountId, const QString& callId)
 {
     Q_UNUSED(accountId)
@@ -556,6 +563,12 @@ CallAdapter::connectCallModel(const QString& accountId)
             &CallModel::callStatusChanged,
             this,
             QOverload<const QString&, const QString&, int>::of(&CallAdapter::onCallStatusChanged),
+            Qt::UniqueConnection);
+
+    connect(accInfo.callModel.get(),
+            &CallModel::callEndedOnMismatchedCodec,
+            this,
+            &CallAdapter::oncallEndedOnMismatchedCodec,
             Qt::UniqueConnection);
 
     connect(accInfo.callModel.get(),
