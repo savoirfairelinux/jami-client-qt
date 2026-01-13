@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7cd5c245_5df397db",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 678,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-01-13T11:02:47Z",
+      "side": 1,
+      "message": "`Australian` (an English language) is also day before month",
+      "range": {
+        "startLine": 678,
+        "startChar": 34,
+        "endLine": 678,
+        "endChar": 51
+      },
+      "revId": "80c49f68016c0a4fd6348620a445e5866807f084",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
