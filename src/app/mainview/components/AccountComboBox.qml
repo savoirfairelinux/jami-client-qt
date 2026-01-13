@@ -84,8 +84,8 @@ Item {
                     background: Rectangle {
                         anchors.fill: parent
                         anchors.margins: JamiTheme.itemMarginVertical
-                        radius: JamiTheme.commonRadius + 4
-                        color: (hovered || highlighted) ? JamiTheme.hoverColor : JamiTheme.backgroundColor
+                        radius: height / 2
+                        color: (hovered || highlighted) && !listView.headerHovered ? JamiTheme.hoverColor : JamiTheme.backgroundColor
 
                         Behavior on color {
                             ColorAnimation {
@@ -110,7 +110,6 @@ Item {
                     spacing: 10
 
                     Avatar {
-                        id: accountAvatar
                         Layout.preferredWidth: JamiTheme.accountListAvatarSize
                         Layout.preferredHeight: JamiTheme.accountListAvatarSize
                         Layout.alignment: Qt.AlignVCenter
@@ -152,6 +151,7 @@ Item {
                     id: accountComboBoxPopup
 
                     y: contentRect.height - 1
+                    x: UtilsAdapter.isRTL ? -(contentRect.width - accountComboBox.width) : 0
                     width: contentRect.width
                     height: Math.min(contentItem.implicitHeight, accountComboBox.Window.height - topMargin - bottomMargin)
 
@@ -164,6 +164,66 @@ Item {
                         implicitHeight: contentHeight
                         currentIndex: accountComboBox.highlightedIndex
                         model: visible ? accountComboBox.delegateModel : null
+
+                        property bool headerHovered: false
+
+                        header: ItemDelegate {
+                            id: addAccountItem
+
+                            height: JamiTheme.accountListItemHeight
+                            width: root.width
+
+                            background: ColumnLayout {
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+                                Rectangle {
+                                    id: addAccountItemRect
+                                    anchors.fill: parent
+                                    anchors.margins: JamiTheme.itemMarginVertical
+
+                                    color: (addAccountItem.hovered || addAccountItem.highlighted || addAccountItem.activeFocus) ? JamiTheme.hoverColor : JamiTheme.backgroundColor
+                                    radius: height / 2//JamiTheme.commonRadius + 4
+
+                                    Behavior on color {
+                                        ColorAnimation {
+                                            duration: JamiTheme.shortFadeDuration
+                                        }
+                                    }
+
+                                    RowLayout {
+                                        anchors.fill: parent
+
+                                        NewIconButton {
+                                            id: addAccountIcon
+
+                                            Layout.alignment: Qt.AlignVCenter
+                                            Layout.leftMargin: 16
+
+                                            iconSize: JamiTheme.iconButtonSmall
+                                            iconSource: JamiResources.person_add_24dp_svg
+
+                                            enabled: false
+                                        }
+
+                                        Text {
+                                            Layout.fillWidth: true
+                                            Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+
+                                            text: JamiStrings.addAccount
+                                            verticalAlignment: Text.AlignVCenter
+
+                                            font.pointSize: JamiTheme.textFontSize
+                                            color: JamiTheme.textColor
+                                            elide: Text.ElideRight
+                                        }
+                                    }
+                                }
+                            }
+
+                            onClicked: viewCoordinator.present("WizardView")
+
+                            onHoveredChanged: listView.headerHovered = hovered
+                        }
                     }
 
                     background: Rectangle {
@@ -171,7 +231,7 @@ Item {
                         radius: JamiTheme.commonRadius
                         layer.enabled: true
                         layer.effect: MultiEffect {
-                            anchors.fill: accountComboBoxPopup
+                            anchors.fill: parent
                             shadowEnabled: true
                             shadowBlur: JamiTheme.shadowBlur
                             shadowColor: JamiTheme.shadowColor
@@ -186,7 +246,7 @@ Item {
                     id: background
 
                     anchors.fill: accountComboBox
-                    color: accountComboBox.hovered ? JamiTheme.hoverColor : JamiTheme.globalIslandColor
+                    color: accountComboBox.hovered || accountComboBoxPopup.visible ? JamiTheme.hoverColor : JamiTheme.globalIslandColor
                     radius: JamiTheme.commonRadius
                     Behavior on color {
                         ColorAnimation {
@@ -221,8 +281,7 @@ Item {
                 id: settingsButton
 
                 Layout.alignment: Qt.AlignVCenter
-                // Layout.rightMargin: 4
-                Layout.rightMargin: 10
+                Layout.rightMargin: 8
 
                 iconSize: JamiTheme.iconButtonMedium
                 iconSource: !inSettings ? JamiResources.settings_24dp_svg : JamiResources.round_close_24dp_svg
