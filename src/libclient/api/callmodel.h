@@ -445,6 +445,11 @@ Q_SIGNALS:
      */
     void participantsChanged(const QString& confId) const;
     /**
+     * Emitted when a call ends due to mismatched codec
+     * @param callId
+     */
+    void callEndedonMismatchedCodec(const QString& accountId, const QString& callId) const;
+    /**
      * Emitted when a call starts
      * @param callId
      */

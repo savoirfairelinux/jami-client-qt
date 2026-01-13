@@ -167,6 +167,19 @@ Rectangle {
 
         spacing: 0
 
+        Connections {
+            target: CallAdapter
+            function onCallEndedonMismatchedCodec(accountId, callId) {
+                mismatchedCodecPopup.open();
+            }
+        }
+
+        MismatchedCodecPopup {
+            id: mismatchedCodecPopup
+            button1.text: JamiStrings.optionOk
+            button1.onClicked: close()
+        }
+
         ChatViewHeader {
             id: chatViewHeader
             objectName: "chatViewHeader"

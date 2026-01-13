@@ -338,6 +338,8 @@ Item {
     property string audioCodec: qsTr("Audio codec")
     property string rendererId: qsTr("Renderer id")
     property string fps_short: qsTr("Fps")
+    property string mismatchedCodecTitle: qsTr("Mismatched Codec")
+    property string mismatchedCodecDescription: qsTr("Neither of the participants in this call have common codecs enabled. Please agree with the other participant to enable at least one common video codec and at least one common audio codec to proceed with the call. To change your codecs, navigate to: <br><br><b>Settings > Account > Advanced settings > Video Codecs / Audio Codecs.</b>")
 
     // Share location/position
     property string shareLocation: qsTr("Share location")
