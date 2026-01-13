@@ -29,7 +29,7 @@
 #include <QBuffer>
 #include <QClipboard>
 #include <QFileInfo>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QMimeData>
 #include <QMimeDatabase>
 
@@ -381,7 +381,7 @@ UtilsAdapter::toFileAbsolutepath(QString inputFileName)
 QString
 UtilsAdapter::getAbsPath(QString path)
 {
-    static auto fileSchemeRe = QRegularExpression("^file:\\/{2,3}");
+    static const auto fileSchemeRe = QRegularExpression("^file:\\/{2,3}");
     // Note: this function is used on urls returned from qml-FileDialogs which
     // contain 'file:///' for reasons we don't understand.
     // TODO: this logic can be refactored into the JamiFileDialog component.
@@ -537,11 +537,11 @@ UtilsAdapter::supportedLang()
     QVariantMap result;
     result["SYSTEM"] = tr("System");
     // Get available locales
-    QRegExp regex("jami_client_qt_(.*).qm");
+    static const QRegularExpression regex("jami_client_qt_(.*).qm");
     QSet<QString> nativeNames;
     for (const auto& f : trFiles) {
-        regex.indexIn(f);
-        auto captured = regex.capturedTexts();
+        auto match = regex.match(f);
+        auto captured = match.capturedTexts();
         if (captured.size() == 2) {
             auto nativeName = QLocale(captured[1]).nativeLanguageName();
             if (nativeName.isEmpty()) // If a locale doesn't have any nativeLanguageName, ignore it.

@@ -35,7 +35,7 @@ class LRCInstance;
  * User can customize a function pointer to pass to FilterPredicate to ensure which row in
  * the source model can be accepted.
  *
- * Additionally, user need to setFilterRegExp to be able to get input QRegExp from FilterPredicate.
+ * Additionally, user need to setFilterRegularExpression to be able to get input QRegularExpression from FilterPredicate.
  */
 class SelectableProxyModel final : public QSortFilterProxyModel
 {
