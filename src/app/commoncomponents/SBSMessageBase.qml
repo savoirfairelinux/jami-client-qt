@@ -300,24 +300,10 @@ Control {
                     height: JamiTheme.emojiPushButtonSize
                     anchors.verticalCenter: bubble.verticalCenter
 
-                    PushButton {
+                    NewIconButton {
                         id: more
                         objectName: "more"
 
-                        anchors.rightMargin: isOutgoing ? 10 : 0
-                        anchors.leftMargin: !isOutgoing ? 10 : 0
-
-                        imageColor: hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor
-                        normalColor: JamiTheme.primaryBackgroundColor
-                        toolTipText: JamiStrings.moreOptions
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.right: isOutgoing ? optionButtonItem.right : undefined
-                        anchors.left: !isOutgoing ? optionButtonItem.left : undefined
-                        visible: shouldBeVisible
-                        source: JamiResources.more_vert_24dp_svg
-                        width: optionButtonItem.width / 4
-                        height: optionButtonItem.height
-                        circled: false
                         property bool isOpen: false
                         property var obj: undefined
 
@@ -327,6 +313,18 @@ Control {
                             imageColor = Qt.binding(() => hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor);
                             normalColor = Qt.binding(() => JamiTheme.primaryBackgroundColor);
                         }
+
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.left: !isOutgoing ? optionButtonItem.left : undefined
+                        anchors.leftMargin: !isOutgoing ? 10 : 0
+                        anchors.rightMargin: isOutgoing ? 10 : 0
+                        anchors.right: isOutgoing ? optionButtonItem.right : undefined
+
+                        iconSource: JamiResources.more_vert_24dp_svg
+                        iconSize: JamiTheme.iconButtonMedium
+                        toolTipText: JamiStrings.moreOptions
+
+                        visible: shouldBeVisible
 
                         onClicked: {
                             if (more.isOpen) {
@@ -353,21 +351,19 @@ Control {
                         }
                     }
 
-                    PushButton {
+                    NewIconButton {
                         id: reply
                         objectName: "reply"
 
-                        circled: false
-                        imageColor: hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor
-                        normalColor: JamiTheme.primaryBackgroundColor
-                        toolTipText: JamiStrings.reply
-                        source: JamiResources.reply_black_24dp_svg
-                        width: optionButtonItem.width / 4
-                        height: optionButtonItem.height
                         anchors.verticalCenter: parent.verticalCenter
+                        anchors.left: !isOutgoing ? more.right : undefined
                         anchors.rightMargin: 5
                         anchors.right: isOutgoing ? more.left : undefined
-                        anchors.left: !isOutgoing ? more.right : undefined
+
+                        iconSize: JamiTheme.iconButtonMedium
+                        iconSource: JamiResources.reply_black_24dp_svg
+                        toolTipText: JamiStrings.reply
+
                         visible: shouldBeVisible
 
                         onClicked: {
@@ -376,24 +372,10 @@ Control {
                         }
                     }
 
-                    PushButton {
+                    NewIconButton {
                         id: share
                         objectName: "share"
 
-                        circled: false
-                        imageColor: hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor
-                        normalColor: JamiTheme.primaryBackgroundColor
-                        toolTipText: JamiStrings.share
-                        source: JamiResources.share_black_24dp_svg
-
-                        width: optionButtonItem.width / 4
-                        height: optionButtonItem.height
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.rightMargin: 5
-                        anchors.right: isOutgoing ? reply.left : undefined
-                        anchors.left: !isOutgoing ? reply.right : undefined
-
-                        visible: shouldBeVisible
                         property bool isOpen: false
                         property var obj: undefined
 
@@ -403,6 +385,17 @@ Control {
                             imageColor = Qt.binding(() => hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor);
                             normalColor = Qt.binding(() => JamiTheme.primaryBackgroundColor);
                         }
+
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.left: !isOutgoing ? reply.right : undefined
+                        anchors.right: isOutgoing ? reply.left : undefined
+                        anchors.rightMargin: 5
+
+                        iconSize: JamiTheme.iconButtonMedium
+                        iconSource: JamiResources.share_black_24dp_svg
+                        toolTipText: JamiStrings.share
+
+                        visible: shouldBeVisible
 
                         onClicked: {
                             if (share.isOpen) {
