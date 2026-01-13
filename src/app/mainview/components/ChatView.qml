@@ -167,6 +167,18 @@ Rectangle {
 
         spacing: 0
 
+        Connections {
+            target: CallAdapter
+
+            property CallEndedWithErrorPopup popup: CallEndedWithErrorPopup {
+                id: callEndedWithErrorPopup
+            }
+
+            function onCallEndedWithError(errorCode) {
+                popup.showError(errorCode);
+            }
+        }
+
         ChatViewHeader {
             id: chatViewHeader
             objectName: "chatViewHeader"
