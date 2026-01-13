@@ -104,5 +104,5 @@ Menu {
         }
     }
 
-    Component.onDestruction: menuItemsToLoad.forEach(item => item.parent = null)
+    Component.onDestruction: if (menuItemsToLoad !== undefined) menuItemsToLoad.forEach(item => item.parent = null)
 }
