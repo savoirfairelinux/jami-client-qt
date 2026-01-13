@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4454d4af_78d2eeeb",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 657,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-01-13T15:29:34Z",
+      "side": 1,
+      "message": "better put at least a comment here regarding what is wrong with format from Qt",
+      "revId": "5314cbf65f2cd6041bc25651b060254b4a95ccf6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
