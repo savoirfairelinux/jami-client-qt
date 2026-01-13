@@ -19,48 +19,54 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.platform
 import Qt5Compat.GraphicalEffects
+import QtQuick.Effects
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import "../../commoncomponents"
 import "../../settingsview/components"
 
-Page {
+Rectangle {
     id: root
 
-    header: Item {
-        height: 45
+    anchors.fill: parent
+    anchors.margins: JamiTheme.sidePanelIslandsPadding
+
+    color: JamiTheme.globalIslandColor
+    radius: JamiTheme.commonRadius
+
+    ColumnLayout {
+        anchors.fill: parent
+        anchors.margins: 12
+
         Searchbar {
+            Layout.alignment: Qt.AlignTop
+            Layout.fillWidth: true
+            Layout.preferredHeight: 45
+
             onVisibleChanged: {
                 if (visible) {
                     clearText();
                     forceActiveFocus();
                 }
             }
-            anchors.fill: parent
-            anchors.margins: 5
             onSearchBarTextChanged: function (text) {
                 MessagesAdapter.searchbarPrompt = text;
             }
         }
-    }
-
-    background: Rectangle {
-        color: JamiTheme.backgroundColor
-    }
-
-    ColumnLayout {
-        anchors.fill: parent
-        anchors.topMargin: 10
 
         TabBar {
             id: researchTabBar
 
-            currentIndex: 0
-            Layout.preferredHeight: contentHeight + 10
-            Layout.preferredWidth: root.width
+            Layout.fillWidth: true
+            Layout.preferredHeight: 42
+
             background.visible: false
+
+            currentIndex: 0
+
             signal filterTabChange
+
             onCurrentIndexChanged: {
                 filterTabChange();
             }
@@ -86,26 +92,31 @@ Page {
             }
         }
 
-        Rectangle {
-            id: view
-
-            color: JamiTheme.backgroundColor
+        MessagesResearchView {
             Layout.fillWidth: true
             Layout.fillHeight: true
-
-            MessagesResearchView {
-                anchors.fill: parent
-                visible: researchTabBar.currentIndex === 0
-                clip: true
-            }
-
-            DocumentsScrollview {
-                anchors.fill: parent
-                visible: researchTabBar.currentIndex === 1
-                clip: true
-                themeColor: JamiTheme.chatviewTextColor
-                textFilter: MessagesAdapter.searchbarPrompt
-            }
+            visible: researchTabBar.currentIndex === 0
+            clip: true
         }
+
+        DocumentsScrollview {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            visible: researchTabBar.currentIndex === 1
+            clip: true
+            themeColor: JamiTheme.chatviewTextColor
+            textFilter: MessagesAdapter.searchbarPrompt
+        }
+    }
+
+    layer.enabled: true
+    layer.effect: MultiEffect {
+        anchors.fill: root
+        shadowEnabled: true
+        shadowBlur: JamiTheme.shadowBlur
+        shadowColor: JamiTheme.shadowColor
+        shadowHorizontalOffset: JamiTheme.shadowHorizontalOffset
+        shadowVerticalOffset: JamiTheme.shadowVerticalOffset
+        shadowOpacity: JamiTheme.shadowOpacity
     }
 }
