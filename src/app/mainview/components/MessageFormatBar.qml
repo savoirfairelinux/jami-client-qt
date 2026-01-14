@@ -549,7 +549,6 @@ Rectangle {
             Layout.alignment: Qt.AlignRight
             height: JamiTheme.chatViewFooterButtonSize
             width: JamiTheme.chatViewFooterButtonSize
-            Layout.rightMargin: marginSize / 2
             visible: true
             color: JamiTheme.transparentColor
 

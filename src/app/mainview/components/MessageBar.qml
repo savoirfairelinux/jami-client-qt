@@ -246,7 +246,7 @@ Rectangle {
             Layout.columnSpan: maximized || isExpanding ? 2 : 1
 
             Layout.alignment: Qt.AlignTop
-            Layout.rightMargin: marginSize / 2
+            Layout.rightMargin: 0
             Layout.leftMargin: marginSize / 2
             Layout.preferredHeight: Math.max(messageBarTextArea.contentHeight + 4, 36)
             Layout.maximumHeight: JamiTheme.messageBarMaximumHeight
@@ -418,7 +418,7 @@ Rectangle {
                 hoveredColor: JamiTheme.hoveredButtonColor
                 pressedColor: hoveredColor
                 toolTipText: showPreview ? JamiStrings.continueEditing : JamiStrings.showPreview
-                Layout.margins: marginSize / 2
+                Layout.margins: 0//marginSize / 2
 
                 onClicked: {
                     showPreview = !showPreview;
@@ -449,7 +449,7 @@ Rectangle {
             color: JamiTheme.transparentColor
             Layout.alignment: Qt.AlignBottom
             Layout.fillWidth: maximized ? true : false
-            Layout.rightMargin: marginSize / 2
+            Layout.rightMargin: 0
             Layout.leftMargin: marginSize / 2
             Layout.preferredHeight: JamiTheme.chatViewFooterButtonSize
             Layout.row: 2
