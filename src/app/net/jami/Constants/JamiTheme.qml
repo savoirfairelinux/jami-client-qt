@@ -38,7 +38,7 @@ Item {
 
     // Jami theme colors
     function rgba256(r, g, b, a) {
-        return Qt.rgba(r / 255, g / 255, b / 255, a / 100.);
+        return Qt.rgba(r / 255, g / 255, b / 255, a / 100);
     }
 
     function calcSize(size) {
