@@ -46,7 +46,7 @@ Rectangle {
         }
     }
 
-    color: JamiTheme.backgroundColor
+    color: JamiTheme.globalBackgroundColor
 
     onWidthChanged: Qt.callLater(JamiQmlUtils.updateMessageBarButtonsPoints)
     onHeightChanged: Qt.callLater(JamiQmlUtils.updateMessageBarButtonsPoints)
