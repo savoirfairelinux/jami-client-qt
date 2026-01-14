@@ -717,7 +717,7 @@ Item {
     property real qwkTitleBarHeight: 50
 
     // Common radius
-    property int commonRadius: JamiTheme.smartListAvatarSize / 2 + 8
+    property real commonRadius: JamiTheme.smartListAvatarSize / 2 + 8
 
     // Generalized shadows
     property real shadowBlur: 1.0
@@ -727,23 +727,23 @@ Item {
     property real shadowOpacity: 0.4
 
     // Sip Input Panel (dialpad)
-    property int sipInputPanelRadius: 30
-    property int sipInputPanelKeyDiameter: 40
+    property real sipInputPanelRadius: 30
+    property real sipInputPanelKeyDiameter: 40
 
     // SmartListItems
-    property int itemPadding: 4
-    property int itemMarginHorizontal: 8
-    property int itemMarginVertical: 2
-    property int avatarRadius: JamiTheme.smartListAvatarSize / 2
+    property real itemPadding: 4
+    property real itemMarginHorizontal: 8
+    property real itemMarginVertical: 2
+    property real avatarRadius: JamiTheme.smartListAvatarSize / 2
     property real smartListItemHeight: 60//JamiTheme.smarListAvatarSize + JamiTheme.itemPadding * 2 + JamiTheme.itemMarginVertical * 2
 
     // Side panel
-    property int sidePanelIslandsPadding: 8
-    property int sidePanelConversationsIslandTopPadding: 16
-    property int sidePanelConversationsIslandHorizontalPadding: 4
+    property real sidePanelIslandsPadding: 8
+    property real sidePanelConversationsIslandTopPadding: 16
+    property real sidePanelConversationsIslandHorizontalPadding: 4
 
     // Search Bar
-    property int searchBarIconPadding: 8
+    property real searchBarIconPadding: 8
     property color searchBarIconActive: darkTheme ? whiteColor : blackColor
     property color searchBarIconIdle: darkTheme ? "#909090" : "#7e7e7e"
     property color searchBarColor: darkTheme ? "#3c3b3b" : "#ffffff"
@@ -752,38 +752,38 @@ Item {
     property color newSwarmButtonColor: searchBarColor
 
     // Account combo box
-    property int accountComboBoxRadius: JamiTheme.avatarRadius + 8
-    property int accountComboBoxPadding: 4
+    property real accountComboBoxRadius: JamiTheme.avatarRadius + 8
+    property real accountComboBoxPadding: 4
 
     // Donation banner
-    property int donationBannerRadius: JamiTheme.smartListAvatarSize / 2
+    property real donationBannerRadius: JamiTheme.smartListAvatarSize / 2
 
     // Swarm details island
-    property int swarmDetailsIconSize: 24
-    property int swarmDetailsMemberCellWidth: 48
-    property int swarmDetailsMemberCellHeight: 72
+    property real swarmDetailsIconSize: 24
+    property real swarmDetailsMemberCellWidth: 48
+    property real swarmDetailsMemberCellHeight: 72
 
     // NewIconButton fixed sizes
     // Reference: https://developers.google.com/fonts/docs/material_icons#sizing
-    property int iconButtonSmall: 18
-    property int iconButtonMedium: 24
-    property int iconButtonLarge: 36
-    property int iconButtonExtraLarge: 48
+    property real iconButtonSmall: 18
+    property real iconButtonMedium: 24
+    property real iconButtonLarge: 36
+    property real iconButtonExtraLarge: 48
 
     // GeneralMenuItem
-    property int generalMenuItemIndicatorWidth: JamiTheme.iconButtonMedium
-    property int generalMenuItemIndicatorHeight: JamiTheme.iconButtonMedium
-    property int generalMenuItemHeight: generalMenuItemIndicatorHeight + generalMenuItemPadding + 12
-    property int generalMenuItemPadding: menuBorderPreferredHeight
-    property int generalMenuItemRadius: generalMenuItemHeight / 2
+    property real generalMenuItemIndicatorWidth: JamiTheme.iconButtonMedium
+    property real generalMenuItemIndicatorHeight: JamiTheme.iconButtonMedium
+    property real generalMenuItemHeight: generalMenuItemIndicatorHeight + generalMenuItemPadding + 12
+    property real generalMenuItemPadding: menuBorderPreferredHeight
+    property real generalMenuItemRadius: generalMenuItemHeight / 2
 
     // Base Context Menu
-    property int baseContextMenuRadius: generalMenuItemRadius + generalMenuItemPadding
+    property real baseContextMenuRadius: generalMenuItemRadius + generalMenuItemPadding
 
     // General Menu Item List
-    property int generalMenuItemListIconWidth: JamiTheme.iconButtonLarge
-    property int generalMenuItemListIconHeight: JamiTheme.iconButtonLarge
-    property int generalMenuItemListIconRadius: generalMenuItemListIconHeight / 2
+    property real generalMenuItemListIconWidth: JamiTheme.iconButtonLarge
+    property real generalMenuItemListIconHeight: JamiTheme.iconButtonLarge
+    property real generalMenuItemListIconRadius: generalMenuItemListIconHeight / 2
 
     // Global background color
     property color globalBackgroundColor: darkTheme ? "#201f1f" : "#FFFFFF"
@@ -793,6 +793,6 @@ Item {
     property color globalIslandColor: darkTheme ? JamiTheme.backgroundColor : "#f4f0ef"
 
     // Message Bar
-    property int messageBarRadius: 28
-    property int messageBarReplyToAvatarSize: 24
+    property real messageBarRadius: 28
+    property real messageBarReplyToAvatarSize: 24
 }
