@@ -481,6 +481,8 @@ Rectangle {
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignBottom
 
+            primary: true
+
             iconSource: JamiResources.exit_to_app_24dp_svg
             color: JamiTheme.buttonTintedRed
             hoveredColor: JamiTheme.buttonTintedRedHovered
