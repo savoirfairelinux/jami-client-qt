@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "236cc5d1_0f497644",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-01-14T20:15:46Z",
+      "side": 1,
+      "message": "I don\u0027t think we actually need to get the call object here. Based on how `getCallInfoForConversation` is implemented, this should be equivalent to\n```\nauto callId \u003d convInfo.confId.isEmpty() ? convInfo.callId : convInfo.confId;\nlrcInstance_-\u003egetAccountInfo(accountId).callModel-\u003eend(callId);\n```\nif I\u0027m not mistaken.",
+      "range": {
+        "startLine": 363,
+        "startChar": 8,
+        "endLine": 364,
+        "endChar": 77
+      },
+      "revId": "c7e8dc2f01d16f434f59996d1b87b807bd182194",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
