@@ -579,6 +579,49 @@ SidePanelBase {
                         }
                     }
                 }
+
+                Rectangle {
+                    id: gradientRect
+                    readonly property color baseColor: JamiTheme.globalIslandColor
+                    readonly property bool shouldShow: !conversationListView.atYEnd || (swarmMemberSearchList.visible && !swarmCurrentConversationList.atYEnd)
+
+                    anchors.bottom: conversationLayout.bottom
+                    anchors.bottomMargin: -1
+
+                    width: conversationLayout.width
+                    height: JamiTheme.smartListItemHeight
+
+                    bottomRightRadius: JamiTheme.commonRadius
+                    bottomLeftRadius: JamiTheme.commonRadius
+
+                    z: conversationLayout.z + 1
+
+                    gradient: Gradient {
+                        orientation: Gradient.Vertical
+                        GradientStop {
+                            position: 0.0
+                            color: Qt.rgba(gradientRect.baseColor.r, gradientRect.baseColor.g, gradientRect.baseColor.b, 0.0)
+                        }
+                        GradientStop {
+                            position: 0.75
+                            color: Qt.rgba(gradientRect.baseColor.r, gradientRect.baseColor.g, gradientRect.baseColor.b, 0.75)
+                        }
+                        GradientStop {
+                            position: 1.0
+                            color: Qt.rgba(gradientRect.baseColor.r, gradientRect.baseColor.g, gradientRect.baseColor.b, 1.0)
+                        }
+                    }
+
+                    visible: opacity > 0
+                    opacity: shouldShow ? 1.0 : 0.0
+
+                    Behavior on opacity {
+                        NumberAnimation {
+                            duration: 200
+                            easing.type: Easing.InOutQuad
+                        }
+                    }
+                }
             }
 
             AccountComboBox {
