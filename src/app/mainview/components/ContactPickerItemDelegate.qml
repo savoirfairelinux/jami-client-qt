@@ -16,6 +16,7 @@
  */
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Layouts
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
@@ -25,89 +26,177 @@ ItemDelegate {
     id: root
 
     width: ListView.view.width
-    height: Math.max(contactPickerContactName.height + textMetricsContactPickerContactId.height + 10, avatar.height + 10)
+    height: JamiTheme.smartListItemHeight//Math.max(contactPickerContactName.height + textMetricsContactPickerContactId.height + 10, avatar.height + 10)
 
     property bool showPresenceIndicator: false
 
     signal contactClicked
 
-    ConversationAvatar {
-        id: avatar
+    RowLayout {
+        id: rowLayout
 
-        anchors.left: parent.left
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.leftMargin: 10
+        anchors.fill: itemSmartListBackground
+        anchors.margins: JamiTheme.itemPadding
 
-        width: 40
-        height: 40
+        spacing: 16
 
-        imageId: UID
+        ConversationAvatar {
+            id: avatar
 
-        showPresenceIndicator: root.showPresenceIndicator && Presence
-    }
+            Layout.preferredWidth: JamiTheme.smartListAvatarSize
+            Layout.preferredHeight: JamiTheme.smartListAvatarSize
 
-    Rectangle {
-        id: contactPickerContactInfoRect
+            imageId: UID
 
-        anchors.left: avatar.right
-        anchors.leftMargin: 10
-        anchors.top: parent.top
-
-        width: parent.width - avatar.width - 20
-        height: parent.height
-
-        color: "transparent"
-
-        Text {
-            id: contactPickerContactName
-
-            anchors.left: contactPickerContactInfoRect.left
-            anchors.bottom: contactPickerContactInfoRect.verticalCenter
-
-            TextMetrics {
-                id: textMetricsContactPickerContactName
-                font: contactPickerContactName.font
-                elide: Text.ElideMiddle
-                elideWidth: contactPickerContactInfoRect.width
-                text: Title
-            }
-
-            color: JamiTheme.textColor
-            text: textMetricsContactPickerContactName.elidedText
-            textFormat: TextEdit.PlainText
-            font.pointSize: JamiTheme.textFontSize
+            showPresenceIndicator: root.showPresenceIndicator && Presence
         }
 
-        Text {
-            id: contactPickerContactId
+        ColumnLayout {
+            id: colLayout
 
-            anchors.left: contactPickerContactInfoRect.left
-            anchors.top: contactPickerContactInfoRect.verticalCenter
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            spacing: 0
 
-            fontSizeMode: Text.Fit
-            color: JamiTheme.faddedFontColor
+            Text {
+                id: contactPickerContactName
 
-            TextMetrics {
-                id: textMetricsContactPickerContactId
-                font: contactPickerContactId.font
-                elide: Text.ElideMiddle
-                elideWidth: contactPickerContactInfoRect.width
-                text: !BestId || BestId == Title ? "" : BestId
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+
+                TextMetrics {
+                    id: textMetricsContactPickerContactName
+                    font: contactPickerContactName.font
+                    elide: Text.ElideMiddle
+                    elideWidth: colLayout.width
+                    text: Title
+                }
+
+                color: JamiTheme.textColor
+                text: textMetricsContactPickerContactName.elidedText
+                textFormat: TextEdit.PlainText
+                font.pointSize: JamiTheme.textFontSize
+
+                verticalAlignment: Text.AlignVCenter
             }
 
-            text: textMetricsContactPickerContactId.elidedText
-            textFormat: TextEdit.PlainText
-            font.pointSize: JamiTheme.textFontSize
+            Text {
+                id: contactPickerContactId
+
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+
+                fontSizeMode: Text.Fit
+                color: JamiTheme.faddedFontColor
+
+                TextMetrics {
+                    id: textMetricsContactPickerContactId
+                    font: contactPickerContactId.font
+                    elide: Text.ElideMiddle
+                    elideWidth: colLayout.width
+                    text: !BestId || BestId == Title ? "" : BestId
+                }
+
+                text: textMetricsContactPickerContactId.elidedText
+                textFormat: TextEdit.PlainText
+                font.pointSize: JamiTheme.textFontSize
+
+                verticalAlignment: Text.AlignVCenter
+            }
         }
     }
 
     background: Rectangle {
         id: itemSmartListBackground
 
-        color: JamiTheme.backgroundColor
+        anchors.fill: root
+        anchors.topMargin: JamiTheme.itemMarginVertical
+        anchors.bottomMargin: JamiTheme.itemMarginVertical
+        anchors.leftMargin: JamiTheme.itemMarginHorizontal
+        anchors.rightMargin: JamiTheme.itemMarginHorizontal
 
-        border.width: 0
+        radius: JamiTheme.commonRadius
+
+        color: JamiTheme.backgroundColor
     }
+
+    states: [
+        State {
+            name: "normal"
+            when: !highlighted && !hovered
+            PropertyChanges {
+                target: itemSmartListBackground
+                color: JamiTheme.globalIslandColor
+            }
+            PropertyChanges {
+                target: root
+                scale: 1.0
+            }
+        },
+        State {
+            name: "hovered"
+            when: root.activeFocus || (!highlighted && hovered)
+            PropertyChanges {
+                target: itemSmartListBackground
+                color: JamiTheme.smartListHoveredColor
+            }
+            PropertyChanges {
+                target: root
+                scale: ListView.view.width / itemSmartListBackground.width
+            }
+        },
+        State {
+            name: "highlighted"
+            when: (highlighted && !hovered) || (highlighted && hovered)
+            PropertyChanges {
+                target: itemSmartListBackground
+                color: JamiTheme.smartListSelectedColor
+            }
+            PropertyChanges {
+                target: root
+                scale: 1.0
+            }
+        }
+    ]
+
+    // Animations within a transition run in parallel
+    transitions: [
+        Transition {
+            from: "normal"
+            to: "hovered"
+            reversible: true
+            ColorAnimation {
+                duration: JamiTheme.shortFadeDuration
+            }
+            NumberAnimation {
+                target: root
+                property: "scale"
+                duration: JamiTheme.shortFadeDuration
+                easing.type: Easing.OutCubic
+            }
+        },
+        Transition {
+            from: "highlighted"
+            to: "normal"
+            ColorAnimation {
+                duration: JamiTheme.shortFadeDuration
+            }
+        },
+        Transition {
+            from: "hovered"
+            to: "highlighted"
+
+            ColorAnimation {
+                duration: JamiTheme.shortFadeDuration
+            }
+            NumberAnimation {
+                target: root
+                property: "scale"
+                duration: JamiTheme.shortFadeDuration - 50
+                easing.type: Easing.OutCubic
+            }
+        }
+    ]
 
     MouseArea {
         id: mouseAreaContactPickerItemDelegate
@@ -127,14 +216,6 @@ ItemDelegate {
             // TODO remove from there
             if (contactPickerPopup)
                 contactPickerPopup.close();
-        }
-
-        onEntered: {
-            itemSmartListBackground.color = JamiTheme.hoverColor;
-        }
-
-        onExited: {
-            itemSmartListBackground.color = JamiTheme.backgroundColor;
         }
     }
 }
