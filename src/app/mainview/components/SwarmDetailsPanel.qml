@@ -114,17 +114,24 @@ Rectangle {
 
                         Layout.alignment: Qt.AlignHCenter
 
+                        activeFocusOnTab: true
+
                         width: JamiTheme.iconButtonMedium
                         height: JamiTheme.iconButtonMedium
+
                         radius: width / 2
+
                         color: CurrentConversation.color
+
+                        border.color: JamiTheme.textColor
+                        border.width: hovered || activeFocus ? 2 : 0
 
                         MaterialToolTip {
                             id: conversationColorPickerToolTip
                             parent: parent
                             visible: conversationColorPickerMouseArea.containsMouse
                             delay: Qt.styleHints.mousePressAndHoldInterval
-                            text: JamiStrings.chooseAColor
+                            text: JamiStrings.color
                         }
 
                         MouseArea {
@@ -133,14 +140,19 @@ Rectangle {
                             hoverEnabled: true
 
                             onClicked: colorDialogComp.createObject(appWindow).open()
+                            onHoveredChanged: conversationColorPicker.hovered = !conversationColorPicker.hovered
                         }
+
+                        Accessible.role: Accessible.Button
+                        Accessible.name: JamiStrings.color
+                        Accessible.description: JamiStrings.chooseAColor
                     }
 
                     Component {
                         id: colorDialogComp
                         ColorDialog {
                             id: colorDialog
-                            title: JamiStrings.chooseAColor
+                            title: JamiStrings.color
                             currentColor: CurrentConversation.color
                             onAccepted: {
                                 CurrentConversation.setPreference("color", colorDialog.color);
@@ -476,10 +488,12 @@ Rectangle {
         }
 
         MaterialButton {
-            id: deleteAccount
+            id: removeConversation
 
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignBottom
+
+            primary: true
 
             iconSource: JamiResources.exit_to_app_24dp_svg
             color: JamiTheme.buttonTintedRed
@@ -487,7 +501,16 @@ Rectangle {
             pressedColor: JamiTheme.buttonTintedRedPressed
 
             text: CurrentConversation.modeString.indexOf("group") >= 0 ? JamiStrings.leaveGroup : JamiStrings.removeConversation
-            onClicked: {}
+            onClicked: {
+                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
+                    "title": JamiStrings.confirmAction,
+                    "textLabel": JamiStrings.confirmRemoveContact,
+                    "confirmLabel": JamiStrings.optionRemove
+                });
+                dlg.accepted.connect(function () {
+                    MessagesAdapter.removeConversation(LRCInstance.selectedConvUid);
+                });
+            }
         }
     }
 
