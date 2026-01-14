@@ -476,10 +476,12 @@ Rectangle {
         }
 
         MaterialButton {
-            id: deleteAccount
+            id: removeConversation
 
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignBottom
+
+            primary: true
 
             iconSource: JamiResources.exit_to_app_24dp_svg
             color: JamiTheme.buttonTintedRed
@@ -487,7 +489,16 @@ Rectangle {
             pressedColor: JamiTheme.buttonTintedRedPressed
 
             text: CurrentConversation.modeString.indexOf("group") >= 0 ? JamiStrings.leaveGroup : JamiStrings.removeConversation
-            onClicked: {}
+            onClicked: {
+                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
+                    "title": JamiStrings.confirmAction,
+                    "textLabel": JamiStrings.confirmRemoveContact,
+                    "confirmLabel": JamiStrings.optionRemove
+                });
+                dlg.accepted.connect(function () {
+                    MessagesAdapter.removeConversation(LRCInstance.selectedConvUid);
+                });
+            }
         }
     }
 
