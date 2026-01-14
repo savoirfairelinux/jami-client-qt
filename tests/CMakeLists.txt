@@ -100,6 +100,7 @@ set(UNIT_TESTS_SOURCE_FILES
     ${CMAKE_SOURCE_DIR}/tests/unittests/contact_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/messageparser_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/previewengine_unittest.cpp
+    ${CMAKE_SOURCE_DIR}/tests/unittests/conversationswitch_unittest.cpp
     ${CMAKE_SOURCE_DIR}/tests/unittests/globaltestenvironment.h
     ${COMMON_TESTS_SOURCES})
 
