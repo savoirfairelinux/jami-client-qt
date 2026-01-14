@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d24d3ac4_d7e2b03c",
+        "filename": "src/libclient/callmodel.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1147
+      },
+      "writtenOn": "2026-01-14T21:18:10Z",
+      "side": 1,
+      "message": "This file is in the daemon. Do not include daemon files in this layer",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 26
+      },
+      "revId": "227c2ddd2c2919b957234ac4c1141d54db55fdd3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f294fc46_6cab5ed6",
+        "filename": "src/libclient/callmodel.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1147
+      },
+      "writtenOn": "2026-01-14T21:18:10Z",
+      "side": 1,
+      "message": "Use this map to display retrieve error message",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 72
+      },
+      "revId": "227c2ddd2c2919b957234ac4c1141d54db55fdd3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "215ae321_0fe866fe",
+        "filename": "src/libclient/callmodel.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1537,
+      "author": {
+        "id": 1147
+      },
+      "writtenOn": "2026-01-14T21:18:10Z",
+      "side": 1,
+      "message": "To remove",
+      "range": {
+        "startLine": 1535,
+        "startChar": 7,
+        "endLine": 1537,
+        "endChar": 1
+      },
+      "revId": "227c2ddd2c2919b957234ac4c1141d54db55fdd3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be96fa67_a308628b",
+        "filename": "src/libclient/callmodel.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1546,
+      "author": {
+        "id": 1147
+      },
+      "writtenOn": "2026-01-14T21:18:10Z",
+      "side": 1,
+      "message": "No need to do a switch/case I think. You can try checking if code is in the keys of sip_call_status_code_map (defined line 73). If it is, you use the mapped error string",
+      "range": {
+        "startLine": 1538,
+        "startChar": 8,
+        "endLine": 1546,
+        "endChar": 9
+      },
+      "revId": "227c2ddd2c2919b957234ac4c1141d54db55fdd3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
