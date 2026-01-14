@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6eff1bd_00b36bac",
+        "filename": "src/app/mainview/components/ConversationSmartListContextMenu.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-01-14T18:29:04Z",
+      "side": 1,
+      "message": "Maybe put this in the C++ via a new method in CallAdapter (similar to the existing startCall)?",
+      "range": {
+        "startLine": 79,
+        "startChar": 16,
+        "endLine": 89,
+        "endChar": 21
+      },
+      "revId": "d266f6507b304ca72bde76be16eadc76598731d5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
