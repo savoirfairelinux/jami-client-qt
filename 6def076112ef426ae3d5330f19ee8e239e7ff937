@@ -22,6 +22,30 @@
       },
       "revId": "6def076112ef426ae3d5330f19ee8e239e7ff937",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d836001_045b5fa6",
+        "filename": "src/app/settingsview/components/LevelMeter.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-01-14T20:19:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1444451f_f8ec28f7",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 17
+      },
+      "revId": "6def076112ef426ae3d5330f19ee8e239e7ff937",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
