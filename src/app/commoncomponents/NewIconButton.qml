@@ -20,23 +20,67 @@ import QtQuick.Controls
 import net.jami.Constants 1.1
 
 /* NOTE: This is a high-level imlpementation of the icon button.
- *      Use the standard fixed icon button size (small, medium, large, extra large)
- *      as found in JamiTheme. If using a custom size, add a comment
- *      explaining why.
+ *      Use the standard fixed button size (extra small, small, medium, large, extra large)
+ *      as found in the buttonSize enum in JamiTheme. If using a custom size,
+ *      add a comment explaining why.
  */
 Button {
     id: root
 
-    property int iconSize
+    property int buttonSize
     property string iconSource
-
     property alias toolTipText: iconButtonToolTip.text
     property alias toolTipShortcutKey: iconButtonToolTip.shortcutKey
 
-    // The icon property is defined within the contentIcon of
-    // the Button component
-    icon.width: iconSize
-    icon.height: iconSize
+    width: background.width
+    height: background.height
+
+    // Defines the size of the icon itself,
+    // this should be smaller than the button itself (i.e. the background)
+    icon.width: {
+        switch (buttonSize) {
+        case JamiTheme.ButtonSizes.ExtraSmall:
+            JamiTheme.iconExtraSmall
+            break;
+        case JamiTheme.ButtonSizes.Small:
+            JamiTheme.iconSmall
+            break;
+        case JamiTheme.ButtonSizes.Medium:
+            JamiTheme.iconMedium
+            break
+        case JamiTheme.ButtonSizes.Large:
+            JamiTheme.iconLarge
+            break;
+        case JamiTheme.ButtonSizes.ExtraLarge:
+            JamiTheme.iconExtraLarge
+            break;
+        default:
+            JamiTheme.iconMedium
+            break;
+        }
+    }
+    icon.height: {
+        switch (buttonSize) {
+        case JamiTheme.ButtonSizes.ExtraSmall:
+            JamiTheme.iconExtraSmall
+            break;
+        case JamiTheme.ButtonSizes.Small:
+            JamiTheme.iconSmall
+            break;
+        case JamiTheme.ButtonSizes.Medium:
+            JamiTheme.iconMedium
+            break
+        case JamiTheme.ButtonSizes.Large:
+            JamiTheme.iconLarge
+            break;
+        case JamiTheme.ButtonSizes.ExtraLarge:
+            JamiTheme.iconExtraLarge
+            break;
+        default:
+            JamiTheme.iconMedium
+            break;
+        }
+    }
     icon.color: enabled ? hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered : JamiTheme.buttonTintedGreyHovered
     icon.source: iconSource
 
@@ -47,16 +91,71 @@ Button {
         }
     }
 
+
     background: Rectangle {
-        visible: root.enabled
-
-        width: icon.width + (iconSize / 2)
-        height: icon.height + (iconSize / 2)
-
-        radius: width / 2
         anchors.centerIn: contentItem
 
-        color: root.hovered ? JamiTheme.hoveredButtonColor : JamiTheme.transparentColor
+        // Defines the actual sizing of the button
+        // This should be larger than the icons
+        width: {
+            switch (buttonSize) {
+            case JamiTheme.ButtonSizes.ExtraSmall:
+                JamiTheme.iconButtonExtraSmall
+                break;
+            case JamiTheme.ButtonSizes.Small:
+                JamiTheme.iconButtonSmall
+                break;
+            case JamiTheme.ButtonSizes.Medium:
+                JamiTheme.iconButtonMedium
+                break
+            case JamiTheme.ButtonSizes.Large:
+                JamiTheme.iconButtonLarge
+                break;
+            case JamiTheme.ButtonSizes.ExtraLarge:
+                JamiTheme.iconButtonExtraLarge
+                break;
+            default:
+                JamiTheme.iconButtonMedium
+                break;
+            }
+        }
+        height: {
+            switch (buttonSize) {
+            case JamiTheme.ButtonSizes.ExtraSmall:
+                JamiTheme.iconButtonExtraSmall
+                break;
+            case JamiTheme.ButtonSizes.Small:
+                JamiTheme.iconButtonSmall
+                break;
+            case JamiTheme.ButtonSizes.Medium:
+                JamiTheme.iconButtonMedium
+                break
+            case JamiTheme.ButtonSizes.Large:
+                JamiTheme.iconButtonLarge
+                break;
+            case JamiTheme.ButtonSizes.ExtraLarge:
+                JamiTheme.iconButtonExtraLarge
+                break;
+            default:
+                JamiTheme.iconButtonMedium
+                break;
+            }
+        }
+
+        radius: height / 2
+
+        color: JamiTheme.hoveredButtonColor
+
+        opacity: root.hovered ? 1.0 : 0.0
+
+        visible: root.enabled
+
+        Behavior on opacity {
+            enabled: root.enabled
+            NumberAnimation {
+                duration: 200
+            }
+        }
     }
 
     MaterialToolTip {

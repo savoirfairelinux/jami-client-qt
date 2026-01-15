@@ -32,7 +32,7 @@ ColumnLayout {
     Accessible.name: tipTitle
     Accessible.description: tipDescription
 
-    property int iconSize: 26
+    property int buttonSize: 26
     property int margin: 5
     property int prefWidth: 170
     property bool opened: root.opened
@@ -59,8 +59,8 @@ ColumnLayout {
 
             Layout.alignment: Qt.AlignLeft
             Layout.topMargin: column.margin
-            Layout.preferredWidth: column.iconSize
-            Layout.preferredHeight: column.iconSize
+            Layout.preferredWidth: column.buttonSize
+            Layout.preferredHeight: column.buttonSize
 
             containerHeight: Layout.preferredHeight
             containerWidth: Layout.preferredWidth
@@ -75,7 +75,7 @@ ColumnLayout {
             color: column.textColor
             font.weight: Font.Medium
             Layout.topMargin: column.margin
-            Layout.preferredWidth: column.prefWidth - 2 * column.margin - column.iconSize
+            Layout.preferredWidth: column.prefWidth - 2 * column.margin - column.buttonSize
             Layout.alignment: Qt.AlignLeft
             Layout.leftMargin: column.margin
             horizontalAlignment: Text.AlignLeft

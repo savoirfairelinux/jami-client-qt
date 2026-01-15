@@ -34,7 +34,7 @@ ColumnLayout {
 
     property real maxHeight: 250
 
-    property int iconSize: 26
+    property int buttonSize: 26
     property int margin: 5
     property int prefWidth: 170
 
@@ -54,8 +54,8 @@ ColumnLayout {
 
             Layout.alignment: Qt.AlignLeft
             Layout.topMargin: column.margin
-            Layout.preferredWidth: column.iconSize
-            Layout.preferredHeight: column.iconSize
+            Layout.preferredWidth: column.buttonSize
+            Layout.preferredHeight: column.buttonSize
 
             containerHeight: Layout.preferredHeight
             containerWidth: Layout.preferredWidth
@@ -72,7 +72,7 @@ ColumnLayout {
             visible: !opened
             Layout.alignment: Qt.AlignLeft
             Layout.leftMargin: 8
-            Layout.preferredWidth: column.prefWidth - 2 * column.margin - column.iconSize
+            Layout.preferredWidth: column.prefWidth - 2 * column.margin - column.buttonSize
             font.pixelSize: JamiTheme.tipBoxTitleFontSize
             horizontalAlignment: Text.AlignLeft
             elide: Qt.ElideRight

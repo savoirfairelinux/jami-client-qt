@@ -97,8 +97,8 @@ Rectangle {
         Avatar {
             id: userAvatar
 
-            width: JamiTheme.iconButtonLarge
-            height: JamiTheme.iconButtonLarge
+            width: JamiTheme.iconLarge
+            height: JamiTheme.iconLarge
 
             mode: CurrentConversation.isSwarm ? Avatar.Mode.Conversation : Avatar.Mode.Contact
             imageId: CurrentConversation.id
@@ -177,7 +177,7 @@ Rectangle {
             id: startAudioCallButton
             QWKSetParentHitTestVisible {}
 
-            iconSize: JamiTheme.iconButtonMedium
+            buttonSize: JamiTheme.ButtonSizes.Medium
             iconSource: JamiResources.start_audiocall_24dp_svg
             toolTipText: JamiStrings.startAudioCall
 
@@ -188,7 +188,7 @@ Rectangle {
             id: startVideoCallButton
             QWKSetParentHitTestVisible {}
 
-            iconSize: JamiTheme.iconButtonMedium
+            buttonSize: JamiTheme.ButtonSizes.Medium
             iconSource: JamiResources.videocam_24dp_svg
             toolTipText: JamiStrings.startAudioCall
 
@@ -209,7 +209,7 @@ Rectangle {
             id: inviteMembersButton
             QWKSetParentHitTestVisible {}
 
-            iconSize: JamiTheme.iconButtonMedium
+            buttonSize: JamiTheme.ButtonSizes.Medium
             iconSource: JamiResources.add_people_24dp_svg
             toolTipText: JamiStrings.inviteMembers
 
@@ -225,7 +225,7 @@ Rectangle {
             id: selectExtensionsButton
             QWKSetParentHitTestVisible {}
 
-            iconSize: JamiTheme.iconButtonMedium
+            buttonSize: JamiTheme.ButtonSizes.Medium
             iconSource: JamiResources.plugins_24dp_svg
             toolTipText: JamiStrings.showExtensions
 
@@ -240,7 +240,7 @@ Rectangle {
 
             objectName: "searchMessagesButton"
 
-            iconSize: JamiTheme.iconButtonMedium
+            buttonSize: JamiTheme.ButtonSizes.Medium
             iconSource: JamiResources.ic_baseline_search_24dp_svg
             toolTipText: JamiStrings.search
 
@@ -265,7 +265,7 @@ Rectangle {
 
             objectName: "detailsButton"
 
-            iconSize: JamiTheme.iconButtonMedium
+            buttonSize: JamiTheme.ButtonSizes.Medium
             iconSource: JamiResources.swarm_details_panel_svg
             toolTipText: JamiStrings.details
 

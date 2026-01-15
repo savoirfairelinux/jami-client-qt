@@ -468,7 +468,7 @@ Rectangle {
 
         objectName: "importFromDevicePageBackButton"
 
-        iconSize: JamiTheme.iconButtonMedium
+        buttonSize: JamiTheme.ButtonSizes.Medium
         iconSource: JamiResources.ic_arrow_back_24dp_svg
         toolTipText: JamiStrings.close
 

@@ -199,7 +199,7 @@ Item {
                                             Layout.alignment: Qt.AlignVCenter
                                             Layout.leftMargin: 16
 
-                                            iconSize: JamiTheme.iconButtonSmall
+                                            buttonSize: JamiTheme.ButtonSizes.Small
                                             iconSource: JamiResources.person_add_24dp_svg
 
                                             enabled: false
@@ -267,8 +267,9 @@ Item {
                 id: shareButton
 
                 Layout.alignment: Qt.AlignVCenter
+                Layout.rightMargin: 4
 
-                iconSize: JamiTheme.iconButtonMedium
+                buttonSize: JamiTheme.ButtonSizes.Medium
                 iconSource: JamiResources.share_24dp_svg
                 toolTipText: JamiStrings.displayQRCode
 
@@ -283,7 +284,7 @@ Item {
                 Layout.alignment: Qt.AlignVCenter
                 Layout.rightMargin: 8
 
-                iconSize: JamiTheme.iconButtonMedium
+                buttonSize: JamiTheme.ButtonSizes.Medium
                 iconSource: !inSettings ? JamiResources.settings_24dp_svg : JamiResources.round_close_24dp_svg
                 toolTipText: !inSettings ? JamiStrings.openSettings : JamiStrings.closeSettings
 

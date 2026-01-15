@@ -58,6 +58,7 @@ Rectangle {
                 height: JamiTheme.chatViewFooterButtonSize
                 orientation: ListView.Horizontal
                 interactive: false
+                spacing: 4
 
                 property list<Action> menuTypoActionsFirst: [
                     Action {
@@ -117,7 +118,7 @@ Rectangle {
 
                     enabled: !showPreview
 
-                    iconSize: JamiTheme.iconButtonSmall
+                    buttonSize: JamiTheme.ButtonSizes.Small
                     iconSource: modelData.iconSrc
                     toolTipText: modelData.shortcutText
                     toolTipShortcutKey: modelData.shortcutKey
@@ -170,7 +171,7 @@ Rectangle {
                     }
 
                     indicator: NewIconButton {
-                        iconSize: JamiTheme.iconButtonMedium
+                        buttonSize: JamiTheme.ButtonSizes.Medium
                         iconSource: JamiResources.more_vert_24dp_svg
                         toolTipText: markdownPopup.visible ? JamiStrings.showLess : JamiStrings.showMore
                     }
@@ -195,6 +196,8 @@ Rectangle {
                 height: JamiTheme.chatViewFooterButtonSize
                 orientation: ListView.Horizontal
                 interactive: false
+
+                spacing: 4
 
                 Rectangle {
                     anchors.fill: parent
@@ -232,12 +235,11 @@ Rectangle {
                 model: menuTypoActionsSecond
 
                 delegate: NewIconButton {
-
                     anchors.verticalCenter: parent.verticalCenter
 
                     enabled: !showPreview
 
-                    iconSize: JamiTheme.iconButtonSmall
+                    buttonSize: JamiTheme.ButtonSizes.Small
                     iconSource: modelData.iconSrc
                     toolTipText: modelData.shortcutText
                     toolTipShortcutKey: modelData.shortcutKey
@@ -259,21 +261,9 @@ Rectangle {
 
             anchors.verticalCenter: parent.verticalCenter
 
-            iconSize: JamiTheme.iconButtonMedium - 4
+            buttonSize: JamiTheme.ButtonSizes.Medium
             iconSource: JamiResources.text_edit_black_24dp_svg
             toolTipText: showTypo ? JamiStrings.hideFormatting : JamiStrings.showFormatting
-
-            background: Rectangle {
-                visible: root.enabled
-
-                width: JamiTheme.iconButtonMedium + (JamiTheme.iconButtonMedium / 2)
-                height: JamiTheme.iconButtonMedium + (JamiTheme.iconButtonMedium / 2)
-
-                radius: width / 2
-                anchors.centerIn: parent
-
-                color: parent.hovered ? JamiTheme.hoveredButtonColor : JamiTheme.transparentColor
-            }
 
             onClicked: {
                 showTypo = !showTypo;
@@ -303,6 +293,8 @@ Rectangle {
 
             leftMargin: 10
             rightMargin: 10
+
+            spacing: 4
             property list<Action> menuMoreButton: [
                 Action {
                     id: leaveAudioMessage
@@ -382,7 +374,7 @@ Rectangle {
 
                 enabled: !showPreview
 
-                iconSize: JamiTheme.iconButtonMedium
+                buttonSize: JamiTheme.ButtonSizes.Medium
                 iconSource: modelData.iconSrc
                 toolTipText: modelData.toolTip
 
@@ -422,7 +414,7 @@ Rectangle {
                 indicator: NewIconButton {
                     anchors.verticalCenter: parent.verticalCenter
 
-                    iconSize: JamiTheme.iconButtonMedium
+                    buttonSize: JamiTheme.ButtonSizes.Medium
                     iconSource: JamiResources.more_menu_black_24dp_svg
                     toolTipText: showMoreButton.popup.visible ? JamiStrings.showLess : JamiStrings.showMore
 
@@ -537,7 +529,7 @@ Rectangle {
 
                 enabled: !showPreview
 
-                iconSize: JamiTheme.iconButtonMedium
+                buttonSize: JamiTheme.ButtonSizes.Medium
                 iconSource: modelData.iconSrc
                 toolTipText: modelData.toolTip
 

@@ -91,7 +91,7 @@ BaseModalDialog {
 
             objectName: "takePhotoButton"
 
-            iconSize: JamiTheme.iconButtonMedium
+            buttonSize: JamiTheme.ButtonSizes.Medium
             iconSource: JamiResources.add_a_photo_24dp_svg
             toolTipText: JamiStrings.takePhoto
 
@@ -112,7 +112,7 @@ BaseModalDialog {
 
             objectName: "photoboothViewImportButton"
 
-            iconSize: JamiTheme.iconButtonMedium
+            buttonSize: JamiTheme.ButtonSizes.Medium
             iconSource: JamiResources.add_photo_alternate_black_24dp_svg
             toolTipText: JamiStrings.importFromFile
 
@@ -151,7 +151,7 @@ BaseModalDialog {
 
             objectName: "photoboothViewClearButton"
 
-            iconSize: JamiTheme.iconButtonMedium
+            buttonSize: JamiTheme.ButtonSizes.Medium
             iconSource: JamiResources.remove_circle_outline_black_24dp_svg
             toolTipText: JamiStrings.removeImage
 

@@ -43,8 +43,8 @@ MenuItem {
         anchors.leftMargin: JamiTheme.generalMenuItemPadding
         anchors.verticalCenter: root.verticalCenter
 
-        icon.width: JamiTheme.iconButtonMedium
-        icon.height: JamiTheme.iconButtonMedium
+        icon.width: JamiTheme.iconMedium
+        icon.height: JamiTheme.iconMedium
         icon.source: iconSource
         icon.color: JamiTheme.textColor
 

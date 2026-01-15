@@ -74,13 +74,13 @@ Rectangle {
 
                 ColumnLayout {
                     Layout.preferredHeight: currentSwarmAvatar.height
-                    Layout.preferredWidth: JamiTheme.iconButtonMedium
+                    Layout.preferredWidth: JamiTheme.iconMedium
                     Layout.alignment: Qt.AlignVCenter
 
                     NewIconButton {
                         id: muteConversation
 
-                        iconSize: JamiTheme.iconButtonMedium
+                        buttonSize: JamiTheme.ButtonSizes.Medium
                         iconSource: CurrentConversation.ignoreNotifications ? JamiResources.notifications_off_24dp_svg : JamiResources.notifications_active_24dp_svg
                         toolTipText: CurrentConversation.ignoreNotifications ? JamiStrings.muteConversation : JamiStrings.unmuteConversation
 
@@ -90,7 +90,7 @@ Rectangle {
                     NewIconButton {
                         id: conversationType
 
-                        iconSize: JamiTheme.iconButtonMedium
+                        buttonSize: JamiTheme.ButtonSizes.Medium
                         iconSource: switch (CurrentConversation.modeString) {
                         case JamiStrings.publicGroup:
                             JamiResources.public_24dp_svg;
@@ -116,8 +116,8 @@ Rectangle {
 
                         activeFocusOnTab: true
 
-                        width: JamiTheme.iconButtonMedium
-                        height: JamiTheme.iconButtonMedium
+                        width: JamiTheme.iconMedium
+                        height: JamiTheme.iconMedium
 
                         radius: width / 2
 
@@ -414,8 +414,8 @@ Rectangle {
 
                                     visible: MemberRole !== undefined
 
-                                    containerHeight: JamiTheme.iconButtonSmall
-                                    containerWidth: JamiTheme.iconButtonSmall
+                                    containerHeight: JamiTheme.iconSmall
+                                    containerWidth: JamiTheme.iconSmall
 
                                     source: {
                                         switch (MemberRole) {

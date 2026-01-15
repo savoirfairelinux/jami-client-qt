@@ -463,7 +463,7 @@ SidePanelBase {
                                     anchors.right: parent.right
                                     anchors.verticalCenter: parent.verticalCenter
 
-                                    iconSize: JamiTheme.iconButtonMedium
+                                    buttonSize: JamiTheme.ButtonSizes.Medium
                                     iconSource: JamiResources.add_people_24dp_svg
                                     toolTipText: JamiStrings.addToConversations
 

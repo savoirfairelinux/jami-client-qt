@@ -219,7 +219,7 @@ Rectangle {
                         Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
                         Layout.rightMargin: 12
 
-                        iconSize: JamiTheme.iconButtonMedium
+                        buttonSize: JamiTheme.ButtonSizes.Medium
                         iconSource: JamiResources.close_black_24dp_svg
                         toolTipText: JamiStrings.cancel
 

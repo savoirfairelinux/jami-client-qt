@@ -33,7 +33,7 @@ AbstractButton {
     property alias iconSource: icon.source_
     property alias animatedIconSource: icon.animatedSource_
     property alias radius: background.radius
-    property real iconSize: 24
+    property real buttonSize: 24
     property color color: JamiTheme.buttonTintedBlue
     property color hoveredColor: JamiTheme.buttonTintedBlueHovered
     property color secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
@@ -112,10 +112,10 @@ AbstractButton {
 
             AnimatedImage {
                 source: animatedSource_
-                Layout.preferredWidth: iconSize
-                Layout.preferredHeight: iconSize
-                width: iconSize
-                height: iconSize
+                Layout.preferredWidth: buttonSize
+                Layout.preferredHeight: buttonSize
+                width: buttonSize
+                height: buttonSize
                 playing: true
                 fillMode: Image.PreserveAspectFit
                 mipmap: true
@@ -130,8 +130,8 @@ AbstractButton {
 
             active: hasIcon
 
-            Layout.preferredWidth: hasIcon ? iconSize : 0
-            Layout.preferredHeight: hasIcon ? iconSize : 0
+            Layout.preferredWidth: hasIcon ? buttonSize : 0
+            Layout.preferredHeight: hasIcon ? buttonSize : 0
 
             Layout.alignment: Qt.AlignVCenter
             Layout.leftMargin: hasIcon ? JamiTheme.preferredMarginSize : undefined

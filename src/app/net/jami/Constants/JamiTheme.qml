@@ -763,16 +763,27 @@ Item {
     property real swarmDetailsMemberCellWidth: 48
     property real swarmDetailsMemberCellHeight: 72
 
-    // NewIconButton fixed sizes
-    // Reference: https://developers.google.com/fonts/docs/material_icons#sizing
-    property real iconButtonSmall: 18
-    property real iconButtonMedium: 24
-    property real iconButtonLarge: 36
-    property real iconButtonExtraLarge: 48
+    // Reference: https://m3.material.io/components/icon-buttons/specs
+    enum ButtonSizes { ExtraSmall = 0, Small = 1, Medium = 2, Large = 3, ExtraLarge = 4}
+
+    // These sizes represent the size of the icon's, NOT the button themselves
+    property real iconExtraSmall: 20
+    property real iconSmall: 24
+    property real iconMedium: 24
+    property real iconLarge: 32
+    property real iconExtraLarge: 40
+
+    // These sizes represent the size of the button's, NOT the icons
+    // Note that the sizes from the material design have been shifted downards by one size
+    property real iconButtonExtraSmall: 24
+    property real iconButtonSmall: 32
+    property real iconButtonMedium: 40
+    property real iconButtonLarge: 56
+    property real iconButtonExtraLarge: 96
 
     // GeneralMenuItem
-    property real generalMenuItemIndicatorWidth: JamiTheme.iconButtonMedium
-    property real generalMenuItemIndicatorHeight: JamiTheme.iconButtonMedium
+    property real generalMenuItemIndicatorWidth: JamiTheme.iconMedium
+    property real generalMenuItemIndicatorHeight: JamiTheme.iconMedium
     property real generalMenuItemHeight: generalMenuItemIndicatorHeight + generalMenuItemPadding + 12
     property real generalMenuItemPadding: menuBorderPreferredHeight
     property real generalMenuItemRadius: generalMenuItemHeight / 2
@@ -781,8 +792,8 @@ Item {
     property real baseContextMenuRadius: generalMenuItemRadius + generalMenuItemPadding
 
     // General Menu Item List
-    property real generalMenuItemListIconWidth: JamiTheme.iconButtonLarge
-    property real generalMenuItemListIconHeight: JamiTheme.iconButtonLarge
+    property real generalMenuItemListIconWidth: JamiTheme.iconLarge
+    property real generalMenuItemListIconHeight: JamiTheme.iconLarge
     property real generalMenuItemListIconRadius: generalMenuItemListIconHeight / 2
 
     // Global background color

@@ -67,8 +67,8 @@ Item {
             anchors.right: parent.right
             anchors.margins: doubleEditAvatar ? height / 4 : avatar.width / 22
 
-            icon.width: JamiTheme.iconButtonMedium
-            icon.height: JamiTheme.iconButtonMedium
+            icon.width: JamiTheme.iconMedium
+            icon.height: JamiTheme.iconMedium
             icon.color: enabled ? hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered : JamiTheme.buttonTintedGreyHovered
             icon.source: JamiResources.round_edit_24dp_svg
 

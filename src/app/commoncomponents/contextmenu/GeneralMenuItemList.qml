@@ -194,7 +194,7 @@ MenuItem {
                 Layout.preferredWidth: JamiTheme.generalMenuItemListIconWidth
                 Layout.preferredHeight: JamiTheme.generalMenuItemListIconHeight
 
-                iconSize: JamiTheme.iconButtonMedium
+                buttonSize: JamiTheme.ButtonSizes.Medium
                 iconSource: menuItem.iconSource
                 toolTipText: JamiStrings.addEmoji
 

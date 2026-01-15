@@ -35,7 +35,7 @@ Item {
     width: parent.width
     height: backupLayout.height
 
-    property int iconSize: 26
+    property int buttonSize: 26
     property int margin: 5
     property int prefWidth: 170
 
@@ -65,8 +65,8 @@ Item {
 
                 Layout.alignment: Qt.AlignLeft
                 Layout.topMargin: root.margin
-                Layout.preferredWidth: root.iconSize
-                Layout.preferredHeight: root.iconSize
+                Layout.preferredWidth: root.buttonSize
+                Layout.preferredHeight: root.buttonSize
 
                 containerHeight: Layout.preferredHeight
                 containerWidth: Layout.preferredWidth
@@ -83,7 +83,7 @@ Item {
                 Layout.topMargin: root.margin
                 Layout.alignment: Qt.AlignLeft
                 Layout.leftMargin: root.margin
-                Layout.preferredWidth: root.prefWidth - 2 * root.margin - root.iconSize
+                Layout.preferredWidth: root.prefWidth - 2 * root.margin - root.buttonSize
                 font.pixelSize: JamiTheme.tipBoxTitleFontSize
                 horizontalAlignment: Text.AlignLeft
                 elide: Qt.ElideRight

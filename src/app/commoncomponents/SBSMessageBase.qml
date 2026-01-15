@@ -321,7 +321,7 @@ Control {
                         anchors.right: isOutgoing ? optionButtonItem.right : undefined
 
                         iconSource: JamiResources.more_vert_24dp_svg
-                        iconSize: JamiTheme.iconButtonMedium
+                        buttonSize: JamiTheme.ButtonSizes.Small
                         toolTipText: JamiStrings.moreOptions
 
                         visible: shouldBeVisible
@@ -360,7 +360,7 @@ Control {
                         anchors.rightMargin: 5
                         anchors.right: isOutgoing ? more.left : undefined
 
-                        iconSize: JamiTheme.iconButtonMedium
+                        buttonSize: JamiTheme.ButtonSizes.Medium
                         iconSource: JamiResources.reply_black_24dp_svg
                         toolTipText: JamiStrings.reply
 
@@ -391,7 +391,7 @@ Control {
                         anchors.right: isOutgoing ? reply.left : undefined
                         anchors.rightMargin: 5
 
-                        iconSize: JamiTheme.iconButtonMedium
+                        buttonSize: JamiTheme.ButtonSizes.Large
                         iconSource: JamiResources.share_black_24dp_svg
                         toolTipText: JamiStrings.share
 

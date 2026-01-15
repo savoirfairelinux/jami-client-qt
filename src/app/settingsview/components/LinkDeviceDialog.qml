@@ -53,7 +53,7 @@ BaseModalDialog {
             rightMargin: 6
         }
 
-        iconSize: JamiTheme.iconButtonMedium
+        buttonSize: JamiTheme.ButtonSizes.Medium
         iconSource: JamiResources.round_close_24dp_svg
         toolTipText: JamiStrings.close
 
