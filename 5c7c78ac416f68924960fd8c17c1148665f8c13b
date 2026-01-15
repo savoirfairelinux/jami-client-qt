@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c465a1f4_79184987",
+        "filename": "src/app/commoncomponents/MismatchedCodecPopup.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2026-01-15T19:27:48Z",
+      "side": 1,
+      "message": "Avoid creating a specific component for each specific error.\nThe client already defines a lot of dialog components that could be reused. If not possible, create a generic dialog call errors.",
+      "range": {
+        "startLine": 25,
+        "startChar": 8,
+        "endLine": 25,
+        "endChar": 28
+      },
+      "revId": "5c7c78ac416f68924960fd8c17c1148665f8c13b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97f66c4d_88b2abb6",
+        "filename": "src/app/mainview/components/ChatView.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2026-01-15T19:27:48Z",
+      "side": 1,
+      "message": "avoid one component per possible error.",
+      "range": {
+        "startLine": 169,
+        "startChar": 1,
+        "endLine": 182,
+        "endChar": 1
+      },
+      "revId": "5c7c78ac416f68924960fd8c17c1148665f8c13b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "028ab1f2_bd852cac",
+        "filename": "src/libclient/callmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 1535,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2026-01-15T19:27:48Z",
+      "side": 1,
+      "message": "compare with numerical code if needed in the business logic. The string is for presentation purposes (and should use getSIPCallStatusString).",
+      "range": {
+        "startLine": 1535,
+        "startChar": 12,
+        "endLine": 1535,
+        "endChar": 101
+      },
+      "revId": "5c7c78ac416f68924960fd8c17c1148665f8c13b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66641224_862c34ea",
+        "filename": "src/libclient/callmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 1538,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2026-01-15T19:27:48Z",
+      "side": 1,
+      "message": "dedicated signal for each possible error should not be needed. Pass the error code to callEnded.",
+      "range": {
+        "startLine": 1538,
+        "startChar": 26,
+        "endLine": 1538,
+        "endChar": 52
+      },
+      "revId": "5c7c78ac416f68924960fd8c17c1148665f8c13b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
