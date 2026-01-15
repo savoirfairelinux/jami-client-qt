@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2a4a065d_7bba7ff8",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1147
+      },
+      "writtenOn": "2026-01-15T14:35:54Z",
+      "side": 1,
+      "message": "Or have the title be \"Call failed: Mismatched codecs\" ?",
+      "range": {
+        "startLine": 336,
+        "startChar": 48,
+        "endLine": 336,
+        "endChar": 64
+      },
+      "revId": "227c2ddd2c2919b957234ac4c1141d54db55fdd3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09bef181_b4a5945c",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1147
+      },
+      "writtenOn": "2026-01-15T14:35:54Z",
+      "side": 1,
+      "message": "start with something like \"The call failed because...\" ?",
+      "range": {
+        "startLine": 337,
+        "startChar": 54,
+        "endLine": 337,
+        "endChar": 388
+      },
+      "revId": "227c2ddd2c2919b957234ac4c1141d54db55fdd3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d24d3ac4_d7e2b03c",
         "filename": "src/libclient/callmodel.cpp",
         "patchSetId": 3
