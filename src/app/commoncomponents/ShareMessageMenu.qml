@@ -29,7 +29,7 @@ import "../mainview/components"
 BaseContextMenu {
     id: mainMenu
 
-    height: 330 + Math.min(messageInput.height, textareaMaxHeight)
+    height: 400
     width: 400
 
     required property string msgId
@@ -88,54 +88,40 @@ BaseContextMenu {
         filterCaseSensitivity: Qt.CaseInsensitive
     }
 
-    Rectangle {
-        id: header
+    contentItem: ColumnLayout {
+        anchors.fill: parent
+        anchors.margins: 12
 
-        width: parent.width
-        height: 0
-    }
+        RowLayout {
+            Layout.alignment: Qt.AlignTop
+            Layout.fillWidth: true
+            Layout.preferredHeight: 35
 
-    Rectangle {
-        id: sendButton
+            Searchbar {
+                id: contactPickerContactSearchBar
 
-        height: JamiTheme.chatViewFooterButtonSize
-        anchors.right: parent.right
-        anchors.rightMargin: 10
-        anchors.topMargin: 10
-        anchors.top: header.bottom
-        color: JamiTheme.transparentColor
+                Layout.fillWidth: true
+                Layout.preferredHeight: 35
+                Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
 
-        PushButton {
-            id: shareMessageButton
+                placeHolderText: JamiStrings.shareWith
 
-            height: JamiTheme.chatViewFooterButtonSize
-            width: scale * JamiTheme.chatViewFooterButtonSize
-            anchors.right: parent.right
+                onSearchBarTextChanged: function (text) {
+                    shareConvProxyModel.filterRole = shareConvProxyModel.roleForName("Title");
+                    shareConvProxyModel.filterPattern = text;
+                }
+            }
 
-            visible: true
+            NewIconButton {
+                id: shareMessageButton
 
-            radius: JamiTheme.chatViewFooterButtonRadius
-            preferredSize: JamiTheme.chatViewFooterButtonIconSize - 6
-            imageContainerWidth: 25
-            imageContainerHeight: 25
+                Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
 
-            toolTipText: JamiStrings.share
+                iconSize: JamiTheme.iconButtonMedium
+                iconSource: JamiResources.send_black_24dp_svg
+                toolTipText: JamiStrings.share
 
-            mirror: UtilsAdapter.isRTL
-
-            source: JamiResources.send_black_24dp_svg
-
-            hoverEnabled: enabled
-            normalColor: enabled ? JamiTheme.chatViewFooterSendButtonColor : JamiTheme.chatViewFooterSendButtonDisableColor
-            imageColor: enabled ? JamiTheme.chatViewFooterSendButtonImgColor : JamiTheme.chatViewFooterSendButtonImgColorDisable
-            hoveredColor: JamiTheme.buttonTintedBlueHovered
-            pressedColor: hoveredColor
-
-            opacity: 1
-            scale: opacity
-
-            MouseArea {
-                anchors.fill: parent
+                visible: true
 
                 onClicked: {
                     var selectedContacts = mainMenu.selectedUids;
@@ -160,94 +146,71 @@ BaseContextMenu {
                 }
             }
         }
-    }
 
-    Rectangle {
-        id: searchConv
+        JamiListView {
+            id: contactPickerListView
 
-        height: 300
-        width: parent.width
-        anchors.top: header.bottom
-        anchors.topMargin: 10
+            Layout.alignment: Qt.AlignCenter
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            Layout.bottomMargin: JamiTheme.preferredMarginSize
+            Layout.topMargin: 5
 
-        property int type: ContactList.CONVERSATION
+            model: shareConvProxyModel
 
-        color: JamiTheme.transparentColor
-        ColumnLayout {
-            id: contactPickerPopupRectColumnLayout
+            delegate: ConversationPickerItemDelegate {
+                id: conversationDelegate
+            }
+        }
 
-            anchors.fill: parent
-            Searchbar {
-                id: contactPickerContactSearchBar
+        Rectangle {
+            id: messageinputBackground
 
-                width: parent.width - 20 - JamiTheme.chatViewFooterButtonSize
-                anchors.leftMargin: 10
-                Layout.preferredHeight: 35
-                placeHolderText: "Share to..."
-                onSearchBarTextChanged: function (text) {
-                    shareConvProxyModel.filterRole = shareConvProxyModel.roleForName("Title");
-                    shareConvProxyModel.filterPattern = text;
+            Layout.fillWidth: true
+            Layout.preferredHeight: Math.min(messageInput.contentHeight + 8, 100)
+            Layout.maximumHeight: 100
+
+            color: JamiTheme.transparentColor
+            radius: JamiTheme.shareMessageMenuMessageInputRadius
+            border.color: JamiTheme.chatViewFooterRectangleBorderColor
+            border.width: 2
+            clip: true
+
+            Flickable {
+                id: messageInputContainer
+
+                anchors.fill: parent
+                anchors.rightMargin: 6
+                anchors.bottomMargin: 2
+
+                flickableDirection: Flickable.VerticalFlick
+                contentHeight: messageInput.implicitHeight
+                contentWidth: messageInput.width
+
+                ScrollBar.vertical: JamiScrollBar {
+                    policy: ScrollBar.AsNeeded
                 }
-            }
-            JamiListView {
-                id: contactPickerListView
 
-                Layout.alignment: Qt.AlignCenter
-                Layout.fillWidth: true
-                Layout.preferredHeight: 255
-                Layout.bottomMargin: JamiTheme.preferredMarginSize
-                Layout.topMargin: 5
+                TextArea {
+                    id: messageInput
 
-                model: shareConvProxyModel
+                    width: messageInputContainer.width
 
-                delegate: ConversationPickerItemDelegate {
-                    id: conversationDelegate
+                    verticalAlignment: Text.AlignVCenter
+
+                    placeholderText: JamiStrings.addAComment
+                    placeholderTextColor: JamiTheme.messageBarPlaceholderTextColor
+
+                    font.pointSize: JamiTheme.textFontSize + 2
+
+                    color: JamiTheme.textColor
+
+                    wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+
+                    background: Rectangle {
+                        color: JamiTheme.transparentColor
+                    }
                 }
-            }
-        }
-    }
-
-    Flickable {
-        id: messageInputContainer
-
-        height: Math.min(contentHeight, mainMenu.textareaMaxHeight)
-        width: parent.width - 20
-        contentHeight: messageInput.height
-        anchors.left: parent.left
-        anchors.leftMargin: 10
-        anchors.rightMargin: 10
-        anchors.topMargin: 10
-        anchors.top: searchConv.bottom
-
-        flickableDirection: Flickable.VerticalFlick
-        clip: true
-
-        ScrollBar.vertical: JamiScrollBar {
-            policy: ScrollBar.AsNeeded
-        }
-
-        onContentHeightChanged: {
-            if (contentHeight > height) {
-                contentY = contentHeight - height;
-            }
-        }
-
-        TextArea {
-            id: messageInput
-
-            height: contentHeight + 12
-            width: parent.width
-            placeholderText: "Add a comment"
-            placeholderTextColor: JamiTheme.messageBarPlaceholderTextColor
-            font.pointSize: JamiTheme.textFontSize + 2
-            color: JamiTheme.textColor
-            wrapMode: Text.WordWrap
-
-            background: Rectangle {
-                color: JamiTheme.transparentColor
-                radius: 5
-                border.color: JamiTheme.chatViewFooterRectangleBorderColor
-                border.width: 2
             }
         }
     }
