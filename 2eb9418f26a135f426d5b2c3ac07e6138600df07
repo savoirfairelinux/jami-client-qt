@@ -22,6 +22,30 @@
       },
       "revId": "2eb9418f26a135f426d5b2c3ac07e6138600df07",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a068da9_333322c7",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 939,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-01-15T14:16:44Z",
+      "side": 1,
+      "message": "Hi @ovari123@zoho.com, I had changed this to `Search/add` on purpose. New users won\u0027t necessarily be aware of where they can add a contact. Additionally, upon searching, the use is shown two independent lists: the first one being a contact found on the nameserver that they can add, and the second being their existing conversations (if any).",
+      "parentUuid": "49de70b9_51b4f96b",
+      "range": {
+        "startLine": 939,
+        "startChar": 39,
+        "endLine": 939,
+        "endChar": 49
+      },
+      "revId": "2eb9418f26a135f426d5b2c3ac07e6138600df07",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
