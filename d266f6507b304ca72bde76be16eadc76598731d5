@@ -22,6 +22,30 @@
       },
       "revId": "d266f6507b304ca72bde76be16eadc76598731d5",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cb6d202_1be3051e",
+        "filename": "src/app/mainview/components/ConversationSmartListContextMenu.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1147
+      },
+      "writtenOn": "2026-01-15T15:25:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6eff1bd_00b36bac",
+      "range": {
+        "startLine": 79,
+        "startChar": 16,
+        "endLine": 89,
+        "endChar": 21
+      },
+      "revId": "d266f6507b304ca72bde76be16eadc76598731d5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
