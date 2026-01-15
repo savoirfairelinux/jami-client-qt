@@ -32,10 +32,12 @@ ItemDelegate {
     height: JamiTheme.smartListItemHeight
 
     RowLayout {
-        anchors.fill: parent
-        anchors.leftMargin: 15
-        anchors.rightMargin: 15
-        spacing: 10
+        id: rowLayout
+
+        anchors.fill: contentRect
+        anchors.margins: JamiTheme.itemPadding
+
+        spacing: 16
 
         ConversationAvatar {
             id: avatar
@@ -112,19 +114,100 @@ ItemDelegate {
     }
 
     background: Rectangle {
-        color: {
-            if (root.pressed || root.highlighted)
-                return JamiTheme.smartListSelectedColor;
-            else if (root.hovered)
-                return JamiTheme.smartListHoveredColor;
-            else
-                return "transparent";
-        }
+        id: contentRect
+
+        anchors.fill: root
+        anchors.topMargin: JamiTheme.itemMarginVertical
+        anchors.bottomMargin: JamiTheme.itemMarginVertical
+        anchors.leftMargin: JamiTheme.itemMarginHorizontal
+        anchors.rightMargin: JamiTheme.itemMarginHorizontal
+
+        radius: JamiTheme.commonRadius
+
+        color: JamiTheme.backgroundColor
     }
 
     highlighted: {
         return mainMenu.selectedUids.includes(UID);
     }
+
+    states: [
+        State {
+            name: "normal"
+            when: !highlighted && !hovered
+            PropertyChanges {
+                target: contentRect
+                color: JamiTheme.globalIslandColor
+            }
+            PropertyChanges {
+                target: root
+                scale: 1.0
+            }
+        },
+        State {
+            name: "hovered"
+            when: root.activeFocus || (!highlighted && hovered)
+            PropertyChanges {
+                target: contentRect
+                color: JamiTheme.smartListHoveredColor
+            }
+            PropertyChanges {
+                target: root
+                scale: ListView.view.width / contentRect.width
+            }
+        },
+        State {
+            name: "highlighted"
+            when: (highlighted && !hovered) || (highlighted && hovered)
+            PropertyChanges {
+                target: contentRect
+                color: JamiTheme.smartListSelectedColor
+            }
+            PropertyChanges {
+                target: root
+                scale: 1.0
+            }
+        }
+    ]
+
+    // Animations within a transition run in parallel
+    transitions: [
+        Transition {
+            from: "normal"
+            to: "hovered"
+            reversible: true
+            ColorAnimation {
+                duration: JamiTheme.shortFadeDuration
+            }
+            NumberAnimation {
+                target: root
+                property: "scale"
+                duration: JamiTheme.shortFadeDuration
+                easing.type: Easing.OutCubic
+            }
+        },
+        Transition {
+            from: "highlighted"
+            to: "normal"
+            ColorAnimation {
+                duration: JamiTheme.shortFadeDuration
+            }
+        },
+        Transition {
+            from: "hovered"
+            to: "highlighted"
+
+            ColorAnimation {
+                duration: JamiTheme.shortFadeDuration
+            }
+            NumberAnimation {
+                target: root
+                property: "scale"
+                duration: JamiTheme.shortFadeDuration - 50
+                easing.type: Easing.OutCubic
+            }
+        }
+    ]
 
     onClicked: {
         const currentSelectedUids = mainMenu.selectedUids;
