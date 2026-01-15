@@ -795,4 +795,9 @@ Item {
     // Message Bar
     property real messageBarRadius: 28
     property real messageBarReplyToAvatarSize: 24
+
+    // Share Message Menu
+    property real shareMessageMenuMessageInputMaxHeight: 100
+    property real shareMessageMenuMessgeInputHeight: 30
+    property real shareMessageMenuMessageInputRadius: shareMessageMenuMessgeInputHeight / 2
 }
