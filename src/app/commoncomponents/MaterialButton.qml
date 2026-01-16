@@ -96,7 +96,7 @@ AbstractButton {
 
     contentItem: RowLayout {
         anchors.verticalCenter: parent.verticalCenter
-        spacing: 0//hasIcon ? JamiTheme.preferredMarginSize : 0
+        spacing: 0
 
         Component {
             id: iconComponent

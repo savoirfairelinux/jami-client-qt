@@ -31,40 +31,56 @@ TabButton {
 
     signal selected
 
+    leftInset: JamiTheme.filterTabButtonHorizontalInset
+    rightInset: JamiTheme.filterTabButtonHorizontalInset
+    topInset: JamiTheme.filterTabButtonVerticalInset
+    bottomInset: JamiTheme.filterTabButtonVerticalInset
+
+    leftPadding: JamiTheme.filterTabButtonHorizontalPadding
+    rightPadding: JamiTheme.filterTabButtonHorizontalPadding
+    topPadding: JamiTheme.filterTabButtonVerticalPadding
+    bottomPadding: JamiTheme.filterTabButtonVerticalPadding
+
     hoverEnabled: true
     onClicked: selected()
 
     Accessible.name: root.labelText
     Accessible.role: Accessible.Button
 
-    contentItem: RowLayout {
-        anchors.centerIn: background
+    contentItem: Item {
+        implicitWidth: row.implicitWidth
+        implicitHeight: row.implicitHeight
 
-        Text {
-            id: label
+        Row {
+            id: row
+            anchors.centerIn: parent
+            spacing: 4
 
-            Layout.alignment: Qt.AlignCenter
+            Text {
+                id: label
 
-            font.pointSize: fontSize
+                anchors.verticalCenter: parent.verticalCenter
+                width: Math.min(implicitWidth, Math.max(0, root.availableWidth - (badge.visible ? badge.width + parent.spacing : 0)))
+                font.pointSize: fontSize
 
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-            elide: Text.ElideRight
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                elide: Text.ElideRight
 
-            color: (root.hovered || root.activeFocus) ? JamiTheme.textColorHovered : JamiTheme.textColor
-        }
+                color: (root.hovered || root.activeFocus) ? JamiTheme.textColorHovered : JamiTheme.textColor
+            }
 
-        BadgeNotifier {
-            id: badge
-            size: 20
+            BadgeNotifier {
+                id: badge
+                anchors.verticalCenter: parent.verticalCenter
+
+                size: 20
+            }
         }
     }
 
     background: Rectangle {
         id: background
-
-        anchors.fill: root
-        anchors.margins: 8
 
         color: (root.down || root.hovered || root.activeFocus) ? JamiTheme.hoveredButtonColor : JamiTheme.globalBackgroundColor
         opacity: (root.down || root.hovered || root.activeFocus) ? 1.0 : 0.0

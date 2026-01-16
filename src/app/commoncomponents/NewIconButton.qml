@@ -53,10 +53,19 @@ Button {
         width: icon.width + (iconSize / 2)
         height: icon.height + (iconSize / 2)
 
-        radius: width / 2
+        radius: height / 2
         anchors.centerIn: contentItem
 
-        color: root.hovered ? JamiTheme.hoveredButtonColor : JamiTheme.transparentColor
+        opacity: root.hovered ? 1.0 : 0.0
+
+        color: JamiTheme.hoveredButtonColor
+
+        Behavior on opacity {
+            enabled: root.enabled
+            NumberAnimation {
+                duration: 200
+            }
+        }
     }
 
     MaterialToolTip {
