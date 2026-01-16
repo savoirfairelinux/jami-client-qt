@@ -33,6 +33,7 @@ TabBar {
         ConversationsAdapter.filterRequests = (idx === SidePanelTabBar.Requests);
     }
 
+    spacing: JamiTheme.tabBarSpacing
     currentIndex: 0
 
     FilterTabButton {

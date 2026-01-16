@@ -800,4 +800,14 @@ Item {
     property real shareMessageMenuMessageInputMaxHeight: 100
     property real shareMessageMenuMessgeInputHeight: 30
     property real shareMessageMenuMessageInputRadius: shareMessageMenuMessgeInputHeight / 2
+
+    // Tab Bar
+    property real tabBarHeight: 42
+    property real tabBarSpacing: 4
+
+    // Filter Tab Button
+    property real filterTabButtonHorizontalInset: 0
+    property real filterTabButtonVerticalInset: 8
+    property real filterTabButtonHorizontalPadding: 6
+    property real filterTabButtonVerticalPadding: 12
 }
