@@ -361,8 +361,10 @@ SidePanelBase {
 
                         contentHeight: childrenRect.height
                         width: parent.width
-                        Layout.preferredHeight: 42
+                        Layout.preferredHeight: JamiTheme.tabBarHeight
 
+                        Layout.leftMargin: 15
+                        Layout.rightMargin: 15
                         Layout.fillWidth: true
                         Layout.alignment: Qt.AlignTop
 
