@@ -26,6 +26,69 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dbc5dfad_a54e2f50",
+        "filename": "src/app/mainview/components/ChatView.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1169
+      },
+      "writtenOn": "2026-01-16T19:49:26Z",
+      "side": 1,
+      "message": "property popupvisiblity:false\nblablla",
+      "revId": "5c7c78ac416f68924960fd8c17c1148665f8c13b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9049ca93_15b62558",
+        "filename": "src/app/mainview/components/ChatView.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1169
+      },
+      "writtenOn": "2026-01-16T19:49:26Z",
+      "side": 1,
+      "message": "callEndedWithErrorPopupText \u003d JamiString. something based on the code value\ncallEndedWithErrorPopupVisiblity \u003d true",
+      "range": {
+        "startLine": 173,
+        "startChar": 16,
+        "endLine": 173,
+        "endChar": 44
+      },
+      "revId": "5c7c78ac416f68924960fd8c17c1148665f8c13b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aef30001_483d87cb",
+        "filename": "src/app/mainview/components/ChatView.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1169
+      },
+      "writtenOn": "2026-01-16T19:49:26Z",
+      "side": 1,
+      "message": "button1.text: callEndedWithErrorPopupText\nvisible: callEndedWithErrorPopupVisiblity",
+      "range": {
+        "startLine": 179,
+        "startChar": 12,
+        "endLine": 179,
+        "endChar": 46
+      },
+      "revId": "5c7c78ac416f68924960fd8c17c1148665f8c13b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "97f66c4d_88b2abb6",
         "filename": "src/app/mainview/components/ChatView.qml",
         "patchSetId": 5
@@ -37,6 +100,30 @@
       "writtenOn": "2026-01-15T19:27:48Z",
       "side": 1,
       "message": "avoid one component per possible error.",
+      "range": {
+        "startLine": 169,
+        "startChar": 1,
+        "endLine": 182,
+        "endChar": 1
+      },
+      "revId": "5c7c78ac416f68924960fd8c17c1148665f8c13b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0313f50a_9b49a9e0",
+        "filename": "src/app/mainview/components/ChatView.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1169
+      },
+      "writtenOn": "2026-01-16T19:49:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97f66c4d_88b2abb6",
       "range": {
         "startLine": 169,
         "startChar": 1,
@@ -70,6 +157,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3336134d_907e826d",
+        "filename": "src/libclient/callmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 1535,
+      "author": {
+        "id": 1169
+      },
+      "writtenOn": "2026-01-16T19:49:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "028ab1f2_bd852cac",
+      "range": {
+        "startLine": 1535,
+        "startChar": 12,
+        "endLine": 1535,
+        "endChar": 101
+      },
+      "revId": "5c7c78ac416f68924960fd8c17c1148665f8c13b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66641224_862c34ea",
@@ -83,6 +194,30 @@
       "writtenOn": "2026-01-15T19:27:48Z",
       "side": 1,
       "message": "dedicated signal for each possible error should not be needed. Pass the error code to callEnded.",
+      "range": {
+        "startLine": 1538,
+        "startChar": 26,
+        "endLine": 1538,
+        "endChar": 52
+      },
+      "revId": "5c7c78ac416f68924960fd8c17c1148665f8c13b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ce81d0f_e0658f8a",
+        "filename": "src/libclient/callmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 1538,
+      "author": {
+        "id": 1169
+      },
+      "writtenOn": "2026-01-16T19:49:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66641224_862c34ea",
       "range": {
         "startLine": 1538,
         "startChar": 26,
