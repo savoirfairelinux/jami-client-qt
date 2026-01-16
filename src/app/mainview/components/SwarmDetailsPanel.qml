@@ -41,6 +41,29 @@ Rectangle {
 
     property string textColor: UtilsAdapter.luma(root.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
 
+    function updateSwarmDetailsTabModel() {
+        swarmDetailsTabModel.clear();
+        if (!CurrentConversation.isCoreDialog) {
+            swarmDetailsTabModel.append({
+                "name": JamiStrings.members.arg(CurrentConversation.members.count),
+                "isFirstTab": true
+            });
+            swarmDetailsTabModel.append({
+                "name": JamiStrings.files
+            });
+        } else {
+            swarmDetailsTabModel.append({
+                "name": JamiStrings.files,
+                "isFirstTab": true
+            });
+        }
+
+        swarmDetailsTabModel.append({
+            "name": JamiStrings.details,
+            "isLastTab": true
+        });
+    }
+
     ColumnLayout {
         id: rectangleContent
 
@@ -72,93 +95,97 @@ Rectangle {
                     avatarSize: 180
                 }
 
-                ColumnLayout {
-                    Layout.preferredHeight: currentSwarmAvatar.height
+                Column {
                     Layout.preferredWidth: JamiTheme.iconButtonMedium
-                    Layout.alignment: Qt.AlignVCenter
+                    Layout.fillHeight: true
+                    Item {
+                        id: infoBlock
 
-                    NewIconButton {
-                        id: muteConversation
+                        width: parent.width
+                        height: parent.height / 3
 
-                        iconSize: JamiTheme.iconButtonMedium
-                        iconSource: CurrentConversation.ignoreNotifications ? JamiResources.notifications_off_24dp_svg : JamiResources.notifications_active_24dp_svg
-                        toolTipText: CurrentConversation.ignoreNotifications ? JamiStrings.muteConversation : JamiStrings.unmuteConversation
+                        visible: CurrentConversation.isCoreDialog
 
-                        onClicked: CurrentConversation.setPreference("ignoreNotifications", !CurrentConversation.ignoreNotifications)
-                    }
+                        NewIconButton {
+                            id: contactDetails
 
-                    NewIconButton {
-                        id: conversationType
+                            anchors.centerIn: parent
 
-                        iconSize: JamiTheme.iconButtonMedium
-                        iconSource: switch (CurrentConversation.modeString) {
-                        case JamiStrings.publicGroup:
-                            JamiResources.public_24dp_svg;
-                            break;
-                        case JamiStrings.privateConversation:
-                            JamiResources.lock_svg;
-                            break;
-                        case JamiStrings.privateRestrictedGroup:
-                            JamiResources.mail_lock_24dp_svg;
-                            break;
-                        case JamiStrings.privateGroup:
-                            JamiResources.create_swarm_svg;
+                            iconSize: JamiTheme.iconButtonMedium
+                            iconSource: JamiResources.informations_black_24dp_svg
+                            toolTipText: JamiStrings.contactDetails
+
+                            onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/UserProfile.qml", {
+                                "aliasText": CurrentConversation.title,
+                                "registeredNameText": CurrentConversation.description,
+                                "idText": CurrentConversation.id,
+                                "convId": CurrentConversation.id
+                            })
                         }
-                        toolTipText: CurrentConversation.modeString
                     }
+                    Item {
+                        id: notificationsBlock
 
-                    Rectangle {
-                        id: conversationColorPicker
+                        width: parent.width
+                        height: CurrentConversation.isCoreDialog ? parent.height / 3 : parent.height / 2
 
-                        property bool hovered: false
+                        NewIconButton {
+                            id: muteConversation
 
-                        Layout.alignment: Qt.AlignHCenter
+                            anchors.centerIn: parent
 
-                        activeFocusOnTab: true
+                            iconSize: JamiTheme.iconButtonMedium
+                            iconSource: CurrentConversation.ignoreNotifications ? JamiResources.notifications_off_24dp_svg : JamiResources.notifications_active_24dp_svg
+                            toolTipText: CurrentConversation.ignoreNotifications ? JamiStrings.muteConversation : JamiStrings.unmuteConversation
 
-                        width: JamiTheme.iconButtonMedium
-                        height: JamiTheme.iconButtonMedium
-
-                        radius: width / 2
-
-                        color: CurrentConversation.color
-
-                        border.color: JamiTheme.textColor
-                        border.width: hovered || activeFocus ? 2 : 0
-
-                        MaterialToolTip {
-                            id: conversationColorPickerToolTip
-                            parent: parent
-                            visible: conversationColorPickerMouseArea.containsMouse
-                            delay: Qt.styleHints.mousePressAndHoldInterval
-                            text: JamiStrings.color
+                            onClicked: CurrentConversation.setPreference("ignoreNotifications", !CurrentConversation.ignoreNotifications)
                         }
-
-                        MouseArea {
-                            id: conversationColorPickerMouseArea
-                            anchors.fill: parent
-                            hoverEnabled: true
-
-                            onClicked: colorDialogComp.createObject(appWindow).open()
-                            onHoveredChanged: conversationColorPicker.hovered = !conversationColorPicker.hovered
-                        }
-
-                        Accessible.role: Accessible.Button
-                        Accessible.name: JamiStrings.color
-                        Accessible.description: JamiStrings.chooseAColor
                     }
+                    Item {
+                        id: colorBlock
 
-                    Component {
-                        id: colorDialogComp
-                        ColorDialog {
-                            id: colorDialog
-                            title: JamiStrings.color
-                            currentColor: CurrentConversation.color
-                            onAccepted: {
-                                CurrentConversation.setPreference("color", colorDialog.color);
-                                this.destroy();
+                        width: parent.width
+                        height: CurrentConversation.isCoreDialog ? parent.height / 3 : parent.height / 2
+
+                        Rectangle {
+                            id: conversationColorPicker
+
+                            property bool hovered: false
+
+                            anchors.centerIn: parent
+
+                            activeFocusOnTab: true
+
+                            width: JamiTheme.iconButtonMedium
+                            height: JamiTheme.iconButtonMedium
+
+                            radius: width / 2
+
+                            color: CurrentConversation.color
+
+                            border.color: JamiTheme.textColor
+                            border.width: hovered || activeFocus ? 2 : 0
+
+                            MaterialToolTip {
+                                id: conversationColorPickerToolTip
+                                parent: parent
+                                visible: conversationColorPickerMouseArea.containsMouse
+                                delay: Qt.styleHints.mousePressAndHoldInterval
+                                text: JamiStrings.color
                             }
-                            onRejected: this.destroy()
+
+                            MouseArea {
+                                id: conversationColorPickerMouseArea
+                                anchors.fill: parent
+                                hoverEnabled: true
+
+                                onClicked: colorDialogComp.createObject(appWindow).open()
+                                onHoveredChanged: conversationColorPicker.hovered = !conversationColorPicker.hovered
+                            }
+
+                            Accessible.role: Accessible.Button
+                            Accessible.name: JamiStrings.color
+                            Accessible.description: JamiStrings.chooseAColor
                         }
                     }
                 }
@@ -173,8 +200,10 @@ Rectangle {
             Layout.alignment: Qt.AlignTop
 
             ColumnLayout {
+
                 anchors.fill: parent
                 spacing: 0
+
                 ModalTextEdit {
                     id: titleLine
 
@@ -261,76 +290,55 @@ Rectangle {
             }
         }
 
-        Item {
-            id: centerContent
+        ListModel {
+            id: swarmDetailsTabModel
+        }
+
+        Connections {
+            target: CurrentConversation
+            onIsCoreDialogChanged: root.updateSwarmDetailsTabModel()
+            onMembersChanged: root.updateSwarmDetailsTabModel()
+        }
+
+        TabBar {
+            id: swarmDetailsPanelTabBar
 
             Layout.fillWidth: true
             Layout.preferredHeight: 42
             Layout.bottomMargin: CurrentConversation.isCoreDialog ? 0 : 8
             Layout.alignment: Qt.AlignTop
 
-            ColumnLayout {
-                anchors.fill: parent
+            padding: 4
+            currentIndex: 0
 
-                TabBar {
-                    id: swarmDetailsPanelTabBar
+            Repeater {
+                model: swarmDetailsTabModel
 
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-                    Layout.alignment: Qt.AlignTop
+                FilterTabButton {
+                    down: swarmDetailsPanelTabBar.currentIndex === index
+                    labelText: name
+                    isFirstTab: isFirstTab
+                    isLastTab: isLastTab
 
-                    visible: !CurrentConversation.isCoreDialog
-
-                    padding: 4
-
-                    currentIndex: 0
-
-                    FilterTabButton {
-                        id: membersTabButton
-
-                        down: swarmDetailsPanelTabBar.currentIndex === TabBar.index
-                        labelText: {
-                            var membersNb = CurrentConversation.members.count;
-                            if (membersNb > 1)
-                                return JamiStrings.members.arg(membersNb);
-                            return JamiStrings.member;
-                        }
-                    }
-
-                    FilterTabButton {
-                        id: filesTabButton
-
-                        down: swarmDetailsPanelTabBar.currentIndex === TabBar.index
-                        labelText: JamiStrings.files
-                    }
-
-                    background: Rectangle {
-                        id: swarmDetailsPanelTabBarBackground
-
-                        anchors.fill: parent
-                        color: JamiTheme.transparentColor
-                    }
-                }
-
-                Text {
-                    id: filesText
-
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-                    Layout.alignment: Qt.AlignTop
-
-                    visible: CurrentConversation.isCoreDialog
-
-                    text: JamiStrings.files
-                    color: JamiTheme.textColor
-                    horizontalAlignment: Text.AlignLeft
-                    verticalAlignment: Text.AlignVCenter
+                    onSelected: swarmDetailsPanelTabBar.currentIndex = index
                 }
             }
+
+            background: Rectangle {
+                id: swarmDetailsPanelTabBarBackground
+
+                anchors.fill: parent
+                color: "red"//JamiTheme.transparentColor
+            }
         }
+
         Item {
+            id: membersView
+
             Layout.fillWidth: true
             Layout.fillHeight: true
+
+            visible: !CurrentConversation.isCoreDialog && swarmDetailsPanelTabBar.currentIndex === 0
 
             ScrollView {
                 id: scrollView
@@ -339,8 +347,6 @@ Rectangle {
 
                 contentWidth: availableWidth
                 clip: true
-
-                visible: !CurrentConversation.isCoreDialog && (!CurrentConversation.isCoreDialog && swarmDetailsPanelTabBar.currentIndex === 0)
 
                 Grid {
                     id: membersGrid
@@ -463,13 +469,20 @@ Rectangle {
                     }
                 }
             }
+        }
+
+        Item {
+            id: filesView
+
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+
+            visible: CurrentConversation.isCoreDialog ? swarmDetailsPanelTabBar.currentIndex === 0 : swarmDetailsPanelTabBar.currentIndex === 1
 
             DocumentsScrollview {
                 id: documents
 
                 anchors.fill: parent
-
-                visible: CurrentConversation.isCoreDialog || (!CurrentConversation.isCoreDialog && swarmDetailsPanelTabBar.currentIndex === 1)
             }
 
             Text {
@@ -483,33 +496,82 @@ Rectangle {
 
                 wrapMode: Text.WordWrap
 
-                visible: documents.visible && documents.model.count === 0
+                visible: documents.model.count === 0
             }
         }
 
-        MaterialButton {
-            id: removeConversation
+        // Details
+        // QR: CORE
+        // Remove Conversation: CORE
+        // Remove Contact: CORE
+        // Block Contact: CORE
+        // Leave Group: SWARM
+
+        Item {
+            id: detailsView
 
             Layout.fillWidth: true
-            Layout.alignment: Qt.AlignBottom
+            Layout.fillHeight: true
 
-            primary: true
+            visible: CurrentConversation.isCoreDialog ? swarmDetailsPanelTabBar.currentIndex === 1 : swarmDetailsPanelTabBar.currentIndex === 2
 
-            iconSource: JamiResources.exit_to_app_24dp_svg
-            color: JamiTheme.buttonTintedRed
-            hoveredColor: JamiTheme.buttonTintedRedHovered
-            pressedColor: JamiTheme.buttonTintedRedPressed
+            ScrollView {
+                id: detailsScrollView
 
-            text: CurrentConversation.modeString.indexOf("group") >= 0 ? JamiStrings.leaveGroup : JamiStrings.removeConversation
-            onClicked: {
-                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
-                    "title": JamiStrings.confirmAction,
-                    "textLabel": JamiStrings.confirmRemoveContact,
-                    "confirmLabel": JamiStrings.optionRemove
-                });
-                dlg.accepted.connect(function () {
-                    MessagesAdapter.removeConversation(LRCInstance.selectedConvUid);
-                });
+                anchors.fill: parent
+                contentWidth: availableWidth
+
+                ColumnLayout {
+                    width: detailsScrollView.availableWidth
+
+                    MaterialButton {
+                        id: removeContactButton
+
+                        Layout.fillWidth: true
+
+                        secondary: true
+                        iconSource: JamiResources.kick_member_svg
+                        text: JamiStrings.removeContact
+                        visible: CurrentConversation.isCoreDialog
+                        onClicked: {}
+                    }
+
+                    MaterialButton {
+                        id: removeConversation
+
+                        Layout.fillWidth: true
+
+                        secondary: true
+                        iconSource: JamiResources.ic_disconnect_participant_24dp_svg
+                        color: JamiTheme.buttonTintedRed
+                        text: CurrentConversation.isCoreDialog ? JamiStrings.leaveGroup : JamiStrings.removeConversation
+                        onClicked: {
+                            var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
+                                "title": JamiStrings.confirmAction,
+                                "textLabel": JamiStrings.confirmRemoveContact,
+                                "confirmLabel": JamiStrings.optionRemove
+                            });
+                            dlg.accepted.connect(function () {
+                                MessagesAdapter.removeConversation(LRCInstance.selectedConvUid);
+                            });
+                        }
+                    }
+
+                    MaterialButton {
+                        id: blockContactButton
+
+                        Layout.fillWidth: true
+
+                        primary: true
+                        iconSource: JamiResources.block_black_24dp_svg
+                        color: JamiTheme.buttonTintedRed
+                        hoveredColor: JamiTheme.buttonTintedRedHovered
+                        pressedColor: JamiTheme.buttonTintedRedPressed
+                        text: JamiStrings.blockContact
+                        visible: CurrentConversation.isCoreDialog
+                        onClicked: {}
+                    }
+                }
             }
         }
     }
@@ -524,4 +586,6 @@ Rectangle {
         shadowVerticalOffset: JamiTheme.shadowVerticalOffset
         shadowOpacity: JamiTheme.shadowOpacity
     }
+
+    Component.onCompleted: root.updateSwarmDetailsTabModel()
 }
