@@ -34,6 +34,10 @@
 #include <QMimeDatabase>
 #include <QStyleHints>
 
+#ifdef Q_OS_MACOS
+#include "os/macos/macutils.h"
+#endif
+
 UtilsAdapter::UtilsAdapter(AppSettingsManager* settingsManager,
                            SystemTray* systemTray,
                            LRCInstance* instance,
@@ -890,4 +894,14 @@ bool
 UtilsAdapter::isWayland() const
 {
     return !qEnvironmentVariableIsEmpty("WAYLAND_DISPLAY");
+}
+
+bool
+UtilsAdapter::isMacOS26OrLater() const
+{
+#ifdef Q_OS_MACOS
+    return macutils::isMacOS26OrLater();
+#else
+    return false;
+#endif
 }
