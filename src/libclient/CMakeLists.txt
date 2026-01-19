@@ -429,8 +429,7 @@ endif()
 
 # Manually wrap libjamiclient's private headers and interfaces.
 set(LIBCLIENT_HEADERS_PRIVATE
-  private/namedirectory_p.h
-  private/smartInfoHub_p.h)
+  private/namedirectory_p.h)
 
 if(ENABLE_LIBWRAP)
   list(APPEND LIBCLIENT_HEADERS_PRIVATE

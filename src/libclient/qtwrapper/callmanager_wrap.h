@@ -181,10 +181,6 @@ public:
                 LOG_LIBJAMI_SIGNAL2("videoMuted", QString(callId.c_str()), state);
                 Q_EMIT videoMuted(QString(callId.c_str()), state);
             }),
-            exportable_callback<CallSignal::SmartInfo>([this](const std::map<std::string, std::string>& info) {
-                LOG_LIBJAMI_SIGNAL("SmartInfo", "");
-                Q_EMIT SmartInfo(convertMap(info));
-            }),
             exportable_callback<CallSignal::RemoteRecordingChanged>(
                 [this](const std::string& callId, const std::string& contactId, bool state) {
                     LOG_LIBJAMI_SIGNAL3("remoteRecordingChanged",
@@ -445,16 +441,6 @@ public Q_SLOTS: // METHODS
         return libjami::muteLocalMedia(accountId.toStdString(), callId.toStdString(), mediaType.toStdString(), mute);
     }
 
-    void startSmartInfo(int refresh)
-    {
-        libjami::startSmartInfo(refresh);
-    }
-
-    void stopSmartInfo()
-    {
-        libjami::stopSmartInfo();
-    }
-
     void setConferenceLayout(const QString& accountId, const QString& confId, int layout)
     {
         libjami::setConferenceLayout(accountId.toStdString(), confId.toStdString(), layout);
@@ -560,7 +546,6 @@ Q_SIGNALS: // SIGNALS
     void audioMuted(const QString& callId, bool state);
     void videoMuted(const QString& callId, bool state);
     void peerHold(const QString& callId, bool state);
-    void SmartInfo(const MapStringString& info);
     void remoteRecordingChanged(const QString& callId, const QString& peerNumber, bool remoteRecordingState);
 };
 
