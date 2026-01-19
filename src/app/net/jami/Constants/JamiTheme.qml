@@ -800,4 +800,9 @@ Item {
     property real shareMessageMenuMessageInputMaxHeight: 100
     property real shareMessageMenuMessgeInputHeight: 30
     property real shareMessageMenuMessageInputRadius: shareMessageMenuMessgeInputHeight / 2
+
+    // New Material Button
+    property real newMaterialButtonPadding: 8
+    property real newMaterialButtonHorizontalPadding: newMaterialButtonPadding + 12
+    property real newMaterialButtonSpacing: 6
 }
