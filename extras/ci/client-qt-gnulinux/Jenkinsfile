@@ -22,11 +22,7 @@
 // - ansicolor plugin
 
 pipeline {
-    agent {
-        node {
-            label 'jami-buildmachine-04.mtl.sfl'
-        }
-    }
+    agent none
 
     triggers {
         gerrit customUrl: '',
@@ -52,67 +48,232 @@ pipeline {
     }
 
     stages {
-        stage('SCM Checkout') {
-            steps {
-                // Wipe workspace and fetch jami-daemon
-                checkout changelog: true, poll: false,
-                    scm: [$class: 'GitSCM',
-                        branches: [[name: 'FETCH_HEAD']],
-                        doGenerateSubmoduleConfigurations: false,
-                        extensions: [
-                            [$class: 'CloneOption', noTags: true, reference: '', shallow: true],
-                            [$class: 'WipeWorkspace']],
-                        submoduleCfg: [],
-                        userRemoteConfigs: [[refspec: '${GERRIT_REFSPEC}', url: 'https://${JAMI_GERRIT_URL}/jami-client-qt']]]
-            }
-        }
+        stage('Parallel Builds') {
+            parallel {
+                stage('Linux Build') {
+                    agent {
+                        node {
+                            label 'jami-buildmachine-04.mtl.sfl'
+                        }
+                    }
+                    stages {
+                        stage('SCM Checkout') {
+                            steps {
+                                // Wipe workspace and fetch jami-daemon
+                                checkout changelog: true, poll: false,
+                                    scm: [$class: 'GitSCM',
+                                        branches: [[name: 'FETCH_HEAD']],
+                                        doGenerateSubmoduleConfigurations: false,
+                                        extensions: [
+                                            [$class: 'CloneOption', noTags: true, reference: '', shallow: true],
+                                            [$class: 'WipeWorkspace']],
+                                        submoduleCfg: [],
+                                        userRemoteConfigs: [[refspec: '${GERRIT_REFSPEC}', url: 'https://${JAMI_GERRIT_URL}/jami-client-qt']]]
+                            }
+                        }
 
-        stage('Init repository') {
-            steps {
-                script {
-                    sh """
-                        git rev-parse HEAD
-                        git submodule update --init --recursive
-                    """
+                        stage('Init repository') {
+                            steps {
+                                script {
+                                    sh """
+                                        git rev-parse HEAD
+                                        git submodule update --init --recursive
+                                    """
+                                }
+                            }
+                        }
+
+                        stage('Building Docker Image') {
+                            steps {
+                                script {
+                                    docker.build('client-validation', "-f extras/build/docker/Dockerfile.client-qt-gnulinux --no-cache .")
+                                }
+                            }
+                        }
+
+                        stage('Build Client') {
+                            steps {
+                                script {
+                                    def jenkinsUID = sh(returnStdout: true, script: 'id -u jenkins').replaceAll("\n", '').trim()
+                                    def jenkinsGID = sh(returnStdout: true, script: 'id -g jenkins').replaceAll("\n", '').trim()
+                                    def jenkinsUser = jenkinsUID+':'+jenkinsGID
+                                    def cpuCount = sh returnStdout: true, script: 'nproc || echo -n 4'
+
+                                    docker.image('client-validation').withRun('-t -u '+jenkinsUser+' -v '+pwd()+':/foo:rw -v /var/cache/jami:/var/cache/jami:rw -w /foo -e BATCH_MODE=1 -e TARBALLS=$TARBALLS -e CACHE_DIR=$CACHE_DIR', '/bin/bash') {
+                                        container -> code:{
+                                            def base_cmd = 'docker exec -t '+container.id+" sh -c '"
+                                            def exec_cmd = { cmd -> sh base_cmd+cmd+"'" }
+
+                                            def dockerTopDir = '/foo/'
+                                            ansiColor('css') {
+                                                exec_cmd("""
+                                                    cd ${dockerTopDir}
+                                                    ./build.py --install --qt /usr/lib/libqt-jami/
+                                                    cd build
+                                                    cmake .. -DBUILD_TESTING=True
+                                                    make -j${cpuCount}
+                                                """)
+                                                // Run tests
+                                                exec_cmd("""
+                                                    cd ${dockerTopDir}/build/tests
+                                                    HOME=/tmp ctest -V -C Release -j${cpuCount}
+                                                """)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
-            }
-        }
 
-        stage('Building Docker Image') {
-            steps {
-                script {
-                    docker.build('client-validation', "-f extras/build/docker/Dockerfile.client-qt-gnulinux --no-cache .")
+                stage('macOS Build') {
+                    agent {
+                        node {
+                            label 'macOS'
+                        }
+                    }
+                    stages {
+                        stage('SCM Checkout') {
+                            steps {
+                                script {
+                                    deleteDir()
+                                    sh """
+                                        git clone --depth=1 --branch=master https://${RING_GERRIT_URL}/jami-client-qt
+                                        cd jami-client-qt/
+                                        git submodule update --init --force
+                                        cd ../
+                                    """
+                                }
+                            }
+                        }
+                        
+                        stage('Applying Change') {
+                            steps {
+                                script {
+                                    sh """
+                                        cd jami-client-qt/
+                                        git fetch https://${RING_GERRIT_URL}/jami-client-qt ${GERRIT_REFSPEC}
+                                        git checkout FETCH_HEAD
+
+                                        git submodule update --init
+
+                                        cd ../
+                                    """
+                                }
+                            }
+                        }
+                       
+                        stage('Build Client') {
+                            steps {
+                                script {
+                                    def cpuCount = sh returnStdout: true, script: 'sysctl -n machdep.cpu.thread_count || echo -n 4'
+                                    def arch = sh(returnStdout: true, script: 'uname -m').trim()
+                                    def topDir = pwd() + '/jami-client-qt'
+                                    def installPrefix = topDir + "/install"
+
+                                    def QT_PATH
+                                    if (arch == 'arm64') {
+                                        QT_PATH = "/Users/jenkins/Qt/6.9.3"
+                                    } else if (arch == 'x86_64') {
+                                        QT_PATH = "/Users/jenkins/Qt/6.8.3"
+                                    } else {
+                                        error "Unsupported architecture: ${arch}"
+                                    }
+
+                                    echo "Detected architecture: ${arch}"
+                                    echo "Using Qt path: ${QT_PATH}"
+
+                                    withEnv(['PATH+JENKINSHOME=/usr/local/bin:/opt/homebrew/bin']) {
+                                        sh """
+                                            export MACOSX_DEPLOYMENT_TARGET=12
+                                            export BATCH_MODE=1
+                                            export TARBALLS=/Volumes/nfs_jami
+                                            cd jami-client-qt/
+                                            mkdir build && cd build
+                                            cmake .. -DCMAKE_INSTALL_PREFIX="${installPrefix}/daemon/" \
+                                                     -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64" \
+                                                     -DWITH_DAEMON_SUBMODULE=true  \
+                                                     -DIGNORE_SYSTEM_LIBS=ON \
+                                                     -DENABLE_LIBWRAP=ON \
+                                                     -DWITH_WEBENGINE=ON \
+                                                     -DJAMI_DBUS=Off \
+                                                     -DBUILD_TESTING=OFF \
+                                                     -DCMAKE_PREFIX_PATH="${QT_PATH}/macos"
+                                            make -j${cpuCount}
+                                        """
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
-            }
-        }
 
-        stage('Build Client') {
-            steps {
-                script {
-                    def jenkinsUID = sh(returnStdout: true, script: 'id -u jenkins').replaceAll("\n", '').trim()
-                    def jenkinsGID = sh(returnStdout: true, script: 'id -g jenkins').replaceAll("\n", '').trim()
-                    def jenkinsUser = jenkinsUID+':'+jenkinsGID
-                    def cpuCount = sh returnStdout: true, script: 'nproc || echo -n 4'
+                stage('Windows Build') {
+                    agent {
+                        node {
+                            label 'builder-win'
+                        }
+                    }
+                    stages {
+                        stage('SCM Checkout') {
+                            steps {
+                                script {
+                                    deleteDir()
+                                    bat """
+                                        git clone --depth=1 https://${RING_GERRIT_URL}/jami-client-qt
+                                        cd jami-client-qt
+                                        git fetch origin ${GERRIT_REFSPEC}
+                                        git checkout -q FETCH_HEAD
+                                        git submodule update --init --force --recursive
+                                    """
+                                }
+                            }
+                        }
 
-                    docker.image('client-validation').withRun('-t -u '+jenkinsUser+' -v '+pwd()+':/foo:rw -v /var/cache/jami:/var/cache/jami:rw -w /foo -e BATCH_MODE=1 -e TARBALLS=$TARBALLS -e CACHE_DIR=$CACHE_DIR', '/bin/bash') {
-                        container -> code:{
-                            def base_cmd = 'docker exec -t '+container.id+" sh -c '"
-                            def exec_cmd = { cmd -> sh base_cmd+cmd+"'" }
+                        stage('Link and checkout cached daemon') {
+                            steps {
+                                script {
+                                    def topDir = pwd()
+                                    def clientDir = topDir + '\\jami-client-qt'
+                                    def daemonDir = clientDir + '\\daemon'
+                                    def cacheDir = env.JAMI_DAEMON_CACHE_DIR
 
-                            def dockerTopDir = '/foo/'
-                            ansiColor('css') {
-                                exec_cmd("""
-                                    cd ${dockerTopDir}
-                                    ./build.py --install --qt /usr/lib/libqt-jami/
-                                    cd build
-                                    cmake .. -DBUILD_TESTING=True
-                                    make -j${cpuCount}
-                                """)
-                                // Run tests
-                                exec_cmd("""
-                                    cd ${dockerTopDir}/build/tests
-                                    HOME=/tmp ctest -V -C Release -j${cpuCount}
-                                """)
+                                    dir(clientDir) {
+                                        // First let's get the hash of the daemon submodule head from the current build.
+                                        def daemonHead = bat(returnStdout: true, script: "git rev-parse HEAD:daemon").trim()
+                                        // Take only the second line of the output, which is the hash of the daemon submodule head.
+                                        daemonHead = daemonHead.split("\\r?\\n")[1]
+                                        // Now remove the current daemon submodule
+                                        bat "rmdir /S /Q daemon"
+                                        // And replace it with a link to the cached build
+                                        bat "mklink /D daemon ${cacheDir}"
+                                    }
+                                    // Finally, let's checkout the daemon submodule to the same commit as the current build.
+                                    dir(daemonDir) {
+                                        bat "git fetch --all"
+                                        // bat "git fetch origin master"
+                                        bat "git checkout ${daemonHead}"
+                                    }
+                                }
+                            }
+                        }
+
+                        stage('Build Client') {
+                            steps {
+                                script {
+                                    def topDir = pwd()
+                                    def clientDir = topDir + '\\jami-client-qt'
+                                    
+                                    dir(clientDir) {
+                                        ansiColor('xterm') {
+                                            bat """
+                                                python extras/scripts/build-windows.py --init || exit /b 1
+                                                python extras/scripts/build-windows.py --qt=${QT_LATEST_PATH} --skip-deploy || exit /b 1
+                                            """
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
