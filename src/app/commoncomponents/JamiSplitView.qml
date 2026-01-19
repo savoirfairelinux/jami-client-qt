@@ -125,7 +125,8 @@ SplitView {
 
         containmentMask: Item {
             readonly property real extraHandleSize: 4
-            readonly property real handleXPosition: !UtilsAdapter.isRTL ? 0 : -extraHandleSize
+            readonly property real handleXOffset: 16 * (UtilsAdapter.isRTL ? 1 : -1)
+            readonly property real handleXPosition: (!UtilsAdapter.isRTL ? 0 : -extraHandleSize) + handleXOffset
             readonly property real handleSize: handleRoot.defaultSize + extraHandleSize
 
             x: control.orientation === Qt.Horizontal ? handleXPosition : 0
