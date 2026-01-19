@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55f24c4d_dbf6a82d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-01-19T20:59:06Z",
+      "side": 1,
+      "message": "LGTM for now. Switch to text for text-formatting icons (as per https://review.jami.net/c/jami-client-qt/+/32638/comments/c2f0a3d8_d736ab9a) should be completed in a separate change.",
+      "revId": "dc5a3e5200ebaaf073a65c9e8361d5f3a1a11c8a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
