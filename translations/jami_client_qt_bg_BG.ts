@@ -4565,17 +4565,17 @@ Please confirm the import on the new device.</source>
         <translation>Неприемлив навсякъде</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="639"/>
+        <location filename="../src/app/messagesadapter.cpp" line="643"/>
         <source>Just now</source>
         <translation>Току-що</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="658"/>
+        <location filename="../src/app/messagesadapter.cpp" line="694"/>
         <source>Today</source>
         <translation>Днес</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="660"/>
+        <location filename="../src/app/messagesadapter.cpp" line="698"/>
         <source>Yesterday</source>
         <translation>Вчера</translation>
     </message>
@@ -4861,17 +4861,17 @@ Please confirm the import on the new device.</source>
 <context>
     <name>UtilsAdapter</name>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="346"/>
+        <location filename="../src/app/utilsadapter.cpp" line="347"/>
         <source>%1 Mbps</source>
         <translation>%1 Мбит/сек</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="346"/>
+        <location filename="../src/app/utilsadapter.cpp" line="347"/>
         <source>Default</source>
         <translation>По подразбиране</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="538"/>
+        <location filename="../src/app/utilsadapter.cpp" line="539"/>
         <source>System</source>
         <translation>Система</translation>
     </message>

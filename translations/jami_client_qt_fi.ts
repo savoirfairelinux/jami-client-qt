@@ -4575,17 +4575,17 @@ Vahvista tuonti uudella laitteella.</translation>
         <translation>Ei hyväksytä missään</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="639"/>
+        <location filename="../src/app/messagesadapter.cpp" line="643"/>
         <source>Just now</source>
         <translation>Juuri nyt</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="658"/>
+        <location filename="../src/app/messagesadapter.cpp" line="694"/>
         <source>Today</source>
         <translation>Tänään</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="660"/>
+        <location filename="../src/app/messagesadapter.cpp" line="698"/>
         <source>Yesterday</source>
         <translation>Eilen</translation>
     </message>
@@ -4871,17 +4871,17 @@ Vahvista tuonti uudella laitteella.</translation>
 <context>
     <name>UtilsAdapter</name>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="346"/>
+        <location filename="../src/app/utilsadapter.cpp" line="347"/>
         <source>%1 Mbps</source>
         <translation>%1 Mbps</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="346"/>
+        <location filename="../src/app/utilsadapter.cpp" line="347"/>
         <source>Default</source>
         <translation>Oletus</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="538"/>
+        <location filename="../src/app/utilsadapter.cpp" line="539"/>
         <source>System</source>
         <translation>Järjestelmä</translation>
     </message>

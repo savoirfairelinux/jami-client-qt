@@ -2920,7 +2920,7 @@ Kur të jeni gati, skanoni kodin QR.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="929"/>
         <source>Search text languages</source>
-        <translation>Kërkoni gjuhë teksti</translation>
+        <translation>Kërkoni gjuhë</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="930"/>
@@ -3015,7 +3015,7 @@ Kur të jeni gati, skanoni kodin QR.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="950"/>
         <source>Press to toggle %1 (%2)</source>
-        <translation type="unfinished"/>
+        <translation>Shtypeni që të hapet/mbyllet %1 (%2)</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="951"/>
@@ -4576,17 +4576,17 @@ Ju lutemi, ripohoni importimin te pajisja e re.</translation>
         <translation>E papranuar Gjëkundi</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="639"/>
+        <location filename="../src/app/messagesadapter.cpp" line="643"/>
         <source>Just now</source>
         <translation>Mu tani</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="658"/>
+        <location filename="../src/app/messagesadapter.cpp" line="694"/>
         <source>Today</source>
         <translation>Sot</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="660"/>
+        <location filename="../src/app/messagesadapter.cpp" line="698"/>
         <source>Yesterday</source>
         <translation>Dje</translation>
     </message>
@@ -4872,17 +4872,17 @@ Ju lutemi, ripohoni importimin te pajisja e re.</translation>
 <context>
     <name>UtilsAdapter</name>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="346"/>
+        <location filename="../src/app/utilsadapter.cpp" line="347"/>
         <source>%1 Mbps</source>
         <translation>%1 Mbit/s</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="346"/>
+        <location filename="../src/app/utilsadapter.cpp" line="347"/>
         <source>Default</source>
         <translation>Parazgjedhja</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="538"/>
+        <location filename="../src/app/utilsadapter.cpp" line="539"/>
         <source>System</source>
         <translation>Sistem</translation>
     </message>

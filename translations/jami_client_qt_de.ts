@@ -4576,17 +4576,17 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
         <translation>Nirgendwo annehmbar</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="639"/>
+        <location filename="../src/app/messagesadapter.cpp" line="643"/>
         <source>Just now</source>
         <translation>Gerade eben</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="658"/>
+        <location filename="../src/app/messagesadapter.cpp" line="694"/>
         <source>Today</source>
         <translation>Heute</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="660"/>
+        <location filename="../src/app/messagesadapter.cpp" line="698"/>
         <source>Yesterday</source>
         <translation>Gestern</translation>
     </message>
@@ -4872,17 +4872,17 @@ Bitte bestätigen Sie den Import auf dem neuen Gerät.</translation>
 <context>
     <name>UtilsAdapter</name>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="346"/>
+        <location filename="../src/app/utilsadapter.cpp" line="347"/>
         <source>%1 Mbps</source>
         <translation>%1 MBit/s</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="346"/>
+        <location filename="../src/app/utilsadapter.cpp" line="347"/>
         <source>Default</source>
         <translation>Standard</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="538"/>
+        <location filename="../src/app/utilsadapter.cpp" line="539"/>
         <source>System</source>
         <translation>System</translation>
     </message>
