@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85007066_29c528fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-01-19T20:16:04Z",
+      "side": 1,
+      "message": "With this change, the frameless implementation looks really hairy.\n\n1. test the latest qwindowkit with Qt 6.9+. shouldn\u0027t be broken\n2. incorporate these changes into qwindowkit if possible",
+      "revId": "a63dca34ff74a2c7309ced4ee88694ea65040664",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac92ad79_a7b1f094",
+        "filename": "src/app/MainApplicationWindow.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-01-19T20:16:04Z",
+      "side": 1,
+      "message": "this looks delicate. test for not macOS 26",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 36,
+        "endChar": 124
+      },
+      "revId": "a63dca34ff74a2c7309ced4ee88694ea65040664",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "338152cf_9b5dc11b",
+        "filename": "src/app/mainapplication.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-01-19T20:16:04Z",
+      "side": 1,
+      "message": "this indentation is incorrect",
+      "range": {
+        "startLine": 521,
+        "startChar": 0,
+        "endLine": 527,
+        "endChar": 5
+      },
+      "revId": "a63dca34ff74a2c7309ced4ee88694ea65040664",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
