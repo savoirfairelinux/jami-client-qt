@@ -29,6 +29,7 @@ import "components"
 
 SidePanelBase {
     id: root
+    topPadding: JamiQmlUtils.isMacOS26OrLater ? 12 : undefined
     objectName: "SettingsSidePanel"
 
     color: JamiTheme.primaryBackgroundColor
