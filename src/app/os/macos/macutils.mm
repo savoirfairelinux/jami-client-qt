@@ -17,7 +17,102 @@
 #include "macutils.h"
 
 #include <MetalKit/MetalKit.h>
+#include <QWindow>
+#include <Cocoa/Cocoa.h>
 
 bool macutils::isMetalSupported() {
     return ([[MTLCopyAllDevices() autorelease] count] > 0);
+}
+
+void macutils::fixMacOSRoundedCorners(QWindow* window) {
+    if (!window) {
+        return;
+    }
+
+    if (@available(macOS 26.0, *)) {
+        WId windowId = window->winId();
+        if (!windowId) {
+            return;
+        }
+
+        NSView* view = reinterpret_cast<NSView*>(windowId);
+        if (!view) {
+            return;
+        }
+
+        NSWindow* nativeWindow = [view window];
+        if (!nativeWindow) {
+            return;
+        }
+
+        // Hide the window title text
+        [nativeWindow setTitleVisibility:NSWindowTitleHidden];
+
+        // Create or get the toolbar and set it to unified style
+        // - Windows with toolbars get larger corner radius (~26pt)
+        // - Title-bar-only windows get smaller radius (~16pt)
+        NSToolbar* toolbar = [nativeWindow toolbar];
+        if (!toolbar) {
+            toolbar = [[NSToolbar alloc] initWithIdentifier:@"roundedCornersToolbar"];
+            [toolbar setDisplayMode:NSToolbarDisplayModeIconOnly];
+            [toolbar setSizeMode:NSToolbarSizeModeSmall];
+            [toolbar setAllowsUserCustomization:NO];
+            [toolbar setAutosavesConfiguration:NO];
+            [nativeWindow setToolbar:toolbar];
+        }
+
+        [nativeWindow setToolbarStyle:NSWindowToolbarStyleUnified];
+    }
+}
+
+void macutils::startSystemMove(QWindow* window) {
+    if (!window) {
+        return;
+    }
+
+    WId windowId = window->winId();
+    if (!windowId) {
+        return;
+    }
+
+    NSView* view = reinterpret_cast<NSView*>(windowId);
+    if (!view) {
+        return;
+    }
+
+    NSWindow* nativeWindow = [view window];
+    if (!nativeWindow) {
+        return;
+    }
+
+    // Override Qt's startSystemMove to include NSEventTypePressure
+
+    if (![nativeWindow respondsToSelector:@selector(performWindowDragWithEvent:)]) {
+        return;
+    }
+
+    NSEvent* currentEvent = [NSApp currentEvent];
+    NSEventType eventType = currentEvent.type;
+
+    switch (eventType) {
+    case NSEventTypeLeftMouseDown:
+    case NSEventTypeRightMouseDown:
+    case NSEventTypeOtherMouseDown:
+    case NSEventTypeMouseMoved:
+    case NSEventTypeLeftMouseDragged:
+    case NSEventTypeRightMouseDragged:
+    case NSEventTypeOtherMouseDragged:
+    case NSEventTypePressure:
+        [nativeWindow performWindowDragWithEvent:currentEvent];
+        break;
+    default:
+        break;
+    }
+}
+
+bool macutils::isMacOS26OrLater() {
+    if (@available(macOS 26.0, *)) {
+        return true;
+    }
+    return false;
 }
