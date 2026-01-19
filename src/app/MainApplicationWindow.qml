@@ -91,6 +91,34 @@ Window {
         }
     }
 
+    Loader {
+        id: macTitleBarLoader
+        active: JamiQmlUtils.isMacOS26OrLater
+        height: 35
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
+        }
+        z: 10
+        sourceComponent: Rectangle {
+            id: macTitleBar
+            anchors.fill: parent
+            color: "transparent"
+            MouseArea {
+                anchors.fill: parent
+                onPressed: m => {
+                    if (MainApplication) {
+                        MainApplication.startSystemMove(appWindow);
+                    } else {
+                        appWindow.startSystemMove();
+                    }
+                    m.accepted = false;
+                }
+            }
+        }
+    }
+
     Rectangle {
         id: focusOverlay
         objectName: "focusOverlay"
@@ -172,7 +200,7 @@ Window {
         layoutManager.restoreWindowSettings();
 
         // QWK: setup
-        if (useFrameless) {
+        if (useFrameless && !JamiQmlUtils.isMacOS26OrLater) {
             windowAgent.setTitleBar(titleBar);
             // Now register the system buttons (non-macOS).
             if (sysBtnsLoader.item) {
@@ -203,6 +231,9 @@ Window {
         // Set up the event filter for macOS.
         if (Qt.platform.os.toString() === "osx") {
             MainApplication.setEventFilter();
+            if (JamiQmlUtils.isMacOS26OrLater) {
+                MainApplication.setToolBar(appWindow);
+            }
         }
 
         // Quiet check for updates on start if set to.

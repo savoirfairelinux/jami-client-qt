@@ -16,8 +16,13 @@
  */
 #pragma once
 
+class QWindow;
+
 class macutils
 {
 public:
     static bool isMetalSupported();
+    static void setToolBar(QWindow* window);
+    static void startSystemMove(QWindow* window);
+    static bool isMacOS26OrLater();
 };
