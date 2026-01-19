@@ -270,26 +270,15 @@ ListSelectionView {
                 Layout.margins: JamiTheme.welcomePageSpacing / 2
                 Layout.alignment: Qt.AlignHCenter
 
-                MaterialButton {
+                NewMaterialButton {
                     id: aboutJami
 
                     objectName: "aboutJami"
 
-                    TextMetrics {
-                        id: textSize
-                        font.weight: Font.Bold
-                        font.capitalization: Font.AllUppercase
-                        text: aboutJami.text
-                    }
-
-                    tertiary: true
-                    secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
                     anchors.horizontalCenter: parent.horizontalCenter
-                    preferredWidth: 125
-                    text: JamiStrings.aboutJami
 
-                    Accessible.role: Accessible.Button
-                    Accessible.name: text
+                    textButton: true
+                    text: JamiStrings.aboutJami
 
                     onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/AboutPopUp.qml")
                 }
