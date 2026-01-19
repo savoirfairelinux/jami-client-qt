@@ -16,6 +16,24 @@
       "message": "Can the text in the icons please be translatable?\n\nFor example, can the bold icon show **F** (Félkövér) instead of **B** (Bold) when the user interface is set to magyar (Hungarian)?\n\nThe keyboard accelerator can remain as **Ctrl+B**.\n\nThis would be consistent with LibreOffice, which shows **F (Ctrl+B)**.\n\nThank you",
       "revId": "33533d1add07f43993e644ee20b369306830bc55",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3ce89c3_bf9666ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-01-19T21:02:12Z",
+      "side": 1,
+      "message": "Acknowledged, as per the https://review.jami.net/c/jami-client-qt/+/32638/comments/55f24c4d_dbf6a82d comment. Thank you",
+      "parentUuid": "c2f0a3d8_d736ab9a",
+      "revId": "33533d1add07f43993e644ee20b369306830bc55",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
