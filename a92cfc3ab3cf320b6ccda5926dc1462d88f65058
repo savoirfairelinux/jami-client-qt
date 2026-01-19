@@ -22,6 +22,23 @@
       },
       "revId": "a92cfc3ab3cf320b6ccda5926dc1462d88f65058",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ea2aebb_e808f039",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-01-19T21:17:58Z",
+      "side": 1,
+      "message": "Does this fix the `About` button in **both** locations shown in the following issue?\nhttps://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/2140",
+      "revId": "a92cfc3ab3cf320b6ccda5926dc1462d88f65058",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
