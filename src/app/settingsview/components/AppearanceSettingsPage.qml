@@ -307,6 +307,7 @@ SettingsPageBase {
         ToggleSwitch {
             id: useNativeWindowFrameCheckBox
             Layout.fillWidth: true
+            visible: !JamiQmlUtils.isMacOS26OrLater
 
             checked: !UtilsAdapter.getAppValue(Settings.Key.UseFramelessWindow)
             labelText: JamiStrings.useNativeWindowFrame

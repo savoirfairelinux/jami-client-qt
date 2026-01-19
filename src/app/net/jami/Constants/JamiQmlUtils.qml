@@ -118,4 +118,7 @@ Item {
         const savedWidth = UtilsAdapter.getAppValue("minorPaneWidth")
         return (savedWidth && savedWidth > 0) ? savedWidth : 0
     }
+
+    // Check if running on macOS 26.0 or later
+    readonly property bool isMacOS26OrLater: UtilsAdapter.isMacOS26OrLater()
 }

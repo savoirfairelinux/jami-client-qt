@@ -33,6 +33,9 @@ import QWindowKit
 ApplicationWindow {
     id: appWindow
 
+    flags: JamiQmlUtils.isMacOS26OrLater ? (Qt.Window | Qt.ExpandedClientAreaHint | Qt.NoTitleBarBackgroundHint) : Qt.Window
+    topPadding: JamiQmlUtils.isMacOS26OrLater ? 0 : undefined
+
     readonly property bool useFrameless: UtilsAdapter.getAppValue(Settings.Key.UseFramelessWindow)
     property bool isRTL: UtilsAdapter.isRTL
     LayoutMirroring.enabled: isRTL
@@ -82,6 +85,34 @@ ApplicationWindow {
             id: genericError
             text: CurrentAccount.enabled ? JamiStrings.noNetworkConnectivity : JamiStrings.disabledAccount
             height: visible ? JamiTheme.qwkTitleBarHeight : 0
+        }
+    }
+
+    Loader {
+        id: macTitleBarLoader
+        active: JamiQmlUtils.isMacOS26OrLater
+        height: 35
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
+        }
+        z: 10
+        sourceComponent: Rectangle {
+            id: macTitleBar
+            anchors.fill: parent
+            color: "transparent"
+            MouseArea {
+                anchors.fill: parent
+                onPressed: m => {
+                    if (MainApplication) {
+                        MainApplication.startSystemMove(appWindow);
+                    } else {
+                        appWindow.startSystemMove();
+                    }
+                    m.accepted = false;
+                }
+            }
         }
     }
 
@@ -166,7 +197,7 @@ ApplicationWindow {
         layoutManager.restoreWindowSettings();
 
         // QWK: setup
-        if (useFrameless) {
+        if (useFrameless && !JamiQmlUtils.isMacOS26OrLater) {
             windowAgent.setTitleBar(titleBar);
             // Now register the system buttons (non-macOS).
             if (sysBtnsLoader.item) {
@@ -197,6 +228,10 @@ ApplicationWindow {
         // Set up the event filter for macOS.
         if (Qt.platform.os.toString() === "osx") {
             MainApplication.setEventFilter();
+            if (JamiQmlUtils.isMacOS26OrLater) {
+                MainApplication.fixMacOSRoundedCorners(appWindow);
+            }
+            MainApplication.setupWindowDelegate(appWindow);
         }
 
         // Quiet check for updates on start if set to.

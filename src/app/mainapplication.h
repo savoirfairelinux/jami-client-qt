@@ -65,6 +65,9 @@ public:
     void restoreApp();
 
     Q_INVOKABLE void handleUriAction(const QString& uri = {});
+    Q_INVOKABLE void startSystemMove(QWindow* window);
+    Q_INVOKABLE void fixMacOSRoundedCorners(QWindow* window);
+    Q_INVOKABLE void setupWindowDelegate(QWindow* window);
 
     enum class Option { StartMinimized = 0, Debug, UpdateUrl, MuteDaemon, TerminationRequested, StartUri };
     QVariant getOpt(const Option opt)
