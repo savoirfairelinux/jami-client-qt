@@ -28,6 +28,7 @@ import "components"
 
 SidePanelBase {
     id: root
+    topPadding: Qt.platform.os.toString() === "osx" ? 20 : undefined
     objectName: "SettingsSidePanel"
 
     color: JamiTheme.backgroundColor
