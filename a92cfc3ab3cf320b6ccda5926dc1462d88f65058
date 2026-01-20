@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "36b147c1_951ca847",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-01-20T20:41:03Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5e95d2d3_1be2773d",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 40
+      },
+      "revId": "a92cfc3ab3cf320b6ccda5926dc1462d88f65058",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8ea2aebb_e808f039",
@@ -37,6 +61,24 @@
       "writtenOn": "2026-01-19T21:17:58Z",
       "side": 1,
       "message": "Does this fix the `About` button in **both** locations shown in the following issue?\nhttps://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/2140",
+      "revId": "a92cfc3ab3cf320b6ccda5926dc1462d88f65058",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09945b50_2fea4ca4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-01-20T20:41:03Z",
+      "side": 1,
+      "message": "No, this will be addressed in another patch.",
+      "parentUuid": "8ea2aebb_e808f039",
       "revId": "a92cfc3ab3cf320b6ccda5926dc1462d88f65058",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
