@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "575b84fa_c6babb45",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-01-20T14:23:21Z",
+      "side": 1,
+      "message": "This commit is a bit rough",
+      "revId": "2901510c777393ac87c084862352ff874130e573",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "650940b5_3c301f98",
+        "filename": "src/app/commoncomponents/MaterialButton.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-01-20T14:23:21Z",
+      "side": 1,
+      "message": "This seems unfinished. Do you address this component thoroughly in a subsequent commit?",
+      "revId": "2901510c777393ac87c084862352ff874130e573",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84d08b7d_d15b9b4b",
+        "filename": "src/app/mainview/components/ConversationExtrasPanel.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-01-20T14:23:21Z",
+      "side": 1,
+      "message": "commented code here",
+      "revId": "2901510c777393ac87c084862352ff874130e573",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
