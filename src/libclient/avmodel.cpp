@@ -283,6 +283,7 @@ AVModel::getDeviceSettings(const QString& deviceId) const
     result.channel = settings["channel"];
     result.size = settings["size"];
     result.rate = settings["rate"].toFloat();
+    result.passthrough = settings["passthrough"] == "true";
     return result;
 }
 
@@ -328,6 +329,7 @@ AVModel::setDeviceSettings(video::Settings& settings)
     newSettings["id"] = settings.id;
     newSettings["rate"] = rate;
     newSettings["size"] = settings.size;
+    newSettings["passthrough"] = settings.passthrough ? "true" : "false";
     VideoManager::instance().applySettings(settings.id, newSettings);
 
     // If the preview is running, reload it
@@ -740,9 +742,7 @@ AVModel::getListWindows() const
             for (int i = 0; i < valueLegth / 4; i++) {
                 xcb_get_property_cookie_t prop_cookie
                     = xcb_get_property(c.get(), 0, win[i], atomWMVisibleName, XCB_GET_PROPERTY_TYPE_ANY, 0, 1000);
-                propertyPtr replyProp {xcb_get_property_reply(c.get(), prop_cookie, &e), [](auto* ptr) {
-                                           free(ptr);
-                                       }};
+                propertyPtr replyProp {xcb_get_property_reply(c.get(), prop_cookie, &e), [](auto* ptr) { free(ptr); }};
                 if (e) {
                     LC_DBG << "Error: " << e->error_code;
                     free(e);
