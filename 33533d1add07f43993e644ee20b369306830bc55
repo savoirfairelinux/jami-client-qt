@@ -34,6 +34,24 @@
       "parentUuid": "c2f0a3d8_d736ab9a",
       "revId": "33533d1add07f43993e644ee20b369306830bc55",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5000913_5f255032",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-01-20T15:29:53Z",
+      "side": 1,
+      "message": "Hi @ovari123@zoho.com, we will likely move from icons to individual letters in a future patch to address this. Would you mind creating an issue for this for future addressal.",
+      "parentUuid": "c2f0a3d8_d736ab9a",
+      "revId": "33533d1add07f43993e644ee20b369306830bc55",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
