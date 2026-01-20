@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "644c5760_06a08fdd",
+        "filename": "src/app/accountsettingsmanager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-01-20T21:07:24Z",
+      "side": 1,
+      "message": "```suggestion\n    X(backgroundBlurEnabled, true) \\\n    X(backgroundScrimEnabled, true)\n```",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 30
+      },
+      "revId": "fa7126afa5f60628daedf47e778067f541c19e68",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "664c547d_c293543c",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 906,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-01-20T21:07:24Z",
+      "side": 1,
+      "message": "Normalize background image contrast",
+      "range": {
+        "startLine": 906,
+        "startChar": 55,
+        "endLine": 906,
+        "endChar": 88
+      },
+      "revId": "fa7126afa5f60628daedf47e778067f541c19e68",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
