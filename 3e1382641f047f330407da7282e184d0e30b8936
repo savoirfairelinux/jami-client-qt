@@ -37,6 +37,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7bb53f57_156fcae1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-01-20T19:47:30Z",
+      "side": 1,
+      "message": "address comments",
+      "revId": "3e1382641f047f330407da7282e184d0e30b8936",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ea20bd49_2237a03b",
         "filename": "src/app/mainview/components/ContactPickerItemDelegate.qml",
         "patchSetId": 5
