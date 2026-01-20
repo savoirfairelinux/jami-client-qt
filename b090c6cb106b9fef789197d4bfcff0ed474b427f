@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae64786e_7705d6ce",
+        "filename": "src/app/mainview/components/ChatViewFooter.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-01-20T19:40:27Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 44,
+        "startChar": 37,
+        "endLine": 44,
+        "endChar": 70
+      },
+      "revId": "b090c6cb106b9fef789197d4bfcff0ed474b427f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
