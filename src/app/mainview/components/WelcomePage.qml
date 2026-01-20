@@ -69,7 +69,7 @@ ListSelectionView {
         source: cachedImgLogo
         radius: JamiTheme.welcomePageFastBlurRadius
         z: -1
-        visible: AccountSettingsManager.accountSettingsPropertyMap.blurBackground === "true"
+        visible: AccountSettingsManager.accountSettingsPropertyMap.blurBackground
     }
 
     ColorOverlay {
@@ -78,7 +78,7 @@ ListSelectionView {
         color: JamiTheme.globalBackgroundColor
         opacity: JamiTheme.welcomePageColorOverlayOpacity
         z: -1
-        visible: AccountSettingsManager.accountSettingsPropertyMap.overlayBackground === "true"
+        visible: AccountSettingsManager.accountSettingsPropertyMap.overlayBackground
     }
 
     onPresented: LRCInstance.deselectConversation()

@@ -22,6 +22,13 @@
 
 #include "accountsettingspropertymap.h"
 
+// X macro to define account settings keys and their default values
+#define ACCOUNT_SETTINGS_PROPERTY_KEYS \
+    /* key            defaultValue */ \
+    X(backgroundUri, "") \
+    X(blurBackground, true) \
+    X(overlayBackground, true)
+
 class AccountSettingsManager : public QObject
 {
     Q_OBJECT
@@ -37,6 +44,7 @@ public:
     Q_INVOKABLE void updateCurrentAccount(const QString& newCurrentAccountID);
     Q_INVOKABLE void setValue(const QString& key, const QVariant& value);
     Q_INVOKABLE QVariant getValue(const QString& key);
+    Q_INVOKABLE void resetToDefaults();
 
 private:
     QSettings* accountSettings_;
