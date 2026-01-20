@@ -20,11 +20,6 @@
 
 #include <QApplication>
 
-// X macro to future proof if other keys are needed
-#define PROPERTY_KEYS \
-    /* key            defaultValue */ \
-    X(backgroundUri, "")
-
 AccountSettingsManager::AccountSettingsManager(QObject* parent)
     : QObject {parent}
     , accountSettings_ {new QSettings("jami.net", "Account", this)}
@@ -63,7 +58,7 @@ AccountSettingsManager::initalizeAccountSettings()
         qWarning() << "Creating config file for account:" << currentAccountID_;
         accountSettings_->beginGroup(currentAccountID_);
 #define X(key, defaultValue) accountSettings_->setValue(#key, defaultValue);
-        PROPERTY_KEYS
+        ACCOUNT_SETTINGS_PROPERTY_KEYS
 #undef X
         accountSettings_->endGroup();
         // Force writing to the configuration file for immediate access
@@ -71,17 +66,19 @@ AccountSettingsManager::initalizeAccountSettings()
 
         // Populate the property map
 #define X(key, defaultValue) \
-    accountSettingsPropertyMap_ \
-        .setAccountSettingProperty(#key, accountSettings_->value(currentAccountID_ + "/" + #key).toString());
-        PROPERTY_KEYS
+    accountSettingsPropertyMap_.setAccountSettingProperty(#key, \
+                                                          accountSettings_->value(currentAccountID_ + "/" + #key, \
+                                                                                  defaultValue));
+        ACCOUNT_SETTINGS_PROPERTY_KEYS
 #undef X
     } else {
         // Populate the map with the current value found in the QSettings config
         // Get the current background URL of the account
 #define X(key, defaultValue) \
-    accountSettingsPropertyMap_ \
-        .setAccountSettingProperty(#key, accountSettings_->value(currentAccountID_ + "/" + #key).toString());
-        PROPERTY_KEYS
+    accountSettingsPropertyMap_.setAccountSettingProperty(#key, \
+                                                          accountSettings_->value(currentAccountID_ + "/" + #key, \
+                                                                                  defaultValue));
+        ACCOUNT_SETTINGS_PROPERTY_KEYS
 #undef X
         qWarning() << "Loaded existing settings for account:" << currentAccountID_;
     }
@@ -100,9 +97,10 @@ AccountSettingsManager::updateCurrentAccount(const QString& newCurrentAccountID)
 
 // Load existing settings for this account
 #define X(key, defaultValue) \
-    accountSettingsPropertyMap_ \
-        .setAccountSettingProperty(#key, accountSettings_->value(currentAccountID_ + "/" + #key).toString());
-    PROPERTY_KEYS
+    accountSettingsPropertyMap_.setAccountSettingProperty(#key, \
+                                                          accountSettings_->value(currentAccountID_ + "/" + #key, \
+                                                                                  defaultValue));
+    ACCOUNT_SETTINGS_PROPERTY_KEYS
 #undef X
 }
 
@@ -118,4 +116,13 @@ QVariant
 AccountSettingsManager::getValue(const QString& key)
 {
     return accountSettingsPropertyMap_.value(key);
+}
+
+void
+AccountSettingsManager::resetToDefaults()
+{
+    // Reset all account settings to their default values using the X macro
+#define X(key, defaultValue) accountSettingsPropertyMap_.setAccountSettingProperty(#key, defaultValue);
+    ACCOUNT_SETTINGS_PROPERTY_KEYS
+#undef X
 }
