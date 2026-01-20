@@ -24,8 +24,8 @@
 #ifndef ACCOUNT_SETTINGS_PROPERTY_KEYS
 #define ACCOUNT_SETTINGS_PROPERTY_KEYS \
     X(backgroundUri, "") \
-    X(blurBackground, true) \
-    X(overlayBackground, true)
+    X(backgroundBlurEnabled, true) \
+    X(backgroundScrimEnabled, true)
 #endif
 
 class AccountSettingsPropertyMap : public QQmlPropertyMap

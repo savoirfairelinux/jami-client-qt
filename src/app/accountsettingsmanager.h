@@ -26,8 +26,8 @@
 #define ACCOUNT_SETTINGS_PROPERTY_KEYS \
     /* key            defaultValue */ \
     X(backgroundUri, "") \
-    X(blurBackground, true) \
-    X(overlayBackground, true)
+    X(backgroundBlurEnabled, true) \
+    X(backgroundScrimEnabled, true)
 
 class AccountSettingsManager : public QObject
 {

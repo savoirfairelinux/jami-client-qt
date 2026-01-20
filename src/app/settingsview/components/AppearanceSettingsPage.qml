@@ -191,10 +191,10 @@ SettingsPageBase {
                 id: toggleBackgroundBlur
                 Layout.fillWidth: true
 
-                checked: AccountSettingsManager.accountSettingsPropertyMap.blurBackground
+                checked: AccountSettingsManager.accountSettingsPropertyMap.backgroundBlurEnabled
                 labelText: JamiStrings.blurBackgroundImage
                 onSwitchToggled: {
-                    AccountSettingsManager.accountSettingsPropertyMap.blurBackground = checked;
+                    AccountSettingsManager.accountSettingsPropertyMap.backgroundBlurEnabled = checked;
                 }
             }
 
@@ -202,10 +202,10 @@ SettingsPageBase {
                 id: toggleBackgroundOverlay
                 Layout.fillWidth: true
 
-                checked: AccountSettingsManager.accountSettingsPropertyMap.overlayBackground
+                checked: AccountSettingsManager.accountSettingsPropertyMap.backgroundScrimEnabled
                 labelText: JamiStrings.applyOverlayBackgroundImage
                 onSwitchToggled: {
-                    AccountSettingsManager.accountSettingsPropertyMap.overlayBackground = checked;
+                    AccountSettingsManager.accountSettingsPropertyMap.backgroundScrimEnabled = checked;
                 }
             }
         }
