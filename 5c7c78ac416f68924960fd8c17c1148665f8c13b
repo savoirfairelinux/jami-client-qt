@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3ff37a0_3fec181c",
+        "filename": "src/app/commoncomponents/MismatchedCodecPopup.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2026-01-20T17:29:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c465a1f4_79184987",
+      "range": {
+        "startLine": 25,
+        "startChar": 8,
+        "endLine": 25,
+        "endChar": 28
+      },
+      "revId": "5c7c78ac416f68924960fd8c17c1148665f8c13b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dbc5dfad_a54e2f50",
@@ -37,6 +61,24 @@
       "writtenOn": "2026-01-16T19:49:26Z",
       "side": 1,
       "message": "property popupvisiblity:false\nblablla",
+      "revId": "5c7c78ac416f68924960fd8c17c1148665f8c13b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8621928_dada46d3",
+        "filename": "src/app/mainview/components/ChatView.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2026-01-20T17:29:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dbc5dfad_a54e2f50",
       "revId": "5c7c78ac416f68924960fd8c17c1148665f8c13b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
