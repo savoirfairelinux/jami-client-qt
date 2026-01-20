@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddeed7d3_e3cf6d86",
+        "filename": "src/app/commoncomponents/PhotoboothView.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-01-20T21:08:45Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e1d203d7_dd0aa14f",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 20
+      },
+      "revId": "b9337816bf8457b1e7dc983ac3b2962d29f9c841",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "02fcb146_8d561b28",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-01-20T18:50:12Z",
       "side": 1,
       "message": "to remove",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 157,
+        "endChar": 0
+      },
+      "revId": "b9337816bf8457b1e7dc983ac3b2962d29f9c841",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd95c247_dfbe6fc9",
+        "filename": "src/app/mainview/components/FilterTabButton.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-01-20T21:08:45Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "02fcb146_8d561b28",
       "range": {
         "startLine": 94,
         "startChar": 0,
