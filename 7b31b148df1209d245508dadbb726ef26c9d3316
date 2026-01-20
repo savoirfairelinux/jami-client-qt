@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8ec5cd0_76bcf8b4",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1169
+      },
+      "writtenOn": "2026-01-20T22:52:40Z",
+      "side": 1,
+      "message": "I think this should be a different condition here. `code !\u003d 0` is allowing codes like Code 6 to show up too, but I\u0027m not sure if error codes like 6 should be showing up as a pop-up to the user?",
+      "range": {
+        "startLine": 228,
+        "startChar": 4,
+        "endLine": 228,
+        "endChar": 20
+      },
+      "revId": "7b31b148df1209d245508dadbb726ef26c9d3316",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
