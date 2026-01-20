@@ -33,7 +33,53 @@ ListSelectionView {
     splitViewStateKey: "Main"
     hideMajorPaneInSinglePaneMode: true
 
-    color: JamiTheme.secondaryBackgroundColor
+    color: JamiTheme.transparentColor//JamiTheme.secondaryBackgroundColor
+
+    Rectangle {
+        id: bgRect
+        anchors.fill: parent
+        color: hasCustomBgColor ? customBgColor : "transparent"
+        z: -1
+    }
+
+    CachedImage {
+        id: cachedImgLogo
+        downloadUrl: (AccountSettingsManager.accountSettingsPropertyMap.backgroundUri === undefined || AccountSettingsManager.accountSettingsPropertyMap.backgroundUri === "") ? (hasCustomBgImage ? customBgUrl : JamiTheme.welcomeBg) : AccountSettingsManager.accountSettingsPropertyMap.backgroundUri
+        visible: !hasCustomBgColor
+        anchors.fill: parent
+        opacity: visible ? 1 : 0
+        localPath: UtilsAdapter.getCachePath() + "/" + CurrentAccount.id + "/welcomeview/" + UtilsAdapter.base64Encode(downloadUrl) + fileExtension
+        imageFillMode: Image.PreserveAspectCrop
+        z: -1
+
+        Connections {
+            target: JamiTheme
+            function onDarkThemeChanged() {
+                customBgUrl = hasCustomBgImage ? customBgUrl : JamiTheme.welcomeBg;
+                tipBoxAndIdColor = (hasCustomUi && uiCustomization.tipBoxAndIdColor !== undefined) ? uiCustomization.tipBoxAndIdColor : JamiTheme.welcomeBlockColor;
+                tipsTextColor = (hasCustomUi && uiCustomization.tipBoxAndIdColor !== undefined) ? (UtilsAdapter.luma(tipBoxAndIdColor) ? JamiTheme.whiteColor : JamiTheme.blackColor) : JamiTheme.textColor;
+                mainBoxTextColor = (hasCustomUi && uiCustomization.mainBoxColor !== undefined) ? (UtilsAdapter.luma(mainBoxColor) ? JamiTheme.whiteColor : JamiTheme.blackColor) : JamiTheme.textColor;
+                contentTipAndIdColor = (hasCustomUi && uiCustomization.tipBoxAndIdColor !== undefined) ? (UtilsAdapter.luma(tipBoxAndIdColor) ? JamiTheme.lightTintedBlue : JamiTheme.darkTintedBlue) : JamiTheme.tintedBlue;
+            }
+        }
+    }
+
+    FastBlur {
+        anchors.fill: cachedImgLogo
+        source: cachedImgLogo
+        radius: JamiTheme.welcomePageFastBlurRadius
+        z: -1
+        visible: AccountSettingsManager.accountSettingsPropertyMap.blurBackground === "true"
+    }
+
+    ColorOverlay {
+        anchors.fill: cachedImgLogo
+        source: cachedImgLogo
+        color: JamiTheme.globalBackgroundColor
+        opacity: JamiTheme.welcomePageColorOverlayOpacity
+        z: -1
+        visible: AccountSettingsManager.accountSettingsPropertyMap.overlayBackground === "true"
+    }
 
     onPresented: LRCInstance.deselectConversation()
     leftPaneItem: viewCoordinator.getView("SidePanel", true)
@@ -146,35 +192,6 @@ ListSelectionView {
         contentHeight: Math.max(root.height, welcomePageLayout.implicitHeight)
         contentWidth: Math.max(300, root.width)
 
-        Rectangle {
-            id: bgRect
-            anchors.fill: parent
-            color: hasCustomBgColor ? customBgColor : "transparent"
-        }
-
-        CachedImage {
-            id: cachedImgLogo
-            downloadUrl: (AccountSettingsManager.accountSettingsPropertyMap.backgroundUri === undefined || AccountSettingsManager.accountSettingsPropertyMap.backgroundUri === "")
-                         ? (hasCustomBgImage ? customBgUrl : JamiTheme.welcomeBg)
-                         : AccountSettingsManager.accountSettingsPropertyMap.backgroundUri
-            visible: !hasCustomBgColor
-            anchors.fill: parent
-            opacity: visible ? 1 : 0
-            localPath: UtilsAdapter.getCachePath() + "/" + CurrentAccount.id + "/welcomeview/" + UtilsAdapter.base64Encode(downloadUrl) + fileExtension
-            imageFillMode: Image.PreserveAspectCrop
-
-            Connections {
-                target: JamiTheme
-                function onDarkThemeChanged() {
-                    customBgUrl = hasCustomBgImage ? customBgUrl : JamiTheme.welcomeBg;
-                    tipBoxAndIdColor = (hasCustomUi && uiCustomization.tipBoxAndIdColor !== undefined) ? uiCustomization.tipBoxAndIdColor : JamiTheme.welcomeBlockColor;
-                    tipsTextColor = (hasCustomUi && uiCustomization.tipBoxAndIdColor !== undefined) ? (UtilsAdapter.luma(tipBoxAndIdColor) ? JamiTheme.whiteColor : JamiTheme.blackColor) : JamiTheme.textColor;
-                    mainBoxTextColor = (hasCustomUi && uiCustomization.mainBoxColor !== undefined) ? (UtilsAdapter.luma(mainBoxColor) ? JamiTheme.whiteColor : JamiTheme.blackColor) : JamiTheme.textColor;
-                    contentTipAndIdColor = (hasCustomUi && uiCustomization.tipBoxAndIdColor !== undefined) ? (UtilsAdapter.luma(tipBoxAndIdColor) ? JamiTheme.lightTintedBlue : JamiTheme.darkTintedBlue) : JamiTheme.tintedBlue;
-                }
-            }
-        }
-
         ColumnLayout {
             id: welcomePageLayout
             width: Math.max(300, root.width)
@@ -258,8 +275,8 @@ ListSelectionView {
                     //Making sure the tips are refreshed when changing user
                     loader_tipsRow.active = false;
                     loader_tipsRow.active = Qt.binding(function () {
-                            return viewNode.hasTips && root.height > root.thresholdHeight;
-                        });
+                        return viewNode.hasTips && root.height > root.thresholdHeight;
+                    });
                 }
             }
 

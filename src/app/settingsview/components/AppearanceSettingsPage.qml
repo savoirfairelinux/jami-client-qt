@@ -187,6 +187,33 @@ SettingsPageBase {
                     onClicked: AccountSettingsManager.accountSettingsPropertyMap.backgroundUri = ""
                 }
             }
+            ToggleSwitch {
+                id: toggleBackgroundBlur
+                Layout.fillWidth: true
+
+                checked: AccountSettingsManager.accountSettingsPropertyMap.blurBackground === "true"
+                labelText: JamiStrings.blurBackgroundImage
+                onSwitchToggled: if (AccountSettingsManager.accountSettingsPropertyMap.blurBackground === "true") {
+                    AccountSettingsManager.accountSettingsPropertyMap.blurBackground = "false";
+                } else {
+                    AccountSettingsManager.accountSettingsPropertyMap.blurBackground = "true";
+                }
+            }
+
+            ToggleSwitch {
+                id: toggleBackgroundOverlay
+                Layout.fillWidth: true
+
+                checked: AccountSettingsManager.accountSettingsPropertyMap.overlayBackground === "true"
+                labelText: JamiStrings.applyOverlayBackgroundImage
+                onSwitchToggled: {
+                    if (AccountSettingsManager.accountSettingsPropertyMap.overlayBackground === "true") {
+                        AccountSettingsManager.accountSettingsPropertyMap.overlayBackground = "false";
+                    } else {
+                        AccountSettingsManager.accountSettingsPropertyMap.overlayBackground = "true";
+                    }
+                }
+            }
         }
 
         ColumnLayout {

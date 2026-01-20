@@ -23,7 +23,9 @@
 // X macro to future proof if other keys are needed
 #define PROPERTY_KEYS \
     /* key            defaultValue */ \
-    X(backgroundUri, "")
+    X(backgroundUri, "") \
+    X(blurBackground, true) \
+    X(overlayBackground, true)
 
 AccountSettingsManager::AccountSettingsManager(QObject* parent)
     : QObject {parent}
@@ -72,7 +74,8 @@ AccountSettingsManager::initalizeAccountSettings()
         // Populate the property map
 #define X(key, defaultValue) \
     accountSettingsPropertyMap_ \
-        .setAccountSettingProperty(#key, accountSettings_->value(currentAccountID_ + "/" + #key).toString());
+        .setAccountSettingProperty(#key, \
+                                   accountSettings_->value(currentAccountID_ + "/" + #key, defaultValue).toString());
         PROPERTY_KEYS
 #undef X
     } else {
@@ -80,7 +83,8 @@ AccountSettingsManager::initalizeAccountSettings()
         // Get the current background URL of the account
 #define X(key, defaultValue) \
     accountSettingsPropertyMap_ \
-        .setAccountSettingProperty(#key, accountSettings_->value(currentAccountID_ + "/" + #key).toString());
+        .setAccountSettingProperty(#key, \
+                                   accountSettings_->value(currentAccountID_ + "/" + #key, defaultValue).toString());
         PROPERTY_KEYS
 #undef X
         qWarning() << "Loaded existing settings for account:" << currentAccountID_;
@@ -101,7 +105,8 @@ AccountSettingsManager::updateCurrentAccount(const QString& newCurrentAccountID)
 // Load existing settings for this account
 #define X(key, defaultValue) \
     accountSettingsPropertyMap_ \
-        .setAccountSettingProperty(#key, accountSettings_->value(currentAccountID_ + "/" + #key).toString());
+        .setAccountSettingProperty(#key, \
+                                   accountSettings_->value(currentAccountID_ + "/" + #key, defaultValue).toString());
     PROPERTY_KEYS
 #undef X
 }

@@ -815,4 +815,8 @@ Item {
     property real newMaterialButtonPadding: 8
     property real newMaterialButtonHorizontalPadding: newMaterialButtonPadding + 12
     property real newMaterialButtonSpacing: 6
+
+    // Welcome Page
+    property real welcomePageFastBlurRadius: 32
+    property real welcomePageColorOverlayOpacity: 0.5
 }
