@@ -240,5 +240,19 @@ SettingsPageBase {
                 rootLayout.startPreviewing(true);
             }
         }
+
+        ToggleSwitch {
+            id: passthroughControl
+
+            Layout.fillWidth: true
+
+            labelText: JamiStrings.passthrough
+            checked: VideoDevices.isPassthrough
+
+            onSwitchToggled: {
+                VideoDevices.setIsPassthrough(checked);
+                rootLayout.startPreviewing(true);
+            }
+        }
     }
 }
