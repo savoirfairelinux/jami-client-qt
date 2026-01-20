@@ -39,6 +39,30 @@
       },
       "revId": "ef8680cbcc6fba623e238babdae995137de465ac",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "273b8848_57cb9209",
+        "filename": "src/app/mainview/components/SidePanel.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 592,
+      "author": {
+        "id": 1147
+      },
+      "writtenOn": "2026-01-20T20:21:53Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3cf6b45e_48f1479b",
+      "range": {
+        "startLine": 592,
+        "startChar": 20,
+        "endLine": 592,
+        "endChar": 57
+      },
+      "revId": "ef8680cbcc6fba623e238babdae995137de465ac",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
