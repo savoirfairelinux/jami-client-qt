@@ -187,6 +187,27 @@ SettingsPageBase {
                     onClicked: AccountSettingsManager.accountSettingsPropertyMap.backgroundUri = ""
                 }
             }
+            ToggleSwitch {
+                id: toggleBackgroundBlur
+                Layout.fillWidth: true
+
+                checked: AccountSettingsManager.accountSettingsPropertyMap.backgroundBlurEnabled
+                labelText: JamiStrings.blurBackgroundImage
+                onSwitchToggled: {
+                    AccountSettingsManager.accountSettingsPropertyMap.backgroundBlurEnabled = checked;
+                }
+            }
+
+            ToggleSwitch {
+                id: toggleBackgroundOverlay
+                Layout.fillWidth: true
+
+                checked: AccountSettingsManager.accountSettingsPropertyMap.backgroundScrimEnabled
+                labelText: JamiStrings.applyOverlayBackgroundImage
+                onSwitchToggled: {
+                    AccountSettingsManager.accountSettingsPropertyMap.backgroundScrimEnabled = checked;
+                }
+            }
         }
 
         ColumnLayout {
@@ -312,7 +333,7 @@ SettingsPageBase {
                 zoomSpinBox.value = Math.round(UtilsAdapter.getDefault(Settings.BaseZoom) * 100.0);
                 UtilsAdapter.setToDefault(Settings.Key.AppTheme);
                 UtilsAdapter.setToDefault(Settings.Key.BaseZoom);
-                AccountSettingsManager.accountSettingsPropertyMap.backgroundUri = "";
+                AccountSettingsManager.resetToDefaults();
                 themeSettings.isComplete();
             }
         }

@@ -37,6 +37,7 @@ public:
     Q_INVOKABLE void updateCurrentAccount(const QString& newCurrentAccountID);
     Q_INVOKABLE void setValue(const QString& key, const QVariant& value);
     Q_INVOKABLE QVariant getValue(const QString& key);
+    Q_INVOKABLE void resetToDefaults();
 
 private:
     QSettings* accountSettings_;
