@@ -903,7 +903,7 @@ Item {
     property string selectBackgroundImage: qsTr("Select background image")
     property string defaultImage: qsTr("Default")
     property string blurBackgroundImage: qsTr("Blur background image")
-    property string applyOverlayBackgroundImage: qsTr("Apply overlay on background image")
+    property string applyOverlayBackgroundImage: qsTr("Normalize background image contrast")
 
     // Donation campaign
     property string donationTipBoxText: qsTr("Free and private sharing. <a href=\"https://jami.net/donate/\">Donate</a> to expand it.")

@@ -22,13 +22,6 @@
 
 #include "accountsettingspropertymap.h"
 
-// X macro to define account settings keys and their default values
-#define ACCOUNT_SETTINGS_PROPERTY_KEYS \
-    /* key            defaultValue */ \
-    X(backgroundUri, "") \
-    X(blurBackground, true) \
-    X(overlayBackground, true)
-
 class AccountSettingsManager : public QObject
 {
     Q_OBJECT
