@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f0c1a01_9ca1027f",
+        "filename": "src/app/mainview/components/DonationBanner.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-01-20T14:05:15Z",
+      "side": 1,
+      "message": "any reason for this?",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 22
+      },
+      "revId": "80e39fd9223e0339d808a3570ac14a42a8c2f799",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
