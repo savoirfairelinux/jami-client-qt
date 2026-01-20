@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f999d5c5_a274670b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-01-20T18:09:17Z",
+      "side": 1,
+      "message": "I\u0027d say something like \"adjust layout\" instead of \"increase padding\"",
+      "revId": "69d50684d59370546d5fb9301649e51ec4627c6a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
