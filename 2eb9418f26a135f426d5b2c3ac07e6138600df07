@@ -94,6 +94,30 @@
       },
       "revId": "2eb9418f26a135f426d5b2c3ac07e6138600df07",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "273415fc_888fcfc7",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 939,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-01-20T20:57:40Z",
+      "side": 1,
+      "message": "TBD",
+      "parentUuid": "1c0b5bb8_02573853",
+      "range": {
+        "startLine": 939,
+        "startChar": 39,
+        "endLine": 939,
+        "endChar": 49
+      },
+      "revId": "2eb9418f26a135f426d5b2c3ac07e6138600df07",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
