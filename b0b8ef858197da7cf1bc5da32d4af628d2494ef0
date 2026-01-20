@@ -16,6 +16,24 @@
       "message": "remove dead code",
       "revId": "b0b8ef858197da7cf1bc5da32d4af628d2494ef0",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca394931_3bc99b92",
+        "filename": "src/app/mainview/components/AccountComboBox.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-01-20T20:57:55Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0d20aef6_d8ab6b22",
+      "revId": "b0b8ef858197da7cf1bc5da32d4af628d2494ef0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
