@@ -73,6 +73,7 @@ struct Settings
     QString id = "";
     Framerate rate = 0;
     Resolution size = "";
+    bool passthrough = false;
 };
 } // namespace video
 } // namespace api

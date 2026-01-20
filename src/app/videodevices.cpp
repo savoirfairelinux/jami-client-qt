@@ -290,6 +290,17 @@ VideoDevices::setDefaultDeviceFps(int index)
 }
 
 void
+VideoDevices::setIsPassthrough(bool passthrough)
+{
+    auto settings = lrcInstance_->avModel().getDeviceSettings(get_defaultId());
+    settings.passthrough = passthrough;
+
+    lrcInstance_->avModel().setDeviceSettings(settings);
+
+    updateData();
+}
+
+void
 VideoDevices::setDisplayFPS(const QString& fps)
 {
     auto settings = lrcInstance_->avModel().getDeviceSettings(DEVICE_DESKTOP);
@@ -321,6 +332,7 @@ VideoDevices::updateData()
         set_defaultId(defaultDeviceSettings.id);
         set_defaultName(defaultDeviceSettings.name);
         set_defaultRes(defaultDeviceSettings.size);
+        set_isPassthrough(defaultDeviceSettings.passthrough);
         set_defaultFps(defaultDeviceSettings.rate);
         set_defaultResRateList(currentResRateList);
         set_defaultFpsList(fpsList);
