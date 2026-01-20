@@ -191,12 +191,10 @@ SettingsPageBase {
                 id: toggleBackgroundBlur
                 Layout.fillWidth: true
 
-                checked: AccountSettingsManager.accountSettingsPropertyMap.blurBackground === "true"
+                checked: AccountSettingsManager.accountSettingsPropertyMap.blurBackground
                 labelText: JamiStrings.blurBackgroundImage
-                onSwitchToggled: if (AccountSettingsManager.accountSettingsPropertyMap.blurBackground === "true") {
-                    AccountSettingsManager.accountSettingsPropertyMap.blurBackground = "false";
-                } else {
-                    AccountSettingsManager.accountSettingsPropertyMap.blurBackground = "true";
+                onSwitchToggled: {
+                    AccountSettingsManager.accountSettingsPropertyMap.blurBackground = checked;
                 }
             }
 
@@ -204,14 +202,10 @@ SettingsPageBase {
                 id: toggleBackgroundOverlay
                 Layout.fillWidth: true
 
-                checked: AccountSettingsManager.accountSettingsPropertyMap.overlayBackground === "true"
+                checked: AccountSettingsManager.accountSettingsPropertyMap.overlayBackground
                 labelText: JamiStrings.applyOverlayBackgroundImage
                 onSwitchToggled: {
-                    if (AccountSettingsManager.accountSettingsPropertyMap.overlayBackground === "true") {
-                        AccountSettingsManager.accountSettingsPropertyMap.overlayBackground = "false";
-                    } else {
-                        AccountSettingsManager.accountSettingsPropertyMap.overlayBackground = "true";
-                    }
+                    AccountSettingsManager.accountSettingsPropertyMap.overlayBackground = checked;
                 }
             }
         }
@@ -339,7 +333,7 @@ SettingsPageBase {
                 zoomSpinBox.value = Math.round(UtilsAdapter.getDefault(Settings.BaseZoom) * 100.0);
                 UtilsAdapter.setToDefault(Settings.Key.AppTheme);
                 UtilsAdapter.setToDefault(Settings.Key.BaseZoom);
-                AccountSettingsManager.accountSettingsPropertyMap.backgroundUri = "";
+                AccountSettingsManager.resetToDefaults();
                 themeSettings.isComplete();
             }
         }
