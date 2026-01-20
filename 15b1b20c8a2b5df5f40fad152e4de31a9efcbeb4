@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb6ff428_4ef08a20",
+        "filename": "src/app/mainview/components/FilterTabButton.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-01-20T14:09:05Z",
+      "side": 1,
+      "message": "should have a tooltip or something here to cover elision",
+      "range": {
+        "startLine": 50,
+        "startChar": 12,
+        "endLine": 62,
+        "endChar": 13
+      },
+      "revId": "15b1b20c8a2b5df5f40fad152e4de31a9efcbeb4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
