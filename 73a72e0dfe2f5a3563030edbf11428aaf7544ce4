@@ -22,6 +22,30 @@
       },
       "revId": "73a72e0dfe2f5a3563030edbf11428aaf7544ce4",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "639d1958_df84aa11",
+        "filename": "src/app/mainview/components/MessagesResearchPanel.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1147
+      },
+      "writtenOn": "2026-01-20T20:20:01Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "eac16718_50537ffd",
+      "range": {
+        "startLine": 102,
+        "startChar": 8,
+        "endLine": 102,
+        "endChar": 28
+      },
+      "revId": "73a72e0dfe2f5a3563030edbf11428aaf7544ce4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
