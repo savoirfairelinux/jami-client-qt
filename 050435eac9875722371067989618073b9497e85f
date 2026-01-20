@@ -41,6 +41,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1ab8dce_ed05875f",
+        "filename": "src/app/commoncomponents/CallEndedWithErrorPopup.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1169
+      },
+      "writtenOn": "2026-01-20T21:01:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c3a9cb7_e9b2e38e",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 36,
+        "endChar": 85
+      },
+      "revId": "050435eac9875722371067989618073b9497e85f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9c2a8829_9a7f7a60",
@@ -64,6 +88,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b6a5363_b3234120",
+        "filename": "src/app/commoncomponents/CallEndedWithErrorPopup.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1169
+      },
+      "writtenOn": "2026-01-20T21:01:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c2a8829_9a7f7a60",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 96
+      },
+      "revId": "050435eac9875722371067989618073b9497e85f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b97f6a86_c1e3dd51",
@@ -77,6 +125,30 @@
       "writtenOn": "2026-01-20T16:05:03Z",
       "side": 1,
       "message": "Since this patch aims to add error handling for the SIP error 415, and generic error handling for other SIP errors, I\u0027m thinking we could rename the strings to something like\n\n* sipError415Title\n* sipError415Description\n\nThis way if later on we add specific strings for other SIP errors, we follow a nice convention \u0027sipErrorXXXTitle\u0027 and \u0027sipErrorXXXDescription\u0027. Plus it makes it obvious that these strings are for SIP responses, which gives more context to the reader",
+      "range": {
+        "startLine": 337,
+        "startChar": 0,
+        "endLine": 340,
+        "endChar": 416
+      },
+      "revId": "050435eac9875722371067989618073b9497e85f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8926d591_acff8f15",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1169
+      },
+      "writtenOn": "2026-01-20T21:01:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b97f6a86_c1e3dd51",
       "range": {
         "startLine": 337,
         "startChar": 0,

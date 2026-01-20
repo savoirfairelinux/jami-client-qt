@@ -48,6 +48,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "207bfd67_c17be5f3",
+        "filename": "src/app/commoncomponents/MismatchedCodecPopup.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1169
+      },
+      "writtenOn": "2026-01-20T21:01:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c465a1f4_79184987",
+      "range": {
+        "startLine": 25,
+        "startChar": 8,
+        "endLine": 25,
+        "endChar": 28
+      },
+      "revId": "5c7c78ac416f68924960fd8c17c1148665f8c13b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dbc5dfad_a54e2f50",
@@ -83,6 +107,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc464fa6_394fbe6d",
+        "filename": "src/app/mainview/components/ChatView.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1169
+      },
+      "writtenOn": "2026-01-20T21:01:13Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "dbc5dfad_a54e2f50",
+      "revId": "5c7c78ac416f68924960fd8c17c1148665f8c13b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9049ca93_15b62558",
@@ -106,6 +148,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4689791_ed509f2e",
+        "filename": "src/app/mainview/components/ChatView.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1169
+      },
+      "writtenOn": "2026-01-20T21:01:13Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9049ca93_15b62558",
+      "range": {
+        "startLine": 173,
+        "startChar": 16,
+        "endLine": 173,
+        "endChar": 44
+      },
+      "revId": "5c7c78ac416f68924960fd8c17c1148665f8c13b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aef30001_483d87cb",
@@ -119,6 +185,30 @@
       "writtenOn": "2026-01-16T19:49:26Z",
       "side": 1,
       "message": "button1.text: callEndedWithErrorPopupText\nvisible: callEndedWithErrorPopupVisiblity",
+      "range": {
+        "startLine": 179,
+        "startChar": 12,
+        "endLine": 179,
+        "endChar": 46
+      },
+      "revId": "5c7c78ac416f68924960fd8c17c1148665f8c13b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba8f5026_879b6672",
+        "filename": "src/app/mainview/components/ChatView.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1169
+      },
+      "writtenOn": "2026-01-20T21:01:13Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "aef30001_483d87cb",
       "range": {
         "startLine": 179,
         "startChar": 12,
