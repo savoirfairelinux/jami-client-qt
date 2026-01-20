@@ -122,6 +122,7 @@ class VideoDevices : public QObject
     QML_RO_PROPERTY(QString, defaultId)
     QML_RO_PROPERTY(QString, defaultName)
     QML_RO_PROPERTY(QString, defaultRes)
+    QML_RO_PROPERTY(bool, isPassthrough)
     QML_RO_PROPERTY(int, defaultFps)
     QML_PROPERTY(int, screenSharingDefaultFps)
 
@@ -145,6 +146,7 @@ public:
     Q_INVOKABLE void stopDevice(const QString& deviceId);
     Q_INVOKABLE void setDefaultDeviceRes(int index);
     Q_INVOKABLE void setDefaultDeviceFps(int index);
+    Q_INVOKABLE void setIsPassthrough(bool passthrough);
     Q_INVOKABLE void setDisplayFPS(const QString& fps);
 
     const lrc::api::video::ResRateList& get_defaultResRateList();
