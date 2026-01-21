@@ -33,7 +33,7 @@ Rectangle {
     anchors.margins: JamiTheme.sidePanelIslandsPadding
 
     color: JamiTheme.globalIslandColor
-    radius: JamiTheme.commonRadius
+    radius: JamiTheme.avatarBasedRadius
 
     ColumnLayout {
         anchors.fill: parent
