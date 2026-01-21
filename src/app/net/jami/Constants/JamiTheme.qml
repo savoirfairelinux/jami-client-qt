@@ -717,7 +717,7 @@ Item {
     property real qwkTitleBarHeight: 50
 
     // Common radius
-    property real commonRadius: JamiTheme.smartListAvatarSize / 2 + 8
+    property real avatarBasedRadius: JamiTheme.smartListAvatarSize / 2 + 8
 
     // Generalized shadows
     property real shadowBlur: 1.0
