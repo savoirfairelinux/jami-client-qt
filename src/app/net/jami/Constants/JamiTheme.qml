@@ -577,7 +577,7 @@ Item {
     property real welcomeThirdGridWidth: (welcomeGridWidth - JamiTheme.welcomePageSpacing) / 3
     property real welcomeShortGridWidth: 2 * JamiTheme.tipBoxWidth + JamiTheme.welcomePageSpacing
     readonly property string welcomeBg: darkTheme ? JamiResources.welcome_bg_dark_jpg : JamiResources.welcome_bg_light_jpg
-    property color welcomeBlockColor: darkTheme ? "#4D000000" : "#4DFFFFFF"
+    property color welcomeBlockColor: darkTheme ? "#A8000000" : "#A8FFFFFF"
 
     // WizardView Advanced Account Settings
     property color lightBlue_: darkTheme ? "#03B9E9" : "#e5eef5"
@@ -717,7 +717,7 @@ Item {
     property real qwkTitleBarHeight: 50
 
     // Common radius
-    property real commonRadius: JamiTheme.smartListAvatarSize / 2 + 8
+    property real avatarBasedRadius: JamiTheme.smartListAvatarSize / 2 + 8
 
     // Generalized shadows
     property real shadowBlur: 1.0
@@ -818,4 +818,5 @@ Item {
     // Welcome Page
     property real welcomePageFastBlurRadius: 32
     property real welcomePageColorOverlayOpacity: 0.5
+    property real welcomePageTipBoxRadius: 12
 }

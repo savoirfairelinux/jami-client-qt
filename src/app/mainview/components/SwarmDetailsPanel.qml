@@ -36,7 +36,7 @@ Rectangle {
     anchors.margins: JamiTheme.sidePanelIslandsPadding
 
     color: JamiTheme.globalIslandColor
-    radius: JamiTheme.commonRadius
+    radius: JamiTheme.avatarBasedRadius
     property var isAdmin: UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri) === Member.Role.ADMIN || CurrentConversation.isCoreDialog
 
     property string textColor: UtilsAdapter.luma(root.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
@@ -148,7 +148,7 @@ Rectangle {
                         Rectangle {
                             id: conversationColorPicker
 
-                            property bool hovered: false
+                            property bool hovered: conversationColorPickerMouseArea.containsMouse
 
                             anchors.centerIn: parent
 
@@ -178,7 +178,6 @@ Rectangle {
                                 hoverEnabled: true
 
                                 onClicked: colorDialogComp.createObject(appWindow).open()
-                                onHoveredChanged: conversationColorPicker.hovered = !conversationColorPicker.hovered
                             }
 
                             Component {
@@ -317,7 +316,7 @@ Rectangle {
 
             Layout.fillWidth: true
             Layout.preferredHeight: JamiTheme.tabBarHeight
-            Layout.bottomMargin: 0//CurrentConversation.isCoreDialog ? 0 : 8
+            Layout.bottomMargin: 0
             Layout.alignment: Qt.AlignTop
 
             spacing: JamiTheme.tabBarSpacing

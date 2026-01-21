@@ -43,9 +43,17 @@ Rectangle {
         }
     }
 
-    radius: JamiTheme.commonRadius
+    radius: JamiTheme.avatarBasedRadius
 
     color: JamiTheme.searchBarColor
+    border.width: 2
+    border.color: textArea.activeFocus ? JamiTheme.tintedBlue : JamiTheme.searchBarColor
+
+    Behavior on border.color {
+        ColorAnimation {
+            duration: JamiTheme.shortFadeDuration
+        }
+    }
 
     onFocusChanged: {
         if (focus) {
