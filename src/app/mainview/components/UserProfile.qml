@@ -227,15 +227,12 @@ BaseModalDialog {
                         verticalAlignment: Text.AlignVCenter
                     }
 
-                    PushButton {
+                    NewIconButton {
                         id: copyButton
-                        preferredHeight: 24
-                        preferredWidth: 24
-                        circled: false
-                        radius: 3
 
+                        iconSize: JamiTheme.iconButtonSmall
+                        iconSource: JamiResources.content_copy_24dp_svg
                         toolTipText: JamiStrings.copy
-                        source: JamiResources.content_copy_24dp_svg
 
                         onClicked: {
                             contactId.selectAll();
