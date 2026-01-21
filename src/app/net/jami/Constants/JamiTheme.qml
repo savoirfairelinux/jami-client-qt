@@ -789,7 +789,6 @@ Item {
     property color globalBackgroundColor: darkTheme ? "#201f1f" : "#FFFFFF"
 
     // Global Island color
-    //"#201f1f"
     property color globalIslandColor: darkTheme ? JamiTheme.backgroundColor : "#f4f0ef"
 
     // Message Bar

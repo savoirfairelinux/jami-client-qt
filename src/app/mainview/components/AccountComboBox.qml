@@ -182,7 +182,7 @@ Item {
                                     anchors.margins: JamiTheme.itemMarginVertical
 
                                     color: (addAccountItem.hovered || addAccountItem.highlighted || addAccountItem.activeFocus) ? JamiTheme.hoverColor : JamiTheme.backgroundColor
-                                    radius: height / 2//JamiTheme.commonRadius + 4
+                                    radius: height / 2
 
                                     Behavior on color {
                                         ColorAnimation {
