@@ -17,6 +17,7 @@
 
 #include "contactadapter.h"
 
+#include "api/callparticipantsmodel.h"
 #include "lrcinstance.h"
 
 ContactAdapter::ContactAdapter(LRCInstance* instance, QObject* parent)
@@ -68,10 +69,22 @@ ContactAdapter::getContactSelectableModel(int type)
         });
         break;
     }
-    case SmartListModel::Type::CONFERENCE:
+    case SmartListModel::Type::CONFERENCE: {
+        auto currentCallID = lrcInstance_->getCurrentCallId();
+        auto* callModel = lrcInstance_->getCurrentCallModel();
+        auto callMembers = callModel->getParticipantsInfos(currentCallID).getParticipants();
+        VectorString callMembersList;
+        callMembersList.reserve(callMembers.size());
+        for (const auto& callMember : callMembers) {
+            callMembersList.append(callMember.uri);
+        }
         selectableProxyModel_->setPredicate(
-            [](const QModelIndex& index, const QRegularExpression&) { return index.data(Role::Presence).toInt(); });
+            [this, members = std::move(callMembersList)](const QModelIndex& index, const QRegularExpression&) {
+                return hasDifferentMembers(members, index.data(Role::Uris).toStringList())
+                       && index.data(Role::Presence).toBool();
+            });
         break;
+    }
     case SmartListModel::Type::TRANSFER:
         selectableProxyModel_->setPredicate([this](const QModelIndex& index, const QRegularExpression& regexp) {
             // Exclude current sip callee and filtered contact.
