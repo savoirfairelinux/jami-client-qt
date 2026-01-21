@@ -41,7 +41,7 @@ Rectangle {
     implicitHeight: messageBar.height + 2 * marginSize
     height: implicitHeight
 
-    color: JamiTheme.transparentColor//JamiTheme.globalBackgroundColor
+    color: JamiTheme.transparentColor
 
     function updateMessageDraft() {
         // Store the current files that have not been sent, if any. Do the same for the message draft.
