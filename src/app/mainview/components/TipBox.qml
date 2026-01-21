@@ -90,7 +90,7 @@ FocusScope {
 
         color: root.backgroundColor
 
-        radius: 5
+        radius: JamiTheme.welcomePageTipBoxRadius
 
         focus: true
 

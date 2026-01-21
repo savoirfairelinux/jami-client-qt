@@ -165,7 +165,7 @@ Rectangle {
                     background: Rectangle {
                         implicitWidth: showMoreTypoButton.width
                         implicitHeight: showMoreTypoButton.height
-                        radius: JamiTheme.commonRadius
+                        radius: JamiTheme.avatarBasedRadius
                         color: showPreview ? JamiTheme.transparentColor : (parent && parent.hovered ? JamiTheme.hoveredButtonColor : JamiTheme.transparentColor)
                     }
 

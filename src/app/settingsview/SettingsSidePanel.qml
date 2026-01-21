@@ -325,7 +325,7 @@ SidePanelBase {
                 anchors.fill: parent
 
                 color: JamiTheme.globalIslandColor
-                radius: JamiTheme.commonRadius
+                radius: JamiTheme.avatarBasedRadius
                 layer.enabled: true
                 layer.effect: MultiEffect {
                     anchors.fill: settingsListRect

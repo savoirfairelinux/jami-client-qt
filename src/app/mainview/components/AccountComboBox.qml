@@ -44,7 +44,7 @@ Item {
 
         anchors.fill: root
         color: JamiTheme.globalIslandColor
-        radius: JamiTheme.commonRadius
+        radius: JamiTheme.avatarBasedRadius
         layer.enabled: true
         layer.effect: MultiEffect {
             anchors.fill: root
@@ -178,8 +178,9 @@ Item {
                                 Layout.fillHeight: true
                                 Rectangle {
                                     id: addAccountItemRect
-                                    anchors.fill: parent
-                                    anchors.margins: JamiTheme.itemMarginVertical
+                                    Layout.fillWidth: true
+                                    Layout.fillHeight: true
+                                    Layout.margins: JamiTheme.itemMarginVertical
 
                                     color: (addAccountItem.hovered || addAccountItem.highlighted || addAccountItem.activeFocus) ? JamiTheme.hoverColor : JamiTheme.backgroundColor
                                     radius: height / 2
@@ -228,7 +229,7 @@ Item {
 
                     background: Rectangle {
                         color: JamiTheme.backgroundColor
-                        radius: JamiTheme.commonRadius
+                        radius: JamiTheme.avatarBasedRadius
                         layer.enabled: true
                         layer.effect: MultiEffect {
                             anchors.fill: parent
@@ -247,7 +248,7 @@ Item {
 
                     anchors.fill: accountComboBox
                     color: accountComboBox.hovered || accountComboBoxPopup.visible ? JamiTheme.hoverColor : JamiTheme.globalIslandColor
-                    radius: JamiTheme.commonRadius
+                    radius: JamiTheme.avatarBasedRadius
                     Behavior on color {
                         ColorAnimation {
                             duration: JamiTheme.shortFadeDuration
