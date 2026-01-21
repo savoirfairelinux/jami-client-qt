@@ -28,6 +28,7 @@ TabButton {
     property alias badgeCount: badge.count
 
     property int fontSize: JamiTheme.filterItemFontSize
+    property string toolTipText: labelText
 
     signal selected
 
@@ -104,5 +105,12 @@ TabButton {
         context: Qt.ApplicationShortcut
         enabled: background.visible
         onActivated: selected()
+    }
+
+    MaterialToolTip {
+        id: toolTip
+        parent: root
+        text: toolTipText
+        visible: hovered && (toolTipText.length > 0) && ((toolTipText === labelText && label.truncated) || (toolTipText !== labelText))
     }
 }

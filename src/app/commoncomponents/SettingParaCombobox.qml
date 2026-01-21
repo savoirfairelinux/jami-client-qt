@@ -68,7 +68,7 @@ ComboBox {
 
         background: Rectangle {
             color: hovered ? JamiTheme.comboboxBackgroundColorHovered : JamiTheme.transparentColor
-            radius: JamiTheme.commonRadius
+            radius: JamiTheme.avatarBasedRadius
         }
     }
 
@@ -134,7 +134,7 @@ ComboBox {
                     sourceItem: Rectangle {
                         width: listView.width
                         height: listView.height
-                        radius: JamiTheme.commonRadius
+                        radius: JamiTheme.avatarBasedRadius
                     }
                 }
             }
@@ -144,7 +144,7 @@ ComboBox {
             color: JamiTheme.primaryBackgroundColor
             border.color: JamiTheme.comboboxBorderColorActive
 
-            radius: JamiTheme.commonRadius
+            radius: JamiTheme.avatarBasedRadius
         }
     }
 }
