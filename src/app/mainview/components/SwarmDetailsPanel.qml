@@ -36,7 +36,7 @@ Rectangle {
     anchors.margins: JamiTheme.sidePanelIslandsPadding
 
     color: JamiTheme.globalIslandColor
-    radius: JamiTheme.commonRadius
+    radius: JamiTheme.avatarBasedRadius
     property var isAdmin: UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri) === Member.Role.ADMIN || CurrentConversation.isCoreDialog
 
     property string textColor: UtilsAdapter.luma(root.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
@@ -148,7 +148,7 @@ Rectangle {
                         Rectangle {
                             id: conversationColorPicker
 
-                            property bool hovered: false
+                            property bool hovered: conversationColorPickerMouseArea.containsMouse
 
                             anchors.centerIn: parent
 
@@ -178,7 +178,6 @@ Rectangle {
                                 hoverEnabled: true
 
                                 onClicked: colorDialogComp.createObject(appWindow).open()
-                                onHoveredChanged: conversationColorPicker.hovered = !conversationColorPicker.hovered
                             }
 
                             Component {
@@ -317,7 +316,7 @@ Rectangle {
 
             Layout.fillWidth: true
             Layout.preferredHeight: JamiTheme.tabBarHeight
-            Layout.bottomMargin: 0//CurrentConversation.isCoreDialog ? 0 : 8
+            Layout.bottomMargin: 0
             Layout.alignment: Qt.AlignTop
 
             spacing: JamiTheme.tabBarSpacing
@@ -343,7 +342,7 @@ Rectangle {
             }
         }
 
-        Item {
+        ColumnLayout {
             id: membersView
 
             Layout.fillWidth: true
@@ -351,10 +350,26 @@ Rectangle {
 
             visible: !CurrentConversation.isCoreDialog && swarmDetailsPanelTabBar.currentIndex === 0
 
+            NewMaterialButton {
+                id: inviteMemberButton
+
+                Layout.fillWidth: true
+                Layout.bottomMargin: 8
+
+                filledButton: true
+                iconSource: JamiResources.add_people_24dp_svg
+                text: JamiStrings.inviteMember
+
+                visible: root.isAdmin
+
+                onClicked: extrasPanel.switchToPanel(ChatView.AddMemberPanel)
+            }
+
             ScrollView {
                 id: scrollView
 
-                anchors.fill: parent
+                Layout.fillWidth: true
+                Layout.fillHeight: true
 
                 contentWidth: availableWidth
                 clip: true
@@ -405,12 +420,19 @@ Rectangle {
 
                                         anchors.fill: parent
 
-                                        acceptedButtons: Qt.RightButton
+                                        acceptedButtons: Qt.RightButton | Qt.LeftButton
                                         hoverEnabled: true
 
                                         onClicked: function (mouse) {
-                                            const position = mapToItem(membersGrid, mouse.x, mouse.y);
-                                            contextMenu.openMenuAt(position.x, position.y, MemberUri);
+                                            if (mouse.button === Qt.LeftButton) {
+                                                if (ConversationsAdapter.dialogId(MemberUri) !== "")
+                                                    ConversationsAdapter.openDialogConversationWith(MemberUri);
+                                                else
+                                                    ConversationsAdapter.setFilter(MemberUri);
+                                            } else if (mouse.button === Qt.RightButton) {
+                                                const position = mapToItem(membersGrid, mouse.x, mouse.y);
+                                                contextMenu.openMenuAt(position.x, position.y, MemberUri);
+                                            }
                                         }
                                     }
 
