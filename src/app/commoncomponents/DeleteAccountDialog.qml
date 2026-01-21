@@ -88,7 +88,7 @@ BaseModalDialog {
             Layout.preferredHeight: userProfileDialogLayout.height
             Layout.maximumWidth: root.width - 80
 
-            radius: JamiTheme.commonRadius
+            radius: JamiTheme.avatarBasedRadius
 
             ColumnLayout {
                 id: userProfileDialogLayout
@@ -182,11 +182,11 @@ BaseModalDialog {
 
                     visible: !isSIP
 
-                    radius: width / 2
+                    radius: height / 2
                     color: root.backgroundColor
 
                     Layout.preferredHeight: accountId.height + 10
-                    Layout.margins: 10
+                    Layout.margins: 12
                     Layout.topMargin: 0
                     RowLayout {
                         anchors.horizontalCenter: parent.horizontalCenter
@@ -204,14 +204,14 @@ BaseModalDialog {
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
 
-                            Layout.leftMargin: JamiTheme.preferredMarginSize
+                            Layout.leftMargin: 4//JamiTheme.preferredMarginSize
                         }
                         Label {
                             id: accountId
 
                             Layout.alignment: Qt.AlignLeft
-                            Layout.preferredWidth: root.width - 250
-                            Layout.rightMargin: JamiTheme.preferredMarginSize
+                            Layout.fillWidth: true
+                            Layout.rightMargin: 4//JamiTheme.preferredMarginSize
 
                             font.pointSize: JamiTheme.textFontSize
                             font.kerning: true
@@ -235,7 +235,7 @@ BaseModalDialog {
             Layout.preferredHeight: labelWarning.height + 20
             Layout.maximumWidth: root.width - 80
 
-            radius: JamiTheme.commonRadius
+            radius: JamiTheme.avatarBasedRadius
 
             RowLayout {
                 id: warningLayout

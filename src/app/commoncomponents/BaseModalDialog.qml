@@ -63,7 +63,7 @@ Popup {
         background: Rectangle {
             id: bgRect
 
-            radius: JamiTheme.commonRadius
+            radius: JamiTheme.avatarBasedRadius
             color: container.color
             layer.enabled: true
             layer.effect: DropShadow {
