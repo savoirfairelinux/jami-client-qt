@@ -30,7 +30,12 @@ SidePanelBase {
 
     objectName: "SidePanel"
 
-    color: JamiTheme.transparentColor
+    property bool inNewSwarm: viewCoordinator.currentViewName === "NewSwarmPage"
+
+    property var highlighted: []
+    property var highlightedMembers: []
+
+    color: inNewSwarm ? JamiTheme.globalBackgroundColor : JamiTheme.transparentColor
 
     Connections {
         target: LRCInstance
@@ -95,17 +100,6 @@ SidePanelBase {
         sidePanelTabBar.selectTab(tabIndex);
     }
 
-    property bool inNewSwarm: viewCoordinator.currentViewName === "NewSwarmPage"
-
-    property var highlighted: []
-    property var highlightedMembers: []
-    onHighlightedMembersChanged: {
-        if (inNewSwarm) {
-            const newSwarmPage = viewCoordinator.getView("NewSwarmPage");
-            newSwarmPage.members = highlightedMembers;
-        }
-    }
-
     function refreshHighlighted(convId, highlightedStatus) {
         var newH = root.highlighted;
         var newHm = root.highlightedMembers;
@@ -163,6 +157,13 @@ SidePanelBase {
         }
     }
 
+    onHighlightedMembersChanged: {
+        if (inNewSwarm) {
+            const newSwarmPage = viewCoordinator.getView("NewSwarmPage");
+            newSwarmPage.members = highlightedMembers;
+        }
+    }
+
     Item {
         anchors.fill: parent
 
@@ -175,7 +176,7 @@ SidePanelBase {
             width: parent.width
             height: JamiTheme.chatViewHairLineSize
             color: JamiTheme.chatViewFooterRectangleBorderColor
-            visible: CurrentConversation.id !== "" && !CurrentConversation.hasCall
+            visible: CurrentConversation.id !== "" && !CurrentConversation.hasCall && !inNewSwarm
         }
 
         ColumnLayout {
@@ -196,7 +197,7 @@ SidePanelBase {
                     anchors.fill: parent
 
                     color: JamiTheme.globalIslandColor
-                    radius: JamiTheme.commonRadius
+                    radius: JamiTheme.avatarBasedRadius
                     layer.enabled: true
                     layer.effect: MultiEffect {
                         id: searchBarMultiEffect
@@ -227,7 +228,7 @@ SidePanelBase {
                             sourceItem: Rectangle {
                                 width: conversationLayout.width
                                 height: conversationLayout.height
-                                radius: JamiTheme.commonRadius
+                                radius: JamiTheme.avatarBasedRadius
                             }
                         }
                     }
@@ -341,8 +342,28 @@ SidePanelBase {
 
                             visible: !swarmMemberSearchList.visible && (!contactSearchBar.textContent || CurrentAccount.type === Profile.Type.SIP)
 
-                            source: smartListLayout.visible ? (CurrentAccount.type !== Profile.Type.SIP ? JamiResources.create_swarm_svg : JamiResources.ic_keypad_svg) : JamiResources.round_close_24dp_svg
-                            toolTipText: smartListLayout.visible ? ((CurrentAccount.type !== Profile.Type.SIP) ? JamiStrings.newGroup : JamiStrings.openKeypad) : JamiStrings.cancel
+                            source: {
+                                if (smartListLayout.visible) {
+                                    if (CurrentAccount.type !== Profile.Type.SIP) {
+                                        return JamiResources.create_swarm_svg;
+                                    } else {
+                                        return JamiResources.ic_keypad_svg;
+                                    }
+                                } else {
+                                    return JamiResources.round_close_24dp_svg;
+                                }
+                            }
+                            toolTipText: {
+                                if (smartListLayout.visible) {
+                                    if (CurrentAccount.type !== Profile.Type.SIP) {
+                                        return JamiStrings.newGroup;
+                                    } else {
+                                        return JamiStrings.openKeypad;
+                                    }
+                                } else {
+                                    return JamiStrings.cancel;
+                                }
+                            }
 
                             onClicked: {
                                 if (CurrentAccount.type === Profile.Type.SIP) {
@@ -593,8 +614,8 @@ SidePanelBase {
                     width: conversationLayout.width
                     height: JamiTheme.smartListItemHeight
 
-                    bottomRightRadius: JamiTheme.commonRadius
-                    bottomLeftRadius: JamiTheme.commonRadius
+                    bottomRightRadius: JamiTheme.avatarBasedRadius
+                    bottomLeftRadius: JamiTheme.avatarBasedRadius
 
                     z: conversationLayout.z + 1
 
