@@ -18,7 +18,6 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import QtQuick.Effects
 
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1

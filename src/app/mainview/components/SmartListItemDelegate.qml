@@ -73,8 +73,6 @@ ItemDelegate {
     }
 
     RowLayout {
-        id: rowLayout
-
         anchors.fill: contentRect
         anchors.margins: JamiTheme.itemPadding
 
@@ -232,10 +230,10 @@ ItemDelegate {
 
             // unread message count
             Item {
-
                 Layout.preferredWidth: childrenRect.width
                 Layout.preferredHeight: childrenRect.height
                 Layout.alignment: Qt.AlignTop | Qt.AlignRight
+
                 BadgeNotifier {
                     size: 16
                     count: UnreadMessagesCount

@@ -26,7 +26,7 @@ ItemDelegate {
     id: root
 
     width: ListView.view.width
-    height: JamiTheme.smartListItemHeight//Math.max(contactPickerContactName.height + textMetricsContactPickerContactId.height + 10, avatar.height + 10)
+    height: JamiTheme.smartListItemHeight
 
     property bool showPresenceIndicator: false
 

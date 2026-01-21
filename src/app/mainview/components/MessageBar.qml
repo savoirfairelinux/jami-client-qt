@@ -418,7 +418,7 @@ Rectangle {
                 hoveredColor: JamiTheme.hoveredButtonColor
                 pressedColor: hoveredColor
                 toolTipText: showPreview ? JamiStrings.continueEditing : JamiStrings.showPreview
-                Layout.margins: 0//marginSize / 2
+                Layout.margins: 0
 
                 onClicked: {
                     showPreview = !showPreview;
