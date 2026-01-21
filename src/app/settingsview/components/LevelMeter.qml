@@ -41,9 +41,14 @@ ProgressBar {
         implicitWidth: parent.width
         implicitHeight: parent.height
 
+        clip: true
+
         Rectangle {
             width: root.visualPosition * parent.width
-            height: parent.height
+            // The radius won't be effective at low width based on low value, so reduce the height accordingly to keep it lookign rounded.
+            height: parent.height > width ? width : parent.height
+            // Center the rectangle vertically
+            y: (parent.height - height) / 2
             color: JamiTheme.tintedBlue
             radius: height / 2
         }

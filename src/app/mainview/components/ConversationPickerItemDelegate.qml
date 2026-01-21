@@ -122,7 +122,7 @@ ItemDelegate {
         anchors.leftMargin: JamiTheme.itemMarginHorizontal
         anchors.rightMargin: JamiTheme.itemMarginHorizontal
 
-        radius: JamiTheme.commonRadius
+        radius: JamiTheme.avatarBasedRadius
 
         color: JamiTheme.backgroundColor
     }
