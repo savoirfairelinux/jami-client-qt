@@ -66,7 +66,7 @@ MenuItem {
 
     contentItem: Text {
         anchors.left: root.indicator.visible ? root.indicator.right : root.background.left
-        anchors.leftMargin: root.indicator.visible ? JamiTheme.generalMenuItemPadding / 2 : JamiTheme.generalMenuItemPadding
+        anchors.leftMargin: root.indicator.visible ? JamiTheme.generalMenuItemPadding / 2 : background.radius
         anchors.verticalCenter: root.verticalCenter
 
         text: itemName

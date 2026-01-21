@@ -30,7 +30,12 @@ SidePanelBase {
 
     objectName: "SidePanel"
 
-    color: JamiTheme.transparentColor
+    property bool inNewSwarm: viewCoordinator.currentViewName === "NewSwarmPage"
+
+    property var highlighted: []
+    property var highlightedMembers: []
+
+    color: inNewSwarm ? JamiTheme.globalBackgroundColor : JamiTheme.transparentColor
 
     Connections {
         target: LRCInstance
@@ -95,17 +100,6 @@ SidePanelBase {
         sidePanelTabBar.selectTab(tabIndex);
     }
 
-    property bool inNewSwarm: viewCoordinator.currentViewName === "NewSwarmPage"
-
-    property var highlighted: []
-    property var highlightedMembers: []
-    onHighlightedMembersChanged: {
-        if (inNewSwarm) {
-            const newSwarmPage = viewCoordinator.getView("NewSwarmPage");
-            newSwarmPage.members = highlightedMembers;
-        }
-    }
-
     function refreshHighlighted(convId, highlightedStatus) {
         var newH = root.highlighted;
         var newHm = root.highlightedMembers;
@@ -163,6 +157,13 @@ SidePanelBase {
         }
     }
 
+    onHighlightedMembersChanged: {
+        if (inNewSwarm) {
+            const newSwarmPage = viewCoordinator.getView("NewSwarmPage");
+            newSwarmPage.members = highlightedMembers;
+        }
+    }
+
     Item {
         anchors.fill: parent
 
@@ -171,11 +172,11 @@ SidePanelBase {
             anchors.top: parent.top
             anchors.topMargin: JamiTheme.qwkTitleBarHeight - root.header.height
             anchors.left: parent.left
-            anchors.leftMargin: JamiTheme.sidePanelIslandsPadding
+            anchors.leftMargin: JamiTheme.sidePanelIslandsPadding + conversationListRect.radius
             width: parent.width
             height: JamiTheme.chatViewHairLineSize
             color: JamiTheme.chatViewFooterRectangleBorderColor
-            visible: CurrentConversation.id !== "" && !CurrentConversation.hasCall
+            visible: CurrentConversation.id !== "" && !CurrentConversation.hasCall && !inNewSwarm
         }
 
         ColumnLayout {
@@ -196,7 +197,7 @@ SidePanelBase {
                     anchors.fill: parent
 
                     color: JamiTheme.globalIslandColor
-                    radius: JamiTheme.commonRadius
+                    radius: JamiTheme.avatarBasedRadius
                     layer.enabled: true
                     layer.effect: MultiEffect {
                         id: searchBarMultiEffect
@@ -227,7 +228,7 @@ SidePanelBase {
                             sourceItem: Rectangle {
                                 width: conversationLayout.width
                                 height: conversationLayout.height
-                                radius: JamiTheme.commonRadius
+                                radius: JamiTheme.avatarBasedRadius
                             }
                         }
                     }
@@ -238,7 +239,7 @@ SidePanelBase {
 
                         QWKSetParentHitTestVisible {}
 
-                        visible: swarmMemberSearchList.visible
+                        visible: inNewSwarm //swarmMemberSearchList.visible
 
                         width: parent.width
                         height: 40
@@ -284,7 +285,7 @@ SidePanelBase {
                         QWKSetParentHitTestVisible {}
 
                         width: parent.width
-                        height: 40
+                        height: JamiTheme.searchBarPreferredHeight
 
                         Layout.topMargin: JamiTheme.sidePanelConversationsIslandTopPadding
                         Layout.leftMargin: 15
@@ -301,6 +302,7 @@ SidePanelBase {
 
                         Searchbar {
                             id: contactSearchBar
+                            QWKSetParentHitTestVisible {}
 
                             height: parent.height
                             Layout.fillWidth: true
@@ -339,16 +341,37 @@ SidePanelBase {
 
                             preferredSize: startBar.height
 
-                            visible: !swarmMemberSearchList.visible && (!contactSearchBar.textContent || CurrentAccount.type === Profile.Type.SIP)
+                            visible: (!inNewSwarm) || CurrentAccount.type === Profile.Type.SIP
 
-                            source: smartListLayout.visible ? (CurrentAccount.type !== Profile.Type.SIP ? JamiResources.create_swarm_svg : JamiResources.ic_keypad_svg) : JamiResources.round_close_24dp_svg
-                            toolTipText: smartListLayout.visible ? ((CurrentAccount.type !== Profile.Type.SIP) ? JamiStrings.newGroup : JamiStrings.openKeypad) : JamiStrings.cancel
+                            source: {
+                                if (visible) {
+                                    if (CurrentAccount.type !== Profile.Type.SIP) {
+                                        return JamiResources.create_swarm_svg;
+                                    } else {
+                                        return JamiResources.ic_keypad_svg;
+                                    }
+                                } else {
+                                    return JamiResources.round_close_24dp_svg;
+                                }
+                            }
+                            toolTipText: {
+                                if (visible) {
+                                    if (CurrentAccount.type !== Profile.Type.SIP) {
+                                        return JamiStrings.newGroup;
+                                    } else {
+                                        return JamiStrings.openKeypad;
+                                    }
+                                } else {
+                                    return JamiStrings.cancel;
+                                }
+                            }
 
                             onClicked: {
                                 if (CurrentAccount.type === Profile.Type.SIP) {
                                     sipInputPanelPopUp.shown = !sipInputPanelPopUp.shown;
                                 } else {
                                     toggleCreateSwarmView();
+                                    contactSearchBar.forceActiveFocus();
                                 }
                             }
                         }
@@ -363,7 +386,7 @@ SidePanelBase {
                         width: parent.width
                         Layout.preferredHeight: JamiTheme.tabBarHeight
 
-                        Layout.leftMargin: 15
+                        Layout.leftMargin: 10
                         Layout.rightMargin: 15
                         Layout.fillWidth: true
                         Layout.alignment: Qt.AlignTop
@@ -377,7 +400,7 @@ SidePanelBase {
                     Rectangle {
                         id: searchStatusRect
 
-                        visible: searchStatusText.text !== "" && smartListLayout.visible
+                        visible: searchStatusText.text !== ""
 
                         width: parent.width
                         height: 42
@@ -409,6 +432,56 @@ SidePanelBase {
                         visible: JamiQmlUtils.isDonationBannerVisible
                     }
 
+                    Item {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+
+                        visible: !smartListLayout.visible && !swarmMemberSearchList.visible && !(contactSearchBar.textContent !== "" && searchResultsListView.count === 0)
+                        enabled: false
+
+                        ColumnLayout {
+                            anchors.centerIn: parent
+                            spacing: 16
+
+                            NewIconButton {
+                                Layout.alignment: Qt.AlignHCenter
+
+                                iconSource: inNewSwarm ? JamiResources.emotion_sad_line_svg : JamiResources.ghost_line_svg
+                                iconSize: JamiTheme.iconButtonExtraLarge
+
+                                enabled: false
+                            }
+
+                            Text {
+                                Layout.alignment: Qt.AlignHCenter
+
+                                text: inNewSwarm ? JamiStrings.noContactsToChooseFrom : JamiStrings.noConversations
+                                color: JamiTheme.textColor
+                                elide: Text.ElideRight
+
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
+                            }
+
+                            NewMaterialButton {
+                                id: findAContactButton
+
+                                Layout.alignment: Qt.AlignHCenter
+
+                                filledButton: true
+                                color: JamiTheme.buttonTintedBlue
+                                iconSource: JamiResources.add_24dp_svg
+                                text: JamiStrings.addAContact
+
+                                onClicked: {
+                                    if (inNewSwarm)
+                                        toggleCreateSwarmView();
+                                    contactSearchBar.forceActiveFocus();
+                                }
+                            }
+                        }
+                    }
+
                     ColumnLayout {
                         id: smartListLayout
 
@@ -417,7 +490,7 @@ SidePanelBase {
 
                         spacing: 4
 
-                        visible: !swarmMemberSearchList.visible
+                        visible: !inNewSwarm && (searchResultsListView.count > 0 || conversationListView.count > 0)
 
                         onActiveFocusChanged: {
                             // We need to defer to the focus to the appropriate list
@@ -436,12 +509,13 @@ SidePanelBase {
 
                             activeFocusOnTab: true
 
-                            visible: count
+                            visible: count > 0
                             opacity: visible ? 1 : 0
 
                             Layout.topMargin: 10
                             Layout.alignment: Qt.AlignTop
                             Layout.fillWidth: true
+                            Layout.fillHeight: !conversationListView.visible
                             Layout.preferredHeight: visible ? contentHeight : 0
 
                             Layout.maximumHeight: {
@@ -501,18 +575,21 @@ SidePanelBase {
                             activeFocusOnTab: true
 
                             Layout.fillWidth: true
-                            Layout.fillHeight: true
+                            Layout.fillHeight: visible
+                            Layout.preferredHeight: visible ? implicitHeight : 0
+
+                            visible: count > 0
 
                             model: ConversationsAdapter.convListProxyModel
                             headerLabel: JamiStrings.conversations
-                            headerVisible: count && searchResultsListView.visible
+                            headerVisible: searchResultsListView.count > 0
                         }
                     }
 
                     ColumnLayout {
                         id: swarmMemberSearchList
 
-                        visible: inNewSwarm
+                        visible: inNewSwarm && swarmCurrentConversationList.model.count !== 0
 
                         width: parent.width
                         Layout.fillHeight: true
@@ -593,8 +670,8 @@ SidePanelBase {
                     width: conversationLayout.width
                     height: JamiTheme.smartListItemHeight
 
-                    bottomRightRadius: JamiTheme.commonRadius
-                    bottomLeftRadius: JamiTheme.commonRadius
+                    bottomRightRadius: JamiTheme.avatarBasedRadius
+                    bottomLeftRadius: JamiTheme.avatarBasedRadius
 
                     z: conversationLayout.z + 1
 
