@@ -198,6 +198,9 @@ set(QT_MODULES
   Concurrent
   Core
   Core5Compat
+  CorePrivate
+  GuiPrivate
+  QuickPrivate
   Multimedia
   Widgets
   Positioning)
