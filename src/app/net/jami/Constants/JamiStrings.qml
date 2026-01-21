@@ -955,6 +955,11 @@ Item {
     property string addAComment: qsTr("Add a comment")
     property string shareWith: qsTr("Share with...")
 
+    // Side panel
+    property string addAContact: qsTr("Add a contact")
+    property string noConversations: qsTr("It's a ghost town here!")
+    property string noContactsToChooseFrom: qsTr("No contacts to choose from!")
+
     // Accessibility
     property string switchToAccount: qsTr("Press enter to switch to this account")
     property string qrCodeExplanation: qsTr("Display your QR code to allow other users to scan it and add you as a contact")

@@ -33,16 +33,16 @@ Rectangle {
     anchors.margins: JamiTheme.sidePanelIslandsPadding
 
     color: JamiTheme.globalIslandColor
-    radius: JamiTheme.commonRadius
+    radius: JamiTheme.avatarBasedRadius
 
     ColumnLayout {
         anchors.fill: parent
-        anchors.margins: 12
+        anchors.margins: 15
 
         Searchbar {
-            Layout.alignment: Qt.AlignTop
             Layout.fillWidth: true
-            Layout.preferredHeight: 45
+            Layout.preferredHeight: JamiTheme.searchBarPreferredHeight
+            Layout.alignment: Qt.AlignTop
 
             onVisibleChanged: {
                 if (visible) {
@@ -59,7 +59,10 @@ Rectangle {
             id: researchTabBar
 
             Layout.fillWidth: true
-            Layout.preferredHeight: 42
+            Layout.preferredHeight: JamiTheme.tabBarHeight
+            // implicitWidth: 0
+
+            spacing: JamiTheme.tabBarSpacing
 
             background.visible: false
 
@@ -77,18 +80,16 @@ Rectangle {
 
             FilterTabButton {
                 id: messagesResearchTabButton
-                fontSize: JamiTheme.menuFontSize
+
                 down: researchTabBar.currentIndex === 0
                 labelText: JamiStrings.messages
-                Layout.fillWidth: true
             }
 
             FilterTabButton {
                 id: fileResearchTabButton
-                fontSize: JamiTheme.menuFontSize
+
                 down: researchTabBar.currentIndex === 1
                 labelText: JamiStrings.files
-                Layout.fillWidth: true
             }
         }
 

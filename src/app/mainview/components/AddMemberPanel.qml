@@ -17,6 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtQuick.Effects
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -25,25 +26,35 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
-    color: JamiTheme.backgroundColor
     property int type: ContactList.ADDCONVMEMBER
+
+    anchors.fill: parent
+    anchors.margins: JamiTheme.sidePanelIslandsPadding
+
+    color: JamiTheme.globalIslandColor
+    radius: JamiTheme.avatarBasedRadius
 
     ColumnLayout {
         id: contactPickerPopupRectColumnLayout
 
         anchors.fill: parent
+        anchors.margins: 15
 
         Searchbar {
             id: contactPickerContactSearchBar
 
-            Layout.alignment: Qt.AlignCenter
-            Layout.margins: 5
             Layout.fillWidth: true
-            Layout.preferredHeight: 35
+            Layout.preferredHeight: JamiTheme.searchBarPreferredHeight
+            Layout.alignment: Qt.AlignTop
 
             placeHolderText: JamiStrings.inviteMember
 
-            onSearchBarTextChanged: function(text){
+            onVisibleChanged: {
+                if (visible)
+                    forceActiveFocus();
+            }
+
+            onSearchBarTextChanged: function (text) {
                 ContactAdapter.setSearchFilter(text);
             }
         }
@@ -53,8 +64,6 @@ Rectangle {
 
             Layout.fillHeight: true
             Layout.fillWidth: true
-            Layout.leftMargin: 4
-            Layout.rightMargin: 4
 
             // Reset the model if visible or the current conv member count changes (0 or greater)
             model: visible && CurrentConversation.members.count >= 0 ? ContactAdapter.getContactSelectableModel(type) : null
@@ -65,5 +74,16 @@ Rectangle {
                 showPresenceIndicator: true
             }
         }
+    }
+
+    layer.enabled: true
+    layer.effect: MultiEffect {
+        anchors.fill: root
+        shadowEnabled: true
+        shadowBlur: JamiTheme.shadowBlur
+        shadowColor: JamiTheme.shadowColor
+        shadowHorizontalOffset: JamiTheme.shadowHorizontalOffset
+        shadowVerticalOffset: JamiTheme.shadowVerticalOffset
+        shadowOpacity: JamiTheme.shadowOpacity
     }
 }

@@ -33,7 +33,7 @@ ListSelectionView {
     splitViewStateKey: "Main"
     hideMajorPaneInSinglePaneMode: true
 
-    color: JamiTheme.transparentColor//JamiTheme.secondaryBackgroundColor
+    color: JamiTheme.transparentColor
 
     Rectangle {
         id: bgRect
@@ -300,22 +300,15 @@ ListSelectionView {
                     onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/AboutPopUp.qml")
                 }
 
-                PushButton {
+                NewIconButton {
                     id: btnKeyboard
 
-                    imageColor: JamiTheme.buttonTintedBlue
-                    normalColor: JamiTheme.transparentColor
-                    hoveredColor: JamiTheme.transparentColor
                     anchors.right: parent.right
                     anchors.rightMargin: JamiTheme.preferredMarginSize
-                    preferredSize: 30
-                    anchors.verticalCenter: aboutJami.verticalCenter
-                    imageContainerWidth: JamiTheme.pushButtonSize
-                    imageContainerHeight: JamiTheme.pushButtonSize
 
-                    border.color: JamiTheme.buttonTintedBlue
-
-                    source: JamiResources.keyboard_black_24dp_svg
+                    iconSize: JamiTheme.iconButtonMedium
+                    iconSource: JamiResources.keyboard_black_24dp_svg
+                    icon.color: JamiTheme.buttonTintedBlue
                     toolTipText: JamiStrings.keyboardShortcuts
 
                     onClicked: {

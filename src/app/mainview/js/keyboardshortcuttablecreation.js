@@ -48,8 +48,8 @@ function showKeyboardShortcutTableWindow() {
     var centerX = mainWindow.x + mainWindow.width / 2
     var centerY = mainWindow.y + mainWindow.height / 2
 
-    keyboardShortcutTableWindowObject.width = 0.75 * appWindow.width
-    keyboardShortcutTableWindowObject.height = 0.75 * appWindow.height
+    keyboardShortcutTableWindowObject.width = 550
+    keyboardShortcutTableWindowObject.height = 520
     keyboardShortcutTableWindowObject.x = centerX - keyboardShortcutTableWindowObject.width / 2
     keyboardShortcutTableWindowObject.y = centerY - keyboardShortcutTableWindowObject.height / 2
 
