@@ -43,7 +43,7 @@ Rectangle {
         }
     }
 
-    radius: JamiTheme.commonRadius
+    radius: JamiTheme.avatarBasedRadius
 
     color: JamiTheme.searchBarColor
 

@@ -88,7 +88,7 @@ BaseModalDialog {
             Layout.preferredHeight: userProfileDialogLayout.height
             Layout.maximumWidth: root.width - 80
 
-            radius: JamiTheme.commonRadius
+            radius: JamiTheme.avatarBasedRadius
 
             ColumnLayout {
                 id: userProfileDialogLayout
@@ -235,7 +235,7 @@ BaseModalDialog {
             Layout.preferredHeight: labelWarning.height + 20
             Layout.maximumWidth: root.width - 80
 
-            radius: JamiTheme.commonRadius
+            radius: JamiTheme.avatarBasedRadius
 
             RowLayout {
                 id: warningLayout

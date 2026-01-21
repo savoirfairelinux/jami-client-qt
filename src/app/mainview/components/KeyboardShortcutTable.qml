@@ -230,7 +230,7 @@ Window {
 
         background: Rectangle {
             anchors.fill: parent
-            color: JamiTheme.backgroundColor
+            color: JamiTheme.globalBackgroundColor
         }
 
         // make a list view of keyboardShortcutsModelList[selectionBar.currentIndex]
@@ -268,15 +268,7 @@ Window {
                         Layout.leftMargin: 20
                         text: description
                         color: JamiTheme.textColor
-                        background: Rectangle {
-                            width: parent.width + 16
-                            height: parent.height + 16
-                            border.color: fs.activeFocus ? "darkblue" : "transparent"
-                            border.width: 2
-                            radius: 5
-                            anchors.centerIn: parent
-                            color: JamiTheme.backgroundColor
-                        }
+                        background: null
                     }
                     Label {
                         id: shortcutLabel
@@ -285,15 +277,7 @@ Window {
                         Layout.rightMargin: 20
                         text: shortcut
                         color: JamiTheme.textColor
-                        background: Rectangle {
-                            width: parent.width + 16
-                            height: parent.height + 16
-                            border.color: fs.activeFocus ? "darkblue" : "transparent"
-                            border.width: 2
-                            radius: 5
-                            anchors.centerIn: parent
-                            color: JamiTheme.backgroundColor
-                        }
+                        background: null
                     }
                 }
             }
@@ -309,42 +293,18 @@ Window {
 
             focus: true
 
-            background: Rectangle {
-                color: JamiTheme.backgroundColor
-            }
+            background: null
 
             Repeater {
                 model: [JamiStrings.generalSettingsTitle, JamiStrings.conversationKeyboardShortcuts, JamiStrings.callKeyboardShortcuts, JamiStrings.markdownKeyboardShortcuts, JamiStrings.settings]
 
-                TabButton {
+                FilterTabButton {
                     id: tabButton
 
                     Accessible.name: modelData + "shortcuts category"
 
-                    Keys.onTabPressed: if (activeFocus)
-                        keyboardShortcutsListView.forceActiveFocus()
-
-                    contentItem: Text {
-                        text: modelData
-                        color: JamiTheme.textColor
-                        font.pixelSize: JamiTheme.titleFontSize
-                        horizontalAlignment: Text.AlignHCenter
-                    }
-
-                    background: Rectangle {
-                        border.color: tabButton.activeFocus ? "darkblue" : "transparent"
-                        border.width: 2
-
-                        color: {
-                            if (tabButton.checked || tabButton.pressed)
-                                return JamiTheme.pressedButtonColor;
-                            if (tabButton.hovered)
-                                return JamiTheme.hoveredButtonColor;
-                            else
-                                return JamiTheme.normalButtonColor;
-                        }
-                        radius: JamiTheme.primaryRadius
-                    }
+                    down: selectionBar.currentIndex === index
+                    labelText: modelData
                 }
             }
         }
