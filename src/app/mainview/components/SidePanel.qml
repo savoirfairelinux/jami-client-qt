@@ -169,7 +169,7 @@ SidePanelBase {
         Rectangle {
             id: chatViewHairLineExtension
             anchors.top: parent.top
-            anchors.topMargin: JamiTheme.qwkTitleBarHeight
+            anchors.topMargin: JamiTheme.qwkTitleBarHeight - root.header.height
             anchors.left: parent.left
             anchors.leftMargin: JamiTheme.sidePanelIslandsPadding
             width: parent.width
