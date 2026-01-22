@@ -128,50 +128,88 @@ Control {
         },
         Action {
             id: shareMenuAction
-            enabled: !CurrentCall.isSharing
-            text: JamiStrings.selectShareMethod
+            // Only disable the action when sharing a file
+            enabled: !CurrentCall.isSharing || AvAdapter.isSharingScreenOrWindow()
+            text: JamiStrings.sharingOptions
             property int popupMode: CallActionBar.ActionPopupMode.ListElement
             property var listModel: ListModel {
                 id: shareModel
             }
             onTriggered: {
                 shareModel.clear();
-                shareModel.append({
+
+                if (CurrentCall.isSharing) {
+                    // When sharing screen/window (not file), show audio toggle option
+                    // Since audio sharing is not yet implemented for macOS we hide the option
+                    if (AvAdapter.isSharingScreenOrWindow() && Qt.platform.os.toString() !== "osx") {
+                        var audioIconSource = !AvAdapter.muteScreenshareAudio ? JamiResources.check_box_24dp_svg : JamiResources.check_box_outline_blank_24dp_svg;
+                        shareModel.append({
+                            "Name": JamiStrings.shareAudio,
+                            "IconSource": audioIconSource,
+                            "IsCheckable": true,
+                            "IsChecked": !AvAdapter.muteScreenshareAudio
+                        });
+                    }
+                } else {
+                    // When not sharing, show sharing options
+                    shareModel.append({
                         "Name": JamiStrings.shareScreen,
-                        "IconSource": JamiResources.laptop_black_24dp_svg
+                        "IconSource": JamiResources.laptop_black_24dp_svg,
+                        "IsCheckable": false
                     });
-                if (Qt.platform.os.toString() !== "osx") {
-                    shareModel.append({
+                    if (Qt.platform.os.toString() !== "osx") {
+                        shareModel.append({
                             "Name": JamiStrings.shareWindow,
-                            "IconSource": JamiResources.window_black_24dp_svg
+                            "IconSource": JamiResources.window_black_24dp_svg,
+                            "IsCheckable": false
                         });
-                }
-                if (Qt.platform.os.toString() !== "windows" && !UtilsAdapter.isWayland()) {
-                    // temporarily disable for windows
-                    shareModel.append({
+                    }
+                    if (Qt.platform.os.toString() !== "windows" && !UtilsAdapter.isWayland()) {
+                        // temporarily disable for windows
+                        shareModel.append({
                             "Name": JamiStrings.shareScreenArea,
-                            "IconSource": JamiResources.share_area_black_24dp_svg
+                            "IconSource": JamiResources.share_area_black_24dp_svg,
+                            "IsCheckable": false
                         });
-                }
-                shareModel.append({
+                    }
+                    shareModel.append({
                         "Name": JamiStrings.shareFile,
-                        "IconSource": JamiResources.file_black_24dp_svg
+                        "IconSource": JamiResources.file_black_24dp_svg,
+                        "IsCheckable": false
                     });
+                }
             }
             function accept(index) {
-                switch (shareModel.get(index).Name) {
-                case JamiStrings.shareScreen:
-                    shareScreenClicked();
-                    break;
-                case JamiStrings.shareWindow:
-                    shareWindowClicked();
-                    break;
-                case JamiStrings.shareScreenArea:
-                    shareScreenAreaClicked();
-                    break;
-                case JamiStrings.shareFile:
-                    shareFileClicked();
-                    break;
+                var item = shareModel.get(index);
+
+                if (CurrentCall.isSharing) {
+                    if (item.Name === JamiStrings.shareAudio) {
+                        if (AvAdapter.muteScreenshareAudio === true) {
+                            // If audio is currently muted, enable it
+                            AvAdapter.toggleScreenshareAudio(false);
+                            return;
+                        } else {
+                            // If audio is currently shared, mute it
+                            AvAdapter.toggleScreenshareAudio(true);
+                            return;
+                        }
+                    }
+                } else {
+                    // Handle sharing options
+                    switch (item.Name) {
+                    case JamiStrings.shareScreen:
+                        shareScreenClicked();
+                        break;
+                    case JamiStrings.shareWindow:
+                        shareWindowClicked();
+                        break;
+                    case JamiStrings.shareScreenArea:
+                        shareScreenAreaClicked();
+                        break;
+                    case JamiStrings.shareFile:
+                        shareFileClicked();
+                        break;
+                    }
                 }
             }
         },
@@ -218,55 +256,55 @@ Control {
                 layoutModel.clear();
                 if (CurrentCall.isConference) {
                     layoutModel.append({
-                            "Name": JamiStrings.mosaic,
-                            "IconSource": JamiResources.mosaic_black_24dp_svg,
-                            "ActiveSetting": CurrentCall.isGrid,
-                            "TopMargin": true,
-                            "BottomMargin": true,
-                            "SectionEnd": true
-                        });
-                    var onTheSide = UtilsAdapter.getAppValue(Settings.ParticipantsSide);
-                    layoutModel.append({
-                            "Name": JamiStrings.participantsTop,
-                            "IconSource": JamiResources.onthetop_black_24dp_svg,
-                            "ActiveSetting": !onTheSide,
-                            "TopMargin": true,
-                            "BottomMargin": false,
-                            "SectionEnd": false
-                        });
-                    layoutModel.append({
-                            "Name": JamiStrings.participantsSide,
-                            "IconSource": JamiResources.ontheside_black_24dp_svg,
-                            "ActiveSetting": onTheSide,
-                            "TopMargin": false,
-                            "BottomMargin": true,
-                            "SectionEnd": true
-                        });
-                    layoutModel.append({
-                            "Name": JamiStrings.hideSelf,
-                            "IconSource": JamiResources.hidemyself_black_24dp_svg,
-                            "ActiveSetting": UtilsAdapter.getAppValue(Settings.HideSelf),
-                            "TopMargin": true,
-                            "BottomMargin": false,
-                            "SectionEnd": false
-                        });
-                }
-                layoutModel.append({
-                        "Name": JamiStrings.viewFullScreen,
-                        "IconSource": JamiResources.open_in_full_24dp_svg,
-                        "ActiveSetting": layoutManager.isCallFullscreen,
+                        "Name": JamiStrings.mosaic,
+                        "IconSource": JamiResources.mosaic_black_24dp_svg,
+                        "ActiveSetting": CurrentCall.isGrid,
                         "TopMargin": true,
                         "BottomMargin": true,
-                        "SectionEnd": CurrentCall.isConference
+                        "SectionEnd": true
                     });
+                    var onTheSide = UtilsAdapter.getAppValue(Settings.ParticipantsSide);
+                    layoutModel.append({
+                        "Name": JamiStrings.participantsTop,
+                        "IconSource": JamiResources.onthetop_black_24dp_svg,
+                        "ActiveSetting": !onTheSide,
+                        "TopMargin": true,
+                        "BottomMargin": false,
+                        "SectionEnd": false
+                    });
+                    layoutModel.append({
+                        "Name": JamiStrings.participantsSide,
+                        "IconSource": JamiResources.ontheside_black_24dp_svg,
+                        "ActiveSetting": onTheSide,
+                        "TopMargin": false,
+                        "BottomMargin": true,
+                        "SectionEnd": true
+                    });
+                    layoutModel.append({
+                        "Name": JamiStrings.hideSelf,
+                        "IconSource": JamiResources.hidemyself_black_24dp_svg,
+                        "ActiveSetting": UtilsAdapter.getAppValue(Settings.HideSelf),
+                        "TopMargin": true,
+                        "BottomMargin": false,
+                        "SectionEnd": false
+                    });
+                }
+                layoutModel.append({
+                    "Name": JamiStrings.viewFullScreen,
+                    "IconSource": JamiResources.open_in_full_24dp_svg,
+                    "ActiveSetting": layoutManager.isCallFullscreen,
+                    "TopMargin": true,
+                    "BottomMargin": true,
+                    "SectionEnd": CurrentCall.isConference
+                });
                 if (CurrentCall.isConference) {
                     layoutModel.append({
-                            "Name": JamiStrings.hideSpectators,
-                            "IconSource": JamiResources.videocam_off_24dp_svg,
-                            "ActiveSetting": UtilsAdapter.getAppValue(Settings.HideSpectators),
-                            "TopMargin": true,
-                            "BottomMargin": true
-                        });
+                        "Name": JamiStrings.hideSpectators,
+                        "IconSource": JamiResources.videocam_off_24dp_svg,
+                        "ActiveSetting": UtilsAdapter.getAppValue(Settings.HideSpectators),
+                        "TopMargin": true,
+                        "BottomMargin": true
+                    });
                 }
             }
         },

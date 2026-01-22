@@ -126,7 +126,7 @@ Window {
 
         onReleased: {
             recSelect.visible = false;
-            AvAdapter.shareScreenArea(recSelect.x, recSelect.y, recSelect.width, recSelect.height);
+            AvAdapter.shareScreenArea(recSelect.x, recSelect.y, recSelect.width, recSelect.height, AvAdapter.muteScreenshareAudio);
             screenRubberBandWindow.close();
         }
     }
