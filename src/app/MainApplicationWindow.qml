@@ -30,7 +30,7 @@ import "wizardview"
 import "commoncomponents"
 import QWindowKit
 
-ApplicationWindow {
+Window {
     id: appWindow
 
     readonly property bool useFrameless: UtilsAdapter.getAppValue(Settings.Key.UseFramelessWindow)
@@ -76,8 +76,14 @@ ApplicationWindow {
         }
     }
 
-    header: Loader {
+    Loader {
+        id: errorLoader
         active: true
+        anchors {
+            bottom: parent.bottom
+            left: parent.left
+            right: parent.right
+        }
         sourceComponent: GenericErrorsRow {
             id: genericError
             text: CurrentAccount.enabled ? JamiStrings.noNetworkConnectivity : JamiStrings.disabledAccount
@@ -250,7 +256,12 @@ ApplicationWindow {
         id: mainViewLoader
         active: false
         source: "qrc:/mainview/MainView.qml"
-        anchors.fill: parent
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
+            bottom: errorLoader.top
+        }
         onLoaded: initMainView(item)
     }
 
