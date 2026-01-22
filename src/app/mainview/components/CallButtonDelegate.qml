@@ -184,18 +184,18 @@ ItemDelegate {
             function onTriggered() {
                 var index;
                 switch (menuAction.popupMode) {
-                    case CallActionBar.ActionPopupMode.MediaDevice:
-                        index = menuAction.listModel.getCurrentIndex();
-                        break;
-                    case CallActionBar.ActionPopupMode.LayoutOption:
-                        index = menuAction.listModel.currentIndex;
-                        break;
-                    case CallActionBar.ActionPopupMode.ListElement:
-                        index = menuAction.listModel.currentIndex;
-                        break;
-                    default:
-                        console.warn("Unknown popup mode: " + menuAction.popupMode);
-                        return;
+                case CallActionBar.ActionPopupMode.MediaDevice:
+                    index = menuAction.listModel.getCurrentIndex();
+                    break;
+                case CallActionBar.ActionPopupMode.LayoutOption:
+                    index = menuAction.listModel.currentIndex;
+                    break;
+                case CallActionBar.ActionPopupMode.ListElement:
+                    index = menuAction.listModel.currentIndex;
+                    break;
+                default:
+                    console.warn("Unknown popup mode: " + menuAction.popupMode);
+                    return;
                 }
                 if (index !== undefined) {
                     itemListView.currentIndex = index;
@@ -259,7 +259,15 @@ ItemDelegate {
 
                         spacing: 6
                         ResponsiveImage {
-                            source: menuAction.popupMode === CallActionBar.ActionPopupMode.ListElement || menuAction.popupMode === CallActionBar.ActionPopupMode.LayoutOption ? IconSource : (menuItem.ListView.isCurrentItem ? JamiResources.check_box_24dp_svg : JamiResources.check_box_outline_blank_24dp_svg)
+                            source: {
+                                if (menuAction.popupMode === CallActionBar.ActionPopupMode.ListElement) {
+                                    return IconSource || "";
+                                } else if (menuAction.popupMode === CallActionBar.ActionPopupMode.LayoutOption) {
+                                    return IconSource || "";
+                                } else {
+                                    return menuItem.ListView.isCurrentItem ? JamiResources.check_box_24dp_svg : JamiResources.check_box_outline_blank_24dp_svg;
+                                }
+                            }
                             color: "white"
                             width: 20
                             height: 20
