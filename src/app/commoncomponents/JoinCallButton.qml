@@ -31,8 +31,8 @@ Item {
 
     signal clicked
 
-    property bool isVideo: false
-    property bool roundedRight: isVideo
+    property bool roundedRight: false
+    property bool roundedLeft: false
 
     implicitWidth: height
 
@@ -40,6 +40,7 @@ Item {
         id: button
         anchors.fill: parent
 
+        circled: false
         radius: 0
         activeFocusOnTab: true
         property bool focusOnChild: true
@@ -50,7 +51,7 @@ Item {
 
         onClicked: root.clicked()
 
-        layer.enabled: root.roundedRight
+        layer.enabled: root.roundedRight || root.roundedLeft
         layer.effect: OpacityMask {
             maskSource: maskRect
         }
@@ -60,9 +61,11 @@ Item {
         id: maskRect
         visible: false
         radius: 10
-        width: root.width
-        height: root.height
+        width: button.width
+        height: button.height
         Rectangle {
+            // Cover left half to keep right corners rounded, or right half to keep left corners rounded
+            x: root.roundedRight ? 0 : parent.width / 2
             width: parent.width / 2
             height: parent.height
         }

@@ -177,6 +177,8 @@ Rectangle {
             id: startAudioCallButton
             QWKSetParentHitTestVisible {}
 
+            visible: CurrentConversation.activeCalls.length === 0 && interactionButtonsVisibility
+
             iconSize: JamiTheme.iconButtonMedium
             iconSource: JamiResources.start_audiocall_24dp_svg
             toolTipText: JamiStrings.startAudioCall
