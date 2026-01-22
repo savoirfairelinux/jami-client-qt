@@ -41,6 +41,9 @@ AvAdapter::AvAdapter(LRCInstance* instance, QObject* parent)
     , rendererInformationListModel_(std::make_unique<RendererInformationListModel>())
 {
     set_renderersInfoList(QVariant::fromValue(rendererInformationListModel_.get()));
+
+    set_muteScreenshareAudio(true);
+
     connect(&lrcInstance_->avModel(), &lrc::api::AVModel::audioDeviceEvent, this, &AvAdapter::onAudioDeviceEvent);
     // QueuedConnection mandatory to avoid deadlock
     connect(&lrcInstance_->avModel(),
@@ -90,7 +93,7 @@ AvAdapter::getAllScreensBoundingRect()
 }
 
 void
-AvAdapter::shareEntireScreen(int screenNumber)
+AvAdapter::shareEntireScreen(int screenNumber, bool muteAudio)
 {
     QScreen* screen = QGuiApplication::screens().at(screenNumber);
     if (!screen)
@@ -112,7 +115,8 @@ AvAdapter::shareEntireScreen(int screenNumber)
     muteCamera_ = !isCapturing();
     lrcInstance_->getCurrentCallModel()->addMedia(callId,
                                                   resource,
-                                                  lrc::api::CallModel::MediaRequestType::SCREENSHARING);
+                                                  lrc::api::CallModel::MediaRequestType::SCREENSHARING,
+                                                  muteAudio);
 }
 
 #ifdef Q_OS_LINUX
@@ -140,7 +144,7 @@ AvAdapter::closePortal(const QString& callId)
 }
 
 void
-AvAdapter::shareWayland(bool entireScreen)
+AvAdapter::shareWayland(bool entireScreen, bool muteAudio)
 {
     QString callId = lrcInstance_->getCurrentCallId();
     closePortal(callId);
@@ -186,24 +190,25 @@ AvAdapter::shareWayland(bool entireScreen)
     muteCamera_ = !isCapturing();
     lrcInstance_->getCurrentCallModel()->addMedia(callId,
                                                   resource,
-                                                  lrc::api::CallModel::MediaRequestType::SCREENSHARING);
+                                                  lrc::api::CallModel::MediaRequestType::SCREENSHARING,
+                                                  muteAudio);
 }
 
 void
-AvAdapter::shareEntireScreenWayland()
+AvAdapter::shareEntireScreenWayland(bool muteAudio)
 {
-    shareWayland(true);
+    shareWayland(true, muteAudio);
 }
 
 void
-AvAdapter::shareWindowWayland()
+AvAdapter::shareWindowWayland(bool muteAudio)
 {
-    shareWayland(false);
+    shareWayland(false, muteAudio);
 }
 #endif // Q_OS_LINUX
 
 void
-AvAdapter::shareAllScreens()
+AvAdapter::shareAllScreens(bool muteAudio)
 {
     const auto arrangementRect = getAllScreensBoundingRect();
 
@@ -216,7 +221,8 @@ AvAdapter::shareAllScreens()
     muteCamera_ = !isCapturing();
     lrcInstance_->getCurrentCallModel()->addMedia(callId,
                                                   resource,
-                                                  lrc::api::CallModel::MediaRequestType::SCREENSHARING);
+                                                  lrc::api::CallModel::MediaRequestType::SCREENSHARING,
+                                                  muteAudio);
 }
 
 void
@@ -303,7 +309,7 @@ AvAdapter::shareFile(const QString& filePath)
 }
 
 void
-AvAdapter::shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned height)
+AvAdapter::shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned height, bool muteAudio)
 {
     muteCamera_ = !isCapturing();
 #ifdef Q_OS_LINUX
@@ -321,7 +327,8 @@ AvAdapter::shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned heig
         auto callId = lrcInstance_->getCurrentCallId();
         lrcInstance_->getCurrentCallModel()->addMedia(callId,
                                                       resource,
-                                                      lrc::api::CallModel::MediaRequestType::SCREENSHARING);
+                                                      lrc::api::CallModel::MediaRequestType::SCREENSHARING,
+                                                      muteAudio);
     });
 #else
     auto resource = lrcInstance_->getCurrentCallModel()->getDisplay(getScreenNumber(),
@@ -332,12 +339,13 @@ AvAdapter::shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned heig
     auto callId = lrcInstance_->getCurrentCallId();
     lrcInstance_->getCurrentCallModel()->addMedia(callId,
                                                   resource,
-                                                  lrc::api::CallModel::MediaRequestType::SCREENSHARING);
+                                                  lrc::api::CallModel::MediaRequestType::SCREENSHARING,
+                                                  muteAudio);
 #endif
 }
 
 void
-AvAdapter::shareWindow(const QString& windowProcessId, const QString& windowId, const int fps)
+AvAdapter::shareWindow(const QString& windowProcessId, const QString& windowId, const int fps, bool muteAudio)
 {
     auto resource = lrcInstance_->getCurrentCallModel()->getDisplay(windowProcessId, windowId, fps);
     auto callId = lrcInstance_->getCurrentCallId();
@@ -345,7 +353,8 @@ AvAdapter::shareWindow(const QString& windowProcessId, const QString& windowId, 
     muteCamera_ = !isCapturing();
     lrcInstance_->getCurrentCallModel()->addMedia(callId,
                                                   resource,
-                                                  lrc::api::CallModel::MediaRequestType::SCREENSHARING);
+                                                  lrc::api::CallModel::MediaRequestType::SCREENSHARING,
+                                                  muteAudio);
 }
 
 QString
@@ -419,6 +428,27 @@ AvAdapter::stopSharing(const QString& source)
 }
 
 void
+AvAdapter::toggleScreenshareAudio(bool mute)
+{
+    auto callId = lrcInstance_->getCurrentCallId();
+    auto callModel = lrcInstance_->getCurrentCallModel();
+    try {
+        auto& call = callModel->getCall(callId);
+        for (const auto& media : call.mediaList) {
+            if (media[libjami::Media::MediaAttributeKey::SOURCE].startsWith("display://")
+                && media[libjami::Media::MediaAttributeKey::MEDIA_TYPE] == libjami::Media::Details::MEDIA_TYPE_AUDIO) {
+                QString label = media[libjami::Media::MediaAttributeKey::LABEL];
+                callModel->muteMedia(callId, label, mute);
+            }
+        }
+        set_muteScreenshareAudio(mute);
+
+    } catch (const std::exception& e) {
+        qWarning() << "Failed to toggle share audio:" << e.what();
+    }
+}
+
+void
 AvAdapter::startAudioMeter()
 {
     lrcInstance_->startAudioMeter();
@@ -474,6 +504,20 @@ AvAdapter::isSharing() const
         return call.hasMediaWithType(libjami::Media::VideoProtocolPrefix::DISPLAY,
                                      libjami::Media::Details::MEDIA_TYPE_VIDEO)
                || call.hasMediaWithType("file:", libjami::Media::Details::MEDIA_TYPE_VIDEO);
+    } catch (...) {
+    }
+    return false;
+}
+
+bool
+AvAdapter::isSharingScreenOrWindow() const
+{
+    try {
+        auto callId = lrcInstance_->getCurrentCallId();
+        auto callModel = lrcInstance_->getCurrentCallModel();
+        auto call = callModel->getCall(callId);
+        return call.hasMediaWithType(libjami::Media::VideoProtocolPrefix::DISPLAY,
+                                     libjami::Media::Details::MEDIA_TYPE_VIDEO);
     } catch (...) {
     }
     return false;
