@@ -103,7 +103,7 @@ endif()
 add_fetch_content(
   TARGET qwindowkit
   URL https://github.com/stdware/qwindowkit.git
-  BRANCH 56878f899b7939840e45316788190f83608d928f
+  BRANCH d4536ebe12dd35504abdba66986daf21c0aee805
   PATCHES ${QWINDOWKIT_PATCHES}
   OPTIONS ${QWINDOWKIT_OPTIONS}
 )
