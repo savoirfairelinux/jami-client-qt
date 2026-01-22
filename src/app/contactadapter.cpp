@@ -167,6 +167,17 @@ ContactAdapter::contactSelected(int index)
             const auto convUid = contactIndex.data(Role::UID).value<QString>();
             const auto accId = contactIndex.data(Role::AccountId).value<QString>();
             const auto callId = lrcInstance_->getCallIdForConversationUid(convUid, accId);
+            const auto contactUri = contactIndex.data(Role::URI).value<QString>();
+            const auto currentCallID = lrcInstance_->getCurrentCallId();
+            auto* callModel = lrcInstance_->getCurrentCallModel();
+            const auto callMembers = callModel->getParticipantsInfos(currentCallID).getParticipants();
+
+            for (int i = 0; i < callMembers.size(); i++) {
+                // Drop the selection if contact is already in the call
+                if (QString::compare(contactUri, callMembers.at(i).uri) == 0) {
+                    return;
+                }
+            }
 
             if (!callId.isEmpty()) {
                 if (convInfo.uid.isEmpty()) {
@@ -176,7 +187,6 @@ ContactAdapter::contactSelected(int index)
 
                 callModel->joinCalls(thisCallId, callId);
             } else {
-                const auto contactUri = contactIndex.data(Role::URI).value<QString>();
                 auto call = lrcInstance_->getCallInfoForConversation(convInfo);
                 if (!call) {
                     return;
