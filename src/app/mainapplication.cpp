@@ -49,6 +49,12 @@
 #include "dbuserrorhandler.h"
 #endif
 
+#ifdef Q_OS_MACOS
+#include <os/macos/macutils.h>
+#endif
+
+#include <QWindow>
+
 Q_LOGGING_CATEGORY(clientLog, "client")
 
 static const QtMessageHandler QT_DEFAULT_MESSAGE_HANDLER = qInstallMessageHandler(0);
@@ -507,4 +513,15 @@ void
 MainApplication::setEventFilter()
 {
     installEventFilter(this);
+}
+
+void
+MainApplication::setToolBar(QWindow* window)
+{
+    if (!window) {
+        return;
+    }
+#ifdef Q_OS_MACOS
+    macutils::setToolBar(window);
+#endif
 }
