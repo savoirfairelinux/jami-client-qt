@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "42fa33d7_8e006806",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-01-23T20:10:53Z",
+      "side": 1,
+      "message": "The use case describes children (say 4 children), where 1 of the children starts a group call. Can both parents (with the same JamiID linked to different devices) and the 3 other children join the 1 group call at the same time?",
+      "parentUuid": "8f78c20e_7dff4c8a",
+      "revId": "cef78180281fbb39e3f53581148589a98c3f2c5b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "08c7c766_0dc02cba",
         "filename": "src/app/contactadapter.cpp",
         "patchSetId": 1
