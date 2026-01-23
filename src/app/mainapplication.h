@@ -65,6 +65,7 @@ public:
     void restoreApp();
 
     Q_INVOKABLE void handleUriAction(const QString& uri = {});
+    Q_INVOKABLE void setToolBar(QWindow* window);
 
     enum class Option { StartMinimized = 0, Debug, UpdateUrl, MuteDaemon, TerminationRequested, StartUri };
     QVariant getOpt(const Option opt)
