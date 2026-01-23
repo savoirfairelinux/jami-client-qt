@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fe13fa4_6ba9a257",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-01-23T23:24:51Z",
+      "side": 1,
+      "message": "Should `participants` be `members`?\n\nThe **Invite members** button is used to add members to a **group**.\n\nParticipant are the people who are in a group call.",
+      "range": {
+        "startLine": 7,
+        "startChar": 34,
+        "endLine": 7,
+        "endChar": 46
+      },
+      "revId": "daf28dc5cf4c3c6dcc4d8eea36a1ffadbf68ea79",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39774cc8_37c7e4e6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-01-23T23:24:51Z",
+      "side": 1,
+      "message": "Should `conferences` be `group`?",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 11
+      },
+      "revId": "daf28dc5cf4c3c6dcc4d8eea36a1ffadbf68ea79",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51d3c2d7_794a93fe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-01-23T23:24:51Z",
+      "side": 1,
+      "message": "Should `participant` be `member`?\n\nor\n\nShould `add a participant` be `invite a member`",
+      "range": {
+        "startLine": 9,
+        "startChar": 35,
+        "endLine": 9,
+        "endChar": 52
+      },
+      "revId": "daf28dc5cf4c3c6dcc4d8eea36a1ffadbf68ea79",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d657c053_f036df5b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-01-23T23:24:51Z",
+      "side": 1,
+      "message": "Should `conference` be `group`?",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 10
+      },
+      "revId": "daf28dc5cf4c3c6dcc4d8eea36a1ffadbf68ea79",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
