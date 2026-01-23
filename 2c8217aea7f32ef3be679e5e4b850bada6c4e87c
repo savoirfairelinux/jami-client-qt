@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1ea85fcc_383ac461",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-01-23T10:30:32Z",
+      "side": 1,
+      "message": "Should `passthrough` be `pass-through`?",
+      "range": {
+        "startLine": 7,
+        "startChar": 11,
+        "endLine": 7,
+        "endChar": 22
+      },
+      "revId": "2c8217aea7f32ef3be679e5e4b850bada6c4e87c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "28424693_30ccc16c",
         "filename": "src/app/net/jami/Constants/JamiStrings.qml",
         "patchSetId": 2
