@@ -91,6 +91,34 @@ Window {
         }
     }
 
+    Loader {
+        id: macTitleBarLoader
+        active: JamiQmlUtils.isMacOS26OrLater
+        height: 35
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
+        }
+        z: 10
+        sourceComponent: Rectangle {
+            id: macTitleBar
+            anchors.fill: parent
+            color: "transparent"
+            MouseArea {
+                anchors.fill: parent
+                onPressed: m => {
+                    if (MainApplication) {
+                        MainApplication.startSystemMove(appWindow);
+                    } else {
+                        appWindow.startSystemMove();
+                    }
+                    m.accepted = false;
+                }
+            }
+        }
+    }
+
     Rectangle {
         id: focusOverlay
         objectName: "focusOverlay"
