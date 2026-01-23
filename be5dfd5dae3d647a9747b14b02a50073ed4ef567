@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b790aac2_d88c9eae",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-01-23T23:16:38Z",
+      "side": 1,
+      "message": "Should `conferences` be `group`?",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 11
+      },
+      "revId": "be5dfd5dae3d647a9747b14b02a50073ed4ef567",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd54341b_9cc6fd54",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-01-23T23:16:38Z",
+      "side": 1,
+      "message": "Should `participant` be `member`?\n\nDoes this relate to the `Invite member` button to add members to a group?",
+      "range": {
+        "startLine": 7,
+        "startChar": 45,
+        "endLine": 7,
+        "endChar": 56
+      },
+      "revId": "be5dfd5dae3d647a9747b14b02a50073ed4ef567",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
