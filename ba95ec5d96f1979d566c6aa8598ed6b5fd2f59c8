@@ -46,6 +46,30 @@
       },
       "revId": "ba95ec5d96f1979d566c6aa8598ed6b5fd2f59c8",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40f24039_4ab7cdd7",
+        "filename": "src/app/calladapter.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-01-23T23:08:13Z",
+      "side": 1,
+      "message": "Do you want a GitLab issue created to\n\u003e rewrite the entire in startOrJoinAudioOnlyCall and update all the relevant components to have them call the new method; then we could get rid of startAudioOnlyCall altogether\n\nIf a GitLab issue is required, please advise the appropriate repo, jami-client-qt, jami-daemon, or otherwise.\n\nThank you",
+      "parentUuid": "b4b3eee7_01c3ba1a",
+      "range": {
+        "startLine": 69,
+        "startChar": 21,
+        "endLine": 69,
+        "endChar": 45
+      },
+      "revId": "ba95ec5d96f1979d566c6aa8598ed6b5fd2f59c8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
