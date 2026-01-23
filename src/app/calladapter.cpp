@@ -338,6 +338,14 @@ CallAdapter::onCallAddedToConference(const QString& callId, const QString& conve
 }
 
 void
+CallAdapter::onFallbackConversationSelected(const QString& accountId, const QString& conversationUid)
+{
+    qDebug() << "Fallback conversation selected, displaying conversation:" << conversationUid;
+    lrcInstance_->selectConversation(conversationUid, accountId);
+    Q_EMIT lrcInstance_->conversationUpdated(conversationUid, accountId);
+}
+
+void
 CallAdapter::startAudioOnlyCall()
 {
     const auto convUid = lrcInstance_->get_selectedConvUid();
@@ -463,23 +471,7 @@ CallAdapter::onShowIncomingCallView(const QString& accountId, const QString& con
 void
 CallAdapter::onShowCallView(const QString& accountId, const QString& convUid)
 {
-    if (accountId.isEmpty() || convUid.isEmpty()) {
-        qWarning() << "Invalid parameters: (" << accountId << "," << convUid << ")";
-        return;
-    }
-
-    // check if we're already on the correct conversation
-    // selectConversation will emit conversationUpdated if already selected
-    bool alreadySelected = (lrcInstance_->get_selectedConvUid() == convUid
-                            && lrcInstance_->get_currentAccountId() == accountId);
-
-    lrcInstance_->selectConversation(convUid, accountId);
-
-    // if it wasn't selected, selectConversation changed the selection but didn't emit conversationUpdated
-    // we emit it here to make sure the UI reacts to the "Show Call" request specifically
-    if (!alreadySelected) {
-        Q_EMIT lrcInstance_->conversationUpdated(convUid, accountId);
-    }
+    Q_EMIT lrcInstance_->conversationUpdated(convUid, accountId);
 }
 
 void
@@ -568,6 +560,12 @@ CallAdapter::connectCallModel(const QString& accountId)
             &CallModel::callAddedToConference,
             this,
             &CallAdapter::onCallAddedToConference,
+            Qt::UniqueConnection);
+
+    connect(accInfo.callModel.get(),
+            &CallModel::fallbackConversationSelected,
+            this,
+            &CallAdapter::onFallbackConversationSelected,
             Qt::UniqueConnection);
 }
 

@@ -119,6 +119,7 @@ public Q_SLOTS:
     void onCallStarted(const QString& callId);
     void onCallEnded(const QString& callId);
     void onCallInfosChanged(const QString& accountId, const QString& callId);
+    void onFallbackConversationSelected(const QString& accountId, const QString& conversationUid);
 
 private:
     void showNotification(const QString& accountId, const QString& convUid);
