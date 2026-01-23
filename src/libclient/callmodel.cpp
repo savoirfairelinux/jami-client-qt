@@ -1206,6 +1206,7 @@ CallModelPimpl::applyFallbackConversationSwitch(const QString& confId,
 
     qWarning() << "[conf:" << confId << "] Switching to conversation:" << fallbackConversation->get().uid;
     linked.owner.conversationModel->selectConversation(fallbackConversation->get().uid);
+    Q_EMIT linked.fallbackConversationSelected(linked.owner.id, fallbackConversation->get().uid);
 }
 
 QStringList
