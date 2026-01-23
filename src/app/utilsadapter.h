@@ -169,6 +169,7 @@ public:
     Q_INVOKABLE QString createDummyImage() const;
 #endif
     Q_INVOKABLE bool isWayland() const;
+    Q_INVOKABLE bool isMacOS26OrLater() const;
 Q_SIGNALS:
     void debugMessageReceived(const QString& message);
     void changeFontSize();
