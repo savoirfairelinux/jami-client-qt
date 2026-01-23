@@ -85,6 +85,51 @@ void macutils::setToolBar(QWindow* window) {
     }
 }
 
+void macutils::startSystemMove(QWindow* window) {
+    if (!window) {
+        return;
+    }
+
+    WId windowId = window->winId();
+    if (!windowId) {
+        return;
+    }
+
+    NSView* view = reinterpret_cast<NSView*>(windowId);
+    if (!view) {
+        return;
+    }
+
+    NSWindow* nativeWindow = [view window];
+    if (!nativeWindow) {
+        return;
+    }
+
+    // Override Qt's startSystemMove to include NSEventTypePressure
+
+    if (![nativeWindow respondsToSelector:@selector(performWindowDragWithEvent:)]) {
+        return;
+    }
+
+    NSEvent* currentEvent = [NSApp currentEvent];
+    NSEventType eventType = currentEvent.type;
+
+    switch (eventType) {
+    case NSEventTypeLeftMouseDown:
+    case NSEventTypeRightMouseDown:
+    case NSEventTypeOtherMouseDown:
+    case NSEventTypeMouseMoved:
+    case NSEventTypeLeftMouseDragged:
+    case NSEventTypeRightMouseDragged:
+    case NSEventTypeOtherMouseDragged:
+    case NSEventTypePressure:
+        [nativeWindow performWindowDragWithEvent:currentEvent];
+        break;
+    default:
+        break;
+    }
+}
+
 bool macutils::isMacOS26OrLater() {
     if (@available(macOS 26.0, *)) {
         return true;
