@@ -37,6 +37,8 @@ SidePanelBase {
     property var highlighted: []
     property var highlightedMembers: []
 
+    readonly property real sidePanelIslandsMargin: viewCoordinator.isInSinglePaneMode ? JamiTheme.sidePanelIslandsSinglePaneModePadding : JamiTheme.sidePanelIslandsPadding
+
     color: JamiTheme.transparentColor
 
     Connections {
@@ -197,7 +199,8 @@ SidePanelBase {
         ColumnLayout {
             anchors.fill: parent
             // Creates The floating rectangle itself
-            anchors.margins: viewCoordinator.isInSinglePaneMode ? JamiTheme.sidePanelIslandsSinglePaneModePadding : JamiTheme.sidePanelIslandsPadding
+            anchors.margins: root.sidePanelIslandsMargin
+            anchors.topMargin: JamiQmlUtils.isMacOS26OrLater ? JamiTheme.sidePanelIslandTopPaddingMac : root.sidePanelIslandsMargin
             anchors.rightMargin: {
                 if (viewCoordinator.isInSinglePaneMode) {
                     return JamiTheme.sidePanelIslandsSinglePaneModePadding;
