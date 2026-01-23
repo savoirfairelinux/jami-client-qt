@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97976fff_2e3b7dfb",
+        "filename": "src/app/contactadapter.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2026-01-23T04:49:36Z",
+      "side": 1,
+      "message": "reserve(callMembers.size());",
+      "range": {
+        "startLine": 76,
+        "startChar": 8,
+        "endLine": 76,
+        "endChar": 37
+      },
+      "revId": "3ead81ee92c8e8111ff69f602a58096396a112de",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddb3c3e9_197853d2",
+        "filename": "src/app/contactadapter.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2026-01-23T04:49:36Z",
+      "side": 1,
+      "message": "for (const auto\u0026 callMember: callMembers)",
+      "range": {
+        "startLine": 77,
+        "startChar": 8,
+        "endLine": 77,
+        "endChar": 54
+      },
+      "revId": "3ead81ee92c8e8111ff69f602a58096396a112de",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "896e9fbc_ef35da44",
+        "filename": "src/app/contactadapter.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2026-01-23T04:49:36Z",
+      "side": 1,
+      "message": "members\u003dstd::move(callMembersList)",
+      "range": {
+        "startLine": 81,
+        "startChar": 19,
+        "endLine": 81,
+        "endChar": 34
+      },
+      "revId": "3ead81ee92c8e8111ff69f602a58096396a112de",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
