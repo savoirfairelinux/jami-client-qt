@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8f78c20e_7dff4c8a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1118
+      },
+      "writtenOn": "2026-01-23T19:54:59Z",
+      "side": 1,
+      "message": "It works, but it requires the child and the parents’ account to be in a swarm. So the call must be initiated in a swarm containing only two persons, which may not be super intuitive",
+      "parentUuid": "416448f5_d7bead52",
+      "revId": "cef78180281fbb39e3f53581148589a98c3f2c5b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "08c7c766_0dc02cba",
         "filename": "src/app/contactadapter.cpp",
         "patchSetId": 1
