@@ -126,6 +126,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9323a21_adf3991e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-01-23T22:39:33Z",
+      "side": 1,
+      "message": "The https://review.jami.net/c/jami-docs/+/32945 patch updates the docs.",
+      "parentUuid": "4891af43_d4c70b72",
+      "revId": "cef78180281fbb39e3f53581148589a98c3f2c5b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "08c7c766_0dc02cba",
