@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfdb4603_160a62fc",
+        "filename": "src/app/calladapter.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-01-23T21:40:14Z",
+      "side": 1,
+      "message": "There is a `startAudioOnlyCall`. Is that method still useful? Seems a bit confusing.",
+      "range": {
+        "startLine": 69,
+        "startChar": 21,
+        "endLine": 69,
+        "endChar": 45
+      },
+      "revId": "ba95ec5d96f1979d566c6aa8598ed6b5fd2f59c8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
