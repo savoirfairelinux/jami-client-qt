@@ -516,6 +516,14 @@ MainApplication::setEventFilter()
 }
 
 void
+MainApplication::startSystemMove(QWindow* window)
+{
+#ifdef Q_OS_MACOS
+    macutils::startSystemMove(window);
+#endif
+}
+
+void
 MainApplication::setToolBar(QWindow* window)
 {
     if (!window) {
