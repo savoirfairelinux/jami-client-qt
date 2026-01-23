@@ -133,6 +133,20 @@ Item {
                     }
 
                     NewIconButton {
+                        id: conversationStatus
+
+                        Layout.alignment: Qt.AlignHCenter
+
+                        iconSize: JamiTheme.iconButtonMedium
+                        iconSource: JamiResources.connected_black_24dp_svg
+                        toolTipText: JamiStrings.connection
+
+                        onClicked: {
+                            extrasPanel.switchToPanel(ChatView.ConversationStatusPanel);
+                        }
+                    }
+
+                    NewIconButton {
                         id: muteConversation
 
                         Layout.alignment: Qt.AlignHCenter
