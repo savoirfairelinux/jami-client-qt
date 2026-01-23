@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3f2fcabc_a4830041",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-01-23T09:27:25Z",
+      "side": 1,
+      "message": "Should adding an already added Jami participant be allowed, as 1 contact may be linked on multiple devices, allowing for multiple instances of the same contact, yet different devices (and hence participants)?\n\nUse case: Husband and wife have the same JamiID as they share the same contact list. There is a family group call where the children and the parents (the husband and wife) join the call.",
+      "revId": "cef78180281fbb39e3f53581148589a98c3f2c5b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "08c7c766_0dc02cba",
         "filename": "src/app/contactadapter.cpp",
         "patchSetId": 1
