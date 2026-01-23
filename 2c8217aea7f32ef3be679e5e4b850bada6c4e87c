@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28424693_30ccc16c",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-01-23T10:10:19Z",
+      "side": 1,
+      "message": "Should `Enable hardware acceleration` be changed to `Hardware acceleration`?\n\nThe toggle sets the `hardware acceleration` mode to `enabled`/`disabled` or `on`/`off`.\n\nChange is available in the https://review.jami.net/c/jami-client-qt/+/32932 patch or can be changed with this patch.\n\nThank you",
+      "range": {
+        "startLine": 229,
+        "startChar": 41,
+        "endLine": 229,
+        "endChar": 69
+      },
+      "revId": "2c8217aea7f32ef3be679e5e4b850bada6c4e87c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5471ca19_1ff01ac1",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-01-23T10:10:19Z",
+      "side": 1,
+      "message": "Should `Enable passthrough mode` be changed to `Pass-through`?\n\nThe Meta instructions at the https://www.meta.com/en-gb/help/quest/617966963105359/ page show `Pass-through`.\n\n\u003e **To turn on Pass-through**:\n\u003e \n\u003e Press **Meta button**/**Oculus button** on your right Touch controller to open the universal menu.\n\u003e On the left-hand side of the universal menu, select **Pass-through**.\n\nShould the string have a hyphen `-` and have ` mode` removed?\n\nThe toggle sets the `pass-through` mode to `enabled`/`disabled` or `on`/`off`.",
+      "range": {
+        "startLine": 230,
+        "startChar": 39,
+        "endLine": 230,
+        "endChar": 62
+      },
+      "revId": "2c8217aea7f32ef3be679e5e4b850bada6c4e87c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
