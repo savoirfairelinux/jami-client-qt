@@ -531,6 +531,14 @@ Q_SIGNALS:
     void currentCallChanged(const QString& callId) const;
 
     /**
+     * Emitted when the call is transferred to a fallback conversation
+     * due to conference participant changes (e.g., one participant leaves)
+     * @param accountId The account owning the conversation
+     * @param conversationUid The UID of the conversation to switch to
+     */
+    void fallbackConversationSelected(const QString& accountId, const QString& conversationUid) const;
+
+    /**
      * Decision helper to pick a fallback conversation UID.
      * Exposed for unit tests.
      */
