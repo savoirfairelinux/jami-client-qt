@@ -110,7 +110,7 @@ Item {
                             id: infoBlock
 
                             width: parent.width
-                            height: parent.height / 3
+                            height: parent.height / 4
 
                             visible: CurrentConversation.isCoreDialog
 
@@ -135,12 +135,31 @@ Item {
                                                                          })
                             }
                         }
+	                    Item {
+	                        id: swarmdetailsBlock
+	                        width: parent.width
+	                        height: CurrentConversation.isCoreDialog ? parent.height / 4 : parent.height / 3
+
+	                        NewIconButton {
+	                            id: conversationStatus
+
+	                            anchors.centerIn: parent
+
+	                            iconSize: JamiTheme.iconButtonMedium
+	                            iconSource: JamiResources.connected_black_24dp_svg
+	                            toolTipText: JamiStrings.connection
+
+	                            onClicked: {
+	                                extrasPanel.switchToPanel(ChatView.ConversationStatusPanel);
+	                            }
+	                        }
+	                    }
                         Item {
                             id: notificationsBlock
 
                             width: parent.width
-                            height: CurrentConversation.isCoreDialog ? parent.height / 3 :
-                                                                       parent.height / 2
+                            height: CurrentConversation.isCoreDialog ? parent.height / 4 :
+                                                                       parent.height / 3
 
                             NewIconButton {
                                 id: muteConversation
@@ -163,8 +182,8 @@ Item {
                             id: colorBlock
 
                             width: parent.width
-                            height: CurrentConversation.isCoreDialog ? parent.height / 3 :
-                                                                       parent.height / 2
+                            height: CurrentConversation.isCoreDialog ? parent.height / 4 :
+                                                                       parent.height / 3
 
                             Rectangle {
                                 id: conversationColorPicker
