@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "416448f5_d7bead52",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-01-23T19:42:19Z",
+      "side": 1,
+      "message": "In the example described in the use case, can a group call be started by a child, and can the devices for the parents both show the join call button and both parents join the call? If not, should an issue be created on GitLab? Thank you",
+      "parentUuid": "67b8ca9c_938389a3",
+      "revId": "cef78180281fbb39e3f53581148589a98c3f2c5b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "08c7c766_0dc02cba",
         "filename": "src/app/contactadapter.cpp",
         "patchSetId": 1
