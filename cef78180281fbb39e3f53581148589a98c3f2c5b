@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08c7c766_0dc02cba",
+        "filename": "src/app/contactadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2026-01-23T04:52:59Z",
+      "side": 1,
+      "message": "for (const auto\u0026 member: callMembers)",
+      "range": {
+        "startLine": 175,
+        "startChar": 12,
+        "endLine": 175,
+        "endChar": 58
+      },
+      "revId": "cef78180281fbb39e3f53581148589a98c3f2c5b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a64b323_e26f8155",
+        "filename": "src/app/contactadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2026-01-23T04:52:59Z",
+      "side": 1,
+      "message": "contactUri \u003d\u003d member.uri",
+      "range": {
+        "startLine": 177,
+        "startChar": 20,
+        "endLine": 177,
+        "endChar": 76
+      },
+      "revId": "cef78180281fbb39e3f53581148589a98c3f2c5b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
