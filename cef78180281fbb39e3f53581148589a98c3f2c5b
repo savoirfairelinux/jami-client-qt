@@ -92,6 +92,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "908ed983_c76d9d65",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1118
+      },
+      "writtenOn": "2026-01-23T20:49:40Z",
+      "side": 1,
+      "message": "yes they can",
+      "parentUuid": "42fa33d7_8e006806",
+      "revId": "cef78180281fbb39e3f53581148589a98c3f2c5b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "08c7c766_0dc02cba",
         "filename": "src/app/contactadapter.cpp",
         "patchSetId": 1
