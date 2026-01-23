@@ -172,7 +172,7 @@ Window {
         layoutManager.restoreWindowSettings();
 
         // QWK: setup
-        if (useFrameless) {
+        if (useFrameless && !JamiQmlUtils.isMacOS26OrLater) {
             windowAgent.setTitleBar(titleBar);
             // Now register the system buttons (non-macOS).
             if (sysBtnsLoader.item) {
@@ -203,6 +203,9 @@ Window {
         // Set up the event filter for macOS.
         if (Qt.platform.os.toString() === "osx") {
             MainApplication.setEventFilter();
+            if (JamiQmlUtils.isMacOS26OrLater) {
+                MainApplication.setToolBar(appWindow);
+            }
         }
 
         // Quiet check for updates on start if set to.

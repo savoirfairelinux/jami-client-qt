@@ -183,6 +183,7 @@ SidePanelBase {
             anchors.fill: parent
             // Creates The floating rectangle itself
             anchors.margins: JamiTheme.sidePanelIslandsSinglePaneModePadding
+            anchors.topMargin: JamiQmlUtils.isMacOS26OrLater ? JamiTheme.sidePanelIslandTopPaddingMac : JamiTheme.sidePanelIslandsSinglePaneModePadding
             anchors.rightMargin: {
                 if (viewCoordinator.isInSinglePaneMode)
                     return JamiTheme.sidePanelIslandsSinglePaneModePadding;

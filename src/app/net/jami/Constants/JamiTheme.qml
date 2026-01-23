@@ -739,6 +739,7 @@ Item {
 
     // Side panel
     property real sidePanelIslandsSinglePaneModePadding: 8
+    property real sidePanelIslandTopPaddingMac: 14
     property real sidePanelIslandsPadding: sidePanelIslandsSinglePaneModePadding * 2
     property real sidePanelConversationsIslandTopPadding: 16
     property real sidePanelConversationsIslandHorizontalPadding: 4
