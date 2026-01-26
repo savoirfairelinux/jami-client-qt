@@ -92,8 +92,8 @@ ItemDelegate {
                 onReadOnlyChanged: {
                     if (readOnly)
                         editDeviceName.text = Qt.binding(function () {
-                                return elidedTextDeviceName.elidedText;
-                            });
+                            return elidedTextDeviceName.elidedText;
+                        });
                     else
                         editDeviceName.text = deviceName;
                 }
@@ -125,20 +125,21 @@ ItemDelegate {
         }
     }
 
-    MaterialButton {
+    NewMaterialButton {
         id: button
-        z: 1
+
         anchors.right: parent.right
         anchors.rightMargin: 13
         anchors.verticalCenter: parent.verticalCenter
-        Layout.preferredWidth: 86
-        preferredWidth: 86
-        Layout.preferredHeight: 36
-        layer.enabled: false
-        visible: isHovered
-        secondary: true
 
+        z: 1
+
+        outlinedButton: true
         text: isCurrent ? (editable ? JamiStrings.saveNewDeviceName : JamiStrings.editDeviceName) : JamiStrings.unlinkDevice
+
+        visible: isHovered
+
+        layer.enabled: false
 
         onClicked: {
             if (isCurrent) {
@@ -154,4 +155,34 @@ ItemDelegate {
             }
         }
     }
+
+    // MaterialButton {
+    //     id: button
+    //     z: 1
+    //     anchors.right: parent.right
+    //     anchors.rightMargin: 13
+    //     anchors.verticalCenter: parent.verticalCenter
+    //     Layout.preferredWidth: 86
+    //     preferredWidth: 86
+    //     Layout.preferredHeight: 36
+    //     layer.enabled: false
+    //     visible: isHovered
+    //     secondary: true
+
+    //     text: isCurrent ? (editable ? JamiStrings.saveNewDeviceName : JamiStrings.editDeviceName) : JamiStrings.unlinkDevice
+
+    //     onClicked: {
+    //         if (isCurrent) {
+    //             if (!editable) {
+    //                 editable = !editable;
+    //                 editDeviceName.forceActiveFocus();
+    //             } else {
+    //                 editDeviceName.focus = false;
+    //                 editDeviceName.accepted();
+    //             }
+    //         } else {
+    //             btnRemoveDeviceClicked();
+    //         }
+    //     }
+    // }
 }
