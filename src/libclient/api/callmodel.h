@@ -100,13 +100,15 @@ public:
                   bool shareAudio = false);
 
     /**
-     * get list of proposed medias
+     * Generate a modified media list with a new media stream added
+     * or replacing an existing one.
      * @param mediaList
      * @param callId
      * @param source        Of the media
      * @param type          Audio/video
      * @param mute
      * @param shareAudio
+     * @return Modified media list ready to be sent to the daemon
      */
     VectorMapStringString getProposed(VectorMapStringString mediaList,
                                       const QString& callId,

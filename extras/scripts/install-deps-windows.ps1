@@ -178,8 +178,9 @@ Function install_msys2_packages($packages) {
 # Web installed msys2_64 bit to install make, gcc, perl, diffutils
 $msys_packages = @("make", "gcc", "perl", "diffutils")
 
-# Install 7zip, unzip, wget --version 1.19.4, cmake, git --version 2.10.2, pandoc, strawberryperl, msys2
+# Install windows-sdk-10-version-2104-all, 7zip, unzip, wget --version 1.19.4, cmake, git --version 2.10.2, pandoc, strawberryperl, msys2
 $choco_packages = @(
+    [pscustomobject]@{pkg = "windows-sdk-10-version-2104-all"; ver = "10.0.20348" }
     [pscustomobject]@{pkg = "wget"; ver = "1.19.4" }
     [pscustomobject]@{pkg = "git.install"; ver = "2.10.2" }
     [pscustomobject]@{pkg = "7zip"; ver = "" }
