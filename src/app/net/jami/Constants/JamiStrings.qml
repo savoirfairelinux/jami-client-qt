@@ -45,7 +45,7 @@ Item {
     // AboutPopUp
     property string buildID: qsTr("Build ID")
     property string version: qsTr("Version")
-    property string declarationYear: "Copyright © 2015–2025"
+    property string declarationYear: "Copyright © 2015–2026"
     property string slogan: "Atlas"
     property string declaration: qsTr('Jami, a GNU package, is software for universal and distributed peer-to-peer communication that respects the freedom and privacy of its users. Visit <a href="https://jami.net" style="color: ' + JamiTheme.buttonTintedBlue + '">jami.net</a>' + ' to learn more.')
     property string noWarranty: qsTr('This program comes with absolutely no warranty. See the <a href="https://www.gnu.org/licenses/gpl-3.0.html" style="color: ' + JamiTheme.buttonTintedBlue + '">GNU General Public License</a>, version 3 or later for details.')
@@ -277,7 +277,7 @@ Item {
     property string privateConversation: qsTr("Private")
     property string privateRestrictedGroup: qsTr("Private group (restricted invites)")
     property string privateGroup: qsTr("Private group")
-    property string publicGroup: qsTr("Public Group")
+    property string publicGroup: qsTr("Public group")
 
     // LineEditContextMenu
     property string share: qsTr("Share")
@@ -330,13 +330,13 @@ Item {
     property string renderersInformation: qsTr("Renderers information")
     property string callInformation: qsTr("Call information")
     property string peerNumber: qsTr("Peer number")
-    property string callId: qsTr("Call id")
+    property string callId: qsTr("Call ID")
     property string sockets: qsTr("Sockets")
     property string videoCodec: qsTr("Video codec")
     property string hardwareAcceleration: qsTr("Hardware acceleration")
     property string videoBitrate: qsTr("Video bitrate")
     property string audioCodec: qsTr("Audio codec")
-    property string rendererId: qsTr("Renderer id")
+    property string rendererId: qsTr("Renderer ID")
     property string fps_short: qsTr("Fps")
 
     // Share location/position
@@ -504,7 +504,7 @@ Item {
     property string editDeviceName: qsTr("Edit")
     property string deviceName: qsTr("Device name:")
     property string unlinkDevice: qsTr("Remove")
-    property string deviceId: qsTr("Device Id")
+    property string deviceId: qsTr("Device ID")
 
     // SystemSettings
     property string system: qsTr("System")
@@ -946,18 +946,18 @@ Item {
     property string showInstalledDictionariesDescription: qsTr("Only show dictionaries that are currently installed")
 
     // Search bar
-    property string searchOrAdd: qsTr("Search/add")
+    property string searchOrAdd: qsTr("Search or add")
 
     // Files
     property string noFilesInConversation: qsTr("This conversation has no files.")
 
     // Share message menu
     property string addAComment: qsTr("Add a comment")
-    property string shareWith: qsTr("Share with...")
+    property string shareWith: qsTr("Share with…")
 
     // Side panel
     property string addAContact: qsTr("Add a contact")
-    property string noConversations: qsTr("It's a ghost town here!")
+    property string noConversations: qsTr("It’s a ghost town here!")
     property string noContactsToChooseFrom: qsTr("No contacts to choose from!")
 
     // Accessibility
