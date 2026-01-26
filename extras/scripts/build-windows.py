@@ -56,7 +56,6 @@ if sys.platform == "win32":
         "Installer",
         "vswhere.exe",
     )
-WIN_SDK_VERSION = "10.0.18362.0"
 
 # Build/project environment information
 is_jenkins = "JENKINS_URL" in os.environ
@@ -265,7 +264,6 @@ def build(config_str, qt_dir, tests, build_version, enable_crash_reports, crash_
         "-DCMAKE_PREFIX_PATH=" + qt_dir,
         "-DCMAKE_MSVCIDE_RUN_PATH=" + qt_dir + "\\bin",
         "-DCMAKE_INSTALL_PREFIX=" + os.getcwd(),
-        "-DCMAKE_SYSTEM_VERSION=" + WIN_SDK_VERSION,
         "-DCMAKE_BUILD_TYPE=" + "Release",
         "-DBUILD_TESTING=" + str(tests).lower(),
         "-DBETA=" + str((0, 1)[config_str == "Beta"]),
