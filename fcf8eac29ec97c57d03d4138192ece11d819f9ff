@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3cbd841_dabac5fa",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-01-26T10:09:54Z",
+      "side": 0,
+      "message": "Should there be another variable `hideKeypad`, with value `Hide keypad`, which is the opposite of this string? Thank you",
+      "range": {
+        "startLine": 307,
+        "startChar": 20,
+        "endLine": 307,
+        "endChar": 30
+      },
+      "revId": "fcf8eac29ec97c57d03d4138192ece11d819f9ff",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
