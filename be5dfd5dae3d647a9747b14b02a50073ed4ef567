@@ -164,6 +164,30 @@
       },
       "revId": "be5dfd5dae3d647a9747b14b02a50073ed4ef567",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4629d73_6c99d8a4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-01-26T23:59:24Z",
+      "side": 1,
+      "message": "Please change\nThe Jami ID with the Device ID that is currently in the conference should not **receive** the invitation to join the active conference\nto\nThe Jami ID with the Device ID that is currently in the conference should not **display** the invitation to join the active conference",
+      "parentUuid": "0dc1ddba_4b691ee3",
+      "range": {
+        "startLine": 10,
+        "startChar": 29,
+        "endLine": 11,
+        "endChar": 53
+      },
+      "revId": "be5dfd5dae3d647a9747b14b02a50073ed4ef567",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
