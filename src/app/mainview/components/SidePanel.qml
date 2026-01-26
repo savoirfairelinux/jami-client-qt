@@ -181,10 +181,13 @@ SidePanelBase {
         ColumnLayout {
             anchors.fill: parent
             // Creates The floating rectangle itself
-            anchors.leftMargin: JamiTheme.sidePanelIslandsPadding
-            anchors.topMargin: JamiTheme.sidePanelIslandsPadding
-            anchors.bottomMargin: JamiTheme.sidePanelIslandsPadding
-            anchors.rightMargin: JamiTheme.sidePanelIslandsPadding * 2
+            anchors.margins: JamiTheme.sidePanelIslandsPadding
+            anchors.rightMargin: {
+                if (viewCoordinator.isInSinglePaneMode)
+                    return JamiTheme.sidePanelIslandsPadding;
+                else
+                    return JamiTheme.sidePanelIslandsPadding * 2;
+            }
 
             Item {
                 Layout.fillWidth: true
@@ -199,7 +202,7 @@ SidePanelBase {
                     radius: JamiTheme.commonRadius
                     layer.enabled: true
                     layer.effect: MultiEffect {
-                        id: searchBarMultiEffect
+                        id: conversationListRectMultiEffect
                         anchors.fill: conversationListRect
                         shadowEnabled: true
                         shadowBlur: JamiTheme.shadowBlur
