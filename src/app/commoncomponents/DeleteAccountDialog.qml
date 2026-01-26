@@ -189,8 +189,8 @@ BaseModalDialog {
                     Layout.margins: 12
                     Layout.topMargin: 0
                     RowLayout {
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.fill: parent
+                        anchors.leftMargin: 4
 
                         spacing: 20
 
@@ -204,14 +204,14 @@ BaseModalDialog {
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
 
-                            Layout.leftMargin: 4//JamiTheme.preferredMarginSize
+                            Layout.leftMargin: 4
                         }
                         Label {
                             id: accountId
 
                             Layout.alignment: Qt.AlignLeft
                             Layout.fillWidth: true
-                            Layout.rightMargin: 4//JamiTheme.preferredMarginSize
+                            Layout.rightMargin: 4
 
                             font.pointSize: JamiTheme.textFontSize
                             font.kerning: true
