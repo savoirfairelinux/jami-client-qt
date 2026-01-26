@@ -73,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "50eca8cb_9fe97f96",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-01-26T23:56:26Z",
+      "side": 1,
+      "message": "Thank you for clarifying my misunderstanding.\n\nIf multiple Device IDs with the same Jami ID are online, with some Device IDs with that Jami ID currently in the conference, please allow Device IDs not in the conference with the same Jami IDs to be added as participants.\n\nThe Jami ID with the Device ID that is currently in the conference should not receive the invitation to join the active conference; however, please allow Device IDs (that are not in the conference) with that Jami ID to receive the invitation to join the active conference.",
+      "parentUuid": "029ffd06_6a3b416e",
+      "range": {
+        "startLine": 7,
+        "startChar": 34,
+        "endLine": 7,
+        "endChar": 46
+      },
+      "revId": "daf28dc5cf4c3c6dcc4d8eea36a1ffadbf68ea79",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "51d3c2d7_794a93fe",
         "filename": "/COMMIT_MSG",
         "patchSetId": 5
