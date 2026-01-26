@@ -45,7 +45,7 @@ Item {
     // AboutPopUp
     property string buildID: qsTr("Build ID")
     property string version: qsTr("Version")
-    property string declarationYear: "Copyright © 2015–2025"
+    property string declarationYear: "Copyright © 2015–2026"
     property string slogan: "Atlas"
     property string declaration: qsTr('Jami, a GNU package, is software for universal and distributed peer-to-peer communication that respects the freedom and privacy of its users. Visit <a href="https://jami.net" style="color: ' + JamiTheme.buttonTintedBlue + '">jami.net</a>' + ' to learn more.')
     property string noWarranty: qsTr('This program comes with absolutely no warranty. See the <a href="https://www.gnu.org/licenses/gpl-3.0.html" style="color: ' + JamiTheme.buttonTintedBlue + '">GNU General Public License</a>, version 3 or later for details.')
@@ -87,7 +87,7 @@ Item {
 
     // AccountMigrationDialog
     property string authenticationRequired: qsTr("Authentication required")
-    property string migrationReason: qsTr("Your session has expired or been revoked on this device. Please enter your password.")
+    property string migrationReason: qsTr("The session has expired or has been revoked on this device. Please enter the account password.")
     property string jamsServer: qsTr("JAMS server")
     property string authenticate: qsTr("Authenticate")
     property string deleteAccount: qsTr("Delete account")
@@ -99,11 +99,11 @@ Item {
 
     // AdvancedCallSettings
     property string allowCallsUnknownContacs: qsTr("Allow incoming calls from unknown contacts")
-    property string rendezVous: qsTr("Convert your account into a rendezvous point")
+    property string rendezVous: qsTr("Convert account into rendezvous point")
     property string autoAcceptCalls: qsTr("Automatically accept calls")
     property string enableCustomRingtone: qsTr("Enable custom ringtone")
     property string selectCustomRingtone: qsTr("Select custom ringtone")
-    property string selectNewRingtone: qsTr("Select a new ringtone")
+    property string selectNewRingtone: qsTr("Select new ringtone")
     property string certificateFile: qsTr("Certificate file (*.crt)")
     property string audioFile: qsTr("Audio file (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)")
     property string pushToTalk: qsTr("Push-to-talk")
@@ -277,7 +277,7 @@ Item {
     property string privateConversation: qsTr("Private")
     property string privateRestrictedGroup: qsTr("Private group (restricted invites)")
     property string privateGroup: qsTr("Private group")
-    property string publicGroup: qsTr("Public Group")
+    property string publicGroup: qsTr("Public group")
 
     // LineEditContextMenu
     property string share: qsTr("Share")
@@ -304,7 +304,7 @@ Item {
 
     // CallViewContextMenu
     property string sipInputPanel: qsTr("DTMF input panel")
-    property string openKeypad: qsTr("Open keypad")
+    property string openKeypad: qsTr("Show keypad")
     property string transferCall: qsTr("Transfer call")
     property string stopRec: qsTr("Stop recording")
     property string startRec: qsTr("Start recording")
@@ -330,13 +330,13 @@ Item {
     property string renderersInformation: qsTr("Renderers information")
     property string callInformation: qsTr("Call information")
     property string peerNumber: qsTr("Peer number")
-    property string callId: qsTr("Call id")
+    property string callId: qsTr("Call ID")
     property string sockets: qsTr("Sockets")
     property string videoCodec: qsTr("Video codec")
     property string hardwareAcceleration: qsTr("Hardware acceleration")
     property string videoBitrate: qsTr("Video bitrate")
     property string audioCodec: qsTr("Audio codec")
-    property string rendererId: qsTr("Renderer id")
+    property string rendererId: qsTr("Renderer ID")
     property string fps_short: qsTr("Fps")
 
     // Share location/position
@@ -375,8 +375,8 @@ Item {
     property string backendError: qsTr("A backend system error occurred: %0")
     property string disabledAccount: qsTr("The account is disabled")
     property string noNetworkConnectivity: qsTr("No network connectivity")
-    property string deletedMessage: qsTr("%1 deleted a message")
-    property string deletedMedia: qsTr("%1 deleted a media")
+    property string deletedMessage: qsTr("%1 has deleted the message.")
+    property string deletedMedia: qsTr("%1 has deleted the media.")
     property string returnToCall: qsTr("Return to call")
 
     // Conversation ended banner
@@ -404,11 +404,11 @@ Item {
     // CreateAccountPage
     property string chooseName: qsTr("Choose name")
     property string chooseUsername: qsTr("Choose username")
-    property string chooseAUsername: qsTr("Choose a username")
+    property string chooseAUsername: qsTr("Choose username")
     property string confirmPassword: qsTr("Confirm password")
     property string chooseUsernameForAccount: qsTr("You can choose a username to help others more easily find and reach you on Jami.")
-    property string chooseUsernameForRV: qsTr("Choose a name for your rendezvous point")
-    property string chooseAName: qsTr("Choose a name")
+    property string chooseUsernameForRV: qsTr("Choose rendezvous point name")
+    property string chooseAName: qsTr("Choose name")
     property string invalidName: qsTr("Invalid name")
     property string invalidUsername: qsTr("Invalid username")
     property string nameAlreadyTaken: qsTr("Name already taken")
@@ -425,7 +425,7 @@ Item {
     property string encrypt: qsTr("Encrypt")
     property string localAccount: qsTr("Your account will be created and stored locally.")
     property string usernameRecommened: qsTr("Choosing a username is recommended, and a chosen username CANNOT be changed later.")
-    property string passwordOptional: qsTr("Encrypting your account with a password is optional, and if the password is lost it CANNOT be recovered later.")
+    property string passwordOptional: qsTr("Protecting the account with a password is optional, and if the password is lost it CANNOT be recovered later.")
     property string customizeOptional: qsTr("Setting a profile picture and display name is optional, and can also be changed later in the settings.")
 
     // CreateSIPAccountPage
@@ -458,19 +458,19 @@ Item {
     property string setPasswordSuccess: qsTr("Password set successfully.")
     property string setPasswordFailed: qsTr("An error occurred while setting the account password.")
     property string changePassword: qsTr("Change password")
-    property string setPassword: qsTr("Encrypt account")
-    property string setAPassword: qsTr("Set a password")
+    property string setPassword: qsTr("Set password")
+    property string setAPassword: qsTr("Set password")
     property string changeCurrentPassword: qsTr("Change current password")
-    property string tipBackupAccount: qsTr("Back up account to a .gz file")
+    property string tipBackupAccount: qsTr("Back up the account to a .jac file")
     property string tipAdvancedSettingsDisplay: qsTr("Display advanced settings")
     property string tipAdvancedSettingsHide: qsTr("Hide advanced settings")
     property string advancedAccountSettings: qsTr("Advanced account settings")
-    property string encryptAccount: qsTr("Encrypt account with password")
+    property string encryptAccount: qsTr("Set account password")
     property string customizeProfile: qsTr("Customize profile")
-    property string encryptTitle: qsTr("Encrypt account with password")
+    property string encryptTitle: qsTr("Set account password")
     property string encryptDescription: qsTr("A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected with a password.")
     property string encryptWarning: qsTr("Please note that if you lose your password, it CANNOT be recovered!")
-    property string enterNickname: qsTr("Enter a nickname, surname…")
+    property string enterNickname: qsTr("Enter nickname, surname…")
     property string linkTitle: qsTr("Use this account on other devices")
     property string linkDescription: qsTr("This account is created and stored locally, if you want to use it on another device you have to link the new device to this account.")
     property string linkAnotherDevice: qsTr("Link device")
@@ -483,7 +483,7 @@ Item {
     property string identity: qsTr("Identity")
 
     // LinkedDevices
-    property string tipLinkNewDevice: qsTr("Link a new device to this account")
+    property string tipLinkNewDevice: qsTr("Link new device to this account")
     property string linkDevice: qsTr("Exporting account…")
     property string removeDevice: qsTr("Remove device")
     property string confirmRemoveDevice: qsTr("Do you want to unlink the selected device? To continue, enter account password and click Unlink.")
@@ -504,13 +504,13 @@ Item {
     property string editDeviceName: qsTr("Edit")
     property string deviceName: qsTr("Device name:")
     property string unlinkDevice: qsTr("Remove")
-    property string deviceId: qsTr("Device Id")
+    property string deviceId: qsTr("Device ID")
 
     // SystemSettings
     property string system: qsTr("System")
     property string dark: qsTr("Dark")
     property string light: qsTr("Light")
-    property string selectFolder: qsTr("Select a folder")
+    property string selectFolder: qsTr("Select folder")
     property string enableNotifications: qsTr("Enable notifications")
     property string showNotifications: qsTr("Show notifications")
     property string keepMinimized: qsTr("Minimize on close")
@@ -607,7 +607,7 @@ Item {
     property string importFromArchiveBackup: qsTr("Import from archive backup")
     property string importFromArchiveBackupDescription: qsTr("Import Jami account from local archive file.")
     property string selectArchiveFile: qsTr("Select archive file")
-    property string passwordArchive: qsTr("If the account is encrypted with a password, please fill the following field.")
+    property string passwordArchive: qsTr("If the account is password protected, please fill the following field.")
 
     // ImportFromDevicePage
     property string importButton: qsTr("Import")
@@ -616,7 +616,7 @@ Item {
     // LinkDevicesDialog
     property string close: qsTr("Close")
     property string enterAccountPassword: qsTr("Enter account password")
-    property string enterPasswordPinCode: qsTr("This account is password encrypted, enter the password to generate a PIN code.")
+    property string enterPasswordPinCode: qsTr("This account is password protected, enter the password to generate PIN code.")
     property string addDevice: qsTr("Add Device")
     property string linkNewDevice: qsTr("Link new device")
     property string linkDeviceConnecting: qsTr("Connecting to the new device…")
@@ -710,11 +710,11 @@ Item {
     property string advancedFeatures: qsTr("Advanced features")
     property string showAdvancedFeatures: qsTr("Show advanced features")
     property string hideAdvancedFeatures: qsTr("Hide advanced features")
-    property string connectJAMSServer: qsTr("Connect to a JAMS server")
+    property string connectJAMSServer: qsTr("Connect to JAMS server")
     property string createFromJAMS: qsTr("Create account from Jami Account Management Server (JAMS)")
-    property string addSIPAccount: qsTr("Configure a SIP account")
+    property string addSIPAccount: qsTr("Configure SIP account")
     property string errorCreateAccount: qsTr("An error occurred while creating the account. Check credentials and try again.")
-    property string createNewRV: qsTr("Create a rendezvous point")
+    property string createNewRV: qsTr("Create rendezvous point")
     property string joinJami: qsTr("Create Jami account")
     property string createNewJamiAccount: qsTr("Create new Jami account")
     property string createNewSipAccount: qsTr("Create new SIP account")
@@ -796,8 +796,8 @@ Item {
     property string orderedList: qsTr("Ordered list")
     property string showFormatting: qsTr("Show formatting")
     property string hideFormatting: qsTr("Hide formatting")
-    property string shiftEnterNewLine: qsTr("Press Shift+Enter to insert a new line")
-    property string enterNewLine: qsTr("Press Enter to insert a new line")
+    property string shiftEnterNewLine: qsTr("Press Shift+Enter to insert new line")
+    property string enterNewLine: qsTr("Press Enter to insert new line")
     property string send: qsTr("Send")
     property string dontSend: qsTr("Don't send")
     property string replyTo: qsTr("Reply to")
@@ -843,7 +843,7 @@ Item {
     property string muteConversation: qsTr("Mute conversation")
     property string unmuteConversation: qsTr("Unmute conversation")
     property string ignoreNotificationsTooltip: qsTr("Ignore all notifications from this conversation")
-    property string chooseAColor: qsTr("Choose a color")
+    property string chooseAColor: qsTr("Choose color")
     property string color: qsTr("Color")
     property string defaultCallHost: qsTr("Default host (calls)")
     property string selectDefaultHost: qsTr("Select default host")
@@ -864,7 +864,7 @@ Item {
     property string customize: qsTr("Customize")
     property string tip: qsTr("Tip")
     property string dismiss: qsTr("Dismiss")
-    property string customizeText: qsTr("Add a profile picture and nickname to complete your profile")
+    property string customizeText: qsTr("Add profile picture and nickname to complete your profile")
     property string customizationDescription: qsTr("Your profile is only shared with your contacts")
 
     // Message options
@@ -882,8 +882,8 @@ Item {
     property string enableAccountDescription: qsTr("Enabling your account allows you to be contacted on Jami")
 
     // CreateAccount
-    property string encryptWithPassword: qsTr("Encrypt your account with a password")
-    property string customizeYourProfile: qsTr("Customize your profile")
+    property string encryptWithPassword: qsTr("Set account password")
+    property string customizeYourProfile: qsTr("Customize profile")
 
     // General
     property string appearance: qsTr("Appearance")
@@ -919,7 +919,7 @@ Item {
     // Chat setting page
     property string enter: qsTr("Enter")
     property string shiftEnter: qsTr("Shift+Enter")
-    property string textFormattingDescription: qsTr("Enter or Shift+Enter to insert a new line")
+    property string textFormattingDescription: qsTr("Enter or Shift+Enter to insert new line")
     property string textFormatting: qsTr("Text formatting")
 
     // Connection monitoring
@@ -950,19 +950,19 @@ Item {
     property string showInstalledDictionariesDescription: qsTr("Only show dictionaries that are currently installed")
 
     // Search bar
-    property string searchOrAdd: qsTr("Search/add")
+    property string searchOrAdd: qsTr("Search or add")
 
     // Files
     property string noFilesInConversation: qsTr("This conversation has no files.")
 
     // Share message menu
-    property string addAComment: qsTr("Add a comment")
-    property string shareWith: qsTr("Share with...")
+    property string addAComment: qsTr("Add comment")
+    property string shareWith: qsTr("Share with…")
 
     // Side panel
-    property string addAContact: qsTr("Add a contact")
-    property string noConversations: qsTr("It's a ghost town here!")
-    property string noContactsToChooseFrom: qsTr("No contacts to choose from!")
+    property string addAContact: qsTr("Add contact")
+    property string noConversations: qsTr("No conversations found.")
+    property string noContactsToChooseFrom: qsTr("No contacts found.")
 
     // Accessibility
     property string switchToAccount: qsTr("Press enter to switch to this account")
