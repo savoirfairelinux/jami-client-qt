@@ -47,6 +47,54 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "35b8f07f_4ea46e04",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-01-26T23:21:05Z",
+      "side": 1,
+      "message": "No, it relates to the **Add participant** button in a call or conference.",
+      "parentUuid": "dd54341b_9cc6fd54",
+      "range": {
+        "startLine": 7,
+        "startChar": 45,
+        "endLine": 7,
+        "endChar": 56
+      },
+      "revId": "be5dfd5dae3d647a9747b14b02a50073ed4ef567",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0779026_43fb7ac4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-01-26T23:21:05Z",
+      "side": 1,
+      "message": "No, it relates to the Add participant button in a call or conference.",
+      "parentUuid": "b790aac2_d88c9eae",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 11
+      },
+      "revId": "be5dfd5dae3d647a9747b14b02a50073ed4ef567",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d50faed0_e861e4e0",
@@ -84,6 +132,30 @@
       "side": 1,
       "message": "this is all about the **add participant** button when we are in a call or conference",
       "parentUuid": "d50faed0_e861e4e0",
+      "range": {
+        "startLine": 10,
+        "startChar": 29,
+        "endLine": 11,
+        "endChar": 53
+      },
+      "revId": "be5dfd5dae3d647a9747b14b02a50073ed4ef567",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0dc1ddba_4b691ee3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-01-26T23:21:05Z",
+      "side": 1,
+      "message": "Thank you for clarifying my misunderstanding.\n\nIf multiple Device IDs with the same Jami ID are online, with some Device IDs with that Jami ID currently in the conference, please allow Device IDs not in the conference with the same Jami IDs to be added as participants.\n\nThe Jami ID with the Device ID that is currently in the conference should not receive the invitation to join the active conference; however, please allow Device IDs (that are not in the conference) with that Jami ID to receive the invitation to join the active conference.",
+      "parentUuid": "4334c545_cda9fef1",
       "range": {
         "startLine": 10,
         "startChar": 29,
