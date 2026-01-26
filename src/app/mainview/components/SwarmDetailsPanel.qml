@@ -535,7 +535,7 @@ Item {
 
                     wrapMode: Text.WordWrap
 
-                    visible: documents.model.count === 0
+                    visible: documents.count === 0
                 }
             }
 
