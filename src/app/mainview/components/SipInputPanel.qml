@@ -23,7 +23,7 @@ import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import "../../commoncomponents"
 
-Item {
+Popup {
     id: root
 
     signal digitPressed(string digit)
@@ -47,11 +47,88 @@ Item {
     property alias radius: inputPanelContent.radius
     property alias topRightRadius: inputPanelContent.topRightRadius
     property alias bottomRightRadius: inputPanelContent.bottomRightRadius
+    property bool shown: false
+    property real popupX: 0
+    property real popupY: 0
+
+    // Transition properties for customizable animations
+    property real popupXHidden: popupX
+    property real popupXVisible: popupX
+    property bool playDTMFSound: true
 
     implicitWidth: inputPanelContent.implicitWidth
     implicitHeight: inputPanelContent.implicitHeight
 
-    Rectangle {
+    x: shown ? popupXVisible : popupXHidden
+    y: popupY
+    opacity: 0
+    visible: false
+
+    onShownChanged: {
+        if (shown) {
+            open();
+        } else {
+            close();
+        }
+    }
+
+    enter: Transition {
+        SequentialAnimation {
+            PropertyAction {
+                target: root
+                property: "visible"
+                value: true
+            }
+            ParallelAnimation {
+                NumberAnimation {
+                    target: root
+                    property: "opacity"
+                    from: 0
+                    to: 1
+                    duration: 250
+                    easing.type: Easing.OutCubic
+                }
+                NumberAnimation {
+                    target: root
+                    property: "x"
+                    from: root.popupXHidden
+                    to: root.popupXVisible
+                    duration: 250
+                    easing.type: Easing.OutCubic
+                }
+            }
+        }
+    }
+
+    exit: Transition {
+        SequentialAnimation {
+            ParallelAnimation {
+                NumberAnimation {
+                    target: root
+                    property: "opacity"
+                    from: 1
+                    to: 0
+                    duration: 250
+                    easing.type: Easing.OutCubic
+                }
+                NumberAnimation {
+                    target: root
+                    property: "x"
+                    from: root.popupXVisible
+                    to: root.popupXHidden
+                    duration: 250
+                    easing.type: Easing.OutCubic
+                }
+            }
+            PropertyAction {
+                target: root
+                property: "visible"
+                value: false
+            }
+        }
+    }
+
+    background: Rectangle {
         id: inputPanelContent
         implicitWidth: sipInputPanelRectGridLayout.implicitWidth + 20
         implicitHeight: sipInputPanelRectGridLayout.implicitHeight + 20
@@ -59,7 +136,6 @@ Item {
         bottomLeftRadius: JamiTheme.sipInputPanelRadius
         topRightRadius: JamiTheme.sipInputPanelRadius
         bottomRightRadius: JamiTheme.sipInputPanelRadius
-        anchors.fill: parent
 
         color: Qt.rgba(JamiTheme.globalIslandColor.r, JamiTheme.globalIslandColor.g, JamiTheme.globalIslandColor.b, 0.9)
 
@@ -74,68 +150,67 @@ Item {
             shadowVerticalOffset: JamiTheme.shadowVerticalOffset
             shadowOpacity: JamiTheme.shadowOpacity
         }
+    }
 
-        GridLayout {
-            id: sipInputPanelRectGridLayout
+    contentItem: GridLayout {
+        id: sipInputPanelRectGridLayout
 
-            anchors.centerIn: parent
+        columns: 3
 
-            columns: 3
+        Repeater {
+            id: sipInputPanelRectGridLayoutRepeater
+            model: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "*", "0", "#", "+"]
 
-            Repeater {
-                id: sipInputPanelRectGridLayoutRepeater
-                model: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "*", "0", "#", "+"]
+            RoundButton {
+                id: sipInputPanelButton
 
-                RoundButton {
-                    id: sipInputPanelButton
+                Layout.preferredWidth: JamiTheme.sipInputPanelKeyDiameter
+                Layout.preferredHeight: JamiTheme.sipInputPanelKeyDiameter
+                // Center the '+' button in its row
+                Layout.columnSpan: modelData === "+" ? 3 : 1
+                Layout.alignment: modelData === "+" ? Qt.AlignHCenter : 0
 
-                    Layout.preferredWidth: JamiTheme.sipInputPanelKeyDiameter
-                    Layout.preferredHeight: JamiTheme.sipInputPanelKeyDiameter
-                    // Center the '+' button in its row
-                    Layout.columnSpan: modelData === "+" ? 3 : 1
-                    Layout.alignment: modelData === "+" ? Qt.AlignHCenter : 0
+                contentItem: Item {
+                    anchors.fill: parent
 
-                    contentItem: Item {
-                        anchors.fill: parent
+                    Text {
+                        text: modelData
+                        font.pointSize: 12
+                        horizontalAlignment: Text.AlignHCenter
 
-                        Text {
-                            text: modelData
-                            font.pointSize: 12
-                            horizontalAlignment: Text.AlignHCenter
+                        color: JamiTheme.blackColor
 
-                            color: JamiTheme.blackColor
-
-                            anchors.horizontalCenter: parent.horizontalCenter
-                            anchors.top: digitToLetters[modelData] !== "" ? parent.top : undefined
-                            anchors.centerIn: digitToLetters[modelData] === "" ? parent : undefined
-                            anchors.topMargin: 6
-                        }
-                        Text {
-                            text: digitToLetters[modelData]
-                            font.pointSize: 6
-                            horizontalAlignment: Text.AlignHCenter
-
-                            color: JamiTheme.blackColor
-                            opacity: 0.8
-
-                            anchors.horizontalCenter: parent.horizontalCenter
-                            anchors.bottom: parent.bottom
-                            anchors.bottomMargin: 6
-
-                            visible: text !== ""
-                        }
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.top: root.digitToLetters[modelData] !== "" ? parent.top : undefined
+                        anchors.centerIn: root.digitToLetters[modelData] === "" ? parent : undefined
+                        anchors.topMargin: 6
                     }
+                    Text {
+                        text: root.digitToLetters[modelData]
+                        font.pointSize: 6
+                        horizontalAlignment: Text.AlignHCenter
 
-                    background: Rectangle {
-                        id: circle
-                        radius: width / 2
-                        color: sipInputPanelButton.down ? (JamiTheme.pressedButtonColor) : (sipInputPanelButton.hovered ? JamiTheme.hoveredButtonColor : JamiTheme.normalButtonColor)
+                        color: JamiTheme.blackColor
+                        opacity: 0.8
+
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.bottom: parent.bottom
+                        anchors.bottomMargin: 6
+
+                        visible: text !== ""
                     }
+                }
 
-                    onClicked: {
+                background: Rectangle {
+                    id: circle
+                    radius: width / 2
+                    color: sipInputPanelButton.down ? (JamiTheme.pressedButtonColor) : (sipInputPanelButton.hovered ? JamiTheme.hoveredButtonColor : JamiTheme.normalButtonColor)
+                }
+
+                onClicked: {
+                    if (root.playDTMFSound)
                         CallAdapter.sipInputPanelPlayDTMF(modelData);
-                        root.digitPressed(modelData);
-                    }
+                    root.digitPressed(modelData);
                 }
             }
         }
