@@ -738,7 +738,8 @@ Item {
     property real smartListItemHeight: 60//JamiTheme.smarListAvatarSize + JamiTheme.itemPadding * 2 + JamiTheme.itemMarginVertical * 2
 
     // Side panel
-    property real sidePanelIslandsPadding: 8
+    property real sidePanelIslandsSinglePaneModePadding: 8
+    property real sidePanelIslandsPadding: sidePanelIslandsSinglePaneModePadding * 2
     property real sidePanelConversationsIslandTopPadding: 16
     property real sidePanelConversationsIslandHorizontalPadding: 4
 

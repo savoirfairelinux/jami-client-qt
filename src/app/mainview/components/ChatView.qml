@@ -281,6 +281,8 @@ Rectangle {
             Layout.fillWidth: true
             Layout.fillHeight: true
 
+            handleOnMinor: true
+
             property real previousWidth: width
             onWidthChanged: {
                 resolvePanes();
