@@ -149,6 +149,7 @@ Rectangle {
                         Label {
                             id: containerLabel
 
+                            anchors.left: parent.left
                             anchors.verticalCenter: parent.verticalCenter
 
                             text: {
