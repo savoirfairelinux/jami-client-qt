@@ -339,6 +339,13 @@ Item {
     property string rendererId: qsTr("Renderer id")
     property string fps_short: qsTr("Fps")
 
+    // SIP Response Codes
+    property string sipResponse: qsTr("SIP Call Error: %1")
+    property string sipResponseCode: qsTr("Code %1")
+    property string sipResponseMessage: qsTr("An error %1 occurred during the call. Please try again. If the error persists, consider opening a ticket on the Jami GitLab: https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues")
+    property string sipResponse415Title: qsTr("Code 415 (Unsupported Media Type)")
+    property string sipResponse415Description: qsTr("The call likely failed due to mismatched codecs; because neither of the participants in this call have common codecs enabled. Please agree with the other participant(s) to enable at least one common video codec and at least one common audio codec to proceed with the call. If the error persists after checking codecs, please consider opening a ticket on the Jami GitLab: https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues. To change your codecs, navigate to: <br><br><b>Settings > Account > Advanced settings > Video Codecs / Audio Codecs.</b>")
+
     // Share location/position
     property string shareLocation: qsTr("Share location")
     property string stopSharingLocation: qsTr("Stop sharing")
