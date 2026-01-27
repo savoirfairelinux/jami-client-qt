@@ -105,6 +105,7 @@ public:
 
 Q_SIGNALS:
     void callStatusChanged(int index, const QString& accountId, const QString& convUid);
+    void callEndedWithError(int errorCode);
 
     // For Call Overlay
     void updateTimeText(const QString& time);
@@ -117,7 +118,7 @@ public Q_SLOTS:
     void onCallStatusChanged(const QString& accountId, const QString& callId, int code);
     void onCallAddedToConference(const QString& callId, const QString& conversationId, const QString& confId);
     void onCallStarted(const QString& callId);
-    void onCallEnded(const QString& callId);
+    void onCallEnded(const QString& callId, int code = 0);
     void onCallInfosChanged(const QString& accountId, const QString& callId);
     void onFallbackConversationSelected(const QString& accountId, const QString& conversationUid);
 

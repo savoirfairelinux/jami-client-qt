@@ -1658,7 +1658,7 @@ CallModelPimpl::slotCallStateChanged(const QString& accountId, const QString& ca
     Q_EMIT behaviorController.callStatusChanged(linked.owner.id, callId);
 
     if (call->status == call::Status::ENDED) {
-        Q_EMIT linked.callEnded(callId);
+        Q_EMIT linked.callEnded(callId, code);
 
         // Remove from pendingConferences_
         for (int i = 0; i < pendingConferencees_.size(); ++i) {
