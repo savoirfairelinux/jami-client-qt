@@ -40,6 +40,8 @@ int
 main(int argc, char* argv[])
 {
     setlocale(LC_ALL, "en_US.utf8");
+    // DEBUG Uncomment this to visualize overdraw in the renderer
+    // qputenv("QSG_VISUALIZE", "overdraw");
 
 #ifdef Q_OS_LINUX
     if (!getenv("QT_QPA_PLATFORMTHEME")) {
