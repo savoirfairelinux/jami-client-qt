@@ -120,8 +120,6 @@ BaseModalDialog {
 
             Accessible.name: objectName
 
-            // KeyNavigation.tab: clearButton
-
             onClicked: {
                 stopBooth();
                 var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
