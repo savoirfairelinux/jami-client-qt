@@ -646,6 +646,8 @@ Item {
     property string removeImage: qsTr("Remove profile picture")
     property string takePhoto: qsTr("Take photo")
     property string imageFiles: qsTr("Image files (*.jpeg *.jpg *.png *.JPEG* .JPG *.PNG)")
+    property string changeContactPhoto: qsTr("Change contact photo")
+    property string changeGroupPhoto: qsTr("Change group photo")
 
     // Extensions
     property string autoUpdate: qsTr("Auto update")

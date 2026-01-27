@@ -91,6 +91,17 @@ Item {
                 color: parent.hovered ? JamiTheme.hoveredButtonColor : JamiTheme.primaryBackgroundColor
             }
 
+            MaterialToolTip {
+                x: editImage.x + editImage.width / 2 - width / 2
+                y: editImage.y - editImage.height - 5
+
+                parent: imageLayer
+                text: CurrentConversation.isCoreDialog ? JamiStrings.changeContactPhoto : JamiStrings.changeGroupPhoto
+                delay: Qt.styleHints.mousePressAndHoldInterval
+
+                visible: editImage.hovered
+            }
+
             onClicked: viewCoordinator.presentDialog(parent, "commoncomponents/PhotoboothPopup.qml", {
                 "imageId": root.imageId,
                 "newItem": root.newItem
