@@ -31,6 +31,8 @@ SplitView {
     property string splitViewStateKey: objectName
     property bool autoManageState: !(parent instanceof BaseView)
 
+    property bool handleOnMinor: false
+
     // Add at top-level in SplitView:
     property bool _reordering: false
 
@@ -125,8 +127,12 @@ SplitView {
 
         containmentMask: Item {
             readonly property real extraHandleSize: 4
-            readonly property real handleXOffset: 16 * (UtilsAdapter.isRTL ? 1 : -1)
-            readonly property real handleXPosition: (!UtilsAdapter.isRTL ? 0 : -extraHandleSize) + handleXOffset
+
+            // Determine direction based on LTR/RTL and major/minor pane
+            readonly property real handleDirection: handleOnMinor ? (UtilsAdapter.isRTL ? -1 : 1) : (UtilsAdapter.isRTL ? 1 : -1)
+            readonly property real handleOffset: (handleOnMinor || !viewCoordinator.isInSinglePaneMode) ? JamiTheme.sidePanelIslandsPadding
+                                                                                                        : JamiTheme.sidePanelIslandsSinglePaneModePadding
+            readonly property real handleXPosition: handleDirection * handleOffset
             readonly property real handleSize: handleRoot.defaultSize + extraHandleSize
 
             x: control.orientation === Qt.Horizontal ? handleXPosition : 0

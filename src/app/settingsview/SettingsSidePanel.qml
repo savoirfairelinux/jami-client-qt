@@ -310,10 +310,13 @@ SidePanelBase {
 
     ColumnLayout {
         anchors.fill: parent
-        anchors.leftMargin: JamiTheme.sidePanelIslandsPadding
-        anchors.topMargin: JamiTheme.sidePanelIslandsPadding
-        anchors.bottomMargin: JamiTheme.sidePanelIslandsPadding
-        anchors.rightMargin: JamiTheme.sidePanelIslandsPadding * 2
+        anchors.margins: JamiTheme.sidePanelIslandsPadding
+        anchors.rightMargin: {
+            if (viewCoordinator.isInSinglePaneMode)
+                return JamiTheme.sidePanelIslandsSinglePaneModePadding;
+            else
+                return JamiTheme.sidePanelIslandsPadding;
+        }
 
         Item {
             Layout.fillWidth: true
