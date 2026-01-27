@@ -220,10 +220,16 @@ CallAdapter::onCallStarted(const QString& callId)
 }
 
 void
-CallAdapter::onCallEnded(const QString& callId)
+CallAdapter::onCallEnded(const QString& callId, int code)
 {
     if (lrcInstance_->get_selectedConvUid().isEmpty())
         return;
+
+    if (code != 0) {
+        // Emit signal to notify QML about the error code
+        Q_EMIT callEndedWithError(code);
+    }
+
     // update call Information list by removing information related to the callId
     callInformationListModel_->removeElement(callId);
 #ifdef HAVE_GLOBAL_PTT
