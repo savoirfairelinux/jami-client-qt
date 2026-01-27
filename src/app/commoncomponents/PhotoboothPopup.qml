@@ -95,7 +95,7 @@ BaseModalDialog {
             iconSource: JamiResources.add_a_photo_24dp_svg
             toolTipText: JamiStrings.takePhoto
 
-            enabled: VideoDevices.listSize !== 0
+            visible: VideoDevices.listSize !== 0
 
             onClicked: {
                 recordBox.parent = buttonsRowLayout;
