@@ -454,7 +454,7 @@ Q_SIGNALS:
      * Emitted when a call is over
      * @param callId
      */
-    void callEnded(const QString& callId) const;
+    void callEnded(const QString& callId, int code = 0) const;
     /**
      * Emitted when a new call is available
      * @param peerId the peer uri
