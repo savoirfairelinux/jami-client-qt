@@ -220,10 +220,16 @@ CallAdapter::onCallStarted(const QString& callId)
 }
 
 void
-CallAdapter::onCallEnded(const QString& callId)
+CallAdapter::onCallEnded(const QString& callId, int code)
 {
     if (lrcInstance_->get_selectedConvUid().isEmpty())
         return;
+    // only SIP codes greater than 400 are errors/failures and all SIP codes are less than 700
+    if (code >= 400 && code < 700) {
+        // Emit signal to notify QML about the error code
+        Q_EMIT callEndedWithError(code);
+    }
+
     // update call Information list by removing information related to the callId
     callInformationListModel_->removeElement(callId);
 #ifdef HAVE_GLOBAL_PTT
