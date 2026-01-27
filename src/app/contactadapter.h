@@ -25,6 +25,7 @@
 #include <QString>
 #include <QQmlEngine>   // QML registration
 #include <QApplication> // QML registration
+#include <qset.h>
 
 class LRCInstance;
 
@@ -57,10 +58,20 @@ public:
         filterPredicate_ = filterPredicate;
     }
 
+    void setSourceModel(QAbstractItemModel* sourceModel) override
+    {
+        connect(this, &QAbstractItemModel::layoutChanged, this, &SelectableProxyModel::clearCache);
+        QSortFilterProxyModel::setSourceModel(sourceModel);
+    }
+
     bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override
     {
         // Accept all contacts in conversation list filtered with account type, except those in a call.
         auto index = sourceModel()->index(sourceRow, 0, sourceParent);
+        const QString& memberURI = index.data(ConversationList::Role::URI).toString();
+        if (cache.contains(memberURI) && !memberURI.isEmpty())
+            return false;
+        cache << memberURI;
         return filterPredicate_ ? filterPredicate_(index, filterRegularExpression()) : false;
     }
 
@@ -72,8 +83,15 @@ public:
         return leftData.toUInt() < rightData.toUInt();
     };
 
+private Q_SLOTS:
+    void clearCache()
+    {
+        cache.clear();
+    }
+
 private:
     FilterPredicate filterPredicate_;
+    mutable QSet<QString> cache;
 };
 
 class ContactAdapter final : public QmlAdapterBase
