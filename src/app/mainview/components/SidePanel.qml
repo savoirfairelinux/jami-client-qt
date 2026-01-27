@@ -182,12 +182,12 @@ SidePanelBase {
         ColumnLayout {
             anchors.fill: parent
             // Creates The floating rectangle itself
-            anchors.margins: JamiTheme.sidePanelIslandsPadding
+            anchors.margins: JamiTheme.sidePanelIslandsSinglePaneModePadding
             anchors.rightMargin: {
                 if (viewCoordinator.isInSinglePaneMode)
-                    return JamiTheme.sidePanelIslandsPadding;
+                    return JamiTheme.sidePanelIslandsSinglePaneModePadding;
                 else
-                    return JamiTheme.sidePanelIslandsPadding * 2;
+                    return JamiTheme.sidePanelIslandsPadding;
             }
 
             Item {
