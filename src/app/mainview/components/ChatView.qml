@@ -343,6 +343,7 @@ Rectangle {
 
             ColumnLayout {
                 id: chatContents
+                property bool isMinorPane: true
                 SplitView.maximumWidth: root.width
                 SplitView.minimumWidth: JamiTheme.mainViewMajorPaneMinWidth
                 SplitView.fillWidth: true
@@ -427,6 +428,7 @@ Rectangle {
 
             ConversationExtrasPanel {
                 id: extrasPanel
+                property bool isMinorPane: false
 
                 SplitView.maximumWidth: root.width
                 SplitView.minimumWidth: JamiTheme.extrasPanelMinWidth
