@@ -193,6 +193,22 @@ Item {
             color: JamiQmlUtils.mainViewRectObj ? JamiQmlUtils.mainViewRectObj.baseColor : JamiTheme.globalBackgroundColor
             visible: root.inCallView
         }
+        Connections {
+            target: CallAdapter
+
+            property CallEndedWithErrorPopup popup: CallEndedWithErrorPopup {
+                id: callEndedWithErrorPopup
+            }
+
+            function onCallEndedWithError(errorCode) {
+                popup.showSIPCallStatusError(errorCode);
+            }
+        }
+
+        ChatViewHeader {
+            id: chatViewHeader
+            objectName: "chatViewHeader"
+            z: 3
 
         BackgroundGradient {
             anchors.top: parent.top
