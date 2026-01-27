@@ -121,6 +121,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "da904c0e_eb27b8e5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1118
+      },
+      "writtenOn": "2026-01-27T15:07:15Z",
+      "side": 1,
+      "message": "That would be a nice to have, but at the moment it makes more sense to restrict the **add participant** to new Jami IDs, even if some device IDs of some already present Jami IDs are not in the conference.\n\nFor now, a group call must be used to allow multiple devices of a same Jami ID to join the same conference.",
+      "parentUuid": "50b84efc_baf4fd6e",
+      "range": {
+        "startLine": 7,
+        "startChar": 34,
+        "endLine": 7,
+        "endChar": 46
+      },
+      "revId": "daf28dc5cf4c3c6dcc4d8eea36a1ffadbf68ea79",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "51d3c2d7_794a93fe",
         "filename": "/COMMIT_MSG",
         "patchSetId": 5
