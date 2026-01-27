@@ -89,22 +89,9 @@ Item {
                 anchors.centerIn: parent.contentItem
 
                 color: parent.hovered ? JamiTheme.hoveredButtonColor : JamiTheme.primaryBackgroundColor
-
-                // layer.enabled: true
-                // layer.effect: MultiEffect {
-                //     id: searchBarMultiEffect
-                //     anchors.fill: parent
-                //     shadowEnabled: true
-                //     shadowBlur: JamiTheme.shadowBlur
-                //     shadowColor: JamiTheme.shadowColor
-                //     shadowHorizontalOffset: JamiTheme.shadowHorizontalOffset
-                //     shadowVerticalOffset: JamiTheme.shadowVerticalOffset
-                //     shadowOpacity: JamiTheme.shadowOpacity
-                // }
             }
 
             onClicked: viewCoordinator.presentDialog(parent, "commoncomponents/PhotoboothPopup.qml", {
-                "parent": editImage,
                 "imageId": root.imageId,
                 "newItem": root.newItem
             })
