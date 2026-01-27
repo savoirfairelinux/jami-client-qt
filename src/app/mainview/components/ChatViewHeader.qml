@@ -192,7 +192,7 @@ Rectangle {
 
             iconSize: JamiTheme.iconButtonMedium
             iconSource: JamiResources.videocam_24dp_svg
-            toolTipText: JamiStrings.startAudioCall
+            toolTipText: JamiStrings.startVideoCall
 
             visible: CurrentConversation.activeCalls.length === 0 && interactionButtonsVisibility && CurrentAccount.videoEnabled_Video
 
