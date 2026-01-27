@@ -67,71 +67,15 @@ Item {
     SipInputPanel {
         id: sipInputPanel
 
-        x: root.width
         y: root.height / 2 - sipInputPanel.height / 2
 
         topRightRadius: 10
         bottomRightRadius: 10
-        property bool shown: false
-        visible: false
 
-        states: [
-            State {
-                name: "visible"
-                when: sipInputPanel.shown
-                PropertyChanges {
-                    target: sipInputPanel
-                    x: root.width - sipInputPanel.width
-                    visible: true
-                }
-            },
-            State {
-                name: "hidden"
-                when: !sipInputPanel.shown
-                PropertyChanges {
-                    target: sipInputPanel
-                    x: root.width
-                    visible: false
-                }
-            }
-        ]
+        popupXHidden: root.width
+        popupXVisible: root.width - sipInputPanel.width
 
-        transitions: [
-            Transition {
-                from: "hidden"
-                to: "visible"
-                SequentialAnimation {
-                    PropertyAction {
-                        target: sipInputPanel
-                        property: "visible"
-                        value: true
-                    }
-                    NumberAnimation {
-                        target: sipInputPanel
-                        property: "x"
-                        duration: 750
-                        easing.type: Easing.OutCubic
-                    }
-                }
-            },
-            Transition {
-                from: "visible"
-                to: "hidden"
-                SequentialAnimation {
-                    NumberAnimation {
-                        target: sipInputPanel
-                        property: "x"
-                        duration: 750
-                        easing.type: Easing.InCubic
-                    }
-                    PropertyAction {
-                        target: sipInputPanel
-                        property: "visible"
-                        value: false
-                    }
-                }
-            }
-        ]
+        shown: false
     }
 
     CallInformationOverlay {

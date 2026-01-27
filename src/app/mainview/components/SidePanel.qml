@@ -242,7 +242,7 @@ SidePanelBase {
 
                         QWKSetParentHitTestVisible {}
 
-                        visible: inNewSwarm //swarmMemberSearchList.visible
+                        visible: inNewSwarm
 
                         width: parent.width
                         height: 40
@@ -347,25 +347,21 @@ SidePanelBase {
                             visible: (!inNewSwarm) || CurrentAccount.type === Profile.Type.SIP
 
                             source: {
-                                if (visible) {
-                                    if (CurrentAccount.type !== Profile.Type.SIP) {
-                                        return JamiResources.create_swarm_svg;
-                                    } else {
-                                        return JamiResources.ic_keypad_svg;
-                                    }
-                                } else {
+                                if (CurrentAccount.type !== Profile.Type.SIP) {
+                                    return JamiResources.create_swarm_svg;
+                                } else if (sipInputPanelPopUp.shown) {
                                     return JamiResources.round_close_24dp_svg;
+                                } else {
+                                    return JamiResources.ic_keypad_svg;
                                 }
                             }
                             toolTipText: {
-                                if (visible) {
-                                    if (CurrentAccount.type !== Profile.Type.SIP) {
-                                        return JamiStrings.newGroup;
-                                    } else {
-                                        return JamiStrings.openKeypad;
-                                    }
+                                if (CurrentAccount.type !== Profile.Type.SIP) {
+                                    return JamiStrings.newGroup;
+                                } else if (!sipInputPanelPopUp.shown) {
+                                    return JamiStrings.openKeypad;
                                 } else {
-                                    return JamiStrings.cancel;
+                                    return JamiStrings.close;
                                 }
                             }
 
@@ -723,111 +719,13 @@ SidePanelBase {
 
         SipInputPanel {
             id: sipInputPanelPopUp
+
+            popupX: startConversation.x - sipInputPanelPopUp.width / 2 - 10
+            popupY: startConversation.y + startConversation.height + 24
+            shown: false
+
             onDigitPressed: {
                 contactSearchBar.textContent += digit;
-            }
-            x: startConversation.x - sipInputPanelPopUp.width / 2 - 10
-            y: startConversation.y + startConversation.height + 24
-            z: parent.z + 1
-            width: sipInputPanelPopUp.implicitWidth
-            height: sipInputPanelPopUp.implicitHeight
-            opacity: 0
-            transform: Translate {
-                id: sipTranslate
-                y: -10
-            }
-            property bool shown: false
-            visible: false
-            states: [
-                State {
-                    name: "visible"
-                    when: sipInputPanelPopUp.shown
-                    PropertyChanges {
-                        target: sipInputPanelPopUp
-                        opacity: 1.0
-                        visible: true
-                    }
-                    PropertyChanges {
-                        target: sipTranslate
-                        y: 0
-                    }
-                },
-                State {
-                    name: "hidden"
-                    when: !sipInputPanelPopUp.shown
-                    PropertyChanges {
-                        target: sipInputPanelPopUp
-                        opacity: 0.0
-                        // Do not set visible: false here; let the transition handle it
-                    }
-                    PropertyChanges {
-                        target: sipTranslate
-                        y: -10
-                    }
-                }
-            ]
-            transitions: [
-                Transition {
-                    from: "hidden"
-                    to: "visible"
-                    SequentialAnimation {
-                        PropertyAction {
-                            target: sipInputPanelPopUp
-                            property: "visible"
-                            value: true
-                        }
-                        ParallelAnimation {
-                            NumberAnimation {
-                                target: sipInputPanelPopUp
-                                property: "opacity"
-                                duration: 250
-                                easing.type: Easing.OutCubic
-                            }
-                            NumberAnimation {
-                                target: sipTranslate
-                                property: "y"
-                                duration: 250
-                                easing.type: Easing.OutCubic
-                            }
-                        }
-                    }
-                },
-                Transition {
-                    from: "visible"
-                    to: "hidden"
-                    SequentialAnimation {
-                        ParallelAnimation {
-                            NumberAnimation {
-                                target: sipInputPanelPopUp
-                                property: "opacity"
-                                duration: 250
-                                easing.type: Easing.InCubic
-                            }
-                            NumberAnimation {
-                                target: sipTranslate
-                                property: "y"
-                                duration: 250
-                                easing.type: Easing.InCubic
-                            }
-                        }
-                        PropertyAction {
-                            target: sipInputPanelPopUp
-                            property: "visible"
-                            value: false
-                        }
-                    }
-                }
-            ]
-        }
-    }
-
-    MouseArea {
-        anchors.fill: parent
-        enabled: sipInputPanelPopUp.visible || sipInputPanelPopUp.shown
-        hoverEnabled: true
-        onClicked: {
-            if ((mouseX < sipInputPanelPopUp.x || mouseX > sipInputPanelPopUp.x + sipInputPanelPopUp.width) || (mouseY < sipInputPanelPopUp.y || mouseY > sipInputPanelPopUp.y + sipInputPanelPopUp.height)) {
-                sipInputPanelPopUp.shown = false;
             }
         }
     }
