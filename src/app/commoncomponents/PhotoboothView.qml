@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 import QtQuick
 import QtQuick.Layouts
 import Qt.labs.platform
@@ -69,7 +70,8 @@ Item {
 
             icon.width: JamiTheme.iconButtonMedium
             icon.height: JamiTheme.iconButtonMedium
-            icon.color: enabled ? hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered : JamiTheme.buttonTintedGreyHovered
+            icon.color: enabled ? hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered :
+                                            JamiTheme.buttonTintedGreyHovered
             icon.source: JamiResources.round_edit_24dp_svg
 
             Behavior on icon.color {
@@ -88,13 +90,26 @@ Item {
                 radius: width / 2
                 anchors.centerIn: parent.contentItem
 
-                color: parent.hovered ? JamiTheme.hoveredButtonColor : JamiTheme.primaryBackgroundColor
+                color: parent.hovered ? JamiTheme.hoveredButtonColor :
+                                        JamiTheme.primaryBackgroundColor
             }
 
-            onClicked: viewCoordinator.presentDialog(parent, "commoncomponents/PhotoboothPopup.qml", {
-                "imageId": root.imageId,
-                "newItem": root.newItem
-            })
+            MaterialToolTip {
+                x: editImage.x + editImage.width / 2 - width / 2
+                y: editImage.y - editImage.height - 5
+
+                parent: imageLayer
+                text: JamiStrings.editProfilePicture
+                delay: Qt.styleHints.mousePressAndHoldInterval
+
+                visible: editImage.hovered
+            }
+
+            onClicked: viewCoordinator.presentDialog(parent, "commoncomponents/PhotoboothPopup.qml",
+                                                     {
+                                                         "imageId": root.imageId,
+                                                         "newItem": root.newItem
+                                                     })
         }
     }
 }
