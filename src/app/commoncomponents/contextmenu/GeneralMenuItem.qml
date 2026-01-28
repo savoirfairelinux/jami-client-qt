@@ -94,9 +94,5 @@ MenuItem {
         }
     }
 
-    onReleased: {
-        if (canTrigger) {
-            parentMenu.close();
-        }
-    }
+    onReleased: Qt.callLater(() => parentMenu && parentMenu.close())
 }
