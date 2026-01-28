@@ -41,6 +41,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "742f7b20_cd84cc9d",
+        "filename": "src/app/MainApplicationWindow.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2026-01-28T21:01:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ac92ad79_a7b1f094",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 36,
+        "endChar": 124
+      },
+      "revId": "a63dca34ff74a2c7309ced4ee88694ea65040664",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "338152cf_9b5dc11b",
@@ -54,6 +78,30 @@
       "writtenOn": "2026-01-19T20:16:04Z",
       "side": 1,
       "message": "this indentation is incorrect",
+      "range": {
+        "startLine": 521,
+        "startChar": 0,
+        "endLine": 527,
+        "endChar": 5
+      },
+      "revId": "a63dca34ff74a2c7309ced4ee88694ea65040664",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03312f64_58f3feaa",
+        "filename": "src/app/mainapplication.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2026-01-28T21:01:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "338152cf_9b5dc11b",
       "range": {
         "startLine": 521,
         "startChar": 0,
