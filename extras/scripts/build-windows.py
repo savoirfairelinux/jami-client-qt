@@ -212,8 +212,9 @@ def init_submodules():
         "3rdparty/tidy-html5",
         "3rdparty/zxing-cpp",
         "3rdparty/hunspell",
+        "3rdparty/qwindowkit",
     ]
-    if execute_cmd(["git", "submodule", "update", "--init" ] + submodules,
+    if execute_cmd(["git", "submodule", "update", "--recursive", "--init" ] + submodules,
                    False):
         print("Submodule initialization error.")
         sys.exit(1)
