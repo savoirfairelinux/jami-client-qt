@@ -37,7 +37,7 @@ Button {
     // the Button component
     icon.width: iconSize
     icon.height: iconSize
-    icon.color: enabled ? hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered : JamiTheme.buttonTintedGreyHovered
+    icon.color: enabled ? hovered || checked ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered : JamiTheme.buttonTintedGreyHovered
     icon.source: iconSource
 
     Behavior on icon.color {
@@ -56,7 +56,7 @@ Button {
         radius: height / 2
         anchors.centerIn: contentItem
 
-        opacity: root.hovered ? 1.0 : 0.0
+        opacity: root.hovered || root.checked ? 1.0 : 0.0
 
         color: JamiTheme.hoveredButtonColor
 
