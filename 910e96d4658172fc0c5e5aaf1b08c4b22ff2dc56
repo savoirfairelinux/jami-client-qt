@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f325e2ff_8cba47b6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-01-28T18:33:51Z",
+      "side": 1,
+      "message": "Can we use the submodule instead @maxim@guixotic.coop? https://review.jami.net/c/jami-client-qt/+/33005",
+      "revId": "910e96d4658172fc0c5e5aaf1b08c4b22ff2dc56",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
