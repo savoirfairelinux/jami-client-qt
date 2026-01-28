@@ -48,16 +48,13 @@ RowLayout {
         color: JamiTheme.textColor
     }
 
-    MaterialButton {
+    NewMaterialButton {
         id: button
 
-        preferredWidth: root.itemWidth
-        buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-        textLeftPadding: JamiTheme.buttontextWizzardPadding / 2
-        textRightPadding: JamiTheme.buttontextWizzardPadding / 2
+        implicitWidth: root.itemWidth
 
+        outlinedButton: true
         iconSource: root.source
-        secondary: true
 
         onClicked: settingMaterialButtonClicked()
     }
