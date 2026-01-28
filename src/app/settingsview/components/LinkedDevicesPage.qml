@@ -56,24 +56,17 @@ SettingsPageBase {
             lineHeight: JamiTheme.wizardViewTextLineHeight
         }
 
-        MaterialButton {
+        NewMaterialButton {
             id: linkDeviceBtn
 
-            TextMetrics {
-                id: linkDeviceBtnTextSize
-                font.weight: Font.Bold
-                font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
-                text: linkDeviceBtn.text
-            }
-
-            preferredWidth: linkDeviceBtnTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
+            Layout.alignment: Qt.AlignLeft
             Layout.bottomMargin: JamiTheme.preferredMarginSize
 
-            primary: true
-            Layout.alignment: Qt.AlignLeft
-
-            toolTipText: JamiStrings.tipLinkNewDevice
+            filledButton: true
+            iconSource: JamiResources.devices_24dp_svg
             text: JamiStrings.linkNewDevice
+            toolTipText: JamiStrings.tipLinkNewDevice
+
 
             onClicked: viewCoordinator.presentDialog(appWindow, "settingsview/components/LinkDeviceDialog.qml")
         }

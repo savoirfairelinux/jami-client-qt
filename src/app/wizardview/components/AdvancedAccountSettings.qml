@@ -253,28 +253,20 @@ Rectangle {
                                 lineHeight: JamiTheme.wizardViewTextLineHeight
                             }
 
-                            MaterialButton {
+                            NewMaterialButton {
                                 id: setButton
-
-                                TextMetrics {
-                                    id: setButtonTextSize
-                                    font.weight: Font.Bold
-                                    font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
-                                    text: setButton.text
-                                }
 
                                 visible: openedPassword
 
                                 Layout.topMargin: 10
                                 Layout.alignment: Qt.AlignCenter
-                                preferredWidth: setButtonTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
-                                text: JamiStrings.setPassword
-                                primary: true
 
-                                hoveredColor: checkEnable() ? JamiTheme.buttonTintedBlueHovered : JamiTheme.buttonTintedGreyInactive
-                                pressedColor: checkEnable() ? JamiTheme.buttonTintedBluePressed : JamiTheme.buttonTintedGreyInactive
+                                implicitWidth: parent.width
 
+                                filledButton: true
                                 color: checkEnable() ? JamiTheme.buttonTintedBlue : JamiTheme.buttonTintedGreyInactive
+
+                                text: JamiStrings.setPassword
 
                                 enabled: checkEnable()
 
