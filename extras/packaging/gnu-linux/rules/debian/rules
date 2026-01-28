@@ -84,7 +84,7 @@ override_dh_auto_build:
 
 override_dh_auto_clean:
 	# Daemon clean
-	rm -rfv daemon/contrib/native*
+	rm -rfv daemon/contrib/native* daemon/contrib/build*
 	rm -rfv daemon/jamid.1
 
 	# Qt client clean
