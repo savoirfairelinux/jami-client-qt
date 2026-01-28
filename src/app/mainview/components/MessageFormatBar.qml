@@ -127,10 +127,12 @@ Rectangle {
             }
 
             Rectangle {
-                height: JamiTheme.chatViewFooterButtonSize
-                color: JamiTheme.primaryBackgroundColor
-                visible: showTypo && showTypoSecond
                 width: 5
+                height: JamiTheme.chatViewFooterButtonSize
+
+                color: JamiTheme.primaryBackgroundColor
+
+                visible: showTypo && showTypoSecond
 
                 Rectangle {
                     anchors.verticalCenter: parent.verticalCenter
@@ -142,45 +144,47 @@ Rectangle {
             }
 
             Rectangle {
-                z: -1
-                radius: 0
-                color: JamiTheme.primaryBackgroundColor
+                anchors.verticalCenter: parent.verticalCenter
+
                 width: JamiTheme.chatViewFooterButtonSize
                 height: JamiTheme.chatViewFooterButtonSize
+                radius: 0
+
+                z: -1
+
+                color: JamiTheme.primaryBackgroundColor
 
                 visible: showTypo && !showTypoSecond
 
                 ComboBox {
                     id: showMoreTypoButton
 
-                    width: JamiTheme.chatViewFooterButtonSize
-                    height: width
+                    anchors.centerIn: parent
 
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.horizontalCenter: parent.horizontalCenter
+                    width: JamiTheme.chatViewFooterButtonSize
+                    height: JamiTheme.chatViewFooterButtonSize
 
                     enabled: !showPreview
                     hoverEnabled: !showPreview
 
-                    background: Rectangle {
-                        implicitWidth: showMoreTypoButton.width
-                        implicitHeight: showMoreTypoButton.height
-                        radius: JamiTheme.avatarBasedRadius
-                        color: showPreview ? JamiTheme.transparentColor : (parent && parent.hovered ? JamiTheme.hoveredButtonColor : JamiTheme.transparentColor)
-                    }
+                    background: null
 
                     indicator: NewIconButton {
-                        iconSize: JamiTheme.iconButtonMedium
+                        anchors.centerIn: parent
+                        iconSize: JamiTheme.iconButtonSmall
                         iconSource: JamiResources.more_vert_24dp_svg
                         toolTipText: markdownPopup.visible ? JamiStrings.showLess : JamiStrings.showMore
+
+                        checked: markdownPopup.visible
+
+                        onClicked: markdownPopup.visible ? markdownPopup.close() : markdownPopup.open()
                     }
 
                     popup: MarkdownPopup {
                         id: markdownPopup
-                        y: 1.5 * parent.height
+
                         x: -parent.width * 2
-                        width: listViewTypoSecond.width + 10
-                        height: JamiTheme.chatViewFooterButtonSize
+                        y: 1.5 * parent.height
 
                         menuTypoActionsSecond: listViewTypoSecond.menuTypoActionsSecond
                     }
