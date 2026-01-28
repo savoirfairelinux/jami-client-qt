@@ -529,27 +529,27 @@ def clean_contribs(contribs):
         sys.exit(1)
 
     # Let's find the native build source directory (native-*)
-    native_dir = ''
+    build_dir = ''
     for sub_dir in sub_dirs:
-        if sub_dir.startswith('native'):
-            native_dir = os.path.join(contrib_dir, sub_dir)
+        if sub_dir.startswith('native') or sub_dir.startswith('build'):
+            build_dir = os.path.join(contrib_dir, sub_dir)
             break
 
     # If we didn't find the native build source directory, we need to stop.
-    if native_dir == '':
+    if build_dir == '':
         print('Could not find the native build source directory. Exiting.')
         sys.exit(1)
 
     # If contribs is 'all', construct the list of all contribs from the contrib native directory
     # list of directories only
     if contribs == ['all']:
-        contribs = [d for d in os.listdir(native_dir) if os.path.isdir(os.path.join(native_dir, d))]
+        contribs = [d for d in os.listdir(build_dir) if os.path.isdir(os.path.join(build_dir, d))]
 
     # Clean each contrib
     for contrib in contribs:
-        print(f'Cleaning contrib: {contrib} for {abi_triplet} in {native_dir}')
-        build_dir = os.path.join(native_dir, contrib, '*')
-        build_stamp = os.path.join(native_dir, f'.{contrib}*')
+        print(f'Cleaning contrib: {contrib} for {abi_triplet} in {build_dir}')
+        build_dir = os.path.join(build_dir, contrib, '*')
+        build_stamp = os.path.join(build_dir, f'.{contrib}*')
         tarball = os.path.join(contrib_dir, 'tarballs', f'{contrib}*.tar.*')
         bins = os.path.join(contrib_dir, abi_triplet, 'bin', contrib)
         libs = os.path.join(contrib_dir, abi_triplet, 'lib', f'lib{contrib}*')
