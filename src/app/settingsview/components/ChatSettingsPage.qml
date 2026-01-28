@@ -84,16 +84,16 @@ SettingsPageBase {
             }
 
             // A button to open the dictionary install view as a popup
-            MaterialButton {
+            NewMaterialButton {
                 id: dictionaryInstallButton
 
-                secondary: true
-
-                preferredWidth: itemWidth
-                height: spellCheckLangComboBoxSetting.comboBox.height
                 Layout.alignment: Qt.AlignRight
 
+                implicitWidth: itemWidth
+                // height: spellCheckLangComboBoxSetting.comboBox.height
+                outlinedButton: true
                 text: JamiStrings.dictionaryManager
+
                 onClicked: {
                     viewCoordinator.presentDialog(appWindow, "commoncomponents/DictionaryManagerDialog.qml");
                 }
@@ -279,23 +279,14 @@ SettingsPageBase {
             }
         }
 
-        MaterialButton {
+        NewMaterialButton {
             id: defaultSettings
 
             Layout.topMargin: 20
 
-            TextMetrics {
-                id: defaultSettingsTextSize
-                font.weight: Font.Bold
-                font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
-                font.capitalization: Font.AllUppercase
-                text: defaultSettings.text
-            }
-
-            secondary: true
-
+            outlinedButton: true
+            iconSource: JamiResources.settings_backup_restore_24dp_svg
             text: JamiStrings.defaultSettings
-            preferredWidth: defaultSettingsTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
 
             onClicked: {
                 autoAcceptFilesCheckbox.checked = UtilsAdapter.getDefault(Settings.Key.AutoAcceptFiles);

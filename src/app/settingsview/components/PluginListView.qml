@@ -67,21 +67,12 @@ Rectangle {
                     PluginAdapter.setAutoUpdate(isAutoUpdate);
                 }
             }
-            MaterialButton {
+            NewMaterialButton {
                 id: disableAll
-                radius: JamiTheme.chatViewHeaderButtonRadius
-                buttontextHeightMargin: 10.0
-                TextMetrics {
-                    id: disableTextSize
-                    font.weight: Font.Bold
-                    font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
-                    font.capitalization: Font.AllUppercase
-                    text: JamiStrings.disableAll
-                }
-                secondary: true
-                preferredWidth: disableTextSize.width + 2
+
+                outlinedButton: true
                 text: JamiStrings.disableAll
-                fontSize: JamiTheme.wizardViewButtonFontPixelSize
+
                 onClicked: PluginListModel.disableAllPlugins()
             }
         }

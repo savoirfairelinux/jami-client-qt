@@ -226,19 +226,16 @@ SettingsPageBase {
                     verticalAlignment: Text.AlignVCenter
                 }
 
-                MaterialButton {
+                NewMaterialButton {
                     id: recordPathButton
 
                     Layout.alignment: Qt.AlignRight
 
-                    preferredWidth: itemWidth
-                    buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-                    textLeftPadding: JamiTheme.buttontextWizzardPadding
-                    textRightPadding: JamiTheme.buttontextWizzardPadding
+                    implicitWidth: itemWidth
 
-                    toolTipText: recordPath
+                    outlinedButton: true
                     text: recordPathBestName
-                    secondary: true
+                    toolTipText: recordPath
 
                     onClicked: recordPathDialog.open()
                 }
@@ -262,19 +259,17 @@ SettingsPageBase {
                     verticalAlignment: Text.AlignVCenter
                 }
 
-                MaterialButton {
+                NewMaterialButton {
                     id: screenshotPathButton
 
                     Layout.alignment: Qt.AlignRight
 
-                    preferredWidth: itemWidth
-                    buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-                    textLeftPadding: JamiTheme.buttontextWizzardPadding
-                    textRightPadding: JamiTheme.buttontextWizzardPadding
+                    implicitWidth: itemWidth
 
-                    toolTipText: screenshotPath
-                    text: screenshotPathBestName
-                    secondary: true
+                    outlinedButton: true
+                    text: recordPathBestName
+                    toolTipText: recordPath
+
                     onClicked: screenshotPathDialog.open()
                 }
             }

@@ -134,19 +134,16 @@ SettingsPageBase {
                     verticalAlignment: Text.AlignVCenter
                 }
 
-                MaterialButton {
+                NewMaterialButton {
                     id: downloadButton
 
                     Layout.alignment: Qt.AlignRight
 
-                    preferredWidth: itemWidth
-                    buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-                    textLeftPadding: JamiTheme.buttontextWizzardPadding
-                    textRightPadding: JamiTheme.buttontextWizzardPadding
+                    implicitWidth: itemWidth
+                    outlinedButton: true
 
                     toolTipText: downloadPath
                     text: downloadPathBestName
-                    secondary: true
 
                     onClicked: downloadPathDialog.open()
                 }
@@ -186,21 +183,12 @@ SettingsPageBase {
             }
         }
 
-        MaterialButton {
+        NewMaterialButton {
             id: defaultSettings
 
-            TextMetrics {
-                id: textSize
-                font.weight: Font.Bold
-                font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
-                font.capitalization: Font.AllUppercase
-                text: defaultSettings.text
-            }
-
-            secondary: true
-
+            outlinedButton: true
+            iconSource: JamiResources.settings_backup_restore_24dp_svg
             text: JamiStrings.defaultSettings
-            preferredWidth: textSize.width + 2 * JamiTheme.buttontextWizzardPadding
 
             onClicked: {
                 notificationCheckBox.checked = UtilsAdapter.getDefault(Settings.Key.EnableNotifications);

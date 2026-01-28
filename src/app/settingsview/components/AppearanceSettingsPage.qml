@@ -313,21 +313,12 @@ SettingsPageBase {
             onSwitchToggled: UtilsAdapter.setAppValue(Settings.Key.UseFramelessWindow, !checked)
         }
 
-        MaterialButton {
+        NewMaterialButton {
             id: defaultSettings
 
-            TextMetrics {
-                id: defaultSettingsTextSize
-                font.weight: Font.Bold
-                font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
-                font.capitalization: Font.AllUppercase
-                text: defaultSettings.text
-            }
-
-            secondary: true
-
+            outlinedButton: true
+            iconSource: JamiResources.settings_backup_restore_24dp_svg
             text: JamiStrings.defaultSettings
-            preferredWidth: defaultSettingsTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
 
             onClicked: {
                 zoomSpinBox.value = Math.round(UtilsAdapter.getDefault(Settings.BaseZoom) * 100.0);
