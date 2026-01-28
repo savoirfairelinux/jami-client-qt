@@ -183,21 +183,12 @@ SettingsPageBase {
             }
         }
 
-        MaterialButton {
+        NewMaterialButton {
             id: defaultSettings
 
-            TextMetrics {
-                id: defaultSettingsTextSize
-                font.weight: Font.Bold
-                font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
-                font.capitalization: Font.AllUppercase
-                text: defaultSettings.text
-            }
-
-            secondary: true
-
+            outlinedButton: true
+            iconSource: JamiResources.settings_backup_restore_24dp_svg
             text: JamiStrings.defaultSettings
-            preferredWidth: defaultSettingsTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
 
             onClicked: {
                 timeSharingSlider.value = Math.log(UtilsAdapter.getDefault(Settings.Key.PositionShareDuration));

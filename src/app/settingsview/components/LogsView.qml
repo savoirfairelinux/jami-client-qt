@@ -118,22 +118,18 @@ Window {
                 }
             }
 
-            MaterialButton {
+            NewMaterialButton {
                 id: clearButton
 
                 Layout.alignment: Qt.AlignHCenter
                 Layout.topMargin: JamiTheme.preferredMarginSize
                 Layout.bottomMargin: JamiTheme.preferredMarginSize
 
-                preferredWidth: itemWidth / widthDivisor
-                buttontextHeightMargin: JamiTheme.buttontextHeightMargin
+                //implicitWidth: itemWidth / widthDivisor
 
-                secondary: true
+                outlinedButton: true
                 color: JamiTheme.buttonTintedBlack
-                hoveredColor: JamiTheme.buttonTintedBlackHovered
-                pressedColor: JamiTheme.buttonTintedBlackPressed
                 text: JamiStrings.logsViewClear
-                autoAccelerator: true
 
                 onClicked: {
                     logsText.clear();
@@ -145,21 +141,17 @@ Window {
                 }
             }
 
-            MaterialButton {
+            NewMaterialButton {
                 id: copyButton
 
                 Layout.alignment: Qt.AlignHCenter
 
-                preferredWidth: itemWidth / widthDivisor
-                buttontextHeightMargin: JamiTheme.buttontextHeightMargin
+                implicitWidth: itemWidth / widthDivisor
 
                 color: JamiTheme.buttonTintedBlack
-                hoveredColor: JamiTheme.buttonTintedBlackHovered
-                pressedColor: JamiTheme.buttonTintedBlackPressed
 
-                secondary: true
+                outlinedButton: true
                 text: JamiStrings.logsViewCopy
-                autoAccelerator: true
 
                 onClicked: {
                     logsText.selectAll();
@@ -168,6 +160,7 @@ Window {
                     copiedToolTip.open();
                 }
 
+                // Manual tooltip override to open tooltip on copy only
                 MaterialToolTip {
                     id: copiedToolTip
 
@@ -176,7 +169,7 @@ Window {
                 }
             }
 
-            MaterialButton {
+            NewMaterialButton {
                 id: reportButton
 
                 Layout.alignment: Qt.AlignHCenter
@@ -184,15 +177,9 @@ Window {
                 Layout.bottomMargin: JamiTheme.preferredMarginSize
                 Layout.rightMargin: JamiTheme.preferredMarginSize
 
-                preferredWidth: itemWidth / widthDivisor
-                buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-
+                outlinedButton: true
                 color: JamiTheme.buttonTintedBlack
-                hoveredColor: JamiTheme.buttonTintedBlackHovered
-                pressedColor: JamiTheme.buttonTintedBlackPressed
                 text: JamiStrings.logsViewReport
-                secondary: true
-                autoAccelerator: true
 
                 onClicked: Qt.openUrlExternally("https://jami.net/bugs-and-improvements/")
             }

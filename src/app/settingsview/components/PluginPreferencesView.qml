@@ -260,21 +260,17 @@ Item {
                             }
                         }
                     }
-                    MaterialButton {
+                    NewMaterialButton {
                         id: uninstallButton
+
                         Layout.topMargin: 20
                         Layout.alignment: Qt.AlignCenter
 
-                        preferredWidth: JamiTheme.preferredFieldWidth
-                        buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-                        contentColorProvider: JamiTheme.buttonTintedRed
-                        color: JamiTheme.buttonTintedBlack
-                        hoveredColor: JamiTheme.buttonTintedBlackHovered
-                        pressedColor: JamiTheme.buttonTintedBlackPressed
-                        tertiary: true
-                        toolTipText: JamiStrings.confirmExtensionUninstall.arg(PluginId)
+                        textButton: true
 
+                        color: JamiTheme.buttonTintedBlack
                         text: JamiStrings.uninstall
+                        toolTipText: JamiStrings.confirmExtensionUninstall.arg(PluginId)
 
                         onClicked: viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
                                 "title": JamiStrings.uninstallExtension,

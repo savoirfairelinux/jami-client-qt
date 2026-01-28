@@ -96,24 +96,12 @@ SettingsPageBase {
                     color: JamiTheme.textColor
                 }
 
-                MaterialButton {
+                NewMaterialButton {
                     id: enableTroubleshootingButton
-
-                    TextMetrics {
-                        id: enableTroubleshootingButtonTextSize
-                        font.weight: Font.Bold
-                        font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
-                        font.capitalization: Font.AllUppercase
-                        text: enableTroubleshootingButton.text
-                    }
 
                     Layout.alignment: Qt.AlignRight
 
-                    preferredWidth: enableTroubleshootingButtonTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
-                    buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-
-                    primary: true
-
+                    filledButton: true
                     text: JamiStrings.troubleshootButton
                     toolTipText: JamiStrings.troubleshootButton
 
