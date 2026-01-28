@@ -126,10 +126,10 @@ if(ENABLE_CRASHPAD)
   endif()
 endif()
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 if(NOT MSVC)
-  set(CMAKE_CXX_FLAGS_DEBUG "-Og -ggdb")
+  set(CMAKE_CXX_FLAGS_DEBUG "-Og")
 endif()
 
 set(CMAKE_AUTOMOC ON)
@@ -503,7 +503,7 @@ if(MSVC)
   add_compile_options(
     /wd4068 /wd4099 /wd4189 /wd4267 /wd4577 /wd4467 /wd4715 /wd4828)
   add_compile_options(
-    /MP /GS /W3 /Gy /Zc:wchar_t /Zi /Gm- /O2 /Zc:inline /fp:precise)
+    /MP /GS /W3 /Gy /Zc:__cplusplus /Zc:wchar_t /Zi /Gm- /O2 /Zc:inline /fp:precise)
   add_compile_options(/Gd /Oi /MD /FC /EHsc /nologo /sdl)
 
   # linker options
