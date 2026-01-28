@@ -22,6 +22,30 @@
       },
       "revId": "ae2eb5d349b5fc6d7667a21fab0ce7c9afe6e5e3",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "050e57fb_26a15392",
+        "filename": "src/app/commoncomponents/contextmenu/GeneralMenuItem.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-01-28T21:27:37Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "f7d7db73_d73dd863",
+      "range": {
+        "startLine": 97,
+        "startChar": 4,
+        "endLine": 107,
+        "endChar": 5
+      },
+      "revId": "ae2eb5d349b5fc6d7667a21fab0ce7c9afe6e5e3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
