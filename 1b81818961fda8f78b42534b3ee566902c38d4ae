@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c383058_fb1d6c83",
+        "filename": "extras/scripts/build-windows.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-01-28T18:54:19Z",
+      "side": 1,
+      "message": "qwindowkit also needs to be added in the Linux packaging scripts (`extras/packaging/gnu-linux/Jenkinsfile` and `extras/packaging/gnu-linux/Makefile`).",
+      "range": {
+        "startLine": 215,
+        "startChar": 8,
+        "endLine": 215,
+        "endChar": 29
+      },
+      "revId": "1b81818961fda8f78b42534b3ee566902c38d4ae",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
