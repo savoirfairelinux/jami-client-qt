@@ -94,6 +94,12 @@ MenuItem {
         }
     }
 
+    onPressed: {
+        if (canTrigger) {
+            clicked();
+        }
+    }
+
     onReleased: {
         if (canTrigger) {
             parentMenu.close();
