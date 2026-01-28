@@ -26,60 +26,44 @@ import "../mainview/components"
 
 Popup {
     id: root
-    padding: 0
+
     property list<Action> menuTypoActionsSecond
+
+    width: contentWidth
+    height: JamiTheme.chatViewFooterButtonSize
+
+    padding: 0
 
     focus: true
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
-    contentItem: ListView {
-        id: listViewTypoSecond
+    contentItem: RowLayout {
+        spacing: 4
 
-        width: contentWidth + leftMargin + rightMargin
-        height: JamiTheme.chatViewFooterButtonSize
-        orientation: ListView.Horizontal
-        interactive: false
-        leftMargin: 10
-        rightMargin: 10
-        spacing: 10
+        Repeater {
+            model: menuTypoActionsSecond
 
-        Rectangle {
-            anchors.fill: parent
-            color: JamiTheme.chatViewFooterListColor
-            radius: 5
-            z: -1
-        }
+            delegate: NewIconButton {
+                Layout.fillHeight: true
+                Layout.alignment: Qt.AlignVCenter
 
-        model: menuTypoActionsSecond
+                iconSize: JamiTheme.iconButtonSmall
+                toolTipText: modelData.shortcutText
+                toolTipShortcutKey: modelData.shortcutKey
+                iconSource: modelData.iconSrc
 
-        delegate: PushButton {
-            anchors.verticalCenter: parent ? parent.verticalCenter : undefined
-
-            preferredSize: JamiTheme.chatViewFooterRealButtonSize
-            imageContainerWidth: 20
-            imageContainerHeight: 20
-            radius: 5
-
-            toolTipText: modelData.shortcutText
-            shortcutKey: modelData.shortcutKey
-            hasShortcut: true
-            source: modelData.iconSrc
-            focusPolicy: Qt.TabFocus
-
-            normalColor: JamiTheme.chatViewFooterListColor
-            imageColor: JamiTheme.chatViewFooterImgHoverColor
-            hoveredColor: JamiTheme.showMoreButtonOpenColor
-            pressedColor: hoveredColor
-
-            action: modelData
+                action: modelData
+            }
         }
     }
 
     background: Rectangle {
         anchors.fill: parent
-        color: JamiTheme.chatViewFooterListColor
-        radius: 5
+
         z: -1
+
+        color: JamiTheme.chatViewFooterListColor
+        radius: height / 2
     }
 
     enter: Transition {
