@@ -259,18 +259,14 @@ SettingsPageBase {
                     verticalAlignment: Text.AlignVCenter
                 }
 
-                MaterialButton {
+                NewMaterialButton {
                     id: addDefaultModeratorPushButton
 
                     Layout.alignment: Qt.AlignCenter
 
-                    preferredWidth: textSize.width + 2 * JamiTheme.buttontextWizzardPadding
-                    buttontextHeightMargin: JamiTheme.buttontextHeightMargin
-
-                    primary: true
-                    toolTipText: JamiStrings.addDefaultModerator
-
+                    filledButton: true
                     text: JamiStrings.addModerator
+                    toolTipText: JamiStrings.addDefaultModerator
 
                     onClicked: {
                         ContactPickerCreation.presentContactPickerPopup(ContactList.CONVERSATION, appWindow);

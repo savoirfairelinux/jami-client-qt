@@ -103,25 +103,14 @@ ItemDelegate {
             }
         }
 
-        MaterialButton {
+        NewMaterialButton {
             id: btnContact
 
             Layout.rightMargin: 16
 
-            TextMetrics {
-                id: textSize
-                font.weight: Font.Bold
-                font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
-                font.capitalization: Font.AllUppercase
-                text: btnContact.text
-            }
-
-            secondary: true
-            buttontextHeightMargin: 14
+            outlinedButton: true
 
             text: btnImgSource
-            preferredWidth: textSize.width + 2 * JamiTheme.buttontextWizzardPadding
-
             toolTipText: btnToolTip
 
             onClicked: btnContactClicked()
