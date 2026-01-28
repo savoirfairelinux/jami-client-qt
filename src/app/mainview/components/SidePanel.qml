@@ -383,7 +383,7 @@ SidePanelBase {
                     SidePanelTabBar {
                         id: sidePanelTabBar
 
-                        visible: ConversationsAdapter.pendingRequestCount && !contactSearchBar.textContent && smartListLayout.visible
+                        visible: ConversationsAdapter.pendingRequestCount && !contactSearchBar.textContent
 
                         contentHeight: childrenRect.height
                         width: parent.width
@@ -440,7 +440,6 @@ SidePanelBase {
                         Layout.fillHeight: true
 
                         visible: !smartListLayout.visible && !swarmMemberSearchList.visible && !(contactSearchBar.textContent !== "" && searchResultsListView.count === 0)
-                        enabled: false
 
                         ColumnLayout {
                             anchors.centerIn: parent
