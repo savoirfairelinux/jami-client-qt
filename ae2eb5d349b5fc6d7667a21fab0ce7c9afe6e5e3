@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7d7db73_d73dd863",
+        "filename": "src/app/commoncomponents/contextmenu/GeneralMenuItem.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-01-28T21:23:27Z",
+      "side": 1,
+      "message": "```suggestion\n    onReleased: Qt.callLater(() \u003d\u003e parentMenu \u0026\u0026 parentMenu.close())\n```",
+      "range": {
+        "startLine": 97,
+        "startChar": 4,
+        "endLine": 107,
+        "endChar": 5
+      },
+      "revId": "ae2eb5d349b5fc6d7667a21fab0ce7c9afe6e5e3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
