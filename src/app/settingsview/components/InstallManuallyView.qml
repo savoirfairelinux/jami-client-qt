@@ -60,20 +60,12 @@ ColumnLayout {
         lineHeight: 1.5
         textFormat: Text.PlainText
     }
-    MaterialButton {
+    NewMaterialButton {
         id: installManually
 
-        TextMetrics {
-            id: textSize
-            font.weight: Font.Black
-            font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
-            font.capitalization: Font.AllUppercase
-            text: installManually.text
-        }
-        primary: true
-        preferredWidth: textSize.width + 2 * JamiTheme.buttontextWizzardPadding
+        filledButton: true
         text: JamiStrings.install
-        fontSize: JamiTheme.popuptextSize
+
         onClicked: installPlugin()
     }
 }

@@ -201,23 +201,15 @@ SettingsPageBase {
                 lineHeight: JamiTheme.wizardViewTextLineHeight
             }
 
-            MaterialButton {
+            NewMaterialButton {
                 id: linkDeviceBtn
 
-                TextMetrics {
-                    id: linkDeviceBtnTextSize
-                    font.weight: Font.Bold
-                    font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
-                    text: linkDeviceBtn.text
-                }
-
-                preferredWidth: linkDeviceBtnTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
-
-                primary: true
                 Layout.alignment: Qt.AlignLeft
 
-                toolTipText: JamiStrings.tipLinkNewDevice
+                filledButton: true
+                iconSource: JamiResources.devices_24dp_svg
                 text: JamiStrings.linkNewDevice
+                toolTipText: JamiStrings.tipLinkNewDevice
 
                 onClicked: viewCoordinator.presentDialog(appWindow, "settingsview/components/LinkDeviceDialog.qml")
             }
@@ -263,27 +255,19 @@ SettingsPageBase {
                 lineHeight: JamiTheme.wizardViewTextLineHeight
             }
 
-            MaterialButton {
+            NewMaterialButton {
                 id: passwdPushButton
 
-                TextMetrics {
-                    id: passwdPushButtonTextSize
-                    font.weight: Font.Bold
-                    font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
-                    text: passwdPushButton.text
-                }
-
-                preferredWidth: passwdPushButtonTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
-
-                primary: true
                 Layout.alignment: Qt.AlignLeft
 
-                toolTipText: CurrentAccount.hasArchivePassword ? JamiStrings.changeCurrentPassword : JamiStrings.setAPassword
+                filledButton: true
+                iconSource: JamiResources.password_24dp_svg
                 text: CurrentAccount.hasArchivePassword ? JamiStrings.changePassword : JamiStrings.setPassword
+                toolTipText: CurrentAccount.hasArchivePassword ? JamiStrings.changeCurrentPassword : JamiStrings.setAPassword
 
                 onClicked: viewCoordinator.presentDialog(appWindow, "commoncomponents/PasswordDialog.qml", {
-                        "purpose": CurrentAccount.hasArchivePassword ? PasswordDialog.ChangePassword : PasswordDialog.SetPassword
-                    })
+                                                             "purpose": CurrentAccount.hasArchivePassword ? PasswordDialog.ChangePassword : PasswordDialog.SetPassword
+                                                         })
             }
         }
 
@@ -326,51 +310,44 @@ SettingsPageBase {
                 lineHeight: JamiTheme.wizardViewTextLineHeight
             }
 
-            MaterialButton {
+            NewMaterialButton {
                 id: btnExportAccount
 
-                TextMetrics {
-                    id: btnExportAccountTextSize
-                    font.weight: Font.Bold
-                    font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
-                    text: btnExportAccount.text
-                }
-
-                preferredWidth: btnExportAccountTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
-                primary: true
                 Layout.alignment: Qt.AlignLeft
 
+                filledButton: true
+                iconSource: JamiResources.folder_zip_24dp_svg
                 toolTipText: JamiStrings.tipBackupAccount
                 text: JamiStrings.saveAccountTitle
 
                 onClicked: {
                     var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
-                            "title": JamiStrings.backupAccountHere,
-                            "fileMode": FileDialog.SaveFile,
-                            "folder": StandardPaths.writableLocation(StandardPaths.DesktopLocation),
-                            "nameFilters": [JamiStrings.jamiAccountFiles, JamiStrings.allFiles],
-                            "defaultSuffix": ".jac"
-                        });
+                                                                "title": JamiStrings.backupAccountHere,
+                                                                "fileMode": FileDialog.SaveFile,
+                                                                "folder": StandardPaths.writableLocation(StandardPaths.DesktopLocation),
+                                                                "nameFilters": [JamiStrings.jamiAccountFiles, JamiStrings.allFiles],
+                                                                "defaultSuffix": ".jac"
+                                                            });
                     dlg.fileAccepted.connect(function (file) {
-                            // is there password? If so, go to password dialog, else, go to following directly
-                            var exportPath = UtilsAdapter.getAbsPath(file.toString());
-                            if (CurrentAccount.hasArchivePassword) {
-                                viewCoordinator.presentDialog(appWindow, "commoncomponents/PasswordDialog.qml", {
-                                        "purpose": PasswordDialog.ExportAccount,
-                                        "path": exportPath
-                                    });
-                                return;
-                            } else if (exportPath.length > 0) {
-                                var success = AccountAdapter.model.exportToFile(LRCInstance.currentAccountId, exportPath);
-                                viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
-                                        "title": success ? JamiStrings.success : JamiStrings.error,
-                                        "infoText": success ? JamiStrings.backupSuccessful : JamiStrings.backupFailed,
-                                        "buttonTitles": [JamiStrings.optionOk],
-                                        "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
-                                        "buttonRoles": [DialogButtonBox.AcceptRole]
-                                    });
-                            }
-                        });
+                        // is there password? If so, go to password dialog, else, go to following directly
+                        var exportPath = UtilsAdapter.getAbsPath(file.toString());
+                        if (CurrentAccount.hasArchivePassword) {
+                            viewCoordinator.presentDialog(appWindow, "commoncomponents/PasswordDialog.qml", {
+                                                              "purpose": PasswordDialog.ExportAccount,
+                                                              "path": exportPath
+                                                          });
+                            return;
+                        } else if (exportPath.length > 0) {
+                            var success = AccountAdapter.model.exportToFile(LRCInstance.currentAccountId, exportPath);
+                            viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
+                                                              "title": success ? JamiStrings.success : JamiStrings.error,
+                                                              "infoText": success ? JamiStrings.backupSuccessful : JamiStrings.backupFailed,
+                                                              "buttonTitles": [JamiStrings.optionOk],
+                                                              "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
+                                                              "buttonRoles": [DialogButtonBox.AcceptRole]
+                                                          });
+                        }
+                    });
                 }
             }
         }
@@ -442,32 +419,22 @@ SettingsPageBase {
                 lineHeight: JamiTheme.wizardViewTextLineHeight
             }
 
-            MaterialButton {
+            NewMaterialButton {
                 id: deleteAccountPushButton
 
-                TextMetrics {
-                    id: deleteAccountPushButtonTextSize
-                    font.weight: Font.Bold
-                    font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
-                    text: deleteAccountPushButton.text
-                }
-
-                preferredWidth: deleteAccountPushButtonTextSize.width + 2 * JamiTheme.buttontextWizzardPadding
-
-                primary: true
                 Layout.alignment: Qt.AlignLeft
                 Layout.rightMargin: JamiTheme.preferredMarginSize
 
-                color: JamiTheme.buttonTintedRed
-                hoveredColor: JamiTheme.buttonTintedRedHovered
-                pressedColor: JamiTheme.buttonTintedRedPressed
+                filledButton: true
 
+                color: JamiTheme.buttonTintedRed
+                iconSource: JamiResources.delete_forever_24dp_svg
                 text: JamiStrings.deleteAccount
 
                 onClicked: {
                     var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/DeleteAccountDialog.qml", {
-                            "isSIP": CurrentAccount.type === Profile.Type.SIP
-                        });
+                                                                "isSIP": CurrentAccount.type === Profile.Type.SIP
+                                                            });
                     dlg.accepted.connect(navigateToMainView);
                 }
             }

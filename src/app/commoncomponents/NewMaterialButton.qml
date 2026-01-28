@@ -59,7 +59,7 @@ T.Button {
     icon.width: JamiTheme.iconButtonMedium
     icon.height: JamiTheme.iconButtonMedium
     icon.color: {
-        if (root.hovered || root.activeFocus) {
+        if (root.enabled && (root.hovered || root.activeFocus)) {
             if (root.filledButton)
                 JamiTheme.whiteColor;
             else if (root.outlinedButton)
@@ -91,7 +91,7 @@ T.Button {
         text: root.text
         font.pixelSize: JamiTheme.buttontextFontPixelSize
         color: {
-            if (root.hovered || root.activeFocus) {
+            if (root.enabled && (root.hovered || root.activeFocus)) {
                 if (root.filledButton)
                     JamiTheme.whiteColor;
                 else if (root.outlinedButton)
@@ -153,6 +153,7 @@ T.Button {
         id: toolTip
 
         parent: root
+        text: toolTipText
         visible: hovered && (toolTipText.length > 0)
         delay: Qt.styleHints.mousePressAndHoldInterval
     }
