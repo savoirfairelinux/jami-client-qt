@@ -28,7 +28,7 @@ Rectangle {
     property real marginSize: 20
     property real textMarginSize: 50
 
-    color: JamiTheme.primaryBackgroundColor
+    color: JamiTheme.globalBackgroundColor
 
     Text {
         id: invitationViewSentRequestText

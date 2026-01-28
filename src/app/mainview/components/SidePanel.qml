@@ -383,7 +383,7 @@ SidePanelBase {
                     SidePanelTabBar {
                         id: sidePanelTabBar
 
-                        visible: ConversationsAdapter.pendingRequestCount && !contactSearchBar.textContent && smartListLayout.visible
+                        visible: ConversationsAdapter.pendingRequestCount && !contactSearchBar.textContent
 
                         contentHeight: childrenRect.height
                         width: parent.width
