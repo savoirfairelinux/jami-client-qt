@@ -45,6 +45,7 @@ Rectangle {
     }
 
     property bool detailsButtonVisibility: detailsButton.visible
+    property bool isAdmin: UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri) === Member.Role.ADMIN
 
     readonly property bool interactionButtonsVisibility: {
         if (CurrentConversation.inCall)
@@ -218,7 +219,7 @@ Rectangle {
             checkable: true
             checked: extrasPanel.isOpen(ChatView.AddMemberPanel)
 
-            visible: interactionButtonsVisibility && addMemberVisibility
+            visible: interactionButtonsVisibility && addMemberVisibility && isAdmin
 
             onClicked: extrasPanel.switchToPanel(ChatView.AddMemberPanel)
         }
