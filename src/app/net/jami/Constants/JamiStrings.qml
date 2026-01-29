@@ -844,6 +844,8 @@ Item {
     property string chooseAColor: qsTr("Choose a color")
     property string color: qsTr("Color")
     property string defaultCallHost: qsTr("Default host (calls)")
+    property string selectDefaultHost: qsTr("Select default host")
+    property string changeDefaultHost: qsTr("Change default host")
     property string typeOfSwarm: qsTr("Conversation type")
     property string none: qsTr("None")
 

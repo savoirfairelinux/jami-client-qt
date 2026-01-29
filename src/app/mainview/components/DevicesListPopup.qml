@@ -13,7 +13,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
+*/
+
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -77,6 +78,8 @@ BaseModalDialog {
             Layout.fillWidth: true
             Layout.preferredHeight: 160
 
+            spacing: 4
+
             model: SortFilterProxyModel {
                 sourceModel: DeviceItemListModel
                 sorters: [
@@ -125,7 +128,23 @@ BaseModalDialog {
                 }
 
                 background: Rectangle {
-                    color: highlighted ? JamiTheme.selectedColor : JamiTheme.editBackgroundColor
+                    color: {
+                        if (item.highlighted) {
+                            return JamiTheme.smartListSelectedColor;
+                        } else if (item.hovered) {
+                            return JamiTheme.smartListHoveredColor;
+                        } else {
+                            return JamiTheme.globalBackgroundColor;
+                        }
+                    }
+
+                    radius: height / 2
+
+                    Behavior on color {
+                        ColorAnimation {
+                            duration: JamiTheme.shortFadeDuration
+                        }
+                    }
                 }
 
                 RowLayout {
@@ -175,15 +194,6 @@ BaseModalDialog {
                             text: deviceId === "" ? JamiStrings.deviceId : deviceId
                         }
                     }
-                }
-
-                CustomBorder {
-                    commonBorder: false
-                    lBorderwidth: 0
-                    rBorderwidth: 0
-                    tBorderwidth: 0
-                    bBorderwidth: 2
-                    borderColor: JamiTheme.selectedColor
                 }
             }
         }
