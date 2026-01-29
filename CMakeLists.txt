@@ -90,6 +90,14 @@ if(WIN32)
   set(QWINDOWKIT_ENABLE_WINDOWS_SYSTEM_BORDERS OFF CACHE BOOL "Disable Windows system borders" FORCE)
 endif()
 
+# Apply qmsetup CMAKE_INSTALL_LIBDIR fix for non-standard lib directories (until qmsetup is updated)
+if(NOT WIN32)
+  apply_git_patch(
+    PATCH_FILE ${CMAKE_SOURCE_DIR}/extras/patches/0001-fix-qm_install_package-function.patch
+    TARGET_DIR 3rdparty/qwindowkit
+  )
+endif()
+
 add_subdirectory(3rdparty/qwindowkit EXCLUDE_FROM_ALL)
 list(APPEND CLIENT_INCLUDE_DIRS ${QWindowKit_BINARY_DIR}/include)
 list(APPEND CLIENT_LIBS QWindowKit::Quick)
