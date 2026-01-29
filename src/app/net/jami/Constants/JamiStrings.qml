@@ -837,6 +837,7 @@ Item {
     property string contactName: qsTr("Contact name")
     property string addDescription: qsTr("Add description")
     property string groupMembers: qsTr("Members")
+    property string conversationType: qsTr("Conversation type:")
 
     property string muteConversation: qsTr("Mute conversation")
     property string unmuteConversation: qsTr("Unmute conversation")
@@ -844,6 +845,8 @@ Item {
     property string chooseAColor: qsTr("Choose a color")
     property string color: qsTr("Color")
     property string defaultCallHost: qsTr("Default host (calls)")
+    property string selectDefaultHost: qsTr("Select default host")
+    property string changeDefaultHost: qsTr("Change default host")
     property string typeOfSwarm: qsTr("Conversation type")
     property string none: qsTr("None")
 
