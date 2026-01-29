@@ -1,19 +1,19 @@
 /*
- * Copyright (C) 2021-2026 Savoir-faire Linux Inc.
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
+* Copyright (C) 2021-2026 Savoir-faire Linux Inc.
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
@@ -24,7 +24,8 @@ import "../../commoncomponents"
 
 Rectangle {
     id: root
-    property int preferredHeight: createSIPAccountPageColumnLayout.implicitHeight + 2 * JamiTheme.preferredMarginSize
+    property int preferredHeight: createSIPAccountPageColumnLayout.implicitHeight + 2
+                                  * JamiTheme.preferredMarginSize
 
     color: JamiTheme.secondaryBackgroundColor
 
@@ -37,7 +38,9 @@ Rectangle {
         target: WizardViewStepModel
 
         function onMainStepChanged() {
-            if (WizardViewStepModel.mainStep === WizardViewStepModel.MainSteps.AccountCreation && WizardViewStepModel.accountCreationOption === WizardViewStepModel.AccountCreationOption.CreateSipAccount) {
+            if (WizardViewStepModel.mainStep === WizardViewStepModel.MainSteps.AccountCreation
+                    && WizardViewStepModel.accountCreationOption
+                    === WizardViewStepModel.AccountCreationOption.CreateSipAccount) {
                 clearAllTextFields();
                 root.showThisPage();
                 sipServernameEdit.focus = true;
@@ -63,7 +66,8 @@ Rectangle {
 
                 Label {
                     Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: Math.min(450, root.width - JamiTheme.preferredMarginSize * 2)
+                    Layout.preferredWidth: Math.min(450, root.width - JamiTheme.preferredMarginSize
+                                                    * 2)
                     Layout.topMargin: JamiTheme.preferredMarginSize
                     color: JamiTheme.textColor
                     font.pixelSize: JamiTheme.wizardViewTitleFontPixelSize
@@ -73,7 +77,8 @@ Rectangle {
                 }
                 Label {
                     Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: Math.min(360, root.width - JamiTheme.preferredMarginSize * 2)
+                    Layout.preferredWidth: Math.min(360, root.width - JamiTheme.preferredMarginSize
+                                                    * 2)
                     Layout.topMargin: JamiTheme.wizardViewDescriptionMarginSize
                     color: JamiTheme.textColor
                     font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
@@ -89,7 +94,8 @@ Rectangle {
                     KeyNavigation.tab: KeyNavigation.down
                     KeyNavigation.up: backButton
                     Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
+                    Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize
+                                                    * 2)
                     Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
                     objectName: "sipServernameEdit"
                     placeholderText: JamiStrings.server
@@ -102,7 +108,8 @@ Rectangle {
                     KeyNavigation.tab: KeyNavigation.down
                     KeyNavigation.up: sipServernameEdit
                     Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
+                    Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize
+                                                    * 2)
                     Layout.topMargin: JamiTheme.wizardViewMarginSize
                     objectName: "sipUsernameEdit"
                     placeholderText: JamiStrings.username
@@ -115,7 +122,8 @@ Rectangle {
                     KeyNavigation.tab: KeyNavigation.down
                     KeyNavigation.up: sipUsernameEdit
                     Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
+                    Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize
+                                                    * 2)
                     Layout.topMargin: JamiTheme.wizardViewMarginSize
                     objectName: "sipPasswordEdit"
                     placeholderText: JamiStrings.password
@@ -159,58 +167,53 @@ Rectangle {
                         width: 120
                     }
                 }
-                MaterialButton {
+                NewMaterialButton {
                     id: createAccountButton
+
+                    objectName: "createSIPAccountButton"
+
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
+
+                    filledButton: true
+                    text: JamiStrings.addSip
+
                     KeyNavigation.down: personalizeAccount
                     KeyNavigation.tab: KeyNavigation.down
                     KeyNavigation.up: udpRadioButton
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
-                    objectName: "createSIPAccountButton"
-                    preferredWidth: textSize.width + 2 * JamiTheme.buttontextWizzardPadding
-                    primary: true
-                    text: JamiStrings.addSip
 
                     onClicked: {
-                        WizardViewStepModel.accountCreationInfo = JamiQmlUtils.setUpAccountCreationInputPara({
-                                "hostname": sipServernameEdit.dynamicText,
-                                "alias": displayNameLineEdit.dynamicText,
-                                "username": sipUsernameEdit.dynamicText,
-                                "password": sipPasswordEdit.dynamicText,
-                                "tls": tlsRadioButton.checked,
-                                "avatar": UtilsAdapter.tempCreationImage()
-                            });
+                        WizardViewStepModel.accountCreationInfo
+                                = JamiQmlUtils.setUpAccountCreationInputPara({
+                                                                                 "hostname":
+                                                                                 sipServernameEdit.dynamicText,
+                                                                                 "alias": displayNameLineEdit.dynamicText,
+                                                                                 "username":
+                                                                                 sipUsernameEdit.dynamicText,
+                                                                                 "password":
+                                                                                 sipPasswordEdit.dynamicText,
+                                                                                 "tls": tlsRadioButton.checked,
+                                                                                 "avatar": UtilsAdapter.tempCreationImage(
+                                                                                               )
+                                                                             });
                         WizardViewStepModel.nextStep();
                     }
-
-                    TextMetrics {
-                        id: textSize
-                        font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
-                        font.weight: Font.Bold
-                        text: createAccountButton.text
-                    }
                 }
-                MaterialButton {
+                NewMaterialButton {
                     id: personalizeAccount
-                    KeyNavigation.down: backButton
-                    KeyNavigation.tab: KeyNavigation.down
-                    KeyNavigation.up: createAccountButton
+
                     Layout.alignment: Qt.AlignCenter
                     Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins * 2
                     Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
-                    preferredWidth: personalizeAccountTextSize.width + 2 * JamiTheme.buttontextWizzardPadding + 1
-                    secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
-                    tertiary: true
+
+                    textButton: true
                     text: JamiStrings.personalizeAccount
 
-                    onClicked: createAccountStack.currentIndex += 1
+                    KeyNavigation.down: backButton
+                    KeyNavigation.tab: KeyNavigation.down
+                    KeyNavigation.up: createAccountButton
 
-                    TextMetrics {
-                        id: personalizeAccountTextSize
-                        font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
-                        font.weight: Font.Bold
-                        text: personalizeAccount.text
-                    }
+                    onClicked: createAccountStack.currentIndex += 1
                 }
             }
         }
@@ -227,7 +230,8 @@ Rectangle {
 
                 Label {
                     Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: Math.min(450, root.width - JamiTheme.preferredMarginSize * 2)
+                    Layout.preferredWidth: Math.min(450, root.width - JamiTheme.preferredMarginSize
+                                                    * 2)
                     Layout.topMargin: JamiTheme.preferredMarginSize
                     color: JamiTheme.textColor
                     font.pixelSize: 26
@@ -254,7 +258,8 @@ Rectangle {
                 ModalTextEdit {
                     id: displayNameLineEdit
                     Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: Math.min(300, root.width - JamiTheme.preferredMarginSize * 2)
+                    Layout.preferredWidth: Math.min(300, root.width - JamiTheme.preferredMarginSize
+                                                    * 2)
                     Layout.topMargin: 30
                     placeholderText: JamiStrings.enterNickname
 
@@ -264,7 +269,8 @@ Rectangle {
                 }
                 Text {
                     Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: Math.min(320, root.width - JamiTheme.preferredMarginSize * 2)
+                    Layout.preferredWidth: Math.min(320, root.width - JamiTheme.preferredMarginSize
+                                                    * 2)
                     Layout.topMargin: JamiTheme.preferredMarginSize
                     color: JamiTheme.textColor
                     font.pixelSize: JamiTheme.headerFontSize
@@ -288,8 +294,10 @@ Rectangle {
 
         preferredSize: JamiTheme.wizardViewPageBackButtonSize
 
-        KeyNavigation.up: createAccountStack.currentIndex !== 0 ? displayNameLineEdit : personalizeAccount
-        KeyNavigation.down: createAccountStack.currentIndex !== 0 ? currentAccountAvatar : sipServernameEdit
+        KeyNavigation.up: createAccountStack.currentIndex !== 0 ? displayNameLineEdit :
+                                                                  personalizeAccount
+        KeyNavigation.down: createAccountStack.currentIndex !== 0 ? currentAccountAvatar :
+                                                                    sipServernameEdit
         KeyNavigation.tab: KeyNavigation.down
 
         onClicked: {
