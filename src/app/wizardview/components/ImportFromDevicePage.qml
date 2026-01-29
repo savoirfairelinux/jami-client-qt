@@ -1,19 +1,19 @@
 /*
- * Copyright (C) 2021-2026 Savoir-faire Linux Inc.
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
+* Copyright (C) 2021-2026 Savoir-faire Linux Inc.
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
@@ -29,7 +29,8 @@ Rectangle {
     id: root
 
     property string errorText: ""
-    property int preferredHeight: importFromDevicePageColumnLayout.implicitHeight + 2 * JamiTheme.preferredMarginSize
+    property int preferredHeight: importFromDevicePageColumnLayout.implicitHeight + 2
+                                  * JamiTheme.preferredMarginSize
 
     // The token is used to generate the QR code and is also provided to the user as a backup if the QR
     // code cannot be scanned. It is a URI using the scheme "jami-auth".
@@ -38,7 +39,9 @@ Rectangle {
     property string jamiId: ""
 
     function isPasswordWrong() {
-        return WizardViewStepModel.deviceLinkDetails["auth_error"] !== undefined && WizardViewStepModel.deviceLinkDetails["auth_error"] !== "" && WizardViewStepModel.deviceLinkDetails["auth_error"] !== "none";
+        return WizardViewStepModel.deviceLinkDetails["auth_error"] !== undefined
+                && WizardViewStepModel.deviceLinkDetails["auth_error"] !== ""
+                && WizardViewStepModel.deviceLinkDetails["auth_error"] !== "none";
     }
 
     function requiresPassword() {
@@ -52,7 +55,8 @@ Rectangle {
 
     function isLoadingState() {
         const state = WizardViewStepModel.deviceAuthState;
-        return state === DeviceAuthStateEnum.INIT || state === DeviceAuthStateEnum.CONNECTING || state === DeviceAuthStateEnum.IN_PROGRESS;
+        return state === DeviceAuthStateEnum.INIT || state === DeviceAuthStateEnum.CONNECTING
+                || state === DeviceAuthStateEnum.IN_PROGRESS;
     }
 
     signal showThisPage
@@ -82,7 +86,8 @@ Rectangle {
         target: WizardViewStepModel
 
         function onMainStepChanged() {
-            if (WizardViewStepModel.mainStep === WizardViewStepModel.MainSteps.DeviceAuthorization) {
+            if (WizardViewStepModel.mainStep
+                    === WizardViewStepModel.MainSteps.DeviceAuthorization) {
                 clearAllTextFields();
                 root.showThisPage();
             }
@@ -110,7 +115,8 @@ Rectangle {
                 break;
             case DeviceAuthStateEnum.DONE:
                 // Final state - check for specific errors
-                const error = AccountAdapter.getImportErrorMessage(WizardViewStepModel.deviceLinkDetails);
+                const error = AccountAdapter.getImportErrorMessage(
+                          WizardViewStepModel.deviceLinkDetails);
                 if (error.length > 0) {
                     errorOccurred(error);
                 }
@@ -233,8 +239,10 @@ Rectangle {
                                 target: NameDirectory
                                 enabled: jamiId.length > 0
 
-                                function onRegisteredNameFound(status, address, registeredName, requestedName) {
-                                    if (address === jamiId && status === NameDirectory.LookupStatus.SUCCESS) {
+                                function onRegisteredNameFound(status, address, registeredName,
+                                                               requestedName) {
+                                    if (address === jamiId && status
+                                            === NameDirectory.LookupStatus.SUCCESS) {
                                         name.text = registeredName;
                                     }
                                 }
@@ -282,13 +290,17 @@ Rectangle {
                 spacing: 16
                 Layout.margins: 10
 
-                MaterialButton {
+                NewMaterialButton {
                     id: confirmButton
+
+                    filledButton: true
                     text: JamiStrings.optionConfirm
-                    primary: true
                     enabled: true
+
                     onClicked: {
-                        AccountAdapter.provideAccountAuthentication(passwordField.visible ? passwordField.dynamicText : "");
+                        AccountAdapter.provideAccountAuthentication(passwordField.visible
+                                                                    ? passwordField.dynamicText :
+                                                                      "");
                     }
                 }
             }
@@ -444,11 +456,13 @@ Rectangle {
                 wrapMode: Text.WordWrap
             }
 
-            MaterialButton {
+            NewMaterialButton {
                 Layout.alignment: Qt.AlignHCenter
+
+                filledButton: true
                 text: JamiStrings.optionTryAgain
                 toolTipText: JamiStrings.optionTryAgain
-                primary: true
+
                 onClicked: {
                     AccountAdapter.cancelImportAccount();
                     WizardViewStepModel.previousStep();
