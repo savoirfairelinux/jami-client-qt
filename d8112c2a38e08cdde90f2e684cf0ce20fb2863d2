@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0afcf607_3da9d026",
+        "filename": "src/app/mainview/components/DevicesListPopup.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-01-29T21:00:52Z",
+      "side": 1,
+      "message": "Should each line begin with a space to line up the `*` under the one in the first line?",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 72
+      },
+      "revId": "d8112c2a38e08cdde90f2e684cf0ce20fb2863d2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dfd658ad_1182bd5e",
         "filename": "src/app/mainview/components/DevicesListPopup.qml",
         "patchSetId": 1
@@ -31,6 +54,29 @@
       "writtenOn": "2026-01-29T20:57:20Z",
       "side": 1,
       "message": "Add blank line after comment?",
+      "revId": "d8112c2a38e08cdde90f2e684cf0ce20fb2863d2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b61b455_43b605dd",
+        "filename": "src/app/mainview/components/SwarmDetailsPanel.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-01-29T21:00:52Z",
+      "side": 1,
+      "message": "Should each line begin with a space to line up all the `*` under the one in the first line?",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 2
+      },
       "revId": "d8112c2a38e08cdde90f2e684cf0ce20fb2863d2",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
