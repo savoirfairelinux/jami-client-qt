@@ -1,19 +1,19 @@
 /*
- * Copyright (C) 2020-2026 Savoir-faire Linux Inc.
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
+* Copyright (C) 2020-2026 Savoir-faire Linux Inc.
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -26,10 +26,10 @@ import net.jami.Helpers 1.1
 import "../../commoncomponents"
 
 /* Why is ComboBox not the root item?
- * To address accessibility, we separate the three main components:
- * account selection, QR code, and settings to allow focusability on
- * each individual element.
- */
+* To address accessibility, we separate the three main components:
+* account selection, QR code, and settings to allow focusability on
+* each individual element.
+*/
 
 Item {
     id: root
@@ -63,6 +63,8 @@ Item {
             ComboBox {
                 id: accountComboBox
 
+                objectName: "accountComboBox"
+
                 Layout.fillWidth: true
                 Layout.fillHeight: true
 
@@ -85,7 +87,8 @@ Item {
                         anchors.fill: parent
                         anchors.margins: JamiTheme.itemMarginVertical
                         radius: height / 2
-                        color: (hovered || highlighted) && !listView.headerHovered ? JamiTheme.hoverColor : JamiTheme.backgroundColor
+                        color: (hovered || highlighted) && !listView.headerHovered
+                               ? JamiTheme.hoverColor : JamiTheme.backgroundColor
 
                         Behavior on color {
                             ColorAnimation {
@@ -153,7 +156,8 @@ Item {
                     y: contentRect.height - 1
                     x: UtilsAdapter.isRTL ? -(contentRect.width - accountComboBox.width) : 0
                     width: contentRect.width
-                    height: Math.min(contentItem.implicitHeight, accountComboBox.Window.height - topMargin - bottomMargin)
+                    height: Math.min(contentItem.implicitHeight, accountComboBox.Window.height
+                                     - topMargin - bottomMargin)
 
                     padding: 0
                     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
@@ -182,7 +186,9 @@ Item {
                                     Layout.fillHeight: true
                                     Layout.margins: JamiTheme.itemMarginVertical
 
-                                    color: (addAccountItem.hovered || addAccountItem.highlighted || addAccountItem.activeFocus) ? JamiTheme.hoverColor : JamiTheme.backgroundColor
+                                    color: (addAccountItem.hovered || addAccountItem.highlighted
+                                            || addAccountItem.activeFocus) ? JamiTheme.hoverColor :
+                                                                             JamiTheme.backgroundColor
                                     radius: height / 2
 
                                     Behavior on color {
@@ -247,7 +253,8 @@ Item {
                     id: background
 
                     anchors.fill: accountComboBox
-                    color: accountComboBox.hovered || accountComboBoxPopup.visible ? JamiTheme.hoverColor : JamiTheme.globalIslandColor
+                    color: accountComboBox.hovered || accountComboBoxPopup.visible
+                           ? JamiTheme.hoverColor : JamiTheme.globalIslandColor
                     radius: JamiTheme.avatarBasedRadius
                     Behavior on color {
                         ColorAnimation {
@@ -275,7 +282,8 @@ Item {
 
                 visible: LRCInstance.currentAccountType === Profile.Type.JAMI
 
-                onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/WelcomePageQrDialog.qml")
+                onClicked: viewCoordinator.presentDialog(appWindow,
+                                                         "mainview/components/WelcomePageQrDialog.qml")
             }
 
             NewIconButton {
@@ -285,11 +293,13 @@ Item {
                 Layout.rightMargin: 8
 
                 iconSize: JamiTheme.iconButtonMedium
-                iconSource: !inSettings ? JamiResources.settings_24dp_svg : JamiResources.round_close_24dp_svg
+                iconSource: !inSettings ? JamiResources.settings_24dp_svg :
+                                          JamiResources.round_close_24dp_svg
                 toolTipText: !inSettings ? JamiStrings.openSettings : JamiStrings.closeSettings
 
                 onClicked: {
-                    !inSettings ? viewCoordinator.present("SettingsView") : viewCoordinator.dismiss("SettingsView");
+                    !inSettings ? viewCoordinator.present("SettingsView") : viewCoordinator.dismiss(
+                                      "SettingsView");
                     background.state = "normal";
                 }
             }

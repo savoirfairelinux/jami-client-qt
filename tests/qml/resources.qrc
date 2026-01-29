@@ -20,5 +20,8 @@
         <file>src/resources/gz_test.gz</file>
         <file>src/resources/png_test.png</file>
         <file>src/TestWrapper.qml</file>
+        <file>src/tst_AccountComboBox.qml</file>
+        <file>src/tst_ConversationListView.qml</file>
+        <file>src/tst_MessageListView.qml</file>
     </qresource>
 </RCC>
