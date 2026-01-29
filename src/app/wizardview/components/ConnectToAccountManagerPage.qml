@@ -1,19 +1,19 @@
 /*
- * Copyright (C) 2021-2026 Savoir-faire Linux Inc.
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
+* Copyright (C) 2021-2026 Savoir-faire Linux Inc.
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
@@ -24,18 +24,17 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
-    property int preferredHeight: connectToAccountManagerPageColumnLayout.implicitHeight + 2 * JamiTheme.preferredMarginSize
+    property int preferredHeight: connectToAccountManagerPageColumnLayout.implicitHeight + 2
+                                  * JamiTheme.preferredMarginSize
     property string errorText: ""
 
     signal showThisPage
 
     function clearAllTextFields() {
-        connectBtn.spinnerTriggered = false;
         errorText = "";
     }
 
     function errorOccurred(errorMessage) {
-        connectBtn.spinnerTriggered = false;
         errorText = errorMessage;
     }
 
@@ -43,7 +42,9 @@ Rectangle {
         target: WizardViewStepModel
 
         function onMainStepChanged() {
-            if (WizardViewStepModel.mainStep === WizardViewStepModel.MainSteps.AccountCreation && WizardViewStepModel.accountCreationOption === WizardViewStepModel.AccountCreationOption.ConnectToAccountManager) {
+            if (WizardViewStepModel.mainStep === WizardViewStepModel.MainSteps.AccountCreation
+                    && WizardViewStepModel.accountCreationOption
+                    === WizardViewStepModel.AccountCreationOption.ConnectToAccountManager) {
                 clearAllTextFields();
                 root.showThisPage();
             }
@@ -163,15 +164,8 @@ Rectangle {
             onAccepted: connectBtn.forceActiveFocus()
         }
 
-        SpinnerButton {
+        NewMaterialButton {
             id: connectBtn
-
-            TextMetrics {
-                id: textSize
-                font.weight: Font.Bold
-                font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
-                text: connectBtn.normalText
-            }
 
             objectName: "connectToAccountManagerPageConnectBtn"
 
@@ -179,14 +173,11 @@ Rectangle {
             Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
             Layout.bottomMargin: errorLabel.visible ? 0 : JamiTheme.wizardViewPageBackButtonMargins
 
-            preferredWidth: textSize.width + 2 * JamiTheme.buttontextWizzardPadding
+            enabled: accountManagerEdit.dynamicText.length !== 0
+                     && usernameManagerEdit.dynamicText.length !== 0
 
-            spinnerTriggeredtext: JamiStrings.creatingAccount
-            normalText: JamiStrings.connect
-
-            enabled: accountManagerEdit.dynamicText.length !== 0 && usernameManagerEdit.dynamicText.length !== 0 && passwordManagerEdit.dynamicText.length !== 0 && !spinnerTriggered
-
-            primary: true
+            filledButton: true
+            text: JamiStrings.connect
 
             KeyNavigation.up: passwordManagerEdit
             KeyNavigation.down: backButton
@@ -195,12 +186,12 @@ Rectangle {
             onClicked: {
                 if (connectBtn.focus)
                     accountManagerEdit.forceActiveFocus();
-                spinnerTriggered = true;
-                WizardViewStepModel.accountCreationInfo = JamiQmlUtils.setUpAccountCreationInputPara({
-                        "username": usernameManagerEdit.dynamicText,
-                        "password": passwordManagerEdit.dynamicText,
-                        "manager": accountManagerEdit.dynamicText
-                    });
+                WizardViewStepModel.accountCreationInfo = JamiQmlUtils.setUpAccountCreationInputPara(
+                            {
+                                "username": usernameManagerEdit.dynamicText,
+                                "password": passwordManagerEdit.dynamicText,
+                                "manager": accountManagerEdit.dynamicText
+                            });
                 WizardViewStepModel.nextStep();
             }
         }
