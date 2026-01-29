@@ -1,19 +1,19 @@
 /*
- * Copyright (C) 2020-2026 Savoir-faire Linux Inc.
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
+* Copyright (C) 2020-2026 Savoir-faire Linux Inc.
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -77,6 +77,8 @@ BaseModalDialog {
             Layout.fillWidth: true
             Layout.preferredHeight: 160
 
+            spacing: 4
+
             model: SortFilterProxyModel {
                 sourceModel: DeviceItemListModel
                 sorters: [
@@ -125,7 +127,23 @@ BaseModalDialog {
                 }
 
                 background: Rectangle {
-                    color: highlighted ? JamiTheme.selectedColor : JamiTheme.editBackgroundColor
+                    color: {
+                        if (item.highlighted) {
+                            return JamiTheme.smartListSelectedColor;
+                        } else if (item.hovered) {
+                            return JamiTheme.smartListHoveredColor;
+                        } else {
+                            return JamiTheme.globalBackgroundColor;
+                        }
+                    }
+
+                    radius: height / 2
+
+                    Behavior on color {
+                        ColorAnimation {
+                            duration: JamiTheme.shortFadeDuration
+                        }
+                    }
                 }
 
                 RowLayout {
@@ -175,15 +193,6 @@ BaseModalDialog {
                             text: deviceId === "" ? JamiStrings.deviceId : deviceId
                         }
                     }
-                }
-
-                CustomBorder {
-                    commonBorder: false
-                    lBorderwidth: 0
-                    rBorderwidth: 0
-                    tBorderwidth: 0
-                    bBorderwidth: 2
-                    borderColor: JamiTheme.selectedColor
                 }
             }
         }
