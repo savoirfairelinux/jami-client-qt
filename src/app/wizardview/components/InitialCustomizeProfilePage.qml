@@ -1,19 +1,19 @@
 /*
- * Copyright (C) 2021-2026 Savoir-faire Linux Inc.
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
+* Copyright (C) 2021-2026 Savoir-faire Linux Inc.
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
@@ -160,25 +160,29 @@ Rectangle {
                             preferredSize: 56
 
                             normalColor: JamiTheme.customizePhotoColor
-                            imageColor: accountAvatar.visible ? JamiTheme.customizeRectangleColor : JamiTheme.whiteColor
+                            imageColor: accountAvatar.visible ? JamiTheme.customizeRectangleColor :
+                                                                JamiTheme.whiteColor
                             hoveredColor: JamiTheme.customizePhotoHoveredColor
 
                             imageContainerWidth: 30
 
                             onClicked: {
-                                var dlg = viewCoordinator.presentDialog(parent, "commoncomponents/PhotoboothPopup.qml", {
-                                        "parent": editImage,
-                                        "imageId": LRCInstance.currentAccountId,
-                                        "newItem": false
-                                    });
+                                var dlg = viewCoordinator.presentDialog(parent,
+                                                                        "commoncomponents/PhotoboothPopup.qml",
+                                                                        {
+                                                                            "parent": editImage,
+                                                                            "imageId":
+                                                                            LRCInstance.currentAccountId,
+                                                                            "newItem": false
+                                                                        });
                                 dlg.onImageTemporaryValidated.connect(function () {
-                                        accountAvatar.visible = true;
-                                        customProfilePicture = true;
-                                    });
+                                    accountAvatar.visible = true;
+                                    customProfilePicture = true;
+                                });
                                 dlg.onImageTemporaryRemoved.connect(function () {
-                                        customProfilePicture = false;
-                                        accountAvatar.visible = false;
-                                    });
+                                    customProfilePicture = false;
+                                    accountAvatar.visible = false;
+                                });
                             }
                         }
                     }
@@ -200,11 +204,11 @@ Rectangle {
             }
 
             Text {
-
                 Layout.fillWidth: false
                 Layout.topMargin: JamiTheme.preferredMarginSize
                 Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
                 Layout.alignment: Qt.AlignCenter
+
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WordWrap
                 color: JamiTheme.textColor
@@ -213,29 +217,18 @@ Rectangle {
                 lineHeight: JamiTheme.wizardViewTextLineHeight
             }
 
-            MaterialButton {
+            NewMaterialButton {
                 id: saveProfileButton
-                z: -1
-
-                TextMetrics {
-                    id: textSize
-                    font.weight: Font.Bold
-                    font.pixelSize: JamiTheme.wizardViewButtonFontPixelSize
-                    font.capitalization: Font.AllUppercase
-                    text: saveProfileButton.text
-                }
 
                 objectName: "saveProfileButton"
 
                 Layout.alignment: Qt.AlignCenter
                 Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
-                primary: true
-                preferredWidth: textSize.width + 2 * JamiTheme.buttontextWizzardPadding
 
-                font.capitalization: Font.AllUppercase
-                color: enabled ? JamiTheme.buttonTintedBlue : JamiTheme.buttonTintedGrey
+                z: -1
+
+                filledButton: true
                 text: JamiStrings.saveProfile
-                enabled: true
 
                 KeyNavigation.tab: skipButton
                 KeyNavigation.up: displayNameLineEdit
@@ -254,15 +247,13 @@ Rectangle {
 
                 spacing: 5
 
-                MaterialButton {
+                NewMaterialButton {
                     id: skipButton
-
-                    tertiary: true
-                    secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
 
                     Layout.alignment: Qt.AlignCenter
                     Layout.topMargin: 0.5 * JamiTheme.wizardViewBlocMarginSize
 
+                    textButton: true
                     text: JamiStrings.skip
                     toolTipText: JamiStrings.skipProfile
 
@@ -281,8 +272,7 @@ Rectangle {
 
     JamiPushButton {
         id: backButton
-        QWKSetParentHitTestVisible {
-        }
+        QWKSetParentHitTestVisible {}
 
         objectName: "createAccountPageBackButton"
 
