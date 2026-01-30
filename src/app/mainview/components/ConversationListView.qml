@@ -130,7 +130,7 @@ JamiListView {
         enabled: CurrentAccount.videoEnabled_Video && root.visible
         onActivated: {
             if (CurrentAccount.videoEnabled_Video)
-                CallAdapter.startCall();
+                CallAdapter.startOrJoinCall("", false);
         }
     }
 
@@ -138,7 +138,7 @@ JamiListView {
         sequence: "Ctrl+Shift+C"
         context: Qt.ApplicationShortcut
         enabled: root.visible
-        onActivated: CallAdapter.startAudioOnlyCall()
+        onActivated: CallAdapter.startOrJoinCall("", true)
     }
 
     Shortcut {

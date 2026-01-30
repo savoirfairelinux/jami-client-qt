@@ -64,7 +64,7 @@ Rectangle {
                         var call = CurrentConversation.activeCalls[0];
                         MessagesAdapter.joinCall(call.uri, call.device, call.id, true);
                     } else {
-                        CallAdapter.startAudioOnlyCall();
+                        CallAdapter.startOrJoinCall("", true);
                     }
                 }
             }
