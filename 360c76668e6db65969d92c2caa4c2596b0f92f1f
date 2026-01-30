@@ -68,6 +68,30 @@
       },
       "revId": "360c76668e6db65969d92c2caa4c2596b0f92f1f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "886e5a98_459d1e26",
+        "filename": "src/app/calladapter.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-01-30T20:08:42Z",
+      "side": 1,
+      "message": "Sorry for the noise.\n\nBased on the following GitLab issue\nhttps://git.jami.net/savoirfairelinux/jami-daemon/-/issues/1169\n\nPerhaps the `videoMuted` should be `hasVideo`.\n\nPerhaps **true** should indicate AUDIO_ONLY.\n\nThank you",
+      "parentUuid": "1e2e18f6_363cb9b0",
+      "range": {
+        "startLine": 69,
+        "startChar": 14,
+        "endLine": 69,
+        "endChar": 24
+      },
+      "revId": "360c76668e6db65969d92c2caa4c2596b0f92f1f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
