@@ -34,6 +34,24 @@
       "parentUuid": "f325e2ff_8cba47b6",
       "revId": "910e96d4658172fc0c5e5aaf1b08c4b22ff2dc56",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f59336b5_ee513faf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1143
+      },
+      "writtenOn": "2026-01-30T07:20:28Z",
+      "side": 1,
+      "message": "It looks like CMake\u0027s fetchcontent method is the canonical way to handle submodules; for offline builds I think it\u0027ll make the modules available at configuration time, if they are not already cached (e.g. for git repos), so this can be done in advance. The nice thing is that fetchcontent abstracts away the submodule vs system library, configurable via the `FETCHCONTENT_TRY_FIND_PACKAGE_MODE` environment variable. Some article about using it: https://www.mattiamontanari.com/blog/posts/2024-06-05-get-dependencies-right-with-cmake/",
+      "parentUuid": "c370daad_167ddbe5",
+      "revId": "910e96d4658172fc0c5e5aaf1b08c4b22ff2dc56",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
