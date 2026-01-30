@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "578c6bb7_4ead9c05",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 21
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1169
+      },
+      "writtenOn": "2026-01-30T22:51:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6bc7162c_24ad1ab1",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 53
+      },
+      "revId": "89d0266dbd659744281f82e9f0ef049f0af56967",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3b6441aa_afb8823e",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-01-30T16:34:31Z",
       "side": 1,
       "message": "code 415 corresponds to SIP response \"Unsupported Media Type\". We cannot guarantee that the daemon will always report code 415 ONLY for mismatching codecs because after looking into it, code 415 is broader than that. So maybe the title should not indicate that it necessarily means mismatching codecs.\n\nHowever from experience we know that it\u0027s usually due to mismatched codecs. So maybe we could have the description say something like \"The call probably failed because of mismatched codecs etc....\" and \"If the issue persists after checking codecs consider opening a gitlab ticket etc..\" but have the title simply say \"SIP code 415\"",
+      "range": {
+        "startLine": 346,
+        "startChar": 4,
+        "endLine": 347,
+        "endChar": 415
+      },
+      "revId": "89d0266dbd659744281f82e9f0ef049f0af56967",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b9698ef_e8d5ea7a",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 21
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 1169
+      },
+      "writtenOn": "2026-01-30T22:51:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b6441aa_afb8823e",
       "range": {
         "startLine": 346,
         "startChar": 4,
