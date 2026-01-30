@@ -1,19 +1,19 @@
 /*
- * Copyright (C) 2024-2026 Savoir-faire Linux Inc.
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
+* Copyright (C) 2024-2026 Savoir-faire Linux Inc.
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -41,201 +41,201 @@ SidePanelBase {
     function getHeaders() {
         if (AppVersionManager.isUpdaterEnabled()) {
             return [
-                {
-                    "title": JamiStrings.accountSettingsMenuTitle,
-                    "icon": JamiResources.account_24dp_svg,
-                    "first": 0,
-                    "last": 4,
-                    "children": [
                         {
-                            "id": 0,
-                            "title": JamiStrings.manageAccountSettingsTitle
+                            "title": JamiStrings.accountSettingsMenuTitle,
+                            "icon": JamiResources.account_24dp_svg,
+                            "first": 0,
+                            "last": 4,
+                            "children": [
+                                {
+                                    "id": 0,
+                                    "title": JamiStrings.manageAccountSettingsTitle
+                                },
+                                {
+                                    "id": 1,
+                                    "title": JamiStrings.customizeProfile
+                                },
+                                {
+                                    "id": 2,
+                                    "title": JamiStrings.linkedDevicesSettingsTitle,
+                                    "visible": CurrentAccount.type !== Profile.Type.SIP
+                                },
+                                {
+                                    "id": 3,
+                                    "title": JamiStrings.callSettingsTitle
+                                },
+                                {
+                                    "id": 4,
+                                    "title": JamiStrings.advancedSettingsTitle
+                                }
+                            ]
                         },
                         {
-                            "id": 1,
-                            "title": JamiStrings.customizeProfile
+                            "title": JamiStrings.generalSettingsTitle,
+                            "icon": JamiResources.settings_24dp_svg,
+                            "first": 5,
+                            "last": 11,
+                            "children": [
+                                {
+                                    "id": 5,
+                                    "title": JamiStrings.system
+                                },
+                                {
+                                    "id": 6,
+                                    "title": JamiStrings.appearance
+                                },
+                                {
+                                    "id": 7,
+                                    "title": JamiStrings.chatSettingsTitle
+                                },
+                                {
+                                    "id": 8,
+                                    "title": JamiStrings.locationSharingLabel
+                                },
+                                {
+                                    "id": 9,
+                                    "title": JamiStrings.callRecording
+                                },
+                                {
+                                    "id": 10,
+                                    "title": JamiStrings.troubleshootTitle
+                                },
+                                {
+                                    "id": 11,
+                                    "title": JamiStrings.updatesTitle,
+                                    "visible": AppVersionManager.isUpdaterEnabled()
+                                }
+                            ]
                         },
                         {
-                            "id": 2,
-                            "title": JamiStrings.linkedDevicesSettingsTitle,
-                            "visible": CurrentAccount.type !== Profile.Type.SIP
+                            "title": JamiStrings.mediaSettingsTitle,
+                            "icon": JamiResources.media_black_24dp_svg,
+                            "first": 12,
+                            "last": 14,
+                            "children": [
+                                {
+                                    "id": 12,
+                                    "title": JamiStrings.audio
+                                },
+                                {
+                                    "id": 13,
+                                    "title": JamiStrings.video
+                                },
+                                {
+                                    "id": 14,
+                                    "title": JamiStrings.screenSharing
+                                }
+                            ]
                         },
                         {
-                            "id": 3,
-                            "title": JamiStrings.callSettingsTitle
-                        },
-                        {
-                            "id": 4,
-                            "title": JamiStrings.advancedSettingsTitle
+                            "title": JamiStrings.extensionSettingsTitle,
+                            "icon": JamiResources.plugins_24dp_svg,
+                            "first": 15,
+                            "last": 15,
+                            "children": [
+                                {
+                                    "id": 15,
+                                    "title": JamiStrings.extensionSettingsTitle
+                                }
+                            ]
                         }
-                    ]
-                },
-                {
-                    "title": JamiStrings.generalSettingsTitle,
-                    "icon": JamiResources.settings_24dp_svg,
-                    "first": 5,
-                    "last": 11,
-                    "children": [
-                        {
-                            "id": 5,
-                            "title": JamiStrings.system
-                        },
-                        {
-                            "id": 6,
-                            "title": JamiStrings.appearance
-                        },
-                        {
-                            "id": 7,
-                            "title": JamiStrings.chatSettingsTitle
-                        },
-                        {
-                            "id": 8,
-                            "title": JamiStrings.locationSharingLabel
-                        },
-                        {
-                            "id": 9,
-                            "title": JamiStrings.callRecording
-                        },
-                        {
-                            "id": 10,
-                            "title": JamiStrings.troubleshootTitle
-                        },
-                        {
-                            "id": 11,
-                            "title": JamiStrings.updatesTitle,
-                            "visible": AppVersionManager.isUpdaterEnabled()
-                        }
-                    ]
-                },
-                {
-                    "title": JamiStrings.mediaSettingsTitle,
-                    "icon": JamiResources.media_black_24dp_svg,
-                    "first": 12,
-                    "last": 14,
-                    "children": [
-                        {
-                            "id": 12,
-                            "title": JamiStrings.audio
-                        },
-                        {
-                            "id": 13,
-                            "title": JamiStrings.video
-                        },
-                        {
-                            "id": 14,
-                            "title": JamiStrings.screenSharing
-                        }
-                    ]
-                },
-                {
-                    "title": JamiStrings.extensionSettingsTitle,
-                    "icon": JamiResources.plugins_24dp_svg,
-                    "first": 15,
-                    "last": 15,
-                    "children": [
-                        {
-                            "id": 15,
-                            "title": JamiStrings.extensionSettingsTitle
-                        }
-                    ]
-                }
-            ];
+                    ];
         } else {
             return [
-                {
-                    "title": JamiStrings.accountSettingsMenuTitle,
-                    "icon": JamiResources.account_24dp_svg,
-                    "first": 0,
-                    "last": 4,
-                    "children": [
                         {
-                            "id": 0,
-                            "title": JamiStrings.manageAccountSettingsTitle
+                            "title": JamiStrings.accountSettingsMenuTitle,
+                            "icon": JamiResources.account_24dp_svg,
+                            "first": 0,
+                            "last": 4,
+                            "children": [
+                                {
+                                    "id": 0,
+                                    "title": JamiStrings.manageAccountSettingsTitle
+                                },
+                                {
+                                    "id": 1,
+                                    "title": JamiStrings.customizeProfile
+                                },
+                                {
+                                    "id": 2,
+                                    "title": JamiStrings.linkedDevicesSettingsTitle,
+                                    "visible": CurrentAccount.type !== Profile.Type.SIP
+                                },
+                                {
+                                    "id": 3,
+                                    "title": JamiStrings.callSettingsTitle
+                                },
+                                {
+                                    "id": 4,
+                                    "title": JamiStrings.advancedSettingsTitle
+                                }
+                            ]
                         },
                         {
-                            "id": 1,
-                            "title": JamiStrings.customizeProfile
+                            "title": JamiStrings.generalSettingsTitle,
+                            "icon": JamiResources.settings_24dp_svg,
+                            "first": 5,
+                            "last": 11,
+                            "children": [
+                                {
+                                    "id": 5,
+                                    "title": JamiStrings.system
+                                },
+                                {
+                                    "id": 6,
+                                    "title": JamiStrings.appearance
+                                },
+                                {
+                                    "id": 7,
+                                    "title": JamiStrings.chatSettingsTitle
+                                },
+                                {
+                                    "id": 8,
+                                    "title": JamiStrings.locationSharingLabel
+                                },
+                                {
+                                    "id": 9,
+                                    "title": JamiStrings.callRecording
+                                },
+                                {
+                                    "id": 10,
+                                    "title": JamiStrings.troubleshootTitle
+                                }
+                            ]
                         },
                         {
-                            "id": 2,
-                            "title": JamiStrings.linkedDevicesSettingsTitle,
-                            "visible": CurrentAccount.type !== Profile.Type.SIP
+                            "title": JamiStrings.mediaSettingsTitle,
+                            "icon": JamiResources.media_black_24dp_svg,
+                            "first": 12,
+                            "last": 14,
+                            "children": [
+                                {
+                                    "id": 12,
+                                    "title": JamiStrings.audio
+                                },
+                                {
+                                    "id": 13,
+                                    "title": JamiStrings.video
+                                },
+                                {
+                                    "id": 14,
+                                    "title": JamiStrings.screenSharing
+                                }
+                            ]
                         },
                         {
-                            "id": 3,
-                            "title": JamiStrings.callSettingsTitle
-                        },
-                        {
-                            "id": 4,
-                            "title": JamiStrings.advancedSettingsTitle
+                            "title": JamiStrings.extensionSettingsTitle,
+                            "icon": JamiResources.plugins_24dp_svg,
+                            "first": 15,
+                            "last": 15,
+                            "children": [
+                                {
+                                    "id": 15,
+                                    "title": JamiStrings.extensionSettingsTitle
+                                }
+                            ]
                         }
-                    ]
-                },
-                {
-                    "title": JamiStrings.generalSettingsTitle,
-                    "icon": JamiResources.settings_24dp_svg,
-                    "first": 5,
-                    "last": 11,
-                    "children": [
-                        {
-                            "id": 5,
-                            "title": JamiStrings.system
-                        },
-                        {
-                            "id": 6,
-                            "title": JamiStrings.appearance
-                        },
-                        {
-                            "id": 7,
-                            "title": JamiStrings.chatSettingsTitle
-                        },
-                        {
-                            "id": 8,
-                            "title": JamiStrings.locationSharingLabel
-                        },
-                        {
-                            "id": 9,
-                            "title": JamiStrings.callRecording
-                        },
-                        {
-                            "id": 10,
-                            "title": JamiStrings.troubleshootTitle
-                        }
-                    ]
-                },
-                {
-                    "title": JamiStrings.mediaSettingsTitle,
-                    "icon": JamiResources.media_black_24dp_svg,
-                    "first": 12,
-                    "last": 14,
-                    "children": [
-                        {
-                            "id": 12,
-                            "title": JamiStrings.audio
-                        },
-                        {
-                            "id": 13,
-                            "title": JamiStrings.video
-                        },
-                        {
-                            "id": 14,
-                            "title": JamiStrings.screenSharing
-                        }
-                    ]
-                },
-                {
-                    "title": JamiStrings.extensionSettingsTitle,
-                    "icon": JamiResources.plugins_24dp_svg,
-                    "first": 15,
-                    "last": 15,
-                    "children": [
-                        {
-                            "id": 15,
-                            "title": JamiStrings.extensionSettingsTitle
-                        }
-                    ]
-                }
-            ];
+                    ];
         }
     }
 
@@ -310,7 +310,7 @@ SidePanelBase {
 
     ColumnLayout {
         anchors.fill: parent
-        anchors.margins: JamiTheme.sidePanelIslandsPadding
+        anchors.margins: JamiTheme.sidePanelIslandsSinglePaneModePadding
         anchors.rightMargin: {
             if (viewCoordinator.isInSinglePaneMode)
                 return JamiTheme.sidePanelIslandsSinglePaneModePadding;
@@ -366,7 +366,8 @@ SidePanelBase {
                         id: col
                         width: settingsLayout.width
                         spacing: 0
-                        property bool isChildSelected: root.currentIndex >= modelData.first && root.currentIndex <= modelData.last
+                        property bool isChildSelected: root.currentIndex >= modelData.first
+                                                       && root.currentIndex <= modelData.last
 
                         PushButton {
                             id: sectionHeader
@@ -381,7 +382,8 @@ SidePanelBase {
                             height: JamiTheme.settingsMenuHeaderButtonHeight
 
                             buttonTextFont.pixelSize: JamiTheme.settingsDescriptionPixelSize
-                            buttonTextColor: isChildSelected ? JamiTheme.tintedBlue : JamiTheme.primaryForegroundColor
+                            buttonTextColor: isChildSelected ? JamiTheme.tintedBlue :
+                                                               JamiTheme.primaryForegroundColor
                             buttonTextFont.weight: isChildSelected ? Font.Medium : Font.Normal
                             buttonTextEnableElide: true
 
@@ -393,7 +395,8 @@ SidePanelBase {
 
                             onClicked: select(modelData.first)
                             Keys.onPressed: function (keyEvent) {
-                                if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
+                                if (keyEvent.key === Qt.Key_Enter || keyEvent.key
+                                        === Qt.Key_Return) {
                                     clicked();
                                     keyEvent.accepted = true;
                                 }
@@ -423,9 +426,11 @@ SidePanelBase {
                                 width: childListView.width
                                 spacing: 0
                                 // In single pane mode, don't show child selection until user explicitly navigates
-                                property bool isSelected: !root.isSinglePane && root.currentIndex === modelData.id
+                                property bool isSelected: !root.isSinglePane && root.currentIndex
+                                                          === modelData.id
                                 PushButton {
-                                    visible: modelData.visible !== undefined ? modelData.visible : true
+                                    visible: modelData.visible !== undefined ? modelData.visible :
+                                                                               true
                                     buttonText: modelData.title
                                     circled: false
                                     radius: width / 2
@@ -438,17 +443,20 @@ SidePanelBase {
                                     height: JamiTheme.settingsMenuChildrenButtonHeight
 
                                     buttonTextFont.pixelSize: JamiTheme.settingMenuPixelSize
-                                    buttonTextColor: isSelected ? JamiTheme.tintedBlue : JamiTheme.primaryForegroundColor
+                                    buttonTextColor: isSelected ? JamiTheme.tintedBlue :
+                                                                  JamiTheme.primaryForegroundColor
                                     buttonTextFont.weight: isSelected ? Font.Medium : Font.Normal
                                     buttonTextEnableElide: true
 
-                                    normalColor: isSelected ? JamiTheme.smartListSelectedColor : JamiTheme.globalIslandColor
+                                    normalColor: isSelected ? JamiTheme.smartListSelectedColor :
+                                                              JamiTheme.globalIslandColor
                                     hoveredColor: JamiTheme.smartListHoveredColor
 
                                     onClicked: open(modelData.id)
 
                                     Keys.onPressed: function (keyEvent) {
-                                        if (keyEvent.key === Qt.Key_Enter || keyEvent.key === Qt.Key_Return) {
+                                        if (keyEvent.key === Qt.Key_Enter || keyEvent.key
+                                                === Qt.Key_Return) {
                                             clicked();
                                             keyEvent.accepted = true;
                                         }
