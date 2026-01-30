@@ -37,7 +37,6 @@
 #include <string>
 
 #ifdef Q_OS_WIN
-#include <ciso646>
 #include <windows.h>
 #undef ERROR
 #else
