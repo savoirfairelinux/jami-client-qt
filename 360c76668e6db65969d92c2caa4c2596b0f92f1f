@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e65637c_3ee125d0",
+        "filename": "src/app/calladapter.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-01-30T20:05:03Z",
+      "side": 1,
+      "message": "Should `empty` be changed to `omitted`?",
+      "range": {
+        "startLine": 68,
+        "startChar": 52,
+        "endLine": 68,
+        "endChar": 57
+      },
+      "revId": "360c76668e6db65969d92c2caa4c2596b0f92f1f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65113a74_0c59219f",
+        "filename": "src/app/calladapter.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-01-30T20:05:03Z",
+      "side": 1,
+      "message": "If empty/omitted, what is the convention for the default value? **true** or **false**?",
+      "range": {
+        "startLine": 69,
+        "startChar": 7,
+        "endLine": 69,
+        "endChar": 13
+      },
+      "revId": "360c76668e6db65969d92c2caa4c2596b0f92f1f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e2e18f6_363cb9b0",
+        "filename": "src/app/calladapter.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-01-30T20:05:03Z",
+      "side": 1,
+      "message": "In a Jami call, the tooltips/popup for the **Microphone** and **Camera** buttons are `Mute microphone`/`Unmute microphone` and `Stop camera/Start camera`, respectively.\n\nIt is not possible to unmute/start a device where the device does not exist.\n\nSound devices, such as microphones and speakers, can be unmuted/muted.\n\nImage devices, such as cameras and videos, can be started/stopped.\n\nShould `videoMuted` be changed to \u003cs\u003e`VideoStopped`\u003c/s\u003e/`VideoStarted`? Should **true** indicate that a feature is available, that is, `VideoStarted`?",
+      "range": {
+        "startLine": 69,
+        "startChar": 14,
+        "endLine": 69,
+        "endChar": 24
+      },
+      "revId": "360c76668e6db65969d92c2caa4c2596b0f92f1f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
