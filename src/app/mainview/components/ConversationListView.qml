@@ -29,6 +29,7 @@ JamiListView {
     required property bool headerVisible
 
     delegate: SmartListItemDelegate {}
+    currentIndex: model.currentFilteredRow
 
     // Allows scrolling to follow currently focused item
     onCurrentIndexChanged: {
