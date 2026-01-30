@@ -328,6 +328,7 @@ parts:
     - zlib1g-dev
     - libgl-dev
     - libvulkan-dev
+    - libxkbcommon-dev
     - libgnutls28-dev # TLS
     - libssl-dev
     stage-packages:
