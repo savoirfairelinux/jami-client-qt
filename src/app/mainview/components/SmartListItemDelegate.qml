@@ -280,10 +280,10 @@ ItemDelegate {
         if (CurrentConversation.isSwarm && !CurrentConversation.isCoreDialog)
             return; // For now disable calls for swarm with multiple participants
         if (LRCInstance.currentAccountType === Profile.Type.SIP || !CurrentAccount.videoEnabled_Video)
-            CallAdapter.startAudioOnlyCall();
+            CallAdapter.startOrJoinCall("", true);
         else {
             if (!CurrentConversation.readOnly) {
-                CallAdapter.startCall();
+                CallAdapter.startOrJoinCall("", false);
             }
         }
     }
