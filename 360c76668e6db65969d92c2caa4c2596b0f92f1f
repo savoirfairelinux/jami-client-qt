@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb1aad70_f6b4c669",
+        "filename": "src/app/calladapter.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1147
+      },
+      "writtenOn": "2026-01-30T20:24:07Z",
+      "side": 1,
+      "message": "In this context, \"empty\" refers to the \"empty\" attribute of a string. When a string has no characters, it is considered \"empty\"",
+      "parentUuid": "2e65637c_3ee125d0",
+      "range": {
+        "startLine": 68,
+        "startChar": 52,
+        "endLine": 68,
+        "endChar": 57
+      },
+      "revId": "360c76668e6db65969d92c2caa4c2596b0f92f1f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "65113a74_0c59219f",
@@ -84,6 +108,54 @@
       "side": 1,
       "message": "Sorry for the noise.\n\nBased on the following GitLab issue\nhttps://git.jami.net/savoirfairelinux/jami-daemon/-/issues/1169\n\nPerhaps the `videoMuted` should be `hasVideo`.\n\nPerhaps **true** should indicate AUDIO_ONLY.\n\nThank you",
       "parentUuid": "1e2e18f6_363cb9b0",
+      "range": {
+        "startLine": 69,
+        "startChar": 14,
+        "endLine": 69,
+        "endChar": 24
+      },
+      "revId": "360c76668e6db65969d92c2caa4c2596b0f92f1f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18356c60_646e8252",
+        "filename": "src/app/calladapter.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1147
+      },
+      "writtenOn": "2026-01-30T20:24:07Z",
+      "side": 1,
+      "message": "false",
+      "parentUuid": "65113a74_0c59219f",
+      "range": {
+        "startLine": 69,
+        "startChar": 7,
+        "endLine": 69,
+        "endChar": 13
+      },
+      "revId": "360c76668e6db65969d92c2caa4c2596b0f92f1f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2d17125_a0adf95d",
+        "filename": "src/app/calladapter.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1147
+      },
+      "writtenOn": "2026-01-30T20:24:07Z",
+      "side": 1,
+      "message": "Calling it \"hasVideo\" wouldn\u0027t help in this context. \"videoMuted\" follows the conventions in the other call-related methods in the client. For example, ConversationModel::joinCall also calls it \"videoMuted\"",
+      "parentUuid": "886e5a98_459d1e26",
       "range": {
         "startLine": 69,
         "startChar": 14,
