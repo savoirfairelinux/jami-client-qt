@@ -248,7 +248,6 @@ private:
 #ifdef _MSC_VER
 #define DO_PRAGMA(x)     /*do nothing*/
 #define __attribute__(A) /*do nothing*/
-#include <ciso646>
 #else
 #define DO_PRAGMA(x) _Pragma(#x)
 #endif // _MSC_VER
