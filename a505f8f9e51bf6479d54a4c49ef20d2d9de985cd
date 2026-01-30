@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71404441_9c7b5591",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 649,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-01-30T19:07:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66b7dbcf_7c72171c",
+      "range": {
+        "startLine": 649,
+        "startChar": 46,
+        "endLine": 649,
+        "endChar": 66
+      },
+      "revId": "a505f8f9e51bf6479d54a4c49ef20d2d9de985cd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "086bb86f_9b832e2b",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-01-27T20:30:49Z",
       "side": 1,
       "message": "Should `Change group photo` be `Edit profile picture`?\n\n1. Should `contact photo` and `group photo` both be changed to `profile picture`?\n\nProfile picture is used in other strings.\n\nThe profile picture may be an photo; however, it may also be an image.\n\nThe Jami ID may not be a contact or a group. Jami might be used as a doorbell. Jami might be used in other instances that is not a person or a group of people.\n\n2. Should `Changed` be changed to `Edit`?\n\nThank you",
+      "range": {
+        "startLine": 650,
+        "startChar": 44,
+        "endLine": 650,
+        "endChar": 62
+      },
+      "revId": "a505f8f9e51bf6479d54a4c49ef20d2d9de985cd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e676292_97cbbe2c",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 650,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-01-30T19:07:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "086bb86f_9b832e2b",
       "range": {
         "startLine": 650,
         "startChar": 44,
