@@ -17,25 +17,9 @@
 
 #pragma once
 
-#include "conversationlistmodelbase.h"
 #include "selectablelistproxymodel.h"
+#include <api/conversationmodel.h>
 
-#include <QSortFilterProxyModel>
-
-// A wrapper view model around ConversationModel's underlying data
-class ConversationListModel final : public ConversationListModelBase
-{
-    Q_OBJECT
-    QML_PROPERTY(MapStringString, position)
-
-public:
-    explicit ConversationListModel(LRCInstance* instance, QObject* parent = nullptr);
-
-    int rowCount(const QModelIndex& parent = QModelIndex()) const override;
-    QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
-};
-
-// The top level filtered and sorted model to be consumed by QML ListViews
 class ConversationListProxyModel final : public SelectableListProxyModel
 {
     Q_OBJECT
@@ -52,8 +36,6 @@ public:
     }
 
 private:
-    // This flag can be toggled when switching tabs to show the current account's
-    // conversation invites.
     bool filterRequests_ {false};
     QStringList ignored_ {};
 };

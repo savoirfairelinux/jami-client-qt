@@ -148,9 +148,7 @@ private:
     ConnectivityMonitor& connectivityMonitor_;
 
     QString selectedConvUid_;
-    MapStringString contentDrafts_;
     MapStringString lastConferences_;
-    MapStringListString fileDrafts_;
 
     conversation::Info invalid {"", nullptr};
 

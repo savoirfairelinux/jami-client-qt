@@ -17,8 +17,8 @@
 
 #pragma once
 
-#include "conversationlistmodelbase.h"
-
+#include "qtutils.h"
+#include <api/conversationmodel.h>
 #include <QSortFilterProxyModel>
 
 // The base class for a filtered and sorted model.

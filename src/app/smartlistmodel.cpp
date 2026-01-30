@@ -26,9 +26,18 @@
 #include <QDateTime>
 
 SmartListModel::SmartListModel(QObject* parent, SmartListModel::Type listModelType, LRCInstance* instance)
-    : ConversationListModelBase(instance, parent)
+    : AbstractListModelBase(parent)
     , listModelType_(listModelType)
 {
+    lrcInstance_ = instance;
+    try {
+        auto& accInfo = lrcInstance_->getCurrentAccountInfo();
+        model_ = accInfo.conversationModel.get();
+    } catch (...) {
+    }
+    if (!model_)
+        return;
+
     connect(model_, &ConversationModel::newConversation, this, [this] { updateModels(); }, Qt::DirectConnection);
     connect(model_, &ConversationModel::conversationRemoved, this, [this] { updateModels(); }, Qt::DirectConnection);
 
@@ -60,6 +69,12 @@ SmartListModel::rowCount(const QModelIndex& parent) const
     return 0;
 }
 
+QHash<int, QByteArray>
+SmartListModel::roleNames() const
+{
+    return model_->roleNames();
+}
+
 QVariant
 SmartListModel::data(const QModelIndex& index, int role) const
 {
@@ -73,7 +88,7 @@ SmartListModel::data(const QModelIndex& index, int role) const
             auto& convModel = currentAccountInfo.conversationModel;
 
             auto& item = convModel->getFilteredConversations(currentAccountInfo.profileInfo.type).at(index.row());
-            return dataForItem(item, role);
+            return model_->dataForItem(item, role);
         } catch (const std::exception& e) {
             qWarning() << e.what();
         }
@@ -114,12 +129,12 @@ SmartListModel::data(const QModelIndex& index, int role) const
         }
 
         auto& item = lrcInstance_->getConversationFromConvUid(itemConvUid, itemAccountId);
-        return dataForItem(item, role);
+        return model_->dataForItem(item, role);
     } break;
     case Type::ADDCONVMEMBER:
     case Type::CONVERSATION: {
         auto& item = conversations_.at(index.row());
-        return dataForItem(item, role);
+        return model_->dataForItem(item, role);
     } break;
     default:
         break;

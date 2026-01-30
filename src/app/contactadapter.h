@@ -90,7 +90,7 @@ public:
     explicit ContactAdapter(LRCInstance* instance, QObject* parent = nullptr);
     ~ContactAdapter() = default;
 
-    using Role = ConversationList::Role;
+    using Role = lrc::api::ConversationModel::Role;
 
     Q_INVOKABLE QVariant getContactSelectableModel(int type);
     Q_INVOKABLE void setSearchFilter(const QString& filter);

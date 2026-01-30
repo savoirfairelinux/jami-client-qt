@@ -37,12 +37,14 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
                                            QObject* parent)
     : QmlAdapterBase(instance, parent)
     , systemTray_(systemTray)
-    , convSrcModel_(new ConversationListModel(lrcInstance_))
     , convModel_(convProxyModel)
     , searchSrcModel_(new SearchResultsListModel(lrcInstance_))
     , searchModel_(searchProxyModel)
 {
-    convModel_->bindSourceModel(convSrcModel_.get());
+    auto model = lrcInstance_->getCurrentConversationModel();
+    if (model) {
+        convModel_->bindSourceModel(model);
+    }
     searchModel_->bindSourceModel(searchSrcModel_.get());
 
     set_convListProxyModel(QVariant::fromValue(convModel_));
@@ -78,12 +80,6 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
             // and not the search list
             convModel_->selectSourceRow(lrcInstance_->indexOf(convId));
         }
-    });
-
-    connect(lrcInstance_, &LRCInstance::draftSaved, this, [this](const QString& convId) {
-        auto row = lrcInstance_->indexOf(convId);
-        const auto index = convSrcModel_->index(row, 0);
-        Q_EMIT convSrcModel_->dataChanged(index, index);
     });
 
 #ifdef Q_OS_LINUX
@@ -302,14 +298,7 @@ ConversationsAdapter::onModelChanged()
 void
 ConversationsAdapter::onProfileUpdated(const QString& contactUri)
 {
-    auto& convInfo = lrcInstance_->getConversationFromPeerUri(contactUri);
-    if (convInfo.uid.isEmpty())
-        return;
-
-    // notify UI elements
-    auto row = lrcInstance_->indexOf(convInfo.uid);
-    const auto index = convSrcModel_->index(row, 0);
-    Q_EMIT convSrcModel_->dataChanged(index, index);
+    Q_UNUSED(contactUri)
 }
 
 void
@@ -386,14 +375,8 @@ ConversationsAdapter::onConversationReady(const QString& convId)
 void
 ConversationsAdapter::onBannedStatusChanged(const QString& uri, bool banned)
 {
+    Q_UNUSED(uri)
     Q_UNUSED(banned)
-    auto& convInfo = lrcInstance_->getConversationFromPeerUri(uri);
-    if (convInfo.uid.isEmpty())
-        return;
-    auto row = lrcInstance_->indexOf(convInfo.uid);
-    const auto index = convSrcModel_->index(row, 0);
-    Q_EMIT convSrcModel_->dataChanged(index, index);
-    lrcInstance_->set_selectedConvUid();
 }
 
 void
@@ -636,8 +619,7 @@ ConversationsAdapter::connectConversationModel()
                         &ContactModel::bannedStatusChanged,
                         &ConversationsAdapter::onBannedStatusChanged);
 
-    convSrcModel_.reset(new ConversationListModel(lrcInstance_));
-    convModel_->bindSourceModel(convSrcModel_.get());
+    convModel_->bindSourceModel(model);
     searchSrcModel_.reset(new SearchResultsListModel(lrcInstance_));
     searchModel_->bindSourceModel(searchSrcModel_.get());
 

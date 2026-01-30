@@ -15,67 +15,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "conversationlistmodel.h"
+#include "conversationlistproxymodel.h"
 
 #include "uri.h"
-
-ConversationListModel::ConversationListModel(LRCInstance* instance, QObject* parent)
-    : ConversationListModelBase(instance, parent)
-{
-    if (!model_)
-        return;
-
-    connect(
-        model_,
-        &ConversationModel::beginInsertRows,
-        this,
-        [this](int position, int rows) { beginInsertRows(QModelIndex(), position, position + (rows - 1)); },
-        Qt::DirectConnection);
-    connect(model_, &ConversationModel::endInsertRows, this, &ConversationListModel::endInsertRows, Qt::DirectConnection);
-
-    connect(
-        model_,
-        &ConversationModel::beginRemoveRows,
-        this,
-        [this](int position, int rows) { beginRemoveRows(QModelIndex(), position, position + (rows - 1)); },
-        Qt::DirectConnection);
-    connect(model_, &ConversationModel::endRemoveRows, this, &ConversationListModel::endRemoveRows, Qt::DirectConnection);
-
-    connect(
-        model_,
-        &ConversationModel::dataChanged,
-        this,
-        [this](int position) {
-            const auto index = createIndex(position, 0);
-            Q_EMIT ConversationListModel::dataChanged(index, index);
-        },
-        Qt::QueuedConnection);
-}
-
-int
-ConversationListModel::rowCount(const QModelIndex& parent) const
-{
-    // For list models only the root node (an invalid parent) should return the list's size. For all
-    // other (valid) parents, rowCount() should return 0 so that it does not become a tree model.
-    if (!parent.isValid() && model_) {
-        return model_->getConversations().size();
-    }
-    return 0;
-}
-
-QVariant
-ConversationListModel::data(const QModelIndex& index, int role) const
-{
-    const auto& data = model_->getConversations();
-    if (!index.isValid() || data.empty())
-        return {};
-    return dataForItem(data.at(index.row()), role);
-}
 
 ConversationListProxyModel::ConversationListProxyModel(QAbstractListModel* model, QObject* parent)
     : SelectableListProxyModel(model, parent)
 {
-    setSortRole(ConversationList::Role::LastInteractionTimeStamp);
+    setSortRole(lrc::api::ConversationModel::Role::LastInteractionTimeStamp);
     sort(0, Qt::DescendingOrder);
     setFilterCaseSensitivity(Qt::CaseSensitivity::CaseInsensitive);
 }
@@ -94,10 +41,8 @@ ConversationListProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& s
     }
     rx.setPattern(uriStripper.format(flags));
 
-    using namespace ConversationList;
+    using namespace lrc::api::ConversationList;
     if (index.data(Role::Uris).toStringList().isEmpty()) {
-        // TODO: Find out why, and fix in libjami/libjamiclient.
-        qCritical() << "Filtering 0 member conversation. Fix me" << index.data(Role::UID).toString();
         return false;
     }
 

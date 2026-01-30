@@ -59,7 +59,7 @@ class ConversationModelPimpl : public QObject
 {
     Q_OBJECT
 public:
-    ConversationModelPimpl(const ConversationModel& linked,
+    ConversationModelPimpl(ConversationModel& linked,
                            Lrc& lrc,
                            Database& db,
                            const CallbacksHandler& callbacksHandler,
@@ -216,7 +216,7 @@ public:
     void eraseConversation(const QString& convId);
     void eraseConversation(int index);
 
-    const ConversationModel& linked;
+    ConversationModel& linked;
     Lrc& lrc;
     Database& db;
     const CallbacksHandler& callbacksHandler;
@@ -385,11 +385,16 @@ ConversationModel::ConversationModel(const account::Info& owner,
                                      Lrc& lrc,
                                      Database& db,
                                      const CallbacksHandler& callbacksHandler,
-                                     const BehaviorController& behaviorController)
-    : QObject(nullptr)
+                                     const BehaviorController& behaviorController,
+                                     QObject* parent)
+    : QAbstractListModel(parent)
     , pimpl_(std::make_unique<ConversationModelPimpl>(*this, lrc, db, callbacksHandler, behaviorController))
     , owner(owner)
-{}
+{
+    connect(this, &ConversationModel::conversationUpdated, this, [this](const QString& uid) {
+        notifyDataChanged(pimpl_->indexOf(uid));
+    });
+}
 
 void
 ConversationModel::initConversations()
@@ -412,6 +417,227 @@ ConversationModel::allFilteredConversations() const
         return pimpl_->filteredConversations;
 
     return pimpl_->filteredConversations.filter().sort().validate();
+}
+
+int
+ConversationModel::rowCount(const QModelIndex& parent) const
+{
+    if (parent.isValid()) {
+        return 0;
+    }
+    return pimpl_->conversations.size();
+}
+
+QHash<int, QByteArray>
+ConversationModel::roleNames() const
+{
+    using namespace ConversationList;
+    QHash<int, QByteArray> roles;
+#define X(role) roles[role] = #role;
+    CONV_ROLES
+#undef X
+    return roles;
+}
+
+QVariant
+ConversationModel::data(const QModelIndex& index, int role) const
+{
+    if (!index.isValid() || index.row() < 0 || index.row() >= (int) pimpl_->conversations.size()) {
+        return {};
+    }
+    return dataForItem(pimpl_->conversations.at(index.row()), role);
+}
+
+QVariant
+ConversationModel::dataForItem(const conversation::Info& item, int role) const
+{
+    switch (role) {
+    case Role::InCall: {
+        return QVariant(!item.callId.isEmpty() && owner.callModel->hasCall(item.callId));
+    }
+    case Role::IsAudioOnly: {
+        if (!item.callId.isEmpty() && owner.callModel->hasCall(item.callId)) {
+            return QVariant(owner.callModel->getCall(item.callId).isAudioOnly);
+        }
+        return QVariant(false);
+    }
+    case Role::CallStackViewShouldShow: {
+        if (!item.callId.isEmpty() && owner.callModel->hasCall(item.callId)) {
+            const auto& call = owner.callModel->getCall(item.callId);
+            return QVariant(((!call.isOutgoing
+                              && (call.status == call::Status::IN_PROGRESS || call.status == call::Status::PAUSED
+                                  || call.status == call::Status::INCOMING_RINGING))
+                             || (call.isOutgoing && call.status != call::Status::ENDED)));
+        }
+        return QVariant(false);
+    }
+    case Role::CallState: {
+        if (!item.callId.isEmpty() && owner.callModel->hasCall(item.callId)) {
+            return QVariant(static_cast<int>(owner.callModel->getCall(item.callId).status));
+        }
+        return {};
+    }
+    case Role::Draft: {
+        if (!item.uid.isEmpty())
+            return drafts_[item.uid]["text"];
+        return {};
+    }
+    case Role::ActiveCallsCount: {
+        return (int) item.activeCalls.size();
+    }
+    case Role::IsRequest:
+        return QVariant(item.isRequest);
+    case Role::Title:
+        return QVariant(title(item.uid));
+    case Role::UnreadMessagesCount:
+        return QVariant(item.unreadMessages);
+    case Role::LastInteractionTimeStamp: {
+        qint64 ts = 0;
+        item.interactions->withLast(
+            [&ts](const QString&, const interaction::Info& interaction) { ts = interaction.timestamp; });
+        return QVariant(ts);
+    }
+    case Role::LastInteraction: {
+        QString lastInteractionBody;
+        item.interactions->withLast([&](const QString&, const interaction::Info& interaction) {
+            if (interaction.type == interaction::Type::UPDATE_PROFILE) {
+                lastInteractionBody = interaction::getProfileUpdatedString();
+            } else if (interaction.type == interaction::Type::DATA_TRANSFER) {
+                if (interaction.commit.value("tid").isEmpty()) {
+                    lastInteractionBody = tr("Deleted media");
+                } else {
+                    lastInteractionBody = interaction.commit.value("displayName");
+                }
+            } else if (interaction.type == lrc::api::interaction::Type::CALL) {
+                const auto isOutgoing = interaction.authorUri == owner.profileInfo.uri;
+                lastInteractionBody = interaction::getCallInteractionString(isOutgoing, interaction);
+            } else if (interaction.type == lrc::api::interaction::Type::CONTACT) {
+                auto bestName = interaction.authorUri == owner.profileInfo.uri
+                                    ? owner.accountModel->bestNameForAccount(owner.id)
+                                    : owner.contactModel->bestNameForContact(interaction.authorUri);
+                lastInteractionBody = interaction::getContactInteractionString(bestName,
+                                                                               interaction::to_action(
+                                                                                   interaction.commit["action"]));
+            } else {
+                lastInteractionBody = interaction.body.isEmpty() ? tr("(deleted message)") : interaction.body;
+            }
+        });
+        return QVariant(lastInteractionBody);
+    }
+    case Role::IsSwarm:
+        return QVariant(item.isSwarm());
+    case Role::IsCoreDialog:
+        return QVariant(item.isCoreDialog());
+    case Role::Mode:
+        return QVariant(static_cast<int>(item.mode));
+    case Role::UID:
+        return QVariant(item.uid);
+    case Role::IsBanned:
+        if (item.isCoreDialog()) {
+            auto peers = peersForConversation(item.uid);
+            if (!peers.isEmpty()) {
+                try {
+                    return owner.contactModel->getContact(peers.at(0)).isBanned;
+                } catch (...) {
+                }
+            }
+        }
+        return false;
+    case Role::Uris:
+        return QVariant(peersForConversation(item.uid).toList());
+    case Role::Monikers: {
+        QStringList ret;
+        Q_FOREACH (const auto& peerUri, peersForConversation(item.uid)) {
+            try {
+                auto contact = owner.contactModel->getContact(peerUri);
+                ret << contact.profileInfo.alias << contact.registeredName;
+            } catch (...) {
+            }
+        }
+        return ret;
+    }
+    case Role::Presence: {
+        auto maxPresence = 0;
+        Q_FOREACH (const auto& peerUri, peersForConversation(item.uid)) {
+            if (peerUri == owner.profileInfo.uri) {
+                return 2; // Self account
+            }
+            try {
+                auto contact = owner.contactModel->getContact(peerUri);
+                if (contact.presence > maxPresence)
+                    maxPresence = contact.presence;
+            } catch (...) {
+            }
+        }
+        return maxPresence;
+    }
+    case Role::BestId:
+        if (item.isCoreDialog()) {
+            auto peers = peersForConversation(item.uid);
+            if (!peers.isEmpty()) {
+                auto peerUri = peers.at(0);
+                if (peerUri == owner.profileInfo.uri)
+                    return owner.accountModel->bestIdForAccount(owner.id);
+                return owner.contactModel->bestIdForContact(peerUri);
+            }
+        }
+        return {};
+    case Role::Alias:
+        if (item.isCoreDialog()) {
+            auto peers = peersForConversation(item.uid);
+            if (!peers.isEmpty()) {
+                auto peerUri = peers.at(0);
+                if (peerUri == owner.profileInfo.uri)
+                    return owner.profileInfo.alias;
+                try {
+                    return owner.contactModel->getContact(peerUri).profileInfo.alias;
+                } catch (...) {
+                }
+            }
+        }
+        return {};
+    case Role::RegisteredName:
+        if (item.isCoreDialog()) {
+            auto peers = peersForConversation(item.uid);
+            if (!peers.isEmpty()) {
+                auto peerUri = peers.at(0);
+                if (peerUri == owner.profileInfo.uri)
+                    return owner.registeredName;
+                try {
+                    return owner.contactModel->getContact(peerUri).registeredName;
+                } catch (...) {
+                }
+            }
+        }
+        return {};
+    case Role::URI:
+        if (item.isCoreDialog()) {
+            auto peers = peersForConversation(item.uid);
+            if (!peers.isEmpty())
+                return peers.at(0);
+        }
+        return {};
+    case Role::ContactType:
+        if (item.isCoreDialog()) {
+            auto peers = peersForConversation(item.uid);
+            if (!peers.isEmpty()) {
+                auto peerUri = peers.at(0);
+                if (peerUri == owner.profileInfo.uri)
+                    return static_cast<int>(owner.profileInfo.type);
+                try {
+                    return static_cast<int>(owner.contactModel->getContact(peerUri).profileInfo.type);
+                } catch (...) {
+                }
+            }
+        }
+        return {};
+    case Role::AccountId:
+        return owner.id;
+    default:
+        break;
+    }
+
+    return {};
 }
 
 QMap<ConferenceableItem, ConferenceableValue>
@@ -879,7 +1105,7 @@ ConversationModelPimpl::startCall(const QString& uid, bool isAudioOnly)
             invalidateModel();
             linked.selectConversation(conversation.uid);
             Q_EMIT linked.conversationUpdated(conversation.uid);
-            Q_EMIT linked.dataChanged(indexOf(conversation.uid));
+            linked.notifyDataChanged(indexOf(conversation.uid));
             return;
         }
 
@@ -989,6 +1215,19 @@ void
 ConversationModel::startCall(const QString& uid)
 {
     pimpl_->startCall(uid);
+}
+
+void
+ConversationModel::setContentDraft(const QString& convUid, const QVariantMap& draft)
+{
+    drafts_[convUid] = draft;
+    notifyDataChanged(pimpl_->indexOf(convUid));
+}
+
+QVariantMap
+ConversationModel::getContentDraft(const QString& convUid) const
+{
+    return drafts_.value(convUid);
 }
 
 MapStringString
@@ -1117,7 +1356,7 @@ ConversationModel::reloadHistory() const
     std::for_each(pimpl_->conversations.begin(), pimpl_->conversations.end(), [&](const conversation::Info& c) {
         c.interactions->reloadHistory();
         Q_EMIT conversationUpdated(c.uid);
-        Q_EMIT dataChanged(pimpl_->indexOf(c.uid));
+        notifyDataChanged(pimpl_->indexOf(c.uid));
     });
 }
 
@@ -1305,7 +1544,7 @@ ConversationModel::sendMessage(const QString& uid, const QString& body, const QS
             // The order has changed, informs the client to redraw the list
             pimpl_->invalidateModel();
             Q_EMIT modelChanged();
-            Q_EMIT dataChanged(pimpl_->indexOf(convId));
+            notifyDataChanged(pimpl_->indexOf(convId));
         });
 
         if (isTemporary) {
@@ -1442,7 +1681,7 @@ ConversationModel::clearHistory(const QString& uid)
 
     Q_EMIT modelChanged();
     Q_EMIT conversationCleared(uid);
-    Q_EMIT dataChanged(conversationIdx);
+    notifyDataChanged(conversationIdx);
 }
 
 bool
@@ -1471,7 +1710,7 @@ ConversationModel::clearAllHistory()
             conversation.interactions->clear();
         }
         storage::getHistory(pimpl_->db, conversation, pimpl_->linked.owner.profileInfo.uri);
-        Q_EMIT dataChanged(pimpl_->indexOf(conversation.uid));
+        notifyDataChanged(pimpl_->indexOf(conversation.uid));
     }
     Q_EMIT modelChanged();
 }
@@ -1509,7 +1748,7 @@ ConversationModel::clearUnreadInteractions(const QString& convId)
         conversation.unreadMessages = 0;
         pimpl_->invalidateModel();
         Q_EMIT conversationUpdated(convId);
-        Q_EMIT dataChanged(pimpl_->indexOf(convId));
+        notifyDataChanged(pimpl_->indexOf(convId));
     }
 }
 
@@ -1564,7 +1803,7 @@ ConversationModel::acceptConversationRequest(const QString& conversationId)
 }
 
 const VectorString
-ConversationModel::peersForConversation(const QString& conversationId)
+ConversationModel::peersForConversation(const QString& conversationId) const
 {
     const auto conversationOpt = getConversationForUid(conversationId);
     if (!conversationOpt.has_value()) {
@@ -1586,7 +1825,7 @@ ConversationModel::removeConversationMember(const QString& conversationId, const
     ConfigurationManager::instance().removeConversationMember(owner.id, conversationId, memberId);
 }
 
-ConversationModelPimpl::ConversationModelPimpl(const ConversationModel& linked,
+ConversationModelPimpl::ConversationModelPimpl(ConversationModel& linked,
                                                Lrc& lrc,
                                                Database& db,
                                                const CallbacksHandler& callbacksHandler,
@@ -2185,7 +2424,7 @@ ConversationModelPimpl::slotSwarmLoaded(uint32_t requestId,
         Q_EMIT linked.modelChanged();
         Q_EMIT linked.newMessagesAvailable(linked.owner.id, conversationId);
         auto conversationIdx = indexOf(conversationId);
-        Q_EMIT linked.dataChanged(conversationIdx);
+        linked.notifyDataChanged(conversationIdx);
         Q_EMIT linked.conversationMessagesLoaded(requestId, conversationId);
         if (allLoaded) {
             conversation.allMessagesLoaded = true;
@@ -2263,7 +2502,7 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
         if (msg.transferStatus == interaction::TransferStatus::TRANSFER_AWAITING_HOST) {
             handleIncomingFile(conversationId, msgId, QString(message.body.value("totalSize")).toInt());
         }
-        Q_EMIT linked.dataChanged(indexOf(conversationId));
+        linked.notifyDataChanged(indexOf(conversationId));
         // Update status
         using namespace libjami::Account;
         for (const auto& uri : message.status.keys()) {
@@ -2296,7 +2535,7 @@ ConversationModelPimpl::slotMessageUpdated(const QString& accountId,
         // The conversation is updated, so we need to notify the view.
         invalidateModel();
         Q_EMIT linked.modelChanged();
-        Q_EMIT linked.dataChanged(indexOf(conversationId));
+        linked.notifyDataChanged(indexOf(conversationId));
     } catch (const std::exception& e) {
         qDebug() << "Messages received for conversation that does not exist.";
     }
@@ -2418,7 +2657,7 @@ ConversationModelPimpl::slotConversationReady(const QString& accountId, const QS
         conversation.isRequest = false;
         conversation.needsSyncing = false;
         Q_EMIT linked.conversationUpdated(conversationId);
-        Q_EMIT linked.dataChanged(indexOf(conversationId));
+        linked.notifyDataChanged(indexOf(conversationId));
         ConfigurationManager::instance().loadConversation(linked.owner.id, conversationId, "", 0);
         auto& peers = peersForConversation(conversation);
         if (peers.size() == 1)
@@ -2483,7 +2722,7 @@ ConversationModelPimpl::slotConversationMemberEvent(const QString& accountId,
     }
     Q_EMIT linked.modelChanged();
     Q_EMIT linked.conversationUpdated(conversationId);
-    Q_EMIT linked.dataChanged(indexOf(conversationId));
+    linked.notifyDataChanged(indexOf(conversationId));
 }
 
 void
@@ -2554,7 +2793,7 @@ ConversationModelPimpl::slotContactAdded(const QString& contactUri)
         if (conversation.needsSyncing != needsSyncing) {
             conversation.isRequest = false;
             conversation.needsSyncing = needsSyncing;
-            Q_EMIT linked.dataChanged(indexOf(conversation.uid));
+            linked.notifyDataChanged(indexOf(conversation.uid));
             Q_EMIT linked.conversationUpdated(conversation.uid);
             invalidateModel();
             Q_EMIT linked.modelChanged();
@@ -2679,7 +2918,7 @@ ConversationModelPimpl::slotPendingContactAccepted(const QString& uri)
             }
             filteredConversations.invalidate();
             Q_EMIT linked.newInteraction(convs[0], msgId, interaction);
-            Q_EMIT linked.dataChanged(convIdx);
+            linked.notifyDataChanged(convIdx);
         } catch (std::out_of_range& e) {
             qDebug() << "ConversationModelPimpl::slotContactAdded is unable to find contact.";
         }
@@ -2715,7 +2954,7 @@ ConversationModelPimpl::slotContactUpdated(const QString& uri)
         if (members.indexOf(uri) != -1) {
             invalidateModel();
             Q_EMIT linked.conversationUpdated(conversation.uid);
-            Q_EMIT linked.dataChanged(indexOf(conversation.uid));
+            linked.notifyDataChanged(indexOf(conversation.uid));
         }
     }
 
@@ -2833,7 +3072,7 @@ ConversationModelPimpl::addSwarmConversation(const QString& convId)
         conversation.interactions->append(convId, msg);
         conversation.needsSyncing = true;
         Q_EMIT linked.conversationUpdated(conversation.uid);
-        Q_EMIT linked.dataChanged(indexOf(conversation.uid));
+        linked.notifyDataChanged(indexOf(conversation.uid));
     }
     emplaceBackConversation(std::move(conversation));
     ConfigurationManager::instance().loadConversation(linked.owner.id, convId, "", 1);
@@ -3034,7 +3273,7 @@ ConversationModelPimpl::slotCallStatusChanged(const QString& accountId, const QS
             invalidateModel();
             linked.selectConversation(i->uid);
             Q_EMIT linked.conversationUpdated(i->uid);
-            Q_EMIT linked.dataChanged(indexOf(i->uid));
+            linked.notifyDataChanged(indexOf(i->uid));
         }
     } catch (std::out_of_range& e) {
         qDebug() << "ConversationModelPimpl::slotCallStatusChanged is unable to get nonexistent call.";
@@ -3074,7 +3313,7 @@ ConversationModelPimpl::slotCallEnded(const QString& callId)
                 conversation.confId = ""; // The participant is detached
                 invalidateModel();
                 Q_EMIT linked.conversationUpdated(conversation.uid);
-                Q_EMIT linked.dataChanged(idx);
+                linked.notifyDataChanged(idx);
             }
             ++idx;
         }
@@ -3142,7 +3381,7 @@ ConversationModelPimpl::addOrUpdateCallMessage(const QString& callId,
 
     invalidateModel();
     Q_EMIT linked.modelChanged();
-    Q_EMIT linked.dataChanged(static_cast<int>(std::distance(conversations.begin(), conv_it)));
+    linked.notifyDataChanged(static_cast<int>(std::distance(conversations.begin(), conv_it)));
 }
 
 void
@@ -3236,7 +3475,7 @@ ConversationModelPimpl::addIncomingMessage(const QString& peerId,
 
     invalidateModel();
     Q_EMIT linked.modelChanged();
-    Q_EMIT linked.dataChanged(conversationIdx);
+    linked.notifyDataChanged(conversationIdx);
 
     return msgId;
 }
@@ -3585,7 +3824,7 @@ ConversationModelPimpl::slotTransferStatusCreated(const QString& fileId, datatra
 
     invalidateModel();
     Q_EMIT linked.modelChanged();
-    Q_EMIT linked.dataChanged(conversationIdx);
+    linked.notifyDataChanged(conversationIdx);
 }
 
 void
@@ -3687,12 +3926,12 @@ ConversationModelPimpl::emplaceBackConversation(conversation::Info&& conversatio
 {
     if (conversationMap.find(conversation.uid) != conversationMap.end())
         return;
-    Q_EMIT linked.beginInsertRows(conversations.size());
+    linked.beginInsertRows(QModelIndex(), conversations.size(), conversations.size());
     conversations.emplace_back(std::move(conversation));
     auto newIndex = static_cast<int>(conversations.size() - 1);
     auto& newConv = conversations.back();
     conversationMap.emplace(newConv.uid, newIndex);
-    Q_EMIT linked.endInsertRows();
+    linked.endInsertRows();
 }
 
 void
@@ -3713,14 +3952,14 @@ ConversationModelPimpl::eraseConversation(int index)
         return;
     auto uid = conversations.at(index).uid;
     conversationMap.erase(uid);
-    Q_EMIT linked.beginRemoveRows(index);
+    linked.beginRemoveRows(QModelIndex(), index, index);
     conversations.erase(conversations.begin() + index);
     for (auto& entry : conversationMap) {
         if (entry.second > index) {
             entry.second--;
         }
     }
-    Q_EMIT linked.endRemoveRows();
+    linked.endRemoveRows();
 }
 
 void

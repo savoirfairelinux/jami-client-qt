@@ -18,7 +18,7 @@
 #pragma once
 
 #include "qmladapterbase.h"
-#include "conversationlistmodel.h"
+#include "conversationlistproxymodel.h"
 #include "searchresultslistmodel.h"
 
 #include <QObject>
@@ -117,7 +117,6 @@ private:
 
     SystemTray* systemTray_;
 
-    QScopedPointer<ConversationListModel> convSrcModel_;
     ConversationListProxyModel* convModel_;
     QScopedPointer<SearchResultsListModel> searchSrcModel_;
     SelectableListProxyModel* searchModel_;

@@ -18,14 +18,15 @@
 #include "searchresultslistmodel.h"
 
 SearchResultsListModel::SearchResultsListModel(LRCInstance* instance, QObject* parent)
-    : ConversationListModelBase(instance, parent)
-{}
+    : AbstractListModelBase(parent)
+{
+    lrcInstance_ = instance;
+    model_ = lrcInstance_->getCurrentConversationModel();
+}
 
 int
 SearchResultsListModel::rowCount(const QModelIndex& parent) const
 {
-    // For list models only the root node (an invalid parent) should return the list's size. For all
-    // other (valid) parents, rowCount() should return 0 so that it does not become a tree model.
     if (!parent.isValid() && model_) {
         return model_->getAllSearchResults().size();
     }
@@ -36,9 +37,15 @@ QVariant
 SearchResultsListModel::data(const QModelIndex& index, int role) const
 {
     const auto& data = model_->getAllSearchResults();
-    if (!index.isValid() || data.empty())
+    if (!index.isValid() || data.empty() || index.row() >= (int) data.size())
         return {};
-    return dataForItem(data.at(index.row()), role);
+    return model_->dataForItem(data.at(index.row()), role);
+}
+
+QHash<int, QByteArray>
+SearchResultsListModel::roleNames() const
+{
+    return model_->roleNames();
 }
 
 void

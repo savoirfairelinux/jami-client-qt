@@ -17,7 +17,8 @@
 
 #pragma once
 
-#include "conversationlistmodelbase.h"
+#include "abstractlistmodelbase.h"
+#include <api/conversationmodel.h>
 
 namespace ContactList {
 Q_NAMESPACE
@@ -28,10 +29,11 @@ Q_ENUM_NS(Type)
 using namespace lrc::api;
 class LRCInstance;
 
-class SmartListModel : public ConversationListModelBase
+class SmartListModel : public AbstractListModelBase
 {
     Q_OBJECT
 public:
+    using Role = lrc::api::ConversationModel::Role;
     using Type = ContactList::Type;
 
     explicit SmartListModel(QObject* parent = nullptr,
@@ -40,6 +42,7 @@ public:
 
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
+    QHash<int, QByteArray> roleNames() const override;
     QModelIndex index(int row, int column = 0, const QModelIndex& parent = QModelIndex()) const override;
     Qt::ItemFlags flags(const QModelIndex& index) const override;
 
@@ -47,6 +50,9 @@ public:
     Q_INVOKABLE void toggleSection(const QString& section);
     Q_INVOKABLE int currentUidSmartListModelIndex();
     Q_INVOKABLE void fillConversationsList();
+
+protected:
+    ConversationModel* model_ {nullptr};
 
 private:
     Type listModelType_;
