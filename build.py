@@ -509,10 +509,11 @@ def clean_contribs(contribs):
     contrib_dir = 'daemon/contrib'
     sub_dirs = os.listdir(contrib_dir)
 
-    # Let's find the abi triplet:
-    # The abi_triplet is 3 parts: <arch>-<vendor>-<sys> and should be the only directory
-    # named like that in the contrib directory. We can use a regex to find it.
-    triplet_pattern = re.compile(r'^[a-zA-Z0-9_]+-[a-zA-Z0-9_]+-[a-zA-Z0-9_]+$')
+    # Let's find the GNU triplet/quadruplet which is 3 or 4 parts:
+    # <arch>-<vendor>-<sys>[-<abi>] and should be the only directory
+    # named like that in the contrib directory. We can use a regex to
+    # find it.
+    triplet_pattern = re.compile(r'^[a-zA-Z0-9_]+(-[a-zA-Z0-9_]+){2,3}$')
     def is_triplet(s):
         return bool(triplet_pattern.match(s))
     abi_triplet = ''
