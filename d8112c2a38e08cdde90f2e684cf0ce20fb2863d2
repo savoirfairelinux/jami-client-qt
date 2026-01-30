@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9aa0ed12_087d4703",
+        "filename": "src/app/mainview/components/DevicesListPopup.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-01-30T18:47:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0afcf607_3da9d026",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 72
+      },
+      "revId": "d8112c2a38e08cdde90f2e684cf0ce20fb2863d2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dfd658ad_1182bd5e",
@@ -37,6 +61,24 @@
       "writtenOn": "2026-01-29T20:57:20Z",
       "side": 1,
       "message": "Add blank line after comment?",
+      "revId": "d8112c2a38e08cdde90f2e684cf0ce20fb2863d2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74421e43_55c35a71",
+        "filename": "src/app/mainview/components/DevicesListPopup.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-01-30T18:47:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dfd658ad_1182bd5e",
       "revId": "d8112c2a38e08cdde90f2e684cf0ce20fb2863d2",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -77,6 +119,48 @@
         "endLine": 16,
         "endChar": 2
       },
+      "revId": "d8112c2a38e08cdde90f2e684cf0ce20fb2863d2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66a19089_5fbb4bc4",
+        "filename": "src/app/mainview/components/SwarmDetailsPanel.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-01-30T18:47:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b61b455_43b605dd",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 2
+      },
+      "revId": "d8112c2a38e08cdde90f2e684cf0ce20fb2863d2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75aaf07a_7a42e717",
+        "filename": "src/app/mainview/components/SwarmDetailsPanel.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-01-30T18:47:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a596c63b_b82703ae",
       "revId": "d8112c2a38e08cdde90f2e684cf0ce20fb2863d2",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
