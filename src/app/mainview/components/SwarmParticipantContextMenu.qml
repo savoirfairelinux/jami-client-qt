@@ -36,7 +36,7 @@ ContextMenuAutoLoader {
             iconSource: JamiResources.videocam_24dp_svg
             onClicked: {
                 ConversationsAdapter.openDialogConversationWith(participantUri);
-                CallAdapter.startCall();
+                CallAdapter.startOrJoinCall("", false);
             }
         },
         GeneralMenuItem {
@@ -46,7 +46,7 @@ ContextMenuAutoLoader {
             iconSource: JamiResources.start_audiocall_24dp_svg
             onClicked: {
                 ConversationsAdapter.openDialogConversationWith(participantUri);
-                CallAdapter.startAudioOnlyCall();
+                CallAdapter.startOrJoinCall("", true);
             }
         },
         GeneralMenuItem {

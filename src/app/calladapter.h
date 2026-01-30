@@ -61,14 +61,12 @@ public:
 
     Q_INVOKABLE void startTimerInformation();
     Q_INVOKABLE void stopTimerInformation();
-    Q_INVOKABLE void startAudioOnlyCall();
-    Q_INVOKABLE void startCall();
 
     /**
      * Start a new call or join an existing one based on whether there is an active call in the current conversation
      * that matches the provided callId. If there is an active call but no matching callId is found, a warning is logged.
-     * @param callId The ID of the call to join.
-     * @param videoMuted Whether the call should be started/joined with video muted.
+     * @param callId The ID of the call to join. If empty, starts a new call when there are no active calls.
+     * @param videoMuted Whether the call should be started/joined with video muted (audio only when true).
      */
     Q_INVOKABLE void startOrJoinCall(const QString& callId = {}, bool videoMuted = false);
 
