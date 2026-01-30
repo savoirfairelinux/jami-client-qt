@@ -184,7 +184,7 @@ Rectangle {
             iconSource: JamiResources.start_audiocall_24dp_svg
             toolTipText: JamiStrings.startAudioCall
 
-            onClicked: CallAdapter.startAudioOnlyCall()
+            onClicked: CallAdapter.startOrJoinCall("", true)
         }
 
         NewIconButton {
@@ -197,7 +197,7 @@ Rectangle {
 
             visible: CurrentConversation.activeCalls.length === 0 && interactionButtonsVisibility && CurrentAccount.videoEnabled_Video
 
-            onClicked: CallAdapter.startCall()
+            onClicked: CallAdapter.startOrJoinCall("", false)
         }
 
         // Custom component (DNR: DO NOT REPLACE)

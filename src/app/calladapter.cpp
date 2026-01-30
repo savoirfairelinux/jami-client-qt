@@ -346,24 +346,6 @@ CallAdapter::onFallbackConversationSelected(const QString& accountId, const QStr
 }
 
 void
-CallAdapter::startAudioOnlyCall()
-{
-    const auto convUid = lrcInstance_->get_selectedConvUid();
-    if (!convUid.isEmpty()) {
-        lrcInstance_->getCurrentConversationModel()->startAudioOnlyCall(convUid);
-    }
-}
-
-void
-CallAdapter::startCall()
-{
-    const auto convUid = lrcInstance_->get_selectedConvUid();
-    if (!convUid.isEmpty()) {
-        lrcInstance_->getCurrentConversationModel()->startCall(convUid);
-    }
-}
-
-void
 CallAdapter::startOrJoinCall(const QString& callId, bool videoMuted)
 {
     const auto convUid = lrcInstance_->get_selectedConvUid();
@@ -391,9 +373,9 @@ CallAdapter::startOrJoinCall(const QString& callId, bool videoMuted)
     } else {
         // If there is no active call in the conversation, start a new one
         if (videoMuted) {
-            startAudioOnlyCall();
+            lrcInstance_->getCurrentConversationModel()->startAudioOnlyCall(convUid);
         } else {
-            startCall();
+            lrcInstance_->getCurrentConversationModel()->startCall(convUid);
         }
     }
 }
