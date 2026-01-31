@@ -39,9 +39,9 @@ public:
      * Override role name as access point in qml.
      */
     QHash<int, QByteArray> roleNames() const override;
-    QModelIndex index(int row, int column = 0, const QModelIndex& parent = QModelIndex()) const;
-    QModelIndex parent(const QModelIndex& child) const;
-    Qt::ItemFlags flags(const QModelIndex& index) const;
+    QModelIndex index(int row, int column = 0, const QModelIndex& parent = QModelIndex()) const override;
+    QModelIndex parent(const QModelIndex& child) const override;
+    Qt::ItemFlags flags(const QModelIndex& index) const override;
 
     /*
      * This function is to reset the model when there's new account added.
