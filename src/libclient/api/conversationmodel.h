@@ -457,7 +457,7 @@ Q_SIGNALS:
      */
     void profileUpdated(const QString& uid) const;
     /**
-     * Emitted when the conversations list is modified
+     * Emitted when the conversation list is modified
      */
     void modelChanged() const;
     /**

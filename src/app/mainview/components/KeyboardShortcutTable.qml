@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
@@ -41,7 +42,7 @@ Window {
             }
             ListElement {
                 shortcut: "Ctrl+L"
-                description: qsTr("Focus conversations list")
+                description: qsTr("Focus conversation list")
             }
             ListElement {
                 shortcut: "Ctrl+R"
