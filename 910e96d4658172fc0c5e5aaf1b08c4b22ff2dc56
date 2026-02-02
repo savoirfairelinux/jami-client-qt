@@ -52,6 +52,24 @@
       "parentUuid": "c370daad_167ddbe5",
       "revId": "910e96d4658172fc0c5e5aaf1b08c4b22ff2dc56",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2709485_55d12ebc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-02-02T15:29:59Z",
+      "side": 1,
+      "message": "Sounds good. I\u0027d like agree on a single dependency policy that works for all our needs:\n\n- local online developer builds,\n- fully offline / sandboxed builds.\n\nWhether the implementation uses `FetchContent` or `add_subdirectory` should be secondary to that. I think we can standardize on a single pattern (whether implemented via `FetchContent` or a thin wrapper around `find_package` + `add_subdirectory`) and gradually migrate the remaining submodules without regressions. Do you have a strong preference for either approach?",
+      "parentUuid": "f59336b5_ee513faf",
+      "revId": "910e96d4658172fc0c5e5aaf1b08c4b22ff2dc56",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
