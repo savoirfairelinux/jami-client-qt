@@ -91,19 +91,11 @@ if(WIN32)
   list(APPEND QWINDOWKIT_OPTIONS QWINDOWKIT_ENABLE_WINDOWS_SYSTEM_BORDERS OFF)
 endif()
 
-# If qwindowkit is unable to find qmsetup via cmake's find_package function, it will install it and
-# then call find_package again. Unfortunately, even the second call to find_package sometimes
-# fails due to qmsetup having been installed in the wrong directory. The following patch
-# ensures that qmsetup is always installed in the directory where find_package looks for it.
-if(NOT WIN32)
-  list(APPEND QWINDOWKIT_PATCHES ${EXTRA_PATCHES_DIR}/0001-fix-qm_install_package-function.patch)
-endif()
-
 # qwindowkit (frameless window)
 add_fetch_content(
   TARGET QWindowKit
-  URL https://github.com/stdware/qwindowkit.git
-  BRANCH d4536ebe12dd35504abdba66986daf21c0aee805
+  URL https://github.com/atraczyk/qwindowkit.git
+  BRANCH fix-multiarch-libdir
   PATCHES ${QWINDOWKIT_PATCHES}
   OPTIONS ${QWINDOWKIT_OPTIONS}
 )
