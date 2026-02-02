@@ -915,6 +915,7 @@ CallAdapter::recordThisCallToggle()
 void
 CallAdapter::muteCameraToggle()
 {
+    // If video camera is currently unmuted, we mute it. If video camera is currently muted, we unmute it.
     const auto callId = lrcInstance_->getCallIdForConversationUid(lrcInstance_->get_selectedConvUid(), accountId_);
     if (callId.isEmpty() || !lrcInstance_->getCurrentCallModel()->hasCall(callId)) {
         return;
@@ -922,27 +923,28 @@ CallAdapter::muteCameraToggle()
     auto* callModel = lrcInstance_->getCurrentCallModel();
     if (callModel->hasCall(callId)) {
         const auto callInfo = lrcInstance_->getCurrentCallModel()->getCall(callId);
-        auto mute = false;
-        for (const auto& m : callInfo.mediaList) {
-            if (m[libjami::Media::MediaAttributeKey::SOURCE].startsWith(libjami::Media::VideoProtocolPrefix::CAMERA)
-                && m[libjami::Media::MediaAttributeKey::MEDIA_TYPE] == libjami::Media::Details::MEDIA_TYPE_VIDEO) {
-                mute = m[libjami::Media::MediaAttributeKey::MUTED] == FALSE_STR;
+        auto cameraIsUnmuted = false;
+        for (const auto& media : callInfo.mediaList) {
+            if (media[libjami::Media::MediaAttributeKey::SOURCE].startsWith(libjami::Media::VideoProtocolPrefix::CAMERA)
+                && media[libjami::Media::MediaAttributeKey::MEDIA_TYPE] == libjami::Media::Details::MEDIA_TYPE_VIDEO) {
+                cameraIsUnmuted = media[libjami::Media::MediaAttributeKey::MUTED] == FALSE_STR;
             }
         }
 
         // Note: here we do not use mute, because for video we can have several inputs, so if we are
         // sharing and showing the camera, we just want to remove the camera
         // TODO Enum
-        if (mute)
+        if (cameraIsUnmuted) {
             callModel->removeMedia(callId,
                                    libjami::Media::Details::MEDIA_TYPE_VIDEO,
                                    libjami::Media::VideoProtocolPrefix::CAMERA,
-                                   mute,
+                                   cameraIsUnmuted,
                                    false);
-        else
+        } else {
             callModel->addMedia(callId,
                                 lrcInstance_->avModel().getCurrentVideoCaptureDevice(),
                                 lrc::api::CallModel::MediaRequestType::CAMERA);
+        }
     }
 }
 

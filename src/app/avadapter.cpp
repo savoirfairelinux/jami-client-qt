@@ -400,20 +400,26 @@ AvAdapter::stopSharing(const QString& source)
     closePortal(callId);
 #endif
     if (!source.isEmpty() && !callId.isEmpty()) {
+        // if source and callId are not empty
         if (source.startsWith(libjami::Media::VideoProtocolPrefix::DISPLAY)) {
-            qDebug() << "Stopping display: " << source;
+            // if the source is a display type
+            qDebug() << "&&&&& Stopping display: " << source;
             lrcInstance_->getCurrentCallModel()->removeMedia(callId,
                                                              libjami::Media::Details::MEDIA_TYPE_VIDEO,
                                                              libjami::Media::VideoProtocolPrefix::DISPLAY,
                                                              muteCamera_,
                                                              true);
-        } else {
-            qDebug() << "Stopping file: " << source;
+        } else if (source.startsWith(libjami::Media::VideoProtocolPrefix::FILE)) {
+            // if the source is a file type
+            qDebug() << "&&&&& Stopping file: " << source;
             lrcInstance_->getCurrentCallModel()->removeMedia(callId,
                                                              libjami::Media::Details::MEDIA_TYPE_VIDEO,
                                                              libjami::Media::VideoProtocolPrefix::FILE,
                                                              muteCamera_,
                                                              true);
+        } else {
+            qWarning() << "&&&&& Received request to stop sharing media with source" << source
+                       << "but source type is not handled.";
         }
     }
 }
@@ -482,18 +488,23 @@ AvAdapter::isSharing() const
 bool
 AvAdapter::isCapturing() const
 {
+    auto callId = lrcInstance_->getCurrentCallId();
+    auto callModel = lrcInstance_->getCurrentCallModel();
     try {
-        auto callId = lrcInstance_->getCurrentCallId();
-        auto callModel = lrcInstance_->getCurrentCallModel();
         auto call = callModel->getCall(callId);
-        for (const auto& m : call.mediaList) {
-            if (m[libjami::Media::MediaAttributeKey::SOURCE].startsWith(libjami::Media::VideoProtocolPrefix::CAMERA)
-                && m[libjami::Media::MediaAttributeKey::MEDIA_TYPE] == libjami::Media::Details::MEDIA_TYPE_VIDEO)
-                return m[libjami::Media::MediaAttributeKey::MUTED] == FALSE_STR;
+        for (const auto& media : call.mediaList) {
+            if (media[libjami::Media::MediaAttributeKey::SOURCE].startsWith(libjami::Media::VideoProtocolPrefix::CAMERA)
+                && media[libjami::Media::MediaAttributeKey::MEDIA_TYPE] == libjami::Media::Details::MEDIA_TYPE_VIDEO) {
+                qWarning() << "&&&&& Video camera media found in call media list, muted status:"
+                           << media[libjami::Media::MediaAttributeKey::MUTED];
+                return media[libjami::Media::MediaAttributeKey::MUTED] == FALSE_STR;
+            }
         }
+        qWarning() << "&&&&& No video camera media found in call media list.";
         return false;
     } catch (...) {
     }
+    qWarning() << "&&&&& Exception caught while checking for capturing status.";
     return false;
 }
 
