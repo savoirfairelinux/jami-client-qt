@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -35,8 +36,11 @@ Item {
     Layout.fillWidth: true
     Layout.fillHeight: true
 
-    property var isAdmin: UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri) === Member.Role.ADMIN || CurrentConversation.isCoreDialog
-    property string textColor: UtilsAdapter.luma(innerRect.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
+    property var isAdmin: UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id,
+                                                          CurrentAccount.uri) === Member.Role.ADMIN
+                          || CurrentConversation.isCoreDialog
+    property string textColor: UtilsAdapter.luma(innerRect.color)
+                               ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
 
     Rectangle {
         id: innerRect
@@ -48,23 +52,25 @@ Item {
         radius: JamiTheme.avatarBasedRadius
 
         function updateSwarmDetailsTabModel() {
+            console.warn("MEMBERS CHANGED", CurrentConversation.members.count);
             swarmDetailsTabModel.clear();
             if (!CurrentConversation.isCoreDialog) {
                 swarmDetailsTabModel.append({
-                    "name": JamiStrings.members.arg(CurrentConversation.members.count)
-                });
+                                                "name": JamiStrings.members.arg(
+                                                            CurrentConversation.members.count)
+                                            });
                 swarmDetailsTabModel.append({
-                    "name": JamiStrings.files
-                });
+                                                "name": JamiStrings.files
+                                            });
             } else {
                 swarmDetailsTabModel.append({
-                    "name": JamiStrings.files
-                });
+                                                "name": JamiStrings.files
+                                            });
             }
 
             swarmDetailsTabModel.append({
-                "name": JamiStrings.details
-            });
+                                            "name": JamiStrings.details
+                                        });
         }
         ColumnLayout {
             id: rectangleContent
@@ -118,19 +124,24 @@ Item {
                                 iconSource: JamiResources.informations_black_24dp_svg
                                 toolTipText: JamiStrings.contactDetails
 
-                                onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/UserProfile.qml", {
-                                    "aliasText": CurrentConversation.title,
-                                    "registeredNameText": CurrentConversation.description,
-                                    "idText": CurrentConversation.id,
-                                    "convId": CurrentConversation.id
-                                })
+                                onClicked: viewCoordinator.presentDialog(appWindow,
+                                                                         "mainview/components/UserProfile.qml",
+                                                                         {
+                                                                             "aliasText":
+                                                                             CurrentConversation.title,
+                                                                             "registeredNameText":
+                                                                             CurrentConversation.description,
+                                                                             "idText": CurrentConversation.id,
+                                                                             "convId": CurrentConversation.id
+                                                                         })
                             }
                         }
                         Item {
                             id: notificationsBlock
 
                             width: parent.width
-                            height: CurrentConversation.isCoreDialog ? parent.height / 3 : parent.height / 2
+                            height: CurrentConversation.isCoreDialog ? parent.height / 3 :
+                                                                       parent.height / 2
 
                             NewIconButton {
                                 id: muteConversation
@@ -138,22 +149,29 @@ Item {
                                 anchors.centerIn: parent
 
                                 iconSize: JamiTheme.iconButtonMedium
-                                iconSource: CurrentConversation.ignoreNotifications ? JamiResources.notifications_off_24dp_svg : JamiResources.notifications_active_24dp_svg
-                                toolTipText: CurrentConversation.ignoreNotifications ? JamiStrings.muteConversation : JamiStrings.unmuteConversation
+                                iconSource: CurrentConversation.ignoreNotifications
+                                            ? JamiResources.notifications_off_24dp_svg :
+                                              JamiResources.notifications_active_24dp_svg
+                                toolTipText: CurrentConversation.ignoreNotifications
+                                             ? JamiStrings.muteConversation :
+                                               JamiStrings.unmuteConversation
 
-                                onClicked: CurrentConversation.setPreference("ignoreNotifications", !CurrentConversation.ignoreNotifications)
+                                onClicked: CurrentConversation.setPreference("ignoreNotifications",
+                                                                             !CurrentConversation.ignoreNotifications)
                             }
                         }
                         Item {
                             id: colorBlock
 
                             width: parent.width
-                            height: CurrentConversation.isCoreDialog ? parent.height / 3 : parent.height / 2
+                            height: CurrentConversation.isCoreDialog ? parent.height / 3 :
+                                                                       parent.height / 2
 
                             Rectangle {
                                 id: conversationColorPicker
 
-                                property bool hovered: conversationColorPickerMouseArea.containsMouse
+                                property bool hovered:
+                                    conversationColorPickerMouseArea.containsMouse
 
                                 anchors.centerIn: parent
 
@@ -192,7 +210,8 @@ Item {
                                         title: JamiStrings.color
                                         currentColor: CurrentConversation.color
                                         onAccepted: {
-                                            CurrentConversation.setPreference("color", colorDialog.color);
+                                            CurrentConversation.setPreference("color",
+                                                                              colorDialog.color);
                                             this.destroy();
                                         }
                                         onRejected: this.destroy()
@@ -246,7 +265,8 @@ Item {
                         prefixIconColor: root.textColor
 
                         onAccepted: {
-                            ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, dynamicText);
+                            ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid,
+                                                                         dynamicText);
                         }
 
                         editMode: false
@@ -255,12 +275,14 @@ Item {
 
                         onActiveFocusChanged: {
                             if (!activeFocus) {
-                                ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, dynamicText);
+                                ConversationsAdapter.updateConversationTitle(
+                                            LRCInstance.selectedConvUid, dynamicText);
                             }
                             titleLine.editMode = activeFocus;
                         }
 
-                        infoTipLineText: CurrentConversation.isCoreDialog ? JamiStrings.contactName : JamiStrings.groupName
+                        infoTipLineText: CurrentConversation.isCoreDialog ? JamiStrings.contactName :
+                                                                            JamiStrings.groupName
                     }
 
                     ModalTextEdit {
@@ -290,13 +312,15 @@ Item {
                         textColor: root.textColor
                         prefixIconColor: root.textColor
 
-                        onAccepted: ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, dynamicText)
+                        onAccepted: ConversationsAdapter.updateConversationDescription(
+                                        LRCInstance.selectedConvUid, dynamicText)
 
                         editMode: false
 
                         onActiveFocusChanged: {
                             if (!activeFocus) {
-                                ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, dynamicText);
+                                ConversationsAdapter.updateConversationDescription(
+                                            LRCInstance.selectedConvUid, dynamicText);
                             }
                             descriptionLineButton.editMode = activeFocus;
                         }
@@ -312,12 +336,8 @@ Item {
 
             Connections {
                 target: CurrentConversation
-                function onIsCoreDialogChanged() {
-                    innerRect.updateSwarmDetailsTabModel()
-                }
-                function onMembersChanged() {
-                    innerRect.updateSwarmDetailsTabModel()
-                }
+
+                onIdChanged: innerRect.updateSwarmDetailsTabModel()
             }
 
             TabBar {
@@ -357,7 +377,8 @@ Item {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
 
-                visible: !CurrentConversation.isCoreDialog && swarmDetailsPanelTabBar.currentIndex === 0
+                visible: !CurrentConversation.isCoreDialog && swarmDetailsPanelTabBar.currentIndex
+                         === 0
 
                 NewMaterialButton {
                     id: inviteMemberButton
@@ -387,12 +408,15 @@ Item {
                     Grid {
                         id: membersGrid
                         width: parent.width
-                        columns: CurrentConversation.members.length < 3 ? CurrentConversation.members.length : 4
+                        columns: CurrentConversation.members.length < 3
+                                 ? CurrentConversation.members.length : 4
                         spacing: 12
 
                         SwarmParticipantContextMenu {
                             id: contextMenu
-                            role: UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri)
+                            role: UtilsAdapter.getParticipantRole(CurrentAccount.id,
+                                                                  CurrentConversation.id,
+                                                                  CurrentAccount.uri)
 
                             function openMenuAt(x, y, participantUri) {
                                 contextMenu.x = x;
@@ -408,7 +432,8 @@ Item {
                             delegate: ColumnLayout {
                                 id: memberDelegate
 
-                                width: (scrollView.width - (membersGrid.columns - 1) * membersGrid.spacing) / membersGrid.columns
+                                width: (scrollView.width - (membersGrid.columns - 1)
+                                        * membersGrid.spacing) / membersGrid.columns
 
                                 Item {
                                     Layout.alignment: Qt.AlignHCenter
@@ -418,12 +443,16 @@ Item {
                                     Avatar {
                                         id: memberDelegateAvatar
                                         anchors.fill: parent
-                                        opacity: (MemberRole === Member.Role.INVITED || MemberRole === Member.Role.BANNED) ? 0.5 : 1
+                                        opacity: (MemberRole === Member.Role.INVITED || MemberRole
+                                                  === Member.Role.BANNED) ? 0.5 : 1
 
-                                        imageId: CurrentAccount.uri === MemberUri ? CurrentAccount.id : MemberUri
-                                        presenceStatus: UtilsAdapter.getContactPresence(CurrentAccount.id, MemberUri)
+                                        imageId: CurrentAccount.uri === MemberUri
+                                                 ? CurrentAccount.id : MemberUri
+                                        presenceStatus: UtilsAdapter.getContactPresence(
+                                                            CurrentAccount.id, MemberUri)
                                         showPresenceIndicator: presenceStatus > 0
-                                        mode: CurrentAccount.uri === MemberUri ? Avatar.Mode.Account : Avatar.Mode.Contact
+                                        mode: CurrentAccount.uri === MemberUri
+                                              ? Avatar.Mode.Account : Avatar.Mode.Contact
 
                                         MouseArea {
                                             id: memberDelegateMouseArea
@@ -435,20 +464,31 @@ Item {
 
                                             onClicked: function (mouse) {
                                                 if (mouse.button === Qt.LeftButton) {
-                                                    if (ConversationsAdapter.dialogId(MemberUri) !== "")
-                                                        ConversationsAdapter.openDialogConversationWith(MemberUri);
+                                                    if (ConversationsAdapter.dialogId(MemberUri)
+                                                            !== "")
+                                                        ConversationsAdapter.openDialogConversationWith(
+                                                                    MemberUri);
                                                     else
                                                         ConversationsAdapter.setFilter(MemberUri);
                                                 } else if (mouse.button === Qt.RightButton) {
-                                                    const position = mapToItem(membersGrid, mouse.x, mouse.y);
-                                                    contextMenu.openMenuAt(position.x, position.y, MemberUri);
+                                                    const position = mapToItem(membersGrid, mouse.x,
+                                                                               mouse.y);
+                                                    contextMenu.openMenuAt(position.x, position.y,
+                                                                           MemberUri);
                                                 }
                                             }
                                         }
 
                                         MaterialToolTip {
                                             parent: memberDelegateMouseArea
-                                            property string tip: (MemberRole === Member.Role.ADMIN) ? JamiStrings.administrator : (MemberRole === Member.Role.INVITED) ? JamiStrings.invited : (MemberRole === Member.Role.BANNED) ? JamiStrings.blocked : ""
+                                            property string tip: (MemberRole === Member.Role.ADMIN)
+                                                                 ? JamiStrings.administrator : (
+                                                                       MemberRole
+                                                                       === Member.Role.INVITED)
+                                                                   ? JamiStrings.invited : (
+                                                                         MemberRole
+                                                                         === Member.Role.BANNED)
+                                                                     ? JamiStrings.blocked : ""
                                             text: tip
                                             visible: parent.containsMouse && tip.length > 0
                                             delay: Qt.styleHints.mousePressAndHoldInterval
@@ -497,12 +537,14 @@ Item {
                                     id: nameTextEdit
 
                                     Layout.fillWidth: true
-                                    eText: UtilsAdapter.getContactBestName(CurrentAccount.id, MemberUri)
+                                    eText: UtilsAdapter.getContactBestName(CurrentAccount.id,
+                                                                           MemberUri)
                                     maxWidth: width
 
                                     font.pointSize: JamiTheme.participantFontSize
                                     color: JamiTheme.primaryForegroundColor
-                                    opacity: (MemberRole === Member.Role.INVITED || MemberRole === Member.Role.BANNED) ? 0.5 : 1
+                                    opacity: (MemberRole === Member.Role.INVITED || MemberRole
+                                              === Member.Role.BANNED) ? 0.5 : 1
                                     font.kerning: true
 
                                     verticalAlignment: Text.AlignVCenter
@@ -520,7 +562,9 @@ Item {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
 
-                visible: CurrentConversation.isCoreDialog ? swarmDetailsPanelTabBar.currentIndex === 0 : swarmDetailsPanelTabBar.currentIndex === 1
+                visible: CurrentConversation.isCoreDialog ? swarmDetailsPanelTabBar.currentIndex
+                                                            === 0 : swarmDetailsPanelTabBar.currentIndex
+                                                            === 1
 
                 DocumentsScrollview {
                     id: documents
@@ -549,7 +593,9 @@ Item {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
 
-                visible: CurrentConversation.isCoreDialog ? swarmDetailsPanelTabBar.currentIndex === 1 : swarmDetailsPanelTabBar.currentIndex === 2
+                visible: CurrentConversation.isCoreDialog ? swarmDetailsPanelTabBar.currentIndex
+                                                            === 1 : swarmDetailsPanelTabBar.currentIndex
+                                                            === 2
 
                 ScrollView {
                     id: detailsScrollView
@@ -574,18 +620,18 @@ Item {
                                 Layout.alignment: Qt.AlignVCenter
 
                                 iconSource: switch (CurrentConversation.modeString) {
-                                case JamiStrings.publicGroup:
-                                    JamiResources.public_24dp_svg;
-                                    break;
-                                case JamiStrings.privateConversation:
-                                    JamiResources.lock_svg;
-                                    break;
-                                case JamiStrings.privateRestrictedGroup:
-                                    JamiResources.mail_lock_24dp_svg;
-                                    break;
-                                case JamiStrings.privateGroup:
-                                    JamiResources.create_swarm_svg;
-                                }
+                                            case JamiStrings.publicGroup:
+                                                JamiResources.public_24dp_svg;
+                                                break;
+                                            case JamiStrings.privateConversation:
+                                                JamiResources.lock_svg;
+                                                break;
+                                            case JamiStrings.privateRestrictedGroup:
+                                                JamiResources.mail_lock_24dp_svg;
+                                                break;
+                                            case JamiStrings.privateGroup:
+                                                JamiResources.create_swarm_svg;
+                                            }
                                 iconSize: JamiTheme.iconButtonMedium
 
                                 enabled: false
@@ -609,16 +655,22 @@ Item {
                             outlinedButton: true
                             color: JamiTheme.buttonTintedRed
                             iconSource: JamiResources.ic_disconnect_participant_24dp_svg
-                            text: CurrentConversation.isCoreDialog ? JamiStrings.removeConversation : JamiStrings.leaveGroup
+                            text: CurrentConversation.isCoreDialog ? JamiStrings.removeConversation :
+                                                                     JamiStrings.leaveGroup
 
                             onClicked: {
-                                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
-                                    "title": JamiStrings.confirmAction,
-                                    "textLabel": JamiStrings.confirmRemoveContact,
-                                    "confirmLabel": JamiStrings.optionRemove
-                                });
+                                var dlg = viewCoordinator.presentDialog(appWindow,
+                                                                        "commoncomponents/ConfirmDialog.qml",
+                                                                        {
+                                                                            "title": JamiStrings.confirmAction,
+                                                                            "textLabel":
+                                                                            JamiStrings.confirmRemoveContact,
+                                                                            "confirmLabel":
+                                                                            JamiStrings.optionRemove
+                                                                        });
                                 dlg.accepted.connect(function () {
-                                    MessagesAdapter.removeConversation(LRCInstance.selectedConvUid, true);
+                                    MessagesAdapter.removeConversation(LRCInstance.selectedConvUid,
+                                                                       true);
                                 });
                             }
                         }
@@ -635,11 +687,15 @@ Item {
 
                             visible: CurrentConversation.isCoreDialog
                             onClicked: {
-                                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
-                                    "title": JamiStrings.confirmAction,
-                                    "textLabel": JamiStrings.confirmRemoveContact,
-                                    "confirmLabel": JamiStrings.optionRemove
-                                });
+                                var dlg = viewCoordinator.presentDialog(appWindow,
+                                                                        "commoncomponents/ConfirmDialog.qml",
+                                                                        {
+                                                                            "title": JamiStrings.confirmAction,
+                                                                            "textLabel":
+                                                                            JamiStrings.confirmRemoveContact,
+                                                                            "confirmLabel":
+                                                                            JamiStrings.optionRemove
+                                                                        });
                                 dlg.accepted.connect(function () {
                                     MessagesAdapter.removeConversation(LRCInstance.selectedConvUid);
                                 });
@@ -659,11 +715,15 @@ Item {
                             visible: CurrentConversation.isCoreDialog
 
                             onClicked: {
-                                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
-                                    "title": JamiStrings.confirmAction,
-                                    "textLabel": JamiStrings.confirmBlockContact,
-                                    "confirmLabel": JamiStrings.optionBlock
-                                });
+                                var dlg = viewCoordinator.presentDialog(appWindow,
+                                                                        "commoncomponents/ConfirmDialog.qml",
+                                                                        {
+                                                                            "title": JamiStrings.confirmAction,
+                                                                            "textLabel":
+                                                                            JamiStrings.confirmBlockContact,
+                                                                            "confirmLabel":
+                                                                            JamiStrings.optionBlock
+                                                                        });
                                 dlg.accepted.connect(function () {
                                     MessagesAdapter.blockConversation(CurrentConversation.id);
                                 });
