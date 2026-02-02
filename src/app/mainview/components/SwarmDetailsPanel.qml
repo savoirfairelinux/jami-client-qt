@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -42,7 +43,7 @@ Item {
         id: innerRect
 
         anchors.fill: parent
-        anchors.margins: JamiTheme.sidePanelIslandsPadding
+        anchors.margins: viewCoordinator.isInSinglePaneMode ? JamiTheme.sidePanelIslandsSinglePaneModePadding : JamiTheme.sidePanelIslandsPadding
 
         color: JamiTheme.globalIslandColor
         radius: JamiTheme.avatarBasedRadius

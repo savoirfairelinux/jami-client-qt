@@ -186,12 +186,14 @@ SidePanelBase {
         ColumnLayout {
             anchors.fill: parent
             // Creates The floating rectangle itself
-            anchors.margins: JamiTheme.sidePanelIslandsSinglePaneModePadding
+            anchors.margins: viewCoordinator.isInSinglePaneMode ? JamiTheme.sidePanelIslandsSinglePaneModePadding : JamiTheme.sidePanelIslandsPadding
             anchors.rightMargin: {
-                if (viewCoordinator.isInSinglePaneMode)
+                if (viewCoordinator.isInSinglePaneMode) {
                     return JamiTheme.sidePanelIslandsSinglePaneModePadding;
-                else
-                    return JamiTheme.sidePanelIslandsPadding;
+                }
+                // This manual override for the right margin is necessary,
+                // otherwise the shadow appears cut-off.
+                return 16;
             }
 
             Item {
