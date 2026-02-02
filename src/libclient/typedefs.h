@@ -45,6 +45,7 @@ typedef QVector<int> VectorInt;
 typedef QVector<uint> VectorUInt;
 typedef QVector<qulonglong> VectorULongLong;
 typedef QVector<QMap<QString, QString>> VectorMapStringString;
+typedef VectorMapStringString MediaList;
 typedef QVector<QString> VectorString;
 typedef QMap<QString, QMap<QString, QVector<QString>>> MapStringMapStringVectorString;
 typedef QMap<QString, QVector<QString>> MapStringVectorString;

@@ -18,6 +18,7 @@
 #include "api/callmodel.h"
 
 // Lrc
+#include "api/account.h"
 #include "callbackshandler.h"
 #include "api/avmodel.h"
 #include "api/behaviorcontroller.h"
@@ -528,6 +529,13 @@ CallModel::getProposed(VectorMapStringString mediaList,
                        bool mute,
                        bool shareAudio)
 {
+    qWarning() << "&&&&& Building media list for call" << callId << "source:" << source << "type:"
+               << (type == MediaRequestType::CAMERA          ? "camera"
+                   : type == MediaRequestType::SCREENSHARING ? "screensharing"
+                   : type == MediaRequestType::FILESHARING   ? "filesharing"
+                                                             : "unknown")
+               << "mute:" << mute << "shareAudio:" << shareAudio;
+
     QString resource {};
     auto aid = 0;
     auto vid = 0;
@@ -622,6 +630,7 @@ CallModel::addMedia(const QString& callId, const QString& source, MediaRequestTy
     if (!callInfo || source.isEmpty())
         return;
 
+    qWarning() << "&&&&& Adding media with source" << source << "to call" << callId;
     auto proposedList = getProposed(callInfo->mediaList, callId, source, type, mute, shareAudio);
 
     CallManager::instance().requestMediaChange(owner.id, callId, proposedList);
@@ -634,67 +643,93 @@ void
 CallModel::removeMedia(
     const QString& callId, const QString& mediaType, const QString& type, bool muteCamera, bool removeAll)
 {
+    // mediaType: audio or video
+    // type: file, display, capture_device or none
+
     auto& callInfo = pimpl_->calls[callId];
     if (!callInfo)
         return;
-    auto isVideo = mediaType == MediaAttributeValue::VIDEO;
-    auto newIdx = 0;
-    auto replaceIdx = false, hasVideo = false;
-    VectorMapStringString proposedList;
-    QString label;
+
+    qWarning() << "&&&&& Removing media of type" << mediaType << "and source type" << type << "from call" << callId;
+
+    // we are about to rebuild the media list without the one we want to remove
+    MediaList newMediaList;
+    QString labelOfMediaToRemove;
+    bool mediaToRemoveIsVideo = mediaType == MediaAttributeValue::VIDEO;
+    bool foundMediaToRemove = false;
+    bool newMediaListContainsVideoMedia = false;
+
+    size_t i = 0; // begin rebuilding at index 0 (audio_0/video_0)
+    // note: we only need to reindex one of the types (audio or video)
     for (const auto& media : callInfo->mediaList) {
         if (media[MediaAttributeKey::MEDIA_TYPE] == mediaType && media[MediaAttributeKey::SOURCE].startsWith(type)) {
-            replaceIdx = true;
-            label = media[MediaAttributeKey::LABEL];
+            // media is the one we wish to remove
+            foundMediaToRemove = true;
+            labelOfMediaToRemove = media[MediaAttributeKey::LABEL];
         } else {
+            // media is not the one we wish to remove
             if (!removeAll || !media[MediaAttributeKey::SOURCE].startsWith(type)) {
+                // if we're not trying to remove all media, or media source type doesn't match the one to remove
                 if (media[MediaAttributeKey::MEDIA_TYPE] == mediaType) {
+                    // if media type matches the type (audio/video) of the one we wish to remove
                     auto newMedia = media;
-                    if (replaceIdx) {
-                        QString idxStr = QString::number(newIdx);
-                        newMedia[MediaAttributeKey::LABEL] = isVideo ? "video_" + idxStr : "audio_" + idxStr;
+                    if (foundMediaToRemove) {
+                        // we reindex media's label
+                        newMedia[MediaAttributeKey::LABEL] = mediaToRemoveIsVideo ? "video_" + QString::number(i)
+                                                                                  : "audio_" + QString::number(i);
                     }
-                    proposedList.push_back(newMedia);
-                    newIdx++;
+                    newMediaList.push_back(newMedia);
+                    i++;
                 } else {
-                    proposedList.push_back(media);
+                    // media type doesn't match the type (audio/video) of the one we wish to remove
+                    // so we don't need to reindex the media label, we just add it to the new list
+                    newMediaList.push_back(media);
                 }
             }
-            hasVideo |= media[MediaAttributeKey::MEDIA_TYPE] == MediaAttributeValue::VIDEO;
+            if (media[MediaAttributeKey::MEDIA_TYPE] == MediaAttributeValue::VIDEO) {
+                newMediaListContainsVideoMedia = true;
+            }
         }
     }
 
     auto participantsModel = pimpl_->participantsModel.find(callId);
-    auto isConf = participantsModel != pimpl_->participantsModel.end()
-                  && participantsModel->second->getParticipants().size() != 0;
-    if (!isConf) {
-        // 1:1 call, in this case we only show one preview, and switch between sharing and camera
-        // preview So, if no video, replace by camera
-        if (!hasVideo) {
-            proposedList = getProposed(proposedList,
-                                       callInfo->id,
+    qWarning() << "&&&&& participantsModel found:" << (participantsModel != pimpl_->participantsModel.end());
+    auto participantsListSize = participantsModel->second->getParticipants().size();
+    auto isConference = participantsListSize != 0; // does size 0 mean 1:1 call?
+    // in 1:1 calls, participantsListSize seems to be 0 (why ?)
+
+    qWarning() << "&&&&& isConference:" << isConference << ", participantsListSize:" << participantsListSize;
+    qWarning() << "&&&&& newMediaListContainsVideoMedia:" << newMediaListContainsVideoMedia;
+    if (!isConference) {
+        // 1:1 call (you sure?), in this case we only show one preview, and switch between sharing and camera preview.
+        // So, if no video is present, rebuild media list with video camera media
+        if (!newMediaListContainsVideoMedia) {
+            newMediaList = getProposed(newMediaList,
+                                       callInfo->id, // why not use callId directly?
                                        pimpl_->lrc.getAVModel().getCurrentVideoCaptureDevice(),
                                        MediaRequestType::CAMERA,
                                        muteCamera);
         }
-    } else if (!hasVideo) {
-        // To receive the remote video, we need a muted camera
-        proposedList.push_back(
-            MapStringString {{MediaAttributeKey::MEDIA_TYPE, MediaAttributeValue::VIDEO},
-                             {MediaAttributeKey::ENABLED, TRUE_STR},
-                             {MediaAttributeKey::MUTED, TRUE_STR},
-                             {MediaAttributeKey::SOURCE,
-                              pimpl_->lrc.getAVModel()
-                                  .getCurrentVideoCaptureDevice()}, // not needed to set the source. Daemon should be
-                                                                    // able to check it
-                             {MediaAttributeKey::LABEL, label.isEmpty() ? "video_0" : label}});
+    } else if (!newMediaListContainsVideoMedia) {
+        // conference call (you sure?), and media list does not contain video media
+        // To receive the remote video, we need to have a video media in the media list
+        // in order to negotiate a video RTP stream
+        qWarning() << "&&&&& Re-adding muted video media to be able to receive remote video in conference";
+        newMediaList.push_back(MapStringString {
+            {MediaAttributeKey::MEDIA_TYPE, MediaAttributeValue::VIDEO},
+            {MediaAttributeKey::ENABLED, TRUE_STR},
+            {MediaAttributeKey::MUTED, TRUE_STR},
+            {MediaAttributeKey::SOURCE,
+             pimpl_->lrc.getAVModel().getCurrentVideoCaptureDevice()}, // not needed to set the source. Daemon should be
+                                                                       // able to check it
+            {MediaAttributeKey::LABEL, labelOfMediaToRemove.isEmpty() ? "video_0" : labelOfMediaToRemove}});
     }
 
-    if (isVideo && !label.isEmpty())
-        pimpl_->lrc.getAVModel().stopPreview(label);
+    if (mediaToRemoveIsVideo && !labelOfMediaToRemove.isEmpty())
+        pimpl_->lrc.getAVModel().stopPreview(labelOfMediaToRemove);
 
-    CallManager::instance().requestMediaChange(owner.id, callId, proposedList);
-    callInfo->mediaList = proposedList;
+    CallManager::instance().requestMediaChange(owner.id, callId, newMediaList);
+    callInfo->mediaList = newMediaList;
     if (callInfo->status == call::Status::IN_PROGRESS)
         Q_EMIT callInfosChanged(owner.id, callId);
 }

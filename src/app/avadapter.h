@@ -59,7 +59,7 @@ protected:
     Q_INVOKABLE bool isSharing() const;
 
     /**
-     * Check if user is showing a camera
+     * @return true if user has a video camera media that is not muted, false otherwise.
      */
     Q_INVOKABLE bool isCapturing() const;
 
