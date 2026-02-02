@@ -1,19 +1,19 @@
 /*
- * Copyright (C) 2020-2026 Savoir-faire Linux Inc.
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
+* Copyright (C) 2020-2026 Savoir-faire Linux Inc.
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -73,20 +73,23 @@ SidePanelBase {
             viewCoordinator.present("NewSwarmPage");
             const newSwarmPage = viewCoordinator.getView("NewSwarmPage");
             newSwarmPage.removeMember.connect((convId, member) => {
-                removeMember(convId, member);
-            });
+                                                  removeMember(convId, member);
+                                              });
             newSwarmPage.createSwarmClicked.connect((title, description, avatar) => {
-                var uris = [];
-                for (var idx in newSwarmPage.members) {
-                    var uri = newSwarmPage.members[idx].uri;
-                    if (uris.indexOf(uri) === -1) {
-                        uris.push(uri);
-                    }
-                }
-                let convuid = ConversationsAdapter.createSwarm(title, description, avatar, uris);
-                viewCoordinator.dismiss("NewSwarmPage");
-                LRCInstance.selectConversation(convuid);
-            });
+                                                        var uris = [];
+                                                        for (var idx in newSwarmPage.members) {
+                                                            var uri = newSwarmPage.members[idx].uri;
+                                                            if (uris.indexOf(uri) === -1) {
+                                                                uris.push(uri);
+                                                            }
+                                                        }
+                                                        let convuid
+                                                        = ConversationsAdapter.createSwarm(title,
+                                                                                           description,
+                                                                                           avatar, uris);
+                                                        viewCoordinator.dismiss("NewSwarmPage");
+                                                        LRCInstance.selectConversation(convuid);
+                                                    });
         } else {
             viewCoordinator.dismiss("NewSwarmPage");
         }
@@ -110,9 +113,9 @@ SidePanelBase {
                 var uri = item.uris[idx];
                 if (!Array.from(newHm).find(r => r.uri === uri) && uri !== CurrentAccount.uri) {
                     newHm.push({
-                        "uri": uri,
-                        "convId": convId
-                    });
+                                   "uri": uri,
+                                   "convId": convId
+                               });
                     added = true;
                 }
             }
@@ -326,7 +329,8 @@ SidePanelBase {
                             }
 
                             onReturnPressedWhileSearching: {
-                                var listView = searchResultsListView.count ? searchResultsListView : conversationListView;
+                                var listView = searchResultsListView.count ? searchResultsListView :
+                                                                             conversationListView;
                                 if (listView.count)
                                     listView.model.select(0);
                             }
@@ -379,7 +383,8 @@ SidePanelBase {
                     SidePanelTabBar {
                         id: sidePanelTabBar
 
-                        visible: ConversationsAdapter.pendingRequestCount && !contactSearchBar.textContent
+                        visible: ConversationsAdapter.pendingRequestCount &&
+                                 !contactSearchBar.textContent
 
                         contentHeight: childrenRect.height
                         width: parent.width
@@ -435,7 +440,9 @@ SidePanelBase {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
 
-                        visible: !smartListLayout.visible && !swarmMemberSearchList.visible && !(contactSearchBar.textContent !== "" && searchResultsListView.count === 0)
+                        visible: !smartListLayout.visible && !swarmMemberSearchList.visible && !(
+                                     contactSearchBar.textContent !== ""
+                                     && searchResultsListView.count === 0)
 
                         ColumnLayout {
                             anchors.centerIn: parent
@@ -444,7 +451,8 @@ SidePanelBase {
                             NewIconButton {
                                 Layout.alignment: Qt.AlignHCenter
 
-                                iconSource: inNewSwarm ? JamiResources.emotion_sad_line_svg : JamiResources.ghost_line_svg
+                                iconSource: inNewSwarm ? JamiResources.emotion_sad_line_svg :
+                                                         JamiResources.ghost_line_svg
                                 iconSize: JamiTheme.iconButtonExtraLarge
 
                                 enabled: false
@@ -453,7 +461,8 @@ SidePanelBase {
                             Text {
                                 Layout.alignment: Qt.AlignHCenter
 
-                                text: inNewSwarm ? JamiStrings.noContactsToChooseFrom : JamiStrings.noConversations
+                                text: inNewSwarm ? JamiStrings.noContactsToChooseFrom :
+                                                   JamiStrings.noConversations
                                 color: JamiTheme.textColor
                                 elide: Text.ElideRight
 
@@ -488,7 +497,8 @@ SidePanelBase {
 
                         spacing: 4
 
-                        visible: !inNewSwarm && (searchResultsListView.count > 0 || conversationListView.count > 0)
+                        visible: !inNewSwarm && (searchResultsListView.count > 0
+                                                 || conversationListView.count > 0)
 
                         onActiveFocusChanged: {
                             // We need to defer to the focus to the appropriate list
@@ -550,7 +560,8 @@ SidePanelBase {
                                         console.log(isBanned);
                                         if (isBanned) {
                                             LRCInstance.selectConversation(UID);
-                                            MessagesAdapter.unbanConversation(CurrentConversation.id);
+                                            MessagesAdapter.unbanConversation(
+                                                        CurrentConversation.id);
                                         } else {
                                             LRCInstance.selectConversation(UID);
                                             MessagesAdapter.sendConversationRequest();
@@ -621,7 +632,8 @@ SidePanelBase {
                                 }
 
                                 onHighlightedChanged: function onHighlightedChanged() {
-                                    if (highlighted && Array.from(root.highlighted).find(r => r === UID)) {
+                                    if (highlighted && Array.from(root.highlighted).find(r => r
+                                                                                         === UID)) {
                                         // Due to scrolling destruction/reconstruction
                                         return;
                                     }
@@ -633,7 +645,8 @@ SidePanelBase {
                                     if (highlighted) {
                                         root.highlighted.push(UID);
                                     } else {
-                                        root.highlighted = Array.from(root.highlighted).filter(r => r !== UID);
+                                        root.highlighted = Array.from(root.highlighted).filter(r
+                                                                                               => r !== UID);
                                     }
                                     root.clearContactSearchBar();
                                 }
@@ -643,8 +656,10 @@ SidePanelBase {
                                 id: locationIconTimer
 
                                 property bool showIconArrow: true
-                                property bool isSharingPosition: PositionManager.positionShareConvIdsCount !== 0
-                                property bool isReceivingPosition: PositionManager.sharingUrisCount !== 0
+                                property bool isSharingPosition:
+                                    PositionManager.positionShareConvIdsCount !== 0
+                                property bool isReceivingPosition: PositionManager.sharingUrisCount
+                                                                   !== 0
 
                                 interval: 750
                                 running: isSharingPosition || isReceivingPosition
@@ -660,7 +675,9 @@ SidePanelBase {
                 Rectangle {
                     id: gradientRect
                     readonly property color baseColor: JamiTheme.globalIslandColor
-                    readonly property bool shouldShow: !conversationListView.atYEnd || (swarmMemberSearchList.visible && !swarmCurrentConversationList.atYEnd)
+                    readonly property bool shouldShow: !conversationListView.atYEnd || (
+                                                           swarmMemberSearchList.visible &&
+                                                           !swarmCurrentConversationList.atYEnd)
 
                     anchors.bottom: conversationLayout.bottom
                     anchors.bottomMargin: -1
@@ -677,15 +694,18 @@ SidePanelBase {
                         orientation: Gradient.Vertical
                         GradientStop {
                             position: 0.0
-                            color: Qt.rgba(gradientRect.baseColor.r, gradientRect.baseColor.g, gradientRect.baseColor.b, 0.0)
+                            color: Qt.rgba(gradientRect.baseColor.r, gradientRect.baseColor.g,
+                                           gradientRect.baseColor.b, 0.0)
                         }
                         GradientStop {
                             position: 0.75
-                            color: Qt.rgba(gradientRect.baseColor.r, gradientRect.baseColor.g, gradientRect.baseColor.b, 0.75)
+                            color: Qt.rgba(gradientRect.baseColor.r, gradientRect.baseColor.g,
+                                           gradientRect.baseColor.b, 0.75)
                         }
                         GradientStop {
                             position: 1.0
-                            color: Qt.rgba(gradientRect.baseColor.r, gradientRect.baseColor.g, gradientRect.baseColor.b, 1.0)
+                            color: Qt.rgba(gradientRect.baseColor.r, gradientRect.baseColor.g,
+                                           gradientRect.baseColor.b, 1.0)
                         }
                     }
 
@@ -712,7 +732,7 @@ SidePanelBase {
                 Shortcut {
                     sequence: "Ctrl+J"
                     context: Qt.ApplicationShortcut
-                    onActivated: accountComboBox.togglePopup()
+                    onActivated: accountComboBox.openAccountComboBox()
                 }
             }
         }

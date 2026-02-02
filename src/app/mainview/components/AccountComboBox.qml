@@ -39,6 +39,13 @@ Item {
 
     property bool inSettings: viewCoordinator.currentViewName === "SettingsView"
 
+    function openAccountComboBox() {
+        if (accountComboBoxPopup.opened)
+            accountComboBoxPopup.close();
+        else
+            accountComboBoxPopup.open();
+    }
+
     Rectangle {
         id: contentRect
 
