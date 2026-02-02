@@ -1,19 +1,19 @@
 /*
- * Copyright (C) 2021-2026 Savoir-faire Linux Inc.
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
+* Copyright (C) 2021-2026 Savoir-faire Linux Inc.
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -65,7 +65,8 @@ Control {
     property bool bigMsg
     property bool timeUnderBubble: false
     property var type: Type
-    property var shouldBeVisible: msgRowlayout.msgHovered || root.activeFocus || reply.activeFocus || more.activeFocus || share.activeFocus
+    property var shouldBeVisible: msgRowlayout.msgHovered || root.activeFocus || reply.activeFocus
+                                  || more.activeFocus || share.activeFocus
 
     // If the ListView attached properties are not available,
     // then the root delegate is likely a Loader.
@@ -156,7 +157,8 @@ Control {
 
                     spacing: replyItem.isSelf ? 2 : 4
                     Layout.alignment: isOutgoing ? Qt.AlignRight : Qt.AlignLeft
-                    property var replyUserName: UtilsAdapter.getBestNameForUri(CurrentAccount.id, ReplyToAuthor)
+                    property var replyUserName: UtilsAdapter.getBestNameForUri(CurrentAccount.id,
+                                                                               ReplyToAuthor)
 
                     Label {
                         id: replyTo
@@ -165,7 +167,9 @@ Control {
                         text: textMetricsUsername1.elidedText
                         TextMetrics {
                             id: textMetricsUsername1
-                            text: isOutgoing ? JamiStrings.inReplyTo : JamiStrings.repliedTo.arg(UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author))
+                            text: isOutgoing ? JamiStrings.inReplyTo : JamiStrings.repliedTo.arg(
+                                                   UtilsAdapter.getBestNameForUri(CurrentAccount.id,
+                                                                                  Author))
                             elideWidth: 200
                             elide: Qt.ElideMiddle
                         }
@@ -198,7 +202,8 @@ Control {
                         text: textMetricsUsername2.elidedText
                         TextMetrics {
                             id: textMetricsUsername2
-                            text: replyItem.isSelf ? JamiStrings.inReplyToYou : replyToLayout.replyUserName
+                            text: replyItem.isSelf ? JamiStrings.inReplyToYou :
+                                                     replyToLayout.replyUserName
                             elideWidth: 200
                             elide: Qt.ElideMiddle
                         }
@@ -246,19 +251,24 @@ Control {
                 id: parenthandler
             }
 
-            property bool msgHovered: CurrentAccount.type !== Profile.Type.SIP && root.type !== Interaction.Type.CALL && Body !== "" && (bubbleArea.bubbleHovered || hovered || more.hovered || share.hovered || parenthandler.hovered)
+            property bool msgHovered: CurrentAccount.type !== Profile.Type.SIP && root.type
+                                      !== Interaction.Type.CALL && Body !== "" && (
+                                          bubbleArea.bubbleHovered || hovered || more.hovered
+                                          || share.hovered || parenthandler.hovered)
 
             Layout.preferredHeight: {
                 var h = innerContent.height + root.extraHeight;
                 if (emojiReactions.emojis !== "")
                     h += emojiReactions.height - 8;
-                if ((IsEmojiOnly && (root.seq === MsgSeq.last || root.seq === MsgSeq.single) && emojiReactions.emojis === ""))
+                if ((IsEmojiOnly && (root.seq === MsgSeq.last || root.seq === MsgSeq.single)
+                     && emojiReactions.emojis === ""))
                     h += 15;
                 if (root.timeUnderBubble)
                     h += 25;
                 return h;
             }
-            Layout.topMargin: ((seq === MsgSeq.first || seq === MsgSeq.single) && !root.isReply) ? 3.5 : 0
+            Layout.topMargin: ((seq === MsgSeq.first || seq === MsgSeq.single) && !root.isReply)
+                              ? 3.5 : 0
             Layout.bottomMargin: root.bigMsg ? timestampItem.timeLabel.height : 0
 
             Item {
@@ -310,8 +320,6 @@ Control {
                         function setBindings() {
                             more.isOpen = false;
                             visible = Qt.binding(() => shouldBeVisible);
-                            imageColor = Qt.binding(() => hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor);
-                            normalColor = Qt.binding(() => JamiTheme.primaryBackgroundColor);
                         }
 
                         anchors.verticalCenter: parent.verticalCenter
@@ -331,22 +339,21 @@ Control {
                                 more.setBindings();
                                 obj.close();
                             } else {
-                                var component = Qt.createComponent("qrc:/commoncomponents/ShowMoreMenu.qml");
+                                var component = Qt.createComponent(
+                                            "qrc:/commoncomponents/ShowMoreMenu.qml");
                                 obj = component.createObject(more, {
-                                        "emojiReactions": emojiReactions,
-                                        "isOutgoing": isOutgoing,
-                                        "msgId": Id,
-                                        "msgBody": Body,
-                                        "type": root.type,
-                                        "transferName": TransferName,
-                                        "msgBubble": bubble,
-                                        "listView": listView
-                                    });
+                                                                 "emojiReactions": emojiReactions,
+                                                                 "isOutgoing": isOutgoing,
+                                                                 "msgId": Id,
+                                                                 "msgBody": Body,
+                                                                 "type": root.type,
+                                                                 "transferName": TransferName,
+                                                                 "msgBubble": bubble,
+                                                                 "listView": listView
+                                                             });
                                 obj.open();
                                 more.isOpen = true;
                                 visible = true; // the button stay visible as long the popup is open even if it's not hovered
-                                imageColor = JamiTheme.chatViewFooterImgHoverColor;
-                                normalColor = JamiTheme.hoveredButtonColor;
                             }
                         }
                     }
@@ -379,11 +386,10 @@ Control {
                         property bool isOpen: false
                         property var obj: undefined
 
-                        function setBindings() { // when the popup is closed, setBindings is called to reset the icon's visual settings
+                        function setBindings(
+                            ) { // when the popup is closed, setBindings is called to reset the icon's visual settings
                             share.isOpen = false;
                             visible = Qt.binding(() => shouldBeVisible);
-                            imageColor = Qt.binding(() => hovered ? JamiTheme.chatViewFooterImgHoverColor : JamiTheme.chatViewFooterImgColor);
-                            normalColor = Qt.binding(() => JamiTheme.primaryBackgroundColor);
                         }
 
                         anchors.verticalCenter: parent.verticalCenter
@@ -404,23 +410,24 @@ Control {
                             } else {
                                 if (root.type === 2 || root.type === 5) {
                                     // 2=TEXT and 5=DATA_TRANSFER (any kind of file) defined in interaction.h
-                                    var component = Qt.createComponent("qrc:/commoncomponents/ShareMessageMenu.qml");
+                                    var component = Qt.createComponent(
+                                                "qrc:/commoncomponents/ShareMessageMenu.qml");
                                     obj = component.createObject(share, {
-                                            "isOutgoing": isOutgoing,
-                                            "msgId": Id,
-                                            "msgBody": Body,
-                                            "type": root.type,
-                                            "transferName": TransferName,
-                                            "msgBubble": bubble,
-                                            "listView": listView,
-                                            "author": UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author),
-                                            "formattedTime": formattedTime
-                                        });
+                                                                     "isOutgoing": isOutgoing,
+                                                                     "msgId": Id,
+                                                                     "msgBody": Body,
+                                                                     "type": root.type,
+                                                                     "transferName": TransferName,
+                                                                     "msgBubble": bubble,
+                                                                     "listView": listView,
+                                                                     "author": UtilsAdapter.getBestNameForUri(
+                                                                                   CurrentAccount.id,
+                                                                                   Author),
+                                                                     "formattedTime": formattedTime
+                                                                 });
                                     obj.open();
                                     share.isOpen = true;
                                     visible = true; // the PushButton stay visible as long the popup is open even if it's not hovered
-                                    imageColor = JamiTheme.chatViewFooterImgHoverColor;
-                                    normalColor = JamiTheme.hoveredButtonColor;
                                 }
                             }
                         }
@@ -446,8 +453,13 @@ Control {
                     property bool bubbleHovered
                     property string imgSource
 
-                    width: (root.type === Interaction.Type.TEXT || isDeleted ? root.textContentWidth + (IsEmojiOnly || root.bigMsg ? 0 : root.timeWidth + root.editedWidth) : innerContent.childrenRect.width)
-                    height: innerContent.childrenRect.height + (visible ? root.extraHeight : 0) + (root.bigMsg ? 15 : 0)
+                    width: (root.type === Interaction.Type.TEXT || isDeleted
+                            ? root.textContentWidth + (IsEmojiOnly || root.bigMsg ? 0 :
+                                                                                    root.timeWidth
+                                                                                    + root.editedWidth) :
+                              innerContent.childrenRect.width)
+                    height: innerContent.childrenRect.height + (visible ? root.extraHeight : 0) + (
+                                root.bigMsg ? 15 : 0)
 
                     HoverHandler {
                         target: root
@@ -460,17 +472,27 @@ Control {
                     TimestampInfo {
                         id: timestampItem
 
-                        showTime: IsEmojiOnly && !(root.seq === MsgSeq.last || root.seq === MsgSeq.single) ? false : true
+                        showTime: IsEmojiOnly && !(root.seq === MsgSeq.last || root.seq
+                                                   === MsgSeq.single) ? false : true
                         formattedTime: root.formattedTime
 
-                        timeColor: IsEmojiOnly || root.timeUnderBubble ? (JamiTheme.darkTheme ? "white" : "dark") : (UtilsAdapter.luma(bubble.color) ? "white" : "dark")
+                        timeColor: IsEmojiOnly || root.timeUnderBubble ? (JamiTheme.darkTheme
+                                                                          ? "white" : "dark") : (
+                                                                             UtilsAdapter.luma(
+                                                                                 bubble.color)
+                                                                             ? "white" : "dark")
                         timeLabel.opacity: 0.5
 
                         anchors.bottom: parent.bottom
-                        anchors.right: IsEmojiOnly ? (isOutgoing ? parent.right : undefined) : parent.right
-                        anchors.left: ((IsEmojiOnly || root.timeUnderBubble) && !isOutgoing) ? parent.left : undefined
-                        anchors.leftMargin: (IsEmojiOnly && !isOutgoing && emojiReactions.visible) ? bubble.timePosition : 0
-                        anchors.rightMargin: IsEmojiOnly ? ((isOutgoing && emojiReactions.visible) ? bubble.timePosition : 0) : (root.timeUnderBubble ? 0 : 10)
+                        anchors.right: IsEmojiOnly ? (isOutgoing ? parent.right : undefined) :
+                                                     parent.right
+                        anchors.left: ((IsEmojiOnly || root.timeUnderBubble) && !isOutgoing)
+                                      ? parent.left : undefined
+                        anchors.leftMargin: (IsEmojiOnly && !isOutgoing && emojiReactions.visible)
+                                            ? bubble.timePosition : 0
+                        anchors.rightMargin: IsEmojiOnly ? ((isOutgoing && emojiReactions.visible)
+                                                            ? bubble.timePosition : 0) : (
+                                                               root.timeUnderBubble ? 0 : 10)
                         timeLabel.Layout.bottomMargin: {
                             if (IsEmojiOnly)
                                 return -15;
@@ -512,9 +534,10 @@ Control {
                         TapHandler {
                             acceptedButtons: Qt.LeftButton
                             onTapped: {
-                                viewCoordinator.presentDialog(appWindow, "commoncomponents/EditedPopup.qml", {
-                                        "previousBodies": PreviousBodies
-                                    });
+                                viewCoordinator.presentDialog(appWindow,
+                                                              "commoncomponents/EditedPopup.qml", {
+                                                                  "previousBodies": PreviousBodies
+                                                              });
                             }
                         }
                     }
@@ -551,7 +574,12 @@ Control {
                     borderColor: root.getBaseColor()
                     maxWidth: 2 / 3 * maxMsgWidth - JamiTheme.emojiMargins
 
-                    state: root.isOutgoing ? "anchorsRight" : (IsEmojiOnly ? "anchorsLeft" : (emojiReactions.width > bubble.width - JamiTheme.emojiMargins ? "anchorsLeft" : "anchorsRight"))
+                    state: root.isOutgoing ? "anchorsRight" : (IsEmojiOnly ? "anchorsLeft" : (
+                                                                                 emojiReactions.width
+                                                                                 > bubble.width
+                                                                                 - JamiTheme.emojiMargins
+                                                                                 ? "anchorsLeft" :
+                                                                                   "anchorsRight"))
 
                     TapHandler {
                         onTapped: {
