@@ -333,14 +333,10 @@ Item {
                 id: swarmDetailsTabModel
             }
 
-            Connections {
+           Connections {
                 target: CurrentConversation
-                function onIsCoreDialogChanged() {
-                    innerRect.updateSwarmDetailsTabModel()
-                }
-                function onMembersChanged() {
-                    innerRect.updateSwarmDetailsTabModel()
-                }
+
+                onIdChanged: innerRect.updateSwarmDetailsTabModel()
             }
 
             TabBar {
