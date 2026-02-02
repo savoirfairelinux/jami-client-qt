@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022-2026 Savoir-faire Linux Inc.
+ * Copyright (C) 2020-2026 Savoir-faire Linux Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
