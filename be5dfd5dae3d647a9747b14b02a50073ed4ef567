@@ -188,6 +188,30 @@
       },
       "revId": "be5dfd5dae3d647a9747b14b02a50073ed4ef567",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9c1ed77_5d40a1bc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1118
+      },
+      "writtenOn": "2026-02-02T15:12:28Z",
+      "side": 1,
+      "message": "The filtering is done in the client of the caller. So the caller does not send an invitation if the person is already in a call.\n\nFor the person who is called, there is no way to know if an incoming call is related to a conference they are already in.",
+      "parentUuid": "d4629d73_6c99d8a4",
+      "range": {
+        "startLine": 10,
+        "startChar": 29,
+        "endLine": 11,
+        "endChar": 53
+      },
+      "revId": "be5dfd5dae3d647a9747b14b02a50073ed4ef567",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
