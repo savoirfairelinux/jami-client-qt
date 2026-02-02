@@ -1,19 +1,19 @@
 /*
- * Copyright (C) 2020-2026 Savoir-faire Linux Inc.
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
+* Copyright (C) 2020-2026 Savoir-faire Linux Inc.
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
@@ -65,7 +65,8 @@ Rectangle {
                         property string iconSrc: JamiResources.bold_black_24dp_svg
                         property string shortcutText: JamiStrings.bold
                         property string shortcutKey: "Ctrl+B"
-                        property bool isStyle: MDE.isStyle(messageBarTextArea, rectangle.text, "**", "**")
+                        property bool isStyle: MDE.isStyle(messageBarTextArea, rectangle.text, "**",
+                                                           "**")
                         onTriggered: MDE.addStyle(messageBarTextArea, rectangle.text, "**", "**")
                     },
                     Action {
@@ -73,7 +74,8 @@ Rectangle {
                         property string iconSrc: JamiResources.italic_black_24dp_svg
                         property string shortcutText: JamiStrings.italic
                         property string shortcutKey: "Ctrl+I"
-                        property bool isStyle: MDE.isStyle(messageBarTextArea, rectangle.text, "*", "*")
+                        property bool isStyle: MDE.isStyle(messageBarTextArea, rectangle.text, "*",
+                                                           "*")
                         onTriggered: MDE.addStyle(messageBarTextArea, rectangle.text, "*", "*")
                     },
                     Action {
@@ -81,7 +83,8 @@ Rectangle {
                         property string iconSrc: JamiResources.s_barre_black_24dp_svg
                         property string shortcutText: JamiStrings.strikethrough
                         property string shortcutKey: "Shift+Alt+X"
-                        property bool isStyle: MDE.isStyle(messageBarTextArea, rectangle.text, "~~", "~~")
+                        property bool isStyle: MDE.isStyle(messageBarTextArea, rectangle.text, "~~",
+                                                           "~~")
                         onTriggered: MDE.addStyle(messageBarTextArea, rectangle.text, "~~", "~~")
                     },
                     Action {
@@ -89,15 +92,18 @@ Rectangle {
                         property string iconSrc: JamiResources.title_black_24dp_svg
                         property string shortcutText: JamiStrings.heading
                         property string shortcutKey: "Ctrl+Alt+H"
-                        property bool isStyle: MDE.isPrefixSyle(messageBarTextArea, rectangle.text, "### ", false)
-                        onTriggered: MDE.addPrefixStyle(messageBarTextArea, rectangle.text, "### ", false)
+                        property bool isStyle: MDE.isPrefixSyle(messageBarTextArea, rectangle.text,
+                                                                "### ", false)
+                        onTriggered: MDE.addPrefixStyle(messageBarTextArea, rectangle.text, "### ",
+                                                        false)
                     },
                     Action {
                         id: linkAction
                         property string iconSrc: JamiResources.link_web_black_24dp_svg
                         property string shortcutText: JamiStrings.link
                         property string shortcutKey: "Ctrl+Alt+K"
-                        property bool isStyle: MDE.isStyle(messageBarTextArea, rectangle.text, "[", "](url)")
+                        property bool isStyle: MDE.isStyle(messageBarTextArea, rectangle.text, "[",
+                                                           "](url)")
                         onTriggered: MDE.addStyle(messageBarTextArea, rectangle.text, "[", "](url)")
                     },
                     Action {
@@ -105,7 +111,8 @@ Rectangle {
                         property string iconSrc: JamiResources.code_black_24dp_svg
                         property string shortcutText: JamiStrings.code
                         property string shortcutKey: "Ctrl+Alt+C"
-                        property bool isStyle: MDE.isStyle(messageBarTextArea, rectangle.text, "```", "```")
+                        property bool isStyle: MDE.isStyle(messageBarTextArea, rectangle.text, "```",
+                                                           "```")
                         onTriggered: MDE.addStyle(messageBarTextArea, rectangle.text, "```", "```")
                     }
                 ]
@@ -139,7 +146,8 @@ Rectangle {
                     anchors.horizontalCenter: parent.horizontalCenter
                     width: 1
                     height: JamiTheme.chatViewFooterButtonSize * 2 / 3
-                    color: showPreview ? JamiTheme.chatViewFooterImgDisableColor : JamiTheme.chatViewFooterSeparateLineColor
+                    color: showPreview ? JamiTheme.chatViewFooterImgDisableColor :
+                                         JamiTheme.chatViewFooterSeparateLineColor
                 }
             }
 
@@ -173,11 +181,13 @@ Rectangle {
                         anchors.centerIn: parent
                         iconSize: JamiTheme.iconButtonSmall
                         iconSource: JamiResources.more_vert_24dp_svg
-                        toolTipText: markdownPopup.visible ? JamiStrings.showLess : JamiStrings.showMore
+                        toolTipText: markdownPopup.visible ? JamiStrings.showLess :
+                                                             JamiStrings.showMore
 
                         checked: markdownPopup.visible
 
-                        onClicked: markdownPopup.visible ? markdownPopup.close() : markdownPopup.open()
+                        onClicked: markdownPopup.visible ? markdownPopup.close() :
+                                                           markdownPopup.open()
                     }
 
                     popup: MarkdownPopup {
@@ -212,24 +222,30 @@ Rectangle {
                         property string iconSrc: JamiResources.quote_black_24dp_svg
                         property string shortcutText: JamiStrings.quote
                         property string shortcutKey: "Shift+Alt+9"
-                        property bool isStyle: MDE.isPrefixSyle(messageBarTextArea, rectangle.text, "> ", false)
-                        onTriggered: MDE.addPrefixStyle(messageBarTextArea, rectangle.text, "> ", false)
+                        property bool isStyle: MDE.isPrefixSyle(messageBarTextArea, rectangle.text,
+                                                                "> ", false)
+                        onTriggered: MDE.addPrefixStyle(messageBarTextArea, rectangle.text, "> ",
+                                                        false)
                     },
                     Action {
                         id: unorderedListAction
                         property string iconSrc: JamiResources.bullet_point_black_24dp_svg
                         property string shortcutText: JamiStrings.unorderedList
                         property string shortcutKey: "Shift+Alt+8"
-                        property bool isStyle: MDE.isPrefixSyle(messageBarTextArea, rectangle.text, "- ", false)
-                        onTriggered: MDE.addPrefixStyle(messageBarTextArea, rectangle.text, "- ", false)
+                        property bool isStyle: MDE.isPrefixSyle(messageBarTextArea, rectangle.text,
+                                                                "- ", false)
+                        onTriggered: MDE.addPrefixStyle(messageBarTextArea, rectangle.text, "- ",
+                                                        false)
                     },
                     Action {
                         id: orderedListAction
                         property string iconSrc: JamiResources.bullet_number_black_24dp_svg
                         property string shortcutText: JamiStrings.orderedList
                         property string shortcutKey: "Shift+Alt+7"
-                        property bool isStyle: MDE.isPrefixSyle(messageBarTextArea, rectangle.text, "", true)
-                        onTriggered: MDE.addPrefixStyle(messageBarTextArea, rectangle.text, "", true)
+                        property bool isStyle: MDE.isPrefixSyle(messageBarTextArea, rectangle.text,
+                                                                "", true)
+                        onTriggered: MDE.addPrefixStyle(messageBarTextArea, rectangle.text, "",
+                                                        true)
                     }
                 ]
 
@@ -258,6 +274,7 @@ Rectangle {
         anchors.right: messageBarRowLayout.right
         anchors.bottom: messageBarRowLayout.bottom
 
+        // Overriden NewIconButton due to icon fitting issues
         NewIconButton {
             id: typoButton
 
@@ -267,8 +284,10 @@ Rectangle {
             iconSource: JamiResources.text_edit_black_24dp_svg
             toolTipText: showTypo ? JamiStrings.hideFormatting : JamiStrings.showFormatting
 
+            checked: showTypo
+
             background: Rectangle {
-                visible: root.enabled
+                visible: parent.checked || parent.hovered
 
                 width: JamiTheme.iconButtonMedium + (JamiTheme.iconButtonMedium / 2)
                 height: JamiTheme.iconButtonMedium + (JamiTheme.iconButtonMedium / 2)
@@ -276,13 +295,22 @@ Rectangle {
                 radius: width / 2
                 anchors.centerIn: parent
 
-                color: parent.hovered ? JamiTheme.hoveredButtonColor : JamiTheme.transparentColor
+                color: visible ? JamiTheme.hoveredButtonColor : JamiTheme.transparentColor
+
+                opacity: visible ? 1.0 : 0.0
+
+                Behavior on opacity {
+                    NumberAnimation {
+                        duration: 200
+                    }
+                }
             }
 
             onClicked: {
                 showTypo = !showTypo;
                 messageBarTextArea.isShowTypo = showTypo;
-                if (messageBar.width < messageBarLayoutMaximumWidth + sendMessageButton.width + 2 * JamiTheme.preferredMarginSize)
+                if (messageBar.width < messageBarLayoutMaximumWidth + sendMessageButton.width + 2
+                        * JamiTheme.preferredMarginSize)
                     showTypoSecond = false;
                 if (!showDefault)
                     showDefault = true;
@@ -351,8 +379,8 @@ Rectangle {
                 Component.onCompleted: {
                     for (var i = 0; i < listViewMoreButton.menuMoreButton.length; i++) {
                         append({
-                            "menuAction": listViewMoreButton.menuMoreButton[i]
-                        });
+                                   "menuAction": listViewMoreButton.menuMoreButton[i]
+                               });
                     }
                 }
             }
@@ -428,7 +456,8 @@ Rectangle {
 
                     iconSize: JamiTheme.iconButtonMedium
                     iconSource: JamiResources.more_menu_black_24dp_svg
-                    toolTipText: showMoreButton.popup.visible ? JamiStrings.showLess : JamiStrings.showMore
+                    toolTipText: showMoreButton.popup.visible ? JamiStrings.showLess :
+                                                                JamiStrings.showMore
 
                     onClicked: sharePopup.visible ? sharePopup.close() : sharePopup.open()
                 }
@@ -437,8 +466,10 @@ Rectangle {
                     id: sharePopupComp
                     ShareMenu {
                         id: sharePopup
-                        onAudioRecordMessageButtonClicked: rectangle.audioRecordMessageButtonClicked()
-                        onVideoRecordMessageButtonClicked: rectangle.videoRecordMessageButtonClicked()
+                        onAudioRecordMessageButtonClicked: rectangle.audioRecordMessageButtonClicked(
+                                                               )
+                        onVideoRecordMessageButtonClicked: rectangle.videoRecordMessageButtonClicked(
+                                                               )
                         onShowMapClicked: rectangle.showMapClicked()
                         modelList: listViewMoreButton.menuMoreButton
                         y: showMoreButton.y + 31
@@ -506,8 +537,8 @@ Rectangle {
                 Component.onCompleted: {
                     for (var i = 0; i < listViewAction.menuActions.length; i++) {
                         append({
-                            "menuAction": listViewAction.menuActions[i]
-                        });
+                                   "menuAction": listViewAction.menuActions[i]
+                               });
                     }
                 }
             }
@@ -579,8 +610,10 @@ Rectangle {
 
                 source: JamiResources.send_black_24dp_svg
 
-                normalColor: enabled ? JamiTheme.chatViewFooterSendButtonColor : JamiTheme.chatViewFooterSendButtonDisableColor
-                imageColor: enabled ? JamiTheme.chatViewFooterSendButtonImgColor : JamiTheme.chatViewFooterSendButtonImgColorDisable
+                normalColor: enabled ? JamiTheme.chatViewFooterSendButtonColor :
+                                       JamiTheme.chatViewFooterSendButtonDisableColor
+                imageColor: enabled ? JamiTheme.chatViewFooterSendButtonImgColor :
+                                      JamiTheme.chatViewFooterSendButtonImgColorDisable
                 hoveredColor: JamiTheme.buttonTintedBlueHovered
                 pressedColor: hoveredColor
 
