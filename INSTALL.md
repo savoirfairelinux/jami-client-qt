@@ -90,7 +90,7 @@ The build.py Jami installer uses **python3 (minimum v3.6)**. If it's not install
 please install it. Then run the following to initialize and update
 the submodules to set them at the top of their latest commit (ideal
 for getting the latest development versions; otherwise, you can use
-`git submodule update --recursive --init` then checkout specific commits for each
+`git submodule update --init` then checkout specific commits for each
 submodule).
 
 If you're a developer you need to install clang-format separately before initializing with the command

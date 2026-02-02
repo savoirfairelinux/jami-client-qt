@@ -27,7 +27,3 @@
 	path = 3rdparty/hunspell
 	url = https://gitlab.savoirfairelinux.com/jami/hunspell.git
 	ignore = dirty
-[submodule "3rdparty/qwindowkit"]
-	path = 3rdparty/qwindowkit
-	url = https://github.com/stdware/qwindowkit.git
-	ignore = dirty

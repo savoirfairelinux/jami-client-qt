@@ -71,6 +71,13 @@ set(CLIENT_LIBS, "")
 include(${PROJECT_SOURCE_DIR}/extras/build/cmake/contrib_tools.cmake)
 set(EXTRA_PATCHES_DIR ${PROJECT_SOURCE_DIR}/extras/patches)
 
+list(APPEND QWINDOWKIT_OPTIONS
+  QWINDOWKIT_BUILD_WIDGETS OFF
+  QWINDOWKIT_INSTALL OFF
+  QWINDOWKIT_BUILD_STATIC ON
+  QWINDOWKIT_BUILD_QUICK ON
+)
+
 if(WIN32)
   # Beta config
   if(BETA)
@@ -80,25 +87,26 @@ if(WIN32)
   set(JAMI_OUTPUT_DIRECTORY_RELEASE ${PROJECT_SOURCE_DIR}/x64/${CMAKE_BUILD_TYPE})
 endif()
 
-# qwindowkit (frameless window) - using submodule
-set(QWINDOWKIT_BUILD_WIDGETS OFF CACHE BOOL "Don't build QWindowKit widgets" FORCE)
-set(QWINDOWKIT_INSTALL OFF CACHE BOOL "Don't install QWindowKit" FORCE)
-set(QWINDOWKIT_BUILD_STATIC ON CACHE BOOL "Build QWindowKit as static" FORCE)
-set(QWINDOWKIT_BUILD_QUICK ON CACHE BOOL "Build QWindowKit Quick module" FORCE)
-
 if(WIN32)
-  set(QWINDOWKIT_ENABLE_WINDOWS_SYSTEM_BORDERS OFF CACHE BOOL "Disable Windows system borders" FORCE)
+  list(APPEND QWINDOWKIT_OPTIONS QWINDOWKIT_ENABLE_WINDOWS_SYSTEM_BORDERS OFF)
 endif()
 
-# Apply qmsetup CMAKE_INSTALL_LIBDIR fix for non-standard lib directories (until qmsetup is updated)
+# If qwindowkit is unable to find qmsetup via cmake's find_package function, it will install it and
+# then call find_package again. Unfortunately, even the second call to find_package sometimes
+# fails due to qmsetup having been installed in the wrong directory. The following patch
+# ensures that qmsetup is always installed in the directory where find_package looks for it.
 if(NOT WIN32)
-  apply_git_patch(
-    PATCH_FILE ${CMAKE_SOURCE_DIR}/extras/patches/0001-fix-qm_install_package-function.patch
-    TARGET_DIR 3rdparty/qwindowkit
-  )
+  list(APPEND QWINDOWKIT_PATCHES ${EXTRA_PATCHES_DIR}/0001-fix-qm_install_package-function.patch)
 endif()
 
-add_subdirectory(3rdparty/qwindowkit EXCLUDE_FROM_ALL)
+# qwindowkit (frameless window)
+add_fetch_content(
+  TARGET qwindowkit
+  URL https://github.com/stdware/qwindowkit.git
+  BRANCH d4536ebe12dd35504abdba66986daf21c0aee805
+  PATCHES ${QWINDOWKIT_PATCHES}
+  OPTIONS ${QWINDOWKIT_OPTIONS}
+)
 list(APPEND CLIENT_INCLUDE_DIRS ${QWindowKit_BINARY_DIR}/include)
 list(APPEND CLIENT_LIBS QWindowKit::Quick)
 
@@ -223,7 +231,7 @@ if (WITH_DAEMON_SUBMODULE AND NOT EXISTS ${DAEMON_DIR}/src)
     "Jami Daemon sources not found in ${DAEMON_DIR}/src.  If you \
 cloned this repository via git, perhaps you did not initialize its \
 submodules afterwards.  You can do so by running \"git submodule \
-update --recursive --init\" in the repository.")
+update --init\" in the repository.")
 endif()
 list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/extras/build/cmake/modules)
 if (NOT JAMICORE_AS_SUBDIR)
