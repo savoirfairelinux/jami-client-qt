@@ -129,8 +129,7 @@ $(RELEASE_TARBALL_FILENAME): tarballs.manifest
 	    ./3rdparty/md4c \
 	    ./3rdparty/tidy-html5 \
 	    ./3rdparty/zxing-cpp \
-	    ./3rdparty/hunspell \
-	    ./3rdparty/qwindowkit; do \
+	    ./3rdparty/hunspell; do \
 	  (cd "$$m" && git archive --prefix "$$m/" HEAD \
 	    | tar xf - -C $(TMPDIR)/$(RELEASE_DIRNAME)); \
 	done

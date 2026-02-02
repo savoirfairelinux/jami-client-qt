@@ -310,7 +310,7 @@ def run_dependencies(args):
 
 def run_init(args):
     """Initialize the git submodules and install the commit-msg hook."""
-    subprocess.run(["git", "submodule", "update", "--recursive", "--init"],
+    subprocess.run(["git", "submodule", "update", "--init"],
                    check=True)
 
     client_hooks_dir = '.git/hooks'
