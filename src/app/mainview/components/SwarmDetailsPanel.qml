@@ -42,7 +42,7 @@ Item {
         id: innerRect
 
         anchors.fill: parent
-        anchors.margins: JamiTheme.sidePanelIslandsPadding
+        anchors.margins: viewCoordinator.isInSinglePaneMode ? JamiTheme.sidePanelIslandsSinglePaneModePadding : JamiTheme.sidePanelIslandsPadding
 
         color: JamiTheme.globalIslandColor
         radius: JamiTheme.avatarBasedRadius
