@@ -1193,13 +1193,7 @@ CallModelPimpl::applyFallbackConversationSwitch(const QString& confId,
                                                 const QString& newCallId,
                                                 const QString& newConfId)
 {
-    if (!fallbackConversation) {
-        return;
-    }
-
-    if (currentConversation) {
-        currentConversation->get().confId.clear();
-    }
+    currentConversation->get().confId.clear();
 
     fallbackConversation->get().confId = newConfId;
     fallbackConversation->get().callId = newCallId;
@@ -1777,7 +1771,12 @@ CallModelPimpl::slotOnConferenceInfosUpdated(const QString& confId, const Vector
     if (participantHasLeft && conferenceIsOngoing) {
         if (auto fallbackConversation = getFallbackConversationForConference(confId)) {
             auto currentConversation = linked.owner.conversationModel->getConversationForCallId(confId);
-            applyFallbackConversationSwitch(confId, currentConversation, fallbackConversation, confId, confId);
+            bool isHost = it->second->type == lrc::api::call::Type::CONFERENCE;
+            if (isHost) {
+                applyFallbackConversationSwitch(confId, currentConversation, fallbackConversation, QString {}, confId);
+            } else {
+                applyFallbackConversationSwitch(confId, currentConversation, fallbackConversation, confId, QString {});
+            }
         }
     }
 
