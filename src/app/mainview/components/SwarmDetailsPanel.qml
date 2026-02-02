@@ -52,6 +52,7 @@ Item {
         radius: JamiTheme.avatarBasedRadius
 
         function updateSwarmDetailsTabModel() {
+            console.warn("MEMBERS CHANGED", CurrentConversation.members.count);
             swarmDetailsTabModel.clear();
             if (!CurrentConversation.isCoreDialog) {
                 swarmDetailsTabModel.append({
@@ -333,14 +334,10 @@ Item {
                 id: swarmDetailsTabModel
             }
 
-            Connections {
+           Connections {
                 target: CurrentConversation
-                function onIsCoreDialogChanged() {
-                    innerRect.updateSwarmDetailsTabModel()
-                }
-                function onMembersChanged() {
-                    innerRect.updateSwarmDetailsTabModel()
-                }
+
+                onIdChanged: innerRect.updateSwarmDetailsTabModel()
             }
 
             TabBar {
