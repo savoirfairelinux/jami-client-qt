@@ -29,7 +29,7 @@ Rectangle {
     property string previousConvId
     property string previousAccountId
     property bool showTypo: messageBar.showTypo
-    property real marginSize: JamiTheme.messageBarMarginSize
+    property real marginSize: 4
 
     function setFilePathsToSend(filePaths) {
         for (var index = 0; index < filePaths.length; ++index) {
