@@ -744,6 +744,7 @@ Item {
     property real sidePanelIslandsPadding: 12
     property real sidePanelConversationsIslandTopPadding: 16
     property real sidePanelConversationsIslandHorizontalPadding: 4
+    property real sidePanelIslandRightPadding: 16
 
     // Search Bar
     property real searchBarPreferredHeight: 40
