@@ -3,6 +3,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3c64d98b_3dcbc790",
+        "filename": "src/app/mainview/components/AccountComboBox.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-02-03T08:11:37Z",
+      "side": 1,
+      "message": "Should a space be added before the `*` to align the `*` with the `*` on the first line?",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 2
+      },
+      "revId": "03e37ce32cd6c9803db06ec6067921e41659710e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5eb29fda_bb207a6d",
+        "filename": "src/app/mainview/components/AccountComboBox.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-02-03T08:11:37Z",
+      "side": 1,
+      "message": "Should a blank line be added after the initial comment?",
+      "revId": "03e37ce32cd6c9803db06ec6067921e41659710e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1c1b4b42_fe3a06e3",
         "filename": "src/app/mainview/components/SidePanel.qml",
         "patchSetId": 3
