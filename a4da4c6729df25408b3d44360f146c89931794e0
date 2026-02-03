@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8a16d24_45aee890",
+        "filename": "src/app/mainview/components/MessageFormatBar.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-02-03T08:14:14Z",
+      "side": 1,
+      "message": "Should a blank line be added after the initial comment?",
+      "revId": "a4da4c6729df25408b3d44360f146c89931794e0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e48ee031_1e2bb7da",
+        "filename": "src/app/mainview/components/MessageFormatBar.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-02-03T08:14:14Z",
+      "side": 1,
+      "message": "Should a space be added before the `*` so that the `*` line up with the `*` on the first line?",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 2
+      },
+      "revId": "a4da4c6729df25408b3d44360f146c89931794e0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
