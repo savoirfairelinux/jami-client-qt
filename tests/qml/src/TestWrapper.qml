@@ -17,6 +17,7 @@
 
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Window
 import QtTest
 
 import net.jami.Adapters 1.1
@@ -47,15 +48,19 @@ Item {
         return spy.count > 0 && checkExpression();
     }
 
-    // A binding to the windowShown property
+    // Default app window for headless/offscreen when uut.Window.window is null.
+    property QtObject _defaultAppWindow: QtObject {
+        property bool useFrameless: false
+    }
+    // A binding to the windowShown property. Never set appWindow to null (e.g. offscreen).
     Binding {
-        tw.appWindow: uut.Window.window
+        tw.appWindow: (QTestRootObject.windowShown && uut.Window.window) ? uut.Window.window : _defaultAppWindow
         when: QTestRootObject.windowShown
     }
 
     property int visibility: 0
     Binding {
-        tw.visibility: uut.Window.window.visibility
+        tw.visibility: (uut.Window.window) ? uut.Window.window.visibility : Window.Windowed
         when: QTestRootObject.windowShown
     }
 
@@ -70,8 +75,8 @@ Item {
     // Used to manage dynamic view loading and unloading.
     property ViewManager viewManager: ViewManager {}
     // Used to manage the view stack and the current view.
-    property ViewCoordinator viewCoordinator: ViewCoordinator {}
-    property QtObject appWindow: QtObject {
-        property bool useFrameless: false
+    property ViewCoordinator viewCoordinator: ViewCoordinator {
+        isTestContext: true
     }
+    property QtObject appWindow: _defaultAppWindow
 }

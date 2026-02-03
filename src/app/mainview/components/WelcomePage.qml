@@ -82,7 +82,13 @@ ListSelectionView {
     }
 
     onPresented: LRCInstance.deselectConversation()
-    leftPaneItem: viewCoordinator.getView("SidePanel", true)
+
+    // Stub when view coordinator does not create views (e.g. test harness).
+    property Item _leftPaneStub: Item {
+        function deselect() {}
+        function select(_index) {}
+    }
+    leftPaneItem: viewCoordinator.getView("SidePanel", !viewCoordinator.isTestContext) || _leftPaneStub
 
     Accessible.role: Accessible.Pane
     Accessible.name: title

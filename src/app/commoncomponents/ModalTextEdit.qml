@@ -68,7 +68,8 @@ Loader {
     signal accepted
     signal keyPressed
 
-    signal activeChanged(bool active)
+    // Named to avoid clashing with property change signal "activeChanged" from superclass/loaded item.
+    signal editorActiveChanged(bool active)
 
     // Always give up focus when accepted.
     onAccepted: focus = false
@@ -137,9 +138,9 @@ Loader {
                 if (!focus && root.editMode) {
                     root.editMode = isPersistent;
                 }
-                activeChanged(root.editMode);
+                editorActiveChanged(root.editMode);
             }
-            onIsActiveChanged: activeChanged(isActive)
+            onIsActiveChanged: editorActiveChanged(isActive)
             validator: root.textValidator
             isSettings: root.isSettings
             isSwarmDetail: root.isSwarmDetail

@@ -66,7 +66,8 @@ Item {
 
                 Layout.fillWidth: true
                 Layout.preferredHeight: JamiTheme.tabBarHeight
-                // implicitWidth: 0
+                // Break implicitWidth binding loop (Universal TabBar).
+                implicitWidth: 0
 
                 spacing: JamiTheme.tabBarSpacing
 

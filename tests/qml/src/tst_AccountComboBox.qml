@@ -31,20 +31,20 @@ TestWrapper {
     AccountComboBox {
         id: uut
 
-        function loadMockData() {
-            return JSON.parse('[\
-                {"Alias":"Foo","ID":"a2d724d18a943e6c","NotificationCount":0,"Status":5,"Type":1,"Username":"foo"}, \
-                {"Alias":"Bar","ID":"8a22b7d0176327db","NotificationCount":0,"Status":5,"Type":1,"Username":"bar"}, \
-                {"Alias":"TEST JAMI","ID":"3b7d2b9e2af83a47","NotificationCount":0,"Status":5,"Type":2,"Username":"696"}, \
-                {"Alias":"Whatever","ID":"131ad59045a9a146","NotificationCount":0,"Status":5,"Type":1,"Username":"whatever"}]');
-        }
-
         TestCase {
             name: "Check model size"
+            when: windowShown
+
             function test_checkModelSize() {
-                var accountComboBox = findChild(uut, "accountComboBox");
-                accountComboBox.model = uut.loadMockData();
-                compare(accountComboBox.model.length, 4);
+                var accountComboBox = findChild(uut, "accountComboBox")
+                verify(accountComboBox !== null, "AccountComboBox should have a ComboBox")
+
+                accountComboBox.popup.open()
+                var accountList = accountComboBox.popup.contentItem
+                verify(accountList !== null, "Account list ListView should exist when popup is open")
+
+                // Test harness creates 2 accounts (Alice, Bob); dropdown shows other accounts (excludes current), so count is 1
+                compare(accountList.count, 1, "Account list should show the other account")
             }
         }
     }

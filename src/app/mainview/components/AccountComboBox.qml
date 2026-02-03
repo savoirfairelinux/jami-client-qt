@@ -69,6 +69,7 @@ Item {
             spacing: 0
             ComboBox {
                 id: accountComboBox
+                objectName: "accountComboBox"
 
                 objectName: "accountComboBox"
 
@@ -171,6 +172,7 @@ Item {
 
                     contentItem: ListView {
                         id: listView
+                        objectName: "accountList"
                         clip: true
                         implicitHeight: contentHeight
                         currentIndex: accountComboBox.highlightedIndex
