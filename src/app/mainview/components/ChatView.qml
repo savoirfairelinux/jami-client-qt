@@ -574,7 +574,6 @@ Item {
 
                         Loader {
                             id: loader
-
                             active: CurrentConversation.id !== ""
                             sourceComponent: MessageListView {
                                 DropArea {
