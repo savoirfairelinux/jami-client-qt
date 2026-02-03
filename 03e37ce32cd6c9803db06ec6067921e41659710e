@@ -41,6 +41,48 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bb68d7d_58fabfc3",
+        "filename": "src/app/mainview/components/AccountComboBox.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-02-03T14:27:08Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3c64d98b_3dcbc790",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 2
+      },
+      "revId": "03e37ce32cd6c9803db06ec6067921e41659710e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3ae474a_aa7c90d6",
+        "filename": "src/app/mainview/components/AccountComboBox.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-02-03T14:27:08Z",
+      "side": 1,
+      "message": "Hi @ovari123@zoho.com, the blank line after the initial comment is not mandatory",
+      "parentUuid": "5eb29fda_bb207a6d",
+      "revId": "03e37ce32cd6c9803db06ec6067921e41659710e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1c1b4b42_fe3a06e3",
@@ -54,6 +96,30 @@
       "writtenOn": "2026-02-03T08:08:30Z",
       "side": 1,
       "message": "Should `open` be reverted to `toggle`?\n\nShould the Keyboard shortcuts menu be changed from `Open account list` to `Toggle account list` or `Open/close account list`?",
+      "range": {
+        "startLine": 736,
+        "startChar": 49,
+        "endLine": 736,
+        "endChar": 68
+      },
+      "revId": "03e37ce32cd6c9803db06ec6067921e41659710e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de507d54_08f397d8",
+        "filename": "src/app/mainview/components/SidePanel.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 736,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-02-03T14:27:08Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "1c1b4b42_fe3a06e3",
       "range": {
         "startLine": 736,
         "startChar": 49,
