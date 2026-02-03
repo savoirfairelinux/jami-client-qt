@@ -369,7 +369,7 @@ Item {
                     iconSource: JamiResources.add_people_24dp_svg
                     text: JamiStrings.inviteMember
 
-                    visible: isAdmin
+                    visible: !CurrentConversation.isCoreDialog
 
                     onClicked: extrasPanel.switchToPanel(ChatView.AddMemberPanel)
                 }
