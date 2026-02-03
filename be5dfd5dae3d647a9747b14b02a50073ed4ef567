@@ -212,6 +212,30 @@
       },
       "revId": "be5dfd5dae3d647a9747b14b02a50073ed4ef567",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4dd8ac42_a260946b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-02-03T08:19:26Z",
+      "side": 1,
+      "message": "\u003e For the person who is called, there is no way to know if an incoming call is related to a conference they are already in.\n\nIs this a design flaw?",
+      "parentUuid": "a9c1ed77_5d40a1bc",
+      "range": {
+        "startLine": 10,
+        "startChar": 29,
+        "endLine": 11,
+        "endChar": 53
+      },
+      "revId": "be5dfd5dae3d647a9747b14b02a50073ed4ef567",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
