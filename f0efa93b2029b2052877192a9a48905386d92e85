@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "029203a4_e2c08539",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-02-03T21:41:59Z",
+      "side": 1,
+      "message": "Perhaps the `Conversation details` context menu item should reflect this w/ the addition of `Show`/`Hide` text preceding it (for the case of swarms)",
+      "revId": "f0efa93b2029b2052877192a9a48905386d92e85",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
