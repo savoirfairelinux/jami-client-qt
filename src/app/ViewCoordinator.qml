@@ -24,6 +24,9 @@ import "commoncomponents"
 QtObject {
     id: root
 
+    // When true, getView(..., forceCreate) will not create views (for test harness).
+    property bool isTestContext: false
+
     // A map of view names to file paths for QML files that define each view.
     property variant resources: {
         "SidePanel": "mainview/components/SidePanel.qml",
@@ -229,7 +232,7 @@ QtObject {
         var view = viewManager.getView(viewName);
         if (view)
             return view;
-        if (!forceCreate)
+        if (!forceCreate || isTestContext)
             return null;
         // Otherwise, create it.
         view = viewManager.createView(resources[viewName], null);

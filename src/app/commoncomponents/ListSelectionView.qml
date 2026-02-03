@@ -62,14 +62,15 @@ DualPaneView {
     onPresented: isSinglePaneChangedHandler()
 
     onDismissed: {
-        if (leftPaneItem) {
+        if (leftPaneItem && leftPaneItem.indexSelected) {
             leftPaneItem.indexSelected.disconnect(selectIndex)
             leftPaneItem.deselect()
         }
     }
 
     onLeftPaneItemChanged: {
-        if (leftPaneItem) leftPaneItem.indexSelected.connect(selectIndex)
+        if (leftPaneItem && leftPaneItem.indexSelected)
+            leftPaneItem.indexSelected.connect(selectIndex)
     }
     isSinglePaneChangedHandler: () => {
         // When transitioning from split to single pane, place major content appropriately.
