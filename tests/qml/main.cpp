@@ -55,22 +55,21 @@
 #define CACHE_DIR  "XDG_CACHE_HOME"
 #endif
 
-#include <atomic>
-#include <thread>
-
 using namespace std::literals::chrono_literals;
+
+bool useCache = false;
+bool muteDaemon = false;
 
 class Setup : public QObject
 {
     Q_OBJECT
 
 public:
-    Setup(bool muteDaemon = false)
-        : muteDaemon_(muteDaemon)
-    {}
-
     ~Setup()
     {
+        if (useCache)
+            return;
+
         QSignalSpy accountRemovedSpy(&lrcInstance_->accountModel(), &AccountModel::accountRemoved);
         lrcInstance_->accountModel().removeAccount(aliceId);
         lrcInstance_->accountModel().removeAccount(bobId);
@@ -99,23 +98,46 @@ public Q_SLOTS:
 
         QFontDatabase::addApplicationFont(":/images/FontAwesome.otf");
 
-        lrcInstance_.reset(new LRCInstance("", connectivityMonitor_.get(), true, muteDaemon_));
+        lrcInstance_.reset(new LRCInstance("", connectivityMonitor_.get(), true, muteDaemon));
         lrcInstance_->subscribeToDebugReceived();
 
         auto downloadPath = settingsManager_->getValue(Settings::Key::DownloadPath);
         lrcInstance_->accountModel().downloadDirectory = downloadPath.toString() + "/";
+
+        // We use accounts for testing but account creation time can be long, so we
+        // check if the account list exists first. If the test accounts exist, we can
+        // assume the conversation also exists.
+        if (useCache) {
+            qInfo() << "Attempting to load cached accounts/conversation for testing.";
+            const auto accounts_used = 2;
+            const auto accountList = lrcInstance_->accountModel().getAccountList();
+            if (accountList.size() >= accounts_used) {
+                qWarning() << "Using existing test accounts.";
+                try {
+                    aliceId = accountList[0];
+                    bobId = accountList[1];
+                    return;
+                } catch (...) {
+                    qWarning() << "Failed to get existing accounts.";
+                }
+            }
+        }
+
+        qWarning() << "Creating test accounts and conversation, this may take some time...";
 
         // Create 2 Accounts
         QSignalSpy accountAddedSpy(&lrcInstance_->accountModel(), &AccountModel::accountAdded);
 
         MapStringString aliceDetails;
         aliceDetails["alias"] = "Alice";
+        qInfo() << "Creating Alice account...";
         aliceId = lrcInstance_->accountModel().createNewAccount(profile::Type::JAMI, aliceDetails);
         accountAddedSpy.wait(15000);
         QCOMPARE(accountAddedSpy.count(), 1);
 
         MapStringString bobDetails;
         bobDetails["alias"] = "Bob";
+        qInfo() << "Creating Bob account...";
         bobId = lrcInstance_->accountModel().createNewAccount(profile::Type::JAMI, bobDetails);
         accountAddedSpy.wait(15000);
         QCOMPARE(accountAddedSpy.count(), 2);
@@ -128,6 +150,7 @@ public Q_SLOTS:
         contact::Info bobContact;
         bobContact.profileInfo.uri = bobInfo.profileInfo.uri;
         bobContact.profileInfo.type = profile::Type::TEMPORARY;
+        qInfo() << "Adding conversation...";
         aliceInfo.contactModel->addContact(bobContact);
         conversationReqSpy.wait(15000);
         QCOMPARE(conversationReqSpy.count(), 1);
@@ -187,22 +210,8 @@ main(int argc, char** argv)
 {
     QDir tempDir(QStandardPaths::writableLocation(QStandardPaths::TempLocation));
 
-    auto jamiDataDir = tempDir.absolutePath() + "/jami_test/jami";
-    auto jamiConfigDir = tempDir.absolutePath() + "/jami_test/.config";
-    auto jamiCacheDir = tempDir.absolutePath() + "/jami_test/.cache";
-
-    // Clean up the temp directories.
-    QDir(jamiDataDir).removeRecursively();
-    QDir(jamiConfigDir).removeRecursively();
-    QDir(jamiCacheDir).removeRecursively();
-
-    bool envSet = qputenv(DATA_DIR, jamiDataDir.toLocal8Bit());
-    envSet &= qputenv(CONFIG_DIR, jamiConfigDir.toLocal8Bit());
-    envSet &= qputenv(CACHE_DIR, jamiCacheDir.toLocal8Bit());
-    if (!envSet)
-        return 1;
-
-    bool muteDaemon {false};
+    // Check if we should use the cache.
+    Utils::remove_argument(argv, argc, "--use-cache", [&]() { useCache = true; });
 
     // We likely want to mute the daemon for log clarity.
     Utils::remove_argument(argv, argc, "--mutejamid", [&]() { muteDaemon = true; });
@@ -210,11 +219,28 @@ main(int argc, char** argv)
     // Allow the user to enable fatal warnings for certain tests.
     Utils::remove_argument(argv, argc, "--failonwarn", [&]() { qputenv("QT_FATAL_WARNINGS", "1"); });
 
+    auto jamiDataDir = tempDir.absolutePath() + "/jami_test/jami";
+    auto jamiConfigDir = tempDir.absolutePath() + "/jami_test/.config";
+    auto jamiCacheDir = tempDir.absolutePath() + "/jami_test/.cache";
+
+    if (!useCache) {
+        // Ensure the temp directories are clean.
+        QDir(jamiDataDir).removeRecursively();
+        QDir(jamiConfigDir).removeRecursively();
+        QDir(jamiCacheDir).removeRecursively();
+    }
+
+    bool envSet = qputenv(DATA_DIR, jamiDataDir.toLocal8Bit());
+    envSet &= qputenv(CONFIG_DIR, jamiConfigDir.toLocal8Bit());
+    envSet &= qputenv(CACHE_DIR, jamiCacheDir.toLocal8Bit());
+    if (!envSet)
+        return 1;
+
 #if WITH_WEBENGINE
     QtWebEngineQuick::initialize();
 #endif
     QTEST_SET_MAIN_SOURCE_PATH
-    Setup setup(muteDaemon);
+    Setup setup;
     return quick_test_main_with_setup(argc, argv, "qml_test", nullptr, &setup);
 }
 
