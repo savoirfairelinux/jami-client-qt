@@ -81,7 +81,7 @@ pipeline {
         stage('Building Docker Image') {
             steps {
                 script {
-                    docker.build('client-validation', "-f extras/build/docker/Dockerfile.client-qt-gnulinux --no-cache .")
+                    docker.build('client-validation', "-f extras/build/docker/Dockerfile.client-qt-gnulinux .")
                 }
             }
         }
@@ -103,10 +103,8 @@ pipeline {
                             ansiColor('css') {
                                 exec_cmd("""
                                     cd ${dockerTopDir}
-                                    ./build.py --install --qt /usr/lib/libqt-jami/
-                                    cd build
-                                    cmake .. -DBUILD_TESTING=True
-                                    make -j${cpuCount}
+                                    cmake -B build -S . -DCMAKE_PREFIX_PATH=/usr/lib/libqt-jami/ -DCMAKE_BUILD_TYPE=Release -DJAMICORE_AS_SUBDIR=OFF -DBUILD_TESTING=On
+                                    cmake --build build --parallel ${cpuCount}
                                 """)
                                 // Run tests
                                 exec_cmd("""
