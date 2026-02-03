@@ -22,6 +22,30 @@
       },
       "revId": "1e0d7d2025d3cb23be0b5c15659ecc30ba6f9c32",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36a01d63_7815d793",
+        "filename": "src/app/mainview/components/ChatViewFooter.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2026-02-03T22:02:12Z",
+      "side": 1,
+      "message": "Changed to use a regexp check which operates on the string itself without creating a copy",
+      "parentUuid": "414a6636_55853d02",
+      "range": {
+        "startLine": 187,
+        "startChar": 72,
+        "endLine": 187,
+        "endChar": 78
+      },
+      "revId": "1e0d7d2025d3cb23be0b5c15659ecc30ba6f9c32",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
