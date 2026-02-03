@@ -39,6 +39,30 @@
       },
       "revId": "a451c101d2c2113cae94f52560f87fd86bcbb4fa",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6a7dd4f_bf4a9a2c",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2026-02-03T20:58:25Z",
+      "side": 1,
+      "message": "resolved and using the end() function now as hangup no longer exists in this context.",
+      "parentUuid": "d40f90b1_08100ca8",
+      "range": {
+        "startLine": 382,
+        "startChar": 8,
+        "endLine": 393,
+        "endChar": 15
+      },
+      "revId": "a451c101d2c2113cae94f52560f87fd86bcbb4fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
