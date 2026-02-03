@@ -1,4 +1,28 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c1b4b42_fe3a06e3",
+        "filename": "src/app/mainview/components/SidePanel.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 736,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-02-03T08:08:30Z",
+      "side": 1,
+      "message": "Should `open` be reverted to `toggle`?\n\nShould the Keyboard shortcuts menu be changed from `Open account list` to `Toggle account list` or `Open/close account list`?",
+      "range": {
+        "startLine": 736,
+        "startChar": 49,
+        "endLine": 736,
+        "endChar": 68
+      },
+      "revId": "03e37ce32cd6c9803db06ec6067921e41659710e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ],
   "submitRequirementResults": []
 }
