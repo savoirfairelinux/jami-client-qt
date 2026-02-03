@@ -312,8 +312,12 @@ Item {
 
             Connections {
                 target: CurrentConversation
-                onIsCoreDialogChanged: innerRect.updateSwarmDetailsTabModel()
-                onMembersChanged: innerRect.updateSwarmDetailsTabModel()
+                function onIsCoreDialogChanged() {
+                    innerRect.updateSwarmDetailsTabModel()
+                }
+                function onMembersChanged() {
+                    innerRect.updateSwarmDetailsTabModel()
+                }
             }
 
             TabBar {

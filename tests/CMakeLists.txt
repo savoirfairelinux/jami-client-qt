@@ -135,3 +135,7 @@ setup_test(Qml_Tests
 # Unit tests
 setup_test(Unit_Tests
     "${UNIT_TESTS_SOURCE_FILES}" "")
+
+# Use offscreen platform when no display is available (e.g. CI, SSH)
+set_tests_properties(Qml_Tests Unit_Tests PROPERTIES
+    ENVIRONMENT "QT_QPA_PLATFORM=offscreen")
