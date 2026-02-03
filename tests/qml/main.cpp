@@ -210,6 +210,11 @@ main(int argc, char** argv)
 {
     QDir tempDir(QStandardPaths::writableLocation(QStandardPaths::TempLocation));
 
+    // See if we should run these UI tests offscreen.
+    Utils::remove_argument(argv, argc, "--offscreen", [&]() {
+        qputenv("QT_QPA_PLATFORM", "offscreen");
+    });
+
     // Check if we should use the cache.
     Utils::remove_argument(argv, argc, "--use-cache", [&]() { useCache = true; });
 
