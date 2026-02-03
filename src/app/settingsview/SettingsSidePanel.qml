@@ -320,7 +320,7 @@ SidePanelBase {
             }
             // This manual override for the right margin is necessary,
             // otherwise the shadow appears cut-off.
-            return 16;
+            return JamiTheme.sidePanelIslandRightPadding;
         }
 
         Item {
