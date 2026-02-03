@@ -558,7 +558,6 @@ Item {
 
                         Loader {
                             id: loader
-                            z: mainView.headerRect.z - 1
                             active: CurrentConversation.id !== ""
                             sourceComponent: MessageListView {
                                 DropArea {
