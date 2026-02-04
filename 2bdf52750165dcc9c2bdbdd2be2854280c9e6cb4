@@ -16,6 +16,23 @@
       "message": "!build",
       "revId": "2bdf52750165dcc9c2bdbdd2be2854280c9e6cb4",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "069a65ff_8c8458c2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1143
+      },
+      "writtenOn": "2026-02-04T07:29:37Z",
+      "side": 1,
+      "message": "Are there custom commits that will be maintained on top of the upstream qwindowkit? Otherwise I think it\u0027d be cleaner to keep the submodule pointing to the upstream repo, just changing the commit used (it\u0027s using a commit from their main branch), for clarity/transparency.",
+      "revId": "2bdf52750165dcc9c2bdbdd2be2854280c9e6cb4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ],
   "submitRequirementResults": []
