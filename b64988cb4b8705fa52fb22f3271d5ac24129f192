@@ -1,4 +1,22 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30f81e77_dd07c865",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1143
+      },
+      "writtenOn": "2026-02-04T07:26:35Z",
+      "side": 1,
+      "message": "Merged with b64988cb.",
+      "revId": "b64988cb4b8705fa52fb22f3271d5ac24129f192",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ],
   "submitRequirementResults": []
 }
