@@ -46,6 +46,30 @@
       },
       "revId": "1e0d7d2025d3cb23be0b5c15659ecc30ba6f9c32",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e475c97f_1d112122",
+        "filename": "src/app/mainview/components/ChatViewFooter.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-02-04T21:16:24Z",
+      "side": 1,
+      "message": "Sounds good. Can you make the same change in the other file too?",
+      "parentUuid": "36a01d63_7815d793",
+      "range": {
+        "startLine": 187,
+        "startChar": 72,
+        "endLine": 187,
+        "endChar": 78
+      },
+      "revId": "1e0d7d2025d3cb23be0b5c15659ecc30ba6f9c32",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
