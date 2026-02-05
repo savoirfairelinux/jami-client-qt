@@ -309,12 +309,9 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
 else()
   set(CC_MACHINE "")
 endif()
-find_library(AVUTIL_LIBRARY avutil
-  HINTS
-  ${LIBJAMI_CONTRIB_DIR}/${CC_MACHINE}/lib
-  ${LIBJAMI_CONTRIB_DIR}/apple-darwin/lib)
 
 if(ENABLE_LIBWRAP)
+  pkg_search_module(LIBAVUTIL REQUIRED IMPORTED_TARGET libavutil)
   list(APPEND LIBCLIENT_HEADERS directrenderer.h)
   list(APPEND LIBCLIENT_SOURCES directrenderer.cpp)
 else()
@@ -465,7 +462,8 @@ endif()
 if(ENABLE_LIBWRAP)
   target_link_libraries(${LIBCLIENT_NAME} qtwrapper)
   if (NOT (CMAKE_CXX_COMPILER_ID MATCHES "MSVC"))
-    target_link_libraries(${LIBCLIENT_NAME} ${AVUTIL_LIBRARY})
+
+    target_link_libraries(${LIBCLIENT_NAME} PkgConfig::LIBAVUTIL)
   endif()
 endif()
 if (NOT (CMAKE_CXX_COMPILER_ID MATCHES "MSVC"))

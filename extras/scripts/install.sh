@@ -34,7 +34,7 @@ export OSTYPE
   # -C: enable crash reporting
   # -i: ignore system libraries and build everything regardless of system detection
 
-set -ex
+set -e
 
 # Qt_MIN_VER required for client-qt
 QT_MIN_VER="6.4"
@@ -177,7 +177,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     daemon_cmake_flags+=(-DCMAKE_OSX_ARCHITECTURES="${CMAKE_OSX_ARCHITECTURES}")
 fi
 
-cmake .. "${daemon_cmake_flags[@]}"
+cmake --log-level=debug .. "${daemon_cmake_flags[@]}"
 make -j"${proc}" V=1
 make_install "${global}" "${priv_install}"
 
@@ -256,7 +256,7 @@ if [ -n "${extra_cmake_flags}" ]; then
     client_cmake_flags+=(${extra_cmake_flags})
 fi
 
-echo "info: Configuring $client client with flags: ${client_cmake_flags[*]}"
-cmake .. "${client_cmake_flags[@]}"
+echo "info: Configuring client with flags: ${client_cmake_flags[*]}"
+cmake --log-level=debug .. "${client_cmake_flags[@]}"
 make -j"${proc}" V=1
 make_install "${global}" "${priv_install}"
