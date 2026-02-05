@@ -489,6 +489,21 @@ else()
 endif()
 
 if(MSVC)
+  # Enforce minimum SDK 10.0.20348.0
+  set(MIN_WIN_SDK "10.0.26100.0")
+
+  # Set minimum SDK version hint
+  set(CMAKE_SYSTEM_VERSION "${MIN_WIN_SDK}" CACHE STRING "" FORCE)
+
+  # After SDK selection, validate what CMake chose
+  if (DEFINED CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION)
+      if (CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION VERSION_LESS MIN_WIN_SDK)
+          message(FATAL_ERROR
+              "Windows SDK ${CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION} is too old. "
+              "Minimum required: ${MIN_WIN_SDK}")
+      endif()
+  endif()
+
   set(WINDOWS_SYS_LIBS
     windowsapp.lib
     dwmapi.lib
