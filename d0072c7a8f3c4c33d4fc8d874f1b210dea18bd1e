@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1290c5d_31b06025",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1143
+      },
+      "writtenOn": "2026-02-05T07:04:44Z",
+      "side": 1,
+      "message": "This fixes errors I had when building the latest git via e.g. `./build.py --debug --install`",
+      "revId": "d0072c7a8f3c4c33d4fc8d874f1b210dea18bd1e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
