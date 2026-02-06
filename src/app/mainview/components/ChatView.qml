@@ -172,11 +172,13 @@ Rectangle {
             objectName: "chatViewHeader"
             z: 3
 
-            Layout.alignment: Qt.AlignHCenter
+            Layout.alignment: Qt.AlignVCenter
             Layout.fillWidth: true
             Layout.preferredHeight: JamiTheme.qwkTitleBarHeight
             Layout.maximumHeight: JamiTheme.qwkTitleBarHeight
-            Layout.minimumWidth: JamiTheme.mainViewMajorPaneMinWidth
+            Layout.topMargin: JamiTheme.sidePanelIslandsSinglePaneModePadding
+            Layout.leftMargin: layoutManager.qwkSystemButtonSpacing.left
+            Layout.rightMargin: layoutManager.qwkSystemButtonSpacing.right
 
             DropArea {
                 anchors.fill: parent
