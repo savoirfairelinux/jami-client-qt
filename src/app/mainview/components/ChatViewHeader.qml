@@ -18,6 +18,7 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
+import QtQuick.Effects
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
@@ -67,137 +68,169 @@ Rectangle {
         return CurrentConversation.isSwarm && !CurrentConversation.isRequest;
     }
 
-    color: JamiTheme.globalBackgroundColor
+    color: JamiTheme.transparentColor//JamiTheme.globalBackgroundColor
 
     RowLayout {
-        id: messagingHeaderRectRowLayout
-
         anchors.fill: parent
-        // QWK: spacing
-        anchors.leftMargin: layoutManager.qwkSystemButtonSpacing.left
-        anchors.rightMargin: 10 + layoutManager.qwkSystemButtonSpacing.right
-        spacing: 8
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.leftMargin: 4
 
-        JamiPushButton {
-            id: backToWelcomeViewButton
-            QWKSetParentHitTestVisible {}
+        spacing: 2
 
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-            Layout.leftMargin: 8
+        Control {
+            id: conversationTitle
 
-            normalColor: JamiTheme.globalBackgroundColor
-
-            mirror: UtilsAdapter.isRTL
-
-            source: JamiResources.back_24dp_svg
-            toolTipText: CurrentConversation.inCall ? JamiStrings.returnToCall : JamiStrings.hideChat
-
-            onClicked: root.backClicked()
-        }
-
-        Avatar {
-            id: userAvatar
-
-            width: JamiTheme.iconButtonLarge
-            height: JamiTheme.iconButtonLarge
-
-            mode: CurrentConversation.isSwarm ? Avatar.Mode.Conversation : Avatar.Mode.Contact
-            imageId: CurrentConversation.id
-            showPresenceIndicator: false
-        }
-
-        Rectangle {
-            id: userNameOrIdRect
-
-            Layout.alignment: Qt.AlignLeft | Qt.AlignTop
-
-            // Width + margin.
-            Layout.fillHeight: true
             Layout.fillWidth: true
-            Layout.topMargin: 7
-            Layout.bottomMargin: 7
-            Layout.leftMargin: 4
 
-            color: JamiTheme.transparentColor
+            padding: 4
 
-            ColumnLayout {
-                id: userNameOrIdColumnLayout
-                QWKSetParentHitTestVisible {}
-                objectName: "userNameOrIdColumnLayout"
+            contentItem: RowLayout {
+                Layout.fillWidth: true
 
-                height: parent.height
+                RowLayout {
+                    spacing: 2
 
-                spacing: 0
+                    NewIconButton {
+                        Layout.alignment: Qt.AlignVCenter
 
-                ElidedTextLabel {
-                    id: title
+                        implicitWidth: background.width
+                        implicitHeight: background.height
 
-                    LineEditContextMenu {
-                        id: displayNameContextMenu
-                        lineEditObj: title
-                        selectOnly: true
-                    }
-                    MouseArea {
-                        anchors.fill: parent
-                        acceptedButtons: Qt.RightButton
-                        cursorShape: Qt.IBeamCursor
-                        onClicked: function (mouse) {
-                            displayNameContextMenu.openMenuAt(mouse);
-                        }
+                        iconSize: JamiTheme.iconButtonMedium
+                        iconSource: JamiResources.chevron_left_black_24dp_svg
+
+                        onClicked: root.backClicked()
                     }
 
-                    Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+                    BadgeNotifier {
+                        id: badge
 
-                    font.pointSize: JamiTheme.textFontSize + 2
+                        Layout.alignment: Qt.AlignVCenter
 
-                    horizontalAlignment: Text.AlignLeft
-                    verticalAlignment: Text.AlignVCenter
+                        visible: viewCoordinator.isInSinglePaneMode && count > 0
 
-                    eText: CurrentConversation.title
-                    maxWidth: userNameOrIdRect.width
+                        count: ConversationsAdapter.totalUnreadMessageCount + ConversationsAdapter.pendingRequestCount
+                        size: 20
+                    }
                 }
 
-                ElidedTextLabel {
-                    id: description
 
-                    Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+                Avatar {
+                    id: userAvatar
 
-                    visible: text.length && CurrentConversation.title !== CurrentConversation.description
-                    font.pointSize: JamiTheme.textFontSize
-                    color: JamiTheme.faddedLastInteractionFontColor
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
 
-                    horizontalAlignment: Text.AlignLeft
-                    verticalAlignment: Text.AlignVCenter
-                    eText: CurrentConversation.description
-                    maxWidth: userNameOrIdRect.width
+                    width: JamiTheme.iconButtonLarge
+                    height: JamiTheme.iconButtonLarge
+
+                    mode: CurrentConversation.isSwarm ? Avatar.Mode.Conversation : Avatar.Mode.Contact
+                    imageId: CurrentConversation.id
+                    showPresenceIndicator: false
+                }
+
+                ColumnLayout {
+                    id: userNameOrIdColumnLayout
+                    QWKSetParentHitTestVisible {}
+                    objectName: "userNameOrIdColumnLayout"
+
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: parent.height
+
+                    spacing: 0
+
+                    ElidedTextLabel {
+                        id: title
+
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+
+                        LineEditContextMenu {
+                            id: displayNameContextMenu
+                            lineEditObj: title
+                            selectOnly: true
+                        }
+                        MouseArea {
+                            anchors.fill: parent
+                            acceptedButtons: Qt.RightButton
+                            cursorShape: Qt.IBeamCursor
+                            onClicked: function (mouse) {
+                                displayNameContextMenu.openMenuAt(mouse);
+                            }
+                        }
+
+                        Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+
+                        font.pointSize: JamiTheme.textFontSize + 2
+
+                        horizontalAlignment: Text.AlignLeft
+                        verticalAlignment: Text.AlignVCenter
+
+                        eText: CurrentConversation.title
+                        maxWidth: width
+                    }
+
+                    ElidedTextLabel {
+                        id: description
+
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+
+                        visible: eText.length && CurrentConversation.title !== CurrentConversation.description
+                        font.pointSize: JamiTheme.textFontSize
+                        color: JamiTheme.faddedLastInteractionFontColor
+
+                        horizontalAlignment: Text.AlignLeft
+                        verticalAlignment: Text.AlignVCenter
+                        eText: CurrentConversation.description
+                        maxWidth: width
+                    }
+                }
+
+                NewIconButton {
+                    id: startAudioCallButton
+                    QWKSetParentHitTestVisible {}
+
+                    visible: CurrentConversation.activeCalls.length === 0 && interactionButtonsVisibility
+
+                    iconSize: JamiTheme.iconButtonMedium
+                    iconSource: JamiResources.start_audiocall_24dp_svg
+                    toolTipText: JamiStrings.startAudioCall
+
+                    onClicked: CallAdapter.startAudioOnlyCall()
+                }
+
+                NewIconButton {
+                    id: startVideoCallButton
+                    QWKSetParentHitTestVisible {}
+
+                    iconSize: JamiTheme.iconButtonMedium
+                    iconSource: JamiResources.videocam_24dp_svg
+                    toolTipText: JamiStrings.startVideoCall
+
+                    visible: CurrentConversation.activeCalls.length === 0 && interactionButtonsVisibility && CurrentAccount.videoEnabled_Video
+
+                    onClicked: CallAdapter.startCall()
                 }
             }
-        }
 
-        NewIconButton {
-            id: startAudioCallButton
-            QWKSetParentHitTestVisible {}
+            background: Rectangle {
+                color: JamiTheme.globalIslandColor
+                radius: height / 2
 
-            visible: CurrentConversation.activeCalls.length === 0 && interactionButtonsVisibility
-
-            iconSize: JamiTheme.iconButtonMedium
-            iconSource: JamiResources.start_audiocall_24dp_svg
-            toolTipText: JamiStrings.startAudioCall
-
-            onClicked: CallAdapter.startAudioOnlyCall()
-        }
-
-        NewIconButton {
-            id: startVideoCallButton
-            QWKSetParentHitTestVisible {}
-
-            iconSize: JamiTheme.iconButtonMedium
-            iconSource: JamiResources.videocam_24dp_svg
-            toolTipText: JamiStrings.startVideoCall
-
-            visible: CurrentConversation.activeCalls.length === 0 && interactionButtonsVisibility && CurrentAccount.videoEnabled_Video
-
-            onClicked: CallAdapter.startCall()
+                layer.enabled: true
+                layer.effect: MultiEffect {
+                    id: conversationTitleMultiEffect
+                    anchors.fill: conversationTitle
+                    shadowEnabled: true
+                    shadowBlur: JamiTheme.shadowBlur
+                    shadowColor: JamiTheme.shadowColor
+                    shadowHorizontalOffset: JamiTheme.shadowHorizontalOffset
+                    shadowVerticalOffset: JamiTheme.shadowVerticalOffset
+                    shadowOpacity: JamiTheme.shadowOpacity
+                }
+            }
         }
 
         // Custom component (DNR: DO NOT REPLACE)
@@ -279,14 +312,5 @@ Rectangle {
 
             onClicked: extrasPanel.switchToPanel(ChatView.SwarmDetailsPanel)
         }
-    }
-
-    CustomBorder {
-        commonBorder: false
-        lBorderwidth: 0
-        rBorderwidth: 0
-        tBorderwidth: 0
-        bBorderwidth: JamiTheme.chatViewHairLineSize
-        borderColor: JamiTheme.chatViewFooterRectangleBorderColor
     }
 }

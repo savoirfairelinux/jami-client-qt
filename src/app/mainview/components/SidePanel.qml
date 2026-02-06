@@ -171,18 +171,6 @@ SidePanelBase {
     Item {
         anchors.fill: parent
 
-        Rectangle {
-            id: chatViewHairLineExtension
-            anchors.top: parent.top
-            anchors.topMargin: JamiTheme.qwkTitleBarHeight - root.header.height
-            anchors.left: parent.left
-            anchors.leftMargin: JamiTheme.sidePanelIslandsPadding + conversationListRect.radius
-            width: parent.width
-            height: JamiTheme.chatViewHairLineSize
-            color: JamiTheme.chatViewFooterRectangleBorderColor
-            visible: CurrentConversation.id !== "" && !CurrentConversation.hasCall && !inNewSwarm
-        }
-
         ColumnLayout {
             anchors.fill: parent
             // Creates The floating rectangle itself
