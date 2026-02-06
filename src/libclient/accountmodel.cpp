@@ -41,6 +41,7 @@
 #include <account_const.h>
 
 // qt
+#include <QtConcurrent/qtconcurrentrun.h>
 #include <QtGui/QPixmap>
 #include <QtGui/QImage>
 #include <QtCore/QBuffer>
@@ -270,7 +271,8 @@ AccountModel::setAccountConfig(const QString& accountId, const account::ConfProp
         details[ConfProperties::USERNAME] = confProperties.username;
         accountInfo.confProperties.credentials.swap(credentialsVec);
     }
-    configurationManager.setAccountDetails(accountId, details);
+    (void) QtConcurrent::run(
+        [&configurationManager, accountId, details]() { configurationManager.setAccountDetails(accountId, details); });
 }
 
 account::ConfProperties_t
