@@ -16,6 +16,24 @@
       "message": "Typo? `due`?",
       "revId": "65245d87a4f1cd545cd35ad5d3ceebc2596cd7cc",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc0ca9db_1c2ea91d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 22
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1169
+      },
+      "writtenOn": "2026-02-06T16:35:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94f8fb88_dfcfa4d2",
+      "revId": "65245d87a4f1cd545cd35ad5d3ceebc2596cd7cc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
