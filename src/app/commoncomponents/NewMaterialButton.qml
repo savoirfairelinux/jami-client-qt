@@ -48,6 +48,8 @@ T.Button {
     property string iconSource: ""
     property string toolTipText: ""
 
+    property bool validFocusReason: focusReason === Qt.TabFocusReason || focusReason === Qt.BacktabFocusReason
+
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset, implicitContentWidth + leftPadding + rightPadding)
     implicitHeight: 40
 
@@ -59,7 +61,7 @@ T.Button {
     icon.width: JamiTheme.iconButtonMedium
     icon.height: JamiTheme.iconButtonMedium
     icon.color: {
-        if (root.enabled && (root.hovered || root.activeFocus)) {
+        if (root.enabled && (root.hovered || (root.activeFocus && validFocusReason))) {
             if (root.filledButton)
                 JamiTheme.whiteColor;
             else if (root.outlinedButton)
@@ -91,7 +93,7 @@ T.Button {
         text: root.text
         font.pixelSize: JamiTheme.buttontextFontPixelSize
         color: {
-            if (root.enabled && (root.hovered || root.activeFocus)) {
+            if (root.enabled && (root.hovered || (root.activeFocus && validFocusReason))) {
                 if (root.filledButton)
                     JamiTheme.whiteColor;
                 else if (root.outlinedButton)
@@ -124,9 +126,9 @@ T.Button {
             if (root.enabled) {
                 if (root.pressed || root.down) {
                     Qt.rgba(root.color.r, root.color.g, root.color.b, 0.80);
-                } else if (root.hovered || root.activeFocus) {
+                } else if (root.hovered || (root.activeFocus && validFocusReason)) {
                     Qt.rgba(root.color.r, root.color.g, root.color.b, 0.92);
-                } else {
+                } else{
                     if (root.filledButton)
                         root.color;
                     else if (root.outlinedButton)
