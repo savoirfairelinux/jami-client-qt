@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f133b7f_6cd80d2f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-02-06T19:41:09Z",
+      "side": 1,
+      "message": "Is #1175 the correct issue?\nCan the space at the top and bottom please be removed in the Members tab of Details?\nhttps://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/1175",
+      "range": {
+        "startLine": 15,
+        "startChar": 8,
+        "endLine": 15,
+        "endChar": 13
+      },
+      "revId": "e70380ef4ba27ff3f9aed060c5f4718034d51bb6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "2ef97832_4556d957",
