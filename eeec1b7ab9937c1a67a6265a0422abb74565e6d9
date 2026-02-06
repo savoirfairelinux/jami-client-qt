@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da0c465f_7c0ff68a",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 23
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-02-06T19:35:23Z",
+      "side": 1,
+      "message": "Should this strings be in sentence case?\n`SIP call error`?\n\nThank you",
+      "range": {
+        "startLine": 343,
+        "startChar": 39,
+        "endLine": 343,
+        "endChar": 53
+      },
+      "revId": "eeec1b7ab9937c1a67a6265a0422abb74565e6d9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
