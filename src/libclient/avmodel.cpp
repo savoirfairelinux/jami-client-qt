@@ -493,7 +493,7 @@ AVModel::setNoiseSuppression(const QString& name)
     else if (name == QObject::tr("Disabled"))
         state = "off";
 
-    return ConfigurationManager::instance().setNoiseSuppressState(state);
+    ConfigurationManager::instance().setNoiseSuppressState(state);
 }
 
 void
@@ -509,13 +509,13 @@ AVModel::setEchoCancellation(const QString& name)
     else if (name == QObject::tr("Disabled"))
         state = "off";
 
-    return ConfigurationManager::instance().setEchoCancellationState(state);
+    ConfigurationManager::instance().setEchoCancellationState(state);
 }
 
 void
 AVModel::setVoiceActivityDetection(bool state)
 {
-    return ConfigurationManager::instance().setVoiceActivityDetectionState(state);
+    ConfigurationManager::instance().setVoiceActivityDetectionState(state);
 }
 
 void
