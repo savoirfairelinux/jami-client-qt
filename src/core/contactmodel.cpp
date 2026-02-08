@@ -372,7 +372,7 @@ ContactModel::removeContact(const QString& contactUri, bool banned)
             emitContactRemoved = true;
         }
     }
-    // hang up calls with the removed contact as peer
+    // end calls with the removed contact as peer
     try {
         auto callinfo = owner.callModel->getCallFromURI(contactUri, true);
         owner.callModel->end(callinfo.id);

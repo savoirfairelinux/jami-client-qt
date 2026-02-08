@@ -295,12 +295,12 @@ public Q_SLOTS: // METHODS
 
     bool end(const QString& accountId, const QString& callId)
     {
-        return libjami::hangUp(accountId.toStdString(), callId.toStdString());
+        return libjami::end(accountId.toStdString(), callId.toStdString());
     }
 
     bool endConference(const QString& accountId, const QString& confId)
     {
-        return libjami::hangUpConference(accountId.toStdString(), confId.toStdString());
+        return libjami::endConference(accountId.toStdString(), confId.toStdString());
     }
 
     bool hold(const QString& accountId, const QString& callId)
@@ -388,7 +388,7 @@ public Q_SLOTS: // METHODS
 
     bool decline(const QString& accountId, const QString& callId)
     {
-        return libjami::refuse(accountId.toStdString(), callId.toStdString());
+        return libjami::decline(accountId.toStdString(), callId.toStdString());
     }
 
     void sendTextMessage(const QString& accountId,
@@ -506,7 +506,7 @@ public Q_SLOTS: // METHODS
                                const QString& accountUri,
                                const QString& deviceId)
     {
-        libjami::hangupParticipant(accountId.toStdString(),
+        libjami::disconnectParticipant(accountId.toStdString(),
                                    confId.toStdString(),
                                    accountUri.toStdString(),
                                    deviceId.toStdString());

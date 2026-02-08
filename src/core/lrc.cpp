@@ -242,7 +242,7 @@ Lrc::getChannelList(const QString& accountId, const QString& uid)
 bool
 isFinished(const QString& callState)
 {
-    if (callState == QLatin1String(libjami::Call::StateEvent::HUNGUP)
+    if (callState == QLatin1String(libjami::Call::StateEvent::ENDED)
         || callState == QLatin1String(libjami::Call::StateEvent::BUSY)
         || callState == QLatin1String(libjami::Call::StateEvent::PEER_BUSY)
         || callState == QLatin1String(libjami::Call::StateEvent::FAILURE)
