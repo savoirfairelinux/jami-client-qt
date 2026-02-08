@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5218a54_a1c3eb29",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2026-02-08T17:44:49Z",
+      "side": 1,
+      "message": "Since avutils is a public dependency of the daemon, the include should normally be provided from either the cmake daemon (jami-core) target, or from the pkg-config target.",
+      "revId": "921895f726686aaef257b034a630ae6519a2296d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
