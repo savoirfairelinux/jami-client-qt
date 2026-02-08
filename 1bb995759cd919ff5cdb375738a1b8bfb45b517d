@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef053fa1_e2ca1b6d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1143
+      },
+      "writtenOn": "2026-02-08T12:54:46Z",
+      "side": 1,
+      "message": "Tested with ./build.py --clean --clean-contribs\u003dall \u0026\u0026 ./build.py --debug --install --no-libwrap \u0026\u0026 ./build.py --clean --clean-contribs\u003dall \u0026\u0026 ./build.py --debug --install\n\n(Only the no-libwrap build had been broken by the rename).",
+      "revId": "1bb995759cd919ff5cdb375738a1b8bfb45b517d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
