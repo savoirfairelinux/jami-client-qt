@@ -16,6 +16,24 @@
       "message": "Since avutils is a public dependency of the daemon, the include should normally be provided from either the cmake daemon (jami-core) target, or from the pkg-config target.",
       "revId": "921895f726686aaef257b034a630ae6519a2296d",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aecd742d_eb46930f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1143
+      },
+      "writtenOn": "2026-02-08T23:54:14Z",
+      "side": 1,
+      "message": "Hello! This could work, but it seems it\u0027d be at the wrong level since libclient, part of the client, directly depends on libavutil (#include \"libavutil/frame.h\" in both videoprovider.h and video.h); so I\u0027d favor an explicit dependency on libavutil?",
+      "parentUuid": "b5218a54_a1c3eb29",
+      "revId": "921895f726686aaef257b034a630ae6519a2296d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
