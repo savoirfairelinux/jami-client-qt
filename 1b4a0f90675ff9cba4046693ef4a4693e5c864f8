@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "224dc174_5a3217e9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1143
+      },
+      "writtenOn": "2026-02-08T08:26:53Z",
+      "side": 1,
+      "message": "This goes together with https://review.jami.net/c/jami-daemon/+/33144",
+      "revId": "1b4a0f90675ff9cba4046693ef4a4693e5c864f8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
