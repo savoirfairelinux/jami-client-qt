@@ -223,9 +223,9 @@ function package_snap()
         echo $(hostname)
         echo $(whoami)
         echo $(snapcraft whoami)
-        snapcraft push ./extras/packaging/gnu-linux/packages/${DISTRIBUTION}*/*.snap --release edge
+        snapcraft upload ./extras/packaging/gnu-linux/packages/${DISTRIBUTION}*/*.snap --release edge
     elif [[ $CHANNEL =~ stable ]]; then
-        snapcraft push ./extras/packaging/gnu-linux/packages/${DISTRIBUTION}*/*.snap --release stable
+        snapcraft upload ./extras/packaging/gnu-linux/packages/${DISTRIBUTION}*/*.snap --release stable
     fi
 }
 
