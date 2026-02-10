@@ -36,7 +36,7 @@ SidePanelBase {
     property var highlighted: []
     property var highlightedMembers: []
 
-    color: inNewSwarm ? JamiTheme.globalBackgroundColor : JamiTheme.transparentColor
+    color: JamiTheme.transparentColor
 
     Connections {
         target: LRCInstance
@@ -172,15 +172,49 @@ SidePanelBase {
         anchors.fill: parent
 
         Rectangle {
-            id: chatViewHairLineExtension
+            id: chatViewGradientExtension
+
+            property color currentConversationColor: CurrentConversation.color
+            property color tintColor: Qt.rgba(currentConversationColor.r, currentConversationColor.g, currentConversationColor.b, JamiTheme.chatViewBackgroundTintOpacity)
+            property color baseColor: Qt.tint(JamiTheme.globalBackgroundColor, tintColor)
+
             anchors.top: parent.top
-            anchors.topMargin: JamiTheme.qwkTitleBarHeight - root.header.height
             anchors.left: parent.left
-            anchors.leftMargin: JamiTheme.sidePanelIslandsPadding + conversationListRect.radius
-            width: parent.width
-            height: JamiTheme.chatViewHairLineSize
-            color: JamiTheme.chatViewFooterRectangleBorderColor
+            anchors.right: parent.right
+            height: JamiTheme.qwkTitleBarHeight + JamiTheme.sidePanelIslandsPadding * 2
+
             visible: CurrentConversation.id !== "" && !CurrentConversation.hasCall && !inNewSwarm
+
+            // To block mouse events for messages behind the gradient
+            MouseArea {
+                anchors.fill: parent
+            }
+
+            gradient: Gradient {
+                orientation: Gradient.Vertical
+                GradientStop {
+                    position: 0.0
+                    color: Qt.rgba(chatViewGradientExtension.baseColor.r, chatViewGradientExtension.baseColor.g,
+                                   chatViewGradientExtension.baseColor.b, 1.0)
+                }
+                GradientStop {
+                    position: (JamiTheme.qwkTitleBarHeight + JamiTheme.sidePanelIslandsPadding) / chatViewGradientExtension.height
+                    color: Qt.rgba(chatViewGradientExtension.baseColor.r, chatViewGradientExtension.baseColor.g,
+                                   chatViewGradientExtension.baseColor.b, 0.8)
+                }
+                GradientStop {
+                    position: 1.0
+                    color: Qt.rgba(chatViewGradientExtension.baseColor.r, chatViewGradientExtension.baseColor.g,
+                                   chatViewGradientExtension.baseColor.b, 0.0)
+                }
+            }
+
+            Behavior on baseColor {
+                ColorAnimation {
+                    duration: JamiTheme.conversationColorFadeDuration
+                    easing.type: Easing.InOutQuad
+                }
+            }
         }
 
         ColumnLayout {
@@ -677,6 +711,7 @@ SidePanelBase {
 
                 Rectangle {
                     id: gradientRect
+
                     readonly property color baseColor: JamiTheme.globalIslandColor
                     readonly property bool shouldShow: !conversationListView.atYEnd || (
                                                            swarmMemberSearchList.visible &&
