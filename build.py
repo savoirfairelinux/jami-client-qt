@@ -33,9 +33,6 @@ import re
 OSX_DISTRIBUTION_NAME = "osx"
 WIN32_DISTRIBUTION_NAME = "win32"
 
-# vs vars
-win_sdk_default = '10.0.18362.0'
-
 APT_BASED_DISTROS = [
     'debian',
     'linuxmint',
@@ -775,10 +772,6 @@ def parse_args():
                     help='Build contrib packages regardless of system detection')
 
     dist = choose_distribution()
-
-    if dist == WIN32_DISTRIBUTION_NAME:
-        ap.add_argument('--sdk', default=win_sdk_default, type=str,
-                        help='Windows use only, specify Windows SDK version')
 
     parsed_args = ap.parse_args()
 

@@ -23,6 +23,7 @@ import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import "../js/screenrubberbandcreation.js" as ScreenRubberBandCreation
 import "../../commoncomponents"
+import "../../settingsview/components"
 
 // SelectScreenWindow as a seperate window,
 // is to make user aware of which screen they want to share,
@@ -52,29 +53,29 @@ Window {
         if (!showWindows) {
             for (idx in Qt.application.screens) {
                 newModel.push({
-                        title: JamiStrings.screen.arg(idx),
-                        index: parseInt(idx),
-                        isAllScreens: false
-                    });
+                    title: JamiStrings.screen.arg(idx),
+                    index: parseInt(idx),
+                    isAllScreens: false
+                });
             }
         } else {
             AvAdapter.getListWindows();
             for (idx in AvAdapter.windowsNames) {
                 newModel.push({
-                        title: AvAdapter.windowsNames[idx],
-                        index: parseInt(idx),
-                        isAllScreens: false
-                    });
+                    title: AvAdapter.windowsNames[idx],
+                    index: parseInt(idx),
+                    isAllScreens: false
+                });
             }
         }
 
         // Add "All Screens" option for non-Windows platforms when showing screens
         if (!showWindows && Qt.application.screens.length > 1 && Qt.platform.os.toString() !== "windows") {
             newModel.unshift({
-                    title: JamiStrings.allScreens,
-                    index: -1,
-                    isAllScreens: true
-                });
+                title: JamiStrings.allScreens,
+                index: -1,
+                isAllScreens: true
+            });
         }
         listModel = newModel;
     }
@@ -85,6 +86,9 @@ Window {
         if (!active) {
             selectedScreenNumber = undefined;
         }
+        // Reset audio muting option to true (mute) each time window is opened
+        AvAdapter.muteScreenshareAudio = true;
+
         calculateRepeaterModel();
     }
 
@@ -163,12 +167,53 @@ Window {
                 Layout.preferredHeight: childrenRect.height
                 spacing: marginSize
 
+                ToggleSwitch {
+                    id: shareAudioToggle
+
+                    visible: Qt.platform.os.toString() === "linux"
+
+                    Layout.maximumWidth: 200
+                    Layout.alignment: Qt.AlignLeft
+                    Layout.leftMargin: marginSize
+
+                    labelText: JamiStrings.shareAudio
+                    checked: !AvAdapter.muteScreenshareAudio
+
+                    onSwitchToggled: {
+                        AvAdapter.muteScreenshareAudio = !checked;
+                    }
+                }
+
+                // Push buttons to the right
+                Item {
+                    Layout.fillWidth: true
+                }
+
                 MaterialButton {
-                    id: selectButton
+                    id: cancelButton
+
                     Layout.maximumWidth: 200
                     Layout.fillWidth: true
-                    Layout.alignment: Qt.AlignHCenter
-                    Layout.leftMargin: marginSize
+                    Layout.alignment: Qt.AlignRight
+
+                    color: JamiTheme.buttonTintedBlack
+                    hoveredColor: JamiTheme.buttonTintedBlackHovered
+                    pressedColor: JamiTheme.buttonTintedBlackPressed
+                    secondary: true
+                    autoAccelerator: true
+
+                    text: JamiStrings.optionCancel
+
+                    onClicked: root.close()
+                }
+
+                MaterialButton {
+                    id: selectButton
+
+                    Layout.maximumWidth: 200
+                    Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignRight
+                    Layout.rightMargin: marginSize
 
                     enabled: selectedScreenNumber !== undefined
                     opacity: enabled ? 1.0 : 0.5
@@ -183,35 +228,16 @@ Window {
 
                     onClicked: {
                         if (selectAllScreens)
-                            AvAdapter.shareAllScreens();
+                            AvAdapter.shareAllScreens(AvAdapter.muteScreenshareAudio);
                         else {
                             if (!showWindows)
-                                AvAdapter.shareEntireScreen(selectedScreenNumber);
+                                AvAdapter.shareEntireScreen(selectedScreenNumber, AvAdapter.muteScreenshareAudio);
                             else {
-                                AvAdapter.shareWindow(AvAdapter.windowsIds[selectedScreenNumber], AvAdapter.windowsNames[selectedScreenNumber]);
+                                AvAdapter.shareWindow(AvAdapter.windowsIds[selectedScreenNumber], AvAdapter.windowsNames[selectedScreenNumber], -1, AvAdapter.muteScreenshareAudio);
                             }
                         }
                         root.close();
                     }
-                }
-
-                MaterialButton {
-                    id: cancelButton
-
-                    Layout.maximumWidth: 200
-                    Layout.fillWidth: true
-                    Layout.alignment: Qt.AlignHCenter
-                    Layout.rightMargin: marginSize
-
-                    color: JamiTheme.buttonTintedBlack
-                    hoveredColor: JamiTheme.buttonTintedBlackHovered
-                    pressedColor: JamiTheme.buttonTintedBlackPressed
-                    secondary: true
-                    autoAccelerator: true
-
-                    text: JamiStrings.optionCancel
-
-                    onClicked: root.close()
                 }
             }
         }
