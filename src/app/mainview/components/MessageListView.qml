@@ -202,7 +202,7 @@ ListView {
         }
     }
 
-    topMargin: 12
+    topMargin: JamiTheme.qwkTitleBarHeight + JamiTheme.sidePanelIslandsPadding * 2
     spacing: 2
 
     // The offscreen buffer is set to a reasonable value to avoid flickering

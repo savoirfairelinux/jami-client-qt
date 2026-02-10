@@ -46,7 +46,14 @@ Rectangle {
         }
     }
 
-    color: JamiTheme.globalBackgroundColor
+    color: JamiTheme.darkTheme ? Qt.darker(CurrentConversation.color, 5.0) : Qt.lighter(CurrentConversation.color, 1.6)
+
+    Behavior on color {
+        ColorAnimation {
+            duration: 1500
+            easing.type: Easing.InOutQuad
+        }
+    }
 
     onWidthChanged: Qt.callLater(JamiQmlUtils.updateMessageBarButtonsPoints)
     onHeightChanged: Qt.callLater(JamiQmlUtils.updateMessageBarButtonsPoints)
