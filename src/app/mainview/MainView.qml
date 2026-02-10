@@ -18,7 +18,8 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
+import QtQuick.Effects
+import Qt5Compat.GraphicalEffects
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
@@ -46,14 +47,102 @@ Rectangle {
         }
     }
 
-    color: JamiTheme.globalBackgroundColor
+    property color currentConversationColor: CurrentConversation.color
+    property color tintColor: Qt.rgba(currentConversationColor.r, currentConversationColor.g, currentConversationColor.b, JamiTheme.chatViewBackgroundTintOpacity)
+
+    // WelcomePage background properties
+    property variant uiCustomization: CurrentAccount.uiCustomization
+    onUiCustomizationChanged: updateWelcomeBackgroundFlags()
+    property bool hasCustomUi: false
+    property bool hasCustomBgImage: false
+    property string customBgUrl: ""
+    property bool hasCustomBgColor: false
+    property string customBgColor: ""
+
+    color: CurrentConversation.id === "" ? JamiTheme.transparentColor : Qt.tint(JamiTheme.globalBackgroundColor, tintColor)
+
+    Behavior on color {
+        ColorAnimation {
+            id: colorAnim
+            duration: 1000
+            easing.type: Easing.InOutQuad
+            onStarted: animationTimer.start()
+            onStopped: animationTimer.stop()
+        }
+    }
+
+    Timer {
+        id: animationTimer
+        interval: 50  // Sample every 50ms
+        repeat: true
+        onTriggered: console.log("Color:", mainView.color)
+    }
+    Connections {
+        target: CurrentAccount
+        function onIdChanged() {
+            updateWelcomeBackgroundFlags();
+        }
+    }
+
+    Connections {
+        target: JamiTheme
+        function onDarkThemeChanged() {
+            customBgUrl = hasCustomBgImage ? customBgUrl : JamiTheme.welcomeBg;
+        }
+    }
+
+    function updateWelcomeBackgroundFlags() {
+        hasCustomUi = Object.keys(uiCustomization).length > 0;
+        hasCustomBgImage = (hasCustomUi && uiCustomization.backgroundType === "image");
+        customBgUrl = hasCustomBgImage ? (CurrentAccount.managerUri + uiCustomization.backgroundColorOrUrl) : "";
+        hasCustomBgColor = (hasCustomUi && uiCustomization.backgroundType === "color");
+        customBgColor = hasCustomBgColor ? uiCustomization.backgroundColorOrUrl : "";
+    }
+
+    Component.onCompleted: {
+        JamiQmlUtils.mainViewRectObj = mainView;
+        updateWelcomeBackgroundFlags();
+    }
+
+    // WelcomePage background elements - only visible when WelcomePage is active
+    Rectangle {
+        id: welcomeBgRect
+        anchors.fill: parent
+        color: hasCustomBgColor ? customBgColor : "transparent"
+        visible: viewCoordinator.currentViewName === "WelcomePage" && hasCustomBgColor
+        z: -1
+    }
+
+    CachedImage {
+        id: welcomeCachedImgLogo
+        downloadUrl: (AccountSettingsManager.accountSettingsPropertyMap.backgroundUri === undefined || AccountSettingsManager.accountSettingsPropertyMap.backgroundUri === "") ? (hasCustomBgImage ? customBgUrl : JamiTheme.welcomeBg) : AccountSettingsManager.accountSettingsPropertyMap.backgroundUri
+        visible: viewCoordinator.currentViewName === "WelcomePage" && !hasCustomBgColor
+        anchors.fill: parent
+        opacity: visible ? 1 : 0
+        localPath: UtilsAdapter.getCachePath() + "/" + CurrentAccount.id + "/welcomeview/" + UtilsAdapter.base64Encode(downloadUrl) + fileExtension
+        imageFillMode: Image.PreserveAspectCrop
+        z: -1
+    }
+
+    FastBlur {
+        anchors.fill: welcomeCachedImgLogo
+        source: welcomeCachedImgLogo
+        radius: JamiTheme.welcomePageFastBlurRadius
+        z: -1
+        visible: viewCoordinator.currentViewName === "WelcomePage" && AccountSettingsManager.accountSettingsPropertyMap.backgroundBlurEnabled && welcomeCachedImgLogo.visible
+    }
+
+    ColorOverlay {
+        anchors.fill: welcomeCachedImgLogo
+        source: welcomeCachedImgLogo
+        color: JamiTheme.globalBackgroundColor
+        opacity: JamiTheme.welcomePageColorOverlayOpacity
+        z: -1
+        visible: viewCoordinator.currentViewName === "WelcomePage" && AccountSettingsManager.accountSettingsPropertyMap.backgroundScrimEnabled && welcomeCachedImgLogo.visible
+    }
 
     onWidthChanged: Qt.callLater(JamiQmlUtils.updateMessageBarButtonsPoints)
     onHeightChanged: Qt.callLater(JamiQmlUtils.updateMessageBarButtonsPoints)
-
-    Component.onCompleted: {
-        JamiQmlUtils.mainViewRectObj = mainView
-    }
 
     Shortcut {
         sequence: "Ctrl+M"
@@ -63,11 +152,11 @@ Rectangle {
 
     WheelHandler {
         onWheel: (wheel)=> {
-            if (wheel.modifiers & Qt.ControlModifier) {
-                var delta = wheel.angleDelta.y / 120
-                UtilsAdapter.setAppValue(Settings.BaseZoom, parseFloat(UtilsAdapter.getAppValue(Settings.BaseZoom)) + delta * 0.1)
-            }
-        }
+                     if (wheel.modifiers & Qt.ControlModifier) {
+                         var delta = wheel.angleDelta.y / 120
+                         UtilsAdapter.setAppValue(Settings.BaseZoom, parseFloat(UtilsAdapter.getAppValue(Settings.BaseZoom)) + delta * 0.1)
+                     }
+                 }
     }
 
     Shortcut {
