@@ -156,31 +156,8 @@ ListView {
             item.seq = MsgSeq.middle;
     }
 
-    // fade-in mechanism
     Component.onCompleted: {
         positionViewAtBeginning();
-        fadeAnimation.start();
-    }
-    Rectangle {
-        id: overlay
-        anchors.fill: parent
-        color: JamiTheme.chatviewBgColor
-        visible: opacity > 0
-        SequentialAnimation {
-            id: fadeAnimation
-            NumberAnimation {
-                target: overlay
-                property: "opacity"
-                to: 1
-                duration: 0
-            }
-            NumberAnimation {
-                target: overlay
-                property: "opacity"
-                to: 0
-                duration: 240
-            }
-        }
     }
 
     ToastManager {
@@ -202,7 +179,7 @@ ListView {
         }
     }
 
-    topMargin: 12
+    topMargin: JamiTheme.qwkTitleBarHeight + JamiTheme.sidePanelIslandsPadding * 2
     spacing: 2
 
     // The offscreen buffer is set to a reasonable value to avoid flickering
