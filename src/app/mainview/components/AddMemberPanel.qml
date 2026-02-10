@@ -36,6 +36,7 @@ Item {
 
         anchors.fill: parent
         anchors.margins: viewCoordinator.isInSinglePaneMode ? JamiTheme.sidePanelIslandsSinglePaneModePadding : JamiTheme.sidePanelIslandsPadding
+        anchors.topMargin: JamiTheme.qwkTitleBarHeight + JamiTheme.sidePanelIslandsPadding * 2
 
         color: JamiTheme.globalIslandColor
         radius: JamiTheme.avatarBasedRadius

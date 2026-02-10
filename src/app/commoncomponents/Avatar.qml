@@ -98,16 +98,6 @@ Item {
                 return;
             source = baseProviderPrefix + '/' + typePrefix + divider + imageId + divider + AvatarRegistry.getUid(imageId);
         }
-
-        opacity: status === Image.Ready
-        scale: Math.min(image.opacity + 0.5, 1.0)
-
-        Behavior on opacity  {
-            NumberAnimation {
-                from: 0
-                duration: JamiTheme.shortFadeDuration
-            }
-        }
     }
 
     PresenceIndicator {

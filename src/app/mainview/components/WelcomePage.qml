@@ -35,52 +35,6 @@ ListSelectionView {
 
     color: JamiTheme.transparentColor
 
-    Rectangle {
-        id: bgRect
-        anchors.fill: parent
-        color: hasCustomBgColor ? customBgColor : "transparent"
-        z: -1
-    }
-
-    CachedImage {
-        id: cachedImgLogo
-        downloadUrl: (AccountSettingsManager.accountSettingsPropertyMap.backgroundUri === undefined || AccountSettingsManager.accountSettingsPropertyMap.backgroundUri === "") ? (hasCustomBgImage ? customBgUrl : JamiTheme.welcomeBg) : AccountSettingsManager.accountSettingsPropertyMap.backgroundUri
-        visible: !hasCustomBgColor
-        anchors.fill: parent
-        opacity: visible ? 1 : 0
-        localPath: UtilsAdapter.getCachePath() + "/" + CurrentAccount.id + "/welcomeview/" + UtilsAdapter.base64Encode(downloadUrl) + fileExtension
-        imageFillMode: Image.PreserveAspectCrop
-        z: -1
-
-        Connections {
-            target: JamiTheme
-            function onDarkThemeChanged() {
-                customBgUrl = hasCustomBgImage ? customBgUrl : JamiTheme.welcomeBg;
-                tipBoxAndIdColor = (hasCustomUi && uiCustomization.tipBoxAndIdColor !== undefined) ? uiCustomization.tipBoxAndIdColor : JamiTheme.welcomeBlockColor;
-                tipsTextColor = (hasCustomUi && uiCustomization.tipBoxAndIdColor !== undefined) ? (UtilsAdapter.luma(tipBoxAndIdColor) ? JamiTheme.whiteColor : JamiTheme.blackColor) : JamiTheme.textColor;
-                mainBoxTextColor = (hasCustomUi && uiCustomization.mainBoxColor !== undefined) ? (UtilsAdapter.luma(mainBoxColor) ? JamiTheme.whiteColor : JamiTheme.blackColor) : JamiTheme.textColor;
-                contentTipAndIdColor = (hasCustomUi && uiCustomization.tipBoxAndIdColor !== undefined) ? (UtilsAdapter.luma(tipBoxAndIdColor) ? JamiTheme.lightTintedBlue : JamiTheme.darkTintedBlue) : JamiTheme.tintedBlue;
-            }
-        }
-    }
-
-    FastBlur {
-        anchors.fill: cachedImgLogo
-        source: cachedImgLogo
-        radius: JamiTheme.welcomePageFastBlurRadius
-        z: -1
-        visible: AccountSettingsManager.accountSettingsPropertyMap.backgroundBlurEnabled
-    }
-
-    ColorOverlay {
-        anchors.fill: cachedImgLogo
-        source: cachedImgLogo
-        color: JamiTheme.globalBackgroundColor
-        opacity: JamiTheme.welcomePageColorOverlayOpacity
-        z: -1
-        visible: AccountSettingsManager.accountSettingsPropertyMap.backgroundScrimEnabled
-    }
-
     onPresented: LRCInstance.deselectConversation()
 
     // Stub when view coordinator does not create views (e.g. test harness).
@@ -124,12 +78,6 @@ ListSelectionView {
     //logoSize has to be between 0 and 1
     property real logoSize: 1
 
-    property bool hasCustomBgImage: false
-    property string customBgUrl: ""
-
-    property bool hasCustomBgColor: false
-    property string customBgColor: ""
-
     property bool hasCustomLogo: false
     property string customLogoUrl: ""
 
@@ -153,6 +101,16 @@ ListSelectionView {
         }
     }
 
+    Connections {
+        target: JamiTheme
+        function onDarkThemeChanged() {
+            tipBoxAndIdColor = (hasCustomUi && uiCustomization.tipBoxAndIdColor !== undefined) ? uiCustomization.tipBoxAndIdColor : JamiTheme.welcomeBlockColor;
+            tipsTextColor = (hasCustomUi && uiCustomization.tipBoxAndIdColor !== undefined) ? (UtilsAdapter.luma(tipBoxAndIdColor) ? JamiTheme.whiteColor : JamiTheme.blackColor) : JamiTheme.textColor;
+            mainBoxTextColor = (hasCustomUi && uiCustomization.mainBoxColor !== undefined) ? (UtilsAdapter.luma(mainBoxColor) ? JamiTheme.whiteColor : JamiTheme.blackColor) : JamiTheme.textColor;
+            contentTipAndIdColor = (hasCustomUi && uiCustomization.tipBoxAndIdColor !== undefined) ? (UtilsAdapter.luma(tipBoxAndIdColor) ? JamiTheme.lightTintedBlue : JamiTheme.darkTintedBlue) : JamiTheme.tintedBlue;
+        }
+    }
+
     function updateUiFlags() {
         hasCustomUi = Object.keys(uiCustomization).length > 0;
         hasTitle = hasCustomUi ? uiCustomization.title !== "" : false;
@@ -164,10 +122,6 @@ ListSelectionView {
         const bgOverride = AccountSettingsManager.accountSettingsPropertyMap.backgroundUri;
         overridenImageUrl = bgOverride === undefined ? "" : bgOverride;
         hasOverridenBgImage = bgOverride !== undefined && bgOverride !== "";
-        hasCustomBgImage = (hasCustomUi && uiCustomization.backgroundType === "image");
-        customBgUrl = hasCustomBgImage ? (CurrentAccount.managerUri + uiCustomization.backgroundColorOrUrl) : "";
-        hasCustomBgColor = (hasCustomUi && uiCustomization.backgroundType === "color");
-        customBgColor = hasCustomBgColor ? uiCustomization.backgroundColorOrUrl : "";
         hasCustomLogo = (hasCustomUi && hasLogo && uiCustomization.logoUrl !== undefined);
         customLogoUrl = hasCustomLogo ? CurrentAccount.managerUri + uiCustomization.logoUrl : "";
         hasWelcomeInfo = hasTitle || hasDescription;
