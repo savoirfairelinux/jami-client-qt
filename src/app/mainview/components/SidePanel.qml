@@ -36,7 +36,7 @@ SidePanelBase {
     property var highlighted: []
     property var highlightedMembers: []
 
-    color: inNewSwarm ? JamiTheme.globalBackgroundColor : JamiTheme.transparentColor
+    color: JamiTheme.transparentColor
 
     Connections {
         target: LRCInstance
@@ -171,16 +171,14 @@ SidePanelBase {
     Item {
         anchors.fill: parent
 
-        Rectangle {
-            id: chatViewHairLineExtension
+        BackgroundGradient {
+            id: chatViewGradientExtension
+
             anchors.top: parent.top
-            anchors.topMargin: JamiTheme.qwkTitleBarHeight - root.header.height
             anchors.left: parent.left
-            anchors.leftMargin: JamiTheme.sidePanelIslandsPadding + conversationListRect.radius
-            width: parent.width
-            height: JamiTheme.chatViewHairLineSize
-            color: JamiTheme.chatViewFooterRectangleBorderColor
-            visible: CurrentConversation.id !== "" && !CurrentConversation.hasCall && !inNewSwarm
+            anchors.right: parent.right
+
+            height: JamiTheme.qwkTitleBarHeight + JamiTheme.sidePanelIslandsPadding * 2
         }
 
         ColumnLayout {
@@ -677,6 +675,7 @@ SidePanelBase {
 
                 Rectangle {
                     id: gradientRect
+
                     readonly property color baseColor: JamiTheme.globalIslandColor
                     readonly property bool shouldShow: !conversationListView.atYEnd || (
                                                            swarmMemberSearchList.visible &&
