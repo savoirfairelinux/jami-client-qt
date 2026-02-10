@@ -71,7 +71,7 @@ Control {
     }
 
     background: Rectangle {
-        radius: 5
+        radius: height / 2
         color: JamiTheme.messageInBgColor
 
         MouseArea {

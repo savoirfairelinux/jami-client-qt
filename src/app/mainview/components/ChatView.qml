@@ -18,6 +18,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import Qt5Compat.GraphicalEffects
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -25,7 +26,7 @@ import net.jami.Enums 1.1
 import "../../commoncomponents"
 import "../js/pluginhandlerpickercreation.js" as PluginHandlerPickerCreation
 
-Rectangle {
+Item {
     id: root
 
     // HACK: Added to capture the mouse when the layouts start stacking.
@@ -42,8 +43,6 @@ Rectangle {
         MessagesResearchPanel,
         AddMemberPanel
     }
-
-    color: JamiTheme.globalBackgroundColor
 
     property var mapPositions: PositionManager.mapStatus
     property bool isConversationEndedFlag: false
@@ -66,6 +65,28 @@ Rectangle {
         }
     }
 
+    property bool detailsButtonVisibility: detailsButton.visible
+
+    readonly property bool interactionButtonsVisibility: {
+        if (CurrentConversation.inCall)
+            return false;
+        if (LRCInstance.currentAccountType === Profile.Type.SIP)
+            return true;
+        if (!CurrentConversation.isTemporary && !CurrentConversation.isSwarm)
+            return false;
+        if (CurrentConversation.isRequest || CurrentConversation.needsSyncing)
+            return false;
+        return true;
+    }
+
+    property bool addMemberVisibility: {
+        return swarmDetailsVisibility && !CurrentConversation.isCoreDialog && !CurrentConversation.isRequest;
+    }
+
+    property bool swarmDetailsVisibility: {
+        return CurrentConversation.isSwarm && !CurrentConversation.isRequest;
+    }
+
     signal dismiss
 
     function focusChatView() {
@@ -77,9 +98,9 @@ Rectangle {
         if (WITH_WEBENGINE) {
             var component = Qt.createComponent("qrc:/webengine/map/MapPosition.qml");
             var sprite = component.createObject(root, {
-                    "maxWidth": root.width,
-                    "maxHeight": root.height
-                });
+                                                    "maxWidth": root.width,
+                                                    "maxHeight": root.height
+                                                });
             if (sprite === null) {
                 // Error Handling
                 console.log("Error creating object");
@@ -162,279 +183,455 @@ Rectangle {
         }
     }
 
-    ColumnLayout {
-        anchors.fill: root
+    Item {
+        anchors.fill: parent
 
-        spacing: 0
+        Rectangle {
+            anchors.fill: parent
+            color: JamiQmlUtils.mainViewRectObj ? JamiQmlUtils.mainViewRectObj.baseColor : JamiTheme.globalBackgroundColor
+            visible: root.inCallView
+        }
 
-        ChatViewHeader {
-            id: chatViewHeader
-            objectName: "chatViewHeader"
-            z: 3
+        BackgroundGradient {
+            anchors.top: parent.top
+            anchors.left: parent.left
+            anchors.right: parent.right
+            height: JamiTheme.qwkTitleBarHeight + JamiTheme.sidePanelIslandsPadding * 2
+            z: chatView.z + 1
+        }
 
-            Layout.alignment: Qt.AlignHCenter
-            Layout.fillWidth: true
-            Layout.preferredHeight: JamiTheme.qwkTitleBarHeight
-            Layout.maximumHeight: JamiTheme.qwkTitleBarHeight
-            Layout.minimumWidth: JamiTheme.mainViewMajorPaneMinWidth
+        Item {
+            anchors.top: parent.top
+            anchors.topMargin: JamiTheme.sidePanelIslandsPadding
+            anchors.left: parent.left
+            anchors.leftMargin: JamiTheme.sidePanelIslandsPadding
+            anchors.right: viewCoordinator.isInSinglePaneMode ? parent.right : extrasButtons.left
+            anchors.rightMargin: viewCoordinator.isInSinglePaneMode ? layoutManager.qwkSystemButtonSpacing.right : JamiTheme.sidePanelIslandsPadding
 
-            DropArea {
-                anchors.fill: parent
-                onDropped: chatViewFooter.setFilePathsToSend(drop.urls)
-            }
+            height: JamiTheme.qwkTitleBarHeight
+            z: chatView.z + 2
 
-            onBackClicked: root.dismiss()
+            ChatViewHeader {
+                id: chatViewHeader
 
-            Connections {
-                target: CurrentConversation
+                transform: Translate {
+                    id: chatViewHeaderTranslate
+                    y: 0
+                }
 
-                function onIdChanged() {
-                    if (!chatViewHeader.detailsButtonVisibility) {
-                        extrasPanel.closePanel();
-                    } else if (width < JamiTheme.mainViewMinWidth + extrasPanel.width) {
-                        extrasPanel.closePanel();
-                    } else if (!chatViewHeader.interactionButtonsVisibility) {
-                        extrasPanel.closePanel();
+                states: [
+                    State {
+                        name: "chatViewVisible"
+                        when: viewCoordinator.currentView && viewCoordinator.currentView.objectName === "ConversationView"
+                        PropertyChanges {
+                            target: chatViewHeaderTranslate
+                            y: 0
+                        }
+                    },
+                    State {
+                        name: "welcomePageVisible"
+                        when: viewCoordinator.currentView && viewCoordinator.currentView.objectName === "WelcomePage"
+                        PropertyChanges {
+                            target: chatViewHeaderTranslate
+                            y: -(chatViewHeader.height + chatViewHeader.parent.anchors.topMargin)
+                        }
                     }
+                ]
+
+                transitions: [
+                    Transition {
+                        from: "chatViewVisible"
+                        to: "welcomePageVisible"
+                        NumberAnimation {
+                            target: chatViewHeaderTranslate
+                            property: "y"
+                            duration: JamiTheme.longFadeDuration
+                            easing.type: Easing.InOutQuad
+                        }
+                    },
+                    Transition {
+                        from: "welcomePageVisible"
+                        to: "chatViewVisible"
+                        NumberAnimation {
+                            target: chatViewHeaderTranslate
+                            property: "y"
+                            duration: JamiTheme.shortFadeDuration
+                            easing.type: Easing.OutInQuad
+                        }
+                    }
+                ]
+
+                objectName: "chatViewHeader"
+
+                anchors.centerIn: parent
+                width: Math.min(implicitWidth, parent.width)
+                height: JamiTheme.qwkTitleBarHeight
+
+                DropArea {
+                    anchors.fill: parent
+                    onDropped: chatViewFooter.setFilePathsToSend(drop.urls)
                 }
 
-                function onNeedsHost() {
-                    viewCoordinator.presentDialog(appWindow, "mainview/components/HostPopup.qml");
-                }
-            }
+                onBackClicked: root.dismiss()
 
-            onPluginSelector: {
-                // Create plugin handler picker - PLUGINS
-                PluginHandlerPickerCreation.createPluginHandlerPickerObjects(root, false);
-                PluginHandlerPickerCreation.calculateCurrentGeo(root.width / 2, root.height / 2);
-                PluginHandlerPickerCreation.openPluginHandlerPicker();
-            }
-        }
+                Connections {
+                    target: CurrentConversation
 
-        Connections {
-            target: CurrentConversation
-            enabled: true
-
-            function onActiveCallsChanged() {
-                if (CurrentConversation.activeCalls.length > 0)
-                // temp update calldropdownmenu
-                {
-                }
-            }
-
-            function onErrorsChanged() {
-                if (CurrentConversation.errors.length > 0) {
-                    errorRect.errorLabel.text = CurrentConversation.errors[0];
-                    errorRect.backendErrorToolTip.text = JamiStrings.backendError.arg(CurrentConversation.backendErrors[0]);
-                }
-                errorRect.visible = CurrentConversation.errors.length > 0; // If too much noise: && LRCInstance.debugMode()
-            }
-        }
-
-        Connections {
-            target: CurrentConversation
-            enabled: LRCInstance.debugMode()
-
-            function onErrorsChanged() {
-                if (CurrentConversation.errors.length > 0) {
-                    errorRect.errorLabel.text = CurrentConversation.errors[0];
-                    errorRect.backendErrorToolTip.text = JamiStrings.backendError.arg(CurrentConversation.backendErrors[0]);
-                }
-                errorRect.visible = CurrentConversation.errors.length > 0;
-            }
-        }
-
-        ConversationErrorsRow {
-            id: errorRect
-            Layout.fillWidth: true
-            Layout.preferredHeight: JamiTheme.qwkTitleBarHeight
-            visible: false
-        }
-
-        Control {
-            id: conversationEndedBanner
-            Layout.fillWidth: true
-            visible: isConversationEndedFlag
-
-            padding: 10
-            background: Rectangle {
-                color: JamiTheme.infoRectangleColor
-                radius: 5
-            }
-            contentItem: RowLayout {
-                spacing: 8
-                Label {
-                    text: JamiStrings.conversationEnded
-                    color: JamiTheme.textColor
-                    wrapMode: Text.WordWrap
-                    horizontalAlignment: Text.AlignHCenter
-                    Layout.alignment: Qt.AlignHCenter
-                    Layout.fillWidth: true
-                }
-            }
-        }
-
-        JamiSplitView {
-            id: chatViewSplitView
-            objectName: "ChatViewSplitView"
-
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-
-            handleOnMinor: true
-
-            property real previousWidth: width
-            onWidthChanged: {
-                resolvePanes();
-                // Track the previous width of the split view.
-                previousWidth = width;
-            }
-
-            // Track the previous width of the split view.
-            property real extrasPanelWidth: extrasPanel.width
-            // The previousExtrasPanelWidth is initialized to the minimum width
-            // of the extras panel. The value is updated within the "open"-state
-            // range of the panel (e.g. not 0 or maximized).
-            property real previousExtrasPanelWidth: JamiTheme.extrasPanelMinWidth
-            onExtrasPanelWidthChanged: {
-                resolvePanes();
-                // This range should ensure that the panel won't restore to maximized.
-                if (extrasPanelWidth !== 0 && extrasPanelWidth !== this.width) {
-                    console.debug("Saving previous extras panel width: %1".arg(extrasPanelWidth));
-                    previousExtrasPanelWidth = extrasPanelWidth;
-                }
-            }
-
-            // Respond to visibility changes for the extras panel in order to
-            // determine the structure of the split view.
-            property bool extrasPanelVisible: extrasPanel.visible
-            onExtrasPanelVisibleChanged: {
-                if (extrasPanelVisible) {
-                    extrasPanelWidth = previousExtrasPanelWidth;
-                } else {
-                    previousExtrasPanelWidth = extrasPanelWidth;
-                }
-                resolvePanes();
-            }
-
-            function resolvePanes(force = false) {
-                if (!viewNode.visible) {
-                    return;
-                }
-
-                // If the details panel is not visible, then show the chatContents.
-                if (!extrasPanel.visible) {
-                    chatContents.visible = true;
-                    return;
-                }
-                const isExpanding = width > previousWidth;
-
-                // Provide a detailed log here, as this function seems problematic.
-                const maximizePredicate = (!isExpanding || force) && chatContents.visible;
-                const minimizePredicate = (isExpanding || force) && !chatContents.visible;
-                const mainViewMinWidth = JamiTheme.mainViewMajorPaneMinWidth;
-
-                // If the SplitView is not wide enough to show both the chatContents
-                // and the details panel, then hide the chatContents.
-                if (maximizePredicate && width < mainViewMinWidth + extrasPanelWidth) {
-                    chatContents.visible = false;
-                } else if (minimizePredicate && width >= mainViewMinWidth + previousExtrasPanelWidth) {
-                    chatContents.visible = true;
-                }
-            }
-
-            ColumnLayout {
-                id: chatContents
-                property bool isMinorPane: true
-                SplitView.maximumWidth: root.width
-                SplitView.minimumWidth: JamiTheme.mainViewMajorPaneMinWidth
-                SplitView.fillWidth: true
-                spacing: 0
-
-                StackLayout {
-                    id: chatViewStack
-
-                    LayoutMirroring.enabled: false
-                    LayoutMirroring.childrenInherit: true
-
-                    Layout.alignment: Qt.AlignHCenter
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-                    Layout.topMargin: JamiTheme.chatViewHairLineSize
-                    Layout.bottomMargin: JamiTheme.chatViewHairLineSize
-                    Layout.leftMargin: JamiTheme.chatviewMargin
-                    Layout.rightMargin: JamiTheme.chatviewMargin
-
-                    currentIndex: CurrentConversation.isRequest || CurrentConversation.needsSyncing
-
-                    Loader {
-                        id: loader
-                        active: CurrentConversation.id !== ""
-                        sourceComponent: MessageListView {
-                            DropArea {
-                                anchors.fill: parent
-                                onDropped: function (drop) {
-                                    chatViewFooter.setFilePathsToSend(drop.urls);
-                                }
-                            }
+                    function onIdChanged() {
+                        if (!chatViewHeader.detailsButtonVisibility) {
+                            extrasPanel.closePanel();
+                        } else if (width < JamiTheme.mainViewMinWidth + extrasPanel.width) {
+                            extrasPanel.closePanel();
+                        } else if (!chatViewHeader.interactionButtonsVisibility) {
+                            extrasPanel.closePanel();
                         }
                     }
 
-                    InvitationView {
-                        id: invitationView
+                    function onNeedsHost() {
+                        viewCoordinator.presentDialog(appWindow, "mainview/components/HostPopup.qml");
+                    }
+                }
 
+                onPluginSelector: {
+                    // Create plugin handler picker - PLUGINS
+                    PluginHandlerPickerCreation.createPluginHandlerPickerObjects(root, false);
+                    PluginHandlerPickerCreation.calculateCurrentGeo(root.width / 2, root.height / 2);
+                    PluginHandlerPickerCreation.openPluginHandlerPicker();
+                }
+            }
+        }
+
+        Row {
+            id: extrasButtons
+
+            anchors.top: viewCoordinator.isInSinglePaneMode ? undefined : parent.top
+            anchors.right: viewCoordinator.isInSinglePaneMode ? undefined : parent.right
+            anchors.rightMargin: viewCoordinator.isInSinglePaneMode ? undefined : layoutManager.qwkSystemButtonSpacing.right + JamiTheme.sidePanelIslandsPadding
+
+            height: JamiTheme.qwkTitleBarHeight
+            z: chatView.z + 2
+
+            spacing: 8
+
+            states: State {
+                name: "singlePaneMode"
+                when: viewCoordinator.isInSinglePaneMode
+                ParentChange { target: extrasButtons; parent: chatViewHeader.contentItemRowLayout; }
+            }
+
+            NewIconButton {
+                id: inviteMembersButton
+                QWKSetParentHitTestVisible {}
+
+                anchors.verticalCenter: parent.verticalCenter
+
+                iconSize: JamiTheme.iconButtonMedium
+                iconSource: JamiResources.add_people_24dp_svg
+                toolTipText: JamiStrings.inviteMembers
+
+                checkable: true
+                checked: extrasPanel.isOpen(ChatView.AddMemberPanel)
+
+                visible: interactionButtonsVisibility && addMemberVisibility
+
+                onClicked: extrasPanel.switchToPanel(ChatView.AddMemberPanel)
+            }
+
+            NewIconButton {
+                id: selectExtensionsButton
+                QWKSetParentHitTestVisible {}
+
+                anchors.verticalCenter: parent.verticalCenter
+
+                iconSize: JamiTheme.iconButtonMedium
+                iconSource: JamiResources.plugins_24dp_svg
+                toolTipText: JamiStrings.showExtensions
+
+                visible: LRCInstance.chatHandlersListCount && interactionButtonsVisibility
+
+                onClicked: pluginSelector()
+            }
+
+            NewIconButton {
+                id: searchMessagesButton
+                QWKSetParentHitTestVisible {}
+
+                objectName: "searchMessagesButton"
+
+                anchors.verticalCenter: parent.verticalCenter
+
+                iconSize: JamiTheme.iconButtonMedium
+                iconSource: JamiResources.ic_baseline_search_24dp_svg
+                toolTipText: JamiStrings.search
+
+                checkable: true
+                checked: extrasPanel.isOpen(ChatView.MessagesResearchPanel)
+
+                visible: root.swarmDetailsVisibility
+
+                onClicked: extrasPanel.switchToPanel(ChatView.MessagesResearchPanel)
+
+                Shortcut {
+                    sequence: "Ctrl+Shift+F"
+                    context: Qt.ApplicationShortcut
+                    enabled: parent.visible
+                    onActivated: extrasPanel.switchToPanel(ChatView.MessagesResearchPanel)
+                }
+            }
+
+            NewIconButton {
+                id: detailsButton
+                QWKSetParentHitTestVisible {}
+
+                objectName: "detailsButton"
+
+                anchors.verticalCenter: parent.verticalCenter
+
+                iconSize: JamiTheme.iconButtonMedium
+                iconSource: JamiResources.swarm_details_panel_svg
+                toolTipText: JamiStrings.details
+
+                checkable: true
+                checked: extrasPanel.isOpen(ChatView.SwarmDetailsPanel)
+
+                visible: (swarmDetailsVisibility || LRCInstance.currentAccountType === Profile.Type.SIP)
+
+                onClicked: extrasPanel.switchToPanel(ChatView.SwarmDetailsPanel)
+            }
+        }
+
+        ColumnLayout {
+            id: chatView
+            anchors.fill: parent
+
+            spacing: 0
+
+            Connections {
+                target: CurrentConversation
+                enabled: true
+
+                function onActiveCallsChanged() {
+                    if (CurrentConversation.activeCalls.length > 0)
+                        // temp update calldropdownmenu
+                    {
+                    }
+                }
+
+                function onErrorsChanged() {
+                    if (CurrentConversation.errors.length > 0) {
+                        errorRect.errorLabel.text = CurrentConversation.errors[0];
+                        errorRect.backendErrorToolTip.text = JamiStrings.backendError.arg(CurrentConversation.backendErrors[0]);
+                    }
+                    errorRect.visible = CurrentConversation.errors.length > 0; // If too much noise: && LRCInstance.debugMode()
+                }
+            }
+
+            Connections {
+                target: CurrentConversation
+                enabled: LRCInstance.debugMode()
+
+                function onErrorsChanged() {
+                    if (CurrentConversation.errors.length > 0) {
+                        errorRect.errorLabel.text = CurrentConversation.errors[0];
+                        errorRect.backendErrorToolTip.text = JamiStrings.backendError.arg(CurrentConversation.backendErrors[0]);
+                    }
+                    errorRect.visible = CurrentConversation.errors.length > 0;
+                }
+            }
+
+            ConversationErrorsRow {
+                id: errorRect
+                Layout.fillWidth: true
+                Layout.preferredHeight: JamiTheme.qwkTitleBarHeight
+                visible: false
+            }
+
+            Control {
+                id: conversationEndedBanner
+                Layout.fillWidth: true
+                visible: isConversationEndedFlag
+
+                padding: 10
+                background: Rectangle {
+                    color: JamiTheme.infoRectangleColor
+                    radius: 5
+                }
+                contentItem: RowLayout {
+                    spacing: 8
+                    Label {
+                        text: JamiStrings.conversationEnded
+                        color: JamiTheme.textColor
+                        wrapMode: Text.WordWrap
+                        horizontalAlignment: Text.AlignHCenter
+                        Layout.alignment: Qt.AlignHCenter
                         Layout.fillWidth: true
-                        Layout.fillHeight: true
-                    }
-                }
-
-                UpdateToSwarm {
-                    visible: !CurrentConversation.isSwarm && !CurrentConversation.isTemporary && CurrentAccount.type === Profile.Type.JAMI
-                    Layout.fillWidth: true
-                }
-
-                ChatViewFooter {
-                    id: chatViewFooter
-                    objectName: "chatViewFooter"
-
-                    visible: {
-                        if (CurrentAccount.type === Profile.Type.SIP)
-                            return true;
-                        if (CurrentConversation.isBanned)
-                            return false;
-                        else if (CurrentConversation.needsSyncing)
-                            return false;
-                        else if (CurrentConversation.isRequest)
-                            return false;
-                        else if (isConversationEndedFlag)
-                            return false;
-                        return CurrentConversation.isSwarm || CurrentConversation.isTemporary;
-                    }
-
-                    onHeightChanged: {
-                        if (loader.item)
-                            Qt.callLater(loader.item.scrollToBottom);
-                    }
-
-                    Layout.alignment: Qt.AlignHCenter
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: implicitHeight
-                    Layout.maximumHeight: JamiTheme.chatViewFooterMaximumHeight
-
-                    DropArea {
-                        anchors.fill: parent
-                        onDropped: chatViewFooter.setFilePathsToSend(drop.urls)
                     }
                 }
             }
 
-            ConversationExtrasPanel {
-                id: extrasPanel
-                property bool isMinorPane: false
+            JamiSplitView {
+                id: chatViewSplitView
+                objectName: "ChatViewSplitView"
 
-                SplitView.maximumWidth: root.width
-                SplitView.minimumWidth: JamiTheme.extrasPanelMinWidth
-                SplitView.preferredWidth: JamiTheme.extrasPanelMinWidth
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+
+                handleOnMinor: true
+
+                property real previousWidth: width
+                onWidthChanged: {
+                    resolvePanes();
+                    // Track the previous width of the split view.
+                    previousWidth = width;
+                }
+
+                // Track the previous width of the split view.
+                property real extrasPanelWidth: extrasPanel.width
+                // The previousExtrasPanelWidth is initialized to the minimum width
+                // of the extras panel. The value is updated within the "open"-state
+                // range of the panel (e.g. not 0 or maximized).
+                property real previousExtrasPanelWidth: JamiTheme.extrasPanelMinWidth
+                onExtrasPanelWidthChanged: {
+                    resolvePanes();
+                    // This range should ensure that the panel won't restore to maximized.
+                    if (extrasPanelWidth !== 0 && extrasPanelWidth !== this.width) {
+                        console.debug("Saving previous extras panel width: %1".arg(extrasPanelWidth));
+                        previousExtrasPanelWidth = extrasPanelWidth;
+                    }
+                }
+
+                // Respond to visibility changes for the extras panel in order to
+                // determine the structure of the split view.
+                property bool extrasPanelVisible: extrasPanel.visible
+                onExtrasPanelVisibleChanged: {
+                    if (extrasPanelVisible) {
+                        extrasPanelWidth = previousExtrasPanelWidth;
+                    } else {
+                        previousExtrasPanelWidth = extrasPanelWidth;
+                    }
+                    resolvePanes();
+                }
+
+                function resolvePanes(force = false) {
+                    if (!viewNode.visible) {
+                        return;
+                    }
+
+                    // If the details panel is not visible, then show the chatContents.
+                    if (!extrasPanel.visible) {
+                        chatContents.visible = true;
+                        return;
+                    }
+                    const isExpanding = width > previousWidth;
+
+                    // Provide a detailed log here, as this function seems problematic.
+                    const maximizePredicate = (!isExpanding || force) && chatContents.visible;
+                    const minimizePredicate = (isExpanding || force) && !chatContents.visible;
+                    const mainViewMinWidth = JamiTheme.mainViewMajorPaneMinWidth;
+
+                    // If the SplitView is not wide enough to show both the chatContents
+                    // and the details panel, then hide the chatContents.
+                    if (maximizePredicate && width < mainViewMinWidth + extrasPanelWidth) {
+                        chatContents.visible = false;
+                    } else if (minimizePredicate && width >= mainViewMinWidth + previousExtrasPanelWidth) {
+                        chatContents.visible = true;
+                    }
+                }
+
+                ColumnLayout {
+                    id: chatContents
+                    property bool isMinorPane: true
+                    SplitView.maximumWidth: root.width
+                    SplitView.minimumWidth: JamiTheme.mainViewMajorPaneMinWidth
+                    SplitView.fillWidth: true
+                    spacing: 0
+
+                    StackLayout {
+                        id: chatViewStack
+
+                        LayoutMirroring.enabled: false
+                        LayoutMirroring.childrenInherit: true
+
+                        Layout.alignment: Qt.AlignHCenter
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        Layout.topMargin: JamiTheme.chatViewHairLineSize
+                        Layout.bottomMargin: JamiTheme.chatViewHairLineSize
+                        Layout.leftMargin: JamiTheme.chatviewMargin
+                        Layout.rightMargin: JamiTheme.chatviewMargin
+
+                        currentIndex: CurrentConversation.isRequest || CurrentConversation.needsSyncing
+
+                        Loader {
+                            id: loader
+                            z: mainView.headerRect.z - 1
+                            active: CurrentConversation.id !== ""
+                            sourceComponent: MessageListView {
+                                DropArea {
+                                    anchors.fill: parent
+                                    onDropped: function (drop) {
+                                        chatViewFooter.setFilePathsToSend(drop.urls);
+                                    }
+                                }
+                            }
+                        }
+
+                        InvitationView {
+                            id: invitationView
+
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+                        }
+                    }
+
+                    UpdateToSwarm {
+                        visible: !CurrentConversation.isSwarm && !CurrentConversation.isTemporary && CurrentAccount.type === Profile.Type.JAMI
+                        Layout.fillWidth: true
+                    }
+
+                    ChatViewFooter {
+                        id: chatViewFooter
+                        objectName: "chatViewFooter"
+
+                        visible: {
+                            if (CurrentAccount.type === Profile.Type.SIP)
+                                return true;
+                            if (CurrentConversation.isBanned)
+                                return false;
+                            else if (CurrentConversation.needsSyncing)
+                                return false;
+                            else if (CurrentConversation.isRequest)
+                                return false;
+                            else if (isConversationEndedFlag)
+                                return false;
+                            return CurrentConversation.isSwarm || CurrentConversation.isTemporary;
+                        }
+
+                        onHeightChanged: {
+                            if (loader.item)
+                                Qt.callLater(loader.item.scrollToBottom);
+                        }
+
+                        Layout.alignment: Qt.AlignHCenter
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: implicitHeight
+                        Layout.maximumHeight: JamiTheme.chatViewFooterMaximumHeight
+
+                        DropArea {
+                            anchors.fill: parent
+                            onDropped: chatViewFooter.setFilePathsToSend(drop.urls)
+                        }
+                    }
+                }
+
+                ConversationExtrasPanel {
+                    id: extrasPanel
+                    property bool isMinorPane: false
+
+                    SplitView.maximumWidth: root.width
+                    SplitView.minimumWidth: JamiTheme.extrasPanelMinWidth
+                    SplitView.preferredWidth: JamiTheme.extrasPanelMinWidth
+                }
             }
         }
     }
