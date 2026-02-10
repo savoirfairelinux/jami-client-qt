@@ -78,9 +78,14 @@ DualPaneView {
             if (hideMajorPaneInSinglePaneMode) {
                 rightPaneItem.parent = null
             } else if (hasValidSelection) {
+                leftPaneItem.parent = null  // Hide the side panel when showing chat
                 rightPaneItem.parent = leftPane
+            } else {
+                leftPaneItem.parent = leftPane  // Show the side panel when no selection
+                rightPaneItem.parent = null
             }
         } else {
+            leftPaneItem.parent = leftPane  // Restore side panel to left pane
             rightPaneItem.parent = rightPane
             // We may need a default selection of item 0 here.
             if (!hasValidSelection && selectionFallback) leftPaneItem.select(0)
