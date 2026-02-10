@@ -24,170 +24,215 @@ import net.jami.Enums 1.1
 import net.jami.Models 1.1
 import "../../commoncomponents"
 
-Rectangle {
+Item {
     id: root
 
-    radius: 35
-    color: darkTheme ? JamiTheme.blackColor : JamiTheme.backgroundColor
-    width: activeCalls ? 80 : 36
-
-    property bool darkTheme: UtilsAdapter.useApplicationTheme()
-    property bool isDropDownOpen: false
     property bool uniqueActiveCall: CurrentConversation.activeCalls.length === 1
     property bool activeCalls: CurrentConversation.activeCalls.length > 1
 
-    RowLayout {
+    implicitWidth: dropDownButton.visible ? joinCallButton.implicitWidth + dropDownButton.implicitWidth : joinCallButton.implicitWidth
+    implicitHeight: joinCallButton.implicitHeight
 
-        anchors.fill: parent
-        Layout.fillWidth: false
-        spacing: 0
+    Button {
+        id: joinCallButton
+
+        implicitWidth: background.width
+        implicitHeight: background.height
+
+        icon.width: JamiTheme.iconButtonMedium
+        icon.height: JamiTheme.iconButtonMedium
+        icon.source: JamiResources.start_audiocall_24dp_svg
+        icon.color: hovered ? JamiTheme.buttonCallLightGreen : JamiTheme.blackColor
+
         visible: uniqueActiveCall || activeCalls
 
-        Item {
-            id: activeCallButton
+        Behavior on icon.color {
+            ColorAnimation {
+                duration: 200
+            }
+        }
 
-            implicitWidth: 36
+        background: Rectangle {
+            id: callButtonBackground
 
-            JamiPushButton {
-                id: callButton
-                source: JamiResources.start_audiocall_24dp_svg
-                normalColor: JamiTheme.buttonCallLightGreen
-                hoveredColor: JamiTheme.buttonCallDarkGreen
-                imageColor: hovered ? JamiTheme.buttonCallLightGreen : JamiTheme.blackColor
-                radius: 35
-                preferredSize: 36
-                imagePadding: 4
-                anchors.verticalCenter: parent.verticalCenter
-                toolTipText: JamiStrings.joinWithAudio
-                onClicked: {
-                    if (root.uniqueActiveCall && CurrentConversation.activeCalls.length > 0) {
-                        var call = CurrentConversation.activeCalls[0];
-                        MessagesAdapter.joinCall(call.uri, call.device, call.id, true);
-                    } else {
-                        CallAdapter.startAudioOnlyCall();
-                    }
+            width: joinCallButton.icon.width + (joinCallButton.icon.width/ 2)
+            height: joinCallButton.icon.height + (joinCallButton.icon.height / 2)
+
+            radius: height / 2
+            color: parent.hovered ? JamiTheme.buttonCallDarkGreen : JamiTheme.buttonCallLightGreen
+
+            Behavior on color {
+                ColorAnimation {
+                    duration: 200
                 }
             }
 
             SpinningAnimation {
                 id: animation
-                anchors.fill: callButton
+                anchors.fill: parent
                 mode: SpinningAnimation.Mode.Radial
-                color: callButton.hovered ? JamiTheme.buttonCallLightGreen : JamiTheme.buttonCallDarkGreen
+                color: parent.hovered ? JamiTheme.buttonCallLightGreen : JamiTheme.buttonCallDarkGreen
                 spinningAnimationWidth: 2
             }
         }
 
-        Text {
-            id: activeCallsText
-            text: CurrentConversation.activeCalls.length
-            color: JamiTheme.textColor
-            font.pixelSize: 14
-            visible: activeCalls
-        }
-
-        NewIconButton {
-            id: exapndArrow
-
-            Layout.rightMargin: 5
-
-            iconSource: dropdownPopup.visible ? JamiResources.expand_less_24dp_svg : JamiResources.expand_more_24dp_svg
-            iconSize: JamiTheme.iconButtonSmall
-
-            visible: activeCalls
-            enabled: !dropdownPopup.visible
-
-            onClicked: {
-                dropdownPopup.open();
+        onClicked: {
+            if (root.uniqueActiveCall && CurrentConversation.activeCalls.length > 0) {
+                var call = CurrentConversation.activeCalls[0];
+                MessagesAdapter.joinCall(call.uri, call.device, call.id, true);
+            } else {
+                CallAdapter.startAudioOnlyCall();
             }
         }
     }
 
-    Popup {
-        id: dropdownPopup
+    ComboBox {
+        id: dropDownButton
 
-        y: root.height + 5
-        x: -root.width
+        implicitWidth: background.width - background.radius
+        implicitHeight: JamiTheme.iconButtonSmall
+        z: joinCallButton.z - 1
 
-        width: 250
-        height: Math.min(contentItem.implicitHeight + 10, 300)
-        padding: 5
-        closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+        anchors.verticalCenter: root.verticalCenter
+        anchors.left: joinCallButton.right
+        anchors.leftMargin: -background.radius
+
+        model: CurrentConversation.activeCalls
+
+        visible: activeCalls
+
+        delegate: ItemDelegate {
+            width: ListView.view.width
+            height: 50
+
+            topInset: 4
+            leftInset: 4
+            rightInset: 4
+            bottomInset: 4
+
+            topPadding: topInset * 2
+            leftPadding: topInset * 2
+            rightPadding: rightInset * 2
+            bottomPadding: bottomInset * 2
+
+            contentItem: RowLayout {
+                spacing: 10
+
+                Button {
+                    Layout.preferredWidth: background.width
+                    Layout.preferredHeight: background.height
+                    Layout.leftMargin: 2
+                    Layout.alignment: Qt.AlignVCenter
+
+                    icon.width: JamiTheme.iconButtonMedium
+                    icon.height: JamiTheme.iconButtonMedium
+                    icon.color: JamiTheme.textColor
+                    icon.source: JamiResources.start_audiocall_24dp_svg
+
+                    background: Rectangle {
+                        width: icon.width + (icon.width / 2)
+                        height: icon.height + (icon.height / 2)
+                        radius: height / 2
+                        color: dropDownButton.delegate.hovered ? JamiTheme.buttonCallDarkGreen : JamiTheme.buttonCallLightGreen
+
+                        Behavior on color {
+                            ColorAnimation {
+                                duration: 200
+                            }
+                        }
+                    }
+                }
+
+                ColumnLayout {
+                    Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignVCenter
+                    spacing: 2
+
+                    Text {
+                        Layout.fillWidth: true
+                        text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, modelData.uri) + "'s call"
+                        color: JamiTheme.textColor
+                        font.pixelSize: JamiTheme.headerFontSize
+                        font.bold: true
+                        elide: Text.ElideRight
+                    }
+
+                    Text {
+                        Layout.fillWidth: true
+                        text: modelData.uri
+                        color: JamiTheme.textColor
+                        font.pixelSize: 12
+                        elide: Text.ElideRight
+                    }
+                }
+            }
+
+            background: Rectangle {
+                radius: height / 2
+                color:  parent.hovered ? JamiTheme.smartListHoveredColor : JamiTheme.globalIslandColor
+
+                Behavior on color {
+                    ColorAnimation {
+                        duration: JamiTheme.shortFadeDuration
+                    }
+                }
+            }
+
+            highlighted: dropDownButton.highlightedIndex === index
+
+            onClicked: {
+                MessagesAdapter.joinCall(modelData.uri, modelData.device, modelData.id, true); //CurrentCall.isAudioOnly
+                dropdownPopup.close();
+            }
+        }
+
+        indicator: Button {
+            anchors.verticalCenter: parent.verticalCenter
+
+            icon.width: JamiTheme.iconButtonSmall
+            icon.height: JamiTheme.iconButtonSmall
+            icon.color: hovered ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered
+            icon.source: dropdownPopup.opened ? JamiResources.arrow_drop_up_24dp_svg : JamiResources.arrow_drop_down_24dp_svg
+
+            Behavior on icon.color {
+                ColorAnimation {
+                    duration: 200
+                }
+            }
+
+            background: null
+
+            onClicked: if (dropdownPopup.opened) dropdownPopup.close(); else dropdownPopup.open();
+        }
+
+        contentItem: null
 
         background: Rectangle {
-            color: darkTheme ? JamiTheme.darkGreyColor : JamiTheme.lightGrey_
-            radius: 10
+            width: JamiTheme.iconButtonSmall + radius
+            height: JamiTheme.iconButtonSmall
+            radius: height / 2
+
+            color: JamiTheme.globalBackgroundColor
         }
-        contentItem: ListView {
-            id: listView
 
-            implicitHeight: contentHeight
-            model: CurrentConversation.activeCalls
-            clip: true
-            spacing: 5
+        popup: Popup {
+            id: dropdownPopup
 
-            delegate: Rectangle {
-                id: delegateItem
+            x: parent.width - width / 2
+            y: parent.height + JamiTheme.qwkTitleBarHeight / 2
+            width: 250
+            padding: 1
 
-                width: listView.width
-                height: 50
-                color: JamiTheme.transparentColor
-                property bool isHovered: false
+            contentItem: ListView {
+                clip: true
+                implicitHeight: contentHeight
+                model: dropDownButton.visible ? dropDownButton.delegateModel : null
+                currentIndex: dropDownButton.highlightedIndex
+            }
 
-                Rectangle {
-                    anchors.fill: parent
-                    color: isHovered ? (darkTheme ? Qt.lighter(JamiTheme.darkGreyColor, 1.2) : Qt.darker(JamiTheme.lightGrey_, 1.1)) : JamiTheme.transparentColor
-                    radius: 5
-                }
-
-                RowLayout {
-
-                    anchors.fill: parent
-                    anchors.margins: 5
-                    spacing: 10
-
-                    Column {
-                        Layout.fillWidth: true
-                        spacing: 2
-                        Text {
-                            width: parent.width
-                            text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, modelData.uri) + "'s call"
-                            color: darkTheme ? JamiTheme.whiteColor : JamiTheme.blackColor
-                            font.pixelSize: JamiTheme.headerFontSize
-                            font.bold: true
-                            elide: Text.ElideRight
-                        }
-
-                        Text {
-                            width: parent.width
-                            text: modelData.uri
-                            color: darkTheme ? JamiTheme.whiteColor : JamiTheme.blackColor
-                            font.pixelSize: 12
-                            elide: Text.ElideRight
-                        }
-                    }
-
-                    JamiPushButton {
-                        Layout.preferredWidth: 35
-                        Layout.preferredHeight: 35
-                        source: JamiResources.start_audiocall_24dp_svg
-                        normalColor: JamiTheme.buttonCallLightGreen
-                        imageColor: darkTheme ? JamiTheme.whiteColor : JamiTheme.blackColor
-                        radius: 35
-                        onClicked: {
-                            MessagesAdapter.joinCall(modelData.uri, modelData.device, modelData.id, true); //CurrentCall.isAudioOnly
-                            dropdownPopup.close();
-                        }
-                    }
-                }
-
-                MouseArea {
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onEntered: delegateItem.isHovered = true
-                    onExited: delegateItem.isHovered = false
-                    acceptedButtons: Qt.NoButton
-                }
+            background: Rectangle {
+                radius: 25
+                color: JamiTheme.globalIslandColor
             }
         }
     }
