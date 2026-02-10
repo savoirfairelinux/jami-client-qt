@@ -46,7 +46,16 @@ Rectangle {
         }
     }
 
-    color: JamiTheme.globalBackgroundColor
+    property color currentConversationColor: CurrentConversation.color
+    property color tintColor: Qt.rgba(currentConversationColor.r, currentConversationColor.g, currentConversationColor.b, JamiTheme.chatViewBackgroundTintOpacity)
+    color: Qt.tint(JamiTheme.globalBackgroundColor, tintColor)
+
+    Behavior on color {
+        ColorAnimation {
+            duration: 1500
+            easing.type: Easing.InOutQuad
+        }
+    }
 
     onWidthChanged: Qt.callLater(JamiQmlUtils.updateMessageBarButtonsPoints)
     onHeightChanged: Qt.callLater(JamiQmlUtils.updateMessageBarButtonsPoints)
