@@ -53,7 +53,7 @@ QtObject {
         }
         // Windows and Linux buttons are on the right.
         readonly property real right: {
-            appWindow.useFrameless && !isMacOS && !root.isFullscreen ? sysBtnsLoader.width + 24 : 0
+            appWindow.useFrameless && !isMacOS && !root.isFullscreen ? sysBtnsLoader.width : 0
         }
     }
 
