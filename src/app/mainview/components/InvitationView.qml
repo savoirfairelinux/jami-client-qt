@@ -22,19 +22,17 @@ import net.jami.Constants 1.1
 import net.jami.Models 1.1
 import "../../commoncomponents"
 
-Rectangle {
+Item {
     id: root
 
     property real marginSize: 20
     property real textMarginSize: 50
 
-    color: JamiTheme.globalBackgroundColor
-
     Text {
         id: invitationViewSentRequestText
 
         anchors.top: root.top
-        anchors.topMargin: visible ? marginSize : 0
+        anchors.topMargin: JamiTheme.qwkTitleBarHeight + JamiTheme.sidePanelIslandsPadding * 2
         anchors.horizontalCenter: root.horizontalCenter
 
         width: infoColumnLayout.width - textMarginSize
