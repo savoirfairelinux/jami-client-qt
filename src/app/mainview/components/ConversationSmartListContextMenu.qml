@@ -33,7 +33,10 @@ ContextMenuAutoLoader {
     property bool isCoreDialog: false
     property var mode: undefined
     property int contactType: Profile.Type.INVALID
-    property bool hasCall: false
+    // whether the current user is already in a call in the conversation or not
+    property bool isInCall: false
+    // the number of ongoing calls in the current conversation (independent of whether the user has joined them)
+    property int nbActiveCalls: 0
     property bool readOnly: false
 
     // For UserProfile dialog.
@@ -43,10 +46,21 @@ ContextMenuAutoLoader {
 
     property list<GeneralMenuItem> menuItems: [
         GeneralMenuItem {
-            id: startVideoCall
+            id: startOrJoinAudioCall
 
-            canTrigger: CurrentAccount.videoEnabled_Video && !hasCall && !readOnly
-            itemName: JamiStrings.startVideoCall
+            canTrigger: !readOnly && !isInCall
+            itemName: nbActiveCalls > 0 ? JamiStrings.joinWithAudio : JamiStrings.startAudioCall
+            iconSource: JamiResources.start_audiocall_24dp_svg
+            onClicked: {
+                LRCInstance.selectConversation(responsibleConvUid, responsibleAccountId);
+                CallAdapter.startAudioOnlyCall();
+            }
+        },
+        GeneralMenuItem {
+            id: startOrJoinVideoCall
+
+            canTrigger: CurrentAccount.videoEnabled_Video && !readOnly && !isInCall
+            itemName: nbActiveCalls > 0 ? JamiStrings.joinWithVideo : JamiStrings.startVideoCall
             iconSource: JamiResources.videocam_24dp_svg
             onClicked: {
                 LRCInstance.selectConversation(responsibleConvUid, responsibleAccountId);
@@ -55,20 +69,9 @@ ContextMenuAutoLoader {
             }
         },
         GeneralMenuItem {
-            id: startAudioCall
-
-            canTrigger: !hasCall && !readOnly
-            itemName: JamiStrings.startAudioCall
-            iconSource: JamiResources.start_audiocall_24dp_svg
-            onClicked: {
-                LRCInstance.selectConversation(responsibleConvUid, responsibleAccountId);
-                CallAdapter.startAudioOnlyCall();
-            }
-        },
-        GeneralMenuItem {
             id: deleteConversation
 
-            canTrigger: mode === Conversation.Mode.NON_SWARM && !hasCall && !root.isBanned
+            canTrigger: mode === Conversation.Mode.NON_SWARM && !isInCall && !root.isBanned
             itemName: JamiStrings.deleteConversation
             iconSource: JamiResources.ic_clear_24dp_svg
             onClicked: MessagesAdapter.clearConversationHistory(responsibleAccountId, responsibleConvUid)
@@ -76,7 +79,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: removeConversation
 
-            canTrigger: !hasCall && !root.isBanned
+            canTrigger: !isInCall && !root.isBanned
             itemName: mode === Conversation.Mode.ONE_TO_ONE ? JamiStrings.removeConversation : JamiStrings.leaveGroup
             iconSource: JamiResources.ic_disconnect_participant_24dp_svg
             onClicked: {
@@ -93,7 +96,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: removeContact
 
-            canTrigger: !hasCall && !root.isBanned && mode === Conversation.Mode.ONE_TO_ONE
+            canTrigger: !isInCall && !root.isBanned && mode === Conversation.Mode.ONE_TO_ONE
             itemName: JamiStrings.removeContact
             iconSource: JamiResources.kick_member_svg
             onClicked: {
@@ -110,7 +113,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: endCall
 
-            canTrigger: hasCall
+            canTrigger: isInCall
             itemName: JamiStrings.endCall
             iconSource: JamiResources.ic_call_end_white_24dp_svg
             onClicked: CallAdapter.endCall(responsibleAccountId, responsibleConvUid)
@@ -134,7 +137,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: blockContact
 
-            canTrigger: !hasCall && contactType !== Profile.Type.SIP && !root.isBanned && isCoreDialog && root.idText !== CurrentAccount.uri
+            canTrigger: !isInCall && contactType !== Profile.Type.SIP && !root.isBanned && isCoreDialog && root.idText !== CurrentAccount.uri
             itemName: JamiStrings.blockContact
             iconSource: JamiResources.block_black_24dp_svg
             onClicked: {
