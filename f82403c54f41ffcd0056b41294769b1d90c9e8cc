@@ -22,6 +22,30 @@
       },
       "revId": "f82403c54f41ffcd0056b41294769b1d90c9e8cc",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8be6e8a_ff5d7d79",
+        "filename": "src/libclient/CMakeLists.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1143
+      },
+      "writtenOn": "2026-02-10T08:32:44Z",
+      "side": 1,
+      "message": "On which system did this happen? With CMake 4.1.3 here on Guix System I didn\u0027t encounter it.",
+      "parentUuid": "8c1fd1d7_64ee9bbc",
+      "range": {
+        "startLine": 306,
+        "startChar": 2,
+        "endLine": 306,
+        "endChar": 19
+      },
+      "revId": "f82403c54f41ffcd0056b41294769b1d90c9e8cc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
