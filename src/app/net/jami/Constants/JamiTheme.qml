@@ -65,6 +65,7 @@ Item {
     property color lightTintedBlue: "#03B9E9"
     property color darkTintedBlue: "#005699"
     property color sysColor: "#F0EFEF"
+    property real chatViewBackgroundTintOpacity: 0.1
 
     property color transparentColor: "transparent"
     property color primaryForegroundColor: darkTheme ? whiteColor : blackColor
@@ -333,6 +334,7 @@ Item {
     property int overlayFadeDelay: 4000
     property int overlayFadeDuration: 250
     property int smartListTransitionDuration: 120
+    property int conversationColorFadeDuration: 1000
 
     // Sizes
     property real mainViewMinorPaneMinWidth: 330
