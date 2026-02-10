@@ -51,6 +51,7 @@ class CurrentCall final : public QObject
     QML_RO_PROPERTY(QString, sharingSource)
     QML_RO_PROPERTY(bool, isHandRaised)
     QML_RO_PROPERTY(bool, isConference)
+    QML_RO_PROPERTY(bool, isSwarm)
     QML_RO_PROPERTY(bool, isModerator)
     QML_PROPERTY(bool, hideSelf)
     QML_PROPERTY(bool, hideSpectators)

@@ -314,7 +314,9 @@ Item {
     property string stopSharing: qsTr("Stop sharing screen or file")
     property string shareScreenArea: qsTr("Share screen area")
     property string shareFile: qsTr("Share file")
+    property string shareAudio: qsTr("Share audio")
     property string selectShareMethod: qsTr("Select sharing method")
+    property string sharingOptions: qsTr("Sharing options")
     property string viewExtension: qsTr("View extension")
     property string advancedInformation: qsTr("Advanced information")
     property string noVideoDevice: qsTr("No video device")
@@ -975,6 +977,14 @@ Item {
     property string addAContact: qsTr("Add contact")
     property string noConversations: qsTr("No conversations found.")
     property string noContactsToChooseFrom: qsTr("No contacts found.")
+
+    // Screen share
+    property string shareScreenWaylandDialogTitle: "Share screen"
+    property string shareScreenWaylandDialogEntireScreenOption: "Share entire screen"
+    property string shareScreenWaylandDialogWindowOption: "Share a window"
+    property string shareScreenWaylandDialogEnableDesktopAudio: "Share desktop audio"
+    property string shareScreenWaylandDialogDesktopAudioInfo: "Leaving this checked will share all audio coming from your desktop (including from windows which you choose not to share)"
+    property string shareScreenWindowDesktopAudioInfo: "Leaving this checked will share all audio coming from your desktop (including from screens which you choose not to share)"
 
     // Accessibility
     property string switchToAccount: qsTr("Press enter to switch to this account")

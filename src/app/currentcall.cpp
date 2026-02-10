@@ -81,6 +81,9 @@ CurrentCall::updateId(QString callId)
     auto hasCall = accInfo.callModel->hasCall(callId);
     set_id((hasCall ? callId : QString()));
 
+    auto optCallConv = lrcInstance_->getCurrentConversationModel()->getConversationForCallId(callId);
+    set_isSwarm(optCallConv.has_value() && optCallConv->get().isSwarm());
+
     if (hasCall) {
         try {
             auto callInfo = accInfo.callModel->getCall(callId);
