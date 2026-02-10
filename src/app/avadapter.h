@@ -34,6 +34,7 @@ class AvAdapter final : public QmlAdapterBase
     QML_SINGLETON
 
     QML_PROPERTY(bool, muteCamera)
+    QML_PROPERTY(bool, muteScreenshareAudio)
     QML_RO_PROPERTY(QStringList, windowsNames)
     QML_RO_PROPERTY(QList<QVariant>, windowsIds)
     QML_RO_PROPERTY(QVariant, renderersInfoList)
@@ -59,6 +60,11 @@ protected:
     Q_INVOKABLE bool isSharing() const;
 
     /**
+     * Check if user is sharing screen or window (not file)
+     */
+    Q_INVOKABLE bool isSharingScreenOrWindow() const;
+
+    /**
      * Check if user is showing a camera
      */
     Q_INVOKABLE bool isCapturing() const;
@@ -69,7 +75,7 @@ protected:
     Q_INVOKABLE bool hasCamera() const;
 
     // Share the screen specificed by screen number (all platforms except Wayland).
-    Q_INVOKABLE void shareEntireScreen(int screenNumber);
+    Q_INVOKABLE void shareEntireScreen(int screenNumber, bool muteAudio = false);
 
 #ifdef Q_OS_LINUX
     // Share a screen on Wayland.
@@ -77,11 +83,11 @@ protected:
     // this is handled by the ScreenCastPortal class using xdg-desktop-portal.
     // The choice of screen is also handled by xdg-desktop-portal, which is why we don't need
     // an argument for it (whereas we do on other platforms, cf. shareEntireScreen above).
-    Q_INVOKABLE void shareEntireScreenWayland();
+    Q_INVOKABLE void shareEntireScreenWayland(bool muteAudio = false);
 #endif
 
     // Share the all screens connected.
-    Q_INVOKABLE void shareAllScreens();
+    Q_INVOKABLE void shareAllScreens(bool muteAudio = false);
 
     // Take snap shot of the screen and return emitting signal.
     Q_INVOKABLE void captureScreen(int screenNumber);
@@ -93,10 +99,13 @@ protected:
     Q_INVOKABLE void shareFile(const QString& filePath);
 
     // Select screen area to display (from all screens).
-    Q_INVOKABLE void shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned height);
+    Q_INVOKABLE void shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned height, bool muteAudio = false);
 
     // Select window to display (all platforms except Wayland).
-    Q_INVOKABLE void shareWindow(const QString& windowProcessId, const QString& windowId, const int fps = -1);
+    Q_INVOKABLE void shareWindow(const QString& windowProcessId,
+                                 const QString& windowId,
+                                 const int fps = -1,
+                                 bool muteAudio = false);
 
 #ifdef Q_OS_LINUX
     // Share a window on Wayland.
@@ -104,7 +113,7 @@ protected:
     // this is handled by the ScreenCastPortal class using xdg-desktop-portal.
     // The choice of window is also handled by xdg-desktop-portal, which is why we don't need
     // arguments for it (whereas we do on other platforms, cf. shareWindow above).
-    Q_INVOKABLE void shareWindowWayland();
+    Q_INVOKABLE void shareWindowWayland(bool muteAudio = false);
 #endif
 
     // Returns the screensharing resource
@@ -117,6 +126,9 @@ protected:
 
     // Stop sharing the screen or file
     Q_INVOKABLE void stopSharing(const QString& source = {});
+
+    // Toggle audio sharing during active screen/window sharing
+    Q_INVOKABLE void toggleScreenshareAudio(bool mute);
 
     Q_INVOKABLE void startAudioMeter();
     Q_INVOKABLE void stopAudioMeter();
@@ -155,7 +167,7 @@ private:
 
 #ifdef Q_OS_LINUX
     // Used internally by shareEntireScreenWayland and shareWindowWayland
-    void shareWayland(bool entireScreen);
+    void shareWayland(bool entireScreen, bool muteAudio = false);
 #endif
 
     // Get the screen number
