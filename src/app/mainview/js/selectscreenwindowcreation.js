@@ -22,7 +22,7 @@ function presentSelectScreenWindow(parent, selectWindows) {
         var obj = comp.createObject(parent, {showWindows: selectWindows})
         if (obj === null) {
             // Error Handling.
-            console.log("Error creating select screen object")
+            console.warn("Error creating select screen object")
         } else {
             var centerX = appWindow.x + appWindow.width / 2
             var centerY = appWindow.y + appWindow.height / 2
@@ -33,6 +33,6 @@ function presentSelectScreenWindow(parent, selectWindows) {
             obj.show()
         }
     } else if (comp.status === Component.Error) {
-        console.log("Error loading component:", comp.errorString())
+        console.warn("Error loading component:", comp.errorString())
     }
 }

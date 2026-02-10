@@ -96,7 +96,7 @@ public:
     void addMedia(const QString& callId,
                   const QString& source,
                   MediaRequestType type,
-                  bool mute = false,
+                  bool muteMedia = false,
                   bool shareAudio = false);
 
     /**
@@ -112,7 +112,7 @@ public:
                                       const QString& callId,
                                       const QString& source,
                                       MediaRequestType type,
-                                      bool mute,
+                                      bool muteMedia,
                                       bool shareAudio = false);
     /**
      * Mute a media
