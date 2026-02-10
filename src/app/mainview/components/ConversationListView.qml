@@ -105,7 +105,9 @@ JamiListView {
             isCoreDialog = model.dataForRow(index, ConversationList.IsCoreDialog);
             contactType = LRCInstance.currentAccountType;
             readOnly = mode === Conversation.Mode.NON_SWARM && (model.dataForRow(index, ConversationList.ContactType) !== Profile.Type.TEMPORARY) && CurrentAccount.type !== Profile.Type.SIP;
-            hasCall = UtilsAdapter.getCallId(responsibleAccountId, responsibleConvUid) !== "";
+
+            isInCall = UtilsAdapter.getCallId(responsibleAccountId, responsibleConvUid) !== "";
+            nbActiveCalls = CurrentConversation.activeCalls.length;
 
             // For UserProfile dialog.
             if (isCoreDialog) {
