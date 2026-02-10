@@ -543,6 +543,7 @@ CallModel::getProposed(VectorMapStringString mediaList,
     QString vlabel = QString("video_%1").arg(vid);
     QString sep = libjami::Media::VideoProtocolPrefix::SEPARATOR;
     MapStringString audioMediaAttribute {};
+    MapStringString videoMediaAttribute {};
     switch (type) {
     case MediaRequestType::FILESHARING: {
         // File sharing
@@ -560,8 +561,17 @@ CallModel::getProposed(VectorMapStringString mediaList,
         break;
     }
     case MediaRequestType::SCREENSHARING: {
-        // Screen/window sharing
         resource = source;
+        audioMediaAttribute = {{MediaAttributeKey::MEDIA_TYPE, MediaAttributeValue::AUDIO},
+                               {MediaAttributeKey::ENABLED, TRUE_STR},
+                               {MediaAttributeKey::MUTED, mute ? TRUE_STR : FALSE_STR},
+                               {MediaAttributeKey::SOURCE, resource},
+                               {MediaAttributeKey::LABEL, alabel}};
+        videoMediaAttribute = {{MediaAttributeKey::MEDIA_TYPE, MediaAttributeValue::VIDEO},
+                               {MediaAttributeKey::ENABLED, TRUE_STR},
+                               {MediaAttributeKey::MUTED, FALSE_STR},
+                               {MediaAttributeKey::SOURCE, resource},
+                               {MediaAttributeKey::LABEL, vlabel}};
         break;
     }
     case MediaRequestType::CAMERA: {
@@ -575,18 +585,20 @@ CallModel::getProposed(VectorMapStringString mediaList,
         return mediaList;
     }
 
-    VectorMapStringString proposedList {};
-    MapStringString videoMediaAttribute = {{MediaAttributeKey::MEDIA_TYPE, MediaAttributeValue::VIDEO},
-                                           {MediaAttributeKey::ENABLED, TRUE_STR},
-                                           {MediaAttributeKey::MUTED, mute ? TRUE_STR : FALSE_STR},
-                                           {MediaAttributeKey::SOURCE, resource},
-                                           {MediaAttributeKey::LABEL, vlabel}};
+    if (videoMediaAttribute.empty()) {
+        videoMediaAttribute = {{MediaAttributeKey::MEDIA_TYPE, MediaAttributeValue::VIDEO},
+                               {MediaAttributeKey::ENABLED, TRUE_STR},
+                               {MediaAttributeKey::MUTED, mute ? TRUE_STR : FALSE_STR},
+                               {MediaAttributeKey::SOURCE, resource},
+                               {MediaAttributeKey::LABEL, vlabel}};
+    }
     // if we're in a 1:1, we only show one preview, so, limit to 1 video (the new one)
     auto participantsModel = pimpl_->participantsModel.find(callId);
     auto isConf = participantsModel != pimpl_->participantsModel.end()
                   && participantsModel->second->getParticipants().size() != 0;
 
     auto replaced = false;
+    VectorMapStringString proposedList {};
     for (auto& media : mediaList) {
         auto replace = media[MediaAttributeKey::MEDIA_TYPE] == MediaAttributeValue::VIDEO;
         // In a 1:1 we replace the first video, in a conference we replace only if it's a muted
