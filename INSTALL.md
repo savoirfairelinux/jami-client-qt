@@ -208,7 +208,7 @@ Only 64-bit MSVC build can be compiled.
 
   |              | SDK          | Toolset                                             | MFC              |
   | ------------ | ------------ | --------------------------------------------------- | ---------------- |
-  | Requirement: | 10.0.18362.0 | V142 (VisualStudio 2019) / V143 (VisualStudio 2022) | matching Toolset |
+  | Requirement: | 10.0.20348.0 | V142 (VisualStudio 2019) / V143 (VisualStudio 2022) | matching Toolset |
 
 - Install Qt Vs Tools under extensions, and configure msvc2019\_64 path under Qt Options. *See the Qt notes below.*
 
@@ -247,13 +247,6 @@ Only 64-bit MSVC build can be compiled.
     python build.py --install --qt <path-to-qt-bin-folder> (e.g. C:/Qt/6.8.3/msvc2022_64)
 ```
 > **CMake** Note: The build script does not specify what CMake generator should be used. This means CMake will search the system for the appropriate generator, which might not always select the right one if, for instance, Ninja is installed. To resolve that, the CMAKE_GENERATOR environment variable can be used, set to "Visual Studio 16 2019" or "Visual Studio 19 2022" depending on the installed Visual Studio version.
-
-> **SDK** Note:
-> Jami can be build with more recent Windows SDK than the one specified in the table above. However, if your have another version than SDK 10.0.18362.0 installed, you need to identify it according to the example below. And you still need to have the required version in addition to the one you chose.
-
-```bash
-    python build.py --install --qt <path-to-qt-bin-folder> --sdk <your-sdk-version>
-```
 
 > **Qt** Note: If you omit the `--qt` option, the build script will try to find Qt in the default installation folder, and will take the latest version found. If you have appropriate Qt and SDK versions installed, you won't need to specify any additional options.
 
