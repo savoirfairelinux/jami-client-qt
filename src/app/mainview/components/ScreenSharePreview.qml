@@ -22,59 +22,81 @@ import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import "../../commoncomponents"
 
-Rectangle {
+ItemDelegate {
     id: root
-
-    color: JamiTheme.secondaryBackgroundColor
-    border.color: selectedScreenNumber === elementIndex ? JamiTheme.screenSelectionBorderColor : JamiTheme.tabbarBorderColor
-
-    width: elementWidth
-    height: 3 * width / 4
 
     property var elementIndex
     property string rectTitle
     property var rId
 
-    Text {
-        id: textTitle
+    implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
+                            implicitContentWidth + leftPadding + rightPadding)
+    implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
+                             implicitContentHeight + topPadding + bottomPadding,
+                             implicitIndicatorHeight + topPadding + bottomPadding)
 
-        anchors.top: parent.top
-        anchors.topMargin: marginSize
-        anchors.horizontalCenter: parent.horizontalCenter
-        width: parent.width - 2 * marginSize
+    padding: 8
+    topPadding: marginSize
 
-        font.pointSize: JamiTheme.textFontSize
-        text: rectTitle
-        elide: Text.ElideRight
-        horizontalAlignment: Text.AlignHCenter
-        color: JamiTheme.textColor
-    }
+    activeFocusOnTab: true
 
-    VideoView {
-        anchors.top: textTitle.bottom
-        anchors.topMargin: 10
-        anchors.horizontalCenter: parent.horizontalCenter
-        height: parent.height - 50
-        width: parent.width - 50
+    contentItem: ColumnLayout {
 
-        Component.onDestruction: {
-            VideoDevices.stopDevice(rendererId);
+        spacing: 10
+
+        Text {
+            id: textTitle
+
+            Layout.alignment: Qt.AlignVCenter
+            Layout.fillWidth: true
+
+            text: rectTitle
+            color: JamiTheme.textColor
+            elide: Text.ElideRight
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            font.pointSize: JamiTheme.textFontSize
         }
-        Component.onCompleted: {
-            if (root.rId !== "") {
-                rendererId = VideoDevices.startDevice(root.rId);
+
+        VideoView {
+            Layout.alignment: Qt.AlignVCenter
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+
+            Component.onDestruction: {
+                VideoDevices.stopDevice(rendererId);
+            }
+            Component.onCompleted: {
+                if (root.rId !== "") {
+                    rendererId = VideoDevices.startDevice(root.rId);
+                }
             }
         }
     }
 
-    MouseArea {
-        anchors.fill: parent
-        acceptedButtons: Qt.LeftButton
+    background: Rectangle {
+        radius: 8
 
-        onClicked: {
-            if (selectedScreenNumber !== root.elementIndex) {
-                selectedScreenNumber = root.elementIndex;
+        color: selectedScreenNumber === elementIndex ? JamiTheme.smartListSelectedColor : JamiTheme.editBackgroundColor
+        border.color: root.activeFocus || root.hovered || selectedScreenNumber === elementIndex ? JamiTheme.tintedBlue : JamiTheme.hoveredButtonColor
+        border.width: 2
+
+        Behavior on color {
+            ColorAnimation {
+                duration: JamiTheme.shortFadeDuration
             }
+        }
+
+        Behavior on border.color {
+            ColorAnimation {
+                duration: JamiTheme.shortFadeDuration
+            }
+        }
+    }
+
+    onClicked: {
+        if (selectedScreenNumber !== root.elementIndex) {
+            selectedScreenNumber = root.elementIndex;
         }
     }
 }
