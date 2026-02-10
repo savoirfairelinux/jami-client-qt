@@ -112,6 +112,7 @@ public:
     Q_INVOKABLE int getAccountListSize();
     Q_INVOKABLE bool hasCall(const QString& accountId);
     Q_INVOKABLE const QString getCallConvForAccount(const QString& accountId);
+    // If specified account is in an ongoing call in the specified conversation, will return the id of that call.
     Q_INVOKABLE const QString getCallId(const QString& accountId, const QString& convUid);
     Q_INVOKABLE int getCallStatus(const QString& callId);
     Q_INVOKABLE const QString getCallStatusStr(int statusInt);
