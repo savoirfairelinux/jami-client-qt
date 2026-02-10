@@ -18,14 +18,17 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
+import QtQuick.Effects
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 import net.jami.Models 1.1
 import "../../commoncomponents"
 
-Rectangle {
+Control {
     id: root
+
+    property alias contentItemRowLayout: messagingHeaderRectRowLayout
 
     signal backClicked
     signal pluginSelector
@@ -33,66 +36,112 @@ Rectangle {
     Connections {
         target: CurrentConversation
         enabled: true
-        function onTitleChanged() {
-            title.eText = CurrentConversation.title;
+
+        function onIdChanged() {
+            if (title.eText === undefined || description.eText === undefined || userAvatar.imageId === undefined) {
+                title.eText = CurrentConversation.title
+                description.eText = CurrentConversation.description
+                userAvatar.imageId = CurrentConversation.id
+            } else {
+                titleFadeAnimation.start();
+            }
         }
-        function onDescriptionChanged() {
-            description.eText = CurrentConversation.description;
-        }
+
         function onShowSwarmDetails() {
             extrasPanel.switchToPanel(ChatView.SwarmDetailsPanel);
         }
     }
 
-    property bool detailsButtonVisibility: detailsButton.visible
+    leftPadding: 8
+    rightPadding: 8
 
-    readonly property bool interactionButtonsVisibility: {
-        if (CurrentConversation.inCall)
-            return false;
-        if (LRCInstance.currentAccountType === Profile.Type.SIP)
-            return true;
-        if (!CurrentConversation.isTemporary && !CurrentConversation.isSwarm)
-            return false;
-        if (CurrentConversation.isRequest || CurrentConversation.needsSyncing)
-            return false;
-        return true;
+    SequentialAnimation {
+        id: titleFadeAnimation
+
+        ParallelAnimation {
+            NumberAnimation {
+                target: userNameOrIdColumnLayout
+                property: "opacity"
+                to: 0
+                duration: JamiTheme.longFadeDuration
+            }
+            NumberAnimation {
+                target: userAvatar
+                property: "opacity"
+                to: 0
+                duration: JamiTheme.longFadeDuration
+            }
+        }
+        ScriptAction {
+            script: {
+                title.eText = CurrentConversation.title
+                description.eText = CurrentConversation.description
+                userAvatar.imageId = CurrentConversation.id
+            }
+        }
+        ParallelAnimation {
+            NumberAnimation {
+                target: userNameOrIdColumnLayout
+                property: "opacity"
+                to: 1
+                duration: JamiTheme.longFadeDuration
+            }
+            NumberAnimation {
+                target: userAvatar
+                property: "opacity"
+                to: 1
+                duration: JamiTheme.longFadeDuration
+            }
+        }
     }
 
-    property bool addMemberVisibility: {
-        return swarmDetailsVisibility && !CurrentConversation.isCoreDialog && !CurrentConversation.isRequest;
-    }
-
-    property bool swarmDetailsVisibility: {
-        return CurrentConversation.isSwarm && !CurrentConversation.isRequest;
-    }
-
-    color: JamiTheme.globalBackgroundColor
-
-    RowLayout {
+    contentItem: RowLayout {
         id: messagingHeaderRectRowLayout
 
-        anchors.fill: parent
-        // QWK: spacing
-        anchors.leftMargin: layoutManager.qwkSystemButtonSpacing.left
-        anchors.rightMargin: 10 + layoutManager.qwkSystemButtonSpacing.right
         spacing: 8
 
         JamiPushButton {
-            id: backToWelcomeViewButton
+            id: backToWelcomeViewArrowButton
             QWKSetParentHitTestVisible {}
 
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-            Layout.leftMargin: 8
 
-            normalColor: JamiTheme.globalBackgroundColor
+            normalColor: JamiTheme.globalIslandColor
 
             mirror: UtilsAdapter.isRTL
 
             source: JamiResources.back_24dp_svg
             toolTipText: CurrentConversation.inCall ? JamiStrings.returnToCall : JamiStrings.hideChat
 
+            visible: !viewCoordinator.isInSinglePaneMode
+
             onClicked: root.backClicked()
         }
+
+        JamiPushButton {
+            id: backToWelcomeViewChevronButton
+            QWKSetParentHitTestVisible {}
+
+            Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+
+            normalColor: JamiTheme.globalIslandColor
+
+            mirror: UtilsAdapter.isRTL
+
+            source: JamiResources.chevron_left_black_24dp_svg
+            toolTipText: CurrentConversation.inCall ? JamiStrings.returnToCall : JamiStrings.hideChat
+
+            visible: viewCoordinator.isInSinglePaneMode
+
+            onClicked: root.backClicked()
+        }
+
+        BadgeNotifier {
+            size: 20
+            count: ConversationsAdapter.totalUnreadMessageCount + ConversationsAdapter.pendingRequestCount
+            visible: viewCoordinator.isInSinglePaneMode
+        }
+
 
         Avatar {
             id: userAvatar
@@ -101,76 +150,74 @@ Rectangle {
             height: JamiTheme.iconButtonLarge
 
             mode: CurrentConversation.isSwarm ? Avatar.Mode.Conversation : Avatar.Mode.Contact
-            imageId: CurrentConversation.id
+            //imageId: CurrentConversation.id
             showPresenceIndicator: false
         }
 
-        Rectangle {
-            id: userNameOrIdRect
+        ColumnLayout {
+            id: userNameOrIdColumnLayout
+            QWKSetParentHitTestVisible {}
+            objectName: "userNameOrIdColumnLayout"
 
-            Layout.alignment: Qt.AlignLeft | Qt.AlignTop
-
-            // Width + margin.
-            Layout.fillHeight: true
-            Layout.fillWidth: true
+            Layout.preferredWidth: 352
+            Layout.preferredHeight: parent.height
             Layout.topMargin: 7
             Layout.bottomMargin: 7
             Layout.leftMargin: 4
 
-            color: JamiTheme.transparentColor
+            spacing: 0
 
-            ColumnLayout {
-                id: userNameOrIdColumnLayout
-                QWKSetParentHitTestVisible {}
-                objectName: "userNameOrIdColumnLayout"
+            ElidedTextLabel {
+                id: title
 
-                height: parent.height
-
-                spacing: 0
-
-                ElidedTextLabel {
-                    id: title
-
-                    LineEditContextMenu {
-                        id: displayNameContextMenu
-                        lineEditObj: title
-                        selectOnly: true
+                LineEditContextMenu {
+                    id: displayNameContextMenu
+                    lineEditObj: title
+                    selectOnly: true
+                }
+                MouseArea {
+                    anchors.fill: parent
+                    acceptedButtons: Qt.RightButton
+                    cursorShape: Qt.IBeamCursor
+                    onClicked: function (mouse) {
+                        displayNameContextMenu.openMenuAt(mouse);
                     }
-                    MouseArea {
-                        anchors.fill: parent
-                        acceptedButtons: Qt.RightButton
-                        cursorShape: Qt.IBeamCursor
-                        onClicked: function (mouse) {
-                            displayNameContextMenu.openMenuAt(mouse);
-                        }
-                    }
-
-                    Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-
-                    font.pointSize: JamiTheme.textFontSize + 2
-
-                    horizontalAlignment: Text.AlignLeft
-                    verticalAlignment: Text.AlignVCenter
-
-                    eText: CurrentConversation.title
-                    maxWidth: userNameOrIdRect.width
                 }
 
-                ElidedTextLabel {
-                    id: description
+                Layout.fillWidth: true
+                Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
 
-                    Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+                font.pointSize: JamiTheme.textFontSize + 2
 
-                    visible: text.length && CurrentConversation.title !== CurrentConversation.description
-                    font.pointSize: JamiTheme.textFontSize
-                    color: JamiTheme.faddedLastInteractionFontColor
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
 
-                    horizontalAlignment: Text.AlignLeft
-                    verticalAlignment: Text.AlignVCenter
-                    eText: CurrentConversation.description
-                    maxWidth: userNameOrIdRect.width
-                }
+                //eText: CurrentConversation.title
+                maxWidth: userNameOrIdColumnLayout.width
             }
+
+            ElidedTextLabel {
+                id: description
+
+                Layout.fillWidth: true
+                Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+
+                visible: text.length && CurrentConversation.title !== CurrentConversation.description
+                font.pointSize: JamiTheme.textFontSize
+                color: JamiTheme.faddedLastInteractionFontColor
+
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+                //eText: CurrentConversation.description
+                maxWidth: userNameOrIdColumnLayout.width
+            }
+        }
+
+        // Custom component (DNR: DO NOT REPLACE)
+        CallsButton {
+            QWKSetParentHitTestVisible {}
+            Layout.alignment: Qt.AlignVCenter
+            visible: CurrentConversation.activeCalls.length > 0 && interactionButtonsVisibility
         }
 
         NewIconButton {
@@ -198,94 +245,22 @@ Rectangle {
 
             onClicked: CallAdapter.startCall()
         }
-
-        // Custom component (DNR: DO NOT REPLACE)
-        CallsButton {
-            QWKSetParentHitTestVisible {}
-            Layout.preferredHeight: 36
-            Layout.alignment: Qt.AlignVCenter
-            visible: CurrentConversation.activeCalls.length > 0 && interactionButtonsVisibility
-        }
-
-        NewIconButton {
-            id: inviteMembersButton
-            QWKSetParentHitTestVisible {}
-
-            iconSize: JamiTheme.iconButtonMedium
-            iconSource: JamiResources.add_people_24dp_svg
-            toolTipText: JamiStrings.inviteMembers
-
-            checkable: true
-            checked: extrasPanel.isOpen(ChatView.AddMemberPanel)
-
-            visible: interactionButtonsVisibility && addMemberVisibility
-
-            onClicked: extrasPanel.switchToPanel(ChatView.AddMemberPanel)
-        }
-
-        NewIconButton {
-            id: selectExtensionsButton
-            QWKSetParentHitTestVisible {}
-
-            iconSize: JamiTheme.iconButtonMedium
-            iconSource: JamiResources.plugins_24dp_svg
-            toolTipText: JamiStrings.showExtensions
-
-            visible: LRCInstance.chatHandlersListCount && interactionButtonsVisibility
-
-            onClicked: pluginSelector()
-        }
-
-        NewIconButton {
-            id: searchMessagesButton
-            QWKSetParentHitTestVisible {}
-
-            objectName: "searchMessagesButton"
-
-            iconSize: JamiTheme.iconButtonMedium
-            iconSource: JamiResources.ic_baseline_search_24dp_svg
-            toolTipText: JamiStrings.search
-
-            checkable: true
-            checked: extrasPanel.isOpen(ChatView.MessagesResearchPanel)
-
-            visible: root.swarmDetailsVisibility
-
-            onClicked: extrasPanel.switchToPanel(ChatView.MessagesResearchPanel)
-
-            Shortcut {
-                sequence: "Ctrl+Shift+F"
-                context: Qt.ApplicationShortcut
-                enabled: parent.visible
-                onActivated: extrasPanel.switchToPanel(ChatView.MessagesResearchPanel)
-            }
-        }
-
-        NewIconButton {
-            id: detailsButton
-            QWKSetParentHitTestVisible {}
-
-            objectName: "detailsButton"
-
-            iconSize: JamiTheme.iconButtonMedium
-            iconSource: JamiResources.swarm_details_panel_svg
-            toolTipText: JamiStrings.details
-
-            checkable: true
-            checked: extrasPanel.isOpen(ChatView.SwarmDetailsPanel)
-
-            visible: (swarmDetailsVisibility || LRCInstance.currentAccountType === Profile.Type.SIP)
-
-            onClicked: extrasPanel.switchToPanel(ChatView.SwarmDetailsPanel)
-        }
     }
 
-    CustomBorder {
-        commonBorder: false
-        lBorderwidth: 0
-        rBorderwidth: 0
-        tBorderwidth: 0
-        bBorderwidth: JamiTheme.chatViewHairLineSize
-        borderColor: JamiTheme.chatViewFooterRectangleBorderColor
+    background: Rectangle {
+        color: JamiTheme.globalIslandColor
+        radius: height / 2
+
+        layer.enabled: true
+        layer.effect: MultiEffect {
+            id: conversationTitleMultiEffect
+            anchors.fill: parent
+            shadowEnabled: true
+            shadowBlur: JamiTheme.shadowBlur
+            shadowColor: JamiTheme.shadowColor
+            shadowHorizontalOffset: JamiTheme.shadowHorizontalOffset
+            shadowVerticalOffset: JamiTheme.shadowVerticalOffset
+            shadowOpacity: JamiTheme.shadowOpacity
+        }
     }
 }

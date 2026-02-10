@@ -172,15 +172,47 @@ SidePanelBase {
         anchors.fill: parent
 
         Rectangle {
-            id: chatViewHairLineExtension
+            id: chatViewGradientExtension
+
+            property color baseColor: JamiTheme.darkTheme ? Qt.darker(CurrentConversation.color, 5.0) : Qt.lighter(CurrentConversation.color, 1.6)
+
             anchors.top: parent.top
-            anchors.topMargin: JamiTheme.qwkTitleBarHeight - root.header.height
             anchors.left: parent.left
-            anchors.leftMargin: JamiTheme.sidePanelIslandsPadding + conversationListRect.radius
-            width: parent.width
-            height: JamiTheme.chatViewHairLineSize
-            color: JamiTheme.chatViewFooterRectangleBorderColor
+            anchors.right: parent.right
+            height: JamiTheme.qwkTitleBarHeight + JamiTheme.sidePanelIslandsPadding * 2
+
             visible: CurrentConversation.id !== "" && !CurrentConversation.hasCall && !inNewSwarm
+
+            // To block mouse events for messages behind the gradient
+            MouseArea {
+                anchors.fill: parent
+            }
+
+            gradient: Gradient {
+                orientation: Gradient.Vertical
+                GradientStop {
+                    position: 0.0
+                    color: Qt.rgba(chatViewGradientExtension.baseColor.r, chatViewGradientExtension.baseColor.g,
+                                   chatViewGradientExtension.baseColor.b, 1.0)
+                }
+                GradientStop {
+                    position: (JamiTheme.qwkTitleBarHeight + JamiTheme.sidePanelIslandsPadding) / chatViewGradientExtension.height
+                    color: Qt.rgba(chatViewGradientExtension.baseColor.r, chatViewGradientExtension.baseColor.g,
+                                   chatViewGradientExtension.baseColor.b, 0.8)
+                }
+                GradientStop {
+                    position: 1.0
+                    color: Qt.rgba(chatViewGradientExtension.baseColor.r, chatViewGradientExtension.baseColor.g,
+                                   chatViewGradientExtension.baseColor.b, 0.0)
+                }
+            }
+
+            Behavior on baseColor {
+                ColorAnimation {
+                    duration: 1500
+                    easing.type: Easing.InOutQuad
+                }
+            }
         }
 
         ColumnLayout {
