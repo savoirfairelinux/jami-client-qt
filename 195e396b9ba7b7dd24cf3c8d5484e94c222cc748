@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87e6067c_d52388fa",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 964,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2026-02-11T18:53:45Z",
+      "side": 1,
+      "message": "Ok to change the text, but I\u0027m sure we can find something a bit more engaging than \"no conversation found\".\n\nThe goal of the current text was to make using Jami a bit more engaging and give it a less \"technocratic\" tone, especially during onboarding and for the first user experience.",
+      "range": {
+        "startLine": 964,
+        "startChar": 43,
+        "endLine": 964,
+        "endChar": 66
+      },
+      "revId": "195e396b9ba7b7dd24cf3c8d5484e94c222cc748",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
