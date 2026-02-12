@@ -22,6 +22,30 @@
       },
       "revId": "195e396b9ba7b7dd24cf3c8d5484e94c222cc748",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86aab9fe_8b969287",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 964,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-02-12T05:33:01Z",
+      "side": 1,
+      "message": "Before downloading emails, Thunderbird Mail states “No messages found” in the Inbox, Drafts, Templates, Sent, Spam, and Trash folders during onboarding and for the first user experience.\n\nTranslations can be easier and more appropriate, as there is a possibility of strange translations with the **ghost** word or the metaphorical language of **ghost town**.\n\nIn the Jami context, **No conversations found.** seems the best.\n\nCan this be merged as is? If you feel that there is a better string, could that be discussed later?\n\nThank you",
+      "parentUuid": "87e6067c_d52388fa",
+      "range": {
+        "startLine": 964,
+        "startChar": 43,
+        "endLine": 964,
+        "endChar": 66
+      },
+      "revId": "195e396b9ba7b7dd24cf3c8d5484e94c222cc748",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
