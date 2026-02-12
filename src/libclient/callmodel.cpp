@@ -905,7 +905,21 @@ CallModel::joinCalls(const QString& callIdA, const QString& callIdB) const
 QString
 CallModel::callAndAddParticipant(const QString uri, const QString& callId, bool audioOnly)
 {
-    auto newCallId = createCall(uri, audioOnly, pimpl_->calls[callId]->mediaList);
+    // When adding a participant, only offer a single audio stream.
+    // The existing call may have multiple audio streams, but new
+    // participants should negotiate one audio stream with the conference
+    // host, which handles mixing internally.
+    VectorMapStringString mediaList;
+    bool audioAdded = false;
+    for (const auto& media : pimpl_->calls[callId]->mediaList) {
+        if (media[libjami::Media::MediaAttributeKey::MEDIA_TYPE] == libjami::Media::MediaAttributeValue::AUDIO) {
+            if (audioAdded)
+                continue;
+            audioAdded = true;
+        }
+        mediaList.push_back(media);
+    }
+    auto newCallId = createCall(uri, audioOnly, mediaList);
     Q_EMIT beginInsertPendingConferenceesRows(0);
     pimpl_->pendingConferencees_.prepend({uri, newCallId, callId});
     Q_EMIT endInsertPendingConferenceesRows();
