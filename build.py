@@ -122,7 +122,7 @@ ZYPPER_QT_WEBENGINE = [
 ]
 
 DNF_DEPENDENCIES = [
-    'autoconf', 'autoconf-archive', 'automake', 'cmake', 'make', 'speexdsp-devel', 'pulseaudio-libs-devel',
+    'autoconf', 'autoconf-archive', 'automake', 'cmake', 'make', 'ninja-build', 'speexdsp-devel', 'pulseaudio-libs-devel',
     'libtool', 'dbus-devel', 'expat-devel', 'pcre-devel', 'doxygen', 'graphviz',
     'yaml-cpp-devel', 'boost-devel', 'dbus-c++-devel', 'dbus-devel',
     'libXext-devel', 'libXfixes-devel', 'yasm',
@@ -145,8 +145,8 @@ DNF_CLIENT_DEPENDENCIES = [
 DNF_QT_WEBENGINE = ['qt6-qtwebengine-devel']
 
 APT_DEPENDENCIES = [
-    'autoconf', 'autoconf-archive', 'autopoint', 'automake', 'cmake', 'make', 'dbus', 'doxygen', 'graphviz',
-    'g++', 'gettext', 'libasound2-dev', 'libavcodec-dev',
+    'autoconf', 'autoconf-archive', 'autopoint', 'automake', 'cmake', 'make', 'ninja-build',
+    'g++', 'gettext', 'dbus', 'doxygen', 'graphviz', 'libasound2-dev', 'libavcodec-dev',
     'libavdevice-dev', 'libavformat-dev', 'libboost-dev',
     'libcppunit-dev', 'libdbus-1-dev',
     'libdbus-c++-dev', 'libebook1.2-dev', 'libexpat1-dev', 'libgnutls28-dev',
@@ -180,7 +180,7 @@ APT_QT_WEBENGINE = [
     'qml6-module-qtwebengine', 'qml6-module-qtwebchannel']
 
 PACMAN_DEPENDENCIES = [
-    'autoconf', 'autoconf-archive', 'gettext', 'cmake', 'dbus', 'doxygen', 'graphviz',
+    'autoconf', 'autoconf-archive', 'gettext', 'cmake', 'ninja', 'dbus', 'doxygen', 'graphviz',
     'gcc', 'ffmpeg', 'boost', 'cppunit', 'libdbus', 'dbus-c++', 'libe-book', 'expat',
     'jack', 'opus', 'pcre', 'libpulse', 'speex', 'speexdsp', 'libtool', 'yaml-cpp',
     'swig', 'yasm', 'make', 'patch', 'pkg-config',
@@ -201,7 +201,7 @@ PACMAN_QT_WEBENGINE = ['qt6-webengine']
 
 OSX_DEPENDENCIES = [
     'autoconf', 'cmake', 'gettext', 'pkg-config', 'qt6',
-    'libtool', 'yasm', 'nasm', 'automake'
+    'libtool', 'yasm', 'nasm', 'automake', 'ninja'
 ]
 
 OSX_DEPENDENCIES_UNLINK = [
