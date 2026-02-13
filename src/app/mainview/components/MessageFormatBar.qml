@@ -459,6 +459,8 @@ Rectangle {
                     toolTipText: showMoreButton.popup.visible ? JamiStrings.showLess :
                                                                 JamiStrings.showMore
 
+                    checked: showMoreButton.popup.opened;
+
                     onClicked: sharePopup.visible ? sharePopup.close() : sharePopup.open()
                 }
 
