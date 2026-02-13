@@ -347,6 +347,7 @@ ListView {
                 id: typingDots
 
                 Layout.alignment: Qt.AlignVCenter
+                Layout.leftMargin: JamiTheme.messageBarRadius
             }
 
             Connections {
