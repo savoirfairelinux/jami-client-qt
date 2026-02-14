@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40bfe879_d649250b",
+        "filename": "src/libclient/api/call.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-02-14T01:47:36Z",
+      "side": 1,
+      "message": "Can the following be removed?\n`status \u003d\u003d \"RESUME\" || `\n?\n\nThank you",
+      "range": {
+        "startLine": 110,
+        "startChar": 13,
+        "endLine": 110,
+        "endChar": 35
+      },
+      "revId": "184acfa4d90d9f5420191c7f397d49334999a0e6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
