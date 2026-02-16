@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5814ce22_a6fbeee7",
+        "filename": "src/app/mainview/MainView.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-02-16T19:40:03Z",
+      "side": 1,
+      "message": "Typo? Should it be `shortcut`? Thank you",
+      "range": {
+        "startLine": 58,
+        "startChar": 63,
+        "endLine": 58,
+        "endChar": 70
+      },
+      "revId": "27b1f6ce8056404701f372e8c4557079d558c765",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
