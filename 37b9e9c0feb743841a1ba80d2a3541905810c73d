@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d3494fa_b6075af3",
+        "filename": "src/libclient/accountmodel.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-02-16T19:54:04Z",
+      "side": 1,
+      "message": "I know `(void)/std::ignore\u003d QtConcurrent::run` is done elsewhere in the client codebase, but see https://doc.qt.io/qt-6/qtconcurrentrun.html#returning-values-from-the-function.",
+      "range": {
+        "startLine": 274,
+        "startChar": 4,
+        "endLine": 275,
+        "endChar": 119
+      },
+      "revId": "37b9e9c0feb743841a1ba80d2a3541905810c73d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
