@@ -38,6 +38,7 @@ Rectangle {
     property bool showTypo: UtilsAdapter.getAppValue(Settings.Key.ShowMardownOption)
     property bool showTypoSecond: false
     property bool showPreview: false
+    property bool isEmojiPickerOpen: false
 
     property bool maximized: (showTypo || dataTransferSendContainer.visible)
     property int messageBarLayoutMaximumWidth: 486
@@ -448,6 +449,9 @@ Rectangle {
         MessageFormatBar {
             id: formatRow
             color: JamiTheme.transparentColor
+
+            isEmojiPickerOpen: rectangle.isEmojiPickerOpen
+
             Layout.alignment: Qt.AlignBottom
             Layout.fillWidth: maximized ? true : false
             Layout.rightMargin: 0
