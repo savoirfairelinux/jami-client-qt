@@ -278,16 +278,6 @@ SidePanelBase {
         }
     }
 
-    // Bind to requests for a settings page to be selected via shorcut.
-    Connections {
-        target: JamiQmlUtils
-        function onSettingsPageRequested(index) {
-            viewCoordinator.present("SettingsView");
-            root.indexSelected(index);
-            root.currentIndex = index;
-        }
-    }
-
     onIsSinglePaneChanged: {
         if (visible && !isSinglePane)
             select(root.currentIndex);

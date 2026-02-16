@@ -168,6 +168,16 @@ Item {
                  }
     }
 
+    // Bind to requests for a settings page to be selected via shortcut.
+    Connections {
+        target: JamiQmlUtils
+        function onSettingsPageRequested(index) {
+            viewCoordinator.present("SettingsView");
+            const settingsView = viewCoordinator.getView("SettingsView");
+            settingsView.leftPaneItem.select(index);
+        }
+    }
+
     Shortcut {
         sequence: "Ctrl+M"
         context: Qt.ApplicationShortcut
@@ -225,7 +235,7 @@ Item {
     }
 
     Shortcut {
-        sequence: "Ctrl+P"
+        sequence: "Ctrl+E"
         context: Qt.ApplicationShortcut
         onActivated: JamiQmlUtils.requestSettingsPage(15)
     }
