@@ -161,8 +161,10 @@ Rectangle {
         onEmojiButtonClicked: {
             if (emojiPicker && emojiPicker.opened) {
                 emojiPicker.closeEmojiPicker();
+                isEmojiPickerOpen = false;
             } else {
                 openEmojiPicker();
+                isEmojiPickerOpen = true;
             }
         }
 

@@ -32,6 +32,8 @@ Rectangle {
     LayoutMirroring.childrenInherit: true
 
     property alias listViewTypoFirst: listViewTypoFirst
+    property bool isEmojiPickerOpen
+
     Row {
         id: firstRow
 
@@ -528,6 +530,7 @@ Rectangle {
                     property bool needWebEngine: true
                     property bool needVideoDevice: false
                     property bool noSip: true
+                    checked: messageBarRowLayout.isEmojiPickerOpen
                     onTriggered: function clickAction() {
                         emojiButtonClicked();
                     }
@@ -573,6 +576,9 @@ Rectangle {
                 anchors.verticalCenter: parent ? parent.verticalCenter : undefined
 
                 enabled: !showPreview
+
+                checkable: true
+                checked: modelData.checked
 
                 iconSize: JamiTheme.iconButtonMedium
                 iconSource: modelData.iconSrc
