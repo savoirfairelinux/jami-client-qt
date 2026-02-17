@@ -90,14 +90,16 @@ ColumnLayout {
             Layout.fillWidth: true
 
             Text {
-                text: JamiStrings.proxyAddress
-                font.pointSize: JamiTheme.settingsFontSize
-                font.kerning: true
-                color: JamiTheme.textColor
+                Layout.fillWidth: true
 
+                text: JamiStrings.proxyAddress
+                color: JamiTheme.textColor
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
-                Layout.fillWidth: true
+                wrapMode: Text.WordWrap
+
+                font.pointSize: JamiTheme.settingsFontSize
+                font.kerning: true
             }
 
             ModalTextEdit {
@@ -136,13 +138,16 @@ ColumnLayout {
             Layout.fillWidth: true
 
             Text {
+                Layout.fillWidth: true
+
                 text: JamiStrings.proxyListURL
-                font.pointSize: JamiTheme.settingsFontSize
-                font.kerning: true
                 color: JamiTheme.textColor
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
-                Layout.fillWidth: true
+                wrapMode: Text.WordWrap
+
+                font.pointSize: JamiTheme.settingsFontSize
+                font.kerning: true
             }
 
             ModalTextEdit {

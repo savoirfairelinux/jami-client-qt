@@ -592,8 +592,6 @@ Rectangle {
                         root.saveButtonClicked();
                         root.alias = displayNameLineEdit.dynamicText;
                     }
-
-                    //KeyNavigation.up: openedNickname ? displayNameLineEdit : passwordConfirmEdit
                 }
             }
         }
