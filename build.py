@@ -124,14 +124,14 @@ ZYPPER_QT_WEBENGINE = [
 DNF_DEPENDENCIES = [
     'autoconf', 'autoconf-archive', 'automake', 'cmake', 'make', 'ninja-build', 'speexdsp-devel', 'pulseaudio-libs-devel',
     'libtool', 'dbus-devel', 'expat-devel', 'pcre-devel', 'doxygen', 'graphviz',
-    'yaml-cpp-devel', 'boost-devel', 'dbus-c++-devel', 'dbus-devel',
+    'yaml-cpp-devel', 'boost-devel', 'dbus-c++-devel',
     'libXext-devel', 'libXfixes-devel', 'yasm',
     'speex-devel', 'chrpath', 'check', 'astyle', 'uuid-c++-devel', 'gettext-devel',
     'gcc-c++', 'which', 'alsa-lib-devel', 'systemd-devel', 'libuuid-devel',
-    'uuid-devel', 'gnutls-devel', 'nettle-devel', 'opus-devel', 'speexdsp-devel',
-    'yaml-cpp-devel', 'swig', 'jsoncpp-devel',
+    'uuid-devel', 'gnutls-devel', 'nettle-devel', 'opus-devel',
+    'swig', 'jsoncpp-devel',
     'patch', 'libva-devel', 'openssl-devel', 'libvdpau-devel', 'pipewire-devel', 'msgpack-devel',
-    'sqlite-devel', 'openssl-static', 'pandoc', 'nasm',
+    'sqlite-devel', 'pandoc', 'nasm',
     'bzip2'
 ]
 
@@ -139,7 +139,7 @@ DNF_CLIENT_DEPENDENCIES = [
     'libnotify-devel',
     'qt6-qtbase-devel',
     'qt6-qtsvg-devel', 'qt6-qtmultimedia-devel', 'qt6-qtdeclarative-devel',
-    'NetworkManager-libnm-devel', 'hunspell-devel', 'libhunspell-devel'
+    'NetworkManager-libnm-devel', 'hunspell-devel'
 ]
 
 DNF_QT_WEBENGINE = ['qt6-qtwebengine-devel']
