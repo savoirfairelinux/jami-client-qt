@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fd7db03_13a21442",
+        "filename": "src/libclient/callmodel.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 917,
+      "author": {
+        "id": 1143
+      },
+      "writtenOn": "2026-02-17T02:38:22Z",
+      "side": 1,
+      "message": "@adrien.beraud@savoirfairelinux.com shouldn\u0027t that be `break` rather than `continue` here, since there doesn\u0027t seem to be a point continuing the loop after audioAdded is set to true?",
+      "range": {
+        "startLine": 917,
+        "startChar": 16,
+        "endLine": 917,
+        "endChar": 24
+      },
+      "revId": "9f1ba9e5d89375d0dc72acc96b33777e942f460c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
