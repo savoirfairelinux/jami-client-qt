@@ -28,14 +28,6 @@ ComboBox {
     property string comboBoxBackgroundColor: JamiTheme.editBackgroundColor
     property bool selection: currentIndex < 0 && !count
 
-    MaterialToolTip {
-        id: toolTip
-
-        parent: root
-        visible: hovered && (text.length > 0)
-        delay: Qt.styleHints.mousePressAndHoldInterval
-    }
-
     displayText: {
         // If the index is -1 and the model is empty, display the placeholder text.
         // The placeholder text is either the placeholderText property or a default text.
@@ -47,8 +39,15 @@ ComboBox {
     }
 
     delegate: ItemDelegate {
+        id: delegateItem
+
         width: root.width
+        height: selectOption.height
+
+        highlighted: root.highlightedIndex === index
+
         contentItem: Text {
+            id: delegateText
             text: {
                 if (index < 0 || !model)
                     return '';
@@ -63,12 +62,27 @@ ComboBox {
             color: hovered ? JamiTheme.comboboxTextColorHovered : JamiTheme.textColor
             elide: Text.ElideRight
             verticalAlignment: Text.AlignVCenter
+
             font.pointSize: JamiTheme.settingsFontSize
+
+            Behavior on color {
+                ColorAnimation {
+                    duration: JamiTheme.shortFadeDuration
+                    easing.type: Easing.InOutCubic
+                }
+            }
         }
 
         background: Rectangle {
-            color: hovered ? JamiTheme.comboboxBackgroundColorHovered : JamiTheme.transparentColor
-            radius: JamiTheme.avatarBasedRadius
+            color: hovered || highlighted ? JamiTheme.comboboxBackgroundColorHovered : JamiTheme.globalBackgroundColor
+            radius: height / 2
+
+            Behavior on color {
+                ColorAnimation {
+                    duration: JamiTheme.shortFadeDuration
+                    easing.type: Easing.InOutCubic
+                }
+            }
         }
     }
 
@@ -82,35 +96,55 @@ ComboBox {
         anchors.verticalCenter: parent.verticalCenter
         anchors.rightMargin: 16
 
-        source: popup.visible ? JamiResources.expand_less_24dp_svg : JamiResources.expand_more_24dp_svg
+        source: JamiResources.expand_less_24dp_svg
 
         color: root.enabled ? JamiTheme.comboboxIconColor : "grey"
+
+        transform: Rotation {
+            id: rotation
+            origin.x: indicator.width / 2
+            origin.y: indicator.height / 2
+            angle: popup.visible ? 180 : 0
+
+            Behavior on angle {
+                NumberAnimation {
+                    duration: JamiTheme.shortFadeDuration
+                    easing.type: Easing.InOutQuad
+                }
+            }
+        }
     }
 
     contentItem: Text {
-
         anchors.left: parent.left
-        anchors.right: parent.right
         anchors.leftMargin: root.indicator.width
-        width: parent.width - root.indicator.width * 2
+        anchors.right: parent.right
         anchors.rightMargin: root.indicator.width * 2
-        font.pixelSize: JamiTheme.settingsDescriptionPixelSize
+
+        width: parent.width - root.indicator.width * 2
+
         text: root.displayText
         color: root.enabled ? JamiTheme.comboboxTextColor : "grey"
-        font.weight: Font.Medium
+        elide: Text.ElideRight
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignLeft
-        elide: Text.ElideRight
+
+        font.pixelSize: JamiTheme.settingsDescriptionPixelSize
+        font.weight: Font.Medium
     }
 
     background: Rectangle {
         id: selectOption
-        color: JamiTheme.transparentColor
+
         implicitWidth: 120
         implicitHeight: contentItem.implicitHeight + JamiTheme.buttontextHeightMargin
+
+        color: JamiTheme.globalBackgroundColor
+
         border.color: root.enabled ? (popup.visible ? JamiTheme.comboboxBorderColorActive : JamiTheme.comboboxBorderColor) : "grey"
         border.width: root.visualFocus ? 2 : 1
-        radius: width / 2
+
+        radius: height / 2
     }
 
     popup: Popup {
@@ -119,13 +153,17 @@ ComboBox {
         y: root.height - 1
         width: root.width
         padding: 1
-        height: Math.min(contentItem.implicitHeight, 5 * selectOption.implicitHeight)
+        height: popup.visible ? Math.min(contentItem.implicitHeight, 5 * selectOption.implicitHeight) : 0
 
-        contentItem: JamiListView {
+        contentItem: ListView {
             id: listView
 
             implicitHeight: contentHeight
             model: root.delegateModel
+            currentIndex: root.highlightedIndex
+            clip: true
+
+            delegate: root.delegate
 
             layer.enabled: true
             layer.effect: MultiEffect {
@@ -134,7 +172,7 @@ ComboBox {
                     sourceItem: Rectangle {
                         width: listView.width
                         height: listView.height
-                        radius: JamiTheme.avatarBasedRadius
+                        radius: selectOption.radius
                     }
                 }
             }
@@ -144,7 +182,25 @@ ComboBox {
             color: JamiTheme.primaryBackgroundColor
             border.color: JamiTheme.comboboxBorderColorActive
 
-            radius: JamiTheme.avatarBasedRadius
+            radius: selectOption.radius
         }
+
+        Behavior on height {
+            NumberAnimation {
+                duration: JamiTheme.shortFadeDuration
+                easing.type: Easing.InOutQuad
+            }
+        }
+    }
+
+    Accessible.role: Accessible.ComboBox
+    Accessible.name: tooltipText
+
+    MaterialToolTip {
+        id: toolTip
+
+        parent: root
+        visible: hovered && (text.length > 0)
+        delay: Qt.styleHints.mousePressAndHoldInterval
     }
 }
