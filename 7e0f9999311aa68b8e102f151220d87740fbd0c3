@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6957824c_cdbd5ebf",
+        "filename": "src/app/mainview/components/MessageFormatBar.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 617,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-02-18T20:42:22Z",
+      "side": 1,
+      "message": "LIRR, use if statements",
+      "range": {
+        "startLine": 615,
+        "startChar": 16,
+        "endLine": 617,
+        "endChar": 45
+      },
+      "revId": "7e0f9999311aa68b8e102f151220d87740fbd0c3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4bee7ec_e2ba1a71",
+        "filename": "src/app/mainview/components/MessageFormatBar.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 623,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-02-18T20:42:22Z",
+      "side": 1,
+      "message": "LIRR, use if statements",
+      "range": {
+        "startLine": 621,
+        "startChar": 16,
+        "endLine": 623,
+        "endChar": 57
+      },
+      "revId": "7e0f9999311aa68b8e102f151220d87740fbd0c3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
