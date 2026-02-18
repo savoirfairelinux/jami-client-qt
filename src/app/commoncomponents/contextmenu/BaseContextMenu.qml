@@ -45,41 +45,41 @@ Menu {
     function loadMenuItems(menuItems) {
         root.addItem(menuTopBorder);
 
+        var visibleItems = menuItems.filter(item => item.canTrigger);
+
         // Establish the preferred width of the menu by taking the maximum width of the items
-        for (var j = 0; j < menuItems.length; ++j) {
-            var currentItemWidth = menuItems[j].itemPreferredWidth;
-            if (currentItemWidth !== JamiTheme.menuItemsPreferredWidth && currentItemWidth > menuPreferredWidth && menuItems[j].canTrigger)
+        for (var j = 0; j < visibleItems.length; ++j) {
+            var currentItemWidth = visibleItems[j].itemPreferredWidth;
+            if (currentItemWidth !== JamiTheme.menuItemsPreferredWidth && currentItemWidth > menuPreferredWidth)
                 menuPreferredWidth = currentItemWidth;
         }
 
         // Add the items to the menu
-        for (var i = 0; i < menuItems.length; ++i) {
-            if (menuItems[i].canTrigger) {
-                menuItems[i].parentMenu = root;
-                root.addItem(menuItems[i]);
-                if (menuPreferredWidth)
-                    menuItems[i].itemRealWidth = menuPreferredWidth;
-                if (menuItemsPreferredHeight)
-                    menuItems[i].itemPreferredHeight = menuItemsPreferredHeight;
-                var menuSeparatorComponent, menuSeparatorComponentObj;
-                if (i !== menuItems.length - 1) {
-                    menuSeparatorComponent = Qt.createComponent("GeneralMenuSeparator.qml", Component.PreferSynchronous, root);
-                    menuSeparatorComponentObj = menuSeparatorComponent.createObject();
-                    generalMenuSeparatorList.push(menuSeparatorComponentObj);
-                    root.addItem(menuSeparatorComponentObj);
-                }
-                if (menuItems[i].addMenuSeparatorAfter) {
-                    menuSeparatorComponent = Qt.createComponent("GeneralMenuSeparator.qml", Component.PreferSynchronous, root);
-                    menuSeparatorComponentObj = menuSeparatorComponent.createObject(null, {
-                        "separatorColor": JamiTheme.menuSeparatorColor,
-                        "separatorPreferredHeight": 0
-                    });
-                    generalMenuSeparatorList.push(menuSeparatorComponentObj);
-                    root.addItem(menuSeparatorComponentObj);
-                    menuSeparatorComponentObj = menuSeparatorComponent.createObject();
-                    generalMenuSeparatorList.push(menuSeparatorComponentObj);
-                    root.addItem(menuSeparatorComponentObj);
-                }
+        for (var i = 0; i < visibleItems.length; ++i) {
+            visibleItems[i].parentMenu = root;
+            root.addItem(visibleItems[i]);
+            if (menuPreferredWidth)
+                visibleItems[i].itemRealWidth = menuPreferredWidth;
+            if (menuItemsPreferredHeight)
+                visibleItems[i].itemPreferredHeight = menuItemsPreferredHeight;
+            var menuSeparatorComponent, menuSeparatorComponentObj;
+            if (i !== visibleItems.length - 1) {
+                menuSeparatorComponent = Qt.createComponent("GeneralMenuSeparator.qml", Component.PreferSynchronous, root);
+                menuSeparatorComponentObj = menuSeparatorComponent.createObject();
+                generalMenuSeparatorList.push(menuSeparatorComponentObj);
+                root.addItem(menuSeparatorComponentObj);
+            }
+            if (visibleItems[i].addMenuSeparatorAfter) {
+                menuSeparatorComponent = Qt.createComponent("GeneralMenuSeparator.qml", Component.PreferSynchronous, root);
+                menuSeparatorComponentObj = menuSeparatorComponent.createObject(null, {
+                    "separatorColor": JamiTheme.menuSeparatorColor,
+                    "separatorPreferredHeight": 0
+                });
+                generalMenuSeparatorList.push(menuSeparatorComponentObj);
+                root.addItem(menuSeparatorComponentObj);
+                menuSeparatorComponentObj = menuSeparatorComponent.createObject();
+                generalMenuSeparatorList.push(menuSeparatorComponentObj);
+                root.addItem(menuSeparatorComponentObj);
             }
         }
         root.addItem(menuBottomBorder);
