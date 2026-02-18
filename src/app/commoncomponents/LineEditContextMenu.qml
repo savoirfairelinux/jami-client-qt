@@ -47,34 +47,32 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: cut
 
-            canTrigger: true
-            isActif: lineEditObj.selectedText.length && !selectOnly
+            canTrigger: root.selectionStart !== root.selectionEnd && !root.selectOnly
             itemName: JamiStrings.cut
-            onClicked: lineEditObj.cut()
+            onClicked: root.lineEditObj.cut()
         },
         GeneralMenuItem {
             id: copy
 
-            canTrigger: true
-            isActif: lineEditObj.selectedText.length
+            canTrigger: root.selectionStart !== root.selectionEnd
             itemName: JamiStrings.copy
-            onClicked: lineEditObj.copy()
+            onClicked: root.lineEditObj.copy()
         },
         GeneralMenuItem {
             id: paste
 
-            canTrigger: !selectOnly
+            canTrigger: !root.selectOnly && root.lineEditObj && root.lineEditObj.canPaste
             itemName: JamiStrings.paste
             onClicked: {
-                if (customizePaste)
+                if (root.customizePaste)
                     root.contextMenuRequirePaste();
                 else
-                    lineEditObj.paste();
+                    root.lineEditObj.paste();
             }
         },
         GeneralMenuItem {
             id: textLanguage
-            canTrigger: isSpellCheckActive() && SpellCheckAdapter.installedDictionaryCount > 0
+            canTrigger: isSpellCheckActive() && SpellCheckAdapter.installedDictionaryCount > 0 && !root.selectOnly
             itemName: JamiStrings.textLanguage
             onClicked: {
                 spellLanguageContextMenu.openMenu();
@@ -83,7 +81,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: manageLanguages
             itemName: JamiStrings.dictionaryManager
-            canTrigger: isSpellCheckActive()
+            canTrigger: isSpellCheckActive() && !root.selectOnly
             onClicked: {
                 viewCoordinator.presentDialog(appWindow, "commoncomponents/DictionaryManagerDialog.qml");
             }
@@ -100,8 +98,7 @@ ContextMenuAutoLoader {
             delegate: GeneralMenuItem {
                 id: suggestion
 
-                canTrigger: true
-                isActif: true
+                canTrigger: !root.selectOnly
                 itemName: model.name
                 bold: true
                 onClicked: {
@@ -146,6 +143,10 @@ ContextMenuAutoLoader {
         y = mouseEvent.y;
         selectionStart = lineEditObj.selectionStart;
         selectionEnd = lineEditObj.selectionEnd;
+
+        // Snapshot the visible items right before opening the menu
+        menuItemsToLoad = menuItems.filter(item => item.canTrigger);
+
         root.openMenu();
         lineEditObj.select(selectionStart, selectionEnd);
     }
@@ -172,15 +173,14 @@ ContextMenuAutoLoader {
         target: UtilsAdapter
 
         function onEnableSpellCheckChanged() {
-            textLanguage.canTrigger = isSpellCheckActive() && SpellCheckAdapter.installedDictionaryCount > 0;
-            manageLanguages.canTrigger = isSpellCheckActive();
+            textLanguage.canTrigger = isSpellCheckActive() && SpellCheckAdapter.installedDictionaryCount > 0 && !root.selectOnly;
+            manageLanguages.canTrigger = isSpellCheckActive() && !root.selectOnly;
         }
 
         function onSpellLanguageChanged() {
-            textLanguage.canTrigger = isSpellCheckActive() && SpellCheckAdapter.installedDictionaryCount > 0;
-            manageLanguages.canTrigger = isSpellCheckActive();
+            textLanguage.canTrigger = isSpellCheckActive() && SpellCheckAdapter.installedDictionaryCount > 0 && !root.selectOnly;
+            manageLanguages.canTrigger = isSpellCheckActive() && !root.selectOnly;
         }
     }
 
-    Component.onCompleted: menuItemsToLoad = menuItems
 }
