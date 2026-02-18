@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "902d9797_e95c112e",
+        "filename": "src/app/mainview/components/Searchbar.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-02-18T20:18:26Z",
+      "side": 1,
+      "message": "remove whitespace",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 12
+      },
+      "revId": "94f159448bcb4e850e09565a09bf61c1d6c5e41a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
