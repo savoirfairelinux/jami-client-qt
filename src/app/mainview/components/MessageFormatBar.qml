@@ -612,11 +612,15 @@ Rectangle {
                 imageContainerWidth: 25
                 imageContainerHeight: 25
 
-                toolTipText: JamiStrings.send
+                toolTipText: MessagesAdapter.editId !== "" ? JamiStrings.edit :
+                             MessagesAdapter.replyToId !== "" ? JamiStrings.reply :
+                             JamiStrings.send
 
                 mirror: UtilsAdapter.isRTL
 
-                source: JamiResources.send_black_24dp_svg
+                source: MessagesAdapter.editId !== "" ? JamiResources.edit_svg :
+                        MessagesAdapter.replyToId !== "" ? JamiResources.reply_black_24dp_svg :
+                        JamiResources.send_black_24dp_svg
 
                 normalColor: enabled ? JamiTheme.chatViewFooterSendButtonColor :
                                        JamiTheme.chatViewFooterSendButtonDisableColor
