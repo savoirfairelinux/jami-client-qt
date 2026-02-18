@@ -89,6 +89,9 @@ Rectangle {
             anchors.left: parent.left
             anchors.right: parent.right
 
+            topPadding: 0
+            bottomPadding: 0
+
             color: JamiTheme.chatviewTextColor
 
             placeholderText: JamiStrings.search
