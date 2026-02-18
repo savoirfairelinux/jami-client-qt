@@ -143,10 +143,6 @@ ContextMenuAutoLoader {
         y = mouseEvent.y;
         selectionStart = lineEditObj.selectionStart;
         selectionEnd = lineEditObj.selectionEnd;
-
-        // Snapshot the visible items right before opening the menu
-        menuItemsToLoad = menuItems.filter(item => item.canTrigger);
-
         root.openMenu();
         lineEditObj.select(selectionStart, selectionEnd);
     }
@@ -183,4 +179,5 @@ ContextMenuAutoLoader {
         }
     }
 
+    Component.onCompleted: menuItemsToLoad = menuItems
 }
