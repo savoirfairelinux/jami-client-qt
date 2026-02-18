@@ -612,11 +612,27 @@ Rectangle {
                 imageContainerWidth: 25
                 imageContainerHeight: 25
 
-                toolTipText: JamiStrings.send
+                toolTipText: {
+                    if (MessagesAdapter.editId !== "") {
+                        return JamiStrings.edit;
+                    } else if (MessagesAdapter.replyToId !== "") {
+                        return JamiStrings.reply;
+                    } else {
+                        return JamiStrings.send;
+                    }
+                }
 
                 mirror: UtilsAdapter.isRTL
 
-                source: JamiResources.send_black_24dp_svg
+                    source: {
+                        if (MessagesAdapter.editId !== "") {
+                            return JamiResources.edit_svg;
+                        } else if (MessagesAdapter.replyToId !== "") {
+                            return JamiResources.reply_black_24dp_svg;
+                        } else {
+                            return JamiResources.send_black_24dp_svg;
+                        }
+                    }
 
                 normalColor: enabled ? JamiTheme.chatViewFooterSendButtonColor :
                                        JamiTheme.chatViewFooterSendButtonDisableColor
