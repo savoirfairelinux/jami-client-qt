@@ -80,7 +80,7 @@ SplitView {
         SplitView.maximumHeight: inLine ? parent.height / 2 : parent.height
 
         visible: commonParticipants.count > 0 && (inLine || CallParticipantsModel.conferenceLayout === CallParticipantsModel.GRID)
-        color: "transparent"
+        color: "black"
 
         property int lowLimit: 0
         property int topLimit: commonParticipants.count
@@ -189,8 +189,7 @@ SplitView {
                                     return 0;
                                 var lastParticipants = (commonParticipants.count % commonParticipantsFlow.columns);
                                 if (lastParticipants !== 0 && index === commonParticipants.count - lastParticipants) {
-                                    var compW = commonParticipantsFlow.componentWidth + commonParticipantsFlow.spacing;
-                                    var lastLineW = lastParticipants * compW;
+                                    var lastLineW = lastParticipants * commonParticipantsFlow.componentWidth + (lastParticipants - 1) * commonParticipantsFlow.spacing;
                                     return Math.floor((commonParticipantsFlow.width - lastLineW) / 2);
                                 }
                                 return 0;
@@ -259,9 +258,6 @@ SplitView {
 
         Repeater {
             id: activeParticipants
-            anchors.fill: parent
-            anchors.centerIn: parent
-
             model: activeParticipantsModel
             delegate: Loader {
                 active: root.visible
