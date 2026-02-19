@@ -44,6 +44,8 @@ Rectangle {
             id: listViewTypo
             height: JamiTheme.chatViewFooterButtonSize
 
+            spacing: 5
+
             ListView {
                 id: listViewTypoFirst
                 objectName: "listViewTypoFirst"
@@ -60,6 +62,8 @@ Rectangle {
                 height: JamiTheme.chatViewFooterButtonSize
                 orientation: ListView.Horizontal
                 interactive: false
+
+                spacing: 5
 
                 property list<Action> menuTypoActionsFirst: [
                     Action {
@@ -218,6 +222,8 @@ Rectangle {
                     z: -1
                 }
 
+                spacing: 5
+
                 property list<Action> menuTypoActionsSecond: [
                     Action {
                         id: quoteAction
@@ -276,6 +282,8 @@ Rectangle {
         anchors.right: messageBarRowLayout.right
         anchors.bottom: messageBarRowLayout.bottom
 
+        spacing: 5
+
         // Overriden NewIconButton due to icon fitting issues
         NewIconButton {
             id: typoButton
@@ -291,8 +299,8 @@ Rectangle {
             background: Rectangle {
                 visible: parent.checked || parent.hovered
 
-                width: JamiTheme.iconButtonMedium + (JamiTheme.iconButtonMedium / 2)
-                height: JamiTheme.iconButtonMedium + (JamiTheme.iconButtonMedium / 2)
+                implicitWidth: JamiTheme.iconButtonMedium + (JamiTheme.iconButtonMedium / 2)
+                implicitHeight: JamiTheme.iconButtonMedium + (JamiTheme.iconButtonMedium / 2)
 
                 radius: width / 2
                 anchors.centerIn: parent
@@ -424,72 +432,65 @@ Rectangle {
             }
         }
 
-        Rectangle {
-            Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+        ComboBox {
+            id: showMoreButton
 
-            height: JamiTheme.chatViewFooterButtonSize
+            anchors.bottom: parent.bottom
+
             width: JamiTheme.chatViewFooterButtonSize
+            height: JamiTheme.chatViewFooterButtonSize
 
-            color: JamiTheme.transparentColor
+            enabled: !showPreview
+            hoverEnabled: !showPreview
 
+            focus: true
             visible: !CurrentConversation.isSip
 
-            ComboBox {
-                id: showMoreButton
+            Accessible.name: JamiStrings.showMoreMessagingOptions
+            Accessible.role: Accessible.ComboBox
+            Accessible.description: JamiStrings.showMoreMessagingOptionsDescription
 
-                focus: true
-                width: JamiTheme.chatViewFooterButtonSize
-                height: JamiTheme.chatViewFooterButtonSize
-                anchors.bottom: parent.bottom
-                enabled: !showPreview
-                hoverEnabled: !showPreview
+            // Used to choose the correct color for the button.
+            readonly property bool highlight: down || hovered
 
-                Accessible.name: JamiStrings.showMoreMessagingOptions
-                Accessible.role: Accessible.ComboBox
-                Accessible.description: JamiStrings.showMoreMessagingOptionsDescription
+            background: Item {}
 
-                // Used to choose the correct color for the button.
-                readonly property bool highlight: down || hovered
+            indicator: NewIconButton {
+                anchors.verticalCenter: parent.verticalCenter
 
-                background: Item {}
+                iconSize: JamiTheme.iconButtonMedium
+                iconSource: JamiResources.more_menu_black_24dp_svg
+                toolTipText: showMoreButton.popup.visible ? JamiStrings.showLess :
+                                                            JamiStrings.showMore
 
-                indicator: NewIconButton {
-                    anchors.verticalCenter: parent.verticalCenter
+                checked: showMoreButton.popup.opened;
 
-                    iconSize: JamiTheme.iconButtonMedium
-                    iconSource: JamiResources.more_menu_black_24dp_svg
-                    toolTipText: showMoreButton.popup.visible ? JamiStrings.showLess :
-                                                                JamiStrings.showMore
+                onClicked: sharePopup.visible ? sharePopup.close() : sharePopup.open()
+            }
 
-                    checked: showMoreButton.popup.opened;
-
-                    onClicked: sharePopup.visible ? sharePopup.close() : sharePopup.open()
-                }
-
-                Component {
-                    id: sharePopupComp
-                    ShareMenu {
-                        id: sharePopup
-                        onAudioRecordMessageButtonClicked: rectangle.audioRecordMessageButtonClicked(
-                                                               )
-                        onVideoRecordMessageButtonClicked: rectangle.videoRecordMessageButtonClicked(
-                                                               )
-                        onShowMapClicked: rectangle.showMapClicked()
-                        modelList: listViewMoreButton.menuMoreButton
-                        y: showMoreButton.y + 31
-                        x: showMoreButton.x - 3
-                    }
-                }
-
-                popup: ShareMenu {
+            Component {
+                id: sharePopupComp
+                ShareMenu {
                     id: sharePopup
-                    onAudioRecordMessageButtonClicked: rectangle.audioRecordMessageButtonClicked()
-                    onVideoRecordMessageButtonClicked: rectangle.videoRecordMessageButtonClicked()
+                    onAudioRecordMessageButtonClicked: rectangle.audioRecordMessageButtonClicked(
+                                                           )
+                    onVideoRecordMessageButtonClicked: rectangle.videoRecordMessageButtonClicked(
+                                                           )
                     onShowMapClicked: rectangle.showMapClicked()
                     modelList: listViewMoreButton.menuMoreButton
                     y: showMoreButton.y + 31
                     x: showMoreButton.x - 3
                 }
+            }
+
+            popup: ShareMenu {
+                id: sharePopup
+                onAudioRecordMessageButtonClicked: rectangle.audioRecordMessageButtonClicked()
+                onVideoRecordMessageButtonClicked: rectangle.videoRecordMessageButtonClicked()
+                onShowMapClicked: rectangle.showMapClicked()
+                modelList: listViewMoreButton.menuMoreButton
+                y: showMoreButton.y + 31
+                x: showMoreButton.x - 3
             }
         }
 
@@ -507,6 +508,8 @@ Rectangle {
             height: JamiTheme.chatViewFooterButtonSize
             orientation: ListView.Horizontal
             interactive: false
+
+            spacing: 5
 
             property list<Action> menuActions: [
                 Action {
