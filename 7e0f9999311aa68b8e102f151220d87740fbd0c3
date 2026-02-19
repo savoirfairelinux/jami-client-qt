@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7874468_349e060e",
+        "filename": "src/app/mainview/components/MessageFormatBar.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 617,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2026-02-19T18:06:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6957824c_cdbd5ebf",
+      "range": {
+        "startLine": 615,
+        "startChar": 16,
+        "endLine": 617,
+        "endChar": 45
+      },
+      "revId": "7e0f9999311aa68b8e102f151220d87740fbd0c3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c4bee7ec_e2ba1a71",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-02-18T20:42:22Z",
       "side": 1,
       "message": "LIRR, use if statements",
+      "range": {
+        "startLine": 621,
+        "startChar": 16,
+        "endLine": 623,
+        "endChar": 57
+      },
+      "revId": "7e0f9999311aa68b8e102f151220d87740fbd0c3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3838929e_c56253fe",
+        "filename": "src/app/mainview/components/MessageFormatBar.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 623,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2026-02-19T18:06:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4bee7ec_e2ba1a71",
       "range": {
         "startLine": 621,
         "startChar": 16,
