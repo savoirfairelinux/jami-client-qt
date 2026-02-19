@@ -206,6 +206,8 @@ SettingsPageBase {
 
                 Layout.alignment: Qt.AlignLeft
 
+                implicitHeight: JamiTheme.newMaterialButtonSettingsHeight
+
                 filledButton: true
                 iconSource: JamiResources.devices_24dp_svg
                 text: JamiStrings.linkNewDevice
@@ -259,6 +261,8 @@ SettingsPageBase {
                 id: passwdPushButton
 
                 Layout.alignment: Qt.AlignLeft
+
+                implicitHeight: JamiTheme.newMaterialButtonSettingsHeight
 
                 filledButton: true
                 iconSource: JamiResources.password_24dp_svg
@@ -314,6 +318,8 @@ SettingsPageBase {
                 id: btnExportAccount
 
                 Layout.alignment: Qt.AlignLeft
+
+                implicitHeight: JamiTheme.newMaterialButtonSettingsHeight
 
                 filledButton: true
                 iconSource: JamiResources.folder_zip_24dp_svg
@@ -424,6 +430,8 @@ SettingsPageBase {
 
                 Layout.alignment: Qt.AlignLeft
                 Layout.rightMargin: JamiTheme.preferredMarginSize
+
+                implicitHeight: JamiTheme.newMaterialButtonSettingsHeight
 
                 filledButton: true
 
