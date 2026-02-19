@@ -51,7 +51,7 @@ T.Button {
     property bool validFocusReason: focusReason === Qt.TabFocusReason || focusReason === Qt.BacktabFocusReason
 
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset, implicitContentWidth + leftPadding + rightPadding)
-    implicitHeight: 40
+    implicitHeight: JamiTheme.newMaterialButtonHeight
 
     padding: JamiTheme.newMaterialButtonPadding
     horizontalPadding: JamiTheme.newMaterialButtonHorizontalPadding
