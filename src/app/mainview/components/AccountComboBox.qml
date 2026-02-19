@@ -64,9 +64,11 @@ Item {
         }
 
         RowLayout {
+            id: rowLayout
+
             anchors.fill: contentRect
             anchors.margins: JamiTheme.accountComboBoxPadding
-            spacing: 0
+            spacing: 4
             ComboBox {
                 id: accountComboBox
                 objectName: "accountComboBox"
@@ -297,7 +299,7 @@ Item {
                 id: settingsButton
 
                 Layout.alignment: Qt.AlignVCenter
-                Layout.rightMargin: 8
+                Layout.rightMargin: contentRect.radius - settingsButton.background.radius  -  rowLayout.anchors.rightMargin
 
                 iconSize: JamiTheme.iconButtonMedium
                 iconSource: !inSettings ? JamiResources.settings_24dp_svg :
