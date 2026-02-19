@@ -37,7 +37,17 @@ Button {
     // the Button component
     icon.width: iconSize
     icon.height: iconSize
-    icon.color: enabled ? hovered || checked ? JamiTheme.textColor : JamiTheme.buttonTintedGreyHovered : JamiTheme.buttonTintedGreyHovered
+    icon.color: {
+        if (enabled) {
+            if (hovered || checked) {
+                return JamiTheme.textColor;
+            } else {
+                JamiTheme.buttonTintedGreyHovered;
+            }
+        } else {
+            JamiTheme.buttonTintedGreyHovered;
+        }
+    }
     icon.source: iconSource
 
     Behavior on icon.color {
@@ -58,11 +68,17 @@ Button {
 
         opacity: root.hovered || root.checked ? 1.0 : 0.0
 
-        color: JamiTheme.hoveredButtonColor
+        color: root.pressed ? JamiTheme.pressedButtonColor : JamiTheme.hoveredButtonColor
 
         Behavior on opacity {
             enabled: root.enabled
             NumberAnimation {
+                duration: 200
+            }
+        }
+
+        Behavior on color {
+            ColorAnimation {
                 duration: 200
             }
         }
