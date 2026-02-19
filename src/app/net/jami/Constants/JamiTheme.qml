@@ -756,6 +756,7 @@ Item {
     // Account combo box
     property real accountComboBoxRadius: JamiTheme.avatarRadius + 8
     property real accountComboBoxPadding: 4
+    property real accountComboBoxItemSpacing: 4
 
     // Donation banner
     property real donationBannerRadius: JamiTheme.smartListAvatarSize / 2
@@ -796,6 +797,8 @@ Item {
     // Message Bar
     property real messageBarRadius: 28
     property real messageBarReplyToAvatarSize: 24
+    property real messageBarListViewTypoSpacing: 4
+    property real messageBarListViewTypoFirstSpacing: 4
 
     // Share Message Menu
     property real shareMessageMenuMessageInputMaxHeight: 100
@@ -824,4 +827,8 @@ Item {
     property real welcomePageFastBlurRadius: 32
     property real welcomePageColorOverlayOpacity: 0.5
     property real welcomePageTipBoxRadius: 12
+
+    // MarkdownPopup
+    property real markdownPopupPadding: 2
+    property real markdownPopupContentItemSpacing: 4
 }
