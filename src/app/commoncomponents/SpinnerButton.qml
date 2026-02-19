@@ -23,6 +23,8 @@ NewMaterialButton {
     property string spinnerTriggeredtext: value
     property string normalText: value
 
+    implicitHeight: JamiTheme.newMaterialButtonSetupHeight
+
     iconSource: spinnerTriggered ? JamiResources.jami_rolling_spinner_gif : ""
     text: spinnerTriggered ? spinnerTriggeredtext : normalText
     color: !enabled ? JamiTheme.buttonTintedGreyInactive : JamiTheme.buttonTintedBlue

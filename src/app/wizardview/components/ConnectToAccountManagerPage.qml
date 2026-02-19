@@ -173,6 +173,8 @@ Rectangle {
             Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
             Layout.bottomMargin: errorLabel.visible ? 0 : JamiTheme.wizardViewPageBackButtonMargins
 
+            implicitHeight: JamiTheme.newMaterialButtonSetupHeight
+
             enabled: accountManagerEdit.dynamicText.length !== 0
                      && usernameManagerEdit.dynamicText.length !== 0
 
