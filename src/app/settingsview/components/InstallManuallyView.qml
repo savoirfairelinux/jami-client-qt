@@ -63,6 +63,8 @@ ColumnLayout {
     NewMaterialButton {
         id: installManually
 
+        implicitHeight: JamiTheme.newMaterialButtonSettingsHeight
+
         filledButton: true
         text: JamiStrings.install
 

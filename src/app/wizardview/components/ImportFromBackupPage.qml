@@ -109,6 +109,8 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
 
+            implicitHeight: JamiTheme.newMaterialButtonSetupHeight
+
             outlinedButton: true
             text: fileImportBtnText
             toolTipText: JamiStrings.importAccountArchive
@@ -187,6 +189,8 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
             Layout.bottomMargin: errorLabel.visible ? 0 : JamiTheme.wizardViewPageBackButtonMargins
             Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
+
+            implicitHeight: JamiTheme.newMaterialButtonSetupHeight
 
             filledButton: true
             enabled: (filePath.length === 0) && errorText.length === 0

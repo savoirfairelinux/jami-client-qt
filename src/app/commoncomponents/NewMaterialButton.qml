@@ -51,7 +51,7 @@ T.Button {
     property bool validFocusReason: focusReason === Qt.TabFocusReason || focusReason === Qt.BacktabFocusReason
 
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset, implicitContentWidth + leftPadding + rightPadding)
-    implicitHeight: 40
+    implicitHeight: JamiTheme.newMaterialButtonHeight
 
     padding: JamiTheme.newMaterialButtonPadding
     horizontalPadding: JamiTheme.newMaterialButtonHorizontalPadding
@@ -127,7 +127,7 @@ T.Button {
                 if (root.pressed || root.down) {
                     Qt.rgba(root.color.r, root.color.g, root.color.b, 0.80);
                 } else if (root.hovered || (root.activeFocus && validFocusReason)) {
-                    Qt.rgba(root.color.r, root.color.g, root.color.b, 0.92);
+                        Qt.rgba(root.color.r, root.color.g, root.color.b, 0.92);
                 } else{
                     if (root.filledButton)
                         root.color;

@@ -293,6 +293,8 @@ Rectangle {
                 NewMaterialButton {
                     id: confirmButton
 
+                    implicitHeight: JamiTheme.newMaterialButtonSetupHeight
+
                     filledButton: true
                     text: JamiStrings.optionConfirm
                     enabled: true
@@ -458,6 +460,8 @@ Rectangle {
 
             NewMaterialButton {
                 Layout.alignment: Qt.AlignHCenter
+
+                implicitHeight: JamiTheme.newMaterialButtonSetupHeight
 
                 filledButton: true
                 text: JamiStrings.optionTryAgain
