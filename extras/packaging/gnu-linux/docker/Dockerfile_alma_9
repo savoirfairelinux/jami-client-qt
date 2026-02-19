@@ -63,7 +63,6 @@ RUN dnf install -y \
         clutter-gtk-devel \
         libappindicator-gtk3-devel \
         libnotify-devel \
-        libupnp-devel \
         libargon2-devel \
         libsndfile-devel \
         libdrm \
