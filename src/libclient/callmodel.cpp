@@ -1947,11 +1947,12 @@ CallModelPimpl::slotConferenceRemoved(const QString& accountId, const QString& c
     if (participantIt != participantsModel.end() && participantIt->second) {
         for (const auto& participant : participantIt->second->getParticipants()) {
             if (participant.uri != linked.owner.profileInfo.uri) {
-                // getCallFromURI will throw an std::out_of_range if the call is not found
-                // however it is not this function's responsibility to guarantee that the call exists
-                // so we let the exception propagate if it occurs
-                remainingCallId = linked.getCallFromURI(participant.uri, true).id;
-                break;
+                try {
+                    remainingCallId = linked.getCallFromURI(participant.uri, true).id;
+                    break;
+                } catch (const std::out_of_range&) {
+                    qWarning() << "No call found for participant" << participant.uri;
+                }
             }
         }
     } else if (participantIt == participantsModel.end()) {
