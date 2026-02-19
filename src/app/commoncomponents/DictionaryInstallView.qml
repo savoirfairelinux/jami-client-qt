@@ -28,34 +28,42 @@ import SortFilterProxyModel 0.2
 // Search bar for filtering dictionaries
 ColumnLayout {
     id: root
-    spacing: 0
+
     property int checkBoxWidth: 24
+
+    spacing: 0
 
     Component.onCompleted: Qt.callLater(dictionarySearchBar.setTextAreaFocus)
 
+    // Header title
+    Searchbar {
+        id: dictionarySearchBar
+
+        Layout.fillWidth: true
+        Layout.preferredHeight: 55
+
+        focus: true
+
+        placeHolderText: JamiStrings.searchTextLanguages
+
+        onSearchBarTextChanged: function (text) {
+            dictionaryProxyModel.combinedFilterPattern = text;
+            dictionaryProxyModel.invalidate();
+        }
+
+        Accessible.name: JamiStrings.searchTextLanguages
+        Accessible.role: Accessible.EditableText
+        Accessible.description: JamiStrings.searchAvailableTextLanguages
+
+    }
+
     RowLayout {
         id: headerLayout
-        width: parent.width
+
+        Layout.fillWidth: true
         Layout.preferredHeight: childrenRect.height
+        Layout.leftMargin: dictionarySearchBar.radius
 
-        // Header title
-        Searchbar {
-            id: dictionarySearchBar
-
-            focus: true
-            Layout.fillWidth: true
-            Layout.preferredHeight: 55
-
-            placeHolderText: JamiStrings.searchTextLanguages
-            Accessible.name: JamiStrings.searchTextLanguages
-            Accessible.role: Accessible.EditableText
-            Accessible.description: JamiStrings.searchAvailableTextLanguages
-
-            onSearchBarTextChanged: function (text) {
-                dictionaryProxyModel.combinedFilterPattern = text;
-                dictionaryProxyModel.invalidate();
-            }
-        }
         Label {
             text: JamiStrings.showInstalledDictionaries
             color: JamiTheme.faddedLastInteractionFontColor
@@ -68,12 +76,19 @@ ColumnLayout {
         // Checkbox to filter installed dictionaries
         CheckBox {
             id: showInstalledOnlyCheckbox
-            Accessible.name: JamiStrings.showInstalledDictionaries
-            Accessible.role: Accessible.CheckBox
-            Accessible.description: JamiStrings.showInstalledDictionariesDescription
+
+            Layout.preferredWidth: 55
+            Layout.preferredHeight: 55
+            Layout.rightMargin: 0
+
             checked: false
+
             indicator: Image {
                 anchors.centerIn: parent
+
+                width: checkBoxWidth
+                height: checkBoxWidth
+
                 layer {
                     enabled: true
                     effect: ColorOverlay {
@@ -82,14 +97,13 @@ ColumnLayout {
                     mipmap: false
                     smooth: true
                 }
-                width: checkBoxWidth
-                height: checkBoxWidth
+
                 source: showInstalledOnlyCheckbox.checked ? JamiResources.check_box_24dp_svg : JamiResources.check_box_outline_blank_24dp_svg
             }
 
-            Layout.preferredWidth: 55
-            Layout.preferredHeight: 55
-            Layout.rightMargin: 0
+            Accessible.name: JamiStrings.showInstalledDictionaries
+            Accessible.role: Accessible.CheckBox
+            Accessible.description: JamiStrings.showInstalledDictionariesDescription
         }
     }
 
@@ -110,7 +124,7 @@ ColumnLayout {
     JamiListView {
         id: spellCheckDictionaryListView
 
-        width: parent.width
+        Layout.fillWidth: true
         Layout.fillHeight: true
 
         model: SortFilterProxyModel {
@@ -159,6 +173,7 @@ ColumnLayout {
 
         delegate: ItemDelegate {
             id: dictionaryDelegate
+
             width: spellCheckDictionaryListView.width
             height: Math.max(JamiTheme.preferredFieldHeight, contentLayout.implicitHeight + 32)
 
@@ -167,22 +182,25 @@ ColumnLayout {
                 width: parent.width - spellCheckDictionaryListView.itemMargins
                 height: parent.height
                 color: JamiTheme.backgroundColor
-                radius: JamiTheme.primaryRadius
+                radius: height / 2//JamiTheme.primaryRadius
                 border.color: "transparent"
                 border.width: 1
             }
 
             RowLayout {
                 id: contentLayout
+
                 anchors.fill: parent
                 anchors.margins: 16
+                anchors.leftMargin: dictionaryDelegate.background.radius
+                anchors.rightMargin: dictionaryDelegate.background.radius
                 spacing: 16
 
                 // Dictionary info
                 ColumnLayout {
                     Layout.fillWidth: true
                     Layout.alignment: Qt.AlignVCenter
-                    Layout.leftMargin: 16
+                    //Layout.leftMargin: 16
                     spacing: 2
 
                     Text {
@@ -213,7 +231,6 @@ ColumnLayout {
                     Layout.preferredWidth: 100
                     Layout.preferredHeight: 32
                     Layout.alignment: Qt.AlignVCenter
-                    Layout.rightMargin: 16
 
                     // Install button for available dictionaries
                     MaterialButton {
@@ -221,8 +238,6 @@ ColumnLayout {
                         anchors.centerIn: parent
                         width: 100
                         height: 32
-                        Accessible.name: dictionaryName.text + " " + JamiStrings.install
-                        Accessible.role: Accessible.Button
 
                         text: JamiStrings.install
 
@@ -251,6 +266,9 @@ ColumnLayout {
                             }
                         }
 
+                        Accessible.name: dictionaryName.text + " " + JamiStrings.install
+                        Accessible.role: Accessible.Button
+
                         onClicked: {
                             if (model.Locale) {
                                 SpellCheckAdapter.installDictionary(model.Locale);
@@ -263,12 +281,13 @@ ColumnLayout {
                     // Uninstall button for installed dictionaries (not system dictionaries)
                     MaterialButton {
                         id: uninstallButton
+
                         anchors.centerIn: parent
+
                         width: 100
                         height: 32
 
-                        Accessible.name: dictionaryName.text + " " + JamiStrings.uninstall
-                        Accessible.role: Accessible.Button
+                        visible: !model.Downloading && model.Installed && !model.IsSystem && model.Locale !== undefined && model.Locale !== ""
 
                         text: JamiStrings.uninstall
                         color: "#ff6666"
@@ -305,7 +324,9 @@ ColumnLayout {
                             }
                         }
 
-                        visible: !model.Downloading && model.Installed && !model.IsSystem && model.Locale !== undefined && model.Locale !== ""
+
+                        Accessible.name: dictionaryName.text + " " + JamiStrings.uninstall
+                        Accessible.role: Accessible.Button
                     }
 
                     // System dictionary indicator
