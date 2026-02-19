@@ -175,6 +175,8 @@ Rectangle {
                     Layout.alignment: Qt.AlignCenter
                     Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
 
+                    implicitHeight: JamiTheme.newMaterialButtonSetupHeight
+
                     filledButton: true
                     text: JamiStrings.addSip
 
@@ -205,6 +207,8 @@ Rectangle {
                     Layout.alignment: Qt.AlignCenter
                     Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins * 2
                     Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
+
+                    implicitHeight: JamiTheme.newMaterialButtonSetupHeight
 
                     textButton: true
                     text: JamiStrings.personalizeAccount

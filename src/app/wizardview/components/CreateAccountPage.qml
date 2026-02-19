@@ -286,6 +286,8 @@ Rectangle {
                     Layout.alignment: Qt.AlignCenter
                     Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
 
+                    implicitHeight: JamiTheme.newMaterialButtonSetupHeight
+
                     z: -1
 
                     filledButton: true

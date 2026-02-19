@@ -179,6 +179,7 @@ Rectangle {
             Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
 
             implicitWidth: root.buttonSize
+            implicitHeight: JamiTheme.newMaterialButtonSetupHeight
 
             filledButton: true
             text: JamiStrings.joinJami
@@ -200,6 +201,7 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
 
             implicitWidth: root.buttonSize
+            implicitHeight: JamiTheme.newMaterialButtonSetupHeight
 
             filledButton: true
             text: JamiStrings.alreadyHaveAccount
@@ -229,6 +231,7 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
 
             implicitWidth: root.buttonSize
+            implicitHeight: JamiTheme.newMaterialButtonSetupHeight
 
             outlinedButton: true
             text: JamiStrings.importAccountFromAnotherDevice
@@ -252,6 +255,7 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
 
             implicitWidth: root.buttonSize
+            implicitHeight: JamiTheme.newMaterialButtonSetupHeight
 
             outlinedButton: true
             text: JamiStrings.importAccountFromBackup
@@ -276,6 +280,7 @@ Rectangle {
             Layout.bottomMargin: newSIPAccountButton.visible ? 0 :
                                                                JamiTheme.wizardViewPageBackButtonMargins
             implicitWidth: root.buttonSize
+            implicitHeight: JamiTheme.newMaterialButtonSetupHeight
 
             textButton: true
             text: JamiStrings.advancedFeatures
@@ -303,7 +308,9 @@ Rectangle {
             objectName: "newRdvButton"
 
             Layout.alignment: Qt.AlignCenter
+
             implicitWidth: root.buttonSize
+            implicitHeight: JamiTheme.newMaterialButtonSetupHeight
 
             outlinedButton: true
             text: JamiStrings.createNewRV
@@ -327,6 +334,7 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
 
             implicitWidth: root.buttonSize
+            implicitHeight: JamiTheme.newMaterialButtonSetupHeight
 
             outlinedButton: true
             text: JamiStrings.connectJAMSServer
@@ -351,6 +359,7 @@ Rectangle {
             Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins
 
             implicitWidth: root.buttonSize
+            implicitHeight: JamiTheme.newMaterialButtonSetupHeight
 
             outlinedButton: true
             text: JamiStrings.addSIPAccount

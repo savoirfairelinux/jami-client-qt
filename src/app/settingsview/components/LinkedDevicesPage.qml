@@ -62,6 +62,8 @@ SettingsPageBase {
             Layout.alignment: Qt.AlignLeft
             Layout.bottomMargin: JamiTheme.preferredMarginSize
 
+            implicitHeight: JamiTheme.newMaterialButtonSettingsHeight
+
             filledButton: true
             iconSource: JamiResources.devices_24dp_svg
             text: JamiStrings.linkNewDevice
