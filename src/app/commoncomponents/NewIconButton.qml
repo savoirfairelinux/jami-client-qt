@@ -33,6 +33,11 @@ Button {
     property alias toolTipText: iconButtonToolTip.text
     property alias toolTipShortcutKey: iconButtonToolTip.shortcutKey
 
+    implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
+                            implicitContentWidth + leftPadding + rightPadding)
+    implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
+                             implicitContentHeight + topPadding + bottomPadding)
+
     // The icon property is defined within the contentIcon of
     // the Button component
     icon.width: iconSize
@@ -50,6 +55,11 @@ Button {
     }
     icon.source: iconSource
 
+    leftPadding: iconSize / 4
+    rightPadding: iconSize / 4
+    topPadding: iconSize / 4
+    bottomPadding: iconSize / 4
+
     Behavior on icon.color {
         enabled: root.enabled
         ColorAnimation {
@@ -60,11 +70,10 @@ Button {
     background: Rectangle {
         visible: root.enabled
 
-        width: icon.width + (iconSize / 2)
-        height: icon.height + (iconSize / 2)
+        implicitWidth: icon.width + (iconSize / 2)
+        implicitHeight: icon.height + (iconSize / 2)
 
         radius: height / 2
-        anchors.centerIn: contentItem
 
         opacity: root.hovered || root.checked ? 1.0 : 0.0
 
