@@ -49,7 +49,7 @@ T.Button {
     property string toolTipText: ""
 
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset, implicitContentWidth + leftPadding + rightPadding)
-    implicitHeight: 40
+    implicitHeight: 48
 
     padding: JamiTheme.newMaterialButtonPadding
     horizontalPadding: JamiTheme.newMaterialButtonHorizontalPadding
