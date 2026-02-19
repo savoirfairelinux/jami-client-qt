@@ -29,10 +29,15 @@ Popup {
 
     property list<Action> menuTypoActionsSecond
 
-    width: contentWidth
-    height: JamiTheme.chatViewFooterButtonSize
+    implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
+                            contentWidth + leftPadding + rightPadding)
+    implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
+                             contentHeight + topPadding + bottomPadding)
 
-    padding: 0
+    leftPadding: 2
+    rightPadding: 2
+    topPadding: 2
+    bottomPadding: 2
 
     focus: true
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
@@ -44,7 +49,6 @@ Popup {
             model: menuTypoActionsSecond
 
             delegate: NewIconButton {
-                Layout.fillHeight: true
                 Layout.alignment: Qt.AlignVCenter
 
                 iconSize: JamiTheme.iconButtonSmall
@@ -58,12 +62,9 @@ Popup {
     }
 
     background: Rectangle {
-        anchors.fill: parent
-
-        z: -1
-
-        color: JamiTheme.chatViewFooterListColor
         radius: height / 2
+
+        color: JamiTheme.backgroundColor
     }
 
     enter: Transition {
