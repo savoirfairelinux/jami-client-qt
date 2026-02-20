@@ -253,7 +253,7 @@ MessagesAdapter::copyToDownloads(const QString& interactionId, const QString& di
                                                        downloadDir,
                                                        displayName);
         if (!dest.isEmpty()) {
-            Q_EMIT fileCopied(dest);
+            Q_EMIT fileCopied(displayName, "");
         }
     }
 }

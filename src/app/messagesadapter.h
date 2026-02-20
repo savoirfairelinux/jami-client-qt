@@ -169,7 +169,7 @@ Q_SIGNALS:
     void newTextPasted();
     void moreMessagesLoaded(qint32 loadingRequestId);
     void timestampUpdated();
-    void fileCopied(const QString& dest);
+    void fileCopied(const QString& fileName, const QString& downloadDir);
     void messageParsed(const QString& msgId, const QString& msg);
 
 private Q_SLOTS:
