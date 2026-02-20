@@ -26,21 +26,11 @@ Rectangle {
     property alias mask: mask
 
     Rectangle {
-        id: maskReplyBorder
-        anchors.fill: parent
-        anchors.margins: -1
-        radius: 5
-        color: "transparent"
-        border.color: JamiTheme.chatviewBgColor
-        border.width: isReply ? 2 : 0
-    }
-
-    Rectangle {
         id: mask
 
         visible: type !== MsgSeq.single && !isReply
         z: -1
-        radius: 5
+        radius: 22
         color: root.color
         anchors {
             fill: parent
@@ -55,7 +45,7 @@ Rectangle {
         id: maskReply
         visible: isReply
         z: -1
-        radius: 5
+        radius: 22
         color: root.color
         anchors {
             fill: parent
@@ -70,7 +60,7 @@ Rectangle {
         id: maskReplyFirst
         visible: isReply && type === MsgSeq.first
         z: -2
-        radius: 5
+        radius: 22
         color: root.color
         anchors {
             fill: parent
