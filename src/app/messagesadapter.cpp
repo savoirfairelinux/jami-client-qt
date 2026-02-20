@@ -252,8 +252,10 @@ MessagesAdapter::copyToDownloads(const QString& interactionId, const QString& di
                                                        interactionId,
                                                        downloadDir,
                                                        displayName);
+
+        QString downloadDirName = QDir(downloadDir).dirName();
         if (!dest.isEmpty()) {
-            Q_EMIT fileCopied(dest);
+            Q_EMIT fileCopied(displayName, downloadDirName);
         }
     }
 }

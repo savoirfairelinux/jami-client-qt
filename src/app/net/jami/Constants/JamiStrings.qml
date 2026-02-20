@@ -324,7 +324,7 @@ Item {
     property string layoutSettings: qsTr("Layout settings")
     property string tileScreenshot: qsTr("Take tile screenshot")
     property string screenshotTaken: qsTr("Screenshot saved to %1")
-    property string fileSaved: qsTr("File saved to %1")
+    property string fileSaved: qsTr("%1 saved to %2")
 
     // Advanced information
     property string renderersInformation: qsTr("Renderers information")

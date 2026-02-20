@@ -165,8 +165,8 @@ ListView {
 
         anchors.fill: parent
 
-        function instantiateToast(dest) {
-            instantiate(JamiStrings.fileSaved.arg(dest), 1000, 400);
+        function instantiateToast(fileName, downloadDir) {
+            instantiate(JamiStrings.fileSaved.arg(fileName).arg(downloadDir), 1000, 400);
         }
     }
 
@@ -286,8 +286,8 @@ ListView {
             chunkLoadDebounceTimer.restart();
         }
 
-        function onFileCopied(dest) {
-            toastManager.instantiateToast(dest);
+        function onFileCopied(fileName, downloadDir) {
+            toastManager.instantiateToast(fileName, downloadDir);
         }
     }
 
