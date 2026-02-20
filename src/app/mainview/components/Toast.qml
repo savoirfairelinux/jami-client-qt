@@ -15,34 +15,45 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import QtQuick
+import QtQuick.Controls
 import net.jami.Constants 1.1
 
-Rectangle {
+Control {
     id: root
-
-    anchors.top: parent.top
-    anchors.horizontalCenter: parent.horizontalCenter
-    width: textMessage.width + 20
-    height: textMessage.height + 10
-    anchors.topMargin: 10
-    radius: 15
-    color: JamiTheme.toastRectColor
 
     property int duration
     property int fadingTime
     property string message
 
+    anchors.top: parent.top
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.topMargin: 10
+
+    implicitWidth: Math.min(textMessage.implicitWidth + leftPadding + rightPadding, parent.width - 20)
+    implicitHeight: textMessage.implicitHeight + topPadding + bottomPadding
+
+    topPadding: 10
+    bottomPadding: 10
+    leftPadding: background.radius
+    rightPadding: background.radius
+
+    contentItem: Text {
+        id: textMessage
+
+        text: message
+        elide: Text.ElideRight
+        font.pointSize: JamiTheme.toastFontSize
+        color: JamiTheme.toastColor
+    }
+
+
     Component.onCompleted: {
         anim.start();
     }
 
-    Text {
-        id: textMessage
-
-        anchors.centerIn: root
-        text: message
-        font.pointSize: JamiTheme.toastFontSize
-        color: JamiTheme.toastColor
+    background: Rectangle {
+        radius: height / 2
+        color: JamiTheme.toastRectColor
     }
 
     SequentialAnimation on opacity  {
