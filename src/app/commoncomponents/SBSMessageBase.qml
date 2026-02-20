@@ -50,7 +50,7 @@ Control {
     property int timestamp: Timestamp
     readonly property real senderMargin: 64
     readonly property real avatarSize: 20
-    readonly property real msgRadius: 10
+    readonly property real msgRadius: 22
     readonly property real hPadding: JamiTheme.sbsMessageBasePreferredPadding
     property bool textHovered: false
     property alias replyAnimation: selectAnimation
@@ -158,6 +158,8 @@ Control {
 
                     spacing: replyItem.isSelf ? 2 : 4
                     Layout.alignment: isOutgoing ? Qt.AlignRight : Qt.AlignLeft
+                    Layout.leftMargin: msgRadius
+                    Layout.rightMargin: msgRadius
                     property var replyUserName: UtilsAdapter.getBestNameForUri(CurrentAccount.id,
                                                                                ReplyToAuthor)
 
@@ -435,7 +437,7 @@ Control {
                     }
                 }
 
-                MessageBubble {
+                MessageBubble { //Scaffold {}
                     id: bubble
 
                     property bool isEdited: PreviousBodies.length !== 0
