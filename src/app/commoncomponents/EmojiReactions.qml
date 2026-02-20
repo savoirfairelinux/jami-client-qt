@@ -89,11 +89,15 @@ Item {
     Rectangle {
         id: reactionBubble
 
-        color: JamiTheme.emojiReactBubbleBgColor
+        anchors.centerIn: textEmojis
+
         width: textEmojis.width + 10
         height: textEmojis.height + 10
-        anchors.centerIn: textEmojis
-        radius: 5
+
+        radius: height / 2
+
+        color: JamiTheme.emojiReactBubbleBgColor
+
         border.color: root.borderColor
         border.width: 1
     }
