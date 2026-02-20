@@ -153,7 +153,7 @@ BaseContextMenu {
             iconSource: JamiResources.round_folder_24dp_svg
             itemName: JamiStrings.openLocation
             onClicked: {
-                MessagesAdapter.openDirectory(root.location);
+                MessagesAdapter.openDirectory(UtilsAdapter.getDirDownload());
             }
         },
         GeneralMenuItem {
