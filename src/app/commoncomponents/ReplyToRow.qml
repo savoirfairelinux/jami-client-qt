@@ -30,6 +30,7 @@ Item {
 
     property int requestId: -1
     property var replyTransferName: MessagesAdapter.dataForInteraction(ReplyTo, MessageList.TransferName)
+    property alias bodyText: body.text
 
     Connections {
         target: MessagesAdapter

@@ -73,9 +73,6 @@ SBSMessageBase {
         TextEdit {
             id: textEditId
 
-            padding: isEmojiOnly ? 5 : 10
-            topPadding: bubble.isDeleted ? 6 : 10
-            bottomPadding: bubble.isDeleted ? 6 : 10
             anchors.right: isOutgoing ? parent.right : undefined
             anchors.rightMargin: isOutgoing && !isEmojiOnly && !bigMsg ? rootDelegate.timeWidth + rootDelegate.editedWidth : 0
             text: {
@@ -97,9 +94,11 @@ SBSMessageBase {
             }
             horizontalAlignment: Text.AlignLeft
 
-            HoverHandler {
-                id: textHoverhandler
-            }
+            padding: isEmojiOnly ? 5 : 10
+            leftPadding: rootDelegate.msgRadius
+            rightPadding: rootDelegate.msgRadius
+            topPadding: rootDelegate.bubble.isDeleted ? 6 : rootDelegate.msgRadius / 2
+            bottomPadding: rootDelegate.bubble.isDeleted ? 6 : rootDelegate.msgRadius / 2
 
             width: {
                 if (extraContent.active)
@@ -110,18 +109,21 @@ SBSMessageBase {
                     Math.min((2 / 3) * rootDelegate.maxMsgWidth, implicitWidth + 5, innerContent.width - senderMargin + 5);
             }
 
-            wrapMode: Label.WrapAtWordBoundaryOrAnywhere
-            selectByMouse: true
-            font.pointSize: isEmojiOnly ? JamiTheme.chatviewEmojiSize : (ParsedBody === "" ? JamiTheme.smallFontSize : JamiTheme.mediumFontSize)
-            font.hintingPreference: Font.PreferNoHinting
-            renderType: Text.NativeRendering
             textFormat: Text.RichText
-            clip: true
-            onLinkHovered: rootDelegate.hoveredLink = hoveredLink
-            onLinkActivated: Qt.openUrlExternally(new URL(hoveredLink))
-            readOnly: true
             color: (ParsedBody !== "") ? getBaseColor() : (UtilsAdapter.luma(bubble.color) ? "white" : "dark")
             opacity: (ParsedBody !== "") ? 1 : 0.5
+            wrapMode: Label.WrapAtWordBoundaryOrAnywhere
+
+            font.pointSize: isEmojiOnly ? JamiTheme.chatviewEmojiSize : (ParsedBody === "" ? JamiTheme.smallFontSize : JamiTheme.mediumFontSize)
+            font.hintingPreference: Font.PreferNoHinting
+
+            selectByMouse: true
+            renderType: Text.NativeRendering
+            clip: true
+            readOnly: true
+
+            onLinkHovered: rootDelegate.hoveredLink = hoveredLink
+            onLinkActivated: Qt.openUrlExternally(new URL(hoveredLink))
 
             function getBaseColor() {
                 var baseColor;
@@ -137,6 +139,10 @@ SBSMessageBase {
                         baseColor = JamiTheme.chatviewTextColorDark;
                 }
                 return baseColor;
+            }
+
+            HoverHandler {
+                id: textHoverhandler
             }
 
             TapHandler {

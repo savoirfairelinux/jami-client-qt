@@ -54,7 +54,7 @@ Control {
     property int timestamp: Timestamp
     readonly property real senderMargin: 64
     readonly property real avatarSize: 20
-    readonly property real msgRadius: 10
+    readonly property real msgRadius: 22
     readonly property real hPadding: JamiTheme.sbsMessageBasePreferredPadding
     property bool textHovered: false
     property alias replyAnimation: selectAnimation
@@ -106,23 +106,37 @@ Control {
         id: mainColumnLayout
 
         anchors.centerIn: parent
+
         width: parent.width - hPadding * 2
+
         spacing: 0
 
         TimestampInfo {
             id: dateItem
-            showDay: root.showDay
-            formattedDay: root.formattedDay
+
             Layout.alignment: Qt.AlignHCenter
             Layout.fillWidth: true
             Layout.fillHeight: true
+
+            showDay: root.showDay
+            formattedDay: root.formattedDay
         }
 
+        // ALL GOOD, DO NOT TOUCH
         Label {
             id: username
 
-            wrapMode: Text.NoWrap
+            Layout.leftMargin: msgRadius + avatarSize
+
             text: textMetricsUsername.elidedText
+            textFormat: TextEdit.PlainText
+            color: JamiTheme.chatviewSecondaryInformationColor
+            wrapMode: Text.NoWrap
+
+            font.pointSize: JamiTheme.smallFontSize
+
+            visible: (seq === MsgSeq.first || seq === MsgSeq.single) && !isOutgoing && !isReply
+
             TextMetrics {
                 id: textMetricsUsername
 
@@ -130,27 +144,21 @@ Control {
                 elideWidth: 200
                 elide: Qt.ElideMiddle
             }
-            visible: (seq === MsgSeq.first || seq === MsgSeq.single) && !isOutgoing && !isReply
-
-            font.pointSize: JamiTheme.smallFontSize
-            color: JamiTheme.chatviewSecondaryInformationColor
-            leftPadding: JamiTheme.usernameBlockPadding
-            textFormat: TextEdit.PlainText
         }
 
         Item {
             id: replyItem
-            property bool isSelf: ReplyToAuthor === CurrentAccount.uri
 
-            visible: root.isReply
-            width: parent.width
+            property bool isSelf: ReplyToAuthor === CurrentAccount.uri
 
             Layout.fillWidth: true
             Layout.preferredHeight: childrenRect.height
-
             Layout.topMargin: visible ? JamiTheme.sbsMessageBaseReplyTopMargin : 0
             Layout.leftMargin: isOutgoing ? undefined : JamiTheme.sbsMessageBaseReplyMargin
             Layout.rightMargin: !isOutgoing ? undefined : JamiTheme.sbsMessageBaseReplyMargin
+
+            visible: root.isReply
+            width: parent.width
 
             transform: Translate {
                 y: JamiTheme.sbsMessageBaseReplyBottomMargin
@@ -163,44 +171,48 @@ Control {
                 RowLayout {
                     id: replyToLayout
 
-                    spacing: replyItem.isSelf ? 2 : 4
+                    property var replyUserName: UtilsAdapter.getBestNameForUri(CurrentAccount.id, ReplyToAuthor)
+
                     Layout.alignment: isOutgoing ? Qt.AlignRight : Qt.AlignLeft
-                    property var replyUserName: UtilsAdapter.getBestNameForUri(CurrentAccount.id,
-                                                                               ReplyToAuthor)
+                    Layout.leftMargin: isOutgoing || replyToRow.bodyText.length === 0 ? 0 : replyBubble.topLeftRadius
+                    Layout.rightMargin: isOutgoing || replyToRow.bodyText.length === 0 ? replyBubble.topRightRadius : 0
+
+                    spacing: replyItem.isSelf ? 2 : 4
 
                     Label {
                         id: replyTo
 
-                        wrapMode: Text.NoWrap
                         text: textMetricsUsername1.elidedText
-                        TextMetrics {
-                            id: textMetricsUsername1
-                            text: isOutgoing ? JamiStrings.inReplyTo : JamiStrings.repliedTo.arg(
-                                                   UtilsAdapter.getBestNameForUri(CurrentAccount.id,
-                                                                                  Author))
-                            elideWidth: 200
-                            elide: Qt.ElideMiddle
-                        }
-
                         color: JamiTheme.messageReplyColor
+                        wrapMode: Text.NoWrap
+
                         font.pointSize: JamiTheme.textFontSize
                         font.kerning: true
                         font.bold: true
+
+                        TextMetrics {
+                            id: textMetricsUsername1
+                            text: isOutgoing ? JamiStrings.inReplyTo : JamiStrings.repliedTo.arg(UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author))
+                            elideWidth: 200
+                            elide: Qt.ElideMiddle
+                        }
                     }
 
                     Avatar {
                         id: avatarReply
 
-                        visible: !replyItem.isSelf
                         Layout.preferredWidth: JamiTheme.avatarReadReceiptSize
                         Layout.preferredHeight: JamiTheme.avatarReadReceiptSize
-                        showPresenceIndicator: false
+
+                        mode: replyItem.isSelf ? Avatar.Mode.Account : Avatar.Mode.Contact
                         imageId: {
                             if (replyItem.isSelf)
                                 return CurrentAccount.id;
                             return ReplyToAuthor;
                         }
-                        mode: replyItem.isSelf ? Avatar.Mode.Account : Avatar.Mode.Contact
+                        showPresenceIndicator: false
+
+                        visible: !replyItem.isSelf
                     }
 
                     Label {
@@ -226,13 +238,18 @@ Control {
                 Rectangle {
                     id: replyBubble
 
-                    z: -2
-                    color: replyItem.isSelf ? convContext.color : JamiTheme.messageInBgColor
-                    radius: msgRadius
-
                     Layout.preferredWidth: replyToRow.width + 2 * JamiTheme.preferredMarginSize
                     Layout.preferredHeight: replyToRow.height + 2 * JamiTheme.preferredMarginSize
                     Layout.alignment: isOutgoing ? Qt.AlignRight : Qt.AlignLeft
+
+                    z: -2
+
+                    topLeftRadius: msgRadius
+                    topRightRadius: msgRadius
+                    bottomLeftRadius: bubble.width > replyBubble.width ? 0 : msgRadius
+                    bottomRightRadius: bubble.width > replyBubble.width ? 0 : msgRadius
+
+                    color: replyItem.isSelf ? Qt.darker(CurrentConversation.color, 1.5) : Qt.darker(JamiTheme.messageInBgColor, 1.5)
 
                     // place actual content here
                     ReplyToRow {
@@ -342,6 +359,13 @@ Control {
 
                         visible: shouldBeVisible
 
+                        opacity: shouldBeVisible ? 1.0 : 0.0
+                        Behavior on opacity {
+                            NumberAnimation {
+                                duration: JamiTheme.longFadeDuration
+                            }
+                        }
+
                         onClicked: {
                             if (more.isOpen) {
                                 more.setBindings();
@@ -381,6 +405,13 @@ Control {
 
                         visible: shouldBeVisible
 
+                        opacity: shouldBeVisible ? 1.0 : 0.0
+                        Behavior on opacity {
+                            NumberAnimation {
+                                duration: JamiTheme.longFadeDuration
+                            }
+                        }
+
                         onClicked: {
                             MessagesAdapter.editId = "";
                             MessagesAdapter.replyToId = Id;
@@ -410,6 +441,13 @@ Control {
                         toolTipText: JamiStrings.share
 
                         visible: shouldBeVisible
+
+                        opacity: shouldBeVisible ? 1.0 : 0.0
+                        Behavior on opacity {
+                            NumberAnimation {
+                                duration: JamiTheme.longFadeDuration
+                            }
+                        }
 
                         onClicked: {
                             if (share.isOpen) {
@@ -447,19 +485,15 @@ Control {
 
                     property bool isEdited: PreviousBodies.length !== 0
                     property bool isDeleted: false
-                    z: -1
-                    out: isOutgoing
-                    type: seq
-                    isReply: root.isReply
-                    color: IsEmojiOnly ? "transparent" : root.getBaseColor()
-                    radius: msgRadius
-                    anchors.right: isOutgoing ? parent.right : undefined
-                    anchors.top: parent.top
-
                     property real timePosition: JamiTheme.emojiMargins + emojiReactions.width + 8
                     property alias timestampItem: timestampItem
                     property bool bubbleHovered
                     property string imgSource
+
+                    anchors.right: isOutgoing ? parent.right : undefined
+                    anchors.top: parent.top
+
+                    z: -1
 
                     width: (root.type === Interaction.Type.TEXT || isDeleted
                             ? root.textContentWidth + (IsEmojiOnly || root.bigMsg ? 0 :
@@ -468,6 +502,13 @@ Control {
                               innerContent.childrenRect.width)
                     height: innerContent.childrenRect.height + (visible ? root.extraHeight : 0) + (
                                 root.bigMsg ? 15 : 0)
+                    radius: msgRadius
+
+                    color: IsEmojiOnly ? "transparent" : root.getBaseColor()
+
+                    out: isOutgoing
+                    type: seq
+                    isReply: root.isReply
 
                     HoverHandler {
                         target: root
@@ -480,6 +521,17 @@ Control {
                     TimestampInfo {
                         id: timestampItem
 
+                        anchors.bottom: parent.bottom
+                        anchors.right: IsEmojiOnly ? (isOutgoing ? parent.right : undefined) :
+                                                     parent.right
+                        anchors.left: ((IsEmojiOnly || root.timeUnderBubble) && !isOutgoing)
+                                      ? parent.left : undefined
+                        anchors.leftMargin: (IsEmojiOnly && !isOutgoing && emojiReactions.visible)
+                                            ? bubble.timePosition : 0
+                        anchors.rightMargin: IsEmojiOnly ? ((isOutgoing && emojiReactions.visible)
+                                                            ? bubble.timePosition : 0) : (
+                                                               root.timeUnderBubble ? 0 : 10)
+
                         showTime: IsEmojiOnly && !(root.seq === MsgSeq.last || root.seq
                                                    === MsgSeq.single) ? false : true
                         formattedTime: root.formattedTime
@@ -491,16 +543,6 @@ Control {
                                                                              ? "white" : "dark")
                         timeLabel.opacity: 0.5
 
-                        anchors.bottom: parent.bottom
-                        anchors.right: IsEmojiOnly ? (isOutgoing ? parent.right : undefined) :
-                                                     parent.right
-                        anchors.left: ((IsEmojiOnly || root.timeUnderBubble) && !isOutgoing)
-                                      ? parent.left : undefined
-                        anchors.leftMargin: (IsEmojiOnly && !isOutgoing && emojiReactions.visible)
-                                            ? bubble.timePosition : 0
-                        anchors.rightMargin: IsEmojiOnly ? ((isOutgoing && emojiReactions.visible)
-                                                            ? bubble.timePosition : 0) : (
-                                                               root.timeUnderBubble ? 0 : 10)
                         timeLabel.Layout.bottomMargin: {
                             if (IsEmojiOnly)
                                 return -15;
@@ -535,6 +577,7 @@ Control {
                     }
                 }
 
+                // ALL GOOD, DO NOT TOUCH
                 EmojiReactions {
                     id: emojiReactions
 
