@@ -74,6 +74,7 @@ SBSMessageBase {
             id: textEditId
 
             padding: isEmojiOnly ? 5 : 10
+            leftPadding: rootDelegate.msgRadius
             topPadding: bubble.isDeleted ? 6 : 10
             bottomPadding: bubble.isDeleted ? 6 : 10
             anchors.right: isOutgoing ? parent.right : undefined
