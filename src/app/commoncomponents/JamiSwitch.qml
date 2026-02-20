@@ -63,6 +63,21 @@ Switch {
 
             color: root.checked ? JamiTheme.switchHandleCheckedColor : JamiTheme.switchHandleColor
             border.color: JamiTheme.switchHandleBorderColor
+
+            Behavior on color {
+
+                ColorAnimation {
+                    easing.type: Easing.OutQuad
+                    duration: JamiTheme.shortFadeDuration
+                }
+            }
+
+            Behavior on x {
+                NumberAnimation {
+                    duration: JamiTheme.shortFadeDuration
+                    easing.type: Easing.OutQuad
+                }
+            }
         }
     }
 
