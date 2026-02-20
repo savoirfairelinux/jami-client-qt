@@ -102,21 +102,26 @@ Loader {
 
                     anchors.right: isOutgoing ? parent.right : undefined
                     anchors.rightMargin: isOutgoing ? timeWidth : 0
-                    bottomPadding: 6
-                    topPadding: 6
-                    leftPadding: 10
-                    text: JamiStrings.deletedMedia.arg(UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author))
-                    horizontalAlignment: Text.AlignLeft
+
+                    leftPadding: deletedItem.msgRadius
+                    rightPadding: deletedItem.msgRadius
+                    topPadding: deletedItem.bubble.isDeleted ? 6 : deletedItem.msgRadius / 2
+                    bottomPadding: deletedItem.bubble.isDeleted ? 6 : deletedItem.msgRadius / 2
+
                     width: Math.min((2 / 3) * parent.width, implicitWidth + 18, innerContent.width - senderMargin + 18)
+
+                    text: JamiStrings.deletedMedia.arg(UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author))
+                    textFormat: Text.RichText
+                    color: getBaseColor()
+                    opacity: 0.5
+                    horizontalAlignment: Text.AlignLeft
 
                     font.pointSize: JamiTheme.smallFontSize
                     font.hintingPreference: Font.PreferNoHinting
+
                     renderType: Text.NativeRendering
-                    textFormat: Text.RichText
                     clip: true
                     readOnly: true
-                    color: getBaseColor()
-                    opacity: 0.5
 
                     function getBaseColor() {
                         bubble.isDeleted = true;
