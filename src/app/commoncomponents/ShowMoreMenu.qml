@@ -149,11 +149,11 @@ BaseContextMenu {
         GeneralMenuItem {
             id: openLocation
 
-            canTrigger: type === Interaction.Type.DATA_TRANSFER
+            canTrigger: type === Interaction.Type.DATA_TRANSFER && TransferStatus === Interaction.TransferStatus.TRANSFER_FINISHED && UtilsAdapter.fileExists(root.location)
             iconSource: JamiResources.round_folder_24dp_svg
             itemName: JamiStrings.openLocation
             onClicked: {
-                MessagesAdapter.openDirectory(root.location);
+                MessagesAdapter.openDirectory(UtilsAdapter.getDirDownload());
             }
         },
         GeneralMenuItem {
