@@ -49,6 +49,7 @@ ContextMenuAutoLoader {
 
             canTrigger: root.selectionStart !== root.selectionEnd && !root.selectOnly
             itemName: JamiStrings.cut
+            iconSource: JamiResources.content_cut_24dp_svg
             onClicked: root.lineEditObj.cut()
         },
         GeneralMenuItem {
@@ -56,6 +57,7 @@ ContextMenuAutoLoader {
 
             canTrigger: root.selectionStart !== root.selectionEnd
             itemName: JamiStrings.copy
+            iconSource: JamiResources.content_copy_24dp_svg
             onClicked: root.lineEditObj.copy()
         },
         GeneralMenuItem {
@@ -63,6 +65,7 @@ ContextMenuAutoLoader {
 
             canTrigger: !root.selectOnly && root.lineEditObj && root.lineEditObj.canPaste
             itemName: JamiStrings.paste
+            iconSource: JamiResources.content_paste_24dp_svg
             onClicked: {
                 if (root.customizePaste)
                     root.contextMenuRequirePaste();
@@ -74,6 +77,7 @@ ContextMenuAutoLoader {
             id: textLanguage
             canTrigger: isSpellCheckActive() && SpellCheckAdapter.installedDictionaryCount > 0 && !root.selectOnly
             itemName: JamiStrings.textLanguage
+            iconSource: JamiResources.spellcheck_24dp_svg
             onClicked: {
                 spellLanguageContextMenu.openMenu();
             }
@@ -82,6 +86,7 @@ ContextMenuAutoLoader {
             id: manageLanguages
             itemName: JamiStrings.dictionaryManager
             canTrigger: isSpellCheckActive() && !root.selectOnly
+            iconSource: JamiResources.menu_book_24dp_svg
             onClicked: {
                 viewCoordinator.presentDialog(appWindow, "commoncomponents/DictionaryManagerDialog.qml");
             }
