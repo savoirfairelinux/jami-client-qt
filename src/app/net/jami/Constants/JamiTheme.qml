@@ -821,4 +821,7 @@ Item {
     property real welcomePageFastBlurRadius: 32
     property real welcomePageColorOverlayOpacity: 0.5
     property real welcomePageTipBoxRadius: 12
+
+    // TextField
+    property real newMaterialTextFieldHeight: 56
 }

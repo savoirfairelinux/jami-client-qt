@@ -238,6 +238,30 @@ Item {
                     anchors.fill: parent
                     spacing: 0
 
+                    // NewMaterialTextField {
+                    //     Layout.fillWidth: true
+                    //     Layout.fillHeight: true
+
+                    //     leadingIconSource: JamiResources.edit_svg
+
+                    //     placeholderText: JamiStrings.title
+                    //     textFieldContent: CurrentConversation.title
+                    //     maxCharacters: JamiTheme.maximumCharacters
+                    //     readOnly: !isAdmin
+                    //     toolTipText: CurrentConversation.isCoreDialog ? JamiStrings.contactName :
+                    //                                                     JamiStrings.groupName
+
+                    //     trailingIconSource: JamiResources.cancel_24dp_svg
+                    //     trailingIconToolTipText: JamiStrings.clearText
+                    //     onTrailingIconClicked: ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid,
+                    //                                                                                                   "");
+
+                    //     onAccepted: {
+                    //         ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid,
+                    //                                                      modifiedTextFieldContent);
+                    //     }
+                    // }
+
                     ModalTextEdit {
                         id: titleLine
 
@@ -333,7 +357,7 @@ Item {
                 id: swarmDetailsTabModel
             }
 
-           Connections {
+            Connections {
                 target: CurrentConversation
 
                 onIdChanged: innerRect.updateSwarmDetailsTabModel()
