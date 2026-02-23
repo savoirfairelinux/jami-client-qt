@@ -100,24 +100,16 @@ ColumnLayout {
                 Layout.fillWidth: true
             }
 
-            ModalTextEdit {
+            NewMaterialTextField {
                 id: modalTextEditProxyServer
-                TextMetrics {
-                    text: modalTextEditProxyServer.staticText
-                    elide: Text.ElideRight
-                    elideWidth: itemWidth - 20
-                    font.pixelSize: JamiTheme.materialLineEditPixelSize
-                }
 
-                visible: true
-                focus: visible
-                isSettings: true
+                Layout.alignment: Qt.AlignVCenter
+                Layout.preferredWidth: itemWidth// - proxyServerRadioButton.indicator.width - proxyServerRadioButton.spacing - proxyServerRadioButton.horizontalPadding
 
-                Layout.preferredWidth: itemWidth - proxyServerRadioButton.indicator.width - proxyServerRadioButton.spacing - proxyServerRadioButton.horizontalPadding
-                staticText: CurrentAccount.proxyServer
                 placeholderText: JamiStrings.proxyAddress
+                textFieldContent: CurrentAccount.proxyServer
 
-                onAccepted: CurrentAccount.proxyServer = dynamicText
+                onAccepted: CurrentAccount.proxyServer = modifiedTextFieldContent
             }
 
             JamiRadioButton {
