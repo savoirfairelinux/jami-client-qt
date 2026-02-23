@@ -15,26 +15,48 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import QtQuick
+import QtQuick.Controls.Basic
+import QtQuick.Effects
+
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
 
-ModalTextEdit {
+NewMaterialTextField {
     id: root
 
-    prefixIconSrc: {
+    property bool isActive: true
+    property string infohash: CurrentAccount.uri
+    property string accountId: CurrentAccount.id
+    property string registeredName: CurrentAccount.registeredName
+    property int nameRegistrationState: UsernameTextEdit.NameRegistrationState.BLANK
+    property bool isRendezVous
+
+    enum NameRegistrationState {
+        BLANK,
+        INVALID,
+        TAKEN,
+        FREE,
+        SEARCHING
+    }
+
+    leadingIconSource: {
         switch (nameRegistrationState) {
         case UsernameTextEdit.NameRegistrationState.FREE:
             return JamiResources.circled_green_check_svg;
         case UsernameTextEdit.NameRegistrationState.INVALID:
         case UsernameTextEdit.NameRegistrationState.TAKEN:
             return JamiResources.circled_red_cross_svg;
+        case UsernameTextEdit.NameRegistrationState.SEARCHING:
+            return JamiResources.jami_rolling_spinner_gif;
         case UsernameTextEdit.NameRegistrationState.BLANK:
         default:
             return JamiResources.person_24dp_svg;
         }
     }
-    prefixIconColor: {
+    leadingIconIsSpinning: root.nameRegistrationState === UsernameTextEdit.NameRegistrationState.SEARCHING
+
+    leadingIconColor: {
         switch (nameRegistrationState) {
         case UsernameTextEdit.NameRegistrationState.FREE:
             return "#009980";
@@ -46,44 +68,97 @@ ModalTextEdit {
             return JamiTheme.editLineColor;
         }
     }
-    suffixIconSrc: JamiResources.outline_info_24dp_svg
-    suffixIconColor: JamiTheme.buttonTintedBlue
-    suffixIconRightPadding: 20
 
-    property bool isActive: false
-    property string infohash: CurrentAccount.uri
-    property string accountId: CurrentAccount.id
-    property string registeredName: CurrentAccount.registeredName
-    staticText: root.isActive ? registeredName : (registeredName ? registeredName : infohash)
-
-    infoTipText: JamiStrings.usernameToolTip
-    placeholderText: JamiStrings.chooseAUsername
-
-    enum NameRegistrationState {
-        BLANK,
-        INVALID,
-        TAKEN,
-        FREE,
-        SEARCHING
-    }
-    property int nameRegistrationState: UsernameTextEdit.NameRegistrationState.BLANK
-
-    inputIsValid: dynamicText.length === 0 || nameRegistrationState === UsernameTextEdit.NameRegistrationState.FREE
-
-    textValidator: RegularExpressionValidator {
+    placeholderText: root.isRendezVous ? JamiStrings.chooseAName : JamiStrings.chooseUsername
+    textFieldContent: root.isActive ? registeredName : (registeredName ? registeredName : infohash)
+    inputIsValid: modifiedTextFieldContent.length === 0 || nameRegistrationState === UsernameTextEdit.NameRegistrationState.FREE
+    validator: RegularExpressionValidator {
         // up to 32 unicode code points
         regularExpression: /^.{0,32}$/
     }
 
-    onActiveChanged: function (active) {
-        root.isActive = active;
+    trailingIconSource: JamiResources.outline_info_24dp_svg
+    trailingIconChecked: infoPopup.opened
+
+    onTrailingIconClicked: {
+        if (infoPopup.opened)
+            infoPopup.close()
+        else
+            infoPopup.open()
     }
 
-    Connections {
-        target: CurrentAccount
+    supportingText: {
+        switch (root.nameRegistrationState) {
+        case UsernameTextEdit.NameRegistrationState.BLANK:
+            return "";
+        case UsernameTextEdit.NameRegistrationState.SEARCHING:
+            return "";
+        case UsernameTextEdit.NameRegistrationState.FREE:
+            return "";
+        case UsernameTextEdit.NameRegistrationState.INVALID:
+            return root.isRendezVous ? JamiStrings.invalidName :
+                                       JamiStrings.invalidUsername;
+        case UsernameTextEdit.NameRegistrationState.TAKEN:
+            return root.isRendezVous ? JamiStrings.nameAlreadyTaken :
+                                       JamiStrings.usernameAlreadyTaken;
+        }
+    }
+    supportingTextColor: "#CC0022"
 
-        function onRegisteredNameChanged() {
-            root.editMode = false;
+    borderColor: {
+        switch (root.nameRegistrationState) {
+        case UsernameTextEdit.NameRegistrationState.INVALID:
+        case UsernameTextEdit.NameRegistrationState.TAKEN:
+            return "#CC0022"
+        default:
+            return JamiTheme.tintedBlue
+        }
+    }
+
+    onModifiedTextFieldContentChanged: lookupTimer.restart()
+
+    Popup {
+        id: infoPopup
+
+        parent: parent
+        x: parent.width - width
+        y: - (parent.height + 16)
+
+        padding: 8
+
+        visible: false
+        opacity: visible ? 1.0 : 0.0
+
+        contentItem: Text {
+            text: JamiStrings.usernameToolTip
+            color: JamiTheme.textColor
+            lineHeight: JamiTheme.wizardViewTextLineHeight
+            verticalAlignment: Text.AlignVCenter
+
+            font.kerning: true
+            font.pixelSize: JamiTheme.infoBoxDescFontSize
+        }
+
+        Behavior on opacity {
+            NumberAnimation {
+                duration: JamiTheme.shortFadeDuration
+            }
+        }
+
+        background: Rectangle {
+            color: JamiTheme.globalIslandColor
+            radius: 12
+
+            layer.enabled: true
+            layer.effect: MultiEffect {
+                anchors.fill: infoPopup.background
+                shadowEnabled: true
+                shadowBlur: JamiTheme.shadowBlur
+                shadowColor: JamiTheme.shadowColor
+                shadowHorizontalOffset: JamiTheme.shadowHorizontalOffset
+                shadowVerticalOffset: JamiTheme.shadowVerticalOffset
+                shadowOpacity: JamiTheme.shadowOpacity
+            }
         }
     }
 
@@ -91,10 +166,10 @@ ModalTextEdit {
         id: registeredNameFoundConnection
 
         target: NameDirectory
-        enabled: dynamicText.length !== 0
+        enabled: modifiedTextFieldContent.length !== 0
 
         function onRegisteredNameFound(status, address, registeredName, requestedName) {
-            if (dynamicText === requestedName) {
+            if (modifiedTextFieldContent === requestedName) {
                 switch (status) {
                 case NameDirectory.LookupStatus.NOT_FOUND:
                     nameRegistrationState = UsernameTextEdit.NameRegistrationState.FREE;
@@ -119,22 +194,12 @@ ModalTextEdit {
         interval: JamiTheme.usernameTextEditlookupInterval
 
         onTriggered: {
-            if (dynamicText.length !== 0) {
+            if (modifiedTextFieldContent.length !== 0) {
                 nameRegistrationState = UsernameTextEdit.NameRegistrationState.SEARCHING;
-                NameDirectory.lookupName(root.accountId, dynamicText);
+                NameDirectory.lookupName(root.accountId, modifiedTextFieldContent);
             } else {
                 nameRegistrationState = UsernameTextEdit.NameRegistrationState.BLANK;
             }
-        }
-    }
-
-    onDynamicTextChanged: lookupTimer.restart()
-
-    function startEditing() {
-        if (!registeredName) {
-            root.editMode = true;
-            forceActiveFocus();
-            nameRegistrationState = UsernameTextEdit.NameRegistrationState.BLANK;
         }
     }
 }

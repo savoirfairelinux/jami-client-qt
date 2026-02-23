@@ -78,7 +78,7 @@ ColumnLayout {
 
             staticText: CurrentAccount.publishedAddress
 
-            onEditFinished: CurrentAccount.publishedAddress = dynamicText
+            onAccepted: CurrentAccount.publishedAddress = modifiedTextFieldContent
         }
 
         SettingSpinBox {
