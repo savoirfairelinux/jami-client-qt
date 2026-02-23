@@ -300,9 +300,7 @@ Rectangle {
                     enabled: true
 
                     onClicked: {
-                        AccountAdapter.provideAccountAuthentication(passwordField.visible
-                                                                    ? passwordField.dynamicText :
-                                                                      "");
+                        AccountAdapter.provideAccountAuthentication(passwordField.visible ? passwordField.modifiedTextFieldContent : "");
                     }
                 }
             }

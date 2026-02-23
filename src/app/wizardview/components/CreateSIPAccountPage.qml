@@ -88,42 +88,49 @@ Rectangle {
                     verticalAlignment: Text.AlignVCenter
                     wrapMode: Text.WordWrap
                 }
-                ModalTextEdit {
+                NewMaterialTextField {
                     id: sipServernameEdit
-                    KeyNavigation.down: sipUsernameEdit
-                    KeyNavigation.tab: KeyNavigation.down
-                    KeyNavigation.up: backButton
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize
-                                                    * 2)
-                    Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
                     objectName: "sipServernameEdit"
+
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
+                    Layout.maximumWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
+
+                    leadingIconSource: JamiResources.sip_24dp_svg
                     placeholderText: JamiStrings.server
 
                     onAccepted: sipUsernameEdit.forceActiveFocus()
-                }
-                ModalTextEdit {
-                    id: sipUsernameEdit
-                    KeyNavigation.down: sipPasswordEdit
+
+                    KeyNavigation.down: sipUsernameEdit
                     KeyNavigation.tab: KeyNavigation.down
-                    KeyNavigation.up: sipServernameEdit
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize
-                                                    * 2)
-                    Layout.topMargin: JamiTheme.wizardViewMarginSize
+                    KeyNavigation.up: backButton
+                }
+
+                NewMaterialTextField {
+                    id: sipUsernameEdit
                     objectName: "sipUsernameEdit"
+
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.topMargin: JamiTheme.wizardViewMarginSize
+                    Layout.maximumWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
+
+                    leadingIconSource: JamiResources.person_24dp_svg
                     placeholderText: JamiStrings.username
 
                     onAccepted: sipPasswordEdit.forceActiveFocus()
+
+                    KeyNavigation.down: sipPasswordEdit
+                    KeyNavigation.tab: KeyNavigation.down
+                    KeyNavigation.up: sipServernameEdit
                 }
+
                 PasswordTextEdit {
                     id: sipPasswordEdit
                     KeyNavigation.down: tlsRadioButton
                     KeyNavigation.tab: KeyNavigation.down
                     KeyNavigation.up: sipUsernameEdit
                     Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize
-                                                    * 2)
+                    Layout.maximumWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
                     Layout.topMargin: JamiTheme.wizardViewMarginSize
                     objectName: "sipPasswordEdit"
                     placeholderText: JamiStrings.password
@@ -185,19 +192,14 @@ Rectangle {
                     KeyNavigation.up: udpRadioButton
 
                     onClicked: {
-                        WizardViewStepModel.accountCreationInfo
-                                = JamiQmlUtils.setUpAccountCreationInputPara({
-                                                                                 "hostname":
-                                                                                 sipServernameEdit.dynamicText,
-                                                                                 "alias": displayNameLineEdit.dynamicText,
-                                                                                 "username":
-                                                                                 sipUsernameEdit.dynamicText,
-                                                                                 "password":
-                                                                                 sipPasswordEdit.dynamicText,
-                                                                                 "tls": tlsRadioButton.checked,
-                                                                                 "avatar": UtilsAdapter.tempCreationImage(
-                                                                                               )
-                                                                             });
+                        WizardViewStepModel.accountCreationInfo = JamiQmlUtils.setUpAccountCreationInputPara({
+                                "hostname": sipServernameEdit.modifiedTextFieldContent,
+                                "alias": displayNameLineEdit.modifiedTextFieldContent,
+                                "username": sipUsernameEdit.modifiedTextFieldContent,
+                                "password": sipPasswordEdit.modifiedTextFieldContent,
+                                "tls": tlsRadioButton.checked,
+                                "avatar": UtilsAdapter.tempCreationImage()
+                            });
                         WizardViewStepModel.nextStep();
                     }
                 }
@@ -259,12 +261,15 @@ Rectangle {
                     KeyNavigation.down: displayNameLineEdit
                     KeyNavigation.tab: KeyNavigation.down
                 }
-                ModalTextEdit {
+
+                NewMaterialTextField {
                     id: displayNameLineEdit
+
                     Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: Math.min(300, root.width - JamiTheme.preferredMarginSize
-                                                    * 2)
                     Layout.topMargin: 30
+                    Layout.maximumWidth: Math.min(300, root.width - JamiTheme.preferredMarginSize * 2)
+
+                    leadingIconSource: JamiResources.round_edit_24dp_svg
                     placeholderText: JamiStrings.enterNickname
 
                     KeyNavigation.up: currentAccountAvatar

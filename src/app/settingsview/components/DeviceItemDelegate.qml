@@ -133,7 +133,7 @@ ItemDelegate {
                 color: JamiTheme.textColor
                 horizontalAlignment: Text.AlignLeft
                 elide: Text.ElideMiddle
-
+                font.family: JamiTheme.ubuntuMonoFontFamily
                 font.pointSize: JamiTheme.textFontSize
             }
         }
