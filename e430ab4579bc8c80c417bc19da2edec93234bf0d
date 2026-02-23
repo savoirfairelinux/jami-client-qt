@@ -1,4 +1,22 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7f780c7_dc3c1f2b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-02-23T19:22:57Z",
+      "side": 1,
+      "message": "Docs updated with the https://review.jami.net/c/jami-docs/+/33297 patch.",
+      "revId": "e430ab4579bc8c80c417bc19da2edec93234bf0d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ],
   "submitRequirementResults": []
 }
