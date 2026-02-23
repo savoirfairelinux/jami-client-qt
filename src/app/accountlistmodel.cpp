@@ -82,6 +82,8 @@ AccountListModel::data(const QModelIndex& index, int role) const
         return QVariant(static_cast<int>(accountInfo.conversationModel->notificationsCount()));
     case Role::ID:
         return QVariant(accountInfo.id);
+    case Role::Uri:
+        return QVariant(accountInfo.profileInfo.uri);
     }
     return QVariant();
 }
