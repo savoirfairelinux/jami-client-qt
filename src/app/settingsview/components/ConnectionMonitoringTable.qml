@@ -210,6 +210,7 @@ ListView {
                                 color: JamiTheme.textColor
                                 anchors.fill: parent
                                 text: UtilsAdapter.getBestIdForUri(CurrentAccount.id, PeerId)
+                                font.family: text === PeerId ? JamiTheme.ubuntuMonoFontFamily : JamiTheme.ubuntuFontFamily
                                 font.pixelSize: 12
                                 font.underline: usernameText.font.underline
                                 elide: Text.ElideRight
@@ -258,6 +259,7 @@ ListView {
                                 return "";
                             }
                         }
+                        font.family: JamiTheme.ubuntuMonoFontFamily
                         elide: Text.ElideMiddle
                         width: parent.width - 10
                         MouseArea {
@@ -275,6 +277,7 @@ ListView {
                                 id: tooltipDevice
                                 visible: delegateDeviceText.font.underline
                                 text: delegateDeviceText.text
+                                toolTipFont: JamiTheme.ubuntuMonoFontFamily
                             }
                             onClicked: {
                                 tooltipDevice.text = delegateDeviceText.text + " (" + JamiStrings.logsViewCopied + ")";
@@ -351,6 +354,7 @@ ListView {
                             MaterialToolTip {
                                 visible: connectionText.font.underline
                                 text: connectionText.tooltipText
+                                toolTipFont: JamiTheme.ubuntuMonoFontFamily
                             }
                         }
                     }

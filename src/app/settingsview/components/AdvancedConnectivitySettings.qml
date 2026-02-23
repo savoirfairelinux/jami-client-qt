@@ -108,54 +108,50 @@ ColumnLayout {
         SettingsMaterialTextEdit {
             id: lineEditTurnAddress
 
-            Layout.fillWidth: true
+            leadingIconSource: JamiResources.link_web_black_24dp_svg
 
             enabled: checkBoxTurnEnable.checked
             staticText: CurrentAccount.server_TURN
             itemWidth: root.itemWidth
             titleField: JamiStrings.turnAdress
 
-            onEditFinished: CurrentAccount.server_TURN = dynamicText
+            onAccepted: CurrentAccount.server_TURN = modifiedTextFieldContent
         }
 
         SettingsMaterialTextEdit {
             id: lineEditTurnUsername
 
-            Layout.fillWidth: true
+            leadingIconSource: JamiResources.person_24dp_svg
 
             enabled: checkBoxTurnEnable.checked
             staticText: CurrentAccount.username_TURN
             itemWidth: root.itemWidth
             titleField: JamiStrings.turnUsername
 
-            onEditFinished: CurrentAccount.username_TURN = dynamicText
+            onAccepted: CurrentAccount.username_TURN = modifiedTextFieldContent
         }
 
         SettingsMaterialTextEdit {
             id: lineEditTurnPassword
-
-            Layout.fillWidth: true
 
             enabled: checkBoxTurnEnable.checked
             staticText: CurrentAccount.password_TURN
             itemWidth: root.itemWidth
             titleField: JamiStrings.turnPassword
 
-            onEditFinished: CurrentAccount.password_TURN = dynamicText
+            onAccepted: CurrentAccount.password_TURN = modifiedTextFieldContent
             isPassword: true
         }
 
         SettingsMaterialTextEdit {
             id: lineEditTurnRealmSIP
 
-            Layout.fillWidth: true
-
             enabled: checkBoxTurnEnable.checked
             staticText: CurrentAccount.realm_TURN
             itemWidth: root.itemWidth
             titleField: JamiStrings.turnRealm
 
-            onEditFinished: CurrentAccount.realm_TURN = dynamicText
+            onAccepted: CurrentAccount.realm_TURN = modifiedTextFieldContent
         }
 
         ToggleSwitch {
@@ -173,7 +169,6 @@ ColumnLayout {
         SettingsMaterialTextEdit {
             id: lineEditSTUNAddress
 
-            Layout.fillWidth: true
             Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
             enabled: checkBoxSTUNEnable.checked
@@ -182,7 +177,7 @@ ColumnLayout {
             itemWidth: root.itemWidth
             titleField: JamiStrings.stunAdress
 
-            onEditFinished: CurrentAccount.server_STUN = dynamicText
+            onAccepted: CurrentAccount.server_STUN = modifiedTextFieldContent
         }
     }
 }

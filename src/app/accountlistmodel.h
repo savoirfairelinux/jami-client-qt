@@ -25,7 +25,8 @@
     X(Type) \
     X(Status) \
     X(NotificationCount) \
-    X(ID)
+    X(ID) \
+    X(Uri)
 
 namespace AccountList {
 Q_NAMESPACE

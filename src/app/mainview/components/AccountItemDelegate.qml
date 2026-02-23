@@ -19,6 +19,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
+import net.jami.Adapters 1.1
 import "../../commoncomponents"
 
 ItemDelegate {
@@ -90,6 +91,7 @@ ItemDelegate {
                 text: Alias
                 textFormat: TextEdit.PlainText
 
+                font.family: Alias === Uri ? JamiTheme.ubuntuMonoFontFamily : JamiTheme.ubuntuFontFamily
                 font.pointSize: JamiTheme.textFontSize
                 color: JamiTheme.textColor
                 elide: Text.ElideRight
@@ -105,6 +107,7 @@ ItemDelegate {
                 text: Username
                 textFormat: TextEdit.PlainText
 
+                font.family: Username === Uri ? JamiTheme.ubuntuMonoFontFamily : JamiTheme.ubuntuFontFamily
                 font.pointSize: JamiTheme.tinyFontSize
                 color: JamiTheme.faddedLastInteractionFontColor
                 elide: Text.ElideRight

@@ -100,7 +100,7 @@ Rectangle {
                 Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
                 Layout.fillWidth: false
                 color: JamiTheme.customizeRectangleColor
-                radius: 5
+                radius: 32
 
                 RowLayout {
                     id: customLayout
@@ -187,17 +187,18 @@ Rectangle {
                         }
                     }
 
-                    ModalTextEdit {
+                    NewMaterialTextField {
                         id: displayNameLineEdit
 
                         Layout.alignment: Qt.AlignLeft
-                        Layout.rightMargin: 10
+                        Layout.rightMargin: 20
                         Layout.fillWidth: true
 
+                        leadingIconSource: JamiResources.account_24dp_svg
                         placeholderText: JamiStrings.displayName
 
-                        onDynamicTextChanged: {
-                            root.alias = displayNameLineEdit.dynamicText;
+                        onModifiedTextFieldContentChanged: {
+                            root.alias = displayNameLineEdit.modifiedTextFieldContent;
                         }
                     }
                 }

@@ -331,11 +331,12 @@ BaseModalDialog {
                             color: JamiTheme.textColor
                         }
 
-                        ModalTextEdit {
+                        NewMaterialTextField {
                             id: codeInput
+
                             Layout.alignment: Qt.AlignHCenter
-                            Layout.preferredWidth: scrollView.width
-                            Layout.preferredHeight: JamiTheme.preferredFieldHeight
+                            Layout.maximumWidth: scrollView.width
+
                             placeholderText: JamiStrings.linkDeviceEnterCodePlaceholder
                         }
 
@@ -357,9 +358,9 @@ BaseModalDialog {
                         primary: true
                         text: JamiStrings.connect
                         toolTipText: JamiStrings.connect
-                        enabled: codeInput.dynamicText.length > 0
+                        enabled: codeInput.modifiedTextFieldContent.length > 0
                         onClicked: {
-                            LinkDeviceModel.addDevice(codeInput.dynamicText);
+                            LinkDeviceModel.addDevice(codeInput.modifiedTextFieldContent);
                         }
                     }
                 }
