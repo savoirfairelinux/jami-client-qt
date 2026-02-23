@@ -64,34 +64,27 @@ SettingsPageBase {
                 avatarSize: 150
             }
 
-            ModalTextEdit {
+            NewMaterialTextField {
                 id: displayNameLineEdit
 
-                TextMetrics {
-                    id: displayNameLineEditTextSize
-                    text: CurrentAccount.alias
-                    elide: Text.ElideRight
-                    elideWidth: displayNameLineEdit.width
-                    font.pixelSize: JamiTheme.materialLineEditPixelSize
-                }
-
-                Layout.alignment: Qt.AlignCenter
-                Layout.preferredHeight: JamiTheme.preferredFieldHeight + 8
+                Layout.alignment: Qt.AlignVCenter
                 Layout.fillWidth: true
 
-                maxCharacters: JamiTheme.maximumCharacters
+                isTall: true
+                leadingIconSource: JamiResources.account_24dp_svg
+
                 placeholderText: JamiStrings.displayName
+                maxCharacters: JamiTheme.maximumCharacters
+                textFieldContent: CurrentAccount.alias
 
-                staticText: CurrentAccount.alias
-                elidedText: displayNameLineEditTextSize.elidedText
-
-                onAccepted: AccountAdapter.setCurrAccDisplayName(dynamicText)
+                onAccepted: AccountAdapter.setCurrAccDisplayName(modifiedTextFieldContent)
 
                 onActiveFocusChanged: {
                     if (!activeFocus) {
-                        AccountAdapter.setCurrAccDisplayName(dynamicText);
+                        AccountAdapter.setCurrAccDisplayName(modifiedTextFieldContent);
                     }
-                    displayNameLineEdit.editMode = activeFocus;
+
+                    displayNameLineEdit.focus = false;
                 }
             }
         }

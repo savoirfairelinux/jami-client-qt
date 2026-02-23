@@ -108,7 +108,7 @@ ColumnLayout {
         SettingsMaterialTextEdit {
             id: lineEditTurnAddress
 
-            Layout.fillWidth: true
+            leadingIconSource: JamiResources.link_web_black_24dp_svg
 
             enabled: checkBoxTurnEnable.checked
             staticText: CurrentAccount.server_TURN
@@ -121,7 +121,7 @@ ColumnLayout {
         SettingsMaterialTextEdit {
             id: lineEditTurnUsername
 
-            Layout.fillWidth: true
+            leadingIconSource: JamiResources.person_24dp_svg
 
             enabled: checkBoxTurnEnable.checked
             staticText: CurrentAccount.username_TURN
@@ -134,8 +134,6 @@ ColumnLayout {
         SettingsMaterialTextEdit {
             id: lineEditTurnPassword
 
-            Layout.fillWidth: true
-
             enabled: checkBoxTurnEnable.checked
             staticText: CurrentAccount.password_TURN
             itemWidth: root.itemWidth
@@ -147,8 +145,6 @@ ColumnLayout {
 
         SettingsMaterialTextEdit {
             id: lineEditTurnRealmSIP
-
-            Layout.fillWidth: true
 
             enabled: checkBoxTurnEnable.checked
             staticText: CurrentAccount.realm_TURN
@@ -173,7 +169,6 @@ ColumnLayout {
         SettingsMaterialTextEdit {
             id: lineEditSTUNAddress
 
-            Layout.fillWidth: true
             Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
             enabled: checkBoxSTUNEnable.checked
