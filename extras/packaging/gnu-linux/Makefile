@@ -166,7 +166,6 @@ DISTRIBUTIONS := \
 	debian_unstable \
 	ubuntu_22.04 \
 	ubuntu_24.04 \
-	ubuntu_25.04 \
 	ubuntu_25.10 \
 	fedora_42 \
 	fedora_43 \

@@ -99,8 +99,6 @@ if [ -f /etc/os-release ]; then
         ENDTAG="ubuntu_22.04"
     elif [ "${UBUNTU_CODENAME}" = "noble" ] || [ "${ID}_${VERSION_ID}" = "ubuntu_24.04" ]; then
         ENDTAG="ubuntu_24.04"
-    elif [ "${UBUNTU_CODENAME}" = "plucky" ] || [ "${ID}_${VERSION_ID}" = "ubuntu_25.04" ]; then
-        ENDTAG="ubuntu_25.04"
     elif [ "${UBUNTU_CODENAME}" = "questing" ] || [ "${ID}_${VERSION_ID}" = "ubuntu_25.10" ]; then
         ENDTAG="ubuntu_25.10"
     elif [ "${ID}" = "debian" ] && \
