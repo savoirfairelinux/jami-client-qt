@@ -27,13 +27,14 @@ RowLayout {
     property alias titleField: title.text
     property string staticText
     property string placeholderText
-    property string dynamicText
+    property alias modifiedTextFieldContent: newMaterialTextField.modifiedTextFieldContent
+    property string leadingIconSource: ""
+    property string trailingIconSource: ""
 
     property bool isPassword: false
 
     property int itemWidth
 
-    signal editFinished
     signal accepted
 
     Text {
@@ -50,41 +51,26 @@ RowLayout {
         color: JamiTheme.textColor
     }
 
-    ModalTextEdit {
-        id: modalTextEdit
-
-        TextMetrics {
-            id: modalTextEditTextSize
-            text: root.staticText
-            elide: Text.ElideRight
-            elideWidth: itemWidth - 40
-            font.pixelSize: JamiTheme.materialLineEditPixelSize
-        }
-
-        visible: !root.isPassword
-        focus: visible
-        isSettings: true
+    NewMaterialTextField {
+        id: newMaterialTextField
 
         Layout.alignment: Qt.AlignCenter
-        Layout.preferredWidth: itemWidth
-        staticText: root.staticText
+        Layout.maximumWidth: itemWidth
+
+        leadingIconSource: root.leadingIconSource
+
         placeholderText: root.placeholderText ? root.placeholderText : root.titleField
-        elidedText: modalTextEditTextSize.elidedText
+        textFieldContent: root.staticText
 
-        onAccepted: {
-            root.dynamicText = dynamicText;
-            root.editFinished();
-        }
+        trailingIconSource: root.trailingIconSource
 
-        editMode: false
+        visible: !root.isPassword
+
+        onAccepted: root.accepted()
 
         onActiveFocusChanged: {
             if (!activeFocus) {
-                root.dynamicText = dynamicText;
-                root.editFinished();
-                modalTextEdit.editMode = false;
-            } else {
-                modalTextEdit.editMode = true;
+                root.accepted()
             }
         }
     }
@@ -92,26 +78,19 @@ RowLayout {
     PasswordTextEdit {
         id: passwordTextEdit
 
-        visible: root.isPassword
-        focus: visible
-        isSettings: true
-
         Layout.alignment: Qt.AlignCenter
-        Layout.preferredWidth: itemWidth
-        staticText: root.staticText
-        placeholderText: root.placeholderText ? root.placeholderText : root.titleField
+        Layout.maximumWidth: itemWidth
 
-        onAccepted: {
-            root.dynamicText = dynamicText;
-            root.editFinished();
-            echoMode = TextInput.Password;
-        }
+        visible: root.isPassword
+
+        placeholderText: root.placeholderText ? root.placeholderText : root.titleField
+        textFieldContent: root.staticText
+
+        onAccepted: root.accepted()
 
         onActiveFocusChanged: {
             if (!activeFocus) {
-                root.dynamicText = dynamicText;
-                root.editFinished();
-                echoMode = TextInput.Password;
+                root.accepted()
             }
         }
     }

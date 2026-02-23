@@ -87,19 +87,8 @@ Item {
                 id: loader_bottomIdentifier
                 active: CurrentAccount.type !== Profile.Type.SIP
                 objectName: "loader_bottomIdentifier"
-                sourceComponent: JamiIdentifier {
-                    backgroundColor: welcomeInfo.idColor
-                    contentColor: contentIdColor
-                }
+                sourceComponent: JamiIdentifier {}
                 Layout.alignment: Qt.AlignHCenter
-                Layout.preferredHeight: active ? item.getHeight() : 0
-                Layout.preferredWidth: active ? contentWidth : 0
-            }
-
-            Binding {
-                target: loader_bottomIdentifier.item
-                property: "slimDisplay"
-                value: false
             }
         }
     }

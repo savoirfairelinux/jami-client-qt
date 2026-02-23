@@ -73,9 +73,9 @@ BaseModalDialog {
 
             placeholderText: JamiStrings.enterCurrentPassword
 
-            onDynamicTextChanged: {
-                root.pwd = dynamicText
-                root.button1.enabled = dynamicText.length > 0
+            onModifiedTextFieldContentChanged: {
+                root.pwd = modifiedTextFieldContent
+                root.button1.enabled = modifiedTextFieldContent.length > 0
             }
         }
     }
