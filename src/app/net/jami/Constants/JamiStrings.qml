@@ -837,6 +837,7 @@ Item {
     property string groupName: qsTr("Group name")
     property string contactName: qsTr("Contact name")
     property string addDescription: qsTr("Add description")
+    property string noDescription: qsTr("No description")
     property string groupMembers: qsTr("Members")
     property string conversationType: qsTr("Conversation type")
 
@@ -875,7 +876,8 @@ Item {
     // Jami identifier
     property string hereIsIdentifier: qsTr("Share your Jami identifier in order to be contacted more easily!")
     property string jamiIdentity: qsTr("Jami identity")
-    property string identifierURI: qsTr("Show fingerprint")
+    property string showFingerprint: qsTr("Show fingerprint")
+    property string hideFingerprint: qsTr("Hide fingerprint")
     property string identifierRegisterName: qsTr("Show registered name")
 
     // ManageAccount

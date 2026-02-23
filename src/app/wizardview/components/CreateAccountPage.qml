@@ -17,10 +17,11 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
+
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
+import net.jami.Enums 1.1
 import net.jami.Models 1.1
-import Qt5Compat.GraphicalEffects
 import "../"
 import "../../commoncomponents"
 import "../../settingsview/components"
@@ -47,7 +48,7 @@ Rectangle {
     function clearAllTextFields() {
         joinJamiButton.enabled = true;
         encryptButton.enabled = true;
-        usernameEdit.dynamicText = "";
+        usernameEdit.modifiedTextFieldContent = "";
     }
 
     color: JamiTheme.secondaryBackgroundColor
@@ -70,7 +71,6 @@ Rectangle {
         anchors.fill: parent
 
         onClicked: {
-            infoBox.checked = false;
             adviceBox.checked = false;
         }
     }
@@ -137,145 +137,22 @@ Rectangle {
 
                 UsernameTextEdit {
                     id: usernameEdit
-                    accountId: ""
-
-                    Accessible.role: Accessible.EditableText
-                    Accessible.name: invalidLabel.text
-
-                    icon: PushButton {
-                        id: infoBox
-                        z: 1
-
-                        Accessible.role: Accessible.StaticText
-                        Accessible.name: textInfo.text
-
-                        normalColor: "transparent"
-                        imageColor: infoBox.checked ? JamiTheme.inviteHoverColor :
-                                                      JamiTheme.buttonTintedBlue
-                        source: JamiResources.i_informations_black_24dp_svg
-                        pressedColor: JamiTheme.tintedBlue
-                        hoveredColor: JamiTheme.hoveredButtonColorWizard
-                        border.color: {
-                            if (infoBox.checked) {
-                                return "transparent";
-                            }
-                            return JamiTheme.buttonTintedBlue;
-                        }
-                        checkable: true
-                        onCheckedChanged: {
-                            textBoxinfo.visible = !textBoxinfo.visible;
-                        }
-                        preferredSize: 20
-
-                        Item {
-                            id: textBoxinfo
-                            anchors.top: parent.bottom
-                            anchors.right: parent.right
-                            anchors.topMargin: 5
-                            anchors.rightMargin: -40
-
-                            width: textInfo.width + 2 * JamiTheme.preferredMarginSize
-                            height: textInfo.height + 2 * JamiTheme.preferredMarginSize
-
-                            visible: false
-
-                            Behavior on width {
-                                NumberAnimation {
-                                    duration: JamiTheme.shortFadeDuration
-                                }
-                            }
-
-                            Behavior on height {
-                                NumberAnimation {
-                                    duration: JamiTheme.shortFadeDuration
-                                }
-                            }
-
-                            DropShadow {
-                                z: -1
-                                anchors.fill: boxInfo
-                                horizontalOffset: 1.0
-                                verticalOffset: 1.0
-                                radius: boxInfo.radius
-                                color: JamiTheme.shadowColor
-                                source: boxInfo
-                                transparentBorder: true
-                                samples: radius + 1
-                            }
-
-                            Rectangle {
-                                id: boxInfo
-
-                                z: 1
-                                anchors.fill: parent
-                                radius: 30
-                                color: JamiTheme.secondaryBackgroundColor
-
-                                Text {
-                                    id: textInfo
-
-                                    anchors.horizontalCenter: parent.horizontalCenter
-                                    anchors.verticalCenter: parent.verticalCenter
-                                    anchors.margins: JamiTheme.preferredMarginSize
-
-                                    text: JamiStrings.usernameToolTip
-                                    color: JamiTheme.textColor
-
-                                    font.kerning: true
-                                    font.pixelSize: JamiTheme.infoBoxDescFontSize
-                                    lineHeight: JamiTheme.wizardViewTextLineHeight
-                                }
-                            }
-                        }
-
-                        KeyNavigation.tab: joinJamiButton
-                        KeyNavigation.up: usernameEdit
-                        KeyNavigation.down: joinJamiButton
-                    }
-
                     objectName: "usernameEdit"
+
+                    accountId: ""
 
                     Layout.topMargin: JamiTheme.wizardViewBlocMarginSize
                     Layout.alignment: Qt.AlignHCenter
-                    Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize
-                                                    * 2)
-                    placeholderText: root.isRendezVous ? JamiStrings.chooseAName :
-                                                         JamiStrings.chooseUsername
-                    staticText: ""
-                    editMode: true
+                    Layout.maximumWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
 
-                    KeyNavigation.tab: infoBox
+                    textFieldContent: ""
+
+                    KeyNavigation.tab: infoPopup
                     KeyNavigation.up: backButton
-                    KeyNavigation.down: infoBox
-                }
+                    KeyNavigation.down: infoPopup
 
-                Label {
-                    id: invalidLabel
-
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-                    Layout.topMargin: JamiTheme.wizardViewDescriptionMarginSize
-                    visible: text.length !== 0
-                    Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize
-                                                    * 2)
-
-                    text: {
-                        switch (usernameEdit.nameRegistrationState) {
-                        case UsernameTextEdit.NameRegistrationState.BLANK:
-                            return "";
-                        case UsernameTextEdit.NameRegistrationState.SEARCHING:
-                            return "";
-                        case UsernameTextEdit.NameRegistrationState.FREE:
-                            return "";
-                        case UsernameTextEdit.NameRegistrationState.INVALID:
-                            return root.isRendezVous ? JamiStrings.invalidName :
-                                                       JamiStrings.invalidUsername;
-                        case UsernameTextEdit.NameRegistrationState.TAKEN:
-                            return root.isRendezVous ? JamiStrings.nameAlreadyTaken :
-                                                       JamiStrings.usernameAlreadyTaken;
-                        }
-                    }
-                    font.pixelSize: JamiTheme.textEditError
-                    color: "#CC0022"
+                    Accessible.role: Accessible.EditableText
+                    Accessible.name: usernameEdit.supportingText
                 }
 
                 NewMaterialButton {
@@ -305,20 +182,14 @@ Rectangle {
                     KeyNavigation.down: encryptButton
 
                     onClicked: {
-                        WizardViewStepModel.accountCreationInfo
-                                = JamiQmlUtils.setUpAccountCreationInputPara({
-                                                                                 "registeredName":
-                                                                                 usernameEdit.dynamicText,
-                                                                                 "alias": root.chosenDisplayName,
-                                                                                 "password":
-                                                                                 advancedButtons.chosenPassword,
-                                                                                 "avatar": UtilsAdapter.tempCreationImage(
-                                                                                               ),
-                                                                                 "isRendezVous":
-                                                                                 root.isRendezVous
-                                                                             });
-                        if (usernameEdit.nameRegistrationState
-                                === UsernameTextEdit.NameRegistrationState.FREE) {
+                        WizardViewStepModel.accountCreationInfo = JamiQmlUtils.setUpAccountCreationInputPara({
+                                                                                                                 "registeredName": usernameEdit.modifiedTextFieldContent,
+                                                                                                                 "alias": root.chosenDisplayName,
+                                                                                                                 "password": advancedButtons.chosenPassword,
+                                                                                                                 "avatar": UtilsAdapter.tempCreationImage(),
+                                                                                                                 "isRendezVous": root.isRendezVous
+                                                                                                             });
+                        if (usernameEdit.nameRegistrationState === UsernameTextEdit.NameRegistrationState.FREE) {
                             enabled = false;
                             encryptButton.enabled = false;
                             WizardViewStepModel.nextStep();
@@ -404,7 +275,6 @@ Rectangle {
 
         onClicked: {
             adviceBox.checked = false;
-            infoBox.checked = false;
             if (createAccountStack.currentIndex > 0) {
                 createAccountStack.currentIndex--;
             } else {
@@ -414,22 +284,19 @@ Rectangle {
         }
     }
 
-    JamiPushButton {
+    NewIconButton {
         id: adviceBox
-        z: 1
-
-        preferredSize: 36
-        checkedImageColor: JamiTheme.chatviewButtonColor
-
-        Accessible.role: Accessible.Button
-        Accessible.name: JamiStrings.adviceBox
-        Accessible.description: JamiStrings.adviceBoxExplanation
 
         anchors.right: parent.right
         anchors.top: parent.top
         anchors.margins: JamiTheme.wizardViewPageBackButtonMargins
+        anchors.topMargin: UtilsAdapter.getAppValue(Settings.Key.UseFramelessWindow) ? JamiTheme.qwkTitleBarHeight : JamiTheme.wizardViewPageBackButtonMargins
 
-        source: JamiResources._black_24dp_svg
+        z: 1
+
+        iconSource: JamiResources._black_24dp_svg
+        iconSize: JamiTheme.iconButtonMedium
+        toolTipText: JamiStrings.adviceBoxExplanation
 
         checkable: true
 
@@ -450,6 +317,10 @@ Rectangle {
                                                               advancedAccountSettingsPage
         KeyNavigation.up: backButton
         KeyNavigation.down: KeyNavigation.tab
+
+        Accessible.role: Accessible.Button
+        Accessible.name: JamiStrings.adviceBox
+        Accessible.description: JamiStrings.adviceBoxExplanation
     }
 
     Component.onDestruction: UtilsAdapter.setTempCreationImageFromString("", "temp")
