@@ -830,4 +830,7 @@ Item {
     // MarkdownPopup
     property real markdownPopupPadding: 2
     property real markdownPopupContentItemSpacing: 4
+
+    // TextField
+    property real newMaterialTextFieldHeight: 56
 }
