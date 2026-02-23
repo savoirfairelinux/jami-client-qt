@@ -56,19 +56,19 @@ ColumnLayout {
                 var description = findChild(uut, "descriptionLineEdit")
 
                 // Fill Title & Description
-                title.dynamicText = "Title"
-                description.dynamicText = "description"
-                compare(title.dynamicText, "Title")
-                compare(description.dynamicText, "description")
+                title.modifiedTextFieldContent = "Title"
+                description.modifiedTextFieldContent = "description"
+                compare(title.modifiedTextFieldContent, "Title")
+                compare(description.modifiedTextFieldContent, "description")
 
                 // Hide & Show window
                 uut.visible = false
                 uut.visible = true
 
                 compare(title.focus, false)
-                compare(title.staticText, "")
+                compare(title.textFieldContent, "")
                 compare(description.focus, false)
-                compare(description.staticText, "")
+                compare(description.textFieldContent, "")
 
             }
         }
