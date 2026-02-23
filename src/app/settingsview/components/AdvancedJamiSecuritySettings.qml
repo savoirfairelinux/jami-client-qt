@@ -103,15 +103,12 @@ ColumnLayout {
         SettingsMaterialTextEdit {
             id: lineEditCertPassword
 
-            Layout.fillWidth: true
-            Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
             itemWidth: root.itemWidth
             titleField: JamiStrings.privateKeyPassword
 
             staticText: CurrentAccount.password_TLS
 
-            onEditFinished: CurrentAccount.password_TLS = dynamicText
+            onAccepted: CurrentAccount.password_TLS = modifiedTextFieldContent
             isPassword: true
         }
     }
