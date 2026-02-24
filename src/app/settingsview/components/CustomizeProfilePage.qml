@@ -67,10 +67,11 @@ SettingsPageBase {
             NewMaterialTextField {
                 id: displayNameLineEdit
 
-                Layout.alignment: Qt.AlignCenter
+                Layout.alignment: Qt.AlignVCenter
                 Layout.fillWidth: true
 
-                leadingIconSource: JamiResources.round_edit_24dp_svg
+                isTall: true
+                leadingIconSource: JamiResources.account_24dp_svg
 
                 placeholderText: JamiStrings.displayName
                 maxCharacters: JamiTheme.maximumCharacters
@@ -82,39 +83,10 @@ SettingsPageBase {
                     if (!activeFocus) {
                         AccountAdapter.setCurrAccDisplayName(modifiedTextFieldContent);
                     }
+
+                    displayNameLineEdit.focus = false;
                 }
             }
-
-            // ModalTextEdit {
-            //     id: displayNameLineEdit
-
-            //     TextMetrics {
-            //         id: displayNameLineEditTextSize
-            //         text: CurrentAccount.alias
-            //         elide: Text.ElideRight
-            //         elideWidth: displayNameLineEdit.width
-            //         font.pixelSize: JamiTheme.materialLineEditPixelSize
-            //     }
-
-            //     Layout.alignment: Qt.AlignCenter
-            //     Layout.preferredHeight: JamiTheme.preferredFieldHeight + 8
-            //     Layout.fillWidth: true
-
-            //     maxCharacters: JamiTheme.maximumCharacters
-            //     placeholderText: JamiStrings.displayName
-
-            //     staticText: CurrentAccount.alias
-            //     elidedText: displayNameLineEditTextSize.elidedText
-
-            //     onAccepted: AccountAdapter.setCurrAccDisplayName(dynamicText)
-
-            //     onActiveFocusChanged: {
-            //         if (!activeFocus) {
-            //             AccountAdapter.setCurrAccDisplayName(dynamicText);
-            //         }
-            //         displayNameLineEdit.editMode = activeFocus;
-            //     }
-            // }
         }
 
         Text {

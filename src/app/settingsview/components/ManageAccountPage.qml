@@ -138,9 +138,7 @@ SettingsPageBase {
 
                 Layout.alignment: Qt.AlignLeft
                 Layout.topMargin: 10
-                Layout.preferredWidth: Math.min(500, manageAccountColumnLayout.width - JamiTheme.preferredSettingsMarginSize)
-                backgroundColor: JamiTheme.jamiIdColor
-                centered: false
+                Layout.maximumWidth: Math.min(500, manageAccountColumnLayout.width - JamiTheme.preferredSettingsMarginSize)
             }
 
             Text {

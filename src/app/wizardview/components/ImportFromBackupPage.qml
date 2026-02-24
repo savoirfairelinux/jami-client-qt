@@ -168,7 +168,7 @@ Rectangle {
 
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: JamiTheme.wizardViewMarginSize
-            Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
+            Layout.maximumWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
 
             placeholderText: JamiStrings.enterPassword
 
@@ -202,11 +202,10 @@ Rectangle {
                 if (connectBtn.focus)
                     fileImportBtn.forceActiveFocus();
                 spinnerTriggered = true;
-                WizardViewStepModel.accountCreationInfo = JamiQmlUtils.setUpAccountCreationInputPara(
-                            {
-                                "archivePath": UtilsAdapter.getAbsPath(filePath),
-                                "password": passwordFromBackupEdit.dynamicText
-                            });
+                WizardViewStepModel.accountCreationInfo = JamiQmlUtils.setUpAccountCreationInputPara({
+                        "archivePath": UtilsAdapter.getAbsPath(filePath),
+                        "password": passwordFromBackupEdit.modifiedTextFieldContent
+                    });
                 WizardViewStepModel.nextStep();
             }
         }
