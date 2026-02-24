@@ -840,8 +840,8 @@ Item {
     property string groupMembers: qsTr("Members")
     property string conversationType: qsTr("Conversation type")
 
-    property string muteConversation: qsTr("Mute conversation")
-    property string unmuteConversation: qsTr("Unmute conversation")
+    property string notificationsOff: qsTr("Notifications off")
+    property string notificationsOn: qsTr("Notifications on")
     property string ignoreNotificationsTooltip: qsTr("Ignore all notifications from this conversation")
     property string chooseAColor: qsTr("Choose color")
     property string color: qsTr("Color")
