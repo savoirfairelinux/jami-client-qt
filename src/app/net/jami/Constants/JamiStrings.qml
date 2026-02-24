@@ -837,6 +837,7 @@ Item {
     property string groupName: qsTr("Group name")
     property string contactName: qsTr("Contact name")
     property string addDescription: qsTr("Add description")
+    property string noDescription: qsTr("No description")
     property string groupMembers: qsTr("Members")
     property string conversationType: qsTr("Conversation type")
 

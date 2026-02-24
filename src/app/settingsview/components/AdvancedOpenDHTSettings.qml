@@ -90,22 +90,25 @@ ColumnLayout {
             Layout.fillWidth: true
 
             Text {
+                Layout.fillWidth: true
+
                 text: JamiStrings.proxyAddress
-                font.pointSize: JamiTheme.settingsFontSize
-                font.kerning: true
                 color: JamiTheme.textColor
 
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
-                Layout.fillWidth: true
+
+                font.pointSize: JamiTheme.settingsFontSize
+                font.kerning: true
             }
 
             NewMaterialTextField {
                 id: modalTextEditProxyServer
 
                 Layout.alignment: Qt.AlignVCenter
-                Layout.preferredWidth: itemWidth// - proxyServerRadioButton.indicator.width - proxyServerRadioButton.spacing - proxyServerRadioButton.horizontalPadding
+                Layout.maximumWidth: itemWidth - proxyServerRadioButton.indicator.width - proxyServerRadioButton.spacing - proxyServerRadioButton.horizontalPadding
 
+                leadingIconSource: JamiResources.link_web_black_24dp_svg
                 placeholderText: JamiStrings.proxyAddress
                 textFieldContent: CurrentAccount.proxyServer
 
@@ -114,10 +117,13 @@ ColumnLayout {
 
             JamiRadioButton {
                 id: proxyServerRadioButton
-                checked: !CurrentAccount.proxyListEnabled
+
+                spacing: 0
+
                 leftPadding: 2
                 rightPadding: 0
-                spacing: 0
+
+                checked: !CurrentAccount.proxyListEnabled
 
                 onPressed: CurrentAccount.proxyListEnabled = !CurrentAccount.proxyListEnabled
             }
@@ -128,40 +134,39 @@ ColumnLayout {
             Layout.fillWidth: true
 
             Text {
+                Layout.fillWidth: true
+
                 text: JamiStrings.proxyListURL
-                font.pointSize: JamiTheme.settingsFontSize
-                font.kerning: true
                 color: JamiTheme.textColor
+
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
-                Layout.fillWidth: true
+
+                font.pointSize: JamiTheme.settingsFontSize
+                font.kerning: true
             }
 
-            ModalTextEdit {
+            NewMaterialTextField {
                 id: modalTextEditProxyListURL
-                TextMetrics {
-                    text: modalTextEditProxyListURL.staticText
-                    elide: Text.ElideRight
-                    elideWidth: itemWidth - 40
-                    font.pixelSize: JamiTheme.materialLineEditPixelSize
-                }
 
-                visible: true
-                focus: visible
-                isSettings: true
+                Layout.maximumWidth: itemWidth - proxyListURLRadioButton.indicator.width - proxyListURLRadioButton.spacing - proxyListURLRadioButton.horizontalPadding
 
-                Layout.preferredWidth: itemWidth - proxyListURLRadioButton.indicator.width - proxyListURLRadioButton.spacing - proxyListURLRadioButton.horizontalPadding
-                staticText: CurrentAccount.dhtProxyListUrl
+                leadingIconSource: JamiResources.bullet_point_black_24dp_svg
                 placeholderText: JamiStrings.proxyListURL
+                textFieldContent: CurrentAccount.dhtProxyListUrl
 
-                onAccepted: CurrentAccount.dhtProxyListUrl = dynamicText
+                onAccepted: CurrentAccount.dhtProxyListUrl = modifiedTextFieldContent
             }
+
             JamiRadioButton {
                 id: proxyListURLRadioButton
-                checked: CurrentAccount.proxyListEnabled
+
+                spacing: 0
+
                 rightPadding: 0
                 leftPadding: 2
-                spacing: 0
+
+                checked: CurrentAccount.proxyListEnabled
 
                 onPressed: CurrentAccount.proxyListEnabled = !CurrentAccount.proxyListEnabled
             }
@@ -172,6 +177,7 @@ ColumnLayout {
 
             Layout.fillWidth: true
 
+            leadingIconSource: JamiResources.rocket_launch_24dp_svg
             staticText: CurrentAccount.hostname
 
             itemWidth: root.itemWidth

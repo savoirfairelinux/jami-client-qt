@@ -43,7 +43,7 @@ BaseModalDialog {
 
         Component.onCompleted: {
             root.button1.clicked.connect(function() {
-                root.accepted(passwordConfirmEdit.dynamicText);
+                root.accepted(passwordConfirmEdit.modifiedTextFieldContent);
                 root.close();
             });
         }
@@ -72,8 +72,8 @@ BaseModalDialog {
             KeyNavigation.up: passwordConfirmEdit
             KeyNavigation.down: KeyNavigation.up
 
-            onDynamicTextChanged: {
-                button1.enabled = passwordEdit.dynamicText === passwordConfirmEdit.dynamicText && passwordEdit.dynamicText.length !== 0
+            onModifiedTextFieldContentChanged: {
+                button1.enabled = passwordEdit.modifiedTextFieldContent === passwordConfirmEdit.modifiedTextFieldContent && passwordEdit.modifiedTextFieldContent.length !== 0
             }
         }
 
@@ -88,8 +88,8 @@ BaseModalDialog {
             KeyNavigation.down: KeyNavigation.up
             Accessible.description: JamiStrings.encryptDescription
 
-            onDynamicTextChanged: {
-                button1.enabled = passwordEdit.dynamicText === passwordConfirmEdit.dynamicText && passwordEdit.dynamicText.length !== 0
+            onModifiedTextFieldContentChanged: {
+                button1.enabled = passwordEdit.modifiedTextFieldContent === passwordConfirmEdit.modifiedTextFieldContent && passwordEdit.modifiedTextFieldContent.length !== 0
             }
         }
 
