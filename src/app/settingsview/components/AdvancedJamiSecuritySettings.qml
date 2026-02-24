@@ -103,9 +103,6 @@ ColumnLayout {
         SettingsMaterialTextEdit {
             id: lineEditCertPassword
 
-            Layout.fillWidth: true
-            Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
             itemWidth: root.itemWidth
             titleField: JamiStrings.privateKeyPassword
 
