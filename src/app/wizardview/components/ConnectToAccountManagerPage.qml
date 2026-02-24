@@ -91,17 +91,18 @@ Rectangle {
             wrapMode: Text.WordWrap
         }
 
-        ModalTextEdit {
+        NewMaterialTextField {
             id: accountManagerEdit
 
             objectName: "accountManagerEdit"
 
             Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
-
             Layout.topMargin: JamiTheme.wizardViewMarginSize
+            Layout.maximumWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
+
             focus: visible
 
+            leadingIconSource: JamiResources.jami_logo_icon_svg
             placeholderText: JamiStrings.jamiManagementServerURL
 
             KeyNavigation.up: backButton
@@ -128,15 +129,16 @@ Rectangle {
             wrapMode: Text.Wrap
         }
 
-        ModalTextEdit {
+        NewMaterialTextField {
             id: usernameManagerEdit
 
             objectName: "usernameManagerEdit"
 
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: JamiTheme.wizardViewMarginSize
-            Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
+            Layout.maximumWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
 
+            leadingIconSource: JamiResources.person_24dp_svg
             placeholderText: JamiStrings.username
 
             KeyNavigation.up: accountManagerEdit
@@ -152,7 +154,7 @@ Rectangle {
             objectName: "passwordManagerEdit"
 
             Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
+            Layout.maximumWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
             Layout.topMargin: JamiTheme.wizardViewMarginSize
 
             placeholderText: JamiStrings.password
@@ -175,8 +177,7 @@ Rectangle {
 
             implicitHeight: JamiTheme.newMaterialButtonSetupHeight
 
-            enabled: accountManagerEdit.dynamicText.length !== 0
-                     && usernameManagerEdit.dynamicText.length !== 0
+            enabled: accountManagerEdit.modifiedTextFieldContent.length !== 0 && usernameManagerEdit.modifiedTextFieldContent.length !== 0 && passwordManagerEdit.modifiedTextFieldContent.length !== 0 && !spinnerTriggered
 
             filledButton: true
             text: JamiStrings.connect
@@ -188,12 +189,12 @@ Rectangle {
             onClicked: {
                 if (connectBtn.focus)
                     accountManagerEdit.forceActiveFocus();
-                WizardViewStepModel.accountCreationInfo = JamiQmlUtils.setUpAccountCreationInputPara(
-                            {
-                                "username": usernameManagerEdit.dynamicText,
-                                "password": passwordManagerEdit.dynamicText,
-                                "manager": accountManagerEdit.dynamicText
-                            });
+                spinnerTriggered = true;
+                WizardViewStepModel.accountCreationInfo = JamiQmlUtils.setUpAccountCreationInputPara({
+                        "username": usernameManagerEdit.modifiedTextFieldContent,
+                        "password": passwordManagerEdit.modifiedTextFieldContent,
+                        "manager": accountManagerEdit.modifiedTextFieldContent
+                    });
                 WizardViewStepModel.nextStep();
             }
         }

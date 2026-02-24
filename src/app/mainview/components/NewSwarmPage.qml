@@ -138,50 +138,36 @@ DualPaneView {
                 avatarSize: 180
             }
 
-            ModalTextEdit {
+            NewMaterialTextField {
                 id: title
                 objectName: "titleLineEdit"
 
-                maxCharacters: JamiTheme.maximumCharacters
-
-                Layout.minimumHeight: JamiTheme.preferredFieldHeight
                 Layout.topMargin: JamiTheme.preferredMarginSize
                 Layout.preferredWidth: JamiTheme.preferredFieldWidth
+                Layout.maximumWidth: JamiTheme.preferredFieldWidth
 
-                staticText: ""
+                leadingIconSource: JamiResources.create_swarm_svg
+
+                maxCharacters: JamiTheme.maximumCharacters
                 placeholderText: JamiStrings.groupName
-
-                textColor: {
-                    if (UtilsAdapter.luma(root.color)) {
-                        return JamiTheme.placeholderTextColorWhite;
-                    } else {
-                        return JamiTheme.placeholderTextColor;
-                    }
-                }
+                textFieldContent: ""
 
                 onAccepted: description.forceActiveFocus()
             }
 
-            ModalTextEdit {
+            NewMaterialTextField {
                 id: description
                 objectName: "descriptionLineEdit"
 
-                maxCharacters: JamiTheme.maximumCharacters
-
-                Layout.minimumHeight: JamiTheme.preferredFieldHeight
                 Layout.topMargin: JamiTheme.preferredMarginSize
                 Layout.preferredWidth: JamiTheme.preferredFieldWidth
+                Layout.maximumWidth: JamiTheme.preferredFieldWidth
 
-                staticText: ""
+                leadingIconSource: JamiResources.swarm_details_panel_svg
+
+                maxCharacters: JamiTheme.maximumCharacters
                 placeholderText: JamiStrings.addDescription
-
-                textColor: {
-                    if (UtilsAdapter.luma(root.color)) {
-                        return JamiTheme.placeholderTextColorWhite;
-                    } else {
-                        return JamiTheme.placeholderTextColor;
-                    }
-                }
+                textFieldContent: ""
 
                 onAccepted: btnCreateSwarm.forceActiveFocus()
             }

@@ -28,7 +28,6 @@ ColumnLayout {
     spacing: JamiTheme.settingsCategorySpacing
 
     Text {
-
         Layout.alignment: Qt.AlignLeft
         Layout.preferredWidth: parent.width
         text: JamiStrings.nameServer
@@ -44,12 +43,12 @@ ColumnLayout {
     SettingsMaterialTextEdit {
         id: lineEditNameServer
 
-        Layout.fillWidth: true
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
         itemWidth: root.itemWidth
         titleField: JamiStrings.address
 
+        leadingIconSource: JamiResources.dns_24dp_svg
         staticText: CurrentAccount.uri_Nameserver
 
         onEditFinished: CurrentAccount.uri_Nameserver = dynamicText
