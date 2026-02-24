@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e49c509a_a30d8f0f",
+        "filename": "src/app/commoncomponents/MarkdownPopup.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2026-02-24T20:58:25Z",
+      "side": 1,
+      "message": "magic numbers",
+      "range": {
+        "startLine": 37,
+        "startChar": 17,
+        "endLine": 37,
+        "endChar": 18
+      },
+      "revId": "dd9961eb414b6e916da0e304d78ae300df6fd6c0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fdeb3bc_72f81f2a",
+        "filename": "src/app/mainview/components/AccountComboBox.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2026-02-24T20:58:25Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 71,
+        "startChar": 21,
+        "endLine": 71,
+        "endChar": 22
+      },
+      "revId": "dd9961eb414b6e916da0e304d78ae300df6fd6c0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f75d0c71_819358d3",
+        "filename": "src/app/mainview/components/MessageFormatBar.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2026-02-24T20:58:25Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 47,
+        "startChar": 21,
+        "endLine": 47,
+        "endChar": 22
+      },
+      "revId": "dd9961eb414b6e916da0e304d78ae300df6fd6c0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8f50868_97b6c0c6",
+        "filename": "src/app/mainview/components/MessageFormatBar.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2026-02-24T20:58:25Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 66,
+        "startChar": 25,
+        "endLine": 66,
+        "endChar": 26
+      },
+      "revId": "dd9961eb414b6e916da0e304d78ae300df6fd6c0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
