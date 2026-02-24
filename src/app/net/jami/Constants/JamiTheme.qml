@@ -528,17 +528,15 @@ Item {
     property real invitationViewButtonsSpacing: 30
 
     //JamiIdentifier
-    property real jamiIdMargins: 36
-    property real jamiIdLogoWidth: 70
-    property real jamiIdLogoHeight: 24
-    property real jamiIdFontSize: calcSize(19)
-    property real jamiIdSmallFontSize: calcSize(11)
-    property color jamiIdColor: darkTheme ? blackColor : sysColor
-    property color mainColor: "#005699"
+    property real jamiIdVerticalPadding: 4
+    property real jamiIdContentItemSpacing: 8
+    property real jamiIdUsernameTextEditPreferredWidth: 243
+    property real jamiIdUsernameTextEditMaximumWidth: 300
     property real pushButtonSize: 22
-    property real pushButtonMargins: 10
     property color jamiIdBackgroundColor: darkTheme ? "#333333" : "#F0EFEF"
-    property color redDotColor: "#CC0022"
+    property real redDotIndicatorSize: 8
+    property real redDotIndicatorMargin: 4
+    property color redDotIndicatorColor: "#CC0022"
 
     // MainView
     property color rectColor: darkTheme ? blackColor : "#e5eef5"
@@ -832,5 +830,10 @@ Item {
     property real markdownPopupContentItemSpacing: 4
 
     // TextField
-    property real newMaterialTextFieldHeight: 56
+    property real newMaterialTextFieldHeight: 40
+    property real newMaterialTextFieldTallHeight: 56
+    property real newMaterialTextFieldHorizontalPadding: 16
+    property real newMaterialTextFieldIconHorizontalPadding: 12
+    property real newMaterialTextFieldSupportingTextTopPadding: 4
+    property color newMaterialTextFieldColor: darkTheme ? "#3c3b3b" : "#ebe7e6"
 }
