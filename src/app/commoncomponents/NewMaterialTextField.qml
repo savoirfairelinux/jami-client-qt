@@ -21,28 +21,47 @@ import QtQuick.Layouts
 
 import net.jami.Constants 1.1
 
+// This component will attempt to occupy the maximum width of the layout
+// If width constraints are required, use Layout.maximumWidth
 ColumnLayout {
     id: root
 
+    property bool isTall: false
+
     // Leading icon properties
+    // The icon colour is only exposed here for the sake of UsernameTextEdit,
+    // ideally it should remain untouched for consistency throughout the UI
+    property color leadingIconColor: JamiTheme.textColor
     property string leadingIconSource: ""
 
     // TextField properties
+    property real textFieldHeight: isTall ? JamiTheme.newMaterialTextFieldTallHeight : JamiTheme.newMaterialTextFieldHeight
     property string placeholderText: ""
     property alias textFieldContent: textField.text
     property string modifiedTextFieldContent
     property int maxCharacters: -1
     property bool readOnly: false
     property real textFieldFontPixelSize: JamiTheme.materialLineEditPixelSize
+    property int echoMode: TextInput.Normal
+    property bool inputIsValid: true
+    property var validator: RegularExpressionValidator {
+        id: defaultValidator
+    }
     signal accepted()
 
     // Trailing icon properties
+    property color trailingIconColor: JamiTheme.textColor
     property string trailingIconSource: ""
     property string trailingIconToolTipText: ""
+    property bool trailingIconChecked: false
     signal trailingIconClicked()
 
     // Tooltip properties
     property alias toolTipText: toolTip.text
+
+    // Supporting text
+    property string supportingText: ""
+    property color supportingTextColor: JamiTheme.textColor
 
     // Background properties
     property color borderColor: JamiTheme.tintedBlue
@@ -55,17 +74,19 @@ ColumnLayout {
         }
     }
 
+    Layout.fillWidth: true
+
     Control {
         id: textFieldEditor
 
         Layout.fillWidth: true
-        Layout.preferredHeight: JamiTheme.newMaterialTextFieldHeight
-        Layout.maximumHeight: JamiTheme.newMaterialTextFieldHeight
+        Layout.preferredHeight: root.textFieldHeight
+        Layout.maximumHeight: root.textFieldHeight
 
-        leftPadding: root.leadingIconSource !== "" ? 12 : 16
-        rightPadding: root.trailingIconSource !== "" ? 12 : 16
-        topPadding: 8
-        bottomPadding: 8
+        leftPadding: root.leadingIconSource !== "" ? JamiTheme.newMaterialTextFieldIconHorizontalPadding : JamiTheme.newMaterialTextFieldHorizontalPadding
+        rightPadding: root.trailingIconSource !== "" ? JamiTheme.newMaterialTextFieldIconHorizontalPadding : JamiTheme.newMaterialTextFieldHorizontalPadding
+        topPadding: (textFieldHeight / JamiTheme.iconButtonMedium) / 2
+        bottomPadding: (textFieldHeight / JamiTheme.iconButtonMedium) / 2
 
         contentItem: RowLayout {
             spacing: 0
@@ -75,13 +96,13 @@ ColumnLayout {
 
                 Layout.alignment: Qt.AlignVCenter
 
-                width: icon.width
-                height: icon.height
+                width: JamiTheme.iconButtonMedium
+                height: JamiTheme.iconButtonMedium
 
                 icon.width: JamiTheme.iconButtonMedium
                 icon.height: JamiTheme.iconButtonMedium
                 icon.source: root.leadingIconSource
-                icon.color: JamiTheme.textColor
+                icon.color: root.leadingIconColor
 
                 background: null
 
@@ -91,9 +112,8 @@ ColumnLayout {
 
                 activeFocusOnTab: false
 
-                visible: root.leadingIconSource !== ""
+                visible: root.leadingIconSource !== "" && !readOnly
             }
-
 
             TextField {
                 id: textField
@@ -104,12 +124,17 @@ ColumnLayout {
                 placeholderText: root.placeholderText
                 placeholderTextColor: JamiTheme.textColor
                 verticalAlignment: TextInput.AlignVCenter
+                horizontalAlignment: TextInput.AlignLeft
+
                 color: JamiTheme.textColor
                 font.pixelSize: root.textFieldFontPixelSize
 
                 maximumLength: root.maxCharacters ? root.maxCharacters : 32767
                 readOnly: root.readOnly
                 wrapMode: TextInput.NoWrap
+
+                echoMode: root.echoMode
+                validator: root.validator
 
                 background: null
 
@@ -144,7 +169,11 @@ ColumnLayout {
 
                 activeFocusOnTab: iconSource !== ""
 
+                checked: root.trailingIconChecked
+
                 background: null
+
+                visible: root.trailingIconSource !== "" && !readOnly
 
                 Behavior on opacity {
                     NumberAnimation {
@@ -157,16 +186,11 @@ ColumnLayout {
         background: Rectangle {
             id: bgRect
 
-            color: JamiTheme.backgroundColor
+            color: JamiTheme.searchBarColor
             radius: JamiTheme.iconButtonMedium / 2 + parent.rightPadding
 
-            border.width: 2
-            border.color: {
-                if (textField.activeFocus)
-                    root.borderColor
-                else
-                    JamiTheme.grey_
-            }
+            border.width: 1
+            border.color: textField.activeFocus ? root.borderColor : JamiTheme.transparentColor
 
             Behavior on border.color {
                 ColorAnimation  {
@@ -186,33 +210,17 @@ ColumnLayout {
 
     RowLayout {
         Layout.fillWidth: true
-        Layout.topMargin: 4
+        Layout.topMargin: JamiTheme.newMaterialTextFieldSupportingTextTopPadding
         Layout.leftMargin: textFieldEditor.background.radius
         Layout.rightMargin: textFieldEditor.background.radius
 
-        opacity: textField.activeFocus && root.maxCharacters >= 0 ? 1.0 : 0.0
-
-        Behavior on opacity {
-            NumberAnimation {
-                duration: JamiTheme.shortFadeDuration
-            }
-        }
+        visible: root.supportingText !== ""
 
         Text {
             Layout.fillWidth: true
-            text: "Maximum characters"
-            font.pixelSize: JamiTheme.smallFontSize
-            color: JamiTheme.textColor
-        }
-
-        Text {
-            Layout.alignment: Qt.AlignRight
-            Layout.leftMargin: textFieldEditor.background.radius
-
-            visible: maxCharacters !== undefined
-            text: textField.text.length + " / " + maxCharacters
-            font.pixelSize: JamiTheme.smallFontSize
-            color: JamiTheme.textColor
+            text: root.supportingText
+            font.pixelSize: JamiTheme.mediumFontSize
+            color: root.supportingTextColor
         }
     }
 }
