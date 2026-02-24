@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7970af3_ad0c2587",
+        "filename": "src/app/mainview/components/AboutPopUp.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2026-02-24T21:58:18Z",
+      "side": 1,
+      "message": "Fill row layout and align button to the right. What do you think ?",
+      "range": {
+        "startLine": 141,
+        "startChar": 50,
+        "endLine": 141,
+        "endChar": 65
+      },
+      "revId": "7cbac7347e327098ceff55879870c799d27c7bde",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
