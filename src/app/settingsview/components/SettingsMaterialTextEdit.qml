@@ -28,6 +28,8 @@ RowLayout {
     property string staticText
     property string placeholderText
     property string dynamicText
+    property string leadingIconSource: ""
+    property string trailingIconSource: ""
 
     property bool isPassword: false
 
@@ -50,41 +52,26 @@ RowLayout {
         color: JamiTheme.textColor
     }
 
-    ModalTextEdit {
+    NewMaterialTextField {
         id: modalTextEdit
 
-        TextMetrics {
-            id: modalTextEditTextSize
-            text: root.staticText
-            elide: Text.ElideRight
-            elideWidth: itemWidth - 40
-            font.pixelSize: JamiTheme.materialLineEditPixelSize
-        }
+        Layout.alignment: Qt.AlignCenter
+        Layout.maximumWidth: itemWidth
+
+        leadingIconSource: root.leadingIconSource
+
+        placeholderText: root.placeholderText ? root.placeholderText : root.titleField
+        textFieldContent: root.staticText
+
+        trailingIconSource: root.trailingIconSource
 
         visible: !root.isPassword
-        focus: visible
-        isSettings: true
 
-        Layout.alignment: Qt.AlignCenter
-        Layout.preferredWidth: itemWidth
-        staticText: root.staticText
-        placeholderText: root.placeholderText ? root.placeholderText : root.titleField
-        elidedText: modalTextEditTextSize.elidedText
-
-        onAccepted: {
-            root.dynamicText = dynamicText;
-            root.editFinished();
-        }
-
-        editMode: false
+        onAccepted: root.accepted()
 
         onActiveFocusChanged: {
             if (!activeFocus) {
-                root.dynamicText = dynamicText;
-                root.editFinished();
-                modalTextEdit.editMode = false;
-            } else {
-                modalTextEdit.editMode = true;
+                root.accepted()
             }
         }
     }
@@ -92,26 +79,19 @@ RowLayout {
     PasswordTextEdit {
         id: passwordTextEdit
 
-        visible: root.isPassword
-        focus: visible
-        isSettings: true
-
         Layout.alignment: Qt.AlignCenter
-        Layout.preferredWidth: itemWidth
-        staticText: root.staticText
-        placeholderText: root.placeholderText ? root.placeholderText : root.titleField
+        Layout.maximumWidth: itemWidth
 
-        onAccepted: {
-            root.dynamicText = dynamicText;
-            root.editFinished();
-            echoMode = TextInput.Password;
-        }
+        visible: root.isPassword
+
+        placeholderText: root.placeholderText ? root.placeholderText : root.titleField
+        textFieldContent: root.staticText
+
+        onAccepted: root.accepted()
 
         onActiveFocusChanged: {
             if (!activeFocus) {
-                root.dynamicText = dynamicText;
-                root.editFinished();
-                echoMode = TextInput.Password;
+                root.accepted()
             }
         }
     }
