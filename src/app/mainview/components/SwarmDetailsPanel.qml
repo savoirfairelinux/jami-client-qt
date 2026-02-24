@@ -230,125 +230,61 @@ Item {
                 id: textEditContents
 
                 Layout.fillWidth: true
-                Layout.preferredHeight: 80
+                Layout.preferredHeight: 88
+                Layout.topMargin: 4
                 Layout.alignment: Qt.AlignTop
 
                 ColumnLayout {
-
                     anchors.fill: parent
-                    spacing: 0
 
-                    // NewMaterialTextField {
-                    //     Layout.fillWidth: true
-                    //     Layout.fillHeight: true
-
-                    //     leadingIconSource: JamiResources.edit_svg
-
-                    //     placeholderText: JamiStrings.title
-                    //     textFieldContent: CurrentConversation.title
-                    //     maxCharacters: JamiTheme.maximumCharacters
-                    //     readOnly: !isAdmin
-                    //     toolTipText: CurrentConversation.isCoreDialog ? JamiStrings.contactName :
-                    //                                                     JamiStrings.groupName
-
-                    //     trailingIconSource: JamiResources.cancel_24dp_svg
-                    //     trailingIconToolTipText: JamiStrings.clearText
-                    //     onTrailingIconClicked: ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid,
-                    //                                                                                                   "");
-
-                    //     onAccepted: {
-                    //         ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid,
-                    //                                                      modifiedTextFieldContent);
-                    //     }
-                    // }
-
-                    ModalTextEdit {
+                    NewMaterialTextField {
                         id: titleLine
 
                         Layout.fillWidth: true
                         Layout.fillHeight: true
 
-                        TextMetrics {
-                            id: titleLineTextSize
-                            text: CurrentConversation.title
-                            elide: Text.ElideRight
-                            elideWidth: titleLine.width
-                        }
-
-                        maxCharacters: JamiTheme.maximumCharacters
-                        fontPixelSize: JamiTheme.materialLineEditPixelSize
-
-                        isSwarmDetail: true
-                        readOnly: !isAdmin
-
-                        staticText: CurrentConversation.title
-                        elidedText: titleLineTextSize.elidedText
-
-                        textColor: root.textColor
-                        prefixIconColor: root.textColor
-
-                        onAccepted: {
-                            ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid,
-                                                                         dynamicText);
-                        }
-
-                        editMode: false
+                        leadingIconSource: JamiResources.round_edit_24dp_svg
 
                         placeholderText: JamiStrings.title
+                        textFieldContent: CurrentConversation.title
+                        maxCharacters: JamiTheme.maximumCharacters
+                        readOnly: !isAdmin
+                        toolTipText: CurrentConversation.isCoreDialog ? JamiStrings.contactName :
+                                                                        JamiStrings.groupName
 
-                        onActiveFocusChanged: {
-                            if (!activeFocus) {
-                                ConversationsAdapter.updateConversationTitle(
-                                            LRCInstance.selectedConvUid, dynamicText);
-                            }
-                            titleLine.editMode = activeFocus;
-                        }
+                        trailingIconSource: JamiResources.cancel_24dp_svg
+                        trailingIconToolTipText: JamiStrings.clearText
+                        onTrailingIconClicked: modifiedTextFieldContent = ""
 
-                        infoTipLineText: CurrentConversation.isCoreDialog ? JamiStrings.contactName :
-                                                                            JamiStrings.groupName
+                        onAccepted: ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, modifiedTextFieldContent);
                     }
 
-                    ModalTextEdit {
+                    NewMaterialTextField {
                         id: descriptionLineButton
 
                         Layout.fillWidth: true
                         Layout.fillHeight: true
 
-                        TextMetrics {
-                            id: descriptionLineButtonTextSize
-                            text: CurrentConversation.description
-                            elide: Text.ElideRight
-                            elideWidth: descriptionLineButton.width
-                        }
+                        leadingIconSource: JamiResources.round_edit_24dp_svg
 
-                        maxCharacters: JamiTheme.maximumCharacters
-                        fontPixelSize: JamiTheme.materialLineEditSelectedPixelSize
-
-                        isSwarmDetail: true
-
-                        readOnly: !isAdmin || CurrentConversation.isCoreDialog
-
-                        staticText: CurrentConversation.description
                         placeholderText: JamiStrings.addDescription
-                        elidedText: descriptionLineButtonTextSize.elidedText
+                        textFieldContent: CurrentConversation.description
+                        maxCharacters: JamiTheme.maximumCharacters
+                        textFieldFontPixelSize: JamiTheme.materialLineEditSelectedPixelSize
+                        readOnly: !isAdmin || CurrentConversation.isCoreDialog
+                        toolTipText: JamiStrings.addDescription
 
-                        textColor: root.textColor
-                        prefixIconColor: root.textColor
-
-                        onAccepted: ConversationsAdapter.updateConversationDescription(
-                                        LRCInstance.selectedConvUid, dynamicText)
-
-                        editMode: false
+                        trailingIconSource: JamiResources.cancel_24dp_svg
+                        trailingIconToolTipText: JamiStrings.clearText
+                        onTrailingIconClicked: modifiedTextFieldContent = ""
 
                         onActiveFocusChanged: {
                             if (!activeFocus) {
-                                ConversationsAdapter.updateConversationDescription(
-                                            LRCInstance.selectedConvUid, dynamicText);
+                                ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, dynamicText);
                             }
-                            descriptionLineButton.editMode = activeFocus;
                         }
 
-                        infoTipLineText: JamiStrings.addDescription
+                        onAccepted: ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, dynamicText)
                     }
                 }
             }
