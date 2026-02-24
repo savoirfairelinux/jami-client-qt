@@ -89,27 +89,27 @@ BaseModalDialog {
         function validatePassword() {
             switch (purpose) {
             case PasswordDialog.ExportAccount:
-                button1.enabled = currentPasswordEdit.dynamicText.length >= 0;
+                button1.enabled = currentPasswordEdit.modifiedTextFieldContent.length >= 0;
                 break;
             case PasswordDialog.SetPassword:
-                button1.enabled = passwordEdit.dynamicText.length > 0 && passwordEdit.dynamicText === confirmPasswordEdit.dynamicText;
+                button1.enabled = passwordEdit.modifiedTextFieldContent.length > 0 && passwordEdit.modifiedTextFieldContent === confirmPasswordEdit.modifiedTextFieldContent;
                 break;
             default:
-                button1.enabled = currentPasswordEdit.dynamicText.length >= 0 && passwordEdit.dynamicText === confirmPasswordEdit.dynamicText;
+                button1.enabled = currentPasswordEdit.modifiedTextFieldContent.length >= 0 && passwordEdit.modifiedTextFieldContent === confirmPasswordEdit.modifiedTextFieldContent;
             }
         }
 
         function exportAccountQML() {
             var success = false;
             if (path.length > 0) {
-                success = AccountAdapter.exportToFile(LRCInstance.currentAccountId, path, currentPasswordEdit.dynamicText);
+                success = AccountAdapter.exportToFile(LRCInstance.currentAccountId, path, currentPasswordEdit.modifiedTextFieldContent);
             }
             reportStatus(success);
             close();
         }
 
         function savePasswordQML() {
-            var success = AccountAdapter.savePassword(LRCInstance.currentAccountId, currentPasswordEdit.dynamicText, passwordEdit.dynamicText);
+            var success = AccountAdapter.savePassword(LRCInstance.currentAccountId, currentPasswordEdit.modifiedTextFieldContent, passwordEdit.modifiedTextFieldContent);
             reportStatus(success);
             close();
         }
@@ -148,7 +148,7 @@ BaseModalDialog {
             visible: purpose === PasswordDialog.ChangePassword || purpose === PasswordDialog.ExportAccount
             placeholderText: JamiStrings.enterCurrentPassword
 
-            onDynamicTextChanged: popupContentColumnLayout.validatePassword()
+            onModifiedTextFieldContentChanged: popupContentColumnLayout.validatePassword()
         }
 
         PasswordTextEdit {
@@ -162,7 +162,7 @@ BaseModalDialog {
 
             placeholderText: JamiStrings.enterNewPassword
 
-            onDynamicTextChanged: popupContentColumnLayout.validatePassword()
+            onModifiedTextFieldContentChanged: popupContentColumnLayout.validatePassword()
         }
 
         PasswordTextEdit {
@@ -177,7 +177,7 @@ BaseModalDialog {
 
             placeholderText: JamiStrings.confirmNewPassword
 
-            onDynamicTextChanged: popupContentColumnLayout.validatePassword()
+            onModifiedTextFieldContentChanged:  popupContentColumnLayout.validatePassword()
         }
     }
 }
