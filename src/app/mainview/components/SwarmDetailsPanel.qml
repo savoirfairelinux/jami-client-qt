@@ -145,7 +145,7 @@ Item {
                                                                        parent.height / 2
 
                             NewIconButton {
-                                id: muteConversation
+                                id: notificationSettingButton
 
                                 anchors.centerIn: parent
 
@@ -154,8 +154,8 @@ Item {
                                             ? JamiResources.notifications_off_24dp_svg :
                                               JamiResources.notifications_active_24dp_svg
                                 toolTipText: CurrentConversation.ignoreNotifications
-                                             ? JamiStrings.muteConversation :
-                                               JamiStrings.unmuteConversation
+                                             ? JamiStrings.unmuteConversation :
+                                               JamiStrings.muteConversation
 
                                 onClicked: CurrentConversation.setPreference("ignoreNotifications",
                                                                              !CurrentConversation.ignoreNotifications)
