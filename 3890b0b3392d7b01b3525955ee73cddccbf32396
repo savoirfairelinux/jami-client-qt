@@ -16,6 +16,24 @@
       "message": "I would hide the button if the file is not present",
       "revId": "3890b0b3392d7b01b3525955ee73cddccbf32396",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7238871_e81b9798",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2026-02-24T21:44:53Z",
+      "side": 1,
+      "message": "@ilyas.erdogan@savoirfairelinux.com",
+      "parentUuid": "4b773eaf_d283df2a",
+      "revId": "3890b0b3392d7b01b3525955ee73cddccbf32396",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
