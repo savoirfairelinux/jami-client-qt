@@ -19,44 +19,19 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
 
-ModalTextEdit {
-    id: modalTextEditRoot
+NewMaterialTextField {
+    id: root
 
     property bool firstEntry: false
-    signal icoClicked
+    property bool showPassword: false
 
-    prefixIconSrc: firstEntry ? JamiResources.lock_svg : JamiResources.round_edit_24dp_svg
-
-    suffixIconSrc: echoMode == TextInput.Password ? JamiResources.eye_cross_svg : JamiResources.noun_eye_svg
-    suffixIconColor: JamiTheme.passwordEyeIconColor
+    leadingIconSource: firstEntry ? JamiResources.lock_svg : JamiResources.password_24dp_svg
 
     placeholderText: JamiStrings.password
-    infoTipText: firstEntry ? JamiStrings.password : ""
-    staticText: ""
-    echoMode: TextInput.Password
+    toolTipText: firstEntry ? JamiStrings.password : ""
+    textFieldContent: ""
+    echoMode: showPassword ? TextInput.Normal : TextInput.Password
 
-    // Forward the suffix icon click to toggle password visibility
-    Connections {
-        target: item
-        enabled: item !== null
-
-        function onSuffixIconClicked() {
-            modalTextEditRoot.onIcoClicked();
-        }
-    }
-
-    onIcoClicked: {
-        if (echoMode == TextInput.Normal) {
-            echoMode = TextInput.Password;
-            suffixIconSrc = JamiResources.eye_cross_svg;
-        } else {
-            echoMode = TextInput.Normal;
-            suffixIconSrc = JamiResources.noun_eye_svg;
-        }
-    }
-
-    function startEditing() {
-        root.editMode = true;
-        forceActiveFocus();
-    }
+    trailingIconSource: showPassword ? JamiResources.noun_eye_svg : JamiResources.eye_cross_svg
+    onTrailingIconClicked: showPassword = !showPassword
 }
