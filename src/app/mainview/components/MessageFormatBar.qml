@@ -457,7 +457,7 @@ Rectangle {
                     anchors.verticalCenter: parent.verticalCenter
 
                     iconSize: JamiTheme.iconButtonMedium
-                    iconSource: JamiResources.more_menu_black_24dp_svg
+                    iconSource: JamiResources.round_add_24dp_svg
                     toolTipText: showMoreButton.popup.visible ? JamiStrings.showLess :
                                                                 JamiStrings.showMore
 
@@ -511,7 +511,7 @@ Rectangle {
             property list<Action> menuActions: [
                 Action {
                     id: sendFile
-                    property string iconSrc: JamiResources.link_black_24dp_svg
+                    property string iconSrc: JamiResources.attached_file_svg
                     property string toolTip: JamiStrings.sendFile
                     property bool show: true
                     property bool needWebEngine: false
