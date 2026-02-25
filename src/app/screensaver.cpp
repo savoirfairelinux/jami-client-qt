@@ -48,7 +48,7 @@ ScreenSaver::createInterface(void)
     for (int i = 0; i < N_SERVICES; i++) {
         screenSaverInterface_ = new QDBusInterface(services_[i], paths_[i], services_[i], sessionBus_);
         if (screenSaverInterface_ && screenSaverInterface_->isValid()) {
-            C_INFO << "Screen saver dbus interface: " << services_[i];
+            C_DBG << "Screen saver dbus interface: " << services_[i];
             return true;
         }
     }
