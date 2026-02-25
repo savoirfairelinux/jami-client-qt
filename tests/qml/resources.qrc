@@ -24,5 +24,6 @@
         <file>src/tst_ConversationListView.qml</file>
         <file>src/tst_MessageListView.qml</file>
         <file>src/tst_ListSelectionView.qml</file>
+        <file>src/tst_LayoutManager.qml</file>
     </qresource>
 </RCC>
