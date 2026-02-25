@@ -56,7 +56,6 @@ extern const QString defaultDownloadPath;
     X(HideSpectators, false) \
     X(AutoUpdate, true) \
     X(PluginAutoUpdate, false) \
-    X(StartMinimized, false) \
     X(ShowChatviewHorizontally, true) \
     X(NeverShowMeAgain, false) \
     X(WindowGeometry, QRectF(qQNaN(), qQNaN(), 0., 0.)) \
