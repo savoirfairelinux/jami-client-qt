@@ -149,7 +149,7 @@ Rectangle {
                 Layout.preferredHeight: JamiTheme.invitationViewButtonSize
                 Layout.preferredWidth: JamiTheme.invitationViewButtonSize
 
-                preferredSize: JamiTheme.invitationViewButtonSize
+                preferredSize: JamiTheme.invitationViewButtonIconSize
                 radius: JamiTheme.invitationViewButtonRadius
 
                 toolTipText: JamiStrings.declineContactRequest
