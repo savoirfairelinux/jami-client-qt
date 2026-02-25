@@ -1035,6 +1035,28 @@ target_link_libraries(${PROJECT_NAME} PRIVATE ${CLIENT_LIBS})
 qt_import_qml_plugins(${PROJECT_NAME})
 qt_finalize_executable(${PROJECT_NAME})
 
+# MSI packaging target (Windows only).
+# Build the app first, optionally sign the PE files in x64/Release/, then run:
+#   cmake --build <build_dir> --target package_msi
+# Must be run from a VS Developer Command Prompt so that VC_CRT_Dir is set
+# for the CRT harvest step inside JamiInstaller.wixproj.
+if(WIN32)
+    find_program(DOTNET_EXECUTABLE dotnet)
+    if(DOTNET_EXECUTABLE)
+        add_custom_target(package_msi
+            COMMAND ${DOTNET_EXECUTABLE} build
+                ${CMAKE_SOURCE_DIR}/JamiInstaller/JamiInstaller.wixproj
+                -c Release /p:Platform=x64 /nologo
+            WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/JamiInstaller
+            COMMENT "Building MSI from signed binaries in x64/Release"
+            VERBATIM
+        )
+    else()
+        message(STATUS "dotnet not found — 'package_msi' target unavailable; "
+                       "install the .NET SDK and 'dotnet tool install --global wix'")
+    endif()
+endif()
+
 # tests
 if(BUILD_TESTING)
   message("Add Jami tests")
