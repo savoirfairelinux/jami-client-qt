@@ -189,6 +189,11 @@ ApplicationWindow {
             else
                 // Okay now just start the client normally.
                 viewCoordinator.present("WelcomePage");
+
+            // Preload ConversationView so the first conversation selection is instant.
+            // WelcomePage already creates SidePanel; this only instantiates ChatView and
+            // MessageListView, separating QML tree creation from message data loading.
+            Qt.callLater(function() { viewCoordinator.preload("ConversationView"); });
         } else {
             // No account, so start the wizard.
             viewCoordinator.present("WizardView");
