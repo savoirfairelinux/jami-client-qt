@@ -46,6 +46,30 @@
       },
       "revId": "7cbac7347e327098ceff55879870c799d27c7bde",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "209cbeae_6834f2e3",
+        "filename": "src/app/mainview/components/AboutPopUp.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2026-02-25T15:32:33Z",
+      "side": 1,
+      "message": "Layout.alignment: Qt.AlignRight | Qt.AlignVCenter",
+      "parentUuid": "b5f96bed_bdf87e37",
+      "range": {
+        "startLine": 141,
+        "startChar": 50,
+        "endLine": 141,
+        "endChar": 65
+      },
+      "revId": "7cbac7347e327098ceff55879870c799d27c7bde",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }

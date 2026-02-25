@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8799dc3_9f6f815b",
+        "filename": "src/app/mainview/components/AboutPopUp.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2026-02-25T15:32:33Z",
+      "side": 1,
+      "message": "Layout.fillWidth: true",
+      "range": {
+        "startLine": 114,
+        "startChar": 32,
+        "endLine": 114,
+        "endChar": 62
+      },
+      "revId": "a7b211d5714020905a8dabca37e3947b82a2b3ca",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
