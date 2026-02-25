@@ -193,7 +193,7 @@ Item {
     }
 
     Shortcut {
-        sequence: StandardKey.Quit
+        sequences: [StandardKey.Quit]
         context: Qt.ApplicationShortcut
         onActivated: Qt.quit()
     }
