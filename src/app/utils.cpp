@@ -122,6 +122,16 @@ Utils::testVulkanSupport()
 bool
 Utils::CreateStartupLink(const std::wstring& wstrAppName)
 {
+    /*
+     * On Windows, create a shortcut in the Startup folder.
+     * On Linux, create a symlink to the .desktop file in the autostart directory.
+     *
+     * Note: On Linux, the application launches without the --minimized argument,
+     * as this is the current desired behavior. Windows, however, used the --minimized
+     * argument to remain consistent with other applications, and avoid visually
+     * populating the desktop with windows during startup.
+     *
+     */
 #ifdef Q_OS_WIN
     TCHAR szPath[MAX_PATH];
     GetModuleFileName(NULL, szPath, MAX_PATH);
@@ -195,7 +205,7 @@ Utils::CreateStartupLink(const std::wstring& wstrAppName)
 
     QFile srcFile(desktopPath);
     bool result = srcFile.link(desktopFile);
-    qDebug() << desktopFile << (result ? "-> " + desktopPath + " created successfully" : "unable to be created");
+    qInfo() << desktopFile << (result ? "-> " + desktopPath + " created successfully" : "unable to be created");
     return result;
 #endif
 }

@@ -33,6 +33,10 @@ import QWindowKit
 Window {
     id: appWindow
 
+    // Start hidden; LayoutManager.restoreWindowSettings() will set the
+    // correct visibility once geometry has been applied.
+    visibility: Window.Hidden
+
     readonly property bool useFrameless: UtilsAdapter.getAppValue(Settings.Key.UseFramelessWindow)
     property bool isRTL: UtilsAdapter.isRTL
     LayoutMirroring.enabled: isRTL
@@ -139,14 +143,6 @@ Window {
     // Used to manage the view stack and the current view.
     property ViewCoordinator viewCoordinator: ViewCoordinator {}
 
-    // Used to prevent the window from being visible until the
-    // window geometry has been restored.
-    property bool windowSettingsLoaded: false
-
-    // This setting can be used to block a loading Jami instance
-    // from showNormal() and showMaximized() when starting minimized.
-    property bool allowVisibleWindow: true
-
     // Tracks whether the main view has finished loading.
     readonly property bool mainViewReady: mainViewLoader.status === Loader.Ready
 
@@ -170,10 +166,6 @@ Window {
     }
 
     title: JamiStrings.appTitle
-
-    // Show the window as soon as geometry is restored, before the main view finishes loading.
-    // A loading placeholder is shown until the main view is ready.
-    visible: windowSettingsLoaded && allowVisibleWindow
 
     Connections {
         id: connectionMigrationEnded
@@ -258,7 +250,6 @@ Window {
         // Restore window geometry right away so the window can appear
         // at the correct position and size before the main view loads.
         layoutManager.restoreWindowSettings();
-        windowSettingsLoaded = true;
 
         // Start loading the main view asynchronously.
         mainViewLoader.active = true;

@@ -278,9 +278,12 @@ MainApplication::init()
     lrcInstance_->accountModel().autoTransferFromTrusted = allowTransferFromTrusted;
     lrcInstance_->accountModel().autoTransferSizeThreshold = acceptTransferBelow;
 
-    auto startMinimizedSetting = settingsManager_->getValue(Settings::Key::StartMinimized).toBool();
-    // The presence of start URI should override the startMinimized setting for this instance.
-    set_startMinimized(startMinimizedSetting && runOptions_[Option::StartUri].isNull());
+    // startMinimized is driven solely by the --minimized CLI flag.
+    // The persistent StartMinimized setting is only used to configure the system
+    // startup entry (e.g. the Windows shortcut arguments) and must not affect
+    // runtime argument parsing.
+    // A start URI overrides --minimized (window must be visible to handle the URI).
+    set_startMinimized(runOptions_[Option::StartMinimized].toBool() && runOptions_[Option::StartUri].isNull());
 
     initQmlLayer();
 
@@ -296,8 +299,6 @@ MainApplication::init()
     // so the first frame can be displayed as quickly as possible.
     QTimer::singleShot(0, this, [this] {
         accountSettingsManager_->initalizeAccountSettings();
-
-        settingsManager_->setValue(Settings::Key::StartMinimized, runOptions_[Option::StartMinimized].toBool());
 
         initSystray();
     });
