@@ -6,12 +6,12 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "",
-            "linux":{
+            "linux": {
                 "MIMode": "gdb",
                 "program": "${workspaceFolder}/build/jami",
                 "args": [
-                    "-d",
-                ],
+                    "-d"
+                ]
             },
             "osx": {
                 "MIMode": "lldb",
@@ -19,31 +19,30 @@
                 "environment": [
                     {
                         "name": "NO_COLOR",
-                        "value": "true",
+                        "value": "true"
                     }
-                ],
+                ]
             },
             "cwd": "${workspaceFolder}",
             "preLaunchTask": "cmake-build",
-            "externalConsole": false, // A macOS dev may want to set this to true.
+            "externalConsole": false,
+            "visualizerFile": "c:\\Users\\atraczyk\\AppData\\Roaming\\Code\\User\\workspaceStorage\\3d64cb3481b9f352bbf4d192f9fca9fc\\tonka3000.qtvsctools\\qt.natvis.xml"
         },
         {
-            // Using this configuration will require manually reconfiguring the project using
-            // build.py --no-libwrap, otherwise the daemon executable will not be built and the
-            // client will not be built with ENABLE_LIBWRAP=False.
             "name": "Jami-Daemon-Debug",
             "type": "cppdbg",
             "request": "launch",
             "linux": {
                 "MIMode": "gdb",
-                "program": "${workspaceFolder}/daemon/bin/dbus/jamid",
+                "program": "${workspaceFolder}/daemon/bin/dbus/jamid"
             },
             "program": "",
             "args": [
-                "-cdp",
+                "-cdp"
             ],
             "cwd": "${workspaceFolder}",
             "preLaunchTask": "cmake-build",
+            "visualizerFile": "c:\\Users\\atraczyk\\AppData\\Roaming\\Code\\User\\workspaceStorage\\3d64cb3481b9f352bbf4d192f9fca9fc\\tonka3000.qtvsctools\\qt.natvis.xml"
         }
     ]
 }

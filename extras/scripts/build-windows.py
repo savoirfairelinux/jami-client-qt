@@ -35,6 +35,17 @@ examples:
     build.py pack --zip --skip-build       # Generate a 7z archive of the app
                                              without building
 
+Code-signing workflow (sign binaries before embedding them in the MSI):
+4.  build.py --qt=C:/Qt/6.6.2/msvc2019_64        # Step 1: build + deploy
+    <sign all PE files in x64/Release/>           # Step 2: sign externally
+    build.py pack --msi --skip-build --skip-deploy # Step 3: MSI from signed files
+
+The MSI is built with WiX v4 (WixToolset.Sdk/4.0.5). One-time setup required:
+    winget install Microsoft.DotNet.SDK.9
+    dotnet tool install -g wix --version 4.0.5
+    wix extension add WixToolset.UI.wixext/4.0.5
+    wix extension add WixToolset.Util.wixext/4.0.5
+
 """
 
 import sys
@@ -138,6 +149,20 @@ def find_ms_build():
 
 
 msbuild_cmd = find_ms_build()
+
+
+def find_dotnet():
+    """Find the dotnet executable."""
+    dotnet = shutil.which("dotnet")
+    if dotnet:
+        return dotnet
+    for path in [
+        os.path.join(os.environ.get("ProgramFiles", ""), "dotnet", "dotnet.exe"),
+        os.path.join(os.environ.get("ProgramFiles(x86)", ""), "dotnet", "dotnet.exe"),
+    ]:
+        if os.path.exists(path):
+            return path
+    return None
 
 
 def get_ms_build_args(arch, config_str, toolset=""):
@@ -390,26 +415,54 @@ def run_tests(config_str, qt_dir):
     sys.exit(exit_code)
 
 
-def generate_msi(version):
-    """Package MSI for Windows."""
+def generate_msi(version, config_str="Release"):
+    """Package MSI for Windows using the WiX v4 installer project.
+
+    This step must run AFTER any code-signing of the binaries in x64/Release/
+    so that signed files are embedded in the MSI.  Use the workflow:
+        build-windows.py [--qt=...] [--skip-build]          # build + deploy
+        <sign all PE files in x64/Release/>                 # sign externally
+        build-windows.py pack --msi --skip-build --skip-deploy  # build MSI
+    """
     print("Generating MSI installer...")
 
+    dotnet = find_dotnet()
+    if not dotnet:
+        print(
+            "dotnet not found. Install the .NET SDK and the WiX v4 tool:\n"
+            "  winget install Microsoft.DotNet.SDK.9\n"
+            "  dotnet tool install --global wix"
+        )
+        sys.exit(1)
+
+    # Inherit the full VS environment so VC_CRT_Dir and friends are available
+    # for the CRT harvest step inside the WiX project.
     vs_env_vars = {}
     vs_env_vars.update(get_vs_env())
-    msbuild_args = get_ms_build_args("x64", "Release")
+
     installer_dir = os.path.join(repo_root_dir, "JamiInstaller")
     installer_project = os.path.join(installer_dir, "JamiInstaller.wixproj")
-    build_project(msbuild_args, installer_project, vs_env_vars)
-    msi_dir = os.path.join(installer_dir, "bin", "Release", "en-us")
-    msi_file_file = os.path.join(
-        msi_dir, "jami.release.x64.msi")
-    msi_version_file = os.path.join(
-        msi_dir, "jami-" + version + ".msi")
+
+    cmd = [
+        dotnet, "build", installer_project,
+        "-c", config_str,
+        "/p:Platform=x64",
+        "/nologo",
+    ]
+    if execute_cmd(cmd, False, vs_env_vars):
+        print("Failed to build MSI installer.")
+        sys.exit(1)
+
+    # WiX v4 SDK outputs to bin/<Platform>/<Configuration>/<Culture>/
+    msi_dir = os.path.join(installer_dir, "bin", "x64", config_str, "en-us")
+    cfg_tag = config_str.lower()  # 'release' or 'beta'
+    msi_file = os.path.join(msi_dir, f"jami.{cfg_tag}.x64.msi")
+    msi_version_file = os.path.join(msi_dir, "jami-" + version + ".msi")
     try:
-        os.rename(msi_file_file, msi_version_file)
+        os.rename(msi_file, msi_version_file)
     except FileExistsError:
         os.remove(msi_version_file)
-        os.rename(msi_file_file, msi_version_file)
+        os.rename(msi_file, msi_version_file)
 
 
 def generate_zip(version):
@@ -548,7 +601,7 @@ def main():
     if parsed_args.subcommand == "pack":
         do_build(False)
         if parsed_args.msi:
-            generate_msi(get_version())
+            generate_msi(get_version(), config_str)
         elif parsed_args.zip:
             generate_zip(get_version())
     else:

@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WixLocalization Culture="en-us"
-    xmlns="http://wixtoolset.org/schemas/v4/wxs/localization">
-    <String Id="AdvancedWelcomeEulaDlgDescriptionPerMachine">By installing this software you agree to the terms in the license agreement</String>
-    <UI Dialog="ExitDialog"
-        Control="OptionalCheckBox"
-        Width="10"
-        Height="10"
-        X="135"
-        Y="110" />
-    <UI Dialog="ExitDialog"
-        Control="OptionalText"
-        X="150"
-        Y="110" />
+    xmlns="http://wixtoolset.org/schemas/v4/wxl">
+    <String Id="AdvancedWelcomeEulaDlgDescriptionPerMachine"
+        Value="By installing this software you agree to the terms in the license agreement" />
 </WixLocalization>

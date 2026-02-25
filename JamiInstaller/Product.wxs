@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?include Config.wxi?>
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
-     xmlns:util="http://wixtoolset.org/schemas/v4/wxs/util">
+  xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui">
   <Package Name="$(var.Name)"
     Language="1033"
     Version="$(fun.AutoVersion(1.0))"
     Manufacturer="$(var.Manufacturer)"
     UpgradeCode="7c45b52b-0390-4fe8-947a-3f13e82dd346"
-    Scope="both">
+    Scope="perUser">
 
     <MajorUpgrade Schedule="afterInstallInitialize"
       AllowDowngrades="yes"/>
@@ -34,7 +34,7 @@
     <Feature Id="ProductFeature"
       Title="Main"
       Level="1"
-      Absent="disallow">
+      AllowAbsent="no">
       <ComponentGroupRef Id="MainExecutable"
         Primary="yes" />
       <ComponentGroupRef Id="AppHeatGenerated" />
@@ -44,39 +44,41 @@
       <ComponentRef Id="RegistryEntries" />
       <ComponentRef Id="URLProtocolRegistryEntries_Machine" />
       <ComponentRef Id="URLProtocolRegistryEntries_User" />
+      <ComponentRef Id="RemoveLegacyFiles" />
     </Feature>
 
     <SetProperty After="FindRelatedProducts"
       Id="FirstInstall"
-      Value="true">
-      NOT Installed AND NOT WIX_UPGRADE_DETECTED AND NOT WIX_DOWNGRADE_DETECTED
-    </SetProperty>
+      Value="true"
+      Condition="NOT Installed AND NOT WIX_UPGRADE_DETECTED AND NOT WIX_DOWNGRADE_DETECTED" />
     <SetProperty After="SetFirstInstall"
       Id="Upgrading"
-      Value="true">
-      WIX_UPGRADE_DETECTED AND NOT (REMOVE="ALL")
-    </SetProperty>
+      Value="true"
+      Condition="WIX_UPGRADE_DETECTED AND NOT (REMOVE=&quot;ALL&quot;)" />
     <SetProperty After="RemoveExistingProducts"
       Id="RemovingForUpgrade"
       Sequence="execute"
-      Value="true"> (REMOVE="ALL") AND UPGRADINGPRODUCTCODE
-    </SetProperty>
+      Value="true"
+      Condition="(REMOVE=&quot;ALL&quot;) AND UPGRADINGPRODUCTCODE" />
     <SetProperty After="SetUpgrading"
       Id="Uninstalling"
-      Value="true">
-      Installed AND (REMOVE="ALL") AND NOT (WIX_UPGRADE_DETECTED OR UPGRADINGPRODUCTCODE)
-    </SetProperty>
+      Value="true"
+      Condition="Installed AND (REMOVE=&quot;ALL&quot;) AND NOT (WIX_UPGRADE_DETECTED OR UPGRADINGPRODUCTCODE)" />
     <SetProperty After="SetUninstalling"
       Id="Maintenance"
-      Value="true">
-      Installed AND NOT Upgrading AND NOT Uninstalling AND NOT UPGRADINGPRODUCTCODE
-    </SetProperty>
+      Value="true"
+      Condition="Installed AND NOT Upgrading AND NOT Uninstalling AND NOT UPGRADINGPRODUCTCODE" />
 
     <SetProperty Id="ARPINSTALLLOCATION"
       Value="[APPLICATIONFOLDER]"
       After="CostFinalize" />
 
-    <UIRef Id="CustomUI" />
+    <Property Id="WixAppFolder"
+      Value="WixPerUserFolder" />
+    <Property Id="ApplicationFolderName"
+      Value="$(var.Manufacturer)\$(var.AppName)" />
+
+    <ui:WixUI Id="WixUI_Advanced" />
     <WixVariable Id="WixUIInfoIcon"
       Value="icon.ico"/>
     <WixVariable Id="WixUIBannerBmp"
@@ -85,34 +87,70 @@
       Value="main-banner.bmp" />
     <WixVariable Id="WixUISupportPerUser"
       Value="1" />
+    <!--License File (GPLv3) - copied from extras/packaging/wix/ by the CopyLicenseRtf MSBuild target-->
+    <WixVariable Id="WixUILicenseRtf"
+      Value="License.rtf" />
 
-    <util:ExecCmd Id="RemoveOldJamiFiles"
-      Command='cmd /c "del &quot;[APPLICATIONFOLDER]vc_redist.x64.exe&quot; &amp; del &quot;[APPLICATIONFOLDER]uninstall.exe&quot; &amp; del &quot;[APPLICATIONFOLDER]WinSparkle.dll&quot;"'
-      Execute="deferred"
-      Return="ignore"
-      Impersonate="no" />
+    <!--Pre-accept the license so the checkbox is ticked by default-->
+    <Property Id="LicenseAccepted"
+      Value="1" />
+    <!--Exit dialog: show and auto-check the Launch Jami checkbox-->
+    <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT"
+      Value="Launch $(var.Name)" />
+    <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOX"
+      Value="1" />
 
-    <util:ExecCmd Id="TerminateAppProcess"
-      Command='"[APPLICATIONFOLDER]$(var.ExeName).exe" --term'
-      Execute="immediate"
-      Return="ignore" />
   </Package>
 
+  <Fragment Id="CustomActions">
+    <CustomAction Id="TerminateAppProcess"
+      FileRef="fileMain.exe"
+      ExeCommand=" --term"
+      Execute="immediate"
+      Return="ignore" />
+    <CustomAction Id="LaunchApplication"
+      FileRef="fileMain.exe"
+      ExeCommand=""
+      Execute="immediate"
+      Return="asyncNoWait" />
+    <CustomAction Id="LaunchApplication_nonUI"
+      FileRef="fileMain.exe"
+      ExeCommand=""
+      Execute="immediate"
+      Return="asyncNoWait" />
+  </Fragment>
+
+  <Fragment Id="LegacyCleanup">
+    <Component Id="RemoveLegacyFiles"
+      Guid="*"
+      Directory="APPLICATIONFOLDER">
+      <RemoveFile Id="RemoveVCRedist"
+        Name="vc_redist.x64.exe"
+        On="install" />
+      <RemoveFile Id="RemoveUninstall"
+        Name="uninstall.exe"
+        On="install" />
+      <RemoveFile Id="RemoveWinSparkle"
+        Name="WinSparkle.dll"
+        On="install" />
+      <RegistryValue Root="HKCU"
+        Key="Software\jami.net\$(var.AppName)"
+        Name="legacyFilesRemoved"
+        Type="integer"
+        Value="1"
+        KeyPath="yes" />
+    </Component>
+  </Fragment>
+
   <Fragment Id="DirectoryStructure">
-    <Directory Id="TARGETDIR"
-      Name="SourceDir">
-      <Directory Id="ProgramFiles64Folder">
-        <Directory Id="APPLICATIONFOLDER"
-          Name="$(var.Name)" />
-      </Directory>
-      <Directory Id="DesktopFolder"
-        Name="Desktop" />
-      <Directory Id="ProgramMenuFolder">
-        <Directory Id="ApplicationProgramsFolder" />
-      </Directory>
-      <Directory Id="WindowsFolder"
-        Name="WINDOWS"/>
-    </Directory>
+    <StandardDirectory Id="ProgramFiles64Folder">
+      <Directory Id="APPLICATIONFOLDER"
+        Name="$(var.Name)" />
+    </StandardDirectory>
+    <StandardDirectory Id="ProgramMenuFolder">
+      <Directory Id="ApplicationProgramsFolder" />
+    </StandardDirectory>
+    <StandardDirectory Id="WindowsFolder" />
   </Fragment>
 
   <Fragment>
@@ -128,15 +166,16 @@
   </Fragment>
 
   <Fragment Id="Shortcuts">
-    <DirectoryRef Id="DesktopFolder">
+    <StandardDirectory Id="DesktopFolder">
       <Component Id="ApplicationShortcutDesktop"
-        Guid="*">
+        Guid="*"
+        Condition="FirstInstall">
         <Shortcut Id="ApplicationShortcutDesktop"
           Name="$(var.Name)"
           Description="Launch $(var.Name)"
           Target="[#fileMain.exe]"
-          WorkingDirectory="INSTALLFOLDER" />
-        <RemoveFolder Id="DesktopFolder"
+          WorkingDirectory="APPLICATIONFOLDER" />
+        <RemoveFolder Id="RemoveDesktopFolder"
           On="uninstall" />
         <RegistryValue Root="HKCU"
           Key="Software\jami.net\$(var.Name)"
@@ -144,9 +183,8 @@
           Type="integer"
           Value="1"
           KeyPath="yes" />
-        <Condition>FirstInstall</Condition>
       </Component>
-    </DirectoryRef>
+    </StandardDirectory>
 
     <DirectoryRef Id="ApplicationProgramsFolder">
       <Component Id="ApplicationShortcutStartMenu"
@@ -155,7 +193,7 @@
           Name="$(var.Name)"
           Description="Launch $(var.Name)"
           Target="[#fileMain.exe]"
-          WorkingDirectory="INSTALLFOLDER" />
+          WorkingDirectory="APPLICATIONFOLDER" />
         <RemoveFolder Id="StartMenuFolder"
           On="uninstall" />
         <RegistryValue Root="HKCU"
@@ -169,142 +207,123 @@
   </Fragment>
 
   <Fragment Id="OtherRegistryEntries">
-    <DirectoryRef Id="TARGETDIR">
-      <Component Id="RegistryEntries"
-        Guid="*">
-        <RegistryValue Root="HKCU"
-          Key="Software\jami.net\$(var.AppName)"
-          Name="hasRun"
-          Type="integer"
-          Value="0"
-          KeyPath="yes" />
-      </Component>
-    </DirectoryRef>
+    <Component Id="RegistryEntries"
+      Guid="*"
+      Directory="APPLICATIONFOLDER">
+      <RegistryValue Root="HKCU"
+        Key="Software\jami.net\$(var.AppName)"
+        Name="hasRun"
+        Type="integer"
+        Value="0"
+        KeyPath="yes" />
+    </Component>
   </Fragment>
 
   <Fragment Id="URLProtocol">
-    <DirectoryRef Id="TARGETDIR">
-      <!-- Per-machine: register jami:// in HKCR (requires admin elevation) -->
-      <Component Id="URLProtocolRegistryEntries_Machine"
-        Guid="*">
-        <Condition>WixAppFolder = "WixPerMachineFolder"</Condition>
-        <RegistryKey Root="HKCR"
-          Key="jami"
-          ForceCreateOnInstall="yes"
-          ForceDeleteOnUninstall="yes">
+    <!-- Per-machine: register jami:// in HKCR (requires admin elevation) -->
+    <Component Id="URLProtocolRegistryEntries_Machine"
+      Guid="*"
+      Directory="APPLICATIONFOLDER"
+      Condition='WixAppFolder = "WixPerMachineFolder"'>
+      <RegistryKey Root="HKCR"
+        Key="jami"
+        ForceCreateOnInstall="yes"
+        ForceDeleteOnUninstall="yes">
+        <RegistryValue Type="string"
+          Name="URL Protocol"
+          Value=""
+          KeyPath="yes" />
+        <RegistryValue Type="string"
+          Value="URL:jami"/>
+        <RegistryKey Key="DefaultIcon">
           <RegistryValue Type="string"
-            Name="URL Protocol"
-            Value=""
-            KeyPath="yes" />
-          <RegistryValue Type="string"
-            Value="URL:jami"/>
-          <RegistryKey Key="DefaultIcon">
-            <RegistryValue Type="string"
-              Value="[APPLICATIONFOLDER]$(var.ExeName).exe" />
-          </RegistryKey>
-          <RegistryKey Key="shell\open\command">
-            <RegistryValue Type="string"
-              Value='"[APPLICATIONFOLDER]$(var.ExeName).exe" "%1"' />
-          </RegistryKey>
+            Value="[APPLICATIONFOLDER]$(var.ExeName).exe" />
         </RegistryKey>
-      </Component>
-      <!-- Per-user: register jami:// under HKCU\Software\Classes (no elevation needed) -->
-      <Component Id="URLProtocolRegistryEntries_User"
-        Guid="*">
-        <Condition>WixAppFolder = "WixPerUserFolder"</Condition>
-        <RegistryKey Root="HKCU"
-          Key="Software\Classes\jami"
-          ForceCreateOnInstall="yes"
-          ForceDeleteOnUninstall="yes">
+        <RegistryKey Key="shell\open\command">
           <RegistryValue Type="string"
-            Name="URL Protocol"
-            Value=""
-            KeyPath="yes" />
-          <RegistryValue Type="string"
-            Value="URL:jami"/>
-          <RegistryKey Key="DefaultIcon">
-            <RegistryValue Type="string"
-              Value="[APPLICATIONFOLDER]$(var.ExeName).exe" />
-          </RegistryKey>
-          <RegistryKey Key="shell\open\command">
-            <RegistryValue Type="string"
-              Value='"[APPLICATIONFOLDER]$(var.ExeName).exe" "%1"' />
-          </RegistryKey>
+            Value='"[APPLICATIONFOLDER]$(var.ExeName).exe" "%1"' />
         </RegistryKey>
-      </Component>
-    </DirectoryRef>
+      </RegistryKey>
+    </Component>
+    <!-- Per-user: register jami:// under HKCU\Software\Classes (no elevation needed) -->
+    <Component Id="URLProtocolRegistryEntries_User"
+      Guid="*"
+      Directory="APPLICATIONFOLDER"
+      Condition='WixAppFolder = "WixPerUserFolder"'>
+      <RegistryKey Root="HKCU"
+        Key="Software\Classes\jami"
+        ForceCreateOnInstall="yes"
+        ForceDeleteOnUninstall="yes">
+        <RegistryValue Type="string"
+          Name="URL Protocol"
+          Value=""
+          KeyPath="yes" />
+        <RegistryValue Type="string"
+          Value="URL:jami"/>
+        <RegistryKey Key="DefaultIcon">
+          <RegistryValue Type="string"
+            Value="[APPLICATIONFOLDER]$(var.ExeName).exe" />
+        </RegistryKey>
+        <RegistryKey Key="shell\open\command">
+          <RegistryValue Type="string"
+            Value='"[APPLICATIONFOLDER]$(var.ExeName).exe" "%1"' />
+        </RegistryKey>
+      </RegistryKey>
+    </Component>
   </Fragment>
 
   <Fragment Id="UI">
-    <UI Id="CustomUI">
-      <Property Id="WixAppFolder"
-        Value="WixPerUserFolder" />
-
-      <!--APPLICATIONFOLDER required by WixUI_Advanced, ApplicationFolderName reset APPLICATIONFOLDER path-->
-      <Property Id="ApplicationFolderName"
-        Value="$(var.Manufacturer)\$(var.AppName)" />
-      <UIRef Id="WixUI_Advanced" />
-
+    <UI>
       <!--Remove User Exit Dialog-->
       <Publish Dialog="AdvancedWelcomeEulaDlg"
         Control="Cancel"
         Property="AbortInstall"
-        Value="1">1</Publish>
+        Value="1"
+        Condition="1" />
       <Publish Dialog="InstallDirDlg"
         Control="Cancel"
         Property="AbortInstall"
-        Value="1">1</Publish>
+        Value="1"
+        Condition="1" />
       <Publish Dialog="FeaturesDlg"
         Control="Cancel"
         Property="AbortInstall"
-        Value="1">1</Publish>
+        Value="1"
+        Condition="1" />
       <Publish Dialog="MaintenanceWelcomeDlg"
         Control="Cancel"
         Property="AbortInstall"
-        Value="1">1</Publish>
+        Value="1"
+        Condition="1" />
       <Publish Dialog="MaintenanceTypeDlg"
         Control="Cancel"
         Property="AbortInstall"
-        Value="1">1</Publish>
+        Value="1"
+        Condition="1" />
 
       <!--Launch Program If Checkbox is clicked-->
       <Publish Dialog="ExitDialog"
         Control="Finish"
         Event="DoAction"
-        Value="LaunchApplication">WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1 and NOT Installed</Publish>
+        Value="LaunchApplication"
+        Condition="WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1" />
 
       <InstallUISequence>
         <Show Dialog="UserExit"
-          OnExit="cancel">NOT AbortInstall = 1</Show>
+          OnExit="cancel"
+          Condition="NOT AbortInstall = 1" />
       </InstallUISequence>
     </UI>
     <InstallExecuteSequence>
       <Custom Action='TerminateAppProcess'
         Before='InstallValidate'/>
-      <Custom Action="RemoveOldJamiFiles"
-        After="RemoveFiles" />
       <Custom Action="LaunchApplication_nonUI"
-        After="InstallFinalize"> WIXNONUILAUNCH </Custom>
+        After="InstallFinalize"
+        Condition="WIXNONUILAUNCH" />
     </InstallExecuteSequence>
 
-    <!--License check box text, Launch check box text (auto check)-->
     <Property Id="WIXUI_EXITDIALOGOPTIONALTEXT"
       Value="Launch $(var.Name)" />
-    <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT"
-      Value="Launch $(var.Name)" />
-    <!--CheckBox Default Set to One-->
-    <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOX"
-      Value="1"/>
-    <Property Id="LicenseAccepted"
-      Value="1"/>
-
-    <util:ShellExecute Id="LaunchApplication"
-      Target="[#fileMain.exe]" />
-    <util:ShellExecute Id="LaunchApplication_nonUI"
-      Target="[#fileMain.exe]" />
-    <!--License File-->
-    <WixVariable Id="WixUILicenseRtf"
-      Value="$(var.ReleaseDir)\License.rtf"/>
   </Fragment>
 
 </Wix>
