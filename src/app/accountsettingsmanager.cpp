@@ -80,7 +80,7 @@ AccountSettingsManager::initalizeAccountSettings()
                                                                                   defaultValue));
         ACCOUNT_SETTINGS_PROPERTY_KEYS
 #undef X
-        qWarning() << "Loaded existing settings for account:" << currentAccountID_;
+        qDebug() << "Loaded existing settings for account:" << currentAccountID_;
     }
 }
 

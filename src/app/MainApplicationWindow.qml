@@ -171,8 +171,6 @@ Window {
 
     title: JamiStrings.appTitle
 
-    visible: mainViewLoader.status === Loader.Ready && windowSettingsLoaded && allowVisibleWindow
-
     Connections {
         id: connectionMigrationEnded
 
