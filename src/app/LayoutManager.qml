@@ -67,15 +67,13 @@ QtObject {
             }
             visibility = priv.windowedVisibility
         }
-        appWindow.allowVisibleWindow = true
     }
 
     // Start in a hidden state.
     function startMinimized(visibilitySetting) {
         // Save the loaded setting for when the app is restored.
         priv.windowedVisibility = visibilitySetting
-        appWindow.allowVisibleWindow = false
-        appWindow.hide();
+        visibility = Window.Hidden
     }
 
     // Close to a hidden state.
@@ -169,9 +167,9 @@ QtObject {
 
         console.debug("Restoring window: " + JSON.stringify(geometry) + " " + visibilitySetting)
 
-        // We should never restore a hidden or fullscreen state here. Default to normal
-        // windowed state in such a case. This shouldn't happen.
-        if (visibilitySetting === Window.Hidden || visibilitySetting === Window.FullScreen) {
+        // Only allow Windowed or Maximized as restored states. Any other
+        // value (Hidden, FullScreen, Minimized, NaN, etc.) is clamped to Windowed.
+        if (visibilitySetting !== Window.Windowed && visibilitySetting !== Window.Maximized) {
             visibilitySetting = Window.Windowed
         }
         if (MainApplication.startMinimized) {
