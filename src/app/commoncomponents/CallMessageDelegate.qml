@@ -53,13 +53,13 @@ SBSMessageBase {
             }).join(", ") : "");
     }
 
-    bubble.border.color: CurrentConversation.color
+    bubble.border.color: convContext.color
     bubble.border.width: 0
     bubble.color: JamiTheme.messageInBgColor
     bubble.opacity: 1
 
     Connections {
-        target: CurrentConversation
+        target: convContext
         function onActiveCallsChanged() {
             root.isActive = LRCInstance.indexOfActiveCall(root.confId, ActionUri, DeviceId) !== -1;
         }
