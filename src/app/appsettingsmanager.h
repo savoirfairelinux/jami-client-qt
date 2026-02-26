@@ -60,6 +60,7 @@ extern const QString defaultDownloadPath;
     X(ShowChatviewHorizontally, true) \
     X(NeverShowMeAgain, false) \
     X(WindowGeometry, QRectF(qQNaN(), qQNaN(), 0., 0.)) \
+    X(PipWindowGeometry, QRectF(qQNaN(), qQNaN(), 0., 0.)) \
     X(WindowState, QWindow::AutomaticVisibility) \
     X(LANG, "SYSTEM") \
     X(SpellLang, {}) \

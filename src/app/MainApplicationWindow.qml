@@ -250,6 +250,10 @@ Window {
         windowSettingsLoaded = true;
     }
 
+    // Eagerly instantiate CallPipWindowManager so it starts monitoring
+    // conversation changes for active calls as soon as the app window opens.
+    readonly property bool _pipActive: CallPipWindowManager.isPipActive
+
     Component.onCompleted: {
         // QWK: setup
         if (useFrameless) {
@@ -480,7 +484,10 @@ Window {
         }
     }
 
-    onClosing: appWindow.close()
+    onClosing: {
+        CallPipWindowManager.closeAll();
+        appWindow.close();
+    }
 
     // Capture the inputs to the main window while the File Dialog is open
     // This is used to mitigate modality issues on Ubuntu 22.04 systems that use wayland.

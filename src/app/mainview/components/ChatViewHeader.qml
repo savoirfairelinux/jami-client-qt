@@ -36,15 +36,18 @@ Control {
     signal backClicked
     signal pluginSelector
 
+    // Injected conversation context; defaults to the global singleton.
+    property var convContext: CurrentConversation
+
     Connections {
-        target: CurrentConversation
+        target: convContext
         enabled: true
 
         function onIdChanged() {
             if (title.eText === "" || userAvatar.imageId === "") {
-                title.eText = CurrentConversation.title
-                description.eText = CurrentConversation.description
-                userAvatar.imageId = CurrentConversation.id
+                title.eText = convContext.title
+                description.eText = convContext.description
+                userAvatar.imageId = convContext.id
             } else {
                 // When switching between conversations
                 if (titleFadeAnimation.running)
@@ -58,12 +61,26 @@ Control {
         }
     }
 
+    property bool detailsButtonVisibility: detailsButton.visible
+
+    readonly property bool interactionButtonsVisibility: {
+        if (convContext.inCall)
+            return false;
+        if (LRCInstance.currentAccountType === Profile.Type.SIP)
+            return true;
+        if (!convContext.isTemporary && !convContext.isSwarm)
+            return false;
+        if (convContext.isRequest || convContext.needsSyncing)
+            return false;
+        return true;
+    }
+
     // We must assign the title, desc., and avatar id on the initial
     // creation of the component
     Component.onCompleted: {
-        title.eText = CurrentConversation.title
-        description.eText = CurrentConversation.description
-        userAvatar.imageId = CurrentConversation.id
+        title.eText = convContext.title
+        description.eText = convContext.description
+        userAvatar.imageId = convContext.id
     }
 
 
@@ -77,10 +94,10 @@ Control {
         }
         ScriptAction {
             script: {
-                title.eText = CurrentConversation.title;
-                description.eText = CurrentConversation.description;
-                userAvatar.imageId = CurrentConversation.id;
-                if (CurrentConversation.description === "" || CurrentConversation.title === CurrentConversation.description) {
+                title.eText = convContext.title;
+                description.eText = convContext.description;
+                userAvatar.imageId = convContext.id;
+                if (convContext.description === "" || convContext.title === convContext.description) {
                     description.visible = false;
                 } else {
                     description.visible = true;
@@ -111,7 +128,7 @@ Control {
             iconSource: JamiResources.bidirectional_back_24dp_svg
             toolTipText: JamiStrings.hideChat
 
-            visible: !viewCoordinator.isInSinglePaneMode && !CurrentConversation.inCall
+            visible: !viewCoordinator.isInSinglePaneMode && !convContext.inCall
 
             onClicked: root.backClicked()
         }
@@ -126,7 +143,7 @@ Control {
             iconSource: JamiResources.bidirectional_chevron_left_black_24dp_svg
             toolTipText: JamiStrings.hideChat
 
-            visible: viewCoordinator.isInSinglePaneMode && !CurrentConversation.inCall
+            visible: viewCoordinator.isInSinglePaneMode && !convContext.inCall
 
             onClicked: root.backClicked()
         }
@@ -146,7 +163,7 @@ Control {
             icon.source: JamiResources.bidirectional_return_to_call_24dp_svg
             icon.color: hovered ? JamiTheme.buttonCallLightGreen : JamiTheme.blackColor
 
-            visible: CurrentConversation.inCall
+            visible: convContext.inCall
 
             Behavior on icon.color {
                 ColorAnimation {
@@ -200,7 +217,7 @@ Control {
                 width: JamiTheme.iconButtonLarge
                 height: JamiTheme.iconButtonLarge
 
-                mode: CurrentConversation.isSwarm ? Avatar.Mode.Conversation : Avatar.Mode.Contact
+                mode: convContext.isSwarm ? Avatar.Mode.Conversation : Avatar.Mode.Contact
                 showPresenceIndicator: false
             }
 
@@ -253,8 +270,8 @@ Control {
                     Layout.fillWidth: true
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
 
-                    visible: text.length && CurrentConversation.title !== CurrentConversation.description
-                    font.family: CurrentConversation.isCoreDialog && CurrentConversation.description.length === 40 ? JamiTheme.ubuntuMonoFontFamily : JamiTheme.ubuntuFontFamily
+                    visible: text.length && convContext.title !== convContext.description
+                    font.family: convContext.isCoreDialog && convContext.description.length === 40 ? JamiTheme.ubuntuMonoFontFamily : JamiTheme.ubuntuFontFamily
                     font.pointSize: JamiTheme.textFontSize
                     color: JamiTheme.faddedLastInteractionFontColor
 
@@ -270,14 +287,15 @@ Control {
         CallsButton {
             QWKSetParentHitTestVisible {}
             Layout.alignment: Qt.AlignVCenter
-            visible: CurrentConversation.activeCalls.length > 0 && interactionButtonsVisibility
+            convContext: root.convContext
+            visible: convContext.activeCalls.length > 0 && interactionButtonsVisibility
         }
 
         NewIconButton {
             id: startAudioCallButton
             QWKSetParentHitTestVisible {}
 
-            visible: CurrentConversation.activeCalls.length === 0 && interactionButtonsVisibility
+            visible: convContext.activeCalls.length === 0 && interactionButtonsVisibility
 
             iconSize: JamiTheme.iconButtonMedium
             iconSource: JamiResources.start_audiocall_24dp_svg
@@ -294,7 +312,7 @@ Control {
             iconSource: JamiResources.videocam_24dp_svg
             toolTipText: JamiStrings.startVideoCall
 
-            visible: CurrentConversation.activeCalls.length === 0 && interactionButtonsVisibility && CurrentAccount.videoEnabled_Video
+            visible: convContext.activeCalls.length === 0 && interactionButtonsVisibility && CurrentAccount.videoEnabled_Video
 
             onClicked: CallAdapter.startCall()
         }

@@ -901,6 +901,28 @@ CallAdapter::muteAudioToggle()
 }
 
 void
+CallAdapter::muteAudioToggle(const QString& accountId, const QString& convUid)
+{
+    const auto callId = lrcInstance_->getCallIdForConversationUid(convUid, accountId);
+    if (callId.isEmpty())
+        return;
+    try {
+        auto& accInfo = lrcInstance_->getAccountInfo(accountId);
+        auto* callModel = accInfo.callModel.get();
+        if (!callModel->hasCall(callId))
+            return;
+        const auto callInfo = callModel->getCall(callId);
+        auto muted = false;
+        for (const auto& m : callInfo.mediaList)
+            if (m[libjami::Media::MediaAttributeKey::LABEL] == "audio_0")
+                muted = m[libjami::Media::MediaAttributeKey::MUTED] == TRUE_STR;
+        callModel->muteMedia(callId, "audio_0", !muted);
+    } catch (const std::exception& e) {
+        qWarning() << e.what();
+    }
+}
+
+void
 CallAdapter::recordThisCallToggle()
 {
     const auto callId = lrcInstance_->getCallIdForConversationUid(lrcInstance_->get_selectedConvUid(), accountId_);
@@ -944,6 +966,40 @@ CallAdapter::muteCameraToggle()
             callModel->addMedia(callId,
                                 lrcInstance_->avModel().getCurrentVideoCaptureDevice(),
                                 lrc::api::CallModel::MediaRequestType::CAMERA);
+    }
+}
+
+void
+CallAdapter::muteCameraToggle(const QString& accountId, const QString& convUid)
+{
+    const auto callId = lrcInstance_->getCallIdForConversationUid(convUid, accountId);
+    if (callId.isEmpty())
+        return;
+    try {
+        auto& accInfo = lrcInstance_->getAccountInfo(accountId);
+        auto* callModel = accInfo.callModel.get();
+        if (!callModel->hasCall(callId))
+            return;
+        const auto callInfo = callModel->getCall(callId);
+        auto mute = false;
+        for (const auto& m : callInfo.mediaList) {
+            if (m[libjami::Media::MediaAttributeKey::SOURCE].startsWith(libjami::Media::VideoProtocolPrefix::CAMERA)
+                && m[libjami::Media::MediaAttributeKey::MEDIA_TYPE] == libjami::Media::Details::MEDIA_TYPE_VIDEO) {
+                mute = m[libjami::Media::MediaAttributeKey::MUTED] == FALSE_STR;
+            }
+        }
+        if (mute)
+            callModel->removeMedia(callId,
+                                   libjami::Media::Details::MEDIA_TYPE_VIDEO,
+                                   libjami::Media::VideoProtocolPrefix::CAMERA,
+                                   mute,
+                                   false);
+        else
+            callModel->addMedia(callId,
+                                lrcInstance_->avModel().getCurrentVideoCaptureDevice(),
+                                lrc::api::CallModel::MediaRequestType::CAMERA);
+    } catch (const std::exception& e) {
+        qWarning() << e.what();
     }
 }
 

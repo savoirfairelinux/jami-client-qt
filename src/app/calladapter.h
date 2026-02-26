@@ -84,10 +84,12 @@ public:
     Q_INVOKABLE void holdThisCallToggle();
     Q_INVOKABLE void recordThisCallToggle();
     Q_INVOKABLE void muteAudioToggle();
+    Q_INVOKABLE void muteAudioToggle(const QString& accountId, const QString& convUid);
     Q_INVOKABLE bool isMuted(const QString& callId);
     Q_INVOKABLE void connectPtt();
     Q_INVOKABLE void disconnectPtt();
     Q_INVOKABLE void muteCameraToggle();
+    Q_INVOKABLE void muteCameraToggle(const QString& accountId, const QString& convUid);
     Q_INVOKABLE bool isRecordingThisCall();
     Q_INVOKABLE void muteParticipant(const QString& accountUri,
                                      const QString& deviceId,
