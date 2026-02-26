@@ -32,6 +32,11 @@ Item {
     }
     property alias contentView: callStackMainView
 
+    // Set to true in the PiP window so this instance always renders.
+    // When false (main window), the loader yields to the PiP window while
+    // it is active to avoid two VideoView instances on the same stream.
+    property bool isPipView: false
+
     property var sipKeys: ["1", "2", "3", "A", "4", "5", "6", "B", "7", "8", "9", "C", "*", "0", "#", "D"]
 
     Shortcut {
@@ -44,7 +49,7 @@ Item {
     Shortcut {
         sequence: "F11"
         context: Qt.ApplicationShortcut
-        enabled: CurrentConversation.hasCall && !layoutManager.isWebFullscreen
+        enabled: CurrentConversation.hasCall && (typeof layoutManager === "undefined" || !layoutManager.isWebFullscreen)
         onActivated: toggleFullScreen();
     }
 
@@ -79,6 +84,8 @@ Item {
     }
 
     function toggleFullScreen() {
+        if (typeof layoutManager === "undefined")
+            return;
         if (!layoutManager.isCallFullscreen) {
             layoutManager.pushFullScreenItem(callStackMainView);
         } else {
@@ -93,6 +100,10 @@ Item {
         anchors.fill: parent
 
         sourceComponent: {
+            // Yield to the PiP window: unload to avoid two VideoView
+            // instances rendering the same call stream simultaneously.
+            if (!root.isPipView && CallPipWindowManager.isPipActive)
+                return null;
             switch (CurrentCall.status) {
             case Call.Status.IN_PROGRESS:
             case Call.Status.CONNECTED:
