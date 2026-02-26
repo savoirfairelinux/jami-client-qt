@@ -46,7 +46,7 @@ Item {
     property string buildID: qsTr("Build ID")
     property string version: qsTr("Version")
     property string declarationYear: "Copyright © 2015–2026"
-    property string slogan: "Atlas"
+    property string slogan: qsTr("Euclid")
     property string declaration: qsTr('Jami, a GNU package, is software for universal and distributed peer-to-peer communication that respects the freedom and privacy of its users. Visit <a href="https://jami.net" style="color: ' + JamiTheme.buttonTintedBlue + '">jami.net</a>' + ' to learn more.')
     property string noWarranty: qsTr('This program comes with absolutely no warranty. See the <a href="https://www.gnu.org/licenses/gpl-3.0.html" style="color: ' + JamiTheme.buttonTintedBlue + '">GNU General Public License</a>, version 3 or later for details.')
     property string contribute: qsTr('Contribute')
