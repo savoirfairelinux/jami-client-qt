@@ -41,6 +41,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e1ec0a0_62019a49",
+        "filename": "src/app/mainview/components/ConversationStatusView.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2026-02-26T22:03:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bbbcb5e4_4b564391",
+      "range": {
+        "startLine": 32,
+        "startChar": 4,
+        "endLine": 34,
+        "endChar": 0
+      },
+      "revId": "271c16da67319a2970abbaf7245a12383f02126d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9ae6a897_3f3c3932",
