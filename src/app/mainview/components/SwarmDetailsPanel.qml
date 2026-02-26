@@ -19,7 +19,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.platform
-import Qt5Compat.GraphicalEffects
+//import Qt5Compat.GraphicalEffects
 import QtQuick.Effects
 import SortFilterProxyModel
 
