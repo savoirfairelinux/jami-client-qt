@@ -70,6 +70,30 @@
       },
       "revId": "7cbac7347e327098ceff55879870c799d27c7bde",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cdc5b48c_26a401bf",
+        "filename": "src/app/mainview/components/AboutPopUp.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-02-26T14:16:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "209cbeae_6834f2e3",
+      "range": {
+        "startLine": 141,
+        "startChar": 50,
+        "endLine": 141,
+        "endChar": 65
+      },
+      "revId": "7cbac7347e327098ceff55879870c799d27c7bde",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
