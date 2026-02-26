@@ -27,6 +27,10 @@ Control {
     id: root
     Accessible.role: Accessible.StaticText
 
+    // Injected by the enclosing delegate (set explicitly by MessageListView's DelegateChooser
+    // or by parent components like DataTransferMessageDelegate).
+    property var convContext: CurrentConversation
+
     property alias avatarBlockWidth: avatarBlock.width
     property alias innerContent: innerContent
     property alias bubble: bubble
@@ -74,7 +78,7 @@ Control {
     readonly property ListView listView: ListView.view ? ListView.view : parent.ListView.view
 
     function getBaseColor() {
-        var baseColor = isOutgoing ? CurrentConversation.color : JamiTheme.messageInBgColor;
+        var baseColor = isOutgoing ? convContext.color : JamiTheme.messageInBgColor;
         if (Id === MessagesAdapter.replyToId || Id === MessagesAdapter.editId) {
             // If we are replying to or editing the message
             return Qt.darker(baseColor, 1.5);
@@ -220,7 +224,7 @@ Control {
                     id: replyBubble
 
                     z: -2
-                    color: replyItem.isSelf ? CurrentConversation.color : JamiTheme.messageInBgColor
+                    color: replyItem.isSelf ? convContext.color : JamiTheme.messageInBgColor
                     radius: msgRadius
 
                     Layout.preferredWidth: replyToRow.width + 2 * JamiTheme.preferredMarginSize
@@ -238,7 +242,7 @@ Control {
                         z: 2
                         anchors.fill: parent
                         onClicked: function (mouse) {
-                            CurrentConversation.scrollToMsg(ReplyTo);
+                            convContext.scrollToMsg(ReplyTo);
                         }
                     }
                 }
@@ -668,7 +672,7 @@ Control {
                 }
 
                 Connections {
-                    target: CurrentConversation
+                    target: convContext
                     function onScrollTo(id) {
                         if (id !== root.id)
                             return;
@@ -681,7 +685,7 @@ Control {
                 id: status
                 Layout.alignment: Qt.AlignBottom
                 width: JamiTheme.avatarReadReceiptSize
-                property bool isAlone: CurrentConversation.members.count === 1
+                property bool isAlone: convContext ? convContext.members.count === 1 : false
 
                 Rectangle {
                     id: sending
@@ -735,7 +739,7 @@ Control {
                     }
                 }
                 Loader {
-                    active: status.isAlone && CurrentConversation.lastSelfMessageId === Id
+                    active: status.isAlone && convContext.lastSelfMessageId === Id
                     sourceComponent: selfReadIconComp
                     anchors.bottom: parent.bottom
                 }
