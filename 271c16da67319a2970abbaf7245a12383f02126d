@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38faeabd_ee6ff6e8",
+        "filename": "src/app/mainview/components/ConversationStatusView.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-02-26T21:45:42Z",
+      "side": 1,
+      "message": "format. Seems a bit complicated",
+      "revId": "271c16da67319a2970abbaf7245a12383f02126d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbbcb5e4_4b564391",
+        "filename": "src/app/mainview/components/ConversationStatusView.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-02-26T21:45:42Z",
+      "side": 1,
+      "message": "this is generally not a good idea. better this be in the instantiation",
+      "range": {
+        "startLine": 32,
+        "startChar": 4,
+        "endLine": 34,
+        "endChar": 0
+      },
+      "revId": "271c16da67319a2970abbaf7245a12383f02126d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ae6a897_3f3c3932",
+        "filename": "src/app/mainview/components/ConversationStatusView.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-02-26T21:45:42Z",
+      "side": 1,
+      "message": "why is this here? maybe just a better name",
+      "range": {
+        "startLine": 75,
+        "startChar": 20,
+        "endLine": 75,
+        "endChar": 40
+      },
+      "revId": "271c16da67319a2970abbaf7245a12383f02126d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
