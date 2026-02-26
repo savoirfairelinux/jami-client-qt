@@ -848,6 +848,11 @@ Item {
     property color newMaterialTextFieldTrailingIconColor: "#676767"
     property color newMaterialTextFieldTrailingIconHoveredColor: "#9A9A9A"
 
+    // Picture-in-picutre (PIP)
+    property color pipActionButtonBackgroundColor: "#3c3c3c"
+    property real pipActionButtonPadding: 4
+    property real pipActionButtonMargin: 4
+
     property string ubuntuFontFamily: "Ubuntu"
     property string ubuntuMonoFontFamily: "Ubuntu Mono"
 }
