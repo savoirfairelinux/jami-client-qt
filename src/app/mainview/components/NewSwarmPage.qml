@@ -66,59 +66,51 @@ DualPaneView {
 
             Flow {
                 Layout.topMargin: 16
-                Layout.preferredWidth: root.width - 80
+                Layout.preferredWidth: root.width - 140
                 Layout.preferredHeight: childrenRect.height + 16
                 spacing: 8
 
                 Repeater {
                     id: repeater
 
-                    delegate: Rectangle {
+                    delegate: Control {
                         id: delegate
-                        radius: (delegate.height + 12) / 2
-                        width: label.width + 36
-                        height: label.height + 12
 
-                        RowLayout {
-                            anchors.centerIn: parent
+                        leftPadding: background.radius
+                        rightPadding: background.radius - removeUserBtn.implicitHeight / 2
 
-                            Label {
-                                id: label
+                        contentItem: RowLayout {
+                            spacing : 2
+
+                            Text {
                                 text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, modelData.uri)
                                 color: JamiTheme.textColor
-                                Layout.leftMargin: 8
+                                verticalAlignment: Qt.AlignVCenter
                             }
 
-                            PushButton {
+                            NewIconButton {
                                 id: removeUserBtn
                                 QWKSetParentHitTestVisible{}
 
-                                preferredSize: 24
-                                source: JamiResources.round_close_24dp_svg
+                                icon.color: hovered || activeFocus ? JamiTheme.textColor : JamiTheme.textColorHovered
+                                iconSize: JamiTheme.iconButtonSmall
+                                iconSource: JamiResources.round_close_24dp_svg
                                 toolTipText: JamiStrings.removeMember
 
-                                normalColor: "transparent"
-                                imageColor: "transparent"
+                                background: null
 
-                                onClicked: removeMember(modelData.convId, modelData.uri)
+                                onClicked : removeMember(modelData.convId, modelData.uri)
                             }
                         }
 
-                        color: JamiTheme.selectedColor
+                        background: Rectangle {
+                            radius: height / 2
+                            color: JamiTheme.selectedColor
+                        }
                     }
                     model: viewNode.members
                 }
             }
-        }
-
-        Rectangle {
-            anchors.top: labelsMember.bottom
-            visible: labelsMember.visible
-            height: 1
-            width: root.width
-            color: "transparent"
-            border.width: 1
-            border.color: JamiTheme.selectedColor
         }
 
         ColumnLayout {
