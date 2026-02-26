@@ -26,6 +26,8 @@ import net.jami.Adapters 1.1
 Loader {
     id: rootDelegate
 
+    property var convContext: CurrentConversation
+
     property var mediaInfo
     property bool showTime
     property bool showDay
@@ -84,6 +86,7 @@ Loader {
 
         SBSMessageBase {
             id: deletedItem
+            convContext: rootDelegate.convContext
 
             isOutgoing: Author === CurrentAccount.uri
             showTime: rootDelegate.showTime
@@ -132,6 +135,7 @@ Loader {
 
         SBSMessageBase {
             id: dataTransferItem
+            convContext: rootDelegate.convContext
 
             transferId: Id
             property var transferStats: MessagesAdapter.getTransferStats(transferId, rootDelegate.transferStatus)
@@ -253,7 +257,7 @@ Loader {
                         TextEdit {
                             width: Math.min(implicitWidth, maxMsgWidth)
                             topPadding: 10
-                            text: CurrentConversation.isSwarm ? transferName : location
+                            text: rootDelegate.convContext.isSwarm ? transferName : location
                             wrapMode: Label.WrapAtWordBoundaryOrAnywhere
                             font.pointSize: 11
                             renderType: Text.NativeRendering
@@ -314,6 +318,7 @@ Loader {
 
         SBSMessageBase {
             id: localMediaMsgItem
+            convContext: rootDelegate.convContext
 
             isOutgoing: Author === CurrentAccount.uri
             transferId: Id

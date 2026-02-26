@@ -27,17 +27,18 @@ Rectangle {
     id: root
 
     opacity: visible
+    property var convContext: CurrentConversation
 
     Connections {
-        target: CurrentConversation
+        target: convContext
         enabled: true
 
         function onErrorsChanged() {
-            if (CurrentConversation.errors.length > 0) {
-                errorLabel.text = CurrentConversation.errors[0];
-                backendErrorToolTip.text = JamiStrings.backendError.arg(CurrentConversation.backendErrors[0]);
+            if (convContext.errors.length > 0) {
+                errorLabel.text = convContext.errors[0];
+                backendErrorToolTip.text = JamiStrings.backendError.arg(convContext.backendErrors[0]);
             }
-            errorRect.visible = CurrentConversation.errors.length > 0 && LRCInstance.debugMode();
+            errorRect.visible = convContext.errors.length > 0 && LRCInstance.debugMode();
         }
     }
     color: JamiTheme.filterBadgeColor
@@ -50,7 +51,7 @@ Rectangle {
             id: errorLabel
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignVCenter
-            text: CurrentConversation.errors.count > 0 ? CurrentConversation.errors[0][0] : ""
+            text: convContext.errors.count > 0 ? convContext.errors[0][0] : ""
             color: JamiTheme.filterBadgeTextColor
             font.pixelSize: JamiTheme.headerFontSize
             elide: Text.ElideRight
@@ -87,7 +88,7 @@ Rectangle {
 
             source: JamiResources.round_close_24dp_svg
 
-            onClicked: ConversationsAdapter.popFrontError(CurrentConversation.id)
+            onClicked: ConversationsAdapter.popFrontError(convContext.id)
         }
     }
 

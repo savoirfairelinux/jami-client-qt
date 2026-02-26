@@ -474,6 +474,15 @@ Control {
                 return true;
             }
             onEnabledChanged: CallOverlayModel.setEnabled(this, swarmDetailsAction.enabled)
+        },
+        Action {
+            id: popOutCallAction
+            onTriggered: CallPipWindowManager.popOutCall(CurrentConversation.id, CurrentAccount.id)
+            icon.source: JamiResources.bidirectional_pip_24dp_svg
+            icon.color: "white"
+            text: JamiStrings.popOut
+            enabled: !CallPipWindowManager.isPipActive
+            onEnabledChanged: CallOverlayModel.setEnabled(this, popOutCallAction.enabled)
         }
     ]
 
@@ -500,6 +509,7 @@ Control {
         CallOverlayModel.addSecondaryControl(recordAction, recordAction.enabled);
         CallOverlayModel.addSecondaryControl(pluginsAction, pluginsAction.enabled);
         CallOverlayModel.addSecondaryControl(swarmDetailsAction, swarmDetailsAction.enabled);
+        CallOverlayModel.addSecondaryControl(popOutCallAction, popOutCallAction.enabled);
         overflowItemCount = CallOverlayModel.secondaryModel().rowCount();
     }
 

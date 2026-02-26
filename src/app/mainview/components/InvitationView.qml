@@ -27,6 +27,7 @@ Item {
 
     property real marginSize: 20
     property real textMarginSize: 50
+    property var convContext: CurrentConversation
 
     Text {
         id: invitationViewSentRequestText
@@ -38,7 +39,7 @@ Item {
         width: infoColumnLayout.width - textMarginSize
         height: visible ? contentHeight : 0
 
-        visible: !CurrentConversation.needsSyncing
+        visible: !convContext.needsSyncing
 
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
@@ -47,7 +48,7 @@ Item {
         color: JamiTheme.textColor
         wrapMode: Text.Wrap
 
-        text: JamiStrings.invitationViewSentRequest.arg(CurrentConversation.title)
+        text: JamiStrings.invitationViewSentRequest.arg(convContext.title)
     }
 
     ColumnLayout {
@@ -67,7 +68,7 @@ Item {
 
             showPresenceIndicator: false
             mode: Avatar.Mode.Conversation
-            imageId: CurrentConversation.id
+            imageId: convContext.id
         }
 
         Text {
@@ -85,7 +86,7 @@ Item {
             color: JamiTheme.textColor
             wrapMode: Text.Wrap
 
-            text: CurrentConversation.needsSyncing ? JamiStrings.invitationViewAcceptedConversation : JamiStrings.invitationViewJoinConversation
+            text: convContext.needsSyncing ? JamiStrings.invitationViewAcceptedConversation : JamiStrings.invitationViewJoinConversation
         }
 
         Text {
@@ -96,7 +97,7 @@ Item {
             Layout.preferredWidth: infoColumnLayout.width - textMarginSize
             Layout.preferredHeight: visible ? contentHeight : 0
 
-            visible: CurrentConversation.needsSyncing
+            visible: convContext.needsSyncing
 
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
@@ -105,7 +106,7 @@ Item {
             color: JamiTheme.textColor
             wrapMode: Text.Wrap
 
-            text: JamiStrings.invitationViewWaitingForSync.arg(CurrentConversation.title)
+            text: JamiStrings.invitationViewWaitingForSync.arg(convContext.title)
         }
 
         RowLayout {
@@ -116,7 +117,7 @@ Item {
 
             spacing: JamiTheme.invitationViewButtonsSpacing
 
-            visible: !CurrentConversation.needsSyncing
+            visible: !convContext.needsSyncing
 
             PushButton {
                 id: blockButton
