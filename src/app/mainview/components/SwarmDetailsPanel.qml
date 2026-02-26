@@ -46,14 +46,12 @@ Item {
         id: innerRect
 
         anchors.fill: parent
-        anchors.margins: viewCoordinator.isInSinglePaneMode ? JamiTheme.sidePanelIslandsSinglePaneModePadding : JamiTheme.sidePanelIslandsPadding
-        anchors.topMargin: JamiTheme.qwkTitleBarHeight + JamiTheme.sidePanelIslandsPadding * 2
+        anchors.margins: (typeof viewCoordinator !== "undefined" && viewCoordinator.isInSinglePaneMode) ? JamiTheme.sidePanelIslandsSinglePaneModePadding : JamiTheme.sidePanelIslandsPadding
 
         color: JamiTheme.globalIslandColor
         radius: JamiTheme.avatarBasedRadius
 
         function updateSwarmDetailsTabModel() {
-            swarmDetailsTabModel.clear();
             if (!CurrentConversation.isCoreDialog) {
                 swarmDetailsTabModel.append({
                                                 "name": JamiStrings.members.arg(

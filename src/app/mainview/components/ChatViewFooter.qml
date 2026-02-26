@@ -31,6 +31,10 @@ Rectangle {
     property bool showTypo: messageBar.showTypo
     property real marginSize: 4
 
+    // Injected conversation context; defaults to the global singleton for
+    // the main window. Set to a ConversationContext for pop-out windows.
+    property var convContext: CurrentConversation
+
     function setFilePathsToSend(filePaths) {
         for (var index = 0; index < filePaths.length; ++index) {
             var path = UtilsAdapter.getAbsPath(decodeURIComponent(filePaths[index]));
@@ -53,7 +57,7 @@ Rectangle {
             messageBar.fileContainer.filesToSendListModel.removeFromPending(0);
         }
         LRCInstance.setContentDraft(previousConvId, previousAccountId, messageBar.text, filePathDraft);
-        previousConvId = CurrentConversation.id;
+        previousConvId = convContext.id;
         previousAccountId = CurrentAccount.id;
 
         // turn off the button animations when switching convs
@@ -61,7 +65,7 @@ Rectangle {
         messageBar.textAreaObj.clearText();
 
         // restore the draft state of contents for a specific conversation
-        var restoredContent = LRCInstance.getContentDraft(CurrentConversation.id, CurrentAccount.id);
+        var restoredContent = LRCInstance.getContentDraft(convContext.id, CurrentAccount.id);
         if (restoredContent) {
             messageBar.textAreaObj.insertText(restoredContent["text"]);
             for (var i = 0; i < restoredContent["files"].length; ++i) {
@@ -71,7 +75,7 @@ Rectangle {
     }
 
     Connections {
-        target: CurrentConversation
+        target: convContext
 
         function onIdChanged() {
             messageBar.animate = true;
@@ -173,6 +177,8 @@ Rectangle {
         }
 
         onSendFileButtonClicked: {
+            if (typeof viewCoordinator === "undefined")
+                return;
             var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
                 "fileMode": JamiFileDialog.OpenFiles,
                 "nameFilters": [JamiStrings.allFiles]
@@ -202,9 +208,9 @@ Rectangle {
             // Send text message
             if (messageBar.text) {
                 if (MessagesAdapter.editId !== "") {
-                    MessagesAdapter.editMessage(CurrentConversation.id, messageBar.text);
+                    MessagesAdapter.editMessage(convContext.id, messageBar.text);
                 } else {
-                    MessagesAdapter.sendMessage(messageBar.text);
+                    MessagesAdapter.sendMessageToUid(messageBar.text, convContext.id);
                 }
             }
             messageBar.textAreaObj.clearText();

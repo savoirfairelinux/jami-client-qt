@@ -31,6 +31,8 @@
 #include "conversationsadapter.h"
 #include "currentcall.h"
 #include "currentconversation.h"
+#include "conversationcontext.h"
+#include "callpipwindowmanager.h"
 #include "currentaccount.h"
 #include "videodevices.h"
 #include "currentaccounttomigrate.h"
@@ -227,6 +229,10 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, CurrentAccount);
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, CurrentConversation);
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, CurrentCall);
+    QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, CallPipWindowManager);
+    qmlRegisterUncreatableType<ConversationContext>(NS_ADAPTERS, MODULE_VER_MAJ, MODULE_VER_MIN,
+                                                    "ConversationContext",
+                                                    "Created by CallPipWindowManager");
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, TipsModel);
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, VideoDevices);
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, CurrentAccountToMigrate);

@@ -34,7 +34,7 @@ Item {
     MouseArea {
         anchors.fill: parent
         propagateComposedEvents: false
-        enabled: viewCoordinator.isInSinglePaneMode
+        enabled: typeof viewCoordinator !== "undefined" && viewCoordinator.isInSinglePaneMode
     }
 
     // An enum to make the details panels more readable.
@@ -46,6 +46,10 @@ Item {
 
     property var mapPositions: PositionManager.mapStatus
     property bool isConversationEndedFlag: false
+
+    // Injected conversation context; defaults to the global singleton for
+    // the main window. Set to a ConversationContext for pop-out windows.
+    property var convContext: CurrentConversation
 
     // The purpose of this alias is to make the message bar
     // accessible to the EmojiPicker
@@ -68,23 +72,23 @@ Item {
     property bool detailsButtonVisibility: detailsButton.visible
 
     readonly property bool interactionButtonsVisibility: {
-        if (CurrentConversation.inCall)
+        if (convContext.inCall)
             return false;
         if (LRCInstance.currentAccountType === Profile.Type.SIP)
             return true;
-        if (!CurrentConversation.isTemporary && !CurrentConversation.isSwarm)
+        if (!convContext.isTemporary && !convContext.isSwarm)
             return false;
-        if (CurrentConversation.isRequest || CurrentConversation.needsSyncing)
+        if (convContext.isRequest || convContext.needsSyncing)
             return false;
         return true;
     }
 
     property bool addMemberVisibility: {
-        return swarmDetailsVisibility && !CurrentConversation.isCoreDialog && !CurrentConversation.isRequest;
+        return swarmDetailsVisibility && !convContext.isCoreDialog && !convContext.isRequest;
     }
 
     property bool swarmDetailsVisibility: {
-        return CurrentConversation.isSwarm && !CurrentConversation.isRequest;
+        return convContext.isSwarm && !convContext.isRequest;
     }
 
     signal dismiss
@@ -109,21 +113,21 @@ Item {
     }
 
     function isConversationEnded() {
-        if (!CurrentConversation.isSwarm)
+        if (!convContext.isSwarm)
             return false;
-        var myRole = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri);
-        var info = ConversationsAdapter.getConvInfoMap(CurrentConversation.id);
+        var myRole = UtilsAdapter.getParticipantRole(CurrentAccount.id, convContext.id, CurrentAccount.uri);
+        var info = ConversationsAdapter.getConvInfoMap(convContext.id);
         var peers = info && info.uris ? info.uris : [];
         peers = peers.filter(function(u) { return u !== CurrentAccount.uri; });
         for (var i = 0; i < peers.length; i++) {
-            var role = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, peers[i]);
+            var role = UtilsAdapter.getParticipantRole(CurrentAccount.id, convContext.id, peers[i]);
             if (!(role === Member.Role.LEFT || role === Member.Role.BANNED)) {
                 return false;
             }
         }
-        if (CurrentConversation.isCoreDialog) {
+        if (convContext.isCoreDialog) {
             // Check if a conversation with oneself has been removed
-            const peerRole = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, peers[0]);
+            const peerRole = UtilsAdapter.getParticipantRole(CurrentAccount.id, convContext.id, peers[0]);
             return peerRole === Member.Role.LEFT;
         }
         return myRole !== Member.Role.ADMIN;
@@ -156,20 +160,20 @@ Item {
     Connections {
         target: LRCInstance
         function onConversationUpdated(convId, accountId) {
-            if (convId === CurrentConversation.id) {
+            if (convId === convContext.id) {
                 updateConversationEndedFlag();
             }
         }
     }
     Connections {
-        target: CurrentConversation.members
+        target: convContext.members
         function onCountChanged() {
             updateConversationEndedFlag();
         }
     }
 
     Connections {
-        target: CurrentConversation
+        target: convContext
         function onIdChanged() {
             MessagesAdapter.loadMoreMessages();
             updateConversationEndedFlag();
@@ -215,6 +219,8 @@ Item {
 
             ChatViewHeader {
                 id: chatViewHeader
+
+                convContext: root.convContext
 
                 transform: Translate {
                     id: chatViewHeaderTranslate
@@ -277,7 +283,7 @@ Item {
                 onBackClicked: root.dismiss()
 
                 Connections {
-                    target: CurrentConversation
+                    target: convContext
 
                     function onIdChanged() {
                         if (!chatViewHeader.detailsButtonVisibility) {
@@ -290,7 +296,8 @@ Item {
                     }
 
                     function onNeedsHost() {
-                        viewCoordinator.presentDialog(appWindow, "mainview/components/HostPopup.qml");
+                        if (typeof viewCoordinator !== "undefined")
+                            viewCoordinator.presentDialog(appWindow, "mainview/components/HostPopup.qml");
                     }
                 }
 
@@ -417,40 +424,41 @@ Item {
             spacing: 0
 
             Connections {
-                target: CurrentConversation
+                target: convContext
                 enabled: true
 
                 function onActiveCallsChanged() {
-                    if (CurrentConversation.activeCalls.length > 0)
+                    if (convContext.activeCalls.length > 0)
                         // temp update calldropdownmenu
                     {
                     }
                 }
 
                 function onErrorsChanged() {
-                    if (CurrentConversation.errors.length > 0) {
-                        errorRect.errorLabel.text = CurrentConversation.errors[0];
-                        errorRect.backendErrorToolTip.text = JamiStrings.backendError.arg(CurrentConversation.backendErrors[0]);
+                    if (convContext.errors.length > 0) {
+                        errorRect.errorLabel.text = convContext.errors[0];
+                        errorRect.backendErrorToolTip.text = JamiStrings.backendError.arg(convContext.backendErrors[0]);
                     }
-                    errorRect.visible = CurrentConversation.errors.length > 0; // If too much noise: && LRCInstance.debugMode()
+                    errorRect.visible = convContext.errors.length > 0; // If too much noise: && LRCInstance.debugMode()
                 }
             }
 
             Connections {
-                target: CurrentConversation
+                target: convContext
                 enabled: LRCInstance.debugMode()
 
                 function onErrorsChanged() {
-                    if (CurrentConversation.errors.length > 0) {
-                        errorRect.errorLabel.text = CurrentConversation.errors[0];
-                        errorRect.backendErrorToolTip.text = JamiStrings.backendError.arg(CurrentConversation.backendErrors[0]);
+                    if (convContext.errors.length > 0) {
+                        errorRect.errorLabel.text = convContext.errors[0];
+                        errorRect.backendErrorToolTip.text = JamiStrings.backendError.arg(convContext.backendErrors[0]);
                     }
-                    errorRect.visible = CurrentConversation.errors.length > 0;
+                    errorRect.visible = convContext.errors.length > 0;
                 }
             }
 
             ConversationErrorsRow {
                 id: errorRect
+                convContext: root.convContext
                 Layout.fillWidth: true
                 Layout.preferredHeight: JamiTheme.qwkTitleBarHeight
                 visible: false
@@ -523,7 +531,7 @@ Item {
                 }
 
                 function resolvePanes(force = false) {
-                    if (!viewNode.visible) {
+                    if (typeof viewNode !== "undefined" && !viewNode.visible) {
                         return;
                     }
 
@@ -570,11 +578,11 @@ Item {
                         Layout.leftMargin: JamiTheme.chatviewMargin
                         Layout.rightMargin: JamiTheme.chatviewMargin
 
-                        currentIndex: CurrentConversation.isRequest || CurrentConversation.needsSyncing
+                        currentIndex: convContext.isRequest || convContext.needsSyncing
 
                         Loader {
                             id: loader
-                            active: CurrentConversation.id !== ""
+                            active: convContext.id !== ""
                             sourceComponent: MessageListView {
                                 DropArea {
                                     anchors.fill: parent
@@ -594,7 +602,7 @@ Item {
                     }
 
                     UpdateToSwarm {
-                        visible: !CurrentConversation.isSwarm && !CurrentConversation.isTemporary && CurrentAccount.type === Profile.Type.JAMI
+                        visible: !convContext.isSwarm && !convContext.isTemporary && CurrentAccount.type === Profile.Type.JAMI
                         Layout.fillWidth: true
                     }
 
@@ -605,15 +613,15 @@ Item {
                         visible: {
                             if (CurrentAccount.type === Profile.Type.SIP)
                                 return true;
-                            if (CurrentConversation.isBanned)
+                            if (convContext.isBanned)
                                 return false;
-                            else if (CurrentConversation.needsSyncing)
+                            else if (convContext.needsSyncing)
                                 return false;
-                            else if (CurrentConversation.isRequest)
+                            else if (convContext.isRequest)
                                 return false;
                             else if (isConversationEndedFlag)
                                 return false;
-                            return CurrentConversation.isSwarm || CurrentConversation.isTemporary;
+                            return convContext.isSwarm || convContext.isTemporary;
                         }
 
                         onHeightChanged: {

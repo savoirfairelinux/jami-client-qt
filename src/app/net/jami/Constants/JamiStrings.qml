@@ -378,6 +378,7 @@ Item {
     property string deletedMessage: qsTr("%1 has deleted the message.")
     property string deletedMedia: qsTr("%1 has deleted the media.")
     property string returnToCall: qsTr("Return to call")
+    property string openInNewWindow: qsTr("Open in new window")
 
     // Conversation ended banner
     property string conversationEnded: qsTr("This conversation has ended.")

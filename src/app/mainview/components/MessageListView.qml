@@ -30,6 +30,10 @@ ListView {
     layer.mipmap: false
     clip: true
 
+    // Injected conversation context; defaults to the global singleton for
+    // the main window. Set to a ConversationContext for pop-out windows.
+    property var convContext: CurrentConversation
+
     ScrollBar.vertical: JamiScrollBar {
         id: verticalScrollBar
 
@@ -51,8 +55,11 @@ ListView {
     }
 
     function loadMoreMsgsIfNeeded() {
-        if (atYBeginning && !CurrentConversation.allMessagesLoaded) {
-            MessagesAdapter.loadMoreMessages();
+        if (convContext && atYBeginning && !convContext.allMessagesLoaded) {
+            if (convContext !== CurrentConversation)
+                convContext.loadMoreMessages();
+            else
+                MessagesAdapter.loadMoreMessages();
         }
     }
 
@@ -113,7 +120,7 @@ ListView {
                 });
         }
         // top element
-        if (itemIndex === root.count - 1 && CurrentConversation.allMessagesLoaded) {
+        if (itemIndex === root.count - 1 && convContext && convContext.allMessagesLoaded) {
             item.showTime = true;
             item.showDay = true;
         }
@@ -171,10 +178,10 @@ ListView {
     }
 
     Connections {
-        target: CurrentConversation
+        target: convContext
         function onScrollTo(id) {
             // Get the filtered index from the interaction ID.
-            var idx = MessagesAdapter.messageListModel.getDisplayIndex(id);
+            var idx = root.model.getDisplayIndex(id);
             positionViewAtIndex(idx, ListView.Visible);
         }
     }
@@ -193,13 +200,13 @@ ListView {
     currentIndex: -1
 
     Connections {
-        target: CurrentConversation
+        target: convContext
         function onIdChanged() {
             currentIndex = -1;
         }
     }
 
-    model: MessagesAdapter.messageListModel
+    model: (convContext && convContext !== CurrentConversation) ? convContext.messageListModel : MessagesAdapter.messageListModel
     delegate: DelegateChooser {
         id: delegateChooser
         role: "Type"
@@ -208,6 +215,7 @@ ListView {
             roleValue: Interaction.Type.TEXT
 
             TextMessageDelegate {
+                convContext: root.convContext
                 Component.onCompleted: {
                     computeChatview(this, index);
                 }
@@ -218,6 +226,7 @@ ListView {
             roleValue: Interaction.Type.CALL
 
             CallMessageDelegate {
+                convContext: root.convContext
                 Component.onCompleted: {
                     computeChatview(this, index);
                 }
@@ -249,6 +258,7 @@ ListView {
             roleValue: Interaction.Type.DATA_TRANSFER
 
             DataTransferMessageDelegate {
+                convContext: root.convContext
                 Component.onCompleted: {
                     computeChatview(this, index);
                 }
@@ -273,6 +283,7 @@ ListView {
 
     Connections {
         target: MessagesAdapter
+        enabled: convContext === CurrentConversation
 
         function onNewInteraction() {
             if (root.getDistanceToBottom() < 80 && !root.atYEnd) {
@@ -288,6 +299,25 @@ ListView {
 
         function onFileCopied(fileName, downloadDir) {
             toastManager.instantiateToast(fileName, downloadDir);
+        }
+    }
+
+    // Mirror the same signals from a pop-out ConversationContext.
+    Connections {
+        target: convContext !== CurrentConversation ? convContext : null
+
+        function onNewInteraction() {
+            if (root.getDistanceToBottom() < 80 && !root.atYEnd) {
+                Qt.callLater(root.positionViewAtBeginning);
+            }
+        }
+
+        function onMoreMessagesLoaded(loadingRequestId) {
+            chunkLoadDebounceTimer.restart();
+        }
+
+        function onFileCopied(dest) {
+            toastManager.instantiateToast(dest);
         }
     }
 

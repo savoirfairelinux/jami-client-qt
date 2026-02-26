@@ -43,6 +43,10 @@ ListSelectionView {
     property string currentAccountId: CurrentAccount.id
     onCurrentAccountIdChanged: dismiss()
 
+    // Injected conversation context; defaults to the global singleton for
+    // the main window. Pop-out windows pass a ConversationContext instead.
+    property var convContext: CurrentConversation
+
     color: JamiTheme.transparentColor
 
     leftPaneItem: viewCoordinator.getView("SidePanel", true)
@@ -51,7 +55,7 @@ ListSelectionView {
         id: conversationStackLayout
         objectName: "ConversationLayout"
 
-        currentIndex: CurrentConversation.hasCall ? 1 : 0
+        currentIndex: viewNode.convContext.hasCall ? 1 : 0
 
         anchors.fill: parent
 
@@ -65,18 +69,20 @@ ListSelectionView {
                 id: chatView
                 anchors.fill: parent
 
+                convContext: viewNode.convContext
+
                 // Use callStackView.chatViewContainer only when hasCall is true
                 // and callStackView.chatViewContainer not null.
                 // Because after a swarm call ends, callStackView.chatViewContainer might not be null
                 // due to a lack of call state change signals for the swarm call.
-                readonly property bool hasCall: CurrentConversation.hasCall
+                readonly property bool hasCall: viewNode.convContext.hasCall
                 readonly property var inCallChatContainer: hasCall ? callStackView.chatViewContainer : null
 
                 // Parent the chat view to the call stack view when in call.
                 parent: inCallChatContainer ? inCallChatContainer : chatViewContainer
                 inCallView: parent === callStackView.chatViewContainer
 
-                readonly property string currentConvId: CurrentConversation.id
+                readonly property string currentConvId: viewNode.convContext.id
                 onCurrentConvIdChanged: {
                     Qt.callLater(function() {
                         if (CurrentConversation.hasCall) {

@@ -340,6 +340,8 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/wizardviewstepmodel.cpp
   ${APP_SRC_DIR}/avatarregistry.cpp
   ${APP_SRC_DIR}/currentconversation.cpp
+  ${APP_SRC_DIR}/conversationcontext.cpp
+  ${APP_SRC_DIR}/callpipwindowmanager.cpp
   ${APP_SRC_DIR}/currentconversationmembers.cpp
   ${APP_SRC_DIR}/currentaccount.cpp
   ${APP_SRC_DIR}/videodevices.cpp
@@ -415,6 +417,8 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/wizardviewstepmodel.h
   ${APP_SRC_DIR}/avatarregistry.h
   ${APP_SRC_DIR}/currentconversation.h
+  ${APP_SRC_DIR}/conversationcontext.h
+  ${APP_SRC_DIR}/callpipwindowmanager.h
   ${APP_SRC_DIR}/currentconversationmembers.h
   ${APP_SRC_DIR}/currentaccount.h
   ${APP_SRC_DIR}/videodevices.h
