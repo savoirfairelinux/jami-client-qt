@@ -27,8 +27,9 @@ import "../../commoncomponents"
 Item {
     id: root
 
-    property bool uniqueActiveCall: CurrentConversation.activeCalls.length === 1
-    property bool activeCalls: CurrentConversation.activeCalls.length > 1
+    property bool uniqueActiveCall: convContext.activeCalls.length === 1
+    property bool activeCalls: convContext.activeCalls.length > 1
+    property var convContext: CurrentConversation
 
     implicitWidth: dropDownButton.visible ? joinCallButton.implicitWidth + dropDownButton.implicitWidth : joinCallButton.implicitWidth
     implicitHeight: joinCallButton.implicitHeight
@@ -77,8 +78,8 @@ Item {
         }
 
         onClicked: {
-            if (root.uniqueActiveCall && CurrentConversation.activeCalls.length > 0) {
-                var call = CurrentConversation.activeCalls[0];
+            if (root.uniqueActiveCall && convContext.activeCalls.length > 0) {
+                var call = convContext.activeCalls[0];
                 MessagesAdapter.joinCall(call.uri, call.device, call.id, true);
             } else {
                 CallAdapter.startAudioOnlyCall();
@@ -97,7 +98,7 @@ Item {
         anchors.left: joinCallButton.right
         anchors.leftMargin: -background.radius
 
-        model: CurrentConversation.activeCalls
+        model: convContext.activeCalls
 
         visible: activeCalls
 
