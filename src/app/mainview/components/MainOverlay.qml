@@ -149,9 +149,9 @@ Item {
         height: 50
         anchors.left: parent.left
         anchors.right: parent.right
-        // QWK: spacing
-        anchors.leftMargin: layoutManager.qwkSystemButtonSpacing.left
-        anchors.rightMargin: layoutManager.qwkSystemButtonSpacing.right
+        // QWK: spacing (layoutManager only exists in the main window)
+        anchors.leftMargin: typeof layoutManager !== "undefined" ? layoutManager.qwkSystemButtonSpacing.left : 0
+        anchors.rightMargin: typeof layoutManager !== "undefined" ? layoutManager.qwkSystemButtonSpacing.right : 0
 
         RowLayout {
             anchors.fill: parent

@@ -29,30 +29,34 @@ Row {
     property alias maxButton: maxButton
     property alias closeButton: closeButton
 
+    // Window to control; defaults to the main application window.
+    // Override this for secondary windows (e.g. pop-out conversations).
+    property var targetWindow: appWindow
+
     component SystemButton : QWKButton {
         height: parent.height
     }
 
-    visible: appWindow.visibility !== Window.FullScreen
+    visible: targetWindow.visibility !== Window.FullScreen
 
     SystemButton {
         id: minButton
         Accessible.name: JamiStrings.minimize
         Accessible.role: Accessible.Button
         source: JamiResources.window_bar_minimize_svg
-        onClicked: appWindow.showMinimized()
+        onClicked: targetWindow.showMinimized()
     }
 
     SystemButton {
         id: maxButton
         Accessible.name: JamiStrings.maximize
         Accessible.role: Accessible.Button
-        source: appWindow.visibility === Window.Maximized ?
+        source: targetWindow.visibility === Window.Maximized ?
                     JamiResources.window_bar_restore_svg :
                     JamiResources.window_bar_maximize_svg
-        onClicked: appWindow.visibility === Window.Maximized ?
-                       appWindow.showNormal() :
-                       appWindow.showMaximized()
+        onClicked: targetWindow.visibility === Window.Maximized ?
+                       targetWindow.showNormal() :
+                       targetWindow.showMaximized()
     }
 
     SystemButton {
@@ -61,6 +65,6 @@ Row {
         Accessible.role: Accessible.Button
         source: JamiResources.window_bar_close_svg
         baseColor: "#e81123"
-        onClicked: appWindow.close()
+        onClicked: targetWindow.close()
     }
 }
