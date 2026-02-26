@@ -40,7 +40,8 @@ Rectangle {
     enum ExtrasPanel {
         SwarmDetailsPanel,
         MessagesResearchPanel,
-        AddMemberPanel
+        AddMemberPanel,
+        ConversationStatusPanel
     }
 
     color: JamiTheme.globalBackgroundColor

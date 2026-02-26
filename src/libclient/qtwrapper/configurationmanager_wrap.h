@@ -1043,6 +1043,24 @@ public Q_SLOTS: // METHODS
         return temp;
     }
 
+    VectorMapStringString getConversationConnectivity(const QString& accountId, const QString& conversationId)
+    {
+        VectorMapStringString temp;
+        for (auto x : libjami::getConversationConnectivity(accountId.toStdString(), conversationId.toStdString())) {
+            temp.push_back(convertMap(x));
+        }
+        return temp;
+    }
+
+    VectorMapStringString getConversationTrackedMembers(const QString& accountId, const QString& conversationId)
+    {
+        VectorMapStringString temp;
+        for (auto x : libjami::getConversationTrackedMembers(accountId.toStdString(), conversationId.toStdString())) {
+            temp.push_back(convertMap(x));
+        }
+        return temp;
+    }
+
     VectorMapStringString getChannelList(const QString& accountId, const QString& uid)
     {
         VectorMapStringString temp;

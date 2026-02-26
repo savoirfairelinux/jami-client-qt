@@ -476,6 +476,18 @@ LRCInstance::getConnectionList(const QString& accountId, const QString& uid)
 }
 
 VectorMapStringString
+LRCInstance::getConversationConnectivity(const QString& accountId, const QString& conversationId)
+{
+    return Lrc::getConversationConnectivity(accountId, conversationId);
+}
+
+VectorMapStringString
+LRCInstance::getConversationTrackedMembers(const QString& accountId, const QString& conversationId)
+{
+    return Lrc::getConversationTrackedMembers(accountId, conversationId);
+}
+
+VectorMapStringString
 LRCInstance::getChannelList(const QString& accountId, const QString& uid)
 {
     return Lrc::getChannelList(accountId, uid);
