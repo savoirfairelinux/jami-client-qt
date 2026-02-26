@@ -77,6 +77,7 @@ Item {
 
             anchors.fill: parent
             anchors.margins: 16
+            anchors.bottomMargin: 0
             spacing: 0
 
             Item {
@@ -405,6 +406,22 @@ Item {
                     contentHeight: membersGrid.implicitHeight
                     clip: true
 
+                    layer.enabled: true
+                    layer.effect: MultiEffect {
+                        anchors.fill: innerRect
+                        maskEnabled: true
+                        maskSource: ShaderEffectSource {
+                            sourceItem: Rectangle {
+                                width: root.width
+                                height: root.height
+                                bottomLeftRadius: innerRect.radius
+                                bottomRightRadius: innerRect.radius
+                            }
+                        }
+                    }
+
+                    bottomMargin: JamiTheme.sidePanelIslandsPadding
+
                     Grid {
                         id: membersGrid
                         width: parent.width
@@ -570,6 +587,20 @@ Item {
                     id: documents
 
                     anchors.fill: parent
+
+                    layer.enabled: true
+                    layer.effect: MultiEffect {
+                        anchors.fill: innerRect
+                        maskEnabled: true
+                        maskSource: ShaderEffectSource {
+                            sourceItem: Rectangle {
+                                width: root.width
+                                height: root.height
+                                bottomLeftRadius: innerRect.radius
+                                bottomRightRadius: innerRect.radius
+                            }
+                        }
+                    }
                 }
 
                 Text {
