@@ -41,6 +41,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "880f7388_e2fdcdc3",
+        "filename": "src/app/mainview/components/MessageFormatBar.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-02-26T13:55:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd8da1ad_e82f8fcb",
+      "range": {
+        "startLine": 225,
+        "startChar": 25,
+        "endLine": 225,
+        "endChar": 26
+      },
+      "revId": "f1a4260e19ceb0693cc63a7e12d68fb0cd3c87a1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c23cc3d_c098258a",
@@ -64,6 +88,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "845cbf24_ca7bba0a",
+        "filename": "src/app/mainview/components/MessageFormatBar.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-02-26T13:55:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c23cc3d_c098258a",
+      "range": {
+        "startLine": 285,
+        "startChar": 17,
+        "endLine": 285,
+        "endChar": 18
+      },
+      "revId": "f1a4260e19ceb0693cc63a7e12d68fb0cd3c87a1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "38484085_98ca8be9",
@@ -77,6 +125,30 @@
       "writtenOn": "2026-02-25T16:01:32Z",
       "side": 1,
       "message": "Same",
+      "range": {
+        "startLine": 512,
+        "startChar": 21,
+        "endLine": 512,
+        "endChar": 22
+      },
+      "revId": "f1a4260e19ceb0693cc63a7e12d68fb0cd3c87a1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a24976e8_82c3a3f6",
+        "filename": "src/app/mainview/components/MessageFormatBar.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 512,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-02-26T13:55:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38484085_98ca8be9",
       "range": {
         "startLine": 512,
         "startChar": 21,
