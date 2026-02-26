@@ -69,6 +69,18 @@ SidePanelBase {
         }
     }
 
+    Connections {
+        target: CurrentAccount
+
+        // New swarm page shouldn't be visible for SIP accounts
+        function onTypeChanged() {
+            if (CurrentAccount.type === Profile.Type.SIP && inNewSwarm) {
+                viewCoordinator.dismiss("NewSwarmPage");
+                root.clearHighlighted();
+            }
+        }
+    }
+
     function toggleCreateSwarmView() {
         if (!inNewSwarm) {
             viewCoordinator.present("NewSwarmPage");
@@ -105,8 +117,8 @@ SidePanelBase {
     }
 
     function refreshHighlighted(convId, highlightedStatus) {
-        var newH = root.highlighted;
-        var newHm = root.highlightedMembers;
+        var newH = Array.from(root.highlighted);
+        var newHm = Array.from(root.highlightedMembers);
         if (highlightedStatus) {
             var item = ConversationsAdapter.getConvInfoMap(convId);
             var added = false;
