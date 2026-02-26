@@ -313,7 +313,7 @@ Item {
     property string copy: qsTr("Copy")
     property string paste: qsTr("Paste")
 
-    // ConversationContextMenu
+    // ContextMenu
     property string startAudioCall: qsTr("Start audio call")
     property string startVideoCall: qsTr("Start video call")
     property string deleteConversation: qsTr("Delete conversation")
@@ -423,6 +423,7 @@ Item {
     property string deletedMessage: qsTr("%1 has deleted the message.")
     property string deletedMedia: qsTr("%1 has deleted the media.")
     property string returnToCall: qsTr("Return to call")
+    property string openInNewWindow: qsTr("Open in new window")
 
     // Conversation ended banner
     property string conversationEnded: qsTr("This conversation has ended.")
@@ -1014,6 +1015,11 @@ Item {
     property string addAContact: qsTr("Add contact")
     property string noConversations: qsTr("No conversations found.")
     property string noContactsToChooseFrom: qsTr("No contacts found.")
+
+    // Picture-in-picture (PIP)
+    property string pipTitle: qsTr("Call in progress")
+    property string popOut: qsTr("Pop out")
+    property string popIn: qsTr("Pop in")
 
     // Accessibility
     property string switchToAccount: qsTr("Press enter to switch to this account")
