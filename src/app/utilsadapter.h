@@ -112,8 +112,9 @@ public:
     Q_INVOKABLE int getAccountListSize();
     Q_INVOKABLE bool hasCall(const QString& accountId);
     Q_INVOKABLE const QString getCallConvForAccount(const QString& accountId);
+    Q_INVOKABLE QStringList getCallConvsForAccount(const QString& accountId);
     Q_INVOKABLE const QString getCallId(const QString& accountId, const QString& convUid);
-    Q_INVOKABLE int getCallStatus(const QString& callId);
+    Q_INVOKABLE int getCallStatus(const QString& callId, const QString& accountId = {});
     Q_INVOKABLE const QString getCallStatusStr(int statusInt);
     Q_INVOKABLE QString getStringUTF8(QString string);
     Q_INVOKABLE QString getRecordQualityString(int value);

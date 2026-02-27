@@ -305,6 +305,21 @@ UtilsAdapter::getCallConvForAccount(const QString& accountId)
     return "";
 }
 
+QStringList
+UtilsAdapter::getCallConvsForAccount(const QString& accountId)
+{
+    QStringList convIds;
+    auto& accountInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
+    for (const auto& callId : lrcInstance_->getActiveCalls(accountId)) {
+        if (accountInfo.callModel->hasCall(callId)) {
+            const auto& convUid = lrcInstance_->getConversationFromCallId(callId, accountId).uid;
+            if (!convUid.isEmpty())
+                convIds << convUid;
+        }
+    }
+    return convIds;
+}
+
 const QString
 UtilsAdapter::getCallId(const QString& accountId, const QString& convUid)
 {
@@ -321,9 +336,14 @@ UtilsAdapter::getCallId(const QString& accountId, const QString& convUid)
 }
 
 int
-UtilsAdapter::getCallStatus(const QString& callId)
+UtilsAdapter::getCallStatus(const QString& callId, const QString& accountId)
 {
-    const auto callStatus = lrcInstance_->getCallInfo(callId, lrcInstance_->get_currentAccountId());
+    const auto& accId = accountId.isEmpty() ? lrcInstance_->get_currentAccountId() : accountId;
+    const auto callStatus = lrcInstance_->getCallInfo(callId, accId);
+
+    if (!callStatus)
+        return -1;
+
     return static_cast<int>(callStatus->status);
 }
 

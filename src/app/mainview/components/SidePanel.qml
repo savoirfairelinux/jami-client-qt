@@ -196,6 +196,8 @@ SidePanelBase {
                 return 16;
             }
 
+            spacing: 8
+
             Item {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
@@ -724,13 +726,17 @@ SidePanelBase {
                 }
             }
 
+            ActiveCallsComboBox {
+                Layout.fillWidth: true
+            }
+
             AccountComboBox {
                 id: accountComboBox
 
                 Layout.fillWidth: true
                 Layout.minimumHeight: accountComboBox.height
                 Layout.alignment: Qt.AlignBottom
-                Layout.topMargin: 8
+                //Layout.topMargin: 8
 
                 Shortcut {
                     sequence: "Ctrl+J"
