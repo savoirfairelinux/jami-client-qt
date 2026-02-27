@@ -214,6 +214,18 @@ Lrc::getConnectionList(const QString& accountId, const QString& uid)
 }
 
 VectorMapStringString
+Lrc::getConversationConnectivity(const QString& accountId, const QString& conversationId)
+{
+    return ConfigurationManager::instance().getConversationConnectivity(accountId, conversationId);
+}
+
+VectorMapStringString
+Lrc::getConversationTrackedMembers(const QString& accountId, const QString& conversationId)
+{
+    return ConfigurationManager::instance().getConversationTrackedMembers(accountId, conversationId);
+}
+
+VectorMapStringString
 Lrc::getChannelList(const QString& accountId, const QString& uid)
 {
     return ConfigurationManager::instance().getChannelList(accountId, uid);

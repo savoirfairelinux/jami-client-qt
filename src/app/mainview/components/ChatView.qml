@@ -41,7 +41,8 @@ Item {
     enum ExtrasPanel {
         SwarmDetailsPanel,
         MessagesResearchPanel,
-        AddMemberPanel
+        AddMemberPanel,
+        ConversationStatusPanel
     }
 
     property var mapPositions: PositionManager.mapStatus

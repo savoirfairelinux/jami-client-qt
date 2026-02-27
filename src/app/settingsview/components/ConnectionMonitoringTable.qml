@@ -37,10 +37,7 @@ ListView {
     spacing: 5
     cacheBuffer: 10
 
-    // HACK: remove after migration to Qt 6.7+
     boundsBehavior: Flickable.StopAtBounds
-
-    property int rota: 0
 
     header: Rectangle {
         color: JamiTheme.transparentColor
@@ -123,7 +120,6 @@ ListView {
         repeat: true
         onTriggered: {
             ConnectionInfoListModel.update();
-            listview.rota = listview.rota + 5;
         }
     }
 
@@ -297,13 +293,20 @@ ListView {
                         id: connectionImage
                         anchors.left: parent.left
                         anchors.verticalCenter: parent.verticalCenter
-                        rotation: connectionRectangle.status === 0 ? 0 : listview.rota
                         source: {
                             if (connectionRectangle.status === 0) {
                                 return JamiResources.connected_black_24dp_svg;
                             } else {
                                 return JamiResources.connecting_black_24dp_svg;
                             }
+                        }
+                        RotationAnimation on rotation {
+                            running: connectionRectangle.status !== 0
+                            from: 0
+                            to: 360
+                            duration: 3000
+                            loops: Animation.Infinite
+                            direction: RotationAnimation.Clockwise
                         }
                         color: {
                             if (connectionRectangle.status === 0) {
