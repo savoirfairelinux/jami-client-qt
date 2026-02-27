@@ -1,4 +1,28 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5696f9f3_66bf4085",
+        "filename": "src/app/mainview/components/SidePanel.qml",
+        "patchSetId": 24
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-02-27T23:23:29Z",
+      "side": 1,
+      "message": "Typo? `Disable`",
+      "range": {
+        "startLine": 480,
+        "startChar": 35,
+        "endLine": 480,
+        "endChar": 42
+      },
+      "revId": "613ce6b625ed7aab4c1353af01d1d5e248b06cc9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ],
   "submitRequirementResults": []
 }
