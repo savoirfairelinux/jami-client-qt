@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
@@ -288,7 +289,7 @@ Rectangle {
                             formatRow.listViewTypoFirst.itemAtIndex(1).action.triggered();
                         }
                     },
-                    "Barre": function () {
+                    "Strikethrough": function () {
                         if (!showPreview) {
                             formatRow.listViewTypoFirst.itemAtIndex(2).action.triggered();
                         }
@@ -345,7 +346,7 @@ Rectangle {
                 Shortcut {
                     sequence: "Shift+Alt+X"
                     context: Qt.ApplicationShortcut
-                    onActivated: messageBarTextArea.markdownShortCut["Barre"]()
+                    onActivated: messageBarTextArea.markdownShortCut["Strikethrough"]()
                 }
 
                 Shortcut {

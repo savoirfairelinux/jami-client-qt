@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
@@ -82,7 +83,7 @@ Rectangle {
                     },
                     Action {
                         id: strikethroughAction
-                        property string iconSrc: JamiResources.s_barre_black_24dp_svg
+                        property string iconSrc: JamiResources.strikethrough_black_24dp_svg
                         property string shortcutText: JamiStrings.strikethrough
                         property string shortcutKey: "Shift+Alt+X"
                         property bool isStyle: MDE.isStyle(messageBarTextArea, rectangle.text, "~~",
