@@ -1,4 +1,22 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a84f667_88a650d2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-03-01T02:45:55Z",
+      "side": 1,
+      "message": "Incorporated some of the https://review.jami.net/c/jami-client-qt/+/32647 patch.",
+      "revId": "614e18b328e70f54ecb6a15d3818519925bf5701",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ],
   "submitRequirementResults": []
 }
