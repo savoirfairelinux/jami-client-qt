@@ -62,6 +62,13 @@ BaseView {
 
     onWidthChanged: resolvePanes()
     function resolvePanes() {
+        // A zero width means the view has not been laid out yet (e.g. it is
+        // being preloaded without a parent).  Treating this as single-pane
+        // would cause the isSinglePaneChangedHandler to reparent shared items
+        // (like the SidePanel) into an invisible view, stealing them from the
+        // currently-displayed view.
+        if (width === 0)
+            return;
         const threshold = majorPaneMinWidth + (previousMinorPaneWidth || minorPaneMinWidth)
         isSinglePane = width < threshold
     }
