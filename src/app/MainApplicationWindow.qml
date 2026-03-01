@@ -51,7 +51,7 @@ Window {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.margins: 10
         z: 999
-        onClicked: UtilsAdapter.isRTL = !UtilsAdapter.isRTL;
+        onClicked: UtilsAdapter.isRTL = !UtilsAdapter.isRTL
     }
 
     onActiveFocusItemChanged: {
@@ -135,20 +135,20 @@ Window {
         appContainer: fullscreenContainer
     }
     // Used to manage dynamic view loading and unloading.
-    property ViewManager viewManager: ViewManager {
-    }
+    property ViewManager viewManager: ViewManager {}
     // Used to manage the view stack and the current view.
-    property ViewCoordinator viewCoordinator: ViewCoordinator {
-    }
+    property ViewCoordinator viewCoordinator: ViewCoordinator {}
 
     // Used to prevent the window from being visible until the
-    // window geometry has been restored and the view stack has
-    // been loaded.
+    // window geometry has been restored.
     property bool windowSettingsLoaded: false
 
     // This setting can be used to block a loading Jami instance
     // from showNormal() and showMaximized() when starting minimized.
     property bool allowVisibleWindow: true
+
+    // Tracks whether the main view has finished loading.
+    readonly property bool mainViewReady: mainViewLoader.status === Loader.Ready
 
     function cleanupMainView() {
         // Save the main view window size if loading anything else.
@@ -171,7 +171,9 @@ Window {
 
     title: JamiStrings.appTitle
 
-    visible: mainViewLoader.status === Loader.Ready && windowSettingsLoaded && allowVisibleWindow
+    // Show the window as soon as geometry is restored, before the main view finishes loading.
+    // A loading placeholder is shown until the main view is ready.
+    visible: windowSettingsLoaded && allowVisibleWindow
 
     Connections {
         id: connectionMigrationEnded
@@ -190,10 +192,6 @@ Window {
 
     function initMainView(view) {
         console.info("Initializing main view");
-
-        // Main window, load any valid app settings, and allow the
-        // layoutManager to handle as much as possible.
-        layoutManager.restoreWindowSettings();
 
         // QWK: setup
         if (useFrameless && !JamiQmlUtils.isMacOS26OrLater) {
@@ -231,7 +229,9 @@ Window {
             // Preload ConversationView so the first conversation selection is instant.
             // WelcomePage already creates SidePanel; this only instantiates ChatView and
             // MessageListView, separating QML tree creation from message data loading.
-            Qt.callLater(function() { viewCoordinator.preload("ConversationView"); });
+            Qt.callLater(function () {
+                viewCoordinator.preload("ConversationView");
+            });
         } else {
             // No account, so start the wizard.
             viewCoordinator.present("WizardView");
@@ -247,9 +247,6 @@ Window {
 
         // Handle a start URI if set as start option.
         MainApplication.handleUriAction();
-
-        // This will allow visible to become true if not starting minimized.
-        windowSettingsLoaded = true;
     }
 
     Component.onCompleted: {
@@ -257,6 +254,13 @@ Window {
         if (useFrameless) {
             windowAgent.setup(appWindow);
         }
+
+        // Restore window geometry right away so the window can appear
+        // at the correct position and size before the main view loads.
+        layoutManager.restoreWindowSettings();
+        windowSettingsLoaded = true;
+
+        // Start loading the main view asynchronously.
         mainViewLoader.active = true;
 
         // Dbus error handler for Linux.
@@ -268,25 +272,131 @@ Window {
         if (crashedLastRun) {
             // A crash was detected during the last session. We need to inform the user and offer to send a crash report.
             var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
-                    "title": JamiStrings.crashReportTitle,
-                    "textLabel": JamiStrings.crashReportMessage + "\n\n" + JamiStrings.crashReportMessageExtra,
-                    "confirmLabel": JamiStrings.send,
-                    "rejectLabel": JamiStrings.dontSend,
-                    "textHAlign": Text.AlignLeft,
-                    "textMaxWidth": 400
-                });
+                "title": JamiStrings.crashReportTitle,
+                "textLabel": JamiStrings.crashReportMessage + "\n\n" + JamiStrings.crashReportMessageExtra,
+                "confirmLabel": JamiStrings.send,
+                "rejectLabel": JamiStrings.dontSend,
+                "textHAlign": Text.AlignLeft,
+                "textMaxWidth": 400
+            });
             dlg.accepted.connect(function () {
-                    crashReporter.uploadLastReport();
-                });
+                crashReporter.uploadLastReport();
+            });
             dlg.rejected.connect(function () {
-                    crashReporter.clearReports();
-                });
+                crashReporter.clearReports();
+            });
         }
+    }
+
+    // Background properties (moved from MainView so they render on startup)
+    property color currentConversationColor: CurrentConversation.color
+    property color tintColor: Qt.rgba(currentConversationColor.r, currentConversationColor.g, currentConversationColor.b, JamiTheme.chatViewBackgroundTintOpacity)
+    property real tintOpacity: CurrentConversation.id === "" ? 0.0 : 1.0
+    property color baseColor: Qt.tint(JamiTheme.globalBackgroundColor, tintColor)
+
+    // WelcomePage background properties
+    property variant uiCustomization: CurrentAccount.uiCustomization
+    onUiCustomizationChanged: updateWelcomeBackgroundFlags()
+    property bool hasCustomUi: false
+    property bool hasCustomBgImage: false
+    property string customBgUrl: ""
+    property bool hasCustomBgColor: false
+    property string customBgColor: ""
+
+    Connections {
+        target: CurrentAccount
+        function onIdChanged() {
+            updateWelcomeBackgroundFlags();
+        }
+    }
+
+    Connections {
+        target: JamiTheme
+        function onDarkThemeChanged() {
+            customBgUrl = hasCustomBgImage ? customBgUrl : JamiTheme.welcomeBg;
+        }
+    }
+
+    function updateWelcomeBackgroundFlags() {
+        hasCustomUi = Object.keys(uiCustomization).length > 0;
+        hasCustomBgImage = (hasCustomUi && uiCustomization.backgroundType === "image");
+        customBgUrl = hasCustomBgImage ? (CurrentAccount.managerUri + uiCustomization.backgroundColorOrUrl) : "";
+        hasCustomBgColor = (hasCustomUi && uiCustomization.backgroundType === "color");
+        customBgColor = hasCustomBgColor ? uiCustomization.backgroundColorOrUrl : "";
+    }
+
+    // JAMS-specific background colour
+    Rectangle {
+        id: welcomeBgRect
+        anchors.fill: parent
+        color: hasCustomBgColor ? customBgColor : "transparent"
+        visible: hasCustomBgColor
+        z: -1
+    }
+
+    // Background colour overlay
+    // When NOT in a conversation, this will be transparent (i.e. the welcome page image)
+    // When IN a conversation, this will be the conversation's assigned colour
+    Rectangle {
+        anchors.fill: parent
+        color: baseColor
+        opacity: tintOpacity
+    }
+
+    // Will cause a fade between background colours when switching conversations
+    Behavior on baseColor {
+        ColorAnimation {
+            duration: JamiTheme.chatViewFadeDuration
+            easing.type: Easing.InOutQuad
+        }
+    }
+
+    // Will cause fade-in/out effect when transitioning between the welcome page and a conversation
+    Behavior on tintOpacity {
+        NumberAnimation {
+            duration: JamiTheme.longFadeDuration
+            easing.type: Easing.InOutQuad
+        }
+    }
+
+    // The global background image that can be seen when NOT in a conversation
+    // Three cases (based on priority):
+    // 1. The background image set by the user in the Appearance settings
+    // 2. The background set by a JAMS administrator (if applicable)
+    // 3. The default light/dark mode background
+    CachedImage {
+        id: welcomeCachedImgLogo
+        downloadUrl: (AccountSettingsManager.accountSettingsPropertyMap.backgroundUri === undefined || AccountSettingsManager.accountSettingsPropertyMap.backgroundUri === "") ? (hasCustomBgImage ? customBgUrl : JamiTheme.welcomeBg) : AccountSettingsManager.accountSettingsPropertyMap.backgroundUri
+        visible: !hasCustomBgColor
+        anchors.fill: parent
+        localPath: UtilsAdapter.getCachePath() + "/" + CurrentAccount.id + "/welcomeview/" + UtilsAdapter.base64Encode(downloadUrl) + fileExtension
+        imageFillMode: Image.PreserveAspectCrop
+        z: -1
+    }
+
+    // A blur effect applied to the background image (can be toggled in the Appearance settings)
+    FastBlur {
+        anchors.fill: welcomeCachedImgLogo
+        source: welcomeCachedImgLogo
+        radius: JamiTheme.welcomePageFastBlurRadius
+        z: -1
+        visible: AccountSettingsManager.accountSettingsPropertyMap.backgroundBlurEnabled && welcomeCachedImgLogo.visible
+    }
+
+    // A theme-based colour overlay applied to the background image (can be toggled in the Appearance settings)
+    ColorOverlay {
+        anchors.fill: welcomeCachedImgLogo
+        source: welcomeCachedImgLogo
+        color: JamiTheme.globalBackgroundColor
+        opacity: JamiTheme.welcomePageColorOverlayOpacity
+        z: -1
+        visible: AccountSettingsManager.accountSettingsPropertyMap.backgroundScrimEnabled && welcomeCachedImgLogo.visible
     }
 
     Loader {
         id: mainViewLoader
         active: false
+        asynchronous: true
         source: "qrc:/mainview/MainView.qml"
         anchors {
             top: parent.top
@@ -294,6 +404,15 @@ Window {
             right: parent.right
             bottom: errorLoader.top
         }
+        opacity: mainViewReady ? 1 : 0
+
+        Behavior on opacity {
+            NumberAnimation {
+                duration: 350
+                easing.type: Easing.InOutQuad
+            }
+        }
+
         onLoaded: initMainView(item)
     }
 
@@ -381,7 +500,7 @@ Window {
         function onAboutToQuit() {
             // Save minor pane width on app exit
             if (JamiQmlUtils.currentMinorPaneWidth) {
-                UtilsAdapter.setAppValue("minorPaneWidth", JamiQmlUtils.currentMinorPaneWidth)
+                UtilsAdapter.setAppValue("minorPaneWidth", JamiQmlUtils.currentMinorPaneWidth);
             }
             cleanupMainView();
         }
@@ -412,26 +531,26 @@ Window {
 
     function presentUpdateInfoDialog(infoText) {
         return viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
-                "title": JamiStrings.updateDialogTitle,
-                "infoText": infoText,
-                "buttonTitles": [JamiStrings.optionOk],
-                "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
-                "buttonCallBacks": [],
-                "buttonRoles": [DialogButtonBox.AcceptRole]
-            });
+            "title": JamiStrings.updateDialogTitle,
+            "infoText": infoText,
+            "buttonTitles": [JamiStrings.optionOk],
+            "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
+            "buttonCallBacks": [],
+            "buttonRoles": [DialogButtonBox.AcceptRole]
+        });
     }
 
     function presentUpdateConfirmInstallDialog(switchToBeta = false) {
         return viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
-                "title": JamiStrings.updateDialogTitle,
-                "infoText": switchToBeta ? JamiStrings.confirmBeta : JamiStrings.updateFound,
-                "buttonTitles": [JamiStrings.optionUpgrade, JamiStrings.optionLater],
-                "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue, SimpleMessageDialog.ButtonStyle.TintedBlue],
-                "buttonCallBacks": [function () {
-                        AppVersionManager.applyUpdates(switchToBeta);
-                    }],
-                "buttonRoles": [DialogButtonBox.AcceptRole, DialogButtonBox.RejectRole]
-            });
+            "title": JamiStrings.updateDialogTitle,
+            "infoText": switchToBeta ? JamiStrings.confirmBeta : JamiStrings.updateFound,
+            "buttonTitles": [JamiStrings.optionUpgrade, JamiStrings.optionLater],
+            "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue, SimpleMessageDialog.ButtonStyle.TintedBlue],
+            "buttonCallBacks": [function () {
+                    AppVersionManager.applyUpdates(switchToBeta);
+                }],
+            "buttonRoles": [DialogButtonBox.AcceptRole, DialogButtonBox.RejectRole]
+        });
     }
 
     function translateErrorToString(error) {
@@ -457,8 +576,8 @@ Window {
 
         function onDownloadStarted() {
             viewCoordinator.presentDialog(appWindow, "settingsview/components/UpdateDownloadDialog.qml", {
-                    "title": JamiStrings.updateDialogTitle
-                });
+                "title": JamiStrings.updateDialogTitle
+            });
         }
 
         function onUpdateCheckReplyReceived(ok, found) {
