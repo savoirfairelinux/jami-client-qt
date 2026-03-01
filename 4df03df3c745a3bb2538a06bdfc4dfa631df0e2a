@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de024b31_b7ae8c52",
+        "filename": "src/libclient/api/call.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-03-01T02:31:33Z",
+      "side": 0,
+      "message": "Can `HUNGUP` be changed to `END`?",
+      "range": {
+        "startLine": 105,
+        "startChar": 24,
+        "endLine": 105,
+        "endChar": 30
+      },
+      "revId": "4df03df3c745a3bb2538a06bdfc4dfa631df0e2a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
