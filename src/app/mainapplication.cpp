@@ -230,6 +230,10 @@ MainApplication::init()
             runOptions_[Option::Debug].toBool(),
             runOptions_[Option::MuteDaemon].toBool());
 
+    // Allow any pending events to be processed between heavy init steps.
+    // This helps the QML window appear sooner once the engine is loaded.
+    processEvents();
+
 #if defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)
     using namespace Interfaces;
     GlobalInstances::setDBusErrorHandler(std::make_unique<DBusErrorHandler>());
@@ -271,11 +275,15 @@ MainApplication::init()
 
     initQmlLayer();
 
-    accountSettingsManager_->initalizeAccountSettings();
+    // Defer non-critical post-init work to after the window is shown,
+    // so the first frame can be displayed as quickly as possible.
+    QTimer::singleShot(0, this, [this] {
+        accountSettingsManager_->initalizeAccountSettings();
 
-    settingsManager_->setValue(Settings::Key::StartMinimized, runOptions_[Option::StartMinimized].toBool());
+        settingsManager_->setValue(Settings::Key::StartMinimized, runOptions_[Option::StartMinimized].toBool());
 
-    initSystray();
+        initSystray();
+    });
 
     return true;
 }
