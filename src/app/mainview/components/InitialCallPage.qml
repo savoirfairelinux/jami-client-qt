@@ -104,7 +104,7 @@ Rectangle {
         Component.onCompleted: {
             append({
                     "type": "cancel",
-                    "image": JamiResources.ic_call_end_white_24dp_svg
+                    "image": JamiResources.call_end_white_24dp_svg
                 });
         }
     }

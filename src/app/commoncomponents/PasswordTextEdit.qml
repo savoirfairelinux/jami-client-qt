@@ -25,13 +25,13 @@ NewMaterialTextField {
     property bool firstEntry: false
     property bool showPassword: false
 
-    leadingIconSource: firstEntry ? JamiResources.lock_svg : JamiResources.password_24dp_svg
+    leadingIconSource: firstEntry ? JamiResources.lock_24dp_svg : JamiResources.password_24dp_svg
 
     placeholderText: JamiStrings.password
     toolTipText: firstEntry ? JamiStrings.password : ""
     textFieldContent: ""
     echoMode: showPassword ? TextInput.Normal : TextInput.Password
 
-    trailingIconSource: showPassword ? JamiResources.noun_eye_svg : JamiResources.eye_cross_svg
+    trailingIconSource: showPassword ? JamiResources.visibility_24dp_svg : JamiResources.visibility_off_24dp_svg
     onTrailingIconClicked: showPassword = !showPassword
 }

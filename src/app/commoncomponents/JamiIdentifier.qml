@@ -60,10 +60,10 @@ Control {
         NewIconButton {
             id: jamiIDIcon
 
-            iconSource: JamiResources.jami_id_new_svg
+            iconSource: JamiResources.jami_id_logo_new_24dp_svg
             iconSize: JamiTheme.iconButtonMedium
             icon.color: JamiTheme.tintedBlue
-
+    
             background: null
         }
 

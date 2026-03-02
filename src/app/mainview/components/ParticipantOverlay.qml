@@ -292,7 +292,7 @@ Item {
 
                                 visible: !root.participantIsHost && root.participantIsModerator
 
-                                source: JamiResources.moderator_svg
+                                source: JamiResources.moderator_24dp_svg
                                 color: JamiTheme.whiteColor
 
                                 HoverHandler {

@@ -111,7 +111,7 @@ Item {
 
         visible: CurrentCall.isPaused
 
-        source: JamiResources.ic_pause_white_100px_svg
+        source: JamiResources.pause_white_100px_svg
     }
 
     function openContactPicker(type) {

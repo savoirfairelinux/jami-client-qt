@@ -71,7 +71,7 @@ Item {
 
                 color: JamiTheme.tintedBlue
 
-                source: JamiResources.favorite_black_24dp_svg
+                source: JamiResources.favorite_svg
             }
 
             Text {
