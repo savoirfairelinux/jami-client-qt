@@ -24,13 +24,13 @@ ResponsiveImage {
 
     property bool isSharing: false
     property bool arrowTimerVisibility
-    source: JamiResources.localisation_sharing_send_pin_svg
+    source: JamiResources.location_sharing_send_pin_24dp_svg
 
     ResponsiveImage {
         id: arrowSharePosition
 
         visible: arrowTimerVisibility
-        source: JamiResources.localisation_sharing_send_arrow_svg
+        source: JamiResources.location_sharing_send_arrow_24dp_svg
         color: root.color
         mirrorHorizontally: isSharing ? false : true
         mirrorVertically: isSharing ? false : true

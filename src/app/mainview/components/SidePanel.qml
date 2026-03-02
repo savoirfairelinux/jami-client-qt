@@ -314,12 +314,12 @@ SidePanelBase {
                                     if (sipInputPanelPopUp.shown) {
                                         return JamiResources.round_close_24dp_svg;
                                     } else {
-                                        return JamiResources.ic_keypad_svg;
+                                        return JamiResources.ic_keypad_24dp_svg;
                                     }
                                 } else if (inNewSwarm) {
                                     return JamiResources.round_close_24dp_svg;
                                 } else {
-                                    return JamiResources.create_swarm_svg;
+                                    return JamiResources.create_swarm_24dp_svg;
                                 }
                             }
                             toolTipText: {
@@ -569,8 +569,8 @@ SidePanelBase {
                             NewIconButton {
                                 Layout.alignment: Qt.AlignHCenter
 
-                                iconSource: inNewSwarm ? JamiResources.emotion_sad_line_svg :
-                                                         JamiResources.ghost_line_svg
+                                iconSource: inNewSwarm ? JamiResources.emotion_sad_line_24dp_svg :
+                                                         JamiResources.ghost_line_24dp_svg
                                 iconSize: JamiTheme.iconButtonExtraLarge
 
                                 enabled: false

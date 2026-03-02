@@ -371,7 +371,7 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
 
                 iconSize: JamiTheme.iconButtonMedium
-                iconSource: JamiResources.ic_baseline_search_24dp_svg
+                iconSource: JamiResources.baseline_search_24dp_svg
                 toolTipText: JamiStrings.search
 
                 checkable: true
@@ -398,7 +398,7 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
 
                 iconSize: JamiTheme.iconButtonMedium
-                iconSource: JamiResources.swarm_details_panel_svg
+                iconSource: JamiResources.swarm_details_panel_24dp_svg
                 toolTipText: JamiStrings.details
 
                 checkable: true

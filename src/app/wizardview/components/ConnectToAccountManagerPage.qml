@@ -102,7 +102,7 @@ Rectangle {
 
             focus: visible
 
-            leadingIconSource: JamiResources.jami_logo_icon_svg
+            leadingIconSource: JamiResources.jami_logo_icon_24dp_svg
             placeholderText: JamiStrings.jamiManagementServerURL
 
             KeyNavigation.up: backButton
