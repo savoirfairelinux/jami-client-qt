@@ -304,7 +304,7 @@ Control {
         Action {
             id: endCallAction
             onTriggered: CallAdapter.endCall()
-            icon.source: JamiResources.ic_call_end_white_24dp_svg
+            icon.source: JamiResources.call_end_white_24dp_svg
             icon.color: "white"
             text: JamiStrings.endCall
             property bool hasBg: true
@@ -379,7 +379,7 @@ Control {
         Action {
             id: inputPanelSIPAction
             onTriggered: root.showInputPanelClicked()
-            icon.source: JamiResources.ic_keypad_svg
+            icon.source: JamiResources.ic_keypad_24dp_svg
             icon.color: "white"
             text: JamiStrings.sipInputPanel
             enabled: CurrentCall.isSIP
@@ -461,7 +461,7 @@ Control {
         Action {
             id: swarmDetailsAction
             onTriggered: root.swarmDetailsClicked()
-            icon.source: JamiResources.swarm_details_panel_svg
+            icon.source: JamiResources.swarm_details_panel_24dp_svg
             icon.color: "white"
             text: JamiStrings.details
             enabled: {

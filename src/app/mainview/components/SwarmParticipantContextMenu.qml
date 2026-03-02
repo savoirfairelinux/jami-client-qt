@@ -52,7 +52,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: goToConversation
 
-            iconSource: JamiResources.gotoconversation_svg
+            iconSource: JamiResources.gotoconversation_24dp_svg
             itemName: JamiStrings.goToConversation
             onClicked: {
                 if (ConversationsAdapter.dialogId(participantUri) !== "")
@@ -73,7 +73,7 @@ ContextMenuAutoLoader {
             id: kickMember
             property var memberRole: UtilsAdapter.getParticipantRole(CurrentAccount.id, conversationId, participantUri)
             itemName: memberRole === Member.Role.BANNED ? JamiStrings.reinstateMember : JamiStrings.kickMember
-            iconSource: JamiResources.kick_member_svg
+            iconSource: JamiResources.kick_member_24dp_svg
             canTrigger: role === Member.Role.ADMIN
 
             onClicked: {

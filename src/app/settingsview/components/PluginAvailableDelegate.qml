@@ -234,7 +234,7 @@ ItemDelegate {
                     Layout.bottomMargin: JamiTheme.iconMargin
                     CachedImage {
                         id: icon
-                        defaultImage: JamiResources.plugins_default_icon_svg
+                        defaultImage: JamiResources.plugins_default_icon_24dp_svg
                         width: 65
                         height: 65
                         downloadUrl: PluginAdapter.getIconUrl(pluginId)

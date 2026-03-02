@@ -52,7 +52,7 @@ BaseModalDialog {
 
         InfoBox {
             width: parent.width
-            icoSource: JamiResources.lock_svg
+            icoSource: JamiResources.lock_24dp_svg
             title: JamiStrings.encrypt
             description: JamiStrings.passwordOptional
             icoColor: JamiTheme.wizardIconColor

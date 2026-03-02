@@ -51,7 +51,7 @@ Control {
         Image {
             // The image fades to the top, so align it to the bottom.
             Layout.alignment: Qt.AlignVCenter
-            source: JamiResources.icon_donate_svg
+            source: JamiResources.icon_donate_24dp_svg
         }
 
         ColumnLayout {

@@ -359,7 +359,7 @@ SettingsPageBase {
 
                     text: JamiStrings.horizontalViewOpt
                     ButtonGroup.group: optionsB
-                    iconSource: JamiResources.horizontal_view_svg
+                    iconSource: JamiResources.horizontal_view_24dp_svg
 
                     onCheckedChanged: {
                         if (checked) {
@@ -377,7 +377,7 @@ SettingsPageBase {
                     text: JamiStrings.verticalViewOpt
                     ButtonGroup.group: optionsB
                     //color: JamiTheme.blackColor
-                    iconSource: JamiResources.vertical_view_svg
+                    iconSource: JamiResources.vertical_view_24dp_svg
 
                     onCheckedChanged: {
                         if (checked) {

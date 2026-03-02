@@ -80,7 +80,7 @@ BaseContextMenu {
             Keys.onReturnPressed: clicked()
 
             canTrigger: true
-            iconSource: JamiResources.localisation_sharing_send_pin_svg
+            iconSource: JamiResources.localisation_sharing_send_pin_24dp_svg
             itemName: JamiStrings.shareLocation
             onClicked: {
                 root.showMapClicked();

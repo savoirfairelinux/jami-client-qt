@@ -43,10 +43,10 @@ NewMaterialTextField {
     leadingIconSource: {
         switch (nameRegistrationState) {
         case UsernameTextEdit.NameRegistrationState.FREE:
-            return JamiResources.circled_green_check_svg;
+            return JamiResources.circled_green_check_24dp_svg;
         case UsernameTextEdit.NameRegistrationState.INVALID:
         case UsernameTextEdit.NameRegistrationState.TAKEN:
-            return JamiResources.circled_red_cross_svg;
+            return JamiResources.circled_red_cross_24dp_svg;
         case UsernameTextEdit.NameRegistrationState.SEARCHING:
             return JamiResources.jami_rolling_spinner_gif;
         case UsernameTextEdit.NameRegistrationState.BLANK:

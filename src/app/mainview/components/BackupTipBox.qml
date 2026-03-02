@@ -71,7 +71,7 @@ Item {
                 containerHeight: Layout.preferredHeight
                 containerWidth: Layout.preferredWidth
 
-                source: JamiResources.backup_svg
+                source: JamiResources.backup_24dp_svg
                 color: root.iconColor
             }
 

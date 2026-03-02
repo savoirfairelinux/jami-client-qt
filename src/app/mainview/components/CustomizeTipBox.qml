@@ -65,7 +65,7 @@ ColumnLayout {
             containerHeight: Layout.preferredHeight
             containerWidth: Layout.preferredWidth
 
-            source: JamiResources.noun_paint_svg
+            source: JamiResources.noun_paint_24dp_svg
             color: column.iconColor
             focus: activeFocus
         }
