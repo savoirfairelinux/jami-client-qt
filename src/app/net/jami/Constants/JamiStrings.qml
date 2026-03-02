@@ -943,7 +943,7 @@ Item {
     property string searchTextLanguages: qsTr("Search text languages")
     property string searchAvailableTextLanguages: qsTr("Search for available text languages")
     property string noDictionariesFoundFor: qsTr("No dictionary found for %1.")
-    property string noDictionariesAvailable: qsTr("No dictionary is available.")
+    property string noDictionariesAvailable: qsTr("No dictionaries available.")
     property string dictionaryManager: qsTr("Dictionary manager")
     property string spellCheckDownloadFailed: qsTr("An error occurred while downloading the %1 dictionary.")
     property string showInstalledDictionaries: qsTr("Show installed dictionaries")

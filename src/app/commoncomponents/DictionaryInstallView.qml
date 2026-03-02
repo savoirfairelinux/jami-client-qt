@@ -31,7 +31,7 @@ ColumnLayout {
 
     property int checkBoxWidth: 24
 
-    spacing: 0
+    spacing: 8
 
     Component.onCompleted: Qt.callLater(dictionarySearchBar.setTextAreaFocus)
 
@@ -40,7 +40,7 @@ ColumnLayout {
         id: dictionarySearchBar
 
         Layout.fillWidth: true
-        Layout.preferredHeight: 55
+        Layout.preferredHeight: 40
 
         focus: true
 
@@ -64,21 +64,21 @@ ColumnLayout {
         Layout.preferredHeight: childrenRect.height
         Layout.leftMargin: dictionarySearchBar.radius
 
+        spacing: 4
+
         Label {
+            Layout.preferredHeight: 16
+            Layout.alignment: Qt.AlignVCenter
+
             text: JamiStrings.showInstalledDictionaries
             color: JamiTheme.faddedLastInteractionFontColor
             font.pixelSize: JamiTheme.settingsDescriptionPixelSize
-            Layout.rightMargin: 0
-            Layout.preferredHeight: 16
-            Layout.alignment: Qt.AlignVCenter
         }
 
         // Checkbox to filter installed dictionaries
         CheckBox {
             id: showInstalledOnlyCheckbox
 
-            Layout.preferredWidth: 55
-            Layout.preferredHeight: 55
             Layout.rightMargin: 0
 
             checked: false
@@ -112,20 +112,24 @@ ColumnLayout {
         target: SpellCheckAdapter
         function onDownloadFailed(locale) {
             viewCoordinator.presentDialog(appWindow, "commoncomponents/SimpleMessageDialog.qml", {
-                    "title": JamiStrings.error,
-                    "infoText": JamiStrings.spellCheckDownloadFailed.arg(locale),
-                    "buttonTitles": [JamiStrings.optionOk],
-                    "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
-                    "buttonRoles": [DialogButtonBox.AcceptRole]
-                });
+                                              "title": JamiStrings.error,
+                                              "infoText": JamiStrings.spellCheckDownloadFailed.arg(locale),
+                                              "buttonTitles": [JamiStrings.optionOk],
+                                              "buttonStyles": [SimpleMessageDialog.ButtonStyle.TintedBlue],
+                                              "buttonRoles": [DialogButtonBox.AcceptRole]
+                                          });
         }
     }
 
     JamiListView {
         id: spellCheckDictionaryListView
 
+        readonly property int itemMargins: 20
+
         Layout.fillWidth: true
         Layout.fillHeight: true
+
+        spacing: 8
 
         model: SortFilterProxyModel {
             id: dictionaryProxyModel
@@ -164,11 +168,6 @@ ColumnLayout {
             ]
         }
 
-        readonly property int itemMargins: 20
-        topMargin: itemMargins / 2
-        bottomMargin: itemMargins / 2
-
-        spacing: 8
         clip: true
 
         delegate: ItemDelegate {
@@ -179,10 +178,10 @@ ColumnLayout {
 
             background: Rectangle {
                 anchors.horizontalCenter: parent.horizontalCenter
-                width: parent.width - spellCheckDictionaryListView.itemMargins
+                width: parent.width
                 height: parent.height
                 color: JamiTheme.backgroundColor
-                radius: height / 2//JamiTheme.primaryRadius
+                radius: height / 2
                 border.color: "transparent"
                 border.width: 1
             }
@@ -191,167 +190,168 @@ ColumnLayout {
                 id: contentLayout
 
                 anchors.fill: parent
-                anchors.margins: 16
+                anchors.topMargin: 16
+                anchors.bottomMargin: 16
                 anchors.leftMargin: dictionaryDelegate.background.radius
-                anchors.rightMargin: dictionaryDelegate.background.radius
                 spacing: 16
 
                 // Dictionary info
                 ColumnLayout {
                     Layout.fillWidth: true
                     Layout.alignment: Qt.AlignVCenter
-                    //Layout.leftMargin: 16
+
                     spacing: 2
 
                     Text {
                         id: dictionaryName
+
                         Layout.fillWidth: true
+
                         text: model.NativeName || ""
                         color: JamiTheme.textColor
-                        font.pixelSize: JamiTheme.settingsDescriptionPixelSize
-                        font.weight: Font.Medium
                         elide: Text.ElideRight
                         verticalAlignment: Text.AlignVCenter
+
+                        font.pixelSize: JamiTheme.settingsDescriptionPixelSize
+                        font.weight: Font.Medium
                     }
 
                     Text {
                         id: dictionaryLocale
+
                         Layout.fillWidth: true
+
                         text: model.Locale || ""
                         color: JamiTheme.faddedLastInteractionFontColor
-                        font.pixelSize: JamiTheme.settingsDescriptionPixelSize - 2
                         elide: Text.ElideRight
-                        visible: text !== ""
                         verticalAlignment: Text.AlignVCenter
+
+                        font.pixelSize: JamiTheme.settingsDescriptionPixelSize - 2
+
+                        visible: text !== ""
                     }
                 }
 
-                // Installation status and action
-                Item {
-                    Layout.preferredWidth: 100
-                    Layout.preferredHeight: 32
+                NewMaterialButton {
+                    id: installButton
+
                     Layout.alignment: Qt.AlignVCenter
+                    Layout.rightMargin: dictionaryDelegate.background.radius - installButton.background.radius
 
-                    // Install button for available dictionaries
-                    MaterialButton {
-                        id: installButton
-                        anchors.centerIn: parent
-                        width: 100
-                        height: 32
+                    focusPolicy: Qt.StrongFocus
 
-                        text: JamiStrings.install
+                    filledButton: true
+                    iconSource: JamiResources.download_black_24dp_svg
+                    text: JamiStrings.install
 
-                        font.pixelSize: JamiTheme.settingsDescriptionPixelSize - 1
-                        font.weight: Font.Medium
+                    visible: !model.Downloading && !model.Installed && model.Locale !== undefined && model.Locale !== ""
 
-                        focusPolicy: Qt.StrongFocus
-                        KeyNavigation.tab: {
-                            try {
-                                if (model.index < dictionaryProxyModel.count - 1) {
-                                    var nextItem = spellCheckDictionaryListView.itemAtIndex(model.index + 1);
-                                    if (nextItem) {
-                                        var nextButton = nextItem.findChild("installButton") || nextItem.findChild("uninstallButton");
-                                        return nextButton || null;
-                                    }
+                    onClicked: {
+                        if (model.Locale) {
+                            SpellCheckAdapter.installDictionary(model.Locale);
+                        }
+                    }
+
+                    onFocusChanged: {
+                        if (focus) {
+                            spellCheckDictionaryListView.positionViewAtIndex(model.index, ListView.Contain);
+                        }
+                    }
+
+                    KeyNavigation.tab: {
+                        try {
+                            if (model.index < dictionaryProxyModel.count - 1) {
+                                var nextItem = spellCheckDictionaryListView.itemAtIndex(model.index + 1);
+                                if (nextItem) {
+                                    var nextButton = nextItem.findChild("installButton") || nextItem.findChild("uninstallButton");
+                                    return nextButton || null;
                                 }
-                            } catch (e) {
-                                console.debug("KeyNavigation error handled:", e);
                             }
-                            return null;
+                        } catch (e) {
+                            console.debug("KeyNavigation error handled:", e);
                         }
-
-                        onFocusChanged: {
-                            if (focus) {
-                                spellCheckDictionaryListView.positionViewAtIndex(model.index, ListView.Contain);
-                            }
-                        }
-
-                        Accessible.name: dictionaryName.text + " " + JamiStrings.install
-                        Accessible.role: Accessible.Button
-
-                        onClicked: {
-                            if (model.Locale) {
-                                SpellCheckAdapter.installDictionary(model.Locale);
-                            }
-                        }
-
-                        visible: !model.Downloading && !model.Installed && model.Locale !== undefined && model.Locale !== ""
+                        return null;
                     }
 
-                    // Uninstall button for installed dictionaries (not system dictionaries)
-                    MaterialButton {
-                        id: uninstallButton
+                    Accessible.name: dictionaryName.text + " " + JamiStrings.install
+                    Accessible.role: Accessible.Button
+                }
 
-                        anchors.centerIn: parent
+                // Uninstall button for installed dictionaries (not system dictionaries)
+                NewMaterialButton {
+                    id: uninstallButton
 
-                        width: 100
-                        height: 32
+                    Layout.alignment: Qt.AlignVCenter
+                    Layout.rightMargin: dictionaryDelegate.background.radius - installButton.background.radius
 
-                        visible: !model.Downloading && model.Installed && !model.IsSystem && model.Locale !== undefined && model.Locale !== ""
+                    focusPolicy: Qt.StrongFocus
 
-                        text: JamiStrings.uninstall
-                        color: "#ff6666"
-                        hoveredColor: "#ff9999"
+                    filledButton: true
+                    iconSource: JamiResources.delete_svg
+                    text: JamiStrings.uninstall
+                    color: "#ff6666"
 
-                        font.pixelSize: JamiTheme.settingsDescriptionPixelSize - 1
-                        font.weight: Font.Medium
+                    visible: !model.Downloading && model.Installed && !model.IsSystem && model.Locale !== undefined && model.Locale !== ""
 
-                        focusPolicy: Qt.StrongFocus
-                        KeyNavigation.tab: {
-                            try {
-                                if (model.index < dictionaryProxyModel.count - 1) {
-                                    var nextItem = spellCheckDictionaryListView.itemAtIndex(model.index + 1);
-                                    if (nextItem) {
-                                        var nextButton = nextItem.findChild("installButton") || nextItem.findChild("uninstallButton");
-                                        return nextButton || null;
-                                    }
+                    onClicked: {
+                        if (model.Locale) {
+                            SpellCheckAdapter.uninstallDictionary(model.Locale);
+                        }
+                    }
+
+                    onFocusChanged: {
+                        if (focus) {
+                            spellCheckDictionaryListView.positionViewAtIndex(model.index, ListView.Contain);
+                        }
+                    }
+
+                    KeyNavigation.tab: {
+                        try {
+                            if (model.index < dictionaryProxyModel.count - 1) {
+                                var nextItem = spellCheckDictionaryListView.itemAtIndex(model.index + 1);
+                                if (nextItem) {
+                                    var nextButton = nextItem.findChild("installButton") || nextItem.findChild("uninstallButton");
+                                    return nextButton || null;
                                 }
-                            } catch (e) {
-                                console.debug("KeyNavigation error handled:", e);
                             }
-                            return null;
+                        } catch (e) {
+                            console.debug("KeyNavigation error handled:", e);
                         }
-
-                        onFocusChanged: {
-                            if (focus) {
-                                spellCheckDictionaryListView.positionViewAtIndex(model.index, ListView.Contain);
-                            }
-                        }
-
-                        onClicked: {
-                            if (model.Locale) {
-                                SpellCheckAdapter.uninstallDictionary(model.Locale);
-                            }
-                        }
-
-
-                        Accessible.name: dictionaryName.text + " " + JamiStrings.uninstall
-                        Accessible.role: Accessible.Button
+                        return null;
                     }
 
-                    // System dictionary indicator
-                    Text {
-                        anchors.centerIn: parent
-                        text: JamiStrings.systemDictionary
-                        color: JamiTheme.faddedLastInteractionFontColor
-                        font.pixelSize: JamiTheme.settingsDescriptionPixelSize - 2
-                        visible: model.IsSystem
-                    }
+                    Accessible.name: dictionaryName.text + " " + JamiStrings.uninstall
+                    Accessible.role: Accessible.Button
+                }
 
-                    // Downloading status indicator
-                    BusyIndicator {
-                        anchors.centerIn: parent
-                        visible: model.Downloading
-                        running: model.Downloading
-                        width: 24
-                        height: 24
+                // System dictionary indicator
+                Text {
+                    Layout.alignment: Qt.AlignVCenter
+                    Layout.rightMargin: dictionaryDelegate.background.radius
 
-                        // Use a custom animation for better UX
-                        Behavior on running {
-                            NumberAnimation {
-                                duration: 300
-                                easing.type: Easing.InOutQuad
-                            }
+                    text: JamiStrings.systemDictionary
+                    color: JamiTheme.faddedLastInteractionFontColor
+                    font.pixelSize: JamiTheme.settingsDescriptionPixelSize - 2
+
+                    visible: model.IsSystem
+                }
+
+                // Downloading status indicator
+                BusyIndicator {
+                    Layout.alignment: Qt.AlignVCenter
+                    Layout.rightMargin: dictionaryDelegate.background.radius - (width / 2)
+
+                    width: 24
+                    height: 24
+
+                    visible: model.Downloading
+                    running: model.Downloading
+
+                    // Use a custom animation for better UX
+                    Behavior on running {
+                        NumberAnimation {
+                            duration: 300
+                            easing.type: Easing.InOutQuad
                         }
                     }
                 }
@@ -361,29 +361,32 @@ ColumnLayout {
         // Empty state for when no dictionaries are found
         Item {
             anchors.fill: parent
-            visible: dictionaryProxyModel.count === 0
 
             ColumnLayout {
                 anchors.centerIn: parent
                 spacing: 16
+
                 width: parent.width * 0.8
+
+                visible: dictionaryProxyModel.count === 0
 
                 // Big books emoji
                 Text {
                     Layout.alignment: Qt.AlignHCenter
                     text: "📚"
                     font.pixelSize: 48
-                    opacity: 0.3
                 }
 
                 Text {
-                    Layout.alignment: Qt.AlignHCenter
                     Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignHCenter
+
                     text: dictionarySearchBar.textContent.length > 0 ? JamiStrings.noDictionariesFoundFor.arg(dictionarySearchBar.textContent) : JamiStrings.noDictionariesAvailable
                     color: JamiTheme.faddedLastInteractionFontColor
-                    font.pixelSize: JamiTheme.settingsDescriptionPixelSize
                     horizontalAlignment: Text.AlignHCenter
                     wrapMode: Text.WordWrap
+
+                    font.pixelSize: JamiTheme.settingsDescriptionPixelSize
                 }
             }
         }
