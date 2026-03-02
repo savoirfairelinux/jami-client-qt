@@ -179,7 +179,7 @@ Control {
                 parent: backToActiveCallButton
 
                 text: JamiStrings.returnToCall
-                visible: (root.hovered || root.activeFocus) && (text.length > 0)
+                visible: (backToActiveCallButton.hovered || backToActiveCallButton.activeFocus) && (text.length > 0)
                 delay: Qt.styleHints.mousePressAndHoldInterval
             }
 
