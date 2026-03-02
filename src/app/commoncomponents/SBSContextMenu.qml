@@ -53,7 +53,7 @@ ContextMenuAutoLoader {
             id: reply
 
             itemName: JamiStrings.reply
-            iconSource: JamiResources.reply_black_24dp_svg
+            iconSource: JamiResources.bidirectional_reply_black_24dp_svg
             onClicked: {
                 MessagesAdapter.editId = "";
                 MessagesAdapter.replyToId = root.msgId;

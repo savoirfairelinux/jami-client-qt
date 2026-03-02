@@ -369,7 +369,7 @@ Control {
                         anchors.right: isOutgoing ? more.left : undefined
 
                         iconSize: JamiTheme.iconButtonMedium
-                        iconSource: JamiResources.reply_black_24dp_svg
+                        iconSource: JamiResources.bidirectional_reply_black_24dp_svg
                         toolTipText: JamiStrings.reply
 
                         visible: shouldBeVisible

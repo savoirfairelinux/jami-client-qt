@@ -30,7 +30,7 @@ ResponsiveImage {
         id: arrowSharePosition
 
         visible: arrowTimerVisibility
-        source: JamiResources.localisation_sharing_send_arrow_24dp_svg
+        source: JamiResources.bidirectional_localisation_sharing_send_arrow_24dp_svg
         color: root.color
         mirrorHorizontally: isSharing ? false : true
         mirrorVertically: isSharing ? false : true

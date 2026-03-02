@@ -83,14 +83,14 @@ SBSMessageBase {
                 source: {
                     if (root.isOutgoing) {
                         if (Duration > 0)
-                            return "qrc:/icons/outgoing_call_24dp.svg";
+                            return "qrc:/icons/bidirectional_outgoing_call_24dp.svg";
                         else
-                            return "qrc:/icons/missed_outgoing_call_24dp.svg";
+                            return "qrc:/icons/bidirectional_missed_outgoing_call_24dp.svg";
                     } else {
                         if (Duration > 0)
-                            return "qrc:/icons/incoming_call_24dp.svg";
+                            return "qrc:/icons/bidirectional_incoming_call_24dp.svg";
                         else
-                            return "qrc:/icons/missed_incoming_call_24dp.svg";
+                            return "qrc:/icons/bidirectional_missed_incoming_call_24dp.svg";
                     }
                 }
 
