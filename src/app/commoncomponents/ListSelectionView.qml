@@ -52,8 +52,9 @@ DualPaneView {
     function dismiss() {
         if (isSinglePane) {
             if (!selectionFallback) viewCoordinator.dismiss(objectName)
-            else if (isSinglePane && leftPane && leftPane.children && leftPane.children.length > 1) {
+            else {
                 rightPaneItem.parent = null
+                leftPaneItem.parent = leftPane
                 leftPaneItem.deselect()
             }
         } else viewCoordinator.dismiss(objectName)

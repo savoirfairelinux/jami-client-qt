@@ -17,6 +17,7 @@
 
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Controls.impl
 import net.jami.Constants 1.1
 
 /* NOTE: This is a high-level imlpementation of the icon button.
@@ -33,45 +34,55 @@ Button {
     property alias toolTipText: iconButtonToolTip.text
     property alias toolTipShortcutKey: iconButtonToolTip.shortcutKey
 
+    readonly property bool canMirror: JamiResources.mirroredIcons.includes(iconSource)
+
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             implicitContentWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitContentHeight + topPadding + bottomPadding)
-
-    // The icon property is defined within the contentIcon of
-    // the Button component
-    icon.width: iconSize
-    icon.height: iconSize
-    icon.color: {
-        if (enabled) {
-            if (hovered || checked) {
-                return JamiTheme.textColor;
-            } else {
-                JamiTheme.buttonTintedGreyHovered;
-            }
-        } else {
-            JamiTheme.buttonTintedGreyHovered;
-        }
-    }
-    icon.source: iconSource
 
     leftPadding: iconSize / 4
     rightPadding: iconSize / 4
     topPadding: iconSize / 4
     bottomPadding: iconSize / 4
 
-    Behavior on icon.color {
-        enabled: root.enabled
-        ColorAnimation {
-            duration: 200
+    contentItem: IconImage {
+        anchors.centerIn: parent
+
+        width: root.iconSize
+        height: root.iconSize
+
+        source: root.iconSource
+        sourceSize.width: root.iconSize
+        sourceSize.height: root.iconSize
+
+        color: {
+            if (root.enabled) {
+                if (root.hovered || root.checked) {
+                    return JamiTheme.textColor;
+                } else {
+                    return JamiTheme.buttonTintedGreyHovered;
+                }
+            } else {
+                return JamiTheme.buttonTintedGreyHovered;
+            }
+        }
+
+        mirror: root.mirrored && root.canMirror
+
+        Behavior on color {
+            enabled: root.enabled
+            ColorAnimation {
+                duration: 200
+            }
         }
     }
 
     background: Rectangle {
         visible: root.enabled
 
-        implicitWidth: icon.width + (iconSize / 2)
-        implicitHeight: icon.height + (iconSize / 2)
+        implicitWidth: iconSize + (iconSize / 2)
+        implicitHeight: iconSize + (iconSize / 2)
 
         radius: height / 2
 
