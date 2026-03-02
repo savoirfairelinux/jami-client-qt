@@ -213,8 +213,9 @@ Rectangle {
         }
     }
 
-    BackButton {
+    NewIconButton {
         id: backButton
+        QWKSetParentHitTestVisible {}
 
         objectName: "connectToAccountManagerPageBackButton"
 
@@ -224,7 +225,9 @@ Rectangle {
 
         visible: !connectBtn.spinnerTriggered
 
-        preferredSize: JamiTheme.wizardViewPageBackButtonSize
+        iconSize: JamiTheme.iconButtonMedium
+        iconSource: JamiResources.bidirectional_arrow_back_24dp_svg
+        toolTipText: JamiStrings.back
 
         KeyNavigation.up: {
             if (connectBtn.enabled)

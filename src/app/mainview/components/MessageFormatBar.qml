@@ -238,7 +238,7 @@ Rectangle {
                     },
                     Action {
                         id: unorderedListAction
-                        property string iconSrc: JamiResources.bullet_point_black_24dp_svg
+                        property string iconSrc: JamiResources.bidirectional_bullet_point_black_24dp_svg
                         property string shortcutText: JamiStrings.unorderedList
                         property string shortcutKey: "Shift+Alt+8"
                         property bool isStyle: MDE.isPrefixSyle(messageBarTextArea, rectangle.text,
@@ -248,7 +248,7 @@ Rectangle {
                     },
                     Action {
                         id: orderedListAction
-                        property string iconSrc: JamiResources.bullet_number_black_24dp_svg
+                        property string iconSrc: JamiResources.bidirectional_bullet_number_black_24dp_svg
                         property string shortcutText: JamiStrings.orderedList
                         property string shortcutKey: "Shift+Alt+7"
                         property bool isStyle: MDE.isPrefixSyle(messageBarTextArea, rectangle.text,
@@ -633,9 +633,9 @@ Rectangle {
                     if (MessagesAdapter.editId !== "") {
                         return JamiResources.edit_24dp_svg;
                     } else if (MessagesAdapter.replyToId !== "") {
-                        return JamiResources.reply_black_24dp_svg;
+                        return JamiResources.bidirectional_reply_black_24dp_svg;
                     } else {
-                        return JamiResources.send_black_24dp_svg;
+                        return JamiResources.bidirectional_send_black_24dp_svg;
                     }
                 }
 
