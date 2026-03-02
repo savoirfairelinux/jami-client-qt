@@ -285,7 +285,7 @@ SettingsPageBase {
             Layout.topMargin: 20
 
             outlinedButton: true
-            iconSource: JamiResources.settings_backup_restore_24dp_svg
+            iconSource: JamiResources.bidirectional_settings_backup_restore_24dp_svg
             text: JamiStrings.defaultSettings
 
             onClicked: {

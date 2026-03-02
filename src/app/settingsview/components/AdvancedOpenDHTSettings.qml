@@ -154,7 +154,7 @@ ColumnLayout {
 
                 Layout.maximumWidth: itemWidth - proxyListURLRadioButton.indicator.width - proxyListURLRadioButton.spacing - proxyListURLRadioButton.horizontalPadding
 
-                leadingIconSource: JamiResources.bullet_point_black_24dp_svg
+                leadingIconSource: JamiResources.bidirectional_bullet_point_black_24dp_svg
                 placeholderText: JamiStrings.proxyListURL
                 textFieldContent: CurrentAccount.dhtProxyListUrl
 

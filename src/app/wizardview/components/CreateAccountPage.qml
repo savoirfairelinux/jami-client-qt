@@ -252,26 +252,19 @@ Rectangle {
         }
     }
 
-    JamiPushButton {
+    NewIconButton {
         id: backButton
         QWKSetParentHitTestVisible {}
 
         objectName: "createAccountPageBackButton"
 
-        preferredSize: 36
-        imageContainerWidth: 20
-        source: JamiResources.arrow_back_24dp_svg
-
-        Accessible.role: Accessible.Button
-        Accessible.name: JamiStrings.backButton
-        Accessible.description: JamiStrings.backButtonExplanation
-
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.margins: JamiTheme.wizardViewPageBackButtonMargins
 
-        KeyNavigation.tab: adviceBox
-        KeyNavigation.down: KeyNavigation.tab
+        iconSize: JamiTheme.iconButtonMedium
+        iconSource: JamiResources.bidirectional_arrow_back_24dp_svg
+        toolTipText: JamiStrings.back
 
         onClicked: {
             adviceBox.checked = false;
@@ -282,6 +275,14 @@ Rectangle {
                 helpOpened = false;
             }
         }
+
+        KeyNavigation.tab: adviceBox
+        KeyNavigation.down: KeyNavigation.tab
+
+        Accessible.role: Accessible.Button
+        Accessible.name: JamiStrings.backButton
+        Accessible.description: JamiStrings.backButtonExplanation
+
     }
 
     NewIconButton {
@@ -294,7 +295,7 @@ Rectangle {
 
         z: 1
 
-        iconSource: JamiResources.help_outline_24dp_svg
+        iconSource: JamiResources.bidirectional_help_outline_24dp_svg
         iconSize: JamiTheme.iconButtonMedium
         toolTipText: JamiStrings.adviceBoxExplanation
 

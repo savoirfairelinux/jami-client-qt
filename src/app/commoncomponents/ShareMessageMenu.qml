@@ -118,7 +118,7 @@ BaseContextMenu {
                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
 
                 iconSize: JamiTheme.iconButtonMedium
-                iconSource: JamiResources.send_black_24dp_svg
+                iconSource: JamiResources.bidirectional_send_black_24dp_svg
                 toolTipText: JamiStrings.share
 
                 visible: true

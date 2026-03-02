@@ -124,7 +124,7 @@ RowLayout {
                 color: JamiTheme.tintedBlue
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.horizontalCenter: parent.horizontalCenter
-                source: JamiResources.chevron_right_black_24dp_svg
+                source: JamiResources.bidirectional_chevron_right_black_24dp_svg
             }
         }
 
@@ -150,7 +150,7 @@ RowLayout {
                 color: JamiTheme.tintedBlue
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.horizontalCenter: parent.horizontalCenter
-                source: JamiResources.chevron_left_black_24dp_svg
+                source: JamiResources.bidirectional_chevron_left_black_24dp_svg
             }
         }
     }

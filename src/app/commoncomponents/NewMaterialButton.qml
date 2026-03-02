@@ -78,6 +78,7 @@ T.Button {
         }
     }
 
+
     Behavior on icon.color {
         ColorAnimation {
             duration: JamiTheme.shortFadeDuration
