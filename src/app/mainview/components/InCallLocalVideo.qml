@@ -118,8 +118,8 @@ LocalVideo {
             Behavior on opacity { NumberAnimation { duration: 250; easing.type: Easing.OutExpo }}
         }
         normalImageSource: hidePreviewButton.state === "left" ?
-                               JamiResources.chevron_left_black_24dp_svg :
-                               JamiResources.chevron_right_black_24dp_svg
+                               JamiResources.bidirectional_chevron_left_black_24dp_svg :
+                               JamiResources.bidirectional_chevron_right_black_24dp_svg
         imageColor: JamiTheme.darkGreyColor
         onClicked: localPreview.hidden = !localPreview.hidden
         toolTipText: localPreview.hidden ?

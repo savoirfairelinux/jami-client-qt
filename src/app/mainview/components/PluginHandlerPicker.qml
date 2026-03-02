@@ -169,12 +169,15 @@ Popup {
                 RowLayout {
                     height: JamiTheme.preferredFieldHeight
 
-                    BackButton {
+                    NewIconButton {
                         id: backButton
+                        QWKSetParentHitTestVisible {}
 
                         Layout.leftMargin: 5
                         Layout.topMargin: 5
 
+                        iconSize: JamiTheme.iconButtonMedium
+                        iconSource: JamiResources.bidirectional_arrow_back_24dp_svg
                         toolTipText: JamiStrings.goBackToExtensionsList
 
                         onClicked: {

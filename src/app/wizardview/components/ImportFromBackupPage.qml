@@ -226,8 +226,9 @@ Rectangle {
         }
     }
 
-    BackButton {
+    NewIconButton {
         id: backButton
+        QWKSetParentHitTestVisible {}
 
         objectName: "importFromBackupPageBackButton"
 
@@ -237,7 +238,9 @@ Rectangle {
 
         visible: !connectBtn.spinnerTriggered
 
-        preferredSize: JamiTheme.wizardViewPageBackButtonSize
+        iconSize: JamiTheme.iconButtonMedium
+        iconSource: JamiResources.bidirectional_arrow_back_24dp_svg
+        toolTipText: JamiStrings.back
 
         KeyNavigation.tab: fileImportBtn
         KeyNavigation.up: {

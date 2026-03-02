@@ -292,8 +292,9 @@ Rectangle {
             }
         }
     }
-    BackButton {
+    NewIconButton {
         id: backButton
+        QWKSetParentHitTestVisible {}
 
         objectName: "createSIPAccountPageBackButton"
 
@@ -301,7 +302,9 @@ Rectangle {
         anchors.top: parent.top
         anchors.margins: 20
 
-        preferredSize: JamiTheme.wizardViewPageBackButtonSize
+        iconSize: JamiTheme.iconButtonMedium
+        iconSource: JamiResources.bidirectional_arrow_back_24dp_svg
+        toolTipText: JamiStrings.back
 
         KeyNavigation.up: createAccountStack.currentIndex !== 0 ? displayNameLineEdit :
                                                                   personalizeAccount

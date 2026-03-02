@@ -204,7 +204,7 @@ ItemDelegate {
         }
 
         contentItem: ResponsiveImage {
-            source: isVertical ? JamiResources.chevron_left_black_24dp_svg : JamiResources.expand_less_24dp_svg
+            source: isVertical ? JamiResources.bidirectional_chevron_left_black_24dp_svg : JamiResources.expand_less_24dp_svg
             color: "white"
         }
 
