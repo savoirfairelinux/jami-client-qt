@@ -250,7 +250,7 @@ SidePanelBase {
                         height: 40
 
                         Layout.topMargin: JamiTheme.sidePanelConversationsIslandTopPadding
-                        Layout.leftMargin: 15
+                        Layout.leftMargin: conversationListRect.radius - contactSearchBar.radius
                         Layout.rightMargin: 15
                         Layout.alignment: Qt.AlignTop
 
