@@ -73,7 +73,7 @@ Control {
             targets: [title, description, userAvatar]
             property: "opacity"
             to: 0
-            duration: JamiTheme.chatViewFadeDuration / 2
+            duration: JamiTheme.longFadeDuration / 2
         }
         ScriptAction {
             script: {
@@ -91,7 +91,7 @@ Control {
             targets: [title, description, userAvatar]
             property: "opacity"
             to: 1
-            duration: JamiTheme.chatViewFadeDuration / 2
+            duration: JamiTheme.longFadeDuration / 2
         }
     }
 

@@ -257,8 +257,8 @@ Item {
                         NumberAnimation {
                             target: chatViewHeaderTranslate
                             property: "y"
-                            duration: JamiTheme.shortFadeDuration
-                            easing.type: Easing.OutInQuad
+                            duration: JamiTheme.longFadeDuration
+                            easing.type: Easing.OutCubic
                         }
                     }
                 ]
