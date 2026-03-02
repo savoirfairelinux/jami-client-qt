@@ -394,19 +394,24 @@ Rectangle {
         }
     }
 
-    JamiPushButton {
+    NewIconButton {
         id: backButton
         QWKSetParentHitTestVisible {}
 
         objectName: "welcomePageBackButton"
 
-        preferredSize: 36
-        imageContainerWidth: 20
-        source: JamiResources.arrow_back_24dp_svg
-
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.margins: JamiTheme.wizardViewPageBackButtonMargins
+
+        iconSize: JamiTheme.iconButtonMedium
+        iconSource: JamiResources.bidirectional_arrow_back_24dp_svg
+        toolTipText: JamiStrings.back
+
+        onClicked: WizardViewStepModel.previousStep()
+
+
+        visible: UtilsAdapter.getAccountListSize()
 
         Connections {
             target: LRCInstance
@@ -416,16 +421,13 @@ Rectangle {
             }
         }
 
-        visible: UtilsAdapter.getAccountListSize()
-        Accessible.role: Accessible.Button
-        Accessible.name: JamiStrings.backButton
-        Accessible.description: JamiStrings.backButtonExplanation
-
         KeyNavigation.tab: newAccountButton
         KeyNavigation.up: showAdvanced ? newSIPAccountButton : showAdvancedButton
         KeyNavigation.down: KeyNavigation.tab
 
-        onClicked: WizardViewStepModel.previousStep()
+        Accessible.role: Accessible.Button
+        Accessible.name: JamiStrings.backButton
+        Accessible.description: JamiStrings.backButtonExplanation
     }
 
     SettingsComboBox {

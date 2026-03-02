@@ -73,26 +73,30 @@ SBSMessageBase {
 
             Image {
                 id: statusIcon
-                visible: !root.isActive
 
                 Layout.leftMargin: 8
                 width: 10
                 height: 10
+
                 verticalAlignment: Qt.AlignVCenter
+
+                visible: !root.isActive
 
                 source: {
                     if (root.isOutgoing) {
                         if (Duration > 0)
-                            return "qrc:/icons/outgoing_call_24dp.svg";
+                            return JamiResources.bidirectional_outgoing_call_24dp_svg;
                         else
-                            return "qrc:/icons/missed_outgoing_call_24dp.svg";
+                            return JamiResources.bidirectional_missed_outgoing_call_24dp_svg;
                     } else {
                         if (Duration > 0)
-                            return "qrc:/icons/incoming_call_24dp.svg";
+                            return JamiResources.bidirectional_incoming_call_24dp_svg;
                         else
-                            return "qrc:/icons/missed_incoming_call_24dp.svg";
+                            return JamiResources.bidirectional_missed_incoming_call_24dp_svg;
                     }
                 }
+
+                mirror: UtilsAdapter.isRTL && JamiResources.mirroredIcons.includes(source.toString())
 
                 layer {
                     enabled: true
