@@ -39,7 +39,7 @@ Row {
         id: minButton
         Accessible.name: JamiStrings.minimize
         Accessible.role: Accessible.Button
-        source: JamiResources.window_bar_minimize_svg
+        source: JamiResources.window_bar_minimize_24dp_svg
         onClicked: appWindow.showMinimized()
     }
 
@@ -48,8 +48,8 @@ Row {
         Accessible.name: JamiStrings.maximize
         Accessible.role: Accessible.Button
         source: appWindow.visibility === Window.Maximized ?
-                    JamiResources.window_bar_restore_svg :
-                    JamiResources.window_bar_maximize_svg
+                    JamiResources.window_bar_restore_24dp_svg :
+                    JamiResources.window_bar_maximize_24dp_svg
         onClicked: appWindow.visibility === Window.Maximized ?
                        appWindow.showNormal() :
                        appWindow.showMaximized()
@@ -59,7 +59,7 @@ Row {
         id: closeButton
         Accessible.name: JamiStrings.closeApplication
         Accessible.role: Accessible.Button
-        source: JamiResources.window_bar_close_svg
+        source: JamiResources.window_bar_close_24dp_svg
         baseColor: "#e81123"
         onClicked: appWindow.close()
     }

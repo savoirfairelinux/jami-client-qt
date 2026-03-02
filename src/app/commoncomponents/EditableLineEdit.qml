@@ -82,10 +82,10 @@ Item {
     function toggleEchoMode() {
         if (echoMode == TextInput.Normal) {
             echoMode = TextInput.Password;
-            secondIco = JamiResources.eye_cross_svg;
+            secondIco = JamiResources.eye_cross_24dp_svg;
         } else {
             echoMode = TextInput.Normal;
-            secondIco = JamiResources.noun_eye_svg;
+            secondIco = JamiResources.noun_eye_24dp_svg;
         }
     }
 

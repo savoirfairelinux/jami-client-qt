@@ -709,7 +709,7 @@ Control {
                     visible: IsLastSent === true && root.readers.length === 0
                     anchors.bottom: parent.bottom
 
-                    source: JamiResources.receive_svg
+                    source: JamiResources.receive_24dp_svg
                 }
 
                 ReadStatus {

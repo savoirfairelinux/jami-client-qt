@@ -100,7 +100,7 @@ Item {
                         Layout.alignment: Qt.AlignCenter
                         containerWidth: 100
                         containerHeight: 100
-                        source: PluginIcon === "" ? JamiResources.plugins_default_icon_svg : "file:" + PluginIcon
+                        source: PluginIcon === "" ? JamiResources.plugins_default_icon_24dp_svg : "file:" + PluginIcon
                     }
 
                     Label {

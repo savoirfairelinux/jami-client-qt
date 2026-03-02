@@ -60,7 +60,7 @@ ColumnLayout {
             containerHeight: Layout.preferredHeight
             containerWidth: Layout.preferredWidth
 
-            source: JamiResources.glasses_tips_svg
+            source: JamiResources.glasses_tips_24dp_svg
             color: column.iconColor
         }
 
