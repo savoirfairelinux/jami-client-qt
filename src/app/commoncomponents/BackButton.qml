@@ -32,7 +32,7 @@ PushButton {
 
     mirror: Qt.application.layoutDirection === Qt.RightToLeft
 
-    source: JamiResources.arrow_back_24dp_svg
+    source: JamiResources.bidirectional_arrow_back_24dp_svg
     toolTipText: JamiStrings.back
 
     Keys.onPressed: function (keyEvent) {

@@ -283,7 +283,7 @@ Rectangle {
 
         preferredSize: 36
         imageContainerWidth: 20
-        source: JamiResources.arrow_back_24dp_svg
+        source: JamiResources.bidirectional_arrow_back_24dp_svg
 
         anchors.left: parent.left
         anchors.top: parent.top

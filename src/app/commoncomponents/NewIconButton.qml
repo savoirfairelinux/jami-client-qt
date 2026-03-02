@@ -33,10 +33,16 @@ Button {
     property alias toolTipText: iconButtonToolTip.text
     property alias toolTipShortcutKey: iconButtonToolTip.shortcutKey
 
+    readonly property bool canMirror: JamiResources.mirroredIcons.includes(iconSource)
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             implicitContentWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitContentHeight + topPadding + bottomPadding)
+
+    leftPadding: iconSize / 4
+    rightPadding: iconSize / 4
+    topPadding: iconSize / 4
+    bottomPadding: iconSize / 4
 
     // The icon property is defined within the contentIcon of
     // the Button component
@@ -47,18 +53,20 @@ Button {
             if (hovered || checked) {
                 return JamiTheme.textColor;
             } else {
-                JamiTheme.buttonTintedGreyHovered;
+                return JamiTheme.buttonTintedGreyHovered;
             }
         } else {
-            JamiTheme.buttonTintedGreyHovered;
+            return JamiTheme.buttonTintedGreyHovered;
         }
     }
     icon.source: iconSource
 
-    leftPadding: iconSize / 4
-    rightPadding: iconSize / 4
-    topPadding: iconSize / 4
-    bottomPadding: iconSize / 4
+
+    transform: Scale {
+        origin.x: root.width / 2
+        origin.y: root.height / 2
+        xScale: root.mirrored && canMirror ? -1 : 1
+    }
 
     Behavior on icon.color {
         enabled: root.enabled

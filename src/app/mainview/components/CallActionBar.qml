@@ -379,7 +379,7 @@ Control {
         Action {
             id: inputPanelSIPAction
             onTriggered: root.showInputPanelClicked()
-            icon.source: JamiResources.ic_keypad_24dp_svg
+            icon.source: JamiResources.keypad_24dp_svg
             icon.color: "white"
             text: JamiStrings.sipInputPanel
             enabled: CurrentCall.isSIP
@@ -388,7 +388,7 @@ Control {
         Action {
             id: callTransferAction
             onTriggered: root.transferClicked()
-            icon.source: JamiResources.phone_forwarded_24dp_svg
+            icon.source: JamiResources.bidirectional_phone_forwarded_24dp_svg
             icon.color: "white"
             text: JamiStrings.transferCall
             enabled: CurrentCall.isSIP

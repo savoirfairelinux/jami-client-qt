@@ -42,7 +42,7 @@ Rectangle {
             toolTipText: !isUnpin ? JamiStrings.unpin : JamiStrings.pinWindow
             imageColor: JamiTheme.mapButtonColor
             normalColor: JamiTheme.mapButtonsOverlayColor
-            source: JamiResources.unpin_24dp_svg
+            source: JamiResources.bidirectional_unpin_24dp_svg
             onClicked: {
                 if (!isUnpin) {
                     PositionManager.unPinMap(attachedAccountId);

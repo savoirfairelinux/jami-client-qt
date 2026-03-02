@@ -34,6 +34,7 @@ import re
 resdir = os.path.join('..', '..', 'resources')
 qmlfile = os.path.join('net/jami/Constants', 'JamiResources.qml')
 resfile = os.path.join('resources.qrc')
+mirrored_icons_list = []
 
 print("Generating resource.qrc file ...")
 
@@ -84,7 +85,16 @@ def gen_resources_qrc(with_webengine):
                         f' {format_qml_prop(filename)}:'
                         f' "{resource}"\n'
                     )
+                if (filename.startswith("bidirectional_")):
+                    mirrored_icons_list.append(format_qml_prop(filename))
             qrc.write('\t</qresource>\n')
+            
+        qml.write(
+            "    readonly property list<string> mirroredIcons: ["
+        )
+        qml.write(', '.join(mirrored_icons_list))
+        qml.write(']\n')
+        
         qml.write('}')
         qrc.write('</RCC>')
 

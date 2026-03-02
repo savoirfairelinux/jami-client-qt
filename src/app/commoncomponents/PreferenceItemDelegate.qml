@@ -107,7 +107,7 @@ ItemDelegate {
             Layout.preferredHeight: preferredSize
             imageColor: JamiTheme.textColor
 
-            source: JamiResources.round_settings_24dp_svg
+            source: JamiResources.settings_24dp_svg
 
             toolTipText: JamiStrings.editPreference
             opacity: enabled ? 1.0 : 0.5

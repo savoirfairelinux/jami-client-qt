@@ -287,7 +287,7 @@ ColumnLayout {
                     focusPolicy: Qt.StrongFocus
 
                     filledButton: true
-                    iconSource: JamiResources.delete_svg
+                    iconSource: JamiResources.delete_24dp_svg
                     text: JamiStrings.uninstall
                     color: "#ff6666"
 

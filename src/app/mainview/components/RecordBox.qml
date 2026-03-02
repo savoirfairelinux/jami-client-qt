@@ -360,7 +360,7 @@ Popup {
                         Layout.alignment: Qt.AlignCenter
                         preferredSize: btnSize
 
-                        source: JamiResources.restart_black_24dp_svg
+                        source: JamiResources.bidirectional_restart_black_24dp_svg
 
                         imageColor: JamiTheme.whiteColor
                         imageContainerHeight: 25
@@ -430,7 +430,7 @@ Popup {
                         imageContainerHeight: 25
                         imageContainerWidth: 25
 
-                        source: root.isPhoto ? JamiResources.check_circle_24dp_svg : JamiResources.send_black_24dp_svg
+                        source: root.isPhoto ? JamiResources.check_circle_24dp_svg : JamiResources.bidirectional_send_black_24dp_svg
 
                         focusPolicy: Qt.TabFocus
 
