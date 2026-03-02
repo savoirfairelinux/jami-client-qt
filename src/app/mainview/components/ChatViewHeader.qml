@@ -100,17 +100,15 @@ Control {
 
         spacing: 8
 
-        JamiPushButton {
+        NewIconButton {
             id: backToWelcomeViewArrowButton
+
             QWKSetParentHitTestVisible {}
 
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
 
-            normalColor: JamiTheme.globalIslandColor
-
-            mirror: UtilsAdapter.isRTL
-
-            source: JamiResources.back_24dp_svg
+            iconSize: JamiTheme.iconButtonMedium
+            iconSource: JamiResources.bidirectional_back_24dp_svg
             toolTipText: JamiStrings.hideChat
 
             visible: !viewCoordinator.isInSinglePaneMode && !CurrentConversation.inCall
@@ -118,17 +116,15 @@ Control {
             onClicked: root.backClicked()
         }
 
-        JamiPushButton {
+        NewIconButton {
             id: backToWelcomeViewChevronButton
             QWKSetParentHitTestVisible {}
 
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
 
-            normalColor: JamiTheme.globalIslandColor
 
-            mirror: UtilsAdapter.isRTL
-
-            source: JamiResources.chevron_left_black_24dp_svg
+            iconSize: JamiTheme.iconButtonMedium
+            iconSource: JamiResources.chevron_left_black_24dp_svg
             toolTipText: JamiStrings.hideChat
 
             visible: viewCoordinator.isInSinglePaneMode && !CurrentConversation.inCall
@@ -148,7 +144,7 @@ Control {
 
             icon.width: JamiTheme.iconButtonMedium
             icon.height: JamiTheme.iconButtonMedium
-            icon.source: JamiResources.return_to_call_24dp_svg
+            icon.source: JamiResources.bidirectional_return_to_call_24dp_svg
             icon.color: hovered ? JamiTheme.buttonCallLightGreen : JamiTheme.blackColor
 
             visible: CurrentConversation.inCall
