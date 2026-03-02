@@ -485,7 +485,7 @@ Rectangle {
         objectName: "importFromDevicePageBackButton"
 
         iconSize: JamiTheme.iconButtonMedium
-        iconSource: JamiResources.ic_arrow_back_24dp_svg
+        iconSource: JamiResources.arrow_back_24dp_svg
         toolTipText: JamiStrings.close
 
         visible: WizardViewStepModel.deviceAuthState !== DeviceAuthStateEnum.IN_PROGRESS

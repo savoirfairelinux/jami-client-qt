@@ -130,7 +130,7 @@ BaseContextMenu {
 
             modelList: getQuickEmojiListModel()
             canTrigger: true
-            iconSource: JamiResources.add_reaction_svg
+            iconSource: JamiResources.add_reaction_24dp_svg
             itemName: JamiStrings.copy
             addMenuSeparatorAfter: true
             messageId: msgId
@@ -140,7 +140,7 @@ BaseContextMenu {
             id: saveFile
 
             canTrigger: type === Interaction.Type.DATA_TRANSFER
-            iconSource: JamiResources.save_file_svg
+            iconSource: JamiResources.save_file_24dp_svg
             itemName: JamiStrings.saveFile
             onClicked: {
                 MessagesAdapter.copyToDownloads(root.msgId, root.transferName);
@@ -160,7 +160,7 @@ BaseContextMenu {
             id: removeLocally
 
             canTrigger: type === Interaction.Type.DATA_TRANSFER && TransferStatus === Interaction.TransferStatus.TRANSFER_FINISHED
-            iconSource: JamiResources.delete_svg
+            iconSource: JamiResources.delete_24dp_svg
             itemName: JamiStrings.removeLocally
             onClicked: {
                 MessagesAdapter.removeFile(msgId, root.location);
@@ -171,7 +171,7 @@ BaseContextMenu {
             id: editMessage
 
             canTrigger: root.isOutgoing && type === Interaction.Type.TEXT
-            iconSource: JamiResources.edit_svg
+            iconSource: JamiResources.edit_24dp_svg
             itemName: JamiStrings.editMessage
             onClicked: {
                 MessagesAdapter.replyToId = "";
@@ -182,7 +182,7 @@ BaseContextMenu {
             id: deleteMessage
 
             canTrigger: root.isOutgoing && (type === Interaction.Type.TEXT || type === Interaction.Type.DATA_TRANSFER)
-            iconSource: JamiResources.delete_svg
+            iconSource: JamiResources.delete_24dp_svg
             itemName: JamiStrings.deleteMessage
             onClicked: {
                 MessagesAdapter.editMessage(CurrentConversation.id, "", root.msgId);

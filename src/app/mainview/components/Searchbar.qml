@@ -126,7 +126,7 @@ Rectangle {
         normalColor: root.color
         imageColor: JamiTheme.primaryForegroundColor
 
-        source: textArea.text.length ? JamiResources.ic_clear_24dp_svg : JamiResources.ic_baseline_search_24dp_svg
+        source: textArea.text.length ? JamiResources.clear_24dp_svg : JamiResources.baseline_search_24dp_svg
         toolTipText: textArea.text.length ? JamiStrings.clearText : ""
         onClicked: {
             if (textArea.text.length)

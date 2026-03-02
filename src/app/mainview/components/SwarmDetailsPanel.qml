@@ -244,7 +244,7 @@ Item {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
 
-                        leadingIconSource: CurrentConversation.isCoreDialog ? JamiResources.person_24dp_svg : JamiResources.create_swarm_svg
+                        leadingIconSource: CurrentConversation.isCoreDialog ? JamiResources.person_24dp_svg : JamiResources.create_swarm_24dp_svg
 
                         placeholderText: JamiStrings.title
                         textFieldContent: CurrentConversation.title
@@ -266,7 +266,7 @@ Item {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
 
-                        leadingIconSource: CurrentConversation.isCoreDialog ? JamiResources.jami_id_new_svg : JamiResources.swarm_details_panel_svg
+                        leadingIconSource: CurrentConversation.isCoreDialog ? JamiResources.jami_id_logo_new_24dp_svg : JamiResources.swarm_details_panel_24dp_svg
 
                         placeholderText: readOnly ? JamiStrings.noDescription : JamiStrings.addDescription
                         textFieldContent: CurrentConversation.description
@@ -470,9 +470,9 @@ Item {
                                         source: {
                                             switch (MemberRole) {
                                             case Member.Role.ADMIN:
-                                                return JamiResources.moderator_filled_svg;
+                                                return JamiResources.moderator_filled_24dp_svg;
                                             case Member.Role.BANNED:
-                                                return JamiResources.ic_disconnect_participant_24dp_svg;
+                                                return JamiResources.disconnect_participant_24dp_svg;
                                             case Member.Role.INVITED:
                                                 return JamiResources.mail_24dp_svg;
                                             default:
@@ -765,7 +765,7 @@ Item {
 
                             outlinedButton: true
                             color: JamiTheme.buttonTintedRed
-                            iconSource: JamiResources.ic_disconnect_participant_24dp_svg
+                            iconSource: JamiResources.disconnect_participant_24dp_svg
                             text: CurrentConversation.isCoreDialog ? JamiStrings.removeConversation :
                                                                      JamiStrings.leaveGroup
 
@@ -793,7 +793,7 @@ Item {
 
                             outlinedButton: true
                             color: JamiTheme.buttonTintedRed
-                            iconSource: JamiResources.kick_member_svg
+                            iconSource: JamiResources.kick_member_24dp_svg
                             text: JamiStrings.removeContact
 
                             visible: CurrentConversation.isCoreDialog
