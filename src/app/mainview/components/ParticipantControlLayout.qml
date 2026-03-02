@@ -35,7 +35,7 @@ RowLayout {
         Layout.preferredHeight: buttonPreferredSize
         Layout.preferredWidth: buttonPreferredSize
         Layout.alignment: Qt.AlignVCenter
-        source: JamiResources.moderator_svg
+        source: JamiResources.moderator_24dp_svg
         onClicked: CallAdapter.setModerator(uri, showSetModerator)
         toolTipText: showSetModerator ? JamiStrings.setModerator : JamiStrings.unsetModerator
     }
@@ -104,7 +104,7 @@ RowLayout {
         Layout.preferredHeight: buttonPreferredSize
         Layout.preferredWidth: buttonPreferredSize
         Layout.alignment: Qt.AlignVCenter
-        source: JamiResources.ic_disconnect_participant_24dp_svg
+        source: JamiResources.disconnect_participant_24dp_svg
         onClicked: CallAdapter.disconnectParticipant(uri, deviceId)
         toolTipText: JamiStrings.disconnectParticipant
     }

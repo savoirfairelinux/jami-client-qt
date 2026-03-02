@@ -73,7 +73,7 @@ ContextMenuAutoLoader {
 
             canTrigger: mode === Conversation.Mode.NON_SWARM && !isInCall && !root.isBanned
             itemName: JamiStrings.deleteConversation
-            iconSource: JamiResources.ic_clear_24dp_svg
+            iconSource: JamiResources.clear_24dp_svg
             onClicked: MessagesAdapter.clearConversationHistory(responsibleAccountId, responsibleConvUid)
         },
         GeneralMenuItem {
@@ -81,7 +81,7 @@ ContextMenuAutoLoader {
 
             canTrigger: !isInCall && !root.isBanned
             itemName: mode === Conversation.Mode.ONE_TO_ONE ? JamiStrings.removeConversation : JamiStrings.leaveGroup
-            iconSource: JamiResources.ic_disconnect_participant_24dp_svg
+            iconSource: JamiResources.disconnect_participant_24dp_svg
             onClicked: {
                 var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
                     "title": JamiStrings.confirmAction,
@@ -98,7 +98,7 @@ ContextMenuAutoLoader {
 
             canTrigger: !isInCall && !root.isBanned && mode === Conversation.Mode.ONE_TO_ONE
             itemName: JamiStrings.removeContact
-            iconSource: JamiResources.kick_member_svg
+            iconSource: JamiResources.kick_member_24dp_svg
             onClicked: {
                 var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
                     "title": JamiStrings.confirmAction,
@@ -115,7 +115,7 @@ ContextMenuAutoLoader {
 
             canTrigger: isInCall
             itemName: JamiStrings.endCall
-            iconSource: JamiResources.ic_call_end_white_24dp_svg
+            iconSource: JamiResources.call_end_white_24dp_svg
             onClicked: CallAdapter.endCall(responsibleAccountId, responsibleConvUid)
         },
         GeneralMenuItem {
