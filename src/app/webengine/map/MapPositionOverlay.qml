@@ -42,7 +42,7 @@ Rectangle {
             toolTipText: !isUnpin ? JamiStrings.unpin : JamiStrings.pinWindow
             imageColor: JamiTheme.mapButtonColor
             normalColor: JamiTheme.mapButtonsOverlayColor
-            source: JamiResources.unpin_svg
+            source: JamiResources.unpin_24dp_svg
             onClicked: {
                 if (!isUnpin) {
                     PositionManager.unPinMap(attachedAccountId);
@@ -58,7 +58,7 @@ Rectangle {
             toolTipText: JamiStrings.centerMapTooltip
             imageColor: JamiTheme.mapButtonColor
             normalColor: JamiTheme.mapButtonsOverlayColor
-            source: JamiResources.share_location_svg
+            source: JamiResources.share_location_24dp_svg
             onClicked: {
                 webView.runJavaScript("zoomTolayersExtent()");
             }
@@ -70,7 +70,7 @@ Rectangle {
             toolTipText: JamiStrings.dragMapTooltip
             imageColor: JamiTheme.mapButtonColor
             normalColor: JamiTheme.mapButtonsOverlayColor
-            source: JamiResources.move_svg
+            source: JamiResources.move_24dp_svg
             visible: !isUnpin
 
             MouseArea {

@@ -87,7 +87,7 @@ Rectangle {
                     },
                     Action {
                         id: strikethroughAction
-                        property string iconSrc: JamiResources.strikethrough_black_24dp_svg
+                        property string iconSrc: JamiResources.strikethrough_s_24dp_svg
                         property string shortcutText: JamiStrings.strikethrough
                         property string shortcutKey: "Shift+Alt+X"
                         property bool isStyle: MDE.isStyle(messageBarTextArea, rectangle.text, "~~",
@@ -373,7 +373,7 @@ Rectangle {
                 },
                 Action {
                     id: shareLocation
-                    property string iconSrc: JamiResources.localisation_sharing_send_pin_svg
+                    property string iconSrc: JamiResources.location_sharing_send_pin_24dp_svg
                     property string toolTip: JamiStrings.shareLocation
                     property bool show: false
                     property bool needWebEngine: true
@@ -515,7 +515,7 @@ Rectangle {
             property list<Action> menuActions: [
                 Action {
                     id: sendFile
-                    property string iconSrc: JamiResources.attached_file_svg
+                    property string iconSrc: JamiResources.attached_file_24dp_svg
                     property string toolTip: JamiStrings.sendFile
                     property bool show: true
                     property bool needWebEngine: false
@@ -631,7 +631,7 @@ Rectangle {
 
                 source: {
                     if (MessagesAdapter.editId !== "") {
-                        return JamiResources.edit_svg;
+                        return JamiResources.edit_24dp_svg;
                     } else if (MessagesAdapter.replyToId !== "") {
                         return JamiResources.reply_black_24dp_svg;
                     } else {

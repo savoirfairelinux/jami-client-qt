@@ -260,7 +260,7 @@ Rectangle {
 
         preferredSize: 36
         imageContainerWidth: 20
-        source: JamiResources.ic_arrow_back_24dp_svg
+        source: JamiResources.arrow_back_24dp_svg
 
         Accessible.role: Accessible.Button
         Accessible.name: JamiStrings.backButton
@@ -294,7 +294,7 @@ Rectangle {
 
         z: 1
 
-        iconSource: JamiResources._black_24dp_svg
+        iconSource: JamiResources.help_outline_24dp_svg
         iconSize: JamiTheme.iconButtonMedium
         toolTipText: JamiStrings.adviceBoxExplanation
 

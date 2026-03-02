@@ -138,7 +138,7 @@ DualPaneView {
                 Layout.preferredWidth: JamiTheme.preferredFieldWidth
                 Layout.maximumWidth: JamiTheme.preferredFieldWidth
 
-                leadingIconSource: JamiResources.create_swarm_svg
+                leadingIconSource: JamiResources.create_swarm_24dp_svg
 
                 maxCharacters: JamiTheme.maximumCharacters
                 placeholderText: JamiStrings.groupName
@@ -155,7 +155,7 @@ DualPaneView {
                 Layout.preferredWidth: JamiTheme.preferredFieldWidth
                 Layout.maximumWidth: JamiTheme.preferredFieldWidth
 
-                leadingIconSource: JamiResources.swarm_details_panel_svg
+                leadingIconSource: JamiResources.swarm_details_panel_24dp_svg
 
                 maxCharacters: JamiTheme.maximumCharacters
                 placeholderText: JamiStrings.addDescription
