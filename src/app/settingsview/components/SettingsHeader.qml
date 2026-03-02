@@ -28,11 +28,16 @@ RowLayout {
     signal backArrowClicked
     spacing: 10
 
-    BackButton {
+    NewIconButton {
         id: backToSettingsMenuButton
+        QWKSetParentHitTestVisible {}
 
-        Layout.preferredWidth: JamiTheme.preferredFieldHeight
-        Layout.preferredHeight: JamiTheme.preferredFieldHeight
+        Layout.preferredWidth: iconSize
+        Layout.preferredHeight: iconSize
+
+        iconSize: JamiTheme.iconButtonMedium
+        iconSource: JamiResources.bidirectional_arrow_back_24dp_svg
+        toolTipText: JamiStrings.back
 
         visible: viewNode.isSinglePane
 

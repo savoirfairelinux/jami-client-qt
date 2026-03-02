@@ -271,31 +271,30 @@ Rectangle {
         }
     }
 
-    JamiPushButton {
+    NewIconButton {
         id: backButton
         QWKSetParentHitTestVisible {}
 
         objectName: "createAccountPageBackButton"
 
-        Accessible.role: Accessible.Button
-        Accessible.name: JamiStrings.backButton
-        Accessible.description: JamiStrings.backButtonExplanation
-
-        preferredSize: 36
-        imageContainerWidth: 20
-        source: JamiResources.arrow_back_24dp_svg
-
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.margins: JamiTheme.wizardViewPageBackButtonMargins
 
-        KeyNavigation.tab: editImage
-        KeyNavigation.down: KeyNavigation.tab
-
+        iconSize: JamiTheme.iconButtonMedium
+        iconSource: JamiResources.bidirectional_arrow_back_24dp_svg
+        toolTipText: JamiStrings.back
         onClicked: {
             helpOpened = false;
             WizardViewStepModel.nextStep();
         }
+
+        KeyNavigation.tab: editImage
+        KeyNavigation.down: KeyNavigation.tab
+
+        Accessible.role: Accessible.Button
+        Accessible.name: JamiStrings.backButton
+        Accessible.description: JamiStrings.backButtonExplanation
     }
 
     Component.onDestruction: UtilsAdapter.setTempCreationImageFromString("", "temp")

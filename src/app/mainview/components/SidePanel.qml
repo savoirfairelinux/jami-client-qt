@@ -311,7 +311,7 @@ SidePanelBase {
                                     if (sipInputPanelPopUp.shown) {
                                         return JamiResources.round_close_24dp_svg;
                                     } else {
-                                        return JamiResources.ic_keypad_24dp_svg;
+                                        return JamiResources.keypad_24dp_svg;
                                     }
                                 } else if (inNewSwarm) {
                                     return JamiResources.round_close_24dp_svg;
