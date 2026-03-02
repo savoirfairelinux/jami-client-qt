@@ -45,7 +45,7 @@ Popup {
         if (root.isOnLocal)
             actionsModel.append({
                     "Name": JamiStrings.mirrorLocalVideo,
-                    "IconSource": JamiResources.flip_24dp_svg
+                    "IconSource": JamiResources.bidirectional_flip_24dp_svg
                 });
         if (hoveredOverlayUri !== "" && hoveredOverVideoMuted === false)
             actionsModel.append({
