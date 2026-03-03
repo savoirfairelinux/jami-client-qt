@@ -31,40 +31,36 @@ ItemDelegate {
 
     signal btnContactClicked
 
+    padding: 12
+    leftPadding: background.radius - avatar.width / 2
+    rightPadding: background.radius - btnContact.height / 2
+
     background: Rectangle {
         color: JamiTheme.editBackgroundColor
         height: root.height
         radius: height / 2
     }
 
-    RowLayout {
-        anchors.fill: parent
+    contentItem:  RowLayout {
+        spacing: 16
 
-        Label {
-            id: labelContactAvatar
+        Avatar {
+            id: avatar
 
-            Layout.alignment: Qt.AlignVCenter
-            Layout.leftMargin: JamiTheme.preferredMarginSize
-            Layout.rightMargin: JamiTheme.preferredMarginSize
-            Layout.preferredWidth: JamiTheme.preferredFieldHeight
-            Layout.preferredHeight: JamiTheme.preferredFieldHeight
-            horizontalAlignment: Text.AlignLeft
+            width: JamiTheme.smartListAvatarSize
+            height: JamiTheme.smartListAvatarSize
 
-            background: Avatar {
-                id: avatar
-
-                anchors.fill: parent
-
-                mode: Avatar.Mode.Contact
-                imageId: contactID
-                showPresenceIndicator: false
-            }
+            mode: Avatar.Mode.Contact
+            imageId: contactID
+            showPresenceIndicator: false
         }
 
         ColumnLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
             Layout.alignment: Qt.AlignVCenter
+
+            spacing: 4
 
             Label {
                 id: labelContactName
@@ -73,7 +69,7 @@ ItemDelegate {
 
                 Layout.preferredHeight: 24
 
-                font.pointSize: JamiTheme.textFontSize
+                font.pointSize: JamiTheme.mediumFontSize
                 font.kerning: true
 
                 horizontalAlignment: Text.AlignLeft
@@ -92,7 +88,7 @@ ItemDelegate {
                 Layout.preferredHeight: 24
                 Layout.maximumHeight: 24
 
-                font.pointSize: JamiTheme.textFontSize
+                font.pointSize: JamiTheme.smallFontSize
                 font.kerning: true
 
                 horizontalAlignment: Qt.AlignLeft
@@ -105,8 +101,6 @@ ItemDelegate {
 
         NewMaterialButton {
             id: btnContact
-
-            Layout.rightMargin: 16
 
             outlinedButton: true
 
