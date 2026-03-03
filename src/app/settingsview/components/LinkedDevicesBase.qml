@@ -104,18 +104,13 @@ ColumnLayout {
         delegate: DeviceItemDelegate {
             id: settingsListDelegate
 
-            Layout.fillWidth: true
-            implicitWidth: root.width
-            height: 70
+            implicitWidth: parent.width
+            implicitHeight: 70
+
             deviceName: root.isCurrent ? DeviceName : JamiStrings.deviceName + " " + DeviceName
             deviceId: DeviceID
             onBtnRemoveDeviceClicked: removeDeviceSlot(index)
             isCurrent: root.isCurrent
-
-            MouseArea {
-                anchors.fill: parent
-                cursorShape: Qt.PointingHandCursor
-            }
         }
     }
 }

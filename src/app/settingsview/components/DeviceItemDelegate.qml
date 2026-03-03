@@ -35,27 +35,42 @@ ItemDelegate {
 
     signal btnRemoveDeviceClicked
 
+    // Note that the implicitWidth and implicitHeight are defined directly in LinkedDevicesBase.qml
+    padding: 12
+    leftPadding: deviceImage.iconSize / 2
+    rightPadding: background.radius - button.height / 2
+
+    spacing: 0
+
     background: Rectangle {
-        color: isHovered ? JamiTheme.smartListSelectedColor : JamiTheme.editBackgroundColor
+        color: root.isHovered ? JamiTheme.smartListSelectedColor : JamiTheme.editBackgroundColor
         radius: height / 2
+
+        MouseArea {
+            anchors.fill: parent
+            cursorShape: Qt.PointingHandCursor
+        }
+
+        Behavior on color {
+            ColorAnimation {
+                duration: JamiTheme.shortFadeDuration
+            }
+        }
     }
 
-    RowLayout {
+    contentItem: RowLayout {
         id: rowLayout
-        anchors.fill: root
-        anchors.rightMargin: isHovered ? button.width + 20 : 0
 
-        ResponsiveImage {
+        NewIconButton {
             id: deviceImage
 
-            color: JamiTheme.tintedBlue
-
             Layout.alignment: Qt.AlignVCenter
-            Layout.preferredWidth: 24
-            Layout.preferredHeight: 24
-            Layout.leftMargin: JamiTheme.preferredMarginSize
 
-            source: JamiResources.baseline_desktop_windows_24dp_svg
+            iconSource: JamiResources.baseline_desktop_windows_24dp_svg
+            iconSize: JamiTheme.iconButtonMedium
+            icon.color: JamiTheme.tintedBlue
+
+            background: null
         }
 
         ColumnLayout {
@@ -63,15 +78,13 @@ ItemDelegate {
 
             Layout.fillWidth: true
             Layout.fillHeight: true
-            Layout.leftMargin: JamiTheme.preferredMarginSize / 2
             Layout.alignment: Qt.AlignVCenter
 
             MaterialLineEdit {
                 id: editDeviceName
 
-                Layout.alignment: Qt.AlignLeft
+                Layout.alignment: Qt.AlignVCenter
                 Layout.fillWidth: true
-                Layout.preferredHeight: 30
 
                 padding: 8
                 font.pointSize: JamiTheme.textFontSize
@@ -80,13 +93,13 @@ ItemDelegate {
                 verticalAlignment: Text.AlignVCenter
 
                 wrapMode: Text.NoWrap
-                readOnly: !editable
+                readOnly: !root.editable
                 loseFocusWhenEnterPressed: true
                 backgroundColor: JamiTheme.transparentColor
 
                 onAccepted: {
                     AvAdapter.setDeviceName(editDeviceName.text);
-                    editable = !editable;
+                    root.editable = !root.editable;
                 }
 
                 onReadOnlyChanged: {
@@ -101,57 +114,52 @@ ItemDelegate {
                 TextMetrics {
                     id: elidedTextDeviceName
 
-                    font: editDeviceName.font
+                    text: deviceName
                     elide: Text.ElideRight
                     elideWidth: editDeviceName.width - editDeviceName.leftPadding * 2
-                    text: deviceName
+
+                    font: editDeviceName.font
                 }
             }
 
             Text {
                 id: labelDeviceId
 
-                Layout.alignment: Qt.AlignLeft
+                Layout.alignment: Qt.AlignVCenter
                 Layout.fillWidth: true
                 Layout.leftMargin: editDeviceName.leftPadding
-                Layout.rightMargin: editDeviceName.leftPadding
-                Layout.bottomMargin: 10
+
+                text: deviceId === "" ? JamiStrings.deviceId : deviceId
+                color: JamiTheme.textColor
                 horizontalAlignment: Text.AlignLeft
                 elide: Text.ElideMiddle
+
                 font.pointSize: JamiTheme.textFontSize
-                color: JamiTheme.textColor
-                text: deviceId === "" ? JamiStrings.deviceId : deviceId
             }
         }
-    }
 
-    NewMaterialButton {
-        id: button
+        NewMaterialButton {
+            id: button
 
-        anchors.right: parent.right
-        anchors.rightMargin: 13
-        anchors.verticalCenter: parent.verticalCenter
+            outlinedButton: true
+            text: root.isCurrent ? (root.editable ? JamiStrings.saveNewDeviceName : JamiStrings.editDeviceName) : JamiStrings.unlinkDevice
 
-        z: 1
+            visible: root.isHovered
 
-        outlinedButton: true
-        text: isCurrent ? (editable ? JamiStrings.saveNewDeviceName : JamiStrings.editDeviceName) : JamiStrings.unlinkDevice
+            layer.enabled: false
 
-        visible: isHovered
-
-        layer.enabled: false
-
-        onClicked: {
-            if (isCurrent) {
-                if (!editable) {
-                    editable = !editable;
-                    editDeviceName.forceActiveFocus();
+            onClicked: {
+                if (root.isCurrent) {
+                    if (!root.editable) {
+                        root.editable = !root.editable;
+                        editDeviceName.forceActiveFocus();
+                    } else {
+                        editDeviceName.focus = false;
+                        editDeviceName.accepted();
+                    }
                 } else {
-                    editDeviceName.focus = false;
-                    editDeviceName.accepted();
+                    btnRemoveDeviceClicked();
                 }
-            } else {
-                btnRemoveDeviceClicked();
             }
         }
     }
