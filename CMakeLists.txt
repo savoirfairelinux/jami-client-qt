@@ -479,12 +479,13 @@ if(hunspell_FOUND)
 else()
   message(STATUS "hunspell not found - building hunspell")
 
-  set(HUNSPELL_DIR ${PROJECT_SOURCE_DIR}/3rdparty/hunspell)
+  add_fetch_content(
+    TARGET hunspell
+    URL https://gitlab.savoirfairelinux.com/jami/hunspell.git
+    BRANCH 749cd84a0b7863fd8663b85c65abd8eca55d342d
+  )
 
-  # Build using the submodule and its CMakeLists.txt
-  add_subdirectory(${HUNSPELL_DIR} hunspell_build EXCLUDE_FROM_ALL)
-
-  set(HUNSPELL_INCLUDE_DIR ${HUNSPELL_DIR}/src)
+  set(HUNSPELL_INCLUDE_DIR ${hunspell_SOURCE_DIR}/src)
   set(HUNSPELL_LIBRARIES hunspell::hunspell)
 endif()
 
@@ -632,8 +633,7 @@ else() # APPLE
 endif()
 
 message(STATUS "Adding HUNSPELL_INCLUDE_DIR" ${HUNSPELL_INCLUDE_DIR})
-list(APPEND CLIENT_INCLUDE_DIRS ${HUNSPELL_INCLUDE_DIR} ${CMAKE_BINARY_DIR}/include
-${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/hunspell/src)
+list(APPEND CLIENT_INCLUDE_DIRS ${HUNSPELL_INCLUDE_DIR} ${CMAKE_BINARY_DIR}/include)
 
 message(STATUS "Adding HUNSPELL_LIBRARIES" ${HUNSPELL_INCLUDE_DIR})
 list(APPEND CLIENT_LIBS ${HUNSPELL_LIBRARIES})
@@ -686,8 +686,11 @@ if(ENABLE_LIBWRAP)
 endif()
 
 # SFPM
-set(BUILD_SFPM_PIC ON CACHE BOOL "enable -fPIC for SFPM" FORCE)
-add_subdirectory(3rdparty/SortFilterProxyModel)
+add_fetch_content(
+  TARGET SortFilterProxyModel
+  URL https://github.com/atraczyk/SortFilterProxyModel.git
+  BRANCH a2a0c72e4db38e1c5478bd3e0f67ff99fae11f00
+  OPTIONS BUILD_SFPM_PIC ON)
 set(SFPM_OBJECTS $<TARGET_OBJECTS:SortFilterProxyModel>)
 
 # md4c
@@ -697,11 +700,16 @@ if(md4c_FOUND)
   list(APPEND CLIENT_LIBS md4c::md4c-html)
 else()
   message("Using bundled md4c-html library")
-  set(BUILD_MD2HTML_EXECUTABLE OFF CACHE BOOL "Don't build md2html executable" FORCE)
-  set(BUILD_SHARED_LIBS OFF CACHE BOOL "Don't build shared md4c library" FORCE)
-  add_subdirectory(3rdparty/md4c EXCLUDE_FROM_ALL)
-  list(APPEND CLIENT_LINK_DIRS ${MD4C_BINARY_DIR}/src)
-  list(APPEND CLIENT_INCLUDE_DIRS ${MD4C_SOURCE_DIR}/src)
+  add_fetch_content(
+    TARGET md4c
+    URL https://github.com/fsimonfc/md4c.git
+    BRANCH 635f29673582c55fb0b897b2b03236dd9f86c1ed
+    OPTIONS
+      BUILD_MD2HTML_EXECUTABLE OFF
+      BUILD_SHARED_LIBS OFF
+  )
+  list(APPEND CLIENT_LINK_DIRS ${md4c_BINARY_DIR}/src)
+  list(APPEND CLIENT_INCLUDE_DIRS ${md4c_SOURCE_DIR}/src)
   list(APPEND CLIENT_LIBS md4c-html)
 endif()
 
@@ -712,9 +720,14 @@ if(tidy_FOUND)
   list(APPEND CLIENT_LIBS PkgConfig::tidy)
 else()
   message("Using bundled tidy library")
-  set(BUILD_SHARED_LIB OFF CACHE BOOL "Don't build shared tidy library" FORCE)
-  set(SUPPORT_CONSOLE_APP OFF CACHE BOOL "Don't build tidy console app" FORCE)
-  add_subdirectory(3rdparty/tidy-html5 EXCLUDE_FROM_ALL)
+  add_fetch_content(
+    TARGET tidy
+    URL https://github.com/aberaud/tidy-html5.git
+    BRANCH 34f5e951a2bcec99c4b08536e65578bb238bc435
+    OPTIONS
+      BUILD_SHARED_LIB OFF
+      SUPPORT_CONSOLE_APP OFF
+  )
   list(APPEND CLIENT_LINK_DIRS ${tidy_BINARY_DIR}/Release)
   list(APPEND CLIENT_INCLUDE_DIRS ${tidy_SOURCE_DIR}/include)
   list(APPEND CLIENT_LIBS tidy-static)
@@ -727,10 +740,14 @@ if(zxing_FOUND)
   list(APPEND CLIENT_INCLUDE_DIRS ${zxing_INCLUDE_DIRS})
   list(APPEND CLIENT_LIBS PkgConfig::zxing)
 else()
-  set(ZXING_EXAMPLES OFF CACHE BOOL "")
-  set(ZXING_BLACKBOX_TESTS OFF CACHE BOOL "")
-  add_subdirectory(3rdparty/zxing-cpp EXCLUDE_FROM_ALL)
-  list(APPEND CLIENT_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/zxing-cpp/core/src)
+  add_fetch_content(
+    TARGET ZXingCpp
+    URL https://github.com/nu-book/zxing-cpp.git
+    BRANCH a920817b6fe0508cc4aca9003003c2812a78e935
+    OPTIONS
+      ZXING_EXAMPLES OFF
+      ZXING_BLACKBOX_TESTS OFF
+  )
   list(APPEND CLIENT_LIBS ZXing)
 endif()
 
