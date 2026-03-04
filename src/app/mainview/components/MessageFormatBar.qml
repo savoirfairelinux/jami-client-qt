@@ -91,8 +91,8 @@ Rectangle {
                         onTriggered: MDE.addStyle(messageBarTextArea, rectangle.text, "~~", "~~")
                     },
                     Action {
-                        id: titleAction
-                        property string iconSrc: JamiResources.title_black_24dp_svg
+                        id: headingAction
+                        property string iconSrc: JamiResources.heading_black_24dp_svg
                         property string shortcutText: JamiStrings.heading
                         property string shortcutKey: "Ctrl+Alt+H"
                         property bool isStyle: MDE.isPrefixSyle(messageBarTextArea, rectangle.text,
