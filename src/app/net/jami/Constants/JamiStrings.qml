@@ -702,6 +702,7 @@ Item {
 
     // UserProfile
     property string qrCode: qsTr("QR code")
+    property string shareAccount: qsTr("Share account")
 
     // WelcomePage
     property string linkFromAnotherDevice: qsTr("Link this device to an existing account")

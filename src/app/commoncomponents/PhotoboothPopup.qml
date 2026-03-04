@@ -56,7 +56,7 @@ BaseModalDialog {
         importButton.forceActiveFocus();
     }
 
-    title: JamiStrings.selectImage
+    titleText: JamiStrings.selectImage
 
     RecordBox {
         id: recordBox
@@ -79,99 +79,103 @@ BaseModalDialog {
         }
     }
 
-    popupContent: RowLayout {
+    popupContent: ColumnLayout {
         id: buttonsRowLayout
 
-        spacing: 18
+        RowLayout {
+            spacing: 18
 
-        NewIconButton {
-            id: takePhotoButton
+            Layout.fillWidth: true
 
-            Layout.alignment: Qt.AlignHCenter
+            NewIconButton {
+                id: takePhotoButton
 
-            objectName: "takePhotoButton"
+                Layout.alignment: Qt.AlignHCenter
 
-            iconSize: JamiTheme.iconButtonMedium
-            iconSource: JamiResources.add_a_photo_24dp_svg
-            toolTipText: JamiStrings.takePhoto
+                objectName: "takePhotoButton"
 
-            visible: VideoDevices.listSize !== 0
+                iconSize: JamiTheme.iconButtonMedium
+                iconSource: JamiResources.add_a_photo_24dp_svg
+                toolTipText: JamiStrings.takePhoto
 
-            onClicked: {
-                recordBox.parent = buttonsRowLayout;
-                startBooth();
-            }
+                visible: VideoDevices.listSize !== 0
 
-            Accessible.name: objectName
-        }
-
-        NewIconButton {
-            id: importButton
-
-            Layout.alignment: Qt.AlignHCenter
-
-            objectName: "photoboothViewImportButton"
-
-            iconSize: JamiTheme.iconButtonMedium
-            iconSource: JamiResources.add_photo_alternate_black_24dp_svg
-            toolTipText: JamiStrings.importFromFile
-
-            visible: parent.visible
-
-            Accessible.name: objectName
-
-            onClicked: {
-                stopBooth();
-                var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
-                    title: JamiStrings.selectProfilePicture,
-                    fileMode: JamiFileDialog.OpenFile,
-                    folder: StandardPaths.writableLocation(StandardPaths.PicturesLocation),
-                    nameFilters: [JamiStrings.imageFiles, JamiStrings.allFiles]
-                });
-                dlg.fileAccepted.connect(function (file) {
-                    var filePath = UtilsAdapter.getAbsPath(file);
-                    if (!root.newItem) {
-                        AccountAdapter.setCurrentAccountAvatarFile(filePath);
-                        imageTemporaryValidated();
-                    } else {
-                        UtilsAdapter.setTempCreationImageFromFile(filePath, root.imageId);
-                        imageValidated();
-                    }
-                    root.close();
-                });
-            }
-        }
-
-        NewIconButton {
-            id: clearButton
-
-            Layout.alignment: Qt.AlignHCenter
-
-            objectName: "photoboothViewClearButton"
-
-            iconSize: JamiTheme.iconButtonMedium
-            iconSource: JamiResources.remove_circle_outline_black_24dp_svg
-            toolTipText: JamiStrings.removeImage
-
-            visible: {
-                if (!newItem && LRCInstance.currentAccountAvatarSet)
-                    return true;
-                if (newItem && UtilsAdapter.tempCreationImage(imageId).length !== 0)
-                    return true;
-                return false;
-            }
-
-            onClicked: {
-                if (!root.newItem) {
-                    AccountAdapter.setCurrentAccountAvatarBase64();
-                    imageTemporaryRemoved();
-                } else {
-                    UtilsAdapter.setTempCreationImageFromString("", imageId);
-                    imageRemoved();
+                onClicked: {
+                    recordBox.parent = buttonsRowLayout;
+                    startBooth();
                 }
-                visible = false;
-                stopBooth();
-                root.close();
+
+                Accessible.name: objectName
+            }
+
+            NewIconButton {
+                id: importButton
+
+                Layout.alignment: Qt.AlignHCenter
+
+                objectName: "photoboothViewImportButton"
+
+                iconSize: JamiTheme.iconButtonMedium
+                iconSource: JamiResources.add_photo_alternate_black_24dp_svg
+                toolTipText: JamiStrings.importFromFile
+
+                visible: parent.visible
+
+                Accessible.name: objectName
+
+                onClicked: {
+                    stopBooth();
+                    var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/JamiFileDialog.qml", {
+                                                                title: JamiStrings.selectProfilePicture,
+                                                                fileMode: JamiFileDialog.OpenFile,
+                                                                folder: StandardPaths.writableLocation(StandardPaths.PicturesLocation),
+                                                                nameFilters: [JamiStrings.imageFiles, JamiStrings.allFiles]
+                                                            });
+                    dlg.fileAccepted.connect(function (file) {
+                        var filePath = UtilsAdapter.getAbsPath(file);
+                        if (!root.newItem) {
+                            AccountAdapter.setCurrentAccountAvatarFile(filePath);
+                            imageTemporaryValidated();
+                        } else {
+                            UtilsAdapter.setTempCreationImageFromFile(filePath, root.imageId);
+                            imageValidated();
+                        }
+                        root.close();
+                    });
+                }
+            }
+
+            NewIconButton {
+                id: clearButton
+
+                Layout.alignment: Qt.AlignHCenter
+
+                objectName: "photoboothViewClearButton"
+
+                iconSize: JamiTheme.iconButtonMedium
+                iconSource: JamiResources.remove_circle_outline_black_24dp_svg
+                toolTipText: JamiStrings.removeImage
+
+                visible: {
+                    if (!newItem && LRCInstance.currentAccountAvatarSet)
+                        return true;
+                    if (newItem && UtilsAdapter.tempCreationImage(imageId).length !== 0)
+                        return true;
+                    return false;
+                }
+
+                onClicked: {
+                    if (!root.newItem) {
+                        AccountAdapter.setCurrentAccountAvatarBase64();
+                        imageTemporaryRemoved();
+                    } else {
+                        UtilsAdapter.setTempCreationImageFromString("", imageId);
+                        imageRemoved();
+                    }
+                    visible = false;
+                    stopBooth();
+                    root.close();
+                }
             }
         }
     }
