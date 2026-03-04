@@ -26,13 +26,14 @@ BaseModalDialog {
 
     required property string deviceId
 
-    title: JamiStrings.removeDevice
+    titleText: JamiStrings.removeDevice
 
     closeButtonVisible: false
 
     button1.text: JamiStrings.optionRemove
-    button1Role: DialogButtonBox.DestructiveRole
+    button1.color: JamiTheme.buttonTintedRed
     button1.enabled: false
+    button1Role: DialogButtonBox.DestructiveRole
     button1.onClicked: {
         DeviceItemListModel.revokeDevice(deviceId, pwd);
         close();
