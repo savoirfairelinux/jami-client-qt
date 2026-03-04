@@ -84,7 +84,7 @@ ContextMenuAutoLoader {
             iconSource: JamiResources.disconnect_participant_24dp_svg
             onClicked: {
                 var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
-                    "title": JamiStrings.confirmAction,
+                    "titleText": JamiStrings.confirmAction,
                     "textLabel": mode === Conversation.Mode.ONE_TO_ONE ? JamiStrings.confirmRemoveOneToOneConversation : JamiStrings.confirmLeaveGroup,
                     "confirmLabel": mode === Conversation.Mode.ONE_TO_ONE ? JamiStrings.optionRemove : JamiStrings.optionLeave
                 });
@@ -101,7 +101,7 @@ ContextMenuAutoLoader {
             iconSource: JamiResources.kick_member_24dp_svg
             onClicked: {
                 var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
-                    "title": JamiStrings.confirmAction,
+                    "titleText": JamiStrings.confirmAction,
                     "textLabel": JamiStrings.confirmRemoveContact,
                     "confirmLabel": JamiStrings.optionRemove
                 });
@@ -142,7 +142,7 @@ ContextMenuAutoLoader {
             iconSource: JamiResources.block_black_24dp_svg
             onClicked: {
                 var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
-                    "title": JamiStrings.confirmAction,
+                    "titleText": JamiStrings.confirmAction,
                     "textLabel": JamiStrings.confirmBlockContact,
                     "confirmLabel": JamiStrings.optionBlock
                 });

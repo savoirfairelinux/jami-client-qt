@@ -773,7 +773,7 @@ Item {
                                 var dlg = viewCoordinator.presentDialog(appWindow,
                                                                         "commoncomponents/ConfirmDialog.qml",
                                                                         {
-                                                                            "title": JamiStrings.confirmAction,
+                                                                            "titleText": JamiStrings.confirmAction,
                                                                             "textLabel":
                                                                             JamiStrings.confirmRemoveContact,
                                                                             "confirmLabel":
@@ -801,7 +801,7 @@ Item {
                                 var dlg = viewCoordinator.presentDialog(appWindow,
                                                                         "commoncomponents/ConfirmDialog.qml",
                                                                         {
-                                                                            "title": JamiStrings.confirmAction,
+                                                                            "titleText": JamiStrings.confirmAction,
                                                                             "textLabel":
                                                                             JamiStrings.confirmRemoveContact,
                                                                             "confirmLabel":
@@ -829,7 +829,7 @@ Item {
                                 var dlg = viewCoordinator.presentDialog(appWindow,
                                                                         "commoncomponents/ConfirmDialog.qml",
                                                                         {
-                                                                            "title": JamiStrings.confirmAction,
+                                                                            "titleText": JamiStrings.confirmAction,
                                                                             "textLabel":
                                                                             JamiStrings.confirmBlockContact,
                                                                             "confirmLabel":

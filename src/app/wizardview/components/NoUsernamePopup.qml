@@ -26,7 +26,7 @@ import "../../commoncomponents"
 BaseModalDialog {
     id: root
 
-    title: JamiStrings.chooseAUsername
+    titleText: JamiStrings.chooseAUsername
     closeButtonVisible: false
 
     signal joinClicked
@@ -40,6 +40,8 @@ BaseModalDialog {
 
     button1.text: JamiStrings.chooseAUsername
     button1Role: DialogButtonBox.NoRole
+    button1.onClicked: root.close()
+
     button2.text: JamiStrings.joinJami
     button2Role: DialogButtonBox.YesRole
     button2.objectName: "joinButton"
@@ -48,20 +50,29 @@ BaseModalDialog {
         WizardViewStepModel.nextStep();
         root.close();
     }
-    button1.onClicked: root.close()
     button2.Accessible.name: JamiStrings.chooseAUsername
     button2.Accessible.description: JamiStrings.joinJamiNoPassword
-    popupContent: Text {
-        Accessible.role: Accessible.Dialog
-        Accessible.name: title
-        Accessible.description: JamiStrings.joinJamiNoPassword
-        width: 400 - 2 * popupMargins
-        font.pixelSize: JamiTheme.popuptextSize
 
-        lineHeight: JamiTheme.wizardViewTextLineHeight
-        wrapMode: Text.WordWrap
+    popupContent: ColumnLayout {
+        width: 400
+        Text {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            Layout.leftMargin: popupMargins
+            Layout.rightMargin: popupMargins
 
-        color: JamiTheme.textColor
-        text: JamiStrings.joinJamiNoPassword
+            text: JamiStrings.joinJamiNoPassword
+            color: JamiTheme.textColor
+            horizontalAlignment: Text.AlignLeft
+            verticalAlignment: Text.AlignVCenter
+            wrapMode: Text.WordWrap
+            font.pixelSize: JamiTheme.popuptextSize
+
+            lineHeight: JamiTheme.wizardViewTextLineHeight
+
+            Accessible.role: Accessible.Dialog
+            Accessible.name: titleText
+            Accessible.description: JamiStrings.joinJamiNoPassword
+        }
     }
 }

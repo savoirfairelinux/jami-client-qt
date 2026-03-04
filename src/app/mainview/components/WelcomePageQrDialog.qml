@@ -15,33 +15,42 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
-import QtQuick.Layouts
 import "../../commoncomponents"
 
 BaseModalDialog {
     id: root
 
-    backgroundColor: JamiTheme.darkTheme ? JamiTheme.blackColor : JamiTheme.whiteColor
+    titleText: JamiStrings.shareAccount
 
-    popupContent:  Rectangle{
-        anchors.centerIn: parent
-        width: userQrImage.width + 10
-        height: userQrImage.height + 10
-        color: JamiTheme.whiteColor
-        radius: 5
-
-        Image {
+    contentItem: Control {
+        padding: 8
+        contentItem: Image {
             id: userQrImage
+
             property int size: JamiTheme.qrCodeImageSize
+
             width: size
             height: size
-            anchors.centerIn: parent
+
             smooth: false
             fillMode: Image.PreserveAspectFit
+
+            sourceSize.width: size
+            sourceSize.height: size
             source: "image://qrImage/account_" + CurrentAccount.id
         }
+
+        background: Rectangle {
+            color: JamiTheme.whiteColor
+            radius: 4
+        }
     }
+
 }
+
 

@@ -45,9 +45,6 @@ BaseModalDialog {
         AvAdapter.setRendererInfo();
     }
 
-    backgroundColor: JamiTheme.darkGreyColor
-    backgroundOpacity: 0.77
-
     popupContent: RowLayout {
         id: windowContent
         spacing: JamiTheme.callInformationBlockSpacing

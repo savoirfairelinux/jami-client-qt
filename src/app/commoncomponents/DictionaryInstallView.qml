@@ -180,7 +180,7 @@ ColumnLayout {
                 anchors.horizontalCenter: parent.horizontalCenter
                 width: parent.width
                 height: parent.height
-                color: JamiTheme.backgroundColor
+                color: JamiTheme.globalBackgroundColor
                 radius: height / 2
                 border.color: "transparent"
                 border.width: 1

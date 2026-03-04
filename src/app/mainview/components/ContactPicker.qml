@@ -27,7 +27,7 @@ BaseModalDialog {
 
     property int type: ContactList.CONFERENCE
 
-    title: {
+    titleText: {
         switch (type) {
         case ContactList.CONFERENCE:
             return JamiStrings.addToConference;

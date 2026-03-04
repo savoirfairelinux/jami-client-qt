@@ -37,7 +37,7 @@ BaseModalDialog {
 
     signal done(bool success, int purpose)
 
-    title: {
+    titleText: {
         switch (purpose) {
         case PasswordDialog.ExportAccount:
             return JamiStrings.enterPassword;
