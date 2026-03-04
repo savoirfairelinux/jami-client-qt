@@ -45,9 +45,6 @@ BaseModalDialog {
         AvAdapter.setRendererInfo();
     }
 
-    backgroundColor: JamiTheme.darkGreyColor
-    backgroundOpacity: 0.77
-
     popupContent: RowLayout {
         id: windowContent
         spacing: JamiTheme.callInformationBlockSpacing
@@ -113,12 +110,10 @@ BaseModalDialog {
                                 width: socketLayout.width
                             }
 
-                            JamiPushButton {
-                                source: socketLayout.showAll ? JamiResources.expand_less_24dp_svg : JamiResources.expand_more_24dp_svg
-                                normalColor: JamiTheme.transparentColor
-                                Layout.preferredWidth: 20
-                                Layout.preferredHeight: 20
-                                imageColor: JamiTheme.callInfoColor
+                            NewIconButton {
+                                iconSize: JamiTheme.iconButtonSmall
+                                iconSource: socketLayout.showAll ? JamiResources.expand_less_24dp_svg : JamiResources.expand_more_24dp_svg
+
                                 onClicked: {
                                     socketLayout.showAll = !socketLayout.showAll;
                                 }

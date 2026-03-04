@@ -25,7 +25,7 @@ import "../../commoncomponents"
 
 BaseModalDialog {
     id: root
-    title: JamiStrings.stopSharingPopupBody
+    titleText: JamiStrings.stopSharingPopupBody
     button1.text: JamiStrings.stopConvSharing.arg(PositionManager.getmapTitle(attachedAccountId, CurrentConversation.id))
     button1Role: DialogButtonBox.AcceptRole
     button2.text: JamiStrings.stopAllSharings

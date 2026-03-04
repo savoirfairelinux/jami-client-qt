@@ -25,7 +25,7 @@ BaseModalDialog {
     id: root
     objectName: "dictionaryManagerDialog"
 
-    title: JamiStrings.dictionaryManager
+    titleText: JamiStrings.dictionaryManager
 
     popupContent: DictionaryInstallView {
         Accessible.name: JamiStrings.dictionaryManager

@@ -16,171 +16,168 @@
  */
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Effects
 import QtQuick.Layouts
-import Qt5Compat.GraphicalEffects
+
 import net.jami.Constants 1.1
 import "../mainview/components"
 
-Popup {
+Dialog {
     id: root
 
-    // convient access to closePolicy
+    // Header
+    property alias titleText: titleText.text
     property bool autoClose: true
-    property alias backgroundColor: container.color
-    property alias backgroundOpacity: container.background.opacity
-    property alias title: titleText.text
-    property var popupcontainerSubContentLoader: containerSubContentLoader
-
     property bool closeButtonVisible: true
+
+    // Popup content
+    property alias popupContent: containerSubContentLoader.sourceComponent
+
+    // Footer
+    property alias button1: leftButton
+    property alias button2: centerButton
+    property alias button3: rightButton
     property int button1Role
     property int button2Role
     property int button3Role
 
-    property alias button1: action1
-    property alias button2: action2
-    property alias button3: action3
-
-    property alias popupContentLoadStatus: containerSubContentLoader.status
-    property alias popupContent: containerSubContentLoader.sourceComponent
-
     property int popupMargins: 30
-    property int buttonMargin: 20
-    property int maximumPopupWidth: 600
 
-    parent: Overlay.overlay
+    // ADDRESS THIS
+    property int maximumPopupWidth: 560
+
+    property real dialogPadding: 12
+
     anchors.centerIn: parent
+
+    implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
+                            contentWidth + leftPadding + rightPadding,
+                            implicitHeaderWidth,
+                            implicitFooterWidth)
+    implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
+                             contentHeight + topPadding + bottomPadding
+                             + (implicitHeaderHeight > 0 ? implicitHeaderHeight + spacing : 0)
+                             + (implicitFooterHeight > 0 ? implicitFooterHeight + spacing : 0))
+
     modal: true
 
     focus: true
     closePolicy: autoClose ? (Popup.CloseOnEscape | Popup.CloseOnPressOutside) : Popup.NoAutoClose
 
-    contentItem: Control {
-        id: container
+    padding: 30
 
-        property color color: JamiTheme.secondaryBackgroundColor
-        bottomPadding: action1.visible || action2.visible ? 10 : popupMargins
+    header: RowLayout {
+        Label {
+            id: titleText
 
-        background: Rectangle {
-            id: bgRect
+            Layout.fillWidth: true
+            Layout.alignment: Qt.AlignCenter
+            Layout.leftMargin: root.dialogPadding
+            Layout.topMargin: root.dialogPadding
 
-            radius: JamiTheme.avatarBasedRadius
-            color: container.color
-            layer.enabled: true
-            layer.effect: DropShadow {
-                horizontalOffset: 3.0
-                verticalOffset: 3.0
-                radius: bgRect.radius * 4
-                color: JamiTheme.shadowColor
-                source: bgRect
-                transparentBorder: true
-                samples: radius + 1
-            }
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            color: JamiTheme.textColor
+            font.bold: true
+            font.pointSize: JamiTheme.menuFontSize
+
+            visible: text.length > 0
         }
 
-        contentItem: ColumnLayout {
-            id: contentLayout
+        NewIconButton {
+            id: closeButton
+            QWKSetParentHitTestVisible {}
 
-            NewIconButton {
-                id: closeButton
-                QWKSetParentHitTestVisible {}
+            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+            Layout.rightMargin: root.dialogPadding
+            Layout.topMargin: root.dialogPadding
 
-                Layout.alignment: Qt.AlignRight | Qt.AlignTop
-                Layout.topMargin: 14
-                Layout.rightMargin: 12
+            iconSize: JamiTheme.iconButtonMedium
+            iconSource: JamiResources.round_close_24dp_svg
+            toolTipText: JamiStrings.close
 
-                iconSize: JamiTheme.iconButtonMedium
-                iconSource: JamiResources.round_close_24dp_svg
-                toolTipText: JamiStrings.close
+            visible: closeButtonVisible
 
-                visible: closeButtonVisible
+            onClicked: close()
+        }
+    }
 
-                onClicked: close()
+    contentItem: JamiFlickable {
+        implicitWidth: containerSubContentLoader.width + ScrollBar.vertical.width
+        implicitHeight: containerSubContentLoader.height
 
-                Accessible.role: Accessible.Button
-                Accessible.name: JamiStrings.close
-            }
+        Loader {
+            id: containerSubContentLoader
+        }
+    }
 
-            Label {
-                id: titleText
+    footer: RowLayout {
 
-                Layout.leftMargin: popupMargins
-                Layout.rightMargin: popupMargins
-                Layout.bottomMargin: 20
-                Layout.topMargin: closeButtonVisible ? 0 : 30
-                Layout.alignment: Qt.AlignLeft
+        spacing: 8
+        visible: button1.text.length > 0 || button2.text.length > 0 || button3.text.length > 0
 
-                font.pointSize: JamiTheme.menuFontSize
-                color: JamiTheme.textColor
-                font.bold: true
+        NewMaterialButton {
+            id: leftButton
 
-                visible: text.length > 0
-            }
+            Layout.fillWidth: true
+            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+            Layout.leftMargin: root.dialogPadding
+            Layout.rightMargin: centerButton.visible || rightButton.visible ? 0 : root.dialogPadding
+            Layout.bottomMargin: root.dialogPadding
 
-            JamiFlickable {
-                id: flickable
+            visible: text.length > 0
+            textButton: true
 
-                Layout.fillHeight: true
-                Layout.preferredHeight: Math.min(contentHeight, root.height)
-                Layout.preferredWidth: contentItem.childrenRect.width + ScrollBar.vertical.width
-                Layout.leftMargin: popupMargins
-                Layout.rightMargin: popupMargins
-                Layout.alignment: Qt.AlignCenter
+            DialogButtonBox.buttonRole: root.button1Role
+        }
 
-                contentHeight: contentItem.childrenRect.height
+        NewMaterialButton {
+            id: centerButton
 
-                contentItem.children: Loader {
-                    id: containerSubContentLoader
-                }
+            Layout.fillWidth: true
+            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+            Layout.leftMargin: leftButton.visible ? 0 : root.dialogPadding
+            Layout.rightMargin: rightButton.visible ? 0 : root.dialogPadding
+            Layout.bottomMargin: root.dialogPadding
 
-                ScrollBar.horizontal.visible: false
-            }
+            visible: text.length > 0
+            textButton: true
 
-            RowLayout {
-                id: buttonBox
+            DialogButtonBox.buttonRole: root.button2Role
+        }
 
-                Layout.fillWidth: true
-                Layout.alignment: (action1.visible && action2.visible && action3.visible) ? Qt.AlignHCenter : Qt.AlignRight
-                Layout.rightMargin: !(action1.visible && action2.visible && action3.visible) ? buttonMargin : 0
-                spacing: 1.5
+        NewMaterialButton {
+            id: rightButton
 
-                MaterialButton {
-                    id: action1
+            Layout.fillWidth: true
+            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+            Layout.rightMargin: root.dialogPadding
+            Layout.bottomMargin: root.dialogPadding
 
-                    visible: text.length > 0
-                    horizontalPadding: buttonMargin
-                    tertiary: true
-                    autoAccelerator: true
+            visible: text.length > 0
+            textButton: true
 
-                    DialogButtonBox.buttonRole: root.button1Role
-                }
-
-                MaterialButton {
-                    id: action2
-
-                    visible: text.length > 0
-                    horizontalPadding: buttonMargin
-                    tertiary: true
-                    autoAccelerator: true
-
-                    DialogButtonBox.buttonRole: root.button2Role
-                }
-
-                MaterialButton {
-                    id: action3
-
-                    visible: text.length > 0
-                    horizontalPadding: buttonMargin
-                    tertiary: true
-                    autoAccelerator: true
-
-                    DialogButtonBox.buttonRole: root.button3Role
-                }
-            }
+            DialogButtonBox.buttonRole: root.button3Role
         }
     }
 
     background: Rectangle {
-        color: JamiTheme.transparentColor
+        topLeftRadius: closeButton.background.radius + root.dialogPadding
+        topRightRadius: closeButton.background.radius + root.dialogPadding
+        bottomRightRadius: JamiTheme.newMaterialButtonHeight / 2 + root.dialogPadding
+        bottomLeftRadius: JamiTheme.newMaterialButtonHeight / 2 + root.dialogPadding
+
+        color: JamiTheme.globalIslandColor
+
+        layer.enabled: true
+        layer.effect: MultiEffect {
+            anchors.fill: parent
+            shadowEnabled: true
+            shadowBlur: JamiTheme.shadowBlur
+            shadowColor: JamiTheme.shadowColor
+            shadowHorizontalOffset: 3.0
+            shadowVerticalOffset: 3.0
+        }
     }
 
     Overlay.modal: Rectangle {

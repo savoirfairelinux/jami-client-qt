@@ -30,11 +30,9 @@ BaseModalDialog {
 
     closeButtonVisible: false
 
-    button1.text: JamiStrings.assign
-    button2.text: JamiStrings.cancel
+    titleText: JamiStrings.changeShortcut
 
-    button1Role: DialogButtonBox.ApplyRole
-    button2Role: DialogButtonBox.RejectRole
+    button1.text: JamiStrings.assign
     button1.onClicked: {
         if (!(pressedKey === Qt.Key_unknown)){
             PTTListener.setPttKey(pressedKey);
@@ -42,12 +40,14 @@ BaseModalDialog {
         }
         close();
     }
+    button1Role: DialogButtonBox.ApplyRole
+
+    button2.text: JamiStrings.cancel
     button2.onClicked: close();
+    button2Role: DialogButtonBox.RejectRole
 
     signal accepted
     signal choiceMade(int chosenKey)
-
-    title: JamiStrings.changeShortcut
 
     popupContent: ColumnLayout {
         id: deleteAccountContentColumnLayout
@@ -73,7 +73,7 @@ BaseModalDialog {
 
         Label {
             id: keyLabel
-            Layout.alignment: Qt.AlignLeft
+            Layout.alignment: Qt.AlignCenter
             Layout.leftMargin: JamiTheme.preferredMarginSize
 
             color: JamiTheme.blackColor

@@ -23,7 +23,7 @@ import "../../commoncomponents"
 BaseModalDialog {
     id: root
 
-    title: JamiStrings.goodToKnow
+    titleText: JamiStrings.goodToKnow
     signal accepted
 
     onClosed: accepted()

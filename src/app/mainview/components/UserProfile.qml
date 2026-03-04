@@ -30,48 +30,19 @@ BaseModalDialog {
 
     property int preferredImgSize: 80
 
-    title: JamiStrings.contactDetails
+    titleText: JamiStrings.contactDetails
 
-    popupContent: Rectangle {
-        color: JamiTheme.backgroundRectangleColor
-        width: idRectangle.width + 20
-        height: userProfileDialogLayout.height + 10
-        radius: 5
+    popupContent: Control {
+        padding: 10
 
-        Rectangle {
-            id: qrImageBackground
-            radius: 5
-            anchors.right: parent.right
-            anchors.top: parent.top
-            anchors.rightMargin: 10
-            anchors.topMargin: 10
-            width: 90
-            height: 90
-
-            Image {
-                id: contactQrImage
-
-                anchors.centerIn: parent
-                horizontalAlignment: Image.AlignRight
-                fillMode: Image.PreserveAspectFit
-
-                sourceSize.width: preferredImgSize
-                sourceSize.height: preferredImgSize
-
-                mipmap: false
-                smooth: false
-
-                source: convId !== "" ? "image://qrImage/contact_" + convId : "image://qrImage/contact_" + idText
-            }
-        }
-
-        ColumnLayout {
+        contentItem: ColumnLayout {
             id: userProfileDialogLayout
-            spacing: 10
+
+            spacing: 8
 
             RowLayout {
-                Layout.margins: 10
-                Layout.preferredWidth: childrenRect.width
+                Layout.fillWidth: true
+                Layout.preferredHeight: qrImageBackground.height
 
                 spacing: 10
 
@@ -93,16 +64,18 @@ BaseModalDialog {
                     Text {
                         id: contactAlias
 
+                        Layout.fillWidth: true
                         Layout.alignment: Qt.AlignLeft
+
+                        text: textMetricsContactAliasText.elidedText
+                        color: JamiTheme.textColor
+                        horizontalAlignment: Text.AlignLeft
+                        verticalAlignment: Text.AlignVCenter
+
                         font.pointSize: JamiTheme.settingsFontSize
                         font.kerning: true
 
-                        color: JamiTheme.textColor
                         visible: true
-
-                        text: textMetricsContactAliasText.elidedText
-                        horizontalAlignment: Text.AlignLeft
-                        verticalAlignment: Text.AlignVCenter
                     }
 
                     TextMetrics {
@@ -117,19 +90,22 @@ BaseModalDialog {
                     TextEdit {
                         id: contactDisplayName
 
+                        Layout.fillWidth: true
                         Layout.alignment: Qt.AlignLeft
+
+                        text: textMetricsContactDisplayNameText.elidedText
+                        color: JamiTheme.faddedFontColor
+                        wrapMode: Text.NoWrap
+                        horizontalAlignment: Text.AlignLeft
+                        verticalAlignment: Text.AlignVCenter
+
                         font.pointSize: JamiTheme.textFontSize
                         font.kerning: true
 
-                        color: JamiTheme.faddedFontColor
-                        visible: registeredNameText ? (registeredNameText === aliasText ? false : true) : false
+                        selectByMouse: true
                         readOnly: true
 
-                        selectByMouse: true
-                        wrapMode: Text.NoWrap
-                        text: textMetricsContactDisplayNameText.elidedText
-                        horizontalAlignment: Text.AlignLeft
-                        verticalAlignment: Text.AlignVCenter
+                        visible: registeredNameText ? (registeredNameText === aliasText ? false : true) : false
 
                         LineEditContextMenu {
                             id: displayNameContextMenu
@@ -148,30 +124,51 @@ BaseModalDialog {
 
                         TextMetrics {
                             id: textMetricsContactDisplayNameText
-                            font: contactDisplayName.font
+
                             text: registeredNameText
+                            font: contactDisplayName.font
                             elideWidth: root.width - 200
                             elide: Qt.ElideMiddle
                         }
                     }
                 }
+
+                Rectangle {
+                    id: qrImageBackground
+
+                    width: 90
+                    height: 90
+
+                    radius: 5
+
+                    Image {
+                        id: contactQrImage
+
+                        anchors.centerIn: parent
+
+                        horizontalAlignment: Image.AlignRight
+                        fillMode: Image.PreserveAspectFit
+
+                        source: convId !== "" ? "image://qrImage/contact_" + convId : "image://qrImage/contact_" + idText
+                        sourceSize.width: preferredImgSize
+                        sourceSize.height: preferredImgSize
+
+                        mipmap: false
+                        smooth: false
+                    }
+                }
             }
 
-            Rectangle {
-                id: idRectangle
+            Control {
+                Layout.fillWidth: true
 
                 Layout.alignment: Qt.AlignHCenter
 
-                Layout.preferredWidth: idLayout.width + 20
-                radius: 5
+                padding: 4
 
-                color: root.backgroundColor
-
-                Layout.preferredHeight: contactId.height + 20
-                Layout.leftMargin: 10
-
-                RowLayout {
+                contentItem: RowLayout {
                     id: idLayout
+
                     anchors.centerIn: parent
                     spacing: 15
 
@@ -192,6 +189,7 @@ BaseModalDialog {
                         Layout.alignment: Qt.AlignLeft
                         Layout.minimumWidth: 400 - identifierText.width - copyButton.width - 2 * root.popupMargins - 35
 
+                        font.family: JamiTheme.ubuntuMonoFontFamily
                         font.pointSize: JamiTheme.textFontSize
                         font.kerning: true
                         color: JamiTheme.textColor
@@ -241,7 +239,231 @@ BaseModalDialog {
                         }
                     }
                 }
+
+                background: Rectangle {
+                    color: JamiTheme.globalIslandColor
+                    radius: 5
+                }
             }
         }
+
+        background: Rectangle {
+            radius: 5
+            color: JamiTheme.globalBackgroundColor
+        }
     }
+
+    // popupContent: Rectangle {
+    //     width: idRectangle.width + 20
+    //     height: userProfileDialogLayout.height + 10
+    //     radius: 5
+
+    //     color: JamiTheme.backgroundRectangleColor
+
+    //     Rectangle {
+    //         id: qrImageBackground
+    //         radius: 5
+    //         anchors.right: parent.right
+    //         anchors.top: parent.top
+    //         anchors.rightMargin: 10
+    //         anchors.topMargin: 10
+    //         width: 90
+    //         height: 90
+
+    //         Image {
+    //             id: contactQrImage
+
+    //             anchors.centerIn: parent
+    //             horizontalAlignment: Image.AlignRight
+    //             fillMode: Image.PreserveAspectFit
+
+    //             sourceSize.width: preferredImgSize
+    //             sourceSize.height: preferredImgSize
+
+    //             mipmap: false
+    //             smooth: false
+
+    //             source: convId !== "" ? "image://qrImage/contact_" + convId : "image://qrImage/contact_" + idText
+    //         }
+    //     }
+
+    //     ColumnLayout {
+    //         id: userProfileDialogLayout
+    //         spacing: 10
+
+    //         RowLayout {
+    //             Layout.margins: 10
+    //             Layout.preferredWidth: childrenRect.width
+
+    //             spacing: 10
+
+    //             Avatar {
+    //                 id: contactImage
+
+    //                 Layout.preferredWidth: preferredImgSize
+    //                 Layout.preferredHeight: preferredImgSize
+
+    //                 imageId: convId !== "" ? convId : idText
+    //                 showPresenceIndicator: false
+    //                 mode: convId !== "" ? Avatar.Mode.Conversation : Avatar.Mode.Contact
+    //             }
+
+    //             ColumnLayout {
+    //                 spacing: 10
+    //                 Layout.alignment: Qt.AlignLeft
+
+    //                 Text {
+    //                     id: contactAlias
+
+    //                     Layout.alignment: Qt.AlignLeft
+    //                     font.pointSize: JamiTheme.settingsFontSize
+    //                     font.kerning: true
+
+    //                     color: JamiTheme.textColor
+    //                     visible: true
+
+    //                     text: textMetricsContactAliasText.elidedText
+    //                     horizontalAlignment: Text.AlignLeft
+    //                     verticalAlignment: Text.AlignVCenter
+    //                 }
+
+    //                 TextMetrics {
+    //                     id: textMetricsContactAliasText
+    //                     font: contactAlias.font
+    //                     text: aliasText
+    //                     elideWidth: userProfileDialogLayout.width - qrImageBackground.width - 100
+    //                     elide: Qt.ElideRight
+    //                 }
+
+    //                 // Visible when user name is not empty or equals to id.
+    //                 TextEdit {
+    //                     id: contactDisplayName
+
+    //                     Layout.alignment: Qt.AlignLeft
+    //                     font.pointSize: JamiTheme.textFontSize
+    //                     font.kerning: true
+
+    //                     color: JamiTheme.faddedFontColor
+    //                     visible: registeredNameText ? (registeredNameText === aliasText ? false : true) : false
+    //                     readOnly: true
+
+    //                     selectByMouse: true
+    //                     wrapMode: Text.NoWrap
+    //                     text: textMetricsContactDisplayNameText.elidedText
+    //                     horizontalAlignment: Text.AlignLeft
+    //                     verticalAlignment: Text.AlignVCenter
+
+    //                     LineEditContextMenu {
+    //                         id: displayNameContextMenu
+    //                         lineEditObj: contactDisplayName
+    //                         selectOnly: true
+    //                     }
+
+    //                     MouseArea {
+    //                         anchors.fill: parent
+    //                         acceptedButtons: Qt.RightButton
+    //                         cursorShape: Qt.IBeamCursor
+    //                         onClicked: function (mouse) {
+    //                             displayNameContextMenu.openMenuAt(mouse);
+    //                         }
+    //                     }
+
+    //                     TextMetrics {
+    //                         id: textMetricsContactDisplayNameText
+    //                         font: contactDisplayName.font
+    //                         text: registeredNameText
+    //                         elideWidth: root.width - 200
+    //                         elide: Qt.ElideMiddle
+    //                     }
+    //                 }
+    //             }
+    //         }
+
+    //         Rectangle {
+    //             id: idRectangle
+
+    //             Layout.alignment: Qt.AlignHCenter
+
+    //             Layout.preferredWidth: idLayout.width + 20
+    //             radius: 5
+
+    //             color: root.backgroundColor
+
+    //             Layout.preferredHeight: contactId.height + 20
+    //             Layout.leftMargin: 10
+
+    //             RowLayout {
+    //                 id: idLayout
+    //                 anchors.centerIn: parent
+    //                 spacing: 15
+
+    //                 Text {
+    //                     id: identifierText
+
+    //                     font.pointSize: JamiTheme.textFontSize
+    //                     text: JamiStrings.identifier
+    //                     color: JamiTheme.faddedFontColor
+
+    //                     horizontalAlignment: Text.AlignLeft
+    //                     verticalAlignment: Text.AlignVCenter
+    //                     Layout.leftMargin: 10
+    //                 }
+
+    //                 TextEdit {
+    //                     id: contactId
+    //                     Layout.alignment: Qt.AlignLeft
+    //                     Layout.minimumWidth: 400 - identifierText.width - copyButton.width - 2 * root.popupMargins - 35
+
+    //                     font.pointSize: JamiTheme.textFontSize
+    //                     font.kerning: true
+    //                     color: JamiTheme.textColor
+
+    //                     selectByMouse: true
+    //                     readOnly: true
+    //                     text: textMetricsContacIdText.elidedText
+
+    //                     LineEditContextMenu {
+    //                         id: idContextMenu
+    //                         lineEditObj: contactId
+    //                         selectOnly: true
+    //                     }
+
+    //                     MouseArea {
+    //                         anchors.fill: parent
+    //                         acceptedButtons: Qt.RightButton
+    //                         cursorShape: Qt.IBeamCursor
+    //                         onClicked: function (mouse) {
+    //                             idContextMenu.openMenuAt(mouse);
+    //                         }
+    //                     }
+
+    //                     TextMetrics {
+    //                         id: textMetricsContacIdText
+    //                         font: contactDisplayName.font
+    //                         text: idText
+    //                         elideWidth: root.width - identifierText.width - 2 * root.popupMargins - 60
+    //                         elide: Qt.ElideMiddle
+    //                     }
+
+    //                     horizontalAlignment: Text.AlignLeft
+    //                     verticalAlignment: Text.AlignVCenter
+    //                 }
+
+    //                 NewIconButton {
+    //                     id: copyButton
+
+    //                     iconSize: JamiTheme.iconButtonSmall
+    //                     iconSource: JamiResources.content_copy_24dp_svg
+    //                     toolTipText: JamiStrings.copy
+
+    //                     onClicked: {
+    //                         contactId.selectAll();
+    //                         contactId.copy();
+    //                         contactId.deselect();
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 }

@@ -26,11 +26,20 @@ import "../../commoncomponents"
 
 BaseModalDialog {
     id: root
-    margins: JamiTheme.preferredMarginSize
-    title: JamiStrings.aboutJami
 
+    // We want this particular dialog to only be as wide as the buttons,
+    // otherwise it is too large
+    implicitWidth: footer.implicitWidth
+
+    margins: JamiTheme.preferredMarginSize
+
+    titleText: JamiStrings.aboutJami
+
+    button1.iconSource: JamiResources.attach_money_24dp_svg
     button1.text: JamiStrings.donation
+    button2.iconSource: JamiResources.volunteer_activism_24dp_svg
     button2.text: JamiStrings.contribute
+    button3.iconSource: JamiResources.feedback_24dp_svg
     button3.text: JamiStrings.feedback
 
     button1.onClicked: {
@@ -43,17 +52,19 @@ BaseModalDialog {
         Qt.openUrlExternally("mailto:jami@gnu.org");
     }
 
-    popupContent: JamiFlickable {
+    contentItem: JamiFlickable {
         id: aboutPopUpScrollView
 
-        width: aboutPopUpContentRectColumnLayout.implicitWidth
-        height: Math.min(root.implicitHeight, aboutPopUpContentRectColumnLayout.implicitHeight)
-
-        contentHeight: aboutPopUpContentRectColumnLayout.implicitHeight
+        implicitWidth: aboutPopUpContentRectColumnLayout.implicitWidth
+        implicitHeight: aboutPopUpContentRectColumnLayout.implicitHeight
 
         ColumnLayout {
             id: aboutPopUpContentRectColumnLayout
-            anchors.centerIn: parent
+
+            anchors.top: parent.top
+            anchors.horizontalCenter: parent.horizontalCenter
+
+            width: aboutPopUpScrollView.width
 
             RowLayout {
                 Layout.fillWidth: true
@@ -75,30 +86,27 @@ BaseModalDialog {
                     Layout.fillHeight: true
                     Layout.fillWidth: true
 
-                    background: Rectangle {
-                        color: JamiTheme.backgroundRectangleColor
-                        radius: 5
-                    }
-
                     padding: 10
-                    contentItem:
-                        ColumnLayout {
+
+                    contentItem: ColumnLayout {
                         spacing: 4
+
                         TextEdit {
                             id: jamiSlogansText
+
                             Layout.alignment: Qt.AlignLeft
 
-                            wrapMode: Text.WordWrap
-                            font.pixelSize: JamiTheme.menuFontSize
-                            font.bold: true
-
+                            text: textMetricsjamiSlogansText.text
+                            color: JamiTheme.textColor
                             horizontalAlignment: Text.AlignHCenter
                             verticalAlignment: Text.AlignVCenter
 
-                            text: textMetricsjamiSlogansText.text
+                            font.pixelSize: JamiTheme.menuFontSize
+                            font.bold: true
+
+                            wrapMode: Text.WordWrap
                             selectByMouse: true
                             readOnly: true
-                            color: JamiTheme.textColor
 
                             TextMetrics {
                                 id: textMetricsjamiSlogansText
@@ -154,6 +162,11 @@ BaseModalDialog {
                             }
                         }
                     }
+
+                    background: Rectangle {
+                        color: JamiTheme.backgroundRectangleColor
+                        radius: 5
+                    }
                 }
             }
 
@@ -162,21 +175,20 @@ BaseModalDialog {
 
                 Layout.alignment: Qt.AlignLeft
                 Layout.fillWidth: true
-
-                // Strangely, hoveredLink works badly when width grows too large
-                Layout.maximumWidth: JamiTheme.preferredDialogWidth - 2 * JamiTheme.preferredMarginSize
                 Layout.topMargin: 15
 
+                text: textMetricsjamiDeclarationHyperText.text
                 color: JamiTheme.textColor
-
-                font.pixelSize: JamiTheme.menuFontSize
                 verticalAlignment: Text.AlignVCenter
 
-                text: textMetricsjamiDeclarationHyperText.text
+                font.pixelSize: JamiTheme.menuFontSize
+
                 textFormat: TextEdit.RichText
                 wrapMode: TextEdit.WordWrap
+
                 selectByMouse: true
                 readOnly: true
+
                 onLinkActivated: Qt.openUrlExternally(link)
 
                 TextMetrics {
@@ -197,9 +209,10 @@ BaseModalDialog {
             TextEdit {
                 id: jamiNoneWarrantyHyperText
 
+                Layout.fillWidth: true
                 Layout.alignment: Qt.AlignLeft
-                Layout.maximumWidth: JamiTheme.preferredDialogWidth - 2 * JamiTheme.preferredMarginSize
                 Layout.topMargin: 15
+
                 wrapMode: Text.WordWrap
                 font.pixelSize: JamiTheme.menuFontSize
 
@@ -229,7 +242,7 @@ BaseModalDialog {
                 id: jamiYears
 
                 Layout.alignment: Qt.AlignLeft
-                Layout.maximumWidth: JamiTheme.preferredDialogWidth - 2 * JamiTheme.preferredMarginSize
+                Layout.fillWidth: true
                 Layout.topMargin: 15
 
                 wrapMode: Text.WordWrap
@@ -259,9 +272,8 @@ BaseModalDialog {
             }
 
             Rectangle {
-
-                width: JamiTheme.preferredDialogWidth - 2 * JamiTheme.preferredMarginSize
-                height: 160
+                Layout.fillWidth: true
+                Layout.preferredHeight: 160
 
                 color: JamiTheme.backgroundRectangleColor
                 radius: 5
@@ -270,9 +282,6 @@ BaseModalDialog {
                     id: projectCreditsScrollView
 
                     anchors.fill: parent
-                    anchors.topMargin: JamiTheme.preferredMarginSize
-                    anchors.bottomMargin: JamiTheme.preferredMarginSize
-                    anchors.leftMargin: JamiTheme.preferredMarginSize / 2
                 }
             }
         }

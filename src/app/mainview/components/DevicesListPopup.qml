@@ -32,7 +32,7 @@ BaseModalDialog {
 
     property string currentDeviceId
 
-    title: JamiStrings.defaultCallHost
+    titleText: JamiStrings.defaultCallHost
 
     button1.text: JamiStrings.selectDevice
     button1Role: DialogButtonBox.AcceptRole
