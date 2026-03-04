@@ -39,6 +39,8 @@ Button {
 
     property bool canMirror: JamiResources.mirroredIcons.includes(iconSource)
 
+    focusPolicy: Qt.TabFocus
+
     Connections {
         target: UtilsAdapter
         function onChangeLanguage() {
