@@ -28,12 +28,12 @@ BaseModalDialog {
 
     signal accepted
 
-    title: JamiStrings.deleteAccount
+    titleText: JamiStrings.deleteAccount
 
     closeButtonVisible: false
-    button1.text: JamiStrings.optionDelete
 
-    button1Role: DialogButtonBox.DestructiveRole
+    button1.text: JamiStrings.optionDelete
+    button1.color: JamiTheme.deleteRedButton
     button1.onClicked: {
         button1.enabled = false;
         busyInd.running = true;
@@ -41,11 +41,11 @@ BaseModalDialog {
         close();
         accepted();
     }
+    button1Role: DialogButtonBox.DestructiveRole
 
     button2.text: JamiStrings.optionCancel
-    button2Role: DialogButtonBox.RejectRole
     button2.onClicked: close()
-    button1.contentColorProvider: JamiTheme.deleteRedButton
+    button2Role: DialogButtonBox.RejectRole
 
     BusyIndicator {
         id: busyInd
@@ -60,23 +60,22 @@ BaseModalDialog {
 
     popupContent: ColumnLayout {
         id: deleteAccountContentColumnLayout
-        anchors.centerIn: parent
+
         spacing: 10
 
         Label {
             id: labelDeletion
 
-            Layout.alignment: Qt.AlignLeft
+            Layout.fillWidth: true
             Layout.maximumWidth: root.width - 4 * JamiTheme.preferredMarginSize
-            Layout.bottomMargin: 5
+            Layout.alignment: Qt.AlignLeft
 
-            color: JamiTheme.textColor
             text: JamiStrings.confirmDeleteAccount
+            color: JamiTheme.textColor
+            wrapMode: Text.Wrap
 
             font.pointSize: JamiTheme.textFontSize
             font.kerning: true
-
-            wrapMode: Text.Wrap
         }
 
         Rectangle {
@@ -84,11 +83,14 @@ BaseModalDialog {
 
             color: JamiTheme.backgroundRectangleColor
 
-            Layout.preferredWidth: parent.width
-            Layout.preferredHeight: userProfileDialogLayout.height
-            Layout.maximumWidth: root.width - 80
+            Layout.fillWidth: true
 
-            radius: JamiTheme.avatarBasedRadius
+            Layout.preferredHeight: userProfileDialogLayout.height
+
+            topRightRadius: JamiTheme.avatarBasedRadius
+            topLeftRadius: JamiTheme.avatarBasedRadius
+            bottomLeftRadius: identifier.radius + 10
+            bottomRightRadius: identifier.radius + 10
 
             ColumnLayout {
                 id: userProfileDialogLayout
@@ -178,33 +180,35 @@ BaseModalDialog {
                     }
                 }
                 Rectangle {
+                    id: identifier
+
                     Layout.fillWidth: true
+                    Layout.preferredHeight: accountId.height + 10
+                    Layout.margins: 12
+                    Layout.topMargin: 0
 
                     visible: !isSIP
 
                     radius: height / 2
-                    color: root.backgroundColor
+                    color: JamiTheme.globalBackgroundColor
 
-                    Layout.preferredHeight: accountId.height + 10
-                    Layout.margins: 12
-                    Layout.topMargin: 0
                     RowLayout {
                         anchors.fill: parent
                         anchors.leftMargin: 4
 
-                        spacing: 20
+                        spacing: 10
 
                         Text {
                             id: identifierText
 
-                            font.pointSize: JamiTheme.textFontSize
-                            text: JamiStrings.identifier
+                            Layout.leftMargin: identifier.radius
 
+                            text: JamiStrings.identifier
                             color: JamiTheme.faddedFontColor
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
 
-                            Layout.leftMargin: 4
+                            font.pointSize: JamiTheme.textFontSize
                         }
                         Label {
                             id: accountId
@@ -213,6 +217,7 @@ BaseModalDialog {
                             Layout.fillWidth: true
                             Layout.rightMargin: 4
 
+                            font.family: JamiTheme.ubuntuMonoFontFamily
                             font.pointSize: JamiTheme.textFontSize
                             font.kerning: true
                             color: JamiTheme.textColor
@@ -231,11 +236,10 @@ BaseModalDialog {
 
             color: JamiTheme.warningRedRectangle
 
-            Layout.preferredWidth: parent.width
+            Layout.fillWidth: true
             Layout.preferredHeight: labelWarning.height + 20
-            Layout.maximumWidth: root.width - 80
 
-            radius: JamiTheme.avatarBasedRadius
+            radius: 8
 
             RowLayout {
                 id: warningLayout
@@ -244,14 +248,21 @@ BaseModalDialog {
                 anchors.margins: 15
                 width: parent.width
 
-                Image {
+                Button {
                     id: warningIcon
 
                     Layout.fillWidth: true
                     Layout.leftMargin: 15
 
-                    source: JamiResources.notification_important_24dp_svg
-                    fillMode: Image.PreserveAspectFit
+                    padding: 0
+                    horizontalPadding: 0
+
+                    icon.source: JamiResources.notification_important_24dp_svg
+                    icon.width: JamiTheme.iconButtonMedium
+                    icon.height: JamiTheme.iconButtonMedium
+                    icon.color: JamiTheme.redColor
+
+                    background: null
                 }
 
                 Label {
@@ -261,15 +272,13 @@ BaseModalDialog {
                     Layout.margins: 15
 
                     text: JamiStrings.deleteAccountInfo
-
-                    font.pointSize: JamiTheme.textFontSize
-                    font.kerning: true
-
+                    color: JamiTheme.redColor
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                     wrapMode: Text.Wrap
 
-                    color: JamiTheme.redColor
+                    font.pointSize: JamiTheme.textFontSize
+                    font.kerning: true
                 }
             }
         }

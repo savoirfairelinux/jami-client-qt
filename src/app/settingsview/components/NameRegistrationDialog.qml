@@ -29,7 +29,7 @@ BaseModalDialog {
 
     signal accepted
 
-    title: JamiStrings.setUsername
+    titleText: JamiStrings.setUsername
 
     button2.onClicked: close()
 

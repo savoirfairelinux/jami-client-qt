@@ -35,19 +35,20 @@ BaseModalDialog {
 
     autoClose: false
     closeButtonVisible: false
+
     button1.text: confirmLabel
-    button1.contentColorProvider: JamiTheme.redButtonColor
+    button1.color: JamiTheme.redButtonColor
     button1.onClicked: {
         close();
         accepted();
     }
+    button1Role: DialogButtonBox.AcceptRole
+
     button2.text: rejectLabel ? rejectLabel : JamiStrings.optionCancel
     button2.onClicked: {
         close();
         rejected();
     }
-
-    button1Role: DialogButtonBox.AcceptRole
     button2Role: DialogButtonBox.RejectRole
 
     popupContent: ColumnLayout {

@@ -30,43 +30,14 @@ BaseModalDialog {
 
     signal accepted
 
-    title: JamiStrings.linkNewDevice
-
-    property bool darkTheme: UtilsAdapter.useApplicationTheme()
+    titleText: JamiStrings.linkNewDevice
 
     autoClose: false
-    closeButtonVisible: false
+    closeButtonVisible: true
 
     // Function to check if dialog can be closed directly
     function canCloseDirectly() {
         return LinkDeviceModel.deviceAuthState === DeviceAuthStateEnum.INIT || LinkDeviceModel.deviceAuthState === DeviceAuthStateEnum.DONE;
-    }
-
-    // Close button. Use custom close button to show a confirmation dialog.
-    NewIconButton {
-        id: closeButton
-
-        anchors {
-            top: parent.top
-            right: parent.right
-            topMargin: 5
-            rightMargin: 6
-        }
-
-        iconSize: JamiTheme.iconButtonMedium
-        iconSource: JamiResources.round_close_24dp_svg
-        toolTipText: JamiStrings.close
-
-        onClicked: {
-            if (canCloseDirectly()) {
-                root.close();
-            } else {
-                confirmCloseDialog.open();
-            }
-        }
-
-        Accessible.role: Accessible.Button
-        Accessible.name: JamiStrings.close
     }
 
     MessageDialog {

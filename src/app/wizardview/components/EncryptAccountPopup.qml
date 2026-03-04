@@ -24,7 +24,7 @@ import "../../commoncomponents"
 BaseModalDialog {
     id: root
 
-    title: JamiStrings.encryptAccount
+    titleText: JamiStrings.encryptAccount
 
     closeButtonVisible: false
 
@@ -37,9 +37,11 @@ BaseModalDialog {
     button2.onClicked: close()
 
     popupContent: ColumnLayout {
-
         id: passwordColumnLayout
-        anchors.bottomMargin: 30
+
+        width: 400
+
+        spacing: 16
 
         Component.onCompleted: {
             root.button1.clicked.connect(function() {
@@ -49,7 +51,7 @@ BaseModalDialog {
         }
 
         Text {
-            Layout.preferredWidth: 400 - 2 * popupMargins
+            Layout.fillWidth: true
             Layout.alignment: Qt.AlignLeft
 
             color: JamiTheme.textColor
@@ -62,46 +64,42 @@ BaseModalDialog {
         PasswordTextEdit {
             id: passwordEdit
 
+            Layout.fillWidth: true
+            Layout.alignment: Qt.AlignLeft
+
             firstEntry: true
             placeholderText: JamiStrings.enterPassword
-
-            Layout.alignment: Qt.AlignLeft
-            Layout.topMargin: 20
-            Layout.preferredWidth: 400 - 2 * popupMargins
-
-            KeyNavigation.up: passwordConfirmEdit
-            KeyNavigation.down: KeyNavigation.up
 
             onModifiedTextFieldContentChanged: {
                 button1.enabled = passwordEdit.modifiedTextFieldContent === passwordConfirmEdit.modifiedTextFieldContent && passwordEdit.modifiedTextFieldContent.length !== 0
             }
+
+            KeyNavigation.up: passwordConfirmEdit
+            KeyNavigation.down: KeyNavigation.up
         }
 
         PasswordTextEdit {
             id: passwordConfirmEdit
-            placeholderText: JamiStrings.confirmPassword
 
+            Layout.fillWidth: true
             Layout.alignment: Qt.AlignLeft
-            Layout.preferredWidth: 400 - 2 * popupMargins
-            Layout.topMargin: 20
-            KeyNavigation.up: passwordEdit
-            KeyNavigation.down: KeyNavigation.up
-            Accessible.description: JamiStrings.encryptDescription
+
+            placeholderText: JamiStrings.confirmPassword
 
             onModifiedTextFieldContentChanged: {
                 button1.enabled = passwordEdit.modifiedTextFieldContent === passwordConfirmEdit.modifiedTextFieldContent && passwordEdit.modifiedTextFieldContent.length !== 0
             }
+
+            Accessible.description: JamiStrings.encryptDescription
+
+            KeyNavigation.up: passwordEdit
+            KeyNavigation.down: KeyNavigation.up
         }
 
         Control {
-            Layout.preferredWidth: 400 - 2 * popupMargins
-            Layout.topMargin: 20
-            padding: 14
+            Layout.fillWidth: true
 
-            background: Rectangle {
-                radius: 5
-                color: JamiTheme.infoRectangleColor
-            }
+            padding: 14
 
             contentItem: RowLayout {
                 id: infoLayout
@@ -126,6 +124,11 @@ BaseModalDialog {
                     font.pixelSize: JamiTheme.menuFontSize
                     lineHeight: 1.3
                 }
+            }
+
+            background: Rectangle {
+                radius: 5
+                color: JamiTheme.infoRectangleColor
             }
         }
     }

@@ -38,7 +38,7 @@ BaseModalDialog {
     property var buttonRoles: []
 
     function openWithParameters(title, info = "") {
-        root.title = title;
+        root.titleText = title;
         if (info !== "")
             root.infoText = info;
         open();
@@ -92,11 +92,12 @@ BaseModalDialog {
             Layout.preferredHeight: implicitHeight
 
             text: infoText
-            font.pointSize: JamiTheme.menuFontSize - 2
-            wrapMode: Text.WordWrap
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
             color: JamiTheme.textColor
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            wrapMode: Text.WordWrap
+
+            font.pointSize: JamiTheme.menuFontSize - 2
         }
 
         Item {
