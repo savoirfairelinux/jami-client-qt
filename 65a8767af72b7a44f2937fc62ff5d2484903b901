@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbc83b22_8d44a04a",
+        "filename": "src/app/commoncomponents/NewMaterialTextField.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-03-04T21:21:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb9b6676_00430359",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 34
+      },
+      "revId": "65a8767af72b7a44f2937fc62ff5d2484903b901",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73985da0_1e2ee8cb",
@@ -47,6 +71,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec3723ed_0de12dc8",
+        "filename": "src/app/commoncomponents/NewMaterialTextField.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-03-04T21:21:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73985da0_1e2ee8cb",
+      "range": {
+        "startLine": 50,
+        "startChar": 8,
+        "endLine": 50,
+        "endChar": 28
+      },
+      "revId": "65a8767af72b7a44f2937fc62ff5d2484903b901",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d5a9ae8d_739f3953",
@@ -60,6 +108,30 @@
       "writtenOn": "2026-03-04T20:35:23Z",
       "side": 1,
       "message": "JamiTheme ?",
+      "range": {
+        "startLine": 193,
+        "startChar": 16,
+        "endLine": 201,
+        "endChar": 17
+      },
+      "revId": "65a8767af72b7a44f2937fc62ff5d2484903b901",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d3c027b_de52d361",
+        "filename": "src/app/commoncomponents/NewMaterialTextField.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-03-04T21:21:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5a9ae8d_739f3953",
       "range": {
         "startLine": 193,
         "startChar": 16,
