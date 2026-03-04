@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77a7e122_1fadd301",
+        "filename": "resources/icons/strikethrough_s_24dp.svg",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-03-04T10:16:06Z",
+      "side": 1,
+      "message": "Should the filename be `strikethrough_black_24dp.svg`",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 17
+      },
+      "revId": "15f78af0299d2d0f70022cfed0332ff7084fac32",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "116a2151_80b35555",
+        "filename": "resources/icons/title_black_24dp.svg",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-03-04T10:16:06Z",
+      "side": 1,
+      "message": "Should the filename be `heading_black_24.svg`? Please see the https://review.jami.net/c/jami-client-qt/+/33410 patch. Thank you",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 11
+      },
+      "revId": "15f78af0299d2d0f70022cfed0332ff7084fac32",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
