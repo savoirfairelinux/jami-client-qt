@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e320250b_62839ede",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-03-04T19:27:08Z",
+      "side": 1,
+      "message": "check comment",
+      "revId": "25bc6d406a884c81741fc4d68f688e15ae757024",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c018d29_9a285c00",
+        "filename": "src/app/mainapplication.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-03-04T19:27:08Z",
+      "side": 1,
+      "message": "```suggestion\n#ifdef Q_OS_MACOS\n    macutils::startSystemMove(window);\n#endif\n```\n\nReasons:\n\n- the component that executes this method is only available on macOS\n```\n    Loader {\n        id: macTitleBarLoader\n        active: JamiQmlUtils.isMacOS26OrLater\n        ...\n```\n- window pointer is checked again and no longer projects `window-\u003estartSystemMove()`\n```\nvoid macutils::startSystemMove(QWindow* window) {\n    if (!window) {\n        return;\n    }\n    ...\n```",
+      "range": {
+        "startLine": 521,
+        "startChar": 0,
+        "endLine": 527,
+        "endChar": 5
+      },
+      "revId": "25bc6d406a884c81741fc4d68f688e15ae757024",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
