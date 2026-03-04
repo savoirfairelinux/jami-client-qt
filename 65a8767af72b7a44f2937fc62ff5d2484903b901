@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb9b6676_00430359",
+        "filename": "src/app/commoncomponents/NewMaterialTextField.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-03-04T20:35:23Z",
+      "side": 1,
+      "message": "these properties would benefit from usage descriptions imo",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 34
+      },
+      "revId": "65a8767af72b7a44f2937fc62ff5d2484903b901",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73985da0_1e2ee8cb",
+        "filename": "src/app/commoncomponents/NewMaterialTextField.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-03-04T20:35:23Z",
+      "side": 1,
+      "message": "need this?",
+      "range": {
+        "startLine": 50,
+        "startChar": 8,
+        "endLine": 50,
+        "endChar": 28
+      },
+      "revId": "65a8767af72b7a44f2937fc62ff5d2484903b901",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5a9ae8d_739f3953",
+        "filename": "src/app/commoncomponents/NewMaterialTextField.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-03-04T20:35:23Z",
+      "side": 1,
+      "message": "JamiTheme ?",
+      "range": {
+        "startLine": 193,
+        "startChar": 16,
+        "endLine": 201,
+        "endChar": 17
+      },
+      "revId": "65a8767af72b7a44f2937fc62ff5d2484903b901",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
