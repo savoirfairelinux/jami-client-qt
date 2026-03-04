@@ -333,6 +333,8 @@ Control {
                         iconSize: JamiTheme.iconButtonMedium
                         toolTipText: JamiStrings.moreOptions
 
+                        background: null
+
                         visible: shouldBeVisible
 
                         onClicked: {
@@ -372,6 +374,8 @@ Control {
                         iconSource: JamiResources.reply_black_24dp_svg
                         toolTipText: JamiStrings.reply
 
+                        background: null
+
                         visible: shouldBeVisible
 
                         onClicked: {
@@ -401,6 +405,7 @@ Control {
                         iconSize: JamiTheme.iconButtonMedium
                         iconSource: JamiResources.share_black_24dp_svg
                         toolTipText: JamiStrings.share
+                        background: null
 
                         visible: shouldBeVisible
 
