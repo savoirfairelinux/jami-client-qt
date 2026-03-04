@@ -33,6 +33,8 @@ Button {
     property alias toolTipText: iconButtonToolTip.text
     property alias toolTipShortcutKey: iconButtonToolTip.shortcutKey
 
+    focusPolicy: Qt.TabFocus
+
     // The icon property is defined within the contentIcon of
     // the Button component
     icon.width: iconSize
