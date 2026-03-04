@@ -29,6 +29,7 @@ Rectangle {
         id: projectCreditsFlickable
 
         anchors.fill: parent
+        anchors.margins: 8
 
         contentHeight: projectCreditsTextArea.paintedHeight
 

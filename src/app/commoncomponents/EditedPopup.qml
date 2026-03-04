@@ -38,7 +38,7 @@ BaseModalDialog {
         delegate: Rectangle {
             width: editsList.width
             height: Math.max(JamiTheme.generalMenuItemHeight, rowBody.implicitHeight)
-            color: index % 2 === 0 ? JamiTheme.backgroundColor : JamiTheme.secondaryBackgroundColor
+            color: index % 2 === 0 ? JamiTheme.globalBackgroundColor : JamiTheme.globalIslandColor
 
             RowLayout {
                 id: rowBody

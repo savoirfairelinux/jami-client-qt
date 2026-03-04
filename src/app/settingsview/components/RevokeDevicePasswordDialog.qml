@@ -26,7 +26,7 @@ BaseModalDialog {
 
     required property string deviceId
 
-    title: JamiStrings.removeDevice
+    titleText: JamiStrings.removeDevice
 
     closeButtonVisible: false
 

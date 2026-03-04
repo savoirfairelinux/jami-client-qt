@@ -38,7 +38,7 @@ BaseModalDialog {
     property var buttonRoles: []
 
     function openWithParameters(title, info = "") {
-        root.title = title;
+        root.titleText = title;
         if (info !== "")
             root.infoText = info;
         open();
