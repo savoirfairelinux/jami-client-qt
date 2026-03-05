@@ -720,6 +720,7 @@ Item {
 
     // Common radius
     property real avatarBasedRadius: JamiTheme.smartListAvatarSize / 2 + 8
+    property real macOSTopRadius: 22
 
     // Generalized shadows
     property real shadowBlur: 1.0
@@ -742,7 +743,8 @@ Item {
     // Side panel
     property real sidePanelIslandsSinglePaneModePadding: 8
     property real sidePanelIslandsPadding: 12
-    property real sidePanelIslandTopPaddingMac: 14
+    property real sidePanelIslandPaddingMac: 8
+    property real sidePanelTopPaddingMac: 20
     property real sidePanelConversationsIslandTopPadding: 16
     property real sidePanelConversationsIslandHorizontalPadding: 4
     property real sidePanelIslandRightPadding: 16

@@ -36,7 +36,7 @@ Page {
                 return 0;
             var extraHeight = 0;
             if (Qt.platform.os.toString() === "osx")
-                extraHeight = 24;
+                extraHeight = 0;
             else if (viewCoordinator.isInSinglePaneMode)
                 extraHeight = titleBar.height;
             return extraHeight;
