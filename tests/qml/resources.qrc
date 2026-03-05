@@ -27,5 +27,6 @@
         <file>src/tst_ConversationsAdapter.qml</file>
         <file>src/tst_LocationSharing.qml</file>
         <file>src/tst_NewMaterialTextField.qml</file>
+        <file>src/tst_TextMessageDelegate.qml</file>
     </qresource>
 </RCC>
