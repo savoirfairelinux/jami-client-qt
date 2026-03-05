@@ -36,7 +36,7 @@ Page {
                 return 0;
             var extraHeight = 0;
             if (Qt.platform.os.toString() === "osx")
-                extraHeight = 24;
+                extraHeight = JamiQmlUtils.isMacOS26OrLater? 0 : 24;
             else if (viewCoordinator.isInSinglePaneMode)
                 extraHeight = titleBar.height;
             return extraHeight;
