@@ -200,7 +200,8 @@ SidePanelBase {
             anchors.fill: parent
             // Creates The floating rectangle itself
             anchors.margins: root.sidePanelIslandsMargin
-            anchors.topMargin: JamiQmlUtils.isMacOS26OrLater ? JamiTheme.sidePanelIslandTopPaddingMac : root.sidePanelIslandsMargin
+            anchors.topMargin: JamiQmlUtils.isMacOS26OrLater ? JamiTheme.sidePanelIslandPaddingMac : root.sidePanelIslandsMargin
+            anchors.leftMargin: JamiQmlUtils.isMacOS26OrLater ? JamiTheme.sidePanelIslandPaddingMac : root.sidePanelIslandsMargin
             anchors.rightMargin: {
                 if (viewCoordinator.isInSinglePaneMode) {
                     return JamiTheme.sidePanelIslandsSinglePaneModePadding;
@@ -218,9 +219,9 @@ SidePanelBase {
                     id: conversationListRect
 
                     anchors.fill: parent
-
                     color: JamiTheme.globalIslandColor
                     radius: JamiTheme.avatarBasedRadius
+                    topLeftRadius: JamiQmlUtils.isMacOS26OrLater ? JamiTheme.macOSTopRadius : JamiTheme.avatarBasedRadius
                     layer.enabled: true
                     layer.effect: MultiEffect {
                         id: conversationListRectMultiEffect
@@ -264,7 +265,11 @@ SidePanelBase {
                         width: parent.width
                         height: 40
 
-                        Layout.topMargin: JamiTheme.sidePanelConversationsIslandTopPadding
+                        Layout.topMargin: {
+                            const basePadding = JamiTheme.sidePanelConversationsIslandTopPadding;
+                            const macPadding = JamiTheme.sidePanelTopPaddingMac;
+                            return JamiQmlUtils.isMacOS26OrLater ? basePadding + macPadding : basePadding;
+                        }
                         Layout.leftMargin: conversationListRect.radius - contactSearchBar.radius
                         Layout.rightMargin: 15
                         Layout.alignment: Qt.AlignTop
