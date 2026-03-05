@@ -346,7 +346,6 @@ Loader {
                 if (bubble.timestampItem.timeLabel.width > contentWidth)
                     timeUnderBubble = true;
                 else {
-                    bubble.timestampItem.timeColor = JamiTheme.whiteColor;
                     bubble.timestampItem.timeLabel.opacity = 1;
                 }
             }
