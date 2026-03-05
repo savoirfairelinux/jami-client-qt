@@ -242,6 +242,8 @@ Control {
                     Layout.fillWidth: true
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
 
+
+                    font.family: CurrentConversation.isCoreDialog && CurrentConversation.title.length === 40 ? JamiTheme.ubuntuMonoFontFamily : JamiTheme.ubuntuFontFamily
                     font.pointSize: JamiTheme.textFontSize + 2
 
                     horizontalAlignment: Text.AlignLeft
@@ -257,6 +259,7 @@ Control {
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
 
                     visible: text.length && CurrentConversation.title !== CurrentConversation.description
+                    font.family: CurrentConversation.isCoreDialog && CurrentConversation.description.length === 40 ? JamiTheme.ubuntuMonoFontFamily : JamiTheme.ubuntuFontFamily
                     font.pointSize: JamiTheme.textFontSize
                     color: JamiTheme.faddedLastInteractionFontColor
 

@@ -26,6 +26,7 @@ ToolTip {
     property alias textColor: label.color
     property bool hasShortcut: false
     property string shortcutKey
+    property string toolTipFont: JamiTheme.ubuntuFontFamily
 
     onVisibleChanged: {
         if (visible)
@@ -37,6 +38,7 @@ ToolTip {
         Text {
             id: label
             text: root.text
+            font.family: root.toolTipFont
             font.pixelSize: 13
             color: "white"
             Layout.alignment: Qt.AlignHCenter
@@ -56,6 +58,7 @@ ToolTip {
             Text {
                 id: shortcutText
                 anchors.centerIn: parent
+                font.family: root.toolTipFont
                 font.pixelSize: 13
                 font.weight: Font.DemiBold
                 color: JamiTheme.tooltipShortCutTextColor

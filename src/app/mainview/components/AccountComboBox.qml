@@ -149,6 +149,7 @@ Item {
                             Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
                             text: CurrentAccount.bestId
                             textFormat: TextEdit.PlainText
+                            font.family: text === CurrentAccount.uri ? JamiTheme.ubuntuMonoFontFamily : JamiTheme.ubuntuFontFamily
                             font.pointSize: JamiTheme.tinyFontSize
                             elide: Text.ElideRight
                             horizontalAlignment: Text.AlignLeft

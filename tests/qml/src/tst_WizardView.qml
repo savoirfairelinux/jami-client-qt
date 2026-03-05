@@ -188,9 +188,9 @@ TestWrapper {
                 var password = "testPassword"
                 var proxy = "testProxy"
 
-                sipUsernameEdit.dynamicText = userName
-                sipPasswordEdit.dynamicText = password
-                sipServernameEdit.dynamicText = serverName
+                sipUsernameEdit.modifiedTextFieldContent = userName
+                sipPasswordEdit.modifiedTextFieldContent = password
+                sipServernameEdit.modifiedTextFieldContent = serverName
 
                 createAccountButton.clicked()
 
