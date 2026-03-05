@@ -45,6 +45,26 @@ SBSMessageBase {
     property string colorUrl: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewLinkColorLight : JamiTheme.chatviewLinkColorDark
     property string colorText: UtilsAdapter.luma(bubble.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
 
+
+    readonly property real longMsgCollapsedHeight: 240
+    property bool isLongMessage: !isEmojiOnly && textEditId.implicitHeight > longMsgCollapsedHeight
+
+    // IMPORTANT: the assignment is deferred via Qt.callLater so that the
+    // resulting textEditId.height change propagates AFTER the delegate has
+    // been fully inserted into the ListView.  An immediate binding triggers
+    // a height-cascade during delegate initialisation that crashes the
+    // ListView layout engine (SIGSEGV) when real model data is present.
+    property bool longMsgCollapsed: false
+    
+    onIsLongMessageChanged: {
+        if (isLongMessage && !longMsgCollapsed)
+            Qt.callLater(function () {
+                rootDelegate.longMsgCollapsed = true;
+            });
+        else if (!isLongMessage)
+            rootDelegate.longMsgCollapsed = false;
+    }
+
     Connections {
         target: bubble
         function onColorChanged(color) {
@@ -67,7 +87,7 @@ SBSMessageBase {
     textContentWidth: textEditId.width
     textContentHeight: textEditId.height
 
-    bigMsg: textContentWidth >= (2 / 3) * rootDelegate.maxMsgWidth || extraContent.active
+    bigMsg: textContentWidth >= (2 / 3) * rootDelegate.maxMsgWidth || extraContent.active || rootDelegate.isLongMessage
 
     innerContent.children: [
         TextEdit {
@@ -102,6 +122,10 @@ SBSMessageBase {
                 else
                     Math.min((2 / 3) * rootDelegate.maxMsgWidth, implicitWidth + 5, innerContent.width - senderMargin + 5);
             }
+
+            height: rootDelegate.longMsgCollapsed
+                    ? rootDelegate.longMsgCollapsedHeight
+                    : implicitHeight
 
             wrapMode: Label.WrapAtWordBoundaryOrAnywhere
             selectByMouse: true
@@ -150,6 +174,7 @@ SBSMessageBase {
         Loader {
             id: extraContent
 
+            objectName: "extraContent"
             anchors.right: isOutgoing ? parent.right : undefined
             property real minSize: 192
             property real maxSize: 400
@@ -247,6 +272,61 @@ SBSMessageBase {
                         text: LinkPreviewInfo.domain
                         lineHeight: 1.3
                     }
+                }
+            }
+        },
+        Item {
+            id: longMsgFooter
+
+            objectName: "longMsgFooter"
+            visible: rootDelegate.isLongMessage && !extraContent.active
+            width: textEditId.width
+            height: visible ? collapseButton.implicitHeight + 4 : 0
+            anchors.right: isOutgoing ? parent.right : undefined
+
+            Rectangle {
+                id: fadeOverlay
+
+                anchors.bottom: collapseButton.top
+                width: parent.width
+                height: 24
+                visible: rootDelegate.longMsgCollapsed
+                gradient: Gradient {
+                    orientation: Gradient.Vertical
+                    GradientStop {
+                        position: 0.0
+                        color: "transparent"
+                    }
+                    GradientStop {
+                        position: 1.0
+                        color: bubble.color
+                    }
+                }
+            }
+
+            Label {
+                id: collapseButton
+
+                objectName: "collapseButton"
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.bottom: parent.bottom
+                bottomPadding: 4
+                text: rootDelegate.longMsgCollapsed ? JamiStrings.showMore : JamiStrings.showLess
+                font.pointSize: JamiTheme.smallFontSize
+                font.hintingPreference: Font.PreferNoHinting
+                renderType: Text.NativeRendering
+                color: rootDelegate.colorUrl
+                font.underline: true
+
+                Accessible.role: Accessible.Button
+                Accessible.name: text
+
+                TapHandler {
+                    onTapped: rootDelegate.longMsgCollapsed = !rootDelegate.longMsgCollapsed
+                }
+
+                HoverHandler {
+                    cursorShape: Qt.PointingHandCursor
                 }
             }
         }
