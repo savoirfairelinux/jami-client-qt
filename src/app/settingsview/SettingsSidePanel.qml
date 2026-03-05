@@ -37,6 +37,7 @@ SidePanelBase {
     // In dual pane mode, SettingsView will sync this to the content index.
     property int currentIndex: -1
     property bool isSinglePane
+    readonly property real sidePanelIslandsMargin: viewCoordinator.isInSinglePaneMode ? JamiTheme.sidePanelIslandsSinglePaneModePadding : JamiTheme.sidePanelIslandsPadding
     signal updated
 
     function getHeaders() {
@@ -303,7 +304,9 @@ SidePanelBase {
         anchors.fill: parent
         // Note that the margins should be identical to that of SidePanel
         // Creates The floating rectangle itself
-        anchors.margins: viewCoordinator.isInSinglePaneMode ? JamiTheme.sidePanelIslandsSinglePaneModePadding : JamiTheme.sidePanelIslandsPadding
+        anchors.margins: root.sidePanelIslandsMargin
+        anchors.topMargin: JamiQmlUtils.isMacOS26OrLater ? JamiTheme.sidePanelIslandPaddingMac : root.sidePanelIslandsMargin
+        anchors.leftMargin: JamiQmlUtils.isMacOS26OrLater ? JamiTheme.sidePanelIslandPaddingMac : root.sidePanelIslandsMargin
         anchors.rightMargin: {
             if (viewCoordinator.isInSinglePaneMode) {
                 return JamiTheme.sidePanelIslandsSinglePaneModePadding;
@@ -324,6 +327,7 @@ SidePanelBase {
 
                 color: JamiTheme.globalIslandColor
                 radius: JamiTheme.avatarBasedRadius
+                topLeftRadius: JamiQmlUtils.isMacOS26OrLater ? JamiTheme.macOSTopRadius : JamiTheme.avatarBasedRadius
                 layer.enabled: true
                 layer.effect: MultiEffect {
                     anchors.fill: settingsListRect
