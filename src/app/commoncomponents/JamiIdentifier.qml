@@ -46,6 +46,7 @@ Control {
             icon.color: JamiTheme.buttonTintedGreyHovered
 
             background: null
+            enabled: false
         }
 
         Text {
