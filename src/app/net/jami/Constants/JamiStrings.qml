@@ -629,6 +629,7 @@ Item {
     property string linkDeviceNewDeviceIP: qsTr("New device IP address: %1")
     property string linkDeviceCloseWarningTitle: qsTr("Do you want to exit?")
     property string linkDeviceCloseWarningMessage: qsTr("Exiting will cancel the import account operation.")
+    property string linkDeviceNoVideoMessage: qsTr("No video available, please check your devices.")
 
     // PasswordDialog
     property string enterPassword: qsTr("Enter password")
