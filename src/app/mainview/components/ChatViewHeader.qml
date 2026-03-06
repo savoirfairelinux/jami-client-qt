@@ -127,7 +127,7 @@ Control {
             iconSource: JamiResources.bidirectional_back_24dp_svg
             toolTipText: JamiStrings.hideChat
 
-            visible: !viewCoordinator.isInSinglePaneMode && !convContext.inCall
+            visible: !viewCoordinator.isInSinglePaneMode
 
             onClicked: root.backClicked()
         }
@@ -142,7 +142,7 @@ Control {
             iconSource: JamiResources.bidirectional_chevron_left_black_24dp_svg
             toolTipText: JamiStrings.hideChat
 
-            visible: viewCoordinator.isInSinglePaneMode && !convContext.inCall
+            visible: viewCoordinator.isInSinglePaneMode
 
             onClicked: root.backClicked()
         }
@@ -159,10 +159,10 @@ Control {
 
             icon.width: JamiTheme.iconButtonMedium
             icon.height: JamiTheme.iconButtonMedium
-            icon.source: JamiResources.bidirectional_return_to_call_24dp_svg
+            icon.source: JamiResources.pip_exit_24dp_svg
             icon.color: hovered ? JamiTheme.buttonCallLightGreen : JamiTheme.blackColor
 
-            visible: convContext.inCall
+            visible: CallPipWindowManager.isPipActive && CallPipWindowManager.pipConvId === convContext.id
 
             Behavior on icon.color {
                 ColorAnimation {
@@ -194,7 +194,7 @@ Control {
                 delay: Qt.styleHints.mousePressAndHoldInterval
             }
 
-            onClicked: root.backClicked()
+            onClicked: CallPipWindowManager.reabsorb()
         }
 
         BadgeNotifier {
