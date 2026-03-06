@@ -61,6 +61,7 @@ extern const QString defaultDownloadPath;
     X(NeverShowMeAgain, false) \
     X(WindowGeometry, QRectF(qQNaN(), qQNaN(), 0., 0.)) \
     X(PipWindowGeometry, QRectF(qQNaN(), qQNaN(), 0., 0.)) \
+    X(AutoPipCallOnNavAway, true) \
     X(WindowState, QWindow::AutomaticVisibility) \
     X(LANG, "SYSTEM") \
     X(SpellLang, {}) \

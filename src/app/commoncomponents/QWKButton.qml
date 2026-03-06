@@ -21,6 +21,7 @@ import Qt5Compat.GraphicalEffects
 
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
+import net.jami.Models 1.1
 
 Button {
     id: control
@@ -37,20 +38,27 @@ Button {
     }
 
     property alias source: image.source
+    // Set to true when this button appears on a permanently dark background
+    // (e.g. the PiP window toolbar) so icons are always rendered in white.
+    property bool forceLightIcons: false
+    // Override the icon render size (default matches the original 12px title-bar icons).
+    property int iconSize: 12
+
     contentItem: Item {
         Image {
             id: image
             anchors.centerIn: parent
             mipmap: true
-            width: 12
-            height: 12
+            width: control.iconSize
+            height: control.iconSize
             layer.enabled: true
             layer.effect: ColorOverlay {
                 color: {
-                    // We may force this color to be white, when the background is dark.
                     var backgroundIsDark = calculateLuminance(control.background.color) > 0.25;
-                    // This includes when we are in a call (which has a dark background).
-                    backgroundIsDark = backgroundIsDark || CurrentConversation.hasCall;
+                    // Force white when the call is in the main window (not in PiP).
+                    backgroundIsDark = backgroundIsDark
+                            || control.forceLightIcons
+                            || (CurrentConversation.hasCall && !CallPipWindowManager.isPipActive);
                     return backgroundIsDark ? "white" : JamiTheme.primaryForegroundColor;
                 }
             }
@@ -58,8 +66,9 @@ Button {
     }
 
     property color baseColor: {
-        // Avoid transparent if the background is dark i.e. in a call.
-        if (CurrentConversation.hasCall)
+        // Use semi-transparent white on dark backgrounds: PiP toolbar or
+        // in-window call (but not when the call has been popped out to PiP).
+        if (control.forceLightIcons || (CurrentConversation.hasCall && !CallPipWindowManager.isPipActive))
             return Qt.rgba(1, 1, 1, 0.5);
         return JamiTheme.darkTheme ? Qt.rgba(1, 1, 1, 0.15) : Qt.rgba(0, 0, 0, 0.15);
     }

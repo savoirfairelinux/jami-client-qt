@@ -22,6 +22,7 @@ import QWindowKit
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
+import net.jami.Models 1.1
 import "commoncomponents"
 
 // Picture-in-Picture call window.
@@ -40,50 +41,82 @@ ApplicationWindow {
 
     width: 400
     height: 300
-    minimumWidth: 280
-    minimumHeight: 200
+    minimumWidth: 260
+    minimumHeight: 180
 
     color: "black"
 
     flags: Qt.Window | Qt.WindowStaysOnTopHint
 
-    // ── Remote video ─────────────────────────────────────────────────────────
+    // ── Remote video (fills entire window) ───────────────────────────────────
     VideoView {
         id: remoteVideo
-        anchors {
-            top: pipToolBar.bottom
-            left: parent.left
-            right: parent.right
-            bottom: parent.bottom
-        }
+        anchors.fill: parent
         // Use the PiP call ID from the manager — stays valid after conv switch.
         rendererId: CallPipWindowManager.pipCallId
         // Crop to fill the small window rather than letterboxing
         crop: true
     }
 
-    // ── Minimal toolbar ──────────────────────────────────────────────────────
-    Rectangle {
-        id: pipToolBar
-        width: parent.width
-        height: useFrameless ? JamiTheme.qwkTitleBarHeight : implicitHeight
-        implicitHeight: 36
-        color: JamiTheme.globalBackgroundColor
-        z: 2
+    // Full-window hover detection target for CallOverlayModel event filter.
+    Item {
+        id: pipHoverZone
+        anchors.fill: parent
+    }
+
+    // QWK-style close button — top-right corner, fades in/out with the overlay.
+    QWKButton {
+        id: closePipBtn
+        visible: useFrameless
+        anchors {
+            top: parent.top
+            right: parent.right
+            topMargin: 4
+            rightMargin: 4
+        }
+        height: JamiTheme.qwkTitleBarHeight
+        source: JamiResources.window_bar_close_svg
+        forceLightIcons: true
+        baseColor: "#e81123"
+        opacity: pipOverlay.opacity
+        enabled: pipOverlay.enabled
+        onClicked: root.close()
+    }
+
+    // ── Hover-activated overlay (bottom) ─────────────────────────────────────
+    Item {
+        id: pipOverlay
+        anchors {
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+        }
+        height: 64
+        opacity: 0
+        enabled: opacity > 0.05
+
+        Rectangle {
+            anchors.fill: parent
+            gradient: Gradient {
+                orientation: Gradient.Vertical
+                GradientStop { position: 0.0; color: "transparent" }
+                GradientStop { position: 1.0; color: Qt.rgba(0, 0, 0, 0.7) }
+            }
+        }
 
         RowLayout {
             anchors {
                 fill: parent
                 leftMargin: 8
-                rightMargin: useFrameless && sysBtnsLoader.active ? sysBtnsLoader.width + 4 : 4
+                rightMargin: 8
             }
-            spacing: 6
+            spacing: 4
 
             // Call duration timer
             Text {
                 id: durationLabel
                 Layout.alignment: Qt.AlignVCenter
-                color: JamiTheme.faddedLastInteractionFontColor
+                color: "white"
                 font.pointSize: JamiTheme.textFontSize - 1
                 text: CallPipWindowManager.pipConvId.length
                       ? CallAdapter.getCallDurationTime(CallPipWindowManager.pipAccountId,
@@ -130,16 +163,6 @@ ApplicationWindow {
                                                         CallPipWindowManager.pipConvId)
             }
 
-            // Return-to-call button
-            NewIconButton {
-                id: returnBtn
-                Layout.alignment: Qt.AlignVCenter
-                iconSize: JamiTheme.iconButtonMedium
-                iconSource: JamiResources.bidirectional_return_to_call_24dp_svg
-                toolTipText: qsTr("Return to call")
-                onClicked: CallPipWindowManager.reabsorb()
-            }
-
             // End-call button
             NewIconButton {
                 id: endCallBtn
@@ -152,20 +175,29 @@ ApplicationWindow {
             }
         }
 
-        // QWK: system buttons (minimize / maximize / close) in frameless mode.
-        Loader {
-            id: sysBtnsLoader
-            active: useFrameless && Qt.platform.os.toString() !== "osx"
-            height: parent.height
-            anchors {
-                top: parent.top
-                right: parent.right
-                topMargin: 1
-                rightMargin: 1
-            }
-            source: "qrc:/commoncomponents/QWKSystemButtonGroup.qml"
-            onLoaded: item.targetWindow = root
+        Behavior on opacity {
+            NumberAnimation { duration: JamiTheme.overlayFadeDuration }
         }
+    }
+
+    // ── Overlay activation ────────────────────────────────────────────────────
+    function kickOverlay() {
+        pipOverlay.opacity = 1;
+        fadeOutTimer.restart();
+    }
+
+    Connections {
+        target: CallOverlayModel
+        function onMouseMoved(item) {
+            if (item === pipHoverZone)
+                kickOverlay();
+        }
+    }
+
+    Timer {
+        id: fadeOutTimer
+        interval: JamiTheme.overlayFadeDelay
+        onTriggered: pipOverlay.opacity = 0
     }
 
     // ── QWK frameless window agent ───────────────────────────────────────────
@@ -195,23 +227,20 @@ ApplicationWindow {
 
     Component.onCompleted: {
         restoreGeometry();
+        CallOverlayModel.setEventFilterActive(root, pipHoverZone, true);
         if (useFrameless) {
             windowAgent.setup(root);
             Qt.callLater(function () {
-                windowAgent.setTitleBar(pipToolBar);
-                // Action buttons sit inside the title bar: mark them as
-                // hit-test visible so QWindowKit passes clicks through
-                // instead of consuming them for window dragging.
+                // Entire video area serves as the drag handle for moving the window.
+                windowAgent.setTitleBar(remoteVideo);
                 windowAgent.setHitTestVisible(muteAudioBtn, true);
                 windowAgent.setHitTestVisible(muteCameraBtn, true);
-                windowAgent.setHitTestVisible(returnBtn, true);
                 windowAgent.setHitTestVisible(endCallBtn, true);
-                if (sysBtnsLoader.item && Qt.platform.os.toString() !== "osx") {
-                    windowAgent.setSystemButton(WindowAgent.Minimize, sysBtnsLoader.item.minButton);
-                    windowAgent.setSystemButton(WindowAgent.Maximize, sysBtnsLoader.item.maxButton);
-                    windowAgent.setSystemButton(WindowAgent.Close, sysBtnsLoader.item.closeButton);
-                }
+                windowAgent.setHitTestVisible(closePipBtn, true);
+                windowAgent.setSystemButton(WindowAgent.Close, closePipBtn);
             });
         }
     }
+
+    Component.onDestruction: CallOverlayModel.setEventFilterActive(root, pipHoverZone, false)
 }

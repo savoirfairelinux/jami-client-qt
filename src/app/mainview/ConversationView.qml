@@ -55,7 +55,10 @@ ListSelectionView {
         id: conversationStackLayout
         objectName: "ConversationLayout"
 
-        currentIndex: viewNode.convContext.hasCall ? 1 : 0
+        currentIndex: viewNode.convContext.hasCall
+                      && !(CallPipWindowManager.isPipActive
+                           && CallPipWindowManager.pipConvId === viewNode.convContext.id)
+                      ? 1 : 0
 
         anchors.fill: parent
 

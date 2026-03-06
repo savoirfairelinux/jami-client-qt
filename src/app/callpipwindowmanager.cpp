@@ -35,13 +35,6 @@ CallPipWindowManager::CallPipWindowManager(QQmlEngine* engine,
     , engine_(engine)
     , lrcInstance_(lrcInstance)
 {
-    prevSelectedConvId_ = lrcInstance_->get_selectedConvUid();
-
-    connect(lrcInstance_,
-            &LRCInstance::selectedConvUidChanged,
-            this,
-            &CallPipWindowManager::onSelectedConvChanged);
-
     connect(lrcInstance_,
             &LRCInstance::currentAccountIdChanged,
             this,
@@ -71,6 +64,12 @@ CallPipWindowManager::pipPreviewId() const
     return {};
 }
 
+bool
+CallPipWindowManager::convHasActiveCall(const QString& convId, const QString& accountId) const
+{
+    return !lrcInstance_->getCallIdForConversationUid(convId, accountId).isEmpty();
+}
+
 void
 CallPipWindowManager::popOutCall(const QString& convId, const QString& accountId)
 {
@@ -80,7 +79,6 @@ CallPipWindowManager::popOutCall(const QString& convId, const QString& accountId
         window_->requestActivate();
         return;
     }
-
     // Close any existing PiP window before opening a new one.
     closePip();
 
@@ -176,32 +174,6 @@ CallPipWindowManager::closeForAccount(const QString& accountId)
 {
     if (pipAccountId_ == accountId)
         closePip();
-}
-
-void
-CallPipWindowManager::onSelectedConvChanged()
-{
-    const QString newConvId = lrcInstance_->get_selectedConvUid();
-
-    // Only act if the user actually switched to a different conversation.
-    if (!prevSelectedConvId_.isEmpty() && prevSelectedConvId_ != newConvId) {
-        // Check whether the conversation we just navigated away from has an active call.
-        const QString accountId = lrcInstance_->get_currentAccountId();
-        const QString callId = lrcInstance_->getCallIdForConversationUid(prevSelectedConvId_, accountId);
-        if (!callId.isEmpty()) {
-            // Don't pop out if a PiP window is already showing this call.
-            if (pipConvId_ != prevSelectedConvId_) {
-                popOutCall(prevSelectedConvId_, accountId);
-            }
-        }
-    }
-
-    // If the user navigates back to the conversation that is in PiP, reabsorb it.
-    if (!newConvId.isEmpty() && newConvId == pipConvId_) {
-        closePip();
-    }
-
-    prevSelectedConvId_ = newConvId;
 }
 
 void

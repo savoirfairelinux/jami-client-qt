@@ -26,6 +26,7 @@
 #include <QQmlEngine>
 #include <QSortFilterProxyModel>
 #include <QQuickItem>
+#include <QQuickWindow>
 
 #define PC_ROLES \
     X(PrimaryName) \
@@ -158,6 +159,7 @@ private:
     PendingConferenceesListModel* pendingConferenceesModel_;
 
     QList<QQuickItem*> watchedItems_;
+    QList<QQuickWindow*> watchedWindows_;
 
 #ifndef HAVE_GLOBAL_PTT
     PTTListener* listener_ {nullptr};
