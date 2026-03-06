@@ -271,6 +271,41 @@ BaseModalDialog {
                         color: JamiTheme.textColor
                     }
 
+                    Control {
+                        id: noVideo
+
+                        Layout.alignment: Qt.AlignHCenter
+
+                        padding: background.radius
+
+                        visible: VideoDevices.listSize === 0
+
+                        contentItem: ColumnLayout {
+                            Button {
+                                Layout.alignment: Qt.AlignHCenter
+
+                                icon.width: JamiTheme.iconButtonMedium
+                                icon.height: JamiTheme.iconButtonMedium
+                                icon.source: JamiResources.videocam_off_24dp_svg
+                                icon.color: JamiTheme.textColor
+                                background: null
+                                enabled: false
+                            }
+
+                            Text {
+                                text: JamiStrings.linkDeviceNoVideoMessage
+                                color: JamiTheme.textColor
+                                wrapMode: Text.WordWrap
+                            }
+                        }
+
+                        background: Rectangle {
+                            radius: 12
+                            color: JamiTheme.globalBackgroundColor
+                        }
+
+                    }
+
                     QRCodeScanner {
                         id: qrScanner
                         Layout.alignment: Qt.AlignHCenter
