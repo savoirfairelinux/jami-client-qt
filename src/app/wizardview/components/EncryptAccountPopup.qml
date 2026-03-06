@@ -99,6 +99,52 @@ BaseModalDialog {
         Control {
             Layout.fillWidth: true
 
+            leftPadding: background.radius
+            rightPadding: background.radius
+            topPadding: 8
+            bottomPadding: 8
+
+            visible: passwordEdit.modifiedTextFieldContent.length !== 0 && passwordConfirmEdit.modifiedTextFieldContent.length !== 0 && passwordEdit.modifiedTextFieldContent !== passwordConfirmEdit.modifiedTextFieldContent
+
+            opacity: visible ? 1.0 : 0.0
+
+            Behavior on opacity {
+                NumberAnimation {
+                    duration: JamiTheme.shortFadeDuration
+                }
+            }
+
+            contentItem: RowLayout {
+                Button {
+                    padding: 0
+
+                    icon.width: JamiTheme.iconButtonSmall
+                    icon.height: JamiTheme.iconButtonSmall
+                    icon.source: JamiResources.error_outline_black_24dp_svg
+                    icon.color: JamiTheme.redColor
+
+                    background: null
+                }
+
+                Text {
+                    Layout.alignment: Qt.AlignVCenter
+                    Layout.fillWidth: true
+
+                    text: JamiStrings.unmatchedPasswords
+                    color: JamiTheme.textColor
+                    elide: Text.ElideRight
+                }
+            }
+
+            background: Rectangle {
+                radius: height / 2
+                color: JamiTheme.warningRedRectangle
+            }
+        }
+
+        Control {
+            Layout.fillWidth: true
+
             padding: 14
 
             contentItem: RowLayout {
