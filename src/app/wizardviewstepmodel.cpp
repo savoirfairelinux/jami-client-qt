@@ -86,7 +86,10 @@ WizardViewStepModel::nextStep()
         break;
     default:
         Q_EMIT createAccountRequested(accountCreationOption_);
-        Q_EMIT closeWizardView();
+        if (accountCreationOption_ != AccountCreationOption::ConnectToAccountManager
+            && accountCreationOption_ != AccountCreationOption::CreateSipAccount) {
+            Q_EMIT closeWizardView();
+        }
         break;
     }
 }
