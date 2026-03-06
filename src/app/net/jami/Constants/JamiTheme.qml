@@ -823,6 +823,8 @@ Item {
     property real newMaterialButtonPadding: 8
     property real newMaterialButtonHorizontalPadding: newMaterialButtonPadding + 12
     property real newMaterialButtonSpacing: 12
+    property color newMaterialButtonDisabledColor: darkTheme ? "#3c3b3b" : "#ebe7e6"
+    //property color newMaterialButtonDisabledTextColor: Jamitht//darkTheme ? blackColor : whiteColor
 
     // Welcome Page
     property real welcomePageFastBlurRadius: 32
