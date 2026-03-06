@@ -82,15 +82,15 @@ BaseModalDialog {
     popupContent: ColumnLayout {
         id: buttonsRowLayout
 
-        RowLayout {
+        width: root.availableWidth
+
+        Row {
             spacing: 18
 
-            Layout.fillWidth: true
+            Layout.alignment: Qt.AlignHCenter
 
             NewIconButton {
                 id: takePhotoButton
-
-                Layout.alignment: Qt.AlignHCenter
 
                 objectName: "takePhotoButton"
 
@@ -110,8 +110,6 @@ BaseModalDialog {
 
             NewIconButton {
                 id: importButton
-
-                Layout.alignment: Qt.AlignHCenter
 
                 objectName: "photoboothViewImportButton"
 
@@ -147,8 +145,6 @@ BaseModalDialog {
 
             NewIconButton {
                 id: clearButton
-
-                Layout.alignment: Qt.AlignHCenter
 
                 objectName: "photoboothViewClearButton"
 
