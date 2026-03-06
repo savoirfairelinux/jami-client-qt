@@ -35,7 +35,7 @@ BaseModalDialog {
 
     titleText: JamiStrings.aboutJami
 
-    button1.iconSource: JamiResources.attach_money_24dp_svg
+    button1.iconSource: JamiResources.favorite_border_24dp_svg
     button1.text: JamiStrings.donation
     button2.iconSource: JamiResources.volunteer_activism_24dp_svg
     button2.text: JamiStrings.contribute
