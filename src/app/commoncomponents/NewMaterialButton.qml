@@ -94,20 +94,24 @@ T.Button {
         text: root.text
         font.pixelSize: JamiTheme.buttontextFontPixelSize
         color: {
-            if (root.enabled && (root.hovered || (root.activeFocus && validFocusReason))) {
-                if (root.filledButton)
-                    JamiTheme.whiteColor;
-                else if (root.outlinedButton)
-                    JamiTheme.whiteColor;
-                else if (root.textButton)
-                    JamiTheme.whiteColor;
+            if (root.enabled) {
+                if (root.hovered || (root.activeFocus && validFocusReason)) {
+                    if (root.filledButton)
+                        JamiTheme.whiteColor;
+                    else if (root.outlinedButton)
+                        JamiTheme.whiteColor;
+                    else if (root.textButton)
+                        JamiTheme.whiteColor;
+                } else {
+                    if (root.filledButton)
+                        JamiTheme.whiteColor;
+                    else if (root.outlinedButton)
+                        root.color;
+                    else if (root.textButton)
+                        JamiTheme.textColor;
+                }
             } else {
-                if (root.filledButton)
-                    JamiTheme.whiteColor;
-                else if (root.outlinedButton)
-                    root.color;
-                else if (root.textButton)
-                    JamiTheme.textColor;
+                JamiTheme.newMaterialButtonDisabledTextColor;
             }
         }
 
@@ -128,7 +132,11 @@ T.Button {
                 if (root.pressed || root.down) {
                     Qt.rgba(root.color.r, root.color.g, root.color.b, 0.80);
                 } else if (root.hovered || (root.activeFocus && validFocusReason)) {
+                    if (root.textButton) {
+                        Qt.rgba(root.color.r, root.color.g, root.color.b, 0.20);
+                    } else {
                         Qt.rgba(root.color.r, root.color.g, root.color.b, 0.92);
+                    }
                 } else{
                     if (root.filledButton)
                         root.color;
@@ -138,12 +146,12 @@ T.Button {
                         JamiTheme.transparentColor;
                 }
             } else {
-                Qt.rgba(root.color.r, root.color.g, root.color.b, 0.64);
+                return JamiTheme.newMaterialButtonDisabledColor;
             }
         }
 
         border.width: root.outlinedButton ? 1.0 : 0.0
-        border.color: root.color
+        border.color: root.enabled ? root.color : Qt.darker(JamiTheme.newMaterialButtonDisabledColor);
 
         Behavior on color {
             ColorAnimation {
