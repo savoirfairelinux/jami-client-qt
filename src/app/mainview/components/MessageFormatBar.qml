@@ -87,7 +87,7 @@ Rectangle {
                     },
                     Action {
                         id: strikethroughAction
-                        property string iconSrc: JamiResources.strikethrough_s_24dp_svg
+                        property string iconSrc: JamiResources.strikethrough_black_24dp_svg
                         property string shortcutText: JamiStrings.strikethrough
                         property string shortcutKey: "Shift+Alt+X"
                         property bool isStyle: MDE.isStyle(messageBarTextArea, rectangle.text, "~~",
