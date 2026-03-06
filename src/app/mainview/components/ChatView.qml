@@ -206,9 +206,9 @@ Item {
             anchors.top: parent.top
             anchors.topMargin: JamiTheme.sidePanelIslandsPadding
             anchors.left: parent.left
-            anchors.leftMargin: JamiTheme.sidePanelIslandsPadding
+            anchors.leftMargin: Qt.platform.os === "osx" && viewCoordinator.isInSinglePaneMode ? layoutManager.qwkSystemButtonSpacing.left : JamiTheme.sidePanelIslandsPadding
             anchors.right: viewCoordinator.isInSinglePaneMode ? parent.right : extrasButtons.left
-            anchors.rightMargin: viewCoordinator.isInSinglePaneMode ? layoutManager.qwkSystemButtonSpacing.right : JamiTheme.sidePanelIslandsPadding
+            anchors.rightMargin: viewCoordinator.isInSinglePaneMode ? Qt.platform.os === "osx" ? JamiTheme.sidePanelIslandsPadding : layoutManager.qwkSystemButtonSpacing.right : JamiTheme.sidePanelIslandsPadding
 
             height: JamiTheme.qwkTitleBarHeight
             z: chatView.z + 2
