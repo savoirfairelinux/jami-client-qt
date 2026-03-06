@@ -28,6 +28,8 @@ Rectangle {
                                   * JamiTheme.preferredMarginSize
     property string errorText: ""
 
+    property bool spinnerTriggered: false
+
     signal showThisPage
 
     function clearAllTextFields() {
@@ -166,6 +168,33 @@ Rectangle {
             onAccepted: connectBtn.forceActiveFocus()
         }
 
+        Button {
+            Layout.alignment: Qt.AlignHCenter
+
+            padding: 0
+
+            icon.width: JamiTheme.iconButtonMedium
+            icon.height: JamiTheme.iconButtonMedium
+            icon.source: JamiResources.jami_rolling_spinner_gif
+
+            enabled: false
+            background: null
+
+            RotationAnimator {
+                id: rotationAnimator
+                target: parent
+                running: root.spinnerTriggered
+                from: 0
+                to: 360
+                duration: 1000
+                loops: Animation.Infinite
+            }
+
+            rotation: root.spinnerTriggered ? rotation : 0
+
+            visible: root.spinnerTriggered
+        }
+
         NewMaterialButton {
             id: connectBtn
 
@@ -177,7 +206,7 @@ Rectangle {
 
             implicitHeight: JamiTheme.newMaterialButtonSetupHeight
 
-            enabled: accountManagerEdit.modifiedTextFieldContent.length !== 0 && usernameManagerEdit.modifiedTextFieldContent.length !== 0 && passwordManagerEdit.modifiedTextFieldContent.length !== 0 && !spinnerTriggered
+            enabled: accountManagerEdit.modifiedTextFieldContent.length !== 0 && usernameManagerEdit.modifiedTextFieldContent.length !== 0 && passwordManagerEdit.modifiedTextFieldContent.length !== 0 && !root.spinnerTriggered
 
             filledButton: true
             text: JamiStrings.connect
@@ -189,7 +218,7 @@ Rectangle {
             onClicked: {
                 if (connectBtn.focus)
                     accountManagerEdit.forceActiveFocus();
-                spinnerTriggered = true;
+                root.spinnerTriggered = true;
                 WizardViewStepModel.accountCreationInfo = JamiQmlUtils.setUpAccountCreationInputPara({
                         "username": usernameManagerEdit.modifiedTextFieldContent,
                         "password": passwordManagerEdit.modifiedTextFieldContent,
@@ -223,7 +252,7 @@ Rectangle {
         anchors.top: parent.top
         anchors.margins: 20
 
-        visible: !connectBtn.spinnerTriggered
+        visible: !root.spinnerTriggered
 
         iconSize: JamiTheme.iconButtonMedium
         iconSource: JamiResources.bidirectional_arrow_back_24dp_svg
