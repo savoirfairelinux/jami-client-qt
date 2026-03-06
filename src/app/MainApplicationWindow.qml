@@ -150,6 +150,20 @@ Window {
     // Tracks whether the main view has finished loading.
     readonly property bool mainViewReady: mainViewLoader.status === Loader.Ready
 
+    // ── Auto PiP pop-out ──────────────────────────────────────────────────────
+    // Track the previous conversation so we can pop it out if it had a call.
+    property string _prevConvForAutoPip: ""
+    property string _prevAccountForAutoPip: ""
+
+    onVisibilityChanged: function(visibility) {
+        if (visibility === Window.Minimized
+                && AppSettingsManager.getValue(Settings.AutoPipCallOnNavAway)
+                && !CallPipWindowManager.isPipActive
+                && CurrentConversation.hasCall) {
+            CallPipWindowManager.popOutCall(CurrentConversation.id, CurrentAccount.id);
+        }
+    }
+
     function cleanupMainView() {
         // Save the main view window size if loading anything else.
         layoutManager.saveWindowSettings();
@@ -248,10 +262,6 @@ Window {
         // Handle a start URI if set as start option.
         MainApplication.handleUriAction();
     }
-
-    // Eagerly instantiate CallPipWindowManager so it starts monitoring
-    // conversation changes for active calls as soon as the app window opens.
-    readonly property bool _pipActive: CallPipWindowManager.isPipActive
 
     Component.onCompleted: {
         // QWK: setup
@@ -486,6 +496,21 @@ Window {
 
     Connections {
         target: LRCInstance
+
+        function onSelectedConvUidChanged() {
+            const newConvId = LRCInstance.selectedConvUid;
+            if (AppSettingsManager.getValue(Settings.AutoPipCallOnNavAway)
+                    && appWindow._prevConvForAutoPip.length > 0
+                    && appWindow._prevConvForAutoPip !== newConvId
+                    && !CallPipWindowManager.isPipActive
+                    && CallPipWindowManager.convHasActiveCall(appWindow._prevConvForAutoPip,
+                                                              appWindow._prevAccountForAutoPip)) {
+                CallPipWindowManager.popOutCall(appWindow._prevConvForAutoPip,
+                                                appWindow._prevAccountForAutoPip);
+            }
+            appWindow._prevConvForAutoPip = newConvId;
+            appWindow._prevAccountForAutoPip = LRCInstance.currentAccountId;
+        }
 
         function onRestoreAppRequested() {
             requestActivate();

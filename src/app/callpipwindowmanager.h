@@ -66,6 +66,9 @@ public:
     // Raises the existing window if the same call is already in PiP.
     Q_INVOKABLE void popOutCall(const QString& convId, const QString& accountId);
 
+    // Returns true if the given conversation has an active call.
+    Q_INVOKABLE bool convHasActiveCall(const QString& convId, const QString& accountId) const;
+
     // Close the PiP window and select the call's conversation in the main window,
     // effectively "reabsorbing" the call view back into the main window.
     Q_INVOKABLE void reabsorb();
@@ -86,7 +89,6 @@ Q_SIGNALS:
     void pipIsCapturingChanged();
 
 private Q_SLOTS:
-    void onSelectedConvChanged();
     void onCallStatusChanged(const QString& accountId, const QString& callId, int code);
     void onCallInfosChanged(const QString& accountId, const QString& callId);
     void onAccountChanged();
@@ -106,9 +108,6 @@ private:
     QString pipCallId_;
     bool pipIsAudioMuted_ {false};
     bool pipIsCapturing_ {false};
-
-    // Previous selected conversation, used to detect when we navigate away from a call.
-    QString prevSelectedConvId_;
 
     // Connection handles for the active call model, so we can disconnect on cleanup.
     QMetaObject::Connection callModelConnection_;

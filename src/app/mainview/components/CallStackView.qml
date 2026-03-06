@@ -102,7 +102,8 @@ Item {
         sourceComponent: {
             // Yield to the PiP window: unload to avoid two VideoView
             // instances rendering the same call stream simultaneously.
-            if (!root.isPipView && CallPipWindowManager.isPipActive)
+            if (!root.isPipView && CallPipWindowManager.isPipActive
+                    && CallPipWindowManager.pipConvId === CurrentConversation.id)
                 return null;
             switch (CurrentCall.status) {
             case Call.Status.IN_PROGRESS:
