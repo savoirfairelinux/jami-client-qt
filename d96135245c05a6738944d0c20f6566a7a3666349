@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a70deeb3_70a12c4c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1143
+      },
+      "writtenOn": "2026-03-06T04:39:41Z",
+      "side": 1,
+      "message": "Rebased; should be merged at the same time as https://review.jami.net/c/jami-daemon/+/33144.",
+      "revId": "d96135245c05a6738944d0c20f6566a7a3666349",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
