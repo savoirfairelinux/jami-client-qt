@@ -33,6 +33,10 @@ Row {
     // Override this for secondary windows (e.g. pop-out conversations).
     property var targetWindow: appWindow
 
+    // Set to true when the group sits on a permanently dark background
+    // (e.g. the PiP window toolbar) so icons are always rendered in white.
+    property bool forceLightIcons: false
+
     component SystemButton : QWKButton {
         height: parent.height
     }
@@ -41,6 +45,7 @@ Row {
 
     SystemButton {
         id: minButton
+        forceLightIcons: root.forceLightIcons
         Accessible.name: JamiStrings.minimize
         Accessible.role: Accessible.Button
         source: JamiResources.window_bar_minimize_svg
@@ -49,6 +54,7 @@ Row {
 
     SystemButton {
         id: maxButton
+        forceLightIcons: root.forceLightIcons
         Accessible.name: JamiStrings.maximize
         Accessible.role: Accessible.Button
         source: targetWindow.visibility === Window.Maximized ?
@@ -61,6 +67,7 @@ Row {
 
     SystemButton {
         id: closeButton
+        forceLightIcons: root.forceLightIcons
         Accessible.name: JamiStrings.closeApplication
         Accessible.role: Accessible.Button
         source: JamiResources.window_bar_close_svg
