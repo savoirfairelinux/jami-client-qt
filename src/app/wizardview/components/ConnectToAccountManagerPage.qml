@@ -38,6 +38,7 @@ Rectangle {
 
     function errorOccurred(errorMessage) {
         errorText = errorMessage;
+        spinnerTriggered = false;
     }
 
     Connections {
@@ -169,6 +170,8 @@ Rectangle {
         }
 
         Button {
+            id: spinnerIcon
+
             Layout.alignment: Qt.AlignHCenter
 
             padding: 0
@@ -176,23 +179,22 @@ Rectangle {
             icon.width: JamiTheme.iconButtonMedium
             icon.height: JamiTheme.iconButtonMedium
             icon.source: JamiResources.jami_rolling_spinner_gif
+            icon.color: JamiTheme.tintedBlue
 
-            enabled: false
+            visible: root.spinnerTriggered
+
             background: null
+            enabled: false
 
             RotationAnimator {
                 id: rotationAnimator
-                target: parent
+                target: spinnerIcon
                 running: root.spinnerTriggered
                 from: 0
                 to: 360
                 duration: 1000
                 loops: Animation.Infinite
             }
-
-            rotation: root.spinnerTriggered ? rotation : 0
-
-            visible: root.spinnerTriggered
         }
 
         NewMaterialButton {
