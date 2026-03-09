@@ -39,6 +39,9 @@ Item {
 
     property bool inSettings: viewCoordinator.currentViewName === "SettingsView"
 
+    readonly property real popupTopPadding: JamiQmlUtils.isMacOS26OrLater
+        ? JamiTheme.accountPopupTopPaddingMac : 0
+
     function openAccountComboBox() {
         if (accountComboBoxPopup.opened)
             accountComboBoxPopup.close();
@@ -165,8 +168,11 @@ Item {
                     y: contentRect.height - 1
                     x: UtilsAdapter.isRTL ? -(contentRect.width - accountComboBox.width) : 0
                     width: contentRect.width
-                    height: Math.min(contentItem.implicitHeight, accountComboBox.Window.height
-                                     - topMargin - bottomMargin)
+                    // Constrain popup height to the available space within the
+                    // side panel
+                    height: Math.min(contentItem.implicitHeight,
+                                     root.y + accountComboBox.y
+                                     - root.popupTopPadding)
 
                     padding: 0
                     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
