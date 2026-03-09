@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02d5109e_f13708e1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-03-09T18:31:10Z",
+      "side": 1,
+      "message": "- squash with previous\n- always frameless might be best\n- homogenize pip call window overlay with callview in terms of button visibility and style\n- replace \"return-to-call\" button\n- improve aspect ratio, or square default",
+      "revId": "7528ab052cf6cae50bfc012d560acb91b8ae5272",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
