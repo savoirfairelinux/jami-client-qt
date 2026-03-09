@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "394013b6_2f334d6d",
+        "filename": "src/app/MainApplicationWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-03-09T18:19:06Z",
+      "side": 0,
+      "message": "this should use visibility, or visibility shouldn\u0027t be used in layout manager",
+      "range": {
+        "startLine": 174,
+        "startChar": 4,
+        "endLine": 174,
+        "endChar": 97
+      },
+      "revId": "a6c74fe9124e796537d0d1a1dd64754f9a3f055c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
