@@ -22,6 +22,9 @@ SelectableListProxyModel::SelectableListProxyModel(QAbstractListModel* model, QO
     , currentFilteredRow_(-1)
     , selectedSourceIndex_(QModelIndex())
 {
+    connect(this, &QAbstractItemModel::modelReset, this, &SelectableListProxyModel::countChanged);
+    connect(this, &QAbstractItemModel::rowsInserted, this, &SelectableListProxyModel::countChanged);
+    connect(this, &QAbstractItemModel::rowsRemoved, this, &SelectableListProxyModel::countChanged);
     bindSourceModel(model);
 }
 
