@@ -158,7 +158,7 @@
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="43"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="772"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="773"/>
         <source>Jami daemon (jamid) reconnection is in progress. Please wait…</source>
         <translation>Jami (jamid) palvelun yhdistäminen on käynnissä. Odota hetkinen…</translation>
     </message>
@@ -248,16 +248,6 @@
         <translation>Todennus vaaditaan</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="90"/>
-        <source>Your session has expired or been revoked on this device. Please enter your password.</source>
-        <translation>Istunto on vanhentunut tai peruutettu tällä laitteella. Anna salasanasi.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="91"/>
-        <source>JAMS server</source>
-        <translation>JAMS palvelin</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="92"/>
         <source>Authenticate</source>
         <translation>Todennus</translation>
@@ -294,11 +284,6 @@
         <translation>Salli tuntemattomien henkilöiden puhelut</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="102"/>
-        <source>Convert your account into a rendezvous point</source>
-        <translation>Muunna sinun tunnus tapaamispaikaksi</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="104"/>
         <source>Enable custom ringtone</source>
         <translation>Aseta oma soittoääni</translation>
@@ -307,11 +292,6 @@
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="105"/>
         <source>Select custom ringtone</source>
         <translation>Valitse oma soittoääni</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="106"/>
-        <source>Select a new ringtone</source>
-        <translation>Valitse uusi soittoääni</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="109"/>
@@ -690,11 +670,6 @@
         <translation>Valitse videon nopeus (kuvaa sekunnissa)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="229"/>
-        <source>Enable hardware acceleration</source>
-        <translation>Kytke laitteiston kiihdytys</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="232"/>
         <source>Select screen sharing frame rate (frames per second)</source>
         <translation>Valitse näytön jakamisen taajuus (kuvaa sekunnissa)</translation>
@@ -760,11 +735,6 @@
         <translation>Nimen valitseminen on suositeltavaa. Valittua käyttäjänimeä ei voi muuttaa myöhemmin.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="428"/>
-        <source>Encrypting your account with a password is optional, and if the password is lost it CANNOT be recovered later.</source>
-        <translation>Tilin salaaminen salasanalla on valinnaista. Jos salasana katoaa, sitä EI VOI palauttaa myöhemmin.</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="438"/>
         <source>TLS</source>
         <translation>TLS</translation>
@@ -773,16 +743,6 @@
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="439"/>
         <source>UDP</source>
         <translation>UDP</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="461"/>
-        <source>Encrypt account</source>
-        <translation>Salaa tili</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="464"/>
-        <source>Back up account to a .gz file</source>
-        <translation>Varmuuskopioi tili .gz-tiedostoon</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="472"/>
@@ -845,11 +805,6 @@
         <translation>Anna tilin salasana</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="619"/>
-        <source>This account is password encrypted, enter the password to generate a PIN code.</source>
-        <translation>Tili on salattu salasanalla. Luo PIN-koodi antamalla salasana.</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="621"/>
         <source>Link new device</source>
         <translation>Linkitä uusi laite</translation>
@@ -875,164 +830,212 @@
         <translation>Jami Extension Store:sta ei ole laajennuksia tälle alustalle. Tarkista myöhemmin uudelleen.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="781"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="782"/>
         <source>Discard and restart</source>
         <translation>Hylkää ja käynnistä</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="783"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="784"/>
         <source>Show less</source>
         <translation>Näytä vähemmän</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="785"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="786"/>
         <source>Show preview</source>
         <translation>Näytä esikatselu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="786"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="787"/>
         <source>Continue editing</source>
         <translation>Jatka muokkaamista</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="789"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="790"/>
         <source>Strikethrough</source>
         <translation>Yliviivattu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="795"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="796"/>
         <source>Unordered list</source>
         <translation>Järjestämätön luettelo</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="796"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="797"/>
         <source>Ordered list</source>
         <translation>Järjestetty luettelo</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="799"/>
-        <source>Press Shift+Enter to insert a new line</source>
-        <translation>Lisää uusi rivi painamalla Shift+Enter</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="800"/>
-        <source>Press Enter to insert a new line</source>
-        <translation>Lisää uusi rivi painamalla Enter</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="815"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="816"/>
         <source>Call started</source>
         <translation>Puhelu alkoi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="819"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="820"/>
         <source>Select this device</source>
         <translation>Valitse tämä laite</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="820"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="821"/>
         <source>Select device</source>
         <translation>Valitse laite</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="825"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="826"/>
         <source>Show local video</source>
         <translation>Näytä videot</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="826"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="827"/>
         <source>Hide local video</source>
         <translation>Piilota videot</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="885"/>
-        <source>Encrypt your account with a password</source>
-        <translation>Salaa tilisi salasanalla</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="886"/>
-        <source>Customize your profile</source>
-        <translation>Muokkaa sinun profiilia</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="889"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="892"/>
         <source>Appearance</source>
         <translation>Ulkonäkö</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="906"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="909"/>
         <source>Background image</source>
         <translation>Taustakuva</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="907"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="910"/>
         <source>Select background image</source>
         <translation>Valitse taustakuva</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="908"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="911"/>
         <source>Default</source>
         <translation>Oletus</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="913"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="916"/>
         <source>Free and private sharing. &lt;a href=&quot;https://jami.net/donate/&quot;&gt;Donate&lt;/a&gt; to expand it.</source>
         <translation>Vapaa ja salainen jakaminen. &lt;a href=&quot;https://jami.net/donate/&quot;&gt;Lahjoittamalla&lt;/a&gt; voit auttaa.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="914"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="917"/>
         <source>Donate</source>
         <translation>Lahjoita</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="916"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="919"/>
         <source>Not now</source>
         <translation>Ei nyt</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="917"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="920"/>
         <source>Enable donation campaign</source>
         <translation>Lahjoituskampanja käyttöön</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="920"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="923"/>
         <source>Enter</source>
         <translation>Enter</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="921"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="924"/>
         <source>Shift+Enter</source>
         <translation>Shift+Enter</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="922"/>
-        <source>Enter or Shift+Enter to insert a new line</source>
-        <translation>Lisää uusi rivi painamalla Enter tai Shift+Enter</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="935"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="938"/>
         <source>Remote: %1</source>
         <translation>Käyttö: %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="936"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="939"/>
         <source>View</source>
         <translation>Katso</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="939"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="942"/>
         <source>Check spelling while typing</source>
         <translation>Tarkista oikeinkirjoitus kirjoittamisen aikana</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="941"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="944"/>
         <source>Text language</source>
         <translation>Tekstin kieli</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="923"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="926"/>
         <source>Text formatting</source>
         <translation>Tekstin muotoilu</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="327"/>
+        <source>%1 saved to %2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="333"/>
+        <source>Call ID</source>
+        <translation>Soitto-id</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="339"/>
+        <source>Renderer ID</source>
+        <translation>Renderöinti-id</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="378"/>
+        <source>%1 has deleted the message.</source>
+        <translation>%1 poisti viestin.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="379"/>
+        <source>%1 has deleted the media.</source>
+        <translation>%1 poisti median.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="398"/>
+        <source>Enter the management server URL</source>
+        <translation>Anna hallintapalvelimen osoite</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="399"/>
+        <source>Management server URL</source>
+        <translation>Hallintapalvelimen osoite</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="400"/>
+        <source>Enter management server credentials</source>
+        <translation>Anna hallintapalvelimen kirjautumistiedot</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="410"/>
+        <source>Choose rendezvous point name</source>
+        <translation>Valitse tapaamispaikalle nimi</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="428"/>
+        <source>Protecting the account with a password is optional, and if the password is lost it CANNOT be recovered later.</source>
+        <translation>Tilin salaaminen salasanalla on valinnaista. Jos salasana katoaa, sitä EI VOI palauttaa.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="461"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="462"/>
+        <source>Set password</source>
+        <translation>Aseta salasana</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="464"/>
+        <source>Back up the account to a .jac file</source>
+        <translation>Varmuuskopioi tili .jac-tiedostoon</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="468"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="470"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="888"/>
+        <source>Set account password</source>
+        <translation>Aseta tilin salasana</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="473"/>
+        <source>Enter nickname, surname…</source>
+        <translation>Anna lempinimi, sukunimi…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="663"/>
@@ -1105,58 +1108,58 @@
         <translation>Kaikki näytöt</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="716"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="717"/>
         <source>An error occurred while creating the account. Check credentials and try again.</source>
         <translation>Tiliä luotaessa tapahtui virhe. Tarkista kirjautumistiedot ja yritä uudelleen.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="728"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="729"/>
         <source>Clear text</source>
         <translation>Tyhjennä teksti</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="730"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="731"/>
         <source>Search results</source>
         <translation>Hakutulokset</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="733"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="734"/>
         <source>Decline invitation</source>
         <translation>Hylkää kutsu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="734"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="735"/>
         <source>Accept invitation</source>
         <translation>Hyväksy kutsu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="740"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="741"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="747"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="748"/>
         <source>Leave</source>
         <translation>Poistu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="749"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="750"/>
         <source>Unblock</source>
         <translation>Poista esto</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="756"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="757"/>
         <source>Mute participant</source>
         <translation>Mykistä osallistuja</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="757"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="758"/>
         <source>Unmute participant</source>
         <translation>Poista mykistys</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="42"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="773"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="774"/>
         <source>An error occurred while reconnecting to the Jami daemon (jamid).
 The application will now exit.</source>
         <translation>Tapahtui virhe (jamid) palvelun yhdistämisessä.
@@ -1204,139 +1207,144 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
         <translation>Hyväksy siirtoraja (Mt)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="802"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="803"/>
         <source>Don&apos;t send</source>
         <translation>Älä lähetä</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="813"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="814"/>
         <source>Join with audio</source>
         <translation>Liity äänellä</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="814"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="815"/>
         <source>Join with video</source>
         <translation>Liity videolla</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="817"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="818"/>
         <source>Current host for this group conversation seems unreachable. Do you want to host the call?</source>
         <translation>Tämän keskustelun nykyinen isäntä ei näytä olevan tavoitettavissa. Haluatko isännöidä puhelua?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="818"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="819"/>
         <source>Select dedicated device for hosting future calls in this group conversation. If not set, the host will be the device starting a call.</source>
         <translation>Valitse erillinen laite tulevien puheluiden isännöintiä varten tässä keskustelussa. Jos sitä ei ole asetettu, isäntä on laite, joka aloittaa puhelun.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="829"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="830"/>
         <source>%1 sent you a conversation invitation.</source>
         <translation>%1 lähetti sinulle kutsun.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="830"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="831"/>
         <source>Hello,
 Do you want to join the conversation?</source>
         <translation>Hei,
 Haluatko liittyä keskusteluun?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="831"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="832"/>
         <source>You have accepted
 the conversation invitation.</source>
         <translation>Olet hyväksynyt
 keskustelukutsun.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="832"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="833"/>
         <source>Waiting for %1
 to connect to synchronize the conversation…</source>
         <translation>Odotetaan, että %1
 synkronoi keskustelun…</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="837"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="838"/>
         <source>Group name</source>
         <translation>Ryhmän nimi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="838"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="839"/>
         <source>Contact name</source>
         <translation>Yhteystiedon nimi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="839"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="840"/>
         <source>Add description</source>
         <translation>Lisää kuvaus</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="847"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="848"/>
+        <source>Choose color</source>
+        <translation>Valitse väri</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="849"/>
         <source>Color</source>
         <translation>Väri</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="841"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="851"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="843"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="853"/>
         <source>Conversation type</source>
         <translation>Keskustelun tyyppi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="856"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="858"/>
         <source>Block member</source>
         <translation>Estä jäsen</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="857"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="859"/>
         <source>Unblock member</source>
         <translation>Poista jäsenen esto</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="915"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="918"/>
         <source>If you enjoy using Jami and believe in our mission, do you want to make a donation?</source>
         <translation>Jos pidät Jamista ja uskot tehtäväämme, Haluatko tehdä lahjoituksen?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="926"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="929"/>
         <source>Connected</source>
         <translation>Yhdistetty</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="927"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="930"/>
         <source>Connecting TLS</source>
         <translation>Yhdistetään TLS</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="928"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="931"/>
         <source>Connecting ICE</source>
         <translation>Yhdistetään ICE</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="929"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="932"/>
         <source>Connecting</source>
         <translation>Yhdistetään</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="930"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="933"/>
         <source>Waiting</source>
         <translation>Odottaa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="931"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="934"/>
         <source>Contact</source>
         <translation>Yhteystieto</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="932"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="935"/>
         <source>Connection</source>
         <translation>Yhteys</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="933"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="936"/>
         <source>Channels</source>
         <translation>Kanavat</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="934"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="937"/>
         <source>Copy all data</source>
         <translation>Kopioi kaikki tiedot</translation>
     </message>
@@ -1351,100 +1359,95 @@ synkronoi keskustelun…</translation>
         <translation>Tallenna kaappaukset...</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="722"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="723"/>
         <source>Share freely and privately with Jami</source>
         <translation>Jaa vapaasti ja yksityisesti Jami&apos;lla</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="768"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="769"/>
         <source>Add</source>
         <translation>Lisää</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="777"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="778"/>
         <source>more emojis</source>
         <translation>lisää hymiöitä</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="803"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="804"/>
         <source>Reply to</source>
         <translation>Vastaa...</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="804"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="805"/>
         <source>In reply to</source>
         <translation>Vastauksena...</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="807"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="808"/>
         <source>Reply</source>
         <translation>Vastaa</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="504"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="810"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="811"/>
         <source>Edit</source>
         <translation>Muokkaa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="811"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="812"/>
         <source>Edited</source>
         <translation>Muokattu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="812"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="813"/>
         <source>Join call</source>
         <translation>Liity puheluun</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="816"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="817"/>
         <source>A call is in progress. Do you want to join the call?</source>
         <translation>Puhelu on meneillään. Haluatko liittyä?</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="821"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="822"/>
         <source>Remove current device</source>
         <translation>Poista nykyinen laite</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="822"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="823"/>
         <source>Host only this call</source>
         <translation>Isännöi vain tämä puhelu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="823"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="824"/>
         <source>Host this call</source>
         <translation>Isännöi tämä puhelu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="824"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="825"/>
         <source>Make me the default host for future calls</source>
         <translation>Tee minusta tulevien puheluiden oletusisäntä</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="843"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="845"/>
         <source>Mute conversation</source>
         <translation>Mykistä keskustelu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="848"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="850"/>
         <source>Default host (calls)</source>
         <translation>Oletusisäntä (puhelut)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="852"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="854"/>
         <source>None</source>
         <translation>Ei mitään</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="865"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="867"/>
         <source>Tip</source>
         <translation>Vihje</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="867"/>
-        <source>Add a profile picture and nickname to complete your profile</source>
-        <translation>Viimeistele profiili lisäämällä profiilikuva ja lempinimi</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="201"/>
@@ -1710,6 +1713,26 @@ synkronoi keskustelun…</translation>
         <translation>Yhdistämisessä tapahtui todennusvirhe. Tarkista kirjautumistiedot ja yritä uudelleen.</translation>
     </message>
     <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="90"/>
+        <source>The session has expired or has been revoked on this device. Please enter the account password.</source>
+        <translation>Istunto on vanhentunut tai peruutettu tällä laitteella. Anna tilin salasana.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="91"/>
+        <source>Management server</source>
+        <translation>Hallintapalvelin</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="102"/>
+        <source>Convert account into rendezvous point</source>
+        <translation>Muunna tili tapaamispaikaksi</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="106"/>
+        <source>Select new ringtone</source>
+        <translation>Valitse uusi soittoääni</translation>
+    </message>
+    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="113"/>
         <source>Bring the application to the front for incoming calls</source>
         <translation>Tuo sovellus etusivulle puheluita varten</translation>
@@ -1718,6 +1741,11 @@ synkronoi keskustelun…</translation>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="114"/>
         <source>Decline incoming calls when already in a call</source>
         <translation>Hylkää saapuvat puhelut kun puhelu on jo auki</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="280"/>
+        <source>Public group</source>
+        <translation>Julkinen ryhmä</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="292"/>
@@ -1773,6 +1801,11 @@ synkronoi keskustelun…</translation>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="303"/>
         <source>Contact details</source>
         <translation>Henkilön tiedot</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="307"/>
+        <source>Show keypad</source>
+        <translation>Näytä näppäimistö</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="308"/>
@@ -1860,11 +1893,6 @@ synkronoi keskustelun…</translation>
         <translation>Kaappaus tallennettu %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="327"/>
-        <source>File saved to %1</source>
-        <translation>Tiedosto tallennettu %1</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="330"/>
         <source>Renderers information</source>
         <translation>Renderöinti tiedot</translation>
@@ -1880,11 +1908,6 @@ synkronoi keskustelun…</translation>
         <translation>Peer-numero</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="333"/>
-        <source>Call id</source>
-        <translation>Soitto-id</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="334"/>
         <source>Sockets</source>
         <translation>Portit</translation>
@@ -1895,6 +1918,7 @@ synkronoi keskustelun…</translation>
         <translation>Video koodekki</translation>
     </message>
     <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="229"/>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="336"/>
         <source>Hardware acceleration</source>
         <translation>Laitteistokiihdytys</translation>
@@ -1908,11 +1932,6 @@ synkronoi keskustelun…</translation>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="338"/>
         <source>Audio codec</source>
         <translation>Audio koodekki</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="339"/>
-        <source>Renderer id</source>
-        <translation>Renderöinti id</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="340"/>
@@ -2010,16 +2029,6 @@ synkronoi keskustelun…</translation>
         <translation>Ei verkkoyhteyttä</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="378"/>
-        <source>%1 deleted a message</source>
-        <translation>%1 poisti viestin</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="379"/>
-        <source>%1 deleted a media</source>
-        <translation>%1 poisti median</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="386"/>
         <source>Jump to</source>
         <translation>Hyppää...</translation>
@@ -2045,21 +2054,6 @@ synkronoi keskustelun…</translation>
         <translation>Useat kirjoittavat…</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="398"/>
-        <source>Enter the Jami Account Management Server (JAMS) URL</source>
-        <translation>Anna Jami Account Management Server (JAMS) osoite</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="399"/>
-        <source>Jami Account Management Server URL</source>
-        <translation>Jami Account Management Server osoite</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="400"/>
-        <source>Enter JAMS credentials</source>
-        <translation>Anna JAMS-tunnistetiedot</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="401"/>
         <source>Connect</source>
         <translation>Yhdistä</translation>
@@ -2071,17 +2065,14 @@ synkronoi keskustelun…</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="405"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="411"/>
         <source>Choose name</source>
         <translation>Valitse nimi</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="406"/>
-        <source>Choose username</source>
-        <translation>Valitse käyttäjänimi</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="407"/>
-        <source>Choose a username</source>
+        <source>Choose username</source>
         <translation>Valitse käyttäjänimi</translation>
     </message>
     <message>
@@ -2167,13 +2158,7 @@ synkronoi keskustelun…</translation>
         <translation>Tilin salasanaa asetettaessa tapahtui virhe.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="468"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="470"/>
-        <source>Encrypt account with password</source>
-        <translation>Salaa tili salasanalla</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="942"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="945"/>
         <source>Spell checker</source>
         <translation>Oikoluvun tarkistus</translation>
     </message>
@@ -2323,11 +2308,6 @@ synkronoi keskustelun…</translation>
         <translation>Yksityinen ryhmä</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="280"/>
-        <source>Public Group</source>
-        <translation>Julkinen ryhmä</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="294"/>
         <source>Do you want to leave this conversation?</source>
         <translation>Haluatko poistua keskustelusta?</translation>
@@ -2336,11 +2316,6 @@ synkronoi keskustelun…</translation>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="306"/>
         <source>DTMF input panel</source>
         <translation>DTMF-kirjoitusalue</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="307"/>
-        <source>Open keypad</source>
-        <translation>Avaa näppäimistö</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="318"/>
@@ -2410,16 +2385,6 @@ Muiden jäsenten sijainnit voidaan edelleen vastaanottaa.</translation>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="383"/>
         <source>This conversation has ended.</source>
         <translation>Keskustelu on päättynyt.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="410"/>
-        <source>Choose a name for your rendezvous point</source>
-        <translation>Valitse tapaamispaikan nimi</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="411"/>
-        <source>Choose a name</source>
-        <translation>Valitse nimi</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="412"/>
@@ -2522,11 +2487,6 @@ Muiden jäsenten sijainnit voidaan edelleen vastaanottaa.</translation>
         <translation>Jami-tili luodaan ja tallennetaan paikallisesti vain tälle laitteelle. Tilin avaimet on pakatussa tiedostossa ja pääsy tähän voidaan valinnaisesti suojata salasanalla.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="473"/>
-        <source>Enter a nickname, surname…</source>
-        <translation>Anna lempinimi, sukunimi…</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="474"/>
         <source>Use this account on other devices</source>
         <translation>Käytä tiliä muilla laitteilla</translation>
@@ -2535,6 +2495,11 @@ Muiden jäsenten sijainnit voidaan edelleen vastaanottaa.</translation>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="475"/>
         <source>This account is created and stored locally, if you want to use it on another device you have to link the new device to this account.</source>
         <translation>Tili luodaan ja tallennetaan paikallisesti. Jos haluat käyttää sitä toisessa laitteessa, sinun on linkitettävä uusi laite tähän tiliin.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="486"/>
+        <source>Link new device to this account</source>
+        <translation>Linkitä uusi laite tähän tiliin</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="488"/>
@@ -2575,6 +2540,16 @@ Muiden jäsenten sijainnit voidaan edelleen vastaanottaa.</translation>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="505"/>
         <source>Device name:</source>
         <translation>Laitteen nimi:</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="507"/>
+        <source>Device ID</source>
+        <translation>Laite id</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="513"/>
+        <source>Select folder</source>
+        <translation>Valitse kansio</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="525"/>
@@ -2669,6 +2644,16 @@ Muiden jäsenten sijainnit voidaan edelleen vastaanottaa.</translation>
         <translation>Näytä lokit</translation>
     </message>
     <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="610"/>
+        <source>If the account is password protected, please fill the following field.</source>
+        <translation>Jos tili on suojattu salasanalla, täytä seuraava kenttä.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="619"/>
+        <source>This account is password protected, enter the password to generate PIN code.</source>
+        <translation>Tili on salattu salasanalla. Luo PIN-koodi antamalla salasana.</translation>
+    </message>
+    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="622"/>
         <source>Connecting to the new device…</source>
         <translation>Yhdistetään uuteen laitteeseen…</translation>
@@ -2720,7 +2705,7 @@ Kun olet valmis, skannaa QR-koodi.</translation>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="649"/>
         <source>Edit profile picture</source>
-        <translation type="unfinished"/>
+        <translation>Muokkaa profiilikuvaa</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="652"/>
@@ -2793,414 +2778,454 @@ Kun olet valmis, skannaa QR-koodi.</translation>
         <translation>Lisätietoja</translation>
     </message>
     <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="705"/>
+        <source>Share account</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="714"/>
+        <source>Connect to management server</source>
+        <translation>Yhteyden muodostaminen hallintapalvelimeen</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="715"/>
+        <source>Create account from management server</source>
+        <translation>Luo tili hallintapalvelimelta</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="716"/>
+        <source>Configure SIP account</source>
+        <translation>Määritä SIP-tili</translation>
+    </message>
+    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="718"/>
+        <source>Create rendezvous point</source>
+        <translation>Luo tapaamispaikka</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="719"/>
         <source>Create Jami account</source>
         <translation>Luo Jami-tili</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="758"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="759"/>
         <source>Maximize participant</source>
         <translation>Laajenna osallistuja</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="759"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="760"/>
         <source>Minimize participant</source>
         <translation>Pienennä osallistuja</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="760"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="761"/>
         <source>Disconnect participant</source>
         <translation>Katkaise osallistuja</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="779"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="780"/>
         <source>Audio message</source>
         <translation>Ääniviesti</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="780"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="781"/>
         <source>Video message</source>
         <translation>Videoviesti</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="782"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="783"/>
         <source>Show more</source>
         <translation>Näytä lisää</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="787"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="788"/>
         <source>Bold</source>
         <translation>Lihavointi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="788"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="789"/>
         <source>Italic</source>
         <translation>Kursivointi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="790"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="791"/>
         <source>Title</source>
         <translation>Otsikko</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="791"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="792"/>
         <source>Heading</source>
         <translation>Otsikko</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="792"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="793"/>
         <source>Link</source>
         <translation>Yhdistä</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="793"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="794"/>
         <source>Code</source>
         <translation>Koodi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="794"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="795"/>
         <source>Quote</source>
         <translation>Lainaus</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="797"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="798"/>
         <source>Show formatting</source>
         <translation>Näytä muotoilu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="798"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="799"/>
         <source>Hide formatting</source>
         <translation>Piilottava muotoilu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="805"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="800"/>
+        <source>Press Shift+Enter to insert new line</source>
+        <translation>Lisää uusi rivi painamalla Shift+Enter</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="801"/>
+        <source>Press Enter to insert new line</source>
+        <translation>Lisää uusi rivi painamalla Enter</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="806"/>
         <source>%1 replied to</source>
         <translation>%1 vastasi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="806"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="807"/>
         <source>you</source>
         <translation>sinä</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="809"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="810"/>
         <source>Send a message to %1 in order to add them as a contact</source>
         <translation>Lähetä viesti %1, jotta voit lisätä hänet kontaktiksi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="835"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="836"/>
         <source>%L1 members</source>
         <translation>%L1 jäsentä</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="840"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="841"/>
+        <source>No description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="842"/>
         <source>Members</source>
         <translation>Jäsenet</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="844"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="846"/>
         <source>Unmute conversation</source>
         <translation>Poista mykistys</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="846"/>
-        <source>Choose a color</source>
-        <translation>Valitse väri</translation>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="949"/>
+        <source>No dictionaries available.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="849"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="956"/>
+        <source>Search or add</source>
+        <translation>Hae tai lisää</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="962"/>
+        <source>Add comment</source>
+        <translation>Lisää kommentti</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="963"/>
+        <source>Share with…</source>
+        <translation>Jaa...</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="966"/>
+        <source>Add contact</source>
+        <translation>Lisää henkilö</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="967"/>
+        <source>No conversations found.</source>
+        <translation>Ei keskusteluja.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="968"/>
+        <source>No contacts found.</source>
+        <translation>Ei löytynyt henkilöitä.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="851"/>
         <source>Select default host</source>
-        <translation type="unfinished"/>
+        <translation>Valitse oletusisäntä</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="850"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="852"/>
         <source>Change default host</source>
-        <translation type="unfinished"/>
+        <translation>Vaihda oletusisäntä</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="876"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="878"/>
         <source>Share your Jami identifier in order to be contacted more easily!</source>
         <translation>Jaa Jami-tunnuksesi, jotta sinuun saa helpommin yhteyttä!</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="877"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="879"/>
         <source>Jami identity</source>
         <translation>Jami-identiteetti</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="878"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="880"/>
         <source>Show fingerprint</source>
         <translation>Näytä sormenjäljet</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="879"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="881"/>
+        <source>Hide fingerprint</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="882"/>
         <source>Show registered name</source>
         <translation>Näytä rekisteröity nimi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="882"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="885"/>
         <source>Enabling your account allows you to be contacted on Jami</source>
         <translation>Kun otat tilin käyttöön, sinuun voidaan ottaa yhteyttä Jami&apos;ssa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="892"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="895"/>
         <source>Experimental</source>
         <translation>Kokeilu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="895"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="898"/>
         <source>Ringtone</source>
         <translation>Soittoääni</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="898"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="901"/>
         <source>Rendezvous point</source>
         <translation>Tapaamispaikka</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="901"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="904"/>
         <source>Moderation</source>
         <translation>Valvonta</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="904"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="907"/>
         <source>Theme</source>
         <translation>Teema</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="905"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="908"/>
         <source>Text zoom level</source>
         <translation>Tekstin suurennustaso</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="909"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="912"/>
         <source>Blur background image</source>
         <translation>Sumenna taustakuva</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="910"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="913"/>
         <source>Normalize background image contrast</source>
         <translation>Taustakuvan kontrasti</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="943"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="925"/>
+        <source>Enter or Shift+Enter to insert new line</source>
+        <translation>Lisää uusi rivi painamalla Enter tai Shift+Enter</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="946"/>
         <source>Search text languages</source>
         <translation>Hae kieli</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="944"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="947"/>
         <source>Search for available text languages</source>
         <translation>Hae käytettävissä olevia kieliä</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="945"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="948"/>
         <source>No dictionary found for %1.</source>
         <translation>Sanastoa ei löytynyt %1 :lle.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="946"/>
-        <source>No dictionary is available.</source>
-        <translation>Sanastoa ei ole saatavilla.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="947"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="950"/>
         <source>Dictionary manager</source>
         <translation>Sanasto</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="948"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="951"/>
         <source>An error occurred while downloading the %1 dictionary.</source>
         <translation>Sanaston %1 latauksessa tapahtui virhe.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="949"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="952"/>
         <source>Show installed dictionaries</source>
         <translation>Näytä asennetut sanastot</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="950"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="953"/>
         <source>Only show dictionaries that are currently installed</source>
         <translation>Näytä sanastot, jotka on asennettu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="953"/>
-        <source>Search/add</source>
-        <translation>Hae/lisää</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="956"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="959"/>
         <source>This conversation has no files.</source>
         <translation>Keskustelussa ei ole tiedostoja.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="959"/>
-        <source>Add a comment</source>
-        <translation>Lisää kommentti</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="960"/>
-        <source>Share with...</source>
-        <translation>Jaa...</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="963"/>
-        <source>Add a contact</source>
-        <translation>Lisää yhteystieto</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="964"/>
-        <source>It&apos;s a ghost town here!</source>
-        <translation>Täällä on hiljaista!</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="965"/>
-        <source>No contacts to choose from!</source>
-        <translation>Ei henkilöitä, joista valita!</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="968"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="971"/>
         <source>Press enter to switch to this account</source>
         <translation>Siirry tilille painamalla Enter</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="969"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="972"/>
         <source>Display your QR code to allow other users to scan it and add you as a contact</source>
         <translation>Näytä QR-koodisi, jotta muut käyttäjät voivat skannata ja lisätä sinut heidän yhteystietoihinsa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="970"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="973"/>
         <source>Account list</source>
         <translation>Tililuettelo</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="971"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="974"/>
         <source>Use arrows to switch between available account</source>
         <translation>Vaihda tilien välillä nuolilla</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="972"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="975"/>
         <source>Select the user interface language</source>
         <translation>Valitse käyttöliittymän kieli</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="973"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="976"/>
         <source>Go back to the previous page</source>
         <translation>Palaa edelliselle sivulle</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="974"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="977"/>
         <source>Advice Box</source>
         <translation>Neuvonta</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="975"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="978"/>
         <source>Back button</source>
         <translation>Takaisin-painike</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="976"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="979"/>
         <source>Open the advice popup that contains information about Jami</source>
         <translation>Avaa Jamia koskevia neuvoja</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="977"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="980"/>
         <source>More</source>
         <translation>Lisää</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="978"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="981"/>
         <source>Press to %1</source>
         <translation>Paina %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="979"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="982"/>
         <source>Press to toggle %1 (%2)</source>
         <translation>Vaihda painamalla %1 (%2)</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="980"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="983"/>
         <source>active</source>
         <translation>aktiivinen</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="981"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="984"/>
         <source>inactive</source>
         <translation>poissa</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="982"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="985"/>
         <source>Minimize application</source>
         <translation>Pienennä sovellus</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="983"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="986"/>
         <source>Maximize application</source>
         <translation>Maksimoi sovellus</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="984"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="987"/>
         <source>Close application</source>
         <translation>Sulje sovellus</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="985"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="988"/>
         <source>Dismiss this tip</source>
         <translation>Ohita tämä vihje</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="986"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="989"/>
         <source>Tips to help you use Jami more effectively</source>
         <translation>Vihjeitä Jamin käyttöön</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="987"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="990"/>
         <source>Show more messaging options</source>
         <translation>Näytä lisää viestintäasetuksia</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="988"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="991"/>
         <source>Open a menu that allows you to send voice and video messages as well as sharing your location</source>
         <translation>Avaa valikko, josta voi lähettää ääniviestejä tai videoa, sekä jakaa sijaintisi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="989"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="992"/>
         <source>Conversation messages list. Use arrow keys to navigate through messages.</source>
         <translation>Viestiluettelo. Voit selata viestejä nuolinäppäimillä.</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="990"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="993"/>
         <source>Data transfer</source>
         <translation>Tiedonsiirto</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="991"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="994"/>
         <source>Status</source>
         <translation>Tilanne</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="992"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="995"/>
         <source>Read by</source>
         <translation>Lukenut</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="993"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="996"/>
         <source>Currently selected: %1</source>
         <translation>Valittuna: %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="994"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="997"/>
         <source>%1 has been selected for %2</source>
         <translation>%1 valittuna kohteeseen %2</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="995"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="998"/>
         <source>Available option for %1</source>
         <translation>Vaihtoehto kohteelle %1</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="462"/>
-        <source>Set a password</source>
-        <translation>Aseta salasana</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="463"/>
@@ -3234,6 +3259,7 @@ Kun olet valmis, skannaa QR-koodi.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="469"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="889"/>
         <source>Customize profile</source>
         <translation>Muokkaa profiilia</translation>
     </message>
@@ -3253,30 +3279,15 @@ Kun olet valmis, skannaa QR-koodi.</translation>
         <translation>Identiteetti</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="486"/>
-        <source>Link a new device to this account</source>
-        <translation>Linkitä uusi laite tähän tiliin</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="487"/>
         <source>Exporting account…</source>
         <translation>Viedään tiliä...</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="507"/>
-        <source>Device Id</source>
-        <translation>Laite id</translation>
-    </message>
-    <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="510"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="940"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="943"/>
         <source>System</source>
         <translation>Järjestelmä</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="513"/>
-        <source>Select a folder</source>
-        <translation>Valitse kansio</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="514"/>
@@ -3420,7 +3431,7 @@ Kun olet valmis, skannaa QR-koodi.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="597"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="742"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="743"/>
         <source>Cancel</source>
         <translation>Peruuta</translation>
     </message>
@@ -3460,17 +3471,17 @@ Kun olet valmis, skannaa QR-koodi.</translation>
         <translation>Tuo</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="871"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="873"/>
         <source>Delete message</source>
         <translation>Poista viesti</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="872"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="874"/>
         <source>*(Deleted Message)*</source>
         <translation>*(Poistettu viesti)*</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="873"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="875"/>
         <source>Edit message</source>
         <translation>Muokkaa viestiä</translation>
     </message>
@@ -3484,11 +3495,6 @@ Kun olet valmis, skannaa QR-koodi.</translation>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="581"/>
         <source>Call recording</source>
         <translation>Puhelun tallennus</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="610"/>
-        <source>If the account is encrypted with a password, please fill the following field.</source>
-        <translation>Jos tili on salattu salasanalla, täytä seuraava kenttä.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="614"/>
@@ -3537,13 +3543,13 @@ Kun olet valmis, skannaa QR-koodi.</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="665"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="750"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="751"/>
         <source>Reset</source>
         <translation>Nollaa</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="666"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="751"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="752"/>
         <source>Uninstall</source>
         <translation>Poista asennus</translation>
     </message>
@@ -3641,128 +3647,108 @@ Vahvista tuonti uudella laitteella.</translation>
         <translation>QR-koodi</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="707"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="708"/>
         <source>Link this device to an existing account</source>
         <translation>Yhdistä tämä laite olemassa olevaan tiliin</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="708"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="709"/>
         <source>Import from another device</source>
         <translation>Tuo toisesta laitteesta</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="709"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="710"/>
         <source>Import from an archive backup</source>
         <translation>Tuo varmuuskopiosta</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="710"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="711"/>
         <source>Advanced features</source>
         <translation>Lisäominaisuudet</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="711"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="712"/>
         <source>Show advanced features</source>
         <translation>Näytä lisäominaisuudet</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="712"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="713"/>
         <source>Hide advanced features</source>
         <translation>Piilota lisäominaisuudet</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="713"/>
-        <source>Connect to a JAMS server</source>
-        <translation>Yhdistä JAMS-palvelimeen</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="714"/>
-        <source>Create account from Jami Account Management Server (JAMS)</source>
-        <translation>Luo tili Jami Account Management Server (JAMS)</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="715"/>
-        <source>Configure a SIP account</source>
-        <translation>Määritä SIP-tili</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="717"/>
-        <source>Create a rendezvous point</source>
-        <translation>Luo tapaamispaikka</translation>
-    </message>
-    <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="719"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="720"/>
         <source>Create new Jami account</source>
         <translation>Luo uusi Jami-tili</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="720"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="721"/>
         <source>Create new SIP account</source>
         <translation>Luo uusi SIP-tili</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="721"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="722"/>
         <source>About Jami</source>
         <translation>Tietoja Jami&apos;sta</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="723"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="724"/>
         <source>I already have an account</source>
         <translation>Minulla on jo tili</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="724"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="725"/>
         <source>Use existing Jami account</source>
         <translation>Käytä olemassa olevaa Jami-tiliä</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="725"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="726"/>
         <source>Welcome to Jami</source>
         <translation>Tervetuloa Jamiin</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="729"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="730"/>
         <source>Conversations</source>
         <translation>Keskustelu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="737"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="738"/>
         <source>Automatically check for updates</source>
         <translation>Tarkista autom. päivitykset</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="503"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="741"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="742"/>
         <source>Save</source>
         <translation>Tallenna</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="743"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="744"/>
         <source>Upgrade</source>
         <translation>Päivitä</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="744"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="745"/>
         <source>Later</source>
         <translation>Myöhemmin</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="745"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="746"/>
         <source>Delete</source>
         <translation>Poista</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="748"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="749"/>
         <source>Block</source>
         <translation>Estä</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="754"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="755"/>
         <source>Set moderator</source>
         <translation>Aseta valvoja</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="755"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="756"/>
         <source>Unset moderator</source>
         <translation>Poista valvoja</translation>
     </message>
@@ -3772,53 +3758,53 @@ Vahvista tuonti uudella laitteella.</translation>
         <translation>Suurenna</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="761"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="762"/>
         <source>Local muted</source>
         <translation>Mykistetty</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="764"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="765"/>
         <source>Default moderators</source>
         <translation>Oletusvalvojat</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="765"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="766"/>
         <source>Enable local moderators</source>
         <translation>Ota valvojat käyttöön</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="766"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="767"/>
         <source>Make all participants moderators</source>
         <translation>Tee kaikista osallistujista valvojia</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="767"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="768"/>
         <source>Add default moderator</source>
         <translation>Lisää oletusvalvoja</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="769"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="770"/>
         <source>Remove default moderator</source>
         <translation>Poista oletusvalvoja</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="776"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="777"/>
         <source>Add emoji</source>
         <translation>Lisää hymiö</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="778"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="779"/>
         <source>Send file</source>
         <translation>Lähetä tiedosto</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="801"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="802"/>
         <source>Send</source>
         <translation>Lähetä</translation>
     </message>
     <message>
         <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="506"/>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="746"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="747"/>
         <source>Remove</source>
         <translation>Poista</translation>
     </message>
@@ -3858,57 +3844,62 @@ Vahvista tuonti uudella laitteella.</translation>
         <translation>Tuo Jami-tili varmuuskopiosta</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="808"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="809"/>
         <source>Write to %1</source>
         <translation>Kirjoita %1</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="836"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="837"/>
         <source>Member</source>
         <translation>Jäsen</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="845"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="847"/>
         <source>Ignore all notifications from this conversation</source>
         <translation>Ohita kaikki tämän keskustelun ilmoitukset</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="855"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="857"/>
         <source>Go to conversation</source>
         <translation>Siirry keskusteluun</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="858"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="860"/>
         <source>Administrator</source>
         <translation>Hallinnoija</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="859"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="861"/>
         <source>Invited</source>
         <translation>Kutsuttu</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="860"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="862"/>
         <source>Remove member</source>
         <translation>Poista jäsen</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="861"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="863"/>
         <source>To:</source>
         <translation>Vastaanottaja:</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="864"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="866"/>
         <source>Customize</source>
         <translation>Mukauta</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="866"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="868"/>
         <source>Dismiss</source>
         <translation>Hylkää</translation>
     </message>
     <message>
-        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="868"/>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="869"/>
+        <source>Add profile picture and nickname to complete your profile</source>
+        <translation>Viimeistele profiili lisäämällä profiilikuva ja lempinimi</translation>
+    </message>
+    <message>
+        <location filename="../src/app/net/jami/Constants/JamiStrings.qml" line="870"/>
         <source>Your profile is only shared with your contacts</source>
         <translation>Profiilisi jaetaan vain sinun yhteystietojen kanssa</translation>
     </message>
@@ -3916,212 +3907,212 @@ Vahvista tuonti uudella laitteella.</translation>
 <context>
     <name>KeyboardShortcutTable</name>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="40"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="41"/>
         <source>Open account list</source>
         <translation>Avaa tililuettelo</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="44"/>
-        <source>Focus conversations list</source>
-        <translation>Kohdista keskusteluluettelo</translation>
-    </message>
-    <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="48"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="49"/>
         <source>Requests list</source>
         <translation>Pyyntöluettelo</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="52"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="53"/>
         <source>Previous conversation</source>
         <translation>Edellinen keskustelu</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="56"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="57"/>
         <source>Next conversation</source>
         <translation>Seuraava keskustelu</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="60"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="61"/>
         <source>Search bar</source>
         <translation>Hakupalkki</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="120"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="121"/>
         <source>Accept call</source>
         <translation>Hyväksy puhelu</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="132"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="133"/>
         <source>Full screen</source>
         <translation>Koko näyttö</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="64"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="65"/>
         <source>Increase font size</source>
         <translation>Lisää kirjaimen kokoa</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="68"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="69"/>
         <source>Decrease font size</source>
         <translation>Pienennä kirjaimen kokoa</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="72"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="73"/>
         <source>Reset font size</source>
         <translation>Nollaa kirjaimen koko</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="96"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="97"/>
         <source>Clear history</source>
         <translation>Tyhjennä historia</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="84"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="85"/>
         <source>Search messages/files</source>
         <translation>Hae viestejä/tiedostoja</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="100"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="101"/>
         <source>Block contact</source>
         <translation>Estä henkilö</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="80"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="81"/>
         <source>Accept contact request</source>
         <translation>Hyväksy yhteyspyyntö</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="88"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="89"/>
         <source>Edit last message</source>
         <translation>Muokkaa viimeisintä viestiä</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="92"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="93"/>
         <source>Cancel message edition</source>
         <translation>Peruuta viestin muokkaus</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="216"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="217"/>
         <source>Open account creation wizard</source>
         <translation>Ohjattu tilin luominen</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="124"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="125"/>
         <source>End call</source>
         <translation>Lopeta puhelu</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="104"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="45"/>
+        <source>Focus conversation list</source>
+        <translation>Keskustelulista</translation>
+    </message>
+    <message>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="105"/>
         <source>Leave conversation</source>
         <translation>Poistu keskustelusta</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="112"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="113"/>
         <source>Start audio call</source>
         <translation>Aloita äänipuhelu</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="116"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="117"/>
         <source>Start video call</source>
         <translation>Aloita videopuhelu</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="128"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="129"/>
         <source>Decline call</source>
         <translation>Hylkää puhelu</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="136"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="137"/>
         <source>Mute microphone</source>
         <translation>Mykistä mikrofoni</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="140"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="141"/>
         <source>Stop camera</source>
         <translation>Sulje kamera</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="144"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="145"/>
         <source>Take tile screenshot</source>
         <translation>Ota osakaappaus</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="152"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="153"/>
         <source>Bold</source>
         <translation>Lihavointi</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="156"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="157"/>
         <source>Italic</source>
         <translation>Kursivointi</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="160"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="161"/>
         <source>Strikethrough</source>
         <translation>Yliviivattu</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="164"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="165"/>
         <source>Heading</source>
         <translation>Otsikko</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="168"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="169"/>
         <source>Link</source>
         <translation>Linkki</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="172"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="173"/>
         <source>Code</source>
         <translation>Koodi</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="176"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="177"/>
         <source>Quote</source>
         <translation>Lainaus</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="180"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="181"/>
         <source>Unordered list</source>
         <translation>Järjestämätön luettelo</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="184"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="185"/>
         <source>Ordered list</source>
         <translation>Järjestetty luettelo</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="188"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="189"/>
         <source>Show/hide formatting</source>
         <translation>Näytä/piilota muotoilu</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="192"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="193"/>
         <source>Show preview/Continue editing</source>
         <translation>Näytä esikatselu/jatka muokkaamista</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="200"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="201"/>
         <source>Open account settings</source>
         <translation>Avaa Tilin asetukset</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="204"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="205"/>
         <source>Open general settings</source>
         <translation>Avaa yleiset asetukset</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="208"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="209"/>
         <source>Open media settings</source>
         <translation>Avaa media-asetukset</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="212"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="213"/>
         <source>Open extensions settings</source>
         <translation>Avaa laajennusten asetukset</translation>
     </message>
     <message>
-        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="221"/>
+        <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="222"/>
         <source>View keyboard shortcuts</source>
         <translation>Näytä pikanäppäimet</translation>
     </message>
@@ -4129,17 +4120,17 @@ Vahvista tuonti uudella laitteella.</translation>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="474"/>
+        <location filename="../src/app/mainapplication.cpp" line="483"/>
         <source>E&amp;xit</source>
         <translation>P&amp;oistu</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="476"/>
+        <location filename="../src/app/mainapplication.cpp" line="485"/>
         <source>&amp;Quit</source>
         <translation>&amp;Lopeta</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="482"/>
+        <location filename="../src/app/mainapplication.cpp" line="491"/>
         <source>&amp;Show Jami</source>
         <translation>&amp;Näytä Jami</translation>
     </message>
@@ -4173,68 +4164,68 @@ Vahvista tuonti uudella laitteella.</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="399"/>
+        <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="402"/>
         <source>Me</source>
         <translation>Minä</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/call.h" line="60"/>
+        <location filename="../src/libclient/api/call.h" line="61"/>
         <source>Hold</source>
         <translation>Pidossa</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/call.h" line="62"/>
+        <location filename="../src/libclient/api/call.h" line="63"/>
         <source>Talking</source>
         <translation>Puhuu</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/call.h" line="64"/>
+        <location filename="../src/libclient/api/call.h" line="65"/>
         <source>ERROR</source>
         <translation>VIRHE</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/call.h" line="66"/>
+        <location filename="../src/libclient/api/call.h" line="67"/>
         <source>Incoming</source>
         <translation>Saapuva</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/call.h" line="68"/>
+        <location filename="../src/libclient/api/call.h" line="69"/>
         <source>Calling</source>
         <translation>Soittaa</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/call.h" line="70"/>
+        <location filename="../src/libclient/api/call.h" line="71"/>
         <source>Connecting</source>
         <translation>Yhdistetään</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/call.h" line="72"/>
+        <location filename="../src/libclient/api/call.h" line="73"/>
         <source>Searching</source>
         <translation>Hakee</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/call.h" line="74"/>
+        <location filename="../src/libclient/api/call.h" line="75"/>
         <source>Inactive</source>
         <translation>Poissa</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/call.h" line="76"/>
-        <location filename="../src/libclient/api/call.h" line="82"/>
+        <location filename="../src/libclient/api/call.h" line="77"/>
+        <location filename="../src/libclient/api/call.h" line="83"/>
         <source>Finished</source>
         <translation>Valmis</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/call.h" line="78"/>
+        <location filename="../src/libclient/api/call.h" line="79"/>
         <source>Timeout</source>
         <translation>Aikakatkaisu</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/call.h" line="80"/>
+        <location filename="../src/libclient/api/call.h" line="81"/>
         <source>Peer busy</source>
         <translation>Käyttäjä varattu</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/call.h" line="84"/>
+        <location filename="../src/libclient/api/call.h" line="85"/>
         <source>Communication established</source>
         <translation>Yhteys muodostettu</translation>
     </message>
@@ -4676,17 +4667,17 @@ Vahvista tuonti uudella laitteella.</translation>
         <translation>Ei hyväksytä missään</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="643"/>
+        <location filename="../src/app/messagesadapter.cpp" line="645"/>
         <source>Just now</source>
         <translation>Juuri nyt</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="694"/>
+        <location filename="../src/app/messagesadapter.cpp" line="696"/>
         <source>Today</source>
         <translation>Tänään</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="698"/>
+        <location filename="../src/app/messagesadapter.cpp" line="700"/>
         <source>Yesterday</source>
         <translation>Eilen</translation>
     </message>
@@ -4972,17 +4963,17 @@ Vahvista tuonti uudella laitteella.</translation>
 <context>
     <name>UtilsAdapter</name>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="347"/>
+        <location filename="../src/app/utilsadapter.cpp" line="351"/>
         <source>%1 Mbps</source>
         <translation>%1 Mbps</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="347"/>
+        <location filename="../src/app/utilsadapter.cpp" line="351"/>
         <source>Default</source>
         <translation>Oletus</translation>
     </message>
     <message>
-        <location filename="../src/app/utilsadapter.cpp" line="539"/>
+        <location filename="../src/app/utilsadapter.cpp" line="543"/>
         <source>System</source>
         <translation>Järjestelmä</translation>
     </message>
