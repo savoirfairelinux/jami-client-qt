@@ -182,6 +182,18 @@ Item {
                         objectName: "accountList"
                         clip: true
                         implicitHeight: contentHeight
+
+                        layer.enabled: true
+                        layer.effect: MultiEffect {
+                            maskEnabled: true
+                            maskSource: ShaderEffectSource {
+                                sourceItem: Rectangle {
+                                    width: listView.width
+                                    height: listView.height
+                                    radius: JamiTheme.avatarBasedRadius
+                                }
+                            }
+                        }
                         currentIndex: accountComboBox.highlightedIndex
                         model: visible ? accountComboBox.delegateModel : null
 
