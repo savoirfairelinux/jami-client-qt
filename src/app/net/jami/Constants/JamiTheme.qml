@@ -747,6 +747,9 @@ Item {
     property real sidePanelConversationsIslandHorizontalPadding: 4
     property real sidePanelIslandRightPadding: 16
 
+    property real accountPopupTopPaddingMac: sidePanelConversationsIslandTopPadding
+                                             + sidePanelTopPaddingMac
+
     // Search Bar
     property real searchBarPreferredHeight: 40
     property real searchBarIconPadding: 8
