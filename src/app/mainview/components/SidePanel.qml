@@ -32,7 +32,9 @@ SidePanelBase {
     objectName: "SidePanel"
 
     property bool inNewSwarm: viewCoordinator.currentViewName === "NewSwarmPage"
-    property bool isEmptyAccount: (!inNewSwarm && conversationListView.model && conversationListView.model.count === 0) || (inNewSwarm && swarmCurrentConversationList.model && swarmCurrentConversationList.model.count === 0)
+    property bool isEmptyAccount: inNewSwarm
+        ? (swarmCurrentConversationList.model && swarmCurrentConversationList.model.count === 0)
+        : (!ConversationsAdapter.filterRequests && conversationListView.model && conversationListView.model.count === 0)
 
     property var highlighted: []
     property var highlightedMembers: []
