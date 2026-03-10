@@ -56,7 +56,7 @@ BaseModalDialog {
 
             Text {
                 id: textTest
-                color: JamiTheme.callInfoColor
+                color: JamiTheme.textColor
                 text: JamiStrings.callInformation
                 font.pointSize: JamiTheme.menuFontSize
                 font.bold: true
@@ -75,7 +75,7 @@ BaseModalDialog {
                 delegate: Column {
 
                     Text {
-                        color: JamiTheme.callInfoColor
+                        color: JamiTheme.textColor
                         text: JamiStrings.callId + ": " + CALL_ID
                         font.pointSize: JamiTheme.textFontPointSize
                         wrapMode: Text.WrapAnywhere
@@ -86,7 +86,7 @@ BaseModalDialog {
                         function stringWithoutRing(peerNumber) {
                             return peerNumber.replace("@ring.dht", "");
                         }
-                        color: JamiTheme.callInfoColor
+                        color: JamiTheme.textColor
                         text: JamiStrings.peerNumber + ": " + stringWithoutRing(PEER_NUMBER)
                         font.pointSize: JamiTheme.textFontPointSize
                         wrapMode: Text.WrapAnywhere
@@ -103,7 +103,7 @@ BaseModalDialog {
                         RowLayout {
 
                             Text {
-                                color: JamiTheme.callInfoColor
+                                color: JamiTheme.textColor
                                 text: JamiStrings.sockets
                                 font.pointSize: JamiTheme.textFontPointSize
                                 wrapMode: Text.WrapAnywhere
@@ -121,7 +121,7 @@ BaseModalDialog {
                         }
 
                         Text {
-                            color: JamiTheme.callInfoColor
+                            color: JamiTheme.textColor
                             text: SOCKETS
                             font.pointSize: JamiTheme.textFontPointSize
                             wrapMode: Text.WrapAnywhere
@@ -131,7 +131,7 @@ BaseModalDialog {
                     }
 
                     Text {
-                        color: JamiTheme.callInfoColor
+                        color: JamiTheme.textColor
                         text: JamiStrings.videoCodec + ": " + VIDEO_CODEC
                         font.pointSize: JamiTheme.textFontPointSize
                         wrapMode: Text.WrapAnywhere
@@ -139,7 +139,7 @@ BaseModalDialog {
                     }
 
                     Text {
-                        color: JamiTheme.callInfoColor
+                        color: JamiTheme.textColor
                         text: JamiStrings.audioCodec + ": " + AUDIO_CODEC + " " + AUDIO_SAMPLE_RATE + " Hz"
                         font.pointSize: JamiTheme.textFontPointSize
                         wrapMode: Text.WrapAnywhere
@@ -147,7 +147,7 @@ BaseModalDialog {
                     }
 
                     Text {
-                        color: JamiTheme.callInfoColor
+                        color: JamiTheme.textColor
                         text: JamiStrings.hardwareAcceleration + ": " + HARDWARE_ACCELERATION
                         font.pointSize: JamiTheme.textFontPointSize
                         wrapMode: Text.WrapAnywhere
@@ -155,7 +155,7 @@ BaseModalDialog {
                     }
 
                     Text {
-                        color: JamiTheme.callInfoColor
+                        color: JamiTheme.textColor
                         text: JamiStrings.videoBitrate + ": " + VIDEO_BITRATE + " bps"
                         font.pointSize: JamiTheme.textFontPointSize
                         wrapMode: Text.WrapAnywhere
@@ -171,7 +171,7 @@ BaseModalDialog {
             Layout.alignment: Qt.AlignTop
 
             Text {
-                color: JamiTheme.callInfoColor
+                color: JamiTheme.textColor
                 text: JamiStrings.renderersInformation
                 font.pointSize: JamiTheme.menuFontSize
                 font.bold: true
@@ -192,7 +192,7 @@ BaseModalDialog {
                     spacing: JamiTheme.callInformationElementsSpacing
 
                     Text {
-                        color: JamiTheme.callInfoColor
+                        color: JamiTheme.textColor
                         text: JamiStrings.rendererId + ": " + RENDERER_ID
                         font.pointSize: JamiTheme.textFontPointSize
                         wrapMode: Text.WrapAnywhere
@@ -201,7 +201,7 @@ BaseModalDialog {
 
                     Text {
                         id: testText
-                        color: JamiTheme.callInfoColor
+                        color: JamiTheme.textColor
                         text: JamiStrings.fps_short + ": " + FPS
                         font.pointSize: JamiTheme.textFontPointSize
                         wrapMode: Text.WrapAnywhere
@@ -209,7 +209,7 @@ BaseModalDialog {
                     }
 
                     Text {
-                        color: JamiTheme.callInfoColor
+                        color: JamiTheme.textColor
                         text: JamiStrings.resolution + ": " + RES
                         font.pointSize: JamiTheme.textFontPointSize
                         wrapMode: Text.WrapAnywhere

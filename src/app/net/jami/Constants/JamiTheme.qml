@@ -455,7 +455,6 @@ Item {
     // Call information
     property real textFontPointSize: calcSize(10)
     property real titleFontPointSize: calcSize(13)
-    property color callInfoColor: whiteColor
     property int callInformationElementsSpacing: 5
     property int callInformationBlockSpacing: 25
     property int callInformationlayoutMargins: 10
