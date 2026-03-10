@@ -69,6 +69,30 @@
       },
       "revId": "168cac964ed4ff15773b3323f5e0a8b412b73345",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f9e0902_b8061e40",
+        "filename": "src/app/mainview/components/MessageBar.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1110
+      },
+      "writtenOn": "2026-03-10T20:29:23Z",
+      "side": 1,
+      "message": "See F-S\u0027s comment from patchet 9.",
+      "parentUuid": "499542b5_161e7528",
+      "range": {
+        "startLine": 81,
+        "startChar": 14,
+        "endLine": 81,
+        "endChar": 31
+      },
+      "revId": "168cac964ed4ff15773b3323f5e0a8b412b73345",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
