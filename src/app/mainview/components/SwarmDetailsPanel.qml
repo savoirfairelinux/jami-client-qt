@@ -67,20 +67,20 @@ Item {
             swarmDetailsTabModel.clear();
             if (!CurrentConversation.isCoreDialog) {
                 swarmDetailsTabModel.append({
-                    "name": JamiStrings.members.arg(CurrentConversation.members.count)
-                });
+                                                "name": JamiStrings.members.arg(CurrentConversation.members.count)
+                                            });
                 swarmDetailsTabModel.append({
-                    "name": JamiStrings.files
-                });
+                                                "name": JamiStrings.files
+                                            });
             } else {
                 swarmDetailsTabModel.append({
-                    "name": JamiStrings.files
-                });
+                                                "name": JamiStrings.files
+                                            });
             }
 
             swarmDetailsTabModel.append({
-                "name": JamiStrings.details
-            });
+                                            "name": JamiStrings.details
+                                        });
             if (swarmDetailsPanelTabBar.currentIndex >= swarmDetailsTabModel.count)
                 swarmDetailsPanelTabBar.currentIndex = 0;
         }
@@ -131,11 +131,11 @@ Item {
                         toolTipText: JamiStrings.contactDetails
 
                         onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/UserProfile.qml", {
-                            "aliasText": CurrentConversation.title,
-                            "registeredNameText": CurrentConversation.description,
-                            "idText": CurrentConversation.id,
-                            "convId": CurrentConversation.id
-                        })
+                                                                     "aliasText": CurrentConversation.title,
+                                                                     "registeredNameText": CurrentConversation.description,
+                                                                     "idText": CurrentConversation.id,
+                                                                     "convId": CurrentConversation.id
+                                                                 })
 
                         visible: CurrentConversation.isCoreDialog
                     }
@@ -206,59 +206,88 @@ Item {
                 }
             }
 
-            NewMaterialTextField {
-                id: titleLine
+            Item {
+                id: textEditContents
 
                 Layout.fillWidth: true
+                Layout.minimumHeight: swarmIdForDebug.visible ? 132 : 88
+                Layout.maximumHeight: swarmIdForDebug.visible ? 176 : 132
+                Layout.topMargin: 8
+                Layout.alignment: Qt.AlignTop
 
-                leadingIconSource: CurrentConversation.isCoreDialog ? JamiResources.person_24dp_svg : JamiResources.create_swarm_24dp_svg
+                ColumnLayout {
+                    anchors.fill: parent
 
-                placeholderText: CurrentConversation.isCoreDialog
-                                 ? (root.coreDialogDisplayName !== "" ? root.coreDialogDisplayName : JamiStrings.title)
-                                 : JamiStrings.title
-                textFieldContent: CurrentConversation.isCoreDialog && !root.coreDialogHasDisplayNameOverride
-                                  ? ""
-                                  : CurrentConversation.title
-                maxCharacters: JamiTheme.maximumCharacters
-                readOnly: !isAdmin
-                toolTipText: CurrentConversation.isCoreDialog ? JamiStrings.contactName : JamiStrings.groupName
+                    NewMaterialTextField {
+                        id: titleLine
 
-                trailingIconSource: JamiResources.cancel_24dp_svg
-                trailingIconToolTipText: JamiStrings.clearText
-                onTrailingIconClicked: {
-                    modifiedTextFieldContent = "";
-                    editingFinished();
-                }
+                        Layout.fillWidth: true
 
-                onEditingFinished: ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, modifiedTextFieldContent)
-            }
+                        leadingIconSource: CurrentConversation.isCoreDialog ? JamiResources.person_24dp_svg : JamiResources.create_swarm_24dp_svg
 
-            NewMaterialTextField {
-                id: descriptionLineButton
+                        placeholderText: CurrentConversation.isCoreDialog
+                                         ? (root.coreDialogDisplayName !== "" ? root.coreDialogDisplayName : JamiStrings.title)
+                                         : JamiStrings.title
+                        textFieldContent: CurrentConversation.isCoreDialog && !root.coreDialogHasDisplayNameOverride
+                                          ? ""
+                                          : CurrentConversation.title
+                        maxCharacters: JamiTheme.maximumCharacters
+                        readOnly: !isAdmin
+                        toolTipText: CurrentConversation.isCoreDialog ? JamiStrings.contactName : JamiStrings.groupName
 
-                Layout.fillWidth: true
+                        trailingIconSource: JamiResources.cancel_24dp_svg
+                        trailingIconToolTipText: JamiStrings.clearText
+                        onTrailingIconClicked: {
+                            modifiedTextFieldContent = "";
+                            editingFinished();
+                        }
 
-                leadingIconSource: CurrentConversation.isCoreDialog ? JamiResources.jami_id_logo_new_24dp_svg : JamiResources.swarm_details_panel_24dp_svg
+                        onEditingFinished: ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, modifiedTextFieldContent)
+                    }
 
-                placeholderText: readOnly ? JamiStrings.noDescription : JamiStrings.addDescription
-                textFieldContent: CurrentConversation.description
-                maxCharacters: JamiTheme.maximumCharacters
-                textFieldFontFamily: CurrentConversation.isCoreDialog && CurrentConversation.description.length === 40 ? JamiTheme.ubuntuMonoFontFamily : JamiTheme.ubuntuFontFamily
-                textFieldFontPixelSize: JamiTheme.materialLineEditSelectedPixelSize
-                readOnly: !isAdmin || CurrentConversation.isCoreDialog
-                toolTipText: JamiStrings.addDescription
+                    NewMaterialTextField {
+                        id: descriptionLineButton
 
-                trailingIconSource: JamiResources.cancel_24dp_svg
-                trailingIconToolTipText: JamiStrings.clearText
-                onTrailingIconClicked: modifiedTextFieldContent = ""
+                        Layout.fillWidth: true
 
-                onActiveFocusChanged: {
-                    if (!activeFocus) {
-                        ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, modifiedTextFieldContent);
+                        leadingIconSource: CurrentConversation.isCoreDialog ? JamiResources.jami_id_logo_new_24dp_svg : JamiResources.swarm_details_panel_24dp_svg
+
+                        placeholderText: readOnly ? JamiStrings.noDescription : JamiStrings.addDescription
+                        textFieldContent: CurrentConversation.description
+                        maxCharacters: JamiTheme.maximumCharacters
+                        textFieldFontFamily: CurrentConversation.isCoreDialog && CurrentConversation.description.length === 40 ? JamiTheme.ubuntuMonoFontFamily : JamiTheme.ubuntuFontFamily
+                        textFieldFontPixelSize: JamiTheme.materialLineEditSelectedPixelSize
+                        readOnly: !isAdmin || CurrentConversation.isCoreDialog
+                        toolTipText: JamiStrings.addDescription
+
+                        trailingIconSource: JamiResources.cancel_24dp_svg
+                        trailingIconToolTipText: JamiStrings.clearText
+                        onTrailingIconClicked: modifiedTextFieldContent = ""
+
+                        onActiveFocusChanged: {
+                            if (!activeFocus) {
+                                ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, modifiedTextFieldContent);
+                            }
+                        }
+
+                        onEditingFinished: ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, modifiedTextFieldContent)
+                    }
+
+                    NewMaterialTextField {
+                        id: swarmIdForDebug
+
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+
+                        leadingIconSource: JamiResources.code_black_24dp_svg
+
+                        placeholderText: JamiStrings.identifier
+                        textFieldContent: CurrentConversation.id
+                        readOnly: true
+
+                        visible: LRCInstance.debugMode()// && !CurrentConversation.isCoreDialog
                     }
                 }
-
-                onEditingFinished: ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, modifiedTextFieldContent)
             }
 
             ListModel {
@@ -652,10 +681,10 @@ Item {
 
                     onClicked: {
                         var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
-                            "titleText": JamiStrings.confirmAction,
-                            "textLabel": JamiStrings.confirmRemoveContact,
-                            "confirmLabel": JamiStrings.optionRemove
-                        });
+                                                                    "titleText": JamiStrings.confirmAction,
+                                                                    "textLabel": JamiStrings.confirmRemoveContact,
+                                                                    "confirmLabel": JamiStrings.optionRemove
+                                                                });
                         dlg.accepted.connect(function () {
                             MessagesAdapter.removeConversation(LRCInstance.selectedConvUid, true);
                         });
@@ -675,10 +704,10 @@ Item {
                     visible: CurrentConversation.isCoreDialog
                     onClicked: {
                         var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
-                            "titleText": JamiStrings.confirmAction,
-                            "textLabel": JamiStrings.confirmRemoveContact,
-                            "confirmLabel": JamiStrings.optionRemove
-                        });
+                                                                    "titleText": JamiStrings.confirmAction,
+                                                                    "textLabel": JamiStrings.confirmRemoveContact,
+                                                                    "confirmLabel": JamiStrings.optionRemove
+                                                                });
                         dlg.accepted.connect(function () {
                             MessagesAdapter.removeConversation(LRCInstance.selectedConvUid);
                         });
@@ -699,10 +728,10 @@ Item {
 
                     onClicked: {
                         var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
-                            "titleText": JamiStrings.confirmAction,
-                            "textLabel": JamiStrings.confirmBlockContact,
-                            "confirmLabel": JamiStrings.optionBlock
-                        });
+                                                                    "titleText": JamiStrings.confirmAction,
+                                                                    "textLabel": JamiStrings.confirmBlockContact,
+                                                                    "confirmLabel": JamiStrings.optionBlock
+                                                                });
                         dlg.accepted.connect(function () {
                             MessagesAdapter.blockConversation(CurrentConversation.id);
                         });
