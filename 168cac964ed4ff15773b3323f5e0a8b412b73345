@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "70ea1e7f_c6659505",
+        "filename": "src/app/mainview/components/ChatViewFooter.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-03-10T20:14:01Z",
+      "side": 1,
+      "message": "That\u0027s what it was originally, but it\u0027s actually incorrect (see my comment on patchset 6).",
+      "parentUuid": "deda1049_c0a83437",
+      "range": {
+        "startLine": 159,
+        "startChar": 30,
+        "endLine": 159,
+        "endChar": 93
+      },
+      "revId": "168cac964ed4ff15773b3323f5e0a8b412b73345",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "499542b5_161e7528",
         "filename": "src/app/mainview/components/MessageBar.qml",
         "patchSetId": 12
