@@ -622,7 +622,7 @@ SidePanelBase {
                     readonly property bool shouldShow: (!inNewSwarm && !conversationListView.atYBeginning) || (inNewSwarm && !swarmCurrentConversationList.atYBeginning)
 
                     anchors.top: conversationLayout.top
-                    anchors.topMargin: header.height + JamiTheme.sidePanelConversationsIslandTopPadding + 10 + sidePanelTabBar.height + (JamiQmlUtils.isMacOS26OrLater ? JamiTheme.sidePanelTopPaddingMac : 0)
+                    anchors.topMargin: header.height + JamiTheme.sidePanelConversationsIslandTopPadding + 10 + (sidePanelTabBar.visible ? sidePanelTabBar.height : 0) + (JamiQmlUtils.isMacOS26OrLater ? JamiTheme.sidePanelTopPaddingMac : 0)
 
                     width: conversationLayout.width
                     height: JamiTheme.smartListItemHeight
