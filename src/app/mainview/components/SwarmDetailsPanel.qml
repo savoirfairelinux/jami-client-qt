@@ -232,7 +232,8 @@ Item {
                 id: textEditContents
 
                 Layout.fillWidth: true
-                Layout.preferredHeight: 88
+                Layout.minimumHeight: swarmIdForDebug.visible ? 132 : 88
+                Layout.maximumHeight: swarmIdForDebug.visible ? 176 : 132
                 Layout.topMargin: 8
                 Layout.alignment: Qt.AlignTop
 
@@ -288,6 +289,21 @@ Item {
                         }
 
                         onAccepted: ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, modifiedTextFieldContent)
+                    }
+
+                    NewMaterialTextField {
+                        id: swarmIdForDebug
+
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+
+                        leadingIconSource: JamiResources.code_black_24dp_svg
+
+                        placeholderText: JamiStrings.identifier
+                        textFieldContent: CurrentConversation.id
+                        readOnly: true
+
+                        visible: LRCInstance.debugMode() && !CurrentConversation.isCoreDialog
                     }
                 }
             }
