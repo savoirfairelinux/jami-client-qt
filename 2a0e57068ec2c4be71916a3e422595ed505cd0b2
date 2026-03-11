@@ -16,6 +16,24 @@
       "message": "Hi @ovari123@zoho.com,\nWe are trying to follow the naming scheme of the SVGs as provided by the Material Icons set. The `s` in the file name is intentional as if refers to the letter found in the icon.",
       "revId": "2a0e57068ec2c4be71916a3e422595ed505cd0b2",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81f0cc37_743a93b0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-03-11T06:08:09Z",
+      "side": 1,
+      "message": "Do **bold** and **italics** have `_b_` and `_i_`, respectively?\n\nIt is understood that `_s_` was in the filename because it previously was written in French, `barre_s_`. Now that the filename is written in English, the first letter is `s` from `strikethrough_black_24dp`.",
+      "parentUuid": "abcd9676_7d0be06f",
+      "revId": "2a0e57068ec2c4be71916a3e422595ed505cd0b2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
