@@ -49,7 +49,6 @@ Rectangle {
             layoutDirection: UtilsAdapter.isRTL ? Qt.RightToLeft : Qt.LeftToRight
 
             spacing: JamiTheme.filesToSendContainerSpacing
-            //padding: JamiTheme.filesToSendContainerPadding
 
             Repeater {
                 id: repeater
