@@ -41,7 +41,7 @@ ColumnLayout {
         Layout.preferredWidth: root.width
         Layout.maximumWidth: JamiTheme.chatViewMaximumWidth
         Layout.preferredHeight: filesToSendCount ?
-                                    JamiTheme.chatViewFooterFileContainerPreferredHeight : 0
+                                    JamiTheme.layoutWidthFileTransfer : 0
 
         TestCase {
             name: "FilesToSendContainer add/remove file test"
