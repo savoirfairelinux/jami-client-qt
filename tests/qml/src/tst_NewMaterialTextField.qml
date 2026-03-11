@@ -36,8 +36,8 @@ ColumnLayout {
     width: 300
     height: 300
 
-    MaterialTextField {
-        id: textField
+    NewMaterialTextField {
+        id: uut
 
         Layout.alignment: Qt.AlignHCenter
         Layout.preferredWidth: root.width
@@ -45,17 +45,37 @@ ColumnLayout {
         Layout.preferredHeight: root.height
 
         maxCharacters: 20
+        textFieldContent: ""
 
         TestCase {
             name: "Check maxCharacters for MaterialTextField"
             when: windowShown
 
             function test_maxCharacters_material_text_field() {
+                var textField = findChild(uut, "textField")
                 compare(textField.maximumLength, 20)
-                textField.text = "Small title"
-                compare(textField.text, "Small title")
-                textField.text = "Long title more than 20 characted"
-                compare(textField.text, "Long title more than")
+            }
+
+            function test_modifiedText_material_text_field() {
+                const textField = findChild(uut, "textField")
+                // Initial check that the contains no original or modified content
+                compare(textField.text, "")
+                compare(uut.modifiedTextFieldContent, "")
+
+                // Simulate clicking into the TextField and input text
+                mouseClick(textField)
+                keyClick("t")
+                keyClick("e")
+                keyClick("s")
+                keyClick("t")
+
+                // Both modifiedTextFieldContent and the text property of the textfield should
+                // contain the new text
+                compare(uut.modifiedTextFieldContent, "test")
+                compare(textField.text, "test")
+                // However, the textFieldContent property of the component should still reflect
+                // the original text prior to modification
+                compare(uut.textFieldContent, "")
             }
         }
     }
