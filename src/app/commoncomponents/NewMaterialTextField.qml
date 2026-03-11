@@ -141,6 +141,7 @@ ColumnLayout {
 
             TextField {
                 id: textField
+                objectName: "textField"
 
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignVCenter
