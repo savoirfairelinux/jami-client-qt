@@ -16,6 +16,24 @@
       "message": "Hi @ovari123@zoho.com ,\n\nWe\u0027ve found that the terms mute/unmute as opposed to on/off are more understood when it comes to notifications. I have changed them back to their original strings; however, the states as you had mentioned in the issue were in fact incorrect.",
       "revId": "9b372baae39788cd2fb3e1f65a866d4264120ec2",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cb49e26_cff2d795",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-03-11T06:03:47Z",
+      "side": 1,
+      "message": "Please have a look at the second image at the https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/2170#note_57066 note.\n\nIt shows `Notifications off`.",
+      "parentUuid": "db9a983b_2a8b4d82",
+      "revId": "9b372baae39788cd2fb3e1f65a866d4264120ec2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
