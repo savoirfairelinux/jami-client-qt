@@ -5,7 +5,6 @@
         <file>src/tst_MessageOptions.qml</file>
         <file>src/tst_OngoingCallPage.qml</file>
         <file>src/tst_MainView.qml</file>
-        <file>src/tst_MaterialTextEdit.qml</file>
         <file>src/tst_ChatView.qml</file>
         <file>src/tst_ChatViewFooter.qml</file>
         <file>src/tst_CachedImage.qml</file>
@@ -27,5 +26,6 @@
         <file>src/tst_LayoutManager.qml</file>
         <file>src/tst_ConversationsAdapter.qml</file>
         <file>src/tst_LocationSharing.qml</file>
+        <file>src/tst_NewMaterialTextField.qml</file>
     </qresource>
 </RCC>
