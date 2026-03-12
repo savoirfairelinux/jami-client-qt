@@ -89,10 +89,10 @@ BaseContextMenu {
         emojiPicker.emojiIsPicked.connect(function (content) {
             if (emojiReplied.includes(content)) {
                 MessagesAdapter.removeEmojiReaction(CurrentConversation.id, content, msgId);
-                parent.setBindings();
+                if (typeof parent.setBindings === "function") parent.setBindings();
             } else {
                 MessagesAdapter.addEmojiReaction(CurrentConversation.id, content, msgId);
-                parent.setBindings();
+                if (typeof parent.setBindings === "function") parent.setBindings();
             }
         });
         if (emojiPicker !== null) {
@@ -211,6 +211,6 @@ BaseContextMenu {
     }
 
     Component.onDestruction: {
-        parent.setBindings();
+        if (typeof parent.setBindings === "function") parent.setBindings();
     }
 }

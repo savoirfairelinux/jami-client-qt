@@ -572,6 +572,7 @@ Control {
 
                     height: contentHeight + 5
                     reactions: Reactions
+                    msgBody: Body
                     borderColor: root.getBaseColor()
                     maxWidth: 2 / 3 * maxMsgWidth - JamiTheme.emojiMargins
 

@@ -30,8 +30,9 @@ Item {
     property real contentWidth: reactionBubble.width
     property color borderColor: undefined
     property int maxWidth: JamiTheme.defaulMaxWidthReaction
+    property string msgBody: ""
 
-    visible: emojis.length && Body !== ""
+    visible: emojis.length && msgBody !== ""
 
     property string emojis: {
         if (reactions === undefined)
