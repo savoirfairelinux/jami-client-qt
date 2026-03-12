@@ -31,8 +31,6 @@ DualPaneView {
 
     onVisibleChanged: {
         UtilsAdapter.setTempCreationImageFromString();
-        title.staticText = "";
-        description.staticText = "";
     }
 
     property var members: []
