@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68c83aa4_06ccfbfd",
+        "filename": "src/app/mainview/components/NewSwarmPage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-03-12T20:06:33Z",
+      "side": 1,
+      "message": "Are these lines actually needed or could they be removed?",
+      "range": {
+        "startLine": 34,
+        "startChar": 8,
+        "endLine": 35,
+        "endChar": 42
+      },
+      "revId": "de09ab79a1a769316426e9035f4cac7006d37553",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
