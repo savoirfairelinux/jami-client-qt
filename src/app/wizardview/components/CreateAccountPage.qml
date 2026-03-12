@@ -147,9 +147,8 @@ Rectangle {
 
                     textFieldContent: ""
 
-                    KeyNavigation.tab: infoPopup
                     KeyNavigation.up: backButton
-                    KeyNavigation.down: infoPopup
+                    KeyNavigation.down: joinJamiButton
 
                     Accessible.role: Accessible.EditableText
                     Accessible.name: usernameEdit.supportingText
@@ -199,7 +198,7 @@ Rectangle {
                             popup.visible = true;
                         UtilsAdapter.setTempCreationImageFromString("", "temp");
                     }
-                    Accessible.description: invalidLabel.text
+                    Accessible.description: usernameEdit.supportingText
                 }
 
                 RowLayout {

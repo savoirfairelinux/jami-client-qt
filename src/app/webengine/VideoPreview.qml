@@ -28,7 +28,6 @@ Rectangle {
 
     WebEngineView {
         id: wev
-        objectName: JamiQmlUtils.webEngineNames.videoPreview
 
         anchors.fill: parent
         anchors.verticalCenter: root.verticalCenter
@@ -36,7 +35,10 @@ Rectangle {
         anchors.topMargin: root.isVideo ? 0 : wev.implicitHeight / 2
         settings.fullScreenSupportEnabled: root.isVideo
         settings.javascriptCanOpenWindows: false
-        Component.onCompleted: loadHtml(root.html, 'file:///')
+        Component.onCompleted: {
+            objectName = JamiQmlUtils.webEngineNames.videoPreview
+            loadHtml(root.html, 'file:///')
+        }
         onFullScreenRequested: function (request) {
             if (request.toggleOn) {
                 layoutManager.pushFullScreenItem(this, function () {
