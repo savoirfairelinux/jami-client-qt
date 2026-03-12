@@ -48,6 +48,7 @@ Popup {
     property int spikeHeight: 10 + offset
 
     property string photo: ""
+    property bool isRTL: UtilsAdapter.isRTL
 
     signal validatePhoto(string photo)
 

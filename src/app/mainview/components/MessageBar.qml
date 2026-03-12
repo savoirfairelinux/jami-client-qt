@@ -44,7 +44,7 @@ Rectangle {
     property bool maximized: (showTypo || dataTransferSendContainer.visible)
     property int messageBarLayoutMaximumWidth: 486
 
-    readonly property bool isFullScreen: visibility === Window.FullScreen
+    readonly property bool isFullScreen: typeof visibility !== "undefined" ? visibility === Window.FullScreen : false
 
     signal sendMessageButtonClicked
     signal sendFileButtonClicked
