@@ -89,13 +89,15 @@ Item {
     ComboBox {
         id: dropDownButton
 
-        implicitWidth: background.width - background.radius
+        implicitWidth: JamiTheme.iconButtonSmall
         implicitHeight: JamiTheme.iconButtonSmall
         z: joinCallButton.z - 1
 
         anchors.verticalCenter: root.verticalCenter
-        anchors.left: joinCallButton.right
-        anchors.leftMargin: -background.radius
+        anchors.left: !UtilsAdapter.isRTL ? joinCallButton.right : undefined
+        anchors.leftMargin: !UtilsAdapter.isRTL ? -background.radius : 0
+        anchors.right: UtilsAdapter.isRTL ? joinCallButton.left : undefined
+        anchors.rightMargin: UtilsAdapter.isRTL ? -background.radius : 0
 
         model: CurrentConversation.activeCalls
 

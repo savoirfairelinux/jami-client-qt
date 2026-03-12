@@ -258,7 +258,10 @@ Item {
             Connections {
                 target: CurrentConversation
 
-                onIdChanged: innerRect.updateSwarmDetailsTabModel()
+                function onIdChanged() {
+                    innerRect.updateSwarmDetailsTabModel()
+                }
+
             }
 
             TabBar {
