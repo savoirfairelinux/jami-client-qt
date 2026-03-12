@@ -158,7 +158,7 @@ Window {
         viewCoordinator.deinit();
     }
 
-    function close(force = false) {
+    function closeOrMinimize(force = false) {
         // If we're in the onboarding wizard or 'MinimizeOnClose'
         // is set, then we can quit
         var minimizeToTray = UtilsAdapter.getAppValue(Settings.MinimizeOnClose) && UtilsAdapter.isSystemTrayIconVisible();
@@ -207,6 +207,14 @@ Window {
             }
         }
 
+        // Set up the event filter for macOS.
+        if (Qt.platform.os.toString() === "osx") {
+            MainApplication.setEventFilter();
+            if (JamiQmlUtils.isMacOS26OrLater) {
+                MainApplication.setToolBar(appWindow);
+            }
+        }
+
         // Set the viewCoordinator's root item.
         viewCoordinator.init(view);
 
@@ -227,14 +235,6 @@ Window {
         } else {
             // No account, so start the wizard.
             viewCoordinator.present("WizardView");
-        }
-
-        // Set up the event filter for macOS.
-        if (Qt.platform.os.toString() === "osx") {
-            MainApplication.setEventFilter();
-            if (JamiQmlUtils.isMacOS26OrLater) {
-                MainApplication.setToolBar(appWindow);
-            }
         }
 
         // Quiet check for updates on start if set to.
@@ -387,7 +387,7 @@ Window {
         }
 
         function onCloseRequested() {
-            close(true);
+            closeOrMinimize(true);
         }
 
         function onSearchAndSelect(request) {
@@ -482,7 +482,10 @@ Window {
         }
     }
 
-    onClosing: appWindow.close()
+    onClosing: function (event) {
+        event.accepted = false;
+        appWindow.closeOrMinimize();
+    }
 
     // Capture the inputs to the main window while the File Dialog is open
     // This is used to mitigate modality issues on Ubuntu 22.04 systems that use wayland.
