@@ -50,8 +50,6 @@ MenuItem {
 
     property int itemImageLeftMargin: 18
 
-    signal clicked
-
     width: itemRealWidth
     height: JamiTheme.generalMenuItemHeight
 
