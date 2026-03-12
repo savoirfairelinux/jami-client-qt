@@ -153,6 +153,9 @@ Rectangle {
 
                     textFieldContent: ""
 
+                    KeyNavigation.up: backButton
+                    KeyNavigation.down: joinJamiButton
+
                     Accessible.role: Accessible.EditableText
                     Accessible.name: JamiStrings.chooseAUsername
                 }
