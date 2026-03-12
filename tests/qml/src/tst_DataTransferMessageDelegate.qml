@@ -28,21 +28,53 @@ import "../../../src/app/mainview"
 import "../../../src/app/mainview/components"
 import "../../../src/app/commoncomponents"
 
-DataTransferMessageDelegate {
+ListView {
     id: uut
-    timestamp: 0
-    transferStatus: Interaction.TransferStatus.TRANSFER_FINISHED
-    author: ""
-    body: ""
+
+    width: 400
+    height: 400
+
+    model: ListModel {
+        ListElement {
+            Author: ""
+            IsLastSent: false
+            Body: ""
+            Id: ""
+            IsEmojiOnly: false
+            ReplyToBody: ""
+            ReplyTo: ""
+            ReplyToAuthor: ""
+            Reactions: ""
+            Timestamp: 0
+            Readers: ""
+            PreviousBodies: ""
+            Value: 0
+            Type: Interaction.Type.DATA_TRANSFER
+            TotalSize: 4
+            TransferName: "test"
+            TransferStatus: Interaction.TransferStatus.TRANSFER_FINISHED
+            TID: 0
+        }
+    }
+
+    delegate: DataTransferMessageDelegate {
+        timestamp: 0
+        transferStatus: Interaction.TransferStatus.TRANSFER_FINISHED
+        author: ""
+        body: ""
+    }
 
     TestCase {
         name: "Check basic visibility for header buttons"
         function test_checkBasicVisibility() {
-            var buttonsLoader = findChild(uut, "buttonsLoader")
-            uut.transferStatus = Interaction.TransferStatus.TRANSFER_AWAITING_HOST
+            uut.currentIndex = 0
+            const delegate = uut.currentItem
+            const buttonsLoader = findChild(delegate, "buttonsLoader")
+            delegate.transferStatus = Interaction.TransferStatus.TRANSFER_AWAITING_HOST
             compare(buttonsLoader.iconSource, JamiResources.download_black_24dp_svg)
-            uut.transferStatus = Interaction.TransferStatus.TRANSFER_FINISHED
+            delegate.transferStatus = Interaction.TransferStatus.TRANSFER_FINISHED
             compare(buttonsLoader.iconSource, JamiResources.link_black_24dp_svg)
         }
     }
 }
+
