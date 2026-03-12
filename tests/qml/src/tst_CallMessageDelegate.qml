@@ -29,35 +29,69 @@ import "../../../src/app/mainview/components"
 import "../../../src/app/commoncomponents"
 
 TestWrapper {
-    CallMessageDelegate {
+    ListView {
         id: uut
+        width: 400
+        height: 200
+        model: ListModel {
+            id: mockModel
 
-        type: Interaction.Type.CALL
-
-        TestCase {
-            name: "Check basic visibility for option buttons"
-            function test_checkOptionButtonsVisibility() {
-                var moreButton = findChild(uut, "more")
-                var replyButton = findChild(uut, "reply")
-                compare(moreButton.visible, false)
-                compare(replyButton.visible, false)
+            ListElement {
+                Author: ""
+                Duration: 0
+                ReplyToAuthor: ""
+                ReplyToBody: ""
+                ReplyTo: ""
+                IsEmojiOnly: false
+                IsLastSent: false
+                Body: ""
+                Id: ""
+                ConfId: ""
+                ActionUri: ""
+                Timestamp: 0
+                Readers: ""
+                Reactions: ""
+                PreviousBodies: ""
+                DeviceId: ""
             }
         }
 
-        TestCase {
-            name: "Check button visibility for swarm call"
-            function test_checkOptionButtonsVisibility() {
-                uut.isActive = true
-                uut.currentCallId = "foo"
-                uut.confId = "foo"
-                var callLabel = findChild(uut, "callLabel")
-                var joinCallWithAudio = findChild(uut, "joinCallWithAudio")
-                compare(callLabel.visible, true)
-                compare(joinCallWithAudio.visible, false)
-                uut.confId = "bar"
-                compare(callLabel.visible, true)
-                compare(joinCallWithAudio.visible, true)
-            }
+        delegate: CallMessageDelegate {
+            type: Interaction.Type.CALL
+        }
+    }
+
+    TestCase {
+        name: "Check basic visibility for option buttons"
+        function test_checkOptionButtonsVisibility() {
+            uut.currentIndex = 0
+
+            const delegate = uut.currentItem
+            const moreButton = findChild(delegate, "more")
+            const replyButton = findChild(delegate, "reply")
+            compare(moreButton.visible, false)
+            compare(replyButton.visible, false)
+        }
+    }
+
+    TestCase {
+        name: "Check button visibility for swarm call"
+        function test_checkButtonVisibilityForSwarmCall() {
+            uut.currentIndex = 0
+
+            const delegate = uut.currentItem
+            delegate.isActive = true
+            delegate.currentCallId = "foo"
+            delegate.confId = "foo"
+
+            const callLabel = findChild(delegate, "callLabel")
+            const joinCallWithAudio = findChild(delegate, "joinCallWithAudio")
+            compare(callLabel.visible, true)
+            compare(joinCallWithAudio.visible, false)
+
+            delegate.confId = "bar"
+            compare(callLabel.visible, true)
+            compare(joinCallWithAudio.visible, true)
         }
     }
 }
