@@ -384,7 +384,7 @@ Item {
                 Shortcut {
                     sequence: "Ctrl+Shift+F"
                     context: Qt.ApplicationShortcut
-                    enabled: parent.visible
+                    enabled: searchMessagesButton.visible
                     onActivated: extrasPanel.switchToPanel(ChatView.MessagesResearchPanel)
                 }
             }

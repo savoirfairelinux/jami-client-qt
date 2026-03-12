@@ -44,11 +44,12 @@ TestWrapper {
             TestCase {
                 name: "Check basic visibility for header buttons"
                 function test_checkBasicVisibility() {
-                    var chatviewHeader = findChild(uut, "chatViewHeader")
-                    var detailsButton = findChild(chatviewHeader, "detailsButton")
+                    const chatviewHeader = findChild(uut, "chatViewHeader")
+                    const detailsButton = findChild(uut, "detailsButton")
+                    CurrentConversation.isRequest = false
                     compare(detailsButton.visible, true)
 
-                    var chatViewFooter = findChild(uut, "chatViewFooter")
+                    const chatViewFooter = findChild(uut, "chatViewFooter")
                     CurrentConversation.isTemporary = true
                     compare(chatViewFooter.visible, true)
                     CurrentConversation.isTemporary = false

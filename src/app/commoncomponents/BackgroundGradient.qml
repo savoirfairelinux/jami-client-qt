@@ -30,9 +30,9 @@ Rectangle {
 
     // Use the MainView's base color and opacity which includes existing
     // behavior-based animations.
-    property color baseColor: JamiQmlUtils.mainViewRectObj.baseColor
+    property color baseColor: JamiQmlUtils.mainViewRectObj !== undefined ? JamiQmlUtils.mainViewRectObj.baseColor : JamiTheme.whiteColor
 
-    opacity: JamiQmlUtils.mainViewRectObj.tintOpacity
+    opacity: JamiQmlUtils.mainViewRectObj !== undefined ? JamiQmlUtils.mainViewRectObj.tintOpacity : 0
 
     gradient: Gradient {
         orientation: Gradient.Vertical

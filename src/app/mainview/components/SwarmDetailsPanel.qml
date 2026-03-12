@@ -299,7 +299,10 @@ Item {
             Connections {
                 target: CurrentConversation
 
-                onIdChanged: innerRect.updateSwarmDetailsTabModel()
+                function onIdChanged() {
+                    innerRect.updateSwarmDetailsTabModel()
+                }
+
             }
 
             TabBar {
@@ -369,7 +372,6 @@ Item {
 
                     layer.enabled: true
                     layer.effect: MultiEffect {
-                        anchors.fill: innerRect
                         maskEnabled: true
                         maskSource: ShaderEffectSource {
                             sourceItem: Rectangle {
@@ -551,7 +553,6 @@ Item {
 
                     layer.enabled: true
                     layer.effect: MultiEffect {
-                        anchors.fill: innerRect
                         maskEnabled: true
                         maskSource: ShaderEffectSource {
                             sourceItem: Rectangle {
