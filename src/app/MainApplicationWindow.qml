@@ -482,7 +482,12 @@ Window {
         }
     }
 
-    onClosing: appWindow.close()
+
+    onClosing: (close) => {
+        // Prevent Qt from double-processing the close.
+        close.accepted = false
+        appWindow.close()
+    }
 
     // Capture the inputs to the main window while the File Dialog is open
     // This is used to mitigate modality issues on Ubuntu 22.04 systems that use wayland.

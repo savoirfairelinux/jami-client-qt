@@ -20,18 +20,46 @@
 #include <QWindow>
 #include <Cocoa/Cocoa.h>
 
-// WindowDelegate class to handle fullscreen presentation options
-@interface WindowDelegate : NSObject <NSWindowDelegate>
+// A window-delegate proxy that intercepts only
+// window:willUseFullScreenPresentationOptions: so AppKit auto-hides the
+// toolbar and menu bar during the fullscreen transition animation.
+//
+// Every other delegate message is forwarded unchanged to Qt's own
+// QNSWindowDelegate
+
+@interface JamiWindowDelegateProxy : NSObject <NSWindowDelegate>
+- (instancetype)initWithQtDelegate:(id<NSWindowDelegate>)qtDelegate;
 @end
 
-@implementation WindowDelegate
+@implementation JamiWindowDelegateProxy {
+    id<NSWindowDelegate> _qtDelegate;
+}
 
-- (NSApplicationPresentationOptions)window:(NSWindow *)window
-          willUseFullScreenPresentationOptions:(NSApplicationPresentationOptions)proposedOptions {
-    // Return options to hide toolbar and menu bar in fullscreen mode
-    return NSApplicationPresentationFullScreen |
-           NSApplicationPresentationAutoHideToolbar |
-           NSApplicationPresentationAutoHideMenuBar;
+- (instancetype)initWithQtDelegate:(id<NSWindowDelegate>)qtDelegate
+{
+    if ((self = [super init])) {
+        _qtDelegate = qtDelegate;
+    }
+    return self;
+}
+
+- (NSApplicationPresentationOptions)window:(NSWindow*)window
+    willUseFullScreenPresentationOptions:(NSApplicationPresentationOptions)proposedOptions
+{
+    return NSApplicationPresentationFullScreen
+         | NSApplicationPresentationAutoHideToolbar
+         | NSApplicationPresentationAutoHideMenuBar;
+}
+
+- (BOOL)respondsToSelector:(SEL)aSelector
+{
+    return [super respondsToSelector:aSelector]
+        || [_qtDelegate respondsToSelector:aSelector];
+}
+
+- (id)forwardingTargetForSelector:(SEL)aSelector
+{
+    return [_qtDelegate respondsToSelector:aSelector] ? _qtDelegate : nil;
 }
 
 @end
@@ -79,9 +107,12 @@ void macutils::setToolBar(QWindow* window) {
 
         [nativeWindow setToolbarStyle:NSWindowToolbarStyleUnified];
 
-        // Create and set the window delegate to hide tool bar on full screen
-        static WindowDelegate* windowDelegate = [[WindowDelegate alloc] init];
-        [nativeWindow setDelegate:windowDelegate];
+        if (![nativeWindow.delegate isKindOfClass:[JamiWindowDelegateProxy class]]) {
+            JamiWindowDelegateProxy* proxy = [[JamiWindowDelegateProxy alloc]
+                                                  initWithQtDelegate:nativeWindow.delegate];
+            [nativeWindow setDelegate:proxy];
+            [proxy release]; // NSWindow retains it; drop our +1
+        }
     }
 }
 
