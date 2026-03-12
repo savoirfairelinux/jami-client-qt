@@ -41,7 +41,7 @@ SidePanelBase {
 
     readonly property real sidePanelIslandsMargin: viewCoordinator.isInSinglePaneMode ? JamiTheme.sidePanelIslandsSinglePaneModePadding : JamiTheme.sidePanelIslandsPadding
 
-    color: JamiTheme.transparentColor
+    color: inNewSwarm ? JamiTheme.globalBackgroundColor : JamiTheme.transparentColor
 
     Connections {
         target: LRCInstance
