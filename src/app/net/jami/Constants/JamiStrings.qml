@@ -967,6 +967,13 @@ Item {
     property string noConversations: qsTr("No conversations found.")
     property string noContactsToChooseFrom: qsTr("No contacts found.")
 
+    // Share screen Wayland
+    property string shareScreenWaylandDialogTitle: "Share screen"
+    property string shareScreenWaylandDialogEntireScreenOption: "Share entire screen"
+    property string shareScreenWaylandDialogWindowOption: "Share a window"
+    property string shareScreenWaylandDialogEnableDesktopAudio: "Share desktop audio"
+    property string shareScreenWaylandDialogDesktopAudioInfo: "Leaving this checked will share all audio coming from your desktop (including from windows which you choose not to share)"
+
     // Accessibility
     property string switchToAccount: qsTr("Press enter to switch to this account")
     property string qrCodeExplanation: qsTr("Display your QR code to allow other users to scan it and add you as a contact")
