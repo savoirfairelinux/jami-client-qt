@@ -77,7 +77,7 @@ protected:
     // this is handled by the ScreenCastPortal class using xdg-desktop-portal.
     // The choice of screen is also handled by xdg-desktop-portal, which is why we don't need
     // an argument for it (whereas we do on other platforms, cf. shareEntireScreen above).
-    Q_INVOKABLE void shareEntireScreenWayland();
+    Q_INVOKABLE void shareEntireScreenWayland(bool shareAudio = false);
 #endif
 
     // Share the all screens connected.
@@ -104,7 +104,7 @@ protected:
     // this is handled by the ScreenCastPortal class using xdg-desktop-portal.
     // The choice of window is also handled by xdg-desktop-portal, which is why we don't need
     // arguments for it (whereas we do on other platforms, cf. shareWindow above).
-    Q_INVOKABLE void shareWindowWayland();
+    Q_INVOKABLE void shareWindowWayland(bool shareAudio = false);
 #endif
 
     // Returns the screensharing resource
@@ -139,14 +139,13 @@ private Q_SLOTS:
     void onAudioDeviceEvent();
     void onRendererStarted(const QString& id, const QSize& size);
     void onRendererStopped(const QString& id);
+    // Called whenever a call status changes; used to clean up screen sharing state
+    // when a call ends (e.g. remote party hangs up).
+    void onCallStatusChanged(const QString& accountId, const QString& callId);
 #ifdef Q_OS_LINUX
     // This function needs to be called whenever a screen/window share stops on Wayland.
     // Failure to do so can cause subsequent sharing attempts to fail.
     void closePortal(const QString& callId);
-
-    // On Wayland, we need to be informed of call status changes so that we can call
-    // closePortal if a call ends while a screen/window share was in progress.
-    void onCallStatusChanged(const QString& accountId, const QString& callId);
 #endif
 
 private:
@@ -155,7 +154,7 @@ private:
 
 #ifdef Q_OS_LINUX
     // Used internally by shareEntireScreenWayland and shareWindowWayland
-    void shareWayland(bool entireScreen);
+    void shareWayland(bool entireScreen, bool shareAudio = false);
 #endif
 
     // Get the screen number

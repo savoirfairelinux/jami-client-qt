@@ -262,8 +262,11 @@ Item {
     Shortcut {
         sequence: "Ctrl+D"
         context: Qt.ApplicationShortcut
-        onActivated: CallAdapter.endCall()
-        onActivatedAmbiguously: CallAdapter.endCall()
+        onActivated: {
+            if (CurrentCall.isSharing)
+                AvAdapter.stopSharing(CurrentCall.sharingSource);
+            CallAdapter.endCall();
+        }
     }
 
     Shortcut {
