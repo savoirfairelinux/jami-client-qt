@@ -178,7 +178,11 @@ Item {
                 sipInputPanel.shown = !sipInputPanel.shown;
             }
             function onShareScreenClicked() {
-                openShareScreen();
+                if (UtilsAdapter.isWayland()) {
+                    viewCoordinator.presentDialog(appWindow, "../../commoncomponents/ShareScreenWaylandDialog.qml");
+                } else {
+                    openShareScreen();
+                }
             }
             function onShareWindowClicked() {
                 openShareWindow();
