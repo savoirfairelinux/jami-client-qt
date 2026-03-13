@@ -30,16 +30,6 @@ ContextMenuAutoLoader {
 
     property list<GeneralMenuItem> menuItems: [
         GeneralMenuItem {
-            id: startVideoCall
-            itemName: JamiStrings.startVideoCall
-            canTrigger: ConversationsAdapter.dialogId(participantUri) !== ""
-            iconSource: JamiResources.videocam_24dp_svg
-            onClicked: {
-                ConversationsAdapter.openDialogConversationWith(participantUri);
-                CallAdapter.startCall();
-            }
-        },
-        GeneralMenuItem {
             id: startAudioCall
             itemName: JamiStrings.startAudioCall
             canTrigger: ConversationsAdapter.dialogId(participantUri) !== ""
@@ -47,6 +37,16 @@ ContextMenuAutoLoader {
             onClicked: {
                 ConversationsAdapter.openDialogConversationWith(participantUri);
                 CallAdapter.startAudioOnlyCall();
+            }
+        },
+        GeneralMenuItem {
+            id: startVideoCall
+            itemName: JamiStrings.startVideoCall
+            canTrigger: ConversationsAdapter.dialogId(participantUri) !== ""
+            iconSource: JamiResources.videocam_24dp_svg
+            onClicked: {
+                ConversationsAdapter.openDialogConversationWith(participantUri);
+                CallAdapter.startCall();
             }
         },
         GeneralMenuItem {
