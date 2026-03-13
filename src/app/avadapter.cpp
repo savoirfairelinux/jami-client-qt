@@ -127,6 +127,7 @@ AvAdapter::onCallStatusChanged(const QString& accountId, const QString& callId)
 
     if (call.status == lrc::api::call::Status::ENDED) {
         closePortal(callId);
+        set_muteCamera(false);
     }
 }
 
@@ -140,7 +141,7 @@ AvAdapter::closePortal(const QString& callId)
 }
 
 void
-AvAdapter::shareWayland(bool entireScreen)
+AvAdapter::shareWayland(bool entireScreen, bool shareAudio)
 {
     QString callId = lrcInstance_->getCurrentCallId();
     closePortal(callId);
@@ -186,19 +187,21 @@ AvAdapter::shareWayland(bool entireScreen)
     muteCamera_ = !isCapturing();
     lrcInstance_->getCurrentCallModel()->addMedia(callId,
                                                   resource,
-                                                  lrc::api::CallModel::MediaRequestType::SCREENSHARING);
+                                                  lrc::api::CallModel::MediaRequestType::SCREENSHARING,
+                                                  false,
+                                                  shareAudio);
 }
 
 void
-AvAdapter::shareEntireScreenWayland()
+AvAdapter::shareEntireScreenWayland(bool shareAudio)
 {
-    shareWayland(true);
+    shareWayland(true, shareAudio);
 }
 
 void
-AvAdapter::shareWindowWayland()
+AvAdapter::shareWindowWayland(bool shareAudio)
 {
-    shareWayland(false);
+    shareWayland(false, shareAudio);
 }
 #endif // Q_OS_LINUX
 
