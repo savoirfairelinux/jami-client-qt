@@ -140,7 +140,7 @@ Control {
                         "Name": JamiStrings.shareScreen,
                         "IconSource": JamiResources.laptop_black_24dp_svg
                     });
-                if (Qt.platform.os.toString() !== "osx") {
+                if (Qt.platform.os.toString() !== "osx" && !UtilsAdapter.isWayland()) {
                     shareModel.append({
                             "Name": JamiStrings.shareWindow,
                             "IconSource": JamiResources.window_black_svg
@@ -303,7 +303,12 @@ Control {
         },
         Action {
             id: endCallAction
-            onTriggered: CallAdapter.endCall()
+            onTriggered: { 
+                if (CurrentCall.isSharing) {
+                    root.stopSharingClicked();
+                }
+                CallAdapter.endCall() 
+            }
             icon.source: JamiResources.call_end_white_24dp_svg
             icon.color: "white"
             text: JamiStrings.endCall

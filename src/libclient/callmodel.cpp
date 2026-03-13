@@ -573,6 +573,12 @@ CallModel::getProposed(VectorMapStringString mediaList,
     case MediaRequestType::SCREENSHARING: {
         // Screen/window sharing
         resource = source;
+        if (shareAudio)
+            audioMediaAttribute = {{MediaAttributeKey::MEDIA_TYPE, MediaAttributeValue::AUDIO},
+                                   {MediaAttributeKey::ENABLED, TRUE_STR},
+                                   {MediaAttributeKey::MUTED, mute ? TRUE_STR : FALSE_STR},
+                                   {MediaAttributeKey::SOURCE, resource},
+                                   {MediaAttributeKey::LABEL, alabel}};
         break;
     }
     case MediaRequestType::CAMERA: {
