@@ -33,11 +33,10 @@ WizardViewStepModel::WizardViewStepModel(LRCInstance* lrcInstance,
     reset();
     connect(&lrcInstance_->accountModel(), &AccountModel::accountAdded, this, [this](const QString& accountId) {
         auto accountCreationOption = get_accountCreationOption();
-        if (accountCreationOption == AccountCreationOption::ConnectToAccountManager
-            || accountCreationOption == AccountCreationOption::CreateSipAccount) {
-            reset();
-        } else if ((accountCreationOption != AccountCreationOption::None)
-                   && mainStep_ != MainSteps::ProfileCustomization) {
+        // JAMS/SIP/Import: close here. Jami/RendezVous: stay open on ProfileCustomization, close on nextStep.
+        bool shouldClose = (accountCreationOption != AccountCreationOption::None)
+            && mainStep_ != MainSteps::ProfileCustomization;
+        if (shouldClose) {
             Q_EMIT closeWizardView();
             reset();
         }
