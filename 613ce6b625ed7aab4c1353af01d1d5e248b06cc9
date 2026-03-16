@@ -22,6 +22,30 @@
       },
       "revId": "613ce6b625ed7aab4c1353af01d1d5e248b06cc9",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c87c5e96_18d507dd",
+        "filename": "src/app/mainview/components/SidePanel.qml",
+        "patchSetId": 24
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-03-16T15:24:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5696f9f3_66bf4085",
+      "range": {
+        "startLine": 480,
+        "startChar": 35,
+        "endLine": 480,
+        "endChar": 42
+      },
+      "revId": "613ce6b625ed7aab4c1353af01d1d5e248b06cc9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ],
   "submitRequirementResults": []
