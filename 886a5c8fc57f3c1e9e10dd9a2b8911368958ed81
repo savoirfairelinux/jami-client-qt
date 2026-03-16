@@ -16,6 +16,24 @@
       "message": "Hi @ovari123@zoho.com,\n\nAs mentioned in my commments in https://review.jami.net/c/jami-client-qt/+/33450 ,\nThe name and symbol for title comes from the Material Icons set. There is no heading icon.",
       "revId": "886a5c8fc57f3c1e9e10dd9a2b8911368958ed81",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b21dc63_21cc64cf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-03-16T20:12:10Z",
+      "side": 1,
+      "message": "The `H` svg file was created from the `H3` icon. Should the `T` icon be changed to `H3` as that is what the button actually does?",
+      "parentUuid": "2d5d06ee_2679550f",
+      "revId": "886a5c8fc57f3c1e9e10dd9a2b8911368958ed81",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
