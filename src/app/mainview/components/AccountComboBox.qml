@@ -42,6 +42,13 @@ Item {
     readonly property real popupTopPadding: JamiQmlUtils.isMacOS26OrLater
         ? JamiTheme.accountPopupTopPaddingMac : 0
 
+    // Align popup left edge with side panel on macOS 26
+    readonly property real popupLeftOffset: JamiQmlUtils.isMacOS26OrLater
+        ? JamiTheme.sidePanelIslandPaddingMac - (viewCoordinator.isInSinglePaneMode
+            ? JamiTheme.sidePanelIslandsSinglePaneModePadding
+            : JamiTheme.sidePanelIslandsPadding)
+        : 0
+
     function openAccountComboBox() {
         if (accountComboBoxPopup.opened)
             accountComboBoxPopup.close();
@@ -166,7 +173,8 @@ Item {
                     id: accountComboBoxPopup
 
                     y: contentRect.height - 1
-                    x: UtilsAdapter.isRTL ? -(contentRect.width - accountComboBox.width) : 0
+                    x: (UtilsAdapter.isRTL ? -(contentRect.width - accountComboBox.width) : 0)
+                       + root.popupLeftOffset
                     width: contentRect.width
                     // Constrain popup height to the available space within the
                     // side panel
