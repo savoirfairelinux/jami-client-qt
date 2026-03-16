@@ -295,12 +295,12 @@ Once the build has finished, you should then be able to use the Visual Studio So
 
 **Set up**
 
-- macOS minimum version 12.0
+- macOS minimum version 13.0
 - install python3
 - download xcode
-- install Qt 6.8
+- install Qt 6.10
 
-Qt 6.8 can be installed via brew
+Qt 6.10 can be installed via brew
 
 ```bash
 brew install qt
