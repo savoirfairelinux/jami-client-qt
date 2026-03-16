@@ -481,9 +481,7 @@ SidePanelBase {
             Layout.minimumHeight: accountComboBox.height
             Layout.alignment: Qt.AlignBottom
             Layout.topMargin: 8
-            Layout.leftMargin: JamiQmlUtils.isMacOS26OrLater
-                               ? JamiTheme.sidePanelIslandPaddingMac - root.sidePanelIslandsMargin
-                               : 0
+            Layout.leftMargin: 0
 
             Shortcut {
                 sequence: "Ctrl+J"
