@@ -34,6 +34,24 @@
       "parentUuid": "abcd9676_7d0be06f",
       "revId": "2a0e57068ec2c4be71916a3e422595ed505cd0b2",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5494a86f_12d113f1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-03-16T15:40:01Z",
+      "side": 1,
+      "message": "Bold and italics do not have `_b_` or `_i_`. See the following:\n- https://fonts.google.com/icons?icon.size\u003d24\u0026icon.color\u003d%23000000\u0026icon.set\u003dMaterial+Icons\u0026icon.platform\u003dweb\u0026selected\u003dMaterial+Icons+Outlined:strikethrough_s:\u0026icon.query\u003dstrike\n- https://fonts.google.com/icons?icon.size\u003d24\u0026icon.color\u003d%23000000\u0026icon.set\u003dMaterial+Icons\u0026icon.platform\u003dweb\u0026selected\u003dMaterial+Icons+Outlined:format_italic:\u0026icon.query\u003ditalic\n- https://fonts.google.com/icons?icon.size\u003d24\u0026icon.color\u003d%23000000\u0026icon.set\u003dMaterial+Icons\u0026icon.platform\u003dweb\u0026selected\u003dMaterial+Icons+Outlined:format_bold:\u0026icon.query\u003dbold",
+      "parentUuid": "81f0cc37_743a93b0",
+      "revId": "2a0e57068ec2c4be71916a3e422595ed505cd0b2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
