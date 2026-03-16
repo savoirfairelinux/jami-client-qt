@@ -89,8 +89,8 @@ BaseModalDialog {
 
             topRightRadius: JamiTheme.avatarBasedRadius
             topLeftRadius: JamiTheme.avatarBasedRadius
-            bottomLeftRadius: identifier.radius + 10
-            bottomRightRadius: identifier.radius + 10
+            bottomLeftRadius: root.isSIP ? JamiTheme.avatarBasedRadius : identifier.radius + 10
+            bottomRightRadius: root.isSIP ? JamiTheme.avatarBasedRadius : identifier.radius + 10
 
             ColumnLayout {
                 id: userProfileDialogLayout
