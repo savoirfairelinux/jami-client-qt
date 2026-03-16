@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ed4ba381_b12fecab",
+        "filename": "src/app/commoncomponents/ShareScreenWaylandDialog.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-03-16T20:53:44Z",
+      "side": 1,
+      "message": "Do we actually want audio sharing to be enabled by default?",
+      "range": {
+        "startLine": 12,
+        "startChar": 36,
+        "endLine": 12,
+        "endChar": 40
+      },
+      "revId": "9088f6ad9bd32e3951efed56ee27dd9b02694e26",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "41b3a1a7_23f0e72a",
         "filename": "src/app/mainview/components/CallActionBar.qml",
         "patchSetId": 3
