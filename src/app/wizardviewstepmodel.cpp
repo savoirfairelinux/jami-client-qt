@@ -35,6 +35,7 @@ WizardViewStepModel::WizardViewStepModel(LRCInstance* lrcInstance,
         auto accountCreationOption = get_accountCreationOption();
         if (accountCreationOption == AccountCreationOption::ConnectToAccountManager
             || accountCreationOption == AccountCreationOption::CreateSipAccount) {
+            Q_EMIT closeWizardView();
             reset();
         } else if ((accountCreationOption != AccountCreationOption::None)
                    && mainStep_ != MainSteps::ProfileCustomization) {
