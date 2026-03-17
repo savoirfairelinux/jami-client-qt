@@ -3875,10 +3875,12 @@ ConversationModelPimpl::updateTransferProgress(QTimer* timer, int conversationId
 }
 
 void
-ConversationModelPimpl::slotConversationPreferencesUpdated(const QString&,
+ConversationModelPimpl::slotConversationPreferencesUpdated(const QString& accountId,
                                                            const QString& conversationId,
                                                            const MapStringString& preferences)
 {
+    if (accountId != linked.owner.id)
+        return;
     try {
         auto& conversation = getConversationForUid(conversationId).get();
         conversation.preferences = preferences;
