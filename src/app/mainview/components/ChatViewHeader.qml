@@ -184,7 +184,7 @@ Control {
         BadgeNotifier {
             size: 20
             count: ConversationsAdapter.totalUnreadMessageCount + ConversationsAdapter.pendingRequestCount
-            visible: viewCoordinator.isInSinglePaneMode
+            visible: viewCoordinator.isInSinglePaneMode && count > 0
         }
 
 
