@@ -18,6 +18,7 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
+import QtQuick.Effects
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
@@ -149,11 +150,13 @@ Item {
                     spacing: 2
 
                     Text {
+                        property string bestName: UtilsAdapter.getBestNameForUri(CurrentAccount.id, modelData.uri)
+
                         Layout.fillWidth: true
-                        text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, modelData.uri) + "'s call"
+                        text: bestName + "'s call"
                         color: JamiTheme.textColor
-                        font.pixelSize: JamiTheme.headerFontSize
-                        font.bold: true
+                        font.family: modelData.uri.length === 40 && bestName === modelData.uri ? JamiTheme.ubuntuMonoFontFamily : JamiTheme.ubuntuFontFamily
+                        font.pointSize: JamiTheme.textFontSize
                         elide: Text.ElideRight
                     }
 
@@ -161,8 +164,11 @@ Item {
                         Layout.fillWidth: true
                         text: modelData.uri
                         color: JamiTheme.textColor
-                        font.pixelSize: 12
+                        font.family: modelData.uri.length === 40 ? JamiTheme.ubuntuMonoFontFamily : JamiTheme.ubuntuFontFamily
+                        font.pointSize: JamiTheme.tinyFontSize
                         elide: Text.ElideRight
+
+                        visible: UtilsAdapter.getBestNameForUri(CurrentAccount.id, modelData.uri) !== text
                     }
                 }
             }
@@ -233,6 +239,16 @@ Item {
             background: Rectangle {
                 radius: 25
                 color: JamiTheme.globalIslandColor
+                layer.enabled: true
+                layer.effect: MultiEffect {
+                    anchors.fill: dropdownPopup.background
+                    shadowEnabled: true
+                    shadowBlur: JamiTheme.shadowBlur
+                    shadowColor: JamiTheme.shadowColor
+                    shadowHorizontalOffset: JamiTheme.shadowHorizontalOffset
+                    shadowVerticalOffset: JamiTheme.shadowVerticalOffset
+                    shadowOpacity: JamiTheme.shadowOpacity
+                }
             }
         }
     }
