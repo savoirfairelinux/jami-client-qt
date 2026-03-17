@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f877d89b_76a537dd",
+        "filename": "3rdparty/tidy-html5",
+        "patchSetId": 27
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1169
+      },
+      "writtenOn": "2026-03-17T19:01:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8db53beb_4aca7aa7",
+      "range": {
+        "startLine": 1,
+        "startChar": 18,
+        "endLine": 1,
+        "endChar": 58
+      },
+      "revId": "397cfd67caed8260bbf7cd8c78fcbe91ddccc4c3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bbe899c3_c4739c87",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-03-16T15:05:23Z",
       "side": 1,
       "message": "This doesn\u0027t make sense (probably accidentally added while rebasing?)",
+      "range": {
+        "startLine": 208,
+        "startChar": 8,
+        "endLine": 211,
+        "endChar": 16
+      },
+      "revId": "397cfd67caed8260bbf7cd8c78fcbe91ddccc4c3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45728127_65b8d72b",
+        "filename": "src/app/mainview/components/ChatView.qml",
+        "patchSetId": 27
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1169
+      },
+      "writtenOn": "2026-03-17T19:01:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bbe899c3_c4739c87",
       "range": {
         "startLine": 208,
         "startChar": 8,
