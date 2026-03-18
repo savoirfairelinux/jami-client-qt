@@ -58,7 +58,6 @@ ContextMenuAutoLoader {
                     "canTrigger": true,
                     "isActif": true,
                     "itemName": nativeName,
-                    "hasIcon": false,
                     "content": locale,
                     "bold": UtilsAdapter.getAppValue(Settings.SpellLang) === locale
                 });

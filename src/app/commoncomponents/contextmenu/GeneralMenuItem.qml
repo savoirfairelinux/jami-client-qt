@@ -32,6 +32,7 @@ MenuItem {
     property string iconSource: ""
     property bool canTrigger: true
     property bool dangerous: false
+    property string content: ""
     property BaseContextMenu parentMenu
     property int itemRealWidth: implicitWidth
     property alias isActif: root.enabled
