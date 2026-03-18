@@ -29,9 +29,6 @@ import "../../settingsview/components"
 JamiListView {
     id: root
 
-    // anchors.fill: parent
-    topMargin: JamiTheme.preferredMarginSize
-    bottomMargin: JamiTheme.preferredMarginSize
     spacing: JamiTheme.preferredMarginSize
 
     property color themeColor: CurrentConversation.color
