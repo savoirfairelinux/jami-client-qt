@@ -94,15 +94,19 @@ Info::init(const MapStringString& message,
         if (message.contains("confId"))
             confId = message["confId"];
     } else if (type == Type::DATA_TRANSFER) {
-        QString path;
-        qlonglong bytesProgress, totalSize;
-        ConfigurationManager::instance()
-            .fileTransferInfo(accountId, conversationId, message["fileId"], path, totalSize, bytesProgress);
-        QFileInfo fi(path);
-        body = fi.isSymLink() ? fi.symLinkTarget() : path;
-        transferStatus = bytesProgress == 0           ? TransferStatus::TRANSFER_AWAITING_HOST
-                         : bytesProgress == totalSize ? TransferStatus::TRANSFER_FINISHED
-                                                      : TransferStatus::TRANSFER_ONGOING;
+        // If the fileID is empty, it means that the file has been deleted,
+        // in which case, there is no need to get any info about it.
+        if (!message["fileId"].isEmpty()) {
+            QString path;
+            qlonglong bytesProgress, totalSize;
+            ConfigurationManager::instance()
+                .fileTransferInfo(accountId, conversationId, message["fileId"], path, totalSize, bytesProgress);
+            QFileInfo fi(path);
+            body = fi.isSymLink() ? fi.symLinkTarget() : path;
+            transferStatus = bytesProgress == 0           ? TransferStatus::TRANSFER_AWAITING_HOST
+                             : bytesProgress == totalSize ? TransferStatus::TRANSFER_FINISHED
+                                                          : TransferStatus::TRANSFER_ONGOING;
+        }
     }
     commit = message;
 }
