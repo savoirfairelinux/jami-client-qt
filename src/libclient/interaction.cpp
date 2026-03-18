@@ -96,13 +96,15 @@ Info::init(const MapStringString& message,
     } else if (type == Type::DATA_TRANSFER) {
         QString path;
         qlonglong bytesProgress, totalSize;
-        ConfigurationManager::instance()
-            .fileTransferInfo(accountId, conversationId, message["fileId"], path, totalSize, bytesProgress);
-        QFileInfo fi(path);
-        body = fi.isSymLink() ? fi.symLinkTarget() : path;
-        transferStatus = bytesProgress == 0           ? TransferStatus::TRANSFER_AWAITING_HOST
-                         : bytesProgress == totalSize ? TransferStatus::TRANSFER_FINISHED
-                                                      : TransferStatus::TRANSFER_ONGOING;
+        if (!message["fileId"].isEmpty()) {
+            ConfigurationManager::instance()
+                .fileTransferInfo(accountId, conversationId, message["fileId"], path, totalSize, bytesProgress);
+            QFileInfo fi(path);
+            body = fi.isSymLink() ? fi.symLinkTarget() : path;
+            transferStatus = bytesProgress == 0           ? TransferStatus::TRANSFER_AWAITING_HOST
+                             : bytesProgress == totalSize ? TransferStatus::TRANSFER_FINISHED
+                                                          : TransferStatus::TRANSFER_ONGOING;
+        }
     }
     commit = message;
 }
