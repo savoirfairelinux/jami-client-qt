@@ -34,7 +34,13 @@ ContextMenuAutoLoader {
     property bool selectOnly: false
     property var suggestionList
     property var menuItemsLength
-    property var language
+    property string spellLang: ""
+    readonly property string currentSpellLanguage: {
+        SpellCheckAdapter.installedDictionaryCount;
+        const dictionaries = SpellCheckAdapter.getInstalledDictionaries();
+        const languageName = spellLang ? dictionaries[spellLang] : undefined;
+        return languageName !== undefined ? languageName : "";
+    }
 
     signal contextMenuRequirePaste
 
@@ -76,7 +82,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: textLanguage
             canTrigger: isSpellCheckActive() && SpellCheckAdapter.installedDictionaryCount > 0 && !root.selectOnly
-            itemName: JamiStrings.textLanguage
+            itemName: root.currentSpellLanguage ? JamiStrings.textLanguage + " (" + root.currentSpellLanguage + ")": JamiStrings.textLanguage
             iconSource: JamiResources.spellcheck_24dp_svg
             onClicked: {
                 spellLanguageContextMenu.openMenu();
@@ -146,6 +152,7 @@ ContextMenuAutoLoader {
             return;
         x = mouseEvent.x;
         y = mouseEvent.y;
+        root.spellLang = UtilsAdapter.getAppValue(Settings.SpellLang);
         selectionStart = lineEditObj.selectionStart;
         selectionEnd = lineEditObj.selectionEnd;
         root.openMenu();
@@ -184,5 +191,8 @@ ContextMenuAutoLoader {
         }
     }
 
-    Component.onCompleted: menuItemsToLoad = menuItems
+    Component.onCompleted: {
+        root.spellLang = UtilsAdapter.getAppValue(Settings.SpellLang);
+        menuItemsToLoad = menuItems;
+    }
 }
