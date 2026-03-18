@@ -842,7 +842,7 @@ Item {
     property real newMaterialTextFieldHeight: 40
     property real newMaterialTextFieldTallHeight: 56
     property real newMaterialTextFieldHorizontalPadding: 16
-    property real newMaterialTextFieldIconHorizontalPadding: 12
+    property real newMaterialTextFieldIconHorizontalPadding: 8
     property real newMaterialTextFieldSupportingTextTopPadding: 4
     property color newMaterialTextFieldColor: darkTheme ? "#3c3b3b" : "#ebe7e6"
     property color newMaterialTextFieldTrailingIconColor: "#676767"
