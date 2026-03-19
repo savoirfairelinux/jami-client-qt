@@ -39,6 +39,7 @@
 #include <QTranslator>
 #include <QLibraryInfo>
 #include <QQuickWindow>
+#include "../telemetry/telemetry.h"
 
 #ifdef Q_OS_WIN
 #include <windows.h>
@@ -196,6 +197,7 @@ MainApplication::init()
     // Let's make sure we can provide postmortem debugging information prior
     // to any other initialization. This won't do anything if crashpad isn't
     // enabled.
+    jami::telemetry::initTelemetry("jami-client-qt", "1.25.0");
     settingsManager_ = new AppSettingsManager(this);
     crashReporter_ = new CrashReporter(settingsManager_, this);
     accountSettingsManager_ = new AccountSettingsManager(this);

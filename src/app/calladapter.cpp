@@ -26,6 +26,8 @@
 
 #include <media_const.h>
 
+#include "calls_trace.h"
+
 #include <QApplication>
 #include <QTimer>
 #include <QJsonObject>
@@ -222,6 +224,25 @@ CallAdapter::onCallStarted(const QString& callId)
 void
 CallAdapter::onCallEnded(const QString& callId, int code)
 {
+    // ── OTel: end the client-side root span ─────────────────────────────────
+    // This must run unconditionally, before any early-return guards below,
+    // so the span is always exported regardless of UI state.
+    try {
+        auto it = activeCallSpans_.find(callId);
+        if (it != activeCallSpans_.end()) {
+            if (auto* rawSpan = jami::trace::spanFromHandle(*it)) {
+                if (code >= 400 && code < 700) {
+                    rawSpan->SetStatus(opentelemetry::trace::StatusCode::kError, "SIP error " + std::to_string(code));
+                } else {
+                    rawSpan->SetStatus(opentelemetry::trace::StatusCode::kOk);
+                }
+                rawSpan->End();
+            }
+            activeCallSpans_.erase(it);
+        }
+    } catch (...) {
+    }
+
     if (lrcInstance_->get_selectedConvUid().isEmpty())
         return;
     // only SIP codes greater than 400 are errors/failures and all SIP codes are less than 700
@@ -355,8 +376,38 @@ void
 CallAdapter::startAudioOnlyCall()
 {
     const auto convUid = lrcInstance_->get_selectedConvUid();
-    if (!convUid.isEmpty()) {
+    if (convUid.isEmpty())
+        return;
+
+    // ── OTel: root span for this outgoing call ────────────────────────────────
+    // Activate it with Scope so the daemon's Call::Call() constructor, which
+    // runs synchronously on this thread (LIBWRAP), automatically starts its
+    // own span as a child of this one.
+    opentelemetry::nostd::shared_ptr<opentelemetry::trace::Span> span;
+    try {
+        span = jami::trace::callsTracer()->StartSpan("call.outgoing");
+        span->SetAttribute("call.conversation_id", convUid.toStdString());
+        span->SetAttribute("call.account_id", lrcInstance_->get_currentAccountId().toStdString());
+        span->SetAttribute("call.audio_only", true);
+    } catch (...) {
+    }
+
+    {
+        opentelemetry::trace::Scope scope {span};
         lrcInstance_->getCurrentConversationModel()->startAudioOnlyCall(convUid);
+    }
+
+    // Store the span handle so we can end it when the call terminates.
+    try {
+        const auto& convInfo = lrcInstance_->getConversationFromConvUid(convUid);
+        if (span && !convInfo.callId.isEmpty()) {
+            activeCallSpans_[convInfo.callId] = jami::trace::makeSpanHandle(span);
+        } else if (span) {
+            span->End();
+        }
+    } catch (...) {
+        if (span)
+            span->End();
     }
 }
 
@@ -364,8 +415,33 @@ void
 CallAdapter::startCall()
 {
     const auto convUid = lrcInstance_->get_selectedConvUid();
-    if (!convUid.isEmpty()) {
+    if (convUid.isEmpty())
+        return;
+
+    // ── OTel: root span for this outgoing call ────────────────────────────────
+    opentelemetry::nostd::shared_ptr<opentelemetry::trace::Span> span;
+    try {
+        span = jami::trace::callsTracer()->StartSpan("call.outgoing");
+        span->SetAttribute("call.conversation_id", convUid.toStdString());
+        span->SetAttribute("call.account_id", lrcInstance_->get_currentAccountId().toStdString());
+    } catch (...) {
+    }
+
+    {
+        opentelemetry::trace::Scope scope {span};
         lrcInstance_->getCurrentConversationModel()->startCall(convUid);
+    }
+
+    try {
+        const auto& convInfo = lrcInstance_->getConversationFromConvUid(convUid);
+        if (span && !convInfo.callId.isEmpty()) {
+            activeCallSpans_[convInfo.callId] = jami::trace::makeSpanHandle(span);
+        } else if (span) {
+            span->End();
+        }
+    } catch (...) {
+        if (span)
+            span->End();
     }
 }
 

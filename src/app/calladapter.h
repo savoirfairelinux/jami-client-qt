@@ -29,6 +29,9 @@
 #include <QQmlEngine>   // QML registration
 #include <QApplication> // QML registration
 
+#include <memory>
+#include <QHash>
+
 class SystemTray;
 class AppSettingsManager;
 class PTTListener;
@@ -137,4 +140,8 @@ private:
     PTTListener* listener_;
     bool isMicrophoneMuted_ = true;
     QSet<QString> toMute;
+
+    /// OTel: client-side outgoing call spans keyed by daemon callId.
+    /// Span is started at the button press and ended when the call terminates.
+    QHash<QString, std::shared_ptr<void>> activeCallSpans_;
 };
