@@ -46,6 +46,29 @@ endif()
 # Enable this option when building for production.
 option(ENABLE_CRASHREPORTS "Enable crash reports" OFF)
 
+#Enable opentelemetry export for internal observability. This is not meant to be used by end-users and is only intended for development and debugging purposes.
+option(JAMI_ENABLE_OTEL_EXPORT "Enable OTLP export for internal observability" OFF)
+
+# OpenTelemetry integration (mirrors daemon)
+include(FetchContent)
+set(BUILD_TESTING          OFF CACHE BOOL "" FORCE)
+set(WITH_EXAMPLES          OFF CACHE BOOL "" FORCE)
+set(WITH_BENCHMARK         OFF CACHE BOOL "" FORCE)
+set(WITH_FUNC_TESTS        OFF CACHE BOOL "" FORCE)
+set(CMAKE_CXX_STANDARD "20" CACHE STRING "" FORCE)
+set(WITH_OTLP_HTTP  ON CACHE BOOL "" FORCE)
+set(WITH_OTLP_GRPC  OFF  CACHE BOOL "" FORCE)
+FetchContent_Declare(
+  opentelemetry-cpp
+  GIT_REPOSITORY https://github.com/open-telemetry/opentelemetry-cpp.git
+  GIT_TAG        v1.25.0
+  GIT_SHALLOW    TRUE
+)
+FetchContent_MakeAvailable(opentelemetry-cpp)
+message(STATUS "OpenTelemetry SDK fetched via FetchContent (client)")
+
+find_package(opentelemetry-cpp CONFIG REQUIRED)
+
 # These values are exposed to QML and are better off being defined as values.
 define_macro_with_value(WITH_WEBENGINE)
 define_macro_with_value(APPSTORE)
@@ -179,6 +202,9 @@ endif()
 # libjamiclient
 add_subdirectory(${LIBCLIENT_SRC_DIR})
 
+# Ensure telemetry sources are available for all targets
+add_subdirectory(src/telemetry)
+
 set(QT_MODULES
   Quick
   Network
@@ -254,6 +280,8 @@ add_custom_target(
   -P ${CMAKE_SCRIPTS_DIR}/generate_version_info.cmake
 )
 list(APPEND CLIENT_INCLUDE_DIRS ${VERSION_INFO_DIR})
+list(APPEND CLIENT_INCLUDE_DIRS ${PROJECT_SOURCE_DIR}/src/telemetry)
+list(APPEND CLIENT_LIBS opentelemetry-cpp::api)
 
 # Resource auto-gen
 # QML and related code files
@@ -744,7 +772,11 @@ qt_add_executable(
   ${QML_RESOURCES}
   ${QML_RESOURCES_QML}
   ${SFPM_OBJECTS}
-  src/app/spellcheckadapter.h src/app/spellcheckadapter.cpp)
+  src/app/spellcheckadapter.h src/app/spellcheckadapter.cpp
+  src/telemetry/telemetry.cpp
+  src/telemetry/calls_trace.h
+  src/telemetry/telemetry.h
+)
 
 #add_dependencies(${PROJECT_NAME} hunspell)
 
@@ -1031,6 +1063,13 @@ endif()
 target_include_directories(${PROJECT_NAME} PRIVATE ${CLIENT_INCLUDE_DIRS})
 target_link_directories(${PROJECT_NAME} PRIVATE ${CLIENT_LINK_DIRS})
 target_link_libraries(${PROJECT_NAME} PRIVATE ${CLIENT_LIBS})
+
+# When OTel export is enabled, activate the OTLP HTTP chain inside telemetry.cpp,
+# which is compiled directly into the main executable (not into libclient).
+if(JAMI_ENABLE_OTEL_EXPORT)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE JAMI_OTEL_EXPORT_ENABLED)
+    target_link_libraries(${PROJECT_NAME} PRIVATE opentelemetry-cpp::otlp_http_exporter)
+endif()
 
 qt_import_qml_plugins(${PROJECT_NAME})
 qt_finalize_executable(${PROJECT_NAME})

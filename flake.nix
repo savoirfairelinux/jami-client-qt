@@ -114,6 +114,10 @@
 
           shellHook =
             let
+               otel = pkgs.opentelemetry-cpp.override {
+                  enableHttp = true;
+                  cxxStandard = "20";
+                };
               qmlPaths = lib.makeSearchPath "lib/qt-6/qml" (rmNull ([
                 qt.qtdeclarative
                 qt.qtmultimedia
@@ -125,8 +129,16 @@
                 qt.qtsvg
               ] ++ lib.optionals withWebengine [ qt.qtwebengine ]));
               glDrivers = lib.makeSearchPath "lib/dri" [ pkgs.mesa ];
+              deps = with pkgs; [
+                otel otel.dev
+              ];
             in
             ''
+              export PKG_CONFIG_PATH="${lib.makeSearchPath "lib/pkgconfig" deps}''${PKG_CONFIG_PATH:+:$PKG_CONFIG_PATH}"
+              export CPATH="${lib.makeSearchPath "include" deps}''${CPATH:+:$CPATH}"
+              export CMAKE_PREFIX_PATH="${lib.concatStringsSep ":" deps}''${CMAKE_PREFIX_PATH:+:$CMAKE_PREFIX_PATH}"
+              export CMAKE_LIBRARY_PATH="${lib.makeLibraryPath deps}''${CMAKE_LIBRARY_PATH:+:$CMAKE_LIBRARY_PATH}"
+              export LD_LIBRARY_PATH="${lib.makeLibraryPath deps}''${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
               export QML2_IMPORT_PATH=${qmlPaths}${lib.optionalString (qmlPaths != "") ":"}$QML2_IMPORT_PATH
               export QML_IMPORT_PATH=$QML2_IMPORT_PATH
               export QT_PLUGIN_PATH=${pluginPaths}${lib.optionalString (pluginPaths != "") ":"}$QT_PLUGIN_PATH
