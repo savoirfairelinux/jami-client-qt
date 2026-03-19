@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d789472a_e3c36629",
+        "filename": "src/libclient/interaction.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-03-19T15:17:25Z",
+      "side": 1,
+      "message": "These can be moved inside the if block since they\u0027re not used anywhere else.",
+      "range": {
+        "startLine": 97,
+        "startChar": 8,
+        "endLine": 98,
+        "endChar": 43
+      },
+      "revId": "342e526c43cb4007209c693cc5d9fc49a65e525e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3e21f24_b7b59153",
+        "filename": "src/libclient/interaction.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-03-19T15:17:25Z",
+      "side": 1,
+      "message": "I think it\u0027d be worth adding a brief comment to explain that an empty fileId means that the file was deleted.",
+      "range": {
+        "startLine": 99,
+        "startChar": 13,
+        "endLine": 99,
+        "endChar": 40
+      },
+      "revId": "342e526c43cb4007209c693cc5d9fc49a65e525e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
