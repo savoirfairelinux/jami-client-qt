@@ -23,5 +23,6 @@
         <file>src/tst_AccountComboBox.qml</file>
         <file>src/tst_ConversationListView.qml</file>
         <file>src/tst_MessageListView.qml</file>
+        <file>src/tst_ListSelectionView.qml</file>
     </qresource>
 </RCC>
