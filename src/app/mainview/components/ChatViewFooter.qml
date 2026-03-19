@@ -129,6 +129,11 @@ Rectangle {
             target: messageBar.emojiPicker ? messageBar.emojiPicker : null
             function onEmojiIsPicked(content) {
                 messageBar.textAreaObj.insertText(content);
+                messageBar.isEmojiPickerOpen = false;
+            }
+
+            function onClosed() {
+                messageBar.isEmojiPickerOpen = false;
             }
         }
 
