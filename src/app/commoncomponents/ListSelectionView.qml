@@ -46,7 +46,7 @@ DualPaneView {
     // Override this predicate if needed.
     // Note: index of -1 means no selection, so valid selection requires index >= 0.
     property bool hasValidSelection: viewNode.index >= 0
-    onHasValidSelectionChanged: isSinglePaneChangedHandler()
+    onHasValidSelectionChanged: if (viewNode.visible) isSinglePaneChangedHandler()
 
     // Override BaseView.dismiss with some selection logic.
     function dismiss() {
