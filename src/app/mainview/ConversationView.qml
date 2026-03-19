@@ -30,7 +30,12 @@ ListSelectionView {
     managed: false
 
     splitViewStateKey: "Main"
-    hasValidSelection: CurrentConversation.id !== ''
+    hasValidSelection: {
+        if (viewNode.visible)
+            return CurrentConversation.id !== ''
+        else
+            return hasValidSelection
+    }
 
     visible: false
     onPresented: visible = true
