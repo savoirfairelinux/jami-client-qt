@@ -77,16 +77,14 @@ DualPaneView {
         // When transitioning from split to single pane, place major content appropriately.
         if (isSinglePane) {
             if (hideMajorPaneInSinglePaneMode) {
+                leftPaneItem.visible = true
                 rightPaneItem.parent = null
             } else if (hasValidSelection) {
-                leftPaneItem.parent = null  // Hide the side panel when showing chat
+                leftPaneItem.visible = false
                 rightPaneItem.parent = leftPane
-            } else {
-                leftPaneItem.parent = leftPane  // Show the side panel when no selection
-                rightPaneItem.parent = null
             }
         } else {
-            leftPaneItem.parent = leftPane  // Restore side panel to left pane
+            leftPaneItem.visible = true
             rightPaneItem.parent = rightPane
             // We may need a default selection of item 0 here.
             if (!hasValidSelection && selectionFallback) leftPaneItem.select(0)
