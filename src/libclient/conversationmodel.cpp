@@ -44,6 +44,9 @@
 #include <QtCore/QTimer>
 #include <QFileInfo>
 
+// telemetry
+#include "calls_trace.h"
+
 // std
 #include <algorithm>
 #include <mutex>
@@ -863,6 +866,14 @@ ConversationModel::joinCall(
 void
 ConversationModelPimpl::startCall(const QString& uid, bool isAudioOnly)
 {
+    auto startCallSpan = jami::trace::callsTracer()->StartSpan("client.conversationmodel.startCall");
+    try {
+        startCallSpan->SetAttribute("conversation.uid", uid.toStdString());
+        startCallSpan->SetAttribute("call.audio_only", isAudioOnly);
+    } catch (...) {
+    }
+    opentelemetry::trace::Scope startCallScope {startCallSpan};
+
     try {
         auto& conversation = getConversationForUid(uid, true).get();
         if (conversation.participants.empty()) {
@@ -934,7 +945,15 @@ ConversationModelPimpl::startCall(const QString& uid, bool isAudioOnly)
             uri = "jami:" + uri; // Add jami: before or it will fail.
         }
 
-        auto cb = ([this, isTemporary, uri, isAudioOnly, &conversation](QString conversationId) {
+        auto cbParentHandle = jami::trace::makeSpanHandle(startCallSpan);
+        auto cb = ([this, isTemporary, uri, isAudioOnly, &conversation, cbParentHandle](QString conversationId) {
+            auto cbSpan = jami::trace::startChildSpan(cbParentHandle, "client.conversationmodel.startCall.cb");
+            opentelemetry::trace::Scope cbScope {cbSpan};
+            try {
+                cbSpan->SetAttribute("conversation.id", conversationId.toStdString());
+            } catch (...) {
+            }
+
             if (indexOf(conversationId) < 0) {
                 qDebug() << "Unable to start call: conversation does not exist.";
                 return;
@@ -946,6 +965,10 @@ ConversationModelPimpl::startCall(const QString& uid, bool isAudioOnly)
             if (newConv.callId.isEmpty()) {
                 qDebug() << "Unable to start call (daemon side failure?)";
                 return;
+            }
+            try {
+                cbSpan->SetAttribute("call.id", newConv.callId.toStdString());
+            } catch (...) {
             }
 
             invalidateModel();
@@ -2136,6 +2159,13 @@ ConversationModelPimpl::sort(const conversation::Info& convA, const conversation
 void
 ConversationModelPimpl::sendContactRequest(const QString& contactUri)
 {
+    auto span = jami::trace::callsTracer()->StartSpan("client.conversationmodel.sendContactRequest");
+    try {
+        span->SetAttribute("contact.uri", contactUri.toStdString());
+    } catch (...) {
+    }
+    opentelemetry::trace::Scope scope {span};
+
     try {
         auto contact = linked.owner.contactModel->getContact(contactUri);
         auto isNotUsed = contact.profileInfo.type == profile::Type::TEMPORARY

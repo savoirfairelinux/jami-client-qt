@@ -39,6 +39,7 @@
 #include <QTranslator>
 #include <QLibraryInfo>
 #include <QQuickWindow>
+#include "../telemetry/telemetry.h"
 
 #ifdef Q_OS_WIN
 #include <windows.h>
@@ -278,6 +279,13 @@ MainApplication::init()
     initQmlLayer();
 
     accountSettingsManager_->initalizeAccountSettings();
+
+    // Initialize telemetry after account settings are loaded so we can include deviceId
+    const auto& accConfig = lrcInstance_->getCurrAccConfig();
+    const auto telemetryName = accConfig.deviceId.isEmpty()
+                                   ? QString("jami-client-qt")
+                                   : QString("jami-client-qt-%1").arg(accConfig.deviceId).chopped(10);
+    jami::telemetry::initTelemetry(telemetryName.toStdString(), "1.25.0");
 
     settingsManager_->setValue(Settings::Key::StartMinimized, runOptions_[Option::StartMinimized].toBool());
 

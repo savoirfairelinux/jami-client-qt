@@ -217,6 +217,9 @@ set(LIBCLIENT_SOURCES
   uri.cpp
   vcard.cpp
 
+  # telemetry (OpenTelemetry integration)
+  ${Source_Files__telemetry}
+
   # models
   contactmodel.cpp
   callparticipantsmodel.cpp
@@ -267,6 +270,10 @@ set(LIBCLIENT_HEADERS
   messagelistmodel.h
   callInformationListModel.h
   rendererinformationlistmodel.h
+
+  # telemetry
+  telemetry/telemetry.h
+  telemetry/calls_trace.h
 
   # interfaces
   interfaces/pixmapmanipulatori.h
@@ -453,6 +460,25 @@ add_library(${LIBCLIENT_NAME} STATIC
   ${LIBCLIENT_SOURCES}
   ${LIBCLIENT_HEADERS_API}
   ${LIBCLIENT_HEADERS_MOC})
+
+# Telemetry include dir
+target_include_directories(${LIBCLIENT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../telemetry)
+
+# Link OpenTelemetry libraries
+target_link_libraries(${LIBCLIENT_NAME}
+    opentelemetry-cpp::api
+    opentelemetry-cpp::sdk
+    opentelemetry-cpp::logs
+    opentelemetry-cpp::metrics
+    opentelemetry-cpp::trace
+    opentelemetry-cpp::in_memory_span_exporter
+)
+
+# Enable OTLP HTTP exporter if requested
+if(JAMI_ENABLE_OTEL_EXPORT)
+  target_link_libraries(${LIBCLIENT_NAME}  opentelemetry-cpp::otlp_http_exporter)
+  target_compile_definitions(${LIBCLIENT_NAME} PRIVATE JAMI_OTEL_EXPORT_ENABLED)
+endif()
 
 if(JAMICORE_AS_SUBDIR)
   # Define the project dependencies depending on the build type.
