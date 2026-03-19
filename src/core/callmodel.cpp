@@ -42,6 +42,9 @@
 #include <media_const.h>
 #include <account_const.h>
 
+// telemetry
+#include "calls_trace.h"
+
 // Qt
 #include <QObject>
 #include <QString>
@@ -386,6 +389,14 @@ CallModel::setVideoMuted(const QString& callId, bool videoMuted)
 void
 initializeMediaList(VectorMapStringString& mediaList, bool audioOnly, bool videoMuted)
 {
+    auto span = jami::trace::callsTracer()->StartSpan("client.callmodel.initializeMediaList");
+    try {
+        span->SetAttribute("call.audio_only", audioOnly);
+        span->SetAttribute("call.video_muted", videoMuted);
+    } catch (...) {
+    }
+    opentelemetry::trace::Scope scope {span};
+
     mediaList.push_back({{MediaAttributeKey::MEDIA_TYPE, MediaAttributeValue::AUDIO},
                          {MediaAttributeKey::ENABLED, TRUE_STR},
                          {MediaAttributeKey::MUTED, FALSE_STR},
@@ -415,16 +426,35 @@ initializeMediaList(VectorMapStringString& mediaList, bool audioOnly, bool video
 QString
 CallModel::createCall(const QString& uri, bool isAudioOnly, VectorMapStringString mediaList, bool videoMuted)
 {
+    auto span = jami::trace::callsTracer()->StartSpan("client.callmodel.createCall");
+    try {
+        span->SetAttribute("call.uri", uri.toStdString());
+        span->SetAttribute("call.audio_only", isAudioOnly);
+        span->SetAttribute("call.video_muted", videoMuted);
+    } catch (...) {
+    }
+    opentelemetry::trace::Scope scope {span};
+
     bool isSwarm = uri.startsWith("swarm:") || uri.startsWith("rdv:");
     if (mediaList.isEmpty()) {
         initializeMediaList(mediaList, isAudioOnly, videoMuted && isSwarm);
     }
+
+    auto placeCallSpan = jami::trace::callsTracer()->StartSpan("client.callmodel.placeCallWithMedia");
+    opentelemetry::trace::Scope placeCallScope {placeCallSpan};
+
 #ifdef ENABLE_LIBWRAP
     auto callId = CallManager::instance().placeCallWithMedia(owner.id, uri, mediaList);
 #else  // dbus
     // do not use auto here (QDBusPendingReply<QString>)
     QString callId = CallManager::instance().placeCallWithMedia(owner.id, uri, mediaList);
 #endif // ENABLE_LIBWRAP
+
+    try {
+        placeCallSpan->SetAttribute("call.id", callId.toStdString());
+        placeCallSpan->End();
+    } catch (...) {
+    }
 
     if (callId.isEmpty()) {
         if (isSwarm) {
