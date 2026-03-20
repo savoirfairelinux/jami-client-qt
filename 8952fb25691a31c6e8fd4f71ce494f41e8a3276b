@@ -16,6 +16,23 @@
       "message": "Should the following line be added at the end of the comment?\n`GitLab: #2061`\n\nThank you",
       "revId": "8952fb25691a31c6e8fd4f71ce494f41e8a3276b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ab163b5_e489c1ed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-03-20T07:58:23Z",
+      "side": 1,
+      "message": "!verify",
+      "revId": "8952fb25691a31c6e8fd4f71ce494f41e8a3276b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
