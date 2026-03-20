@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31ea5530_378a9ed2",
+        "filename": "tests/qml/src/tst_ListSelectionView.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-03-20T19:55:35Z",
+      "side": 1,
+      "message": "This test was for `onHasValidSelectionChanged: if (viewNode.visible) isSinglePaneChangedHandler()` fix. The current method no longer reparents leftPane",
+      "revId": "e8e39c9b92586280356be14ac0cbfad0312d46a2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
