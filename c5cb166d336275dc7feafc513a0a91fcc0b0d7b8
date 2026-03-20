@@ -16,6 +16,23 @@
       "message": "Works, but if you switch between showing/hiding the message fast enough it\u0027ll trigger the reply function. Maybe the double click to reply shouldn\u0027t apply to the show more/less area of the text?",
       "revId": "c5cb166d336275dc7feafc513a0a91fcc0b0d7b8",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "135c6b7b_0a5d68a4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-03-20T08:21:43Z",
+      "side": 1,
+      "message": "!verify",
+      "revId": "c5cb166d336275dc7feafc513a0a91fcc0b0d7b8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
