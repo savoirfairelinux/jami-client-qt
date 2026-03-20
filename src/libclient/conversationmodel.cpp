@@ -2471,11 +2471,8 @@ ConversationModelPimpl::slotConversationMemberEvent(const QString& accountId,
         const VectorMapStringString& members = ConfigurationManager::instance().getConversationMembers(linked.owner.id,
                                                                                                        conversationId);
         QVector<member::Member> participants;
-        VectorString membersRemaining;
         for (auto& member : members) {
             participants.append(member::Member {member["uri"], member::to_role(member["role"])});
-            if (member["role"] != "left")
-                membersRemaining.append(member["uri"]);
         }
         conversation.participants = participants;
         invalidateModel();
