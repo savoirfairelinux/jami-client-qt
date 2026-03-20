@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adfb92ea_ef3b3421",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-03-20T20:25:48Z",
+      "side": 1,
+      "message": "```suggestion\nSidePanel: fix conversation deselection handling\n\nThe SidePanel disappears after removing/blocking/declining conversations because commit 07f7d031 introduced leftPaneItem reparenting in ListSelectionView\u0027s handler, enabling dismissed views to steal the shared SidePanel. This commit guards against\ninvisible views reparenting the SidePanel.\n```",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 70
+      },
+      "revId": "3a8347aaaa9eaf71a7401d1ee2a3c30934e6339e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
