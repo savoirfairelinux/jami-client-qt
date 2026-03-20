@@ -33,6 +33,23 @@
       "message": "!verify",
       "revId": "8952fb25691a31c6e8fd4f71ce494f41e8a3276b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e264756e_4344121d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-03-20T14:51:07Z",
+      "side": 1,
+      "message": "I see a new warning in the logs with this patch when I open the \"Details\" panel of a conversation with deleted files in it:\n```\ndefault\t[1774017120982][WRN][765a3d9f0280]: unknown:0 QFSFileEngine::open: No file name specified\n```\nThe warning seems to come from the call to `mimeTypeForFile` in `MessagesAdapter::getMediaInfo` when the file path is empty:\n```\nThread 1 \"jami\" hit Breakpoint 2, 0x00007ffff6920d50 in QFSFileEngine::open(QFlags\u003cQIODeviceBase::OpenModeFlag\u003e, std::optional\u003cQFlags\u003cQFileDevice::Permission\u003e \u003e) () from /usr/lib/libqt-jami/lib/libQt6Core.so.6\n#0  0x00007ffff6920d50 in QFSFileEngine::open(QFlags\u003cQIODeviceBase::OpenModeFlag\u003e, std::optional\u003cQFlags\u003cQFileDevice::Permission\u003e \u003e) () at /usr/lib/libqt-jami/lib/libQt6Core.so.6\n#1  0x00007ffff6856b0c in QFile::open(QFlags\u003cQIODeviceBase::OpenModeFlag\u003e) () at /usr/lib/libqt-jami/lib/libQt6Core.so.6\n#2  0x00007ffff6a08906 in  () at /usr/lib/libqt-jami/lib/libQt6Core.so.6\n#3  0x00007ffff6a08c40 in  () at /usr/lib/libqt-jami/lib/libQt6Core.so.6\n#4  0x00007ffff6a0935e in  () at /usr/lib/libqt-jami/lib/libQt6Core.so.6\n#5  0x00007ffff6a0978e in QMimeDatabase::mimeTypeForFile(QString const\u0026, QMimeDatabase::MatchMode) const () at /usr/lib/libqt-jami/lib/libQt6Core.so.6\n#6  0x0000555555818129 in MessagesAdapter::getMediaInfo(QString const\u0026) (this\u003dthis@entry\u003d0x55555ce70cf0, msg\u003d\u003coptimized out\u003e) at /home/fsimon/jami-client-qt/src/app/messagesadapter.cpp:593\ndefault\t[1774016552120][WRN][7fffe4af3280]: unknown:0 QFSFileEngine::open: No file name specified\n```\nSo we probably need to explicitly handle the empty case in `MessagesAdapter::getMediaInfo`.",
+      "revId": "8952fb25691a31c6e8fd4f71ce494f41e8a3276b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
