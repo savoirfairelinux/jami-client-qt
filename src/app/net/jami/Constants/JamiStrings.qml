@@ -886,6 +886,8 @@ Item {
     property string jamiIdentity: qsTr("Jami identity")
     property string showFingerprint: qsTr("Show fingerprint")
     property string hideFingerprint: qsTr("Hide fingerprint")
+    property string copyFingerprint: qsTr("Copy fingerprint")
+    property string copyUsername: qsTr("Copy username")
     property string identifierRegisterName: qsTr("Show registered name")
 
     // ManageAccount

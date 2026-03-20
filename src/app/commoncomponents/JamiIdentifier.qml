@@ -106,41 +106,22 @@ Control {
         RowLayout {
             Layout.fillHeight: true
             Layout.alignment: Qt.AlignVCenter
+
+            // Separate the copy and edit buttons
+            // Users should also have the option to copy when a username is not set
+            // Edit button should only be visible when there is not registered name
             NewIconButton {
-                id: copyOrEditButton
+                id: chooseUsernameButton
+                visible: CurrentAccount.registeredName === ""
 
                 Layout.alignment: Qt.AlignVCenter
 
-                iconSource: {
-                    if (usernameTextEdit.visible) {
-                        return JamiResources.close_black_24dp_svg;
-                    } else {
-                        if (CurrentAccount.registeredName !== "") {
-                            return JamiResources.content_copy_24dp_svg;
-                        } else {
-                            return JamiResources.assignment_ind_black_24dp_svg;
-                        }
-                    }
-                }
-                iconSize: JamiTheme.iconButtonMedium
-                toolTipText: {
-                    if (usernameTextEdit.visible) {
-                        return JamiStrings.cancel;
-                    } else {
-                        if (CurrentAccount.registeredName !== "") {
-                            return JamiStrings.copy;
-                        } else {
-                            return JamiStrings.chooseAUsername;
-                        }
-                    }
-                }
+                iconSource: usernameTextEdit.visible ? JamiResources.close_black_24dp_svg : JamiResources.assignment_ind_black_24dp_svg
 
-                onClicked: {
-                    if (CurrentAccount.registeredName === "")
-                        usernameTextEdit.visible = !usernameTextEdit.visible;
-                    else
-                        UtilsAdapter.setClipboardText(usernameTextEdit.textFieldContent);
-                }
+                iconSize: JamiTheme.iconButtonMedium
+                toolTipText: usernameTextEdit.visible ? JamiStrings.cancel : JamiStrings.chooseAUsername
+
+                onClicked: usernameTextEdit.visible = !usernameTextEdit.visible;
 
                 Rectangle {
                     id: redDotIndicator
@@ -175,6 +156,23 @@ Control {
                         }
                     }
                 }
+            }
+
+            NewIconButton {
+                id: copyUsernameOrFingerprintButton
+
+                Layout.alignment: Qt.AlignVCenter
+
+                iconSource: JamiResources.content_copy_24dp_svg;
+
+                iconSize: JamiTheme.iconButtonMedium
+                toolTipText: showFingerprint ? JamiStrings.copyFingerprint : JamiStrings.copyUsername
+
+                visible: !usernameTextEdit.visible
+
+                // regardless of if it's the username showing or the fingerprint, copy it
+                onClicked: (CurrentAccount.registeredName === "" || showFingerprint) ?
+                        UtilsAdapter.setClipboardText(CurrentAccount.uri) : UtilsAdapter.setClipboardText(CurrentAccount.registeredName);
             }
 
             NewIconButton {
