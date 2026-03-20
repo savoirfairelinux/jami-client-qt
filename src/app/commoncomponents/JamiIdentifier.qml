@@ -174,18 +174,6 @@ Control {
             }
 
             NewIconButton {
-                id: shareButton
-
-                Layout.alignment: Qt.AlignVCenter
-
-                iconSource: JamiResources.share_24dp_svg
-                iconSize: JamiTheme.iconButtonMedium
-                toolTipText: JamiStrings.share
-
-                onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/WelcomePageQrDialog.qml")
-            }
-
-            NewIconButton {
                 id: fingerprintButton
 
                 Layout.alignment: Qt.AlignVCenter
@@ -197,6 +185,18 @@ Control {
                 visible: CurrentAccount.registeredName !== ""
 
                 onClicked: showFingerprint = !showFingerprint
+            }
+
+            NewIconButton {
+                id: shareButton
+
+                Layout.alignment: Qt.AlignVCenter
+
+                iconSource: JamiResources.share_24dp_svg
+                iconSize: JamiTheme.iconButtonMedium
+                toolTipText: JamiStrings.share
+
+                onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/WelcomePageQrDialog.qml")
             }
         }
     }
