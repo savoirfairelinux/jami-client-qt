@@ -41,6 +41,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8046601_fb24bfd1",
+        "filename": "src/app/commoncomponents/JamiIdentifier.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1169
+      },
+      "writtenOn": "2026-03-23T23:08:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8014cff4_b2209d02",
+      "range": {
+        "startLine": 119,
+        "startChar": 16,
+        "endLine": 124,
+        "endChar": 17
+      },
+      "revId": "718541adcfd113bd092f4b1cacd39bfe9ef28d1f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "24f286d3_b9e555e4",
@@ -54,6 +78,30 @@
       "writtenOn": "2026-03-23T13:45:03Z",
       "side": 1,
       "message": "Can use ternary statement here",
+      "range": {
+        "startLine": 126,
+        "startChar": 16,
+        "endLine": 131,
+        "endChar": 17
+      },
+      "revId": "718541adcfd113bd092f4b1cacd39bfe9ef28d1f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63a4ca34_34d29cde",
+        "filename": "src/app/commoncomponents/JamiIdentifier.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1169
+      },
+      "writtenOn": "2026-03-23T23:08:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24f286d3_b9e555e4",
       "range": {
         "startLine": 126,
         "startChar": 16,
@@ -87,6 +135,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9206c4d_5d0c9675",
+        "filename": "src/app/commoncomponents/JamiIdentifier.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1169
+      },
+      "writtenOn": "2026-03-23T23:08:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "efb8bd95_af6eac58",
+      "range": {
+        "startLine": 133,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 17
+      },
+      "revId": "718541adcfd113bd092f4b1cacd39bfe9ef28d1f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c9edac5_2373f81e",
@@ -110,6 +182,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7850fce_2ce1f213",
+        "filename": "src/app/commoncomponents/JamiIdentifier.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1169
+      },
+      "writtenOn": "2026-03-23T23:08:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c9edac5_2373f81e",
+      "range": {
+        "startLine": 177,
+        "startChar": 0,
+        "endLine": 179,
+        "endChar": 17
+      },
+      "revId": "718541adcfd113bd092f4b1cacd39bfe9ef28d1f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9da12fd5_00e39756",
@@ -123,6 +219,30 @@
       "writtenOn": "2026-03-23T13:45:03Z",
       "side": 1,
       "message": "Can use a ternary statement here",
+      "range": {
+        "startLine": 182,
+        "startChar": 0,
+        "endLine": 187,
+        "endChar": 17
+      },
+      "revId": "718541adcfd113bd092f4b1cacd39bfe9ef28d1f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fa8dc7d_27394668",
+        "filename": "src/app/commoncomponents/JamiIdentifier.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1169
+      },
+      "writtenOn": "2026-03-23T23:08:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9da12fd5_00e39756",
       "range": {
         "startLine": 182,
         "startChar": 0,
