@@ -103,17 +103,9 @@ Item {
 
         delegate: ItemDelegate {
             width: ListView.view.width
-            height: 50
+            height: 42
 
-            topInset: 4
-            leftInset: 4
-            rightInset: 4
-            bottomInset: 4
-
-            topPadding: topInset * 2
-            leftPadding: topInset * 2
-            rightPadding: rightInset * 2
-            bottomPadding: bottomInset * 2
+            padding: 4
 
             contentItem: RowLayout {
                 spacing: 10
@@ -221,10 +213,12 @@ Item {
             x: parent.width - width / 2
             y: parent.height + JamiTheme.qwkTitleBarHeight / 2
             width: 250
-            padding: 1
+            horizontalPadding: 1
+            verticalPadding: 5
 
             contentItem: ListView {
                 clip: true
+                spacing: 8
                 implicitHeight: contentHeight
                 model: dropDownButton.visible ? dropDownButton.delegateModel : null
                 currentIndex: dropDownButton.highlightedIndex
