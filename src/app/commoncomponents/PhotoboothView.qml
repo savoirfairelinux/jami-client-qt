@@ -64,6 +64,8 @@ Item {
         Button {
             id: editImage
 
+            visible: !root.readOnly
+
             anchors.top: parent.top
             anchors.right: parent.right
             anchors.margins: doubleEditAvatar ? height / 4 : avatar.width / 22
