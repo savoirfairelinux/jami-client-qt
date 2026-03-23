@@ -16,6 +16,29 @@
       "message": "!verify",
       "revId": "6dbb38dd0b3f271e427728b67b1b2c87edaab712",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d487a85_124f6c5f",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-03-23T15:25:27Z",
+      "side": 1,
+      "message": "I think it\u0027d be better to explain in the comment why we expect the file path to sometimes be empty. The fact that this case wasn\u0027t taken into account is the real issue; the warning in `mimeTypeForFile` is just how we happened to notice it.",
+      "range": {
+        "startLine": 593,
+        "startChar": 8,
+        "endLine": 593,
+        "endChar": 75
+      },
+      "revId": "6dbb38dd0b3f271e427728b67b1b2c87edaab712",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
