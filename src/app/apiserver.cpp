@@ -652,6 +652,7 @@ ApiServer::start(quint16 port)
 
     auto actualPort = tcpServer_->serverPort();
     qCInfo(apiLog) << "ApiServer: listening on localhost:" << actualPort;
+    Q_EMIT runningChanged();
     Q_EMIT started(actualPort);
     return true;
 }
@@ -675,7 +676,14 @@ ApiServer::stop()
     tcpServer_ = nullptr;
 
     qCInfo(apiLog) << "ApiServer: stopped";
+    Q_EMIT runningChanged();
     Q_EMIT stopped();
+}
+
+bool
+ApiServer::running() const
+{
+    return tcpServer_ && tcpServer_->isListening();
 }
 
 quint16
