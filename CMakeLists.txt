@@ -192,7 +192,9 @@ set(QT_MODULES
   Core5Compat
   Multimedia
   Widgets
-  Positioning)
+  Positioning
+  HttpServer
+  WebSockets)
 
 if(WITH_WEBENGINE)
   list(APPEND QT_MODULES
@@ -358,7 +360,9 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/pluginversionmanager.cpp
   ${APP_SRC_DIR}/linkdevicemodel.cpp
   ${APP_SRC_DIR}/qrcodescannermodel.cpp
-  ${APP_SRC_DIR}/spellchecker.cpp)
+  ${APP_SRC_DIR}/spellchecker.cpp
+  ${APP_SRC_DIR}/apiserver.cpp
+  ${APP_SRC_DIR}/apitokenmanager.cpp)
 
 set(COMMON_HEADERS
   ${APP_SRC_DIR}/global.h
@@ -439,6 +443,8 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/qrcodescannermodel.h
   ${APP_SRC_DIR}/spellchecker.h
   ${APP_SRC_DIR}/accountsettingspropertymap.h
+  ${APP_SRC_DIR}/apiserver.h
+  ${APP_SRC_DIR}/apitokenmanager.h
 )
 
 set(CONTRIB_DARWIN_FOLDER "")
