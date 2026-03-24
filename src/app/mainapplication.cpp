@@ -25,6 +25,7 @@
 #include "systemtray.h"
 #include "previewengine.h"
 #include "crashreporter.h"
+#include "apiserver.h"
 
 #include <QWKQuick/qwkquickglobal.h>
 
@@ -280,6 +281,16 @@ MainApplication::init()
     set_startMinimized(startMinimizedSetting && runOptions_[Option::StartUri].isNull());
 
     initQmlLayer();
+
+    // Start the local API server if enabled.
+    if (settingsManager_->getValue(Settings::Key::EnableApi).toBool()) {
+        apiServer_ = new ApiServer(lrcInstance_.get(), this);
+        auto apiPort = settingsManager_->getValue(Settings::Key::ApiPort).value<quint16>();
+        if (apiServer_->start(apiPort)) {
+            C_INFO << "API server started on port" << apiServer_->port()
+                   << "token:" << apiServer_->apiToken();
+        }
+    }
 
     // Defer non-critical post-init work to after the window is shown,
     // so the first frame can be displayed as quickly as possible.

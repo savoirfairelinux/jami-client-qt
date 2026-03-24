@@ -76,7 +76,9 @@ extern const QString defaultDownloadPath;
     X(UseFramelessWindow, USE_FRAMELESS_WINDOW_DEFAULT) \
     X(EnableCrashReporting, true) \
     X(EnableAutomaticCrashReporting, false) \
-    X(RaiseWhenCalled, false)
+    X(RaiseWhenCalled, false) \
+    X(EnableApi, false) \
+    X(ApiPort, 8080)
 #if APPSTORE
 #define KEYS COMMON_KEYS
 #else
