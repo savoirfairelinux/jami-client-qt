@@ -34,6 +34,7 @@ class AppSettingsManager;
 class AccountSettingsManager;
 class CrashReporter;
 class PreviewEngine;
+class ApiServer;
 
 // Provides information about the screen the app is displayed on
 class ScreenInfo : public QObject
@@ -114,6 +115,7 @@ private:
     AccountSettingsManager* accountSettingsManager_;
     PreviewEngine* previewEngine_;
     CrashReporter* crashReporter_;
+    ApiServer* apiServer_ {nullptr};
 
     ScreenInfo screenInfo_;
     QCommandLineParser parser_;
