@@ -39,15 +39,19 @@ class ApiTokenManager;
 class ApiServer : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(bool running READ running NOTIFY runningChanged)
+    Q_PROPERTY(quint16 port READ port NOTIFY runningChanged)
 
 public:
     explicit ApiServer(LRCInstance* instance, QObject* parent = nullptr);
     ~ApiServer();
 
     /// Start listening on the given port (localhost only). Returns true on success.
-    bool start(quint16 port = 8080);
+    Q_INVOKABLE bool start(quint16 port = 8080);
     /// Stop the server.
-    void stop();
+    Q_INVOKABLE void stop();
+    /// Returns true if the server is currently listening.
+    bool running() const;
     /// Returns the port the server is currently listening on, or 0 if not running.
     quint16 port() const;
     /// Returns the token manager for external access (e.g. QML).
@@ -56,6 +60,7 @@ public:
     void setTokenManager(ApiTokenManager* manager);
 
 Q_SIGNALS:
+    void runningChanged();
     void started(quint16 port);
     void stopped();
 
