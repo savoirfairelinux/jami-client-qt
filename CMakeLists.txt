@@ -362,7 +362,8 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/qrcodescannermodel.cpp
   ${APP_SRC_DIR}/spellchecker.cpp
   ${APP_SRC_DIR}/apiserver.cpp
-  ${APP_SRC_DIR}/apitokenmanager.cpp)
+  ${APP_SRC_DIR}/apitokenmanager.cpp
+  ${APP_SRC_DIR}/apitokenlistmodel.cpp)
 
 set(COMMON_HEADERS
   ${APP_SRC_DIR}/global.h
@@ -445,6 +446,7 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/accountsettingspropertymap.h
   ${APP_SRC_DIR}/apiserver.h
   ${APP_SRC_DIR}/apitokenmanager.h
+  ${APP_SRC_DIR}/apitokenlistmodel.h
 )
 
 set(CONTRIB_DARWIN_FOLDER "")
