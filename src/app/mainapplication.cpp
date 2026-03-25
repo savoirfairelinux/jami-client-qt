@@ -386,7 +386,6 @@ MainApplication::setApplicationFont()
 #endif
 
     QFontDatabase::addApplicationFont(":/fonts/UbuntuMono-Regular.ttf");
-    fontFamilies += "UbuntuMono";
     QFont font;
     font.setFamilies(fontFamilies);
     setFont(font);
