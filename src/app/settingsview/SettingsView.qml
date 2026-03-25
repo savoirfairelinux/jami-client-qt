@@ -38,6 +38,7 @@ ListSelectionView {
         "LinkedDevicesPage": Qt.resolvedUrl("components/LinkedDevicesPage.qml"),
         "CallSettingsPage": Qt.resolvedUrl("components/CallSettingsPage.qml"),
         "AdvancedSettingsPage": Qt.resolvedUrl("components/AdvancedSettingsPage.qml"),
+        "ApiTokensPage": Qt.resolvedUrl("components/ApiTokensPage.qml"),
         "SystemSettingsPage": Qt.resolvedUrl("components/SystemSettingsPage.qml"),
         "AppearanceSettingsPage": Qt.resolvedUrl("components/AppearanceSettingsPage.qml"),
         "Chat": Qt.resolvedUrl("components/ChatSettingsPage.qml"),
@@ -135,36 +136,39 @@ ListSelectionView {
                 replace(currentItem, viewNode.resources["AdvancedSettingsPage"], StackView.Immediate);
                 break;
             case 5:
-                replace(currentItem, viewNode.resources["SystemSettingsPage"], StackView.Immediate);
+                replace(currentItem, viewNode.resources["ApiTokensPage"], StackView.Immediate);
                 break;
             case 6:
-                replace(currentItem, viewNode.resources["AppearanceSettingsPage"], StackView.Immediate);
+                replace(currentItem, viewNode.resources["SystemSettingsPage"], StackView.Immediate);
                 break;
             case 7:
-                replace(currentItem, viewNode.resources["Chat"], StackView.Immediate);
+                replace(currentItem, viewNode.resources["AppearanceSettingsPage"], StackView.Immediate);
                 break;
             case 8:
-                replace(currentItem, viewNode.resources["LocationSharingSettingsPage"], StackView.Immediate);
+                replace(currentItem, viewNode.resources["Chat"], StackView.Immediate);
                 break;
             case 9:
-                replace(currentItem, viewNode.resources["CallRecordingSettingsPage"], StackView.Immediate);
+                replace(currentItem, viewNode.resources["LocationSharingSettingsPage"], StackView.Immediate);
                 break;
             case 10:
-                replace(currentItem, viewNode.resources["TroubleshootSettingsPage"], StackView.Immediate);
+                replace(currentItem, viewNode.resources["CallRecordingSettingsPage"], StackView.Immediate);
                 break;
             case 11:
-                replace(currentItem, viewNode.resources["UpdateSettingsPage"], StackView.Immediate);
+                replace(currentItem, viewNode.resources["TroubleshootSettingsPage"], StackView.Immediate);
                 break;
             case 12:
-                replace(currentItem, viewNode.resources["AudioSettingsPage"], StackView.Immediate);
+                replace(currentItem, viewNode.resources["UpdateSettingsPage"], StackView.Immediate);
                 break;
             case 13:
-                replace(currentItem, viewNode.resources["VideoSettingsPage"], StackView.Immediate);
+                replace(currentItem, viewNode.resources["AudioSettingsPage"], StackView.Immediate);
                 break;
             case 14:
-                replace(currentItem, viewNode.resources["ScreenSharingSettingsPage"], StackView.Immediate);
+                replace(currentItem, viewNode.resources["VideoSettingsPage"], StackView.Immediate);
                 break;
             case 15:
+                replace(currentItem, viewNode.resources["ScreenSharingSettingsPage"], StackView.Immediate);
+                break;
+            case 16:
                 replace(currentItem, viewNode.resources["PluginSettingsPage"], StackView.Immediate);
                 break;
             }

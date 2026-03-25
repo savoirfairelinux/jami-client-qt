@@ -35,6 +35,8 @@ class AccountSettingsManager;
 class CrashReporter;
 class PreviewEngine;
 class ApiServer;
+class ApiTokenManager;
+class ApiTokenListModel;
 
 // Provides information about the screen the app is displayed on
 class ScreenInfo : public QObject
@@ -116,6 +118,8 @@ private:
     PreviewEngine* previewEngine_;
     CrashReporter* crashReporter_;
     ApiServer* apiServer_ {nullptr};
+    ApiTokenManager* apiTokenManager_ {nullptr};
+    class ApiTokenListModel* apiTokenListModel_ {nullptr};
 
     ScreenInfo screenInfo_;
     QCommandLineParser parser_;
