@@ -175,6 +175,14 @@ ColumnLayout {
 
                 onTextChanged: root.modifiedTextFieldContent = text
 
+                Connections {
+                    target: root
+                    function onModifiedTextFieldContentChanged() {
+                        if (textField.text !== root.modifiedTextFieldContent)
+                            textField.text = root.modifiedTextFieldContent
+                    }
+                }
+
                 LineEditContextMenu {
                     id: contextMenu
 
