@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e537b665_2416edf9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-03-25T20:41:47Z",
+      "side": 1,
+      "message": "Works fine",
+      "revId": "2e0a80caa7ed28007f1a2ef1cd0cf40353f4e21c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82526cef_3432f41f",
+        "filename": "src/app/mainapplication.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-03-25T20:41:47Z",
+      "side": 1,
+      "message": "If `monoFontId` is unused, do we need to assign the result of `addApplicationFont` in the first place ?",
+      "range": {
+        "startLine": 388,
+        "startChar": 0,
+        "endLine": 389,
+        "endChar": 24
+      },
+      "revId": "2e0a80caa7ed28007f1a2ef1cd0cf40353f4e21c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
