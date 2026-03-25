@@ -28,47 +28,45 @@ import SortFilterProxyModel 0.2
 SettingsPageBase {
     id: root
 
-    property string downloadPath: UtilsAdapter.getDirDownload()
-    property string downloadPathBestName: UtilsAdapter.dirName(UtilsAdapter.getDirDownload())
     property int itemWidth: 188
+    readonly property int appAccessSettingsIndex: 5
 
     property bool isSIP
 
-    title: JamiStrings.system
+    function openAppAccessPage() {
+        var sidePanel = viewCoordinator.getView("SettingsSidePanel")
+        if (sidePanel)
+            sidePanel.select(appAccessSettingsIndex)
 
-    onDownloadPathChanged: {
-        if (downloadPath === "")
-            return;
-        UtilsAdapter.setDownloadPath(downloadPath);
+        var settingsView = viewCoordinator.getView("SettingsView")
+        if (settingsView)
+            settingsView.selectIndex(appAccessSettingsIndex)
     }
+
+    title: JamiStrings.system
 
     flickableContent: ColumnLayout {
         id: manageAccountEnableColumnLayout
         width: contentFlickableWidth
-        spacing: JamiTheme.settingsBlockSpacing
+        spacing: 2 * JamiTheme.settingsCategorySpacing
         anchors.left: parent.left
         anchors.leftMargin: JamiTheme.preferredSettingsMarginSize
 
         ColumnLayout {
-            id: enableAccount
-
             width: parent.width
+            spacing: JamiTheme.settingsCategorySpacing
 
-            spacing: 10
+            Text {
+                Layout.alignment: Qt.AlignLeft
+                Layout.preferredWidth: parent.width
 
-            FolderDialog {
-                id: downloadPathDialog
-
-                title: JamiStrings.selectFolder
-                currentFolder: StandardPaths.writableLocation(StandardPaths.DownloadLocation)
-                options: FolderDialog.ShowDirsOnly
-
-                onAccepted: {
-                    var dir = UtilsAdapter.getAbsPath(folder.toString());
-                    var dirName = UtilsAdapter.dirName(folder.toString());
-                    downloadPath = dir;
-                    downloadPathBestName = dirName;
-                }
+                text: JamiStrings.systemNotificationsTitle
+                color: JamiTheme.textColor
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+                wrapMode: Text.WordWrap
+                font.pixelSize: JamiTheme.settingsTitlePixelSize
+                font.kerning: true
             }
 
             ToggleSwitch {
@@ -96,6 +94,24 @@ SettingsPageBase {
                     }
                 }
             }
+        }
+
+        ColumnLayout {
+            width: parent.width
+            spacing: JamiTheme.settingsCategorySpacing
+
+            Text {
+                Layout.alignment: Qt.AlignLeft
+                Layout.preferredWidth: parent.width
+
+                text: JamiStrings.systemApplicationTitle
+                color: JamiTheme.textColor
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+                wrapMode: Text.WordWrap
+                font.pixelSize: JamiTheme.settingsTitlePixelSize
+                font.kerning: true
+            }
 
             ToggleSwitch {
                 id: closeOrMinCheckBox
@@ -115,38 +131,23 @@ SettingsPageBase {
                 tooltipText: JamiStrings.tipRunStartup
                 onSwitchToggled: UtilsAdapter.setRunOnStartUp(checked)
             }
+        }
 
-            RowLayout {
-                Layout.fillWidth: true
-                height: JamiTheme.preferredFieldHeight
+        ColumnLayout {
+            width: parent.width
+            spacing: JamiTheme.settingsCategorySpacing
 
-                Text {
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-                    Layout.rightMargin: JamiTheme.preferredMarginSize
-                    wrapMode: Text.WordWrap
-                    color: JamiTheme.textColor
-                    text: JamiStrings.downloadFolder
-                    font.pointSize: JamiTheme.settingsFontSize
-                    font.kerning: true
+            Text {
+                Layout.alignment: Qt.AlignLeft
+                Layout.preferredWidth: parent.width
 
-                    horizontalAlignment: Text.AlignLeft
-                    verticalAlignment: Text.AlignVCenter
-                }
-
-                NewMaterialButton {
-                    id: downloadButton
-
-                    Layout.alignment: Qt.AlignRight
-
-                    implicitWidth: itemWidth
-                    outlinedButton: true
-
-                    toolTipText: downloadPath
-                    text: downloadPathBestName
-
-                    onClicked: downloadPathDialog.open()
-                }
+                text: JamiStrings.systemLanguageTitle
+                color: JamiTheme.textColor
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+                wrapMode: Text.WordWrap
+                font.pixelSize: JamiTheme.settingsTitlePixelSize
+                font.kerning: true
             }
 
             SettingsComboBox {
@@ -183,6 +184,118 @@ SettingsPageBase {
             }
         }
 
+        ColumnLayout {
+            width: parent.width
+            spacing: JamiTheme.settingsCategorySpacing
+
+            Text {
+                Layout.alignment: Qt.AlignLeft
+                Layout.preferredWidth: parent.width
+
+                text: JamiStrings.apiServerSectionTitle
+                color: JamiTheme.textColor
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+                wrapMode: Text.WordWrap
+                font.pixelSize: JamiTheme.settingsTitlePixelSize
+                font.kerning: true
+            }
+
+            Rectangle {
+                Layout.fillWidth: true
+                implicitHeight: serverInfoCardContent.implicitHeight + 32
+                radius: 12
+                color: JamiTheme.secAndTertiHoveredBackgroundColor
+                border.width: 1
+                border.color: JamiTheme.tintedBlue
+
+                ColumnLayout {
+                    id: serverInfoCardContent
+
+                    anchors.fill: parent
+                    anchors.margins: 16
+                    spacing: 12
+
+                    Text {
+                        Layout.fillWidth: true
+                        text: JamiStrings.apiServerInfoTitle
+                        color: JamiTheme.textColor
+                        font.pixelSize: JamiTheme.settingsDescriptionPixelSize
+                        font.weight: Font.DemiBold
+                        wrapMode: Text.WordWrap
+                    }
+
+                    Text {
+                        Layout.fillWidth: true
+                        text: JamiStrings.apiServerInfoMessage
+                        color: JamiTheme.textColor
+                        font.pixelSize: JamiTheme.settingsDescriptionPixelSize
+                        wrapMode: Text.WordWrap
+                    }
+
+                    NewMaterialButton {
+                        Layout.alignment: Qt.AlignLeft
+                        implicitHeight: JamiTheme.newMaterialButtonHeight
+                        filledButton: true
+                        color: JamiTheme.buttonTintedBlue
+                        text: JamiStrings.apiOpenAppAccess
+                        onClicked: root.openAppAccessPage()
+                    }
+                }
+            }
+
+            ToggleSwitch {
+                id: enableApiServerCheckBox
+                Layout.fillWidth: true
+
+                checked: UtilsAdapter.getAppValue(Settings.Key.EnableApi)
+                labelText: JamiStrings.apiEnableServer
+                tooltipText: JamiStrings.apiEnableServerTooltip
+
+                onSwitchToggled: {
+                    UtilsAdapter.setAppValue(Settings.Key.EnableApi, checked)
+                    if (checked) {
+                        ApiServer.start(UtilsAdapter.getAppValue(Settings.Key.ApiPort))
+                    } else {
+                        ApiServer.stop()
+                    }
+                }
+            }
+
+            SettingSpinBox {
+                id: apiPortSpinBox
+
+                title: JamiStrings.apiServerPort
+                itemWidth: root.itemWidth
+                bottomValue: 1024
+                topValue: 65535
+                visible: enableApiServerCheckBox.checked
+
+                valueField: UtilsAdapter.getAppValue(Settings.Key.ApiPort)
+
+                onNewValue: {
+                    UtilsAdapter.setAppValue(Settings.Key.ApiPort, valueField)
+                    if (ApiServer.running) {
+                        ApiServer.stop()
+                        ApiServer.start(valueField)
+                    }
+                }
+            }
+
+            Text {
+                visible: enableApiServerCheckBox.checked
+                Layout.fillWidth: true
+                color: ApiServer.running ? JamiTheme.successLabelColor
+                                         : JamiTheme.faddedLastInteractionFontColor
+                text: ApiServer.running
+                      ? JamiStrings.apiServerRunning.arg(ApiServer.port)
+                      : JamiStrings.apiServerStopped
+                wrapMode: Text.WordWrap
+                font.pixelSize: JamiTheme.settingsDescriptionPixelSize - 1
+                font.italic: true
+            }
+        }
+
         NewMaterialButton {
             id: defaultSettings
 
@@ -193,13 +306,18 @@ SettingsPageBase {
             onClicked: {
                 notificationCheckBox.checked = UtilsAdapter.getDefault(Settings.Key.EnableNotifications);
                 closeOrMinCheckBox.checked = UtilsAdapter.getDefault(Settings.Key.MinimizeOnClose);
+                enableApiServerCheckBox.checked = UtilsAdapter.getDefault(Settings.Key.EnableApi);
                 langComboBoxSetting.modelIndex = 0;
                 spellCheckLangComboBoxSetting.modelIndex = 0;
+                apiPortSpinBox.valueField = UtilsAdapter.getDefault(Settings.Key.ApiPort);
                 UtilsAdapter.setToDefault(Settings.Key.EnableNotifications);
                 UtilsAdapter.setToDefault(Settings.Key.MinimizeOnClose);
+                UtilsAdapter.setToDefault(Settings.Key.EnableApi);
+                UtilsAdapter.setToDefault(Settings.Key.ApiPort);
                 UtilsAdapter.setToDefault(Settings.Key.LANG);
                 UtilsAdapter.setToDefault(Settings.Key.IsDonationVisible);
                 UtilsAdapter.setToDefault(Settings.Key.Donation2025StartDate);
+                ApiServer.stop();
                 enableDonation.checked = Qt.binding(() => UtilsAdapter.getAppValue(Settings.Key.IsDonationVisible));
             }
         }

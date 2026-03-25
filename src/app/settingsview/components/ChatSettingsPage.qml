@@ -17,6 +17,7 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
+import Qt.labs.platform
 import Qt5Compat.GraphicalEffects
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
@@ -32,7 +33,16 @@ SettingsPageBase {
     id: root
 
     property int itemWidth: 188
+    property string downloadPath: UtilsAdapter.getDirDownload()
+    property string downloadPathBestName: UtilsAdapter.dirName(UtilsAdapter.getDirDownload())
+
     title: JamiStrings.chatSettingsTitle
+
+    onDownloadPathChanged: {
+        if (downloadPath === "")
+            return;
+        UtilsAdapter.setDownloadPath(downloadPath);
+    }
 
     flickableContent: ColumnLayout {
         id: callSettingsColumnLayout
@@ -42,6 +52,21 @@ SettingsPageBase {
         spacing: 2 * JamiTheme.settingsCategorySpacing
         anchors.left: parent.left
         anchors.leftMargin: JamiTheme.preferredSettingsMarginSize
+
+        FolderDialog {
+            id: downloadPathDialog
+
+            title: JamiStrings.selectFolder
+            currentFolder: StandardPaths.writableLocation(StandardPaths.DownloadLocation)
+            options: FolderDialog.ShowDirsOnly
+
+            onAccepted: {
+                var dir = UtilsAdapter.getAbsPath(folder.toString());
+                var dirName = UtilsAdapter.dirName(folder.toString());
+                downloadPath = dir;
+                downloadPathBestName = dirName;
+            }
+        }
 
         ColumnLayout {
 
@@ -253,6 +278,36 @@ SettingsPageBase {
 
                 font.pixelSize: JamiTheme.settingsTitlePixelSize
                 font.kerning: true
+            }
+
+            RowLayout {
+                Layout.fillWidth: true
+                height: JamiTheme.preferredFieldHeight
+
+                Text {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    Layout.rightMargin: JamiTheme.preferredMarginSize
+                    wrapMode: Text.WordWrap
+                    color: JamiTheme.textColor
+                    text: JamiStrings.downloadFolder
+                    font.pointSize: JamiTheme.settingsFontSize
+                    font.kerning: true
+                    horizontalAlignment: Text.AlignLeft
+                    verticalAlignment: Text.AlignVCenter
+                }
+
+                NewMaterialButton {
+                    id: downloadButton
+
+                    Layout.alignment: Qt.AlignRight
+                    implicitWidth: itemWidth
+                    outlinedButton: true
+                    toolTipText: downloadPath
+                    text: downloadPathBestName
+
+                    onClicked: downloadPathDialog.open()
+                }
             }
 
             ToggleSwitch {
