@@ -22,6 +22,30 @@
       },
       "revId": "cfcde7631a4499a4fb4f0a447c8b3a31b07c446f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc4d8d35_6ce790c9",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 982,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-03-25T13:11:49Z",
+      "side": 1,
+      "message": "Hi @ovari123@zoho.com, Wayland will allow you to select a specific window when screen sharing, hence the usage of the indefinite article.",
+      "parentUuid": "7c77aaff_1a1f08fe",
+      "range": {
+        "startLine": 982,
+        "startChar": 59,
+        "endLine": 982,
+        "endChar": 73
+      },
+      "revId": "cfcde7631a4499a4fb4f0a447c8b3a31b07c446f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
