@@ -26,6 +26,8 @@
 #include "previewengine.h"
 #include "crashreporter.h"
 #include "apiserver.h"
+#include "apitokenmanager.h"
+#include "apitokenlistmodel.h"
 
 #include <QWKQuick/qwkquickglobal.h>
 
@@ -285,6 +287,7 @@ MainApplication::init()
     // Start the local API server if enabled.
     if (settingsManager_->getValue(Settings::Key::EnableApi).toBool()) {
         apiServer_ = new ApiServer(lrcInstance_.get(), this);
+        apiServer_->setTokenManager(apiTokenManager_);
         auto apiPort = settingsManager_->getValue(Settings::Key::ApiPort).value<quint16>();
         if (apiServer_->start(apiPort)) {
             C_INFO << "API server started on port" << apiServer_->port()
@@ -453,6 +456,11 @@ MainApplication::initQmlLayer()
 
     // Register the crash reporter as a context property in the QML engine.
     engine_->rootContext()->setContextProperty("crashReporter", crashReporter_);
+
+    // Expose API token manager and list model to QML.
+    apiTokenManager_ = new ApiTokenManager(this);
+    apiTokenListModel_ = new ApiTokenListModel(apiTokenManager_, this);
+    engine_->rootContext()->setContextProperty("ApiTokenListModel", apiTokenListModel_);
 
     QUrl url = QStringLiteral("qrc:/MainApplicationWindow.qml");
 #ifdef QT_DEBUG
