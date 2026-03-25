@@ -849,5 +849,5 @@ Item {
     property color newMaterialTextFieldTrailingIconHoveredColor: "#9A9A9A"
 
     property string ubuntuFontFamily: "Ubuntu"
-    property string ubuntuMonoFontFamily: "UbuntuMono"
+    property string ubuntuMonoFontFamily: "Ubuntu Mono"
 }

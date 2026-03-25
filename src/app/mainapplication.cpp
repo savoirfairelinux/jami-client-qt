@@ -385,8 +385,8 @@ MainApplication::setApplicationFont()
     fontFamilies += "NotoColorEmoji";
 #endif
 
-    QFontDatabase::addApplicationFont(":/fonts/UbuntuMono-Regular.ttf");
-    fontFamilies += "UbuntuMono";
+    auto monoFontId = QFontDatabase::addApplicationFont(":/fonts/UbuntuMono-Regular.ttf");
+    Q_UNUSED(monoFontId)
     QFont font;
     font.setFamilies(fontFamilies);
     setFont(font);
