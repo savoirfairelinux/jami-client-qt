@@ -49,6 +49,9 @@ main(int argc, char* argv[])
     bool envSet = qputenv(DATA_DIR, jamiDataDir.toLocal8Bit());
     envSet &= qputenv(CONFIG_DIR, jamiConfigDir.toLocal8Bit());
     envSet &= qputenv(CACHE_DIR, jamiCacheDir.toLocal8Bit());
+    // Set HOME to the temp directory to ensure the daemon and Qt do not
+    // touch the user's real home (critical on macOS where XDG is not used).
+    envSet &= qputenv("HOME", (tempDir.absolutePath() + "/jami_test").toLocal8Bit());
     if (!envSet)
         return 1;
 
