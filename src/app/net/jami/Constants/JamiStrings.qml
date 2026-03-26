@@ -340,11 +340,21 @@ Item {
     property string fps_short: qsTr("Fps")
 
     // SIP Response Codes
-    property string sipResponse: qsTr("SIP call error: %1")
-    property string sipResponseCode: qsTr("Code %1")
-    property string sipResponseMessage: qsTr("An error %1 occurred during the call. Please try again. If the error persists, consider opening a ticket on the Jami GitLab: https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues")
-    property string sipResponse415Title: qsTr("Code 415 (Unsupported Media Type)")
-    property string sipResponse415Description: qsTr("The call likely failed due to mismatched codecs; because neither of the participants in this call have common codecs enabled. Please agree with the other participant(s) to enable at least one common video codec and at least one common audio codec to proceed with the call. If the error persists after checking codecs, please consider opening a ticket on the Jami GitLab: https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues. To change your codecs, navigate to: <br><br><b>Settings > Account > Advanced settings > Video Codecs / Audio Codecs.</b>")
+    property string sipResponse: qsTr("Call error")
+    property string sipResponseGeneralErrorTemplate: qsTr("An error occured during the call. %1")
+    property string sipResponseMessage: qsTr("Please try again.")
+    property string sipResponse400Description: qsTr("The request was invalid or malformed.")
+    property string sipResponse401Description: qsTr("Authentication is required to complete this call.")
+    property string sipResponse403Description: qsTr("You don't have permission to make this call.")
+    property string sipResponse404Description: qsTr("The recipient could not be found.")
+    property string sipResponse407Description: qsTr("Proxy authentication credentials are required.")
+    property string sipResponse408Description: qsTr("The call request timed out. Please try again.")
+    property string sipResponse415Description: qsTr("Please ensure that both you and your contact have a common codec enabled.")
+    property string sipResponse480Description: qsTr("The recipient is temporarily unavailable.")
+    property string sipResponse500Description: qsTr("A server error occurred. Please try again later.")
+    property string sipResponse503Description: qsTr("The service is currently unavailable.")
+    property string sipResponseHowDoIChangeMyCodecs: qsTr("How do I change my codecs?")
+    property string sipResponseCodecsHowTo: qsTr("<br><b>Settings > Account > Advanced settings > Video Codecs / Audio Codecs.</b>");
 
     // Share location/position
     property string shareLocation: qsTr("Share location")
