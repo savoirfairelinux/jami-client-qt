@@ -46,6 +46,30 @@
       },
       "revId": "cfcde7631a4499a4fb4f0a447c8b3a31b07c446f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cb73624_d6d03820",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 982,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2026-03-26T02:50:55Z",
+      "side": 1,
+      "message": "Isn\u0027t `a` (or `the` as in `Share the window`) superfluous?\n\n`Share screen` is correct as it implies `Share a screen` (for multimonitor configurations) and `Share the screen` (for single monitor configurations).",
+      "parentUuid": "bc4d8d35_6ce790c9",
+      "range": {
+        "startLine": 982,
+        "startChar": 59,
+        "endLine": 982,
+        "endChar": 73
+      },
+      "revId": "cfcde7631a4499a4fb4f0a447c8b3a31b07c446f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
