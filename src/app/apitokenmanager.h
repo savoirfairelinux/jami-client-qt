@@ -41,6 +41,7 @@ public:
     struct TokenInfo
     {
         QString id;           // unique token id (UUID)
+        QString prefix;       // non-secret token prefix for display/identification
         QString accountId;    // scoped to this Jami account (empty = all accounts)
         QString label;        // human-readable label
         QStringList scopes;   // e.g. ["conversations", "contacts", "calls"] (empty = all)
@@ -67,6 +68,12 @@ public:
                              const QStringList& scopes = {},
                              int lifetimeDays = 0);
 
+    /// Create a new API token scoped to \a accountId with a lifetime in seconds.
+    CreateResult createTokenWithLifetimeSeconds(const QString& accountId,
+                                                const QString& label,
+                                                const QStringList& scopes,
+                                                int lifetimeSeconds);
+
     /// Validate a raw token. Returns a pointer to token info if valid, nullptr otherwise.
     const TokenInfo* validateToken(const QString& rawToken) const;
 
@@ -89,6 +96,10 @@ private:
     QString storagePath() const;
     static QString hashToken(const QString& rawToken);
     static QString generateRawToken();
+    CreateResult createTokenInternal(const QString& accountId,
+                                     const QString& label,
+                                     const QStringList& scopes,
+                                     const QDateTime& expiresAt);
 
     // Map: SHA-256 hash -> TokenInfo
     QMap<QString, TokenInfo> tokens_;

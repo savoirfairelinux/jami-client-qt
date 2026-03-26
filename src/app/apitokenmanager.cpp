@@ -36,6 +36,8 @@ ApiTokenManager::TokenInfo::toJson() const
 {
     QJsonObject obj;
     obj["id"] = id;
+    if (!prefix.isEmpty())
+        obj["prefix"] = prefix;
     obj["accountId"] = accountId;
     obj["label"] = label;
     obj["scopes"] = QJsonArray::fromStringList(scopes);
@@ -50,6 +52,7 @@ ApiTokenManager::TokenInfo::fromJson(const QJsonObject& obj)
 {
     TokenInfo info;
     info.id = obj["id"].toString();
+    info.prefix = obj["prefix"].toString();
     info.accountId = obj["accountId"].toString();
     info.label = obj["label"].toString();
     for (const auto& s : obj["scopes"].toArray())
@@ -142,17 +145,44 @@ ApiTokenManager::createToken(const QString& accountId,
                              const QStringList& scopes,
                              int lifetimeDays)
 {
+    auto expiresAt = QDateTime();
+    if (lifetimeDays > 0)
+        expiresAt = QDateTime::currentDateTimeUtc().addDays(lifetimeDays);
+
+    return createTokenInternal(accountId, label, scopes, expiresAt);
+}
+
+ApiTokenManager::CreateResult
+ApiTokenManager::createTokenWithLifetimeSeconds(const QString& accountId,
+                                                const QString& label,
+                                                const QStringList& scopes,
+                                                int lifetimeSeconds)
+{
+    auto expiresAt = QDateTime();
+    if (lifetimeSeconds > 0)
+        expiresAt = QDateTime::currentDateTimeUtc().addSecs(lifetimeSeconds);
+
+    return createTokenInternal(accountId, label, scopes, expiresAt);
+}
+
+ApiTokenManager::CreateResult
+ApiTokenManager::createTokenInternal(const QString& accountId,
+                                     const QString& label,
+                                     const QStringList& scopes,
+                                     const QDateTime& expiresAt)
+{
     auto rawToken = generateRawToken();
     auto hash = hashToken(rawToken);
 
     TokenInfo info;
     info.id = QUuid::createUuid().toString(QUuid::WithoutBraces);
+    info.prefix = rawToken.left(QStringLiteral("jm_sk_").size() + 8);
     info.accountId = accountId;
     info.label = label;
     info.scopes = scopes;
     info.createdAt = QDateTime::currentDateTimeUtc();
-    if (lifetimeDays > 0)
-        info.expiresAt = info.createdAt.addDays(lifetimeDays);
+    if (expiresAt.isValid())
+        info.expiresAt = expiresAt;
 
     tokens_[hash] = info;
     save();
