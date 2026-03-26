@@ -466,7 +466,7 @@ AccountModelPimpl::updateAccounts()
         // NOTE: If the daemon is down, but dbus answered, id can contains
         // "Remote peer disconnected", "The name is not activable", etc.
         // So avoid to create useless directories.
-        if (account == accounts.end() && id.indexOf(" ") == -1) {
+        if (account == accounts.end() && !id.isEmpty() && id.indexOf(" ") == -1) {
             qWarning() << QString("detected new account %1").arg(id);
             addToAccounts(id);
             auto updatedAccount = accounts.find(id);
