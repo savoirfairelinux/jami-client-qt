@@ -2312,12 +2312,12 @@ ConversationModelPimpl::slotReactionAdded(const QString& accountId,
         return;
     }
     try {
-        // qInfo() << "Add Reaction to " << messageId << " in " << conversationId;
         auto& conversation = getConversationForUid(conversationId).get();
         conversation.interactions->addReaction(messageId, reaction);
     } catch (const std::exception& e) {
         qWarning() << e.what();
     }
+    Q_EMIT linked.reactionAdded(accountId, conversationId, messageId, reaction);
 }
 
 void
@@ -2330,12 +2330,12 @@ ConversationModelPimpl::slotReactionRemoved(const QString& accountId,
         return;
     }
     try {
-        // qInfo() << "Remove Reaction from " << messageId << " in " << conversationId;
         auto& conversation = getConversationForUid(conversationId).get();
         conversation.interactions->rmReaction(messageId, reactionId);
     } catch (const std::exception& e) {
         qWarning() << e.what();
     }
+    Q_EMIT linked.reactionRemoved(accountId, conversationId, messageId, reactionId);
 }
 
 void

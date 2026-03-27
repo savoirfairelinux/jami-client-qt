@@ -578,6 +578,30 @@ Q_SIGNALS:
      */
     void needsHost(const QString& conversationId) const;
 
+    /**
+     * Emitted when a reaction is added to a message
+     * @param accountId
+     * @param conversationId
+     * @param messageId      The message being reacted to
+     * @param reaction       The reaction metadata (commitId, author, body, …)
+     */
+    void reactionAdded(const QString& accountId,
+                       const QString& conversationId,
+                       const QString& messageId,
+                       const MapStringString& reaction) const;
+
+    /**
+     * Emitted when a reaction is removed from a message
+     * @param accountId
+     * @param conversationId
+     * @param messageId      The message the reaction was on
+     * @param reactionId     The commit id of the removed reaction
+     */
+    void reactionRemoved(const QString& accountId,
+                         const QString& conversationId,
+                         const QString& messageId,
+                         const QString& reactionId) const;
+
 private:
     std::unique_ptr<ConversationModelPimpl> pimpl_;
 };

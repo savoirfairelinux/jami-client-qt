@@ -486,13 +486,17 @@ interactionToCompatMessage(const account::Info& accInfo,
                            const interaction::Info& interaction)
 {
     QJsonObject obj;
+    const auto linearizedParent = interaction.commit.value(QStringLiteral("linearizedParent"),
+                                                           interaction.parentId);
+    const auto parents = interaction.commit.value(QStringLiteral("parents"), linearizedParent);
+    const auto replyTo = interaction.commit.value(QStringLiteral("reply-to"), linearizedParent);
     obj["id"] = messageId;
     obj["author"] = interaction.authorUri.isEmpty() ? accInfo.profileInfo.uri : interaction.authorUri;
     obj["timestamp"] = static_cast<qint64>(interaction.timestamp);
     obj["type"] = interactionTypeToMime(interaction.type);
     obj["body"] = interaction.body;
-    obj["linearizedParent"] = interaction.parentId;
-    obj["parents"] = interaction.parentId;
+    obj["linearizedParent"] = linearizedParent;
+    obj["parents"] = parents;
     QJsonArray reactionsArray;
     for (auto it = interaction.reactions.constBegin(); it != interaction.reactions.constEnd(); ++it) {
         const auto& authorUri = it.key();
@@ -507,8 +511,8 @@ interactionToCompatMessage(const account::Info& accInfo,
     }
     obj["reactions"] = reactionsArray;
 
-    if (!interaction.parentId.isEmpty())
-        obj["reply-to"] = interaction.parentId;
+    if (!replyTo.isEmpty())
+        obj["reply-to"] = replyTo;
 
     if (interaction.type == interaction::Type::DATA_TRANSFER) {
         // For file transfers, use the file metadata from the commit, not the author's name
@@ -551,6 +555,96 @@ interactionToCompatMessage(const account::Info& accInfo,
         status["self"] = statusCode;
     obj["status"] = status;
     return obj;
+}
+
+int
+messageQueryLimit(const QUrlQuery& query)
+{
+    bool ok = false;
+    const auto rawLimit = query.queryItemValue(QStringLiteral("limit")).trimmed();
+    const auto limit = rawLimit.toInt(&ok);
+    return ok && limit > 0 ? limit : -1;
+}
+
+bool
+ensureMessageLoaded(const QString& accountId,
+                    const QString& conversationId,
+                    lrc::api::MessageListModel& interactions,
+                    const QString& fromId,
+                    int limit)
+{
+    if (fromId.isEmpty() || interactions.indexOfMessage(fromId) != -1)
+        return true;
+
+    QEventLoop loop;
+    QTimer timer;
+    timer.setSingleShot(true);
+
+    const auto quitIfLoaded = [&]() {
+        if (interactions.indexOfMessage(fromId) != -1)
+            loop.quit();
+    };
+
+    const auto rowsInsertedConnection = QObject::connect(&interactions,
+                                                         &QAbstractItemModel::rowsInserted,
+                                                         &loop,
+                                                         [&](const QModelIndex&, int, int) {
+        quitIfLoaded();
+    });
+    const auto modelResetConnection = QObject::connect(&interactions,
+                                                       &QAbstractItemModel::modelReset,
+                                                       &loop,
+                                                       [&]() {
+        quitIfLoaded();
+    });
+    const auto timeoutConnection = QObject::connect(&timer, &QTimer::timeout, &loop, [&]() {
+        loop.quit();
+    });
+
+    ConfigurationManager::instance().loadConversation(accountId,
+                                                      conversationId,
+                                                      fromId,
+                                                      std::max(limit, 1));
+    quitIfLoaded();
+    if (interactions.indexOfMessage(fromId) == -1) {
+        timer.start(1500);
+        loop.exec();
+    }
+
+    QObject::disconnect(rowsInsertedConnection);
+    QObject::disconnect(modelResetConnection);
+    QObject::disconnect(timeoutConnection);
+    return interactions.indexOfMessage(fromId) != -1;
+}
+
+QJsonArray
+messagesToCompatJson(const account::Info& accInfo,
+                     lrc::api::MessageListModel& interactions,
+                     const QString& fromId,
+                     int limit)
+{
+    QJsonArray loadedMessages;
+    interactions.forEach([&](const QString& messageId, interaction::Info& interaction) {
+        loadedMessages.append(interactionToCompatMessage(accInfo, messageId, interaction));
+    });
+
+    auto startIndex = 0;
+    if (!fromId.isEmpty()) {
+        startIndex = interactions.indexOfMessage(fromId);
+        if (startIndex == -1)
+            return {};
+    } else if (limit > 0) {
+        startIndex = std::max(0, static_cast<int>(loadedMessages.size()) - limit);
+    }
+
+    const auto endIndex = limit > 0 ? std::min(static_cast<int>(loadedMessages.size()),
+                                               startIndex + limit)
+                                    : static_cast<int>(loadedMessages.size());
+
+    QJsonArray result;
+    for (auto index = startIndex; index < endIndex; ++index)
+        result.append(loadedMessages.at(index));
+    return result;
 }
 
 QJsonObject
@@ -1025,11 +1119,13 @@ ApiServer::setupConversationRoutes()
             if (!optConv)
                 return errorResponse(QHttpServerResponse::StatusCode::NotFound, "Conversation not found");
 
-            QJsonArray arr;
-            optConv->get().interactions->forEach([&](const QString& messageId, interaction::Info& interaction) {
-                arr.append(interactionToCompatMessage(accInfo, messageId, interaction));
-            });
-            return QHttpServerResponse(arr);
+            const auto query = QUrlQuery(request.url());
+            const auto fromId = query.queryItemValue(QStringLiteral("from")).trimmed();
+            const auto limit = messageQueryLimit(query);
+            auto& interactions = *optConv->get().interactions;
+
+            ensureMessageLoaded(accountId, convId, interactions, fromId, limit);
+            return QHttpServerResponse(messagesToCompatJson(accInfo, interactions, fromId, limit));
         } catch (...) {
             return errorResponse(QHttpServerResponse::StatusCode::NotFound, "Conversation not found");
         }
@@ -1050,6 +1146,8 @@ ApiServer::setupConversationRoutes()
         auto body = parseJsonBody(request);
         QString messageBody = body["body"].toString();
         QString parentId = body["parentId"].toString();
+        if (parentId.isEmpty())
+            parentId = body["replyTo"].toString();
 
         if (body.contains("message")) {
             const auto encodedMessage = body["message"].toString();
@@ -1094,6 +1192,33 @@ ApiServer::setupConversationRoutes()
         try {
             const auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
             accInfo.conversationModel->reactMessage(convId, emoji, messageId);
+            return noContentResponse();
+        } catch (...) {
+            return errorResponse(QHttpServerResponse::StatusCode::NotFound, "Conversation not found");
+        }
+    });
+
+    // POST /api/conversations/<conversationId>/editmessage - Edit or remove a message
+    httpServer_->route("/api/conversations/<arg>/editmessage", QHttpServerRequest::Method::Post,
+                       [this](const QString& convId, const QHttpServerRequest& request) {
+        bool ok;
+        const auto tokenScope = authenticate(request, ok);
+        if (!ok)
+            return errorResponse(QHttpServerResponse::StatusCode::Unauthorized, "Invalid token");
+
+        const auto accountId = resolveCurrentAccountId(tokenScope);
+        if (accountId.isEmpty())
+            return errorResponse(QHttpServerResponse::StatusCode::NotFound, "Account not found");
+
+        auto body = parseJsonBody(request);
+        const auto messageId = body["messageId"].toString();
+        const auto message = body["message"].toString();
+        if (messageId.isEmpty())
+            return errorResponse(QHttpServerResponse::StatusCode::BadRequest, "'messageId' is required");
+
+        try {
+            const auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
+            accInfo.conversationModel->editMessage(convId, message, messageId);
             return noContentResponse();
         } catch (...) {
             return errorResponse(QHttpServerResponse::StatusCode::NotFound, "Conversation not found");
@@ -1901,6 +2026,37 @@ ApiServer::setupWebSocket()
                         compatData["message"] = interactionToCompatMessage(accInfo, interactionId, interaction);
                         broadcastEvent(QStringLiteral("conversation-message"), compatData);
                     } catch (...) {}
+                });
+
+                connect(convModel, &ConversationModel::reactionAdded, this,
+                        [this](const QString& accountId,
+                               const QString& convId,
+                               const QString& messageId,
+                               const MapStringString& reaction) {
+                    QJsonObject reactionObj;
+                    reactionObj["id"] = reaction.value("id");
+                    reactionObj["author"] = reaction.value("author");
+                    reactionObj["body"] = reaction.value("body");
+                    reactionObj["react-to"] = messageId;
+                    QJsonObject data;
+                    data["accountId"] = accountId;
+                    data["conversationId"] = convId;
+                    data["messageId"] = messageId;
+                    data["reaction"] = reactionObj;
+                    broadcastEvent(QStringLiteral("reaction-added"), data);
+                });
+
+                connect(convModel, &ConversationModel::reactionRemoved, this,
+                        [this](const QString& accountId,
+                               const QString& convId,
+                               const QString& messageId,
+                               const QString& reactionId) {
+                    QJsonObject data;
+                    data["accountId"] = accountId;
+                    data["conversationId"] = convId;
+                    data["messageId"] = messageId;
+                    data["reactionId"] = reactionId;
+                    broadcastEvent(QStringLiteral("reaction-removed"), data);
                 });
             }
 
