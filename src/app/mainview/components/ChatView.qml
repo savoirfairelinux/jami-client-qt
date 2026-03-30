@@ -304,13 +304,6 @@ Item {
                         viewCoordinator.presentDialog(appWindow, "mainview/components/HostPopup.qml");
                     }
                 }
-
-                onPluginSelector: {
-                    // Create plugin handler picker - PLUGINS
-                    PluginHandlerPickerCreation.createPluginHandlerPickerObjects(root, false);
-                    PluginHandlerPickerCreation.calculateCurrentGeo(root.width / 2, root.height / 2);
-                    PluginHandlerPickerCreation.openPluginHandlerPicker();
-                }
             }
         }
 
@@ -370,7 +363,12 @@ Item {
 
                 visible: LRCInstance.chatHandlersListCount && interactionButtonsVisibility
 
-                onClicked: pluginSelector()
+                onClicked: {
+                    // Create plugin handler picker - PLUGINS
+                    PluginHandlerPickerCreation.createPluginHandlerPickerObjects(root, false);
+                    PluginHandlerPickerCreation.calculateCurrentGeo(root.width / 2, root.height / 2);
+                    PluginHandlerPickerCreation.openPluginHandlerPicker();
+                }
             }
 
             NewIconButton {
