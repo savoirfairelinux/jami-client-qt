@@ -244,7 +244,7 @@ Rectangle {
             property bool isExpanding: !(showTypo && dataTransferSendContainer.visible) && (textAreaObj.textWidth >= rectangle.width - formatRow.width - 8 * marginSize)
 
             Layout.fillWidth: true
-            Layout.row: maximized || isExpanding ? 1 : 2
+            Layout.row: (!dataTransferSendContainer.visible && (maximized || isExpanding)) ? 1 : 2
             Layout.column: 0
             Layout.columnSpan: maximized || isExpanding ? 2 : 1
 
@@ -439,8 +439,9 @@ Rectangle {
             objectName: "dataTransferSendContainer"
             visible: filesToSendCount > 0
             height: visible ? JamiTheme.layoutWidthFileTransfer : 0
-            Layout.rightMargin: marginSize / 2
-            Layout.leftMargin: marginSize / 2
+            Layout.rightMargin: 7
+            Layout.leftMargin: 7
+            Layout.topMargin: 7
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignBottom
             Layout.preferredHeight: filesToSendCount ? JamiTheme.layoutWidthFileTransfer : 0
@@ -460,7 +461,7 @@ Rectangle {
             Layout.rightMargin: 0
             Layout.leftMargin: marginSize / 2
             Layout.preferredHeight: JamiTheme.chatViewFooterButtonSize
-            Layout.row: 2
+            Layout.row: dataTransferSendContainer.visible ? 3 : 2
             Layout.column: maximized ? 0 : 1
             Layout.columnSpan: maximized ? 2 : 1
         }
