@@ -34,7 +34,6 @@ Control {
     rightPadding: 8
 
     signal backClicked
-    signal pluginSelector
 
     Connections {
         target: CurrentConversation
