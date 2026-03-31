@@ -20,6 +20,7 @@
 
 #include <api/call.h>
 #include <api/callmodel.h>
+#include <api/callparticipantsmodel.h>
 #include <api/conversationmodel.h>
 
 #include <QApplication>
@@ -28,17 +29,12 @@
 #include <QQmlEngine>
 #include <QQuickWindow>
 
-CallPipWindowManager::CallPipWindowManager(QQmlEngine* engine,
-                                           LRCInstance* lrcInstance,
-                                           QObject* parent)
+CallPipWindowManager::CallPipWindowManager(QQmlEngine* engine, LRCInstance* lrcInstance, QObject* parent)
     : QObject(parent)
     , engine_(engine)
     , lrcInstance_(lrcInstance)
 {
-    connect(lrcInstance_,
-            &LRCInstance::currentAccountIdChanged,
-            this,
-            &CallPipWindowManager::onAccountChanged);
+    connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, this, &CallPipWindowManager::onAccountChanged);
 }
 
 CallPipWindowManager*
@@ -96,8 +92,7 @@ CallPipWindowManager::popOutCall(const QString& convId, const QString& accountId
         return;
     }
 
-    auto* rootObj = component.createWithInitialProperties(
-        {{"pipConvId", convId}, {"pipAccountId", accountId}});
+    auto* rootObj = component.createWithInitialProperties({{"pipConvId", convId}, {"pipAccountId", accountId}});
     if (!rootObj) {
         qWarning() << "CallPipWindowManager: failed to create PiP window";
         return;
@@ -116,6 +111,22 @@ CallPipWindowManager::popOutCall(const QString& convId, const QString& accountId
     pipAccountId_ = accountId;
     pipCallId_ = callId;
 
+    // Resolve peer URI from the conversation so the avatar is available immediately.
+    pipPeerUri_.clear();
+    try {
+        auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
+        const QString localUri = accInfo.profileInfo.uri;
+        if (auto optConv = accInfo.conversationModel->getConversationForUid(convId)) {
+            for (const auto& uri : optConv->get().participantsUris()) {
+                if (uri != localUri) {
+                    pipPeerUri_ = uri;
+                    break;
+                }
+            }
+        }
+    } catch (...) {
+    }
+
     // Clean up when the window is closed.
     connect(win, &QQuickWindow::closing, this, [this, win](QQuickCloseEvent*) {
         pipConvId_.clear();
@@ -123,6 +134,8 @@ CallPipWindowManager::popOutCall(const QString& convId, const QString& accountId
         pipCallId_.clear();
         pipIsAudioMuted_ = false;
         pipIsCapturing_ = false;
+        pipPeerVideoMuted_ = true;
+        pipPeerUri_.clear();
         disconnectCallModel();
         win->deleteLater();
         Q_EMIT isPipActiveChanged();
@@ -132,6 +145,8 @@ CallPipWindowManager::popOutCall(const QString& convId, const QString& accountId
         Q_EMIT pipPreviewIdChanged();
         Q_EMIT pipIsAudioMutedChanged();
         Q_EMIT pipIsCapturingChanged();
+        Q_EMIT pipPeerVideoMutedChanged();
+        Q_EMIT pipPeerUriChanged();
     });
 
     // Monitor call status to auto-close the PiP when the call ends.
@@ -145,6 +160,8 @@ CallPipWindowManager::popOutCall(const QString& convId, const QString& accountId
     Q_EMIT pipPreviewIdChanged();
     Q_EMIT pipIsAudioMutedChanged();
     Q_EMIT pipIsCapturingChanged();
+    Q_EMIT pipPeerVideoMutedChanged();
+    Q_EMIT pipPeerUriChanged();
 }
 
 void
@@ -194,8 +211,7 @@ CallPipWindowManager::onCallStatusChanged(const QString& accountId, const QStrin
         }
         const auto status = accInfo.callModel->getCall(callId).status;
         if (status == lrc::api::call::Status::ENDED || status == lrc::api::call::Status::TERMINATING
-            || status == lrc::api::call::Status::TIMEOUT
-            || status == lrc::api::call::Status::PEER_BUSY) {
+            || status == lrc::api::call::Status::TIMEOUT || status == lrc::api::call::Status::PEER_BUSY) {
             closePip();
         }
     } catch (const std::exception& e) {
@@ -258,6 +274,8 @@ CallPipWindowManager::closePip()
         pipCallId_.clear();
         pipIsAudioMuted_ = false;
         pipIsCapturing_ = false;
+        pipPeerVideoMuted_ = true;
+        pipPeerUri_.clear();
         window_->deleteLater();
         window_.clear();
         Q_EMIT isPipActiveChanged();
@@ -267,6 +285,8 @@ CallPipWindowManager::closePip()
         Q_EMIT pipPreviewIdChanged();
         Q_EMIT pipIsAudioMutedChanged();
         Q_EMIT pipIsCapturingChanged();
+        Q_EMIT pipPeerVideoMutedChanged();
+        Q_EMIT pipPeerUriChanged();
     } else if (!pipConvId_.isEmpty()) {
         // Window was already gone; just clear the state.
         pipConvId_.clear();
@@ -274,6 +294,8 @@ CallPipWindowManager::closePip()
         pipCallId_.clear();
         pipIsAudioMuted_ = false;
         pipIsCapturing_ = false;
+        pipPeerVideoMuted_ = true;
+        pipPeerUri_.clear();
         Q_EMIT isPipActiveChanged();
         Q_EMIT pipConvIdChanged();
         Q_EMIT pipCallIdChanged();
@@ -281,6 +303,8 @@ CallPipWindowManager::closePip()
         Q_EMIT pipPreviewIdChanged();
         Q_EMIT pipIsAudioMutedChanged();
         Q_EMIT pipIsCapturingChanged();
+        Q_EMIT pipPeerVideoMutedChanged();
+        Q_EMIT pipPeerUriChanged();
     }
 }
 
@@ -298,9 +322,49 @@ CallPipWindowManager::connectCallModel(const QString& accountId)
                                        &lrc::api::CallModel::callInfosChanged,
                                        this,
                                        &CallPipWindowManager::onCallInfosChanged);
+        participantsConnection_ = connect(accInfo.callModel.get(),
+                                          &lrc::api::CallModel::participantUpdated,
+                                          this,
+                                          &CallPipWindowManager::onParticipantUpdated);
         updateMuteState();
+        updatePeerVideoState();
     } catch (const std::exception& e) {
         qWarning() << "CallPipWindowManager: failed to connect callModel:" << e.what();
+    }
+}
+
+void
+CallPipWindowManager::onParticipantUpdated(const QString& callId)
+{
+    if (callId == pipCallId_)
+        updatePeerVideoState();
+}
+
+void
+CallPipWindowManager::updatePeerVideoState()
+{
+    if (pipCallId_.isEmpty() || pipAccountId_.isEmpty())
+        return;
+    try {
+        auto& accInfo = lrcInstance_->accountModel().getAccountInfo(pipAccountId_);
+        if (!accInfo.callModel->hasCall(pipCallId_))
+            return;
+        const auto& participants = accInfo.callModel->getParticipantsInfos(pipCallId_);
+        for (const auto& p : participants.getParticipants()) {
+            if (p.islocal)
+                continue;
+            if (!p.uri.isEmpty() && p.uri != pipPeerUri_) {
+                pipPeerUri_ = p.uri;
+                Q_EMIT pipPeerUriChanged();
+            }
+            if (p.videoMuted != pipPeerVideoMuted_) {
+                pipPeerVideoMuted_ = p.videoMuted;
+                Q_EMIT pipPeerVideoMutedChanged();
+            }
+            return;
+        }
+    } catch (const std::exception& e) {
+        qWarning() << "CallPipWindowManager::updatePeerVideoState:" << e.what();
     }
 }
 
@@ -311,4 +375,6 @@ CallPipWindowManager::disconnectCallModel()
         disconnect(callModelConnection_);
     if (callInfosConnection_)
         disconnect(callInfosConnection_);
+    if (participantsConnection_)
+        disconnect(participantsConnection_);
 }
