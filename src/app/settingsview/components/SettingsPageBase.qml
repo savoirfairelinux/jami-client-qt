@@ -32,6 +32,8 @@ JamiSplitView {
     property color backgroundColor: JamiTheme.globalBackgroundColor
     property alias pageContainer: settingsPage
 
+    handleOffset: JamiTheme.sidePanelIslandRightPadding
+
     Page {
         id: settingsPage
         SplitView.maximumWidth: root.width
