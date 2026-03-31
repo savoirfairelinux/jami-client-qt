@@ -1016,6 +1016,11 @@ Item {
     property string noConversations: qsTr("No conversations found.")
     property string noContactsToChooseFrom: qsTr("No contacts found.")
 
+    // Picture-in-picture (PIP)
+    property string pipTitle: qsTr("Call in progress")
+    property string popOut: qsTr("Pop out")
+    property string popIn: qsTr("Pop in")
+
     // Accessibility
     property string switchToAccount: qsTr("Press enter to switch to this account")
     property string qrCodeExplanation: qsTr("Display your QR code to allow other users to scan it and add you as a contact")

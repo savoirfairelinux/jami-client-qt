@@ -45,22 +45,48 @@ class CallPipWindowManager : public QObject
     Q_PROPERTY(QString pipPreviewId READ pipPreviewId NOTIFY pipPreviewIdChanged)
     Q_PROPERTY(bool pipIsAudioMuted READ pipIsAudioMuted NOTIFY pipIsAudioMutedChanged)
     Q_PROPERTY(bool pipIsCapturing READ pipIsCapturing NOTIFY pipIsCapturingChanged)
+    Q_PROPERTY(bool pipPeerVideoMuted READ pipPeerVideoMuted NOTIFY pipPeerVideoMutedChanged)
+    Q_PROPERTY(QString pipPeerUri READ pipPeerUri NOTIFY pipPeerUriChanged)
 
 public:
-    explicit CallPipWindowManager(QQmlEngine* engine,
-                                  LRCInstance* lrcInstance,
-                                  QObject* parent = nullptr);
+    explicit CallPipWindowManager(QQmlEngine* engine, LRCInstance* lrcInstance, QObject* parent = nullptr);
     ~CallPipWindowManager() = default;
 
     static CallPipWindowManager* create(QQmlEngine*, QJSEngine*);
 
-    bool isPipActive() const { return !pipConvId_.isEmpty() && !window_.isNull(); }
-    QString pipConvId() const { return pipConvId_; }
-    QString pipCallId() const { return pipCallId_; }
-    QString pipAccountId() const { return pipAccountId_; }
+    bool isPipActive() const
+    {
+        return !pipConvId_.isEmpty() && !window_.isNull();
+    }
+    QString pipConvId() const
+    {
+        return pipConvId_;
+    }
+    QString pipCallId() const
+    {
+        return pipCallId_;
+    }
+    QString pipAccountId() const
+    {
+        return pipAccountId_;
+    }
     QString pipPreviewId() const;
-    bool pipIsAudioMuted() const { return pipIsAudioMuted_; }
-    bool pipIsCapturing() const { return pipIsCapturing_; }
+    bool pipIsAudioMuted() const
+    {
+        return pipIsAudioMuted_;
+    }
+    bool pipIsCapturing() const
+    {
+        return pipIsCapturing_;
+    }
+    bool pipPeerVideoMuted() const
+    {
+        return pipPeerVideoMuted_;
+    }
+    QString pipPeerUri() const
+    {
+        return pipPeerUri_;
+    }
 
     // Pop the call view for (convId, accountId) out into the PiP window.
     // Raises the existing window if the same call is already in PiP.
@@ -87,10 +113,13 @@ Q_SIGNALS:
     void pipPreviewIdChanged();
     void pipIsAudioMutedChanged();
     void pipIsCapturingChanged();
+    void pipPeerVideoMutedChanged();
+    void pipPeerUriChanged();
 
 private Q_SLOTS:
     void onCallStatusChanged(const QString& accountId, const QString& callId, int code);
     void onCallInfosChanged(const QString& accountId, const QString& callId);
+    void onParticipantUpdated(const QString& callId);
     void onAccountChanged();
 
 private:
@@ -98,6 +127,7 @@ private:
     void connectCallModel(const QString& accountId);
     void disconnectCallModel();
     void updateMuteState();
+    void updatePeerVideoState();
 
     QQmlEngine* engine_;
     LRCInstance* lrcInstance_;
@@ -108,8 +138,11 @@ private:
     QString pipCallId_;
     bool pipIsAudioMuted_ {false};
     bool pipIsCapturing_ {false};
+    bool pipPeerVideoMuted_ {true};
+    QString pipPeerUri_;
 
     // Connection handles for the active call model, so we can disconnect on cleanup.
     QMetaObject::Connection callModelConnection_;
     QMetaObject::Connection callInfosConnection_;
+    QMetaObject::Connection participantsConnection_;
 };
