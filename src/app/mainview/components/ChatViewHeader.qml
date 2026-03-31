@@ -159,10 +159,10 @@ Control {
 
             icon.width: JamiTheme.iconButtonMedium
             icon.height: JamiTheme.iconButtonMedium
-            icon.source: JamiResources.pip_exit_24dp_svg
+            icon.source: CallPipWindowManager.isPipActive ? JamiResources.bidirectional_pip_exit_24dp_svg : JamiResources.bidirectional_return_to_call_24dp_svg
             icon.color: hovered ? JamiTheme.buttonCallLightGreen : JamiTheme.blackColor
 
-            visible: CallPipWindowManager.isPipActive && CallPipWindowManager.pipConvId === convContext.id
+            visible: convContext.inCall || (CallPipWindowManager.isPipActive && CallPipWindowManager.pipConvId === convContext.id)
 
             Behavior on icon.color {
                 ColorAnimation {
