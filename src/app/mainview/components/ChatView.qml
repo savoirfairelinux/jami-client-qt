@@ -498,6 +498,8 @@ Item {
 
                 handleOnMinor: true
 
+                handleOffset: JamiTheme.sidePanelIslandsPadding
+
                 property real previousWidth: width
                 onWidthChanged: {
                     resolvePanes();
