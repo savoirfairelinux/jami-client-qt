@@ -478,9 +478,9 @@ Control {
         Action {
             id: popOutCallAction
             onTriggered: CallPipWindowManager.popOutCall(CurrentConversation.id, CurrentAccount.id)
-            icon.source: JamiResources.pip_24dp_svg
+            icon.source: JamiResources.bidirectional_pip_24dp_svg
             icon.color: "white"
-            text: qsTr("Pop out call view")
+            text: JamiStrings.popOut
             enabled: !CallPipWindowManager.isPipActive
             onEnabledChanged: CallOverlayModel.setEnabled(this, popOutCallAction.enabled)
         }
