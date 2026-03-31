@@ -27,6 +27,7 @@ SplitView {
     property bool isSinglePane: false
     property real handleSize: 0
     property bool completed: false
+    property real handleOffset
 
     property string splitViewStateKey: objectName
     property bool autoManageState: !(parent instanceof BaseView)
@@ -130,8 +131,6 @@ SplitView {
 
             // Determine direction based on LTR/RTL and major/minor pane
             readonly property real handleDirection: handleOnMinor ? (UtilsAdapter.isRTL ? -1 : 1) : (UtilsAdapter.isRTL ? 1 : -1)
-            readonly property real handleOffset: (handleOnMinor || !viewCoordinator.isInSinglePaneMode) ? JamiTheme.sidePanelIslandRightPadding
-                                                                                                        : JamiTheme.sidePanelIslandsSinglePaneModePadding
             readonly property real handleXPosition: handleDirection * handleOffset
             readonly property real handleSize: handleRoot.defaultSize + extraHandleSize
 

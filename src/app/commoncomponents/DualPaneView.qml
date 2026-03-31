@@ -83,6 +83,7 @@ BaseView {
         anchors.fill: parent
         splitViewStateKey: viewNode.objectName
         isSinglePane: viewNode.isSinglePane
+        handleOffset: JamiTheme.sidePanelIslandRightPadding
 
         SplitPane {
             id: leftPane
