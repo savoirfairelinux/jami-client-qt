@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58d87875_5ce84265",
+        "filename": "src/app/mainview/components/CallActionBar.qml",
+        "patchSetId": 32
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-04-01T21:20:40Z",
+      "side": 1,
+      "message": "This check is not done when computing the value of `enabled` on line 138, so the \"Sharing options\" button will probably be visible while screensharing on Windows/Mac but the menu shown when clicking on it will be empty.",
+      "range": {
+        "startLine": 144,
+        "startChar": 63,
+        "endLine": 144,
+        "endChar": 100
+      },
+      "revId": "2e3669b34a1620dcbfabb57556b24a00cabac52d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
