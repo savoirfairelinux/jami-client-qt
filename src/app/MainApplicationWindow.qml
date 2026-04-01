@@ -393,6 +393,33 @@ Window {
         visible: AccountSettingsManager.accountSettingsPropertyMap.backgroundScrimEnabled && welcomeCachedImgLogo.visible
     }
 
+    Rectangle {
+        anchors.fill: parent
+
+        color: JamiTheme.secondaryBackgroundColor
+        opacity: mainViewReady ? 0.0 : 1.0
+
+        visible: opacity > 0
+
+        Image {
+            id: jamiLogo
+
+            anchors.centerIn: parent
+
+            width: 100
+            height: 100
+
+            source: JamiResources.net_jami_jami_svg
+        }
+
+        Behavior on opacity {
+            NumberAnimation {
+                duration: JamiTheme.shortFadeDuration
+                easing.type: Easing.InOutQuad
+            }
+        }
+    }
+
     Loader {
         id: mainViewLoader
         active: false
