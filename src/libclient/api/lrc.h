@@ -110,6 +110,16 @@ public:
     static VectorMapStringString getConnectionList(const QString& accountId, const QString& uid);
 
     /**
+     * Get conversation connectivity from daemon
+     */
+    static VectorMapStringString getConversationConnectivity(const QString& accountId, const QString& conversationId);
+
+    /**
+     * Get tracked members from daemon
+     */
+    static VectorMapStringString getConversationTrackedMembers(const QString& accountId, const QString& conversationId);
+
+    /**
      * Get channel list from daemon
      */
     static VectorMapStringString getChannelList(const QString& accountId, const QString& uid);

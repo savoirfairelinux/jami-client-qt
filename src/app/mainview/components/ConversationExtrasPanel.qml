@@ -81,4 +81,5 @@ StackLayout {
     }
     MessagesResearchPanel {}
     AddMemberPanel {}
+    ConversationStatusView {}
 }

@@ -353,6 +353,8 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/filedownloader.cpp
   ${APP_SRC_DIR}/pluginversionmanager.cpp
   ${APP_SRC_DIR}/connectioninfolistmodel.cpp
+  ${APP_SRC_DIR}/conversationstatusmodel.cpp
+  ${APP_SRC_DIR}/trackedmembersmodel.cpp
   ${APP_SRC_DIR}/pluginversionmanager.cpp
   ${APP_SRC_DIR}/linkdevicemodel.cpp
   ${APP_SRC_DIR}/qrcodescannermodel.cpp
@@ -428,6 +430,8 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/filedownloader.h
   ${APP_SRC_DIR}/pluginversionmanager.h
   ${APP_SRC_DIR}/connectioninfolistmodel.h
+  ${APP_SRC_DIR}/conversationstatusmodel.h
+  ${APP_SRC_DIR}/trackedmembersmodel.h
   ${APP_SRC_DIR}/pttlistener.h
   ${APP_SRC_DIR}/crashreportclient.h
   ${APP_SRC_DIR}/crashreporter.h
