@@ -126,6 +126,10 @@ public:
 
     VectorMapStringString getConnectionList(const QString& accountId, const QString& uid = {});
 
+    VectorMapStringString getConversationConnectivity(const QString& accountId, const QString& conversationId);
+
+    VectorMapStringString getConversationTrackedMembers(const QString& accountId, const QString& conversationId);
+
     VectorMapStringString getChannelList(const QString& accountId, const QString& uid = {});
 
 Q_SIGNALS:

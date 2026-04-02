@@ -50,6 +50,8 @@
 #include "filestosendlistmodel.h"
 #include "callInformationListModel.h"
 #include "connectioninfolistmodel.h"
+#include "conversationstatusmodel.h"
+#include "trackedmembersmodel.h"
 #include "callparticipantsmodel.h"
 #include "pluginlistmodel.h"
 #include "pluginstorelistmodel.h"
@@ -132,6 +134,16 @@ registerTypes(QQmlEngine* engine,
     qApp->setProperty("ConnectionInfoListModel", QVariant::fromValue(connectionInfoListModel));
     QQmlEngine::setObjectOwnership(connectionInfoListModel, QQmlEngine::CppOwnership);
     REG_QML_SINGLETON<ConnectionInfoListModel>(REG_MODEL, "ConnectionInfoListModel", CREATE(connectionInfoListModel));
+
+    auto conversationStatusModel = new ConversationStatusModel(lrcInstance, app);
+    qApp->setProperty("ConversationStatusModel", QVariant::fromValue(conversationStatusModel));
+    QQmlEngine::setObjectOwnership(conversationStatusModel, QQmlEngine::CppOwnership);
+    REG_QML_SINGLETON<ConversationStatusModel>(REG_MODEL, "ConversationStatusModel", CREATE(conversationStatusModel));
+
+    auto trackedMembersModel = new TrackedMembersModel(lrcInstance, app);
+    qApp->setProperty("TrackedMembersModel", QVariant::fromValue(trackedMembersModel));
+    QQmlEngine::setObjectOwnership(trackedMembersModel, QQmlEngine::CppOwnership);
+    REG_QML_SINGLETON<TrackedMembersModel>(REG_MODEL, "TrackedMembersModel", CREATE(trackedMembersModel));
 
     /* Used in AccountAdapter */
     auto accountListModel = new AccountListModel(lrcInstance, app);
