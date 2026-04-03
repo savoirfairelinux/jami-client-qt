@@ -16,6 +16,24 @@
       "message": "why not squash with previous commit?",
       "revId": "b79c739f558c4a97285b22a065fa35c83bbf4ca3",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27cb31e2_28c09f44",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-04-03T20:10:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6c63dd4_5aea4993",
+      "revId": "b79c739f558c4a97285b22a065fa35c83bbf4ca3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
