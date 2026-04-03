@@ -1,3 +1,4 @@
 0001-qtwebengine-fix-build-error-due-to-missing-chromium-dependency.patch
 0002-qtwebengine-fix-ASSERT_TRIVIALLY_COPYABLE-failure.patch
 0003-qtwebengine-fix-zygote_communication_linux-dependency.patch
+0004-qtwebengine-fix-SYS_SECCOMP-build-error-in-chromium.patch
