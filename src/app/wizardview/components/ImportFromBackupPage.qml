@@ -32,6 +32,7 @@ Rectangle {
     property string fileImportBtnText: JamiStrings.archive
     property string filePath: ""
     property string errorText: ""
+    property bool spinnerTriggered: false
 
     signal showThisPage
 
@@ -201,12 +202,40 @@ Rectangle {
             onClicked: {
                 if (connectBtn.focus)
                     fileImportBtn.forceActiveFocus();
-                spinnerTriggered = true;
+                root.spinnerTriggered = true;
                 WizardViewStepModel.accountCreationInfo = JamiQmlUtils.setUpAccountCreationInputPara({
                         "archivePath": UtilsAdapter.getAbsPath(filePath),
                         "password": passwordFromBackupEdit.modifiedTextFieldContent
                     });
                 WizardViewStepModel.nextStep();
+            }
+        }
+
+        Button {
+            id: spinnerIcon
+
+            Layout.alignment: Qt.AlignHCenter
+
+            padding: 0
+
+            icon.width: JamiTheme.iconButtonMedium
+            icon.height: JamiTheme.iconButtonMedium
+            icon.source: JamiResources.jami_rolling_spinner_gif
+            icon.color: JamiTheme.tintedBlue
+
+            visible: root.spinnerTriggered
+
+            background: null
+            enabled: false
+
+            RotationAnimator {
+                id: rotationAnimator
+                target: spinnerIcon
+                running: root.spinnerTriggered
+                from: 0
+                to: 360
+                duration: 1000
+                loops: Animation.Infinite
             }
         }
 
