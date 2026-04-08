@@ -307,6 +307,7 @@ MainApplication::handleUriAction(const QString& arg)
     if (arg.isEmpty() && !runOptions_[Option::StartUri].isNull()) {
         uri = runOptions_[Option::StartUri].toString();
         C_DBG << "URI action invoked by run option" << uri;
+        Q_EMIT searchAndSelect(uri.replace("jami:", ""));
     } else if (!arg.isEmpty()) {
         uri = arg;
         C_DBG << "URI action invoked by secondary instance" << uri;
