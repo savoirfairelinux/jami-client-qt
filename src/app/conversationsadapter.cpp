@@ -27,6 +27,7 @@
 
 #include <QApplication>
 #include <QJsonObject>
+#include <QTimer>
 
 using namespace lrc::api;
 
@@ -359,6 +360,9 @@ ConversationsAdapter::onSearchResultEnded()
     if (selectFirst_.exchange(false)) {
         convModel_->select(0);
         searchModel_->select(0);
+        // Clear the filter once the selection has been processed, so the search
+        // bar doesn't remain populated after a URI-initiated conversation open.
+        QTimer::singleShot(0, this, [this]() { setFilter({}); });
     }
 }
 
