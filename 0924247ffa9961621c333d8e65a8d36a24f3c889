@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "275581f9_bd9ac4c5",
+        "filename": "src/app/mainapplication.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2026-04-08T20:45:35Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 281,
+        "startChar": 4,
+        "endLine": 284,
+        "endChar": 32
+      },
+      "revId": "0924247ffa9961621c333d8e65a8d36a24f3c889",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
