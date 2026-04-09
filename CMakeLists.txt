@@ -957,9 +957,6 @@ else()
   target_sources(${PROJECT_NAME} PRIVATE ${resources})
   list(APPEND CLIENT_LIBS ${libs})
 
-  file(GLOB CONTRIB ${LIBJAMI_CONTRIB_DIR}/${CONTRIB_DARWIN_FOLDER}/lib/*.a)
-  list(APPEND CLIENT_LIBS ${CONTRIB})
-
   find_package(Iconv REQUIRED)
   list(APPEND CLIENT_LIBS Iconv::Iconv)
   list(APPEND CLIENT_LIBS
