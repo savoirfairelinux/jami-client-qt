@@ -17,6 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import "../../commoncomponents"
@@ -33,93 +34,77 @@ ItemDelegate {
     signal btnLoadHandlerToggled
     signal openPreferences
 
-    RowLayout {
-        anchors.fill: parent
+    padding: 0
+    leftPadding: root.background.radius - btnPreferencesPluginHandler.iconSize / 2
+    rightPadding: root.background.radius - btnPreferencesPluginHandler.iconSize / 2
 
-        Label {
-            Layout.leftMargin: 8
-            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+    contentItem: RowLayout {
 
-            width: 30
+        anchors.verticalCenter: root.verticalCenter
 
-            background: Rectangle {
-                color: "transparent"
-                Image {
-                    anchors.centerIn: parent
-                    source: "file:" + handlerIcon
-                    width: 30
-                    height: 30
-                    mipmap: true
-                }
-            }
+        spacing: 8
+
+        Image {
+            Layout.maximumHeight: btnPreferencesPluginHandler.implicitBackgroundHeight
+            Layout.maximumWidth: btnPreferencesPluginHandler.implicitBackgroundWidth
+            Layout.alignment: Qt.AlignVCenter
+
+            width: btnPreferencesPluginHandler.implicitBackgroundWidth
+            height: btnPreferencesPluginHandler.implicitBackgroundHeight
+
+            source: "file:" + handlerIcon
+            mipmap: true
         }
 
         Label {
-            Layout.leftMargin: 8
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignVCenter
+
+            text: handlerName === "" ? handlerId : handlerName
             color: JamiTheme.textColor
 
             font.pointSize: JamiTheme.settingsFontSize
             font.kerning: true
-            text: handlerName === "" ? handlerId : handlerName
         }
 
-        Switch {
+        JamiSwitch {
             id: loadSwitch
-            property bool isHovering: false
 
-            Layout.rightMargin: 8
             Layout.alignment: Qt.AlignVCenter
 
-            width: 30
-            height: 30
-
-            ToolTip.visible: hovered
-            ToolTip.text: {
-                return JamiStrings.onOff;
-            }
-
             checked: isLoaded
-            onClicked: {
-                btnLoadHandlerToggled();
-            }
+            toolTipText: JamiStrings.onOff
 
-            background: Rectangle {
-                id: switchBackground
-
-                color: "transparent"
-                MouseArea {
-                    id: btnMouseArea
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onPressed: {
-                    }
-                    onReleased: {
-                        loadSwitch.clicked();
-                    }
-                    onEntered: {
-                        loadSwitch.isHovering = true;
-                    }
-                    onExited: {
-                        loadSwitch.isHovering = false;
-                    }
-                }
-            }
+            onToggled: root.btnLoadHandlerToggled();
         }
 
-        PushButton {
+        NewIconButton {
             id: btnPreferencesPluginHandler
 
-            Layout.alignment: Qt.AlingVCenter | Qt.AlignRight
-            Layout.rightMargin: 8
+            Layout.alignment: Qt.AlignVCenter
 
-            source: JamiResources.settings_24dp_svg
-            normalColor: JamiTheme.primaryBackgroundColor
-            imageColor: JamiTheme.textColor
+            iconSource: JamiResources.settings_24dp_svg
+            iconSize: JamiTheme.iconButtonMedium
             toolTipText: root.pluginId
 
-            onClicked: openPreferences()
+            onClicked: {
+                root.openPreferences()
+            }
         }
     }
+
+    background: Rectangle {
+        radius: height / 2
+
+        color: root.hovered ? JamiTheme.smartListHoveredColor : JamiTheme.globalIslandColor
+
+        Behavior on color {
+
+            ColorAnimation {
+                duration: JamiTheme.shortFadeDuration
+            }
+        }
+    }
+
+    onClicked: root.btnLoadHandlerToggled()
 }
