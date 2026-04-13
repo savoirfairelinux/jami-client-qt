@@ -29,6 +29,7 @@ nuget.exe
 changelog.html
 obj/
 build/
+build-*/
 !extras/build
 build-local/
 build-global/
