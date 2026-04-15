@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f625272e_17e015fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-04-15T21:07:28Z",
+      "side": 1,
+      "message": "Is there no way to use a single patch file for both the RPM and Debian distributions rather than having two copies? LGTM otherwise",
+      "revId": "254f1f25dbda6d1e48034cfb301d65a1fc6e6f68",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
