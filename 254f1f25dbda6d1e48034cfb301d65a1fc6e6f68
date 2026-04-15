@@ -16,6 +16,24 @@
       "message": "Is there no way to use a single patch file for both the RPM and Debian distributions rather than having two copies? LGTM otherwise",
       "revId": "254f1f25dbda6d1e48034cfb301d65a1fc6e6f68",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bad2cd1_9e226e5d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-04-15T21:22:05Z",
+      "side": 1,
+      "message": "Currently no. We could refactor the code to make this possible, but I don\u0027t want to do that in this commit.",
+      "parentUuid": "f625272e_17e015fb",
+      "revId": "254f1f25dbda6d1e48034cfb301d65a1fc6e6f68",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
