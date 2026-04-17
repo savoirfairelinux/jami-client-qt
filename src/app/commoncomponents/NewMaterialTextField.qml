@@ -148,7 +148,7 @@ ColumnLayout {
                 placeholderText: root.placeholderText
                 placeholderTextColor: JamiTheme.textColor
                 verticalAlignment: TextInput.AlignVCenter
-                horizontalAlignment: TextInput.AlignLeft
+                horizontalAlignment: LayoutMirroring.enabled ? TextInput.AlignRight : TextInput.AlignLeft
 
                 color: JamiTheme.textColor
                 font.family: root.textFieldFontFamily
@@ -259,12 +259,12 @@ ColumnLayout {
         }
 
         Text {
-            x: root.supportingTextX
+            x: LayoutMirroring.enabled ? (parent.width - width - root.supportingTextX) : root.supportingTextX
             y: root.supportingTextY
 
             text: root.supportingText
             color: root.supportingTextColor
-            horizontalAlignment: Qt.AlignLeft
+            horizontalAlignment: LayoutMirroring.enabled ? Qt.AlignRight : Qt.AlignLeft
             font.pixelSize: JamiTheme.mediumFontSize
         }
 

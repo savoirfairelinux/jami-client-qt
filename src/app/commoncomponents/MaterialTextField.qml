@@ -80,6 +80,8 @@ TextField {
 
     topPadding: 2
 
+    horizontalAlignment: LayoutMirroring.enabled ? TextInput.AlignRight : TextInput.AlignLeft
+
     Keys.onPressed: function (event) {
         if (event.key === Qt.Key_Enter || event.key === Qt.Key_Return) {
             if (inputIsValid && acceptableInput) {
@@ -172,6 +174,8 @@ TextField {
         font.pixelSize: JamiTheme.materialLineEditSelectedPixelSize
         anchors.top: baselineLine.bottom
         anchors.topMargin: 2
+        anchors.left: LayoutMirroring.enabled ? undefined : parent.left
+        anchors.right: LayoutMirroring.enabled ? parent.right : undefined
         text: root.placeholderText
         color: root.textColor
 
@@ -215,6 +219,7 @@ TextField {
 
         visible: parent.hovered && infoTipLineText.toString() !== "" && !readOnly
         delay: Qt.styleHints.mousePressAndHoldInterval
+        x: LayoutMirroring.enabled ? parent.width - implicitWidth : 0
         y: implicitHeight
     }
 
