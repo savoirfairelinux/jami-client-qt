@@ -225,7 +225,8 @@ Control {
                         selectOnly: true
                     }
                     MouseArea {
-                        anchors.fill: parent
+                        width: parent.width
+                        height: parent.height
                         acceptedButtons: Qt.RightButton
                         cursorShape: Qt.IBeamCursor
                         onClicked: function (mouse) {
