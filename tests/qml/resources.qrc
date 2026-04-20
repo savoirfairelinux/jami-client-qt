@@ -26,5 +26,6 @@
         <file>src/tst_ListSelectionView.qml</file>
         <file>src/tst_LayoutManager.qml</file>
         <file>src/tst_ConversationsAdapter.qml</file>
+        <file>src/tst_LocationSharing.qml</file>
     </qresource>
 </RCC>

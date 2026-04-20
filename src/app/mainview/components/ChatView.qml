@@ -19,6 +19,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
+import QtWebEngine
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -47,6 +48,15 @@ Item {
 
     property var mapPositions: PositionManager.mapStatus
     property bool isConversationEndedFlag: false
+
+    // Persistent WebEngineProfile for the map view. Lives for the lifetime of
+    // ChatView so it is never recreated when the map is opened/closed.
+    WebEngineProfile {
+        id: mapProfile
+        objectName: "mapProfile"
+        httpUserAgent: "JamiDesktop/" + UtilsAdapter.getVersionStr()
+        storageName: "JamiMap"
+    }
 
     // The purpose of this alias is to make the message bar
     // accessible to the EmojiPicker
@@ -100,7 +110,9 @@ Item {
             var component = Qt.createComponent("qrc:/webengine/map/MapPosition.qml");
             var sprite = component.createObject(root, {
                                                     "maxWidth": root.width,
-                                                    "maxHeight": root.height
+                                                    "maxHeight": root.height,
+                                                    "mapProfile": mapProfile,
+                                                    "attachedAccountId": CurrentAccount.id
                                                 });
             if (sprite === null) {
                 // Error Handling

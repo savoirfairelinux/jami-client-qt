@@ -303,7 +303,6 @@ PositionManager::setMapActive(const QString& key)
         Q_EMIT mapStatusChanged();
         // creation on QML
         Q_EMIT openNewMap();
-
     } else {
         pinMap(key);
     }

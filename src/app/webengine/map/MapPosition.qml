@@ -19,6 +19,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
 import QtWebEngine
+
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
@@ -36,6 +37,7 @@ Item {
     property string currentConvId: CurrentConversation.id
     property bool isSharing: (PositionManager.positionShareConvIdsCount !== 0)
     property bool isSharingToCurrentConversation
+    property WebEngineProfile mapProfile: null
 
     function closeMapPosition() {
         root.destroy();
@@ -133,6 +135,7 @@ Item {
             WebEngineView {
                 id: webView
                 objectName: JamiQmlUtils.webEngineNames.map
+                profile: root.mapProfile
 
                 layer.enabled: !isFullScreen
                 layer.effect: OpacityMask {
@@ -206,9 +209,20 @@ Item {
                     loadScripts();
                 }
 
+                onNewWindowRequested: function(request) {
+                    const url = request.requestedUrl.toString();
+                    const dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
+                        "titleText": JamiStrings.confirmAction,
+                        "textLabel": JamiStrings.confirmNavigationDescription,
+                        "confirmLabel": JamiStrings.leaveJami
+                    });
+                    dlg.accepted.connect(function () {
+                        Qt.openUrlExternally(url)
+                    });
+                }
+
                 onLoadingChanged: function (loadingInfo) {
                     if (loadingInfo.status === WebEngineView.LoadSucceededStatus) {
-                        attachedAccountId = CurrentAccount.id;
                         runJavaScript(UtilsAdapter.getStyleSheet("olcss", UtilsAdapter.qStringFromFile(olCss)));
                         webView.isLoaded = true;
                         webView.runJavaScript("setMapView([" + 0 + "," + 0 + "], " + 1 + " );");
