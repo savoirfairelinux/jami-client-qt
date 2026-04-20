@@ -30,7 +30,7 @@ BaseModalDialog {
     button1Role: DialogButtonBox.AcceptRole
     button2.text: JamiStrings.stopAllSharings
     button2Role: DialogButtonBox.DestructiveRole
-    button2.contentColorProvider: JamiTheme.redButtonColor
+    button2.color: JamiTheme.redButtonColor
     button1.onClicked: function() {
         PositionManager.stopSharingPosition(attachedAccountId, CurrentConversation.id);
         root.close();
