@@ -53,14 +53,22 @@ ApplicationWindow {
 
     flags: Qt.Window | Qt.WindowStaysOnTopHint
 
-    // ── Remote video (fills entire window) ───────────────────────────────────
+    Item {
+        id: dragHandle
+        anchors.fill: parent
+        z: -1
+    }
+
+    // Remote video (fills entire window)
     VideoView {
         id: remoteVideo
         anchors.fill: parent
         // Use the PiP call ID from the manager — stays valid after conv switch.
-        rendererId: CallPipWindowManager.pipCallId
+        rendererId: CallPipWindowManager.pipIsConference ? CallPipWindowManager.pipActiveSpeakerSinkId : CallPipWindowManager.pipCallId
         // Crop to fill the small window rather than letterboxing
         crop: true
+
+        visible: !CallPipWindowManager.pipIsEmptyConference
 
         underlayItems: Avatar {
             id: peerAvatar
@@ -77,13 +85,62 @@ ApplicationWindow {
             mode: Avatar.Mode.Contact
             showPresenceIndicator: false
 
-            imageId: CallPipWindowManager.pipPeerUri
+            imageId: CallPipWindowManager.pipIsConference ? CallPipWindowManager.pipActiveSpeakerUri : CallPipWindowManager.pipPeerUri
 
             onVisibleChanged: {
                 // Lazy-load the image the first time the avatar becomes visible.
                 if (visible && !imageId)
-                    imageId = CallPipWindowManager.pipPeerUri;
+                    imageId = CallPipWindowManager.pipIsConference ? CallPipWindowManager.pipActiveSpeakerUri : CallPipWindowManager.pipPeerUri;
             }
+
+            opacity: visible ? 1.0 : 0.0
+
+            Behavior on opacity {
+                NumberAnimation {
+                    duration: JamiTheme.shortFadeDuration
+                }
+            }
+        }
+
+        Connections {
+            target: CurrentCall
+
+            function onIsConferenceChanged() {
+                console.warn("IS CONFERENCE CHANGED", CurrentCall.isConference);
+            }
+        }
+    }
+
+    Column {
+        id: emptyConferenceVisuals
+
+        anchors.centerIn: parent
+
+        visible: CallPipWindowManager.pipIsEmptyConference
+
+        spacing: 4
+
+        IconImage {
+            id: emptyConferenceIcon
+
+            anchors.horizontalCenter: parent.horizontalCenter
+
+            width: root.scaleVal * JamiTheme.iconButtonLarge
+            height: root.scaleVal * JamiTheme.iconButtonLarge
+
+            source: JamiResources.ghost_line_24dp_svg
+            sourceSize.width: root.scaleVal * JamiTheme.iconButtonLarge
+            sourceSize.height: root.scaleVal * JamiTheme.iconButtonLarge
+
+            color: JamiTheme.whiteColor
+        }
+
+        Text {
+            anchors.horizontalCenter: parent.horizontalCenter
+
+            text: JamiStrings.noParticipantsInConference
+            color: JamiTheme.whiteColor
+            elide: Text.ElideRight
         }
     }
 
@@ -389,13 +446,14 @@ ApplicationWindow {
             windowAgent.setup(root);
             Qt.callLater(function () {
                 // Entire video area serves as the drag handle for moving the window.
-                windowAgent.setTitleBar(remoteVideo);
+                windowAgent.setTitleBar(dragHandle);
                 windowAgent.setHitTestVisible(muteAudioButton, true);
                 windowAgent.setHitTestVisible(muteCameraButton, true);
                 windowAgent.setHitTestVisible(endCallButton, true);
                 windowAgent.setHitTestVisible(closePipButton, true);
                 windowAgent.setHitTestVisible(raiseHandButton, true);
                 windowAgent.setHitTestVisible(popOutButton, true);
+                windowAgent.setHitTestVisible(emptyConferenceVisuals, true);
                 windowAgent.setSystemButton(WindowAgent.Close, closePipButton);
             });
         }
