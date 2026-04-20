@@ -130,9 +130,17 @@ Item {
             ]
             property alias webView: webView
 
+            WebEngineProfile {
+                id: mapProfile
+
+                httpUserAgent: "JamiDesktop/" + UtilsAdapter.getVersionStr()
+                storageName: "JamiMap"
+            }
+
             WebEngineView {
                 id: webView
                 objectName: JamiQmlUtils.webEngineNames.map
+                profile: mapProfile
 
                 layer.enabled: !isFullScreen
                 layer.effect: OpacityMask {
