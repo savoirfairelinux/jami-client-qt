@@ -22,6 +22,8 @@
 #include <QString>
 #include <QQmlEngine>
 
+#include "lrcinstance.h"
+
 class LRCInstance;
 class QQmlEngine;
 class QQuickWindow;
@@ -38,6 +40,7 @@ class QQuickWindow;
 class CallPipWindowManager : public QObject
 {
     Q_OBJECT
+
     Q_PROPERTY(bool isPipActive READ isPipActive NOTIFY isPipActiveChanged)
     Q_PROPERTY(QString pipConvId READ pipConvId NOTIFY pipConvIdChanged)
     Q_PROPERTY(QString pipCallId READ pipCallId NOTIFY pipCallIdChanged)
@@ -47,6 +50,10 @@ class CallPipWindowManager : public QObject
     Q_PROPERTY(bool pipIsCapturing READ pipIsCapturing NOTIFY pipIsCapturingChanged)
     Q_PROPERTY(bool pipPeerVideoMuted READ pipPeerVideoMuted NOTIFY pipPeerVideoMutedChanged)
     Q_PROPERTY(QString pipPeerUri READ pipPeerUri NOTIFY pipPeerUriChanged)
+    Q_PROPERTY(QString pipActiveSpeakerUri READ pipActiveSpeakerUri NOTIFY pipActiveSpeakerUriChanged)
+    Q_PROPERTY(QString pipActiveSpeakerSinkId READ pipActiveSpeakerSinkId NOTIFY pipActiveSpeakerSinkIdChanged)
+    Q_PROPERTY(bool pipIsEmptyConference READ pipIsEmptyConference NOTIFY pipIsEmptyConferenceChanged)
+    Q_PROPERTY(bool pipIsConference READ pipIsConference NOTIFY pipIsConferenceChanged)
 
 public:
     explicit CallPipWindowManager(QQmlEngine* engine, LRCInstance* lrcInstance, QObject* parent = nullptr);
@@ -87,6 +94,22 @@ public:
     {
         return pipPeerUri_;
     }
+    QString pipActiveSpeakerUri() const
+    {
+        return pipActiveSpeakerUri_;
+    }
+    QString pipActiveSpeakerSinkId() const
+    {
+        return pipActiveSpeakerSinkId_;
+    }
+    bool pipIsEmptyConference() const
+    {
+        return pipIsEmptyConference_;
+    }
+    bool pipIsConference() const
+    {
+        return pipIsConference_;
+    }
 
     // Pop the call view for (convId, accountId) out into the PiP window.
     // Raises the existing window if the same call is already in PiP.
@@ -119,11 +142,17 @@ Q_SIGNALS:
     void pipIsCapturingChanged();
     void pipPeerVideoMutedChanged();
     void pipPeerUriChanged();
+    void pipActiveSpeakerUriChanged();
+    void pipActiveSpeakerSinkIdChanged();
+    void pipIsEmptyConferenceChanged();
+    void pipIsConferenceChanged();
 
 private Q_SLOTS:
     void onCallStatusChanged(const QString& accountId, const QString& callId, int code);
     void onCallInfosChanged(const QString& accountId, const QString& callId);
     void onParticipantUpdated(const QString& callId);
+    void onConferenceInfosUpdated(const QString& confId);
+    void onAccountChanged();
 
 private:
     void closePip();
@@ -131,6 +160,8 @@ private:
     void disconnectCallModel();
     void updateMuteState();
     void updatePeerVideoState();
+    void updateConferenceVideoState();
+    // void checkDeadActiveSpeaker(const QList<ParticipantInfos>& conferenceParticipants);
 
     QQmlEngine* engine_;
     LRCInstance* lrcInstance_;
@@ -143,9 +174,15 @@ private:
     bool pipIsCapturing_ {false};
     bool pipPeerVideoMuted_ {true};
     QString pipPeerUri_;
+    // For conferences
+    QString pipActiveSpeakerUri_;
+    QString pipActiveSpeakerSinkId_;
+    bool pipIsEmptyConference_ {false};
+    bool pipIsConference_ {false};
 
     // Connection handles for the active call model, so we can disconnect on cleanup.
     QMetaObject::Connection callModelConnection_;
     QMetaObject::Connection callInfosConnection_;
     QMetaObject::Connection participantsConnection_;
+    QMetaObject::Connection conferenceInfosUpdatedConnection_;
 };
