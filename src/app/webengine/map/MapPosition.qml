@@ -130,9 +130,17 @@ Item {
             ]
             property alias webView: webView
 
+            WebEngineProfile {
+                id: mapProfile
+
+                httpUserAgent: "JamiDesktop/" + UtilsAdapter.getVersionStr()
+                storageName: "JamiMap"
+            }
+
             WebEngineView {
                 id: webView
                 objectName: JamiQmlUtils.webEngineNames.map
+                profile: mapProfile
 
                 layer.enabled: !isFullScreen
                 layer.effect: OpacityMask {
@@ -204,6 +212,18 @@ Item {
                 Component.onCompleted: {
                     loadHtml(UtilsAdapter.qStringFromFile(mapHtml), mapHtml);
                     loadScripts();
+                }
+
+                onNewWindowRequested: function(request) {
+                    const url = request.requestedUrl.toString();
+                    const dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
+                        "titleText": JamiStrings.confirmAction,
+                        "textLabel": JamiStrings.confirmNavigationDescription,
+                        "confirmLabel": JamiStrings.leaveJami
+                    });
+                    dlg.accepted.connect(function () {
+                        Qt.openUrlExternally(url)
+                    });
                 }
 
                 onLoadingChanged: function (loadingInfo) {

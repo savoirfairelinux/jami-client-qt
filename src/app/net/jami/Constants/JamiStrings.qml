@@ -412,6 +412,9 @@ Item {
     property string xminxsec: qsTr("%L1m %L2s")
     property string xhour: qsTr("%L1h")
     property string xhourxmin: qsTr("%L1h %L2m")
+    property string confirmNavigationTitle: qsTr("Confirm Navigation")
+    property string confirmNavigationDescription: qsTr("You are about to navigate to an external link. Do you want to proceed?")
+    property string leaveJami: qsTr("Leave Jami")
 
     // Chatview header
     property string hideChat: qsTr("Hide chat")
