@@ -164,7 +164,6 @@ DISTRIBUTIONS := \
 	debian_13 \
 	debian_testing \
 	debian_unstable \
-	ubuntu_22.04 \
 	ubuntu_24.04 \
 	ubuntu_25.10 \
 	ubuntu_26.04 \
