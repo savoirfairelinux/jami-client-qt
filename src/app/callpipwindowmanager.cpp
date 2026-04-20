@@ -55,7 +55,8 @@ CallPipWindowManager::pipPreviewId() const
             auto callInfo = accInfo.callModel->getCall(pipCallId_);
             return callInfo.getCallInfoEx()[QStringLiteral("preview_id")].toString();
         }
-    } catch (...) {
+    } catch (const std::exception& e) {
+        qWarning() << "CallPipWindowManager::create:" << e.what();
     }
     return {};
 }
@@ -107,9 +108,25 @@ CallPipWindowManager::popOutCall(const QString& convId, const QString& accountId
     }
 
     window_ = QPointer<QQuickWindow>(win);
+
     pipConvId_ = convId;
     pipAccountId_ = accountId;
     pipCallId_ = callId;
+
+    const auto& accInfo = lrcInstance_->getAccountInfo(pipAccountId_);
+    const auto& conferenceParticipants = accInfo.callModel->getParticipantsInfos(pipCallId_);
+    const QList<ParticipantInfos>& conferenceParticipantInfos = conferenceParticipants.getParticipants();
+
+    // We check if the call is a conference
+    if (conferenceParticipantInfos.size() > 0) {
+        pipIsConference_ = true;
+        Q_EMIT pipIsConferenceChanged();
+    }
+
+    if (conferenceParticipantInfos.size() == 1) {
+        pipIsEmptyConference_ = true;
+        Q_EMIT pipIsEmptyConferenceChanged();
+    }
 
     // Resolve peer URI from the conversation so the avatar is available immediately.
     pipPeerUri_.clear();
@@ -124,7 +141,25 @@ CallPipWindowManager::popOutCall(const QString& convId, const QString& accountId
                 }
             }
         }
-    } catch (...) {
+    } catch (const std::exception& e) {
+        qWarning() << "CallPipWindowManager::popOutCall:" << e.what();
+    }
+
+    // For conferences only, if 1-to-1 an early return occurs
+    updateConferenceVideoState();
+
+    // The updateConferenceVideoState may fail to assign and signal a non-empty
+    // uri and sinkId if the conference has more than 3 participants where none
+    // are actively speaking. To circumvent showing a black screen in the PIP window,
+    // we show the first non-local participant
+    if (pipActiveSpeakerUri_.isEmpty() || pipActiveSpeakerSinkId_.isEmpty()) {
+        for (const auto& p : conferenceParticipantInfos) {
+            if (p.uri != accInfo.profileInfo.uri) {
+                pipActiveSpeakerUri_ = p.uri;
+                pipActiveSpeakerSinkId_ = p.sinkId;
+                break;
+            }
+        }
     }
 
     // Clean up when the window is closed.
@@ -136,6 +171,10 @@ CallPipWindowManager::popOutCall(const QString& convId, const QString& accountId
         pipIsCapturing_ = false;
         pipPeerVideoMuted_ = true;
         pipPeerUri_.clear();
+        pipActiveSpeakerUri_.clear();
+        pipActiveSpeakerSinkId_.clear();
+        pipIsConference_ = false;
+        pipIsEmptyConference_ = false;
         disconnectCallModel();
         win->deleteLater();
         Q_EMIT isPipActiveChanged();
@@ -147,6 +186,10 @@ CallPipWindowManager::popOutCall(const QString& convId, const QString& accountId
         Q_EMIT pipIsCapturingChanged();
         Q_EMIT pipPeerVideoMutedChanged();
         Q_EMIT pipPeerUriChanged();
+        Q_EMIT pipActiveSpeakerUriChanged();
+        Q_EMIT pipActiveSpeakerSinkIdChanged();
+        Q_EMIT pipIsConferenceChanged();
+        Q_EMIT pipIsEmptyConferenceChanged();
     });
 
     // Monitor call status to auto-close the PiP when the call ends.
@@ -162,6 +205,10 @@ CallPipWindowManager::popOutCall(const QString& convId, const QString& accountId
     Q_EMIT pipIsCapturingChanged();
     Q_EMIT pipPeerVideoMutedChanged();
     Q_EMIT pipPeerUriChanged();
+    Q_EMIT pipActiveSpeakerUriChanged();
+    Q_EMIT pipActiveSpeakerSinkIdChanged();
+    Q_EMIT pipIsConferenceChanged();
+    Q_EMIT pipIsEmptyConferenceChanged();
 }
 
 void
@@ -276,6 +323,10 @@ CallPipWindowManager::closePip()
         pipIsCapturing_ = false;
         pipPeerVideoMuted_ = true;
         pipPeerUri_.clear();
+        pipActiveSpeakerUri_.clear();
+        pipActiveSpeakerSinkId_.clear();
+        pipIsConference_ = false;
+        pipIsEmptyConference_ = false;
         window_->deleteLater();
         window_.clear();
         Q_EMIT isPipActiveChanged();
@@ -287,6 +338,10 @@ CallPipWindowManager::closePip()
         Q_EMIT pipIsCapturingChanged();
         Q_EMIT pipPeerVideoMutedChanged();
         Q_EMIT pipPeerUriChanged();
+        Q_EMIT pipActiveSpeakerUriChanged();
+        Q_EMIT pipActiveSpeakerSinkIdChanged();
+        Q_EMIT pipIsConferenceChanged();
+        Q_EMIT pipIsEmptyConferenceChanged();
     } else if (!pipConvId_.isEmpty()) {
         // Window was already gone; just clear the state.
         pipConvId_.clear();
@@ -296,6 +351,10 @@ CallPipWindowManager::closePip()
         pipIsCapturing_ = false;
         pipPeerVideoMuted_ = true;
         pipPeerUri_.clear();
+        pipActiveSpeakerUri_.clear();
+        pipActiveSpeakerSinkId_.clear();
+        pipIsEmptyConference_ = false;
+        pipIsConference_ = false;
         Q_EMIT isPipActiveChanged();
         Q_EMIT pipConvIdChanged();
         Q_EMIT pipCallIdChanged();
@@ -305,6 +364,10 @@ CallPipWindowManager::closePip()
         Q_EMIT pipIsCapturingChanged();
         Q_EMIT pipPeerVideoMutedChanged();
         Q_EMIT pipPeerUriChanged();
+        Q_EMIT pipActiveSpeakerUriChanged();
+        Q_EMIT pipActiveSpeakerSinkIdChanged();
+        Q_EMIT pipIsConferenceChanged();
+        Q_EMIT pipIsEmptyConferenceChanged();
     }
 }
 
@@ -326,6 +389,10 @@ CallPipWindowManager::connectCallModel(const QString& accountId)
                                           &lrc::api::CallModel::participantUpdated,
                                           this,
                                           &CallPipWindowManager::onParticipantUpdated);
+        conferenceInfosUpdatedConnection_ = connect(accInfo.callModel.get(),
+                                                    &lrc::api::CallModel::participantsChanged,
+                                                    this,
+                                                    &CallPipWindowManager::onConferenceInfosUpdated);
         updateMuteState();
         updatePeerVideoState();
     } catch (const std::exception& e) {
@@ -340,6 +407,12 @@ CallPipWindowManager::onParticipantUpdated(const QString& callId)
         updatePeerVideoState();
 }
 
+void
+CallPipWindowManager::onConferenceInfosUpdated(const QString& confId)
+{
+    if (confId == pipCallId_)
+        updateConferenceVideoState();
+}
 void
 CallPipWindowManager::updatePeerVideoState()
 {
@@ -365,6 +438,100 @@ CallPipWindowManager::updatePeerVideoState()
         }
     } catch (const std::exception& e) {
         qWarning() << "CallPipWindowManager::updatePeerVideoState:" << e.what();
+    }
+}
+
+void
+CallPipWindowManager::updateConferenceVideoState()
+{
+    const auto& accInfo = lrcInstance_->getAccountInfo(pipAccountId_);
+    const auto& conferenceParticipants = accInfo.callModel->getParticipantsInfos(pipCallId_);
+    const QList<ParticipantInfos>& conferenceParticipantInfos = conferenceParticipants.getParticipants();
+
+    if (conferenceParticipantInfos.isEmpty()) {
+        // If the number of participants in the conference is 0,
+        // then it is not a conference but rather a 1-to-1 call
+        return;
+    }
+
+    // To hold new values (if any)
+    bool isEmptyConference {false};
+    QString newSpeakerUri, newSinkId;
+
+    /* Three cases of showing video in the PIP window for conferences:
+     * 1. If we are the only participant, we mark it as empty
+     * 2. If there are only two participants (including ourselves),
+     *    we should only see the other participant (as we would in a one-to-one)
+     * 3. If there are more than 3 participants (including ourselves) we should
+     *    show the most recent person to have spoken.
+     */
+    if (conferenceParticipantInfos.size() == 1) {
+        isEmptyConference = true;
+    } else if (conferenceParticipantInfos.size() == 2) {
+        for (const auto& p : conferenceParticipantInfos) {
+            qWarning() << "Detected second participant";
+            if (p.uri != accInfo.profileInfo.uri) {
+                newSpeakerUri = p.uri;
+                newSinkId = p.sinkId;
+            }
+        }
+    } else {
+        try {
+            // We need to check if the current uri and sinkId still exist
+            // (i.e. that they haven't left the conference)
+            bool isDeadActiveSpeaker {true};
+
+            // Iterate through the accounts that are actively part of the conference
+            for (const auto& p : conferenceParticipantInfos) {
+                // Check for a valid URI
+                if (pipActiveSpeakerUri_ == p.uri) {
+                    isDeadActiveSpeaker = false;
+                }
+
+                // Check for any new voice activity and that it's not coming from ourselves
+                if (p.voiceActivity && p.uri != accInfo.profileInfo.uri) {
+                    newSpeakerUri = p.uri;
+                    newSinkId = p.sinkId;
+                }
+            }
+
+            // If there is no new active speaker and the current active speaker has left,
+            // we show the first non-local participant of the conference
+            if (newSpeakerUri.isEmpty() && isDeadActiveSpeaker) {
+                for (const auto& p : conferenceParticipantInfos) {
+                    if (p.uri != accInfo.profileInfo.uri) {
+                        newSpeakerUri = p.uri;
+                        newSinkId = p.sinkId;
+                        break;
+                    }
+                }
+            }
+        } catch (const std::exception& e) {
+            qWarning() << "CallPipWindowManager::updateConferenceVideoState::" << e.what();
+        }
+    }
+
+    // Assign new values and emit signals only if necessary
+
+    // // If a one-to-one call has transitioned to a conference it should be made known
+    if (!pipIsConference_) {
+        pipIsConference_ = true;
+        Q_EMIT pipIsConferenceChanged();
+    }
+
+    // We only want to show a different video/profile picture if the active speaker has changed.
+    if (newSpeakerUri != pipActiveSpeakerUri_ && !newSpeakerUri.isEmpty()) {
+        pipActiveSpeakerUri_ = newSpeakerUri;
+        Q_EMIT pipActiveSpeakerUriChanged();
+    }
+    if (newSinkId != pipActiveSpeakerSinkId_ && !newSinkId.isEmpty()) {
+        pipActiveSpeakerSinkId_ = newSinkId;
+        Q_EMIT pipActiveSpeakerSinkIdChanged();
+    }
+
+    if (isEmptyConference != pipIsEmptyConference_) {
+        pipIsEmptyConference_ = isEmptyConference;
+        Q_EMIT pipIsEmptyConferenceChanged();
     }
 }
 
