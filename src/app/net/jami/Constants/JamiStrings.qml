@@ -1020,6 +1020,7 @@ Item {
     property string pipTitle: qsTr("Call in progress")
     property string popOut: qsTr("Pop out")
     property string popIn: qsTr("Pop in")
+    property string noParticipantsInConference: qsTr("You're the only one here!")
 
     // Accessibility
     property string switchToAccount: qsTr("Press enter to switch to this account")
