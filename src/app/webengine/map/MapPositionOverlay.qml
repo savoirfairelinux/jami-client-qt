@@ -16,33 +16,29 @@
  */
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Controls
+
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
 import "../../commoncomponents"
 
-Rectangle {
+Control {
     id: root
 
     anchors.right: webView.right
     anchors.top: webView.top
     anchors.margins: 10
-    radius: 10
-    width: lay.width + 10
-    height: lay.height + 10
-    color: JamiTheme.mapButtonsOverlayColor
 
-    RowLayout {
-        id: lay
+    padding: 4
 
-        anchors.centerIn: parent
-
-        PushButton {
+    contentItem: Row {
+        NewIconButton {
             id: btnUnpin
 
+            iconSource: JamiResources.bidirectional_unpin_24dp_svg
+            iconSize: JamiTheme.iconButtonMedium
             toolTipText: !isUnpin ? JamiStrings.unpin : JamiStrings.pinWindow
-            imageColor: JamiTheme.mapButtonColor
-            normalColor: JamiTheme.mapButtonsOverlayColor
-            source: JamiResources.bidirectional_unpin_24dp_svg
+
             onClicked: {
                 if (!isUnpin) {
                     PositionManager.unPinMap(attachedAccountId);
@@ -52,25 +48,25 @@ Rectangle {
             }
         }
 
-        PushButton {
+        NewIconButton {
             id: btnCenter
 
+            iconSource: JamiResources.share_location_24dp_svg
+            iconSize: JamiTheme.iconButtonMedium
             toolTipText: JamiStrings.centerMapTooltip
-            imageColor: JamiTheme.mapButtonColor
-            normalColor: JamiTheme.mapButtonsOverlayColor
-            source: JamiResources.share_location_24dp_svg
+
             onClicked: {
                 webView.runJavaScript("zoomTolayersExtent()");
             }
         }
 
-        PushButton {
+        NewIconButton {
             id: btnMove
 
+            iconSource: JamiResources.move_24dp_svg
+            iconSize: JamiTheme.iconButtonMedium
             toolTipText: JamiStrings.dragMapTooltip
-            imageColor: JamiTheme.mapButtonColor
-            normalColor: JamiTheme.mapButtonsOverlayColor
-            source: JamiResources.move_24dp_svg
+
             visible: !isUnpin
 
             MouseArea {
@@ -83,14 +79,15 @@ Rectangle {
             }
         }
 
-        PushButton {
+        NewIconButton {
             id: btnMaximise
 
-            visible: !isUnpin
+            iconSource: mapObject.isFullScreen ? JamiResources.close_fullscreen_24dp_svg : JamiResources.open_in_full_24dp_svg
+            iconSize: JamiTheme.iconButtonMedium
             toolTipText: mapObject.isFullScreen ? JamiStrings.reduceMapTooltip : JamiStrings.maximizeMapTooltip
-            imageColor: JamiTheme.mapButtonColor
-            normalColor: JamiTheme.mapButtonsOverlayColor
-            source: mapObject.isFullScreen ? JamiResources.close_fullscreen_24dp_svg : JamiResources.open_in_full_24dp_svg
+
+            visible: !isUnpin
+
             onClicked: {
                 if (!mapObject.isFullScreen) {
                     mapObject.x = mapObject.xPos;
@@ -100,13 +97,13 @@ Rectangle {
             }
         }
 
-        PushButton {
+        NewIconButton {
             id: btnClose
 
+            iconSource: JamiResources.round_close_24dp_svg
+            iconSize: JamiTheme.iconButtonMedium
             toolTipText: JamiStrings.closeMapTooltip
-            imageColor: JamiTheme.mapButtonColor
-            normalColor: JamiTheme.mapButtonsOverlayColor
-            source: JamiResources.round_close_24dp_svg
+
             visible: !isUnpin
 
             onClicked: {
@@ -114,5 +111,10 @@ Rectangle {
                 PositionManager.mapAutoOpening = false;
             }
         }
+    }
+
+    background: Rectangle {
+        radius: (JamiTheme.iconButtonMedium * 1.5) + padding
+        color: JamiTheme.mapButtonsOverlayColor
     }
 }
