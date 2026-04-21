@@ -171,9 +171,7 @@ Window {
 
     title: JamiStrings.appTitle
 
-    // Show the window as soon as geometry is restored, before the main view finishes loading.
-    // A loading placeholder is shown until the main view is ready.
-    visible: windowSettingsLoaded && allowVisibleWindow
+    visible: mainViewLoader.status === Loader.Ready && windowSettingsLoaded && allowVisibleWindow
 
     Connections {
         id: connectionMigrationEnded
@@ -192,6 +190,10 @@ Window {
 
     function initMainView(view) {
         console.info("Initializing main view");
+
+        // Main window, load any valid app settings, and allow the
+        // layoutManager to handle as much as possible.
+        layoutManager.restoreWindowSettings();
 
         // QWK: setup
         if (useFrameless && !JamiQmlUtils.isMacOS26OrLater) {
@@ -247,6 +249,9 @@ Window {
 
         // Handle a start URI if set as start option.
         MainApplication.handleUriAction();
+
+        // This will allow visible to become true if not starting minimized.
+        windowSettingsLoaded = true;
     }
 
     Component.onCompleted: {
@@ -255,12 +260,6 @@ Window {
             windowAgent.setup(appWindow);
         }
 
-        // Restore window geometry right away so the window can appear
-        // at the correct position and size before the main view loads.
-        layoutManager.restoreWindowSettings();
-        windowSettingsLoaded = true;
-
-        // Start loading the main view asynchronously.
         mainViewLoader.active = true;
 
         // Dbus error handler for Linux.
@@ -423,7 +422,6 @@ Window {
     Loader {
         id: mainViewLoader
         active: false
-        asynchronous: true
         source: "qrc:/mainview/MainView.qml"
         anchors {
             top: parent.top
