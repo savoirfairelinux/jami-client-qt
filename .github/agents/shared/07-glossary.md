@@ -1,0 +1,24 @@
+# Glossary
+
+- `MainApplication`: the QApplication-derived client bootstrap class in `src/app/mainapplication.cpp`.
+- `LRCInstance`: app-level wrapper around `lrc::api::Lrc` in `src/app/lrcinstance.cpp`.
+- `Lrc`: main libclient API aggregator in `src/libclient/lrc.cpp`.
+- `libclient`: the Qt-facing client service/model layer under `src/libclient`.
+- `libjami`: the daemon public API surface defined under `daemon/src/jami/` and implemented via `daemon/src/client/` plus runtime modules.
+- `libwrap`: native/non-DBus client-to-daemon path enabled by `ENABLE_LIBWRAP`, using `src/libclient/qtwrapper/`.
+- `DBus mode`: client-to-daemon communication path using `src/libclient/dbus/` and the `jamid` DBus service.
+- `CallbacksHandler`: central callback/signal fan-in from daemon-facing interfaces to Qt-side models in `src/libclient/callbackshandler.cpp`.
+- `BehaviorController`: libclient-side coordination object used by the client for behavior and some event routing.
+- `CurrentAccount`, `CurrentConversation`, `CurrentCall`: client singleton state aggregators exposed to QML.
+- `ConversationModel`: client-side model for conversation state and interactions.
+- `CallModel`: client-side model for calls, conferences, and participants.
+- `ConversationModule`: daemon-side Jami conversation runtime owner under `daemon/src/jamidht/`.
+- `JamiAccount`: daemon-side account type for Jami/DHT accounts.
+- `SIPAccount`: daemon-side account type for SIP accounts.
+- `Manager`: daemon runtime hub singleton in `daemon/src/manager.*`.
+- `jamid`: DBus daemon executable built from `daemon/bin/dbus/main.cpp`.
+- `QML adapter`: QObject singleton exposed from `src/app/*adapter.cpp` to bridge QML to models/services.
+- `current account switch`: any flow where the selected account changes and client models must rebind.
+- `selected conversation`: the `LRCInstance`/UI-selected conversation UID that drives message/call context.
+- `swarm`: conversation/swarm-specific Jami runtime under `daemon/src/jamidht/swarm/`.
+- `DST`: deterministic simulation testing support under `daemon/test/dst/`.
