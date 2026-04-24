@@ -152,7 +152,6 @@ private Q_SLOTS:
     void onCallInfosChanged(const QString& accountId, const QString& callId);
     void onParticipantUpdated(const QString& callId);
     void onConferenceInfosUpdated(const QString& confId);
-    void onAccountChanged();
 
 private:
     void closePip();
