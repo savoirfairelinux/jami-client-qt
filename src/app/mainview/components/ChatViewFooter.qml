@@ -91,7 +91,7 @@ Rectangle {
 
         function onEditIdChanged() {
             if (MessagesAdapter.editId.length > 0) {
-                var editedMessageBody = MessagesAdapter.dataForInteraction(MessagesAdapter.editId, MessageList.Body);
+                var editedMessageBody = MessagesAdapter.dataForInteraction(MessagesAdapter.editId, MessageList.OriginalBody);
                 messageBar.textAreaObj.insertText(editedMessageBody);
                 messageBar.textAreaObj.forceActiveFocus();
             } else {
@@ -161,7 +161,7 @@ Rectangle {
             return -JamiTheme.emojiPickerHeight;
         }
 
-            sendButtonVisibility: text.trim() || messageBar.fileContainer.filesToSendCount
+        sendButtonVisibility: text.trim() || messageBar.fileContainer.filesToSendCount
 
         onEmojiButtonClicked: {
             if (emojiPicker && emojiPicker.opened) {
