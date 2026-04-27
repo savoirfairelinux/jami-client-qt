@@ -124,11 +124,22 @@ Info::Info(const SwarmMessage& msg, const QString& accountUri, const QString& ac
         msgBody.insert(key, value);
     }
     init(msgBody, accountUri, accountId, conversationId);
+    // If a plugin has provided a bodyOverwrite, show it instead of the original body.
+    if (auto bodyOverwriteIt = msg.pluginData.find("bodyOverwrite");
+        bodyOverwriteIt != msg.pluginData.end() && !bodyOverwriteIt.value().isEmpty()) {
+        body = bodyOverwriteIt.value();
+    }
     parentId = msg.linearizedParent;
     type = to_type(msg.type);
-    for (const auto& edition : msg.editions)
-        previousBodies.append(
-            Body {edition.value("id"), edition.value("body"), QString(edition.value("timestamp")).toInt()});
+    for (int i = 0; i < static_cast<int>(msg.editions.size()); ++i) {
+        const auto& edition = msg.editions[i];
+        QString edBody = edition.value("body");
+        if (const auto boIt = edition.find("bodyOverwrite");
+            boIt != edition.end() && !boIt.value().isEmpty()) {
+            edBody = boIt.value();
+        }
+        previousBodies.append(Body {edition.value("id"), edBody, QString(edition.value("timestamp")).toInt()});
+    }
     QMap<QString, QVariantList> mapStringEmoji;
     for (const auto& reaction : msg.reactions) {
         auto author = reaction.value("author");
