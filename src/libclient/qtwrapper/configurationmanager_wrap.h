@@ -238,7 +238,8 @@ public:
                                        convertMap(msg.body),
                                        convertVecMap(msg.reactions),
                                        convertVecMap(msg.editions),
-                                       convertMap(msg.status)});
+                                       convertMap(msg.status),
+                                       convertMap(msg.pluginData)});
                     }
 
                     Q_EMIT swarmLoaded(id, QString(accountId.c_str()), QString(conversationId.c_str()), vec);
@@ -262,7 +263,8 @@ public:
                                       convertMap(message.body),
                                       convertVecMap(message.reactions),
                                       convertVecMap(message.editions),
-                                      convertMap(message.status)};
+                                      convertMap(message.status),
+                                      convertMap(message.pluginData)};
                 Q_EMIT swarmMessageReceived(QString(accountId.c_str()), QString(conversationId.c_str()), msg);
             }),
             exportable_callback<ConversationSignal::SwarmMessageUpdated>([this](const std::string& accountId,
@@ -274,7 +276,8 @@ public:
                                       convertMap(message.body),
                                       convertVecMap(message.reactions),
                                       convertVecMap(message.editions),
-                                      convertMap(message.status)};
+                                      convertMap(message.status),
+                                      convertMap(message.pluginData)};
                 Q_EMIT swarmMessageUpdated(QString(accountId.c_str()), QString(conversationId.c_str()), msg);
             }),
             exportable_callback<ConversationSignal::ReactionAdded>(
