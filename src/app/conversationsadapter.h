@@ -23,6 +23,7 @@
 
 #include <QObject>
 #include <QString>
+#include <QTimer>
 #include <QQmlEngine>   // QML registration
 #include <QApplication> // QML registration
 

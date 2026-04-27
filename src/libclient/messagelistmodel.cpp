@@ -528,6 +528,12 @@ MessageListModel::dataForItem(const item_t& item, int, int role) const
         }
         return QVariant(item.second.body);
     }
+    case Role::OriginalBody: {
+        if (item.second.commit.contains("body")) {
+            return QVariant(item.second.commit.value("body"));
+        }
+        return QVariant(item.second.body);
+    }
     case Role::IsLastSent:
         return QVariant(item.first == lastSent_);
     case Role::Timestamp:
