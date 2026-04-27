@@ -123,4 +123,5 @@ private:
     SelectableListProxyModel* searchModel_;
 
     std::atomic_bool selectFirst_ {false};
+    QString currentFilter_;
 };
