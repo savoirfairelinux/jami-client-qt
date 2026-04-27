@@ -2289,10 +2289,8 @@ ConversationModelPimpl::slotMessageUpdated(const QString& accountId,
         QString msgId = message.id;
         auto msg = interaction::Info(message, linked.owner.profileInfo.uri, accountId, conversationId);
 
-        if (!conversation.interactions->update(msgId, msg)) {
-            qDebug() << "Message not found or unable to be reparented.";
+        if (!conversation.interactions->update(msgId, msg))
             return;
-        }
         // The conversation is updated, so we need to notify the view.
         invalidateModel();
         Q_EMIT linked.modelChanged();
