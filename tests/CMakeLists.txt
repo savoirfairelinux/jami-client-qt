@@ -44,12 +44,12 @@ endif()
 set(QML_TEST_LIBS ${QT_LIBS} ${LIBCLIENT_NAME} ${QT_TEST_LIBS})
 set(TESTS_INCLUDES
     ${EXTRA_TEST_INCLUDES}
-    ${CMAKE_SOURCE_DIR}/src
-    ${CMAKE_SOURCE_DIR}/tests/qml
-    ${CMAKE_SOURCE_DIR}/tests/unittests)
+    ${CMAKE_CURRENT_SOURCE_DIR}/../src
+    ${CMAKE_CURRENT_SOURCE_DIR}/qml
+    ${CMAKE_CURRENT_SOURCE_DIR}/unittests)
 set(TEST_QML_RESOURCES
-    ${CMAKE_SOURCE_DIR}/tests/qml/resources.qrc
-    ${CMAKE_SOURCE_DIR}/src/app/resources.qrc)
+    ${CMAKE_CURRENT_SOURCE_DIR}/qml/resources.qrc
+    ${CMAKE_CURRENT_SOURCE_DIR}/../src/app/resources.qrc)
 
 # Common jami files
 add_library(test_common_obj OBJECT
@@ -59,7 +59,7 @@ add_library(test_common_obj OBJECT
 target_include_directories(test_common_obj PRIVATE
     ${CLIENT_INCLUDE_DIRS}
     ${CMAKE_CURRENT_SOURCE_DIR}
-    ${CMAKE_SOURCE_DIR}/src)
+    ${CMAKE_CURRENT_SOURCE_DIR}/../src)
 target_link_directories(test_common_obj PRIVATE ${CLIENT_LINK_DIRS})
 target_link_libraries(test_common_obj ${QML_TEST_LIBS} ${CLIENT_LIBS})
 target_compile_definitions(test_common_obj PRIVATE BUILD_TESTING="ON")
@@ -89,21 +89,21 @@ if(CMAKE_BUILD_TYPE)
 endif()
 
 set(QML_TESTS_SOURCE_FILES
-    ${CMAKE_SOURCE_DIR}/tests/qml/main.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/qml/main.cpp
     ${TEST_QML_RESOURCES}
     ${SFPM_OBJECTS}
     ${COMMON_TESTS_SOURCES})
 
 set(UNIT_TESTS_SOURCE_FILES
-    ${CMAKE_SOURCE_DIR}/tests/unittests/main_unittest.cpp
-    ${CMAKE_SOURCE_DIR}/tests/unittests/account_unittest.cpp
-    ${CMAKE_SOURCE_DIR}/tests/unittests/contact_unittest.cpp
-    ${CMAKE_SOURCE_DIR}/tests/unittests/messageparser_unittest.cpp
-    ${CMAKE_SOURCE_DIR}/tests/unittests/previewengine_unittest.cpp
-    ${CMAKE_SOURCE_DIR}/tests/unittests/conversationswitch_unittest.cpp
-    ${CMAKE_SOURCE_DIR}/tests/unittests/apitokenmanager_unittest.cpp
-    ${CMAKE_SOURCE_DIR}/tests/unittests/apiserver_unittest.cpp
-    ${CMAKE_SOURCE_DIR}/tests/unittests/globaltestenvironment.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/unittests/main_unittest.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/unittests/account_unittest.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/unittests/contact_unittest.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/unittests/messageparser_unittest.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/unittests/previewengine_unittest.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/unittests/conversationswitch_unittest.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/unittests/apitokenmanager_unittest.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/unittests/apiserver_unittest.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/unittests/globaltestenvironment.h
     ${COMMON_TESTS_SOURCES})
 
 set(ALL_TESTS_LIBS
