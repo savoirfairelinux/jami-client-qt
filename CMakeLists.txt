@@ -53,13 +53,13 @@ define_macro_with_value(ENABLE_CRASHREPORTS)
 
 # jami-core
 if(NOT WITH_DAEMON_SUBMODULE)
-  set(DAEMON_DIR ${PROJECT_SOURCE_DIR}/../daemon)
+  file(REAL_PATH "${PROJECT_SOURCE_DIR}/../daemon" DAEMON_DIR)
 else()
-  set(DAEMON_DIR ${PROJECT_SOURCE_DIR}/daemon)
+  file(REAL_PATH "${PROJECT_SOURCE_DIR}/daemon" DAEMON_DIR)
 endif()
 
 if(JAMICORE_AS_SUBDIR)
-  add_subdirectory(${DAEMON_DIR} EXCLUDE_FROM_ALL)
+  add_subdirectory(${DAEMON_DIR} ${CMAKE_BINARY_DIR}/daemon EXCLUDE_FROM_ALL)
   set(LIBJAMI_LIB jami-core)
 endif()
 
