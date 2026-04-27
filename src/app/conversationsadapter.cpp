@@ -49,6 +49,10 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
     set_convListProxyModel(QVariant::fromValue(convModel_));
     set_searchListProxyModel(QVariant::fromValue(searchModel_));
 
+    searchFallbackTimer_.setSingleShot(true);
+    searchFallbackTimer_.setInterval(5000);
+    connect(&searchFallbackTimer_, &QTimer::timeout, this, [this]() { setFilter({}); });
+
     // this will trigger when the invite filter tab is selected
     connect(this, &ConversationsAdapter::filterRequestsChanged, [this]() {
         convModel_->setFilterRequests(filterRequests_);
@@ -357,6 +361,7 @@ ConversationsAdapter::onSearchResultUpdated()
 void
 ConversationsAdapter::onSearchResultEnded()
 {
+    searchFallbackTimer_.stop();
     if (selectFirst_.exchange(false)) {
         convModel_->select(0);
         searchModel_->select(0);
@@ -439,6 +444,7 @@ ConversationsAdapter::setFilterAndSelect(const QString& filterString)
 {
     selectFirst_ = true;
     setFilter(filterString);
+    searchFallbackTimer_.start();
 }
 
 void
