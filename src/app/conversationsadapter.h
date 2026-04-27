@@ -23,6 +23,7 @@
 
 #include <QObject>
 #include <QString>
+#include <QTimer>
 #include <QQmlEngine>   // QML registration
 #include <QApplication> // QML registration
 
@@ -123,4 +124,5 @@ private:
     SelectableListProxyModel* searchModel_;
 
     std::atomic_bool selectFirst_ {false};
+    QTimer searchFallbackTimer_;
 };
