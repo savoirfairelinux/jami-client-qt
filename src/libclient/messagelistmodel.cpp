@@ -526,6 +526,10 @@ MessageListModel::dataForItem(const item_t& item, int, int role) const
         }
         return QVariant(item.second.body);
     }
+    case Role::OriginalBody: {
+        const auto& commitBody = item.second.commit.value("body");
+        return QVariant(commitBody.isEmpty() ? item.second.body : commitBody);
+    }
     case Role::IsLastSent:
         return QVariant(item.first == lastSent_);
     case Role::Timestamp:

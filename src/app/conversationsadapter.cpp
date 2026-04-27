@@ -439,6 +439,16 @@ ConversationsAdapter::setFilterAndSelect(const QString& filterString)
 {
     selectFirst_ = true;
     setFilter(filterString);
+    // Fallback: if searchResultEnded never fires (e.g. no network, daemon offline),
+    // clear the filter so the search bar doesn't remain populated indefinitely.
+    // onSearchResultEnded uses exchange(false) so exactly one of the two paths runs.
+    // Capture the filter value so an older timer doesn't clear a newer search.
+    constexpr int kSearchFallbackTimeoutMs = 1000;
+    const auto expectedFilter = filterString;
+    QTimer::singleShot(kSearchFallbackTimeoutMs, this, [this, expectedFilter]() {
+        if (filter() == expectedFilter && selectFirst_.exchange(false))
+            setFilter({});
+    });
 }
 
 void
