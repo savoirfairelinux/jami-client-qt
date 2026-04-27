@@ -60,7 +60,8 @@ struct Info;
     X(Readers) \
     X(IsEmojiOnly) \
     X(IsLastSent) \
-    X(Index)
+    X(Index) \
+    X(OriginalBody)
 
 namespace MessageList {
 Q_NAMESPACE

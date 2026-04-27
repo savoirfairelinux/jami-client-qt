@@ -46,7 +46,7 @@ Popup {
         Rectangle {
             color: JamiTheme.backgroundColor
             radius: 10
-            anchors.fill: parent
+            // anchors.fill: parent
 
             Connections {
                 target: root
@@ -160,7 +160,7 @@ Popup {
         Rectangle {
             color: JamiTheme.backgroundColor
             radius: 10
-            anchors.fill: parent
+            // anchors.fill: parent
 
             ColumnLayout {
                 anchors.fill: parent
