@@ -91,6 +91,8 @@ struct SwarmMessage
     VectorMapStringString reactions;
     VectorMapStringString editions;
     MapStringInt status;
+    // Extra attributes written by plugins (e.g. {"translation": "..."}).
+    MapStringString pluginData;
 };
 typedef QVector<SwarmMessage> VectorSwarmMessage;
 
