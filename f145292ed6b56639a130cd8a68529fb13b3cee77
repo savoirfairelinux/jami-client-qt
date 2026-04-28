@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbc6a3ce_ab526e9c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2026-04-28T17:59:04Z",
+      "side": 1,
+      "message": "link on OSM credit (bottom right) should open openstreetmap in browser",
+      "revId": "f145292ed6b56639a130cd8a68529fb13b3cee77",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
