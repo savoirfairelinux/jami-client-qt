@@ -169,6 +169,7 @@ DISTRIBUTIONS := \
 	ubuntu_26.04 \
 	fedora_42 \
 	fedora_43 \
+	fedora_44 \
 	alma_9 \
 	alma_10 \
 	opensuse-leap_15.6 \
