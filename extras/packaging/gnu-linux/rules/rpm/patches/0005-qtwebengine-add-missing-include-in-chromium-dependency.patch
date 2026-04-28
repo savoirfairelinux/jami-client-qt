@@ -1,0 +1,35 @@
+From f709c6c7f9c45cf30aa9d509903ac6f346a86a44 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Fran=C3=A7ois-Simon=20Fauteux-Chapleau?=
+ <francois-simon.fauteux-chapleau@savoirfairelinux.com>
+Date: Tue, 28 Apr 2026 13:06:11 -0400
+Subject: [PATCH] qtwebengine: add missing include in chromium dependency
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Chromium's build fails with the following error on Fedora 44:
+
+    In file included from ../../../3rdparty/chromium/third_party/perfetto/include/perfetto/ext/tracing/core/trace_packet.h:27,
+                     from ../../../3rdparty/chromium/third_party/perfetto/src/tracing/core/trace_packet.cc:17:
+    ../../../3rdparty/chromium/third_party/perfetto/include/perfetto/ext/tracing/core/slice.h:47:46: error: ‘uint8_t’ was not declared in this scope
+       47 |   static Slice TakeOwnership(std::unique_ptr<uint8_t[]> buf, size_t size) {
+          |
+---
+ .../perfetto/include/perfetto/ext/tracing/core/slice.h           | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/qtwebengine/src/3rdparty/chromium/third_party/perfetto/include/perfetto/ext/tracing/core/slice.h b/qtwebengine/src/3rdparty/chromium/third_party/perfetto/include/perfetto/ext/tracing/core/slice.h
+index 063043bdc6..6564ca89cd 100644
+--- a/qtwebengine/src/3rdparty/chromium/third_party/perfetto/include/perfetto/ext/tracing/core/slice.h
++++ b/qtwebengine/src/3rdparty/chromium/third_party/perfetto/include/perfetto/ext/tracing/core/slice.h
+@@ -20,6 +20,7 @@
+ #include <stddef.h>
+ #include <string.h>
+ 
++#include <cstdint>
+ #include <memory>
+ #include <string>
+ #include <vector>
+-- 
+2.43.0
+
