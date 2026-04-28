@@ -63,6 +63,10 @@ public:
 
     bool isPipActive() const
     {
+#ifdef BUILD_TESTING
+        if (testPipActive_)
+            return !pipConvId_.isEmpty();
+#endif
         return !pipConvId_.isEmpty() && !window_.isNull();
     }
     QString pipConvId() const
@@ -132,6 +136,14 @@ public:
     // Close the PiP window if it belongs to the given account (used on account switch).
     Q_INVOKABLE void closeForAccount(const QString& accountId);
 
+#ifdef BUILD_TESTING
+    // Test backdoor: simulate an active PiP without a real window.
+    // Only available in test builds (BUILD_TESTING defined).
+    Q_INVOKABLE void setTestPipState(const QString& convId,
+                                     const QString& accountId,
+                                     const QString& callId);
+#endif
+
 Q_SIGNALS:
     void isPipActiveChanged();
     void pipConvIdChanged();
@@ -178,6 +190,11 @@ private:
     QString pipActiveSpeakerSinkId_;
     bool pipIsEmptyConference_ {false};
     bool pipIsConference_ {false};
+
+#ifdef BUILD_TESTING
+    // Set by setTestPipState() to simulate an active PiP without a real window.
+    bool testPipActive_ {false};
+#endif
 
     // Connection handles for the active call model, so we can disconnect on cleanup.
     QMetaObject::Connection callModelConnection_;
