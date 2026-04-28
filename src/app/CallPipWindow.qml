@@ -17,9 +17,6 @@
 
 import QtQuick
 import QtQuick.Controls
-import QtQuick.Layouts
-import QtQuick.Controls.impl
-import QtQuick.Effects
 import QWindowKit
 
 import net.jami.Adapters 1.1
@@ -31,6 +28,8 @@ import "commoncomponents"
 // Picture-in-Picture call window.
 // Shown automatically when the user navigates away from a conversation
 // that has an active call. Managed by CallPipWindowManager.
+// Visual content lives in CallPipWindowContent.qml so it can be tested
+// independently of the ApplicationWindow / QWindowKit stack.
 ApplicationWindow {
     id: root
 
@@ -38,7 +37,7 @@ ApplicationWindow {
     property string pipConvId: ""
     property string pipAccountId: ""
 
-    readonly property bool useFrameless: true
+    readonly property bool useFrameless: UtilsAdapter.getAppValue(Settings.Key.UseFramelessWindow)
     readonly property real scaleVal: Math.min(width / minimumWidth, height / minimumHeight)
     readonly property real iconButtonSize: Math.min(JamiTheme.iconButtonSmall * scaleVal, JamiTheme.iconButtonMedium)
 
@@ -53,95 +52,23 @@ ApplicationWindow {
 
     flags: Qt.Window | Qt.WindowStaysOnTopHint
 
+    // Drag handle — covers the whole window so the user can move it anywhere
+    // except over hit-test-visible interactive items.
     Item {
         id: dragHandle
         anchors.fill: parent
         z: -1
     }
 
-    // Remote video (fills entire window)
-    VideoView {
-        id: remoteVideo
+    // All call-related visual content (video, avatars, buttons, labels).
+    CallPipWindowContent {
+        id: content
         anchors.fill: parent
-        // Use the PiP call ID from the manager — stays valid after conv switch.
-        rendererId: CallPipWindowManager.pipIsConference ? CallPipWindowManager.pipActiveSpeakerSinkId : CallPipWindowManager.pipCallId
-        // Crop to fill the small window rather than letterboxing
-        crop: true
+        scaleVal: root.scaleVal
+        iconButtonSize: root.iconButtonSize
+        useFrameless: root.useFrameless
 
-        visible: !CallPipWindowManager.pipIsEmptyConference
-
-        underlayItems: Avatar {
-            id: peerAvatar
-
-            readonly property real componentSize: Math.min(remoteVideo.width / 2,
-                                                           remoteVideo.height / 2)
-            anchors.centerIn: parent
-
-            width: componentSize
-            height: componentSize
-
-            visible: CallPipWindowManager.pipPeerVideoMuted
-
-            mode: Avatar.Mode.Contact
-            showPresenceIndicator: false
-
-            imageId: CallPipWindowManager.pipIsConference ? CallPipWindowManager.pipActiveSpeakerUri : CallPipWindowManager.pipPeerUri
-
-            onVisibleChanged: {
-                // Lazy-load the image the first time the avatar becomes visible.
-                if (visible && !imageId)
-                    imageId = CallPipWindowManager.pipIsConference ? CallPipWindowManager.pipActiveSpeakerUri : CallPipWindowManager.pipPeerUri;
-            }
-
-            opacity: visible ? 1.0 : 0.0
-
-            Behavior on opacity {
-                NumberAnimation {
-                    duration: JamiTheme.shortFadeDuration
-                }
-            }
-        }
-
-        Connections {
-            target: CurrentCall
-
-            function onIsConferenceChanged() {
-                console.warn("IS CONFERENCE CHANGED", CurrentCall.isConference);
-            }
-        }
-    }
-
-    Column {
-        id: emptyConferenceVisuals
-
-        anchors.centerIn: parent
-
-        visible: CallPipWindowManager.pipIsEmptyConference
-
-        spacing: 4
-
-        IconImage {
-            id: emptyConferenceIcon
-
-            anchors.horizontalCenter: parent.horizontalCenter
-
-            width: root.scaleVal * JamiTheme.iconButtonLarge
-            height: root.scaleVal * JamiTheme.iconButtonLarge
-
-            source: JamiResources.ghost_line_24dp_svg
-            sourceSize.width: root.scaleVal * JamiTheme.iconButtonLarge
-            sourceSize.height: root.scaleVal * JamiTheme.iconButtonLarge
-
-            color: JamiTheme.whiteColor
-        }
-
-        Text {
-            anchors.horizontalCenter: parent.horizontalCenter
-
-            text: JamiStrings.noParticipantsInConference
-            color: JamiTheme.whiteColor
-            elide: Text.ElideRight
-        }
+        onEndCallRequested: root.close()
     }
 
     // QWK-style close button — top-right corner, fades in/out with the overlay.
@@ -152,11 +79,11 @@ ApplicationWindow {
         anchors.right: parent.right
 
         height: Math.min(JamiTheme.iconButtonLarge * scaleVal, JamiTheme.qwkTitleBarHeight)
-        visible: useFrameless
+        visible: root.useFrameless
         source: JamiResources.window_bar_close_svg
         forceLightIcons: true
         baseColor: "#e81123"
-        opacity: pipWindowMouseArea.hovered ? 1.0 : 0.0
+        opacity: (content.isHovered || closePipButton.hovered) ? 1.0 : 0.0
         enabled: visible
 
         Behavior on opacity {
@@ -168,256 +95,10 @@ ApplicationWindow {
         onClicked: root.close()
     }
 
-    HoverHandler {
-        id: pipWindowMouseArea
-    }
-
-    NewIconButton {
-        id: popOutButton
-
-        anchors.left: parent.left
-        anchors.leftMargin: JamiTheme.pipActionButtonMargin
-        anchors.top: parent.top
-        anchors.topMargin: JamiTheme.pipActionButtonMargin
-
-        iconSource: JamiResources.bidirectional_pip_exit_24dp_svg
-        iconSize: root.iconButtonSize
-        toolTipText: JamiStrings.popIn
-
-        visible: pipWindowMouseArea.hovered
-        opacity: visible ? 1.0 : 0.0
-
-        Behavior on opacity {
-            NumberAnimation {
-                duration: JamiTheme.shortFadeDuration
-            }
-        }
-
-        onClicked: CallPipWindowManager.reabsorb()
-    }
-
-    // Gradient backgrounds behind call management buttons
-    Rectangle {
-        anchors.bottom: parent.bottom
-
-        width: parent.width
-        height: controlRow.height
-
-        gradient: Gradient {
-            orientation: Gradient.Vertical
-            GradientStop { position: 0.0; color: JamiTheme.transparentColor }
-            GradientStop { position: 1.0; color: Qt.rgba(0, 0, 0, 0.7) }
-        }
-
-        visible: pipWindowMouseArea.hovered
-        opacity: visible ? 1.0 : 0.0
-
-        Behavior on opacity {
-            NumberAnimation {
-                duration: JamiTheme.shortFadeDuration
-            }
-        }
-    }
-
-    // Call duration indicator
-    Text {
-        id: durationLabel
-
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: JamiTheme.pipActionButtonMargin * 3
-        anchors.left: parent.left
-        anchors.leftMargin: JamiTheme.pipActionButtonMargin * 3
-
-        text: CallPipWindowManager.pipConvId.length
-              ? CallAdapter.getCallDurationTime(CallPipWindowManager.pipAccountId, CallPipWindowManager.pipConvId)
-              : ""
-        color: JamiTheme.textColor
-
-        font.pointSize: JamiTheme.textFontSize - 1
-
-        visible: pipWindowMouseArea.hovered
-        opacity: visible ? 1.0 : 0.0
-
-        Behavior on opacity {
-            NumberAnimation {
-                duration: JamiTheme.shortFadeDuration
-            }
-        }
-
-        Timer {
-            interval: 1000
-            running: durationLabel.visible && CallPipWindowManager.pipConvId.length > 0
-            repeat: true
-            onTriggered: durationLabel.text = CallAdapter.getCallDurationTime(CallPipWindowManager.pipAccountId, CallPipWindowManager.pipConvId)
-        }
-    }
-
-    // Call management buttons
-    Control {
-        id: controlRow
-
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: pipWindowMouseArea.hovered ? 4 : -implicitHeight
-        anchors.horizontalCenter: parent.horizontalCenter
-
-        implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
-                                implicitContentWidth + leftPadding + rightPadding)
-        implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
-                                 implicitContentHeight + topPadding + bottomPadding)
-
-        padding: 4
-
-        Behavior on anchors.bottomMargin {
-            NumberAnimation {
-                duration: JamiTheme.shortFadeDuration
-            }
-        }
-
-        contentItem: Row {
-
-            spacing: 8
-
-            NewIconButton {
-                id: muteAudioButton
-
-                anchors.verticalCenter: parent.verticalCenter
-
-                icon.color: JamiTheme.whiteColor
-                iconSize: root.iconButtonSize
-                iconSource: CallPipWindowManager.pipIsAudioMuted ? JamiResources.micro_off_black_24dp_svg : JamiResources.micro_black_24dp_svg
-                toolTipText: CallPipWindowManager.pipIsAudioMuted ? JamiStrings.unmute : JamiStrings.mute
-
-                onClicked: CallAdapter.muteAudioToggle(CallPipWindowManager.pipAccountId, CallPipWindowManager.pipConvId)
-            }
-
-            // Note this component has been heavily overwritten,
-            // it will be generalized in a future patch when a coloured
-            // icon button is defined.
-            NewIconButton {
-                id: endCallButton
-
-                anchors.verticalCenter: parent.verticalCenter
-
-                leftInset: -controlRow.padding
-                rightInset: -controlRow.padding
-                topInset: -controlRow.padding
-                bottomInset: -controlRow.padding
-
-                iconSize: root.iconButtonSize
-                toolTipText: JamiStrings.endCall
-
-                contentItem: IconImage {
-                    id: iconImage
-
-                    anchors.centerIn: parent
-
-                    width: parent.iconSize
-                    height: parent.iconSize
-
-                    source: JamiResources.call_end_white_24dp_svg
-                    sourceSize.width: parent.iconSize
-                    sourceSize.height: parent.iconSize
-
-                    color: JamiTheme.whiteColor
-                }
-
-                background: Rectangle {
-                    implicitWidth: parent.iconSize + (parent.iconSize / 2)
-                    implicitHeight: parent.iconSize + (parent.iconSize / 2)
-
-                    radius: height / 2
-
-                    color: {
-                        if (parent.pressed) {
-                            return JamiTheme.declineButtonPressedRed;
-                        } else if (parent.hovered) {
-                            return JamiTheme.declineButtonHoverRed;
-                        } else {
-                            return JamiTheme.declineButtonRed;
-                        }
-                    }
-
-                    Behavior on color {
-                        ColorAnimation {
-                            duration: 200
-                        }
-                    }
-                }
-
-                onClicked: {
-                    CallAdapter.endCall(CallPipWindowManager.pipAccountId, CallPipWindowManager.pipConvId);
-                    root.close();
-                }
-            }
-
-            NewIconButton {
-                id: muteCameraButton
-
-                anchors.verticalCenter: parent.verticalCenter
-
-                icon.color: JamiTheme.whiteColor
-                iconSize: root.iconButtonSize
-                iconSource: CallPipWindowManager.pipIsCapturing ? JamiResources.videocam_24dp_svg : JamiResources.videocam_off_24dp_svg
-                toolTipText: CallPipWindowManager.pipIsCapturing ? JamiStrings.stopCamera : JamiStrings.startCamera
-
-                onClicked: CallAdapter.muteCameraToggle(CallPipWindowManager.pipAccountId, CallPipWindowManager.pipConvId)
-            }
-        }
-
-        background: Rectangle {
-            radius: height / 2
-            color: JamiTheme.pipActionButtonBackgroundColor
-        }
-    }
-
-    // Button to raise hand (conferences only)
-    Control {
-        id: raiseHandButton
-
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: JamiTheme.pipActionButtonMargin
-        anchors.right: parent.right
-        anchors.rightMargin: JamiTheme.pipActionButtonMargin
-
-        padding: JamiTheme.pipActionButtonPadding
-
-        contentItem: NewIconButton {
-            iconSource: JamiResources.hand_black_24dp_svg
-            iconSize: root.iconButtonSize
-            toolTipText: CurrentCall.isHandRaised ? JamiStrings.lowerHand : JamiStrings.raiseHand
-
-            checkable: true
-            checked: CurrentCall.isHandRaised
-
-            onClicked: CallAdapter.raiseHand("", "", !CallAdapter.isHandRaised())
-        }
-
-        visible: CurrentCall.isConference && (pipWindowMouseArea.hovered || CurrentCall.isHandRaised)
-        opacity: visible ? 1.0 : 0.0
-
-        Behavior on opacity {
-            NumberAnimation {
-                duration: JamiTheme.shortFadeDuration
-            }
-        }
-
-        background: Rectangle {
-            radius: height / 2
-            color: CurrentCall.isHandRaised ? JamiTheme.raiseHandColor : JamiTheme.pipActionButtonBackgroundColor
-
-            Behavior on color {
-                ColorAnimation {
-                    duration: JamiTheme.shortFadeDuration
-                }
-            }
-        }
-    }
-
-
-    // ── QWK frameless window agent ───────────────────────────────────────────
+    // QWK frameless window agent
     WindowAgent { id: windowAgent }
 
-    // ── Geometry persistence ─────────────────────────────────────────────────
+    // Geometry persistence
     function saveGeometry() {
         AppSettingsManager.setValue(Settings.PipWindowGeometry,
                                     Qt.rect(root.x, root.y, root.width, root.height));
@@ -441,23 +122,23 @@ ApplicationWindow {
 
     Component.onCompleted: {
         restoreGeometry();
-        CallOverlayModel.setEventFilterActive(root, remoteVideo, true);
+        CallOverlayModel.setEventFilterActive(root, content, true);
         if (useFrameless) {
             windowAgent.setup(root);
             Qt.callLater(function () {
                 // Entire video area serves as the drag handle for moving the window.
                 windowAgent.setTitleBar(dragHandle);
-                windowAgent.setHitTestVisible(muteAudioButton, true);
-                windowAgent.setHitTestVisible(muteCameraButton, true);
-                windowAgent.setHitTestVisible(endCallButton, true);
+                windowAgent.setHitTestVisible(content.muteAudioButton, true);
+                windowAgent.setHitTestVisible(content.muteCameraButton, true);
+                windowAgent.setHitTestVisible(content.endCallButton, true);
                 windowAgent.setHitTestVisible(closePipButton, true);
-                windowAgent.setHitTestVisible(raiseHandButton, true);
-                windowAgent.setHitTestVisible(popOutButton, true);
-                windowAgent.setHitTestVisible(emptyConferenceVisuals, true);
+                windowAgent.setHitTestVisible(content.raiseHandControl, true);
+                windowAgent.setHitTestVisible(content.popOutButton, true);
+                windowAgent.setHitTestVisible(content.emptyConferenceVisuals, true);
                 windowAgent.setSystemButton(WindowAgent.Close, closePipButton);
             });
         }
     }
 
-    Component.onDestruction: CallOverlayModel.setEventFilterActive(root, remoteVideo, false)
+    Component.onDestruction: CallOverlayModel.setEventFilterActive(root, content, false)
 }

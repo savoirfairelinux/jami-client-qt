@@ -34,6 +34,11 @@ Button {
     property int iconSize
     property string iconSource
 
+    // Note that this color override should only be used in special cases,
+    // otherwise consistency among icons is lost throughout the UI
+    property alias iconColor: iconImage.color
+    property alias backgroundColor: background.color
+
     property alias toolTipText: iconButtonToolTip.text
     property alias toolTipShortcutKey: iconButtonToolTip.shortcutKey
 
@@ -98,6 +103,8 @@ Button {
     }
 
     background: Rectangle {
+        id: background
+
         visible: root.enabled
 
         implicitWidth: iconSize + (iconSize / 2)
