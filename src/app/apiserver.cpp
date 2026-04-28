@@ -604,7 +604,7 @@ ensureMessageLoaded(const QString& accountId,
     ConfigurationManager::instance().loadConversation(accountId,
                                                       conversationId,
                                                       fromId,
-                                                      std::max(limit, 1));
+                                                      (std::max)(limit, 1));
     quitIfLoaded();
     if (interactions.indexOfMessage(fromId) == -1) {
         timer.start(1500);
@@ -634,11 +634,11 @@ messagesToCompatJson(const account::Info& accInfo,
         if (startIndex == -1)
             return {};
     } else if (limit > 0) {
-        startIndex = std::max(0, static_cast<int>(loadedMessages.size()) - limit);
+        startIndex = (std::max)(0, static_cast<int>(loadedMessages.size()) - limit);
     }
 
-    const auto endIndex = limit > 0 ? std::min(static_cast<int>(loadedMessages.size()),
-                                               startIndex + limit)
+    const auto endIndex = limit > 0 ? (std::min)(static_cast<int>(loadedMessages.size()),
+                                                startIndex + limit)
                                     : static_cast<int>(loadedMessages.size());
 
     QJsonArray result;
