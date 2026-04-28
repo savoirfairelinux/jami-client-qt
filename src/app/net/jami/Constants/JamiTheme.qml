@@ -849,7 +849,7 @@ Item {
     property color newMaterialTextFieldTrailingIconHoveredColor: "#9A9A9A"
 
     // Picture-in-picutre (PIP)
-    property color pipActionButtonBackgroundColor: "#3c3c3c"
+    property color pipActionButtonBackgroundColor: "#201f1f"
     property real pipActionButtonPadding: 4
     property real pipActionButtonMargin: 4
 

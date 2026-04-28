@@ -259,6 +259,33 @@ CallPipWindowManager::closeForAccount(const QString& accountId)
         closePip();
 }
 
+#ifdef BUILD_TESTING
+void
+CallPipWindowManager::setTestPipState(const QString& convId,
+                                      const QString& accountId,
+                                      const QString& callId)
+{
+    // Close any existing PiP state first.
+    if (!pipConvId_.isEmpty())
+        closePip();
+
+    pipConvId_ = convId;
+    pipAccountId_ = accountId;
+    pipCallId_ = callId.isEmpty()
+                     ? lrcInstance_->getCallIdForConversationUid(convId, accountId)
+                     : callId;
+    testPipActive_ = true;
+
+    if (!pipCallId_.isEmpty())
+        connectCallModel(accountId);
+
+    Q_EMIT isPipActiveChanged();
+    Q_EMIT pipConvIdChanged();
+    Q_EMIT pipCallIdChanged();
+    Q_EMIT pipAccountIdChanged();
+}
+#endif
+
 void
 CallPipWindowManager::onCallStatusChanged(const QString& accountId, const QString& callId, int code)
 {
@@ -365,6 +392,9 @@ CallPipWindowManager::closePip()
         pipActiveSpeakerSinkId_.clear();
         pipIsEmptyConference_ = false;
         pipIsConference_ = false;
+#ifdef BUILD_TESTING
+        testPipActive_ = false;
+#endif
         Q_EMIT isPipActiveChanged();
         Q_EMIT pipConvIdChanged();
         Q_EMIT pipCallIdChanged();
