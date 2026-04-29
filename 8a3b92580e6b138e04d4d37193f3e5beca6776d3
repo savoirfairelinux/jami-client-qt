@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b42af7bf_2d9495f0",
+        "filename": "src/app/commoncomponents/PasswordDialog.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2026-04-29T18:47:40Z",
+      "side": 1,
+      "message": "[error] Missing semicolon at end of statement in ChangePassword validation. The boolean expression is not properly terminated, which will cause a syntax error.",
+      "revId": "8a3b92580e6b138e04d4d37193f3e5beca6776d3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
