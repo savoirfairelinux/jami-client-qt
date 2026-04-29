@@ -41,9 +41,11 @@ public:
     CodecModelPimpl(const CodecModel& linked, const CallbacksHandler& callbacksHandler);
     ~CodecModelPimpl();
 
-    void loadFromDaemon();
+    bool ensureLoaded();
+    bool loadFromDaemon();
 
     QVector<unsigned int> codecsList_;
+    bool codecsLoaded_ {false};
     QList<Codec> videoCodecs;
     std::mutex audioCodecsMtx;
     QList<Codec> audioCodecs;
@@ -69,12 +71,14 @@ CodecModel::~CodecModel() {}
 QList<Codec>
 CodecModel::getAudioCodecs() const
 {
+    pimpl_->ensureLoaded();
     return pimpl_->audioCodecs;
 }
 
 QList<Codec>
 CodecModel::getVideoCodecs() const
 {
+    pimpl_->ensureLoaded();
     return pimpl_->videoCodecs;
 }
 
@@ -272,16 +276,26 @@ CodecModel::bitrate(const unsigned int& codecId, double bitrate)
 CodecModelPimpl::CodecModelPimpl(const CodecModel& linked, const CallbacksHandler& callbacksHandler)
     : linked(linked)
     , callbacksHandler(callbacksHandler)
-{
-    codecsList_ = ConfigurationManager::instance().getCodecList();
-    loadFromDaemon();
-}
+{}
 
 CodecModelPimpl::~CodecModelPimpl() {}
 
-void
+bool
+CodecModelPimpl::ensureLoaded()
+{
+    if (codecsLoaded_)
+        return true;
+    return loadFromDaemon();
+}
+
+bool
 CodecModelPimpl::loadFromDaemon()
 {
+    codecsList_ = ConfigurationManager::instance().getCodecList();
+    if (codecsList_.isEmpty()) {
+        return false;
+    }
+
     {
         std::unique_lock<std::mutex> lock(audioCodecsMtx);
         audioCodecs.clear();
@@ -299,6 +313,8 @@ CodecModelPimpl::loadFromDaemon()
             continue;
         addCodec(id, activeCodecs);
     }
+    codecsLoaded_ = true;
+    return true;
 }
 
 void
