@@ -225,111 +225,99 @@ SettingsPageBase {
             spacing: 10
             Layout.preferredWidth: 420
 
-            Label {
-                text: JamiStrings.exposedServiceNameLabel
-                color: JamiTheme.textColor
-            }
-            TextField {
+            NewMaterialTextField {
+                id: nameField
                 Layout.fillWidth: true
-                text: serviceEditorDialog.serviceName
-                placeholderText: JamiStrings.exposedServiceNamePlaceholder
-                onTextChanged: serviceEditorDialog.serviceName = text
+                placeholderText: JamiStrings.exposedServiceNameLabel
+                textFieldContent: serviceEditorDialog.serviceName
+                onModifiedTextFieldContentChanged: serviceEditorDialog.serviceName = modifiedTextFieldContent
             }
 
-            Label {
-                text: JamiStrings.exposedServiceDescriptionLabel
-                color: JamiTheme.textColor
-            }
-            TextField {
+            NewMaterialTextField {
+                id: descriptionField
                 Layout.fillWidth: true
-                text: serviceEditorDialog.serviceDescription
-                onTextChanged: serviceEditorDialog.serviceDescription = text
+                placeholderText: JamiStrings.exposedServiceDescriptionLabel
+                textFieldContent: serviceEditorDialog.serviceDescription
+                onModifiedTextFieldContentChanged: serviceEditorDialog.serviceDescription = modifiedTextFieldContent
             }
 
             RowLayout {
                 Layout.fillWidth: true
                 spacing: 10
-                ColumnLayout {
+                NewMaterialTextField {
+                    id: hostField
                     Layout.fillWidth: true
-                    Label {
-                        text: JamiStrings.exposedServiceHostLabel
-                        color: JamiTheme.textColor
-                    }
-                    TextField {
-                        Layout.fillWidth: true
-                        text: serviceEditorDialog.serviceHost
-                        onTextChanged: serviceEditorDialog.serviceHost = text
-                    }
+                    placeholderText: JamiStrings.exposedServiceHostLabel
+                    textFieldContent: serviceEditorDialog.serviceHost
+                    onModifiedTextFieldContentChanged: serviceEditorDialog.serviceHost = modifiedTextFieldContent
                 }
-                ColumnLayout {
+                NewMaterialTextField {
+                    id: portField
                     Layout.preferredWidth: 110
-                    Label {
-                        text: JamiStrings.exposedServicePortLabel
-                        color: JamiTheme.textColor
+                    placeholderText: JamiStrings.exposedServicePortLabel
+                    textFieldContent: serviceEditorDialog.servicePort
+                    validator: IntValidator {
+                        bottom: 1
+                        top: 65535
                     }
-                    TextField {
-                        Layout.fillWidth: true
-                        text: serviceEditorDialog.servicePort
-                        validator: IntValidator {
-                            bottom: 1
-                            top: 65535
-                        }
-                        inputMethodHints: Qt.ImhDigitsOnly
-                        onTextChanged: serviceEditorDialog.servicePort = text
-                    }
+                    onModifiedTextFieldContentChanged: serviceEditorDialog.servicePort = modifiedTextFieldContent
                 }
             }
 
-            Label {
-                text: JamiStrings.exposedServicePolicyLabel
-                color: JamiTheme.textColor
-            }
-            ComboBox {
-                id: policyBox
+            RowLayout {
                 Layout.fillWidth: true
-                textRole: "label"
-                valueRole: "value"
-                model: [
-                    {
-                        value: "contacts",
-                        label: JamiStrings.exposedServicePolicyContacts
-                    },
-                    {
-                        value: "public",
-                        label: JamiStrings.exposedServicePolicyPublic
-                    },
-                    {
-                        value: "specific",
-                        label: JamiStrings.exposedServicePolicySpecific
-                    },
-                ]
-                Component.onCompleted: {
-                    var idx = 0;
-                    if (serviceEditorDialog.servicePolicy === "public")
-                        idx = 1;
-                    else if (serviceEditorDialog.servicePolicy === "specific")
-                        idx = 2;
-                    currentIndex = idx;
+                spacing: 10
+                Text {
+                    text: JamiStrings.exposedServicePolicyLabel
+                    color: JamiTheme.textColor
+                    font.pointSize: JamiTheme.settingsFontSize
+                    Layout.fillWidth: true
                 }
-                onActivated: serviceEditorDialog.servicePolicy = currentValue
+                SettingParaCombobox {
+                    id: policyBox
+                    Layout.preferredWidth: 220
+                    textRole: "label"
+                    valueRole: "value"
+                    font.pointSize: JamiTheme.buttonFontSize
+                    model: ListModel {
+                        ListElement { value: "contacts"; label: "Confirmed contacts" }
+                        ListElement { value: "public"; label: "Anyone (public)" }
+                        ListElement { value: "specific"; label: "Specific contacts only" }
+                    }
+                    Component.onCompleted: {
+                        var idx = 0;
+                        if (serviceEditorDialog.servicePolicy === "public")
+                            idx = 1;
+                        else if (serviceEditorDialog.servicePolicy === "specific")
+                            idx = 2;
+                        currentIndex = idx;
+                    }
+                    onActivated: serviceEditorDialog.servicePolicy = currentValue
+                }
             }
 
-            Label {
-                visible: serviceEditorDialog.servicePolicy === "specific"
-                text: JamiStrings.exposedServiceAllowedLabel
-                color: JamiTheme.textColor
-            }
-            TextField {
+            NewMaterialTextField {
+                id: allowedField
                 visible: serviceEditorDialog.servicePolicy === "specific"
                 Layout.fillWidth: true
-                text: serviceEditorDialog.serviceAllowed
-                onTextChanged: serviceEditorDialog.serviceAllowed = text
+                placeholderText: JamiStrings.exposedServiceAllowedLabel
+                textFieldContent: serviceEditorDialog.serviceAllowed
+                onModifiedTextFieldContentChanged: serviceEditorDialog.serviceAllowed = modifiedTextFieldContent
             }
 
-            CheckBox {
-                text: JamiStrings.exposedServiceEnabled
-                checked: serviceEditorDialog.serviceEnabled
-                onToggled: serviceEditorDialog.serviceEnabled = checked
+            RowLayout {
+                Layout.fillWidth: true
+                spacing: 10
+                Text {
+                    text: JamiStrings.exposedServiceEnabled
+                    color: JamiTheme.textColor
+                    font.pointSize: JamiTheme.settingsFontSize
+                    Layout.fillWidth: true
+                }
+                JamiSwitch {
+                    checked: serviceEditorDialog.serviceEnabled
+                    onToggled: serviceEditorDialog.serviceEnabled = checked
+                }
             }
         }
 
