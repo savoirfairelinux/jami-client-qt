@@ -227,6 +227,38 @@ Item {
     property string apiTokenCreatedTitle: qsTr("API token created")
     property string apiTokenCreatedMessage: qsTr("Copy this token now. It will not be shown again.")
     property string apiTokenCopyWarning: qsTr("This token grants access to your account. Keep it secret.")
+
+    // ExposedServicesSettingsPage
+    property string exposedServicesSettingsTitle: qsTr("Network services")
+    property string exposedServicesDescription: qsTr("Expose local TCP services (a web UI, an SSH server, a database…) over Jami so trusted contacts can reach them as if they were running on their own machine.")
+    property string exposedServicesListTitle: qsTr("Exposed services")
+    property string exposedServicesNone: qsTr("No services are exposed yet.")
+    property string exposedServicesAdd: qsTr("Expose a service")
+    property string exposedServiceNameLabel: qsTr("Name")
+    property string exposedServiceNamePlaceholder: qsTr("e.g. webhook, ssh, syncthing")
+    property string exposedServiceDescriptionLabel: qsTr("Description (optional)")
+    property string exposedServiceHostLabel: qsTr("Local host")
+    property string exposedServicePortLabel: qsTr("Local port")
+    property string exposedServicePolicyLabel: qsTr("Who can access it")
+    property string exposedServicePolicyContacts: qsTr("Confirmed contacts")
+    property string exposedServicePolicyPublic: qsTr("Anyone (public)")
+    property string exposedServicePolicySpecific: qsTr("Specific contacts only")
+    property string exposedServiceAllowedLabel: qsTr("Allowed contact URIs (comma-separated)")
+    property string exposedServiceEnabled: qsTr("Enabled")
+    property string exposedServiceSave: qsTr("Save")
+    property string exposedServiceCancel: qsTr("Cancel")
+    property string exposedServiceLocalEndpoint: qsTr("Local endpoint: %1")
+    property string exposedServicePolicyTagPublic: qsTr("Public")
+    property string exposedServicePolicyTagContacts: qsTr("Contacts")
+    property string exposedServicePolicyTagSpecific: qsTr("Specific")
+
+    // PeerServicesSection / contact details
+    property string peerServicesSectionTitle: qsTr("Network services")
+    property string peerServicesEmpty: qsTr("This contact does not expose any service to you.")
+    property string peerServicesRefresh: qsTr("Refresh")
+    property string peerServiceOpenTunnel: qsTr("Open local tunnel")
+    property string peerServiceCloseTunnel: qsTr("Close")
+    property string peerServiceTunnelOpened: qsTr("Reachable at %1")
     
     // AudioSettings
     property string audio: qsTr("Audio")
