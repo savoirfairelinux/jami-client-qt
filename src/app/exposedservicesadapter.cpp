@@ -66,6 +66,7 @@ ExposedServicesAdapter::ExposedServicesAdapter(LRCInstance* instance, QObject* p
             [this](quint32 requestId,
                    const QString& accountId,
                    const QString& peerId,
+                   int status,
                    const QString& servicesJson) {
                 QVariantList services;
                 QJsonParseError err;
@@ -76,7 +77,7 @@ ExposedServicesAdapter::ExposedServicesAdapter(LRCInstance* instance, QObject* p
                     for (const auto& v : arr)
                         services.append(v.toObject().toVariantMap());
                 }
-                Q_EMIT peerServicesReceived(requestId, accountId, peerId, services);
+                Q_EMIT peerServicesReceived(requestId, accountId, peerId, status, services);
             });
 
     connect(&cm,
@@ -165,12 +166,7 @@ ExposedServicesAdapter::openServiceTunnel(const QString& accountId,
     const auto id = resolveAccountId(accountId);
     if (id.isEmpty())
         return {};
-    return ConfigurationManager::instance().openServiceTunnel(id,
-                                                              peerUri,
-                                                              peerDevice,
-                                                              serviceId,
-                                                              serviceName,
-                                                              localPort);
+    return ConfigurationManager::instance().openServiceTunnel(id, peerUri, peerDevice, serviceId, serviceName, localPort);
 }
 
 bool
