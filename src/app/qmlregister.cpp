@@ -21,6 +21,7 @@
 #include "avadapter.h"
 #include "calladapter.h"
 #include "contactadapter.h"
+#include "exposedservicesadapter.h"
 #include "pluginadapter.h"
 #include "messagesadapter.h"
 #include "positionmanager.h"
@@ -233,6 +234,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, MessagesAdapter);
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, ConversationsAdapter);
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, ContactAdapter);
+    QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, ExposedServicesAdapter);
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, UtilsAdapter);
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, PositionManager);
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, AvAdapter);
