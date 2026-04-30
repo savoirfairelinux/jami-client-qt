@@ -66,6 +66,9 @@ Item {
                 swarmDetailsTabModel.append({
                                                 "name": JamiStrings.files
                                             });
+                swarmDetailsTabModel.append({
+                                                "name": JamiStrings.peerServicesSectionTitle
+                                            });
             }
 
             swarmDetailsTabModel.append({
@@ -447,6 +450,29 @@ Item {
                 }
             }
 
+            JamiFlickable {
+                id: servicesView
+
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+
+                contentWidth: width
+                contentHeight: peerServices.implicitHeight
+                clip: true
+
+                visible: CurrentConversation.isCoreDialog
+                         && swarmDetailsPanelTabBar.currentIndex === 1
+
+                PeerServicesSection {
+                    id: peerServices
+
+                    width: servicesView.width
+                    accountId: CurrentAccount.id
+                    peerUri: UtilsAdapter.getPeerUri(CurrentAccount.id,
+                                                     CurrentConversation.id)
+                }
+            }
+
             Column {
                 id: detailsView
 
@@ -456,7 +482,7 @@ Item {
                 spacing: 16
 
                 visible: CurrentConversation.isCoreDialog ? swarmDetailsPanelTabBar.currentIndex
-                                                            === 1 : swarmDetailsPanelTabBar.currentIndex
+                                                            === 2 : swarmDetailsPanelTabBar.currentIndex
                                                             === 2
 
                 RowLayout {
