@@ -163,11 +163,11 @@ MainApplication::MainApplication(int& argc, char** argv)
     // without using `qt.*=false`. It may be useful for debugging Qt/QtQuick issues.
     QLoggingCategory::setFilterRules("\n"
                                      "*.debug=true\n"
-                                     "libclient.debug=false\n"
+                                     "libclient.debug=true\n"
                                      "qt.*=false\n"
                                      "qml.debug=false\n"
-                                     "default.debug=false\n"
-                                     "client.debug=false\n"
+                                     "default.debug=true\n"
+                                     "client.debug=true\n"
                                      "spellcheck.debug=false\n"
                                      "\n");
     // These can be set in the environment as well.
