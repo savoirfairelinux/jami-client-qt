@@ -39,6 +39,7 @@ ListSelectionView {
         "CallSettingsPage": Qt.resolvedUrl("components/CallSettingsPage.qml"),
         "AdvancedSettingsPage": Qt.resolvedUrl("components/AdvancedSettingsPage.qml"),
         "ApiTokensPage": Qt.resolvedUrl("components/ApiTokensPage.qml"),
+        "ExposedServicesSettingsPage": Qt.resolvedUrl("components/ExposedServicesSettingsPage.qml"),
         "SystemSettingsPage": Qt.resolvedUrl("components/SystemSettingsPage.qml"),
         "AppearanceSettingsPage": Qt.resolvedUrl("components/AppearanceSettingsPage.qml"),
         "Chat": Qt.resolvedUrl("components/ChatSettingsPage.qml"),
@@ -170,6 +171,9 @@ ListSelectionView {
                 break;
             case 16:
                 replace(currentItem, viewNode.resources["PluginSettingsPage"], StackView.Immediate);
+                break;
+            case 17:
+                replace(currentItem, viewNode.resources["ExposedServicesSettingsPage"], StackView.Immediate);
                 break;
             }
         }
