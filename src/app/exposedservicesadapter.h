@@ -78,6 +78,17 @@ public:
     /// requestId can be used by callers to correlate.
     Q_INVOKABLE quint32 queryPeerServices(const QString& accountId, const QString& peerUri);
 
+    /// Status codes for `peerServicesReceived`. Mirrors
+    /// `libjami::ServiceSignal::PeerServicesStatus`.
+    enum class PeerServicesStatus : int {
+        OK = 0,
+        NoDevices = 1,
+        Unreachable = 2,
+        Timeout = 3,
+        InternalError = 4,
+    };
+    Q_ENUM(PeerServicesStatus)
+
     // ----- Tunnels ----------------------------------------------------------
 
     /// Open a TCP tunnel to a peer device's service. Returns the tunnel
@@ -97,21 +108,16 @@ public:
     Q_INVOKABLE QVariantList getActiveTunnels(const QString& accountId = {}) const;
 
 Q_SIGNALS:
-    /// Asynchronous response to queryPeerServices().
-    /// `services` is decoded from the daemon's JSON; each entry has
-    /// id, name, description, proto.
-    void peerServicesReceived(quint32 requestId,
-                              const QString& accountId,
-                              const QString& peerUri,
-                              const QVariantList& services);
+    /// Asynchronous response to queryPeerServices(). Emitted exactly once
+    /// per request id. `status` is one of `PeerServicesStatus`. `services`
+    /// is decoded from the daemon's JSON; each entry has id, name,
+    /// description, proto. Empty list for any non-OK status.
+    void peerServicesReceived(
+        quint32 requestId, const QString& accountId, const QString& peerUri, int status, const QVariantList& services);
 
-    void tunnelOpened(const QString& accountId,
-                      const QString& tunnelId,
-                      quint16 localPort);
+    void tunnelOpened(const QString& accountId, const QString& tunnelId, quint16 localPort);
 
-    void tunnelClosed(const QString& accountId,
-                      const QString& tunnelId,
-                      const QString& reason);
+    void tunnelClosed(const QString& accountId, const QString& tunnelId, const QString& reason);
 
 private:
     QString resolveAccountId(const QString& accountId) const;
