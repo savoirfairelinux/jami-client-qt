@@ -397,7 +397,10 @@ AccountModel::exportToFile(const QString& accountId, const QString& path, const 
 bool
 AccountModel::provideAccountAuthentication(const QString& accountId, const QString& credentialsFromUser) const
 {
-    return ConfigurationManager::instance().provideAccountAuthentication(accountId, credentialsFromUser, "password");
+    return ConfigurationManager::instance().provideAccountAuthentication(accountId,
+                                                                         credentialsFromUser,
+                                                                         credentialsFromUser.isEmpty() ? ""
+                                                                                                       : "password");
 }
 
 int32_t
