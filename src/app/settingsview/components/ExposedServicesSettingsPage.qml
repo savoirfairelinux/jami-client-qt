@@ -89,6 +89,7 @@ SettingsPageBase {
                     serviceEditorDialog.serviceDescription = "";
                     serviceEditorDialog.serviceHost = "127.0.0.1";
                     serviceEditorDialog.servicePort = "";
+                    serviceEditorDialog.serviceScheme = "";
                     serviceEditorDialog.servicePolicy = "contacts";
                     serviceEditorDialog.serviceAllowed = "";
                     serviceEditorDialog.serviceEnabled = true;
@@ -185,6 +186,7 @@ SettingsPageBase {
                             serviceEditorDialog.serviceDescription = rowRect.modelData.description;
                             serviceEditorDialog.serviceHost = rowRect.modelData.localHost;
                             serviceEditorDialog.servicePort = rowRect.modelData.localPort;
+                            serviceEditorDialog.serviceScheme = rowRect.modelData.scheme || "";
                             serviceEditorDialog.servicePolicy = rowRect.modelData.policy;
                             serviceEditorDialog.serviceAllowed = rowRect.modelData.allowedContacts;
                             serviceEditorDialog.serviceEnabled = rowRect.modelData.enabled === "true";
@@ -215,6 +217,7 @@ SettingsPageBase {
         property string serviceDescription: ""
         property string serviceHost: "127.0.0.1"
         property string servicePort: ""
+        property string serviceScheme: ""
         property string servicePolicy: "contacts"
         property string serviceAllowed: ""
         property bool serviceEnabled: true
@@ -261,6 +264,47 @@ SettingsPageBase {
                         top: 65535
                     }
                     onModifiedTextFieldContentChanged: serviceEditorDialog.servicePort = modifiedTextFieldContent
+                }
+            }
+
+            RowLayout {
+                Layout.fillWidth: true
+                spacing: 10
+                Text {
+                    text: JamiStrings.exposedServiceSchemeLabel
+                    color: JamiTheme.textColor
+                    font.pointSize: JamiTheme.settingsFontSize
+                    Layout.fillWidth: true
+                }
+                SettingParaCombobox {
+                    id: schemeBox
+                    Layout.preferredWidth: 220
+                    textRole: "label"
+                    valueRole: "value"
+                    font.pointSize: JamiTheme.buttonFontSize
+                    model: [
+                        {
+                            value: "",
+                            label: JamiStrings.exposedServiceSchemeRaw
+                        },
+                        {
+                            value: "http",
+                            label: "HTTP"
+                        },
+                        {
+                            value: "https",
+                            label: "HTTPS"
+                        },
+                    ]
+                    Component.onCompleted: {
+                        var idx = 0;
+                        if (serviceEditorDialog.serviceScheme === "http")
+                            idx = 1;
+                        else if (serviceEditorDialog.serviceScheme === "https")
+                            idx = 2;
+                        currentIndex = idx;
+                    }
+                    onActivated: serviceEditorDialog.serviceScheme = currentValue
                 }
             }
 
@@ -338,6 +382,7 @@ SettingsPageBase {
                 "description": serviceEditorDialog.serviceDescription,
                 "localHost": serviceEditorDialog.serviceHost,
                 "localPort": serviceEditorDialog.servicePort,
+                "scheme": serviceEditorDialog.serviceScheme,
                 "policy": serviceEditorDialog.servicePolicy,
                 "allowedContacts": serviceEditorDialog.serviceAllowed,
                 "enabled": serviceEditorDialog.serviceEnabled ? "true" : "false"

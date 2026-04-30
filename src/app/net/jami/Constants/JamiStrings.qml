@@ -239,6 +239,8 @@ Item {
     property string exposedServiceDescriptionLabel: qsTr("Description (optional)")
     property string exposedServiceHostLabel: qsTr("Local host")
     property string exposedServicePortLabel: qsTr("Local port")
+    property string exposedServiceSchemeLabel: qsTr("URI scheme")
+    property string exposedServiceSchemeRaw: qsTr("Raw TCP")
     property string exposedServicePolicyLabel: qsTr("Who can access it")
     property string exposedServicePolicyContacts: qsTr("Confirmed contacts")
     property string exposedServicePolicyPublic: qsTr("Anyone (public)")
@@ -261,6 +263,7 @@ Item {
     property string peerServicesInternalError: qsTr("Service discovery is unavailable on this account.")
     property string peerServicesRefresh: qsTr("Refresh")
     property string peerServiceOpenTunnel: qsTr("Open local tunnel")
+    property string peerServiceOpenInBrowser: qsTr("Open in browser")
     property string peerServiceCloseTunnel: qsTr("Close")
     property string peerServiceTunnelOpened: qsTr("Reachable at %1")
 

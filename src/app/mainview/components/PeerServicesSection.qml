@@ -104,10 +104,14 @@ ColumnLayout {
                 var copy = Object.assign({}, root.openTunnels);
                 copy[sid] = {
                     tunnelId: tunnelId,
-                    localPort: localPort
+                    localPort: localPort,
+                    scheme: root.pendingOpens[sid].scheme || ""
                 };
                 root.openTunnels = copy;
                 root.pendingOpens[sid].claimed = true;
+                var sch = root.pendingOpens[sid].scheme || "";
+                if (sch === "http" || sch === "https")
+                    Qt.openUrlExternally(sch + "://127.0.0.1:" + localPort);
                 break;
             }
         }
@@ -217,14 +221,30 @@ ColumnLayout {
                     visible: root.openTunnels[serviceRow.modelData.id] === undefined
                     implicitHeight: JamiTheme.newMaterialButtonHeight
                     filledButton: true
-                    text: JamiStrings.peerServiceOpenTunnel
+                    text: {
+                        var sch = serviceRow.modelData.scheme || "";
+                        return (sch === "http" || sch === "https") ? JamiStrings.peerServiceOpenInBrowser : JamiStrings.peerServiceOpenTunnel;
+                    }
                     onClicked: {
                         var pending = Object.assign({}, root.pendingOpens);
                         pending[serviceRow.modelData.id] = {
-                            claimed: false
+                            claimed: false,
+                            scheme: serviceRow.modelData.scheme || ""
                         };
                         root.pendingOpens = pending;
                         ExposedServicesAdapter.openServiceTunnel(root.accountId, root.peerUri, serviceRow.modelData.device || "", serviceRow.modelData.id, serviceRow.modelData.name, 0);
+                    }
+                }
+
+                NewMaterialButton {
+                    visible: root.openTunnels[serviceRow.modelData.id] !== undefined && (root.openTunnels[serviceRow.modelData.id].scheme === "http" || root.openTunnels[serviceRow.modelData.id].scheme === "https")
+                    implicitHeight: JamiTheme.newMaterialButtonHeight
+                    outlinedButton: true
+                    text: JamiStrings.peerServiceOpenInBrowser
+                    onClicked: {
+                        var t = root.openTunnels[serviceRow.modelData.id];
+                        if (t)
+                            Qt.openUrlExternally(t.scheme + "://127.0.0.1:" + t.localPort);
                     }
                 }
 
