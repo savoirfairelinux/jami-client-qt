@@ -263,7 +263,7 @@ Item {
     property string peerServiceOpenTunnel: qsTr("Open local tunnel")
     property string peerServiceCloseTunnel: qsTr("Close")
     property string peerServiceTunnelOpened: qsTr("Reachable at %1")
-    
+
     // AudioSettings
     property string audio: qsTr("Audio")
     property string systemNotificationsTitle: qsTr("Notifications")
@@ -419,7 +419,7 @@ Item {
     property string sipResponse500Description: qsTr("A server error occurred. Please try again later.")
     property string sipResponse503Description: qsTr("The service is currently unavailable.")
     property string sipResponseHowDoIChangeMyCodecs: qsTr("How do I change my codecs?")
-    property string sipResponseCodecsHowTo: qsTr("<br><b>Settings > Account > Advanced settings > Video Codecs / Audio Codecs.</b>");
+    property string sipResponseCodecsHowTo: qsTr("<br><b>Settings > Account > Advanced settings > Video Codecs / Audio Codecs.</b>")
 
     // Share location/position
     property string shareLocation: qsTr("Share location")

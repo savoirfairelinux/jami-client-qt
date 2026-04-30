@@ -69,10 +69,9 @@ ColumnLayout {
     }
 
     function pickFirstDeviceForPeer() {
-        // The daemon-side openServiceTunnel resolves the device on its own
-        // when given an empty deviceId, but the API requires a string. We
-        // pass an empty value here as a placeholder; a future iteration
-        // could surface a per-device chooser.
+        // Deprecated: the responder's device id is now carried in the
+        // discovery response (modelData.device); this helper is kept only
+        // as a safe empty-string fallback for older daemons.
         return "";
     }
 
@@ -147,9 +146,10 @@ ColumnLayout {
             implicitWidth: 18
         }
 
-        Button {
+        NewMaterialButton {
             visible: !root.loading
-            flat: true
+            implicitHeight: JamiTheme.newMaterialButtonHeight
+            outlinedButton: true
             text: JamiStrings.peerServicesRefresh
             onClicked: root.refresh()
         }
@@ -213,8 +213,10 @@ ColumnLayout {
                     }
                 }
 
-                Button {
+                NewMaterialButton {
                     visible: root.openTunnels[serviceRow.modelData.id] === undefined
+                    implicitHeight: JamiTheme.newMaterialButtonHeight
+                    filledButton: true
                     text: JamiStrings.peerServiceOpenTunnel
                     onClicked: {
                         var pending = Object.assign({}, root.pendingOpens);
@@ -222,12 +224,15 @@ ColumnLayout {
                             claimed: false
                         };
                         root.pendingOpens = pending;
-                        ExposedServicesAdapter.openServiceTunnel(root.accountId, root.peerUri, root.pickFirstDeviceForPeer(), serviceRow.modelData.id, serviceRow.modelData.name, 0);
+                        ExposedServicesAdapter.openServiceTunnel(root.accountId, root.peerUri, serviceRow.modelData.device || "", serviceRow.modelData.id, serviceRow.modelData.name, 0);
                     }
                 }
 
-                Button {
+                NewMaterialButton {
                     visible: root.openTunnels[serviceRow.modelData.id] !== undefined
+                    implicitHeight: JamiTheme.newMaterialButtonHeight
+                    outlinedButton: true
+                    color: JamiTheme.buttonTintedRed
                     text: JamiStrings.peerServiceCloseTunnel
                     onClicked: {
                         var t = root.openTunnels[serviceRow.modelData.id];

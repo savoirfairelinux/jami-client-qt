@@ -246,9 +246,17 @@ UtilsAdapter::getPeerUri(const QString& accountId, const QString& uid)
 {
     try {
         auto* convModel = lrcInstance_->getAccountInfo(accountId).conversationModel.get();
+        const auto peers = convModel->peersForConversation(uid);
+        if (!peers.isEmpty())
+            return peers.front();
+        // Fall back to the first participant for legacy non-swarm conversations
+        // that don't expose a peer list.
         const auto& convInfo = convModel->getConversationForUid(uid).value();
         return convInfo.get().participants.front().uri;
     } catch (const std::out_of_range& e) {
+        C_DBG << e.what();
+        return "";
+    } catch (const std::bad_optional_access& e) {
         C_DBG << e.what();
         return "";
     }
