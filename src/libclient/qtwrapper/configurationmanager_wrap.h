@@ -210,28 +210,23 @@ public:
                                                  QString(query.c_str()),
                                                  convertVecMap(results));
                 }),
-            exportable_callback<ServiceSignal::PeerServicesReceived>(
-                [this](uint32_t requestId,
-                       const std::string& accountId,
-                       const std::string& peerId,
-                       const std::string& servicesJson) {
-                    Q_EMIT this->peerServicesReceived(requestId,
-                                                      QString(accountId.c_str()),
-                                                      QString(peerId.c_str()),
-                                                      QString(servicesJson.c_str()));
-                }),
+            exportable_callback<ServiceSignal::PeerServicesReceived>([this](uint32_t requestId,
+                                                                            const std::string& accountId,
+                                                                            const std::string& peerId,
+                                                                            int status,
+                                                                            const std::string& servicesJson) {
+                Q_EMIT this->peerServicesReceived(requestId,
+                                                  QString(accountId.c_str()),
+                                                  QString(peerId.c_str()),
+                                                  status,
+                                                  QString(servicesJson.c_str()));
+            }),
             exportable_callback<ServiceSignal::TunnelOpened>(
-                [this](const std::string& accountId,
-                       const std::string& tunnelId,
-                       uint16_t localPort) {
-                    Q_EMIT this->serviceTunnelOpened(QString(accountId.c_str()),
-                                                     QString(tunnelId.c_str()),
-                                                     localPort);
+                [this](const std::string& accountId, const std::string& tunnelId, uint16_t localPort) {
+                    Q_EMIT this->serviceTunnelOpened(QString(accountId.c_str()), QString(tunnelId.c_str()), localPort);
                 }),
             exportable_callback<ServiceSignal::TunnelClosed>(
-                [this](const std::string& accountId,
-                       const std::string& tunnelId,
-                       const std::string& reason) {
+                [this](const std::string& accountId, const std::string& tunnelId, const std::string& reason) {
                     Q_EMIT this->serviceTunnelClosed(QString(accountId.c_str()),
                                                      QString(tunnelId.c_str()),
                                                      QString(reason.c_str()));
@@ -562,8 +557,7 @@ public Q_SLOTS: // METHODS
 
     QString addExposedService(const QString& accountId, MapStringString service)
     {
-        return QString::fromStdString(libjami::addExposedService(accountId.toStdString(),
-                                                                 convertMap(service)));
+        return QString::fromStdString(libjami::addExposedService(accountId.toStdString(), convertMap(service)));
     }
 
     bool updateExposedService(const QString& accountId, MapStringString service)
@@ -1316,13 +1310,9 @@ Q_SIGNALS: // SIGNALS
                                         const QString& conversationId,
                                         const MapStringString& message);
     // exposed services / tunnels
-    void peerServicesReceived(uint32_t requestId,
-                              const QString& accountId,
-                              const QString& peerId,
-                              const QString& servicesJson);
-    void serviceTunnelOpened(const QString& accountId,
-                             const QString& tunnelId,
-                             quint16 localPort);
+    void peerServicesReceived(
+        uint32_t requestId, const QString& accountId, const QString& peerId, int status, const QString& servicesJson);
+    void serviceTunnelOpened(const QString& accountId, const QString& tunnelId, quint16 localPort);
     void serviceTunnelClosed(const QString& accountId, const QString& tunnelId, const QString& reason);
 };
 
