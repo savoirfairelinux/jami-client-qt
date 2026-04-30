@@ -261,9 +261,9 @@ Item {
     property string peerServicesInternalError: qsTr("Service discovery is unavailable on this account.")
     property string peerServicesRefresh: qsTr("Refresh")
     property string peerServiceOpenTunnel: qsTr("Open local tunnel")
-    property string peerServiceCloseTunnel: qsTr("Close")
+    property string peerServiceCloseTunnel: qsTr("Stop")
     property string peerServiceTunnelOpened: qsTr("Reachable at %1")
-    
+
     // AudioSettings
     property string audio: qsTr("Audio")
     property string systemNotificationsTitle: qsTr("Notifications")
@@ -413,7 +413,7 @@ Item {
     property string sipResponse407Description: qsTr("Proxy authentication credentials are required.")
     property string sipResponse415Description: qsTr("Please ensure that both you and your contact have a common codec enabled.")
     property string sipResponseHowDoIChangeMyCodecs: qsTr("How do I change my codecs?")
-    property string sipResponseCodecsHowTo: qsTr("<br><b>Settings > Account > Advanced settings > Video Codecs / Audio Codecs.</b>");
+    property string sipResponseCodecsHowTo: qsTr("<br><b>Settings > Account > Advanced settings > Video Codecs / Audio Codecs.</b>")
 
     // Share location/position
     property string shareLocation: qsTr("Share location")

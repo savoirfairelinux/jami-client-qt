@@ -36,11 +36,8 @@ Item {
     Layout.fillWidth: true
     Layout.fillHeight: true
 
-    property var isAdmin: UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id,
-                                                          CurrentAccount.uri) === Member.Role.ADMIN
-                          || CurrentConversation.isCoreDialog
-    property string textColor: UtilsAdapter.luma(innerRect.color)
-                               ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
+    property var isAdmin: UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri) === Member.Role.ADMIN || CurrentConversation.isCoreDialog
+    property string textColor: UtilsAdapter.luma(innerRect.color) ? JamiTheme.chatviewTextColorLight : JamiTheme.chatviewTextColorDark
 
     Rectangle {
         id: innerRect
@@ -56,24 +53,23 @@ Item {
             swarmDetailsTabModel.clear();
             if (!CurrentConversation.isCoreDialog) {
                 swarmDetailsTabModel.append({
-                                                "name": JamiStrings.members.arg(
-                                                            CurrentConversation.members.count)
-                                            });
+                    "name": JamiStrings.members.arg(CurrentConversation.members.count)
+                });
                 swarmDetailsTabModel.append({
-                                                "name": JamiStrings.files
-                                            });
+                    "name": JamiStrings.files
+                });
             } else {
                 swarmDetailsTabModel.append({
-                                                "name": JamiStrings.files
-                                            });
+                    "name": JamiStrings.files
+                });
                 swarmDetailsTabModel.append({
-                                                "name": JamiStrings.peerServicesSectionTitle
-                                            });
+                    "name": JamiStrings.peerServicesSectionTitle
+                });
             }
 
             swarmDetailsTabModel.append({
-                                            "name": JamiStrings.details
-                                        });
+                "name": JamiStrings.details
+            });
         }
 
         ColumnLayout {
@@ -121,16 +117,12 @@ Item {
                         iconSource: JamiResources.informations_black_24dp_svg
                         toolTipText: JamiStrings.contactDetails
 
-                        onClicked: viewCoordinator.presentDialog(appWindow,
-                                                                 "mainview/components/UserProfile.qml",
-                                                                 {
-                                                                     "aliasText":
-                                                                     CurrentConversation.title,
-                                                                     "registeredNameText":
-                                                                     CurrentConversation.description,
-                                                                     "idText": CurrentConversation.id,
-                                                                     "convId": CurrentConversation.id
-                                                                 })
+                        onClicked: viewCoordinator.presentDialog(appWindow, "mainview/components/UserProfile.qml", {
+                            "aliasText": CurrentConversation.title,
+                            "registeredNameText": CurrentConversation.description,
+                            "idText": CurrentConversation.id,
+                            "convId": CurrentConversation.id
+                        })
 
                         visible: CurrentConversation.isCoreDialog
                     }
@@ -157,15 +149,10 @@ Item {
                         Layout.alignment: Qt.AlignHCenter
 
                         iconSize: JamiTheme.iconButtonMedium
-                        iconSource: CurrentConversation.ignoreNotifications
-                                    ? JamiResources.notifications_off_24dp_svg :
-                                      JamiResources.notifications_active_24dp_svg
-                        toolTipText: CurrentConversation.ignoreNotifications
-                                     ? JamiStrings.muteConversation :
-                                       JamiStrings.unmuteConversation
+                        iconSource: CurrentConversation.ignoreNotifications ? JamiResources.notifications_off_24dp_svg : JamiResources.notifications_active_24dp_svg
+                        toolTipText: CurrentConversation.ignoreNotifications ? JamiStrings.muteConversation : JamiStrings.unmuteConversation
 
-                        onClicked: CurrentConversation.setPreference("ignoreNotifications",
-                                                                     !CurrentConversation.ignoreNotifications)
+                        onClicked: CurrentConversation.setPreference("ignoreNotifications", !CurrentConversation.ignoreNotifications)
                     }
 
                     NewIconButton {
@@ -196,8 +183,7 @@ Item {
                                 title: JamiStrings.color
                                 currentColor: CurrentConversation.color
                                 onAccepted: {
-                                    CurrentConversation.setPreference("color",
-                                                                      colorDialog.color);
+                                    CurrentConversation.setPreference("color", colorDialog.color);
                                     this.destroy();
                                 }
                                 onRejected: this.destroy()
@@ -218,14 +204,13 @@ Item {
                 textFieldContent: CurrentConversation.title
                 maxCharacters: JamiTheme.maximumCharacters
                 readOnly: !isAdmin
-                toolTipText: CurrentConversation.isCoreDialog ? JamiStrings.contactName :
-                                                                JamiStrings.groupName
+                toolTipText: CurrentConversation.isCoreDialog ? JamiStrings.contactName : JamiStrings.groupName
 
                 trailingIconSource: JamiResources.cancel_24dp_svg
                 trailingIconToolTipText: JamiStrings.clearText
                 onTrailingIconClicked: modifiedTextFieldContent = ""
 
-                onAccepted: ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, modifiedTextFieldContent);
+                onAccepted: ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, modifiedTextFieldContent)
             }
 
             NewMaterialTextField {
@@ -305,8 +290,7 @@ Item {
 
                 spacing: 12
 
-                visible: !CurrentConversation.isCoreDialog && swarmDetailsPanelTabBar.currentIndex
-                         === 0
+                visible: !CurrentConversation.isCoreDialog && swarmDetailsPanelTabBar.currentIndex === 0
 
                 NewMaterialButton {
                     id: inviteMemberButton
@@ -354,14 +338,12 @@ Item {
                         width: parent.width
                         spacing: 8
 
-                        columns: CurrentConversation.members.length < 3
-                                 ? CurrentConversation.members.length : 4
+                        columns: CurrentConversation.members.length < 3 ? CurrentConversation.members.length : 4
 
                         Repeater {
                             model: CurrentConversation.members
                             delegate: GridItemDelegate {
-                                width: (scrollView.width - (membersGrid.columns - 1)
-                                        * membersGrid.spacing) / membersGrid.columns
+                                width: (scrollView.width - (membersGrid.columns - 1) * membersGrid.spacing) / membersGrid.columns
                             }
                         }
                     }
@@ -374,9 +356,7 @@ Item {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
 
-                visible: CurrentConversation.isCoreDialog ? swarmDetailsPanelTabBar.currentIndex
-                                                            === 0 : swarmDetailsPanelTabBar.currentIndex
-                                                            === 1
+                visible: CurrentConversation.isCoreDialog ? swarmDetailsPanelTabBar.currentIndex === 0 : swarmDetailsPanelTabBar.currentIndex === 1
 
                 DocumentsScrollview {
                     id: documents
@@ -460,16 +440,14 @@ Item {
                 contentHeight: peerServices.implicitHeight
                 clip: true
 
-                visible: CurrentConversation.isCoreDialog
-                         && swarmDetailsPanelTabBar.currentIndex === 1
+                visible: CurrentConversation.isCoreDialog && swarmDetailsPanelTabBar.currentIndex === 1
 
                 PeerServicesSection {
                     id: peerServices
 
                     width: servicesView.width
                     accountId: CurrentAccount.id
-                    peerUri: UtilsAdapter.getPeerUri(CurrentAccount.id,
-                                                     CurrentConversation.id)
+                    peerUri: UtilsAdapter.getPeerUri(CurrentAccount.id, CurrentConversation.id)
                 }
             }
 
@@ -481,9 +459,7 @@ Item {
 
                 spacing: 16
 
-                visible: CurrentConversation.isCoreDialog ? swarmDetailsPanelTabBar.currentIndex
-                                                            === 2 : swarmDetailsPanelTabBar.currentIndex
-                                                            === 2
+                visible: CurrentConversation.isCoreDialog ? swarmDetailsPanelTabBar.currentIndex === 2 : swarmDetailsPanelTabBar.currentIndex === 2
 
                 RowLayout {
                     width: parent.width
@@ -536,16 +512,14 @@ Item {
                         elide: Text.ElideRight
                         font.pointSize: JamiTheme.smallFontSize
 
-                        visible: !CurrentConversation.isCoreDialog
-                                 && CurrentConversation.rdvAccount === ""
+                        visible: !CurrentConversation.isCoreDialog && CurrentConversation.rdvAccount === ""
                     }
                 }
 
                 RowLayout {
                     width: parent.width
 
-                    visible: !CurrentConversation.isCoreDialog
-                             && CurrentConversation.rdvAccount !== ""
+                    visible: !CurrentConversation.isCoreDialog && CurrentConversation.rdvAccount !== ""
 
                     spacing: 16
 
@@ -554,12 +528,8 @@ Item {
 
                         function onRdvAccountChanged() {
                             // This avoid incorrect avatar by always modifying the mode before the imageId
-                            avatar.mode = CurrentConversation.rdvAccount
-                                    === CurrentAccount.uri ? Avatar.Mode.Account :
-                                                             Avatar.Mode.Contact;
-                            avatar.imageId = CurrentConversation.rdvAccount
-                                    === CurrentAccount.uri ? CurrentAccount.id :
-                                                             CurrentConversation.rdvAccount;
+                            avatar.mode = CurrentConversation.rdvAccount === CurrentAccount.uri ? Avatar.Mode.Account : Avatar.Mode.Contact;
+                            avatar.imageId = CurrentConversation.rdvAccount === CurrentAccount.uri ? CurrentAccount.id : CurrentConversation.rdvAccount;
                         }
                     }
 
@@ -572,8 +542,7 @@ Item {
                         width: JamiTheme.smartListAvatarSize
                         height: JamiTheme.smartListAvatarSize
 
-                        imageId: CurrentConversation.rdvAccount === CurrentAccount.uri
-                                 ? CurrentAccount.id : CurrentConversation.rdvAccount
+                        imageId: CurrentConversation.rdvAccount === CurrentAccount.uri ? CurrentAccount.id : CurrentConversation.rdvAccount
                         mode: Avatar.Mode.Account
                         showPresenceIndicator: false
 
@@ -595,12 +564,10 @@ Item {
                             text: {
                                 if (CurrentConversation.rdvAccount === "")
                                     return JamiStrings.none;
-                                else if (CurrentConversation.rdvAccount
-                                         === CurrentAccount.uri)
+                                else if (CurrentConversation.rdvAccount === CurrentAccount.uri)
                                     return CurrentAccount.bestName;
                                 else
-                                    return UtilsAdapter.getBestNameForUri(CurrentAccount.id,
-                                                                          CurrentConversation.rdvAccount);
+                                    return UtilsAdapter.getBestNameForUri(CurrentAccount.id, CurrentConversation.rdvAccount);
                             }
 
                             color: JamiTheme.primaryForegroundColor
@@ -608,8 +575,7 @@ Item {
 
                             textFormat: TextEdit.PlainText
                             font.pointSize: JamiTheme.smallFontSize
-                            font.weight: text === JamiStrings.none ? Font.Medium :
-                                                                     Font.Normal
+                            font.weight: text === JamiStrings.none ? Font.Medium : Font.Normal
                             font.kerning: true
 
                             horizontalAlignment: Text.AlignLeft
@@ -644,8 +610,7 @@ Item {
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
 
-                            eText: CurrentConversation.rdvDevice === "" ? JamiStrings.none :
-                                                                          CurrentConversation.rdvDevice
+                            eText: CurrentConversation.rdvDevice === "" ? JamiStrings.none : CurrentConversation.rdvDevice
                             maxWidth: parent.width
                         }
                     }
@@ -655,15 +620,13 @@ Item {
                     width: parent.width
 
                     outlinedButton: true
-                    text: CurrentConversation.rdvAccount === ""
-                          ? JamiStrings.selectDefaultHost : JamiStrings.changeDefaultHost
+                    text: CurrentConversation.rdvAccount === "" ? JamiStrings.selectDefaultHost : JamiStrings.changeDefaultHost
                     color: JamiTheme.buttonTintedBlue
 
                     visible: !CurrentConversation.isCoreDialog && root.isAdmin
 
                     onClicked: {
-                        viewCoordinator.presentDialog(appWindow,
-                                                      "mainview/components/DevicesListPopup.qml");
+                        viewCoordinator.presentDialog(appWindow, "mainview/components/DevicesListPopup.qml");
                     }
                 }
 
@@ -675,22 +638,16 @@ Item {
                     outlinedButton: true
                     color: JamiTheme.buttonTintedRed
                     iconSource: JamiResources.disconnect_participant_24dp_svg
-                    text: CurrentConversation.isCoreDialog ? JamiStrings.removeConversation :
-                                                             JamiStrings.leaveGroup
+                    text: CurrentConversation.isCoreDialog ? JamiStrings.removeConversation : JamiStrings.leaveGroup
 
                     onClicked: {
-                        var dlg = viewCoordinator.presentDialog(appWindow,
-                                                                "commoncomponents/ConfirmDialog.qml",
-                                                                {
-                                                                    "titleText": JamiStrings.confirmAction,
-                                                                    "textLabel":
-                                                                    JamiStrings.confirmRemoveContact,
-                                                                    "confirmLabel":
-                                                                    JamiStrings.optionRemove
-                                                                });
+                        var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
+                            "titleText": JamiStrings.confirmAction,
+                            "textLabel": JamiStrings.confirmRemoveContact,
+                            "confirmLabel": JamiStrings.optionRemove
+                        });
                         dlg.accepted.connect(function () {
-                            MessagesAdapter.removeConversation(LRCInstance.selectedConvUid,
-                                                               true);
+                            MessagesAdapter.removeConversation(LRCInstance.selectedConvUid, true);
                         });
                     }
                 }
@@ -707,15 +664,11 @@ Item {
 
                     visible: CurrentConversation.isCoreDialog
                     onClicked: {
-                        var dlg = viewCoordinator.presentDialog(appWindow,
-                                                                "commoncomponents/ConfirmDialog.qml",
-                                                                {
-                                                                    "titleText": JamiStrings.confirmAction,
-                                                                    "textLabel":
-                                                                    JamiStrings.confirmRemoveContact,
-                                                                    "confirmLabel":
-                                                                    JamiStrings.optionRemove
-                                                                });
+                        var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
+                            "titleText": JamiStrings.confirmAction,
+                            "textLabel": JamiStrings.confirmRemoveContact,
+                            "confirmLabel": JamiStrings.optionRemove
+                        });
                         dlg.accepted.connect(function () {
                             MessagesAdapter.removeConversation(LRCInstance.selectedConvUid);
                         });
@@ -735,15 +688,11 @@ Item {
                     visible: CurrentConversation.isCoreDialog
 
                     onClicked: {
-                        var dlg = viewCoordinator.presentDialog(appWindow,
-                                                                "commoncomponents/ConfirmDialog.qml",
-                                                                {
-                                                                    "titleText": JamiStrings.confirmAction,
-                                                                    "textLabel":
-                                                                    JamiStrings.confirmBlockContact,
-                                                                    "confirmLabel":
-                                                                    JamiStrings.optionBlock
-                                                                });
+                        var dlg = viewCoordinator.presentDialog(appWindow, "commoncomponents/ConfirmDialog.qml", {
+                            "titleText": JamiStrings.confirmAction,
+                            "textLabel": JamiStrings.confirmBlockContact,
+                            "confirmLabel": JamiStrings.optionBlock
+                        });
                         dlg.accepted.connect(function () {
                             MessagesAdapter.blockConversation(CurrentConversation.id);
                         });
