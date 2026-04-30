@@ -17,6 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import "../../commoncomponents"
 
@@ -244,6 +245,14 @@ BaseModalDialog {
                     color: JamiTheme.globalIslandColor
                     radius: 5
                 }
+            }
+
+            PeerServicesSection {
+                Layout.fillWidth: true
+                Layout.topMargin: 6
+                visible: idText.length > 0
+                accountId: CurrentAccount.id
+                peerUri: idText
             }
         }
 
