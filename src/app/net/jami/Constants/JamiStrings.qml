@@ -255,6 +255,10 @@ Item {
     // PeerServicesSection / contact details
     property string peerServicesSectionTitle: qsTr("Network services")
     property string peerServicesEmpty: qsTr("This contact does not expose any service to you.")
+    property string peerServicesNoDevices: qsTr("No devices found for this contact. They may be offline.")
+    property string peerServicesUnreachable: qsTr("Could not reach any of this contact's devices.")
+    property string peerServicesTimeout: qsTr("This contact's device did not respond in time.")
+    property string peerServicesInternalError: qsTr("Service discovery is unavailable on this account.")
     property string peerServicesRefresh: qsTr("Refresh")
     property string peerServiceOpenTunnel: qsTr("Open local tunnel")
     property string peerServiceCloseTunnel: qsTr("Close")

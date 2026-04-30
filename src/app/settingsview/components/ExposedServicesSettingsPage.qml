@@ -45,7 +45,9 @@ SettingsPageBase {
 
     Connections {
         target: CurrentAccount
-        function onIdChanged() { root.refresh(); }
+        function onIdChanged() {
+            root.refresh();
+        }
     }
 
     flickableContent: ColumnLayout {
@@ -166,8 +168,7 @@ SettingsPageBase {
                         }
 
                         Text {
-                            text: JamiStrings.exposedServiceLocalEndpoint.arg(
-                                      rowRect.modelData.localHost + ":" + rowRect.modelData.localPort)
+                            text: JamiStrings.exposedServiceLocalEndpoint.arg(rowRect.modelData.localHost + ":" + rowRect.modelData.localPort)
                             color: JamiTheme.faddedLastInteractionFontColor
                             font.pixelSize: JamiTheme.settingsDescriptionPixelSize - 2
                             font.family: JamiTheme.ubuntuMonoFontFamily
@@ -197,8 +198,7 @@ SettingsPageBase {
                         color: JamiTheme.buttonTintedRed
                         text: JamiStrings.optionDelete
                         onClicked: {
-                            ExposedServicesAdapter.removeExposedService(CurrentAccount.id,
-                                                                        rowRect.modelData.id);
+                            ExposedServicesAdapter.removeExposedService(CurrentAccount.id, rowRect.modelData.id);
                             root.refresh();
                         }
                     }
@@ -219,8 +219,7 @@ SettingsPageBase {
         property string serviceAllowed: ""
         property bool serviceEnabled: true
 
-        titleText: editingId.length > 0 ? JamiStrings.edit
-                                        : JamiStrings.exposedServicesAdd
+        titleText: editingId.length > 0 ? JamiStrings.edit : JamiStrings.exposedServicesAdd
 
         popupContent: ColumnLayout {
             spacing: 10
@@ -271,7 +270,10 @@ SettingsPageBase {
                     TextField {
                         Layout.fillWidth: true
                         text: serviceEditorDialog.servicePort
-                        validator: IntValidator { bottom: 1; top: 65535 }
+                        validator: IntValidator {
+                            bottom: 1
+                            top: 65535
+                        }
                         inputMethodHints: Qt.ImhDigitsOnly
                         onTextChanged: serviceEditorDialog.servicePort = text
                     }
@@ -288,14 +290,25 @@ SettingsPageBase {
                 textRole: "label"
                 valueRole: "value"
                 model: [
-                    { value: "contacts", label: JamiStrings.exposedServicePolicyContacts },
-                    { value: "public", label: JamiStrings.exposedServicePolicyPublic },
-                    { value: "specific", label: JamiStrings.exposedServicePolicySpecific },
+                    {
+                        value: "contacts",
+                        label: JamiStrings.exposedServicePolicyContacts
+                    },
+                    {
+                        value: "public",
+                        label: JamiStrings.exposedServicePolicyPublic
+                    },
+                    {
+                        value: "specific",
+                        label: JamiStrings.exposedServicePolicySpecific
+                    },
                 ]
                 Component.onCompleted: {
                     var idx = 0;
-                    if (serviceEditorDialog.servicePolicy === "public") idx = 1;
-                    else if (serviceEditorDialog.servicePolicy === "specific") idx = 2;
+                    if (serviceEditorDialog.servicePolicy === "public")
+                        idx = 1;
+                    else if (serviceEditorDialog.servicePolicy === "specific")
+                        idx = 2;
                     currentIndex = idx;
                 }
                 onActivated: serviceEditorDialog.servicePolicy = currentValue
@@ -321,8 +334,7 @@ SettingsPageBase {
         }
 
         button1.text: JamiStrings.exposedServiceSave
-        button1.enabled: serviceEditorDialog.serviceName.length > 0
-                         && serviceEditorDialog.servicePort.length > 0
+        button1.enabled: serviceEditorDialog.serviceName.length > 0 && serviceEditorDialog.servicePort.length > 0
         button1.onClicked: {
             var s = {
                 "name": serviceEditorDialog.serviceName,
