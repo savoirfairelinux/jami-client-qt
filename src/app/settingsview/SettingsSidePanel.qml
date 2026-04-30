@@ -47,7 +47,7 @@ SidePanelBase {
                             "title": JamiStrings.accountSettingsMenuTitle,
                             "icon": JamiResources.account_24dp_svg,
                             "first": 0,
-                            "last": 5,
+                            "last": 17,
                             "children": [
                                 {
                                     "id": 0,
@@ -73,6 +73,11 @@ SidePanelBase {
                                 {
                                     "id": 5,
                                     "title": JamiStrings.apiSettingsTitle
+                                },
+                                {
+                                    "id": 17,
+                                    "title": JamiStrings.exposedServicesSettingsTitle,
+                                    "visible": CurrentAccount.type !== Profile.Type.SIP
                                 }
                             ]
                         },
@@ -152,7 +157,7 @@ SidePanelBase {
                             "title": JamiStrings.accountSettingsMenuTitle,
                             "icon": JamiResources.account_24dp_svg,
                             "first": 0,
-                            "last": 5,
+                            "last": 17,
                             "children": [
                                 {
                                     "id": 0,
@@ -178,6 +183,11 @@ SidePanelBase {
                                 {
                                     "id": 5,
                                     "title": JamiStrings.apiSettingsTitle
+                                },
+                                {
+                                    "id": 17,
+                                    "title": JamiStrings.exposedServicesSettingsTitle,
+                                    "visible": CurrentAccount.type !== Profile.Type.SIP
                                 }
                             ]
                         },
