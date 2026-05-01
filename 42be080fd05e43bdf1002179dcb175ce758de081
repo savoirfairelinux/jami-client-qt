@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "433ca44f_99bdefa3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-05-01T14:54:09Z",
+      "side": 1,
+      "message": "Is this still true on master? I just did a couple of tests and `SystemCodecContainer::initCodecConfig` was always called before `getCodecList`.",
+      "range": {
+        "startLine": 9,
+        "startChar": 63,
+        "endLine": 10,
+        "endChar": 33
+      },
+      "revId": "42be080fd05e43bdf1002179dcb175ce758de081",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "601009ac_cfea3c46",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-05-01T14:54:09Z",
+      "side": 1,
+      "message": "Not related to the content of this patch.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 34
+      },
+      "revId": "42be080fd05e43bdf1002179dcb175ce758de081",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a08df323_e72009aa",
+        "filename": "src/libclient/codecmodel.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-05-01T14:54:09Z",
+      "side": 1,
+      "message": "The boolean returned by `ensureLoaded` is never checked.",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 44,
+        "endChar": 24
+      },
+      "revId": "42be080fd05e43bdf1002179dcb175ce758de081",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
