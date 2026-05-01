@@ -32,6 +32,7 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QLocale>
 #include <QMap>
 #include <QMetaType>
 #include <QMimeDatabase>
@@ -117,6 +118,63 @@ canonicalDirectoryPath(const QString& directory)
     return QDir::cleanPath(canonicalPath);
 }
 
+QByteArray
+generateDirectoryListing(const QString& rootPath, const QString& dirPath, const QString& urlPath)
+{
+    QDir dir(dirPath);
+    const auto entries = dir.entryInfoList(QDir::Dirs | QDir::Files | QDir::NoDotAndDotDot,
+                                           QDir::DirsFirst | QDir::Name | QDir::IgnoreCase);
+
+    const auto displayPath = urlPath.isEmpty() ? QStringLiteral("/") : QStringLiteral("/") + urlPath;
+    QByteArray html;
+    html.append("<!DOCTYPE html><html><head><meta charset=\"utf-8\">"
+                "<title>Index of ");
+    html.append(displayPath.toUtf8().toPercentEncoding("/"));
+    html.append("</title><style>"
+                "body{font-family:sans-serif;margin:2em}"
+                "a{text-decoration:none;color:#0366d6}"
+                "a:hover{text-decoration:underline}"
+                "table{border-collapse:collapse;width:100%}"
+                "th,td{text-align:left;padding:4px 12px}"
+                "tr:hover{background:#f6f8fa}"
+                "</style></head><body><h1>Index of ");
+    html.append(displayPath.toHtmlEscaped().toUtf8());
+    html.append("</h1><table><tr><th>Name</th><th>Size</th></tr>");
+
+    if (!urlPath.isEmpty()) {
+        auto parentPath = urlPath;
+        if (parentPath.endsWith('/'))
+            parentPath.chop(1);
+        const auto lastSlash = parentPath.lastIndexOf('/');
+        const auto parent = lastSlash >= 0 ? parentPath.left(lastSlash + 1) : QString();
+        html.append("<tr><td><a href=\"/");
+        html.append(parent.toUtf8());
+        html.append("\">..</a></td><td></td></tr>");
+    }
+
+    const auto urlPrefix = urlPath.isEmpty() ? QStringLiteral("/")
+                                             : QStringLiteral("/") + urlPath
+                                                   + (urlPath.endsWith('/') ? QString() : QStringLiteral("/"));
+    for (const auto& entry : entries) {
+        const auto name = entry.fileName();
+        const auto isDir = entry.isDir();
+        const auto href = urlPrefix + QUrl::toPercentEncoding(name) + (isDir ? "/" : "");
+        html.append("<tr><td><a href=\"");
+        html.append(href.toUtf8());
+        html.append("\">");
+        html.append(name.toHtmlEscaped().toUtf8());
+        if (isDir)
+            html.append("/");
+        html.append("</a></td><td>");
+        if (!isDir)
+            html.append(QLocale().formattedDataSize(entry.size()).toUtf8());
+        html.append("</td></tr>");
+    }
+
+    html.append("</table></body></html>");
+    return html;
+}
+
 QHttpServerResponse
 serveDirectoryFile(const QString& rootPath, const QHttpServerRequest& request)
 {
@@ -129,25 +187,54 @@ serveDirectoryFile(const QString& rootPath, const QHttpServerRequest& request)
     auto requestPath = request.url().path(QUrl::FullyDecoded);
     while (requestPath.startsWith('/'))
         requestPath.remove(0, 1);
+
+    auto normalizedRootPath = QDir::cleanPath(rootPath);
+    const auto rootPrefix = normalizedRootPath.endsWith('/') ? normalizedRootPath : normalizedRootPath + '/';
+
+    // Determine if the target is a directory.
+    const auto resolvedPath = requestPath.isEmpty() ? rootPath : QDir(rootPath).filePath(requestPath);
+    QFileInfo targetInfo(resolvedPath);
+
+    if (targetInfo.isDir()) {
+        // Verify directory is within root.
+        auto canonicalDir = targetInfo.canonicalFilePath();
+        if (canonicalDir.isEmpty())
+            return QHttpServerResponse(StatusCode::NotFound);
+        canonicalDir = QDir::cleanPath(canonicalDir);
+        if (canonicalDir != normalizedRootPath && !canonicalDir.startsWith(rootPrefix))
+            return QHttpServerResponse(StatusCode::Forbidden);
+
+        // Try index.html first.
+        QFileInfo indexInfo(QDir(canonicalDir).filePath(QStringLiteral("index.html")));
+        if (indexInfo.isFile() && indexInfo.isReadable()) {
+            QFile file(indexInfo.canonicalFilePath());
+            if (file.open(QIODevice::ReadOnly)) {
+                auto data = request.method() == QHttpServerRequest::Method::Head ? QByteArray {} : file.readAll();
+                return QHttpServerResponse("text/html", std::move(data));
+            }
+        }
+
+        // Generate directory listing.
+        auto listing = request.method() == QHttpServerRequest::Method::Head
+                           ? QByteArray {}
+                           : generateDirectoryListing(normalizedRootPath, canonicalDir, requestPath);
+        return QHttpServerResponse("text/html", std::move(listing));
+    }
+
+    // Serve a regular file.
     if (requestPath.isEmpty())
-        requestPath = QStringLiteral("index.html");
+        return QHttpServerResponse(StatusCode::NotFound);
 
-    QFileInfo fileInfo(QDir(rootPath).filePath(requestPath));
-    if (fileInfo.isDir())
-        fileInfo = QFileInfo(QDir(fileInfo.absoluteFilePath()).filePath(QStringLiteral("index.html")));
-
-    auto canonicalFilePath = fileInfo.canonicalFilePath();
+    auto canonicalFilePath = targetInfo.canonicalFilePath();
     if (canonicalFilePath.isEmpty())
         return QHttpServerResponse(StatusCode::NotFound);
 
     canonicalFilePath = QDir::cleanPath(canonicalFilePath);
-    auto normalizedRootPath = QDir::cleanPath(rootPath);
-    const auto rootPrefix = normalizedRootPath.endsWith('/') ? normalizedRootPath : normalizedRootPath + '/';
     if (canonicalFilePath != normalizedRootPath && !canonicalFilePath.startsWith(rootPrefix))
         return QHttpServerResponse(StatusCode::Forbidden);
 
-    fileInfo.setFile(canonicalFilePath);
-    if (!fileInfo.isFile() || !fileInfo.isReadable())
+    targetInfo.setFile(canonicalFilePath);
+    if (!targetInfo.isFile() || !targetInfo.isReadable())
         return QHttpServerResponse(StatusCode::NotFound);
 
     QFile file(canonicalFilePath);
