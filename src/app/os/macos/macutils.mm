@@ -116,6 +116,26 @@ void macutils::setToolBar(QWindow* window) {
     }
 }
 
+void macutils::setupPipWindow(QWindow* window) {
+    if (!window) {
+        return;
+    }
+
+    if (@available(macOS 26.0, *)) {
+        setToolBar(window);
+
+        NSView* view = reinterpret_cast<NSView*>(window->winId());
+        NSWindow* nativeWindow = [view window];
+
+        nativeWindow.styleMask |= NSWindowStyleMaskFullSizeContentView;
+        nativeWindow.titlebarAppearsTransparent = YES;
+
+        [[nativeWindow standardWindowButton:NSWindowCloseButton] setHidden:YES];
+        [[nativeWindow standardWindowButton:NSWindowMiniaturizeButton] setHidden:YES];
+        [[nativeWindow standardWindowButton:NSWindowZoomButton] setHidden:YES];
+    }
+}
+
 void macutils::startSystemMove(QWindow* window) {
     if (!window) {
         return;

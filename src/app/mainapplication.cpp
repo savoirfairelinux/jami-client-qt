@@ -551,3 +551,11 @@ MainApplication::setToolBar(QWindow* window)
     macutils::setToolBar(window);
 #endif
 }
+
+void
+MainApplication::setupPipWindow(QWindow* window)
+{
+#ifdef Q_OS_MACOS
+    macutils::setupPipWindow(window);
+#endif
+}

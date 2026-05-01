@@ -166,6 +166,21 @@ Item {
         anchors.top: parent.top
         anchors.topMargin: JamiTheme.pipActionButtonMargin
 
+        states: State {
+            name: "macOS26"
+            when: JamiQmlUtils.isMacOS26OrLater
+            AnchorChanges {
+                target: popOutButton
+                anchors.left: undefined
+                anchors.right: parent.right
+            }
+            PropertyChanges {
+                target: popOutButton
+                anchors.topMargin: JamiTheme.pipActionButtonMarginMac
+                anchors.rightMargin: JamiTheme.pipActionButtonMarginMac
+            }
+        }
+
 
         iconColor: JamiTheme.whiteColor
         iconSource: JamiResources.bidirectional_pip_exit_24dp_svg
