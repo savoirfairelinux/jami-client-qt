@@ -46,15 +46,17 @@ Item {
         // once the search result has been processed, so the search bar is not left
         // populated after the conversation has been opened.
         function test_uriSearch_filterIsClearedAfterSelection() {
-            // Trigger the URI-search flow with an arbitrary string that will produce
-            // no matches (we only care about the side-effect on the filter state).
-            ConversationsAdapter.setFilterAndSelect("__regression_uri_test__");
+            // Valid 40-hex ring hash triggers synchronous search (no async daemon calls)
+            var testUri = "1234567890abcdef1234567890abc12312355555";
+
+            // Trigger the URI-search flow
+            ConversationsAdapter.setFilterAndSelect(testUri);
 
             // The first emission must carry the search string.
             filterSpy.wait(2000);
             verify(filterSpy.count >= 1,
                    "textFilterChanged should have been emitted with the search string");
-            compare(filterSpy.signalArguments[0][0], "__regression_uri_test__");
+            compare(filterSpy.signalArguments[0][0], testUri);
 
             // After the search completes, onSearchResultEnded() must schedule a
             // setFilter("") via QTimer::singleShot, producing a second emission.
