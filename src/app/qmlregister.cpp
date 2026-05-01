@@ -225,6 +225,10 @@ registerTypes(QQmlEngine* engine,
     qApp->setProperty("ConnectivityMonitor", QVariant::fromValue(connectivityMonitor));
     qApp->setProperty("PreviewEngine", QVariant::fromValue(previewEngine));
 
+    auto exposedServicesAdapter = new ExposedServicesAdapter(lrcInstance, app);
+    qApp->setProperty("ExposedServicesAdapter", QVariant::fromValue(exposedServicesAdapter));
+    QQmlEngine::setObjectOwnership(exposedServicesAdapter, QQmlEngine::CppOwnership);
+
     // qml adapter registration
     QML_REGISTERSINGLETON_TYPE(NS_HELPERS, QRCodeScannerModel);
     QML_REGISTERSINGLETON_TYPE(NS_HELPERS, AvatarRegistry);
@@ -233,7 +237,11 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, MessagesAdapter);
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, ConversationsAdapter);
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, ContactAdapter);
-    QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, ExposedServicesAdapter);
+    REG_QML_SINGLETON<ExposedServicesAdapter>(NS_ADAPTERS,
+                                              MODULE_VER_MAJ,
+                                              MODULE_VER_MIN,
+                                              "ExposedServicesAdapter",
+                                              CREATE(exposedServicesAdapter));
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, UtilsAdapter);
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, PositionManager);
     QML_REGISTERSINGLETON_TYPE(NS_ADAPTERS, AvAdapter);
