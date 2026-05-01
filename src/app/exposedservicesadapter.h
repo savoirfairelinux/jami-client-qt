@@ -26,6 +26,9 @@
 #include <QVariantList>
 #include <QVariantMap>
 
+#include <map>
+#include <memory>
+
 /*!
  * Exposes the daemon's "exposed services" / peer-tunnel API to QML.
  *
@@ -48,16 +51,16 @@ public:
     static ExposedServicesAdapter* create(QQmlEngine*, QJSEngine*);
 
     explicit ExposedServicesAdapter(LRCInstance* instance, QObject* parent = nullptr);
-    ~ExposedServicesAdapter() = default;
+    ~ExposedServicesAdapter() override;
 
     // ----- Local exposed services (per account) ------------------------------
 
     /// Returns a list of QVariantMap describing the services exposed by
     /// `accountId` (or by the current account when empty). Each map
-    /// contains the keys: id, name, description, localHost, localPort,
-    /// policy ("public"|"contacts"|"specific"), allowedContacts (CSV),
+    /// contains the keys: id, type, name, description, localHost, localPort,
+    /// directory, policy ("public"|"contacts"|"specific"), allowedContacts (CSV),
     /// enabled ("true"|"false").
-    Q_INVOKABLE QVariantList getExposedServices(const QString& accountId = {}) const;
+    Q_INVOKABLE QVariantList getExposedServices(const QString& accountId = {});
 
     /// Add a new exposed service. Returns the generated service id, or
     /// empty on failure. `service` mirrors the map shape returned by
@@ -120,6 +123,22 @@ Q_SIGNALS:
     void tunnelClosed(const QString& accountId, const QString& tunnelId, const QString& reason);
 
 private:
+    struct EmbeddedServer;
+
     QString resolveAccountId(const QString& accountId) const;
+    QString embeddedServerKey(const QString& accountId, const QString& serviceId) const;
+    bool prepareServiceForStorage(const QString& accountId,
+                                  QVariantMap& service,
+                                  std::unique_ptr<EmbeddedServer>& replacementServer);
+    std::unique_ptr<EmbeddedServer> startEmbeddedServer(const QString& accountId,
+                                                        const QString& serviceId,
+                                                        const QString& directory,
+                                                        quint16 requestedPort);
+    void syncAllEmbeddedServers();
+    void syncEmbeddedServers(const QString& accountId);
+    void stopEmbeddedServer(const QString& accountId, const QString& serviceId);
+    void stopEmbeddedServersForAccount(const QString& accountId);
+
+    std::map<QString, std::unique_ptr<EmbeddedServer>> embeddedServers_;
 };
 Q_DECLARE_METATYPE(ExposedServicesAdapter*)
