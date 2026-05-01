@@ -852,6 +852,7 @@ Item {
     property color pipActionButtonBackgroundColor: "#201f1f"
     property real pipActionButtonPadding: 4
     property real pipActionButtonMargin: 4
+    property real pipActionButtonMarginMac: 8
 
     property string ubuntuFontFamily: "Ubuntu"
     property string ubuntuMonoFontFamily: "Ubuntu Mono"
