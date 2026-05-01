@@ -265,6 +265,14 @@ Control {
             }
         }
 
+        PeerServicesButton {
+            QWKSetParentHitTestVisible {}
+            Layout.alignment: Qt.AlignVCenter
+            active: CurrentConversation.isCoreDialog && !CurrentConversation.isRequest && !CurrentConversation.needsSyncing
+            accountId: CurrentAccount.id
+            peerUri: active ? UtilsAdapter.getPeerUri(CurrentAccount.id, CurrentConversation.id) : ""
+        }
+
         // Custom component (DNR: DO NOT REPLACE)
         CallsButton {
             QWKSetParentHitTestVisible {}
