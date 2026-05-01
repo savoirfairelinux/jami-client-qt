@@ -65,6 +65,7 @@ Button {
         }
     }
 
+    property real backgroundRadius: 0
     property color baseColor: {
         // Use semi-transparent white on dark backgrounds: PiP toolbar or
         // in-window call (but not when the call has been popped out to PiP).
@@ -77,6 +78,7 @@ Button {
         return Qt.rgba(darker.r, darker.g, darker.b, baseColor.a * 1.3);
     }
     background: Rectangle {
+        radius: control.backgroundRadius
         color: {
             if (!control.enabled)
                 return "gray";

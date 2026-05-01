@@ -16,7 +16,6 @@
  */
 
 import QtQuick
-import QtQuick.Controls
 import QWindowKit
 
 import net.jami.Adapters 1.1
@@ -30,7 +29,7 @@ import "commoncomponents"
 // that has an active call. Managed by CallPipWindowManager.
 // Visual content lives in CallPipWindowContent.qml so it can be tested
 // independently of the ApplicationWindow / QWindowKit stack.
-ApplicationWindow {
+Window {
     id: root
 
     // Set by CallPipWindowManager via createWithInitialProperties.
@@ -60,6 +59,18 @@ ApplicationWindow {
         z: -1
     }
 
+    MouseArea {
+        id: macDragArea
+        anchors.fill: parent
+        visible: JamiQmlUtils.isMacOS26OrLater
+        enabled: JamiQmlUtils.isMacOS26OrLater
+        z: 10
+        onPressed: function(mouse) {
+            MainApplication.startSystemMove(root);
+            mouse.accepted = false;
+        }
+    }
+
     // All call-related visual content (video, avatars, buttons, labels).
     CallPipWindowContent {
         id: content
@@ -79,7 +90,7 @@ ApplicationWindow {
         anchors.right: parent.right
 
         height: Math.min(JamiTheme.iconButtonLarge * scaleVal, JamiTheme.qwkTitleBarHeight)
-        visible: root.useFrameless
+        visible: root.useFrameless || JamiQmlUtils.isMacOS26OrLater
         source: JamiResources.window_bar_close_svg
         forceLightIcons: true
         baseColor: "#e81123"
@@ -93,6 +104,24 @@ ApplicationWindow {
         }
 
         onClicked: root.close()
+
+        states: State {
+            name: "macOS26"
+            when: JamiQmlUtils.isMacOS26OrLater
+            AnchorChanges {
+                target: closePipButton
+                anchors.right: undefined
+                anchors.left: parent.left
+            }
+            PropertyChanges {
+                target: closePipButton
+                anchors.topMargin: JamiTheme.pipActionButtonMarginMac
+                anchors.leftMargin: JamiTheme.pipActionButtonMarginMac
+                height: root.iconButtonSize + root.iconButtonSize / 2
+                width: root.iconButtonSize + root.iconButtonSize / 2
+                backgroundRadius: height / 2
+            }
+        }
     }
 
     // QWK frameless window agent
@@ -123,7 +152,9 @@ ApplicationWindow {
     Component.onCompleted: {
         restoreGeometry();
         CallOverlayModel.setEventFilterActive(root, content, true);
-        if (useFrameless) {
+        if (JamiQmlUtils.isMacOS26OrLater) {
+            MainApplication.setupPipWindow(root);
+        } else if (useFrameless) {
             windowAgent.setup(root);
             Qt.callLater(function () {
                 // Entire video area serves as the drag handle for moving the window.
