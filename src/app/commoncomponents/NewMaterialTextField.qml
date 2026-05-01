@@ -175,6 +175,11 @@ ColumnLayout {
 
                 onTextChanged: root.modifiedTextFieldContent = text
 
+                onActiveFocusChanged: {
+                    if (!activeFocus)
+                        accepted();
+                }
+
                 Connections {
                     target: root
                     function onModifiedTextFieldContentChanged() {
