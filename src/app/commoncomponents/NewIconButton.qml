@@ -33,6 +33,10 @@ Button {
 
     property int iconSize
     property string iconSource
+    property color color: JamiTheme.buttonTintedGreyHovered
+    property color hoveredColor: JamiTheme.textColor
+    property color pressedColor: hoveredColor
+    property color disabledColor: JamiTheme.buttonTintedGreyHovered
 
     // Note that this color override should only be used in special cases,
     // otherwise consistency among icons is lost throughout the UI
@@ -81,15 +85,13 @@ Button {
         sourceSize.height: root.iconSize
 
         color: {
-            if (root.enabled) {
-                if (root.hovered || root.checked) {
-                    return JamiTheme.textColor;
-                } else {
-                    return JamiTheme.buttonTintedGreyHovered;
-                }
-            } else {
-                return JamiTheme.buttonTintedGreyHovered;
-            }
+            if (!root.enabled)
+                return root.disabledColor;
+            if (root.pressed)
+                return root.pressedColor;
+            if (root.hovered || root.checked)
+                return root.hoveredColor;
+            return root.color;
         }
 
         mirror: root.mirrored && root.canMirror
