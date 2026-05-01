@@ -70,6 +70,7 @@ public:
     Q_INVOKABLE void handleUriAction(const QString& uri = {});
     Q_INVOKABLE void startSystemMove(QWindow* window);
     Q_INVOKABLE void setToolBar(QWindow* window);
+    Q_INVOKABLE void setupPipWindow(QWindow* window);
 
     enum class Option { StartMinimized = 0, Debug, UpdateUrl, MuteDaemon, TerminationRequested, StartUri };
     QVariant getOpt(const Option opt)

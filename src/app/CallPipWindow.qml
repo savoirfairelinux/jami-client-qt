@@ -16,7 +16,6 @@
  */
 
 import QtQuick
-import QtQuick.Controls
 import QWindowKit
 
 import net.jami.Adapters 1.1
@@ -30,7 +29,7 @@ import "commoncomponents"
 // that has an active call. Managed by CallPipWindowManager.
 // Visual content lives in CallPipWindowContent.qml so it can be tested
 // independently of the ApplicationWindow / QWindowKit stack.
-ApplicationWindow {
+Window {
     id: root
 
     // Set by CallPipWindowManager via createWithInitialProperties.
@@ -58,6 +57,18 @@ ApplicationWindow {
         id: dragHandle
         anchors.fill: parent
         z: -1
+    }
+
+    MouseArea {
+        id: macDragArea
+        anchors.fill: parent
+        visible: JamiQmlUtils.isMacOS26OrLater
+        enabled: JamiQmlUtils.isMacOS26OrLater
+        z: 10
+        onPressed: function(mouse) {
+            MainApplication.startSystemMove(root);
+            mouse.accepted = false;
+        }
     }
 
     // All call-related visual content (video, avatars, buttons, labels).
@@ -123,7 +134,9 @@ ApplicationWindow {
     Component.onCompleted: {
         restoreGeometry();
         CallOverlayModel.setEventFilterActive(root, content, true);
-        if (useFrameless) {
+        if (Qt.platform.os.toString() === "osx" && JamiQmlUtils.isMacOS26OrLater) {
+            MainApplication.setupPipWindow(root);
+        } else if (useFrameless) {
             windowAgent.setup(root);
             Qt.callLater(function () {
                 // Entire video area serves as the drag handle for moving the window.
