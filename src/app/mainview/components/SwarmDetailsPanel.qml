@@ -141,6 +141,8 @@ Item {
                         iconSource: JamiResources.connected_black_24dp_svg
                         toolTipText: JamiStrings.connection
 
+                        visible: !CurrentConversation.isSip
+
                         onClicked: {
                             extrasPanel.switchToPanel(ChatView.ConversationStatusPanel);
                         }
