@@ -233,7 +233,7 @@ Item {
     property string exposedServicesDescription: qsTr("Expose local TCP services or a local folder over Jami so trusted contacts can reach them as if they were running on their own machine.")
     property string exposedServicesListTitle: qsTr("Shared services")
     property string exposedServicesNone: qsTr("No services are exposed yet.")
-    property string exposedServicesAdd: qsTr("Add shared service")
+    property string exposedServicesAdd: qsTr("Add")
     property string exposedServiceNameLabel: qsTr("Name")
     property string exposedServiceNamePlaceholder: qsTr("e.g. webhook, ssh, syncthing")
     property string exposedServiceDescriptionLabel: qsTr("Description (optional)")
@@ -249,8 +249,8 @@ Item {
     property string exposedServiceSchemeRaw: qsTr("Raw TCP")
     property string exposedServiceSchemeCustom: qsTr("Custom")
     property string exposedServiceCustomSchemeLabel: qsTr("Custom URI scheme")
-    property string exposedServicePolicyLabel: qsTr("Who can access it")
-    property string exposedServicePolicyContacts: qsTr("Confirmed contacts")
+    property string exposedServicePolicyLabel: qsTr("Accessible by")
+    property string exposedServicePolicyContacts: qsTr("Contacts")
     property string exposedServicePolicyPublic: qsTr("Anyone (public)")
     property string exposedServicePolicySpecific: qsTr("Specific contacts only")
     property string exposedServiceAllowedLabel: qsTr("Allowed contact URIs (comma-separated)")
@@ -265,6 +265,7 @@ Item {
     property string exposedServicePolicyTagPublic: qsTr("Public")
     property string exposedServicePolicyTagContacts: qsTr("Contacts")
     property string exposedServicePolicyTagSpecific: qsTr("Specific")
+    property string confirmDeleteSharedService: qsTr("Are you sure you want to delete this shared service?")
 
     // PeerServicesSection / contact details
     property string peerServicesSectionTitle: qsTr("Shared services")
