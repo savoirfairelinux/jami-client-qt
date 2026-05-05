@@ -1,11 +1,15 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtQuick.Effects
+import QtQuick.Controls.impl
+
+
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import "../../commoncomponents"
 
-Item {
+ComboBox {
     id: root
 
     property bool active: true
@@ -16,10 +20,6 @@ Item {
     property var openTunnels: ({})
     property var pendingOpens: ({})
     property bool completed: false
-
-    visible: active && services.length > 0
-    implicitWidth: servicesButton.implicitWidth
-    implicitHeight: servicesButton.implicitHeight
 
     function refresh() {
         servicesPopup.close();
@@ -69,14 +69,23 @@ Item {
 
     function activateService(service) {
         var tunnel = tunnelFor(service);
-        if (tunnel) {
-            if (isHttpService(service))
-                Qt.openUrlExternally(tunnel.scheme + "://127.0.0.1:" + tunnel.localPort);
-            else
-                UtilsAdapter.setClipboardText(localEndpoint(service));
-            return;
+        if (!tunnel)
+            openTunnel(service);
+    }
+
+    function openOrCopy(service)  {
+        if (isHttpService(service)) {
+            var dlg = viewCoordinator.presentDialog(appWindow, "../../commoncomponents/ConfirmDialog.qml", {
+                                                        "titleText": JamiStrings.confirmAction,
+                                                        "textLabel": JamiStrings.confirmNavigationDescription,
+                                                        "confirmLabel": JamiStrings.leaveJami
+                                                    });
+            dlg.accepted.connect(function() {
+                Qt.openUrlExternally(service.scheme + "://" + localEndpoint(service));
+            });
+        } else {
+            UtilsAdapter.setClipboardText(localEndpoint(service));
         }
-        openTunnel(service);
     }
 
     onActiveChanged: scheduleRefresh()
@@ -112,9 +121,6 @@ Item {
                 };
                 root.openTunnels = copy;
                 root.pendingOpens[serviceId].claimed = true;
-                var scheme = root.pendingOpens[serviceId].scheme || "";
-                if (scheme === "http" || scheme === "https")
-                    Qt.openUrlExternally(scheme + "://127.0.0.1:" + localPort);
                 break;
             }
         }
@@ -133,142 +139,231 @@ Item {
         }
     }
 
-    NewIconButton {
-        id: servicesButton
+    implicitWidth: root.background.implicitWidth
+    implicitHeight: root.background.implicitHeight
 
-        anchors.centerIn: parent
-        iconSize: JamiTheme.iconButtonMedium
-        iconSource: JamiResources.planet_24dp_svg
-        toolTipText: JamiStrings.peerServicesSectionTitle
+    padding: 0
 
-        onClicked: servicesPopup.open()
-    }
+    model: root.services
 
-    Popup {
-        id: servicesPopup
+    visible: active && services.length > 0
 
-        parent: root
-        x: root.width - width
-        y: root.height + JamiTheme.qwkTitleBarHeight / 2
-        width: 300
-        padding: 1
+    delegate: ItemDelegate {
+        id: serviceDelegate
 
-        contentItem: ListView {
-            id: servicesListView
+        required property var modelData
+        required property int index
 
-            clip: true
-            implicitHeight: Math.min(contentHeight, 320)
-            model: root.services
+        width: ListView.view.width
+        implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
+                                implicitContentWidth + leftPadding + rightPadding)
+        implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
+                                 implicitContentHeight + topPadding + bottomPadding,
+                                 implicitIndicatorHeight + topPadding + bottomPadding)
 
-            delegate: ItemDelegate {
-                id: serviceDelegate
+        padding: 4
 
-                required property var modelData
+        highlighted: root.highlightedIndex === index
 
-                width: ListView.view.width
-                height: Math.max(64, serviceContent.implicitHeight + 16)
-                topInset: 4
-                leftInset: 4
-                rightInset: 4
-                bottomInset: 4
-                topPadding: topInset * 2
-                leftPadding: leftInset * 2
-                rightPadding: rightInset * 2
-                bottomPadding: bottomInset * 2
+        contentItem: RowLayout {
+            spacing: 8
 
-                contentItem: RowLayout {
-                    id: serviceContent
+            IconImage {
+                Layout.alignment: Qt.AlignVCenter
+                Layout.leftMargin: 6
+                Layout.topMargin: 6
+                Layout.bottomMargin: 6
 
-                    spacing: 10
+                width: JamiTheme.iconButtonMedium
+                height: JamiTheme.iconButtonMedium
 
-                    Button {
-                        Layout.preferredWidth: background.width
-                        Layout.preferredHeight: background.height
-                        Layout.leftMargin: 2
-                        Layout.alignment: Qt.AlignVCenter
-                        enabled: false
+                source: serviceDelegate.modelData.scheme === "https" ? JamiResources.vpn_lock_2_24dp_svg : JamiResources.language_24dp_svg
+                sourceSize.width: JamiTheme.iconButtonMedium
+                sourceSize.height: JamiTheme.iconButtonMedium
 
-                        icon.width: JamiTheme.iconButtonMedium
-                        icon.height: JamiTheme.iconButtonMedium
-                        icon.color: JamiTheme.textColor
-                        icon.source: root.isHttpService(serviceDelegate.modelData) ? JamiResources.captive_portal_24dp_svg : JamiResources.play_circle_outline_24dp_svg
+                color: root.tunnelFor(serviceDelegate.modelData) !== undefined ? JamiTheme.exposedServiceConnectColor : JamiTheme.buttonTintedGreyHovered
+            }
 
-                        background: Rectangle {
-                            width: icon.width + (icon.width / 2)
-                            height: icon.height + (icon.height / 2)
-                            radius: height / 2
-                            color: serviceDelegate.hovered ? JamiTheme.buttonCallDarkGreen : JamiTheme.buttonCallLightGreen
+            Column {
+                Layout.alignment: Qt.AlignVCenter
+                Layout.fillWidth: true
+                Layout.rightMargin: openOrCopyButton.visible ? 0 : serviceDelegate.background.radius
 
-                            Behavior on color {
-                                ColorAnimation {
-                                    duration: 200
-                                }
-                            }
-                        }
-                    }
+                Text {
+                    width: parent.width
 
-                    ColumnLayout {
-                        Layout.fillWidth: true
-                        Layout.alignment: Qt.AlignVCenter
-                        spacing: 2
+                    text: serviceDelegate.modelData.name
+                    elide: Text.ElideRight
+                    color: JamiTheme.textColor
 
-                        Text {
-                            Layout.fillWidth: true
-                            text: root.serviceName(serviceDelegate.modelData)
-                            color: JamiTheme.textColor
-                            font.pixelSize: JamiTheme.textFontSize
-                            font.weight: Font.Medium
-                            elide: Text.ElideRight
-                        }
-
-                        Text {
-                            Layout.fillWidth: true
-                            text: root.tunnelFor(serviceDelegate.modelData) ? JamiStrings.peerServiceTunnelOpened.arg(root.localEndpoint(serviceDelegate.modelData)) : (serviceDelegate.modelData.description || serviceDelegate.modelData.scheme || "")
-                            color: JamiTheme.textColor
-                            font.pixelSize: 12
-                            elide: Text.ElideRight
-                        }
-                    }
-
-                    NewIconButton {
-                        visible: root.tunnelFor(serviceDelegate.modelData) !== undefined
-                        Layout.alignment: Qt.AlignVCenter
-                        iconSize: JamiTheme.iconButtonMedium
-                        iconSource: JamiResources.stop_circle_24dp_svg
-                        color: JamiTheme.buttonTintedRed
-                        hoveredColor: JamiTheme.buttonTintedRedHovered
-                        pressedColor: JamiTheme.buttonTintedRedPressed
-                        toolTipText: JamiStrings.peerServiceCloseTunnel
-                        onClicked: {
-                            var tunnel = root.tunnelFor(serviceDelegate.modelData);
-                            if (tunnel)
-                                ExposedServicesAdapter.closeServiceTunnel(root.accountId, tunnel.tunnelId);
-                        }
-                    }
+                    font.pixelSize: JamiTheme.exposedServiceDelegateTitlePixelSize
                 }
 
-                background: Rectangle {
-                    radius: height / 2
-                    color: serviceDelegate.hovered ? JamiTheme.smartListHoveredColor : JamiTheme.globalIslandColor
+                Text {
+                    width: parent.width
 
-                    Behavior on color {
-                        ColorAnimation {
-                            duration: JamiTheme.shortFadeDuration
-                        }
+                    text: root.tunnelFor(serviceDelegate.modelData) !== undefined ? serviceDelegate.modelData.scheme + "://" + root.localEndpoint(serviceDelegate.modelData)
+                                                                                  : serviceDelegate.modelData.description
+                    elide: Text.ElideRight
+                    color: JamiTheme.textColor
+
+                    font.pixelSize: JamiTheme.exposedServiceDelegateDescriptionPixelSize
+                    font.family: root.tunnelFor(serviceDelegate.modelData) !== undefined ? JamiTheme.ubuntuMonoFontFamily : JamiTheme.ubuntuFontFamily
+                    font.italic: root.tunnelFor(serviceDelegate.modelData) === undefined
+
+                    visible: text.length > 0
+                }
+            }
+
+            NewIconButton {
+                id: openOrCopyButton
+
+                Layout.alignment: Qt.AlignVCenter
+
+                iconSource: JamiResources.stop_circle_24dp_svg
+                iconSize: JamiTheme.iconButtonMedium
+                iconColor: JamiTheme.red_
+                toolTipText: JamiStrings.exposedServiceDisconnect
+
+                background: null
+
+                visible: root.tunnelFor(serviceDelegate.modelData) !== undefined
+
+                scale: hovered ? 1.1 : 1.0
+
+                Behavior on scale {
+                    NumberAnimation {
+                        duration: JamiTheme.shortFadeDuration
                     }
                 }
 
                 onClicked: {
-                    root.activateService(modelData);
-                    if (!root.tunnelFor(modelData) || root.isHttpService(modelData))
-                        servicesPopup.close();
+                    var tunnel = root.tunnelFor(serviceDelegate.modelData);
+                    if (tunnel)
+                        ExposedServicesAdapter.closeServiceTunnel(root.accountId, tunnel.tunnelId);
                 }
             }
         }
 
         background: Rectangle {
-            radius: 25
+            radius: height / 2
+
+            color: (serviceDelegate.hovered || serviceDelegate.activeFocus || serviceDelegate.highlighted) ? JamiTheme.smartListHoveredColor : JamiTheme.globalIslandColor
+
+            Behavior on color {
+                ColorAnimation {
+                    duration: JamiTheme.shortFadeDuration
+                }
+            }
+        }
+
+        onClicked: {
+            if (root.tunnelFor(serviceDelegate.modelData) === undefined) {
+                root.activateService(modelData);
+            }
+
+            root.openOrCopy(modelData)
+        }
+
+        MaterialToolTip {
+            parent: parent
+
+            text: root.tunnelFor(serviceDelegate.modelData) !== undefined ? root.isHttpService(serviceDelegate.modelData)
+                                                                            ? JamiStrings.exposedServiceOpenInExternalBrowser : JamiStrings.copy : JamiStrings.exposedServiceConnect
+
+            visible: (serviceDelegate.hovered || serviceDelegate.activeFocus) && !openOrCopyButton.hovered && (text.length > 0)
+            delay: Qt.styleHints.mousePressAndHoldInterval
+        }
+    }
+
+    indicator: null
+
+    contentItem: IconImage {
+        anchors.centerIn: parent
+
+        width: JamiTheme.iconButtonMedium
+        height: JamiTheme.iconButtonMedium
+
+        source: JamiResources.planet_24dp_svg
+        sourceSize.width: JamiTheme.iconButtonMedium
+        sourceSize.height: JamiTheme.iconButtonMedium
+
+        color: root.hovered ? Qt.lighter(CurrentConversation.color, 1.5) : Qt.darker(CurrentConversation.color, 1.5)
+
+        Behavior on color {
+            ColorAnimation {
+                duration: JamiTheme.shortFadeDuration
+            }
+        }
+
+        rotation: servicesPopup.opened ? -90 : 0
+
+        Behavior on rotation {
+            NumberAnimation {
+                duration: JamiTheme.shortFadeDuration
+            }
+        }
+    }
+
+    background: Rectangle {
+        implicitWidth: JamiTheme.iconButtonMedium * 1.5
+        implicitHeight: JamiTheme.iconButtonMedium * 1.5
+
+        radius: height / 2
+        color: root.hovered ? Qt.darker(CurrentConversation.color, 1.5) : Qt.lighter(CurrentConversation.color, 1.5)
+
+        Behavior on color {
+            ColorAnimation {
+                duration: JamiTheme.shortFadeDuration
+            }
+        }
+    }
+
+    popup: Popup {
+        id: servicesPopup
+
+        parent: root
+        x: root.width - width
+        y: root.height
+        width: 300
+        padding: 4
+
+        opacity: opened ? 1.0 : 0.0
+        Behavior on opacity {
+            NumberAnimation {
+                duration: JamiTheme.shortFadeDuration
+            }
+        }
+
+        contentItem: ListView {
+            implicitHeight: Math.min(contentHeight, 320)
+
+            spacing: 8
+
+            clip: true
+
+            model: root.popup.visible ? root.delegateModel : null
+            currentIndex: root.highlightedIndex
+
+            ScrollIndicator.vertical: ScrollIndicator {}
+        }
+
+        onAboutToShow: root.currentIndex = 0
+
+        background: Rectangle {
             color: JamiTheme.globalIslandColor
+            radius: 22 + servicesPopup.padding
+
+            layer.enabled: true
+            layer.effect: MultiEffect {
+                anchors.fill: parent
+                shadowEnabled: true
+                shadowBlur: JamiTheme.shadowBlur
+                shadowColor: JamiTheme.shadowColor
+                shadowHorizontalOffset: JamiTheme.shadowHorizontalOffset
+                shadowVerticalOffset: JamiTheme.shadowVerticalOffset
+                shadowOpacity: JamiTheme.shadowOpacity
+            }
         }
     }
 }
