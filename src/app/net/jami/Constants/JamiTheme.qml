@@ -854,6 +854,12 @@ Item {
     property real pipActionButtonMargin: 4
     property real pipActionButtonMarginMac: 8
 
+    // Shared services
+    property color exposedServiceConnectColor: darkTheme ? "#20C68D" : "#00796B"
+    property real exposedServiceDelegateTitlePixelSize: calcSize(15)
+    property real exposedServiceDelegateDescriptionPixelSize: calcSize(13)
+
+    // Fonts
     property string ubuntuFontFamily: "Ubuntu"
     property string ubuntuMonoFontFamily: "Ubuntu Mono"
 }

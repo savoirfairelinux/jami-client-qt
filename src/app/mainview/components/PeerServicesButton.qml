@@ -1,6 +1,10 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtQuick.Effects
+import QtQuick.Controls.impl
+
+
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import "../../commoncomponents"
@@ -69,14 +73,23 @@ Item {
 
     function activateService(service) {
         var tunnel = tunnelFor(service);
-        if (tunnel) {
-            if (isHttpService(service))
-                Qt.openUrlExternally(tunnel.scheme + "://127.0.0.1:" + tunnel.localPort);
-            else
-                UtilsAdapter.setClipboardText(localEndpoint(service));
-            return;
+        if (!tunnel)
+            openTunnel(service);
+    }
+
+    function openOrCopy(service)  {
+        if (isHttpService(service)) {
+            var dlg = viewCoordinator.presentDialog(appWindow, "../../commoncomponents/ConfirmDialog.qml", {
+                                                        "titleText": JamiStrings.confirmAction,
+                                                        "textLabel": JamiStrings.confirmNavigationDescription,
+                                                        "confirmLabel": JamiStrings.leaveJami
+                                                    });
+            dlg.accepted.connect(function() {
+                Qt.openUrlExternally(service.scheme + "://" + localEndpoint(service));
+            });
+        } else {
+            UtilsAdapter.setClipboardText(localEndpoint(service));
         }
-        openTunnel(service);
     }
 
     onActiveChanged: scheduleRefresh()
@@ -112,9 +125,6 @@ Item {
                 };
                 root.openTunnels = copy;
                 root.pendingOpens[serviceId].claimed = true;
-                var scheme = root.pendingOpens[serviceId].scheme || "";
-                if (scheme === "http" || scheme === "https")
-                    Qt.openUrlExternally(scheme + "://127.0.0.1:" + localPort);
                 break;
             }
         }
@@ -137,6 +147,7 @@ Item {
         id: servicesButton
 
         anchors.centerIn: parent
+
         iconSize: JamiTheme.iconButtonMedium
         iconSource: JamiResources.planet_24dp_svg
         toolTipText: JamiStrings.peerServicesSectionTitle
@@ -149,16 +160,17 @@ Item {
 
         parent: root
         x: root.width - width
-        y: root.height + JamiTheme.qwkTitleBarHeight / 2
+        y: root.height
         width: 300
-        padding: 1
+        padding: 4
 
         contentItem: ListView {
-            id: servicesListView
-
-            clip: true
             implicitHeight: Math.min(contentHeight, 320)
+
+            spacing: 8
+
             model: root.services
+            clip: true
 
             delegate: ItemDelegate {
                 id: serviceDelegate
@@ -166,79 +178,80 @@ Item {
                 required property var modelData
 
                 width: ListView.view.width
-                height: Math.max(64, serviceContent.implicitHeight + 16)
-                topInset: 4
-                leftInset: 4
-                rightInset: 4
-                bottomInset: 4
-                topPadding: topInset * 2
-                leftPadding: leftInset * 2
-                rightPadding: rightInset * 2
-                bottomPadding: bottomInset * 2
+                implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
+                                        implicitContentWidth + leftPadding + rightPadding)
+                implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
+                                         implicitContentHeight + topPadding + bottomPadding,
+                                         implicitIndicatorHeight + topPadding + bottomPadding)
+
+                padding: 4
 
                 contentItem: RowLayout {
-                    id: serviceContent
+                    spacing: 8
 
-                    spacing: 10
-
-                    Button {
-                        Layout.preferredWidth: background.width
-                        Layout.preferredHeight: background.height
-                        Layout.leftMargin: 2
+                    NewIconButton {
                         Layout.alignment: Qt.AlignVCenter
-                        enabled: false
 
-                        icon.width: JamiTheme.iconButtonMedium
-                        icon.height: JamiTheme.iconButtonMedium
-                        icon.color: JamiTheme.textColor
-                        icon.source: root.isHttpService(serviceDelegate.modelData) ? JamiResources.captive_portal_24dp_svg : JamiResources.play_circle_outline_24dp_svg
+                        iconSize: JamiTheme.iconButtonMedium
+                        iconSource: serviceDelegate.modelData.scheme === "https" ? JamiResources.vpn_lock_2_24dp_svg : JamiResources.language_24dp_svg
+                        iconColor: root.tunnelFor(serviceDelegate.modelData) !== undefined ? JamiTheme.exposedServiceConnectColor : JamiTheme.buttonTintedGreyHovered
 
-                        background: Rectangle {
-                            width: icon.width + (icon.width / 2)
-                            height: icon.height + (icon.height / 2)
-                            radius: height / 2
-                            color: serviceDelegate.hovered ? JamiTheme.buttonCallDarkGreen : JamiTheme.buttonCallLightGreen
-
-                            Behavior on color {
-                                ColorAnimation {
-                                    duration: 200
-                                }
-                            }
-                        }
+                        background: null
                     }
 
-                    ColumnLayout {
-                        Layout.fillWidth: true
+                    Column {
                         Layout.alignment: Qt.AlignVCenter
-                        spacing: 2
+                        Layout.fillWidth: true
+                        Layout.rightMargin: openOrCopyButton.visible ? 0 : serviceDelegate.background.radius
 
                         Text {
-                            Layout.fillWidth: true
-                            text: root.serviceName(serviceDelegate.modelData)
-                            color: JamiTheme.textColor
-                            font.pixelSize: JamiTheme.textFontSize
-                            font.weight: Font.Medium
+                            width: parent.width
+
+                            text: serviceDelegate.modelData.name
                             elide: Text.ElideRight
+                            color: JamiTheme.textColor
+
+                            font.pixelSize: JamiTheme.exposedServiceDelegateTitlePixelSize
                         }
 
                         Text {
-                            Layout.fillWidth: true
-                            text: root.tunnelFor(serviceDelegate.modelData) ? JamiStrings.peerServiceTunnelOpened.arg(root.localEndpoint(serviceDelegate.modelData)) : (serviceDelegate.modelData.description || serviceDelegate.modelData.scheme || "")
-                            color: JamiTheme.textColor
-                            font.pixelSize: 12
+                            width: parent.width
+
+                            text: root.tunnelFor(serviceDelegate.modelData) !== undefined ? serviceDelegate.modelData.scheme + "://" + root.localEndpoint(serviceDelegate.modelData)
+                                                                                          : serviceDelegate.modelData.description
                             elide: Text.ElideRight
+                            color: JamiTheme.textColor
+
+                            font.pixelSize: JamiTheme.exposedServiceDelegateDescriptionPixelSize
+                            font.family: root.tunnelFor(serviceDelegate.modelData) !== undefined ? JamiTheme.ubuntuMonoFontFamily : JamiTheme.ubuntuFontFamily
+                            font.italic: root.tunnelFor(serviceDelegate.modelData) === undefined
+
+                            visible: text.length > 0
                         }
                     }
 
                     NewIconButton {
-                        visible: root.tunnelFor(serviceDelegate.modelData) !== undefined
+                        id: openOrCopyButton
+
                         Layout.alignment: Qt.AlignVCenter
-                        iconSize: JamiTheme.iconButtonMedium
+
                         iconSource: JamiResources.stop_circle_24dp_svg
-                        color: JamiTheme.buttonTintedRed
-                        hoveredColor: JamiTheme.buttonTintedRedHovered
-                        pressedColor: JamiTheme.buttonTintedRedPressed
-                        toolTipText: JamiStrings.peerServiceCloseTunnel
+                        iconSize: JamiTheme.iconButtonMedium
+                        iconColor: JamiTheme.red_
+                        toolTipText: JamiStrings.exposedServiceDisconnect
+
+                        background: null
+
+                        visible: root.tunnelFor(serviceDelegate.modelData) !== undefined
+
+                        scale: hovered ? 1.1 : 1.0
+
+                        Behavior on scale {
+                            NumberAnimation {
+                                duration: JamiTheme.shortFadeDuration
+                            }
+                        }
+
                         onClicked: {
                             var tunnel = root.tunnelFor(serviceDelegate.modelData);
                             if (tunnel)
@@ -249,6 +262,7 @@ Item {
 
                 background: Rectangle {
                     radius: height / 2
+
                     color: serviceDelegate.hovered ? JamiTheme.smartListHoveredColor : JamiTheme.globalIslandColor
 
                     Behavior on color {
@@ -259,16 +273,39 @@ Item {
                 }
 
                 onClicked: {
-                    root.activateService(modelData);
-                    if (!root.tunnelFor(modelData) || root.isHttpService(modelData))
-                        servicesPopup.close();
+                    if (root.tunnelFor(serviceDelegate.modelData) === undefined) {
+                        root.activateService(modelData);
+                    }
+
+                    root.openOrCopy(modelData)
+                }
+
+                MaterialToolTip {
+                    parent: parent
+
+                    text: root.tunnelFor(serviceDelegate.modelData) !== undefined ? root.isHttpService(serviceDelegate.modelData)
+                                                                                    ? JamiStrings.exposedServiceOpenInExternalBrowser : JamiStrings.copy : JamiStrings.exposedServiceConnect
+
+                    visible: (serviceDelegate.hovered || serviceDelegate.activeFocus) && !openOrCopyButton.hovered && (text.length > 0)
+                    delay: Qt.styleHints.mousePressAndHoldInterval
                 }
             }
         }
 
         background: Rectangle {
-            radius: 25
             color: JamiTheme.globalIslandColor
+            radius: 22
+
+            layer.enabled: true
+            layer.effect: MultiEffect {
+                anchors.fill: parent
+                shadowEnabled: true
+                shadowBlur: JamiTheme.shadowBlur
+                shadowColor: JamiTheme.shadowColor
+                shadowHorizontalOffset: JamiTheme.shadowHorizontalOffset
+                shadowVerticalOffset: JamiTheme.shadowVerticalOffset
+                shadowOpacity: JamiTheme.shadowOpacity
+            }
         }
     }
 }
