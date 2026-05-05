@@ -122,6 +122,8 @@ Q_SIGNALS:
 
     void tunnelClosed(const QString& accountId, const QString& tunnelId, const QString& reason);
 
+    void refreshExposedServices();
+
 private:
     struct EmbeddedServer;
 
