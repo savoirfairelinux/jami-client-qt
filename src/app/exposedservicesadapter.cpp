@@ -379,6 +379,8 @@ ExposedServicesAdapter::addExposedService(const QString& accountId, const QVaria
         embeddedServers_[embeddedServerKey(id, serviceId)] = std::move(replacementServer);
     }
     syncEmbeddedServers(id);
+
+    Q_EMIT refreshExposedServices();
     return serviceId;
 }
 
@@ -407,6 +409,7 @@ ExposedServicesAdapter::updateExposedService(const QString& accountId, const QVa
         stopEmbeddedServer(id, serviceId);
     }
     syncEmbeddedServers(id);
+    Q_EMIT refreshExposedServices();
     return true;
 }
 
@@ -417,8 +420,10 @@ ExposedServicesAdapter::removeExposedService(const QString& accountId, const QSt
     if (id.isEmpty() || serviceId.isEmpty())
         return false;
     const auto removed = ConfigurationManager::instance().removeExposedService(id, serviceId);
-    if (removed)
+    if (removed) {
         stopEmbeddedServer(id, serviceId);
+        Q_EMIT refreshExposedServices();
+    }
     return removed;
 }
 
