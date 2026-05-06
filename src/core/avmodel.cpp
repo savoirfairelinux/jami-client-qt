@@ -595,6 +595,18 @@ AVModel::setRecordQuality(const int& rec) const
 }
 
 QString
+AVModel::getConferenceResolution() const
+{
+    return ConfigurationManager::instance().getConferenceResolution();
+}
+
+void
+AVModel::setConferenceResolution(const QString& resolution) const
+{
+    ConfigurationManager::instance().setConferenceResolution(resolution);
+}
+
+QString
 AVModel::startPreview(const QString& resource)
 {
     return VideoManager::instance().openVideoInput(resource);

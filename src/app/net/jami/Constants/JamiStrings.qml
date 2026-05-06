@@ -326,6 +326,8 @@ Item {
     property string fps: qsTr("Frames per second")
     property string selectFPS: qsTr("Select video frame rate (frames per second)")
     property string enableHWAccel: qsTr("Hardware acceleration")
+    property string conferenceResolution: qsTr("Conference resolution")
+    property string groupCallsAndConferences: qsTr("Group calls and conferences")
     property string mirrorLocalVideo: qsTr("Mirror local video")
     property string screenSharing: qsTr("Screen sharing")
     property string selectScreenSharingFPS: qsTr("Select screen sharing frame rate (frames per second)")

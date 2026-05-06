@@ -806,6 +806,16 @@ public Q_SLOTS: // METHODS
         libjami::setRecordQuality(quality);
     }
 
+    QString getConferenceResolution()
+    {
+        return QString::fromStdString(libjami::getConferenceResolution());
+    }
+
+    void setConferenceResolution(const QString& resolution)
+    {
+        libjami::setConferenceResolution(resolution.toStdString());
+    }
+
     void setVolume(const QString& device, double value)
     {
         libjami::setVolume(device.toStdString(), value);

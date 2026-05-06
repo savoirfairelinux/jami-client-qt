@@ -79,6 +79,13 @@ SettingsPageBase {
         Component.onCompleted: {
             flipControl.checked = UtilsAdapter.getAppValue(Settings.FlipSelf);
             hardwareAccelControl.checked = AvAdapter.getHardwareAcceleration();
+            var currentRes = AvAdapter.getConferenceResolution();
+            for (var i = 0; i < conferenceResModel.count; i++) {
+                if (conferenceResModel.get(i).Resolution === currentRes) {
+                    conferenceResolutionComboBox.modelIndex = i;
+                    break;
+                }
+            }
             startPreviewing(true);
         }
 
@@ -238,6 +245,59 @@ SettingsPageBase {
             onSwitchToggled: {
                 AvAdapter.setHardwareAcceleration(checked);
                 rootLayout.startPreviewing(true);
+            }
+        }
+
+        ColumnLayout {
+            id: conferencesSection
+
+            Layout.fillWidth: true
+            Layout.topMargin: JamiTheme.preferredMarginSize
+            spacing: JamiTheme.settingsCategorySpacing
+
+            Text {
+                Layout.alignment: Qt.AlignLeft
+                Layout.fillWidth: true
+
+                text: JamiStrings.groupCallsAndConferences
+                color: JamiTheme.textColor
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+                wrapMode: Text.WordWrap
+
+                font.pixelSize: JamiTheme.settingsTitlePixelSize
+                font.kerning: true
+            }
+
+            SettingsComboBox {
+                id: conferenceResolutionComboBox
+
+                Layout.fillWidth: true
+
+                widthOfComboBox: itemWidth
+
+                labelText: JamiStrings.conferenceResolution
+                comboModel: ListModel {
+                    id: conferenceResModel
+                    ListElement {
+                        Label: "HD 720p"
+                        Resolution: "1280x720"
+                    }
+                    ListElement {
+                        Label: "Full HD 1080p"
+                        Resolution: "1920x1080"
+                    }
+                    ListElement {
+                        Label: "Quad HD 1440p"
+                        Resolution: "2560x1440"
+                    }
+                }
+                role: "Label"
+
+                onActivated: {
+                    var resolution = conferenceResModel.get(modelIndex).Resolution;
+                    AvAdapter.setConferenceResolution(resolution);
+                }
             }
         }
     }
