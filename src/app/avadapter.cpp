@@ -575,6 +575,18 @@ AvAdapter::setHardwareAcceleration(bool accelerate)
     lrcInstance_->avModel().setHardwareAcceleration(accelerate);
 }
 
+QString
+AvAdapter::getConferenceResolution()
+{
+    return lrcInstance_->avModel().getConferenceResolution();
+}
+
+void
+AvAdapter::setConferenceResolution(const QString& resolution)
+{
+    lrcInstance_->avModel().setConferenceResolution(resolution);
+}
+
 void
 AvAdapter::resetRendererInfo()
 {
