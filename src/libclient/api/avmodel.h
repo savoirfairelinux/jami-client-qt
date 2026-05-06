@@ -262,6 +262,16 @@ public:
      */
     Q_INVOKABLE void setRecordQuality(const int& quality) const;
     /**
+     * Get the conference resolution
+     * @return conference resolution (e.g. "1280x720")
+     */
+    Q_INVOKABLE QString getConferenceResolution() const;
+    /**
+     * Set the conference resolution
+     * @param resolution conference resolution (e.g. "1280x720")
+     */
+    Q_INVOKABLE void setConferenceResolution(const QString& resolution) const;
+    /**
      * Start preview renderer. This will start the camera
      * @param resource
      * @return sinkId

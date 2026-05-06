@@ -134,6 +134,9 @@ protected:
     Q_INVOKABLE bool getHardwareAcceleration();
     Q_INVOKABLE void setHardwareAcceleration(bool accelerate);
 
+    Q_INVOKABLE QString getConferenceResolution();
+    Q_INVOKABLE void setConferenceResolution(const QString& resolution);
+
 private Q_SLOTS:
     void updateRenderersFPSInfo(QPair<QString, QString> fpsInfo);
     void onAudioDeviceEvent();
