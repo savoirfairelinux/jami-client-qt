@@ -685,8 +685,16 @@ AccountModelPimpl::slotMigrationEnded(const QString& accountId, bool ok)
             return;
         }
         auto& accountInfo = it->second.first;
-        MapStringString details = ConfigurationManager::instance().getAccountDetails(accountId);
-        accountInfo.fromDetails(details);
+        updateAccountDetails(accountInfo);
+        // Contacts and conversations are normally initialized by the ContactModelPimpl and
+        // ConversationModelPimpl constructors. However, if a migration is triggered when the
+        // daemon first tries loading an account, then the account won't be loaded at the time
+        // the constructors are called, so the daemon will send empty contact and conversation
+        // lists to the client. Initializing the models once the migration is done ensures that
+        // the user will be able to see the conversations they had prior to the migration
+        // without having to restart the application.
+        accountInfo.contactModel->initContacts();
+        accountInfo.conversationModel->initConversations();
     }
     Q_EMIT linked.migrationEnded(accountId, ok);
 }
