@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b02932cf_07be5c04",
+        "filename": "src/app/exposedservicesadapter.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-07T17:38:17Z",
+      "side": 1,
+      "message": "[error] Line 424: `Q_EMIT refreshExposedServices()` is emitted unconditionally in `removeExposedService` even when `removed` is `false` (i.e., the daemon call failed). Move the emit inside the `if (removed)` block.",
+      "revId": "e43f52fc09a8d4bb45f0e7d820be355a978a01d1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e273d526_37e6d81b",
+        "filename": "src/app/mainview/components/PeerServicesButton.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-07T17:38:17Z",
+      "side": 1,
+      "message": "[error] Line 233: When no tunnel exists, `activateService(modelData)` starts an async tunnel open and then `openOrCopy(modelData)` is called immediately on the same click. At that point `tunnelFor()` is still `undefined`, so `openOrCopy` runs against a non-existent tunnel (shows a confirm dialog or copies an empty endpoint). `openOrCopy` should only be called once the tunnel is confirmed open.",
+      "revId": "e43f52fc09a8d4bb45f0e7d820be355a978a01d1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0288c707_879cb24d",
+        "filename": "src/app/mainview/components/PeerServicesButton.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-07T17:38:17Z",
+      "side": 1,
+      "message": "Line 377: File is missing a trailing newline.",
+      "revId": "e43f52fc09a8d4bb45f0e7d820be355a978a01d1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7305ded0_5e7ec7dd",
+        "filename": "src/app/settingsview/components/ExposedServiceDelegate.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-07T17:38:17Z",
+      "side": 1,
+      "message": "[error] Line 163: `modelData.serviceType` is used to detect embedded services, but the data key is `type` (see `ExposedServiceDialog.qml` where the map key is `\"type\"`). This will always be `undefined`, so the scheme will never be forced to `\"http\"` for embedded services.",
+      "revId": "e43f52fc09a8d4bb45f0e7d820be355a978a01d1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43aa9365_17fa0d45",
+        "filename": "src/app/settingsview/components/ExposedServiceDelegate.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-07T17:38:17Z",
+      "side": 1,
+      "message": "[error] Line 204: `root.isHovered` is not a valid QML property on `ItemDelegate`; the correct property is `root.hovered`. As written this always evaluates to `undefined` (falsy), so the hover colour is never applied.",
+      "revId": "e43f52fc09a8d4bb45f0e7d820be355a978a01d1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6f3d128_e1622334",
+        "filename": "src/app/settingsview/components/ExposedServiceDelegate.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-07T17:38:17Z",
+      "side": 1,
+      "message": "Line 206: File is missing a trailing newline, which will cause noisy diffs in future patches.",
+      "revId": "e43f52fc09a8d4bb45f0e7d820be355a978a01d1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81d3c728_3ecd360f",
+        "filename": "src/app/settingsview/components/ExposedServiceDialog.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-07T17:38:17Z",
+      "side": 1,
+      "message": "[warning] Line 51: `serviceSchemeSelection` is set in `setServiceScheme` / `Component.onCompleted` but is never read anywhere in the visible UI code; only `serviceCustomScheme` drives the text field. Either wire `serviceSchemeSelection` to drive a scheme-type selector or remove the unused property to avoid confusion.",
+      "revId": "e43f52fc09a8d4bb45f0e7d820be355a978a01d1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee3031f2_3d70d6d4",
+        "filename": "src/app/settingsview/components/ExposedServiceDialog.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-07T17:38:17Z",
+      "side": 1,
+      "message": "[warning] Line 100: `console.warn(\"MY CUSTOM SCHEME\", ...)` is a debug statement that was left in production code; remove it.",
+      "revId": "e43f52fc09a8d4bb45f0e7d820be355a978a01d1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9de689d5_f3804992",
+        "filename": "src/app/settingsview/components/ExposedServiceDialog.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-07T17:38:17Z",
+      "side": 1,
+      "message": "[warning] Line 333: The `ListModel` inside `SettingParaCombobox` uses hardcoded English strings (`\"Confirmed contacts\"`, `\"Anyone (public)\"`, `\"Specific contacts only\"`) instead of the `JamiStrings` constants (`exposedServicePolicyContacts`, `exposedServicePolicyPublic`, `exposedServicePolicySpecific`), making these labels untranslatable.",
+      "revId": "e43f52fc09a8d4bb45f0e7d820be355a978a01d1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b6ed674_1e7d9cd3",
+        "filename": "src/app/settingsview/components/ExposedServiceDialog.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-07T17:38:17Z",
+      "side": 1,
+      "message": "Line 402: File is missing a trailing newline.",
+      "revId": "e43f52fc09a8d4bb45f0e7d820be355a978a01d1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
