@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0e2669b_ce329d29",
+        "filename": "src/app/commoncomponents/NewIconButton.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-07T18:44:33Z",
+      "side": 1,
+      "message": "[warning] Line 34: `property color color` uses the name `color`, which is conventionally associated with background/fill in QML. Any existing call-site that previously set `color` on this `Button` (expecting it to reach the background) will now silently redirect to the icon tint instead. Consider `normalColor` or `defaultIconColor` to avoid ambiguity and unintentional API breakage.",
+      "revId": "464415481eb1ade24a9890ea2ac37eb598a1fc83",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce7dcb26_58d945e9",
+        "filename": "src/app/commoncomponents/NewIconButton.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-07T18:44:33Z",
+      "side": 1,
+      "message": "Line 40: The retained `property alias iconColor: iconImage.color` still exists alongside the new state-driven binding. Setting `iconColor` breaks the binding on `iconImage.color`, silently disabling all state-based colour changes (hover, pressed, disabled). A short clarifying comment or deprecation note would prevent misuse, especially now that callers have four colour properties to reason about.",
+      "revId": "464415481eb1ade24a9890ea2ac37eb598a1fc83",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "395f824a_85a1f157",
+        "filename": "src/app/commoncomponents/NewIconButton.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-07T18:44:33Z",
+      "side": 1,
+      "message": "Line 88: The new logic checks `root.pressed` before `root.hovered || root.checked`, so a checked-and-pressed button returns `pressedColor` not `hoveredColor`. The old code treated `checked` identically to `hovered` and had no pressed distinction at all. If `checked` should always use `hoveredColor` regardless of press state (toggle-button semantics), add `|| root.checked` to the pressed guard.",
+      "revId": "464415481eb1ade24a9890ea2ac37eb598a1fc83",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
