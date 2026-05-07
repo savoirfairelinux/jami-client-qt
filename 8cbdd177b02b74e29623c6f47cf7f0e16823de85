@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b164772_d65c5d88",
+        "filename": "src/libclient/dbus/metatypes.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-07T16:34:20Z",
+      "side": 1,
+      "message": "[error] Line 100: Adding `pluginData` to the positional DBus struct serialization changes the wire format. Any peer (daemon, client) that hasn\u0027t been rebuilt simultaneously will fail to deserialize `SwarmMessage` because the argument count no longer matches. This is a silent, hard-to-debug breakage. The DBus interface version or signature should be bumped to force detection of the mismatch.",
+      "revId": "8cbdd177b02b74e29623c6f47cf7f0e16823de85",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c38b1dc_28854f9e",
+        "filename": "src/libclient/interaction.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-07T16:34:20Z",
+      "side": 1,
+      "message": "[warning] Line 128: `bodyOverwriteIt.value()` is copied from untrusted plugin data and stored directly as `body` with no length limit or content validation. If any downstream consumer renders this string as rich text or in a context that interprets markup, it is an injection vector. Apply the same sanitisation used for normal message bodies.",
+      "revId": "8cbdd177b02b74e29623c6f47cf7f0e16823de85",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87d6ad71_d7a683b8",
+        "filename": "src/libclient/interaction.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-07T16:34:20Z",
+      "side": 1,
+      "message": "[warning] Line 138: The key `bodyOverwrite_e%1` uses the loop index `i` to identify which edition a plugin override applies to. If `msg.editions` is not guaranteed to arrive in a deterministic, stable order (e.g. it is backed by a hash-keyed container in the daemon), the index can drift across calls, silently applying the wrong plugin override. Consider keying by edition ID instead (e.g. `bodyOverwrite_\u003ceditionId\u003e`).",
+      "revId": "8cbdd177b02b74e29623c6f47cf7f0e16823de85",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "230d623f_6dfd22f8",
+        "filename": "src/libclient/messagelistmodel.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-07T16:34:20Z",
+      "side": 1,
+      "message": "Line 526: `item.second.commit.value(\"body\")` returns an empty `QString` for interactions whose commit map has no `\"body\"` key (e.g. file-transfer, call records). The QML edit flow calls this role only for messages being edited, but returning an empty pre-filled editor for non-text interactions is confusing. Guard with a type check or document the invariant.",
+      "revId": "8cbdd177b02b74e29623c6f47cf7f0e16823de85",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e605730_b0912a3a",
+        "filename": "src/libclient/qtwrapper/configurationmanager_wrap.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-07T16:34:20Z",
+      "side": 1,
+      "message": "[warning] Line 275: The `SwarmMessageUpdated` callback constructs `SwarmMessage` with `pluginData`, but plugins that enrich messages may generate `pluginData` asynchronously after the initial load. If the update arrives before plugin processing completes, `pluginData` will be empty and the overwrite logic in `interaction.cpp` will be silently skipped. Verify the daemon guarantees `pluginData` is populated before emitting `SwarmMessageUpdated`.",
+      "revId": "8cbdd177b02b74e29623c6f47cf7f0e16823de85",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
