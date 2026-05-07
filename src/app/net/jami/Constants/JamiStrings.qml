@@ -275,8 +275,8 @@ Item {
     property string identifier: qsTr("Identifier")
 
     // CallOverlay
-    property string isRecording: qsTr("%1 is recording")
-    property string areRecording: qsTr("%1 are recording")
+    property string isRecording: qsTr("This call is being recorded by %1")
+    property string areRecording: qsTr("This call is being recorded by %1")
     property string mute: qsTr("Mute microphone")
     property string unmute: qsTr("Unmute microphone")
     property string pauseCall: qsTr("Pause call")
