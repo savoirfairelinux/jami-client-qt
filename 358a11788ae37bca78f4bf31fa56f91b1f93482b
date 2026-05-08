@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e1b11b1_75ebc745",
+        "filename": "src/app/exposedservicesadapter.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-08T17:13:15Z",
+      "side": 1,
+      "message": "[error] Line 55: `qApp-\u003eproperty(\"LRCInstance\")` can return an invalid QVariant (e.g., during tests or unexpected init order), yielding a null `LRCInstance*` passed to the constructor with no null check before use (e.g., `lrcInstance_-\u003eget_currentAccountId()` in `resolveAccountId`). Add a null guard or Q_ASSERT.",
+      "revId": "358a11788ae37bca78f4bf31fa56f91b1f93482b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d55f11d9_0a40cb07",
+        "filename": "src/app/exposedservicesadapter.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-08T17:13:15Z",
+      "side": 1,
+      "message": "[warning] Line 55: `create()` allocates with `new` but there\u0027s no guarantee the QML engine takes ownership. If `QML_SINGLETON` registration uses this factory, the engine should parent it, but if called outside that path (or if the engine is destroyed before the object), this leaks. Consider setting the engine as parent or adding `QJSEngine::setObjectOwnership`.",
+      "revId": "358a11788ae37bca78f4bf31fa56f91b1f93482b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94fd2d15_e45bce88",
+        "filename": "src/app/exposedservicesadapter.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-08T17:13:15Z",
+      "side": 1,
+      "message": "[warning] Line 97: `resolveAccountId` returns an empty string when `lrcInstance_` is null, but callers only check `id.isEmpty()` — they silently do nothing. This makes debugging hard when the singleton is created before LRC is ready. At minimum, log a warning.",
+      "revId": "358a11788ae37bca78f4bf31fa56f91b1f93482b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb41a8d5_91e8ac67",
+        "filename": "src/app/exposedservicesadapter.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-08T17:13:15Z",
+      "side": 1,
+      "message": "Line 23: `#include \u003cQApplication\u003e` is unused in the header (only needed in the .cpp for `qApp`). Move it to the .cpp or remove it to avoid pulling in widgets headers unnecessarily.",
+      "revId": "358a11788ae37bca78f4bf31fa56f91b1f93482b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba937e38_8f04f70b",
+        "filename": "src/app/exposedservicesadapter.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-08T17:13:15Z",
+      "side": 1,
+      "message": "Line 47: The class is marked `QML_SINGLETON` but has a public constructor taking `LRCInstance*`. QML singleton types with a `create` factory should have the constructor be private (or at least protected) to prevent accidental direct instantiation.",
+      "revId": "358a11788ae37bca78f4bf31fa56f91b1f93482b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
