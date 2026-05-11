@@ -1,0 +1,167 @@
+# escape=`
+
+ARG WINDOWS_TAG=ltsc2025
+FROM mcr.microsoft.com/windows/servercore:${WINDOWS_TAG}
+
+SHELL ["powershell", "-NoLogo", "-NoProfile", "-ExecutionPolicy", "Bypass", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
+
+ARG AQTINSTALL_VERSION=3.1.20
+ARG CHOCOLATEY_VERSION=2.4.3
+ARG CMAKE_VERSION=4.3.2
+ARG DOTNET_SDK_VERSION=9.0.301
+ARG GAS_PREPROCESSOR_REF=4daa611556a0558dfe537b4f7ad80f7e50a079c1
+ARG GIT_VERSION=2.49.0
+ARG MSYS2_VERSION=20241208.0.0
+ARG PANDOC_VERSION=3.6.4
+ARG PYTHON_VERSION=3.12.10
+ARG QT_ARCH=win64_msvc2022_64
+ARG QT_MODULES=qt5compat,qthttpserver,qtshadertools,qtserialport,qtpositioning,qtwebchannel,qtwebengine,qtwebsockets,qtwebview,qtmultimedia,qtnetworkauth
+ARG QT_VERSION=6.10.3
+ARG SEVENZIP_VERSION=24.9.0
+ARG STRAWBERRYPERL_VERSION=5.42.2.1
+ARG UNZIP_VERSION=6.0
+ARG VISUAL_STUDIO_BUILDTOOLS_URL=https://aka.ms/vs/18/insiders/vs_buildtools.exe
+ARG VSNASM_VERSION=0.8
+ARG VSYASM_VERSION=0.7
+ARG WGET_VERSION=1.21.4
+ARG WIX_VERSION=7.0.0
+ARG WINDOWS_SDK_COMPONENT=Microsoft.VisualStudio.Component.Windows11SDK.26100
+ARG WINDOWS_SDK_VERSION=10.0.26100.0
+
+ENV AQTINSTALL_VERSION=${AQTINSTALL_VERSION} `
+    CHOCOLATEY_VERSION=${CHOCOLATEY_VERSION} `
+    CMAKE_VERSION=${CMAKE_VERSION} `
+    DOTNET_SDK_VERSION=${DOTNET_SDK_VERSION} `
+    GAS_PREPROCESSOR_REF=${GAS_PREPROCESSOR_REF} `
+    GIT_VERSION=${GIT_VERSION} `
+    MSYS2_VERSION=${MSYS2_VERSION} `
+    PANDOC_VERSION=${PANDOC_VERSION} `
+    PYTHON_VERSION=${PYTHON_VERSION} `
+    QT_ARCH=${QT_ARCH} `
+    QT_DIR=C:\Qt\${QT_VERSION}\msvc2022_64 `
+    QT_MODULES=${QT_MODULES} `
+    QT_VERSION=${QT_VERSION} `
+    SEVENZIP_VERSION=${SEVENZIP_VERSION} `
+    UNZIP_VERSION=${UNZIP_VERSION} `
+    VISUAL_STUDIO_BUILDTOOLS_URL=${VISUAL_STUDIO_BUILDTOOLS_URL} `
+    VSNASM_VERSION=${VSNASM_VERSION} `
+    VSYASM_VERSION=${VSYASM_VERSION} `
+    WGET_VERSION=${WGET_VERSION} `
+    WIX_VERSION=${WIX_VERSION} `
+    WINDOWS_SDK_COMPONENT=${WINDOWS_SDK_COMPONENT} `
+    JAMI_SOURCE_DIR=C:\jami-client-qt `
+    WINDOWS_SDK_VERSION=${WINDOWS_SDK_VERSION} `
+    CMAKE_GENERATOR="Visual Studio 18 2026" `
+    CMAKE_GENERATOR_PLATFORM=x64 `
+    QT_QPA_PLATFORM=offscreen `
+    QT_QUICK_BACKEND=software `
+    WIX_ACCEPT_EULA=1 `
+    MSYS2_PATH_TYPE=inherit
+
+RUN Invoke-WebRequest -Uri $env:VISUAL_STUDIO_BUILDTOOLS_URL -OutFile C:\vs_buildtools.exe; `
+    $arguments = @( `
+    '--quiet', '--wait', '--norestart', '--nocache', `
+    '--installPath', 'C:\BuildTools', `
+    '--add', 'Microsoft.VisualStudio.Component.VC.Tools.x86.x64', `
+    '--add', 'Microsoft.VisualStudio.Component.VC.ATL', `
+    '--add', 'Microsoft.VisualStudio.Component.VC.ATLMFC', `
+    '--add', $env:WINDOWS_SDK_COMPONENT `
+    ); `
+    $process = Start-Process -FilePath C:\vs_buildtools.exe -ArgumentList $arguments -Wait -PassThru; `
+    if (($process.ExitCode -ne 0) -and ($process.ExitCode -ne 3010)) { exit $process.ExitCode }; `
+    Remove-Item -Force C:\vs_buildtools.exe
+
+RUN $env:chocolateyVersion = $env:CHOCOLATEY_VERSION; `
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; `
+    Invoke-Expression ((New-Object Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1')); `
+    choco feature disable --name showDownloadProgress
+
+RUN choco install -y --no-progress 7zip --version=$env:SEVENZIP_VERSION; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; `
+    choco install -y --no-progress cmake --version=$env:CMAKE_VERSION; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; `
+    choco install -y --no-progress dotnet-9.0-sdk --version=$env:DOTNET_SDK_VERSION; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; `
+    choco install -y --no-progress git.install --version=$env:GIT_VERSION; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; `
+    choco install -y --no-progress msys2 --version=$env:MSYS2_VERSION; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; `
+    choco install -y --no-progress pandoc --version=$env:PANDOC_VERSION; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; `
+    choco install -y --no-progress python --version=$env:PYTHON_VERSION; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; `
+    choco install -y --no-progress unzip --version=$env:UNZIP_VERSION; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; `
+    choco install -y --no-progress wget --version=$env:WGET_VERSION; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+ENV PATH="C:\wix;C:\Program Files\dotnet;C:\Python312;C:\Python312\Scripts;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\Git\bin;C:\Program Files\CMake\bin;C:\Program Files\7-Zip;C:\tools\msys64\usr\bin;C:\msys64\usr\bin;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\OpenSSH"
+
+RUN dotnet tool install --tool-path C:\wix wix --version $env:WIX_VERSION; `
+    if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; `
+    foreach ($extension in @('WixToolset.UI.wixext', 'WixToolset.Util.wixext')) { `
+    & C:\wix\wix.exe extension add --acceptEula wix7 -g "$extension/$env:WIX_VERSION"; `
+    if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE } `
+    }
+
+RUN ["C:\\tools\\msys64\\usr\\bin\\bash.exe", "-lc", "pacman -S --noconfirm --needed diffutils gcc git make nasm patch perl yasm"]
+
+RUN python -m pip install --no-cache-dir --upgrade pip; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; `
+    python -m pip install --no-cache-dir aqtinstall==$env:AQTINSTALL_VERSION; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+RUN New-Item -ItemType Directory -Force C:\jami-tools | Out-Null; `
+    Invoke-WebRequest -Uri "https://github.com/ShiftMediaProject/VSNASM/releases/download/$env:VSNASM_VERSION/VSNASM.zip" -OutFile C:\jami-tools\VSNASM.zip; `
+    Expand-Archive C:\jami-tools\VSNASM.zip -DestinationPath C:\jami-tools\VSNASM; `
+    Invoke-WebRequest -Uri "https://github.com/ShiftMediaProject/VSYASM/releases/download/$env:VSYASM_VERSION/VSYASM.zip" -OutFile C:\jami-tools\VSYASM.zip; `
+    Expand-Archive C:\jami-tools\VSYASM.zip -DestinationPath C:\jami-tools\VSYASM; `
+    $customizations = Get-ChildItem C:\BuildTools\MSBuild\Microsoft\VC -Directory -Filter 'v*' | `
+    Sort-Object Name -Descending | `
+    ForEach-Object { Join-Path $_.FullName 'BuildCustomizations' } | `
+    Where-Object { Test-Path $_ } | `
+    Select-Object -First 1; `
+    if (!$customizations) { throw 'Unable to find MSBuild VC BuildCustomizations directory.' }; `
+    $vcToolsDir = Get-ChildItem C:\BuildTools\VC\Tools\MSVC -Directory | Sort-Object Name -Descending | Select-Object -First 1 -ExpandProperty FullName; `
+    Copy-Item C:\jami-tools\VSNASM\nasm.* $customizations -Force; `
+    Copy-Item C:\jami-tools\VSYASM\yasm.* $customizations -Force; `
+    Invoke-WebRequest -Uri 'https://www.nasm.us/pub/nasm/releasebuilds/3.01/win64/nasm-3.01-win64.zip' -OutFile C:\jami-tools\nasm.zip; `
+    Expand-Archive C:\jami-tools\nasm.zip -DestinationPath C:\jami-tools\nasm; `
+    $nasmExe = Get-ChildItem C:\jami-tools\nasm -Recurse -Filter nasm.exe | Select-Object -First 1; `
+    Copy-Item $nasmExe.FullName (Join-Path $vcToolsDir 'nasm.exe') -Force; `
+    Copy-Item C:\jami-tools\VSYASM\yasm\yasm-64.exe (Join-Path $vcToolsDir 'yasm.exe') -Force; `
+    $msysBin = if (Test-Path C:\msys64\usr\bin) { 'C:\msys64\usr\bin' } else { 'C:\tools\msys64\usr\bin' }; `
+    Invoke-WebRequest -Uri 'https://www.tortall.net/projects/yasm/releases/yasm-1.3.0-win64.exe' -OutFile "$msysBin\yasm.exe"; `
+    Invoke-WebRequest -Uri "https://raw.githubusercontent.com/FFmpeg/gas-preprocessor/$env:GAS_PREPROCESSOR_REF/gas-preprocessor.pl" -OutFile "$msysBin\gas-preprocessor.pl"; `
+    Remove-Item -Recurse -Force C:\jami-tools
+
+RUN $autorebase = if (Test-Path C:\msys64\autorebase.bat) { 'C:\msys64\autorebase.bat' } else { 'C:\tools\msys64\autorebase.bat' }; `
+    & $autorebase; `
+    if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+RUN choco install -y --no-progress strawberryperl --version=${STRAWBERRYPERL_VERSION}; `
+    if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+ENV PATH="C:\wix;C:\Program Files\dotnet;C:\Program Files\CMake\bin;C:\Strawberry\perl\bin;C:\Strawberry\perl\site\bin;C:\Strawberry\c\bin;C:\Python312;C:\Python312\Scripts;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\Git\bin;C:\Program Files\7-Zip;C:\tools\msys64\usr\bin;C:\msys64\usr\bin;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\OpenSSH"
+
+RUN $vcToolsDir = Get-ChildItem C:\BuildTools\VC\Tools\MSVC -Directory | Sort-Object Name -Descending | Select-Object -First 1 -ExpandProperty FullName; `
+    Copy-Item (Join-Path $vcToolsDir 'nasm.exe') C:\BuildTools\VC\nasm.exe -Force; `
+    Copy-Item (Join-Path $vcToolsDir 'yasm.exe') C:\BuildTools\VC\yasm.exe -Force
+
+RUN $sdkBase = Join-Path ${env:ProgramFiles(x86)} 'Windows Kits\10\bin'; `
+    $sdkBin = Join-Path $sdkBase $env:WINDOWS_SDK_VERSION; `
+    $sdkHostX64Bin = Join-Path $sdkBin 'x64'; `
+    $sdkHostX86Bin = Join-Path $sdkBin 'x86'; `
+    $requiredFiles = @( `
+    (Join-Path $sdkHostX64Bin 'rc.exe'), `
+    (Join-Path $sdkHostX64Bin 'mt.exe'), `
+    (Join-Path $sdkHostX86Bin 'rc.exe'), `
+    (Join-Path $sdkHostX86Bin 'mt.exe'), `
+    (Join-Path $sdkHostX86Bin 'rcdll.dll'), `
+    (Join-Path $sdkHostX86Bin 'mt.exe.config') `
+    ); `
+    foreach ($file in $requiredFiles) { `
+    if (!(Test-Path $file)) { throw "Required Windows SDK file is missing: $file" } `
+    }; `
+    Copy-Item (Join-Path $sdkHostX86Bin '*') $sdkHostX64Bin -Recurse -Force; `
+    $rcExe = Join-Path $sdkHostX64Bin 'rc.exe'; `
+    & $rcExe /? | Out-Null; `
+    if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; `
+    $mtExe = Join-Path $sdkHostX64Bin 'mt.exe'; `
+    & $mtExe /? | Out-Null; `
+    if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+RUN New-Item -ItemType Directory -Force C:\build | Out-Null
+COPY extras/build/docker/build-client-qt-windows-msvc.ps1 C:\build\build-client-qt-windows-msvc.ps1
+
+WORKDIR C:\jami-client-qt
+ENTRYPOINT ["powershell", "-NoLogo", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "C:\\build\\build-client-qt-windows-msvc.ps1"]
