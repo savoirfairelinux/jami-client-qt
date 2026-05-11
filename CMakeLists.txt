@@ -91,6 +91,10 @@ if(WIN32)
   list(APPEND QWINDOWKIT_OPTIONS QWINDOWKIT_ENABLE_WINDOWS_SYSTEM_BORDERS OFF)
 endif()
 
+set(QWINDOWKIT_PATCHES
+  ${EXTRA_PATCHES_DIR}/qwindowkit-qt6-private-includes.patch
+)
+
 # qwindowkit (frameless window)
 add_fetch_content(
   TARGET QWindowKit
@@ -483,14 +487,14 @@ if(ENABLE_CRASHREPORTS)
   endif()
 endif()
 
-find_package(PkgConfig REQUIRED)
+find_package(PkgConfig QUIET)
 
 # hunspell
-pkg_search_module(hunspell IMPORTED_TARGET hunspell)
-if(hunspell_FOUND)
-  message(STATUS "hunspell found")
-  set(HUNSPELL_LIBRARIES PkgConfig::hunspell)
-else()
+# pkg_search_module(hunspell IMPORTED_TARGET hunspell)
+# if(hunspell_FOUND)
+#   message(STATUS "hunspell found")
+#   set(HUNSPELL_LIBRARIES PkgConfig::hunspell)
+# else()
   message(STATUS "hunspell not found - building hunspell")
 
   set(HUNSPELL_DIR ${PROJECT_SOURCE_DIR}/3rdparty/hunspell)
@@ -500,7 +504,7 @@ else()
 
   set(HUNSPELL_INCLUDE_DIR ${HUNSPELL_DIR}/src)
   set(HUNSPELL_LIBRARIES hunspell::hunspell)
-endif()
+# endif()
 
 if(MSVC)
   # Enforce minimum SDK 10.0.26100.0
@@ -534,13 +538,13 @@ if(MSVC)
     ${APP_SRC_DIR}/connectivitymonitor.cpp
     ${APP_SRC_DIR}/appversionmanager.cpp)
   # preprocessor defines
-  add_definitions(-DUNICODE -DQT_NO_DEBUG -DNDEBUG)
+  add_definitions(-DUNICODE -DQT_NO_DEBUG -DNDEBUG -DNOMINMAX)
 
   # compiler options
   add_compile_options(
     /wd4068 /wd4099 /wd4189 /wd4267 /wd4577 /wd4467 /wd4715 /wd4828)
   add_compile_options(
-    /MP /GS /W3 /Gy /Zc:__cplusplus /Zc:wchar_t /Zi /Gm- /O2 /Zc:inline /fp:precise)
+    /MP /GS /W3 /Gy /Zc:__cplusplus /Zc:wchar_t /Zi /Gm- /O2 /Zc:inline /fp:precise /bigobj /Zm200)
   add_compile_options(/Gd /Oi /MD /FC /EHsc /nologo /sdl)
 
   # linker options
@@ -720,11 +724,11 @@ else()
 endif()
 
 # tidy-html5
-pkg_check_modules(tidy IMPORTED_TARGET tidy)
-if(tidy_FOUND)
-  message(STATUS "Using system-provided tidy")
-  list(APPEND CLIENT_LIBS PkgConfig::tidy)
-else()
+# pkg_check_modules(tidy IMPORTED_TARGET tidy)
+# if(tidy_FOUND)
+#   message(STATUS "Using system-provided tidy")
+#   list(APPEND CLIENT_LIBS PkgConfig::tidy)
+# else()
   message("Using bundled tidy library")
   set(BUILD_SHARED_LIB OFF CACHE BOOL "Don't build shared tidy library" FORCE)
   set(SUPPORT_CONSOLE_APP OFF CACHE BOOL "Don't build tidy console app" FORCE)
@@ -732,7 +736,7 @@ else()
   list(APPEND CLIENT_LINK_DIRS ${tidy_BINARY_DIR}/Release)
   list(APPEND CLIENT_INCLUDE_DIRS ${tidy_SOURCE_DIR}/include)
   list(APPEND CLIENT_LIBS tidy-static)
-endif()
+# endif()
 
 # ZXing-cpp configuration
 pkg_check_modules(zxing IMPORTED_TARGET zxing)
@@ -748,6 +752,12 @@ else()
   list(APPEND CLIENT_LIBS ZXing)
 endif()
 
+set(CLIENT_RESOURCE_SOURCES ${QML_RESOURCES} ${QML_RESOURCES_QML})
+if(MSVC)
+  qt_add_big_resources(CLIENT_BIG_RESOURCE_SOURCES ${QML_RESOURCES})
+  set(CLIENT_RESOURCE_SOURCES ${CLIENT_BIG_RESOURCE_SOURCES} ${QML_RESOURCES_QML})
+endif()
+
 # common executable sources
 qt_add_executable(
   ${PROJECT_NAME}
@@ -755,8 +765,7 @@ qt_add_executable(
   ${APP_SRC_DIR}/main.cpp
   ${COMMON_HEADERS}
   ${COMMON_SOURCES}
-  ${QML_RESOURCES}
-  ${QML_RESOURCES_QML}
+  ${CLIENT_RESOURCE_SOURCES}
   ${SFPM_OBJECTS}
   src/app/spellcheckadapter.h src/app/spellcheckadapter.cpp)
 
