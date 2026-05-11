@@ -189,32 +189,32 @@ Only 64-bit MSVC build can be compiled.
 
 - Download [Qt (Open Source)](https://www.qt.io/download-open-source?hsCtaTracking=9f6a2170-a938-42df-a8e2-a9f0b1d6cdce%7C6cb0de4f-9bb5-4778-ab02-bfb62735f3e5)
 
-- Using the online installer, install the following Qt 6.8.3 components:
+- Using the online installer, install the following Qt 6.10.3 components:
 
-  - Git 2.10.2
-  - MSVC 2022 64-bit
-  - Extension :
-    - Qt WebEngine
-  - Additional Libraries
-    - Qt Multimedia
-    - Qt Network Authorization
-    - Qt WebChannel
-    - Qt WebSockets
-    - Qt WebView
-    - Qt 5 Compatibility Module
-    - Qt Positioning
+    - Git 2.10.2
+    - MSVC 2022 64-bit
+    - Extension :
+        - Qt WebEngine
+    - Additional Libraries
+        - Qt Multimedia
+        - Qt Network Authorization
+        - Qt WebChannel
+        - Qt WebSockets
+        - Qt WebView
+        - Qt 5 Compatibility Module
+        - Qt Positioning
 
-- Download [Visual Studio](https://visualstudio.microsoft.com/) (versions 2019 or 2022). _See the SDK notes below._
+- Download [Visual Studio 2026 Build Tools](https://visualstudio.microsoft.com/) or use the reproducible Docker image below. _See the SDK notes below._
 
-  |              | SDK          | Toolset                                             | MFC              |
-  | ------------ | ------------ | --------------------------------------------------- | ---------------- |
-  | Requirement: | 10.0.18362.0 | V142 (VisualStudio 2019) / V143 (VisualStudio 2022) | matching Toolset |
+    |              | SDK          | Toolset                                             | MFC              |
+    | ------------ | ------------ | --------------------------------------------------- | ---------------- |
+    | Requirement: | 10.0.26100.0 | V145 (Visual Studio 2026)                           | matching Toolset |
 
-- Install Qt Vs Tools under extensions, and configure msvc2019\_64 path under Qt Options. *See the Qt notes below.*
+- Install Qt Vs Tools under extensions, and configure msvc2022\_64 path under Qt Options. *See the Qt notes below.*
 
-  |                      | Qt Version |
-  | -------------------- | ---------- |
-  | Minimum requirement: | 6.8.3      |
+    |                      | Qt Version |
+    | -------------------- | ---------- |
+    | Minimum requirement: | 6.10.3     |
 
 - Install [Python3](https://www.python.org/downloads/) for Windows
 
@@ -240,22 +240,58 @@ Only 64-bit MSVC build can be compiled.
 - Using a new **Non-Elevated Command Prompt**
 
 ```bash
-    python build.py --init --qt <path-to-qt-bin-folder> (e.g. C:/Qt/6.8.3/msvc2022_64)
+    python build.py --init --qt <path-to-qt-bin-folder> (e.g. C:/Qt/6.10.3/msvc2022_64)
 ```
 
 ```bash
-    python build.py --install --qt <path-to-qt-bin-folder> (e.g. C:/Qt/6.8.3/msvc2022_64)
+    python build.py --install --qt <path-to-qt-bin-folder> (e.g. C:/Qt/6.10.3/msvc2022_64)
 ```
-> **CMake** Note: The build script does not specify what CMake generator should be used. This means CMake will search the system for the appropriate generator, which might not always select the right one if, for instance, Ninja is installed. To resolve that, the CMAKE_GENERATOR environment variable can be used, set to "Visual Studio 16 2019" or "Visual Studio 19 2022" depending on the installed Visual Studio version.
+> **CMake** Note: The build script selects the Visual Studio generator from the installed Visual Studio version. If you override it manually, use `CMAKE_GENERATOR="Visual Studio 18 2026"` for the VS 2026 toolchain.
 
 > **SDK** Note:
-> Jami can be build with more recent Windows SDK than the one specified in the table above. However, if your have another version than SDK 10.0.18362.0 installed, you need to identify it according to the example below. And you still need to have the required version in addition to the one you chose.
+> Jami can be built with a more recent Windows SDK than the one specified in the table above. However, if you have another version than SDK 10.0.26100.0 installed, you need to identify it according to the example below. You still need to have the required version in addition to the one you chose.
 
 ```bash
     python build.py --install --qt <path-to-qt-bin-folder> --sdk <your-sdk-version>
 ```
 
 > **Qt** Note: If you omit the `--qt` option, the build script will try to find Qt in the default installation folder, and will take the latest version found. If you have appropriate Qt and SDK versions installed, you won't need to specify any additional options.
+
+### Reproducible MSVC build with native Docker
+
+On Windows hosts with native Docker Desktop switched to Windows containers, the MSVC toolchain can be installed into a reusable image. The image targets Windows Server Core LTSC 2025, Visual Studio 2026 Build Tools, Qt 6.10.3, and Windows SDK `10.0.26100.0` by default:
+
+```powershell
+docker build --force-rm -t jami-client-qt-windows-msvc:qt-6.10.3-ltsc2025-vs2026 -f extras/build/docker/Dockerfile.client-qt-windows-msvc .
+```
+
+Then build the current checkout by mounting it into the image. Keeping Qt and temporary files on a non-system drive is recommended when `C:` has limited free space:
+
+```powershell
+New-Item -ItemType Directory -Force F:\jami-qt-cache, F:\jami-tmp
+
+docker run --rm `
+    -v ${PWD}:C:\jami-client-qt `
+    -v F:\jami-qt-cache:C:\Qt `
+    -v F:\jami-tmp:C:\jami-tmp `
+    -e JAMI_TEMP_DIR=C:\jami-tmp `
+    jami-client-qt-windows-msvc:qt-6.10.3-ltsc2025-vs2026
+```
+
+The build installs any missing Qt modules into the mounted Qt cache, initializes the daemon dependencies, builds the Qt client, and deploys runtime files. The container defaults to four MSBuild and ffmpeg build jobs; override `JAMI_MSBUILD_MAX_CPU` or `JAMI_FFMPEG_MAKE_JOBS` when needed. The executable is generated at `x64\Release\Jami.exe` in the mounted checkout.
+
+To build the test targets as part of the same run, pass `-Testing` to the image entrypoint:
+
+```powershell
+docker run --rm `
+    -v ${PWD}:C:\jami-client-qt `
+    -v F:\jami-qt-cache:C:\Qt `
+    -v F:\jami-tmp:C:\jami-tmp `
+    -e JAMI_TEMP_DIR=C:\jami-tmp `
+    jami-client-qt-windows-msvc:qt-6.10.3-ltsc2025-vs2026 -Testing
+```
+
+The Dockerfile pins the Windows Server Core base tag, Qt version, Qt MSVC architecture, Windows SDK, Visual Studio Build Tools URL and workload components, CMake, WiX, WiX extensions, Chocolatey packages, and the assembler helper versions as build arguments. Override those arguments at image build time when the supported MSVC, SDK, Qt, or WiX versions change.
 
 Once the build has finished, you should then be able to use the Visual Studio Solution file in client-qt **build** folder **(Configuration = Release, Platform = x64)**
 
@@ -269,7 +305,7 @@ Once the build has finished, you should then be able to use the Visual Studio So
 - On MSVC folder (daemon\MSVC):
 
 ```sh
-    cmake -DCMAKE_CONFIGURATION_TYPES="ReleaseLib_win32" -DCMAKE_VS_PLATFORM_NAME="x64" -G "Visual Studio 17 2022" -A x64 -T '$(DefaultPlatformToolset)' ..
+    cmake -DCMAKE_CONFIGURATION_TYPES="ReleaseLib_win32" -DCMAKE_VS_PLATFORM_NAME="x64" -G "Visual Studio 18 2026" -A x64 -T '$(DefaultPlatformToolset)' ..
     python winmake.py -b daemon
 ```
 
@@ -288,7 +324,7 @@ Once the build has finished, you should then be able to use the Visual Studio So
 
 ```
     python extras\scripts\build-windows.py --init
-    python extras\scripts\build-windows.py --qt <path-to-qt-bin-folder> (e.g. C:/Qt/6.8.3/msvc2019_64)
+    python extras\scripts\build-windows.py --qt <path-to-qt-bin-folder> (e.g. C:/Qt/6.10.3/msvc2022_64)
 ```
 
 ## Building On MacOS
@@ -328,9 +364,22 @@ Built client could be find in `build/Jami`
 
 ## Packaging On Native Windows
 
-- To be able to generate a msi package, first download and install [Wixtoolset](https://wixtoolset.org/releases/).
-- In Visual Studio, download WiX Toolset Visual Studio Extension.
-- Build client-qt project first, then the JamiInstaller project, msi package should be stored in JamiInstaller\bin\Release
+- To generate an MSI package, install the .NET SDK and WiX 7:
+
+```powershell
+dotnet tool install --global wix --version 7.0.0
+wix extension add WixToolset.UI.wixext/7.0.0
+wix extension add WixToolset.Util.wixext/7.0.0
+```
+
+- Build and deploy client-qt first, then package with WiX 7:
+
+```powershell
+$env:WIX_ACCEPT_EULA = "1"
+python extras\scripts\build-windows.py --qt C:\Qt\6.10.3\msvc2022_64 --skip-build --skip-deploy pack --msi
+```
+
+- The MSI package is stored in `JamiInstaller\bin\Release\en-us`.
 
 ## Testing for Client-qt on Windows
 

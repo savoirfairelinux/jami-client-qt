@@ -489,9 +489,9 @@ public Q_SLOTS: // METHODS
         return QVector<unsigned int>(v.begin(), v.end());
     }
 
-    QString getAddrFromInterfaceName(const QString& interface)
+    QString getAddrFromInterfaceName(const QString& interfaceName)
     {
-        QString temp(libjami::getAddrFromInterfaceName(interface.toStdString()).c_str());
+        QString temp(libjami::getAddrFromInterfaceName(interfaceName.toStdString()).c_str());
         return temp;
     }
 

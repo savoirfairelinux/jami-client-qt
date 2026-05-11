@@ -1,0 +1,59 @@
+diff --git a/src/core/CMakeLists.txt b/src/core/CMakeLists.txt
+index 193f786..ed443f0 100644
+--- a/src/core/CMakeLists.txt
++++ b/src/core/CMakeLists.txt
+@@ -98,5 +98,21 @@ qwk_add_library(${PROJECT_NAME} AUTOGEN
+     SYNC_INCLUDE_OPTIONS ${_sync_include_options}
+ )
+ 
++if(WIN32 AND QT_VERSION_MAJOR EQUAL 6)
++    if(QT6_PATH)
++        set(_qt_private_include_prefix ${QT6_PATH})
++    elseif(CMAKE_PREFIX_PATH)
++        list(GET CMAKE_PREFIX_PATH 0 _qt_private_include_prefix)
++    endif()
++    if(_qt_private_include_prefix)
++        target_include_directories(${PROJECT_NAME} PRIVATE
++            ${_qt_private_include_prefix}/include/QtCore/${QT_VERSION}
++            ${_qt_private_include_prefix}/include/QtCore/${QT_VERSION}/QtCore
++            ${_qt_private_include_prefix}/include/QtGui/${QT_VERSION}
++            ${_qt_private_include_prefix}/include/QtGui/${QT_VERSION}/QtGui
++        )
++    endif()
++endif()
++
+ set(QWINDOWKIT_ENABLED_TARGETS ${QWINDOWKIT_ENABLED_TARGETS} ${PROJECT_NAME} PARENT_SCOPE)
+ set(QWINDOWKIT_ENABLED_SUBDIRECTORIES ${QWINDOWKIT_ENABLED_SUBDIRECTORIES} core PARENT_SCOPE)
+\ No newline at end of file
+diff --git a/src/quick/CMakeLists.txt b/src/quick/CMakeLists.txt
+index 830ee4f..c290750 100644
+--- a/src/quick/CMakeLists.txt
++++ b/src/quick/CMakeLists.txt
+@@ -29,5 +29,25 @@ qwk_add_library(${PROJECT_NAME} AUTOGEN
+     PREFIX QWK_QUICK
+ )
+ 
++if(WIN32 AND QT_VERSION_MAJOR EQUAL 6)
++    if(QT6_PATH)
++        set(_qt_private_include_prefix ${QT6_PATH})
++    elseif(CMAKE_PREFIX_PATH)
++        list(GET CMAKE_PREFIX_PATH 0 _qt_private_include_prefix)
++    endif()
++    if(_qt_private_include_prefix)
++        target_include_directories(${PROJECT_NAME} PRIVATE
++            ${_qt_private_include_prefix}/include/QtCore/${QT_VERSION}
++            ${_qt_private_include_prefix}/include/QtCore/${QT_VERSION}/QtCore
++            ${_qt_private_include_prefix}/include/QtGui/${QT_VERSION}
++            ${_qt_private_include_prefix}/include/QtGui/${QT_VERSION}/QtGui
++            ${_qt_private_include_prefix}/include/QtQml/${QT_VERSION}
++            ${_qt_private_include_prefix}/include/QtQml/${QT_VERSION}/QtQml
++            ${_qt_private_include_prefix}/include/QtQuick/${QT_VERSION}
++            ${_qt_private_include_prefix}/include/QtQuick/${QT_VERSION}/QtQuick
++        )
++    endif()
++endif()
++
+ set(QWINDOWKIT_ENABLED_TARGETS ${QWINDOWKIT_ENABLED_TARGETS} ${PROJECT_NAME} PARENT_SCOPE)
+-set(QWINDOWKIT_ENABLED_SUBDIRECTORIES ${QWINDOWKIT_ENABLED_SUBDIRECTORIES} quick PARENT_SCOPE)
++set(QWINDOWKIT_ENABLED_SUBDIRECTORIES ${QWINDOWKIT_ENABLED_SUBDIRECTORIES} quick PARENT_SCOPE)
+\ No newline at end of file
