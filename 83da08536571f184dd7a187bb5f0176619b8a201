@@ -22,6 +22,30 @@
       },
       "revId": "83da08536571f184dd7a187bb5f0176619b8a201",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27e07287_7710be2a",
+        "filename": "src/app/commoncomponents/CallEndedWithErrorPopup.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-11T17:27:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6602eee6_bd65c957",
+      "range": {
+        "startLine": 74,
+        "startChar": 12,
+        "endLine": 75,
+        "endChar": 19
+      },
+      "revId": "83da08536571f184dd7a187bb5f0176619b8a201",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
