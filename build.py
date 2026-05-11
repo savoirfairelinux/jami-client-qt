@@ -34,7 +34,7 @@ OSX_DISTRIBUTION_NAME = "osx"
 WIN32_DISTRIBUTION_NAME = "win32"
 
 # vs vars
-win_sdk_default = '10.0.18362.0'
+win_sdk_default = '10.0.26100.0'
 
 APT_BASED_DISTROS = [
     'debian',
@@ -385,6 +385,9 @@ def run_install(args):
 
         if args.enable_crash_reports:
             build_cmd.append('--enable-crash-reports')
+
+        if args.testing:
+            build_cmd.append('--tests')
 
         execute_script([' '.join(build_cmd)])
         return True

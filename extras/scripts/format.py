@@ -88,10 +88,13 @@ def install_hook(hooks_path, qt_path=None):
         print(f"{hooks_path} path does not exist")
         sys.exit(1)
     print(f"Installing pre-commit hook in {hooks_path}")
+    script_path = os.path.realpath(sys.argv[0]).replace('\\', '/')
+    python_path = sys.executable.replace('\\', '/')
+    qt_arg = f' --qt="{qt_path.replace(chr(92), "/")}"' if qt_path else ''
     with open(os.path.join(hooks_path, "pre-commit"),
               "w", encoding="utf-8") as file:
-        file.write(os.path.realpath(sys.argv[0])
-                   + f' --qt={qt_path}' if qt_path else '')
+        file.write('#!/bin/sh\n')
+        file.write(f'"{python_path}" "{script_path}"{qt_arg}\n')
     os.chmod(os.path.join(hooks_path, "pre-commit"), 0o755)
 
 
