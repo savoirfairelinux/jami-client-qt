@@ -181,12 +181,12 @@ $msys_packages = @("make", "gcc", "perl", "diffutils")
 # Install 7zip, unzip, wget --version 1.19.4, cmake, git --version 2.10.2, pandoc, strawberryperl, msys2
 $choco_packages = @(
     [pscustomobject]@{pkg = "wget"; ver = "1.19.4" }
-    [pscustomobject]@{pkg = "git.install"; ver = "2.10.2" }
+    [pscustomobject]@{pkg = "git.install"; ver = "" }
     [pscustomobject]@{pkg = "7zip"; ver = "" }
     [pscustomobject]@{pkg = "unzip"; ver = "" }
     [pscustomobject]@{pkg = "cmake"; ver = "" }
     [pscustomobject]@{pkg = "pandoc"; ver = "" }
-    [pscustomobject]@{pkg = "strawberryperl"; ver = "" }
+    #[pscustomobject]@{pkg = "strawberryperl"; ver = "" }
     [pscustomobject]@{pkg = "msys2"; ver = "" }
 )
 
@@ -201,7 +201,7 @@ if (!(Test-Path -Path "C:\msys64")) {
         write-host "MSYS2 64 already installed" -ForegroundColor Green
     }
     else {
-        $choco_packages.Add([pscustomobject]@{pkg = "msys2"; ver = "" })
+        $choco_packages += [pscustomobject]@{pkg = "msys2"; ver = "" }
     }
 }
 else {
