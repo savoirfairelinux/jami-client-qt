@@ -56,14 +56,8 @@ BaseModalDialog {
         case 403: // Forbidden
             errorDescription = JamiStrings.sipResponse403Description;
             break;
-        case 404: // Not Found
-            errorDescription = JamiStrings.sipResponse404Description;
-            break;
         case 407: // Proxy Authentication Required
             errorDescription = JamiStrings.sipResponse407Description;
-            break;
-        case 408: // Request Timeout
-            errorDescription = JamiStrings.sipResponse408Description;
             break;
         case 415: // Unsupported Media Type
             errorDescription = JamiStrings.sipResponse415Description;
@@ -71,19 +65,10 @@ BaseModalDialog {
             helpBoxTextValue = JamiStrings.sipResponseHowDoIChangeMyCodecs;
             showMoreTextValue = JamiStrings.sipResponseCodecsHowTo;
             break;
-        case 480: // Temporarily Unavailable
-            errorDescription = JamiStrings.sipResponse480Description;
-            break;
-        case 500: // Server Internal Error
-            errorDescription = JamiStrings.sipResponse500Description;
-            break;
-        case 503: // Service Unavailable
-            errorDescription = JamiStrings.sipResponse503Description;
-            break;
         default:
-            errorDescription = JamiStrings.sipResponseMessage;
-            break;
+            return;
         }
+
         open();
     }
 
