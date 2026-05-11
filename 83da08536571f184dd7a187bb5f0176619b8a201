@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6602eee6_bd65c957",
+        "filename": "src/app/commoncomponents/CallEndedWithErrorPopup.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-05-11T17:22:14Z",
+      "side": 1,
+      "message": "Adding an `open()` here preserves the old behavior, no? I think we can just return instead (and keep `open()` after the switch statement to avoid repeating it in each case).",
+      "range": {
+        "startLine": 74,
+        "startChar": 12,
+        "endLine": 75,
+        "endChar": 19
+      },
+      "revId": "83da08536571f184dd7a187bb5f0176619b8a201",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
