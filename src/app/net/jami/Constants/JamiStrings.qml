@@ -374,13 +374,8 @@ Item {
     property string sipResponse400Description: qsTr("The request was invalid or malformed.")
     property string sipResponse401Description: qsTr("Authentication is required to complete this call.")
     property string sipResponse403Description: qsTr("You don't have permission to make this call.")
-    property string sipResponse404Description: qsTr("The recipient could not be found.")
     property string sipResponse407Description: qsTr("Proxy authentication credentials are required.")
-    property string sipResponse408Description: qsTr("The call request timed out. Please try again.")
     property string sipResponse415Description: qsTr("Please ensure that both you and your contact have a common codec enabled.")
-    property string sipResponse480Description: qsTr("The recipient is temporarily unavailable.")
-    property string sipResponse500Description: qsTr("A server error occurred. Please try again later.")
-    property string sipResponse503Description: qsTr("The service is currently unavailable.")
     property string sipResponseHowDoIChangeMyCodecs: qsTr("How do I change my codecs?")
     property string sipResponseCodecsHowTo: qsTr("<br><b>Settings > Account > Advanced settings > Video Codecs / Audio Codecs.</b>");
 
