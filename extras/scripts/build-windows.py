@@ -29,7 +29,7 @@ mutually exclusive required arguments:
   -z, --zip         Build portable archive
 
 examples:
-1.  build.py --qt=C:/Qt/6.6.2/msvc2019_64  # Build the app using a specific Qt
+1.  build.py --qt=C:/Qt/6.10.3/msvc2022_64 # Build the app using a specific Qt
 2.  build.py --init pack --msi             # Build the app and an MSI installer
 3.  build.py --init --tests                # Build the app and run tests
     build.py pack --zip --skip-build       # Generate a 7z archive of the app
@@ -42,9 +42,12 @@ import os
 import subprocess
 import platform
 import argparse
+import json
+import hashlib
 import multiprocessing
 import shutil
 import time
+from xml.sax.saxutils import escape as xml_escape
 
 
 # Visual Studio helpers
@@ -56,6 +59,13 @@ if sys.platform == "win32":
         "Installer",
         "vswhere.exe",
     )
+WIN_SDK_VERSION = "10.0.26100.0"
+WIX_VERSION = "7.0.0"
+WIX_EULA_ID = "wix7"
+WIX_EXTENSIONS = [
+    "WixToolset.UI.wixext",
+    "WixToolset.Util.wixext",
+]
 
 # Build/project environment information
 is_jenkins = "JENKINS_URL" in os.environ
@@ -65,20 +75,104 @@ this_dir = os.path.dirname(os.path.realpath(__file__))
 repo_root_dir = os.path.abspath(os.path.join(this_dir, os.pardir, os.pardir))
 build_dir = os.path.join(repo_root_dir, "build")
 
-def get_latest_toolset_version():
-    """Get the latest toolset version."""
-    # Get the visual studio version. Use only the major version number.
-    # Then: toolset = 2022 ? "v143" : 2019 ? "v142" : 2017 ? "v141" : "v140"
-    vs_ver = get_vs_prop("installationVersion")
+VS_GENERATORS = {
+    18: "Visual Studio 18 2026",
+    17: "Visual Studio 17 2022",
+}
+VS_TOOLSETS = {
+    18: "v145",
+    17: "v143",
+}
+selected_vs_installation = None
+
+
+def get_installed_vs_instances():
+    """Return installed Visual Studio instances with C++ tools."""
+    args = [
+        "-prerelease",
+        "-products",
+        "*",
+        "-requires",
+        "Microsoft.VisualStudio.Component.VC.Tools.x86.x64",
+        "-format",
+        "json",
+    ]
+    try:
+        output = subprocess.check_output([VS_WHERE_PATH] + args).decode("utf-8")
+    except (OSError, subprocess.CalledProcessError):
+        return []
+    if not output:
+        return []
+    return json.loads(output)
+
+
+def get_vs_major_from_instance(instance):
+    """Return the Visual Studio major version for an instance."""
+    version = instance.get("installationVersion", "")
+    if not version:
+        return None
+    return int(version.split(".")[0])
+
+
+def get_supported_cmake_generators():
+    """Return the generators supported by the cmake on PATH."""
+    try:
+        output = subprocess.check_output(["cmake", "--help"], stderr=subprocess.STDOUT).decode("utf-8", errors="ignore")
+    except (OSError, subprocess.CalledProcessError):
+        return None
+    return output
+
+
+def get_selected_vs_installation():
+    """Select the newest installed Visual Studio supported by local CMake."""
+    global selected_vs_installation
+    if selected_vs_installation is not None:
+        return selected_vs_installation
+
+    instances = get_installed_vs_instances()
+    if not instances:
+        return None
+    instances = sorted(
+        instances,
+        key=lambda instance: instance.get("installationVersion", ""),
+        reverse=True,
+    )
+    cmake_generators = get_supported_cmake_generators()
+    for instance in instances:
+        major_version = get_vs_major_from_instance(instance)
+        generator = VS_GENERATORS.get(major_version)
+        if generator is None:
+            continue
+        if cmake_generators is None or generator in cmake_generators:
+            selected_vs_installation = instance
+            return selected_vs_installation
+    selected_vs_installation = instances[0]
+    return selected_vs_installation
+
+
+def get_vs_major_version():
+    """Get the installed Visual Studio major version."""
+    vs_ver = get_selected_vs_installation()
     if vs_ver is None:
         return None
-    vs_ver = int(vs_ver.split(".")[0])
-    if vs_ver == 17:
-        return "v143"
-    elif vs_ver == 16:
-        return "v142"
-    else:
-        return "v141"
+    return get_vs_major_from_instance(vs_ver)
+
+
+def get_latest_toolset_version():
+    """Get the latest toolset version."""
+    vs_ver = get_vs_major_version()
+    if vs_ver is None:
+        return None
+    return VS_TOOLSETS.get(vs_ver)
+
+
+def get_cmake_generator():
+    """Get the CMake Visual Studio generator for the installed toolchain."""
+    vs_ver = get_vs_major_version()
+    if vs_ver in VS_GENERATORS:
+        return VS_GENERATORS[vs_ver]
+    print("Unsupported Visual Studio version for CMake generation: " + str(vs_ver))
+    return None
 
 def find_latest_qt_path():
     """Find the latest Qt installation path."""
@@ -92,8 +186,13 @@ def find_latest_qt_path():
     # If there are no version numbers, return None.
     if len(qt_version_dirs) == 0:
         return None
-    # The latest version should be the last item in the list.
-    return os.path.join(qt_base_path, qt_version_dirs[0], 'msvc2019_64')
+    qt_arch_dirs = ["msvc2022_64"]
+    for qt_version_dir in qt_version_dirs:
+        for qt_arch_dir in qt_arch_dirs:
+            qt_path = os.path.join(qt_base_path, qt_version_dir, qt_arch_dir)
+            if os.path.isdir(qt_path):
+                return qt_path
+    return os.path.join(qt_base_path, qt_version_dirs[0], qt_arch_dirs[0])
 
 
 def execute_cmd(cmd, with_shell=False, env_vars=None, cmd_dir=repo_root_dir):
@@ -112,18 +211,10 @@ def execute_cmd(cmd, with_shell=False, env_vars=None, cmd_dir=repo_root_dir):
 
 def get_vs_prop(prop):
     """Get a visual studio property."""
-    args = [
-        "-latest",
-        "-products *",
-        "-requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64",
-        "-property " + prop,
-    ]
-    cmd = [VS_WHERE_PATH] + args
-    output = subprocess.check_output(" ".join(cmd)).decode("utf-8")
-    if output:
-        return output.splitlines()[0]
-    else:
+    instance = get_selected_vs_installation()
+    if instance is None:
         return None
+    return instance.get(prop)
 
 
 def find_ms_build():
@@ -227,7 +318,10 @@ def cmake_generate(options, env_vars, cmake_build_dir):
     for option in options:
         print("    " + option)
 
-    cmake_cmd = ["cmake", ".."]
+    cmake_generator = get_cmake_generator()
+    if cmake_generator is None:
+        return False
+    cmake_cmd = ["cmake", "..", "-G", cmake_generator]
     cmake_cmd.extend(options)
     if execute_cmd(cmake_cmd, False, env_vars, cmake_build_dir):
         print("CMake generation error.")
@@ -239,7 +333,11 @@ def cmake_build(config_str, env_vars, cmake_build_dir):
     """Use cmake to build the project."""
     print("Building cmake project...")
 
-    cmake_cmd = ["cmake", "--build", ".", "--config", config_str, "--", "-m"]
+    msbuild_max_cpu = os.environ.get("JAMI_MSBUILD_MAX_CPU", "")
+    msbuild_parallel_arg = "-m"
+    if msbuild_max_cpu:
+        msbuild_parallel_arg = "-m:" + msbuild_max_cpu
+    cmake_cmd = ["cmake", "--build", ".", "--config", config_str, "--", msbuild_parallel_arg]
     if execute_cmd(cmake_cmd, False, env_vars, cmake_build_dir):
         print("CMake build error.")
         return False
@@ -298,8 +396,12 @@ def deploy_runtimes(qt_dir):
 
     runtime_dir = os.path.join(repo_root_dir, "x64", "Release")
     stamp_file = os.path.join(runtime_dir, ".deploy.stamp")
-    if os.path.exists(stamp_file):
+    executable = os.path.join(runtime_dir, "Jami.exe")
+    qt_core_dll = os.path.join(runtime_dir, "Qt6Core.dll")
+    if os.path.exists(stamp_file) and os.path.exists(executable) and os.path.exists(qt_core_dll):
         return
+    if os.path.exists(stamp_file):
+        os.remove(stamp_file)
 
     daemon_dir = os.path.join(repo_root_dir, "daemon")
     ringtone_dir = os.path.join(daemon_dir, "ringtones")
@@ -346,10 +448,14 @@ def deploy_runtimes(qt_dir):
               "later.")
         sys.exit(1)
     os.environ["VCINSTALLDIR"] = os.path.join(installation_dir, "VC")
-    executable = os.path.join(runtime_dir, "Jami.exe")
-    execute_cmd([win_deploy_qt, "--verbose", "1", "--no-compiler-runtime",
-                 "--qmldir", qml_src_dir, "--release", executable],
-                False, cmd_dir=runtime_dir)
+    if execute_cmd([win_deploy_qt, "--verbose", "1", "--no-compiler-runtime",
+                    "--qmldir", qml_src_dir, "--release", executable],
+                   False, cmd_dir=runtime_dir):
+        print("windeployqt failed.")
+        sys.exit(1)
+    if not os.path.exists(qt_core_dll):
+        print("windeployqt did not deploy Qt6Core.dll.")
+        sys.exit(1)
 
     with open(stamp_file, "w", encoding="utf-8") as file:
         # Write the current time to the file.
@@ -390,21 +496,195 @@ def run_tests(config_str, qt_dir):
     sys.exit(exit_code)
 
 
+def env_get(env_vars, name):
+    """Case-insensitive environment lookup."""
+    for key, value in env_vars.items():
+        if key.upper() == name.upper():
+            return value
+    return None
+
+
+def find_vc_crt_dir(env_vars):
+    """Find the MSVC CRT redist directory for the active toolchain."""
+    for env_name in ("VC_CRT_Dir", "VC_CRT_REDIST_DIR"):
+        value = env_get(env_vars, env_name)
+        if value and os.path.isdir(value):
+            return value
+
+    redist_dir = env_get(env_vars, "VCToolsRedistDir")
+    if redist_dir:
+        arch_dir = os.path.join(redist_dir, "x64")
+        if os.path.isdir(arch_dir):
+            for name in sorted(os.listdir(arch_dir), reverse=True):
+                candidate = os.path.join(arch_dir, name)
+                if name.startswith("Microsoft.VC") and name.endswith(".CRT") and os.path.isdir(candidate):
+                    return candidate
+
+    return None
+
+
+def find_wix():
+    """Find the WiX command-line tool."""
+    wix_cmd = shutil.which("wix")
+    if wix_cmd:
+        return wix_cmd
+
+    user_profile = os.environ.get("USERPROFILE")
+    if user_profile:
+        wix_cmd = os.path.join(user_profile, ".dotnet", "tools", "wix.exe")
+        if os.path.isfile(wix_cmd):
+            return wix_cmd
+
+    return None
+
+
+def get_wix_eula_args():
+    """Return WiX 7 EULA arguments when explicitly enabled."""
+    accept = os.environ.get("WIX_ACCEPT_EULA", "").strip().lower()
+    if accept in ("1", "true", "yes", "on", WIX_EULA_ID):
+        return ["--acceptEula", WIX_EULA_ID]
+    return []
+
+
+def wix_id(prefix, value):
+    """Create a stable WiX identifier from a relative path."""
+    digest = hashlib.sha1(value.replace(os.sep, "/").encode("utf-8")).hexdigest()
+    return prefix + digest[:32]
+
+
+def write_wix_component_group(output_file, group_id, root_dir, exclude_file=None):
+    """Generate WiX component authoring for a directory tree."""
+    root_dir = os.path.abspath(root_dir)
+    files = []
+    for dirpath, dirnames, filenames in os.walk(root_dir):
+        dirnames.sort()
+        for filename in sorted(filenames):
+            path = os.path.join(dirpath, filename)
+            rel_path = os.path.relpath(path, root_dir)
+            if exclude_file and exclude_file(rel_path):
+                continue
+            files.append(rel_path)
+
+    tree = {"dirs": {}, "files": []}
+    for rel_path in files:
+        parts = rel_path.split(os.sep)
+        node = tree
+        for directory_name in parts[:-1]:
+            node = node["dirs"].setdefault(directory_name, {"dirs": {}, "files": []})
+        node["files"].append(rel_path)
+
+    component_ids = []
+    lines = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">',
+        '  <Fragment>',
+        '    <DirectoryRef Id="APPLICATIONFOLDER">',
+    ]
+
+    def emit_node(node, indent, rel_dir=""):
+        for rel_path in node["files"]:
+            source = xml_escape(os.path.join(root_dir, rel_path))
+            component_id = wix_id("cmp", group_id + ":" + rel_path)
+            file_id = wix_id("fil", group_id + ":" + rel_path)
+            component_ids.append(component_id)
+            lines.extend([
+                f'{indent}<Component Id="{component_id}" Bitness="always64">',
+                f'{indent}  <File Id="{file_id}" Source="{source}" KeyPath="yes" />',
+                f'{indent}</Component>',
+            ])
+
+        for directory_name in sorted(node["dirs"]):
+            child_rel_dir = os.path.join(rel_dir, directory_name) if rel_dir else directory_name
+            directory_id = wix_id("dir", group_id + ":" + child_rel_dir)
+            lines.append(f'{indent}<Directory Id="{directory_id}" Name="{xml_escape(directory_name)}">')
+            emit_node(node["dirs"][directory_name], indent + "  ", child_rel_dir)
+            lines.append(f'{indent}</Directory>')
+
+    emit_node(tree, "      ")
+    lines.extend([
+        '    </DirectoryRef>',
+        '  </Fragment>',
+        '  <Fragment>',
+        f'    <ComponentGroup Id="{group_id}">',
+    ])
+    for component_id in component_ids:
+        lines.append(f'      <ComponentRef Id="{component_id}" />')
+    lines.extend([
+        '    </ComponentGroup>',
+        '  </Fragment>',
+        '</Wix>',
+        '',
+    ])
+
+    with open(output_file, "w", encoding="utf-8", newline="\n") as file:
+        file.write("\n".join(lines))
+
+
 def generate_msi(version):
     """Package MSI for Windows."""
     print("Generating MSI installer...")
 
     vs_env_vars = {}
     vs_env_vars.update(get_vs_env())
-    msbuild_args = get_ms_build_args("x64", "Release")
     installer_dir = os.path.join(repo_root_dir, "JamiInstaller")
-    installer_project = os.path.join(installer_dir, "JamiInstaller.wixproj")
-    build_project(msbuild_args, installer_project, vs_env_vars)
+    release_dir = os.path.join(repo_root_dir, "x64", "Release")
+    crt_dir = find_vc_crt_dir(vs_env_vars)
+    wix_cmd = find_wix()
+
+    if not os.path.isfile(os.path.join(release_dir, "Jami.exe")):
+        print("Jami.exe was not found in " + release_dir)
+        sys.exit(1)
+    if crt_dir is None:
+        print("MSVC CRT redist directory not found.")
+        sys.exit(1)
+    if wix_cmd is None:
+        print("WiX 7 was not found. Install it with: dotnet tool install --global wix --version " + WIX_VERSION)
+        sys.exit(1)
+
+    def exclude_app_file(rel_path):
+        filename = os.path.basename(rel_path).lower()
+        return filename == "jami.exe" or filename.endswith(".pdb")
+
+    write_wix_component_group(
+        os.path.join(installer_dir, "AppComponents.wxs"),
+        "AppHeatGenerated",
+        release_dir,
+        exclude_app_file)
+    write_wix_component_group(
+        os.path.join(installer_dir, "CrtComponents.wxs"),
+        "CrtHeatGenerated",
+        crt_dir)
+
     msi_dir = os.path.join(installer_dir, "bin", "Release", "en-us")
+    os.makedirs(msi_dir, exist_ok=True)
     msi_file_file = os.path.join(
         msi_dir, "jami.release.x64.msi")
     msi_version_file = os.path.join(
         msi_dir, "jami-" + version + ".msi")
+    for output_file in (msi_file_file, msi_version_file):
+        if os.path.exists(output_file):
+            os.remove(output_file)
+
+    wix_build_cmd = [
+        wix_cmd,
+        "build",
+    ] + get_wix_eula_args()
+    for wix_extension in WIX_EXTENSIONS:
+        wix_build_cmd.extend(["-ext", wix_extension])
+    wix_build_cmd.extend([
+        "Product.wxs",
+        "AppComponents.wxs",
+        "CrtComponents.wxs",
+        "-loc", "Localization.wxl",
+        "-culture", "en-us",
+        "-arch", "x64",
+        "-intermediatefolder", os.path.join(installer_dir, "obj", "Release"),
+        "-out", msi_file_file,
+    ])
+    if execute_cmd(wix_build_cmd, False, vs_env_vars, installer_dir):
+        print("WiX build error.")
+        sys.exit(1)
+
     try:
         os.rename(msi_file_file, msi_version_file)
     except FileExistsError:

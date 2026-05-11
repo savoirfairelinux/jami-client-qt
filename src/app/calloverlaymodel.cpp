@@ -50,7 +50,12 @@ IndexRangeFilterProxyModel::setRange(int min, int max)
 {
     min_ = min;
     max_ = max;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+    beginFilterChange();
+    endFilterChange();
+#else
     invalidateFilter();
+#endif
 }
 
 PendingConferenceesListModel::PendingConferenceesListModel(LRCInstance* instance, QObject* parent)
