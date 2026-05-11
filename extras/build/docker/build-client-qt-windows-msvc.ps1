@@ -1,0 +1,142 @@
+param(
+    [string] $SourceDir = $env:JAMI_SOURCE_DIR,
+    [string] $QtDir = $env:QT_DIR,
+    [string] $SdkVersion = $env:WINDOWS_SDK_VERSION,
+    [string] $TempDir = $env:JAMI_TEMP_DIR,
+    [switch] $Testing,
+    [switch] $SkipInit
+)
+
+$ErrorActionPreference = "Stop"
+
+if ([string]::IsNullOrWhiteSpace($SourceDir)) {
+    $SourceDir = "C:\jami-client-qt"
+}
+
+if ([string]::IsNullOrWhiteSpace($QtDir)) {
+    $QtDir = "C:\Qt\6.10.3\msvc2022_64"
+}
+
+if ([string]::IsNullOrWhiteSpace($SdkVersion)) {
+    $SdkVersion = "10.0.26100.0"
+}
+
+if ([string]::IsNullOrWhiteSpace($TempDir)) {
+    $TempDir = "C:\jami-tmp"
+}
+
+if (!(Test-Path $SourceDir)) {
+    throw "Source directory '$SourceDir' does not exist. Mount the repository at this path or set JAMI_SOURCE_DIR."
+}
+
+$vsWhere = Join-Path ${env:ProgramFiles(x86)} "Microsoft Visual Studio\Installer\vswhere.exe"
+if (!(Test-Path $vsWhere)) {
+    throw "vswhere.exe was not found at '$vsWhere'."
+}
+
+$vsPath = & $vsWhere -latest -prerelease -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
+if ([string]::IsNullOrWhiteSpace($vsPath)) {
+    throw "Visual Studio Build Tools with the MSVC x64 toolchain were not found."
+}
+
+$vcVars = Join-Path $vsPath "VC\Auxiliary\Build\vcvarsall.bat"
+if (!(Test-Path $vcVars)) {
+    throw "vcvarsall.bat was not found at '$vcVars'."
+}
+
+$vcVarsArgs = @("x64")
+if (![string]::IsNullOrWhiteSpace($SdkVersion)) {
+    $vcVarsArgs += $SdkVersion
+}
+
+$cmd = Join-Path $env:SystemRoot "System32\cmd.exe"
+$vcEnvironment = & $cmd /s /c "`"$vcVars`" $($vcVarsArgs -join ' ') >nul && set"
+if ($LASTEXITCODE -ne 0) {
+    exit $LASTEXITCODE
+}
+
+foreach ($line in $vcEnvironment) {
+    if ($line -match '^([^=]+)=(.*)$') {
+        [Environment]::SetEnvironmentVariable($matches[1], $matches[2], 'Process')
+    }
+}
+
+New-Item -ItemType Directory -Force $TempDir | Out-Null
+$env:TEMP = $TempDir
+$env:TMP = $TempDir
+
+$qtModules = @()
+if (![string]::IsNullOrWhiteSpace($env:QT_MODULES)) {
+    $qtModules = @($env:QT_MODULES -split ',' | Where-Object { ![string]::IsNullOrWhiteSpace($_) })
+}
+
+$qtNeedsInstall = !(Test-Path $QtDir)
+if (!$qtNeedsInstall) {
+    $qtModuleConfigs = @{
+        qthttpserver = "lib\cmake\Qt6HttpServer\Qt6HttpServerConfig.cmake"
+        qtshadertools = "lib\cmake\Qt6ShaderTools\Qt6ShaderToolsConfig.cmake"
+        qtserialport = "lib\cmake\Qt6SerialPort\Qt6SerialPortConfig.cmake"
+    }
+
+    foreach ($qtModule in $qtModules) {
+        if ($qtModuleConfigs.ContainsKey($qtModule)) {
+            $qtModuleConfig = Join-Path $QtDir $qtModuleConfigs[$qtModule]
+            if (!(Test-Path $qtModuleConfig)) {
+                $qtNeedsInstall = $true
+                break
+            }
+        }
+    }
+}
+
+if ($qtNeedsInstall) {
+    $qtRoot = Split-Path -Parent (Split-Path -Parent $QtDir)
+    $qtVersion = if ([string]::IsNullOrWhiteSpace($env:QT_VERSION)) { Split-Path -Leaf (Split-Path -Parent $QtDir) } else { $env:QT_VERSION }
+    $qtArch = if ([string]::IsNullOrWhiteSpace($env:QT_ARCH)) { "win64_msvc2022_64" } else { $env:QT_ARCH }
+    $aqtArgs = @("-m", "aqt", "install-qt", "windows", "desktop", $qtVersion, $qtArch, "-O", $qtRoot)
+    if ($qtModules.Count -gt 0) {
+        $aqtArgs += "-m"
+        $aqtArgs += $qtModules
+    }
+
+    python @aqtArgs
+    if ($LASTEXITCODE -ne 0) {
+        exit $LASTEXITCODE
+    }
+}
+
+if ([string]::IsNullOrWhiteSpace($env:CMAKE_GENERATOR)) {
+    $env:CMAKE_GENERATOR = "Visual Studio 18 2026"
+}
+if ([string]::IsNullOrWhiteSpace($env:CMAKE_GENERATOR_PLATFORM)) {
+    $env:CMAKE_GENERATOR_PLATFORM = "x64"
+}
+$env:QT_QPA_PLATFORM = "offscreen"
+$env:QT_QUICK_BACKEND = "software"
+$env:QT_QPA_FONTDIR = Join-Path $SourceDir "resources\fonts"
+$env:MSYS2_PATH_TYPE = "inherit"
+if ([string]::IsNullOrWhiteSpace($env:JAMI_MSBUILD_MAX_CPU)) {
+    $env:JAMI_MSBUILD_MAX_CPU = "4"
+}
+if ([string]::IsNullOrWhiteSpace($env:JAMI_FFMPEG_MAKE_JOBS)) {
+    $env:JAMI_FFMPEG_MAKE_JOBS = "4"
+}
+
+git config --global --add safe.directory "*"
+
+Set-Location $SourceDir
+
+if (!$SkipInit) {
+    python .\build.py --init --qt $QtDir
+    if ($LASTEXITCODE -ne 0) {
+        exit $LASTEXITCODE
+    }
+}
+
+$buildArgs = @(".\build.py", "--install", "--qt", $QtDir, "--sdk", $SdkVersion)
+if ($Testing) {
+    $buildArgs += "--testing"
+}
+
+python @buildArgs
+exit $LASTEXITCODE
