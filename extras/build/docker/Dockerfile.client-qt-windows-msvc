@@ -169,7 +169,8 @@ RUN $sdkBase = Join-Path ${env:ProgramFiles(x86)} 'Windows Kits\10\bin'; `
     & $mtExe /? | Out-Null; `
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-RUN New-Item -ItemType Directory -Force C:\build | Out-Null
+RUN New-Item -ItemType Directory -Force C:\build | Out-Null; `
+    git config --global safe.directory '*'
 COPY extras/build/docker/build-client-qt-windows-msvc.ps1 C:\build\build-client-qt-windows-msvc.ps1
 
 WORKDIR C:\jami-client-qt

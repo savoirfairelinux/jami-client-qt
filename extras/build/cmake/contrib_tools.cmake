@@ -34,7 +34,7 @@ function(add_fetch_content)
   set(patch_cmd "")
   # If patches is not empty, start the command with "git apply"
   if(NOT "${AFCWP_PATCHES}" STREQUAL "")
-    set(patch_cmd git apply)
+    set(patch_cmd git apply --ignore-whitespace)
   endif()
   foreach(patch_file IN LISTS AFCWP_PATCHES)
     list(APPEND patch_cmd "${patch_file}")
