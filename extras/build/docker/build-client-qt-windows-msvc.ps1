@@ -65,46 +65,6 @@ New-Item -ItemType Directory -Force $TempDir | Out-Null
 $env:TEMP = $TempDir
 $env:TMP = $TempDir
 
-$qtModules = @()
-if (![string]::IsNullOrWhiteSpace($env:QT_MODULES)) {
-    $qtModules = @($env:QT_MODULES -split ',' | Where-Object { ![string]::IsNullOrWhiteSpace($_) })
-}
-
-$qtNeedsInstall = !(Test-Path $QtDir)
-if (!$qtNeedsInstall) {
-    $qtModuleConfigs = @{
-        qthttpserver = "lib\cmake\Qt6HttpServer\Qt6HttpServerConfig.cmake"
-        qtshadertools = "lib\cmake\Qt6ShaderTools\Qt6ShaderToolsConfig.cmake"
-        qtserialport = "lib\cmake\Qt6SerialPort\Qt6SerialPortConfig.cmake"
-    }
-
-    foreach ($qtModule in $qtModules) {
-        if ($qtModuleConfigs.ContainsKey($qtModule)) {
-            $qtModuleConfig = Join-Path $QtDir $qtModuleConfigs[$qtModule]
-            if (!(Test-Path $qtModuleConfig)) {
-                $qtNeedsInstall = $true
-                break
-            }
-        }
-    }
-}
-
-if ($qtNeedsInstall) {
-    $qtRoot = Split-Path -Parent (Split-Path -Parent $QtDir)
-    $qtVersion = if ([string]::IsNullOrWhiteSpace($env:QT_VERSION)) { Split-Path -Leaf (Split-Path -Parent $QtDir) } else { $env:QT_VERSION }
-    $qtArch = if ([string]::IsNullOrWhiteSpace($env:QT_ARCH)) { "win64_msvc2022_64" } else { $env:QT_ARCH }
-    $aqtArgs = @("-m", "aqt", "install-qt", "windows", "desktop", $qtVersion, $qtArch, "-O", $qtRoot)
-    if ($qtModules.Count -gt 0) {
-        $aqtArgs += "-m"
-        $aqtArgs += $qtModules
-    }
-
-    python @aqtArgs
-    if ($LASTEXITCODE -ne 0) {
-        exit $LASTEXITCODE
-    }
-}
-
 if ([string]::IsNullOrWhiteSpace($env:CMAKE_GENERATOR)) {
     $env:CMAKE_GENERATOR = "Visual Studio 18 2026"
 }
@@ -123,6 +83,14 @@ if ([string]::IsNullOrWhiteSpace($env:JAMI_FFMPEG_MAKE_JOBS)) {
 }
 
 git config --global --add safe.directory "*"
+
+# Dev mode: if pywinmake source is mounted at C:\pywinmake, install it
+# directly so the image doesn't need rebuilding during development.
+if (Test-Path C:\pywinmake) {
+    Write-Host "Dev mode: installing pywinmake from C:\pywinmake"
+    python -m pip install --no-deps -q C:\pywinmake
+    if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+}
 
 Set-Location $SourceDir
 
