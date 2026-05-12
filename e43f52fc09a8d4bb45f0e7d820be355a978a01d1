@@ -35,6 +35,42 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "50363887_08519306",
+        "filename": "src/app/exposedservicesadapter.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-12T20:27:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b02932cf_07be5c04",
+      "revId": "e43f52fc09a8d4bb45f0e7d820be355a978a01d1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55138cac_36094a87",
+        "filename": "src/app/exposedservicesadapter.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-12T20:27:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8fdc35f_fda9626b",
+      "revId": "e43f52fc09a8d4bb45f0e7d820be355a978a01d1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "10d28b95_05435612",
@@ -52,6 +88,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f09bcd94_2ea39997",
+        "filename": "src/app/mainview/components/PeerServicesButton.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-12T20:27:20Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "10d28b95_05435612",
+      "revId": "e43f52fc09a8d4bb45f0e7d820be355a978a01d1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e273d526_37e6d81b",
@@ -65,6 +119,24 @@
       "writtenOn": "2026-05-07T17:38:17Z",
       "side": 1,
       "message": "[error] Line 233: When no tunnel exists, `activateService(modelData)` starts an async tunnel open and then `openOrCopy(modelData)` is called immediately on the same click. At that point `tunnelFor()` is still `undefined`, so `openOrCopy` runs against a non-existent tunnel (shows a confirm dialog or copies an empty endpoint). `openOrCopy` should only be called once the tunnel is confirmed open.",
+      "revId": "e43f52fc09a8d4bb45f0e7d820be355a978a01d1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23337a1b_641f90ab",
+        "filename": "src/app/mainview/components/PeerServicesButton.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-12T20:27:20Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e273d526_37e6d81b",
       "revId": "e43f52fc09a8d4bb45f0e7d820be355a978a01d1",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -103,6 +175,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7d0d4f8_705e87a1",
+        "filename": "src/app/settingsview/components/ExposedServiceDelegate.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-12T20:27:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87312d86_560bf5c0",
+      "revId": "e43f52fc09a8d4bb45f0e7d820be355a978a01d1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7305ded0_5e7ec7dd",
@@ -116,6 +206,24 @@
       "writtenOn": "2026-05-07T17:38:17Z",
       "side": 1,
       "message": "[error] Line 163: `modelData.serviceType` is used to detect embedded services, but the data key is `type` (see `ExposedServiceDialog.qml` where the map key is `\"type\"`). This will always be `undefined`, so the scheme will never be forced to `\"http\"` for embedded services.",
+      "revId": "e43f52fc09a8d4bb45f0e7d820be355a978a01d1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "acf83f1e_2285b840",
+        "filename": "src/app/settingsview/components/ExposedServiceDelegate.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-12T20:27:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7305ded0_5e7ec7dd",
       "revId": "e43f52fc09a8d4bb45f0e7d820be355a978a01d1",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -137,6 +245,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eac82ab0_793eb348",
+        "filename": "src/app/settingsview/components/ExposedServiceDelegate.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-12T20:27:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f23c9f4c_36b55231",
+      "revId": "e43f52fc09a8d4bb45f0e7d820be355a978a01d1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "43aa9365_17fa0d45",
@@ -150,6 +276,24 @@
       "writtenOn": "2026-05-07T17:38:17Z",
       "side": 1,
       "message": "[error] Line 204: `root.isHovered` is not a valid QML property on `ItemDelegate`; the correct property is `root.hovered`. As written this always evaluates to `undefined` (falsy), so the hover colour is never applied.",
+      "revId": "e43f52fc09a8d4bb45f0e7d820be355a978a01d1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9967c8b1_d876c460",
+        "filename": "src/app/settingsview/components/ExposedServiceDelegate.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-12T20:27:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43aa9365_17fa0d45",
       "revId": "e43f52fc09a8d4bb45f0e7d820be355a978a01d1",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -188,6 +332,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fd90b92_e404d920",
+        "filename": "src/app/settingsview/components/ExposedServiceDialog.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-12T20:27:20Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "81d3c728_3ecd360f",
+      "revId": "e43f52fc09a8d4bb45f0e7d820be355a978a01d1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ee3031f2_3d70d6d4",
@@ -201,6 +363,24 @@
       "writtenOn": "2026-05-07T17:38:17Z",
       "side": 1,
       "message": "[warning] Line 100: `console.warn(\"MY CUSTOM SCHEME\", ...)` is a debug statement that was left in production code; remove it.",
+      "revId": "e43f52fc09a8d4bb45f0e7d820be355a978a01d1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b9d1f25_6d686f8a",
+        "filename": "src/app/settingsview/components/ExposedServiceDialog.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-12T20:27:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee3031f2_3d70d6d4",
       "revId": "e43f52fc09a8d4bb45f0e7d820be355a978a01d1",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -222,6 +402,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "83b5fc90_a6f2b6e9",
+        "filename": "src/app/settingsview/components/ExposedServiceDialog.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-12T20:27:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c965cfdd_5aec4c62",
+      "revId": "e43f52fc09a8d4bb45f0e7d820be355a978a01d1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b7542165_867d4426",
@@ -235,6 +433,24 @@
       "writtenOn": "2026-05-07T17:39:11Z",
       "side": 1,
       "message": "[warning] Line 176: The `titleText` binding returns `undefined` when `serviceType` is neither `\"embedded\"` nor `\"custom\"`. Add a final `else` branch returning a sensible fallback string.",
+      "revId": "e43f52fc09a8d4bb45f0e7d820be355a978a01d1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23be495c_a7697d67",
+        "filename": "src/app/settingsview/components/ExposedServiceDialog.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-12T20:27:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7542165_867d4426",
       "revId": "e43f52fc09a8d4bb45f0e7d820be355a978a01d1",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -256,6 +472,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2adbcda1_715112e6",
+        "filename": "src/app/settingsview/components/ExposedServiceDialog.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-12T20:27:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9de689d5_f3804992",
+      "revId": "e43f52fc09a8d4bb45f0e7d820be355a978a01d1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "47f43e13_af75931f",
@@ -269,6 +503,24 @@
       "writtenOn": "2026-05-07T17:39:11Z",
       "side": 1,
       "message": "[warning] Line 358: The `ListModel` labels (`\"Confirmed contacts\"`, `\"Anyone (public)\"`, `\"Specific contacts only\"`) are hardcoded English strings and will not be translated. Use the corresponding `JamiStrings.exposedServicePolicy*` constants.",
+      "revId": "e43f52fc09a8d4bb45f0e7d820be355a978a01d1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2cfe838_9365876c",
+        "filename": "src/app/settingsview/components/ExposedServiceDialog.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-12T20:27:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47f43e13_af75931f",
       "revId": "e43f52fc09a8d4bb45f0e7d820be355a978a01d1",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
