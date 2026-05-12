@@ -106,7 +106,7 @@ RUN $modules = ($env:QT_MODULES -split ',') | Where-Object { $_ -ne '' }; `
     python -m aqt @aqtArgs; `
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-ARG PYWINMAKE_VERSION=0.5.3
+ARG PYWINMAKE_VERSION=0.5.4
 RUN python -m pip install --no-cache-dir pywinmake==$env:PYWINMAKE_VERSION; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 RUN New-Item -ItemType Directory -Force C:\jami-tools | Out-Null; `
