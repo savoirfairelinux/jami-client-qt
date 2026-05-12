@@ -1,4 +1,4 @@
-param(
+﻿param(
     [string] $SourceDir = $env:JAMI_SOURCE_DIR,
     [string] $QtDir = $env:QT_DIR,
     [string] $SdkVersion = $env:WINDOWS_SDK_VERSION,

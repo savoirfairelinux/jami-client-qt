@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: GPL-3.0-or-later
+﻿# SPDX-License-Identifier: GPL-3.0-or-later
 # Copyright (C) 2025 Savoir-faire Linux Inc.
 #
 # Builds the Windows MSVC Docker image, skipping the build if an image with the
@@ -43,7 +43,7 @@ Write-Host "Image tag       : $imageTag"
 # Check whether an image with this tag already exists locally.
 $existing = docker images --quiet $imageTag 2>$null
 if ($existing -and !$Force) {
-    Write-Host "Image '$imageTag' already exists locally — skipping build."
+    Write-Host "Image '$imageTag' already exists locally - skipping build."
 } else {
     if ($Force) { Write-Host "Force rebuild requested." }
     Write-Host "Building Docker image..."
