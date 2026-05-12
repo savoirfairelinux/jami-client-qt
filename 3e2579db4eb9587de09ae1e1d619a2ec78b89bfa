@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2638329_b43f56d8",
+        "filename": "src/libclient/accountmodel.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 696,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-05-12T19:20:27Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "2e357594_6d99251a",
+      "revId": "3e2579db4eb9587de09ae1e1d619a2ec78b89bfa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b7282e59_04914303",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-05-08T14:25:05Z",
       "side": 1,
       "message": "[warning] Line 697: In the typical migration-during-startup flow, `slotAccountStatusChanged` will also fire the INITIALIZING→non-INITIALIZING transition shortly after, calling `initConversations()` a second time. Each call invokes `clearCache` for every swarm conversation (D-Bus builds), triggering a full interaction reload twice. Either emit `accountAdded` here and suppress the second init, or deduplicate via the same `status \u003d\u003d INITIALIZING` guard.",
+      "revId": "3e2579db4eb9587de09ae1e1d619a2ec78b89bfa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d779e233_a9534f85",
+        "filename": "src/libclient/accountmodel.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 697,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-05-12T19:20:27Z",
+      "side": 1,
+      "message": "This is not true. The value of `accountInfo.status` when `slotMigrationEnded` is called is `TRYING`, and `slotAccountStatusChanged` is subsequently called with the following values for `status`:\n`UNREGISTERED` -\u003e `TRYING` -\u003e `REGISTERED`\nThere is no second call to `initConversations()`.",
+      "parentUuid": "b7282e59_04914303",
       "revId": "3e2579db4eb9587de09ae1e1d619a2ec78b89bfa",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
