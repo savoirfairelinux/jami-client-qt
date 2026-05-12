@@ -18,6 +18,7 @@ ARG QT_ARCH=win64_msvc2022_64
 ARG QT_MODULES=qt5compat,qthttpserver,qtshadertools,qtserialport,qtpositioning,qtwebchannel,qtwebengine,qtwebsockets,qtwebview,qtmultimedia,qtnetworkauth
 ARG QT_VERSION=6.10.3
 ARG SEVENZIP_VERSION=24.9.0
+ARG JOM_VERSION=1_1_4
 ARG STRAWBERRYPERL_VERSION=5.42.2.1
 ARG UNZIP_VERSION=6.0
 ARG VISUAL_STUDIO_BUILDTOOLS_URL=https://aka.ms/vs/18/insiders/vs_buildtools.exe
@@ -42,6 +43,7 @@ ENV AQTINSTALL_VERSION=${AQTINSTALL_VERSION} `
     QT_MODULES=${QT_MODULES} `
     QT_VERSION=${QT_VERSION} `
     SEVENZIP_VERSION=${SEVENZIP_VERSION} `
+    JOM_VERSION=${JOM_VERSION} `
     UNZIP_VERSION=${UNZIP_VERSION} `
     VISUAL_STUDIO_BUILDTOOLS_URL=${VISUAL_STUDIO_BUILDTOOLS_URL} `
     VSNASM_VERSION=${VSNASM_VERSION} `
@@ -109,6 +111,15 @@ RUN $modules = ($env:QT_MODULES -split ',') | Where-Object { $_ -ne '' }; `
 ARG PYWINMAKE_VERSION=0.5.4
 RUN python -m pip install --no-cache-dir pywinmake==$env:PYWINMAKE_VERSION; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
+# Install jom - parallel make replacement for nmake, used by OpenSSL and other
+# nmake-based packages. Significantly faster than single-threaded nmake.
+RUN New-Item -ItemType Directory -Force C:\jom | Out-Null; `
+    Invoke-WebRequest -Uri "https://download.qt.io/official_releases/jom/jom_$($env:JOM_VERSION).zip" `
+        -OutFile C:\jom\jom.zip; `
+    Expand-Archive C:\jom\jom.zip -DestinationPath C:\jom; `
+    Remove-Item C:\jom\jom.zip; `
+    if (!(Test-Path C:\jom\jom.exe)) { throw 'jom.exe not found after extraction' }
+
 RUN New-Item -ItemType Directory -Force C:\jami-tools | Out-Null; `
     Invoke-WebRequest -Uri "https://github.com/ShiftMediaProject/VSNASM/releases/download/$env:VSNASM_VERSION/VSNASM.zip" -OutFile C:\jami-tools\VSNASM.zip; `
     Expand-Archive C:\jami-tools\VSNASM.zip -DestinationPath C:\jami-tools\VSNASM; `
@@ -140,7 +151,8 @@ RUN $autorebase = if (Test-Path C:\msys64\autorebase.bat) { 'C:\msys64\autorebas
 RUN choco install -y --no-progress strawberryperl --version=${STRAWBERRYPERL_VERSION}; `
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-ENV PATH="C:\wix;C:\Program Files\dotnet;C:\Program Files\CMake\bin;C:\Strawberry\perl\bin;C:\Strawberry\perl\site\bin;C:\Strawberry\c\bin;C:\Python312;C:\Python312\Scripts;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\Git\bin;C:\Program Files\7-Zip;C:\tools\msys64\usr\bin;C:\msys64\usr\bin;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\OpenSSH"
+ENV PATH="C:\jom;C:\wix;C:\Program Files\dotnet;C:\Program Files\CMake\bin;C:\Strawberry\perl\bin;C:\Strawberry\perl\site\bin;C:\Strawberry\c\bin;C:\Python312;C:\Python312\Scripts;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\Git\bin;C:\Program Files\7-Zip;C:\tools\msys64\usr\bin;C:\msys64\usr\bin;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\OpenSSH" `
+    MAKE_TOOL="jom /J 16"
 
 RUN $vcToolsDir = Get-ChildItem C:\BuildTools\VC\Tools\MSVC -Directory | Sort-Object Name -Descending | Select-Object -First 1 -ExpandProperty FullName; `
     Copy-Item (Join-Path $vcToolsDir 'nasm.exe') C:\BuildTools\VC\nasm.exe -Force; `
