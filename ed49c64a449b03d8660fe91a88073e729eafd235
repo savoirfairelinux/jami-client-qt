@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8381c9b8_cee15fa0",
+        "filename": "src/app/mainview/components/PeerServicesButton.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-12T20:27:55Z",
+      "side": 1,
+      "message": "[warning] Line 78: `openOrCopy` uses `service.scheme` directly (`service.scheme + \"://\" + localEndpoint(service)`), but `localEndpoint` builds the address from the tunnel\u0027s `localPort`. If no tunnel exists yet (race after `activateService`), `localEndpoint` returns an incomplete string. Also, for non-HTTP services with no tunnel, `setClipboardText` copies a meaningless endpoint.",
+      "revId": "ed49c64a449b03d8660fe91a88073e729eafd235",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28aa9831_75ce945a",
+        "filename": "src/app/mainview/components/PeerServicesButton.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-12T20:27:55Z",
+      "side": 1,
+      "message": "[warning] Line 85: The confirm dialog is created but there\u0027s no `dlg.open()` call. Depending on `presentDialog` implementation this may work, but if `presentDialog` doesn\u0027t auto-show, the dialog will never be visible.",
+      "revId": "ed49c64a449b03d8660fe91a88073e729eafd235",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "202882ba_48af18b8",
+        "filename": "src/app/mainview/components/PeerServicesButton.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-12T20:27:55Z",
+      "side": 1,
+      "message": "[error] Line 89: `activateService` opens the tunnel asynchronously, but `openOrCopy` is called immediately on the next line. When there\u0027s no existing tunnel, `openOrCopy` will attempt to open a URL with an undefined `localEndpoint` (tunnel hasn\u0027t been established yet). The old code handled this by auto-opening on `onTunnelOpened`; the new code removed that but doesn\u0027t wait for the tunnel either.",
+      "revId": "ed49c64a449b03d8660fe91a88073e729eafd235",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ab82e75_a13d8fec",
+        "filename": "src/app/mainview/components/PeerServicesButton.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-12T20:27:55Z",
+      "side": 1,
+      "message": "Line 165: The `contentItem` is an `IconImage` used as the ComboBox display. The ComboBox `displayText` is not set and `textRole` is not configured, so the ComboBox may render default text overlapping the icon on some platforms.",
+      "revId": "ed49c64a449b03d8660fe91a88073e729eafd235",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf9eaec0_dfdad584",
+        "filename": "src/app/settingsview/components/ExposedServiceDelegate.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-12T20:27:55Z",
+      "side": 1,
+      "message": "[warning] Line 166: `console.warn(\"THIS IS THE SERVICE TYPE\", modelData.type)` is debug logging left in production code — should be removed.",
+      "revId": "ed49c64a449b03d8660fe91a88073e729eafd235",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a5da257_9d517a2b",
+        "filename": "src/app/settingsview/components/ExposedServiceDelegate.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-12T20:27:55Z",
+      "side": 1,
+      "message": "[warning] Line 195: Directly mutating `modelData.enabled` (`modelData.enabled \u003d checked ? \"true\" : \"false\"`) may not work correctly if `modelData` comes from a JS array/model that doesn\u0027t support two-way binding. The switch visual state could desync from the actual persisted state if `updateExposedService` fails.",
+      "revId": "ed49c64a449b03d8660fe91a88073e729eafd235",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f81e894e_b65445de",
+        "filename": "src/app/settingsview/components/ExposedServiceDialog.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-12T20:27:55Z",
+      "side": 1,
+      "message": "[error] Line 68: `effectiveScheme()` returns `serviceCustomScheme.trim()`, but when `serviceSchemeSelection` is not `\"custom\"` (e.g. `\"http\"` or `\"https\"`), the saved scheme in `button2.onClicked` uses `root.effectiveScheme()` which returns the (empty) custom scheme instead of the selected standard scheme. This means HTTP/HTTPS schemes are silently lost on save for custom services.",
+      "revId": "ed49c64a449b03d8660fe91a88073e729eafd235",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f8cea66_d6ade658",
+        "filename": "src/app/settingsview/components/ExposedServiceDialog.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-12T20:27:55Z",
+      "side": 1,
+      "message": "[warning] Line 93: `canSave` checks `hasValidCustomScheme` only when `serviceSchemeSelection \u003d\u003d\u003d \"custom\"`, but `effectiveScheme()` always returns `serviceCustomScheme`. The validation and the value used on save are inconsistent.",
+      "revId": "ed49c64a449b03d8660fe91a88073e729eafd235",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
