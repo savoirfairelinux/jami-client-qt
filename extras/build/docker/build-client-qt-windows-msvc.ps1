@@ -3,6 +3,7 @@ param(
     [string] $QtDir = $env:QT_DIR,
     [string] $SdkVersion = $env:WINDOWS_SDK_VERSION,
     [string] $TempDir = $env:JAMI_TEMP_DIR,
+    [string] $DaemonCacheDir = $env:JAMI_DAEMON_CACHE_DIR,
     [switch] $Testing,
     [switch] $SkipInit
 )
@@ -94,6 +95,28 @@ if (Test-Path C:\pywinmake) {
 
 Set-Location $SourceDir
 
+# Daemon contrib cache restore.
+# The cache is keyed by the daemon submodule commit SHA so that a pre-built
+# contrib tree is reused across builds that pin the same daemon revision.
+# pywinmake reads the stamp files in contrib/build/ and skips packages that
+# are already built, so simply copying them in is enough.
+$daemonBuildDir = Join-Path $SourceDir "daemon\contrib\build"
+$daemonSha = $null
+if (![string]::IsNullOrWhiteSpace($DaemonCacheDir)) {
+    $daemonSha = (git -C (Join-Path $SourceDir "daemon") rev-parse HEAD 2>$null)
+    if ($daemonSha) {
+        $cacheEntry = Join-Path $DaemonCacheDir $daemonSha
+        if (Test-Path $cacheEntry) {
+            Write-Host "Restoring daemon contrib cache for $daemonSha ..."
+            New-Item -ItemType Directory -Force $daemonBuildDir | Out-Null
+            robocopy $cacheEntry $daemonBuildDir /E /NFL /NDL /NJH /NJS | Out-Null
+            Write-Host "Cache restored."
+        } else {
+            Write-Host "No daemon contrib cache found for $daemonSha — full build will run."
+        }
+    }
+}
+
 if (!$SkipInit) {
     python .\build.py --init --qt $QtDir
     if ($LASTEXITCODE -ne 0) {
@@ -107,4 +130,19 @@ if ($Testing) {
 }
 
 python @buildArgs
-exit $LASTEXITCODE
+$buildExitCode = $LASTEXITCODE
+
+# Daemon contrib cache save (only on success so a failed/partial build is
+# not cached and does not poison future runs).
+if ($buildExitCode -eq 0 -and
+    ![string]::IsNullOrWhiteSpace($DaemonCacheDir) -and
+    $daemonSha -and
+    (Test-Path $daemonBuildDir)) {
+    $cacheEntry = Join-Path $DaemonCacheDir $daemonSha
+    Write-Host "Saving daemon contrib cache for $daemonSha ..."
+    New-Item -ItemType Directory -Force $cacheEntry | Out-Null
+    robocopy $daemonBuildDir $cacheEntry /E /NFL /NDL /NJH /NJS | Out-Null
+    Write-Host "Cache saved."
+}
+
+exit $buildExitCode
