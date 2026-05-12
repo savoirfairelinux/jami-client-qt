@@ -366,11 +366,6 @@ def cwd(path):
 def run_install(args):
     # Platforms with special compilation scripts
     if args.distribution == WIN32_DISTRIBUTION_NAME:
-        # Build daemon if not using pywinmake
-        if not args.pywinmake:
-            with cwd('daemon/compat/msvc'):
-                execute_script([f'python winmake.py -iv -s {args.sdk} -b daemon'])
-
         # Prepare the build-windows.py script call
         build_windows = 'extras/scripts/build-windows.py'
         # Initialize build environment
@@ -764,9 +759,6 @@ def parse_args():
     ap.add_argument('--clean-contribs', nargs='+',
                     help='Clean the specified contribs (space separated) or \
                           "all" to clean all contribs before building.')
-    ap.add_argument('--pywinmake', dest='pywinmake',
-                    default=False, action='store_true',
-                    help='Build Jami for Windows using pywinmake')
     # Allow supplying extra congifure flags to the client cmake.
     ap.add_argument('--extra-cmake-flags', type=str,
                     help='Extra flags to pass to the client cmake')

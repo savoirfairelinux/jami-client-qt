@@ -359,6 +359,7 @@ def build(config_str, qt_dir, tests, build_version, enable_crash_reports, crash_
     # build with system theme support
     cmake_options = [
         "-DJAMICORE_AS_SUBDIR=ON",
+        "-DBUILD_CONTRIB=ON",
         "-DCMAKE_PREFIX_PATH=" + qt_dir,
         "-DCMAKE_MSVCIDE_RUN_PATH=" + qt_dir + "\\bin",
         "-DCMAKE_INSTALL_PREFIX=" + os.getcwd(),
