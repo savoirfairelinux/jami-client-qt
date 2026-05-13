@@ -630,6 +630,12 @@ else() # APPLE
     ${myApp_ICON}
     PROPERTIES
     MACOSX_PACKAGE_LOCATION Resources)
+  set(myApp_ASSETS_CAR
+    ${CMAKE_CURRENT_SOURCE_DIR}/resources/images/Assets.car)
+  set_source_files_properties(
+    ${myApp_ASSETS_CAR}
+    PROPERTIES
+    MACOSX_PACKAGE_LOCATION Resources)
   if(ENABLE_SPARKLE)
     message("Sparkle auto-update enabled")
     set(sparkle_dir "${PACKAGING_DIR}/update/sparkle")
@@ -950,7 +956,8 @@ elseif (NOT APPLE)
     ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
 else()
   set(resources
-    ${CMAKE_CURRENT_SOURCE_DIR}/resources/images/jami.icns)
+    ${CMAKE_CURRENT_SOURCE_DIR}/resources/images/jami.icns
+    ${CMAKE_CURRENT_SOURCE_DIR}/resources/images/Assets.car)
   set(libs ${QT_LIBS} ${SYSTEM_CONFIGURATUION} ${LIBCLIENT_NAME})
   if(ENABLE_SPARKLE)
     set(resources ${resources} ${SPARKLE_FRAMEWORK})
