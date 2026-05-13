@@ -22,6 +22,30 @@
       },
       "revId": "68bc183e78e4a124fc55248923164e2d4755fb9f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef8f9edd_fcf43d91",
+        "filename": "tests/qml/src/tst_ConversationsAdapter.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1141
+      },
+      "writtenOn": "2026-05-13T21:04:37Z",
+      "side": 1,
+      "message": "Added a TODO comment below",
+      "parentUuid": "654619f7_bca303b3",
+      "range": {
+        "startLine": 49,
+        "startChar": 12,
+        "endLine": 50,
+        "endChar": 69
+      },
+      "revId": "68bc183e78e4a124fc55248923164e2d4755fb9f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
