@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "654619f7_bca303b3",
+        "filename": "tests/qml/src/tst_ConversationsAdapter.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1035
+      },
+      "writtenOn": "2026-05-13T18:17:39Z",
+      "side": 1,
+      "message": "Ultimately, this isn\u0027t a real fix because the test should pass regardless of whether the URI is valid or not. The fact that the two cases behave differently is a sign that both should be tested, and also that there is probably a bug in the code (or else that the test itself is not written correctly).\n\nThat being said, I don\u0027t think getting to the bottom of this is a priority at the moment. My suggestion for now would be to just add a \"TODO\" comment explaining that the invalid URI case also needs to be tested, and then I\u0027d be ok with merging the patch to prevent the CI from failing just because of this in the meantime.",
+      "range": {
+        "startLine": 49,
+        "startChar": 12,
+        "endLine": 50,
+        "endChar": 69
+      },
+      "revId": "68bc183e78e4a124fc55248923164e2d4755fb9f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
