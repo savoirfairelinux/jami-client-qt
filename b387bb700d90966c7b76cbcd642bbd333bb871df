@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9133b3e_980f48e7",
+        "filename": "src/app/commoncomponents/EmojiReactions.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-13T20:58:42Z",
+      "side": 1,
+      "message": "[low] Line 31: 🟡 Suggestion: `property color borderColor: undefined` still uses an undefined initializer which likely produces a QML warning (similar to the `Body` reference that was just fixed). Consider using a valid default like `\"transparent\"` or `Qt.rgba(0,0,0,0)` if the goal is to suppress warnings.\n```suggestion\n    property color borderColor: \"transparent\"\n```",
+      "revId": "b387bb700d90966c7b76cbcd642bbd333bb871df",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5dc886f_3dae71b7",
+        "filename": "src/app/commoncomponents/EmojiReactions.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-13T20:58:42Z",
+      "side": 1,
+      "message": "[info] Line 35: 🟢 Good practice: Replacing the direct model role reference `Body` with an explicit property `msgBody` correctly decouples this component from the delegate context, eliminating the warning in test environments and improving reusability.",
+      "revId": "b387bb700d90966c7b76cbcd642bbd333bb871df",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bb5223c_38089f67",
+        "filename": "src/app/commoncomponents/ShowMoreMenu.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-13T20:58:42Z",
+      "side": 1,
+      "message": "[low] Line 92: 🟡 Suggestion: The `typeof` guard is repeated three times with the exact same expression. Consider extracting a helper function to reduce duplication and improve readability, e.g.:\n```suggestion\n    function callSetBindingsIfAvailable() {\n        if (typeof parent.setBindings \u003d\u003d\u003d \"function\") parent.setBindings();\n    }\n```\nThen call `callSetBindingsIfAvailable()` in the three locations.",
+      "revId": "b387bb700d90966c7b76cbcd642bbd333bb871df",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0360db11_b0d6dadc",
+        "filename": "src/app/commoncomponents/contextmenu/GeneralMenuItemList.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-13T20:58:42Z",
+      "side": 1,
+      "message": "[info] Line 50: 🟢 Good practice: Removing the redundant `signal clicked` is correct — `MenuItem` (inheriting `AbstractButton`) already provides a `clicked` signal, so the duplicate declaration was shadowing it and producing a warning.",
+      "revId": "b387bb700d90966c7b76cbcd642bbd333bb871df",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
