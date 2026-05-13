@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acc2c903_ad9d69e4",
+        "filename": "src/app/commoncomponents/BackgroundGradient.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-13T20:58:53Z",
+      "side": 1,
+      "message": "[low] Line 33: 🟡 Suggestion: In QML, comparing an object-type property to `undefined` may not behave as expected — a null QObject is not strictly `\u003d\u003d\u003d undefined`. Consider using `!\u003d\u003d null` or simply a truthy check (`JamiQmlUtils.mainViewRectObj ? ... : ...`) to be more idiomatic and robust against both null and undefined states.",
+      "revId": "0c9f3a0965ccfc3d4a3747f401a8a4f75b148a0e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "499d6c5d_92198721",
+        "filename": "src/app/mainview/components/CallsButton.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-13T20:58:53Z",
+      "side": 1,
+      "message": "[low] Line 92: 🟡 Suggestion: The `implicitWidth` was changed from `background.width - background.radius` (a dynamic, layout-dependent value) to the fixed `JamiTheme.iconButtonSmall`. Verify this doesn\u0027t change the visual appearance of the combo box arrow area. The old value was derived from the background item\u0027s dimensions, which may have provided a different size.",
+      "revId": "0c9f3a0965ccfc3d4a3747f401a8a4f75b148a0e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53ee25f4_2dad1f40",
+        "filename": "src/app/mainview/components/ChatView.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-13T20:58:53Z",
+      "side": 1,
+      "message": "[info] Line 398: 🟢 Good practice: Replacing `parent.visible` with the explicit `searchMessagesButton.visible` removes an ambiguous `parent` reference inside a `Shortcut` child, which could resolve to an unexpected item depending on context. This is clearer and less fragile.",
+      "revId": "0c9f3a0965ccfc3d4a3747f401a8a4f75b148a0e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be5a4f27_dd9658d6",
+        "filename": "src/app/mainview/components/SwarmDetailsPanel.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-13T20:58:53Z",
+      "side": 1,
+      "message": "[info] Line 261: 🟢 Good practice: Converting the deprecated `onIdChanged:` handler syntax to the newer `function onIdChanged()` form is the correct migration for Qt 6 / newer QML engines, which emit deprecation warnings for the old syntax.",
+      "revId": "0c9f3a0965ccfc3d4a3747f401a8a4f75b148a0e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6028be90_3ae1e7b5",
+        "filename": "tests/qml/src/tst_ChatView.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-13T20:58:53Z",
+      "side": 1,
+      "message": "[low] Line 48: 🟡 Suggestion: The `findChild` search scope was changed from `chatviewHeader` to `uut` for `detailsButton`. While this works, it loosens the search scope. If there were ever another child named \"detailsButton\" elsewhere in the tree, this could find the wrong element. This is acceptable if the button was moved out of the header or the header lookup was causing issues, but worth noting the reduced specificity.",
+      "revId": "0c9f3a0965ccfc3d4a3747f401a8a4f75b148a0e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e79c639_bd758110",
+        "filename": "tests/qml/src/tst_ChatView.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-13T20:58:53Z",
+      "side": 1,
+      "message": "[info] Line 49: 🟢 Good practice: Setting `CurrentConversation.isRequest \u003d false` before asserting `detailsButton.visible` makes the test deterministic regardless of the mock\u0027s initial state. This is a good fix for flaky/warning-prone tests.",
+      "revId": "0c9f3a0965ccfc3d4a3747f401a8a4f75b148a0e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
