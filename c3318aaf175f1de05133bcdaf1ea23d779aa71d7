@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f0c05e7_bbdded5b",
+        "filename": "tests/qml/src/tst_CallMessageDelegate.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-13T20:58:32Z",
+      "side": 1,
+      "message": "[🟡 Suggestions] Line 37: The model contains many role fields (Author, Duration, ReplyToAuthor, etc.) that are not exercised by any test in this file. While they likely suppress QML warnings about missing roles (which is the purpose of this change), a brief comment explaining why these roles are present would help future maintainers understand that they exist solely to satisfy the delegate\u0027s role bindings.",
+      "revId": "c3318aaf175f1de05133bcdaf1ea23d779aa71d7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bafb4175_9c2ca42d",
+        "filename": "tests/qml/src/tst_CallMessageDelegate.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-13T20:58:32Z",
+      "side": 1,
+      "message": "[🟡 Suggestions] Line 60: Consider adding a `waitForRendering(uut)` or `tryVerify` guard after setting `uut.currentIndex \u003d 0` to ensure the delegate is fully instantiated before accessing `uut.currentItem`. In some QML test scenarios, the delegate may not be immediately available, leading to flaky tests.\n\n```suggestion\n            uut.currentIndex \u003d 0\n            tryVerify(function() { return uut.currentItem !\u003d\u003d null })\n```",
+      "revId": "c3318aaf175f1de05133bcdaf1ea23d779aa71d7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13910889_d4b197d2",
+        "filename": "tests/qml/src/tst_CallMessageDelegate.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-13T20:58:32Z",
+      "side": 1,
+      "message": "[🟢 Good Practices] Line 68: Good fix: The second TestCase previously had a function named `test_checkOptionButtonsVisibility` which duplicated the name from the first TestCase. Renaming it to `test_checkButtonVisibilityForSwarmCall` makes both tests independently discoverable and avoids potential shadowing issues in the QML test runner.",
+      "revId": "c3318aaf175f1de05133bcdaf1ea23d779aa71d7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2503c689_e269910c",
+        "filename": "tests/qml/src/tst_CallMessageDelegate.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-13T20:58:32Z",
+      "side": 1,
+      "message": "[🟡 Suggestions] Line 75: Same suggestion here: guard against a null `currentItem` with `tryVerify` before proceeding with property assignments and child lookups.\n\n```suggestion\n            uut.currentIndex \u003d 0\n            tryVerify(function() { return uut.currentItem !\u003d\u003d null })\n```",
+      "revId": "c3318aaf175f1de05133bcdaf1ea23d779aa71d7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
