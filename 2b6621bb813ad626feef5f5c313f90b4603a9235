@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6903284d_9f6ac608",
+        "filename": "tests/qml/src/tst_DataTransferMessageDelegate.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-13T20:58:42Z",
+      "side": 1,
+      "message": "Line 62: The delegate binds `transferStatus` to a constant (`Interaction.TransferStatus.TRANSFER_FINISHED`), but the test later assigns `delegate.transferStatus \u003d ...` to change it. This works because QML allows property overwriting, but the initial binding means the property is not actually driven by the model\u0027s `TransferStatus` role. This is fine for the test\u0027s purpose (directly manipulating the delegate), but consider adding a comment clarifying that the hardcoded values in the delegate block are intentional defaults for testing, to avoid confusion with the model\u0027s `TransferStatus` field.",
+      "revId": "2b6621bb813ad626feef5f5c313f90b4603a9235",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b20ed8e3_c79ba1ae",
+        "filename": "tests/qml/src/tst_DataTransferMessageDelegate.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-13T20:58:42Z",
+      "side": 1,
+      "message": "[warning] Line 68: Using `uut.currentIndex \u003d 0` followed by `uut.currentItem` can be fragile — `currentItem` may be `null` if the delegate hasn\u0027t been created yet (e.g., the ListView hasn\u0027t completed layout). Consider adding a `tryCompare` or `waitForRendering` guard before accessing `currentItem` to avoid intermittent test failures.\n\n```suggestion\n            uut.currentIndex \u003d 0\n            waitForRendering(uut)\n            const delegate \u003d uut.currentItem\n            verify(delegate, \"delegate must be valid\")\n```",
+      "revId": "2b6621bb813ad626feef5f5c313f90b4603a9235",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29d96c88_f83ec3f4",
+        "filename": "tests/qml/src/tst_DataTransferMessageDelegate.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-13T20:58:42Z",
+      "side": 1,
+      "message": "Line 80: Minor: there is a trailing blank line at the end of the file. Not a functional issue, but most style guides prefer exactly one newline at EOF with no trailing blank lines.",
+      "revId": "2b6621bb813ad626feef5f5c313f90b4603a9235",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
