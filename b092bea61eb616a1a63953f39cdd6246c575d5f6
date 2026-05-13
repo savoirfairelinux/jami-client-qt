@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fa3e885_475ea2d2",
+        "filename": "src/app/mainview/components/MessageBar.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-13T20:58:42Z",
+      "side": 1,
+      "message": "[low] Line 47: 🟡 Suggestion: Using `typeof visibility !\u003d\u003d \"undefined\"` is a JavaScript-style guard that works in QML but is somewhat fragile. If `visibility` is expected to come from a parent `Window` or `ApplicationWindow`, a more idiomatic QML approach would be to check whether the component actually has a `Window` ancestor, e.g.:\n```suggestion\n    readonly property bool isFullScreen: Window.window ? Window.window.visibility \u003d\u003d\u003d Window.FullScreen : false\n```\nThis makes the intent clearer (we\u0027re checking if there\u0027s an enclosing window) rather than relying on `typeof` which could mask other issues like typos in the property name. However, the current fix is functionally correct for suppressing the test warning when `MessageBar` is instantiated outside a `Window`.",
+      "revId": "b092bea61eb616a1a63953f39cdd6246c575d5f6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc217d11_bb765bf2",
+        "filename": "src/app/mainview/components/RecordBox.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-13T20:58:42Z",
+      "side": 1,
+      "message": "[low] Line 51: 🟡 Suggestion: This property binds `isRTL` once at component creation time from `UtilsAdapter.isRTL`. If this is meant to suppress a test warning about an unresolved reference, it works. However, if the locale can change at runtime, this static binding won\u0027t update. Consider whether this should remain a binding (without the `property` re-declaration) or if a reactive approach is needed. Also, verify that the places in RecordBox.qml that previously referenced `UtilsAdapter.isRTL` directly now use this local `isRTL` property — otherwise this property is declared but unused.",
+      "revId": "b092bea61eb616a1a63953f39cdd6246c575d5f6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
