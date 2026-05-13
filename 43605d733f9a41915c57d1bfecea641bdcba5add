@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e455d1bd_ad71e0cf",
+        "filename": "tests/qml/src/tst_NewMaterialTextField.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-13T20:58:32Z",
+      "side": 1,
+      "message": "[low] Line 44: 🟡 Suggestion: The TestCase `name` still says \"Check maxCharacters for MaterialTextField\" but the component under test is now `NewMaterialTextField`. Consider updating to match:\n```suggestion\n            name: \"Check maxCharacters for NewMaterialTextField\"\n```",
+      "revId": "43605d733f9a41915c57d1bfecea641bdcba5add",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db128978_7fac09f5",
+        "filename": "tests/qml/src/tst_NewMaterialTextField.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-13T20:58:32Z",
+      "side": 1,
+      "message": "[medium] Line 48: 🟡 Suggestion: `test_maxCharacters_material_text_field` only verifies that `maximumLength` is set to 20 but no longer tests that text is actually truncated when input exceeds `maxCharacters`. The old test verified truncation behavior (`\"Long title more than 20 characted\"` → `\"Long title more than\"`). Consider adding a truncation assertion, either here or in a dedicated test function, to maintain that coverage.",
+      "revId": "43605d733f9a41915c57d1bfecea641bdcba5add",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aaf84872_70529f32",
+        "filename": "tests/qml/src/tst_NewMaterialTextField.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-13T20:58:32Z",
+      "side": 1,
+      "message": "[info] Line 52: 🟢 Good practice: Using `findChild(uut, \"textField\")` with the new `objectName` is the correct way to access internal children in QML tests, making the test resilient to structural changes.",
+      "revId": "43605d733f9a41915c57d1bfecea641bdcba5add",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0baf440b_19de57aa",
+        "filename": "tests/qml/src/tst_NewMaterialTextField.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-13T20:58:32Z",
+      "side": 1,
+      "message": "[low] Line 53: 🟡 Suggestion: The test assumes `textField.text` is initially empty but relies on the parent\u0027s `textFieldContent: \"\"` binding propagating before the test runs. Adding an explicit `wait()` or `tryCompare` before the initial `compare` would guard against timing issues in CI:\n```suggestion\n                tryCompare(textField, \"text\", \"\")\n```",
+      "revId": "43605d733f9a41915c57d1bfecea641bdcba5add",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
