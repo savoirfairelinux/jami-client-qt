@@ -48,6 +48,7 @@ if ($existing -and !$Force) {
     if ($Force) { Write-Host "Force rebuild requested." }
     Write-Host "Building Docker image..."
     docker build `
+        --progress=plain `
         --file $dockerfile `
         --tag  $imageTag `
         $repoRoot

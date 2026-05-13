@@ -58,9 +58,11 @@ ENV AQTINSTALL_VERSION=${AQTINSTALL_VERSION} `
     QT_QPA_PLATFORM=offscreen `
     QT_QUICK_BACKEND=software `
     WIX_ACCEPT_EULA=1 `
-    MSYS2_PATH_TYPE=inherit
+    MSYS2_PATH_TYPE=inherit `
+    PYTHONUNBUFFERED=1
 
-RUN Invoke-WebRequest -Uri $env:VISUAL_STUDIO_BUILDTOOLS_URL -OutFile C:\vs_buildtools.exe; `
+RUN Write-Host '=== [1/14] Installing Visual Studio Build Tools ===' -ForegroundColor Cyan; `
+    Invoke-WebRequest -Uri $env:VISUAL_STUDIO_BUILDTOOLS_URL -OutFile C:\vs_buildtools.exe; `
     $arguments = @( `
     '--quiet', '--wait', '--norestart', '--nocache', `
     '--installPath', 'C:\BuildTools', `
@@ -73,12 +75,14 @@ RUN Invoke-WebRequest -Uri $env:VISUAL_STUDIO_BUILDTOOLS_URL -OutFile C:\vs_buil
     if (($process.ExitCode -ne 0) -and ($process.ExitCode -ne 3010)) { exit $process.ExitCode }; `
     Remove-Item -Force C:\vs_buildtools.exe
 
-RUN $env:chocolateyVersion = $env:CHOCOLATEY_VERSION; `
+RUN Write-Host '=== [2/14] Installing Chocolatey ===' -ForegroundColor Cyan; `
+    $env:chocolateyVersion = $env:CHOCOLATEY_VERSION; `
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; `
     Invoke-Expression ((New-Object Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1')); `
     choco feature disable --name showDownloadProgress
 
-RUN choco install -y --no-progress 7zip --version=$env:SEVENZIP_VERSION; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; `
+RUN Write-Host '=== [3/14] Installing dev tools (7zip, cmake, git, python, etc.) ===' -ForegroundColor Cyan; `
+    choco install -y --no-progress 7zip --version=$env:SEVENZIP_VERSION; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; `
     choco install -y --no-progress cmake --version=$env:CMAKE_VERSION; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; `
     choco install -y --no-progress dotnet-9.0-sdk --version=$env:DOTNET_SDK_VERSION; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; `
     choco install -y --no-progress git.install --version=$env:GIT_VERSION; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; `
@@ -90,37 +94,43 @@ RUN choco install -y --no-progress 7zip --version=$env:SEVENZIP_VERSION; if ($LA
 
 ENV PATH="C:\wix;C:\Program Files\dotnet;C:\Python312;C:\Python312\Scripts;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\Git\bin;C:\Program Files\CMake\bin;C:\Program Files\7-Zip;C:\tools\msys64\usr\bin;C:\msys64\usr\bin;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\OpenSSH"
 
-RUN dotnet tool install --tool-path C:\wix wix --version $env:WIX_VERSION; `
+RUN Write-Host '=== [4/14] Installing WiX Toolset ===' -ForegroundColor Cyan; `
+    dotnet tool install --tool-path C:\wix wix --version $env:WIX_VERSION; `
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; `
     foreach ($extension in @('WixToolset.UI.wixext', 'WixToolset.Util.wixext')) { `
     & C:\wix\wix.exe extension add --acceptEula wix7 -g "$extension/$env:WIX_VERSION"; `
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE } `
     }
 
-RUN ["C:\\tools\\msys64\\usr\\bin\\bash.exe", "-lc", "pacman -S --noconfirm --needed diffutils gcc git make nasm patch perl yasm"]
+RUN ["C:\\tools\\msys64\\usr\\bin\\bash.exe", "-lc", "echo '=== [5/14] Installing MSYS2 packages ===' && pacman -S --noconfirm --needed diffutils gcc git make nasm patch perl yasm"]
 
-RUN python -m pip install --no-cache-dir --upgrade pip; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; `
+RUN Write-Host '=== [6/14] Installing pip and aqtinstall ===' -ForegroundColor Cyan; `
+    python -m pip install --no-cache-dir --upgrade pip; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; `
     python -m pip install --no-cache-dir aqtinstall==$env:AQTINSTALL_VERSION; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-RUN $modules = ($env:QT_MODULES -split ',') | Where-Object { $_ -ne '' }; `
+RUN Write-Host "=== [7/14] Installing Qt $env:QT_VERSION ===" -ForegroundColor Cyan; `
+    $modules = ($env:QT_MODULES -split ',') | Where-Object { $_ -ne '' }; `
     $aqtArgs = @('install-qt', 'windows', 'desktop', $env:QT_VERSION, $env:QT_ARCH, '-O', 'C:\Qt'); `
     if ($modules.Count -gt 0) { $aqtArgs += @('-m') + $modules }; `
     python -m aqt @aqtArgs; `
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 ARG PYWINMAKE_VERSION=0.5.5
-RUN python -m pip install --no-cache-dir pywinmake==$env:PYWINMAKE_VERSION; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+RUN Write-Host "=== [8/14] Installing pywinmake $env:PYWINMAKE_VERSION ===" -ForegroundColor Cyan; `
+    python -m pip install --no-cache-dir pywinmake==$env:PYWINMAKE_VERSION; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 # Install jom - parallel make replacement for nmake, used by OpenSSL and other
 # nmake-based packages. Significantly faster than single-threaded nmake.
-RUN New-Item -ItemType Directory -Force C:\jom | Out-Null; `
+RUN Write-Host '=== [9/14] Installing JOM ===' -ForegroundColor Cyan; `
+    New-Item -ItemType Directory -Force C:\jom | Out-Null; `
     Invoke-WebRequest -Uri "https://download.qt.io/official_releases/jom/jom_$($env:JOM_VERSION).zip" `
         -OutFile C:\jom\jom.zip; `
     Expand-Archive C:\jom\jom.zip -DestinationPath C:\jom; `
     Remove-Item C:\jom\jom.zip; `
     if (!(Test-Path C:\jom\jom.exe)) { throw 'jom.exe not found after extraction' }
 
-RUN New-Item -ItemType Directory -Force C:\jami-tools | Out-Null; `
+RUN Write-Host '=== [10/14] Installing NASM, YASM, and gas-preprocessor ===' -ForegroundColor Cyan; `
+    New-Item -ItemType Directory -Force C:\jami-tools | Out-Null; `
     Invoke-WebRequest -Uri "https://github.com/ShiftMediaProject/VSNASM/releases/download/$env:VSNASM_VERSION/VSNASM.zip" -OutFile C:\jami-tools\VSNASM.zip; `
     Expand-Archive C:\jami-tools\VSNASM.zip -DestinationPath C:\jami-tools\VSNASM; `
     Invoke-WebRequest -Uri "https://github.com/ShiftMediaProject/VSYASM/releases/download/$env:VSYASM_VERSION/VSYASM.zip" -OutFile C:\jami-tools\VSYASM.zip; `
@@ -144,21 +154,26 @@ RUN New-Item -ItemType Directory -Force C:\jami-tools | Out-Null; `
     Invoke-WebRequest -Uri "https://raw.githubusercontent.com/FFmpeg/gas-preprocessor/$env:GAS_PREPROCESSOR_REF/gas-preprocessor.pl" -OutFile "$msysBin\gas-preprocessor.pl"; `
     Remove-Item -Recurse -Force C:\jami-tools
 
-RUN $autorebase = if (Test-Path C:\msys64\autorebase.bat) { 'C:\msys64\autorebase.bat' } else { 'C:\tools\msys64\autorebase.bat' }; `
+RUN Write-Host '=== [11/14] Running MSYS2 autorebase ===' -ForegroundColor Cyan; `
+    $autorebase = if (Test-Path C:\msys64\autorebase.bat) { 'C:\msys64\autorebase.bat' } else { 'C:\tools\msys64\autorebase.bat' }; `
     & $autorebase; `
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-RUN choco install -y --no-progress strawberryperl --version=${STRAWBERRYPERL_VERSION}; `
+RUN Write-Host '=== [12/14] Installing Strawberry Perl ===' -ForegroundColor Cyan; `
+    choco install -y --no-progress strawberryperl --version=${STRAWBERRYPERL_VERSION}; `
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 ENV PATH="C:\jom;C:\wix;C:\Program Files\dotnet;C:\Program Files\CMake\bin;C:\Strawberry\perl\bin;C:\Strawberry\perl\site\bin;C:\Strawberry\c\bin;C:\Python312;C:\Python312\Scripts;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\Git\bin;C:\Program Files\7-Zip;C:\tools\msys64\usr\bin;C:\msys64\usr\bin;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\OpenSSH" `
-    MAKE_TOOL="jom /J 16"
+    MAKE_TOOL="jom /J 16" `
+    JOM_PATH="C:\jom\jom.exe"
 
-RUN $vcToolsDir = Get-ChildItem C:\BuildTools\VC\Tools\MSVC -Directory | Sort-Object Name -Descending | Select-Object -First 1 -ExpandProperty FullName; `
+RUN Write-Host '=== [13/14] Copying NASM/YASM to VC tools dir ===' -ForegroundColor Cyan; `
+    $vcToolsDir = Get-ChildItem C:\BuildTools\VC\Tools\MSVC -Directory | Sort-Object Name -Descending | Select-Object -First 1 -ExpandProperty FullName; `
     Copy-Item (Join-Path $vcToolsDir 'nasm.exe') C:\BuildTools\VC\nasm.exe -Force; `
     Copy-Item (Join-Path $vcToolsDir 'yasm.exe') C:\BuildTools\VC\yasm.exe -Force
 
-RUN $sdkBase = Join-Path ${env:ProgramFiles(x86)} 'Windows Kits\10\bin'; `
+RUN Write-Host '=== [14/14] Verifying Windows SDK tools ===' -ForegroundColor Cyan; `
+    $sdkBase = Join-Path ${env:ProgramFiles(x86)} 'Windows Kits\10\bin'; `
     $sdkBin = Join-Path $sdkBase $env:WINDOWS_SDK_VERSION; `
     $sdkHostX64Bin = Join-Path $sdkBin 'x64'; `
     $sdkHostX86Bin = Join-Path $sdkBin 'x86'; `
@@ -181,7 +196,8 @@ RUN $sdkBase = Join-Path ${env:ProgramFiles(x86)} 'Windows Kits\10\bin'; `
     & $mtExe /? | Out-Null; `
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-RUN New-Item -ItemType Directory -Force C:\build | Out-Null; `
+RUN Write-Host '=== Finalizing image ===' -ForegroundColor Cyan; `
+    New-Item -ItemType Directory -Force C:\build | Out-Null; `
     git config --global safe.directory '*'
 COPY extras/build/docker/build-client-qt-windows-msvc.ps1 C:\build\build-client-qt-windows-msvc.ps1
 
