@@ -56,6 +56,8 @@ ItemDelegate {
 
             Layout.fillWidth: true
             Layout.fillHeight: true
+            Layout.alignment: Qt.AlignVCenter
+
             spacing: 0
 
             Text {
@@ -102,6 +104,8 @@ ItemDelegate {
                 font.pointSize: JamiTheme.textFontSize
 
                 verticalAlignment: Text.AlignVCenter
+
+                visible: text.length > 0
             }
         }
     }
