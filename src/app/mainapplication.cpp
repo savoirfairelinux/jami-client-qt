@@ -227,7 +227,9 @@ MainApplication::init()
                      &MainApplication::initSystray,
                      Qt::QueuedConnection);
 
+#ifndef Q_OS_MACOS
     setWindowIcon(QIcon(":/images/jami.ico"));
+#endif
 
     Utils::removeOldVersions();
     qputenv("JAMI_LANG", settingsManager_->getLanguage().toUtf8());
