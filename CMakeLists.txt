@@ -85,6 +85,8 @@ if(WIN32)
     add_definitions(-DBETA)
   endif()
   set(JAMI_OUTPUT_DIRECTORY_RELEASE ${PROJECT_SOURCE_DIR}/x64/${CMAKE_BUILD_TYPE})
+  # Prevent windows.h from defining min/max macros that conflict with std::min/std::max
+  add_definitions(-DNOMINMAX)
 endif()
 
 if(WIN32)
@@ -114,7 +116,6 @@ if(ENABLE_CRASHPAD)
   message(STATUS "Crashpad enabled for client")
   if(WIN32)
     set(CMAKE_OBJECT_PATH_MAX 256)
-    add_definitions(-DNOMINMAX)
   endif()
   add_fetch_content(
     TARGET crashpad_cmake
