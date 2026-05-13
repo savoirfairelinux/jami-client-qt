@@ -36,21 +36,66 @@ Item {
 
         anchors.fill: parent
         anchors.margins: (typeof viewCoordinator !== "undefined" && viewCoordinator.isInSinglePaneMode) ? JamiTheme.sidePanelIslandsSinglePaneModePadding : JamiTheme.sidePanelIslandsPadding
+        anchors.topMargin: JamiTheme.qwkTitleBarHeight + JamiTheme.sidePanelIslandsPadding * 2
 
         color: JamiTheme.globalIslandColor
         radius: JamiTheme.avatarBasedRadius
+
+        Rectangle {
+            id: gradientRectTop
+
+            readonly property color baseColor: JamiTheme.globalIslandColor
+            readonly property bool shouldShow: !contactPickerListView.atYBeginning
+
+            anchors.top: innerRect.top
+            anchors.topMargin: contactPickerContactSearchBar.height + 30
+
+            width: contactPickerPopupRectColumnLayout.width
+            height: JamiTheme.smartListItemHeight
+
+            z: contactPickerListView.z + 1
+
+            gradient: Gradient {
+                orientation: Gradient.Vertical
+                GradientStop {
+                    position: 0.0
+                    color: Qt.rgba(gradientRectTop.baseColor.r, gradientRectTop.baseColor.g,
+                                   gradientRectTop.baseColor.b, 1.0)
+                }
+                GradientStop {
+                    position: 0.25
+                    color: Qt.rgba(gradientRectTop.baseColor.r, gradientRectTop.baseColor.g,
+                                   gradientRectTop.baseColor.b, 0.75)
+                }
+                GradientStop {
+                    position: 1.0
+                    color: Qt.rgba(gradientRectTop.baseColor.r, gradientRectTop.baseColor.g,
+                                   gradientRectTop.baseColor.b, 0.0)
+                }
+            }
+
+            visible: opacity > 0
+            opacity: shouldShow ? 1.0 : 0.0
+
+            Behavior on opacity {
+                NumberAnimation {
+                    duration: 200
+                    easing.type: Easing.InOutQuad
+                }
+            }
+        }
 
         ColumnLayout {
             id: contactPickerPopupRectColumnLayout
 
             anchors.fill: parent
-            anchors.margins: 15
 
             Searchbar {
                 id: contactPickerContactSearchBar
 
                 Layout.fillWidth: true
                 Layout.preferredHeight: JamiTheme.searchBarPreferredHeight
+                Layout.margins: 15
                 Layout.alignment: Qt.AlignTop
 
                 placeHolderText: JamiStrings.inviteMember
@@ -78,6 +123,67 @@ Item {
                     id: contactPickerItemDelegate
 
                     showPresenceIndicator: true
+                }
+
+                layer.enabled: true
+                layer.effect: MultiEffect {
+                    anchors.fill: root
+                    maskEnabled: true
+                    maskSource: ShaderEffectSource {
+                        sourceItem: Rectangle {
+                            width: innerRect.width
+                            height: innerRect.height
+                            bottomLeftRadius: innerRect.radius
+                            bottomRightRadius: innerRect.radius
+                        }
+                    }
+                }
+            }
+        }
+
+        Rectangle {
+            id: gradientRectBottom
+
+            readonly property color baseColor: JamiTheme.globalIslandColor
+            readonly property bool shouldShow: !contactPickerListView.atYEnd
+
+            anchors.bottom: contactPickerPopupRectColumnLayout.bottom
+            anchors.bottomMargin: -1
+
+            width: contactPickerPopupRectColumnLayout.width
+            height: JamiTheme.smartListItemHeight
+
+            bottomRightRadius: innerRect.radius
+            bottomLeftRadius: innerRect.radius
+
+            z: contactPickerListView.z + 1
+
+            gradient: Gradient {
+                orientation: Gradient.Vertical
+                GradientStop {
+                    position: 0.0
+                    color: Qt.rgba(gradientRectBottom.baseColor.r, gradientRectBottom.baseColor.g,
+                                   gradientRectBottom.baseColor.b, 0.0)
+                }
+                GradientStop {
+                    position: 0.75
+                    color: Qt.rgba(gradientRectBottom.baseColor.r, gradientRectBottom.baseColor.g,
+                                   gradientRectBottom.baseColor.b, 0.75)
+                }
+                GradientStop {
+                    position: 1.0
+                    color: Qt.rgba(gradientRectBottom.baseColor.r, gradientRectBottom.baseColor.g,
+                                   gradientRectBottom.baseColor.b, 1.0)
+                }
+            }
+
+            visible: opacity > 0
+            opacity: shouldShow ? 1.0 : 0.0
+
+            Behavior on opacity {
+                NumberAnimation {
+                    duration: 200
+                    easing.type: Easing.InOutQuad
                 }
             }
         }
