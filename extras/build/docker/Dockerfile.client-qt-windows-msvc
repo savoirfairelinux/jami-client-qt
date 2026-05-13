@@ -18,6 +18,7 @@ ARG QT_ARCH=win64_msvc2022_64
 ARG QT_MODULES=qt5compat,qthttpserver,qtshadertools,qtserialport,qtpositioning,qtwebchannel,qtwebengine,qtwebsockets,qtwebview,qtmultimedia,qtnetworkauth
 ARG QT_VERSION=6.10.3
 ARG SEVENZIP_VERSION=24.9.0
+ARG JOM_VERSION=1_1_4
 ARG STRAWBERRYPERL_VERSION=5.42.2.1
 ARG UNZIP_VERSION=6.0
 ARG VISUAL_STUDIO_BUILDTOOLS_URL=https://aka.ms/vs/18/insiders/vs_buildtools.exe
@@ -107,8 +108,7 @@ RUN $modules = ($env:QT_MODULES -split ',') | Where-Object { $_ -ne '' }; `
     python -m aqt @aqtArgs; `
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-ARG JOM_VERSION=1_1_4
-ARG PYWINMAKE_VERSION=0.5.4
+ARG PYWINMAKE_VERSION=0.5.5
 RUN python -m pip install --no-cache-dir pywinmake==$env:PYWINMAKE_VERSION; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 # Install jom - parallel make replacement for nmake, used by OpenSSL and other
