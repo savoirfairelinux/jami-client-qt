@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "811e64b9_b7926cf2",
+        "filename": "src/app/webengine/VideoPreview.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-13T20:58:48Z",
+      "side": 1,
+      "message": "[🟡 Suggestions] Line 33: Moving `objectName` assignment from a property binding into `Component.onCompleted` means the object has no name during the construction phase. If any other component queries this object by name (e.g., via `findChild`) before `onCompleted` fires, the lookup will fail silently. If the goal is to suppress a warning about binding order, consider keeping it as a property binding but placing it after the properties that depend on the parent (after `anchors.fill`):\n```suggestion\n        objectName: JamiQmlUtils.webEngineNames.videoPreview\n```\nIf the warning is specifically about evaluating `JamiQmlUtils.webEngineNames.videoPreview` before the context is ready, the `Component.onCompleted` approach is acceptable but should be documented with a comment explaining *why* deferred assignment is needed.",
+      "revId": "d8b8744721ee225cfa2559c48e8746af95ed14e0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc6a2177_d06b692c",
+        "filename": "src/app/wizardview/components/CreateAccountPage.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-13T20:58:48Z",
+      "side": 1,
+      "message": "[🟡 Suggestions] Line 148: Removing `KeyNavigation.tab` entirely (previously pointed to `infoPopup`) means Tab key navigation from this field is now unhandled and will fall back to the platform default. Verify this is intentional — if `infoPopup` was removed or replaced, this is fine; otherwise, Tab should point to the next logical focusable element (likely `joinJamiButton` to match `KeyNavigation.down`).",
+      "revId": "d8b8744721ee225cfa2559c48e8746af95ed14e0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0581cc5f_e13d236f",
+        "filename": "src/app/wizardview/components/CreateAccountPage.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-13T20:58:48Z",
+      "side": 1,
+      "message": "[🟢 Good Practices] Line 150: Changing `KeyNavigation.down` from `infoPopup` to `joinJamiButton` aligns with the removal of the `infoPopup` reference and improves navigation flow. Good fix.",
+      "revId": "d8b8744721ee225cfa2559c48e8746af95ed14e0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07cf3ca9_d9bb6ca4",
+        "filename": "src/app/wizardview/components/CreateAccountPage.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-13T20:58:48Z",
+      "side": 1,
+      "message": "[🟢 Good Practices] Line 201: Switching `Accessible.description` from `invalidLabel.text` to `usernameEdit.supportingText` is a good change — it eliminates a reference to a presumably removed/renamed element and keeps the accessible description consistent with the supporting text shown to the user.",
+      "revId": "d8b8744721ee225cfa2559c48e8746af95ed14e0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
