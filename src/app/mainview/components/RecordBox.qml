@@ -52,6 +52,7 @@ Popup {
     signal validatePhoto(string photo)
 
     modal: true
+    focus: true
     closePolicy: Popup.NoAutoClose
 
     function openRecorder(vid) {
@@ -126,7 +127,7 @@ Popup {
     }
 
     onActiveFocusChanged: {
-        if (visible) {
+        if (visible && !activeFocus) {
             closeRecorder();
         }
     }
