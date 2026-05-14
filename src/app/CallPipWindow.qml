@@ -36,7 +36,7 @@ Window {
     property string pipConvId: ""
     property string pipAccountId: ""
 
-    readonly property bool useFrameless: UtilsAdapter.getAppValue(Settings.Key.UseFramelessWindow)
+    readonly property bool useFrameless: JamiQmlUtils.isMacOS26OrLater || UtilsAdapter.getAppValue(Settings.Key.UseFramelessWindow)
     readonly property real scaleVal: Math.min(width / minimumWidth, height / minimumHeight)
     readonly property real iconButtonSize: Math.min(JamiTheme.iconButtonSmall * scaleVal, JamiTheme.iconButtonMedium)
 

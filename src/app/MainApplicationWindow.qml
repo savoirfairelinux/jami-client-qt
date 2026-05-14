@@ -37,7 +37,7 @@ Window {
     // correct visibility once geometry has been applied.
     visibility: Window.Hidden
 
-    readonly property bool useFrameless: UtilsAdapter.getAppValue(Settings.Key.UseFramelessWindow)
+    readonly property bool useFrameless: JamiQmlUtils.isMacOS26OrLater || UtilsAdapter.getAppValue(Settings.Key.UseFramelessWindow)
     property bool isRTL: UtilsAdapter.isRTL
     LayoutMirroring.enabled: isRTL
     LayoutMirroring.childrenInherit: isRTL
