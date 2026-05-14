@@ -164,16 +164,6 @@ Item {
     }
 
     Shortcut {
-        sequence: "Esc"
-        context: Qt.ApplicationShortcut
-        onActivated: {
-            MessagesAdapter.replyToId = "";
-            MessagesAdapter.editId = "";
-            layoutManager.popFullScreenItem();
-        }
-    }
-
-    Shortcut {
         sequence: "Ctrl+D"
         context: Qt.ApplicationShortcut
         onActivated: CallAdapter.endCall()
