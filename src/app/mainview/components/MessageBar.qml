@@ -233,6 +233,11 @@ Rectangle {
                                 MessagesAdapter.editId = "";
                             }
                         }
+
+                        Shortcut {
+                            sequence: "Escape"
+                            onActivated: closeContainerButton.click()
+                        }
                     }
                 }
             }
