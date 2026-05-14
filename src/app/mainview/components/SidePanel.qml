@@ -282,6 +282,8 @@ SidePanelBase {
                             height: parent.height
                             Layout.fillWidth: true
 
+                            placeHolderText: JamiStrings.searchOrAdd
+
                             Behavior on width {
                                 NumberAnimation {
                                     duration: 1000
