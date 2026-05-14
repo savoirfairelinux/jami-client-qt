@@ -130,7 +130,7 @@ Window {
             }
             ListElement {
                 shortcut: "F11"
-                description: qsTr("Full screen")
+                description: qsTr("Toggle full screen")
             }
             ListElement {
                 shortcut: "M"
