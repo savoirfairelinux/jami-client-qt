@@ -23,6 +23,7 @@ import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Helpers 1.1
+
 import "../../commoncomponents"
 
 /* Why is ComboBox not the root item?
@@ -40,14 +41,14 @@ Item {
     property bool inSettings: viewCoordinator.currentViewName === "SettingsView"
 
     readonly property real popupTopPadding: JamiQmlUtils.isMacOS26OrLater
-        ? JamiTheme.accountPopupTopPaddingMac : 0
+                                            ? JamiTheme.accountPopupTopPaddingMac : 0
 
     // Align popup left edge with side panel on macOS 26
     readonly property real popupLeftOffset: JamiQmlUtils.isMacOS26OrLater
-        ? JamiTheme.sidePanelIslandPaddingMac - (viewCoordinator.isInSinglePaneMode
-            ? JamiTheme.sidePanelIslandsSinglePaneModePadding
-            : JamiTheme.sidePanelIslandsPadding)
-        : 0
+                                            ? JamiTheme.sidePanelIslandPaddingMac - (viewCoordinator.isInSinglePaneMode
+                                                                                     ? JamiTheme.sidePanelIslandsSinglePaneModePadding
+                                                                                     : JamiTheme.sidePanelIslandsPadding)
+                                            : 0
 
     function openAccountComboBox() {
         if (accountComboBoxPopup.opened)
@@ -120,6 +121,8 @@ Item {
                     Accessible.role: Accessible.ListItem
                     Accessible.name: Alias || Username
                     Accessible.description: JamiStrings.switchToAccount
+                    Accessible.focusable: true
+                    Accessible.focused: accountComboBox.highlightedIndex === index
                 }
 
                 indicator: Item {}
@@ -305,6 +308,10 @@ Item {
                     AvatarRegistry.clearCache();
                     LRCInstance.currentAccountId = currentValue;
                 }
+
+                Accessible.role: Accessible.ComboBox
+                Accessible.name: JamiStrings.accountList
+                Accessible.description: JamiStrings.accountListDescription
             }
 
             NewIconButton {

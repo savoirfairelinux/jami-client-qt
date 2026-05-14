@@ -112,6 +112,9 @@ Item {
                                                          "imageId": root.imageId,
                                                          "newItem": root.newItem
                                                      })
+
+            Accessible.role: Accessible.Button
+            Accessible.name: JamiStrings.editProfilePicture
         }
     }
 }
