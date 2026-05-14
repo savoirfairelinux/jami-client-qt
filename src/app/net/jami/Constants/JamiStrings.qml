@@ -1021,9 +1021,10 @@ Item {
 
     // Accessibility
     property string switchToAccount: qsTr("Press enter to switch to this account")
+    property string switchedToAccount: qsTr("Switched to account %1")
     property string qrCodeExplanation: qsTr("Display your QR code to allow other users to scan it and add you as a contact")
     property string accountList: qsTr("Account list")
-    property string accountListDescription: qsTr("Use arrows to switch between available account")
+    property string accountListDescription: qsTr("Use arrows to switch between available accounts")
     property string languageComboBoxExplanation: qsTr("Select the user interface language")
     property string backButtonExplanation: qsTr("Go back to the previous page")
     property string adviceBox: qsTr("Advice Box")
@@ -1048,4 +1049,11 @@ Item {
     property string selectedDescription: qsTr("Currently selected: %1")
     property string hasBeenSelectedDescription: qsTr("%1 has been selected for %2")
     property string availableOptionDescription: qsTr("Available option for %1")
+    property string conversationList: qsTr("Conversation list")
+    property string conversationListDescription: qsTr("Use arrow keys to navigate through conversations.")
+    property string unreadMessage: qsTr("%L1 unread message.")
+    property string unreadMessages: qsTr("%L1 unread messages.")
+    property string lastMessageTimestampDescription: qsTr("Last message was %1.")
+    property string lastMessageBody: qsTr("Message body %1.")
+    property string searchOrAddDescription: qsTr("Search for a conversation or a contact.")
 }
