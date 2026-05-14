@@ -379,4 +379,47 @@ ItemDelegate {
             }
         }
     ]
+
+    Accessible.role: Accessible.ListItem
+    Accessible.name: Title
+    Accessible.description: {
+        var constructedDescription = []
+
+        if (IsCoreDialog) {
+            // 1 = Available, 2 = Online
+            if (Presence === 2 || Presence === 1) {
+                constructedDescription.push(JamiStrings.presenceStatus.arg(JamiStrings.oneToOnePresenceOnline))
+            } else {
+                constructedDescription.push(JamiStrings.presenceStatus.arg(JamiStrings.oneToOnePresenceOffline))
+            }
+        } else {
+            // 1 = Available, 2 = Online
+            if (Presence === 2 || Presence === 1) {
+                constructedDescription.push(JamiStrings.presenceStatus.arg(JamiStrings.swarmPresenceOnline))
+            } else {
+                constructedDescription.push(JamiStrings.presenceStatus.arg(JamiStrings.swarmPresenceOffline))
+            }
+        }
+
+        if (UnreadMessagesCount === 1) {
+            constructedDescription.push(JamiStrings.unreadMessage.arg(UnreadMessagesCount))
+        } else if (UnreadMessagesCount > 1) {
+            constructedDescription.push(JamiStrings.unreadMessages.arg(UnreadMessagesCount))
+        }
+
+        if (LastInteraction !== "") {
+            constructedDescription.push(JamiStrings.lastMessageTimestampDescription.arg(lastInteractionFormattedDate))
+            constructedDescription.push(JamiStrings.lastMessageBody.arg(LastInteraction))
+        }
+
+        if (showSharePositionIndicator && showSharedPositionIndicator) {
+            constructedDescription.push(JamiStrings.incomingAndOutgoingShareLocation.arg(Title))
+        } else if (showSharePositionIndicator) {
+            constructedDescription.push(JamiStrings.incomingShareLocation.arg(Title))
+        } else if (showSharedPositionIndicator) {
+            constructedDescription.push(JamiStrings.outgoingShareLocation.arg(Title))
+        }
+
+        return constructedDescription.join("\n")
+    }
 }
