@@ -291,7 +291,7 @@ Rectangle {
         anchors.right: parent.right
         anchors.top: parent.top
         anchors.margins: JamiTheme.wizardViewPageBackButtonMargins
-        anchors.topMargin: UtilsAdapter.getAppValue(Settings.Key.UseFramelessWindow) ? JamiTheme.qwkTitleBarHeight : JamiTheme.wizardViewPageBackButtonMargins
+        anchors.topMargin: appWindow.useFrameless ? JamiTheme.qwkTitleBarHeight : JamiTheme.wizardViewPageBackButtonMargins
 
         z: 1
 
