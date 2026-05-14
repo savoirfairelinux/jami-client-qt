@@ -62,6 +62,11 @@ JamiListView {
         }
     }
 
+    Accessible.role: Accessible.List
+    Accessible.name: JamiStrings.conversationList
+    Accessible.description: JamiStrings.conversationListDescription
+    Accessible.focusable: true
+
     Connections {
         target: model
 

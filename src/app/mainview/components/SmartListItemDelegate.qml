@@ -379,4 +379,24 @@ ItemDelegate {
             }
         }
     ]
+
+    Accessible.role: Accessible.ListItem
+    Accessible.name: Title
+    Accessible.description: {
+        var constructedDescription = []
+
+        if (UnreadMessagesCount === 1) {
+            constructedDescription.push(JamiStrings.unreadMessage.arg(UnreadMessagesCount))
+        } else if (UnreadMessagesCount > 1) {
+            constructedDescription.push(JamiStrings.unreadMessages.arg(UnreadMessagesCount))
+        }
+
+        if (LastInteraction !== "") {
+            constructedDescription.push(JamiStrings.lastMessageTimestampDescription.arg(lastInteractionFormattedDate))
+            constructedDescription.push(JamiStrings.lastMessageBody.arg(LastInteraction))
+        }
+
+        return constructedDescription.join("\n")
+
+    }
 }
