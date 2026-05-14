@@ -35,13 +35,10 @@ Control {
         UtilsAdapter.setAppValue(Settings.Key.Donation2025StartDate, formattedDate);
     }
 
-    MouseArea {
-        cursorShape: Qt.PointingHandCursor
-        anchors.fill: parent
-        onClicked: Qt.openUrlExternally(JamiTheme.donationUrl)
-    }
-
     padding: 10
+
+    activeFocusOnTab: true
+
     background: Rectangle {
         color: JamiTheme.donationBackgroundColor
         radius: JamiTheme.donationBannerRadius
@@ -84,6 +81,7 @@ Control {
             }
         }
     }
+
     component BannerButton: PushButton {
         id: bannerButton
         contentItem: Text {
@@ -97,5 +95,12 @@ Control {
             }
         }
         background: null
+
+        Accessible.role: Accessible.Button
+        Accessible.name: bannerButton.text
     }
+
+    Accessible.role: Accessible.StaticText
+    Accessible.description: JamiStrings.donationText
+    Accessible.focusable: true
 }
