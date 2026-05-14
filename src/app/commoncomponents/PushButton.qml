@@ -96,7 +96,7 @@ AbstractButton {
         id: toolTip
 
         parent: root
-        visible: hovered && (toolTipText.length > 0)
+        visible: (hovered || root.activeFocus) && (toolTipText.length > 0)
         delay: Qt.styleHints.mousePressAndHoldInterval
     }
 
