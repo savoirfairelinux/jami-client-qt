@@ -83,6 +83,10 @@ Rectangle {
 
             property bool dontShowFocusState: true
 
+            Accessible.name: JamiStrings.search
+            Accessible.searchEdit: true
+            Accessible.description: JamiStrings.searchOrAddDescription
+
             background.visible: false
 
             anchors.verticalCenter: parent.verticalCenter

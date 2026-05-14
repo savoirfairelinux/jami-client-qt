@@ -139,6 +139,9 @@ Item {
                 hoveredColor: JamiTheme.blockOrange
 
                 onClicked: MessagesAdapter.blockConversation()
+
+                Accessible.role: Accessible.Button
+                Accessible.name: toolTipText
             }
 
             PushButton {
@@ -161,6 +164,9 @@ Item {
                 hoveredColor: JamiTheme.declineRed
 
                 onClicked: MessagesAdapter.declineInvitation()
+
+                Accessible.role: Accessible.Button
+                Accessible.name: toolTipText
             }
 
             PushButton {
@@ -183,6 +189,9 @@ Item {
                 hoveredColor: JamiTheme.acceptGreen
 
                 onClicked: MessagesAdapter.acceptInvitation()
+
+                Accessible.role: Accessible.Button
+                Accessible.name: toolTipText
             }
         }
     }
