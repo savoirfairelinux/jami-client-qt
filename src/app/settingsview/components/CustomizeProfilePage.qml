@@ -62,6 +62,9 @@ SettingsPageBase {
 
                 imageId: LRCInstance.currentAccountId
                 avatarSize: 150
+
+                Accessible.role: Accessible.Button
+                Accessible.name: JamiStrings.chooseProfilePicture
             }
 
             NewMaterialTextField {
@@ -78,14 +81,6 @@ SettingsPageBase {
                 textFieldContent: CurrentAccount.alias
 
                 onAccepted: AccountAdapter.setCurrAccDisplayName(modifiedTextFieldContent)
-
-                onActiveFocusChanged: {
-                    if (!activeFocus) {
-                        AccountAdapter.setCurrAccDisplayName(modifiedTextFieldContent);
-                    }
-
-                    displayNameLineEdit.focus = false;
-                }
             }
         }
 
