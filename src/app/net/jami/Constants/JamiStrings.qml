@@ -1056,4 +1056,5 @@ Item {
     property string lastMessageTimestampDescription: qsTr("Last message was %1.")
     property string lastMessageBody: qsTr("Message body %1.")
     property string searchOrAddDescription: qsTr("Search for a conversation or a contact.")
+    property string chooseProfilePicture: qsTr("Choose a profile picture")
 }
