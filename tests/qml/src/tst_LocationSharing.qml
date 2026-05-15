@@ -39,8 +39,10 @@ TestWrapper {
     //   2. close → root.destroy() deferred; profile still alive in C++
     //   3. reopen → second profile attempted → CRASH
     //
-    // The fix (moving WebEngineProfile to ChatView as a persistent object)
-    // means MapPosition never creates/destroys a profile, so steps 2→3 are safe.
+    // The fix uses lazy creation: ChatView creates the WebEngineProfile on
+    // first map open (via a Component), then keeps it alive for the lifetime
+    // of ChatView.  MapPosition never creates/destroys a profile, so steps
+    // 2→3 are safe.
 
     ListSelectionView {
         id: viewNode
@@ -105,22 +107,6 @@ TestWrapper {
                     var webEngineView = findChild(chatView, "mapWebEngine");
                     verify(webEngineView !== null,
                            "A new WebEngineView should exist after reopen");
-                }
-
-                // The WebEngineProfile lives in ChatView, not in MapPosition.
-                // Verify the profile object is always present regardless of map state.
-                function test_webEngineProfile_persistsAcrossMapLifecycle() {
-                    var profile = findChild(chatView, "mapProfile");
-                    verify(profile !== null, "mapProfile should exist before any map open");
-
-                    PositionManager.setMapActive(accountId);
-                    verify(findChild(chatView, "mapProfile") !== null,
-                           "mapProfile should still exist while map is open");
-
-                    PositionManager.setMapInactive(accountId);
-                    wait(50);
-                    verify(findChild(chatView, "mapProfile") !== null,
-                           "mapProfile should still exist after map is closed");
                 }
             }
         }

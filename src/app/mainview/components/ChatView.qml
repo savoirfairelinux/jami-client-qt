@@ -53,13 +53,18 @@ Item {
     // the main window.
     property var convContext: CurrentConversation
 
-    // Persistent WebEngineProfile for the map view. Lives for the lifetime of
-    // ChatView so it is never recreated when the map is opened/closed.
-    WebEngineProfile {
-        id: mapProfile
-        objectName: "mapProfile"
-        httpUserAgent: "JamiDesktop/" + UtilsAdapter.getVersionStr()
-        storageName: "JamiMap"
+    // Persistent WebEngineProfile for the map view. Created lazily on first
+    // map open so that the profile is not instantiated until needed. Once
+    // created, it lives for the lifetime of ChatView so it is never recreated
+    // when the map is opened/closed.
+    property WebEngineProfile mapProfile: null
+    Component {
+        id: mapProfileComponent
+        WebEngineProfile {
+            objectName: "mapProfile"
+            httpUserAgent: "JamiDesktop/" + UtilsAdapter.getVersionStr()
+            storageName: "JamiMap"
+        }
     }
 
     // The purpose of this alias is to make the message bar
@@ -111,6 +116,8 @@ Item {
 
     function instanceMapObject() {
         if (WITH_WEBENGINE) {
+            if (!mapProfile)
+                mapProfile = mapProfileComponent.createObject(root);
             var component = Qt.createComponent("qrc:/webengine/map/MapPosition.qml");
             var sprite = component.createObject(root, {
                                                     "maxWidth": root.width,
