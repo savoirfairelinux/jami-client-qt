@@ -60,6 +60,7 @@ ColumnLayout {
     property string trailingIconSource: ""
     property string trailingIconToolTipText: ""
     property bool trailingIconChecked: false
+    property string trailingIconAccessibleDescription: ""
     signal trailingIconClicked()
 
     // Tooltip properties
@@ -244,6 +245,9 @@ ColumnLayout {
                     delay: Qt.styleHints.mousePressAndHoldInterval
                 }
 
+                Accessible.role: Accessible.Button
+                Accessible.name: root.trailingIconToolTipText
+                Accessible.description: root.trailingIconAccessibleDescription
             }
         }
 

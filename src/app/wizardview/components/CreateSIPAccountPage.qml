@@ -100,10 +100,6 @@ Rectangle {
                     placeholderText: JamiStrings.server
 
                     onAccepted: sipUsernameEdit.forceActiveFocus()
-
-                    KeyNavigation.down: sipUsernameEdit
-                    KeyNavigation.tab: KeyNavigation.down
-                    KeyNavigation.up: backButton
                 }
 
                 NewMaterialTextField {
@@ -118,17 +114,11 @@ Rectangle {
                     placeholderText: JamiStrings.username
 
                     onAccepted: sipPasswordEdit.forceActiveFocus()
-
-                    KeyNavigation.down: sipPasswordEdit
-                    KeyNavigation.tab: KeyNavigation.down
-                    KeyNavigation.up: sipServernameEdit
                 }
 
                 PasswordTextEdit {
                     id: sipPasswordEdit
-                    KeyNavigation.down: tlsRadioButton
-                    KeyNavigation.tab: KeyNavigation.down
-                    KeyNavigation.up: sipUsernameEdit
+
                     Layout.alignment: Qt.AlignCenter
                     Layout.maximumWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
                     Layout.topMargin: JamiTheme.wizardViewMarginSize
@@ -151,10 +141,6 @@ Rectangle {
                         id: tlsRadioButton
                         ButtonGroup.group: optionsB
 
-                        KeyNavigation.down: udpRadioButton
-                        KeyNavigation.tab: KeyNavigation.down
-                        KeyNavigation.up: sipPasswordEdit
-
                         checked: true
 
                         height: 40
@@ -164,10 +150,6 @@ Rectangle {
                     MaterialRadioButton {
                         id: udpRadioButton
                         ButtonGroup.group: optionsB
-
-                        KeyNavigation.down: createAccountButton
-                        KeyNavigation.tab: KeyNavigation.down
-                        KeyNavigation.up: tlsRadioButton
 
                         height: 40
                         text: JamiStrings.udp
@@ -186,10 +168,6 @@ Rectangle {
 
                     filledButton: true
                     text: JamiStrings.addSip
-
-                    KeyNavigation.down: personalizeAccount
-                    KeyNavigation.tab: KeyNavigation.down
-                    KeyNavigation.up: udpRadioButton
 
                     onClicked: {
                         WizardViewStepModel.accountCreationInfo = JamiQmlUtils.setUpAccountCreationInputPara({
@@ -214,10 +192,6 @@ Rectangle {
 
                     textButton: true
                     text: JamiStrings.personalizeAccount
-
-                    KeyNavigation.down: backButton
-                    KeyNavigation.tab: KeyNavigation.down
-                    KeyNavigation.up: createAccountButton
 
                     onClicked: createAccountStack.currentIndex += 1
                 }
@@ -256,10 +230,6 @@ Rectangle {
 
                     newItem: true
                     imageId: visible ? "temp" : ""
-
-                    KeyNavigation.up: backButton
-                    KeyNavigation.down: displayNameLineEdit
-                    KeyNavigation.tab: KeyNavigation.down
                 }
 
                 NewMaterialTextField {
@@ -271,10 +241,6 @@ Rectangle {
 
                     leadingIconSource: JamiResources.round_edit_24dp_svg
                     placeholderText: JamiStrings.enterNickname
-
-                    KeyNavigation.up: currentAccountAvatar
-                    KeyNavigation.down: backButton
-                    KeyNavigation.tab: KeyNavigation.down
                 }
                 Text {
                     Layout.alignment: Qt.AlignCenter
@@ -305,12 +271,6 @@ Rectangle {
         iconSize: JamiTheme.iconButtonMedium
         iconSource: JamiResources.bidirectional_arrow_back_24dp_svg
         toolTipText: JamiStrings.back
-
-        KeyNavigation.up: createAccountStack.currentIndex !== 0 ? displayNameLineEdit :
-                                                                  personalizeAccount
-        KeyNavigation.down: createAccountStack.currentIndex !== 0 ? currentAccountAvatar :
-                                                                    sipServernameEdit
-        KeyNavigation.tab: KeyNavigation.down
 
         onClicked: {
             if (createAccountStack.currentIndex !== 0) {
