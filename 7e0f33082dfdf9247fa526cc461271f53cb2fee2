@@ -1,0 +1,191 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ff7daf9_97649269",
+        "filename": "src/app/commoncomponents/PushButton.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-15T21:02:53Z",
+      "side": 1,
+      "message": "[🟢 Good Practices] Line 99: 🟢 Good change — showing the tooltip on keyboard focus (`activeFocus`) in addition to hover is an important accessibility improvement that helps keyboard-only users discover button purposes.",
+      "revId": "7e0f33082dfdf9247fa526cc461271f53cb2fee2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "124dd680_cd78c8d1",
+        "filename": "src/app/mainview/components/DonationBanner.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-15T21:02:53Z",
+      "side": 1,
+      "message": "[🟡 Suggestions] Line 109: Using `Accessible.role: Accessible.StaticText` on a `Control` that contains clickable `MouseArea` and buttons is semantically misleading. Since the whole banner is clickable (line 41), consider `Accessible.Button` or `Accessible.Grouping` with an `Accessible.name` so screen readers convey the interactive nature.",
+      "revId": "7e0f33082dfdf9247fa526cc461271f53cb2fee2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a60f92f8_cbf1d0e3",
+        "filename": "src/app/mainview/components/InvitationView.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-15T21:02:53Z",
+      "side": 1,
+      "message": "[🟡 Suggestions] Line 141: Setting `Accessible.name: toolTipText` on the block, decline, and accept buttons is good. However, `PushButton` likely already exposes an `Accessible.name` from its base `AbstractButton`. Verify there is no conflict or double-announcement by the screen reader. If `PushButton` already sets `Accessible.name` internally, these overrides are fine; otherwise the tooltip text binding could be empty if no tooltip is set.",
+      "revId": "7e0f33082dfdf9247fa526cc461271f53cb2fee2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d196570_9bdbbd6f",
+        "filename": "src/app/mainview/components/Searchbar.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-15T21:02:53Z",
+      "side": 1,
+      "message": "[🟢 Good Practices] Line 84: 🟢 Good use of `Accessible.searchEdit: true` — this correctly marks the field with the search role semantic, which helps screen readers announce its purpose.",
+      "revId": "7e0f33082dfdf9247fa526cc461271f53cb2fee2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76b4dde3_8c3ecc26",
+        "filename": "src/app/mainview/components/SmartListItemDelegate.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-15T21:02:53Z",
+      "side": 1,
+      "message": "[🟢 Good Practices] Line 382: 🟢 The rich accessible description for conversation list items — including presence, unread count, last message, and location sharing — is excellent for screen reader users. Well thought out.",
+      "revId": "7e0f33082dfdf9247fa526cc461271f53cb2fee2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "475e3401_5801d942",
+        "filename": "src/app/mainview/components/SmartListItemDelegate.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-15T21:02:53Z",
+      "side": 1,
+      "message": "[🟡 Suggestions] Line 388: The magic numbers `1` and `2` for `Presence` are used without documentation. A brief comment explaining these values (e.g., `// 1 \u003d Online, 2 \u003d Available`) would improve readability, or ideally reference named constants if they exist in the codebase.",
+      "revId": "7e0f33082dfdf9247fa526cc461271f53cb2fee2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce238bdd_53c771ec",
+        "filename": "src/app/mainview/components/SmartListItemDelegate.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-15T21:02:53Z",
+      "side": 1,
+      "message": "[🟡 Suggestions] Line 390: The presence logic is duplicated between the `IsCoreDialog` and non-`IsCoreDialog` branches — only the online/offline label strings differ. Consider extracting the presence check into a helper or ternary to reduce duplication:\n```suggestion\n        var onlineStr \u003d IsCoreDialog ? JamiStrings.oneToOnePresenceOnline : JamiStrings.swarmPresenceOnline\n        var offlineStr \u003d IsCoreDialog ? JamiStrings.oneToOnePresenceOffline : JamiStrings.swarmPresenceOffline\n        if (Presence \u003d\u003d\u003d 2 || Presence \u003d\u003d\u003d 1) {\n            constructedDescription.push(JamiStrings.presenceStatus.arg(onlineStr))\n        } else {\n            constructedDescription.push(JamiStrings.presenceStatus.arg(offlineStr))\n        }\n```",
+      "revId": "7e0f33082dfdf9247fa526cc461271f53cb2fee2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f1b6b90_d84818df",
+        "filename": "src/app/mainview/components/SmartListItemDelegate.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-15T21:02:53Z",
+      "side": 1,
+      "message": "[🔴 Critical Issues] Line 419: References the misspelled property `incomingAndOutgoignShareLocation`. Must be updated if the property name is corrected in JamiStrings.qml.",
+      "revId": "7e0f33082dfdf9247fa526cc461271f53cb2fee2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91d74274_d41af2d9",
+        "filename": "src/app/mainview/components/SmartListItemDelegate.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-15T21:02:53Z",
+      "side": 1,
+      "message": "[🟡 Suggestions] Line 425: There is an extra blank line before `return constructedDescription.join(\"\\n\")`. Minor nit — consider removing it for consistency.",
+      "revId": "7e0f33082dfdf9247fa526cc461271f53cb2fee2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a8480d4_1932ac30",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 1022,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-15T21:02:53Z",
+      "side": 1,
+      "message": "[🟡 Suggestions] Line 1022: The string `switchedToAccount` is declared but never referenced in any of the changed files. If it\u0027s unused elsewhere, it\u0027s dead code. If it is used in a future or parallel patch, consider adding it in that patch instead.",
+      "revId": "7e0f33082dfdf9247fa526cc461271f53cb2fee2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4264082b_89afbb5f",
+        "filename": "src/app/net/jami/Constants/JamiStrings.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 1063,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-15T21:02:53Z",
+      "side": 1,
+      "message": "[🔴 Critical Issues] Line 1063: Typo: `incomingAndOutgoignShareLocation` should be `incomingAndOutgoingShareLocation`. This property name has a misspelling of \u0027outgoing\u0027.",
+      "revId": "7e0f33082dfdf9247fa526cc461271f53cb2fee2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
