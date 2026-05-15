@@ -39,8 +39,10 @@ TestWrapper {
     //   2. close → root.destroy() deferred; profile still alive in C++
     //   3. reopen → second profile attempted → CRASH
     //
-    // The fix (moving WebEngineProfile to ChatView as a persistent object)
-    // means MapPosition never creates/destroys a profile, so steps 2→3 are safe.
+    // The fix uses lazy creation: ChatView creates the WebEngineProfile on
+    // first map open (via a Component), then keeps it alive for the lifetime
+    // of ChatView.  MapPosition never creates/destroys a profile, so steps
+    // 2→3 are safe.
 
     ListSelectionView {
         id: viewNode
@@ -70,6 +72,12 @@ TestWrapper {
                     // Give the event loop a chance to process deferred deletes
                     // before the next test starts.
                     wait(50);
+                    // Reset the map profile so each test starts with a clean state.
+                    if (chatView.mapProfile !== null) {
+                        chatView.mapProfile.destroy();
+                        chatView.mapProfile = null;
+                        wait(50);
+                    }
                 }
 
                 // Opening the map must create a MapPosition containing a WebEngineView.
@@ -107,20 +115,38 @@ TestWrapper {
                            "A new WebEngineView should exist after reopen");
                 }
 
-                // The WebEngineProfile lives in ChatView, not in MapPosition.
-                // Verify the profile object is always present regardless of map state.
-                function test_webEngineProfile_persistsAcrossMapLifecycle() {
-                    var profile = findChild(chatView, "mapProfile");
-                    verify(profile !== null, "mapProfile should exist before any map open");
+                // The WebEngineProfile must be lazily created on first map
+                // open (not at ChatView construction time) and then persist
+                // across map close/reopen cycles within the same ChatView
+                // lifetime – avoiding the "Single mode supports only single
+                // profile" fatal assertion.
+                function test_webEngineProfile_lazyCreationAndPersistence() {
+                    // The profile property starts null (lazy – not eagerly created).
+                    compare(chatView.mapProfile, null,
+                            "mapProfile must be null before any map open (lazy creation)");
 
+                    // First map open triggers lazy instantiation.
                     PositionManager.setMapActive(accountId);
-                    verify(findChild(chatView, "mapProfile") !== null,
-                           "mapProfile should still exist while map is open");
+                    var profile = findChild(chatView, "mapProfile");
+                    verify(profile !== null,
+                           "mapProfile should be created on first map open");
+                    verify(chatView.mapProfile !== null,
+                           "chatView.mapProfile property should be set after first map open");
 
+                    // Closing the map must NOT destroy the profile.
                     PositionManager.setMapInactive(accountId);
                     wait(50);
+                    verify(chatView.mapProfile !== null,
+                           "mapProfile must persist after map close");
                     verify(findChild(chatView, "mapProfile") !== null,
-                           "mapProfile should still exist after map is closed");
+                           "mapProfile child must still be findable after map close");
+
+                    // Reopening must reuse the same profile instance (no second
+                    // profile – that would trigger the Chromium fatal assertion).
+                    var savedProfile = chatView.mapProfile;
+                    PositionManager.setMapActive(accountId);
+                    compare(chatView.mapProfile, savedProfile,
+                            "mapProfile must be the same instance after reopen (no recreation)");
                 }
             }
         }
