@@ -58,11 +58,7 @@ Rectangle {
     }
     Accessible.role: Accessible.Pane
     Accessible.name: introduction.text
-    Accessible.description: JamiStrings.description
-
-    KeyNavigation.tab: newAccountButton
-    KeyNavigation.up: newAccountButton
-    KeyNavigation.down: KeyNavigation.tab
+    Accessible.description: description.text
 
     onWidthChanged: root.buttonSize = Math.min(JamiTheme.wizardButtonWidth, root.width
                                                - JamiTheme.preferredMarginSize * 2)
@@ -77,9 +73,6 @@ Rectangle {
         width: 800
 
         Item {
-            Accessible.name: introduction.text
-            Accessible.description: JamiStrings.description
-
             Layout.alignment: Qt.AlignCenter | Qt.AlignTop
             Layout.preferredWidth: JamiTheme.welcomeLogoWidth
             Layout.preferredHeight: JamiTheme.welcomeLogoHeight
@@ -94,6 +87,9 @@ Rectangle {
                 anchors.fill: parent
                 anchors.margins: 2
                 sourceComponent: WITH_WEBENGINE ? avMediaComp : basicPlayer
+
+                // We don't need the screen reader to focus on the video player
+                activeFocusOnTab: false
 
                 Component {
                     id: avMediaComp
@@ -185,12 +181,6 @@ Rectangle {
             text: JamiStrings.joinJami
             toolTipText: JamiStrings.createNewJamiAccount
 
-            KeyNavigation.tab: alreadyHaveAccount
-            KeyNavigation.up: backButton.visible ? backButton : (showAdvancedButton.showAdvanced
-                                                                 ? newSIPAccountButton :
-                                                                   showAdvancedButton)
-            KeyNavigation.down: KeyNavigation.tab
-
             onClicked: WizardViewStepModel.startAccountCreationFlow(
                            WizardViewStepModel.AccountCreationOption.CreateJamiAccount)
         }
@@ -206,11 +196,6 @@ Rectangle {
             filledButton: true
             text: JamiStrings.alreadyHaveAccount
             toolTipText: JamiStrings.useExistingAccount
-
-            KeyNavigation.tab: showAlreadyHave ? fromDeviceButton : showAdvancedButton
-
-            KeyNavigation.up: newAccountButton
-            KeyNavigation.down: KeyNavigation.tab
 
             onClicked: {
                 showAlreadyHave = !showAlreadyHave;
@@ -239,10 +224,6 @@ Rectangle {
 
             visible: false
 
-            KeyNavigation.tab: fromBackupButton
-            KeyNavigation.up: alreadyHaveAccount
-            KeyNavigation.down: KeyNavigation.tab
-
             onClicked: WizardViewStepModel.startAccountCreationFlow(
                            WizardViewStepModel.AccountCreationOption.ImportFromDevice)
         }
@@ -263,10 +244,6 @@ Rectangle {
 
             visible: false
 
-            KeyNavigation.tab: showAdvancedButton
-            KeyNavigation.up: fromDeviceButton
-            KeyNavigation.down: KeyNavigation.tab
-
             onClicked: WizardViewStepModel.startAccountCreationFlow(
                            WizardViewStepModel.AccountCreationOption.ImportFromBackup)
         }
@@ -286,10 +263,6 @@ Rectangle {
             text: JamiStrings.advancedFeatures
             toolTipText: showAdvanced ? JamiStrings.hideAdvancedFeatures :
                                         JamiStrings.showAdvancedFeatures
-
-            KeyNavigation.tab: showAdvanced ? newRdvButton : btnAboutPopUp
-            KeyNavigation.up: showAlreadyHave ? fromBackupButton : alreadyHaveAccount
-            KeyNavigation.down: KeyNavigation.tab
 
             onClicked: {
                 showAdvanced = !showAdvanced;
@@ -318,10 +291,6 @@ Rectangle {
 
             visible: false
 
-            KeyNavigation.tab: connectAccountManagerButton
-            KeyNavigation.up: showAdvancedButton
-            KeyNavigation.down: connectAccountManagerButton
-
             onClicked: WizardViewStepModel.startAccountCreationFlow(
                            WizardViewStepModel.AccountCreationOption.CreateRendezVous)
         }
@@ -341,10 +310,6 @@ Rectangle {
             toolTipText: JamiStrings.createFromJAMS
 
             visible: false
-
-            KeyNavigation.tab: newSIPAccountButton
-            KeyNavigation.up: newRdvButton
-            KeyNavigation.down: newSIPAccountButton
 
             onClicked: WizardViewStepModel.startAccountCreationFlow(
                            WizardViewStepModel.AccountCreationOption.ConnectToAccountManager)
@@ -367,10 +332,6 @@ Rectangle {
 
             visible: false
 
-            KeyNavigation.tab: btnAboutPopUp
-            KeyNavigation.up: connectAccountManagerButton
-            KeyNavigation.down: KeyNavigation.tab
-
             onClicked: WizardViewStepModel.startAccountCreationFlow(
                            WizardViewStepModel.AccountCreationOption.CreateSipAccount)
         }
@@ -381,11 +342,6 @@ Rectangle {
             Layout.alignment: Qt.AlignBottom | Qt.AlignHCenter
             Layout.bottomMargin: JamiTheme.preferredMarginSize * 3
             Layout.topMargin: JamiTheme.wizardViewBlocMarginSizeutButtonPreferredWidth
-
-            KeyNavigation.tab: backButton.visible ? backButton : newAccountButton
-            KeyNavigation.up: showAdvanced ? newSIPAccountButton : showAdvancedButton
-            KeyNavigation.down: KeyNavigation.tab
-            KeyNavigation.backtab: KeyNavigation.up
 
             textButton: true
             text: JamiStrings.aboutJami
@@ -420,10 +376,6 @@ Rectangle {
                 backButton.visible = UtilsAdapter.getAccountListSize();
             }
         }
-
-        KeyNavigation.tab: newAccountButton
-        KeyNavigation.up: showAdvanced ? newSIPAccountButton : showAdvancedButton
-        KeyNavigation.down: KeyNavigation.tab
 
         Accessible.role: Accessible.Button
         Accessible.name: JamiStrings.backButton

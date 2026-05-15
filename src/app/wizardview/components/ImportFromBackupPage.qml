@@ -116,10 +116,6 @@ Rectangle {
 
             focus: visible
 
-            KeyNavigation.up: backButton
-            KeyNavigation.down: passwordFromBackupEdit
-            KeyNavigation.tab: KeyNavigation.down
-
             onClicked: {
                 errorText = "";
                 var dlg = viewCoordinator.presentDialog(appWindow,
@@ -173,10 +169,6 @@ Rectangle {
 
             placeholderText: JamiStrings.enterPassword
 
-            KeyNavigation.up: fileImportBtn
-            KeyNavigation.down: connectBtn.enabled ? connectBtn : backButton
-            KeyNavigation.tab: KeyNavigation.down
-
             onAccepted: connectBtn.forceActiveFocus()
         }
 
@@ -194,10 +186,6 @@ Rectangle {
             filledButton: true
             text: JamiStrings.importButton
             enabled: !(filePath.length === 0) && errorText.length === 0
-
-            KeyNavigation.up: passwordFromBackupEdit
-            KeyNavigation.down: backButton
-            KeyNavigation.tab: KeyNavigation.down
 
             onClicked: {
                 if (connectBtn.focus)
@@ -270,14 +258,6 @@ Rectangle {
         iconSize: JamiTheme.iconButtonMedium
         iconSource: JamiResources.bidirectional_arrow_back_24dp_svg
         toolTipText: JamiStrings.back
-
-        KeyNavigation.tab: fileImportBtn
-        KeyNavigation.up: {
-            if (connectBtn.enabled)
-                return connectBtn;
-            return passwordFromBackupEdit;
-        }
-        KeyNavigation.down: fileImportBtn
 
         onClicked: WizardViewStepModel.previousStep()
     }
