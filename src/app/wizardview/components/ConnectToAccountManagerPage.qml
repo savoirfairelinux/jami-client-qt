@@ -108,10 +108,6 @@ Rectangle {
             leadingIconSource: JamiResources.jami_logo_icon_24dp_svg
             placeholderText: JamiStrings.jamiManagementServerURL
 
-            KeyNavigation.up: backButton
-            KeyNavigation.down: usernameManagerEdit
-            KeyNavigation.tab: KeyNavigation.down
-
             onAccepted: usernameManagerEdit.forceActiveFocus()
         }
 
@@ -144,10 +140,6 @@ Rectangle {
             leadingIconSource: JamiResources.person_24dp_svg
             placeholderText: JamiStrings.username
 
-            KeyNavigation.up: accountManagerEdit
-            KeyNavigation.down: passwordManagerEdit
-            KeyNavigation.tab: KeyNavigation.down
-
             onAccepted: passwordManagerEdit.forceActiveFocus()
         }
 
@@ -161,10 +153,6 @@ Rectangle {
             Layout.topMargin: JamiTheme.wizardViewMarginSize
 
             placeholderText: JamiStrings.password
-
-            KeyNavigation.up: usernameManagerEdit
-            KeyNavigation.down: connectBtn.enabled ? connectBtn : backButton
-            KeyNavigation.tab: KeyNavigation.down
 
             onAccepted: connectBtn.forceActiveFocus()
         }
@@ -213,10 +201,6 @@ Rectangle {
             filledButton: true
             text: JamiStrings.connect
 
-            KeyNavigation.up: passwordManagerEdit
-            KeyNavigation.down: backButton
-            KeyNavigation.tab: KeyNavigation.down
-
             onClicked: {
                 if (connectBtn.focus)
                     accountManagerEdit.forceActiveFocus();
@@ -259,14 +243,6 @@ Rectangle {
         iconSize: JamiTheme.iconButtonMedium
         iconSource: JamiResources.bidirectional_arrow_back_24dp_svg
         toolTipText: JamiStrings.back
-
-        KeyNavigation.up: {
-            if (connectBtn.enabled)
-                return connectBtn;
-            return passwordManagerEdit;
-        }
-        KeyNavigation.down: accountManagerEdit
-        KeyNavigation.tab: KeyNavigation.down
 
         onClicked: WizardViewStepModel.previousStep()
     }

@@ -31,9 +31,12 @@ Control {
     Accessible.role: Accessible.StaticText
     Accessible.name: title
     Accessible.description: description
+    Accessible.focusable: true
 
     width: 190
     height: infos.implicitHeight
+
+    activeFocusOnTab: true
 
     contentItem: ColumnLayout {
         id: infos
