@@ -73,9 +73,6 @@ BaseModalDialog {
             onModifiedTextFieldContentChanged: {
                 button1.enabled = passwordEdit.modifiedTextFieldContent === passwordConfirmEdit.modifiedTextFieldContent && passwordEdit.modifiedTextFieldContent.length !== 0
             }
-
-            KeyNavigation.up: passwordConfirmEdit
-            KeyNavigation.down: KeyNavigation.up
         }
 
         PasswordTextEdit {
@@ -91,9 +88,6 @@ BaseModalDialog {
             }
 
             Accessible.description: JamiStrings.encryptDescription
-
-            KeyNavigation.up: passwordEdit
-            KeyNavigation.down: KeyNavigation.up
         }
 
         Control {
