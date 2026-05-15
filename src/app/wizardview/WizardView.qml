@@ -81,6 +81,9 @@ BaseView {
         function onCloseWizardView() {
             root.dismiss();
             viewCoordinator.present("WelcomePage");
+            Qt.callLater(function () {
+                viewCoordinator.preload("ConversationView");
+            });
         }
     }
 

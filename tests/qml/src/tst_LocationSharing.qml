@@ -39,8 +39,12 @@ TestWrapper {
     //   2. close → root.destroy() deferred; profile still alive in C++
     //   3. reopen → second profile attempted → CRASH
     //
-    // The fix (moving WebEngineProfile to ChatView as a persistent object)
-    // means MapPosition never creates/destroys a profile, so steps 2→3 are safe.
+    // The fix uses lazy creation: ChatView creates the WebEngineProfile on
+    // first map open (via a Component), then keeps it alive for the lifetime
+    // of ChatView.  MapPosition never creates/destroys a profile, so steps
+    // 2→3 are safe.  Because the profile is not created eagerly, we also
+    // avoid the assertion when ChatView is instantiated before the event loop
+    // is ready (e.g. during ConversationView preload).
 
     ListSelectionView {
         id: viewNode
@@ -70,6 +74,16 @@ TestWrapper {
                     // Give the event loop a chance to process deferred deletes
                     // before the next test starts.
                     wait(50);
+                    // Reset the persistent profile so every test starts with
+                    // mapProfile === null (lazy-creation invariant). Without
+                    // this, tests that run after an earlier test has already
+                    // opened the map would see a non-null profile and fail the
+                    // "should not exist before any map open" check.
+                    if (chatView.mapProfile !== null) {
+                        chatView.mapProfile.destroy();
+                        chatView.mapProfile = null;
+                        wait(50);
+                    }
                 }
 
                 // Opening the map must create a MapPosition containing a WebEngineView.
@@ -107,15 +121,18 @@ TestWrapper {
                            "A new WebEngineView should exist after reopen");
                 }
 
-                // The WebEngineProfile lives in ChatView, not in MapPosition.
-                // Verify the profile object is always present regardless of map state.
+                // The WebEngineProfile is lazily created by ChatView on the
+                // first map open. Once created, it persists across map
+                // close/reopen cycles.
                 function test_webEngineProfile_persistsAcrossMapLifecycle() {
+                    // Before any map open, the profile does not exist yet.
                     var profile = findChild(chatView, "mapProfile");
-                    verify(profile !== null, "mapProfile should exist before any map open");
+                    verify(profile === null, "mapProfile should not exist before any map open");
 
                     PositionManager.setMapActive(accountId);
-                    verify(findChild(chatView, "mapProfile") !== null,
-                           "mapProfile should still exist while map is open");
+                    profile = findChild(chatView, "mapProfile");
+                    verify(profile !== null,
+                           "mapProfile should exist after first map open");
 
                     PositionManager.setMapInactive(accountId);
                     wait(50);
