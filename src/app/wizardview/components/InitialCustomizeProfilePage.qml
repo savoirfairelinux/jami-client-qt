@@ -132,9 +132,7 @@ Rectangle {
 
                         PushButton {
                             id: editImage
-                            KeyNavigation.tab: displayNameLineEdit
-                            KeyNavigation.right: KeyNavigation.tab
-                            KeyNavigation.down: saveProfileButton
+
                             Accessible.role: Accessible.Button
                             Accessible.name: JamiStrings.selectImage
                             Accessible.description: JamiStrings.customizeOptional
@@ -231,10 +229,6 @@ Rectangle {
                 filledButton: true
                 text: JamiStrings.saveProfile
 
-                KeyNavigation.tab: skipButton
-                KeyNavigation.up: displayNameLineEdit
-                KeyNavigation.down: skipButton
-
                 onClicked: {
                     AccountAdapter.setCurrAccDisplayName(root.alias);
                     WizardViewStepModel.nextStep();
@@ -257,11 +251,6 @@ Rectangle {
                     textButton: true
                     text: JamiStrings.skip
                     toolTipText: JamiStrings.skipProfile
-
-                    KeyNavigation.tab: backButton
-                    KeyNavigation.up: saveProfileButton
-                    KeyNavigation.down: backButton
-                    KeyNavigation.right: backButton
 
                     onClicked: {
                         WizardViewStepModel.nextStep();
@@ -288,9 +277,6 @@ Rectangle {
             helpOpened = false;
             WizardViewStepModel.nextStep();
         }
-
-        KeyNavigation.tab: editImage
-        KeyNavigation.down: KeyNavigation.tab
 
         Accessible.role: Accessible.Button
         Accessible.name: JamiStrings.backButton

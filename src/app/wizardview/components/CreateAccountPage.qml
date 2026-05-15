@@ -102,8 +102,7 @@ Rectangle {
                 anchors.verticalCenter: parent.verticalCenter
                 width: Math.max(508, root.width - 100)
 
-                Text {
-                    id: joinJami
+                Label {
 
                     text: root.isRendezVous ? JamiStrings.createNewRV : JamiStrings.joinJami
                     Layout.alignment: Qt.AlignCenter
@@ -116,10 +115,13 @@ Rectangle {
                     color: JamiTheme.textColor
                     font.pixelSize: JamiTheme.wizardViewTitleFontPixelSize
                     wrapMode: Text.WordWrap
+
+                    Accessible.role: Accessible.StaticText
+                    Accessible.name: text
+                    Accessible.focusable: true
                 }
 
-                Text {
-
+                Label {
                     text: root.isRendezVous ? JamiStrings.chooseUsernameForRV :
                                               JamiStrings.chooseUsernameForAccount
                     Layout.alignment: Qt.AlignCenter
@@ -133,6 +135,10 @@ Rectangle {
                     font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
                     wrapMode: Text.WordWrap
                     lineHeight: JamiTheme.wizardViewTextLineHeight
+
+                    Accessible.role: Accessible.StaticText
+                    Accessible.name: text
+                    Accessible.focusable: true
                 }
 
                 UsernameTextEdit {
@@ -147,12 +153,8 @@ Rectangle {
 
                     textFieldContent: ""
 
-                    KeyNavigation.tab: infoPopup
-                    KeyNavigation.up: backButton
-                    KeyNavigation.down: infoPopup
-
                     Accessible.role: Accessible.EditableText
-                    Accessible.name: usernameEdit.supportingText
+                    Accessible.name: JamiStrings.chooseAUsername
                 }
 
                 NewMaterialButton {
@@ -168,6 +170,7 @@ Rectangle {
                     z: -1
 
                     filledButton: true
+                    toolTipText: usernameEdit.supportingText
 
                     font.capitalization: Font.AllUppercase
                     text: !enabled ? JamiStrings.creatingAccount : root.isRendezVous
@@ -177,9 +180,6 @@ Rectangle {
                              || usernameEdit.nameRegistrationState
                              === UsernameTextEdit.NameRegistrationState.BLANK
 
-                    KeyNavigation.tab: encryptButton
-                    KeyNavigation.up: usernameEdit
-                    KeyNavigation.down: encryptButton
 
                     onClicked: {
                         WizardViewStepModel.accountCreationInfo = JamiQmlUtils.setUpAccountCreationInputPara({
@@ -199,7 +199,7 @@ Rectangle {
                             popup.visible = true;
                         UtilsAdapter.setTempCreationImageFromString("", "temp");
                     }
-                    Accessible.description: invalidLabel.text
+                    //Accessible.description: invalidLabel.text
                 }
 
                 RowLayout {
@@ -220,11 +220,6 @@ Rectangle {
                         textButton: true
                         text: JamiStrings.setPassword
                         toolTipText: JamiStrings.encryptWithPassword
-
-                        KeyNavigation.tab: backButton
-                        KeyNavigation.up: joinJamiButton
-                        KeyNavigation.down: backButton
-                        KeyNavigation.right: backButton
 
                         onClicked: {
                             var dlg = viewCoordinator.presentDialog(appWindow,
@@ -276,9 +271,6 @@ Rectangle {
             }
         }
 
-        KeyNavigation.tab: adviceBox
-        KeyNavigation.down: KeyNavigation.tab
-
         Accessible.role: Accessible.Button
         Accessible.name: JamiStrings.backButton
         Accessible.description: JamiStrings.backButtonExplanation
@@ -313,11 +305,6 @@ Rectangle {
                 });
             }
         }
-
-        KeyNavigation.tab: !createAccountStack.currentIndex ? usernameEdit :
-                                                              advancedAccountSettingsPage
-        KeyNavigation.up: backButton
-        KeyNavigation.down: KeyNavigation.tab
 
         Accessible.role: Accessible.Button
         Accessible.name: JamiStrings.adviceBox
