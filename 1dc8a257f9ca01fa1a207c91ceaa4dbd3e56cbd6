@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca7017e3_2197ed5f",
+        "filename": "src/app/mainview/MainView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-15T14:02:44Z",
+      "side": 1,
+      "message": "[warning] Line 165: 🟡 Suggestion: The global Escape shortcut previously called `layoutManager.popFullScreenItem()`. After this removal, `popFullScreenItem` is only called internally by LayoutManager (on call end, mode changes) and in tests — there is no remaining user-triggered Escape-to-exit-fullscreen path. If the intent is for Escape to still exit fullscreen mode, consider adding a scoped Escape handler inside the fullscreen view components (e.g., the call view) that calls `layoutManager.popFullScreenItem()`. If this is intentional (fullscreen is only exited via UI buttons), please confirm and document accordingly.",
+      "revId": "1dc8a257f9ca01fa1a207c91ceaa4dbd3e56cbd6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9004661_9c5f1353",
+        "filename": "src/app/mainview/MainView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-15T14:02:44Z",
+      "side": 1,
+      "message": "[critical] Line 165: 🔴 Critical: The global Escape shortcut was the only keyboard path to clear `MessagesAdapter.replyToId` and `MessagesAdapter.editId` when the message bar text area has focus. The `ChatViewFooter` Escape handler (line 226) only handles `recordBox` and map state — it does NOT clear replyToId/editId. The `MessageBar` close button (line 229) handles this via click only. After this change, pressing Escape while composing a reply or editing a message will not cancel the action, yet `KeyboardShortcutTable.qml` (line 92) still advertises \u0027Esc → Cancel message edition\u0027. Either:\n1. Add a local `Keys.onEscapePressed` handler in `ChatViewFooter` or `MessageBarTextArea` to clear replyToId/editId, or\n2. Remove/update the keyboard shortcut table entry at `KeyboardShortcutTable.qml:92`.",
+      "revId": "1dc8a257f9ca01fa1a207c91ceaa4dbd3e56cbd6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
