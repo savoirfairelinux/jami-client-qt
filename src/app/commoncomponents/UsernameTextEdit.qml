@@ -79,6 +79,8 @@ NewMaterialTextField {
 
     trailingIconSource: JamiResources.outline_info_24dp_svg
     trailingIconChecked: infoPopup.opened
+    trailingIconToolTipText: JamiStrings.information
+    trailingIconAccessibleDescription: JamiStrings.usernameToolTip
 
     onTrailingIconClicked: {
         if (infoPopup.opened)

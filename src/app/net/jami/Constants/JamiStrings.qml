@@ -1122,4 +1122,5 @@ Item {
     property string incomingAndOutgoignShareLocation: qsTr("You and %1 are sharing locations with each other")
     property string incomingShareLocation: qsTr("%1 is currently sharing their location")
     property string outgoingShareLocation: qsTr("You are sharing your location to %1")
+    property string chooseProfilePicture: qsTr("Choose a profile picture")
 }
