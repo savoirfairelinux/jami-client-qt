@@ -51,6 +51,72 @@ Window {
 
     flags: Qt.Window | Qt.WindowStaysOnTopHint
 
+    // Keep the window matched to the current video aspect ratio.
+    property bool geometryRestored: false
+    property real lastVideoInvAspect: 0
+    function applyVideoAspect(fromHeight) {
+        const videoInvAspect = geometryRestored ? content.videoInvAspectRatio : 0;
+        if (videoInvAspect <= 0)
+            return;
+        let newWidth, newHeight;
+        if (fromHeight) {
+            newWidth = Math.round(height / videoInvAspect);
+            if (newWidth < minimumWidth) {
+                newWidth = minimumWidth;
+                newHeight = Math.max(minimumHeight, Math.round(newWidth * videoInvAspect));
+            } else {
+                newHeight = height;
+            }
+        } else if (lastVideoInvAspect > 0
+                   && Math.abs(videoInvAspect - lastVideoInvAspect) / lastVideoInvAspect > 0.01) {
+            const area = width * height;
+            newWidth = Math.max(minimumWidth, Math.round(Math.sqrt(area / videoInvAspect)));
+            newHeight = Math.round(newWidth * videoInvAspect);
+            if (newHeight < minimumHeight) {
+                newHeight = minimumHeight;
+                newWidth = Math.max(minimumWidth, Math.round(newHeight / videoInvAspect));
+            }
+        } else {
+            newWidth = width;
+            newHeight = Math.round(width * videoInvAspect);
+            if (newHeight < minimumHeight) {
+                newHeight = minimumHeight;
+                newWidth = Math.max(minimumWidth, Math.round(newHeight / videoInvAspect));
+            }
+        }
+
+        // Clamp against the available screen so a portrait video can't grow
+        // the window past screen bounds; re-derive the paired dimension once,
+        // mirroring the minimum-size clamps above.
+        const maxWidth = Screen.desktopAvailableWidth;
+        const maxHeight = Screen.desktopAvailableHeight;
+        if (newWidth > maxWidth) {
+            newWidth = maxWidth;
+            newHeight = Math.round(newWidth * videoInvAspect);
+        }
+        if (newHeight > maxHeight) {
+            newHeight = maxHeight;
+            newWidth = Math.round(newHeight / videoInvAspect);
+        }
+
+        // Keep the window on-screen when growth would push it past the
+        // right/bottom edge (e.g. PiP parked near a corner).
+        const maxX = Screen.desktopAvailableLeft + maxWidth - newWidth;
+        const maxY = Screen.desktopAvailableTop + maxHeight - newHeight;
+        if (root.x > maxX)
+            root.x = Math.max(Screen.desktopAvailableLeft, maxX);
+        if (root.y > maxY)
+            root.y = Math.max(Screen.desktopAvailableTop, maxY);
+
+        root.setAspectGeometry(newWidth, newHeight);
+        lastVideoInvAspect = videoInvAspect;
+    }
+
+    Connections {
+        target: content
+        function onVideoInvAspectRatioChanged() { root.applyVideoAspect(); }
+    }
+
     // Drag handle — covers the whole window so the user can move it anywhere
     // except over hit-test-visible interactive items.
     Item {
@@ -127,10 +193,36 @@ Window {
     // QWK frameless window agent
     WindowAgent { id: windowAgent }
 
-    // Geometry persistence
-    function saveGeometry() {
-        AppSettingsManager.setValue(Settings.PipWindowGeometry,
-                                    Qt.rect(root.x, root.y, root.width, root.height));
+    // Geometry persistence. Saves are coalesced through a short timer
+    // so a programmatic aspect-ratio adjustment (which fires both
+    // onWidthChanged and onHeightChanged) only writes once, at the
+    // final settled size.
+    Timer {
+        id: saveGeometryTimer
+        interval: 50
+        repeat: false
+        onTriggered: AppSettingsManager.setValue(Settings.PipWindowGeometry,
+                                                 Qt.rect(root.x, root.y, root.width, root.height))
+    }
+    function saveGeometry() { saveGeometryTimer.restart(); }
+
+    // Guards programmatic width/height writes so onWidthChanged and
+    // onHeightChanged do not re-enter the opposite resize path.
+    property bool adjustingAspectGeometry: false
+
+    // Applies width/height updates once while suppressing resize-handler feedback loops.
+    // The guard is released via Qt.callLater rather than synchronously, since some
+    // window managers confirm/clamp the requested size asynchronously and would
+    // otherwise re-enter applyVideoAspect() after the guard was already cleared.
+    function setAspectGeometry(newWidth, newHeight) {
+        adjustingAspectGeometry = true;
+        if (newWidth !== width)
+            width = newWidth;
+        if (newHeight !== height)
+            height = newHeight;
+        _settledWidth = width;
+        _settledHeight = height;
+        Qt.callLater(function () { adjustingAspectGeometry = false; });
     }
 
     function restoreGeometry() {
@@ -143,14 +235,53 @@ Window {
         }
     }
 
-    onClosing: saveGeometry()
+    onClosing: {
+        // Flush any pending coalesced save synchronously.
+        saveGeometryTimer.stop();
+        AppSettingsManager.setValue(Settings.PipWindowGeometry,
+                                    Qt.rect(root.x, root.y, root.width, root.height));
+    }
     onXChanged: saveGeometry()
     onYChanged: saveGeometry()
-    onWidthChanged: saveGeometry()
-    onHeightChanged: saveGeometry()
+
+    // A corner drag delivers width and height changes in the same event-loop
+    // turn, in unspecified order. Calling applyVideoAspect() straight from
+    // each handler makes the two calls derive opposite dimensions and race:
+    // whichever handler runs last wins, and the first call's geometry is
+    // immediately overwritten. Coalesce both into a single, 0-interval-later
+    // pass that compares against the last settled size to tell which edge
+    // actually moved.
+    property real _settledWidth: width
+    property real _settledHeight: height
+    Timer {
+        id: applyAspectTimer
+        interval: 0
+        repeat: false
+        onTriggered: {
+            const widthChanged = root.width !== root._settledWidth;
+            const heightChanged = root.height !== root._settledHeight;
+            root.applyVideoAspect(heightChanged && !widthChanged);
+            root._settledWidth = root.width;
+            root._settledHeight = root.height;
+        }
+    }
+    onWidthChanged: {
+        if (!adjustingAspectGeometry)
+            applyAspectTimer.restart();
+        saveGeometry();
+    }
+    onHeightChanged: {
+        if (!adjustingAspectGeometry)
+            applyAspectTimer.restart();
+        saveGeometry();
+    }
 
     Component.onCompleted: {
         restoreGeometry();
+        _settledWidth = width;
+        _settledHeight = height;
+        geometryRestored = true;
+        applyVideoAspect();
         CallOverlayModel.setEventFilterActive(root, content, true);
         if (JamiQmlUtils.isMacOS26OrLater) {
             MainApplication.setupPipWindow(root);
