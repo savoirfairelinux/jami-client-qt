@@ -57,6 +57,13 @@ Item {
     readonly property alias raiseHandControl: raiseHandButton
     readonly property alias emptyConferenceVisuals: emptyConferenceVisuals
 
+    // Inverse aspect ratio (height/width) of the displayed remote video.
+    // Defaults to 0 while no frames have arrived so the window keeps its
+    // user-set/default size.
+    readonly property real videoInvAspectRatio: remoteVideo.isRendering
+                                                ? remoteVideo.invAspectRatio
+                                                : 0
+
     // Remote video
     VideoView {
         id: remoteVideo
@@ -67,8 +74,9 @@ Item {
         rendererId: CallPipWindowManager.pipIsConference
                     ? CallPipWindowManager.pipActiveSpeakerSinkId
                     : CallPipWindowManager.pipCallId
-        // Crop to fill the small window rather than letterboxing.
-        crop: true
+        // The PiP window adapts its own aspect ratio to the video, so we
+        // can letterbox the rare in-between frame and avoid any crop.
+        crop: false
 
         visible: !CallPipWindowManager.pipIsEmptyConference
 
