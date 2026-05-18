@@ -51,6 +51,41 @@ Window {
 
     flags: Qt.Window | Qt.WindowStaysOnTopHint
 
+    // Keep the window matched to the current video aspect ratio.
+    property bool geometryRestored: false
+    property real lastVideoInvAspect: 0
+
+    // Computes the target PiP geometry from the current video aspect ratio and resize source.
+    function applyVideoAspect(fromHeight) {
+        const videoInvAspect = geometryRestored ? content.videoInvAspectRatio : 0;
+        if (videoInvAspect <= 0)
+            return;
+        let newWidth, newHeight;
+        if (fromHeight) {
+            newWidth = Math.max(minimumWidth, Math.round(height / videoInvAspect));
+            newHeight = height;
+        } else if (lastVideoInvAspect > 0
+                   && Math.abs(videoInvAspect - lastVideoInvAspect) / lastVideoInvAspect > 0.01) {
+            const area = width * height;
+            newWidth = Math.max(minimumWidth, Math.round(Math.sqrt(area / videoInvAspect)));
+            newHeight = Math.round(newWidth * videoInvAspect);
+            if (newHeight < minimumHeight) {
+                newHeight = minimumHeight;
+                newWidth = Math.max(minimumWidth, Math.round(newHeight / videoInvAspect));
+            }
+        } else {
+            newWidth = width;
+            newHeight = Math.max(minimumHeight, Math.round(width * videoInvAspect));
+        }
+        root.setAspectGeometry(newWidth, newHeight);
+        lastVideoInvAspect = videoInvAspect;
+    }
+
+    Connections {
+        target: content
+        function onVideoInvAspectRatioChanged() { root.applyVideoAspect(); }
+    }
+
     // Drag handle — covers the whole window so the user can move it anywhere
     // except over hit-test-visible interactive items.
     Item {
@@ -127,10 +162,31 @@ Window {
     // QWK frameless window agent
     WindowAgent { id: windowAgent }
 
-    // Geometry persistence
-    function saveGeometry() {
+    // Coalesce geometry saves during aspect-ratio adjustments.
+    Timer {
+        id: saveGeometryTimer
+        interval: 50
+        repeat: false
+        onTriggered: root.saveGeometryNow()
+    }
+    function saveGeometry() { saveGeometryTimer.restart(); }
+    function saveGeometryNow() {
         AppSettingsManager.setValue(Settings.PipWindowGeometry,
                                     Qt.rect(root.x, root.y, root.width, root.height));
+    }
+
+    property bool adjustingAspectGeometry: false
+
+    // Applies width/height updates once while suppressing resize-handler feedback loops.
+    function setAspectGeometry(newWidth, newHeight) {
+        if (Math.abs(newWidth - width) <= 1 && Math.abs(newHeight - height) <= 1)
+            return;
+        adjustingAspectGeometry = true;
+        if (newWidth !== width)
+            width = newWidth;
+        if (newHeight !== height)
+            height = newHeight;
+        adjustingAspectGeometry = false;
     }
 
     function restoreGeometry() {
@@ -143,14 +199,27 @@ Window {
         }
     }
 
-    onClosing: saveGeometry()
+    onClosing: {
+        saveGeometryTimer.stop();
+        root.saveGeometryNow();
+    }
     onXChanged: saveGeometry()
     onYChanged: saveGeometry()
-    onWidthChanged: saveGeometry()
-    onHeightChanged: saveGeometry()
+    onWidthChanged: {
+        if (!adjustingAspectGeometry)
+            applyVideoAspect();
+        saveGeometry();
+    }
+    onHeightChanged: {
+        if (!adjustingAspectGeometry)
+            applyVideoAspect(true);
+        saveGeometry();
+    }
 
     Component.onCompleted: {
         restoreGeometry();
+        geometryRestored = true;
+        applyVideoAspect();
         CallOverlayModel.setEventFilterActive(root, content, true);
         if (JamiQmlUtils.isMacOS26OrLater) {
             MainApplication.setupPipWindow(root);

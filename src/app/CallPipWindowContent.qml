@@ -57,6 +57,10 @@ Item {
     readonly property alias raiseHandControl: raiseHandButton
     readonly property alias emptyConferenceVisuals: emptyConferenceVisuals
 
+    readonly property real videoInvAspectRatio: remoteVideo.isRendering
+                                                ? remoteVideo.invAspectRatio
+                                                : 0
+
     // Remote video
     VideoView {
         id: remoteVideo
@@ -67,8 +71,7 @@ Item {
         rendererId: CallPipWindowManager.pipIsConference
                     ? CallPipWindowManager.pipActiveSpeakerSinkId
                     : CallPipWindowManager.pipCallId
-        // Crop to fill the small window rather than letterboxing.
-        crop: true
+        crop: false
 
         visible: !CallPipWindowManager.pipIsEmptyConference
 
