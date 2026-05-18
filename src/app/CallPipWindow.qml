@@ -51,6 +51,79 @@ Window {
 
     flags: Qt.Window | Qt.WindowStaysOnTopHint
 
+    // Keep the window's aspect ratio in sync with the incoming video
+    // stream, so the user always sees the full frame without crop or
+    // letterboxing. When the video aspect ratio changes (typically when
+    // the remote phone rotates), we preserve the on-screen area so the
+    // window doesn't suddenly shrink or grow — only its shape changes.
+    // When the user resizes the window manually, we update height to
+    // match the current video AR.
+    //
+    // The window-side property-change signals can be delivered
+    // asynchronously by the window manager, so we don't rely on a
+    // re-entrancy flag. Instead, _applyVideoAspect() is idempotent:
+    // it computes the target geometry and bails out if the window is
+    // already within one pixel of it, breaking any feedback loop
+    // naturally. _restored avoids overriding the user's persisted
+    // geometry on the very first frame after restoration.
+    property bool _restored: false
+    property real _lastInvAspect: 0
+    // Track whether _lastInvAspect has ever been set; this preserves the
+    // "user resize" path when the remote camera temporarily drops and
+    // resumes at the same resolution.
+    property bool _lastInvAspectInit: false
+
+    function _applyVideoAspect() {
+        if (!_restored)
+            return;
+        const r = content.videoInvAspectRatio;
+        if (r <= 0)
+            return;
+        // Relative threshold so the check works equally well for very
+        // tall (e.g. 9:21) and very wide (e.g. 21:9) aspect ratios.
+        const aspectChanged = _lastInvAspectInit
+                              && Math.abs(r - _lastInvAspect) / _lastInvAspect > 0.01;
+        let newWidth, newHeight;
+        if (aspectChanged) {
+            // Aspect ratio changed (e.g. rotation): preserve the
+            // on-screen area and just reshape the window. We derive
+            // height from width after clamping so the resulting
+            // proportions exactly match r even at the minimum-size
+            // boundary.
+            const area = width * height;
+            newWidth = Math.max(minimumWidth, Math.round(Math.sqrt(area / r)));
+            newHeight = Math.round(newWidth * r);
+            // If height would be clamped, recompute width from the clamped
+            // height so both dimensions honour the minimum-size constraints
+            // and the aspect ratio is still preserved.
+            if (newHeight < minimumHeight) {
+                newHeight = minimumHeight;
+                newWidth = Math.max(minimumWidth, Math.round(newHeight / r));
+            }
+        } else {
+            // Initial subscription or user resize: match height to the
+            // current width.
+            newWidth = width;
+            newHeight = Math.max(minimumHeight, Math.round(width * r));
+        }
+        _lastInvAspect = r;
+        _lastInvAspectInit = true;
+        if (Math.abs(newWidth - width) <= 1 && Math.abs(newHeight - height) <= 1)
+            return;
+        // Assign in one shot. Even if the property-change signals fire
+        // asynchronously and re-enter this function, the dimension
+        // check above will short-circuit and we won't recurse.
+        if (newWidth !== width)
+            width = newWidth;
+        if (newHeight !== height)
+            height = newHeight;
+    }
+
+    Connections {
+        target: content
+        function onVideoInvAspectRatioChanged() { root._applyVideoAspect(); }
+    }
+
     // Drag handle — covers the whole window so the user can move it anywhere
     // except over hit-test-visible interactive items.
     Item {
@@ -127,10 +200,33 @@ Window {
     // QWK frameless window agent
     WindowAgent { id: windowAgent }
 
-    // Geometry persistence
-    function saveGeometry() {
-        AppSettingsManager.setValue(Settings.PipWindowGeometry,
-                                    Qt.rect(root.x, root.y, root.width, root.height));
+    // Geometry persistence. Saves are coalesced through a short timer
+    // so a programmatic aspect-ratio adjustment (which fires both
+    // onWidthChanged and onHeightChanged) only writes once, at the
+    // final settled size.
+    Timer {
+        id: saveGeometryTimer
+        interval: 50
+        repeat: false
+        onTriggered: AppSettingsManager.setValue(Settings.PipWindowGeometry,
+                                                 Qt.rect(root.x, root.y, root.width, root.height))
+    }
+    function saveGeometry() { saveGeometryTimer.restart(); }
+
+    // Adjust width to honour the video aspect ratio after a height-only
+    // resize (e.g. user drags the top or bottom window edge).  The
+    // idempotency check in _applyVideoAspect() prevents any feedback loop
+    // when this triggers onWidthChanged.
+    function _applyVideoAspectFromHeight() {
+        if (!_restored)
+            return;
+        const r = content.videoInvAspectRatio;
+        if (r <= 0)
+            return;
+        const newWidth = Math.max(minimumWidth, Math.round(height / r));
+        if (Math.abs(newWidth - width) <= 1)
+            return;
+        width = newWidth;
     }
 
     function restoreGeometry() {
@@ -143,14 +239,21 @@ Window {
         }
     }
 
-    onClosing: saveGeometry()
+    onClosing: {
+        // Flush any pending coalesced save synchronously.
+        saveGeometryTimer.stop();
+        AppSettingsManager.setValue(Settings.PipWindowGeometry,
+                                    Qt.rect(root.x, root.y, root.width, root.height));
+    }
     onXChanged: saveGeometry()
     onYChanged: saveGeometry()
-    onWidthChanged: saveGeometry()
-    onHeightChanged: saveGeometry()
+    onWidthChanged: { _applyVideoAspect(); saveGeometry(); }
+    onHeightChanged: { _applyVideoAspectFromHeight(); saveGeometry(); }
 
     Component.onCompleted: {
         restoreGeometry();
+        _restored = true;
+        _applyVideoAspect();
         CallOverlayModel.setEventFilterActive(root, content, true);
         if (JamiQmlUtils.isMacOS26OrLater) {
             MainApplication.setupPipWindow(root);
