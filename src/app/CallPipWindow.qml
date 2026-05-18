@@ -51,6 +51,53 @@ Window {
 
     flags: Qt.Window | Qt.WindowStaysOnTopHint
 
+    // Keep the window's aspect ratio in sync with the incoming video
+    // stream, so the user always sees the full frame without crop or
+    // letterboxing. When the video aspect ratio changes (typically when
+    // the remote phone rotates), we preserve the on-screen area so the
+    // window doesn't suddenly shrink or grow — only its shape changes.
+    // When the user resizes the window manually, we update height to
+    // match the current video AR.
+    // _resizing guards against re-entrancy while we programmatically
+    // change the size, and _restored ensures we don't override the
+    // user's persisted geometry on the very first frame.
+    property bool _resizing: false
+    property bool _restored: false
+    property real _lastInvAspect: 0
+
+    function _applyVideoAspect() {
+        if (!_restored)
+            return;
+        const r = content.videoInvAspectRatio;
+        if (r <= 0)
+            return;
+        if (_lastInvAspect > 0 && Math.abs(r - _lastInvAspect) > 0.001) {
+            // Aspect ratio changed (e.g., rotation): keep the same area
+            // and just reshape the window.
+            const area = width * height;
+            const newWidth = Math.max(minimumWidth, Math.round(Math.sqrt(area / r)));
+            const newHeight = Math.max(minimumHeight, Math.round(Math.sqrt(area * r)));
+            _resizing = true;
+            width = newWidth;
+            height = newHeight;
+            _resizing = false;
+        } else {
+            // Initial subscription or user resize: just match the height.
+            const newHeight = Math.max(minimumHeight, Math.round(width * r));
+            if (Math.abs(newHeight - height) > 1) {
+                _resizing = true;
+                height = newHeight;
+                _resizing = false;
+            }
+        }
+        _lastInvAspect = r;
+    }
+
+    Connections {
+        target: content
+        function onVideoInvAspectRatioChanged() { root._applyVideoAspect(); }
+    }
+
     // Drag handle — covers the whole window so the user can move it anywhere
     // except over hit-test-visible interactive items.
     Item {
@@ -146,11 +193,13 @@ Window {
     onClosing: saveGeometry()
     onXChanged: saveGeometry()
     onYChanged: saveGeometry()
-    onWidthChanged: saveGeometry()
+    onWidthChanged: { if (!_resizing) _applyVideoAspect(); saveGeometry(); }
     onHeightChanged: saveGeometry()
 
     Component.onCompleted: {
         restoreGeometry();
+        _restored = true;
+        _applyVideoAspect();
         CallOverlayModel.setEventFilterActive(root, content, true);
         if (JamiQmlUtils.isMacOS26OrLater) {
             MainApplication.setupPipWindow(root);
