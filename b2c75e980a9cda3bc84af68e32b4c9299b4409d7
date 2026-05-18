@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5bc27dc_dd19d0c9",
+        "filename": "src/app/CallPipWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-18T01:51:21Z",
+      "side": 1,
+      "message": "Line 71: 🟡 The threshold `0.001` for detecting an aspect-ratio change is a magic number. For typical video resolutions (e.g., 1920×1080 → invAspect ≈ 0.5625), a difference of 0.001 is ~0.18%, which seems reasonable — but for very wide aspect ratios (e.g., 21:9 → invAspect ≈ 0.4286), the same absolute threshold is proportionally larger. Consider using a relative comparison or documenting why the absolute threshold is acceptable:\n\n```suggestion\n        if (_lastInvAspect \u003e 0 \u0026\u0026 Math.abs(r - _lastInvAspect) / _lastInvAspect \u003e 0.01) {\n```",
+      "revId": "b2c75e980a9cda3bc84af68e32b4c9299b4409d7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "636b6e02_ffad0d2a",
+        "filename": "src/app/CallPipWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-18T01:51:21Z",
+      "side": 1,
+      "message": "Line 75: 🟡 `Math.sqrt(area / r)` and `Math.sqrt(area * r)` compute width and height from the area, but after `Math.max` and `Math.round` are applied independently to each, the resulting aspect ratio may no longer match `r`, and the preserved area can drift significantly — especially when one dimension is clamped to `minimumWidth`/`minimumHeight`. Consider computing one dimension first (e.g., width), then deriving the other strictly from it:\n\n```suggestion\n            const newWidth \u003d Math.max(minimumWidth, Math.round(Math.sqrt(area / r)));\n            const newHeight \u003d Math.max(minimumHeight, Math.round(newWidth * r));\n```\n\nThis ensures the aspect ratio is actually honoured after clamping.",
+      "revId": "b2c75e980a9cda3bc84af68e32b4c9299b4409d7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15786821_e3aee3e3",
+        "filename": "src/app/CallPipWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-18T01:51:21Z",
+      "side": 1,
+      "message": "[critical] Line 78: 🔴 Re-entrancy guard is ineffective. Setting `_resizing \u003d true`, then synchronously assigning `width` and `height`, then setting `_resizing \u003d false` assumes that `onWidthChanged` fires synchronously during the assignment. In Qt/QML, property-change signals on `Window.width`/`Window.height` can be deferred (especially on Wayland or when the window manager mediates the resize). If the signal fires asynchronously after `_resizing` has already been reset to `false`, the guard is bypassed and `_applyVideoAspect()` will recurse or produce incorrect geometry.\n\nConsider using a `Qt.callLater` pattern or a timer to coalesce the resize, or use a counter instead of a boolean:\n\n```suggestion\n            _resizing++;\n            width \u003d newWidth;\n            height \u003d newHeight;\n            _resizing--;\n```\n\nAnd change the guard check in `onWidthChanged` to `if (_resizing \u003d\u003d\u003d 0)`.\n\nHowever, even this won\u0027t help if the WM delivers the size change asynchronously. A more robust approach is to skip re-applying aspect when the current width/height already satisfy the target ratio within tolerance.",
+      "revId": "b2c75e980a9cda3bc84af68e32b4c9299b4409d7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d96d67e_6df07d10",
+        "filename": "src/app/CallPipWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-18T01:51:21Z",
+      "side": 1,
+      "message": "[critical] Line 196: 🔴 `onWidthChanged` now calls both `_applyVideoAspect()` and `saveGeometry()` unconditionally (geometry is saved even during programmatic resizes). But `_applyVideoAspect()` itself changes `height`, which triggers `onHeightChanged` → `saveGeometry()` again. This means every aspect-ratio adjustment triggers `saveGeometry()` at least twice (once for width, once for height) with an intermediate, possibly incorrect geometry. If `saveGeometry()` persists to disk/settings, this can save a geometry where only width has been updated but height hasn\u0027t yet.\n\nConsider guarding `saveGeometry()` as well:\n\n```suggestion\n    onWidthChanged: { if (!_resizing) { _applyVideoAspect(); saveGeometry(); } }\n    onHeightChanged: { if (!_resizing) saveGeometry(); }\n```",
+      "revId": "b2c75e980a9cda3bc84af68e32b4c9299b4409d7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13c7c811_9c81835b",
+        "filename": "src/app/CallPipWindowContent.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-18T01:51:21Z",
+      "side": 1,
+      "message": "Line 63: 🟡 When `remoteVideo.isRendering` transitions from `true` to `false` (e.g., the remote camera is temporarily disabled), `videoInvAspectRatio` drops to `0`. This triggers `onVideoInvAspectRatioChanged` in the parent, but `_applyVideoAspect()` returns early because `r \u003c\u003d 0`. While not buggy, `_lastInvAspect` retains the stale value, so when video resumes at the *same* resolution, `r \u003d\u003d\u003d _lastInvAspect` and the code takes the \u0027user resize\u0027 path rather than the \u0027aspect changed\u0027 path. This is probably fine but worth a comment to make the intent clear.",
+      "revId": "b2c75e980a9cda3bc84af68e32b4c9299b4409d7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbf2f937_e2bcf76c",
+        "filename": "src/app/CallPipWindowContent.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-18T01:51:21Z",
+      "side": 1,
+      "message": "Line 76: 🟢 Good change switching from `crop: true` to `crop: false`. Now that the window adapts its own aspect ratio to the video, cropping is unnecessary and the user sees the full frame. The comment explaining the rationale is helpful.",
+      "revId": "b2c75e980a9cda3bc84af68e32b4c9299b4409d7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
