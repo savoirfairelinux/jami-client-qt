@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d75da84_58d9d346",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 22
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-19T18:22:18Z",
+      "side": 1,
+      "message": "[warning] Line 445: 🟡 Suggestion: The 1-second timeout is a magic number and may be too short on slow connections or too long for a responsive UI. Consider extracting it to a named constant (e.g. `constexpr int kSearchFallbackTimeoutMs \u003d 1000;`). Also, capturing `this` in a QTimer lambda without guarding against object destruction is risky if `ConversationsAdapter` is destroyed within that window. Consider using a QPointer guard or storing the timer as a member that can be stopped on destruction.",
+      "revId": "0e03b87a4b369dc64be326f6b528753ee053c1dc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0942eca4_70991d1b",
+        "filename": "src/app/mainview/components/ChatViewFooter.qml",
+        "patchSetId": 22
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-19T18:22:18Z",
+      "side": 1,
+      "message": "[info] Line 96: 🟢 Good: Using `OriginalBody` when editing a message is the correct approach — it ensures the user edits the original text rather than a plugin-transformed version.",
+      "revId": "0e03b87a4b369dc64be326f6b528753ee053c1dc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8cfc8ba_ba4e51a7",
+        "filename": "src/app/mainview/components/PluginHandlerPicker.qml",
+        "patchSetId": 22
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-19T18:22:18Z",
+      "side": 1,
+      "message": "[critical] Line 47: 🔴 Critical: Commenting out `anchors.fill: parent` (lines 47 and 162) rather than removing it is not appropriate for production code. Either remove the line entirely if it\u0027s no longer needed, or explain why it\u0027s temporarily disabled with a TODO/issue reference. Commented-out code creates maintenance confusion.",
+      "revId": "0e03b87a4b369dc64be326f6b528753ee053c1dc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b17c1f6_298899dd",
+        "filename": "src/libclient/dbus/metatypes.h",
+        "patchSetId": 22
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-19T18:22:18Z",
+      "side": 1,
+      "message": "[warning] Line 97: 🟡 Suggestion: Adding `pluginData` at the end of the DBus serialization is correct for forward compatibility, but there\u0027s no versioning mechanism. If a newer client talks to an older daemon (or vice versa) that doesn\u0027t serialize `pluginData`, the deserialization will fail or read garbage. Consider documenting the compatibility story or adding a check for remaining arguments before reading `pluginData`.",
+      "revId": "0e03b87a4b369dc64be326f6b528753ee053c1dc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14b7943c_d7c93e4f",
+        "filename": "src/libclient/interaction.cpp",
+        "patchSetId": 22
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-19T18:22:18Z",
+      "side": 1,
+      "message": "[warning] Line 128: 🟡 Suggestion: The `bodyOverwrite` is applied after `init()` which already sets `body` from `msgBody`. This means `init()` may perform processing on the original body (e.g. setting type based on body content). If the overwritten body has different characteristics (e.g. different MIME type indicators), downstream logic that already ran in `init()` won\u0027t be re-evaluated. Verify that `init()` doesn\u0027t make decisions based on body content that would be invalidated by the overwrite.",
+      "revId": "0e03b87a4b369dc64be326f6b528753ee053c1dc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "813a4055_43a6d97b",
+        "filename": "src/libclient/interaction.cpp",
+        "patchSetId": 22
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-19T18:22:18Z",
+      "side": 1,
+      "message": "[warning] Line 136: 🟡 Suggestion: The key format `bodyOverwrite_e%1` uses a positional index into the editions vector. If editions are reordered or an edition is removed, the indices in `pluginData` become stale/mismatched. Consider using the edition\u0027s `id` field as the key suffix instead (e.g. `bodyOverwrite_\u003ceditionId\u003e`) for a more robust mapping.",
+      "revId": "0e03b87a4b369dc64be326f6b528753ee053c1dc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a44b003_79ddcc78",
+        "filename": "src/libclient/messagelistmodel.cpp",
+        "patchSetId": 22
+      },
+      "lineNbr": 530,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-19T18:22:18Z",
+      "side": 1,
+      "message": "[warning] Line 530: 🔴 Critical: `OriginalBody` returns `item.second.commit.value(\"body\")` which gives the raw commit body. However, when `pluginData` contains a `bodyOverwrite`, the `Info::body` field is overwritten (interaction.cpp:130), but `commit[\"body\"]` still holds the original daemon body. This means editing a message will show the un-translated original text, which is correct for editing, but the role name `OriginalBody` is ambiguous — it could mean \u0027body before plugin transformation\u0027 or \u0027body before user edits\u0027. Additionally, if `commit` is empty (non-swarm messages or certain message types), this returns an empty string silently. Consider adding a fallback to `item.second.body` when `commit` doesn\u0027t contain a \"body\" key, or document that this role is only valid for swarm messages.",
+      "revId": "0e03b87a4b369dc64be326f6b528753ee053c1dc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de8c8e74_6f5e9daa",
+        "filename": "tests/CMakeLists.txt",
+        "patchSetId": 22
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-19T18:22:18Z",
+      "side": 1,
+      "message": "[info] Line 45: 🟢 Good: Switching from `CMAKE_SOURCE_DIR` to `CMAKE_CURRENT_SOURCE_DIR` is correct practice — it makes the tests directory relocatable and allows the project to be included as a subdirectory without breaking paths.",
+      "revId": "0e03b87a4b369dc64be326f6b528753ee053c1dc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
