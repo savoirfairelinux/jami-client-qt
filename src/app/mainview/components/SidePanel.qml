@@ -202,7 +202,10 @@ SidePanelBase {
             anchors.fill: parent
             // Creates The floating rectangle itself
             anchors.margins: root.sidePanelIslandsMargin
-            anchors.topMargin: JamiQmlUtils.isMacOS26OrLater ? JamiTheme.sidePanelIslandPaddingMac : root.sidePanelIslandsMargin
+            anchors.topMargin: JamiQmlUtils.isMacOS26OrLater ? JamiTheme.sidePanelTopPaddingMac//sidePanelIslandPaddingMac
+                                                              : (appWindow.useFrameless && Qt.platform.os.toString() === "osx"
+                                                                 ? JamiTheme.sidePanelTopPaddingMac
+                                                                 : root.sidePanelIslandsMargin)
             anchors.leftMargin: JamiQmlUtils.isMacOS26OrLater ? JamiTheme.sidePanelIslandPaddingMac : root.sidePanelIslandsMargin
             anchors.rightMargin: {
                 if (viewCoordinator.isInSinglePaneMode) {
