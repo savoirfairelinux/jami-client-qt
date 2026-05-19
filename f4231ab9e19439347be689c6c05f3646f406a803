@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3161ccdb_d1db4620",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 25
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-19T20:14:31Z",
+      "side": 1,
+      "message": "[Critical] Line 55: 🔴 Critical Issues - `file(REAL_PATH ...)` requires CMake 3.19, but this project may still support older CMake versions. This will break configuration for supported builders using older CMake. Use `get_filename_component(... REALPATH)` instead, which is compatible with older CMake versions.\n```suggestion\n  get_filename_component(DAEMON_DIR \"${PROJECT_SOURCE_DIR}/../daemon\" REALPATH)\n```\nApply the same fix to the `WITH_DAEMON_SUBMODULE` branch.",
+      "revId": "f4231ab9e19439347be689c6c05f3646f406a803",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43075ae1_8eceaec6",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 25
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-19T20:14:31Z",
+      "side": 1,
+      "message": "Line 445: 🟡 Suggestions - The hard-coded 1 second fallback can race legitimate slow searches and clear the user\u0027s active search before results arrive, especially on slow networks or large accounts. Prefer handling daemon offline/error states explicitly, or use a longer named constant tied to the search lifecycle so the UI does not discard valid in-progress searches.",
+      "revId": "f4231ab9e19439347be689c6c05f3646f406a803",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17d85b0c_bd4e36ee",
+        "filename": "src/libclient/interaction.cpp",
+        "patchSetId": 25
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-19T20:14:31Z",
+      "side": 1,
+      "message": "[Critical] Line 128: 🔴 Critical Issues - `pluginData[\"bodyOverwrite\"]` is applied unconditionally to the displayed message body. If plugin data is provided by plugins or remote-derived message metadata, this lets opaque plugin state silently replace the canonical message text, creating spoofing and auditability risks. The UI should either clearly distinguish plugin-rendered content from message content, or only apply overwrite data produced by a trusted/local plugin handler with explicit validation.\n```suggestion\nif (isTrustedPluginBodyOverwrite(msg.pluginData) \u0026\u0026 !bodyOverwriteIt.value().isEmpty())\n    body \u003d bodyOverwriteIt.value();\n```\nThe concrete helper should validate the source/key according to the daemon plugin-data contract rather than trusting any `bodyOverwrite` key.",
+      "revId": "f4231ab9e19439347be689c6c05f3646f406a803",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef0ad535_8c12ab29",
+        "filename": "src/libclient/messagelistmodel.cpp",
+        "patchSetId": 25
+      },
+      "lineNbr": 528,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-19T20:14:31Z",
+      "side": 1,
+      "message": "[Critical] Line 528: 🔴 Critical Issues - `OriginalBody` falls back to `item.second.body` when the commit body is empty. Since `item.second.body` may already contain the plugin-overwritten body, editing a message with an intentionally empty or missing canonical body can prefill and resend plugin-generated display text instead of the original message. Preserve the distinction by returning the canonical commit value directly when the key exists, even if it is empty.\n```suggestion\ncase Role::OriginalBody: {\n    return QVariant(item.second.commit.contains(\"body\") ? item.second.commit.value(\"body\") : QString {});\n}\n```",
+      "revId": "f4231ab9e19439347be689c6c05f3646f406a803",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
