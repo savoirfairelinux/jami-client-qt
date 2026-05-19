@@ -16,6 +16,40 @@
       "message": "!build",
       "revId": "4066e12e4c114d69391ec0ec6fb0d3690347fe21",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3aaad4f4_d8c90bad",
+        "filename": "src/app/CallPipWindow.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-19T18:47:12Z",
+      "side": 1,
+      "message": "[🟡 Suggestion] Line 83: The minimum-size clamp can break the video\u0027s aspect ratio when `minimumHeight` is larger than `newWidth * r`. The comment says the resulting proportions exactly match `r`, but the current code only clamps width before deriving height, then independently clamps height without recalculating width. This can leave the PiP letterboxed/cropped contrary to the change intent. Recompute the paired dimension after any minimum-height clamp.\n```suggestion\nnewWidth \u003d Math.max(minimumWidth, Math.round(Math.sqrt(area / r)));\nnewHeight \u003d Math.round(newWidth * r);\nif (newHeight \u003c minimumHeight) {\n    newHeight \u003d minimumHeight;\n    newWidth \u003d Math.max(minimumWidth, Math.round(newHeight / r));\n}\n```",
+      "revId": "4066e12e4c114d69391ec0ec6fb0d3690347fe21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb7611a3_6a25f9cb",
+        "filename": "src/app/CallPipWindow.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-19T18:47:12Z",
+      "side": 1,
+      "message": "[🟡 Suggestion] Line 105: `onHeightChanged` does not re-apply the video aspect ratio, so resizing from a top/bottom edge or a window manager operation that changes only height can leave the PiP window out of sync until width or the video aspect changes. If the goal is to keep the window aspect synchronized during manual resize, handle height-only changes too, preferably by adjusting width from height while guarding against programmatic feedback.\n```suggestion\nonHeightChanged: { _applyVideoAspectFromHeight(); saveGeometry(); }\n```",
+      "revId": "4066e12e4c114d69391ec0ec6fb0d3690347fe21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
