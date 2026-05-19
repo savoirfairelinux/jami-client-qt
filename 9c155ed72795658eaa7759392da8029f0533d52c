@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a02f559_d4df7946",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-19T18:58:43Z",
+      "side": 1,
+      "message": "[Critical] Line 66: `isPluginOverwrite: Body !\u003d\u003d OriginalBody` treats missing or empty OriginalBody as a modification, so messages whose OriginalBody role is unset can incorrectly show \u0027Modified by extension\u0027 and the original toggle. Gate this on OriginalBody actually being present before comparing.\n```suggestion\n    property bool isPluginOverwrite: OriginalBody !\u003d\u003d \"\" \u0026\u0026 Body !\u003d\u003d OriginalBody\n```",
+      "revId": "9c155ed72795658eaa7759392da8029f0533d52c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ee8eb03_6a54e308",
+        "filename": "src/app/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-19T18:58:43Z",
+      "side": 1,
+      "message": "[Critical] Line 80: The edited-message branch assumes PreviousBodies[0].body always exists. If the model marks a message edited before history is populated, or history is unavailable, toggling \u0027Show original\u0027 will throw a QML TypeError and break delegate rendering. Guard the access and either hide the toggle when there is no previous body or fall back safely.\n```suggestion\n                if (showOriginal) {\n                    if (isPluginOverwrite)\n                        return OriginalBody;\n                    return PreviousBodies.length \u003e 0 ? PreviousBodies[0].body : Body;\n                }\n```",
+      "revId": "9c155ed72795658eaa7759392da8029f0533d52c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57e864e2_746074c2",
+        "filename": "src/app/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-19T18:58:43Z",
+      "side": 1,
+      "message": "[Critical] Line 80: The original/previous body is rendered directly, bypassing the existing ParsedBody/MessagesAdapter.parseMessage path used for normal messages. That can regress hyperlink preview/parsing behavior and may expose raw markup/control content differently from current messages. Route the selected body through the same parsing/sanitization path instead of returning raw OriginalBody/PreviousBodies[0].body. For example:\n```suggestion\n                const displayBody \u003d showOriginal\n                        ? (isPluginOverwrite ? OriginalBody : (PreviousBodies.length \u003e 0 ? PreviousBodies[0].body : Body))\n                        : Body;\n                if (displayBody !\u003d\u003d \"\" \u0026\u0026 ParsedBody.length \u003d\u003d\u003d 0) {\n                    MessagesAdapter.parseMessage(Id, displayBody, UtilsAdapter.getAppValue(Settings.DisplayHyperlinkPreviews), rootDelegate.colorUrl, bubble.color);\n                    return \"\";\n                }\n```",
+      "revId": "9c155ed72795658eaa7759392da8029f0533d52c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0648ffe0_ac409f2d",
+        "filename": "src/app/networkmanager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-19T18:58:43Z",
+      "side": 1,
+      "message": "Line 121: The new overload captures move-only callback parameters by copy in the lambda. `std::function` is copyable, but this needlessly copies both callbacks and differs from the rest of the class style; more importantly, if callers pass stateful callbacks expecting move ownership, this keeps an extra copy alive. Move them into the lambda capture.\n```suggestion\n    QObject::connect(reply, \u0026QNetworkReply::finished, reply,\n        [reply,\n         onDoneCallback \u003d std::move(onDoneCallback),\n         onErrorCallback \u003d std::move(onErrorCallback)]() {\n```",
+      "revId": "9c155ed72795658eaa7759392da8029f0533d52c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
