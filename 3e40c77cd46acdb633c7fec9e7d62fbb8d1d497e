@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d522f27a_06cbfd39",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-19T19:56:06Z",
+      "side": 1,
+      "message": "Line 444: 🟡 Suggestions: This unconditional 1s fallback can clear an active search before a slow daemon/network search completes, so valid results may arrive after the UI has already reset the filter. Prefer clearing only on an explicit failure/timeout signal from the search layer, or use a much longer/debounced timeout tied to a cancellable search token.\n```suggestion\n// Prefer cancelling/clearing from the search completion/error path instead of a fixed 1s timer.\n```",
+      "revId": "3e40c77cd46acdb633c7fec9e7d62fbb8d1d497e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb427b16_4a83e455",
+        "filename": "src/libclient/interaction.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-19T19:56:06Z",
+      "side": 1,
+      "message": "Line 133: 🟡 Suggestions: Mapping edited body overwrites by vector index (`bodyOverwrite_e%1`) is fragile because it depends on `msg.editions` ordering staying identical to the plugin\u0027s indexing. If editions are reordered, filtered, or loaded from another source, the wrong overwritten body can be shown. Key the plugin data by a stable edition identifier instead.\n```suggestion\nconst auto pdKey \u003d QString(\"bodyOverwrite_%1\").arg(edition.value(\"id\"));\n```",
+      "revId": "3e40c77cd46acdb633c7fec9e7d62fbb8d1d497e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "889a58dd_feb9be27",
+        "filename": "src/libclient/messagelistmodel.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 528,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-19T19:56:06Z",
+      "side": 1,
+      "message": "Line 528: 🟡 Suggestions: `OriginalBody` falls back to `item.second.body` when the commit body is empty, which means an intentionally empty original body with a non-empty plugin overwrite will return the overwritten text for editing. Check key presence instead of value emptiness so empty originals are preserved.\n```suggestion\nconst auto commitIt \u003d item.second.commit.constFind(\"body\");\nreturn QVariant(commitIt \u003d\u003d item.second.commit.constEnd() ? item.second.body : commitIt.value());\n```",
+      "revId": "3e40c77cd46acdb633c7fec9e7d62fbb8d1d497e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
