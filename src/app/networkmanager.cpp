@@ -112,6 +112,27 @@ NetworkManager::sendGetRequest(const QNetworkRequest& request, std::function<voi
     });
 }
 
+void
+NetworkManager::sendGetRequest(const QUrl& url,
+                               const QMap<QString, QByteArray>& header,
+                               std::function<void(const QByteArray&)>&& onDoneCallback,
+                               std::function<void(GetError, const QString&)>&& onErrorCallback)
+{
+    QNetworkRequest request = QNetworkRequest(url);
+    for (auto it = header.begin(); it != header.end(); ++it) {
+        request.setRawHeader(QByteArray(it.key().toStdString().c_str(), it.key().size()), it.value());
+    }
+    auto* const reply = manager_->get(request);
+    QObject::connect(reply, &QNetworkReply::finished, reply, [reply, onDoneCallback, onErrorCallback]() {
+        if (reply->error() == QNetworkReply::NoError) {
+            onDoneCallback(reply->readAll());
+        } else {
+            onErrorCallback(GetError::NETWORK_ERROR, reply->errorString());
+        }
+        reply->deleteLater();
+    });
+}
+
 int
 NetworkManager::downloadFile(const QUrl& url,
                              int replyId,
