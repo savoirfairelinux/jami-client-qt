@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "625bae71_ffece7ce",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-19T18:54:31Z",
+      "side": 1,
+      "message": "[Critical] Line 442: This fallback timer can clear a newer search. Each call sets selectFirst_ to true, so an older singleShot can fire after a later setFilterAndSelect() and exchange(false), then call setFilter({}) for the current query. It also treats any search taking more than 1s as failed. Tie the timeout to the specific filter value/generation, or remove the fallback. For example:\n```suggestion\n    const auto expectedFilter \u003d filterString;\n    QTimer::singleShot(1000, this, [this, expectedFilter]() {\n        if (filter() \u003d\u003d expectedFilter \u0026\u0026 selectFirst_.exchange(false))\n            setFilter({});\n    });\n```\nUse the actual current-filter accessor/member available in this class.",
+      "revId": "514797642c9d5995c06ad1f8355b37f4558c355b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b115c4c_979011cf",
+        "filename": "src/app/mainview/components/PluginHandlerPicker.qml",
+        "patchSetId": 23
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-19T18:54:31Z",
+      "side": 1,
+      "message": "[Critical] Line 47: Commenting out anchors.fill leaves this Rectangle without an explicit size. Since the parent StackView item does not guarantee implicit dimensions from this Rectangle, the background/content can collapse or no longer cover the popup. Restore the anchor unless there is a replacement sizing strategy.\n```suggestion\n            anchors.fill: parent\n```",
+      "revId": "514797642c9d5995c06ad1f8355b37f4558c355b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02ca160b_5bb6e02e",
+        "filename": "src/app/mainview/components/PluginHandlerPicker.qml",
+        "patchSetId": 23
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-19T18:54:31Z",
+      "side": 1,
+      "message": "[Critical] Line 161: Same sizing regression as above: this Rectangle no longer fills the popup page, which can break layout/background rendering for the second plugin handler view. Restore the anchor.\n```suggestion\n            anchors.fill: parent\n```",
+      "revId": "514797642c9d5995c06ad1f8355b37f4558c355b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
