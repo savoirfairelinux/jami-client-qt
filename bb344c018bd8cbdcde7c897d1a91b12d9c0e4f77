@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70ae3236_fff01eea",
+        "filename": "src/app/CallPipWindow.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-20T16:01:30Z",
+      "side": 1,
+      "message": "[🟡 Suggestion] Line 193: `_lastInvAspect` is updated immediately after requesting the new geometry, even if the compositor clamps or refuses the requested size. That makes the next frame with the same aspect ratio look unchanged, so the area-preserving correction may not be retried and the PiP can remain at an incorrect shape. Update the cached aspect only after the observed window size is within tolerance of the requested aspect, or leave it unchanged when the applied geometry does not match the request.\n\n```suggestion\nroot._setAspectGeometry(newWidth, newHeight);\nif (Math.abs(root.width - newWidth) \u003c\u003d 1 \u0026\u0026 Math.abs(root.height - newHeight) \u003c\u003d 1) {\n    _lastInvAspect \u003d r;\n    _lastInvAspectInit \u003d true;\n}\n```",
+      "revId": "bb344c018bd8cbdcde7c897d1a91b12d9c0e4f77",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61a864d7_0b94dd13",
+        "filename": "src/app/CallPipWindow.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-20T16:01:30Z",
+      "side": 1,
+      "message": "[🟡 Suggestion] Line 230: The aspect-adjustment guard is cleared immediately after assigning width/height, but the earlier comment notes that window property-change signals can be delivered asynchronously by the window manager. If those delayed signals arrive after `_adjustingAspect` is already false, programmatic changes can be misclassified as user resizes and invoke the opposite resize path, causing extra geometry changes/saves or feedback loops on some compositors. Keep the guard active until the event loop has processed the resulting geometry notifications, or use a pending-target/idempotent check for both width and height handlers.\n\n```suggestion\nfunction _setAspectGeometry(newWidth, newHeight) {\n    _adjustingAspect \u003d true;\n    if (newWidth !\u003d\u003d width)\n        width \u003d newWidth;\n    if (newHeight !\u003d\u003d height)\n        height \u003d newHeight;\n    Qt.callLater(() \u003d\u003e { _adjustingAspect \u003d false; });\n}\n```",
+      "revId": "bb344c018bd8cbdcde7c897d1a91b12d9c0e4f77",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
