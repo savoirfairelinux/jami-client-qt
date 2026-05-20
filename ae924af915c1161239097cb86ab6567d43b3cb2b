@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f259bb89_c75abb07",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 4
+      },
+      "lineNbr": 630,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-20T16:18:47Z",
+      "side": 1,
+      "message": "[🟢 Good Practice] Line 630: Good: the new Assets.car is explicitly packaged into the macOS bundle resources, while keeping the existing jami.icns fallback path intact.",
+      "revId": "ae924af915c1161239097cb86ab6567d43b3cb2b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d353cf5b_bc0c25d0",
+        "filename": "extras/scripts/regenerate-macos-icon.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-20T16:18:47Z",
+      "side": 1,
+      "message": "[🟡 Suggestion] Line 12: The script writes the partial plist to a fixed path in /tmp. This can clobber another user\u0027s file or fail unpredictably on shared build machines. Use mktemp and clean it up with a trap, for example:\n```suggestion\nPARTIAL_PLIST\u003d\"$(mktemp \"${TMPDIR:-/tmp}/jami-partial.XXXXXX.plist\")\"\ntrap \u0027rm -f \"${PARTIAL_PLIST}\"\u0027 EXIT\nxcrun actool AppIcon.icon --compile . --app-icon AppIcon \\\n  --include-all-app-icons --enable-on-demand-resources NO \\\n  --target-device mac --platform macosx \\\n  --minimum-deployment-target 13.0 \\\n  --output-partial-info-plist \"${PARTIAL_PLIST}\"\n```",
+      "revId": "ae924af915c1161239097cb86ab6567d43b3cb2b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2834f4b0_b368c3d4",
+        "filename": "resources/Info.plist",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-20T16:18:47Z",
+      "side": 1,
+      "message": "[🟢 Good Practice] Line 10: Good: adding CFBundleIconName while retaining CFBundleIconFile lets macOS use the asset-catalog icon where supported without removing the existing icns fallback.",
+      "revId": "ae924af915c1161239097cb86ab6567d43b3cb2b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
