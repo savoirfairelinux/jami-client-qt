@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e30268c6_d5940213",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 28
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-20T19:01:50Z",
+      "side": 1,
+      "message": "[Critical] Line 52: The fallback timer clears the filter after 5 seconds regardless of whether the user has changed the search/filter since `setFilterAndSelect()` was called. If a URI-triggered search starts and the user types a different query before the timeout, their active search will be cleared unexpectedly. Store the pending URI filter and only clear if the current filter still matches that pending value, or cancel the timer on manual filter changes.\n```suggestion\nconnect(\u0026searchFallbackTimer_, \u0026QTimer::timeout, this, [this, pending \u003d filterString]() {\n    if (currentFilter_ \u003d\u003d pending)\n        setFilter({});\n});\n```",
+      "revId": "e7dff30a81ba4c4e86a11b8b8a6cc5f41d9323b4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16f42db3_b698fe71",
+        "filename": "src/libclient/dbus/metatypes.h",
+        "patchSetId": 28
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-20T19:01:50Z",
+      "side": 1,
+      "message": "[Critical] Line 97: Adding `pluginData` to the serialized `SwarmMessage` structure changes the D-Bus signature unconditionally. This will break compatibility whenever the client and daemon are not rebuilt/deployed together, because older daemons will emit one fewer field and deserialization will fail or misread the message. Please either gate this by daemon API/version negotiation or introduce a backward-compatible message type/path so older peers continue to work.\n```suggestion\n// Keep the existing SwarmMessage D-Bus layout stable, or only read/write\n// pluginData after confirming the daemon exposes the newer conversation API.\n```",
+      "revId": "e7dff30a81ba4c4e86a11b8b8a6cc5f41d9323b4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "095c237a_a378b328",
+        "filename": "src/libclient/interaction.cpp",
+        "patchSetId": 28
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-20T19:01:50Z",
+      "side": 1,
+      "message": "[Critical] Line 128: `bodyOverwrite` from plugin data is rendered as the message body without preserving the original body in the edit history path. For edited messages, `previousBodies` now stores the overwritten text when an edition contains `bodyOverwrite`, so the UI may expose plugin-generated text as if it were the user\u0027s authored content. Keep plugin display overrides separate from canonical message bodies and only use the original body for editing/history/audit data.\n```suggestion\nconst auto originalBody \u003d edition.value(\"body\");\npreviousBodies.append(Body {edition.value(\"id\"), originalBody, QString(edition.value(\"timestamp\")).toInt()});\n```",
+      "revId": "e7dff30a81ba4c4e86a11b8b8a6cc5f41d9323b4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
