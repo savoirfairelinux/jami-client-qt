@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "915083b3_f3b79d65",
+        "filename": "extras/scripts/regenerate-macos-icon.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1193
+      },
+      "writtenOn": "2026-05-20T16:42:13Z",
+      "side": 1,
+      "message": "[Major] Line 13: The regeneration script hard-codes `--minimum-deployment-target 13.0`, which can produce an `Assets.car` that is not aligned with the app\u0027s actual CMake deployment target. If the project still supports older macOS versions, this risks shipping an asset catalog compiled for a newer minimum than the binary itself. Pass the deployment target in explicitly or default it from the environment/CMake docs, e.g.:\n```suggestion\nMIN_DEPLOYMENT_TARGET\u003d\"${MACOSX_DEPLOYMENT_TARGET:-${CMAKE_OSX_DEPLOYMENT_TARGET:-10.15}}\"\n\nxcrun actool AppIcon.icon --compile . --app-icon AppIcon \\\n  --include-all-app-icons --enable-on-demand-resources NO \\\n  --target-device mac --platform macosx \\\n  --minimum-deployment-target \"${MIN_DEPLOYMENT_TARGET}\" \\\n  --output-partial-info-plist \"${PARTIAL_PLIST}\"\n```",
+      "revId": "914d920c7ebdbf6baee24e8d96c2487a7574a757",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
